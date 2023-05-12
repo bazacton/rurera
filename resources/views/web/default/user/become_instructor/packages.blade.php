@@ -105,10 +105,6 @@
 
             <div class="row mt-20">
                 @foreach($packages as $package)
-                    @php
-                        $specialOffer = $package->activeSpecialOffer();
-                    @endphp
-
                     <div class="col-12 col-sm-6 col-lg-4 mt-15 {{ !empty($becomeInstructor) ? 'charge-account-radio' : '' }}">
                         @if(!empty($becomeInstructor))
                             <input type="radio" name="id" id="package{{ $package->id }}" value="{{ $package->id }}">
@@ -118,8 +114,6 @@
 
                             @if(!empty($activePackage) and $activePackage->package_id == $package->id)
                                 <span class="badge badge-primary badge-popular px-15 py-5">{{ trans('update.activated') }}</span>
-                            @elseif(!empty($specialOffer))
-                                <span class="badge badge-danger badge-popular px-15 py-5">{{ trans('update.percent_off', ['percent' => $specialOffer->percent]) }}</span>
                             @endif
 
 
@@ -130,19 +124,8 @@
                             <h3 class="mt-20 font-30 text-secondary">{{ $package->title }}</h3>
                             <p class="font-weight-500 font-14 text-gray mt-10">{{ $package->description }}</p>
 
-                            <div class="d-flex align-items-start mt-30">
-                                @if(!empty($package->price) and $package->price > 0)
-                                    @if(!empty($specialOffer))
-                                        <div class="d-flex align-items-end line-height-1">
-                                            <span class="font-36 text-primary">{{ handlePrice($package->getPrice()) }}</span>
-                                            <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($package->price) }}</span>
-                                        </div>
-                                    @else
-                                        <span class="font-36 text-primary line-height-1">{{ handlePrice($package->price) }}</span>
-                                    @endif
-                                @else
-                                    <span class="font-36 text-primary line-height-1">{{ trans('public.free') }}</span>
-                                @endif
+                            <div class="d-flex align-items-start text-primary mt-30">
+                                <span class="font-36 line-height-1">{{ addCurrencyToPrice($package->price) }}</span>
                             </div>
 
                             <ul class="mt-20 plan-feature">
@@ -170,10 +153,6 @@
                         @if(!getRegistrationPackagesGeneralSettings('force_user_to_select_a_package'))
                             <a href="/panel" class="btn btn-sm btn-primary mr-5">{{ trans('update.skip') }}</a>
                         @endif
-
-                        <a href="" class="js-installment-btn d-none btn btn-primary btn-sm">
-                            {{ trans('update.pay_with_installments') }}
-                        </a>
 
                         <button type="submit" id="paymentSubmit" disabled class="btn btn-sm btn-primary">{{ trans('cart.checkout') }}</button>
                     </div>

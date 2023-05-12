@@ -39,6 +39,7 @@
             <div class="panel-collapse text-gray">
                 <div class="js-content-form file-form" data-action="/panel/files/{{ !empty($file) ? $file->id . '/update' : 'store' }}">
                     <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][webinar_id]" value="{{ !empty($webinar) ? $webinar->id :'' }}">
+                    <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][chapter_id]" value="{{ !empty($chapter) ? $chapter->id :'' }}" class="chapter-input">
 
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -62,19 +63,6 @@
                                 <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][locale]" value="{{ $defaultLocale }}">
                             @endif
 
-                            @if(!empty($file))
-                                <div class="form-group">
-                                    <label class="input-label">{{ trans('public.chapter') }}</label>
-                                    <select name="ajax[{{ !empty($file) ? $file->id : 'new' }}][chapter_id]" class="js-ajax-chapter_id form-control">
-                                        @foreach($webinar->chapters as $ch)
-                                            <option value="{{ $ch->id }}" {{ ($file->chapter_id == $ch->id) ? 'selected' : '' }}>{{ $ch->title }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            @else
-                                <input type="hidden" name="ajax[new][chapter_id]" value="" class="chapter-input">
-                            @endif
 
                             <div class="form-group">
                                 <label class="input-label">{{ trans('public.title') }}</label>
@@ -87,7 +75,7 @@
                                 <select name="ajax[{{ !empty($file) ? $file->id : 'new' }}][storage]"
                                         class="js-file-storage form-control"
                                 >
-                                    @foreach(getFeaturesSettings('available_sources') as $source)
+                                    @foreach(\App\Models\File::$fileSources as $source)
                                         <option value="{{ $source }}" @if(!empty($file) and $file->storage == $source) selected @endif>{{ trans('update.file_source_'.$source) }}</option>
                                     @endforeach
                                 </select>
@@ -150,7 +138,7 @@
                                     </select>
                                     <div class="invalid-feedback"></div>
                                 </div>
-                                <div class="col-6 js-file-volume-field">
+                                <div class="col-6">
                                     <label class="input-label">{{ trans('webinars.file_volume') }}</label>
                                     <input type="text" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][volume]" value="{{ (!empty($file)) ? $file->volume : '' }}" class="js-ajax-volume form-control" placeholder="{{ trans('webinars.online_file_volume') }}"/>
                                     <div class="invalid-feedback"></div>
@@ -222,11 +210,6 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <div class="progress d-none">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                            </div>
-
                         </div>
                     </div>
 

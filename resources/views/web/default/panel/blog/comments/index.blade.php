@@ -97,7 +97,7 @@
                                             <a href="{{ $comment->blog->getUrl() }}" target="_blank" class="text-dark-blue font-weight-500">{{ $comment->blog->title }}</a>
                                         </td>
                                         <td class="align-middle">
-                                            <input type="hidden" id="commentDescription{{ $comment->id }}" value="{{ nl2br($comment->comment) }}">
+                                            <input type="hidden" id="commentDescription{{ $comment->id }}" value="{!! nl2br($comment->comment) !!}">
                                             <button type="button" data-comment-id="{{ $comment->id }}" class="js-view-comment btn btn-sm btn-gray200">{{ trans('public.view') }}</button>
                                         </td>
                                         <td class="align-middle">

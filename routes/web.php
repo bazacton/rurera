@@ -83,6 +83,9 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
 
     Route::get('/getDefaultAvatar', 'DefaultAvatarController@make');
 
+    Route::post('/question/validation', 'QuestionsBankController@validation');
+	Route::post('/question/test_complete', 'QuestionsBankController@test_complete');
+
     Route::group(['prefix' => 'course'], function () {
         Route::get('/{slug}', 'WebinarController@course');
         Route::get('/{slug}/file/{file_id}/download', 'WebinarController@downloadFile');

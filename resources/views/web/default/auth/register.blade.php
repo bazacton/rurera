@@ -9,7 +9,6 @@
         $registerMethod = getGeneralSettings('register_method') ?? 'mobile';
         $showOtherRegisterMethod = getFeaturesSettings('show_other_register_method') ?? false;
         $showCertificateAdditionalInRegister = getFeaturesSettings('show_certificate_additional_in_register') ?? false;
-        $selectRolesDuringRegistration = getFeaturesSettings('select_the_role_during_registration') ?? null;
     @endphp
 
     <div class="container">
@@ -23,26 +22,6 @@
 
                     <form method="post" action="/register" class="mt-35">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                        @if(!empty($selectRolesDuringRegistration) and count($selectRolesDuringRegistration))
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('financial.account_type') }}</label>
-
-                                <div class="d-flex align-items-center wizard-custom-radio mt-5">
-                                    <div class="wizard-custom-radio-item flex-grow-1">
-                                        <input type="radio" name="account_type" value="user" id="role_user" class="" checked>
-                                        <label class="font-12 cursor-pointer px-15 py-10" for="role_user">{{ trans('update.role_user') }}</label>
-                                    </div>
-
-                                    @foreach($selectRolesDuringRegistration as $selectRole)
-                                        <div class="wizard-custom-radio-item flex-grow-1">
-                                            <input type="radio" name="account_type" value="{{ $selectRole }}" id="role_{{ $selectRole }}" class="">
-                                            <label class="font-12 cursor-pointer px-15 py-10" for="role_{{ $selectRole }}">{{ trans('update.role_'.$selectRole) }}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
 
                         @if($registerMethod == 'mobile')
                             @include('web.default.auth.register_includes.mobile_field')
@@ -92,17 +71,15 @@
                             @enderror
                         </div>
 
-                        @if($showCertificateAdditionalInRegister)
-                            <div class="form-group">
-                                <label class="input-label" for="certificate_additional">{{ trans('update.certificate_additional') }}</label>
-                                <input name="certificate_additional" id="certificate_additional" class="form-control @error('certificate_additional') is-invalid @enderror"/>
-                                @error('certificate_additional')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                        <div class="form-group">
+                            <label class="input-label" for="certificate_additional">{{ trans('update.certificate_additional') }}</label>
+                            <input name="certificate_additional" id="certificate_additional" class="form-control @error('certificate_additional') is-invalid @enderror"/>
+                            @error('certificate_additional')
+                            <div class="invalid-feedback">
+                                {{ $message }}
                             </div>
-                        @endif
+                            @enderror
+                        </div>
 
                         @if(getFeaturesSettings('timezone_in_register'))
                             @php
@@ -140,9 +117,6 @@
                             </div>
                         @endif
 
-                        @if(!empty(getGeneralSecuritySettings('captcha_for_register')))
-                            @include('web.default.includes.captcha_input')
-                        @endif
 
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="term" value="1" {{ (!empty(old('term')) and old('term') == '1') ? 'checked' : '' }} class="custom-control-input @error('term') is-invalid @enderror" id="term">
@@ -161,8 +135,8 @@
                             {{ $message }}
                         </div>
                         @enderror
-
-                        <button type="submit" class="btn btn-primary btn-block mt-20">{{ trans('auth.signup') }}</button>
+                        <button type="submit"
+                                class="btn btn-primary btn-block mt-20">{{ trans('auth.signup') }}</button>
                     </form>
 
                     <div class="text-center mt-20">

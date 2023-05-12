@@ -37,7 +37,7 @@
                 <div class="col-6 col-md-3 mt-10 mt-md-0 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/33.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5">{{ (!empty($salesAmount) and $salesAmount > 0) ? handlePrice($salesAmount) : 0 }}</strong>
+                        <strong class="font-30 font-weight-bold mt-5">{{ handlePrice($salesAmount) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.sales_amount') }}</span>
                     </div>
                 </div>
@@ -254,12 +254,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php
-                                    $usersLists = new \Illuminate\Support\Collection($students->items());
-                                    $usersLists = $usersLists->merge($unregisteredUsers);
-                                @endphp
-
-                                @foreach($usersLists as $user)
+                                @foreach($students as $user)
 
                                     <tr>
                                         <td class="text-left">
@@ -274,23 +269,19 @@
                                             </div>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ $user->course_progress ?? 0 }}%</span>
+                                            <span class="text-dark-blue font-weight-500">{{ $user->course_progress }}%</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ $user->passed_quizzes ?? 0 }}</span>
+                                            <span class="text-dark-blue font-weight-500">{{ $user->passed_quizzes }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ $user->unsent_assignments ?? 0 }}</span>
+                                            <span class="text-dark-blue font-weight-500">{{ $user->unsent_assignments }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ $user->pending_assignments ?? 0 }}</span>
+                                            <span class="text-dark-blue font-weight-500">{{ $user->pending_assignments }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            @if(empty($user->id))
-                                                <span class="text-warning">{{ trans('update.unregistered') }}</span>
-                                            @else
-                                                <span class="text-dark-blue font-weight-500">{{ dateTimeFormat($user->created_at,'j M Y | H:i') }}</span>
-                                            @endif
+                                            <span class="text-dark-blue font-weight-500">{{ dateTimeFormat($user->created_at,'j M Y | H:i') }}</span>
                                         </td>
                                     </tr>
                                 @endforeach

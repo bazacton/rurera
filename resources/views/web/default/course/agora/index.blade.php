@@ -9,14 +9,14 @@
 
     <div class="agora-page">
         <div class="agora-navbar d-flex align-items-center justify-content-between shoa px-35 py-10">
-            <div class="d-flex align-items-center">
+            <div class="">
                 <a class="navbar-brand d-flex align-items-center justify-content-center mr-0" href="/">
                     @if(!empty($generalSettings['logo']))
                         <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo">
                     @endif
                 </a>
 
-                <span class="font-weight-bold border-left border-gray200 ml-10 pl-10">{{ !empty($session->webinar) ? $session->webinar->title : $session->title }}</span>
+                <span class="font-weight-bold border-left border-gray200 ml-10 pl-10">{{ $session->webinar->title }}</span>
             </div>
 
             <button id="collapseBtn" type="button" class="btn-transparent d-none d-lg-flex">
@@ -77,11 +77,7 @@
         var redirectAfterLeave = '{{ url('/panel') }}';
         var liveEndedLang = '{{ trans('update.this_live_has_been_ended') }}';
         var redirectToPanelInAFewMomentLang = '{{ trans('update.a_few_moments_redirect_to_panel') }}';
-        var streamStartAt = Number({{ $streamStartAt }});
-        var sessionId = Number({{ $session->id }});
-        var sessionStreamType = '{{ $sessionStreamType }}';
-        var authUserId = Number({{ $authUserId }});
-        var hostUserId = Number({{ $hostUserId }});
+        var streamStartAt = Number({{ $streamStartAt }})
     </script>
 
 @endpush

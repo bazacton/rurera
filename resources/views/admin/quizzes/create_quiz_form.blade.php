@@ -55,93 +55,133 @@
                 @else
                     <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][webinar_id]" value="{{ $selectedWebinar->id }}">
                 @endif
-
-                @if(!empty($quiz))
-                    <div class="form-group">
-                        <label class="input-label">{{ trans('public.chapter') }}</label>
-                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][chapter_id]" class="js-ajax-chapter_id form-control">
-                            @foreach($chapters as $ch)
-                                <option value="{{ $ch->id }}" {{ ($quiz->chapter_id == $ch->id) ? 'selected' : '' }}>{{ $ch->title }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                @else
-                    <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][chapter_id]" value="" class="chapter-input">
-                @endif
+               
+                
+                <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][chapter_id]" value="{{ !empty($quiz) ? $quiz->chapter_id : '' }}" class="chapter-input">
+                
+                
+                
+                <div class="form-group mt-15 ">
+                    <label class="input-label d-block">Sub Chapter</label>
+                    <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][sub_chapter_id]" class="form-control search-sub_chapter-select2" data-placeholder="Select Sub Chapter">
+                        @if(!empty($quiz) && $quiz->sub_chapter_id > 0)
+                        <option value="{{ $quiz->sub_chapter_id }}" selected>{{ getSubChapterTitle($quiz->sub_chapter_id) }}</option>
+                        @endif
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label class="input-label">{{ trans('quiz.quiz_title') }}</label>
                     <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][title]" value="{{ !empty($quiz) ? $quiz->title : old('title') }}"  class="js-ajax-title form-control " placeholder=""/>
                     <div class="invalid-feedback"></div>
                 </div>
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('public.time') }} <span class="braces">({{ trans('public.minutes') }})</span></label>
-                    <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][time]" value="{{ !empty($quiz) ? $quiz->time : old('time') }}" class="js-ajax-time form-control " placeholder="{{ trans('forms.empty_means_unlimited') }}"/>
-                    <div class="invalid-feedback"></div>
+                
+                
+                <div class="form-group mt-15 ">
+                    <label class="input-label d-block">Quiz Type</label>
+                    <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_type]" class="form-control search-quiz-select2" data-placeholder="Select Quiz Type">
+                        <option value="practice" {{  (!empty($quiz) and $quiz->quiz_type == 'practice') ? 'selected' : '' }}>Practice</option>
+                        <option value="assessment" {{  (!empty($quiz) and $quiz->quiz_type == 'assessment') ? 'selected' : '' }}>Assessment</option>
+                    </select>
                 </div>
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('quiz.number_of_attemps') }}</label>
-                    <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][attempt]" value="{{ !empty($quiz) ? $quiz->attempt : old('attempt') }}" class="js-ajax-attempt form-control " placeholder="{{ trans('forms.empty_means_unlimited') }}"/>
-                    <div class="invalid-feedback"></div>
-                </div>
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('quiz.pass_mark') }}</label>
-                    <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][pass_mark]" value="{{ !empty($quiz) ? $quiz->pass_mark : old('pass_mark') }}" class="js-ajax-pass_mark form-control @error('pass_mark')  is-invalid @enderror" placeholder=""/>
-                    <div class="invalid-feedback"></div>
-                </div>
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('update.expiry_days') }}</label>
-                    <input type="number" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][expiry_days]" value="{{ !empty($quiz) ? $quiz->expiry_days : old('expiry_days') }}" class="js-ajax-expiry_days form-control @error('expiry_days')  is-invalid @enderror" min="0"/>
-                    <div class="invalid-feedback"></div>
-
-                    <p class="font-12 text-gray mt-1">{{ trans('update.quiz_expiry_days_hint') }}</p>
-                </div>
-
-                @if(!empty($quiz))
-                    <div class="form-group mt-4 d-flex align-items-center justify-content-between">
-                        <label class="cursor-pointer input-label" for="displayLimitedQuestionsSwitch{{ $quiz->id }}">{{ trans('update.display_limited_questions') }}</label>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][display_limited_questions]" class="js-ajax-display_limited_questions custom-control-input" id="displayLimitedQuestionsSwitch{{ $quiz->id }}" {{ ($quiz->display_limited_questions) ? 'checked' : ''}}>
-                            <label class="custom-control-label" for="displayLimitedQuestionsSwitch{{ $quiz->id }}"></label>
+                
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <label class="input-label">Mastery Points</label>
+                            <input type="number" value="{{ !empty($quiz) ? $quiz->mastery_points : old('mastery_points') }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][mastery_points]" class="form-control @error('mastery_points')  is-invalid @enderror" placeholder=""/>
                         </div>
                     </div>
-
-                    <div class="form-group js-display-limited-questions-count-field {{ ($quiz->display_limited_questions) ? '' : 'd-none' }}">
-                        <label class="input-label">{{ trans('update.number_of_questions') }} ({{ trans('update.total_questions') }}: {{ $quiz->quizQuestions->count() }})</label>
-                        <input type="number" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][display_number_of_questions]" value="{{ $quiz->display_number_of_questions }}" class="js-ajax-display_number_of_questions form-control " min="1"/>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                @endif
-
-                <div class="form-group mt-20 d-flex align-items-center justify-content-between">
-                    <label class="cursor-pointer input-label" for="displayQuestionsRandomlySwitch{{ !empty($quiz) ? $quiz->id : 'record' }}">{{ trans('update.display_questions_randomly') }}</label>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][display_questions_randomly]" class="js-ajax-display_questions_randomly custom-control-input" id="displayQuestionsRandomlySwitch{{ !empty($quiz) ? $quiz->id : 'record' }}" {{ (!empty($quiz) && $quiz->display_questions_randomly) ? 'checked' : ''}}>
-                        <label class="custom-control-label" for="displayQuestionsRandomlySwitch{{ !empty($quiz) ? $quiz->id : 'record' }}"></label>
-                    </div>
-                    <div class="invalid-feedback"></div>
                 </div>
 
-                <div class="form-group mt-4 d-flex align-items-center justify-content-between">
-                    <label class="cursor-pointer" for="certificateSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}">{{ trans('quiz.certificate_included') }}</label>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][certificate]" class="custom-control-input" id="certificateSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}" {{ !empty($quiz) && $quiz->certificate ? 'checked' : ''}}>
-                        <label class="custom-control-label" for="certificateSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}"></label>
+                @php
+                $quiz_settings = array();
+                if( isset( $quiz->quiz_settings ) ){
+                $quiz_settings  = $quiz->quiz_settings;
+                $quiz_settings    = json_decode($quiz_settings);
+                $quiz_settings	= (array)$quiz_settings;
+                }
+                @endphp
+
+                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Below</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Below]" class="form-control" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Points %</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->points_percentage : '25' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Below_points]" class="form-control" placeholder=""/>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group mt-4 d-flex align-items-center justify-content-between">
-                    <label class="cursor-pointer" for="statusSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}">{{ trans('quiz.active_quiz') }}</label>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][status]" class="custom-control-input" id="statusSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}" {{ !empty($quiz) && $quiz->status ? 'checked' : ''}}>
-                        <label class="custom-control-label" for="statusSwitch{{ !empty($quiz) ? $quiz->id : 'record' }}"></label>
+                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Emerging</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '15' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging]" class="form-control" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Points %</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->points_percentage : '20' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging_points]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Expected</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->questions : '20' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Points %</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->points_percentage : '30' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected_points]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Exceeding</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->questions : '15' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Points %</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->points_percentage : '15' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding_points]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Challenge</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Challenge']->questions : '10' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Challenge]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-6">
+                        <div class="form-group">
+                            <label class="input-label">Points %</label>
+                            <input type="number" value="{{ !empty($quiz_settings) ? $quiz_settings['Challenge']->points_percentage : '10' }}" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Challenge_points]" class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
 
             </div>
         </div>

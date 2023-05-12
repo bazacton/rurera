@@ -5,22 +5,6 @@
 @endpush
 
 @section('content')
-
-    @if(!empty($registrationBonusAmount))
-        <div class="mb-25 d-flex align-items-center justify-content-between p-15 bg-white panel-shadow">
-            <div class="d-flex align-items-center">
-                <img src="/assets/default/img/icons/money.png" alt="money" width="51" height="51">
-
-                <div class="ml-15">
-                    <span class="d-block font-16 text-dark font-weight-bold">{{ trans('update.unlock_registration_bonus') }}</span>
-                    <span class="d-block font-14 text-gray font-weight-500 mt-5">{{ trans('update.your_wallet_includes_amount_registration_bonus_This_amount_is_locked',['amount' => handlePrice($registrationBonusAmount)]) }}</span>
-                </div>
-            </div>
-
-            <a href="/panel/marketing/registration_bonus" class="btn btn-border-gray300">{{ trans('update.view_more') }}</a>
-        </div>
-    @endif
-
     <section>
         <h2 class="section-title">{{ trans('financial.account_summary') }}</h2>
 
@@ -29,7 +13,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/36.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $accountCharge ? handlePrice($accountCharge) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $accountCharge ? addCurrencyToPrice($accountCharge) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.account_charge') }}</span>
                     </div>
                 </div>
@@ -37,7 +21,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/37.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $readyPayout ? handlePrice($readyPayout) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $readyPayout ? addCurrencyToPrice($readyPayout) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.ready_to_payout') }}</span>
                     </div>
                 </div>
@@ -45,7 +29,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/38.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $totalIncome ? handlePrice($totalIncome) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $totalIncome ? addCurrencyToPrice($totalIncome) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.total_income') }}</span>
                     </div>
                 </div>
@@ -66,9 +50,6 @@
         if ($errors->has('date') or $errors->has('referral_code') or $errors->has('account') or !empty($editOfflinePayment)) {
             $showOfflineFields = true;
         }
-
-        $userCurrency = currency();
-        $invalidChannels = [];
     @endphp
 
     <section class="mt-30">
@@ -83,62 +64,27 @@
 
             <div class="row">
                 @foreach($paymentChannels as $paymentChannel)
-                    @if(!empty($paymentChannel->currencies) and in_array($userCurrency, $paymentChannel->currencies))
-                        <div class="col-6 col-lg-3 mb-40 charge-account-radio">
-                            <input type="radio" class="online-gateway" name="gateway" id="{{ $paymentChannel->class_name }}" @if(old('gateway') == $paymentChannel->class_name) checked @endif value="{{ $paymentChannel->class_name }}">
-                            <label for="{{ $paymentChannel->class_name }}" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
-                                <img src="{{ $paymentChannel->image }}" width="120" height="60" alt="">
-                                <p class="mt-30 font-14 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
-                                    <span class="font-weight-bold">{{ $paymentChannel->title }}</span>
-                                </p>
-                            </label>
-                        </div>
-                    @else
-                        @php
-                            $invalidChannels[] = $paymentChannel;
-                        @endphp
-                    @endif
-                @endforeach
-
-                @if(!empty(getOfflineBankSettings('offline_banks_status')))
                     <div class="col-6 col-lg-3 mb-40 charge-account-radio">
-                        <input type="radio" name="gateway" id="offline" value="offline" @if(old('gateway') == 'offline' or !empty($editOfflinePayment)) checked @endif>
-                        <label for="offline" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
-                            <img src="/assets/default/img/activity/pay.svg" width="120" height="60" alt="">
+                        <input type="radio" class="online-gateway" name="gateway" id="{{ $paymentChannel->class_name }}" @if(old('gateway') == $paymentChannel->class_name) checked @endif value="{{ $paymentChannel->class_name }}">
+                        <label for="{{ $paymentChannel->class_name }}" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{ $paymentChannel->image }}" width="120" height="60" alt="">
                             <p class="mt-30 font-14 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
-                                <span class="font-weight-bold">{{ trans('financial.offline') }}</span>
+                                <span class="font-weight-bold">{{ $paymentChannel->title }}</span>
                             </p>
                         </label>
                     </div>
-                @endif
+                @endforeach
+
+                <div class="col-6 col-lg-3 mb-40 charge-account-radio">
+                    <input type="radio" name="gateway" id="offline" value="offline" @if(old('gateway') == 'offline' or !empty($editOfflinePayment)) checked @endif>
+                    <label for="offline" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
+                        <img src="/assets/default/img/activity/pay.svg" width="120" height="60" alt="">
+                        <p class="mt-30 font-14 font-weight-500 text-dark-blue">{{ trans('financial.pay_via') }}
+                            <span class="font-weight-bold">{{ trans('financial.offline') }}</span>
+                        </p>
+                    </label>
+                </div>
             </div>
-
-            @if(!empty($invalidChannels))
-                <div class="d-flex align-items-center rounded-lg border p-15">
-                    <div class="size-40 d-flex-center rounded-circle bg-gray200">
-                        <i data-feather="gift" class="text-gray" width="20" height="20"></i>
-                    </div>
-                    <div class="ml-5">
-                        <h4 class="font-14 font-weight-bold text-gray">{{ trans('update.disabled_payment_gateways') }}</h4>
-                        <p class="font-12 text-gray">{{ trans('update.disabled_payment_gateways_hint') }}</p>
-                    </div>
-                </div>
-
-                <div class="row mt-20">
-                    @foreach($invalidChannels as $invalidChannel)
-                        <div class="col-6 col-lg-3 mb-40 charge-account-radio">
-                            <div class="disabled-payment-channel bg-white border rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
-                                <img src="{{ $invalidChannel->image }}" width="120" height="60" alt="">
-
-                                <p class="mt-30 mt-lg-50 font-weight-500 text-dark-blue">
-                                    {{ trans('financial.pay_via') }}
-                                    <span class="font-weight-bold font-14">{{ $invalidChannel->title }}</span>
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
 
             <div class="">
                 <h3 class="section-title mb-20">{{ trans('financial.finalize_payment') }}</h3>
@@ -153,7 +99,7 @@
                                     {{ $currency }}
                                 </span>
                             </div>
-                            <input type="number" name="amount" min="0" class="form-control @error('amount') is-invalid @enderror"
+                            <input type="number" name="amount" class="form-control @error('amount') is-invalid @enderror"
                                    value="{{ !empty($editOfflinePayment) ? $editOfflinePayment->amount : old('amount') }}"
                                    placeholder="{{ trans('panel.number_only') }}"/>
                             <div class="invalid-feedback">@error('amount') {{ $message }} @enderror</div>
@@ -165,10 +111,11 @@
                             <label class="input-label">{{ trans('financial.account') }}</label>
                             <select name="account" class="form-control @error('account') is-invalid @enderror">
                                 <option selected disabled>{{ trans('financial.select_the_account') }}</option>
-
-                                @foreach($offlineBanks as $offlineBank)
-                                    <option value="{{ $offlineBank->id }}" @if(!empty($editOfflinePayment) and $editOfflinePayment->offline_bank_id == $offlineBank->id) selected @endif>{{ $offlineBank->title }}</option>
+                                @if(!empty(getOfflineBanksTitle()) and count(getOfflineBanksTitle())) {
+                                @foreach(getOfflineBanksTitle() as $accountType)
+                                    <option value="{{ $accountType }}" @if(!empty($editOfflinePayment) and $editOfflinePayment->bank == $accountType) selected @endif>{{ $accountType }}</option>
                                 @endforeach
+                                @endif
                             </select>
 
                             @error('account')
@@ -241,28 +188,38 @@
         <h2 class="section-title">{{ trans('financial.bank_accounts_information') }}</h2>
 
         <div class="row mt-25">
-            @foreach($offlineBanks as $offlineBank)
-                <div class="col-12 col-lg-3 mb-30 mb-lg-0">
-                    <div class="py-25 px-20 rounded-sm panel-shadow d-flex flex-column align-items-center justify-content-center">
-                        <img src="{{ $offlineBank->logo }}" width="120" height="60" alt="">
+            @if(!empty($siteBankAccounts))
+                @foreach($siteBankAccounts as $siteBankAccount)
+                    <div class="col-12 col-lg-3 mb-30 mb-lg-0">
+                        <div class="py-25 px-20 rounded-sm panel-shadow d-flex flex-column align-items-center justify-content-center">
+                            <img src="{{ $siteBankAccount['image'] }}" width="120" height="60" alt="">
 
-                        <div class="mt-15 mt-30 w-100">
+                            <div class="mt-15 mt-30 w-100">
 
-                            <div class="d-flex align-items-center justify-content-between">
-                                <span class="font-14 font-weight-500 text-secondary">{{ trans('public.name') }}:</span>
-                                <span class="font-14 font-weight-500 text-gray">{{ $offlineBank->title }}</span>
-                            </div>
-
-                            @foreach($offlineBank->specifications as $specification)
-                                <div class="d-flex align-items-center justify-content-between mt-10">
-                                    <span class="font-14 font-weight-500 text-secondary">{{ $specification->name }}:</span>
-                                    <span class="font-14 font-weight-500 text-gray">{{ $specification->value }}</span>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('public.name') }}:</span>
+                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['title'] }}</span>
                                 </div>
-                            @endforeach
+
+                                <div class="d-flex align-items-center justify-content-between mt-10">
+                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.card_id') }}:</span>
+                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['card_id'] }}</span>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mt-10">
+                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.account_id') }}:</span>
+                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['account_id'] }}</span>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mt-10">
+                                    <span class="font-14 font-weight-500 text-secondary">{{ trans('financial.iban') }}:</span>
+                                    <span class="font-14 font-weight-500 text-gray">{{ $siteBankAccount['iban'] }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </section>
 
@@ -290,15 +247,15 @@
                                     <tr>
                                         <td class="text-left">
                                             <div class="d-flex flex-column">
-                                                <span class="font-weight-500 text-dark-blue">{{ $offlinePayment->offlineBank->title }}</span>
-                                                <span class="font-12 text-gray">{{ dateTimeFormat($offlinePayment->pay_date, 'j M Y H:i') }}</span>
+                                                <span class="font-weight-500 text-dark-blue">{{ $offlinePayment->bank }}</span>
+                                                <span class="font-12 text-gray">{{ $offlinePayment->pay_date }}</span>
                                             </div>
                                         </td>
                                         <td class="text-left align-middle">
                                             <span>{{ $offlinePayment->reference_number }}</span>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <span class="font-16 font-weight-bold text-primary">{{ handlePrice($offlinePayment->amount, false) }}</span>
+                                            <span class="font-16 font-weight-bold text-primary">{{ $offlinePayment->amount }}</span>
                                         </td>
 
                                         <td class="text-center align-middle">
@@ -312,14 +269,14 @@
                                         <td class="text-center align-middle">
                                             @switch($offlinePayment->status)
                                                 @case(\App\Models\OfflinePayment::$waiting)
-                                                    <span class="text-warning">{{ trans('public.waiting') }}</span>
-                                                    @break
+                                                <span class="text-warning">{{ trans('public.waiting') }}</span>
+                                                @break
                                                 @case(\App\Models\OfflinePayment::$approved)
-                                                    <span class="text-primary">{{ trans('financial.approved') }}</span>
-                                                    @break
+                                                <span class="text-primary">{{ trans('financial.approved') }}</span>
+                                                @break
                                                 @case(\App\Models\OfflinePayment::$reject)
-                                                    <span class="text-danger">{{ trans('public.rejected') }}</span>
-                                                    @break
+                                                <span class="text-danger">{{ trans('public.rejected') }}</span>
+                                                @break
                                             @endswitch
                                         </td>
                                         <td class="text-right align-middle">

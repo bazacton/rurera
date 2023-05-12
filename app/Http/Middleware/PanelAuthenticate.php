@@ -17,13 +17,9 @@ class PanelAuthenticate
     public function handle($request, Closure $next)
     {
 
-        if (auth()->check() and !auth()->user()->isAdmin()) {
-
+        if (auth()->check() and (!auth()->user()->isAdmin() || !auth()->user()->isAuthor() || !auth()->user()->isReviewer())) {
             $referralSettings = getReferralSettings();
             view()->share('referralSettings', $referralSettings);
-
-
-
             return $next($request);
         }
 

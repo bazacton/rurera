@@ -147,7 +147,7 @@
                     </div>
 
                     <div class="mt-20 text-gray font-14">
-                        {!! clean($review->description,'description') !!}
+                        {{ clean($review->description,'description') }}
                     </div>
 
                     @if($review->comments->count() > 0)
@@ -179,7 +179,7 @@
                                 </div>
 
                                 <div class="mt-20 text-gray">
-                                    {!! clean($comment->comment,'comment') !!}
+                                    {{ clean($comment->comment,'comment') }}
                                 </div>
                             </div>
                         @endforeach

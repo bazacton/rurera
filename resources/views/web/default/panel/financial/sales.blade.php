@@ -38,7 +38,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/download-sales.svg" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ handlePrice($totalSales) }}</strong>
+                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ addCurrencyToPrice($totalSales) }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('financial.total_sales') }}</span>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                                                     } elseif(!empty($sale->bundle)) {
                                                         $content = $sale->bundle->title;
                                                         $contentId =$sale->bundle->id;
-                                                    } elseif(!empty($sale->productOrder) and !empty($sale->productOrder->product)) {
+                                                    } elseif(!empty($sale->productOrder)) {
                                                         $content = $sale->productOrder->product->title;
                                                         $contentId =$sale->productOrder->product->id;
                                                     } elseif(!empty($sale->registrationPackage)) {
@@ -223,19 +223,19 @@
                                             @if($sale->payment_method == \App\Models\Sale::$subscribe)
                                                 <span class="">{{ trans('financial.subscribe') }}</span>
                                             @else
-                                                <span>{{ handlePrice($sale->amount) }}</span>
+                                                <span>{{ addCurrencyToPrice(handlePriceFormat($sale->amount)) }}</span>
                                             @endif
                                         </td>
-                                        <td class="align-middle">{{ handlePrice($sale->discount ?? 0) }}</td>
+                                        <td class="align-middle">{{ addCurrencyToPrice(handlePriceFormat($sale->discount) ?? 0) }}</td>
                                         <td class="align-middle">
                                             @if($sale->payment_method == \App\Models\Sale::$subscribe)
                                                 <span class="">{{ trans('financial.subscribe') }}</span>
                                             @else
-                                                <span>{{ handlePrice($sale->total_amount) }}</span>
+                                                <span>{{ addCurrencyToPrice(handlePriceFormat($sale->total_amount)) }}</span>
                                             @endif
                                         </td>
                                         <td class="align-middle">
-                                            <span>{{ handlePrice($sale->getIncomeItem()) }}</span>
+                                            <span>{{ addCurrencyToPrice(handlePriceFormat($sale->getIncomeItem())) }}</span>
                                         </td>
                                         <td class="align-middle">
                                             @switch($sale->type)

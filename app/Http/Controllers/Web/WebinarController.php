@@ -20,15 +20,13 @@ use App\Models\WebinarChapter;
 use App\Models\WebinarReport;
 use App\Models\Webinar;
 use Illuminate\Http\Request;
+use App\Models\SubChapters;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class WebinarController extends Controller
 {
-    use CheckContentLimitationTrait;
-    use InstallmentsTrait;
-
-    public function course($slug, $justReturnData = false)
+    public function course($slug, $justReturnData = false, $sub_chapter_id = '')
     {
         $user = null;
 
@@ -36,19 +34,21 @@ class WebinarController extends Controller
             $user = auth()->user();
         }
 
-
-        if (!$justReturnData) {
+        /*if (!$justReturnData) {
             $contentLimitation = $this->checkContentLimitation($user, true);
             if ($contentLimitation != "ok") {
                 return $contentLimitation;
             }
-        }
+        }*/
 
         $course = Webinar::where('slug', $slug)
             ->with([
-                'quizzes' => function ($query) {
-                    $query->where('status', 'active')
-                        ->with(['quizResults', 'quizQuestions']);
+                'quizzes' => function ($query) use ($sub_chapter_id) {
+                    $query->where('status', 'active')->where('sub_chapter_id', $sub_chapter_id)
+                    ->with(['quizResults', 'quizQuestions']);
+                },
+                'webinar_sub_chapters' => function ($query) {
+                    $query->orderBy('id', 'asc');
                 },
                 'tags',
                 'prerequisites' => function ($query) {
@@ -158,14 +158,7 @@ class WebinarController extends Controller
             return $justReturnData ? false : back();
         }
 
-        if (!$justReturnData) {
-            $installmentLimitation = $this->installmentContentLimitation($user, $course->id, 'webinar_id');
-
-            if ($installmentLimitation != "ok") {
-                return $installmentLimitation;
-            }
-        }
-
+        
         $hasBought = $course->checkUserHasBought($user, true, true);
         $isPrivate = $course->private;
 
@@ -237,28 +230,23 @@ class WebinarController extends Controller
                 $course->quizzes = $this->checkQuizzesResults($user, $course->quizzes);
             }
         }
+        
+        $webinar_sub_chapters = isset( $course->webinar_sub_chapters ) ? $course->webinar_sub_chapters : array();
+        $sub_chapters = array();
+        if( !empty( $webinar_sub_chapters ) ){
+                foreach( $webinar_sub_chapters as $sub_chapter_item){
+                        $sub_chapters[$sub_chapter_item->chapter_id][] = array(
+                                'id' => $sub_chapter_item->id,
+                                'title' => $sub_chapter_item->sub_chapter_title,
+                                'chapter_id' => $sub_chapter_item->chapter_id
+                        );
+                }
+        }
 
         $pageRobot = getPageRobot('course_show'); // index
         $canSale = ($course->canSale() and !$hasBought);
 
-        /* Installments */
-        $showInstallments = true;
-        $overdueInstallmentOrders = $this->checkUserHasOverdueInstallment($user);
-
-        if ($overdueInstallmentOrders->isNotEmpty() and getInstallmentsSettings('disable_instalments_when_the_user_have_an_overdue_installment')) {
-            $showInstallments = false;
-        }
-
-        if ($canSale and !empty($course->price) and $course->price > 0 and $showInstallments and getInstallmentsSettings('status') and (empty($user) or $user->enable_installments)) {
-            $installmentPlans = new InstallmentPlans($user);
-            $installments = $installmentPlans->getPlans('courses', $course->id, $course->type, $course->category_id, $course->teacher_id);
-        }
-
-        /* Cashback Rules */
-        if ($canSale and !empty($course->price) and getFeaturesSettings('cashback_active') and (empty($user) or !$user->disable_cashback)) {
-            $cashbackRulesMixin = new CashbackRules($user);
-            $cashbackRules = $cashbackRulesMixin->getRules('courses', $course->id, $course->type, $course->category_id, $course->teacher_id);
-        }
+       
 
         $data = [
             'pageTitle' => $course->title,
@@ -267,6 +255,9 @@ class WebinarController extends Controller
             'course' => $course,
             'isFavorite' => $isFavorite,
             'hasBought' => $hasBought,
+            'current_webinar' => isset( $_GET['webinar'] )? $_GET['webinar'] : 0,
+            'current_chapter' => isset( $_GET['chapter'] )? $_GET['chapter'] : 0,
+            'sub_chapters'	=> $sub_chapters,
             'user' => $user,
             'webinarContentCount' => $webinarContentCount,
             'advertisingBanners' => $advertisingBanners->where('position', 'course'),
@@ -276,8 +267,6 @@ class WebinarController extends Controller
             'filesWithoutChapter' => $filesWithoutChapter,
             'textLessonsWithoutChapter' => $textLessonsWithoutChapter,
             'quizzes' => $quizzes,
-            'installments' => $installments ?? null,
-            'cashbackRules' => $cashbackRules ?? null,
         ];
 
         if ($justReturnData) {

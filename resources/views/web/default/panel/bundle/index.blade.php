@@ -29,7 +29,7 @@
                 <div class="col-6 col-md-3 mt-30 mt-md-0 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/sales.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ handlePrice($bundleSalesAmount) }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice($bundleSalesAmount) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.bundle_sales') }}</span>
                     </div>
                 </div>
@@ -110,10 +110,10 @@
                                 <div class="webinar-price-box mt-15">
                                     @if($bundle->price > 0)
                                         @if($bundle->bestTicket() < $bundle->price)
-                                            <span class="real">{{ handlePrice($bundle->bestTicket(), true, true, false, null, true) }}</span>
-                                            <span class="off ml-10">{{ handlePrice($bundle->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($bundle->bestTicket()) }}</span>
+                                            <span class="off ml-10">{{ handlePrice($bundle->price) }}</span>
                                         @else
-                                            <span class="real">{{ handlePrice($bundle->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($bundle->price) }}</span>
                                         @endif
                                     @else
                                         <span class="real">{{ trans('public.free') }}</span>
@@ -144,7 +144,7 @@
 
                                     <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                         <span class="stat-title">{{ trans('panel.sales') }}:</span>
-                                        <span class="stat-value">{{ count($bundle->sales) }} ({{ (!empty($bundle->sales) and count($bundle->sales)) ? handlePrice($bundle->sales->sum('amount')) : 0 }})</span>
+                                        <span class="stat-value">{{ count($bundle->sales) }} ({{ (!empty($bundle->sales) and count($bundle->sales)) ? addCurrencyToPrice($bundle->sales->sum('amount')) : 0 }})</span>
                                     </div>
 
                                     @if($authUser->id == $bundle->teacher_id and $authUser->id != $bundle->creator_id and $bundle->creator->isOrganization())

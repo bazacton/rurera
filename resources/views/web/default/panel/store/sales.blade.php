@@ -38,7 +38,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/33.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ handlePrice($totalSales) }}</strong>
+                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ addCurrencyToPrice($totalSales) }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('financial.total_sales') }}</span>
                     </div>
                 </div>
@@ -189,14 +189,14 @@
                                         </td>
 
                                         <td class="align-middle">
-                                            <span>{{ handlePrice($order->sale->amount) }}</span>
+                                            <span>{{ addCurrencyToPrice(handlePriceFormat($order->sale->amount)) }}</span>
                                         </td>
-                                        <td class="align-middle">{{ handlePrice($order->sale->discount ?? 0) }}</td>
+                                        <td class="align-middle">{{ addCurrencyToPrice(handlePriceFormat($order->sale->discount) ?? 0) }}</td>
                                         <td class="align-middle">
-                                            <span>{{ handlePrice($order->sale->total_amount) }}</span>
+                                            <span>{{ addCurrencyToPrice(handlePriceFormat($order->sale->total_amount)) }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span>{{ handlePrice($order->sale->getIncomeItem()) }}</span>
+                                            <span>{{ addCurrencyToPrice(handlePriceFormat($order->sale->getIncomeItem())) }}</span>
                                         </td>
                                         <td class="align-middle">
                                             @if(!empty($order) and !empty($order->product))

@@ -1,0 +1,22 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="475" height="122" viewBox="0 0 475 122" preserveAspectRatio="none">
+  <defs>
+    <clipPath id="clip-path">
+      <rect x="501" y="-1" width="475" height="122" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="475" height="122" fill="none"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-path)">
+    <g>
+      <path d="M1030-8H353a5,5,0,0,0-5,5V106.562s90.926-15,177.287-15c96.257,0,219.129,18,339.531,18,107.754,0,170.183-23,170.183-23V-3A5,5,0,0,0,1030-8Z" fill="#52b700" fill-rule="evenodd" opacity="0.5"/>
+      <path d="M349-8h677a5,5,0,0,1,5,5V106.562s-50.926-22-137.287-22c-96.258,0-209.129,33-329.531,33-107.753,0-220.183-27-220.183-27V-3A5,5,0,0,1,349-8Z" fill="#52b700" fill-rule="evenodd" opacity="0.5"/>
+    </g>
+  </g>
+  <g clip-path="url(#clip-path-2)">
+    <g>
+      <path d="M579-7H-98a5,5,0,0,0-5,5V107.562s90.926-15,177.287-15c96.257,0,219.129,18,339.531,18,107.754,0,170.183-23,170.183-23V-2A5,5,0,0,0,579-7Z" fill="#0bc1b6" fill-rule="evenodd" opacity="0.5"/>
+      <path d="M-92-7H585a5,5,0,0,1,5,5V107.562s-50.926-22-137.287-22c-96.258,0-209.129,33-329.531,33-107.753,0-220.182-27-220.182-27V-2A5,5,0,0,1-92-7Z" fill="#0bc1b6" fill-rule="evenodd" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

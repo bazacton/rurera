@@ -78,34 +78,43 @@
                         <div class="form-group">
                             <label class="js-instructor-label font-weight-500 text-dark-blue {{ !$isInstructorRole ? 'd-none' : '' }}">{{ trans('update.instructor_select_account_type') }}</label>
                             <label class="js-organization-label font-weight-500 text-dark-blue {{ !$isOrganizationRole ? 'd-none' : '' }}">{{ trans('update.organization_select_account_type') }}</label>
-                            <select name="bank_id" class="js-user-bank-input form-control @error('bank_id')  is-invalid @enderror">
+                            <select name="account_type" class="form-control @error('account_type')  is-invalid @enderror">
                                 <option selected disabled>{{ trans('financial.select_account_type') }}</option>
 
-                                @foreach($userBanks as $userBank)
-                                    <option value="{{ $userBank->id }}" @if(!empty($user) and !empty($user->selectedBank) and $user->selectedBank->user_bank_id == $userBank->id) selected="selected" @endif data-specifications="{{ json_encode($userBank->specifications->pluck('name','id')->toArray()) }}">{{ $userBank->title }}</option>
-                                @endforeach
+                                @if(!empty(getOfflineBanksTitle()) and count(getOfflineBanksTitle()))
+                                    @foreach(getOfflineBanksTitle() as $accountType)
+                                        <option value="{{ $accountType }}" @if(!empty($user) and $user->account_type == $accountType) selected="selected" @endif>{{ $accountType }}</option>
+                                    @endforeach
+                                @endif
                             </select>
-                            @error('bank_id')
+                            @error('account_type')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
 
-                        <div class="js-bank-specifications-card">
-                            @if(!empty($user) and !empty($user->selectedBank) and !empty($user->selectedBank->bank))
-                                @foreach($user->selectedBank->bank->specifications as $specification)
-                                    @php
-                                        $selectedBankSpecification = $user->selectedBank->specifications->where('user_selected_bank_id', $user->selectedBank->id)->where('user_bank_specification_id', $specification->id)->first();
-                                    @endphp
-                                    <div class="form-group">
-                                        <label class="font-weight-500 text-dark-blue">{{ $specification->name }}</label>
-                                        <input type="text" name="bank_specifications[{{ $specification->id }}]" value="{{ (!empty($selectedBankSpecification)) ? $selectedBankSpecification->value : '' }}" class="form-control"/>
-                                    </div>
-                                @endforeach
-                            @endif
+                        <div class="form-group">
+                            <label class="js-instructor-label font-weight-500 text-dark-blue {{ !$isInstructorRole ? 'd-none' : '' }}">{{ trans('update.instructor_iban') }}</label>
+                            <label class="js-organization-label font-weight-500 text-dark-blue {{ !$isOrganizationRole ? 'd-none' : '' }}">{{ trans('update.organization_iban') }}</label>
+                            <input type="text" name="iban" value="{{ (!empty($user)) ? $user->iban : old('iban') }}" class="form-control @error('iban')  is-invalid @enderror" placeholder=""/>
+                            @error('iban')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label class="js-instructor-label font-weight-500 text-dark-blue {{ !$isInstructorRole ? 'd-none' : '' }}">{{ trans('update.instructor_account_id') }}</label>
+                            <label class="js-organization-label font-weight-500 text-dark-blue {{ !$isOrganizationRole ? 'd-none' : '' }}">{{ trans('update.organization_account_id') }}</label>
+                            <input type="text" name="account_id" value="{{ (!empty($user)) ? $user->account_id : old('account_id') }}" class="form-control @error('account_id')  is-invalid @enderror" placeholder=""/>
+                            @error('account_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                             <label class="js-instructor-label font-weight-500 text-dark-blue {{ !$isInstructorRole ? 'd-none' : '' }}">{{ trans('update.instructor_identity_scan') }}</label>

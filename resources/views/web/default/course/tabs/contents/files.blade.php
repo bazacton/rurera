@@ -29,7 +29,7 @@
                 <div class="d-flex align-items-center mt-20">
                     <label class="mb-0 mr-10 cursor-pointer font-weight-500" for="fileReadToggle{{ $file->id }}">{{ trans('public.i_passed_this_lesson') }}</label>
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" @if($sequenceContentHasError) disabled @endif id="fileReadToggle{{ $file->id }}" data-file-id="{{ $file->id }}" value="{{ $course->id }}" class="js-file-learning-toggle custom-control-input" @if(!empty($file->checkPassedItem())) checked @endif>
+                        <input type="checkbox" @if($sequenceContentHasError) disabled @endif id="fileReadToggle{{ $file->id }}" data-file-id="{{ $file->id }}" value="{{ $course->id }}" class="js-file-learning-toggle custom-control-input" @if(!empty($file->learningStatus)) checked @endif>
                         <label class="custom-control-label" for="fileReadToggle{{ $file->id }}"></label>
                     </div>
                 </div>

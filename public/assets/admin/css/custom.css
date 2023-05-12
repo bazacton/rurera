@@ -1267,3 +1267,13 @@ li {
     position: absolute;
     bottom: -26px
 }
+
+li.sub-chapter-parent {
+    background: #62afff !important;
+    color: #fff;
+}
+
+.authors-list span{
+	border: 1px solid #efefef;
+    padding: 3px;
+}

@@ -29,8 +29,8 @@
         </div>
 
         <div class="form-group mt-15">
-            <label class="input-label">{{ trans('public.price') }} ({{ $currency }})</label>
-            <input type="number" name="price" value="{{ (!empty($bundle) and !empty($bundle->price)) ? convertPriceToUserCurrency($bundle->price) : old('price') }}" class="form-control @error('price')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
+            <label class="input-label">{{ trans('public.price') }}</label>
+            <input type="number" name="price" value="{{ !empty($bundle) ? $bundle->price : old('price') }}" class="form-control @error('price')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
             @error('price')
             <div class="invalid-feedback">
                 {{ $message }}

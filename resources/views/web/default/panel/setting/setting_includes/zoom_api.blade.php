@@ -5,21 +5,19 @@
         <div class="col-12 col-lg-4">
 
             <div class="form-group">
-                <label class="input-label">{{ trans('update.zoom_api_key') }}</label>
-                <textarea type="text" name="zoom_api_key" rows="3" class="form-control">{{ (!empty($user) and empty($new_user) and $user->zoomApi) ? $user->zoomApi->api_key : old('api_key') }}</textarea>
-
-                <p class="font-12 text-gray mt-5"><a href="https://community.zoom.com/t5/Marketplace/How-do-I-get-API-Key-amp-API-Secret/td-p/28307">{{ trans('update.zoom_api_key_hint') }}</a></p>
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">{{ trans('update.zoom_api_secret') }}</label>
-                <textarea type="text" name="zoom_api_secret" rows="4" class="form-control">{{ (!empty($user) and empty($new_user) and $user->zoomApi) ? $user->zoomApi->api_secret : old('api_secret') }}</textarea>
-
-                <p class="font-12 text-gray mt-5"><a href="https://community.zoom.com/t5/Marketplace/How-do-I-get-API-Key-amp-API-Secret/td-p/28307">{{ trans('update.zoom_api_secret_hint') }}</a></p>
+                <label class="input-label">{{ trans('public.zoom_jwt_token') }}</label>
+                <textarea type="text" name="zoom_jwt_token" rows="6" class="form-control @error('zoom_jwt_token')  is-invalid @enderror">{{ (!empty($user) and empty($new_user) and $user->zoomApi) ? $user->zoomApi->jwt_token : old('zoom_jwt_token') }}</textarea>
+                @error('zoom_jwt_token')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
         </div>
     </div>
-
+        <div>
+        <p class="font-12 text-gray"><a href="https://marketplace.zoom.us/docs/guides/auth/jwt">{{ trans('public.how_zoom_jwt_token') }}</a></p>
+    </div>
 
 </section>

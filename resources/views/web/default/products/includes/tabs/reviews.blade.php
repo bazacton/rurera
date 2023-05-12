@@ -1,5 +1,6 @@
 <div class="product-show-reviews-tab mt-20">
-    <div class="course-reviews-box row align-items-center">
+    <h3>Reviews</h3>
+    <div class="mt-20 course-reviews-box row align-items-center">
         <div class="col-3 col-lg-3 text-center">
             <div class="reviews-rate font-36 font-weight-bold text-primary">{{ $product->getRate() }}</div>
 
@@ -146,7 +147,7 @@
                         </div>
 
                         <div class="mt-20 text-gray font-14">
-                            {!! clean($review->description,'description') !!}
+                            {{ clean($review->description,'description') }}
                         </div>
 
                         @if($review->comments->count() > 0)
@@ -181,7 +182,7 @@
                                     </div>
 
                                     <div class="mt-20 text-gray">
-                                        {!! clean($comment->comment,'comment') !!}
+                                        {{ clean($comment->comment,'comment') }}
                                     </div>
                                 </div>
                             @endforeach

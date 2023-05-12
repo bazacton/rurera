@@ -54,16 +54,10 @@
         <div class="row mt-15">
 
             @foreach($subscribes as $subscribe)
-                @php
-                    $subscribeSpecialOffer = $subscribe->activeSpecialOffer();
-                @endphp
-
                 <div class="col-12 col-sm-6 col-lg-3 mt-15">
                     <div class="subscribe-plan position-relative bg-white d-flex flex-column align-items-center rounded-sm shadow pt-50 pb-20 px-20">
                         @if($subscribe->is_popular)
                             <span class="badge badge-primary badge-popular px-15 py-5">{{ trans('panel.popular') }}</span>
-                        @elseif(!empty($subscribeSpecialOffer))
-                            <span class="badge badge-danger badge-popular px-15 py-5">{{ trans('update.percent_off', ['percent' => $subscribeSpecialOffer->percent]) }}</span>
                         @endif
 
                         <div class="plan-icon">
@@ -73,19 +67,8 @@
                         <h3 class="mt-20 font-30 text-secondary">{{ $subscribe->title }}</h3>
                         <p class="font-weight-500 font-14 text-gray mt-10">{{ $subscribe->description }}</p>
 
-                        <div class="d-flex align-items-start mt-30">
-                            @if(!empty($subscribe->price) and $subscribe->price > 0)
-                                @if(!empty($subscribeSpecialOffer))
-                                    <div class="d-flex align-items-end line-height-1">
-                                        <span class="font-36 text-primary">{{ handlePrice($subscribe->getPrice()) }}</span>
-                                        <span class="font-14 text-gray ml-5 text-decoration-line-through">{{ handlePrice($subscribe->price) }}</span>
-                                    </div>
-                                @else
-                                    <span class="font-36 text-primary line-height-1">{{ handlePrice($subscribe->price) }}</span>
-                                @endif
-                            @else
-                                <span class="font-36 text-primary line-height-1">{{ trans('public.free') }}</span>
-                            @endif
+                        <div class="d-flex align-items-start text-primary mt-30">
+                            <span class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>
                         </div>
 
                         <ul class="mt-20 plan-feature">
@@ -103,14 +86,7 @@
                             {{ csrf_field() }}
                             <input name="amount" value="{{ $subscribe->price }}" type="hidden">
                             <input name="id" value="{{ $subscribe->id }}" type="hidden">
-
-                            <div class="d-flex align-items-center mt-50 w-100">
-                                <button type="submit" class="btn btn-primary {{ !empty($subscribe->has_installment) ? '' : 'btn-block' }}">{{ trans('update.purchase') }}</button>
-
-                                @if(!empty($subscribe->has_installment))
-                                    <a href="/panel/financial/subscribes/{{ $subscribe->id }}/installments" class="btn btn-outline-primary flex-grow-1 ml-10">{{ trans('update.installments') }}</a>
-                                @endif
-                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-50">{{ trans('update.purchase') }}</button>
                         </form>
                     </div>
                 </div>

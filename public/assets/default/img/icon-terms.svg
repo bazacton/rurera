@@ -1,0 +1,33 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="167.837" height="112.515" viewBox="0 0 167.837 112.515">
+  <polygon points="97.618 103.804 35.53 111.69 15.871 41.726 74.62 35.817 97.618 103.804" fill="#cadeff" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+  <line x1="78.143" y1="63.521" x2="33.242" y2="68.137" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="80.434" y1="71.022" x2="35.533" y2="75.638" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="83.039" y1="78.575" x2="38.138" y2="83.191" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <polygon points="16.623 41.726 51.872 76.136 111.88 69.003 81.247 35.17 16.623 41.726" fill="#7baeff" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+  <path d="M157.246,59.06c-1.836-4.738-4.167-7.8-6.157-12.526-4.96-11.776-9.464-23.926-17.378-29.171a38.329,38.329,0,0,0-26.633-5.635c-23.694,3.418-36.033,25.237-55.5,37.156C43.82,53.633,34.842,56.276,25.945,55.4,15.408,54.369-2.518,45.527,1.266,30.7" fill="none" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+  <polygon points="92.781 3.711 31.514 10.006 51.872 76.136 111.88 69.003 92.781 3.711" fill="#f8fffe" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+  <line x1="70.301" y1="20.587" x2="56.069" y2="22.563" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="5"/>
+  <line x1="70.301" y1="13.573" x2="49.32" y2="16.16" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="5"/>
+  <line x1="89.01" y1="15.884" x2="70.336" y2="17.807" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="90.811" y1="21.462" x2="70.476" y2="23.682" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="92.822" y1="27.039" x2="63.762" y2="30.396" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="73.749" y1="46.539" x2="52.589" y2="48.878" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="4"/>
+  <line x1="99.588" y1="50.853" x2="54.687" y2="55.469" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="102.019" y1="56.816" x2="57.118" y2="61.432" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="3"/>
+  <line x1="55.819" y1="92.688" x2="40.171" y2="94.519" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="4"/>
+  <line x1="53.757" y1="98.723" x2="41.619" y2="100.31" fill="none" stroke="#537ee8" stroke-linejoin="round" stroke-width="4"/>
+  <g>
+    <path d="M160.161,76.812h0c6.1-.789,9.569-8.318,6.591-15.706L163.9,56.628a12.147,12.147,0,0,0-13.212-7.488h0a8.742,8.742,0,0,0-7.007,11.017l2.381,8.266C147.72,74.195,154.221,77.581,160.161,76.812Z" fill="#537ee8"/>
+    <path d="M159.294,73.5h0c6.1-.79,9.243-6.511,6.975-12.48l-3.239-8.525a12.146,12.146,0,0,0-13.213-7.487h0A8.446,8.446,0,0,0,143.2,55.951l2.38,8.267C147.243,69.989,153.353,74.268,159.294,73.5Z" fill="#ffd72e" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path d="M165.792,61.251l-3.24-8.367c-2.006-5.182-8.637-9.313-14.707-6.507,7.57,3.062,15.2,21.138,1.762,23.353C163.352,79.2,168.06,67.11,165.792,61.251Z" fill="#e8bc05"/>
+    <path d="M153.406,54.133h0a2,2,0,0,0,1.317-2.544L152.7,46a1.992,1.992,0,0,0-2.584-1.2h0a2.051,2.051,0,0,0-1.254,2.554l1.975,5.5A2.065,2.065,0,0,0,153.406,54.133Z" fill="#537ee8"/>
+  </g>
+  <g>
+    <rect x="33.954" y="21.061" width="9.274" height="7.012" transform="translate(-6.368 16.114) rotate(-21.832)" fill="#abc7ff" stroke="#537ee8" stroke-miterlimit="10" stroke-width="1.5"/>
+    <circle cx="57.289" cy="16.809" r="14.531" fill="none" stroke="#ffd72e" stroke-miterlimit="10" stroke-width="3"/>
+    <circle cx="57.37" cy="16.89" r="15.89" fill="none" stroke="#537ee8" stroke-miterlimit="10" stroke-width="2"/>
+    <path d="M21.332,37.011,41.4,30.27l-4.71-11.653L18.035,25.052c-4.172,1.439-5.772,4.91-4.634,8.151h0A6.222,6.222,0,0,0,21.332,37.011Z" fill="#537ee8"/>
+    <circle cx="57.37" cy="16.89" r="12.851" fill="none" stroke="#537ee8" stroke-miterlimit="10"/>
+  </g>
+  <polygon points="86.492 72.36 51.872 76.136 16.833 43.195 22.918 63.635 52.292 90.824 91.318 86.208 86.492 72.36" fill="#537ee8" opacity="0.37"/>
+</svg>

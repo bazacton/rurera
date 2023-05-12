@@ -38,13 +38,13 @@
             @endif
 
             <div class="d-flex align-items-start">
-                @if(!empty($instructor->meeting) and !empty($instructor->meeting->meetingTimes) and count($instructor->meeting->meetingTimes))
+                @if(!empty($instructor->meeting))
                     @if(!empty($price))
                         <div class="d-flex flex-column">
-                            <span class="font-20 font-weight-bold text-primary">{{ handlePrice(!empty($discount) ? ($price - ($price * $discount / 100)) : $price) }}</span>
+                            <span class="font-20 font-weight-bold text-primary">{{ addCurrencyToPrice(!empty($discount) ? ($price - ($price * $discount / 100)) : $price) }}</span>
 
                             @if(!empty($discount))
-                                <span class="font-14 font-weight-500 text-gray text-decoration-line-through">{{ handlePrice($price) }}</span>
+                                <span class="font-14 font-weight-500 text-gray text-decoration-line-through">{{ addCurrencyToPrice($price) }}</span>
                             @endif
                         </div>
 
@@ -65,9 +65,9 @@
                 <span class="font-14 font-weight-500 text-dark-blue ml-10">{{ $instructor->getTotalHoursTutoring() }} {{ trans('update.hours_tutoring') }}</span>
             </div>
 
-            <div class="d-flex align-items-center flex-wrap mt-15">
+            <div class="d-flex align-items-center mt-25">
                 @foreach($instructor->getBadges() as $badge)
-                    <div class="mr-15 mt-10 instructor-badge rounded-circle" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($badge->badge_id) ? nl2br($badge->badge->description) : nl2br($badge->description)) !!}">
+                    <div class="mr-15 instructor-badge rounded-circle" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($badge->badge_id) ? nl2br($badge->badge->description) : nl2br($badge->description)) !!}">
                         <img src="{{ !empty($badge->badge_id) ? $badge->badge->image : $badge->image }}" class="img-cover rounded-circle" alt="{{ !empty($badge->badge_id) ? $badge->badge->title : $badge->title }}">
                     </div>
                 @endforeach

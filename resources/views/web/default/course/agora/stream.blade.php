@@ -15,14 +15,12 @@
             <p class="mt-10">{{ trans('update.wait_to_join_the_channel') }}</p>
         </div>
     @endif
-
-    <div id="remote-stream-player" class="remote-stream-box"></div>
 </div>
 
 <!-- Single button -->
 <div class="stream-footer py-20 px-15 px-lg-30 mt-15 d-flex align-items-center justify-content-around bg-white">
 
-    @if($sessionStreamType == 'multiple')
+    @if($isHost)
         <button type="button" id="microphoneEffect" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center active">
             <span class="icon">
                 <i data-feather="mic" width="24" height="24" class=""></i>
@@ -54,20 +52,6 @@
         <button type="button" id="shareScreen" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center ">
             <i data-feather="airplay" width="24" height="24" class=""></i>
             <span class="mt-1 text-gray font-14">{{ trans('update.share_screen') }}</span>
-        </button>
-
-        <button type="button" id="endShareScreen" class="stream-bottom-actions btn-transparent flex-column align-items-center dont-join-users d-none">
-            <div class="icon-box">
-                <i data-feather="airplay" width="24" height="24" class=""></i>
-            </div>
-            <span class="mt-1 text-gray font-14">{{ trans('update.end_share_screen') }}</span>
-        </button>
-
-        <button type="button" id="handleUsersJoin" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center {{ (!empty($session->agora_settings) and !empty($session->agora_settings->users_join) and $session->agora_settings->users_join) ? '' : 'dont-join-users' }}">
-            <div class="icon-box">
-                <i data-feather="users" width="24" height="24" class=""></i>
-            </div>
-            <span class="mt-1 text-gray font-14">{{ (!empty($session->agora_settings) and !empty($session->agora_settings->users_join) and $session->agora_settings->users_join) ? trans('update.join_is_active') : trans('update.joining_is_disabled') }}</span>
         </button>
 
         <button type="button" class="stream-bottom-actions btn-transparent d-flex flex-column align-items-center text-danger" data-toggle="modal" data-target="#leaveModal">
@@ -102,8 +86,6 @@
 @push('scripts_bottom')
     <script>
         var rtcToken = '{{ $rtcToken }}';
-        var joinIsActiveLang = '{{ trans('update.join_is_active') }}';
-        var joiningIsDisabledLang = '{{ trans('update.joining_is_disabled') }}';
         var notStarted = false;
         @if($notStarted) notStarted = true @endif
 

@@ -85,7 +85,7 @@
 
                             <span class="d-block font-12 text-gray mt-5">{{ trans('public.by') }} {{ $forum->user->full_name }} {{ trans('public.in') }} {{ dateTimeFormat($forum->created_at, 'j M Y | H:i') }}</span>
 
-                            <p class="d-block font-14 text-gray mt-10">{{ nl2br($forum->description) }}</p>
+                            <p class="d-block font-14 text-gray mt-10">{!! nl2br($forum->description) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                                         @endforeach
                                     @endif
 
-                                    @if(($forum->answers->groupBy('user_id')->count() - count($forum->usersAvatars)) > 0)
+                                    @if(($forum->answer_count - count($forum->usersAvatars)) > 0)
                                         <span class="answer-count d-flex align-items-center justify-content-center font-12 text-gray rounded-circle">+{{ $forum->answer_count - count($forum->usersAvatars) }}</span>
                                     @endif
                                 </div>

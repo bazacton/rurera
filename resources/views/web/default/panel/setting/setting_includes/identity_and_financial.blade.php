@@ -13,33 +13,41 @@
 
             <div class="form-group">
                 <label class="input-label">{{ trans('financial.select_account_type') }}</label>
-                <select name="bank_id" class="js-user-bank-input form-control @error('bank_id')  is-invalid @enderror" {{ ($user->financial_approval) ? 'disabled' : '' }}>
+                <select name="account_type" class="form-control" {{ ($user->financial_approval) ? 'disabled' : '' }}>
                     <option selected disabled>{{ trans('financial.select_account_type') }}</option>
+                    @if(!empty(getOfflineBanksTitle()) and count(getOfflineBanksTitle())) {
 
-                    @foreach($userBanks as $userBank)
-                        <option value="{{ $userBank->id }}" @if(!empty($user->selectedBank) and $user->selectedBank->user_bank_id == $userBank->id) selected="selected" @endif data-specifications="{{ json_encode($userBank->specifications->pluck('name','id')->toArray()) }}">{{ $userBank->title }}</option>
-                    @endforeach
+                        @foreach(getOfflineBanksTitle() as $accountType)
+                            <option value="{{ $accountType }}" @if(mb_strtolower($user->account_type) == mb_strtolower($accountType)) selected @endif>{{ $accountType }}</option>
+                        @endforeach
+                    @endif
                 </select>
 
-                @error('bank_id')
+                @error('account')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="js-bank-specifications-card">
-                @if(!empty($user) and !empty($user->selectedBank) and !empty($user->selectedBank->bank))
-                    @foreach($user->selectedBank->bank->specifications as $specification)
-                        @php
-                            $selectedBankSpecification = $user->selectedBank->specifications->where('user_selected_bank_id', $user->selectedBank->id)->where('user_bank_specification_id', $specification->id)->first();
-                        @endphp
-                        <div class="form-group">
-                            <label class="font-weight-500 text-dark-blue">{{ $specification->name }}</label>
-                            <input type="text" name="bank_specifications[{{ $specification->id }}]" value="{{ (!empty($selectedBankSpecification)) ? $selectedBankSpecification->value : '' }}" class="form-control" {{ ($user->financial_approval) ? 'disabled' : '' }}/>
-                        </div>
-                    @endforeach
-                @endif
+            <div class="form-group">
+                <label class="input-label">{{ trans('financial.iban') }}</label>
+                <input type="text" name="iban" value="{{ (!empty($user) and empty($new_user)) ? $user->iban : old('iban') }}" class="form-control @error('iban')  is-invalid @enderror" placeholder="" {{ ($user->financial_approval) ? 'disabled' : '' }}/>
+                @error('iban')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label class="input-label">{{ trans('financial.account_id') }}</label>
+                <input type="text" name="account_id" value="{{ (!empty($user) and empty($new_user)) ? $user->account_id : old('account_id') }}" class="form-control @error('account_id')  is-invalid @enderror" placeholder="" {{ ($user->financial_approval) ? 'disabled' : '' }}/>
+                @error('account_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div class="form-group">

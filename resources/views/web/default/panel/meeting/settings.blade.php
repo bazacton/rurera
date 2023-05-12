@@ -98,7 +98,7 @@
                                 {{ $currency }}
                             </span>
                         </div>
-                        <input type="number" name="amount" value="{{ !empty($meeting) ? convertPriceToUserCurrency($meeting->amount) : old('amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
+                        <input type="number" name="amount" value="{{ !empty($meeting) ? $meeting->amount : old('amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                             </span>
                         </div>
 
-                        <input type="number" name="in_person_amount" value="{{ !empty($meeting) ? convertPriceToUserCurrency($meeting->in_person_amount) : old('in_person_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
+                        <input type="number" name="in_person_amount" value="{{ !empty($meeting) ? $meeting->in_person_amount : old('in_person_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                                     </span>
                                 </div>
 
-                                <input type="text" name="online_group_amount" value="{{ !empty($meeting) ? convertPriceToUserCurrency($meeting->online_group_amount) : old('online_group_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
+                                <input type="text" name="online_group_amount" value="{{ !empty($meeting) ? $meeting->online_group_amount : old('online_group_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -216,7 +216,7 @@
                                     </span>
                                 </div>
 
-                                <input type="text" name="in_person_group_amount" value="{{ !empty($meeting) ? convertPriceToUserCurrency($meeting->in_person_group_amount) : old('in_person_group_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
+                                <input type="text" name="in_person_group_amount" value="{{ !empty($meeting) ? $meeting->in_person_group_amount : old('in_person_group_amount') }}" class="form-control" placeholder="{{ trans('panel.number_only') }}"/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>

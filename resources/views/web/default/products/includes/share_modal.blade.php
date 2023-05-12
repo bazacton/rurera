@@ -7,9 +7,9 @@
         <p class="mt-20 font-14">{{ trans('update.share_this_product_with_others') }}</p>
 
         <div class="position-relative d-flex align-items-center justify-content-between p-15 mt-15 border border-gray250 rounded-sm mt-5">
-            <div class="js-product-share-link font-weight-bold px-16 text-ellipsis font-14">{{ $product->getUrl() }}</div>
+            <div class="js-course-share-link font-weight-bold px-16 text-ellipsis font-14">{{ $product->getUrl() }}</div>
 
-            <button type="button" class="js-product-share-link-copy btn btn-primary btn-sm font-14 font-weight-500 flex-none" data-toggle="tooltip" data-placement="top" title="{{ trans('public.copy') }}">{{ trans('public.copy') }}</button>
+            <button type="button" class="js-course-share-link-copy btn btn-primary btn-sm font-14 font-weight-500 flex-none" data-toggle="tooltip" data-placement="top" title="{{ trans('public.copy') }}">{{ trans('public.copy') }}</button>
         </div>
 
         <div class="mt-32 mt-lg-40 row align-items-center font-14">

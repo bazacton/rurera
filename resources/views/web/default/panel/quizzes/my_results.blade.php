@@ -169,7 +169,6 @@
                                             <span class="d-block">{{ $result->quiz->title }}</span>
                                             <span class="font-12 text-gray d-block">{{ $result->quiz->webinar->title }}</span>
                                         </td>
-                                        <td class="align-middle">{{ $result->quiz->quizQuestions->sum('grade') }}</td>
 
                                         <td class="align-middle">{{ $result->user_grade }}</td>
 
@@ -191,6 +190,8 @@
                                                     <i data-feather="more-vertical" height="20"></i>
                                                 </button>
                                                 <div class="dropdown-menu">
+                                                    <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">Result Details</a>
+                                                    <a href="javascript:;" class="webinar-actions d-block mt-10 attempt-logs-detail" data-quiz_result_id="{{ $result->id }}">Logs</a>
                                                     @if(!$result->can_try and $result->status != 'waiting')
                                                         <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">{{ trans('public.view_answers') }}</a>
                                                     @endif
@@ -233,4 +234,20 @@
     <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
 
     <script src="/assets/default/js/panel/quiz_list.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", ".attempt-logs-detail", function (t) {
+            var quiz_result_id = $(this).attr('data-quiz_result_id');
+            jQuery.ajax({
+                    type: "POST",
+                    url: '/panel/ajax/quiz_attempts',
+                    headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"quiz_result_id": quiz_result_id},
+                    success: function (return_data) {
+                        Swal.fire('',return_data);
+                    }
+            });
+        });
+    </script>
 @endpush

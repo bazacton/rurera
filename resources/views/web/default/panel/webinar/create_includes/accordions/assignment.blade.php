@@ -36,6 +36,7 @@
         <div class="panel-collapse text-gray">
             <div class="js-content-form assignment-form" data-action="/panel/assignments/{{ !empty($assignment) ? $assignment->id . '/update' : 'store' }}">
                 <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][webinar_id]" value="{{ !empty($webinar) ? $webinar->id :'' }}">
+                <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][chapter_id]" value="{{ !empty($chapter) ? $chapter->id :'' }}" class="chapter-input">
 
                 <div class="row">
                     <div class="col-12 col-lg-6">
@@ -59,19 +60,6 @@
                             <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][locale]" value="{{ $defaultLocale }}">
                         @endif
 
-                        @if(!empty($assignment))
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('public.chapter') }}</label>
-                                <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][chapter_id]" class="js-ajax-chapter_id form-control">
-                                    @foreach($webinar->chapters as $ch)
-                                        <option value="{{ $ch->id }}" {{ ($assignment->chapter_id == $ch->id) ? 'selected' : '' }}>{{ $ch->title }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        @else
-                            <input type="hidden" name="ajax[new][chapter_id]" value="" class="chapter-input">
-                        @endif
 
                         <div class="form-group">
                             <label class="input-label">{{ trans('public.title') }}</label>

@@ -118,6 +118,28 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
 
     });
 
+	Route::group(['prefix' => 'questions'], function () {
+        Route::group(['middleware' => 'user.not.access'], function () {
+
+            Route::get('/', 'QuizController@index');
+            Route::get('/new', 'QuizController@create');
+            Route::post('/store', 'QuizController@store');
+            Route::get('/{id}/edit', 'QuizController@edit')->name('panel_edit_quiz');
+            Route::post('/{id}/update', 'QuizController@update');
+            Route::get('/{id}/delete', 'QuizController@destroy');
+
+        });
+        Route::get('/{id}/start', 'QuestionsBankController@start');
+        Route::get('/{id}/fail', 'QuestionsBankController@fail');
+
+    });
+	
+	Route::group(['prefix' => 'ajax'], function () {
+        Route::post('helper', 'AjaxController@helper');
+        Route::post('quiz_attempts', 'AjaxController@quiz_attempts');
+
+    });
+
     Route::group(['prefix' => 'quizzes-questions'], function () {
         Route::post('/store', 'QuizQuestionController@store');
         Route::get('/{id}/edit', 'QuizQuestionController@edit');

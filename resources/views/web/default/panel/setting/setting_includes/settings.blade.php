@@ -174,20 +174,6 @@
         </div>
     </div>
 
-    @if(!$user->isUser() and !empty(getFeaturesSettings('show_live_chat_widget')))
-        <h2 class="section-title after-line">{{ trans('update.live_chat_widget') }}</h2>
-
-        <div class="row mt-30">
-            <div class="col-12 col-lg-4">
-
-                <div class="form-group ">
-                    <label class="input-label">{{ trans('update.java_script_code') }}:</label>
-                    <textarea name="live_chat_js_code" class="form-control" rows="8">{{ $user->live_chat_js_code }}</textarea>
-                </div>
-            </div>
-        </div>
-    @endif
-
     {{--<h2 class="section-title after-line">{{ trans('panel.meeting_list') }}</h2>
 
     <div class="row mt-30">

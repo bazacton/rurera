@@ -10,13 +10,16 @@ use App\Models\Role;
 use App\Models\Translation\QuizTranslation;
 use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
+use App\Models\QuizzResultQuestions;
 use App\User;
 use App\Models\Webinar;
 use App\Models\QuizzesResult;
+use App\Models\QuizzAttempts;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -408,113 +411,146 @@ class QuizController extends Controller
         return response()->json([], 422);
     }
 
-    public function start(Request $request, $id)
-    {
-        $quiz = Quiz::where('id', $id)->first();
-
+    public function start(Request $request, $id) {
         $user = auth()->user();
+        $quiz = Quiz::where('id', $id)
+                ->with([
+                    'quizQuestions' => function ($query) {
+                        $query->with('quizzesQuestionsAnswers');
+                    },
+                ])
+                ->first();
+                    
+                $newQuizStart = QuizzesResult::where('quiz_id', $quiz->id)
+                    ->where('user_id', $user->id)
+                    ->where('status', 'waiting')
+                    ->first();
+				
+	
+		$quiz_settings = json_decode($quiz->quiz_settings);
+		
+		$below_questions_no = isset( $quiz_settings->Below->questions )? $quiz_settings->Below->questions : 0;
+		$emerging_questions_no = isset( $quiz_settings->Emerging->questions )? $quiz_settings->Emerging->questions : 0;
+		$expected_questions_no = isset( $quiz_settings->Expected->questions )? $quiz_settings->Expected->questions : 0;
+		$exceeding_questions_no = isset( $quiz_settings->Exceeding->questions )? $quiz_settings->Exceeding->questions : 0;
+		$challenge_questions_no = isset( $quiz_settings->Challenge->questions )? $quiz_settings->Challenge->questions : 0;
+                
+		
+		$attempted_questions  = array();
+                if( isset( $newQuizStart->id ) ){
+                    $attempted_questions	= QuizzResultQuestions::where('quiz_id', $id)
+                                    ->where('user_id', $user->id)
+                                    //->where('quiz_result_id', $newQuizStart->id)
+                    ->pluck('question_id')->toArray();
+                }
+		
+		$questions_list = array();
+		$questions_list['below'] = QuizzesQuestion::where('quiz_id', $id)
+				->where('question_difficulty_level', 'Below')
+				->whereNotIn('id', $attempted_questions)
+				->orderBy('sort_order', 'ASC')
+				->limit($below_questions_no)
+                ->pluck('id')->toArray();
+				
+		$questions_list['emerging'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
+				->where('question_difficulty_level', 'Emerging')
+				->whereNotIn('id', $attempted_questions)
+				->orderBy('sort_order', 'ASC')
+				->limit($emerging_questions_no)
+                ->pluck('id')->toArray();
+
+		$questions_list['expected'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
+				->where('question_difficulty_level', 'Expected')
+				->whereNotIn('id', $attempted_questions)
+				->orderBy('sort_order', 'ASC')
+				->limit($expected_questions_no)
+                ->pluck('id')->toArray();	
+
+		$questions_list['exceeding'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
+				->where('question_difficulty_level', 'Exceeding')
+				->whereNotIn('id', $attempted_questions)
+				->orderBy('sort_order', 'ASC')
+				->limit($exceeding_questions_no)
+				->pluck('id')->toArray();	
+		
+		$questions_list['challenge'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
+				->where('question_difficulty_level', 'Challenge')
+				->whereNotIn('id', $attempted_questions)
+				->orderBy('sort_order', 'ASC')
+				->limit($challenge_questions_no)
+				->pluck('id')->toArray();
+  
 
         if ($quiz) {
-
-            if (!empty($quiz->webinar_id)) {
-                $webinar = $quiz->webinar;
-
-                $checkUserHasBought = $webinar->checkUserHasBought($user);
-
-                if (!$checkUserHasBought) {
-                    $toastData = [
-                        'title' => trans('public.request_failed'),
-                        'msg' => trans('cart.you_not_purchased_this_course'),
-                        'status' => 'error'
-                    ];
-                    return back()->with(['toast' => $toastData]);
-                }
-
-                if (!empty($quiz->expiry_days)) {
-                    $hasAccess = false;
-                    $sale = $webinar->getSaleItem($user);
-
-                    if (!empty($sale)) {
-                        $purchaseDate = $sale->created_at;
-                        $gift = $sale->gift;
-
-                        if (!empty($gift) and !empty($gift->date)) {
-                            $purchaseDate = $gift->date;
-                        }
-
-                        $time = time();
-                        $hasAccess = (strtotime("+{$quiz->expiry_days} days", $purchaseDate) > $time);
-                    }
-
-                    if (!$hasAccess) {
-                        $toastData = [
-                            'title' => trans('public.request_failed'),
-                            'msg' => trans('update.your_access_to_this_quiz_has_been_expired'),
-                            'status' => 'error'
-                        ];
-                        return back()->with(['toast' => $toastData]);
-                    }
-                }
-            }
-
-            $userQuizDone = QuizzesResult::where('quiz_id', $quiz->id)
-                ->where('user_id', $user->id)
-                ->get();
-
-            $status_pass = false;
-            foreach ($userQuizDone as $result) {
-                if ($result->status == QuizzesResult::$passed) {
-                    $status_pass = true;
-                }
-            }
-
-            if (!isset($quiz->attempt) or ($userQuizDone->count() < $quiz->attempt and !$status_pass)) {
+            
+            if (empty($newQuizStart) || !isset($newQuizStart->id) || $newQuizStart->count() < 1) {
                 $newQuizStart = QuizzesResult::create([
-                    'quiz_id' => $quiz->id,
-                    'user_id' => $user->id,
-                    'results' => '',
-                    'user_grade' => 0,
-                    'status' => 'waiting',
-                    'created_at' => time()
+					'quiz_id' => $quiz->id,
+					'user_id' => $user->id,
+					'results' => '',
+					'user_grade' => 0,
+					'status' => 'waiting',
+					'created_at' => time(),
+					'questions_list' => json_encode($questions_list),
                 ]);
-
-                $quizQuestionsQuery = QuizzesQuestion::query()
-                    ->where('quiz_id', $quiz->id)
-                    ->with('quizzesQuestionsAnswers');
-
-                if ($quiz->display_questions_randomly) {
-                    $quizQuestionsQuery->inRandomOrder();
-                } else {
-                    $quizQuestionsQuery->orderBy('order', 'asc');
-                }
-
-                if (($quiz->display_limited_questions and !empty($quiz->display_number_of_questions))) {
-                    $totalQuestionsCount = $quiz->display_number_of_questions;
-
-                    $quizQuestions = $quizQuestionsQuery->take($totalQuestionsCount)->get();
-                } else {
-                    $quizQuestions = $quizQuestionsQuery->get();
-                    $totalQuestionsCount = $quizQuestions->count();
-                }
-
-                $data = [
-                    'pageTitle' => trans('quiz.quiz_start'),
-                    'quiz' => $quiz,
-                    'quizQuestions' => $quizQuestions,
-                    'attempt_count' => $userQuizDone->count() + 1,
-                    'newQuizStart' => $newQuizStart,
-                    'totalQuestionsCount' => $totalQuestionsCount
-                ];
-
-                return view(getTemplate() . '.panel.quizzes.start', $data);
-            } else {
-                $toastData = [
-                    'title' => trans('public.request_failed'),
-                    'msg' => trans('quiz.cant_start_quiz'),
-                    'status' => 'error'
-                ];
-                return back()->with(['toast' => $toastData]);
             }
+
+            $quizAttempt = QuizzAttempts::create([
+                        'quiz_id' => $quiz->id,
+                        'quiz_result_id' => $newQuizStart->id,
+                        'user_id' => $user->id,
+                        'start_grade' => $newQuizStart->user_grade,
+                        'end_grade' => 0,
+                        'created_at' => time(),
+                        'questions_list' => json_encode($questions_list),
+            ]);
+            
+            //$quizAttempt = QuizzAttempts::find(6);
+			
+			$questions_list = json_decode($quizAttempt->questions_list);
+			
+			$questions_ids_list = array();
+			
+			foreach( $questions_list as $key => $question_ids){
+				$questions_ids_list = array_merge($questions_ids_list, $question_ids);
+			}
+			
+			
+			$attempt_log_id = createAttemptLog($quizAttempt->id, 'Session Started', 'started');
+
+            $WebinarController = new WebinarController();
+            $question = (object) array();
+            $newQuestionResultData = (object) array();
+
+            //pre($questions_ids_list);
+            if (!empty($questions_ids_list)) {
+                foreach ($questions_ids_list as $question_id) {
+                    $questionObj = QuizzesQuestion::find($question_id);
+                    $newQuestionResult = $WebinarController->store_question_result($questionObj, $newQuizStart, $quizAttempt);
+                    if (isset($newQuestionResult->id)) {
+                        $question = $questionObj;
+                        $newQuestionResultData = $newQuestionResult;
+                        break;
+                    }
+                }
+            }
+            
+            $quiz_settings = json_decode($quiz->quiz_settings);
+            $difficulty_level = $question->question_difficulty_level;
+            $question_points = $quiz_settings->$difficulty_level->points;
+            
+            $data = [
+                'pageTitle' => trans('quiz.quiz_start'),
+                'quiz' => $quiz,
+                'quizQuestions' => $quiz->quizQuestions,
+                'attempt_count' => $newQuizStart->count() + 1,
+                'newQuizStart' => $newQuizStart,
+                'quizAttempt' => $quizAttempt,
+                'question' => $question,
+                'question_points' => $question_points,
+                'newQuestionResultData' => $newQuestionResultData
+            ];
+            return view(getTemplate() . '.panel.quizzes.start', $data);
         }
         abort(404);
     }
@@ -826,14 +862,34 @@ class QuizController extends Controller
 
         $quizzesIds = Quiz::where('creator_id', $user->id)->pluck('id')->toArray();
 
+								
+       //DB::enableQueryLog();
+        $quizResultQuestions = QuizzResultQuestions::where('quiz_result_id', $quizResultId)
+            ->where(function ($query) use ($user, $quizzesIds) {
+                $query->where('user_id', $user->id)
+                ->orWhereIn('quiz_id', $quizzesIds);
+            })->with([
+                /*'quiz' => function ($query) {
+                        $query->with(['quizQuestions', 'webinar']);
+                },*/
+                //'quizz_result_questions'
+            ])->get();
+            //pre(DB::getQueryLog());		
+            //DB::disableQueryLog();
+            
+            
+												
+								
+								
         $quizResult = QuizzesResult::where('id', $quizResultId)
             ->where(function ($query) use ($user, $quizzesIds) {
                 $query->where('user_id', $user->id)
                     ->orWhereIn('quiz_id', $quizzesIds);
             })->with([
-                'quiz' => function ($query) {
+		/*'quiz' => function ($query) {
                     $query->with(['quizQuestions', 'webinar']);
-                }
+		},*/
+		'quizz_result_questions'
             ])->first();
 
         if (!empty($quizResult)) {
@@ -848,9 +904,10 @@ class QuizController extends Controller
                 'pageTitle' => trans('quiz.result'),
                 'quiz' => $quizResult->quiz,
                 'quizResult' => $quizResult,
+                'quizResultQuestions' => $quizResultQuestions,
                 'userAnswers' => json_decode($quizResult->results, true),
                 'numberOfAttempt' => $numberOfAttempt,
-                'questionsSumGrade' => $quizQuestions->sum('grade'),
+                'questionsSumGrade' => 0,
                 'quizQuestions' => $quizQuestions,
             ];
 

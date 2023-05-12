@@ -62,7 +62,7 @@
                         <img src="/assets/default/img/activity/36.svg" class="account-balance-icon" alt="">
 
                         <h3 class="font-16 font-weight-500 text-gray mt-25">{{ trans('panel.account_balance') }}</h3>
-                        <span class="mt-5 d-block font-30 text-secondary">{{ handlePrice($authUser->getAccountingBalance()) }}</span>
+                        <span class="mt-5 d-block font-30 text-secondary">{{ addCurrencyToPrice($authUser->getAccountingBalance()) }}</span>
                     </div>
 
                     @php
@@ -74,7 +74,7 @@
                     <div class="mt-20 pt-30 border-top border-gray300 d-flex align-items-center @if($can_drawable) justify-content-between @else justify-content-center @endif">
                         @if($can_drawable)
                             <span class="font-16 font-weight-500 text-gray">{{ trans('panel.with_drawable') }}:</span>
-                            <span class="font-16 font-weight-bold text-secondary">{{ handlePrice($drawable) }}</span>
+                            <span class="font-16 font-weight-bold text-secondary">{{ addCurrencyToPrice($drawable) }}</span>
                         @else
                             <a href="/panel/financial/account" class="font-16 font-weight-bold text-dark-blue">{{ trans('financial.charge_account') }}</a>
                         @endif
@@ -98,7 +98,7 @@
                         <img src="@if($authUser->isUser()) /assets/default/img/icons/meeting.svg @else /assets/default/img/icons/monay.svg @endif" alt="">
                     </div>
                     <div class="d-flex flex-column ml-15">
-                        <span class="font-30 text-secondary">{{ !empty($monthlySalesCount) ? handlePrice($monthlySalesCount) : (!empty($reserveMeetingsCount) ? $reserveMeetingsCount : 0) }}</span>
+                        <span class="font-30 text-secondary">{{ !empty($monthlySalesCount) ? addCurrencyToPrice($monthlySalesCount) : (!empty($reserveMeetingsCount) ? addCurrencyToPrice($reserveMeetingsCount) : 0) }}</span>
                         <span class="font-16 text-gray font-weight-500">{{ $authUser->isUser() ? trans('panel.meetings') : trans('panel.monthly_sales') }}</span>
                     </div>
                 </a>

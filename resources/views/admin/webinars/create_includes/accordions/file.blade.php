@@ -82,17 +82,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('public.source') }}</label>
-                                <select name="ajax[{{ !empty($file) ? $file->id : 'new' }}][storage]"
-                                        class="js-file-storage form-control"
-                                >
-                                    @foreach(getFeaturesSettings('available_sources') as $source)
-                                        <option value="{{ $source }}" @if(!empty($file) and $file->storage == $source) selected @endif>{{ trans('update.file_source_'.$source) }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
+                          
                             <div class="form-group">
                                 <label class="input-label">{{ trans('public.accessibility') }}</label>
 

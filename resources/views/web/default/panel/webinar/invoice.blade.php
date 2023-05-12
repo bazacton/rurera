@@ -45,7 +45,7 @@
                                                                 <address>
                                                                     <strong>{{ trans('quiz.student') }}:</strong>
                                                                     <br>
-                                                                    {{ !empty($sale->gift_recipient) ? $sale->gift_recipient : $sale->buyer->full_name }}
+                                                                    {{ $sale->buyer->full_name }}
                                                                     <br>
                                                                 </address>
 
@@ -110,21 +110,21 @@
                                                                     <td class="text-center">{{ trans('webinars.'.$webinar->type) }}</td>
                                                                     <td class="text-center">
                                                                         @if(!empty($sale->amount))
-                                                                            {{ handlePrice($sale->amount) }}
+                                                                            {{ addCurrencyToPrice($sale->amount) }}
                                                                         @else
                                                                             {{ trans('public.free') }}
                                                                         @endif
                                                                     </td>
                                                                     <td class="text-center">
                                                                         @if(!empty($sale->discount))
-                                                                            {{ handlePrice($sale->discount) }}
+                                                                            {{ $sale->discount }}%
                                                                         @else
                                                                             -
                                                                         @endif
                                                                     </td>
                                                                     <td class="text-right">
                                                                         @if(!empty($sale->total_amount))
-                                                                            {{ handlePrice($sale->total_amount) }}
+                                                                            {{ addCurrencyToPrice($sale->total_amount) }}
                                                                         @else
                                                                             0
                                                                         @endif
@@ -137,13 +137,13 @@
                                                             <div class="col-lg-12 text-right">
                                                                 <div class="invoice-detail-item">
                                                                     <div class="invoice-detail-name">{{ trans('cart.sub_total') }}</div>
-                                                                    <div class="invoice-detail-value">{{ handlePrice($sale->amount) }}</div>
+                                                                    <div class="invoice-detail-value">{{ addCurrencyToPrice($sale->amount) }}</div>
                                                                 </div>
                                                                 <div class="invoice-detail-item">
                                                                     <div class="invoice-detail-name">{{ trans('cart.tax') }} ({{ getFinancialSettings('tax') }}%)</div>
                                                                     <div class="invoice-detail-value">
                                                                         @if(!empty($sale->tax))
-                                                                            {{ handlePrice($sale->tax) }}
+                                                                            {{ addCurrencyToPrice($sale->tax) }}
                                                                         @else
                                                                             -
                                                                         @endif
@@ -153,7 +153,7 @@
                                                                     <div class="invoice-detail-name">{{ trans('public.discount') }}</div>
                                                                     <div class="invoice-detail-value">
                                                                         @if(!empty($sale->discount))
-                                                                            {{ handlePrice($sale->discount) }}
+                                                                            {{ addCurrencyToPrice($sale->discount) }}
                                                                         @else
                                                                             -
                                                                         @endif
@@ -164,7 +164,7 @@
                                                                     <div class="invoice-detail-name">{{ trans('cart.total') }}</div>
                                                                     <div class="invoice-detail-value invoice-detail-value-lg">
                                                                         @if(!empty($sale->total_amount))
-                                                                            {{ handlePrice($sale->total_amount) }}
+                                                                            {{ addCurrencyToPrice($sale->total_amount) }}
                                                                         @else
                                                                             -
                                                                         @endif

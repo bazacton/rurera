@@ -22,13 +22,11 @@
 
     <div class="container">
         <section class="">
-            @if(!empty($contactSettings['latitude']) and !empty($contactSettings['longitude']))
-                <div class="contact-map" id="contactMap"
-                     data-latitude="{{ $contactSettings['latitude'] }}"
-                     data-longitude="{{ $contactSettings['longitude'] }}"
-                     data-zoom="{{ $contactSettings['map_zoom'] ?? 12 }}"
-                ></div>
-            @endif
+            <div class="contact-map" id="contactMap"
+                 data-latitude="{{ $contactSettings['latitude'] }}"
+                 data-longitude="{{ $contactSettings['longitude'] }}"
+                 data-zoom="{{ $contactSettings['map_zoom'] ?? 12 }}"
+            ></div>
 
 
             <div class="row">
@@ -40,9 +38,9 @@
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('site.our_address') }}</h3>
                         @if(!empty($contactSettings['address']))
-                            <p class="font-weight-500 font-14 text-gray mt-10">{!! nl2br($contactSettings['address']) !!}</p>
+                        <p class="font-weight-500 font-14 text-gray mt-10">{!! nl2br($contactSettings['address']) !!}</p>
                         @else
-                            <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>
@@ -55,9 +53,9 @@
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('site.phone_number') }}</h3>
                         @if(!empty($contactSettings['phones']))
-                            <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['phones'])) !!}</p>
+                        <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['phones'])) !!}</p>
                         @else
-                            <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>
@@ -69,10 +67,10 @@
                         </div>
 
                         <h3 class="mt-30 font-16 font-weight-bold text-dark-blue">{{ trans('public.email') }}</h3>
-                        @if(!empty($contactSettings['emails']))
-                            <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['emails'])) !!}</p>
+                         @if(!empty($contactSettings['emails']))
+                        <p class="font-weight-500 text-gray font-14 mt-10">{!! nl2br(str_replace(',','<br/>',$contactSettings['emails'])) !!}</p>
                         @else
-                            <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
+                        <p class="font-weight-500 text-gray font-14 mt-10">{{ trans('site.not_defined') }}</p>
                         @endif
                     </div>
                 </div>
@@ -158,7 +156,26 @@
 
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        @include('web.default.includes.captcha_input')
+                        <div class="form-group">
+                            <label class="input-label font-weight-500">{{ trans('site.captcha') }}</label>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <input type="text" name="captcha" class="form-control @error('captcha')  is-invalid @enderror">
+                                    @error('captcha')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="col d-flex align-items-center">
+                                    <img id="captchaImageComment" class="captcha-image" src="">
+
+                                    <button type="button" id="refreshCaptcha" class="btn-transparent ml-15">
+                                        <i data-feather="refresh-ccw" width="24" height="24" class=""></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

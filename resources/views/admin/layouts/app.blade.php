@@ -74,6 +74,8 @@
 </div>
 <!-- General JS Scripts -->
 <script src="/assets/admin/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="/assets/default/js/admin/jquery-ui.min.js"></script>
+<script id="tooltipster" src="/assets/default/js/admin/tooltipster.bundle.js"></script>
 <script src="/assets/admin/vendor/poper/popper.min.js"></script>
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/admin/vendor/nicescroll/jquery.nicescroll.min.js"></script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 @php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
 
@@ -38,7 +39,7 @@
     @endif
 
 </head>
-<body class="@if($isRtl) rtl @endif">
+<body class="menu-closed @if($isRtl) rtl @endif">
 
 @php
     $isPanel = true;
@@ -46,13 +47,18 @@
 
 <div id="panel_app">
 
-    @include(getTemplate().'.includes.navbar')
-
-    <div class="d-flex justify-content-end">
+    
+    <div class="panel-page-section">
         @include(getTemplate(). '.panel.includes.sidebar')
 
         <div class="panel-content">
-            @yield('content')
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -100,11 +106,9 @@
 
 @stack('styles_bottom')
 @stack('scripts_bottom')
-
 <script src="/assets/default/js//parts/main.min.js"></script>
-<script src="/assets/default/js/panel/public.min.js"></script>
 
-@stack('scripts_bottom2')
+<script src="/assets/default/js/panel/public.min.js"></script>
 
 <script>
 

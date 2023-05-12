@@ -83,26 +83,6 @@
                 @enderror
             </div>
 
-            @if(!empty($currencies) and count($currencies))
-                @php
-                    $userCurrency = currency();
-                @endphp
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('update.currency') }}</label>
-                    <select name="currency" class="form-control select2" data-allow-clear="false">
-                        @foreach($currencies as $currencyItem)
-                            <option value="{{ $currencyItem->currency }}" {{ ($userCurrency == $currencyItem->currency) ? 'selected' : '' }}>{{ currenciesLists($currencyItem->currency) }} ({{ currencySign($currencyItem->currency) }})</option>
-                        @endforeach
-                    </select>
-                    @error('currency')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-            @endif
-
             <div class="form-group mt-30 d-flex align-items-center justify-content-between">
                 <label class="cursor-pointer input-label" for="newsletterSwitch">{{ trans('auth.join_newsletter') }}</label>
                 <div class="custom-control custom-switch">

@@ -1,5 +1,6 @@
 <div class="product-show-specifications-tab mt-20">
     @if(!empty($selectedSpecifications) and count($selectedSpecifications))
+        <h3>Specifications</h3>
         @foreach($selectedSpecifications as $selectedSpecification)
             <div class="product-show-specification-item d-flex">
                 <div class="specification-item-name {{ ($loop->iteration > 1) ? 'mt-15 pt-15' : '' }}">

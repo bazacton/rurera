@@ -1,7 +1,7 @@
 <div class="product-show-description-tab mt-20">
     @if($product->description)
         <div class="course-description">
-            {!! $product->description !!}
+            {!! clean($product->description) !!}
         </div>
     @endif
 
@@ -31,13 +31,4 @@
     @endif
     {{-- ./ FAQ --}}
 
-    @if(!empty(getStoreSettings('activate_comments')) and getStoreSettings('activate_comments'))
-        {{-- product Comments --}}
-        @include('web.default.includes.comments',[
-                'comments' => $product->comments,
-                'inputName' => 'product_id',
-                'inputValue' => $product->id
-            ])
-        {{-- ./ product Comments --}}
-    @endif
 </div>

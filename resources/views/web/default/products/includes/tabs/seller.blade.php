@@ -1,6 +1,6 @@
 <div class="product-show-seller-tab mt-20">
-
-    <div class="product-show__profile-info-box profile-info-box d-flex align-items-start justify-content-between">
+    <h3>Seller</h3>
+    <div class="mt-20 product-show__profile-info-box profile-info-box d-flex align-items-start justify-content-between">
         <div class="user-details d-flex align-items-center">
             <div class="user-profile-avatar">
                 <img src="{{ $seller->getAvatar(190) }}" class="img-cover" alt="{{ $seller->full_name }}"/>

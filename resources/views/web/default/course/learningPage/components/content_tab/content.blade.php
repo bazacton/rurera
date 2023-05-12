@@ -25,9 +25,7 @@
      data-access-days-error="{{ !empty($checkSequenceContent['access_after_day_error']) ? $checkSequenceContent['access_after_day_error'] : '' }}"
 >
 
-        <span class="chapter-icon bg-gray300 mr-10">
-            <i data-feather="{{ $icon }}" class="text-gray" width="16" height="16"></i>
-        </span>
+        
 
     <div>
         <div class="">
@@ -48,10 +46,13 @@
             <div class="d-flex align-items-center justify-content-between mt-15">
                 <label class="mb-0 mr-10 cursor-pointer font-weight-normal font-14 text-dark-blue" for="readToggle{{ $type }}{{ $item->id }}">{{ trans('public.i_passed_this_lesson') }}</label>
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" @if($sequenceContentHasError) disabled @endif id="readToggle{{ $type }}{{ $item->id }}" data-item-id="{{ $item->id }}" data-item="{{ $type }}_id" value="{{ $item->webinar_id }}" class="js-passed-lesson-toggle custom-control-input" @if(!empty($item->checkPassedItem())) checked @endif>
+                    <input type="checkbox" @if($sequenceContentHasError) disabled @endif id="readToggle{{ $type }}{{ $item->id }}" data-item-id="{{ $item->id }}" data-item="{{ $type }}_id" value="{{ $item->webinar_id }}" class="js-passed-lesson-toggle custom-control-input" @if(!empty($item->learningStatus)) checked @endif>
                     <label class="custom-control-label" for="readToggle{{ $type }}{{ $item->id }}"></label>
                 </div>
             </div>
         </div>
     </div>
+    <span class="chapter-icon bg-gray300 mr-10">
+            <i data-feather="{{ $icon }}" class="text-gray" width="16" height="16"></i>
+        </span>
 </div>

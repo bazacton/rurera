@@ -1,110 +1,105 @@
-@php
-    $socials = getSocials();
-    if (!empty($socials) and count($socials)) {
-        $socials = collect($socials)->sortBy('order')->toArray();
-    }
-
-    $footerColumns = getFooterColumns();
-@endphp
-
-<footer class="footer bg-secondary position-relative user-select-none">
+<footer class="footer  position-relative user-select-none">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class=" footer-subscribe d-block d-md-flex align-items-center justify-content-between">
-                    <div class="flex-grow-1">
-                        <strong>{{ trans('footer.join_us_today') }}</strong>
-                        <span class="d-block mt-5 text-white">{{ trans('footer.subscribe_content') }}</span>
+            <div class="col-6 col-md-3">
+                <div class="widget widget-aboutus">
+                    <ul>
+                        <li><a href="#">i' m a school <span>&#8250;</span></a></li>
+                        <li><a href="#">i' m a teacher<span>&#8250;</span></a></li>
+                        <li><a href="#">i' m a parent<span>&#8250;</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="widget widget-links">
+                    <div class="widget-title">
+                        <h5>Company</h5>
                     </div>
-                    <div class="subscribe-input bg-white p-10 flex-grow-1 mt-30 mt-md-0">
-                        <form action="/newsletters" method="post">
-                            {{ csrf_field() }}
-
-                            <div class="form-group d-flex align-items-center m-0">
-                                <div class="w-100">
-                                    <input type="text" name="newsletter_email" class="form-control border-0 @error('newsletter_email') is-invalid @enderror" placeholder="{{ trans('footer.enter_email_here') }}"/>
-                                    @error('newsletter_email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <button type="submit" class="btn btn-primary rounded-pill">{{ trans('footer.join') }}</button>
-                            </div>
-                        </form>
+                    <ul>
+                        <li><a href="/blog">News</a></li>
+                        <li><a href="/pages/Privacy_Policy">Privacy Policy</a></li>
+                        <li><a href="/pages/Terms_of_service">term of services</a></li>
+                        <li><a href="/pages/faq">FAQ's</a></li>
+                        <li><a href="/pages/User_Guides">Help Center</a></li>
+                        <li><a href="/pages/Support_Page">Support Page</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="widget widget-location">
+                    <div class="widget-title">
+                        <h5>Courses</h5>
                     </div>
+                    <ul>
+                        <li><a href="/pages/Course-2">Course 2</a></li>
+                        <li><a href="/pages/Course-3">Course 3</a></li>
+                        <li><a href="/pages/Course-4">Course 4</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="widget widget-location">
+                    <div class="widget-title">
+                        <h5>choose location</h5>
+                    </div>
+                    <ul>
+                        <li><a href="#"><img src="/store/1/default_images/countries/us-img.jpg" alt="#">United kingdom</a></li>
+                        <li><a href="#"><img src="/store/1/default_images/countries/aus-img.jpg" alt="#">Australia</a></li>
+                        <li><a href="#"><img src="/store/1/default_images/countries/soa-img.jpg" alt="#">South Africa</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
+        
     </div>
-
-    @php
-        $columns = ['first_column','second_column','third_column','forth_column'];
-    @endphp
-
-    <div class="container">
-        <div class="row">
-
-            @foreach($columns as $column)
-                <div class="col-6 col-md-3">
-                    @if(!empty($footerColumns[$column]))
-                        @if(!empty($footerColumns[$column]['title']))
-                            <span class="header d-block text-white font-weight-bold">{{ $footerColumns[$column]['title'] }}</span>
-                        @endif
-
-                        @if(!empty($footerColumns[$column]['value']))
-                            <div class="mt-20">
-                                {!! $footerColumns[$column]['value'] !!}
-                            </div>
-                        @endif
-                    @endif
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    <p>@ 2023 learning portal</p>
                 </div>
-            @endforeach
-
-        </div>
-
-        <div class="mt-40 border-blue py-25 d-flex align-items-center justify-content-between">
-            <div class="footer-logo">
-                <a href="/">
-                    @if(!empty($generalSettings['footer_logo']))
-                        <img src="{{ $generalSettings['footer_logo'] }}" class="img-cover" alt="footer logo">
-                    @endif
-                </a>
-            </div>
-            <div class="footer-social">
-                @if(!empty($socials) and count($socials))
-                    @foreach($socials as $social)
-                        <a href="{{ $social['link'] }}">
-                            <img src="{{ $social['image'] }}" alt="{{ $social['title'] }}" class="mr-15">
+                <div class="col-6 col-md-4">
+                    <div class="footer-logo">
+                        <a href="/">
+                            <img src="/store/1/default_images/website-logo-white.png" class="img-cover" alt="footer logo">
                         </a>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-    </div>
-
-    @if(getOthersPersonalizationSettings('platform_phone_and_email_position') == 'footer')
-        <div class="footer-copyright-card">
-            <div class="container d-flex align-items-center justify-content-between py-15">
-                <div class="font-14 text-white">{{ trans('update.platform_copyright_hint') }}</div>
-
-                <div class="d-flex align-items-center justify-content-center">
-                    @if(!empty($generalSettings['site_phone']))
-                        <div class="d-flex align-items-center text-white font-14">
-                            <i data-feather="phone" width="20" height="20" class="mr-10"></i>
-                            {{ $generalSettings['site_phone'] }}
-                        </div>
-                    @endif
-
-                    @if(!empty($generalSettings['site_email']))
-                        <div class="border-left mx-5 mx-lg-15 h-100"></div>
-
-                        <div class="d-flex align-items-center text-white font-14">
-                            <i data-feather="mail" width="20" height="20" class="mr-10"></i>
-                            {{ $generalSettings['site_email'] }}
-                        </div>
-                    @endif
+                    </div>
+                </div>
+                <div class="col-6 col-md-4">
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram"
+                                viewBox="0 0 16 16" id="IconChangeColor">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"id="mainIconPathAttribute"></path></svg>
+                        </a>
+                        <a href="https://web.whatsapp.com/">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-whatsapp"
+                                viewBox="0 0 16 16" id="IconChangeColor">
+                                <path
+                                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+                                    id="mainIconPathAttribute"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter"
+                            viewBox="0 0 16 16" id="IconChangeColor">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+                                id="mainIconPathAttribute" fill="#000000"></path>
+                        </svg>
+                        </a>
+                        <a href="https://www.facebook.com/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="20" height="20"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" id="IconChangeColor">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" id="mainIconPathAttribute"></path>
+                            <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" id="mainIconPathAttribute">
+                            </path>
+                        </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    @endif
-
+    </div>
 </footer>

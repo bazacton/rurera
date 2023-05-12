@@ -16,6 +16,12 @@
                 @endif
             </a>
         </div>
+        
+        @if($authUser->role_name == 'teachers')
+            <div class="sidebar-brand">
+                <b>Author Points: {{ $authUser->author_points }}</b>
+            </div>
+        @endif
 
         <ul class="sidebar-menu">
             @can('admin_general_dashboard_show')
@@ -133,10 +139,70 @@
             @endcan()
 
             @can('admin_quizzes')
-                <li class="{{ (request()->is(getAdminPanelUrl('/quizzes*', false))) ? 'active' : '' }}">
-                    <a class="nav-link " href="{{ getAdminPanelUrl() }}/quizzes">
+                <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/quizzes*', false))) ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                         <i class="fas fa-file"></i>
                         <span>{{ trans('admin/main.quizzes') }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li class="{{ (request()->is('admin/quizzes*')) ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ getAdminPanelUrl('/quizzes') }}">
+                                <i class="fas fa-file"></i>
+                                <span>{{ trans('admin/main.quizzes') }}</span>
+                            </a>
+                        </li>
+                        
+                        <li class="{{ (request()->is('admin/glossary*')) ? 'active' : '' }}">
+                            <a class="nav-link " href="{{ getAdminPanelUrl('/glossary') }}">
+                                <i class="fas fa-file"></i>
+                                <span>Glossary</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endcan()
+            
+             @can('admin_questions_bank')
+            
+                <li class="{{ (request()->is('admin/questions_bank')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/questions_bank') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>{{ trans('admin/main.questions_bank') }}</span>
+                    </a>
+                </li>
+            @endcan()
+            
+            @if($authUser->role_name == 'reviewer')
+                    <li class="{{ (request()->is('admin/author_permissions')) ? 'active' : '' }}">
+                        <a href="{{ getAdminPanelUrl('/author_permissions') }}" class="nav-link">
+                            <i class="fas fa-pen"></i>
+                            <span>Author Permissions</span>
+                        </a>
+                    </li>
+                    <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
+                        <a href="{{ getAdminPanelUrl('/author_permissions/authors') }}" class="nav-link">
+                            <i class="fas fa-pen"></i>
+                            <span>Authors</span>
+                        </a>
+                    </li>
+                @endif
+                
+                @if($authUser->role_name == 'teachers')
+                    <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
+                        <a href="{{ getAdminPanelUrl('/author_points') }}/{{$authUser->id}}" class="nav-link">
+                            <i class="fas fa-pen"></i>
+                            <span>Points Breakdown</span>
+                        </a>
+                    </li>
+                @endif
+                        
+            
+            @can('admin_glossary')
+                <li class="{{ (request()->is('admin/glossary')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/glossary') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Glossary</span>
                     </a>
                 </li>
             @endcan()

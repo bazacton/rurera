@@ -40,9 +40,9 @@
         @include('web.default.includes.webinar.rate',['rate' => $instructor->rates()])
     </div>
 
-    <div class="d-flex align-items-center mt-20">
+    <div class="d-flex align-items-center mt-25">
         @foreach($instructor->getBadges() as $badge)
-            <div class="mr-15 mt-5" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($badge->badge_id) ? nl2br($badge->badge->description) : nl2br($badge->description)) !!}">
+            <div class="mr-15" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($badge->badge_id) ? nl2br($badge->badge->description) : nl2br($badge->description)) !!}">
                 <img src="{{ !empty($badge->badge_id) ? $badge->badge->image : $badge->image }}" width="32" height="32" alt="{{ !empty($badge->badge_id) ? $badge->badge->title : $badge->title }}">
             </div>
         @endforeach
@@ -51,10 +51,10 @@
     <div class="mt-15">
         @if(!empty($instructor->meeting) and !$instructor->meeting->disabled and !empty($instructor->meeting->amount))
             @if(!empty($instructor->meeting->discount))
-                <span class="font-20 text-primary font-weight-bold">{{ handlePrice($instructor->meeting->amount - (($instructor->meeting->amount * $instructor->meeting->discount) / 100)) }}</span>
-                <span class="font-14 text-gray text-decoration-line-through ml-10">{{ handlePrice($instructor->meeting->amount) }}</span>
+                <span class="font-20 text-primary font-weight-bold">{{ addCurrencyToPrice($instructor->meeting->amount - (($instructor->meeting->amount * $instructor->meeting->discount) / 100)) }}</span>
+                <span class="font-14 text-gray text-decoration-line-through ml-10">{{ addCurrencyToPrice($instructor->meeting->amount) }}</span>
             @else
-                <span class="font-20 text-primary font-weight-500">{{ handlePrice($instructor->meeting->amount) }}</span>
+                <span class="font-20 text-primary font-weight-500">{{ addCurrencyToPrice($instructor->meeting->amount) }}</span>
             @endif
         @else
             <span class="py-10">&nbsp;</span>

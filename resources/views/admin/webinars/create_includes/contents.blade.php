@@ -38,6 +38,15 @@
         ])
 </div>
 
+<div id="newSubForm" class="d-none">
+    @include('admin.webinars.create_includes.accordions.sub',[
+             'webinar' => $webinar,
+             'quizInfo' => null,
+             'webinarChapterPages' => true,
+             'creator' => $webinar->creator
+        ])
+</div>
+
 @if(getFeaturesSettings('webinar_assignment_status'))
     <div id="newAssignmentForm" class="d-none">
         @include('admin.webinars.create_includes.accordions.assignment',['webinar' => $webinar])

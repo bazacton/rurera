@@ -1,21 +1,11 @@
 @php
-    $checkSequenceContent = $item->checkSequenceContent();
-   $sequenceContentHasError = (!empty($checkSequenceContent) and (!empty($checkSequenceContent['all_passed_items_error']) or !empty($checkSequenceContent['access_after_day_error'])));
 @endphp
 
-
-<div class="{{ (!empty($checkSequenceContent) and $sequenceContentHasError) ? 'js-sequence-content-error-modal' : 'tab-item' }} p-10 cursor-pointer {{ $class ?? '' }}"
+<div class="{{ ($item->result_status == 'passed') ? 'quiz-passed' : '' }} tab-item p-10 cursor-pointer {{ $class ?? '' }}"
      data-type="{{ $type }}"
-     data-id="{{ $item->id }}"
-     data-passed-error="{{ !empty($checkSequenceContent['all_passed_items_error']) ? $checkSequenceContent['all_passed_items_error'] : '' }}"
-     data-access-days-error="{{ !empty($checkSequenceContent['access_after_day_error']) ? $checkSequenceContent['access_after_day_error'] : '' }}"
->
+     data-id="{{ $item->id }}">
 
     <div class="d-flex align-items-center">
-        <span class="chapter-icon bg-gray300 mr-10">
-            <i data-feather="award" class="text-gray" width="16" height="16"></i>
-        </span>
-
         <div class="flex-grow-1">
             <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $item->title }}</span>
 
@@ -27,20 +17,19 @@
                         {{ trans('update.unlimited_time') }}
                     @endif
 
-                    {{ ($item->quizQuestions ? ' | ' . (($item->display_limited_questions and !empty($item->display_number_of_questions)) ? $item->display_number_of_questions : $item->quizQuestions->count()) .' '. trans('public.questions') : '') }}
+                    {{ ($item->quizQuestions ? ' | ' . $item->quizQuestions->count() .' '. trans('public.questions') : '') }}
                 </span>
 
-                @if(!empty($quiz->result_status))
-                    @if($quiz->result_status == 'passed')
-                        <span class="font-12 text-primary">{{ trans('quiz.passed') }}</span>
-                    @elseif($quiz->result_status == 'failed')
-                        <span class="font-12 text-danger">{{ trans('quiz.failed') }}</span>
-                    @elseif($quiz->result_status == 'waiting')
-                        <span class="font-12 text-warning">{{ trans('quiz.waiting') }}</span>
-                    @endif
-                @endif
             </div>
         </div>
+        @if($item->result_status == 'passed')
+            <svg fill="#0bda3f" height="40px" width="40px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-490 -490 1470.00 1470.00" xml:space="preserve" stroke="#0bda3f" stroke-width="16.17"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <polygon points="452.253,28.326 197.831,394.674 29.044,256.875 0,292.469 207.253,461.674 490,54.528 "></polygon> </g></svg>
+        @else
+            <span class="chapter-icon bg-gray300 mr-10">
+                <i data-feather="award" class="text-gray" width="16" height="16"></i>
+            </span>
+        @endif
+         
 
     </div>
 </div>

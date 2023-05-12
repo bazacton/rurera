@@ -72,12 +72,12 @@
             </div>
 
             <div class="webinar-price-box d-flex flex-column justify-content-center align-items-center">
-            @if(!empty($webinar->price) and $webinar->price > 0)
+                @if(!empty($webinar->price) and $webinar->price > 0)
                     @if($webinar->bestTicket() < $webinar->price)
-                        <span class="off">{{ handlePrice($webinar->price, true, true, false, null, true) }}</span>
-                        <span class="real">{{ handlePrice($webinar->bestTicket(), true, true, false, null, true) }}</span>
+                        <span class="off">{{ handlePrice($webinar->price) }}</span>
+                        <span class="real">{{ handlePrice($webinar->bestTicket()) }}</span>
                     @else
-                        <span class="real">{{ handlePrice($webinar->price, true, true, false, null, true) }}</span>
+                        <span class="real">{{ handlePrice($webinar->price) }}</span>
                     @endif
                 @else
                     <span class="real font-14">{{ trans('public.free') }}</span>

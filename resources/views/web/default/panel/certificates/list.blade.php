@@ -153,7 +153,7 @@
                                     <tr>
                                         <td class="text-left">
                                             <span class="d-block text-dark-blue font-weight-500">{{ $quiz->title }}</span>
-                                            <span class="d-block mt-5 font-12 text-gray">{{ !empty($quiz->webinar) ? $quiz->webinar->title : trans('update.delete_item') }}</span>
+                                            <span class="d-block mt-5 font-12 text-gray">{{ $quiz->webinar->title }}</span>
                                         </td>
                                         <td class="align-middle">
                                             <span class="text-dark-blue font-weight-500">{{ $quiz->pass_mark }}</span>

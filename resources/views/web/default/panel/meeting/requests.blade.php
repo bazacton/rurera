@@ -30,7 +30,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/38.svg" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold text-dark-blue mt-5">{{ handlePrice($sumReservePaid) }}</strong>
+                        <strong class="font-30 font-weight-bold text-dark-blue mt-5">{{ addCurrencyToPrice($sumReservePaid) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.sales_amount') }}</span>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
     </section>
 
 
-    <section class="mt-35 pb-50 mb-50">
+    <section class="mt-35">
         <form action="/panel/meetings/requests?{{ http_build_query(request()->all()) }}" method="get" class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
             <h2 class="section-title">{{ trans('panel.meeting_requests_list') }}</h2>
 
@@ -201,7 +201,7 @@
                                             </div>
                                         </td>
 
-                                        <td class="font-weight-500 align-middle">{{ handlePrice($ReserveMeeting->paid_amount) }}</td>
+                                        <td class="font-weight-500 align-middle">{{ addCurrencyToPrice($ReserveMeeting->paid_amount) }}</td>
 
                                         <td class="align-middle font-weight-500">
                                             {{ $ReserveMeeting->student_count ?? 1 }}
@@ -210,17 +210,17 @@
                                         <td class="align-middle">
                                             @switch($ReserveMeeting->status)
                                                 @case(\App\Models\ReserveMeeting::$pending)
-                                                    <span class="font-weight-500">{{ trans('public.pending') }}</span>
-                                                    @break
+                                                <span class="font-weight-500">{{ trans('public.pending') }}</span>
+                                                @break
                                                 @case(\App\Models\ReserveMeeting::$open)
-                                                    <span class="text-primary font-weight-500">{{ trans('public.open') }}</span>
-                                                    @break
+                                                <span class="text-primary font-weight-500">{{ trans('public.open') }}</span>
+                                                @break
                                                 @case(\App\Models\ReserveMeeting::$finished)
-                                                    <span class="font-weight-500">{{ trans('public.finished') }}</span>
-                                                    @break
+                                                <span class="font-weight-500">{{ trans('public.finished') }}</span>
+                                                @break
                                                 @case(\App\Models\ReserveMeeting::$canceled)
-                                                    <span class="font-weight-500">{{ trans('public.canceled') }}</span>
-                                                    @break
+                                                <span class="font-weight-500">{{ trans('public.canceled') }}</span>
+                                                @break
                                             @endswitch
                                         </td>
 
@@ -237,29 +237,17 @@
                                                         <i data-feather="more-vertical" height="20"></i>
                                                     </button>
                                                     <div class="dropdown-menu menu-lg">
-
-                                                        @if(getFeaturesSettings('agora_for_meeting') and $ReserveMeeting->meeting_type != 'in_person')
-                                                            @if(empty($ReserveMeeting->session))
-                                                                <button type="button" data-item-id="{{ $ReserveMeeting->id }}" data-date="{{ dateTimeFormat($ReserveMeeting->start_at, 'j M Y H:i') }}"
-                                                                        class="js-add-meeting-session btn-transparent webinar-actions d-block mt-10 text-primary">{{ trans('update.create_a_session') }}</button>
-                                                            @elseif($ReserveMeeting->status == \App\Models\ReserveMeeting::$open)
-                                                                <button type="button" data-item-id="{{ $ReserveMeeting->id }}" data-date="{{ dateTimeFormat($ReserveMeeting->start_at, 'j M Y H:i') }}" data-link="{{ $ReserveMeeting->session->getJoinLink() }}"
-                                                                        class="js-join-meeting-session btn-transparent webinar-actions d-block mt-10 text-primary">{{ trans('update.join_to_session') }}</button>
-                                                            @endif
-                                                        @endif
-
-
                                                         @if($ReserveMeeting->meeting_type != 'in_person' and !empty($ReserveMeeting->link) and $ReserveMeeting->status == \App\Models\ReserveMeeting::$open)
                                                             <button type="button" data-reserve-id="{{ $ReserveMeeting->id }}"
                                                                     class="js-join-reserve btn-transparent webinar-actions d-block mt-10">{{ trans('footer.join') }}</button>
                                                         @endif
 
+                                                        <a href="{{ $ReserveMeeting->addToCalendarLink() }}" target="_blank" class="webinar-actions d-block mt-10 font-weight-normal">{{ trans('public.add_to_calendar') }}</a>
+
                                                         @if($ReserveMeeting->meeting_type != 'in_person')
                                                             <button type="button" data-item-id="{{ $ReserveMeeting->id }}"
                                                                     class="add-meeting-url btn-transparent webinar-actions d-block mt-10">{{ trans('panel.create_link') }}</button>
                                                         @endif
-
-                                                        <a href="{{ $ReserveMeeting->addToCalendarLink() }}" target="_blank" class="webinar-actions d-block mt-10 font-weight-normal">{{ trans('public.add_to_calendar') }}</a>
 
                                                         <button type="button"
                                                                 data-user-id="{{ $ReserveMeeting->user_id }}"
@@ -328,7 +316,6 @@
     </div>
 
     @include('web.default.panel.meeting.join_modal')
-    @include('web.default.panel.meeting.meeting_create_session_modal')
 @endsection
 
 @push('scripts_bottom')
@@ -351,8 +338,6 @@
         var finishReserveSuccessHint = '{{ trans('meeting.finish_reserve_modal_success_hint') }}';
         var finishReserveFail = '{{ trans('meeting.finish_reserve_modal_fail') }}';
         var finishReserveFailHint = '{{ trans('meeting.finish_reserve_modal_fail_hint') }}';
-        var sessionSuccessAdd = '{{ trans('update.add_live_meeting_session_success') }}';
-        var youCanJoinTheSessionNowLang = '{{ trans('update.you_can_join_the_session_now') }}';
     </script>
 
     <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>

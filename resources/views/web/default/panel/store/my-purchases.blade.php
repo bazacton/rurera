@@ -38,7 +38,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/33.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ !empty($totalPurchase) ? handlePrice($totalPurchase) : 0 }}</strong>
+                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ !empty($totalPurchase) ? addCurrencyToPrice($totalPurchase) : 0 }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('update.total_purchase') }}</span>
                     </div>
                 </div>
@@ -157,11 +157,7 @@
                                 <tr>
                                     <th>{{ trans('update.seller') }}</th>
                                     <th class=" text-left">{{ trans('update.order_id') }}</th>
-                                    <th class="text-center">{{ trans('public.price') }}</th>
-                                    <th class="text-center">{{ trans('public.discount') }}</th>
-                                    <th class="text-center">{{ trans('cart.tax') }}</th>
-                                    <th class="text-center">{{ trans('update.delivery_fee') }}</th>
-                                    <th class="text-center">{{ trans('financial.total_amount') }}</th>
+                                    <th class="text-center">Total Points</th>
                                     <th class="text-center">{{ trans('public.type') }}</th>
                                     <th class="text-center">{{ trans('public.status') }}</th>
                                     <th class="text-center">{{ trans('public.date') }}</th>
@@ -188,37 +184,12 @@
                                             <span class="d-block font-weight-500 text-dark-blue font-16">{{ $order->id }}</span>
                                             <span class="d-block font-12 text-gray">{{ $order->quantity }} {{ trans('update.product') }}</span>
                                         </td>
+                                       
 
                                         <td class="align-middle">
-                                            <span>{{ handlePrice($order->sale->amount) }}</span>
-                                        </td>
-
-                                        <td class="align-middle">
-                                            @if(!empty($order->sale->discount) and (int)$order->sale->discount > 0)
-                                                {{ handlePrice($order->sale->discount ?? 0) }}
-                                            @else
-                                                -
+                                            @if(!empty($order) and !empty($order->product))
+                                                <span>{{ $order->product->point }}</span>
                                             @endif
-                                        </td>
-
-                                        <td class="align-middle">
-                                            @if(!empty($order->sale->tax))
-                                                {{ handlePrice($order->sale->tax) }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-
-                                        <td class="align-middle">
-                                            @if(!empty($order->sale->product_delivery_fee))
-                                                {{ handlePrice($order->sale->product_delivery_fee) }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-
-                                        <td class="align-middle">
-                                            <span>{{ handlePrice($order->sale->total_amount) }}</span>
                                         </td>
 
                                         <td class="align-middle">

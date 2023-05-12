@@ -1,51 +1,51 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 lms-chapter-area">
+        <div class="sidebar-nav">
+            <ul>
+             <li><a href="#">Subjects</a></li>
+             <li><a href="#">Scince</a></li>
+             <li><a href="#">History</a></li>
+             <li><a href="#">Geography</a></li>
+             <li><a href="#">Maths</a></li>
+             <li><a href="#">English</a></li>
+             <li><a href="#">Art</a></li>
+             <li><a href="#">Language</a></li>
+             <li><a href="#">Design and technology</a></li>
+             <li><a href="#">PE</a></li>
+             <li><a href="#">Music</a></li>
+             <li><a href="#">Computing</a></li>
+            </ul> 
+         </div>
         <div class="accordion-content-wrapper" id="chaptersAccordion" role="tablist" aria-multiselectable="true">
-            @foreach($course->chapters as $chapter)
+
+
+            <div class="mastery-banner-card">
+                <div class="mastery-text">
+                    <strong>Mastery Chellenge</strong>
+                    <p>Strengthen skills you've already practiced in <br /> just 6 questions</p>
+                    <a href="#">Get started</a>
+                </div>
+            </div>
+
+            <ul class="lms-chapter-ul">
+                @foreach($course->chapters as $chapter)
 
                 @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
-                    <div class="accordion-row rounded-sm border mt-20 p-15">
-                        <div class="d-flex align-items-center justify-content-between" role="tab" id="chapter_{{ $chapter->id }}">
-                            <div class="js-chapter-collapse-toggle d-flex align-items-center" href="#collapseChapter{{ $chapter->id }}" aria-controls="collapseChapter{{ $chapter->id }}" data-parent="#chaptersAccordion" role="button" data-toggle="collapse" aria-expanded="true">
-                                <span class="chapter-icon mr-15">
-                                    <i data-feather="grid" class=""></i>
-                                </span>
+                <li><div class="lms-chapter-title"><strong>{{ $chapter->title }}</strong><span>1400/1400 Mastery Points</span></div>
 
-                                <span class="font-weight-bold text-secondary font-14">{{ $chapter->title }}</span>
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <span class="mr-15 font-14 text-gray">
-                                    {{ $chapter->getTopicsCount(true) }} {{ trans('public.parts') }}
-                                    {{ !empty($chapter->getDuration()) ? ' - ' . convertMinutesToHourAndMinute($chapter->getDuration()) .' '. trans('public.hr') : '' }}
-                                </span>
-
-                                <i class="collapse-chevron-icon" data-feather="chevron-down" height="20" href="#collapseChapter{{ !empty($chapter) ? $chapter->id :'record' }}" aria-controls="collapseChapter{{ !empty($chapter) ? $chapter->id :'record' }}" data-parent="#chaptersAccordion" role="button" data-toggle="collapse" aria-expanded="true"></i>
-                            </div>
-                        </div>
-
-                        <div id="collapseChapter{{ $chapter->id }}" aria-labelledby="chapter_{{ $chapter->id }}" class=" collapse" role="tabpanel">
-                            <div class="panel-collapse">
-                                @if(!empty($chapter->chapterItems) and count($chapter->chapterItems))
-                                    @foreach($chapter->chapterItems as $chapterItem)
-                                        @if($chapterItem->type == \App\Models\WebinarChapterItem::$chapterSession and !empty($chapterItem->session) and $chapterItem->session->status == 'active')
-                                            @include('web.default.course.tabs.contents.sessions' , ['session' => $chapterItem->session, 'accordionParent' => 'chaptersAccordion'])
-                                        @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterFile and !empty($chapterItem->file) and $chapterItem->file->status == 'active')
-                                            @include('web.default.course.tabs.contents.files' , ['file' => $chapterItem->file, 'accordionParent' => 'chaptersAccordion'])
-                                        @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterTextLesson and !empty($chapterItem->textLesson) and $chapterItem->textLesson->status == 'active')
-                                            @include('web.default.course.tabs.contents.text_lessons' , ['textLesson' => $chapterItem->textLesson, 'accordionParent' => 'chaptersAccordion'])
-                                        @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterAssignment and !empty($chapterItem->assignment) and $chapterItem->assignment->status == 'active')
-                                            @include('web.default.course.tabs.contents.assignment' ,['assignment' => $chapterItem->assignment, 'accordionParent' => 'chaptersAccordion'])
-                                        @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterQuiz and !empty($chapterItem->quiz) and $chapterItem->quiz->status == 'active')
-                                            @include('web.default.course.tabs.contents.quiz' ,['quiz' => $chapterItem->quiz, 'accordionParent' => 'chaptersAccordion'])
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    @if(!empty($sub_chapters[$chapter->id]) and count($sub_chapters[$chapter->id]))
+                    <ul>
+                        @foreach($sub_chapters[$chapter->id] as $sub_chapter)
+                        @if(!empty($sub_chapter))
+                            <li><a href="/course/learning/{{$course->slug}}?webinar={{$chapter->id}}&chapter={{$sub_chapter['id']}}">{{ $sub_chapter['title'] }}</a></li>
+                        @endif
+                        @endforeach
+                    </ul>
+                    @endif
+                </li>
                 @endif
-            @endforeach
+                @endforeach
+            </ul>
         </div>
     </div>
 </div>

@@ -17,6 +17,9 @@ use App\Models\GroupUser;
 use App\Models\Notification;
 use App\Models\Prerequisite;
 use App\Models\Quiz;
+use App\Models\QuizzesQuestion;
+
+use App\Models\SubChapters;
 use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\Role;
@@ -133,6 +136,22 @@ class WebinarController extends Controller
         }
 
         return view('admin.webinars.lists', $data);
+    }
+
+	
+	public function search_sub_chapter(Request $request)
+    {
+        $term = $request->get('term');
+        //$option = $request->get('option');
+		
+		
+		$sub_chapters = DB::table('webinar_sub_chapters')
+        ->select('id', 'sub_chapter_title as name')
+		->where('sub_chapter_title', 'like', '%' . $term . '%');
+		
+			//pre($sub_chapters);
+
+        return response()->json($sub_chapters->get(), 200);
     }
 
     private function filterWebinar($query, $request)
@@ -317,6 +336,8 @@ class WebinarController extends Controller
         removeContentLocale();
 
         $teachers = User::where('role_name', Role::$teacher)->get();
+        
+        
         $categories = Category::where('parent_id', null)->get();
 
         $data = [
@@ -326,6 +347,209 @@ class WebinarController extends Controller
         ];
 
         return view('admin.webinars.create', $data);
+    }
+
+	
+	public function store_sub_chapter(Request $request)
+    {
+        $this->authorize('admin_quizzes_create');
+
+        $data = $request->all();
+        $locale = $request->get('locale', getDefaultLocale());
+
+        $rules = [
+            'title' => 'required|max:255',
+            'webinar_id' => 'required|exists:webinars,id',
+            //'pass_mark' => 'required',
+        ];
+
+        if ($request->ajax()) {
+            $data = $request->get('ajax');
+
+            $validate = Validator::make($data, $rules);
+
+            if ($validate->fails()) {
+                return response()->json([
+                    'code' => 422,
+                    'errors' => $validate->errors()
+                ], 422);
+            }
+        } else {
+            $this->validate($request, $rules);
+        }
+
+        $webinar = Webinar::where('id', $data['webinar_id'])
+            ->first();
+
+        if (!empty($webinar)) {
+            $chapter = null;
+
+            if (!empty($data['chapter_id'])) {
+                $chapter = WebinarChapter::where('id', $data['chapter_id'])
+                    ->where('webinar_id', $webinar->id)
+                    ->first();
+            }
+			
+			$chapter_settings = array(
+				'Below'	=> array(
+					'questions'	=> isset( $data['Below'] )? $data['Below'] : '',
+					'points'	=> isset( $data['Below_points'] )? $data['Below_points'] : '',
+				),
+				'Emerging'	=> array(
+					'questions'	=> isset( $data['Emerging'] )? $data['Emerging'] : '',
+					'points'	=> isset( $data['Emerging_points'] )? $data['Emerging_points'] : '',
+				),
+				'Expected'	=> array(
+					'questions'	=> isset( $data['Expected'] )? $data['Expected'] : '',
+					'points'	=> isset( $data['Expected_points'] )? $data['Expected_points'] : '',
+				),
+				'Exceeding'	=> array(
+					'questions'	=> isset( $data['Exceeding'] )? $data['Exceeding'] : '',
+					'points'	=> isset( $data['Exceeding_points'] )? $data['Exceeding_points'] : '',
+				),
+				'Challenge'	=> array(
+					'questions'	=> isset( $data['Challenge'] )? $data['Challenge'] : '',
+					'points'	=> isset( $data['Challenge_points'] )? $data['Challenge_points'] : '',
+				)
+			);
+
+            $sub_chapter = SubChapters::create([
+                'webinar_id' => $webinar->id,
+                'chapter_id' => !empty($chapter) ? $chapter->id : null,
+                'sub_chapter_title' => isset( $data['title'] )? $data['title'] : '',
+                'quiz_type' => isset( $data['quiz_type'] )? $data['quiz_type'] : '',
+                'chapter_settings' => json_encode($chapter_settings),
+                'status' => 'active',
+                'created_at' => time(),
+            ]);
+
+            
+            if (!empty($sub_chapter->webinar_id)) {
+                WebinarChapterItem::makeItem($webinar->creator_id, $sub_chapter->chapter_id, $sub_chapter->id, 'sub_chapter');
+            }
+
+            if ($request->ajax()) {
+
+                $redirectUrl = '';
+
+                $redirectUrl = '/admin/webinars/' . $data['webinar_id'] . '/edit';
+				
+                return response()->json([
+                    'code' => 200,
+                    'redirect_url' => $redirectUrl
+                ]);
+            } else {
+                return redirect()->route('adminEditQuiz', ['id' => $quiz->id]);
+            }
+        } else {
+            return back()->withErrors([
+                'webinar_id' => trans('validation.exists', ['attribute' => trans('admin/main.course')])
+            ]);
+        }
+    }
+	
+	
+	public function update_sub_chapter(Request $request, $id)
+    {
+        $this->authorize('admin_quizzes_create');
+		
+		$subChapter = SubChapters::find($id);
+
+        $data = $request->all();
+        $locale = $request->get('locale', getDefaultLocale());
+
+        $rules = [
+            'title' => 'required|max:255',
+            'webinar_id' => 'required|exists:webinars,id',
+            //'pass_mark' => 'required',
+        ];
+
+        if ($request->ajax()) {
+            $data = $request->get('ajax');
+
+            $validate = Validator::make($data, $rules);
+
+            if ($validate->fails()) {
+                return response()->json([
+                    'code' => 422,
+                    'errors' => $validate->errors()
+                ], 422);
+            }
+        } else {
+            $this->validate($request, $rules);
+        }
+
+        $webinar = Webinar::where('id', $data['webinar_id'])
+            ->first();
+
+        if (!empty($webinar)) {
+            $chapter = null;
+
+            if (!empty($data['chapter_id'])) {
+                $chapter = WebinarChapter::where('id', $data['chapter_id'])
+                    ->where('webinar_id', $webinar->id)
+                    ->first();
+            }
+			
+			$chapter_settings = array(
+				'Below'	=> array(
+					'questions'	=> isset( $data['Below'] )? $data['Below'] : '',
+					'points'	=> isset( $data['Below_points'] )? $data['Below_points'] : '',
+				),
+				'Emerging'	=> array(
+					'questions'	=> isset( $data['Emerging'] )? $data['Emerging'] : '',
+					'points'	=> isset( $data['Emerging_points'] )? $data['Emerging_points'] : '',
+				),
+				'Expected'	=> array(
+					'questions'	=> isset( $data['Expected'] )? $data['Expected'] : '',
+					'points'	=> isset( $data['Expected_points'] )? $data['Expected_points'] : '',
+				),
+				'Exceeding'	=> array(
+					'questions'	=> isset( $data['Exceeding'] )? $data['Exceeding'] : '',
+					'points'	=> isset( $data['Exceeding_points'] )? $data['Exceeding_points'] : '',
+				),
+				'Challenge'	=> array(
+					'questions'	=> isset( $data['Challenge'] )? $data['Challenge'] : '',
+					'points'	=> isset( $data['Challenge_points'] )? $data['Challenge_points'] : '',
+				)
+			);
+			
+			
+			
+
+            $sub_chapter = $subChapter->update([
+                'webinar_id' => $webinar->id,
+                'chapter_id' => !empty($chapter) ? $chapter->id : null,
+                'sub_chapter_title' => isset( $data['title'] )? $data['title'] : '',
+                'quiz_type' => isset( $data['quiz_type'] )? $data['quiz_type'] : '',
+                'chapter_settings' => json_encode($chapter_settings),
+                'status' => 'active',
+                //'created_at' => time(),
+            ]);
+
+            
+            if (!empty($sub_chapter->webinar_id)) {
+                //WebinarChapterItem::makeItem($webinar->creator_id, $sub_chapter->chapter_id, $sub_chapter->id, 'sub_chapter');
+            }
+
+            if ($request->ajax()) {
+
+                $redirectUrl = '';
+
+                $redirectUrl = '/admin/webinars/' . $data['webinar_id'] . '/edit';
+				
+                return response()->json([
+                    'code' => 200,
+                    'redirect_url' => $redirectUrl
+                ]);
+            } else {
+                return redirect()->route('adminEditQuiz', ['id' => $quiz->id]);
+            }
+        } else {
+            return back()->withErrors([
+                'webinar_id' => trans('validation.exists', ['attribute' => trans('admin/main.course')])
+            ]);
+        }
     }
 
     public function store(Request $request)
@@ -482,6 +706,9 @@ class WebinarController extends Controller
                         }
                     ]);
                 },
+                'webinar_sub_chapters' => function ($query) {
+                    $query->select('id', 'sub_chapter_title');
+                },
                 'webinarPartnerTeacher' => function ($query) {
                     $query->with(['teacher' => function ($query) {
                         $query->select('id', 'full_name');
@@ -527,6 +754,26 @@ class WebinarController extends Controller
             ->get();
 
         $tags = $webinar->tags->pluck('title')->toArray();
+        $teachers = User::where('role_name', Role::$teacher)->get();
+        
+        $sub_chapter_items_list = sub_chapter_items_list();
+        $sub_chapter_questions = $sub_chapter_lessions = array();
+        if( !empty($sub_chapter_items_list) ){
+            foreach( $sub_chapter_items_list as $sub_chapter_id => $subChapterData){
+                $chapters = isset( $subChapterData['chapters'] )? $subChapterData['chapters'] : array();
+                if( !empty( $chapters )){
+                    foreach( $chapters as $item_id => $chapterData){
+                        $type = isset( $chapterData['type'] )? $chapterData['type'] : '';
+                        if( $type == 'quiz'){
+                            $sub_chapter_questions[$sub_chapter_id][] = Quiz::find($item_id);
+                        }
+                        if( $type == 'lesson'){
+                            $sub_chapter_lessions[$sub_chapter_id][] = TextLesson::find($item_id);
+                        }
+                    }
+                }
+            }
+        }
 
         $data = [
             'pageTitle' => trans('admin/main.edit') . ' | ' . $webinar->title,
@@ -535,12 +782,15 @@ class WebinarController extends Controller
             'webinarCategoryFilters' => !empty($webinar->category) ? $webinar->category->filters : null,
             'webinarFilterOptions' => $webinar->filterOptions->pluck('filter_option_id')->toArray(),
             'tickets' => $webinar->tickets,
+            'sub_chapter_questions' => $sub_chapter_questions,
+            'sub_chapter_lessions' => $sub_chapter_lessions,
             'chapters' => $webinar->chapters,
             'sessions' => $webinar->sessions,
             'files' => $webinar->files,
             'textLessons' => $webinar->textLessons,
             'faqs' => $webinar->faqs,
             'assignments' => $webinar->assignments,
+            'teachers' => $teachers,
             'teacherQuizzes' => $teacherQuizzes,
             'prerequisites' => $webinar->prerequisites,
             'webinarQuizzes' => $webinar->quizzes,
@@ -844,6 +1094,58 @@ class WebinarController extends Controller
 
         return response()->json($webinar, 200);
     }
+    
+    public function courses_by_categories(Request $request)
+    {
+        $category_id = $request->get('category_id');
+        //$courses = Webinar::where('category_id',$category_id)->get();
+        
+        $query = Webinar::query();
+        $courses = $query->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->select('webinars.id as webinar_id','webinar_translations.title as webinar_title')
+                ->where('webinars.category_id', $category_id)
+                ->paginate(100);
+        
+        $response = '<option value="">Select Course</option>';
+        if( !empty( $courses )){
+            foreach( $courses as $courseData){
+                $webinar_id = isset( $courseData['webinar_id'] )? $courseData['webinar_id'] : '';
+                $webinar_title = isset( $courseData['webinar_title'] )? $courseData['webinar_title'] : '';
+                $response .= '<option value="'.$webinar_id.'">'.$webinar_title.'</option>';
+            }
+        }
+        
+        echo $response;exit;
+        
+    }
+    
+    public function chapters_by_course(Request $request)
+    {
+        $course_id = $request->get('course_id');
+        
+        $chapters_list  = get_chapters_list(false, $course_id);
+        
+       $response = '<option value="">Select Chapter</option>';
+       if( !empty( $chapters_list ) ){
+            foreach($chapters_list as $chapter_id => $chapterData){
+                if(!empty($chapterData['chapters']) and count($chapterData['chapters'])){
+                    $response   .= '<optgroup label="'.$chapterData['title'].'">';
+                        if( isset( $chapterData['chapters'] ) && !empty($chapterData['chapters'] ) ){
+                            foreach($chapterData['chapters'] as $sub_chapter_id => $sub_chapter_title){
+                                $response   .= '<option value="'. $sub_chapter_id .'">'. $sub_chapter_title .'</option>';
+                            }
+                        }
+                    $response   .= '</optgroup>';
+                }else{
+                    $response   .= '<option value="'. $chapter_id .'">'. $chapterData['title'] .'</option>';
+                }
+            }
+       }
+        
+        echo $response;exit;
+        
+    }
+    
 
     public function exportExcel(Request $request)
     {

@@ -12,6 +12,7 @@
 @endphp
 
 <div class="learning-content" id="learningPageContent">
+    
 
     @if(!empty($isForumAnswersPage) and $isForumAnswersPage)
         @include('web.default.course.learningPage.components.forum.forum_answers')

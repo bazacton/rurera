@@ -216,14 +216,4 @@
     <script src="/assets/default/vendors/persian-datepicker/persian-datepicker.js"></script>
 
     <script src="/assets/default/js/parts/profile.min.js"></script>
-
-    @if(!empty($user->live_chat_js_code) and !empty(getFeaturesSettings('show_live_chat_widget')))
-        <script>
-            (function () {
-                "use strict"
-
-                {!! $user->live_chat_js_code !!}
-            })(jQuery)
-        </script>
-    @endif
 @endpush

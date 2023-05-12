@@ -27,10 +27,6 @@
         </div>
 
 
-        {{-- Cashback Alert --}}
-        @include('web.default.includes.cashback_alert',['itemPrice' => $meeting->amount, 'classNames' => 'mt-0 mb-40', 'itemType' => 'meeting'])
-
-
         <div class="loading-img d-none text-center">
             <img src="/assets/default/img/loading.gif" width="80" height="80">
         </div>
@@ -59,10 +55,10 @@
 
                         @if(!empty($meeting->amount) and $meeting->amount > 0)
                             @if(!empty($meeting->discount))
-                                <span class="text-decoration-line-through">{{ handlePrice($meeting->amount, true, true, false, null, true) }}</span>
-                                <span class="text-primary">{{ handlePrice($meeting->amount - (($meeting->amount * $meeting->discount) / 100), true, true, false, null, true) }}</span>
+                                <span class="text-decoration-line-through">{{ handlePrice($meeting->amount) }}</span>
+                                <span class="text-primary">{{ handlePrice($meeting->amount - (($meeting->amount * $meeting->discount) / 100)) }}</span>
                             @else
-                                <span class="text-primary">{{ handlePrice($meeting->amount, true, true, false, null, true) }}</span>
+                                <span class="text-primary">{{ handlePrice($meeting->amount) }}</span>
                             @endif
                         @else
                             <span class="text-primary">{{ trans('public.free') }}</span>
@@ -75,10 +71,10 @@
 
                         @if(!empty($meeting->in_person_amount) and $meeting->in_person_amount > 0)
                             @if(!empty($meeting->discount))
-                                <span class="text-decoration-line-through">{{ handlePrice($meeting->in_person_amount, true, true, false, null, true) }}</span>
-                                <span class="text-primary">{{ handlePrice($meeting->in_person_amount - (($meeting->in_person_amount * $meeting->discount) / 100), true, true, false, null, true) }}</span>
+                                <span class="text-decoration-line-through">{{ handlePrice($meeting->in_person_amount) }}</span>
+                                <span class="text-primary">{{ handlePrice($meeting->in_person_amount - (($meeting->in_person_amount * $meeting->discount) / 100)) }}</span>
                             @else
-                                <span class="text-primary">{{ handlePrice($meeting->in_person_amount, true, true, false, null, true) }}</span>
+                                <span class="text-primary">{{ handlePrice($meeting->in_person_amount) }}</span>
                             @endif
                         @else
                             <span class="text-primary">{{ trans('public.free') }}</span>
@@ -154,14 +150,14 @@
                             </div>
 
                             <div class="js-online-group-amount d-none font-14 font-weight-500 mt-15">
-                                <span class="text-gray d-block">{{ trans('update.online') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => handlePrice($meeting->online_group_amount, true, true, false, null, true)]) }}</span>
+                                <span class="text-gray d-block">{{ trans('update.online') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => addCurrencyToPrice($meeting->online_group_amount)]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_student_count_hint',['min' => $meeting->online_group_min_student, 'max' => $meeting->online_group_max_student]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_max_student_count_hint',['max' => $meeting->online_group_max_student]) }}</span>
                             </div>
 
                             @if($meeting->in_person)
                             <div class="js-in-person-group-amount d-none font-14 font-weight-500 mt-15">
-                                <span class="text-gray d-block">{{ trans('update.in_person') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => handlePrice($meeting->in_person_group_amount, true, true, false, null, true)]) }}</span>
+                                <span class="text-gray d-block">{{ trans('update.in_person') }} {{ trans('update.group_meeting_hourly_rate_per_student',['amount' => addCurrencyToPrice($meeting->in_person_group_amount)]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_student_count_hint',['min' => $meeting->in_person_group_min_student, 'max' => $meeting->in_person_group_max_student]) }}</span>
                                 <span class="text-danger mt-5 d-block">{{ trans('update.group_meeting_max_student_count_hint',['max' => $meeting->in_person_group_max_student]) }}</span>
                             </div>

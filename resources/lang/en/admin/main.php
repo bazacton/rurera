@@ -526,6 +526,7 @@ return [
 //Quiz
 
 'quizzes' => 'Quizzes',
+    'questions_bank' => 'Questions Bank',
 'quizzes_list' => 'Quizzes list',
 'quiz_results' => 'Results',
 'question_count' => 'Questions',

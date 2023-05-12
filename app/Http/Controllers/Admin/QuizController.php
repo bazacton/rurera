@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use App\Models\Translation\QuizzesQuestionTranslation;
 
 class QuizController extends Controller
 {
@@ -165,6 +166,28 @@ class QuizController extends Controller
         $data = [
             'pageTitle' => trans('quiz.new_quiz'),
         ];
+        
+        $query = Webinar::query();
+
+        $webinars = DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_chapters', 'webinar_chapters.webinar_id', '=', 'webinars.id')
+                ->join('webinar_chapter_translations', 'webinar_chapter_translations.webinar_chapter_id', '=', 'webinar_chapters.id')
+                ->select('webinars.id', 'webinar_translations.title', 'webinar_chapters.id as chapter_id', 'webinar_chapter_translations.title as chapter_title')
+                ->get();
+
+        $chapters_list = array();
+        if (!empty($webinars)) {
+            foreach ($webinars as $webinarData) {
+                $webinar_id = isset($webinarData->id) ? $webinarData->id : '';
+                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
+                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
+                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
+                $chapters_list[$webinar_id]['title'] = $webinar_title;
+                $chapters_list[$webinar_id]['chapters'][$chapter_id] = $chapter_title;
+            }
+        }
+        $data['chapters'] = $chapters_list;
 
         return view('admin.quizzes.create', $data);
     }
@@ -177,18 +200,23 @@ class QuizController extends Controller
         $locale = $data['locale'] ?? getDefaultLocale();
 
         $rules = [
-            'title' => 'required|max:255',
-            'webinar_id' => 'required|exists:webinars,id',
-            'pass_mark' => 'required',
+            //'title' => 'required|max:255',
+            //'webinar_id' => 'required|exists:webinars,id',
+            //'pass_mark' => 'required',
         ];
 
-        $validate = Validator::make($data, $rules);
+         if ($request->ajax()) {
 
-        if ($validate->fails()) {
-            return response()->json([
-                'code' => 422,
-                'errors' => $validate->errors()
-            ], 422);
+            $validate = Validator::make($data, $rules);
+
+            if ($validate->fails()) {
+                return response()->json([
+                            'code' => 422,
+                            'errors' => $validate->errors()
+                                ], 422);
+            }
+        } else {
+            $this->validate($request, $rules);
         }
 
 
@@ -203,19 +231,65 @@ class QuizController extends Controller
                     ->where('webinar_id', $webinar->id)
                     ->first();
             }
+            
+            $mastery_points = isset($data['mastery_points']) ? $data['mastery_points'] : 0;
+
+
+            $Below_points = isset($data['Below_points']) ? $data['Below_points'] : 0;
+            $Emerging_points = isset($data['Emerging_points']) ? $data['Emerging_points'] : 0;
+            $Expected_points = isset($data['Expected_points']) ? $data['Expected_points'] : 0;
+            $Exceeding_points = isset($data['Exceeding_points']) ? $data['Exceeding_points'] : 0;
+            $Challenge_points = isset($data['Challenge_points']) ? $data['Challenge_points'] : 0;
+
+            $Below_questions = isset($data['Below']) ? $data['Below'] : 0;
+            $Emerging_questions = isset($data['Emerging']) ? $data['Emerging'] : 0;
+            $Expected_questions = isset($data['Expected']) ? $data['Expected'] : 0;
+            $Exceeding_questions = isset($data['Exceeding']) ? $data['Exceeding'] : 0;
+            $Challenge_questions = isset($data['Challenge']) ? $data['Challenge'] : 0;
+
+            $quiz_settings = array(
+                'Below' => array(
+                    'questions' => isset($data['Below']) ? $data['Below'] : '',
+                    'points_percentage' => isset($data['Below_points']) ? $data['Below_points'] : '',
+                    'points' => (round(($Below_points * $mastery_points) / 100) / $Below_questions),
+                ),
+                'Emerging' => array(
+                    'questions' => isset($data['Emerging']) ? $data['Emerging'] : '',
+                    'points_percentage' => isset($data['Emerging_points']) ? $data['Emerging_points'] : '',
+                    'points' => (round(($Emerging_points * $mastery_points) / 100) / $Emerging_questions),
+                ),
+                'Expected' => array(
+                    'questions' => isset($data['Expected']) ? $data['Expected'] : '',
+                    'points_percentage' => isset($data['Expected_points']) ? $data['Expected_points'] : '',
+                    'points' => (round(($Expected_points * $mastery_points) / 100) / $Expected_questions),
+                ),
+                'Exceeding' => array(
+                    'questions' => isset($data['Exceeding']) ? $data['Exceeding'] : '',
+                    'points_percentage' => isset($data['Exceeding_points']) ? $data['Exceeding_points'] : '',
+                    'points' => (round(($Exceeding_points * $mastery_points) / 100) / $Exceeding_questions),
+                ),
+                'Challenge' => array(
+                    'questions' => isset($data['Challenge']) ? $data['Challenge'] : '',
+                    'points_percentage' => isset($data['Challenge_points']) ? $data['Challenge_points'] : '',
+                    'points' => (round(($Challenge_points * $mastery_points) / 100) / $Challenge_questions),
+                )
+            );
 
             $quiz = Quiz::create([
-                'webinar_id' => $webinar->id,
-                'chapter_id' => !empty($chapter) ? $chapter->id : null,
-                'creator_id' => $webinar->creator_id,
-                'attempt' => $data['attempt'] ?? null,
-                'pass_mark' => $data['pass_mark'],
-                'time' => $data['time'] ?? null,
-                'status' => (!empty($data['status']) and $data['status'] == 'on') ? Quiz::ACTIVE : Quiz::INACTIVE,
-                'certificate' => (!empty($data['certificate']) and $data['certificate'] == 'on'),
-                'display_questions_randomly' => (!empty($data['display_questions_randomly']) and $data['display_questions_randomly'] == 'on'),
-                'expiry_days' => (!empty($data['expiry_days']) and $data['expiry_days'] > 0) ? $data['expiry_days'] : null,
-                'created_at' => time(),
+                        'webinar_id' => $webinar->id,
+                        'chapter_id' => !empty($chapter) ? $chapter->id : null,
+                        'creator_id' => $webinar->creator_id,
+                        'webinar_title' => $webinar->title,
+                        'attempt' => 100,
+                        'quiz_type' => isset($data['quiz_type']) ? $data['quiz_type'] : '',
+                        'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
+                        'pass_mark' => 1,
+                        'time' => 100,
+                        'status' => (!empty($data['status']) and $data['status'] == 'on') ? Quiz::ACTIVE : Quiz::INACTIVE,
+                        'certificate' => 1,
+                        'created_at' => time(),
+                        'quiz_settings' => json_encode($quiz_settings),
+                        'mastery_points' => isset($data['mastery_points']) ? $data['mastery_points'] : 0,
             ]);
 
             QuizTranslation::updateOrCreate([
@@ -304,6 +378,28 @@ class QuizController extends Controller
             'locale' => mb_strtolower($locale),
             'defaultLocale' => getDefaultLocale(),
         ];
+        
+        $query = Webinar::query();
+
+        $webinars = DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_chapters', 'webinar_chapters.webinar_id', '=', 'webinars.id')
+                ->join('webinar_chapter_translations', 'webinar_chapter_translations.webinar_chapter_id', '=', 'webinar_chapters.id')
+                ->select('webinars.id', 'webinar_translations.title', 'webinar_chapters.id as chapter_id', 'webinar_chapter_translations.title as chapter_title')
+                ->get();
+
+        $chapters_list = array();
+        if (!empty($webinars)) {
+            foreach ($webinars as $webinarData) {
+                $webinar_id = isset($webinarData->id) ? $webinarData->id : '';
+                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
+                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
+                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
+                $chapters_list[$webinar_id]['title'] = $webinar_title;
+                $chapters_list[$webinar_id]['chapters'][$chapter_id] = $chapter_title;
+            }
+        }
+        $data['chapters'] = $chapters_list;
 
         return view('admin.quizzes.edit', $data);
     }
@@ -320,8 +416,8 @@ class QuizController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'webinar_id' => 'required|exists:webinars,id',
-            'pass_mark' => 'required',
-            'display_number_of_questions' => 'required_if:display_limited_questions,on|nullable|between:1,' . $quizQuestionsCount
+            //'pass_mark' => 'required',
+            //'display_number_of_questions' => 'required_if:display_limited_questions,on|nullable|between:1,' . $quizQuestionsCount
         ];
 
         $validate = Validator::make($data, $rules);
@@ -333,6 +429,7 @@ class QuizController extends Controller
             ], 422);
         }
 
+        $user = $quiz->creator;
         $webinar = null;
         $chapter = null;
 
@@ -345,20 +442,65 @@ class QuizController extends Controller
                     ->first();
             }
         }
+        
+        $mastery_points = isset($data['mastery_points']) ? $data['mastery_points'] : 0;
+
+        $Below_points = isset($data['Below_points']) ? $data['Below_points'] : 0;
+        $Emerging_points = isset($data['Emerging_points']) ? $data['Emerging_points'] : 0;
+        $Expected_points = isset($data['Expected_points']) ? $data['Expected_points'] : 0;
+        $Exceeding_points = isset($data['Exceeding_points']) ? $data['Exceeding_points'] : 0;
+        $Challenge_points = isset($data['Challenge_points']) ? $data['Challenge_points'] : 0;
+        
+        $Below_questions = isset($data['Below']) ? $data['Below'] : 0;
+        $Emerging_questions = isset($data['Emerging']) ? $data['Emerging'] : 0;
+        $Expected_questions = isset($data['Expected']) ? $data['Expected'] : 0;
+        $Exceeding_questions = isset($data['Exceeding']) ? $data['Exceeding'] : 0;
+        $Challenge_questions = isset($data['Challenge']) ? $data['Challenge'] : 0;
+
+        $quiz_settings = array(
+            'Below' => array(
+                'questions' => isset($data['Below']) ? $data['Below'] : '',
+                'points_percentage' => isset($data['Below_points']) ? $data['Below_points'] : '',
+                'points' => (round(($Below_points * $mastery_points) / 100) / $Below_questions),
+            ),
+            'Emerging' => array(
+                'questions' => isset($data['Emerging']) ? $data['Emerging'] : '',
+                'points_percentage' => isset($data['Emerging_points']) ? $data['Emerging_points'] : '',
+                'points' => (round(($Emerging_points * $mastery_points) / 100) / $Emerging_questions),
+            ),
+            'Expected' => array(
+                'questions' => isset($data['Expected']) ? $data['Expected'] : '',
+                'points_percentage' => isset($data['Expected_points']) ? $data['Expected_points'] : '',
+                'points' => (round(($Expected_points * $mastery_points) / 100) / $Expected_questions),
+            ),
+            'Exceeding' => array(
+                'questions' => isset($data['Exceeding']) ? $data['Exceeding'] : '',
+                'points_percentage' => isset($data['Exceeding_points']) ? $data['Exceeding_points'] : '',
+                'points' => (round(($Exceeding_points * $mastery_points) / 100) / $Exceeding_questions),
+            ),
+            'Challenge' => array(
+                'questions' => isset($data['Challenge']) ? $data['Challenge'] : '',
+                'points_percentage' => isset($data['Challenge_points']) ? $data['Challenge_points'] : '',
+                'points' => (round(($Challenge_points * $mastery_points) / 100) / $Challenge_questions),
+            )
+        );
 
         $quiz->update([
-            'webinar_id' => !empty($webinar) ? $webinar->id : null,
-            'chapter_id' => !empty($chapter) ? $chapter->id : null,
-            'attempt' => $data['attempt'] ?? null,
-            'pass_mark' => $data['pass_mark'],
-            'time' => $data['time'] ?? null,
+            //'webinar_id' => !empty($webinar) ? $webinar->id : null,
+            //'chapter_id' => !empty($chapter) ? $chapter->id : null,
+            'webinar_id' => isset($data['webinar_id']) ? $data['webinar_id'] : 0,
+            'chapter_id' => isset($data['chapter_id']) ? $data['chapter_id'] : 0,
+            'webinar_title' => !empty($webinar) ? $webinar->title : null,
+            'attempt' => 100,
+            'pass_mark' => isset($data['pass_mark']) ? $data['pass_mark'] : 1,
+            'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
+            'time' => 20,
+            'quiz_type' => isset($data['quiz_type']) ? $data['quiz_type'] : '',
             'status' => (!empty($data['status']) and $data['status'] == 'on') ? Quiz::ACTIVE : Quiz::INACTIVE,
-            'certificate' => (!empty($data['certificate']) and $data['certificate'] == 'on'),
-            'display_limited_questions' => (!empty($data['display_limited_questions']) and $data['display_limited_questions'] == 'on'),
-            'display_number_of_questions' => (!empty($data['display_limited_questions']) and $data['display_limited_questions'] == 'on' and !empty($data['display_number_of_questions'])) ? $data['display_number_of_questions'] : null,
-            'display_questions_randomly' => (!empty($data['display_questions_randomly']) and $data['display_questions_randomly'] == 'on'),
-            'expiry_days' => (!empty($data['expiry_days']) and $data['expiry_days'] > 0) ? $data['expiry_days'] : null,
+            'certificate' => (!empty($data['certificate']) and $data['certificate'] == 'on') ? true : false,
             'updated_at' => time(),
+            'quiz_settings' => json_encode($quiz_settings),
+            'mastery_points' => $mastery_points,
         ]);
 
         if (!empty($quiz)) {

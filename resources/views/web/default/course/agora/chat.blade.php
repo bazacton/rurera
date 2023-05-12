@@ -3,7 +3,7 @@
 @endpush
 
 <div class="agora-chat d-flex flex-column h-100">
-    @if(!empty($session->agora_settings) and $session->agora_settings->chat)
+    @if($session->agora_settings->chat)
         <div id="chatView" class="agora-chat-box pb-30">
 
         </div>

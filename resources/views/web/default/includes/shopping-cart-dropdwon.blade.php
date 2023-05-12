@@ -17,45 +17,41 @@
                 @if(!empty($userCarts) and count($userCarts) > 0)
                     <div class="mb-auto">
                         @foreach($userCarts as $cart)
-                            @php
-                                $cartItemInfo = $cart->getItemInfo();
-                            @endphp
+                            <div class="navbar-cart-box d-flex align-items-center">
+                                @php
+                                    $cartItemInfo = $cart->getItemInfo();
+                                @endphp
 
-                            @if(!empty($cartItemInfo))
-                                <div class="navbar-cart-box d-flex align-items-center">
-
-                                    <a href="{{ $cartItemInfo['itemUrl'] }}" target="_blank" class="navbar-cart-img">
-                                        <img src="{{ $cartItemInfo['imgPath'] }}" alt="product title" class="img-cover"/>
+                                <a href="{{ $cartItemInfo['itemUrl'] }}" target="_blank" class="navbar-cart-img">
+                                    <img src="{{ $cartItemInfo['imgPath'] }}" alt="product title" class="img-cover"/>
+                                </a>
+                                <div class="navbar-cart-info">
+                                    <a href="{{ $cartItemInfo['itemUrl'] }}" target="_blank">
+                                        <h4>{{ $cartItemInfo['title'] }}</h4>
                                     </a>
+                                    <div class="price mt-10">
+                                        @if(!empty($cartItemInfo['discountPrice']))
+                                            <span class="text-primary font-weight-bold">{{ handlePrice($cartItemInfo['discountPrice']) }}</span>
+                                            <span class="off ml-15">{{ handlePrice($cartItemInfo['price']) }}</span>
+                                        @else
+                                            <span class="text-primary font-weight-bold">{{ handlePrice($cartItemInfo['price']) }}</span>
+                                        @endif
 
-                                    <div class="navbar-cart-info">
-                                        <a href="{{ $cartItemInfo['itemUrl'] }}" target="_blank">
-                                            <h4>{{ $cartItemInfo['title'] }}</h4>
-                                        </a>
-                                        <div class="price mt-10">
-                                            @if(!empty($cartItemInfo['discountPrice']))
-                                                <span class="text-primary font-weight-bold">{{ handlePrice($cartItemInfo['discountPrice'], true, true, false, null, true) }}</span>
-                                                <span class="off ml-15">{{ handlePrice($cartItemInfo['price'], true, true, false, null, true) }}</span>
-                                            @else
-                                                <span class="text-primary font-weight-bold">{{ handlePrice($cartItemInfo['price'], true, true, false, null, true) }}</span>
-                                            @endif
-
-                                            @if(!empty($cartItemInfo['quantity']))
-                                                <span class="font-12 text-warning font-weight-500 ml-10">({{ $cartItemInfo['quantity'] }} {{ trans('update.product') }})</span>
-                                            @endif
-                                        </div>
+                                        @if(!empty($cartItemInfo['quantity']))
+                                            <span class="font-12 text-warning font-weight-500 ml-10">({{ $cartItemInfo['quantity'] }} {{ trans('update.product') }})</span>
+                                        @endif
                                     </div>
                                 </div>
-                            @endif
+                            </div>
                         @endforeach
                     </div>
                     <div class="navbar-cart-actions">
                         <div class="navbar-cart-total mt-15 border-top d-flex align-items-center justify-content-between">
                             <strong class="total-text">{{ trans('cart.total') }}</strong>
-                            <strong class="text-primary font-weight-bold">{{ !empty($totalCartsPrice) ? handlePrice($totalCartsPrice, true, true, false, null, true) : 0 }}</strong>
+                            <strong class="text-primary font-weight-bold">{{ !empty($totalCartsPrice) ? handlePrice($totalCartsPrice) : 0 }}</strong>
                         </div>
 
-                        <a href="/cart/" class="btn btn-sm btn-primary btn-block mt-50 mt-md-15">{{ trans('cart.go_to_cart') }}</a>
+                        
                     </div>
                 @else
                     <div class="d-flex align-items-center text-center py-50">
@@ -64,6 +60,7 @@
                     </div>
                 @endif
             </div>
+            <a href="/cart/" class="btn btn-sm btn-primary btn-block mt-50 mt-md-15">{{ trans('cart.go_to_cart') }}</a>
         </div>
     </div>
 </div>

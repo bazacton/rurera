@@ -772,7 +772,7 @@
                                                                 <tr>
                                                                     <th>{{ $webinarQuiz->title }}</th>
                                                                     <td>{{ $webinarQuiz->quizQuestions->count() }}</td>
-                                                                    <td>{{ $webinarQuiz->quizQuestions->sum('grade') }}</td>
+                                                                    <td>0</td>
                                                                     <td>{{ $webinarQuiz->pass_mark }}</td>
                                                                     <td>{{ $webinarQuiz->certificate ? trans('public.yes') : trans('public.no') }}</td>
                                                                     <td>

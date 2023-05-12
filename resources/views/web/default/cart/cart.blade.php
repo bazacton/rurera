@@ -4,24 +4,10 @@
 @section('content')
     <section class="cart-banner position-relative text-center">
         <h1 class="font-30 text-white font-weight-bold">{{ trans('cart.shopping_cart') }}</h1>
-        <span class="payment-hint font-20 text-white d-block"> {{ handlePrice($subTotal) . ' ' . trans('cart.for_items',['count' => $carts->count()]) }}</span>
+        <span class="payment-hint font-20 text-white d-block"> {{ addCurrencyToPrice(handlePriceFormat($subTotal)) . ' ' . trans('cart.for_items',['count' => $carts->count()]) }}</span>
     </section>
 
     <div class="container">
-
-        @if(!empty($totalCashbackAmount))
-            <div class="d-flex align-items-center mt-45 p-15 success-transparent-alert">
-                <div class="success-transparent-alert__icon d-flex align-items-center justify-content-center">
-                    <i data-feather="credit-card" width="18" height="18" class=""></i>
-                </div>
-
-                <div class="ml-10">
-                    <div class="font-14 font-weight-bold ">{{ trans('update.get_cashback') }}</div>
-                    <div class="font-12 ">{{ trans('update.by_purchasing_this_cart_you_will_get_amount_as_cashback',['amount' => handlePrice($totalCashbackAmount)]) }}</div>
-                </div>
-            </div>
-        @endif
-
         <section class="mt-45">
             <h2 class="section-title">{{ trans('cart.cart_items') }}</h2>
 
@@ -45,20 +31,16 @@
                                         @php
                                             $cartItemInfo = $cart->getItemInfo();
                                         @endphp
-                                        <img src="{{ $cartItemInfo['imgPath'] }}" class="img-cover" alt="user avatar">
+                                        <img src="{{ isset( $cartItemInfo['imgPath'] )? $cartItemInfo['imgPath'] : '' }}" class="img-cover" alt="user avatar">
                                     </div>
                                 </div>
 
                                 <div class="col-8">
                                     <div class="webinar-card-body p-0 w-100 h-100 d-flex flex-column">
-                                        <div class="d-flex flex-column">
+                                        <div class="d-flex align-items-center justify-content-between">
                                             <a href="{{ $cartItemInfo['itemUrl'] ?? '#!' }}" target="_blank">
-                                                <h3 class="font-16 font-weight-bold text-dark-blue">{{ $cartItemInfo['title'] }}</h3>
+                                                <h3 class="font-16 font-weight-bold text-dark-blue">{{ isset( $cartItemInfo['title'] )? $cartItemInfo['title'] : '' }}</h3>
                                             </a>
-
-                                            @if(!empty($cart->gift_id) and !empty($cart->gift))
-                                                <span class="d-block mt-5 text-gray font-12">{!! trans('update.a_gift_for_name_on_date',['name' => $cart->gift->name, 'date' => (!empty($cart->gift->date) ? dateTimeFormat($cart->gift->date, 'j M Y H:i') : trans('update.instantly'))]) !!}</span>
-                                            @endif
                                         </div>
 
                                         @if(!empty($cart->reserve_meeting_id))
@@ -73,20 +55,12 @@
                                             @endif
                                         @endif
 
-                                        @if(!empty($cartItemInfo['profileUrl']) and !empty($cartItemInfo['teacherName']))
-                                            <span class="text-gray font-14 mt-auto">
-                                                {{ trans('public.by') }}
-                                                <a href="{{ $cartItemInfo['profileUrl'] }}" target="_blank" class="text-gray text-decoration-underline">{{ $cartItemInfo['teacherName'] }}</a>
-                                            </span>
-                                        @endif
+                                        <span class="text-gray font-14 mt-auto">
+                                            {{ trans('public.by') }}
+                                            <a href="{{ isset( $cartItemInfo['profileUrl'] )? $cartItemInfo['profileUrl'] : '' }}" target="_blank" class="text-gray text-decoration-underline">{{ isset( $cartItemInfo['teacherName'] )? $cartItemInfo['teacherName'] : '' }}</a>
+                                        </span>
 
-                                        @if(!empty($cartItemInfo['extraHint']))
-                                            <span class="text-gray font-14 mt-auto">{{ $cartItemInfo['extraHint'] }}</span>
-                                        @endif
-
-                                        @if(!is_null($cartItemInfo['rate']))
-                                            @include('web.default.includes.webinar.rate',['rate' => $cartItemInfo['rate']])
-                                        @endif
+                                        @include('web.default.includes.webinar.rate',['rate' => isset( $cartItemInfo['rate'] )? $cartItemInfo['rate'] : ''])
                                     </div>
                                 </div>
                             </div>
@@ -95,19 +69,17 @@
                         <div class="col-6 col-lg-2 d-flex flex-md-column align-items-center justify-content-center">
                             <span class="text-gray d-inline-block d-md-none">{{ trans('public.price') }} :</span>
 
-                            @if(!empty($cartItemInfo['discountPrice']))
-                                <span class="text-gray text-decoration-line-through mx-10 mx-md-0">{{ handlePrice($cartItemInfo['price'], true, true, false, null, true) }}</span>
-                                <span class="font-20 text-primary mt-0 mt-md-5 font-weight-bold">{{ handlePrice($cartItemInfo['discountPrice'], true, true, false, null, true) }}</span>
+                            @if(isset( $cartItemInfo['discountPrice'] ) && !empty($cartItemInfo['discountPrice']))
+                                <span class="text-gray text-decoration-line-through mx-10 mx-md-0">{{ handlePrice($cartItemInfo['price'], true, true) }}</span>
+                                <span class="font-20 text-primary mt-0 mt-md-5 font-weight-bold">{{ handlePrice($cartItemInfo['discountPrice'], true, true) }}</span>
                             @else
-                                <span class="font-20 text-primary mt-0 mt-md-5 font-weight-bold">{{ handlePrice($cartItemInfo['price'], true, true, false, null, true) }}</span>
+                                 @if(isset( $cartItemInfo['price'] ))
+                                    <span class="font-20 text-primary mt-0 mt-md-5 font-weight-bold">{{ handlePrice($cartItemInfo['price'], true, true) }}</span>
+                                 @endif
                             @endif
 
-                            @if(!empty($cartItemInfo['quantity']))
+                            @if(isset( $cartItemInfo['quantity'] ) && !empty($cartItemInfo['quantity']))
                                 <span class="font-12 text-warning font-weight-500 mt-0 mt-md-5">({{ $cartItemInfo['quantity'] }} {{ trans('update.product') }})</span>
-                            @endif
-
-                            @if(!empty($cartItemInfo['extraPriceHint']))
-                                <span class="font-12 text-gray font-weight-500 mt-0 mt-md-5">{{ $cartItemInfo['extraPriceHint'] }}</span>
                             @endif
                         </div>
 
@@ -167,13 +139,13 @@
 
                             <div class="cart-checkout-item">
                                 <h4 class="text-secondary font-14 font-weight-500">{{ trans('cart.sub_total') }}</h4>
-                                <span class="font-14 text-gray font-weight-bold">{{ handlePrice($subTotal) }}</span>
+                                <span class="font-14 text-gray font-weight-bold">{{ addCurrencyToPrice(handlePriceFormat($subTotal)) }}</span>
                             </div>
 
                             <div class="cart-checkout-item">
                                 <h4 class="text-secondary font-14 font-weight-500">{{ trans('public.discount') }}</h4>
                                 <span class="font-14 text-gray font-weight-bold">
-                                <span id="totalDiscount">{{ handlePrice($totalDiscount) }}</span>
+                                <span id="totalDiscount">{{ addCurrencyToPrice(handlePriceFormat($totalDiscount)) }}</span>
                             </span>
                             </div>
 
@@ -183,7 +155,7 @@
                                         <span class="font-14 text-gray ">({{ $tax }}%)</span>
                                     @endif
                                 </h4>
-                                <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ handlePrice($taxPrice) }}</span></span>
+                                <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($taxPrice)) }}</span></span>
                             </div>
 
                             @if(!empty($productDeliveryFee))
@@ -191,13 +163,13 @@
                                     <h4 class="text-secondary font-14 font-weight-500">
                                         {{ trans('update.delivery_fee') }}
                                     </h4>
-                                    <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ handlePrice($productDeliveryFee) }}</span></span>
+                                    <span class="font-14 text-gray font-weight-bold"><span id="taxPrice">{{ addCurrencyToPrice(handlePriceFormat($productDeliveryFee)) }}</span></span>
                                 </div>
                             @endif
 
                             <div class="cart-checkout-item border-0">
                                 <h4 class="text-secondary font-14 font-weight-500">{{ trans('cart.total') }}</h4>
-                                <span class="font-14 text-gray font-weight-bold"><span id="totalAmount">{{ handlePrice($total) }}</span></span>
+                                <span class="font-14 text-gray font-weight-bold"><span id="totalAmount">{{ addCurrencyToPrice(handlePriceFormat($total)) }}</span></span>
                             </div>
 
                             <button type="submit" class="btn btn-sm btn-primary mt-15">{{ trans('cart.checkout') }}</button>

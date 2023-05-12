@@ -48,7 +48,7 @@
                         @if(!empty($rewardsSettings) and !empty($rewardsSettings['exchangeable']) and $rewardsSettings['exchangeable'] == '1')
                             <p class="mt-15 text-gray font-16 font-weight-500">{{ trans('update.exchange_or_get_a_course_by_spending_points_hint') }}</p>
 
-                            <span class="font-30 font-weight-bold mt-15 text-primary d-block">{{ handlePrice($earnByExchange) }}</span>
+                            <span class="font-30 font-weight-bold mt-15 text-primary d-block">{{ addCurrencyToPrice($earnByExchange) }}</span>
 
                             <p class="mt-15 text-gray font-16 font-weight-500">{{ trans('update.for_your_available_points') }}</p>
                         @else

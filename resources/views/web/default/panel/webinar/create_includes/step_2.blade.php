@@ -7,17 +7,17 @@
 <div class="row">
     <div class="col-12 col-md-6 mt-15">
 
-
-        <div class="form-group mt-15">
-            <label class="input-label">{{ trans('public.capacity') }}</label>
-            <input type="number" name="capacity" value="{{ (!empty($webinar) and !empty($webinar->capacity)) ? $webinar->capacity : old('capacity') }}" class="form-control @error('capacity')  is-invalid @enderror" placeholder="{{ trans('forms.capacity_placeholder') }}"/>
-            @error('capacity')
-            <div class="invalid-feedback">
-                {{ $message }}
+        @if($webinar->isWebinar())
+            <div class="form-group mt-15">
+                <label class="input-label">{{ trans('public.capacity') }}</label>
+                <input type="number" name="capacity" value="{{ (!empty($webinar) and !empty($webinar->capacity)) ? $webinar->capacity : old('capacity') }}" class="form-control @error('capacity')  is-invalid @enderror" placeholder="{{ trans('forms.capacity_placeholder') }}"/>
+                @error('capacity')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
-            @enderror
-            <p class="text-gray mt-5 font-12">{{  trans('forms.empty_means_unlimited')  }}</p>
-        </div>
+        @endif
 
         <div class="row mt-15">
 

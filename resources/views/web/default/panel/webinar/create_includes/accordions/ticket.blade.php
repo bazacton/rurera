@@ -71,7 +71,7 @@
 
                         <div class="form-group">
                             <label class="input-label d-block">{{ trans('public.capacity') }}</label>
-                            @if(empty($ticket) and !empty($webinar->capacity) and !empty($sumTicketsCapacities))
+                            @if($webinar->isWebinar() and empty($ticket) and !empty($webinar->capacity) and !empty($sumTicketsCapacities))
                                 <span class="test-gray font-12 d-block">{{ trans('panel.remaining') }}: <span class="js-ticket-remaining-capacity">{{ $webinar->capacity - $sumTicketsCapacities }}</span></span>
                             @endif
 

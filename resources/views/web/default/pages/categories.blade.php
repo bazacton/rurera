@@ -131,7 +131,7 @@
                                 <h3 class="category-filter-title font-20 font-weight-bold text-dark-blue">{{ trans('site.more_options') }}</h3>
 
                                 <div class="pt-10">
-                                    @foreach(['bundles','subscribe','certificate_included','with_quiz','featured'] as $moreOption)
+                                    @foreach(['subscribe','certificate_included','with_quiz','featured'] as $moreOption)
                                         <div class="d-flex align-items-center justify-content-between mt-20">
                                             <label class="cursor-pointer" for="filterLanguage{{ $moreOption }}">{{ trans('webinars.show_only_'.$moreOption) }}</label>
                                             <div class="custom-control custom-checkbox">

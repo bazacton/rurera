@@ -26,6 +26,7 @@ use App\User;
 use App\Models\Webinar;
 use App\Models\WebinarPartnerTeacher;
 use App\Models\WebinarFilterOption;
+use App\Models\QuizzResultQuestions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -1470,4 +1471,115 @@ class WebinarController extends Controller
 
         abort(403);
     }
+	
+	
+	
+	public function store_question_result($questionObj, $newQuizStart, $quizAttempt){
+		$user = auth()->user();
+		$newQuestionResult = QuizzResultQuestions::where('quiz_id', $newQuizStart->quiz_id)
+                ->where('user_id', $user->id)
+				->where('question_id', $questionObj->id)
+				->where('status', 'waiting')
+                ->first();
+		if (!isset( $newQuestionResult->id ) || $newQuestionResult->id != '') {		
+			$correct_answers = $this->get_question_correct_answers($questionObj);
+
+			$newQuestionResult = QuizzResultQuestions::create([
+				'quiz_id'			=> $newQuizStart->quiz_id,
+				'question_id'		=> $questionObj->id,
+				'quiz_result_id'	=> $newQuizStart->id,
+				'quiz_attempt_id'	=> $quizAttempt->id,
+				'user_id'			=> $user->id,
+				'correct_answer'	=> json_encode($correct_answers),
+				'user_answer'		=> '',
+				'quiz_layout'		=> $questionObj->question_layout,
+				'quiz_grade'		=> $questionObj->question_score,
+				'average_time'		=> $questionObj->question_average_time,
+				'time_consumed'		=> 0,
+				'difficulty_level'	=> $questionObj->question_difficulty_level,
+				'status'			=> 'waiting',
+				'created_at'		=> time()
+			]);
+				
+		}else{
+                    $newQuestionResult = $newQuestionResult->replicate();
+                    $newQuestionResult->update([
+                        'quiz_attempt_id' => $quizAttempt->id,
+                        'created_at'      => time()
+                    ]);
+}
+				
+		createAttemptLog($quizAttempt->id, 'Viewed (and possibly read) question #'.$newQuestionResult->id, 'viewed', $newQuestionResult->id);
+		
+		return $newQuestionResult;
+	}
+	
+	
+	public function store_question_result_bk($questionObj, $newQuizStart, $quizAttempt){
+		$user = auth()->user();
+		$newQuestionResult = (object) array();
+		$newQuestionResultValidate = QuizzResultQuestions::where('quiz_id', $newQuizStart->quiz_id)
+                ->where('user_id', $user->id)
+				->where('question_id', $questionObj->id)
+                ->first();
+		if (!isset( $newQuestionResultValidate->id ) || $newQuestionResultValidate->id == '') {		
+			$correct_answers = $this->get_question_correct_answers($questionObj);
+
+			$newQuestionResult = QuizzResultQuestions::create([
+				'quiz_id'			=> $newQuizStart->quiz_id,
+				'question_id'		=> $questionObj->id,
+				'quiz_result_id'	=> $newQuizStart->id,
+				'quiz_attempt_id'	=> $quizAttempt->id,
+				'user_id'			=> $user->id,
+				'correct_answer'	=> json_encode($correct_answers),
+				'user_answer'		=> '',
+				'quiz_layout'		=> $questionObj->question_layout,
+				'quiz_grade'		=> $questionObj->question_score,
+				'average_time'		=> $questionObj->question_average_time,
+				'time_consumed'		=> 0,
+				'difficulty_level'	=> $questionObj->question_difficulty_level,
+				'status'			=> 'waiting',
+				'created_at'		=> time()
+			]);
+			
+			createAttemptLog($quizAttempt->id, 'Viewed (and possibly read) question #'.$newQuestionResult->id, 'viewed', $newQuestionResult->id);
+				
+		}		
+		
+		return $newQuestionResult;
+	}
+	
+	/*
+	* Get Question Correct Answers
+	*/
+	public function get_question_correct_answers($questionObj){
+		$elements_data = isset( $questionObj->elements_data )? json_decode($questionObj->elements_data) : array();
+		$correct_answers = array();
+		if( !empty( $elements_data ) ){
+			foreach( $elements_data  as $field_key => $elementData){
+				if( $field_key > 0){
+					$question_type = isset( $elementData->type )? $elementData->type : '';
+					$question_correct = isset( $elementData->correct_answere )? $elementData->correct_answere : '';
+					$data_correct = isset( $elementData->{'data-correct'} )? json_decode($elementData->{'data-correct'}) : '';
+					$question_correct = ($question_correct != '')? $question_correct : $data_correct;
+					$question_correct = is_array($question_correct)? $question_correct : array($question_correct);
+					
+					if( $question_type == 'checkbox' || $question_type == 'radio'){
+						$question_correct = array();
+						$options_array = isset( $elementData->options )? $elementData->options : array();
+						if( !empty( $options_array )){
+							foreach( $options_array as $optionData){
+								if( $optionData->default == 'on'){
+									$question_correct[] = $optionData->value;
+								}
+							}
+						}
+					}
+					$correct_answers[$field_key]	= $question_correct;
+				}
+			}
+		}
+		return $correct_answers;
+				
+	}
 }

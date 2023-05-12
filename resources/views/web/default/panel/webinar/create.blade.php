@@ -35,11 +35,11 @@
                     <a href="" class="btn btn-sm btn-primary disabled">{{ trans('webinars.previous') }}</a>
                 @endif
 
-                <button type="button" id="getNextStep" class="btn btn-sm btn-primary ml-15" @if($currentStep >= $stepCount) disabled @endif>{{ trans('webinars.next') }}</button>
+                <button type="button" id="getNextStep" class="btn btn-sm btn-primary ml-15" @if($currentStep >= 8) disabled @endif>{{ trans('webinars.next') }}</button>
             </div>
 
             <div class="mt-20 mt-md-0">
-                <button type="button" id="sendForReview" class="btn btn-sm btn-primary">{{ !empty(getGeneralOptionsSettings('direct_publication_of_courses')) ? trans('update.publish') : trans('public.send_for_review') }}</button>
+                <button type="button" id="sendForReview" class="btn btn-sm btn-primary">{{ trans('public.send_for_review') }}</button>
 
                 <button type="button" id="saveAsDraft" class=" btn btn-sm btn-primary">{{ trans('public.save_as_draft') }}</button>
 
@@ -55,7 +55,7 @@
     <script>
         var saveSuccessLang = '{{ trans('webinars.success_store') }}';
         var zoomJwtTokenInvalid = '{{ trans('webinars.zoom_jwt_token_invalid') }}';
-        var hasZoomApiToken = '{{ (!empty($authUser->zoomApi) and !empty($authUser->zoomApi->api_key) and !empty($authUser->zoomApi->api_secret)) ? 'true' : 'false' }}';
+        var hasZoomApiToken = '{{ (!empty($authUser->zoomApi) and $authUser->zoomApi->jwt_token) ? 'true' : 'false' }}';
         var editChapterLang = '{{ trans('public.edit_chapter') }}';
     </script>
 

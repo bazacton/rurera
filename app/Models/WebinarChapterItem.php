@@ -15,6 +15,7 @@ class WebinarChapterItem extends Model
     static $chapterSession = 'session';
     static $chapterTextLesson = 'text_lesson';
     static $chapterQuiz = 'quiz';
+    static $chapterSubChapter = 'sub_chapter';
     static $chapterAssignment = 'assignment';
 
     static public function makeItem($userId, $chapterId, $itemId, $type)
@@ -76,6 +77,11 @@ class WebinarChapterItem extends Model
     public function quiz()
     {
         return $this->belongsTo('App\Models\Quiz', 'item_id', 'id');
+    }
+
+    public function sub_chapter()
+    {
+        return $this->belongsTo('App\Models\SubChapters', 'item_id', 'id');
     }
 
     public function chapter()

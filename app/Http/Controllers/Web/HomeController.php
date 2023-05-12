@@ -416,7 +416,7 @@ class HomeController extends Controller
         $offlineCourseCount = Webinar::where('status', 'active')
             ->whereIn('type', ['course', 'text_lesson'])
             ->count();
-
+        
         return [
             'skillfulTeachersCount' => $skillfulTeachersCount,
             'studentsCount' => $studentsCount,

@@ -10,6 +10,8 @@ class Role extends Model
     static $admin = 'admin';
     static $user = 'user';
     static $teacher = 'teacher';
+    static $author = 'author';
+    static $reviewer = 'reviewer';
     static $organization = 'organization';
 
     protected $guarded = ['id'];

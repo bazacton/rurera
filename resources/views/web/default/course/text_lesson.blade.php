@@ -39,7 +39,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <label class="cursor-pointer font-weight-500" for="readLessonSwitch">{{ trans('public.i_passed_this_lesson') }}</label>
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" name="read" class="custom-control-input" id="readLessonSwitch" data-course-id="{{ $course->id }}" data-lesson-id="{{ $textLesson->id }}" {{ !empty($textLesson->checkPassedItem()) ? 'checked' : ''  }}>
+                                    <input type="checkbox" name="read" class="custom-control-input" id="readLessonSwitch" data-course-id="{{ $course->id }}" data-lesson-id="{{ $textLesson->id }}" {{ !empty($textLesson->learningStatus) ? 'checked' : ''  }}>
                                     <label class="custom-control-label" for="readLessonSwitch"></label>
                                 </div>
                             </div>
@@ -50,9 +50,7 @@
                         @if(!empty($course->textLessons) and count($course->textLessons))
                             <a href="{{ (!empty($previousLesson)) ? $course->getUrl() .'/lessons/'. $previousLesson->id .'/read' : '#' }}" class="btn btn-sm {{ (!empty($previousLesson)) ? 'btn-primary' : 'btn-gray disabled' }}">{{ trans('public.previous_lesson') }}</a>
 
-                            @if(!empty($nextLesson))
-                                <a href="{{ (!$nextLesson->not_purchased) ? $course->getUrl() .'/lessons/'. $nextLesson->id .'/read' : '#' }}" class="btn btn-sm {{ (!$nextLesson->not_purchased) ? 'btn-primary' : 'btn-gray disabled' }} {{ ($nextLesson->not_purchased) ? 'js-not-purchased' : '' }}">{{ trans('public.next_lesson') }}</a>
-                            @endif
+                            <a href="{{ (!empty($nextLesson) and !$nextLesson->not_purchased) ? $course->getUrl() .'/lessons/'. $nextLesson->id .'/read' : '#' }}" class="btn btn-sm {{ (!empty($nextLesson) and !$nextLesson->not_purchased) ? 'btn-primary' : 'btn-gray disabled' }} {{ ($nextLesson->not_purchased) ? 'js-not-purchased' : '' }}">{{ trans('public.next_lesson') }}</a>
                         @endif
                     </div>
                 </div>
@@ -69,9 +67,9 @@
 
                     @include('web.default.includes.webinar.rate',['rate' => $course->teacher->rates()])
 
-                    <div class="user-reward-badges d-flex flex-wrap align-items-center mt-20">
+                    <div class="user-reward-badges d-flex flex-wrap align-items-center mt-30">
                         @foreach($course->teacher->getBadges() as $userBadge)
-                            <div class="mr-15 mt-10" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($userBadge->badge_id) ? nl2br($userBadge->badge->description) : nl2br($userBadge->description)) !!}">
+                            <div class="mr-15" data-toggle="tooltip" data-placement="bottom" data-html="true" title="{!! (!empty($userBadge->badge_id) ? nl2br($userBadge->badge->description) : nl2br($userBadge->description)) !!}">
                                 <img src="{{ !empty($userBadge->badge_id) ? $userBadge->badge->image : $userBadge->image }}" width="32" height="32" alt="{{ !empty($userBadge->badge_id) ? $userBadge->badge->title : $userBadge->title }}">
                             </div>
                         @endforeach
@@ -97,7 +95,7 @@
                                 <li class="mt-10 p-10 rounded bg-info-light font-14 font-weight-500 text-dark-blue d-flex align-items-center justify-content-between text-ellipsis">
                                     <span class="">{{ $attachment->file->title }}</span>
 
-                                    <a href="{{ $course->getLearningPageUrl() }}?type=file&item={{ $attachment->file->id }}" target="_blank">
+                                    <a href="{{ $course->getUrl() }}/file/{{ $attachment->file->id }}/download">
                                         <i data-feather="download-cloud" width="20" class="text-secondary"></i>
                                     </a>
                                 </li>

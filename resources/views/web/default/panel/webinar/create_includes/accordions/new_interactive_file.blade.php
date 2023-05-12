@@ -35,6 +35,7 @@
         <div class="panel-collapse text-gray">
             <div class="js-content-form file-form" data-action="/panel/files/{{ !empty($file) ? $file->id . '/update' : 'store' }}">
                 <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][webinar_id]" value="{{ !empty($webinar) ? $webinar->id :'' }}">
+                <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][chapter_id]" value="{{ !empty($chapter) ? $chapter->id :'' }}" class="chapter-input">
                 <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][storage]" value="upload_archive" class="">
                 <input type="hidden" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][file_type]" value="archive" class="">
 
@@ -66,20 +67,6 @@
                             <input type="text" name="ajax[{{ !empty($file) ? $file->id : 'new' }}][title]" class="js-ajax-title form-control" value="{{ !empty($file) ? $file->title : '' }}" placeholder="{{ trans('forms.maximum_255_characters') }}"/>
                             <div class="invalid-feedback"></div>
                         </div>
-
-                        @if(!empty($file))
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('public.chapter') }}</label>
-                                <select name="ajax[{{ !empty($file) ? $file->id : 'new' }}][chapter_id]" class="js-ajax-chapter_id form-control">
-                                    @foreach($webinar->chapters as $ch)
-                                        <option value="{{ $ch->id }}" {{ ($file->chapter_id == $ch->id) ? 'selected' : '' }}>{{ $ch->title }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        @else
-                            <input type="hidden" name="ajax[new][chapter_id]" value="" class="chapter-input">
-                        @endif
 
                         <div class="form-group">
                             <label class="input-label">{{ trans('update.interactive_type') }}</label>

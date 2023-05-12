@@ -53,7 +53,7 @@
                     $isProgressing = false;
 
                     if(!empty($sale->webinar) and $sale->webinar->start_date <= time() and !empty($lastSession) and $lastSession->date > time()) {
-                        $isProgressing = true;
+                        $isProgressing=true;
                     }
                 @endphp
 
@@ -93,13 +93,9 @@
                                             }
                                         @endphp
 
-                                        @if(!empty($sale->gift_id) and $sale->buyer_id == $authUser->id)
-                                            {{--  --}}
-                                        @else
-                                            <div class="progress cursor-pointer" data-toggle="tooltip" data-placement="top" title="{{ $progressTitle }}">
-                                                <span class="progress-bar" style="width: {{ $percent }}%"></span>
-                                            </div>
-                                        @endif
+                                        <div class="progress cursor-pointer" data-toggle="tooltip" data-placement="top" title="{{ $progressTitle }}">
+                                            <span class="progress-bar" style="width: {{ $percent }}%"></span>
+                                        </div>
                                     @else
                                         <span class="badge badge-secondary">{{ trans('update.bundle') }}</span>
                                     @endif
@@ -112,23 +108,15 @@
                                                 {{ $item->title }}
 
                                                 @if(!empty($item->access_days))
-                                                    @if(!$item->checkHasExpiredAccessDays($sale->created_at, $sale->gift_id))
+                                                    @if(!$item->checkHasExpiredAccessDays($sale->created_at))
                                                         <span class="badge badge-outlined-danger ml-10">{{ trans('update.access_days_expired') }}</span>
                                                     @else
-                                                        <span class="badge badge-outlined-warning ml-10">{{ trans('update.expired_on_date',['date' => dateTimeFormat($item->getExpiredAccessDays($sale->created_at, $sale->gift_id),'j M Y')]) }}</span>
+                                                        <span class="badge badge-outlined-warning ml-10">{{ trans('update.expired_on_date',['date' => dateTimeFormat($item->getExpiredAccessDays($sale->created_at),'j M Y')]) }}</span>
                                                     @endif
-                                                @endif
-
-                                                @if($sale->payment_method == \App\Models\Sale::$subscribe and $sale->checkExpiredPurchaseWithSubscribe($sale->buyer_id, $item->id, !empty($sale->webinar) ? 'webinar_id' : 'bundle_id'))
-                                                    <span class="badge badge-outlined-danger ml-10">{{ trans('update.subscribe_expired') }}</span>
                                                 @endif
 
                                                 @if(!empty($sale->webinar))
                                                     <span class="badge badge-dark ml-10 status-badge-dark">{{ trans('webinars.'.$item->type) }}</span>
-                                                @endif
-
-                                                @if(!empty($sale->gift_id))
-                                                    <span class="badge badge-primary ml-10">{{ trans('update.gift') }}</span>
                                                 @endif
                                             </h3>
                                         </a>
@@ -139,29 +127,25 @@
                                             </button>
 
                                             <div class="dropdown-menu">
-                                                @if(!empty($sale->gift_id) and $sale->buyer_id == $authUser->id)
-                                                    <a href="/panel/webinars/{{ $item->id }}/sale/{{ $sale->id }}/invoice" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.invoice') }}</a>
-                                                @else
-                                                    @if(!empty($item->access_days) and !$item->checkHasExpiredAccessDays($sale->created_at, $sale->gift_id))
-                                                        <a href="{{ $item->getUrl() }}" target="_blank" class="webinar-actions d-block mt-10">{{ trans('update.enroll_on_course') }}</a>
-                                                    @elseif(!empty($sale->webinar))
-                                                        <a href="{{ $item->getLearningPageUrl() }}" target="_blank" class="webinar-actions d-block">{{ trans('update.learning_page') }}</a>
+                                                @if(!empty($item->access_days) and !$item->checkHasExpiredAccessDays($sale->created_at))
+                                                    <a href="{{ $item->getUrl() }}" target="_blank" class="webinar-actions d-block mt-10">{{ trans('update.enroll_on_course') }}</a>
+                                                @elseif(!empty($sale->webinar))
+                                                    <a href="{{ $item->getLearningPageUrl() }}" target="_blank" class="webinar-actions d-block">{{ trans('update.learning_page') }}</a>
 
-                                                        @if(!empty($item->start_date) and ($item->start_date > time() or ($item->isProgressing() and !empty($nextSession))))
-                                                            <button type="button" data-webinar-id="{{ $item->id }}" class="join-purchase-webinar webinar-actions btn-transparent d-block mt-10">{{ trans('footer.join') }}</button>
-                                                        @endif
-
-                                                        @if(!empty($item->downloadable) or (!empty($item->files) and count($item->files)))
-                                                            <a href="{{ $item->getUrl() }}?tab=content" target="_blank" class="webinar-actions d-block mt-10">{{ trans('home.download') }}</a>
-                                                        @endif
-
-                                                        @if($item->price > 0)
-                                                            <a href="/panel/webinars/{{ $item->id }}/sale/{{ $sale->id }}/invoice" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.invoice') }}</a>
-                                                        @endif
+                                                    @if(!empty($item->start_date) and ($item->start_date > time() or ($item->isProgressing() and !empty($nextSession))))
+                                                        <button type="button" data-webinar-id="{{ $item->id }}" class="join-purchase-webinar webinar-actions btn-transparent d-block mt-10">{{ trans('footer.join') }}</button>
                                                     @endif
 
-                                                    <a href="{{ $item->getUrl() }}?tab=reviews" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.feedback') }}</a>
+                                                    @if(!empty($item->downloadable) or (!empty($item->files) and count($item->files)))
+                                                        <a href="{{ $item->getUrl() }}?tab=content" target="_blank" class="webinar-actions d-block mt-10">{{ trans('home.download') }}</a>
+                                                    @endif
+
+                                                    @if($item->price > 0)
+                                                        <a href="/panel/webinars/{{ $item->id }}/invoice" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.invoice') }}</a>
+                                                    @endif
                                                 @endif
+
+                                                <a href="{{ $item->getUrl() }}?tab=reviews" target="_blank" class="webinar-actions d-block mt-10">{{ trans('public.feedback') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -171,10 +155,10 @@
                                     <div class="webinar-price-box mt-15">
                                         @if($item->price > 0)
                                             @if($item->bestTicket() < $item->price)
-                                                <span class="real">{{ handlePrice($item->bestTicket(), true, true, false, null, true) }}</span>
-                                                <span class="off ml-10">{{ handlePrice($item->price, true, true, false, null, true) }}</span>
+                                                <span class="real">{{ handlePrice($item->bestTicket()) }}</span>
+                                                <span class="off ml-10">{{ handlePrice($item->price) }}</span>
                                             @else
-                                                <span class="real">{{ handlePrice($item->price, true, true, false, null, true) }}</span>
+                                                <span class="real">{{ handlePrice($item->price) }}</span>
                                             @endif
                                         @else
                                             <span class="real">{{ trans('public.free') }}</span>
@@ -182,35 +166,15 @@
                                     </div>
 
                                     <div class="d-flex align-items-center justify-content-between flex-wrap mt-auto">
+                                        <div class="d-flex align-items-start flex-column mt-20 mr-15">
+                                            <span class="stat-title">{{ trans('public.item_id') }}:</span>
+                                            <span class="stat-value">{{ $item->id }}</span>
+                                        </div>
 
-                                        @if(!empty($sale->gift_id) and $sale->buyer_id == $authUser->id)
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('update.gift_status') }}:</span>
-
-                                                @if(!empty($sale->gift_date) and $sale->gift_date > time())
-                                                    <span class="stat-value text-warning">{{ trans('public.pending') }}</span>
-                                                @else
-                                                    <span class="stat-value text-primary">{{ trans('update.sent') }}</span>
-                                                @endif
-                                            </div>
-                                        @else
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('public.item_id') }}:</span>
-                                                <span class="stat-value">{{ $item->id }}</span>
-                                            </div>
-                                        @endif
-
-                                        @if(!empty($sale->gift_id))
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('update.gift_receive_date') }}:</span>
-                                                <span class="stat-value">{{ (!empty($sale->gift_date)) ? dateTimeFormat($sale->gift_date, 'j M Y H:i') : trans('update.instantly') }}</span>
-                                            </div>
-                                        @else
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('public.category') }}:</span>
-                                                <span class="stat-value">{{ !empty($item->category_id) ? $item->category->title : '' }}</span>
-                                            </div>
-                                        @endif
+                                        <div class="d-flex align-items-start flex-column mt-20 mr-15">
+                                            <span class="stat-title">{{ trans('public.category') }}:</span>
+                                            <span class="stat-value">{{ !empty($item->category_id) ? $item->category->title : '' }}</span>
+                                        </div>
 
                                         @if(!empty($sale->webinar) and $item->type == 'webinar')
                                             @if($item->isProgressing() and !empty($nextSession))
@@ -241,29 +205,15 @@
                                             </div>
                                         @endif
 
-                                        @if(!empty($sale->gift_id) and $sale->buyer_id == $authUser->id)
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('update.receipt') }}:</span>
-                                                <span class="stat-value">{{ $sale->gift_recipient }}</span>
-                                            </div>
-                                        @else
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('public.instructor') }}:</span>
-                                                <span class="stat-value">{{ $item->teacher->full_name }}</span>
-                                            </div>
-                                        @endif
+                                        <div class="d-flex align-items-start flex-column mt-20 mr-15">
+                                            <span class="stat-title">{{ trans('public.instructor') }}:</span>
+                                            <span class="stat-value">{{ $item->teacher->full_name }}</span>
+                                        </div>
 
-                                        @if(!empty($sale->gift_id) and $sale->buyer_id != $authUser->id)
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('update.gift_sender') }}:</span>
-                                                <span class="stat-value">{{ $sale->gift_sender }}</span>
-                                            </div>
-                                        @else
-                                            <div class="d-flex align-items-start flex-column mt-20 mr-15">
-                                                <span class="stat-title">{{ trans('panel.purchase_date') }}:</span>
-                                                <span class="stat-value">{{ dateTimeFormat($sale->created_at,'j M Y') }}</span>
-                                            </div>
-                                        @endif
+                                        <div class="d-flex align-items-start flex-column mt-20 mr-15">
+                                            <span class="stat-title">{{ trans('panel.purchase_date') }}:</span>
+                                            <span class="stat-value">{{ dateTimeFormat($sale->created_at,'j M Y') }}</span>
+                                        </div>
 
                                     </div>
                                 </div>

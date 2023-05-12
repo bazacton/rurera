@@ -97,7 +97,7 @@
                                             <span class="text-dark-blue font-weight-500">{{ $user->salesCount() }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ handlePrice($user->sales()) }}</span>
+                                            <span class="text-dark-blue font-weight-500">{{ addCurrencyToPrice($user->sales()) }}</span>
                                         </td>
                                         <td class="text-dark-blue font-weight-500 align-middle">{{ dateTimeFormat($user->created_at,'j M Y | H:i') }}</td>
 

@@ -9,12 +9,12 @@
     if ($course->isOwner($user->id)) {
         $assignmentUrl = "/panel/assignments/{$item->id}/students";
         $assignmentUrlTarget = "_blank";
-    } elseif ($user->isAdmin() or $course->isPartnerTeacher($user->id)) {
+    } elseif ($user->isAdmin()) {
         $assignmentUrl = "#!";
     }
 @endphp
 
-<a href="{{ (!empty($checkSequenceContent) and $sequenceContentHasError) ? '#!' : $assignmentUrl }}" target="{{ $assignmentUrlTarget }}" class=" d-flex align-items-start p-10 cursor-pointer {{ (!empty($checkSequenceContent) and $sequenceContentHasError) ? 'js-sequence-content-error-modal' : 'tab-item' }} {{ ($user->isAdmin() or $course->isPartnerTeacher($user->id)) ? 'js-not-access-toast' : '' }}"
+<a href="{{ (!empty($checkSequenceContent) and $sequenceContentHasError) ? '#!' : $assignmentUrl }}" target="{{ $assignmentUrlTarget }}" class=" d-flex align-items-start p-10 cursor-pointer {{ (!empty($checkSequenceContent) and $sequenceContentHasError) ? 'js-sequence-content-error-modal' : 'tab-item' }} {{ $user->isAdmin() ? 'js-not-access-toast' : '' }}"
    data-type="assignment"
    data-id="{{ $item->id }}"
    data-passed-error="{{ !empty($checkSequenceContent['all_passed_items_error']) ? $checkSequenceContent['all_passed_items_error'] : '' }}"
@@ -33,14 +33,14 @@
             @else
                 @switch($itemHistory->status)
                     @case(\App\Models\WebinarAssignmentHistory::$passed)
-                        <span class="text-primary font-12 d-block">{{ trans('quiz.passed') }}</span>
-                        @break
+                    <span class="text-primary font-12 d-block">{{ trans('quiz.passed') }}</span>
+                    @break
                     @case(\App\Models\WebinarAssignmentHistory::$pending)
-                        <span class="text-warning font-12 d-block">{{ trans('public.pending') }}</span>
-                        @break
+                    <span class="text-warning font-12 d-block">{{ trans('public.pending') }}</span>
+                    @break
                     @case(\App\Models\WebinarAssignmentHistory::$notPassed)
-                        <span class="font-12 d-block text-danger">{{ trans('quiz.failed') }}</span>
-                        @break
+                    <span class="font-12 d-block text-danger">{{ trans('quiz.failed') }}</span>
+                    @break
                 @endswitch
             @endif
         </div>
@@ -51,20 +51,10 @@
                 {!! truncate($item->description, 150) !!}
             </p>
 
-            @php
-                $itemDeadline = $item->getDeadlineTimestamp();
-            @endphp
-
             <div class="d-block mt-10 font-12 text-gray">
                 <span class="">{{ trans('update.deadline') }}: </span>
-                @if(is_bool($itemDeadline))
-                    @if(!$itemDeadline)
-                        <span class="text-danger">{{ trans('panel.expired') }}</span>
-                    @else
-                        <span>{{ trans('update.unlimited') }}</span>
-                    @endif
-                @elseif(!empty($itemDeadline))
-                    {{ dateTimeFormat($itemDeadline, 'j M Y') }}
+                @if(!empty($item->deadline))
+                    {{ dateTimeFormat($item->getDeadlineTimestamp(), 'j M Y') }}
                 @else
                     <span>{{ trans('update.unlimited') }}</span>
                 @endif

@@ -25,13 +25,13 @@
                         <p class="font-weight-500 text-gray mt-10">{{ trans('panel.promotion_days',['day' => $promotion->days]) }}</p>
 
                         <div class="d-flex align-items-start text-primary mt-30">
-                            <span class="font-36 line-height-1 subscribe-plan-price">{{ (!empty($promotion->price) and $promotion->price > 0) ? handlePrice($promotion->price) : trans('public.free') }}</span>
+                            <span class="font-36 line-height-1 subscribe-plan-price">{{ addCurrencyToPrice($promotion->price) }}</span>
                         </div>
 
-                        <p class="text-dark-blue font-14 mt-25">{{ nl2br($promotion->description) }}</p>
+                        <p class="text-dark-blue font-14 mt-25">{!! nl2br($promotion->description) !!}</p>
 
                         <button type="button" data-promotion-id="{{ $promotion->id }}"
-                                class="js-pay-promotion btn btn-primary btn-block mt-50">{{ trans('update.purchase') }}</button>
+                                class="js-pay-promotion btn btn-primary btn-block mt-50">{{ trans('financial.purchase') }}</button>
                     </div>
                 </div>
             @endforeach
@@ -76,7 +76,7 @@
                                             <span class="text-dark-blue font-weight-500">{{ $promotionSale->promotion->title }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <span class="text-dark-blue font-weight-500">{{ (!empty($promotionSale->promotion->price) and $promotionSale->promotion->price > 0) ? handlePrice($promotionSale->promotion->price) : trans('public.free') }}</span>
+                                            <span class="text-dark-blue font-weight-500">{{ addCurrencyToPrice($promotionSale->promotion->price) }}</span>
                                         </td>
                                         <td class="text-dark-blue font-weight-500 align-middle">{{ dateTimeFormat($promotionSale->created_at, 'j M Y | H:i') }}</td>
                                     </tr>
@@ -122,7 +122,7 @@
 
                     <div class="mt-10 d-flex justify-content-between">
                         <span class="text-gray font-weight-bold">{{ trans('public.price') }}:</span>
-                        <span class="text-gray"><span class="modal-price"></span></span>
+                        <span class="text-gray">$<span class="modal-price"></span></span>
                     </div>
 
                     <div class="form-group mt-15">

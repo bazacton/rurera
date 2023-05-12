@@ -18,6 +18,11 @@ class QuizzesResult extends Model
     {
         return $this->belongsTo('App\Models\Quiz', 'quiz_id', 'id');
     }
+    
+    public function quizz_result_questions()
+    {
+        return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id');
+    }
 
     public function user()
     {

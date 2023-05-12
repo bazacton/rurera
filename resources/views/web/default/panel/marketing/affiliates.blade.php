@@ -22,7 +22,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/38.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ handlePrice($registrationBonus) }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice(round($registrationBonus, 2)) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.registration_bonus') }}</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/36.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ handlePrice($affiliateBonus) }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice(round($affiliateBonus, 2)) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.affiliate_bonus') }}</span>
                     </div>
                 </div>
@@ -44,8 +44,8 @@
 
         @if(!empty($referralSettings))
             <div class="mt-15 font-14 text-gray">
-                @if(!empty($referralSettings['affiliate_user_amount']))<p>- {{ trans('panel.user_registration_reward') }}: {{ handlePrice($referralSettings['affiliate_user_amount']) }}</p>@endif
-                @if(!empty($referralSettings['referred_user_amount']))<p>- {{ trans('panel.referred_user_registration_reward') }}: {{ handlePrice($referralSettings['referred_user_amount']) }}</p>@endif
+                @if(!empty($referralSettings['affiliate_user_amount']))<p>- {{ trans('panel.user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['affiliate_user_amount']) }}</p>@endif
+                @if(!empty($referralSettings['referred_user_amount']))<p>- {{ trans('panel.referred_user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['referred_user_amount']) }}</p>@endif
                 @if(!empty($referralSettings['affiliate_user_commission']))<p>- {{ trans('panel.referred_user_purchase_commission') }}: {{ $referralSettings['affiliate_user_commission'] }}%</p>@endif
                 <p>- {{ trans('panel.your_affiliate_code') }}: {{ $affiliateCode->code }}</p>
                 @if(!empty($referralSettings['referral_description']))<p>- {{ $referralSettings['referral_description'] }}</p>@endif
@@ -102,9 +102,9 @@
                                         </div>
                                     </td>
 
-                                    <td>{{ handlePrice($affiliate->getAffiliateRegistrationAmountsOfEachReferral()) }}</td>
+                                    <td>{{ addCurrencyToPrice($affiliate->getAffiliateRegistrationAmountsOfEachReferral()) }}</td>
 
-                                    <td>{{ handlePrice($affiliate->getTotalAffiliateCommissionOfEachReferral()) }}</td>
+                                    <td>{{ addCurrencyToPrice($affiliate->getTotalAffiliateCommissionOfEachReferral()) }}</td>
 
                                     <td>{{ dateTimeFormat($affiliate->created_at, 'Y M j | H:i') }}</td>
                                 </tr>

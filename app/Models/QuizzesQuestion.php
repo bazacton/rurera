@@ -34,4 +34,19 @@ class QuizzesQuestion extends Model implements TranslatableContract
     {
         return $this->hasMany('App\Models\QuizzesQuestionsAnswer', 'question_id', 'id');
     }
+    
+    public function listQuestions()
+    {
+        return $this->hasMany('App\Models\Translation\QuizzesQuestionTranslation', 'quizzes_question_id', 'id');
+}
+    
+    public function teacher()
+    {
+        return $this->belongsTo('App\User', 'creator_id', 'id');
+    }
+    
+    public function webinar()
+    {
+        return $this->belongsTo('App\Models\Webinar', 'webinar_id', 'id');
+    }
 }

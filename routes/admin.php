@@ -262,6 +262,8 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => 'web'
             Route::get('/{id}/edit', 'WebinarController@edit');
             Route::post('/{id}/update', 'WebinarController@update');
             Route::get('/{id}/delete', 'WebinarController@destroy');
+            Route::get('/courses_by_categories', 'WebinarController@courses_by_categories');
+            Route::get('/chapters_by_course', 'WebinarController@chapters_by_course');
             Route::get('/{id}/approve', 'WebinarController@approve');
             Route::get('/{id}/reject', 'WebinarController@reject');
             Route::get('/{id}/unpublish', 'WebinarController@unpublish');
@@ -273,6 +275,12 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => 'web'
             Route::post('/add-student-to-course', 'WebinarController@addStudentToCourse');
             Route::post('/order-items', 'WebinarController@orderItems');
             Route::post('/{id}/getContentItemByLocale', 'WebinarController@getContentItemByLocale');
+
+            //Sub Chapter
+            Route::post('/store_sub_chapter', 'WebinarController@store_sub_chapter');
+            Route::post('/{id}/update_sub_chapter', 'WebinarController@update_sub_chapter');
+            Route::get('/{id}/delete_sub_chapter', 'WebinarController@delete_sub_chapter');
+            Route::post('/search_sub_chapter', 'WebinarController@search_sub_chapter');
 
             Route::get('/{id}/statistics', 'WebinarStatisticController@index');
 
@@ -303,6 +311,7 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => 'web'
         Route::group(['prefix' => 'quizzes'], function () {
             Route::get('/', 'QuizController@index');
             Route::get('/create', 'QuizController@create');
+            Route::post('/store_quiz', 'QuizController@store_quiz');
             Route::post('/store', 'QuizController@store');
             Route::get('/{id}/edit', 'QuizController@edit')->name('adminEditQuiz');
             Route::post('/{id}/update', 'QuizController@update');
@@ -321,6 +330,66 @@ Route::group(['prefix' => $prefix, 'namespace' => 'Admin', 'middleware' => 'web'
             removeContentLocale();
             Route::post('/{id}/update', 'QuizQuestionController@update');
             Route::get('/{id}/delete', 'QuizQuestionController@destroy');
+        });
+
+
+        /*
+         * Questions Bank
+         */
+        Route::group(['prefix' => 'questions_bank'], function () {
+            Route::get('/', 'QuestionsBankController@index');
+            Route::get('/create', 'QuestionsBankController@create');
+			Route::get('/create_sub_chapters_auto', 'QuestionsBankController@create_sub_chapters_auto')->name('adminCreateSubChapteAuto');
+			Route::post('/store_sub_chapters_auto', 'QuestionsBankController@store_sub_chapters_auto');
+			
+			
+			Route::get('/create_sections_auto', 'QuestionsBankController@create_sections_auto')->name('adminCreateSectionsAuto');
+			Route::post('/store_sections_auto', 'QuestionsBankController@store_sections_auto');
+			
+            Route::get('/{id}/edit', 'QuestionsBankController@edit');
+            Route::get('/{id}/log', 'QuestionsBankController@log');
+            Route::get('/{id}/delete', 'QuestionsBankController@delete');
+            Route::get('/{id}/duplicate', 'QuestionsBankController@duplicate');
+            Route::post('/store_question', 'QuestionsBankController@store_question');
+            Route::post('/{id}/update_question', 'QuestionsBankController@update_question');
+            Route::post('/question_file_upload', 'QuestionsBankController@question_file_upload');
+            Route::post('/question_status_submit', 'QuestionsBankController@question_status_submit');
+            Route::post('/question_status_update', 'QuestionsBankController@question_status_update');
+            
+        });
+		
+		
+	/*
+         * Author Permissions
+         */
+        Route::group(['prefix' => 'author_permissions'], function () {
+            Route::get('/', 'AuthorPermissionsController@index');
+            Route::get('/authors', 'AuthorPermissionsController@authors');
+			Route::post('/get_sub_chapter_authors', 'AuthorPermissionsController@get_sub_chapter_authors');
+			Route::post('/sub_chapter_authors_update', 'AuthorPermissionsController@sub_chapter_authors_update');
+			Route::post('/get_sub_chapters_list', 'AuthorPermissionsController@get_sub_chapters_list');
+			
+			
+        });
+        
+        /*
+         * Author Points
+         */
+        Route::group(['prefix' => 'author_points'], function () {
+            Route::get('/{id}', 'AuthorPointsController@author_points');
+        });
+        
+        /*
+         * Glossary
+         */
+        Route::group(['prefix' => 'glossary'], function () {
+            Route::get('/', 'GlossaryController@index');
+            Route::get('/create', 'GlossaryController@create');
+            Route::get('/{id}/edit', 'GlossaryController@edit')->name('adminEditGlossary');
+            Route::get('/{id}/delete', 'GlossaryController@destroy');
+            Route::post('/store', 'GlossaryController@store');
+            Route::post('/{id}/store', 'GlossaryController@store');
+            Route::post('/store_question_glossary', 'GlossaryController@store_question_glossary');
         });
 
 

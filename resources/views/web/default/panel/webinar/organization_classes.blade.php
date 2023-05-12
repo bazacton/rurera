@@ -162,10 +162,10 @@
                                 <div class="webinar-price-box mt-15">
                                     @if($webinar->price > 0)
                                         @if($webinar->bestTicket() < $webinar->price)
-                                            <span class="real">{{ handlePrice($webinar->bestTicket(), true, true, false, null, true) }}</span>
-                                            <span class="off ml-10">{{ handlePrice($webinar->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($webinar->bestTicket()) }}</span>
+                                            <span class="off ml-10">{{ handlePrice($webinar->price) }}</span>
                                         @else
-                                            <span class="real">{{ handlePrice($webinar->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($webinar->price) }}</span>
                                         @endif
                                     @else
                                         <span class="real">{{ trans('public.free') }}</span>
@@ -232,7 +232,7 @@
 
                                     <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                         <span class="stat-title">{{ trans('panel.sales') }}:</span>
-                                        <span class="stat-value">{{ count($webinar->sales) }} ({{ (!empty($webinar->sales) and count($webinar->sales)) ? handlePrice($webinar->sales->sum('amount')) : 0 }})</span>
+                                        <span class="stat-value">{{ count($webinar->sales) }} ({{ (!empty($webinar->sales) and count($webinar->sales)) ? addCurrencyToPrice($webinar->sales->sum('amount')) : 0 }})</span>
                                     </div>
 
                                     @if($authUser->id != $webinar->teacher_id and $authUser->id != $webinar->creator_id)
@@ -276,7 +276,6 @@
     <script>
         var undefinedActiveSessionLang = '{{ trans('webinars.undefined_active_session') }}';
         var saveSuccessLang = '{{ trans('webinars.success_store') }}';
-        var selectChapterLang = '{{ trans('update.select_chapter') }}';
     </script>
 
     <script src="/assets/default/js/panel/make_next_session.min.js"></script>

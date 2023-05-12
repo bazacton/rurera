@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 @php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
 
@@ -37,12 +38,9 @@
     @endif
 </head>
 
-<body class="@if($isRtl) rtl @endif">
+<body class="menu-closed @if($isRtl) rtl @endif">
 
-<div id="app" class="{{ (!empty($floatingBar) and $floatingBar->position == 'top' and $floatingBar->fixed) ? 'has-fixed-top-floating-bar' : '' }}">
-    @if(!empty($floatingBar) and $floatingBar->position == 'top')
-        @include('web.default.includes.floating_bar')
-    @endif
+<div id="app">
 
     @if(!isset($appHeader))
         @include('web.default.includes.top_nav')
@@ -60,10 +58,6 @@
     @endif
 
     @include('web.default.includes.advertise_modal.index')
-
-    @if(!empty($floatingBar) and $floatingBar->position == 'bottom')
-        @include('web.default.includes.floating_bar')
-    @endif
 </div>
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>

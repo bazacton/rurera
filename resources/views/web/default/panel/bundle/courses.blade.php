@@ -186,7 +186,7 @@
 
                                     <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                         <span class="stat-title">{{ trans('panel.sales') }}:</span>
-                                        <span class="stat-value">{{ count($webinar->sales) }} ({{ (!empty($webinar->sales) and count($webinar->sales)) ? handlePrice($webinar->sales->sum('amount')) : 0 }})</span>
+                                        <span class="stat-value">{{ count($webinar->sales) }} ({{ (!empty($webinar->sales) and count($webinar->sales)) ? addCurrencyToPrice($webinar->sales->sum('amount')) : 0 }})</span>
                                     </div>
 
                                     @if(!empty($webinar->partner_instructor) and $webinar->partner_instructor and $authUser->id != $webinar->teacher_id and $authUser->id != $webinar->creator_id)
@@ -233,7 +233,6 @@
     <script>
         var undefinedActiveSessionLang = '{{ trans('webinars.undefined_active_session') }}';
         var saveSuccessLang = '{{ trans('webinars.success_store') }}';
-        var selectChapterLang = '{{ trans('update.select_chapter') }}';
     </script>
 
     <script src="/assets/default/js/panel/make_next_session.min.js"></script>

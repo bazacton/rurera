@@ -12,6 +12,7 @@ return [
     'quizzes' => 'Quizzes',
     'my_quizzes' => 'My quizzes',
     'new_quiz' => 'New quiz',
+    'sub_section' => 'Sub Section / Chapter',
     'edit_quiz' => 'Edit quiz',
     'quiz_title' => 'Quiz title',
     'number_of_attemps' => 'Number of attempts',
@@ -122,4 +123,7 @@ return [
     'new_quiz_page_title' => 'New Quiz',
     'quizzes_list_page_title' => 'Quizzes lists',
 	'quizzes_section' => 'No Section',
+    
+    
+    'new_question' => 'New Question',
 ];

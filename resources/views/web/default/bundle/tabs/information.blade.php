@@ -1,11 +1,3 @@
-
-{{-- Installments --}}
-@if(!empty($installments) and count($installments) and getInstallmentsSettings('installment_plans_position') == 'top_of_page')
-    @foreach($installments as $installmentRow)
-        @include('web.default.installment.card',['installment' => $installmentRow, 'itemPrice' => $bundle->getPrice(), 'itemId' => $bundle->id, 'itemType' => 'bundles'])
-    @endforeach
-@endif
-
 {{--course description--}}
 @if($bundle->description)
     <div class="mt-20">
@@ -28,7 +20,7 @@
                 <div class="accordion-row rounded-sm shadow-lg border mt-20 py-20 px-35">
                     <div class="font-weight-bold font-14 text-secondary" role="tab" id="faq_{{ $faq->id }}">
                         <div href="#collapseFaq{{ $faq->id }}" aria-controls="collapseFaq{{ $faq->id }}" class="d-flex align-items-center justify-content-between" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true">
-                            <span>{{ clean($faq->title,'title') }}</span>
+                            <span>{{ clean($faq->title,'title') }}?</span>
                             <i class="collapse-chevron-icon" data-feather="chevron-down" width="25" class="text-gray"></i>
                         </div>
                     </div>
@@ -43,15 +35,6 @@
     </div>
 @endif
 {{-- ./ course FAQ --}}
-
-
-{{-- Installments --}}
-@if(!empty($installments) and count($installments) and getInstallmentsSettings('installment_plans_position') == 'bottom_of_page')
-    @foreach($installments as $installmentRow)
-        @include('web.default.installment.card',['installment' => $installmentRow, 'itemPrice' => $bundle->getPrice(), 'itemId' => $bundle->id, 'itemType' => 'bundles'])
-    @endforeach
-@endif
-
 
 {{-- course Comments --}}
 @include('web.default.includes.comments',[

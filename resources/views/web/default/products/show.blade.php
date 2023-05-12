@@ -5,14 +5,6 @@
 @endpush
 
 @section('content')
-
-    {{-- Cashback Alert --}}
-    @if(!empty($cashbackRules) and count($cashbackRules))
-        <div class="container position-relative mt-30">
-            @include('web.default.includes.cashback_alert',['itemPrice' => $product->price])
-        </div>
-    @endif
-
     <div class="container product-show-special-offer position-relative mt-30">
         @if(!empty($activeSpecialOffer))
             @include('web.default.course.special_offer')
@@ -62,19 +54,13 @@
                     <input type="hidden" name="item_id" value="{{ $product->id }}">
                     <input type="hidden" name="item_name" value="product_id">
 
-                    <div class="product-show-info-card bg-info p-15 p-md-25 rounded-lg">
+                    <div class="product-show-info-card p-15 p-md-25 rounded-lg">
                         <h1 class="font-30">
-                            {{ clean($product->title, 't') }}
+                            {{ $product->title }}
                         </h1>
 
-                        <span class="d-block font-16 mt-10">{{ trans('public.in') }} <a href="{{ $product->category->getUrl() }}" target="_blank" class="font-weight-500 text-decoration-underline">{{ $product->category->title }}</a></span>
-
                         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mt-20">
-                            <div class="d-flex align-items-center">
-                                @include('web.default.includes.webinar.rate',['rate' => $product->getRate(),'className' => 'mt-0'])
-                                <span class="ml-10 font-14">({{ $product->reviews->pluck('creator_id')->count() }} {{ trans('product.reviews') }})</span>
-                            </div>
-
+                           
                             <div class="d-flex align-items-center mt-15 mt-md-0">
                                 <span class="mr-5">{{ trans('update.availability') }}</span>
                                 @if(($product->getAvailability() > 0))
@@ -108,24 +94,7 @@
                             @endforeach
                         @endif
 
-                        <div class="product-show-price-box mt-15">
-                            @if(!empty($product->price) and $product->price > 0)
-                                @if($product->getPriceWithActiveDiscountPrice() < $product->price)
-                                    <span class="real">{{ handlePrice($product->getPriceWithActiveDiscountPrice(), true, true, false, null, true) }}</span>
-                                    <span class="off ml-10">{{ handlePrice($product->price, true, true, false, null, true) }}</span>
-                                @else
-                                    <span class="real">{{ handlePrice($product->price, true, true, false, null, true) }}</span>
-                                @endif
-                            @else
-                                <span class="real">{{ trans('public.free') }}</span>
-                            @endif
-
-                            @if(!empty($product->delivery_fee) and $product->delivery_fee > 0)
-                                <span class="shipping-price d-block mt-5">+ {{ handlePrice($product->delivery_fee) }} {{ trans('update.shipping') }}</span>
-                            @else
-                                <span class="text-warning d-block font-14 font-weight-500 mt-5">{{ trans('update.free_shipping') }}</span>
-                            @endif
-                        </div>
+                       
 
                         <div class="product-show-cart-actions d-flex align-items-center flex-wrap ">
                             <div class="cart-quantity d-flex align-items-center mt-20 mr-15">
@@ -141,33 +110,14 @@
                                 </button>
                             </div>
 
-                            @php
-                                $productAvailability = $product->getAvailability();
-                            @endphp
+                            <div class="d-flex flex-column flex-md-row align-itemsmd-center w-100 mt-20">
+                                
 
-                            <div class="d-flex flex-column flex-md-row flex-md-wrap align-items-md-center w-100">
-                                <button type="submit" class="btn mt-20 {{ ($productAvailability > 0) ? 'btn-primary' : 'btn-dark' }}" {{ ($productAvailability < 1) ? 'disabled' : '' }}>
-                                    <i data-feather="shopping-cart" class="mr-5" width="20" height="20"></i>
-                                    {{ ($productAvailability > 0) ? trans('public.add_to_cart') : trans('update.out_of_stock') }}
-                                </button>
-
-                                @if($productAvailability > 0 and !empty($product->point) and $product->point > 0)
+                                @if($product->getAvailability() > 0 and !empty($product->point) and $product->point > 0)
                                     <input type="hidden" class="js-product-points" value="{{ $product->point }}">
 
-                                    <a href="{{ !(auth()->check()) ? '/login' : '#!' }}" class="{{ (auth()->check()) ? 'js-buy-with-point' : '' }} js-buy-with-point-show-btn btn btn-outline-warning mt-20 ml-0 ml-md-10" rel="nofollow">
+                                    <a href="{{ !(auth()->check()) ? '/login' : '#!' }}" class="{{ (auth()->check()) ? 'js-buy-with-point' : '' }} js-buy-with-point-show-btn btn btn-outline-warning mt-10 mt-md-0 ml-0 ml-md-10" rel="nofollow">
                                         {!! trans('update.buy_with_n_points',['points' => $product->point]) !!}
-                                    </a>
-                                @endif
-
-                                @if($productAvailability > 0 and !empty(getFeaturesSettings('direct_products_payment_button_status')))
-                                    <button type="button" class="btn btn-outline-danger mt-20 ml-0 ml-md-10 js-product-direct-payment">
-                                        {{ trans('update.buy_now') }}
-                                    </button>
-                                @endif
-
-                                @if($productAvailability > 0 and $hasInstallments)
-                                    <a href="/products/{{ $product->slug }}/installments" class="js-installments-btn btn btn-outline-primary mt-20 ml-0 ml-md-10">
-                                        {{ trans('update.installments') }}
                                     </a>
                                 @endif
                             </div>
@@ -206,60 +156,24 @@
                                 </div>
                             </div>
                         </div>
-
-                        {{-- Gift Card --}}
-                        @if($product->isVirtual() and $productAvailability > 0 and !empty(getGiftsGeneralSettings('status')) and !empty(getGiftsGeneralSettings('allow_sending_gift_for_products')))
-                            <a href="/gift/product/{{ $product->slug }}" class="d-flex align-items-center mt-15 rounded-lg border p-15">
-                                <div class="size-40 d-flex-center rounded-circle bg-gray200">
-                                    <i data-feather="gift" class="text-gray" width="20" height="20"></i>
-                                </div>
-                                <div class="ml-5">
-                                    <h4 class="font-14 font-weight-bold text-gray">{{ trans('update.gift_this_product') }}</h4>
-                                    <p class="font-12 text-gray">{{ trans('update.gift_this_product_hint') }}</p>
-                                </div>
-                            </a>
-                        @endif
-
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="mt-30">
-            <ul class="product-show__nav-tabs nav nav-tabs p-15 d-flex align-items-center" id="tabs-tab" role="tablist">
-                <li class="nav-item mr-20 mr-lg-30">
-                    <a class="position-relative font-14 {{ (empty(request()->get('tab')) or request()->get('tab') == 'description') ? 'active' : '' }}" id="description-tab"
-                       data-toggle="tab" href="#description" role="tab" aria-controls="description"
-                       aria-selected="true">{{ trans('public.description') }}</a>
-                </li>
-                <li class="nav-item mr-20 mr-lg-30">
-                    <a class="position-relative font-14 {{ (request()->get('tab') == 'seller') ? 'active' : '' }}" id="seller-tab" data-toggle="tab"
-                       href="#seller" role="tab" aria-controls="seller"
-                       aria-selected="false">{{ trans('update.seller') }}</a>
-                </li>
-                <li class="nav-item mr-20 mr-lg-30">
-                    <a class="position-relative font-14 {{ (request()->get('tab') == 'specifications') ? 'active' : '' }}" id="specifications-tab" data-toggle="tab"
-                       href="#specifications" role="tab" aria-controls="specifications"
-                       aria-selected="false">{{ trans('update.specifications') }}</a>
-                </li>
-
-                @if(!empty($product->files) and count($product->files) and $product->checkUserHasBought())
-                    <li class="nav-item mr-20 mr-lg-30">
-                        <a class="position-relative font-14 {{ (request()->get('tab') == 'files') ? 'active' : '' }}" id="files-tab" data-toggle="tab"
-                           href="#files" role="tab" aria-controls="files"
-                           aria-selected="false">{{ trans('public.files') }}</a>
-                    </li>
-                @endif
-
-                <li class="nav-item mr-20 mr-lg-30">
-                    <a class="position-relative font-14 {{ (request()->get('tab') == 'reviews') ? 'active' : '' }}" id="reviews-tab" data-toggle="tab"
-                       href="#reviews" role="tab" aria-controls="reviews"
-                       aria-selected="false">{{ trans('product.reviews') }}</a>
-                </li>
-            </ul>
-
+            
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade {{ (empty(request()->get('tab')) or request()->get('tab') == 'description') ? 'show active' : '' }} " id="description" role="tabpanel"
+                @include('web.default.products.includes.tabs.files')
+                <br>
+                <h3>Description</h3>
+                
+                @include('web.default.products.includes.tabs.description')
+                
+                @include('web.default.products.includes.tabs.specifications')
+                
+                
+                <div class="tab-pane fade {{ (request()->get('tab') == 'description') ? 'show active' : '' }} " id="description" role="tabpanel"
                      aria-labelledby="description-tab">
                     @include('web.default.products.includes.tabs.description')
                 </div>
@@ -325,8 +239,6 @@
         var messageSuccessSentLang = '{{ trans('site.message_success_sent') }}';
         var productDemoLang = '{{ trans('update.product_demo') }}';
         var onlineViewerModalTitleLang = '{{ trans('update.online_viewer') }}';
-        var copyLang = '{{ trans('public.copy') }}';
-        var copiedLang = '{{ trans('public.copied') }}';
     </script>
 
     <script src="/assets/default/js/parts/time-counter-down.min.js"></script>

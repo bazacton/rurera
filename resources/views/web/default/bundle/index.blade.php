@@ -43,15 +43,16 @@
                     <div class="mt-20 pt-20  mt-md-40 pt-md-40">
                         <ul class="nav nav-tabs bg-secondary rounded-sm p-15 d-flex align-items-center justify-content-between" id="tabs-tab" role="tablist">
                             <li class="nav-item">
-                                <a class="position-relative font-14 text-white {{ (empty(request()->get('tab','')) or request()->get('tab','') == 'information') ? 'active' : '' }}" id="information-tab"
-                                   data-toggle="tab" href="#information" role="tab" aria-controls="information"
-                                   aria-selected="true">{{ trans('product.information') }}</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="position-relative font-14 text-white {{ (request()->get('tab','') == 'content') ? 'active' : '' }}" id="content-tab" data-toggle="tab"
                                    href="#content" role="tab" aria-controls="content"
                                    aria-selected="false">{{ trans('product.content') }} ({{ $bundle->bundleWebinars->count() }})</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="position-relative font-14 text-white {{ (empty(request()->get('tab','')) or request()->get('tab','') == 'information') ? 'active' : '' }}" id="information-tab"
+                                   data-toggle="tab" href="#information" role="tab" aria-controls="information"
+                                   aria-selected="true">{{ trans('product.information') }}</a>
+                            </li>
+                            
                             <li class="nav-item">
                                 <a class="position-relative font-14 text-white {{ (request()->get('tab','') == 'reviews') ? 'active' : '' }}" id="reviews-tab" data-toggle="tab"
                                    href="#reviews" role="tab" aria-controls="reviews"
@@ -109,9 +110,7 @@
                                                name="ticket_id"
                                                id="courseOff{{ $ticket->id }}">
                                         <label class="form-check-label d-flex flex-column cursor-pointer" for="courseOff{{ $ticket->id }}">
-                                            <span class="font-16 font-weight-500 text-dark-blue">{{ $ticket->title }} @if(!empty($ticket->discount))
-                                                    ({{ $ticket->discount }}% {{ trans('public.off') }})
-                                                @endif</span>
+                                            <span class="font-16 font-weight-500 text-dark-blue">{{ $ticket->title }} @if(!empty($ticket->discount)) ({{ $ticket->discount }}% {{ trans('public.off') }}) @endif</span>
                                             <span class="font-14 text-gray">{{ $ticket->getSubTitle() }}</span>
                                         </label>
                                     </div>
@@ -138,7 +137,7 @@
                                     @if(!empty($activeSpecialOffer))
                                         <div class="text-center">
                                             @php
-                                                $priceWithDiscount = handleCoursePagePrice($bundle->getPrice());
+                                                $priceWithDiscount = handleCoursePagePrice($bundle->price - ($bundle->price * $activeSpecialOffer->percent / 100));
                                             @endphp
                                             <span id="priceWithDiscount"
                                                   class="d-block font-30 text-primary">
@@ -162,7 +161,7 @@
                             @endphp
 
                             <div class="mt-20 d-flex flex-column">
-                                @if($hasBought or !empty($bundle->getInstallmentOrder()))
+                                @if($hasBought)
                                     <button type="button" class="btn btn-primary" disabled>{{ trans('panel.purchased') }}</button>
                                 @elseif($bundle->price > 0)
                                     <button type="{{ $canSale ? 'submit' : 'button' }}" @if(!$canSale) disabled @endif class="btn btn-primary">
@@ -181,12 +180,6 @@
                                         <a href="{{ !(auth()->check()) ? '/login' : '#' }}" class="{{ (auth()->check()) ? 'js-buy-with-point' : '' }} btn btn-outline-warning mt-20 {{ (!$canSale) ? 'disabled' : '' }}" rel="nofollow">
                                             {!! trans('update.buy_with_n_points',['points' => $bundle->points]) !!}
                                         </a>
-                                    @endif
-
-                                    @if($canSale and !empty(getFeaturesSettings('direct_bundles_payment_button_status')))
-                                        <button type="button" class="btn btn-outline-danger mt-20 js-bundle-direct-payment">
-                                            {{ trans('update.buy_now') }}
-                                        </button>
                                     @endif
                                 @else
                                     <a href="{{ $canSale ? '/bundles/'. $bundle->slug .'/free' : '#' }}" class="btn btn-primary @if(!$canSale) disabled @endif">{{ trans('update.enroll_on_bundle') }}</a>
@@ -220,22 +213,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Cashback Alert --}}
-                @include('web.default.includes.cashback_alert',['itemPrice' => $bundle->price])
-
-                {{-- Gift Card --}}
-                @if($bundle->canSale() and !empty(getGiftsGeneralSettings('status')) and !empty(getGiftsGeneralSettings('allow_sending_gift_for_bundles')))
-                    <a href="/gift/bundle/{{ $bundle->slug }}" class="d-flex align-items-center mt-30 rounded-lg border p-15">
-                        <div class="size-40 d-flex-center rounded-circle bg-gray200">
-                            <i data-feather="gift" class="text-gray" width="20" height="20"></i>
-                        </div>
-                        <div class="ml-5">
-                            <h4 class="font-14 font-weight-bold text-gray">{{ trans('update.gift_this_bundle') }}</h4>
-                            <p class="font-12 text-gray">{{ trans('update.gift_this_bundle_hint') }}</p>
-                        </div>
-                    </a>
-                @endif
 
                 @if($bundle->teacher->offline)
                     <div class="rounded-lg shadow-sm mt-35 d-flex">
@@ -287,16 +264,6 @@
                             </div>
                             <span class="font-14">{{ dateTimeFormat($bundle->created_at,'j M Y') }}</span>
                         </div>
-
-                        @if(!empty($bundle->access_days))
-                            <div class="mt-20 d-flex align-items-center justify-content-between text-gray">
-                                <div class="d-flex align-items-center">
-                                    <i data-feather="alert-circle" width="20" height="20"></i>
-                                    <span class="ml-5 font-14 font-weight-500">{{ trans('update.access_period') }}:</span>
-                                </div>
-                                <span class="font-14">{{ $bundle->access_days }} {{ trans('public.days') }}</span>
-                            </div>
-                        @endif
 
                     </div>
                 </div>

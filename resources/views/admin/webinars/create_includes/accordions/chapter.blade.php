@@ -56,6 +56,10 @@
                                                 {{ trans('public.add_quiz') }}
                                             </button>
 
+                                            <button type="button" class="js-add-course-content-btn d-block mb-10 btn-transparent" data-webinar-id="{{ $webinar->id }}" data-type="sub" data-chapter="{{ !empty($chapter) ? $chapter->id :'' }}">
+                                                Sub Chapter
+                                            </button>
+
                                             @if(getFeaturesSettings('webinar_assignment_status'))
                                                 <button type="button" class="js-add-course-content-btn d-block mb-10 btn-transparent" data-webinar-id="{{ $webinar->id }}" data-type="assignment" data-chapter="{{ !empty($chapter) ? $chapter->id :'' }}">
                                                     {{ trans('update.add_new_assignments') }}
@@ -78,23 +82,17 @@
                                 </div>
                             </div>
 
-                            <div id="collapseChapter{{ !empty($chapter) ? $chapter->id :'record' }}" aria-labelledby="chapter_{{ !empty($chapter) ? $chapter->id :'record' }}" class=" collapse show" role="tabpanel">
+                            <div id="collapseChapter{{ !empty($chapter) ? $chapter->id :'record' }}" aria-labelledby="chapter_{{ !empty($chapter) ? $chapter->id :'record' }}" class=" collapse " role="tabpanel">
                                 <div class="panel-collapse text-gray">
 
                                     <div class="accordion-content-wrapper mt-15" id="chapterContentAccordion{{ !empty($chapter) ? $chapter->id :'' }}" role="tablist" aria-multiselectable="true">
                                         @if(!empty($chapter->chapterItems) and count($chapter->chapterItems))
                                             <ul class="draggable-content-lists draggable-lists-chapter-{{ $chapter->id }}" data-drag-class="draggable-lists-chapter-{{ $chapter->id }}" data-order-table="webinar_chapter_items">
                                                 @foreach($chapter->chapterItems as $chapterItem)
-                                                    @if($chapterItem->type == \App\Models\WebinarChapterItem::$chapterSession and !empty($chapterItem->session))
-                                                        @include('admin.webinars.create_includes.accordions.session' ,['session' => $chapterItem->session , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
-                                                    @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterFile and !empty($chapterItem->file))
-                                                        @include('admin.webinars.create_includes.accordions.file' ,['file' => $chapterItem->file , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
-                                                    @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterTextLesson and !empty($chapterItem->textLesson))
-                                                        @include('admin.webinars.create_includes.accordions.text-lesson' ,['textLesson' => $chapterItem->textLesson , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
-                                                    @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterAssignment and !empty($chapterItem->assignment))
-                                                        @include('admin.webinars.create_includes.accordions.assignment' ,['assignment' => $chapterItem->assignment , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
-                                                    @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterQuiz and !empty($chapterItem->quiz))
-                                                        @include('admin.webinars.create_includes.accordions.quiz' ,['quizInfo' => $chapterItem->quiz , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
+                                                    @if($chapterItem->type == \App\Models\WebinarChapterItem::$chapterSubChapter)
+                                                        @if( isset( $chapterItem->sub_chapter->id ))
+                                                            @include('admin.webinars.create_includes.accordions.sub' ,['sub_chapter_id' => $chapterItem->sub_chapter->id,'subChapterInfo' => $chapterItem->sub_chapter , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
+                                                        @endif
                                                     @endif
                                                 @endforeach
                                             </ul>

@@ -12,41 +12,6 @@
         <h3 class="section-title after-line font-16 text-dark-blue mb-25">{{ trans('webinars.next_session_info') }}</h3>
 
         <div class="mt-25">
-
-            <div class="row">
-                <div class="col-12 col-md-7">
-                    @if(!empty(getGeneralSettings('content_translate')))
-                        <div class="form-group">
-                            <label class="input-label">{{ trans('auth.language') }}</label>
-                            <select name="ajax[new][locale]"
-                                    class="form-control"
-                                    data-bundle-id=""
-                                    data-id=""
-                                    data-relation=""
-                                    data-fields=""
-                            >
-                                @foreach(getUserLanguagesLists() as $lang => $language)
-                                    <option value="{{ $lang }}" {{ app()->getLocale() == $lang ? 'selected' : '' }}>{{ $language }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @else
-                        <input type="hidden" name="ajax[new][locale]" value="{{ mb_strtolower(getDefaultLocale()) }}">
-                    @endif
-                </div>
-                <div class="col-12 col-md-5">
-                    <div class="form-group">
-                        <label class="input-label">{{ trans('public.chapter') }}</label>
-
-                        <select name="ajax[new][chapter_id]" class="js-ajax-chapter_id form-control">
-
-                        </select>
-
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-12 col-md-7">
                     <div class="form-group">
@@ -114,9 +79,10 @@
                     <label class="input-label">{{ trans('webinars.system') }}</label>
 
                     <select name="ajax[new][session_api]" class="js-ajax-session_api form-control">
-                        @foreach(getFeaturesSettings("available_session_apis") as $sessionApi)
-                            <option value="{{ $sessionApi }}">{{ trans('update.session_api_'.$sessionApi) }}</option>
-                        @endforeach
+                        <option value="local">{{ trans('webinars.session_local_api') }}</option>
+                        <option value="big_blue_button">{{ trans('webinars.session_big_blue_button') }}</option>
+                        <option value="zoom">{{ trans('webinars.session_zoom') }}</option>
+                        <option value="agora">{{ trans('update.agora') }}</option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>

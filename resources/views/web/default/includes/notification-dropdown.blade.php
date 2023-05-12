@@ -16,19 +16,6 @@
 
                 @if(!empty($unReadNotifications) and count($unReadNotifications))
 
-                    <div class="d-flex align-items-center p-15 border rounded-sm">
-                        <div class="d-flex-center size-40 rounded-circle bg-gray100">
-                            <i data-feather="bell" width="20" height="20" class="text-gray"></i>
-                        </div>
-                        <div class="ml-5">
-                            <div class="text-secondary font-14"><span class="font-weight-bold">{{ count($unReadNotifications) }}</span> {{ trans('panel.notifications') }}</div>
-
-                            <a href="/panel/notifications/mark-all-as-read" class="delete-action d-block mt-5 font-12 cursor-pointer text-hover-primary" data-title="{{ trans('update.convert_unread_messages_to_read') }}" data-confirm="{{ trans('update.yes_convert') }}">
-                                {{ trans('update.mark_all_notifications_as_read') }}
-                            </a>
-                        </div>
-                    </div>
-
                     @foreach($unReadNotifications as $unReadNotification)
                         <a href="/panel/notifications?notification={{ $unReadNotification->id }}">
                             <div class="navbar-notification-item border-bottom">

@@ -6,8 +6,8 @@
     <div class="col-12 col-md-6 mt-15">
 
         <div class="form-group">
-            <label class="input-label">{{ trans('public.price') }} ({{ $currency }})</label>
-            <input type="number" name="price" value="{{ (!empty($product) and !empty($product->price)) ? convertPriceToUserCurrency($product->price) : old('price') }}" class="form-control @error('price')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
+            <label class="input-label">{{ trans('public.price') }}</label>
+            <input type="number" name="price" value="{{ !empty($product) ? $product->price : old('price') }}" class="form-control @error('price')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
             @error('price')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -17,8 +17,8 @@
 
         @if($product->isPhysical())
             <div class="form-group">
-                <label class="input-label">{{ trans('update.delivery_fee') }} ({{ currencySign() }})</label>
-                <input type="number" name="delivery_fee" value="{{ (!empty($product) and !empty($product->delivery_fee)) ? convertPriceToUserCurrency($product->delivery_fee) : old('delivery_fee') }}" class="form-control @error('delivery_fee')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
+                <label class="input-label">{{ trans('update.delivery_fee') }}</label>
+                <input type="number" name="delivery_fee" value="{{ !empty($product) ? $product->delivery_fee : old('delivery_fee') }}" class="form-control @error('delivery_fee')  is-invalid @enderror" placeholder="{{ trans('public.0_for_free') }}"/>
                 @error('delivery_fee')
                 <div class="invalid-feedback">
                     {{ $message }}

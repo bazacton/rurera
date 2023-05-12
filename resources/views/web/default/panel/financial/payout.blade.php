@@ -5,9 +5,9 @@
         <h2 class="section-title">{{ trans('financial.account_summary') }}</h2>
 
         @if(!$authUser->financial_approval)
-            <div class="p-15 mt-20 p-lg-20 not-verified-alert font-weight-500 text-dark-blue rounded-sm panel-shadow">
+            <div class="p-15 mt-30 p-lg-25 not-verified-alert font-weight-500 text-dark-blue rounded-sm shadow">
                 {{ trans('panel.not_verified_alert') }}
-                <a href="/panel/setting/step/7" class="text-decoration-underline">{{ trans('panel.this_link') }}</a>.
+                <a href="/panel/setting" class="text-decoration-underline">{{ trans('panel.this_link') }}</a>.
             </div>
         @endif
 
@@ -16,7 +16,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/36.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $accountCharge ? handlePrice($accountCharge) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $accountCharge ? addCurrencyToPrice($accountCharge) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.account_charge') }}</span>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/37.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ handlePrice($readyPayout ?? 0) }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice($readyPayout ?? 0) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.ready_to_payout') }}</span>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/38.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ handlePrice($totalIncome ?? 0) }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice($totalIncome ?? 0) }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('financial.total_income') }}</span>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                                     <tr>
                                         <td>
                                             <div class="text-left">
-                                                <span class="d-block font-weight-500 text-dark-blue">{{ $payout->userSelectedBank->bank->title }}</span>
+                                                <span class="d-block font-weight-500 text-dark-blue">{{ $payout->account_name }}</span>
                                                 <span class="d-block font-12 text-gray mt-1">{{ dateTimeFormat($payout->created_at, 'j M Y | H:i') }}</span>
                                             </div>
                                         </td>
@@ -78,19 +78,19 @@
                                             <span>{{ trans('public.manual') }}</span>
                                         </td>
                                         <td>
-                                            <span class="text-primary font-weight-bold">{{ handlePrice($payout->amount, false) }}</span>
+                                            <span class="text-primary font-weight-bold">{{ $payout->amount }}</span>
                                         </td>
                                         <td>
                                             @switch($payout->status)
                                                 @case(\App\Models\Payout::$waiting)
-                                                    <span class="text-warning font-weight-bold">{{ trans('public.waiting') }}</span>
-                                                    @break;
+                                                <span class="text-warning font-weight-bold">{{ trans('public.waiting') }}</span>
+                                                @break;
                                                 @case(\App\Models\Payout::$reject)
-                                                    <span class="text-danger font-weight-bold">{{ trans('public.rejected') }}</span>
-                                                    @break;
+                                                <span class="text-danger font-weight-bold">{{ trans('public.rejected') }}</span>
+                                                @break;
                                                 @case(\App\Models\Payout::$done)
-                                                    <span class="">{{ trans('public.done') }}</span>
-                                                    @break;
+                                                <span class="">{{ trans('public.done') }}</span>
+                                                @break;
                                             @endswitch
                                         </td>
                                     </tr>
@@ -121,34 +121,29 @@
     <div id="requestPayoutModal" class="d-none">
         <h3 class="section-title after-line font-20 text-dark-blue mb-25">{{ trans('financial.payout_confirmation') }}</h3>
         <p class="text-gray mt-15">{{ trans('financial.payout_confirmation_hint') }}</p>
-
         <form method="post" action="/panel/financial/request-payout">
             {{ csrf_field() }}
             <div class="row justify-content-center">
                 <div class="w-75 mt-50">
                     <div class="d-flex align-items-center justify-content-between text-gray">
                         <span class="font-weight-bold">{{ trans('financial.ready_to_payout') }}</span>
-                        <span>{{ handlePrice($readyPayout ?? 0) }}</span>
+                        <span>{{ addCurrencyToPrice($readyPayout ?? 0) }}</span>
                     </div>
 
-                    @if(!empty($authUser->selectedBank) and !empty($authUser->selectedBank->bank))
-                        <div class="d-flex align-items-center justify-content-between text-gray mt-20">
-                            <span class="font-weight-bold">{{ trans('financial.account_type') }}</span>
-                            <span>{{ $authUser->selectedBank->bank->title }}</span>
-                        </div>
+                    <div class="d-flex align-items-center justify-content-between text-gray mt-20">
+                        <span class="font-weight-bold">{{ trans('financial.account_type') }}</span>
+                        <span>{{ $authUser->account_type }}</span>
+                    </div>
 
-                        @foreach($authUser->selectedBank->bank->specifications as $specification)
-                            @php
-                                $selectedBankSpecification = $authUser->selectedBank->specifications->where('user_selected_bank_id', $authUser->selectedBank->id)->where('user_bank_specification_id', $specification->id)->first();
-                            @endphp
+                    <div class="d-flex align-items-center justify-content-between text-gray mt-20">
+                        <span class="font-weight-bold">{{ trans('financial.account_id') }}</span>
+                        <span>{{ $authUser->account_id }}</span>
+                    </div>
 
-                            <div class="d-flex align-items-center justify-content-between text-gray mt-20">
-                                <span class="font-weight-bold">{{ $specification->name }}</span>
-                                <span>{{ (!empty($selectedBankSpecification)) ? $selectedBankSpecification->value : '' }}</span>
-                            </div>
-                        @endforeach
-                    @endif
-
+                    <div class="d-flex align-items-center justify-content-between text-gray mt-20">
+                        <span class="font-weight-bold">{{ trans('financial.iban') }}</span>
+                        <span>{{ $authUser->iban }}</span>
+                    </div>
                 </div>
             </div>
 

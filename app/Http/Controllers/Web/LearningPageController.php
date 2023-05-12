@@ -9,8 +9,11 @@ use App\Http\Controllers\Web\traits\LearningPageItemInfoTrait;
 use App\Http\Controllers\Web\traits\LearningPageMixinsTrait;
 use App\Http\Controllers\Web\traits\LearningPageNoticeboardsTrait;
 use App\Models\Certificate;
+use App\Models\QuizzResultQuestions;
 use App\Models\CourseNoticeboard;
+use App\Models\QuizzesQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LearningPageController extends Controller
 {
@@ -20,23 +23,22 @@ class LearningPageController extends Controller
     public function index(Request $request, $slug)
     {
         $requestData = $request->all();
+        
 
         $webinarController = new WebinarController();
-
-        $data = $webinarController->course($slug, true);
+		$sub_chapter_id = $request->get('chapter');
+        $data = $webinarController->course($slug, true, $sub_chapter_id);
+        
+        
+        
+        
 
         $course = $data['course'];
         $user = $data['user'];
 
-        $installmentLimitation = $webinarController->installmentContentLimitation($user, $course->id, 'webinar_id');
-        if ($installmentLimitation != "ok") {
-            return $installmentLimitation;
-        }
-
-
-        if (!$data or (!$data['hasBought'] and empty($course->getInstallmentOrder()))) {
+        /*if (!$data or (!$data['hasBought'] and empty($course->getInstallmentOrder()))) {
             abort(403);
-        }
+        }*/
 
         if (!empty($requestData['type']) and $requestData['type'] == 'assignment' and !empty($requestData['item'])) {
 
@@ -64,6 +66,8 @@ class LearningPageController extends Controller
                 ->where('webinar_id', $course->id)
                 ->first();
         }
+        
+
 
         return view('web.default.course.learningPage.index', $data);
     }

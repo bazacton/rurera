@@ -42,30 +42,45 @@
         <div class="panel-collapse text-gray">
             <div class="js-content-form session-form" data-action="/panel/sessions/{{ !empty($session) ? $session->id . '/update' : 'store' }}">
                 <input type="hidden" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][webinar_id]" value="{{ !empty($webinar) ? $webinar->id :'' }}">
-
-                <div class="form-group">
-                    <label class="input-label">{{ trans('webinars.select_session_api') }}</label>
-
-                    <div class="js-session-api">
-                        @foreach(getFeaturesSettings("available_session_apis") as $sessionApi)
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][session_api]" id="{{ $sessionApi }}_api_{{ !empty($session) ? $session->id : '' }}" value="{{ $sessionApi }}" @if((!empty($session) and $session->session_api == $sessionApi) or (empty($session) and $sessionApi == 'local')) checked @endif class="js-api-input custom-control-input" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}>
-                                <label class="custom-control-label" for="{{ $sessionApi }}_api_{{ !empty($session) ? $session->id : '' }}">{{ trans('update.session_api_'.$sessionApi) }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <div class="invalid-feedback"></div>
-
-                    <div class="js-zoom-not-complete-alert mt-10 text-danger d-none">
-                        {{ trans('webinars.your_zoom_settings_are_not_complete') }}
-                        <a href="/panel/setting/step/8" class="text-primary" target="_blank">{{ trans('public.go_to_settings') }}</a>
-                    </div>
-                </div>
-
+                <input type="hidden" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][chapter_id]" value="{{ !empty($chapter) ? $chapter->id :'' }}" class="chapter-input">
 
                 <div class="row">
                     <div class="col-12 col-lg-6">
+
+                        <div class="form-group">
+                            <label class="input-label">{{ trans('webinars.select_session_api') }}</label>
+
+                            <div class="js-session-api">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][session_api]" id="localApi{{ !empty($session) ? $session->id : '' }}" value="local" @if(empty($session) or $session->session_api == 'local') checked @endif class="js-api-input custom-control-input" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}>
+                                    <label class="custom-control-label" for="localApi{{ !empty($session) ? $session->id : '' }}">{{ trans('webinars.session_local_api') }}</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][session_api]" id="bigBlueButton{{ !empty($session) ? $session->id : '' }}" value="big_blue_button" @if(!empty($session) and $session->session_api == 'big_blue_button') checked @endif class="js-api-input custom-control-input" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}>
+                                    <label class="custom-control-label" for="bigBlueButton{{ !empty($session) ? $session->id : '' }}">{{ trans('webinars.session_big_blue_button') }}</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][session_api]" id="zoomApi{{ !empty($session) ? $session->id : '' }}" value="zoom" @if(!empty($session) and $session->session_api == 'zoom') checked @endif class="js-api-input custom-control-input" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}>
+                                    <label class="custom-control-label" for="zoomApi{{ !empty($session) ? $session->id : '' }}">{{ trans('webinars.session_zoom') }}</label>
+                                </div>
+
+                                @if(getFeaturesSettings('agora_live_streaming') and (!empty($webinar->price) or getFeaturesSettings('agora_in_free_courses')))
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][session_api]" id="agoraApi{{ !empty($session) ? $session->id : '' }}" value="agora" @if(!empty($session) and $session->session_api == 'agora') checked @endif class="js-api-input custom-control-input" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}>
+                                        <label class="custom-control-label" for="agoraApi{{ !empty($session) ? $session->id : '' }}">{{ trans('update.agora') }}</label>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="invalid-feedback"></div>
+
+                            <div class="js-zoom-not-complete-alert mt-10 text-danger d-none">
+                                {{ trans('webinars.your_zoom_settings_are_not_complete') }}
+                                <a href="/panel/setting/step/8" class="text-primary" target="_blank">{{ trans('public.go_to_settings') }}</a>
+                            </div>
+                        </div>
 
                         @if(!empty(getGeneralSettings('content_translate')))
                             <div class="form-group">
@@ -86,7 +101,7 @@
                             <input type="hidden" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][locale]" value="{{ $defaultLocale }}">
                         @endif
 
-                        <div class="form-group js-api-secret {{ (!empty($session) and in_array($session->session_api, ['zoom', 'agora', 'jitsi'])) ? 'd-none' :'' }}">
+                        <div class="form-group js-api-secret {{ (!empty($session) and ($session->session_api == 'zoom' or $session->session_api == 'agora')) ? 'd-none' :'' }}">
                             <label class="input-label">{{ trans('auth.password') }}</label>
                             <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][api_secret]" class="js-ajax-api_secret form-control" value="{{ !empty($session) ? $session->api_secret : '' }}" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}/>
                             <div class="invalid-feedback"></div>
@@ -97,20 +112,6 @@
                             <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][moderator_secret]" class="js-ajax-moderator_secret form-control" value="{{ !empty($session) ? $session->moderator_secret : '' }}" {{ (!empty($session) and $session->session_api == 'big_blue_button') ? 'disabled' :'' }}/>
                             <div class="invalid-feedback"></div>
                         </div>
-
-                        @if(!empty($session))
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('public.chapter') }}</label>
-                                <select name="ajax[{{ !empty($session) ? $session->id : 'new' }}][chapter_id]" class="js-ajax-chapter_id form-control">
-                                    @foreach($webinar->chapters as $ch)
-                                        <option value="{{ $ch->id }}" {{ ($session->chapter_id == $ch->id) ? 'selected' : '' }}>{{ $ch->title }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback"></div>
-                            </div>
-                        @else
-                            <input type="hidden" name="ajax[new][chapter_id]" value="" class="chapter-input">
-                        @endif
 
                         <div class="form-group">
                             <label class="input-label">{{ trans('public.title') }}</label>
@@ -126,7 +127,7 @@
                                         <i data-feather="calendar" width="18" height="18" class="text-white"></i>
                                     </span>
                                 </div>
-                                <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][date]" class="js-ajax-date form-control datetimepicker" value="{{ !empty($session) ? dateTimeFormat($session->date, 'Y-m-d H:i', false) : '' }}" aria-describedby="dateRangeLabel" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }} autocomplete="off"/>
+                                <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][date]" class="js-ajax-date form-control datetimepicker" value="{{ !empty($session) ? dateTimeFormat($session->date, 'Y-m-d H:i', false) : '' }}" aria-describedby="dateRangeLabel" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}/>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
@@ -137,7 +138,7 @@
                             <div class="invalid-feedback"></div>
                         </div>
 
-                        <div class="form-group js-local-link {{ (!empty($session) and in_array($session->session_api, ['agora', 'jitsi'])) ? 'd-none' : '' }}">
+                        <div class="form-group js-local-link {{ (!empty($session) and $session->session_api == 'agora') ? 'd-none' : '' }}">
                             <label class="input-label">{{ trans('public.link') }}</label>
                             <input type="text" name="ajax[{{ !empty($session) ? $session->id : 'new' }}][link]" class="js-ajax-link form-control" value="{{ !empty($session) ? $session->getJoinLink() : '' }}" {{ (!empty($session) and $session->session_api != 'local') ? 'disabled' :'' }}/>
                             <div class="invalid-feedback"></div>

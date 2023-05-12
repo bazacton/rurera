@@ -238,6 +238,7 @@
     timeLeft -= minutes * 60;
 
     var seconds = parseInt(timeLeft % 60, 10);
+	
 
     if (+hours === 0 && +minutes === 0 && +seconds === 0) {
       return [];
@@ -257,6 +258,7 @@
     element.find('.' + this._options.classNameSeconds).text(finalValues.pop());
     element.find('.' + this._options.classNameMinutes).text(finalValues.pop() + ':');
     element.find('.' + this._options.classNameHours).text(finalValues.pop() + ':');
+	
   };
 
 
@@ -267,3 +269,6 @@
   };
 
 }));
+
+
+var totalSeconds = 0;

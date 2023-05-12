@@ -1,146 +1,167 @@
-@extends(getTemplate().'.layouts.app')
+@php namespace App\Http\Controllers\Web; @endphp
+@extends(getTemplate().'.layouts.appstart')
+@php
+$i = 0; $j = 1;
+$rand_id = rand(99,9999);
+
+@endphp
 
 @push('styles_top')
-    <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
+<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
 @endpush
 
+<link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
+
 @section('content')
-    <div class="container">
-        <section class="mt-40">
-            <h2 class="font-weight-bold font-16 text-dark-blue">{{ $quiz->title }}</h2>
-            <p class="text-gray font-14 mt-5">
-                <a href="{{ $quiz->webinar->getUrl() }}" target="_blank" class="text-gray">{{ $quiz->webinar->title }}</a>
-                | {{ trans('public.by') }}
-                <span class="font-weight-bold">
-                    <a href="{{ $quiz->creator->getProfileUrl() }}" target="_blank" class="font-14"> {{ $quiz->creator->full_name }}</a>
-                </span>
+
+<div class="lms-content-holder">
+    <div class="lms-content-header">
+        <div class="header-left">
+            <p>
+                <strong>{{$quiz->title}}</strong>
+                <span>Maths</span>
+                <span>{{$quiz->mastery_points}} Mastery Coins</span>
             </p>
-
-            <div class="activities-container shadow-sm rounded-lg mt-25 p-20 p-lg-35">
-                <div class="row">
-                    <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="/assets/default/img/activity/58.svg" width="64" height="64" alt="">
-                            <strong class="font-30 font-weight-bold text-secondary mt-5">{{  $quiz->pass_mark }}/{{  $quizQuestions->sum('grade') }}</strong>
-                            <span class="font-16 text-gray">{{ trans('public.min') }} {{ trans('quiz.grade') }}</span>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="/assets/default/img/activity/88.svg" width="64" height="64" alt="">
-                            <strong class="font-30 font-weight-bold text-secondary mt-5">{{ $attempt_count }}/{{ $quiz->attempt }}</strong>
-                            <span class="font-16 text-gray">{{ trans('quiz.attempts') }}</span>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3 mt-30 mt-md-0 d-flex align-items-center justify-content-center mt-5 mt-md-0">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="/assets/default/img/activity/47.svg" width="64" height="64" alt="">
-                            <strong class="font-30 font-weight-bold text-secondary mt-5">{{ $totalQuestionsCount }}</strong>
-                            <span class="font-16 text-gray">{{ trans('public.questions') }}</span>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-3 mt-30 mt-md-0 d-flex align-items-center justify-content-center mt-5 mt-md-0">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="/assets/default/img/activity/clock.svg" width="64" height="64" alt="">
-                            @if(!empty($quiz->time))
-                                <strong class="font-30 font-weight-bold text-secondary mt-5">
-                                    <div class="d-flex align-items-center timer ltr" data-minutes-left="{{ $quiz->time }}"></div>
-                                </strong>
-                            @else
-                                <strong class="font-30 font-weight-bold text-secondary mt-5">{{ trans('quiz.unlimited') }}</strong>
-                            @endif
-                            <span class="font-16 text-gray">{{ trans('quiz.remaining_time') }}</span>
-                        </div>
-                    </div>
-
-
-                </div>
+            <div class="ribbon-images">
+                <img src="../../assets/default/img/quiz/ribbon-img1.png" alt="">
+                <img src="../../assets/default/img/quiz/ribbon-img2.png" alt="">
+                <img src="../../assets/default/img/quiz/ribbon-img3.png" alt="">
+                <img src="../../assets/default/img/quiz/ribbon-img4.png" alt="">
             </div>
-        </section>
+        </div>
+        <div class="header-right">
+            <a href="#" class="tab-toggle-btn">
+                <span class="sort-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="user-question-panel hide">
+        <ul class="question-list">
+            @while($i++ < $quizQuestions->count())
+            <li>{{$i}}</li>
+            @endwhile
+        </ul>
+    </div>
+    <div class="questions-data-block" data-total_questions="{{$quizQuestions->count()}}">
+	
+	<div class="question-step quiz-complete" style="display:none">
+        <div class="question-layout-block">
+                <div class="left-content has-bg">
+                    <h2>&nbsp;</h2>
+                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+                        <div class="question-layout">
+                            
+                        </div>
+                    </div>
+                </div>
 
-        <section class="mt-30 quiz-form">
-            <form action="/panel/quizzes/{{ $quiz->id }}/store-result" method="post" class="">
-                {{ csrf_field() }}
-                <input type="hidden" name="quiz_result_id" value="{{ $newQuizStart->id }}" class="form-control" placeholder=""/>
-                <input type="hidden" name="attempt_number" value="{{ $attempt_count }}" class="form-control" placeholder=""/>
+        </div>
+    </div>
+	
 
-                @foreach($quizQuestions as $key => $question)
 
-                    <fieldset class="question-step question-step-{{ $key + 1 }}">
-                        <div class="rounded-lg shadow-sm py-25 px-20">
-                            <div class="quiz-card">
+    @php
+    $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
+    $hide_style = '';
+    if( $j != 1){
+		$hide_style = 'style=display:none;';
+    }
+    @endphp
 
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="text-gray font-14">
-                                        <span>{{ trans('quiz.question_grade') }} : {{ $question->grade }} </span>
-                                    </p>
+    <div class="question-area">
+        <div class="question-step question-step-{{ $question->id }}" data-qattempt="{{$quizAttempt->id}}" data-start_time="0" data-qresult="{{$newQuestionResultData->id}}" data-quiz_result_id="{{$newQuizStart->id}}" {{$hide_style}}>
+            <div class="question-layout-block">
+                            <div class="correct-appriciate" style="display:none"></div>
+                <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
+                    <div class="left-content has-bg">
+                        <h2><span>Q {{$j}}</span> - {{ $question->question_title }} <span class="icon-img"><img src="../../assets/default/img/quiz/sound-img.png" alt=""></span> </h2>
+                        <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+                            <div class="question-layout">
+                                <span class="marks" data-marks="{{$question_points}}">[{{$question->question_score}}]</span>
+                                {!! $question_layout !!}
 
-                                    <div class="rounded-sm border border-gray200 p-15 text-gray">{{ $key + 1 }}/{{ $totalQuestionsCount }}</div>
-                                </div>
-
-                                @if(!empty($question->image) or !empty($question->video))
-                                    <div class="quiz-question-media-card rounded-lg mt-10 mb-15">
-                                        @if(!empty($question->image))
-                                            <img src="{{ $question->image }}" class="img-cover rounded-lg" alt="">
-                                        @else
-                                            <video id="questionVideo{{ $question->id }}" oncontextmenu="return false;" controlsList="nodownload" class="video-js" controls preload="auto" width="100%" data-setup='{"fluid": true}'>
-                                                <source src="{{ $question->video }}" type="video/mp4"/>
-                                            </video>
-                                        @endif
-                                    </div>
-                                @endif
-
-                                <div class="">
-                                    <h3 class="font-weight-bold font-16 text-secondary">{{ $question->title }}</h3>
-                                </div>
-
-                                @if($question->type === \App\Models\QuizzesQuestion::$descriptive)
-                                    <div class="form-group mt-35">
-                                        <textarea name="question[{{ $question->id }}][answer]" rows="15" class="form-control"></textarea>
-                                    </div>
-                                @else
-                                    <div class="question-multi-answers mt-35">
-                                        @foreach($question->quizzesQuestionsAnswers as $key => $answer)
-                                            <div class="answer-item">
-                                                <input id="asw-{{ $answer->id }}" type="radio" name="question[{{ $question->id }}][answer]" value="{{ $answer->id }}">
-                                                @if(!$answer->image)
-                                                    <label for="asw-{{ $answer->id }}" class="answer-label font-16 text-dark-blue d-flex align-items-center justify-content-center">
-                                                            <span class="answer-title">
-                                                                {{ $answer->title }}
-                                                            </span>
-                                                    </label>
-                                                @else
-                                                    <label for="asw-{{ $answer->id }}" class="answer-label font-16 text-dark-blue d-flex align-items-center justify-content-center">
-                                                        <div class="image-container">
-                                                            <img src="{{ config('app_url') . $answer->image }}" class="img-cover" alt="">
-                                                        </div>
-                                                    </label>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
+                            </div>
+                            <div class="form-btn">
+                                <input class="submit-btn" type="button" data-question_no="{{$j}}" value="Submit">
                             </div>
                         </div>
-                    </fieldset>
-                @endforeach
+                    </div>
+                </form>
 
-                <div class="d-flex align-items-center mt-30">
-                    <button type="button" class="previous btn btn-sm btn-primary mr-20">{{ trans('quiz.previous_question') }}</button>
-                    <button type="button" class="next btn btn-sm btn-primary mr-auto">{{ trans('quiz.next_question') }}</button>
-                    <button type="submit" class="finish btn btn-sm btn-danger">{{ trans('public.finish') }}</button>
-                </div>
-            </form>
-        </section>
-
+            </div>
+        </div>
     </div>
+    <div class="question-area-temp hide"></div>
+
+    <div class="right-content">
+        <div class="range-value-count">
+            <span>0</span>
+        </div>
+        <!-- vertical range-slider -->
+        <div class="range-container vertical">
+            <div class="range-box">
+                <span class="range-bar-holder">
+                    <span class="track-bar" style="background-color: #4bc1ef;"></span>
+                    <span class="track-bar" style="background-color: #a4b96a;"></span>
+                    <span class="track-bar" style="background-color: #fecc49;"></span>
+                    <span class="track-bar" style="background-color: #f59618;"></span>
+                    <span class="track-bar" style="background-color: #c12f16;"></span>
+                </span>
+                <input orient="vertical" type="range" id="range" min="0" max="{{$quiz->mastery_points}}" value="0">
+                <label for="range" class="coin-marks-label">
+                    {{$quiz->mastery_points}}
+                </label>
+            </div>
+        </div>
+		
+        <div class="range-price" data-time_elapsed="0">
+            <strong class="t-minute">4<em>m</em></strong>
+            <strong class="t-seconds">50<em>s</em></strong>
+        </div>
+        <p class="mastery-text" style="color: #50517d;">{{$quiz->mastery_points}} Mastery Coins</p>
+    </div>
+    </div>
+
+
+
+</div>
+
 @endsection
 
 @push('scripts_bottom')
-    <script src="/assets/default/vendors/video/video.min.js"></script>
-    <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
-    <script src="/assets/default/js/parts/quiz-start.min.js"></script>
+<script src="/assets/default/js/sortable.js"></script>
+<script src="/assets/default/vendors/video/video.min.js"></script>
+<script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
+<script src="/assets/default/js/parts/quiz-start.min.js?var={{$rand_id}}"></script>
+<script>
+
+const range = document.getElementById('range')
+        range.addEventListener('input', (e) = > {
+        const value = + e.target.value
+                const label = e.target.nextElementSibling
+
+                const range_width = getComputedStyle(e.target).getPropertyValue('width')
+                const label_width = getComputedStyle(label).getPropertyValue('width')
+
+                const num_width = + range_width.substring(0, range_width.length - 2)
+                const num_label_width = + label_width.substring(0, label_width.length - 2)
+
+                const max = + e.target.max
+                const min = + e.target.min
+
+                const left = value * (num_width / max) - num_label_width / 2 + scale(value, min, max, 10, - 10)
+                label.style.left = `${left}px`
+
+                label.innerHTML = value
+        })
+        const scale = (num, in_min, in_max, out_min, out_max) = > {
+return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+</script>
 @endpush

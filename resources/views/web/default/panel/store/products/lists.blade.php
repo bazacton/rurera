@@ -29,7 +29,7 @@
                 <div class="col-6 col-md-3 mt-30 mt-md-0 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/sales.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ !empty($physicalSales) ? handlePrice($physicalSales) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ !empty($physicalSales) ? addCurrencyToPrice($physicalSales) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.physical_sales') }}</span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-6 col-md-3 mt-30 mt-md-0 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/download-sales.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ !empty($virtualSales) ? handlePrice($virtualSales) : 0 }}</strong>
+                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ !empty($virtualSales) ? addCurrencyToPrice($virtualSales) : 0 }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.virtual_sales') }}</span>
                     </div>
                 </div>
@@ -114,10 +114,10 @@
                                 <div class="webinar-price-box mt-15">
                                     @if($product->price > 0)
                                         @if($product->getPriceWithActiveDiscountPrice() < $product->price)
-                                            <span class="real">{{ handlePrice($product->getPriceWithActiveDiscountPrice(), true, true, false, null, true) }}</span>
-                                            <span class="off ml-10">{{ handlePrice($product->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($product->getPriceWithActiveDiscountPrice()) }}</span>
+                                            <span class="off ml-10">{{ handlePrice($product->price) }}</span>
                                         @else
-                                            <span class="real">{{ handlePrice($product->price, true, true, false, null, true) }}</span>
+                                            <span class="real">{{ handlePrice($product->price) }}</span>
                                         @endif
                                     @else
                                         <span class="real">{{ trans('public.free') }}</span>
@@ -152,7 +152,7 @@
                                     <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                         <span class="stat-title">{{ trans('panel.sales') }}:</span>
                                         @if(!empty($product->sales()) and count($product->sales()))
-                                            <span class="stat-value">{{ $product->salesCount() }} ({{ handlePrice($product->sales()->sum('total_amount')) }})</span>
+                                            <span class="stat-value">{{ $product->salesCount() }} ({{ addCurrencyToPrice($product->sales()->sum('total_amount')) }})</span>
                                         @else
                                             <span class="stat-value">0</span>
                                         @endif
@@ -161,7 +161,7 @@
                                     @if($product->isPhysical())
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                             <span class="stat-title">{{ trans('update.shipping_cost') }}:</span>
-                                            <span class="stat-value">{{ !empty($product->delivery_fee) ? handlePrice($product->delivery_fee) : 0 }}</span>
+                                            <span class="stat-value">{{ !empty($product->delivery_fee) ? addCurrencyToPrice($product->delivery_fee) : 0 }}</span>
                                         </div>
 
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">

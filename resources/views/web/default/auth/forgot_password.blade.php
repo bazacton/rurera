@@ -12,24 +12,18 @@
                 <div class="login-card">
                     <h1 class="font-20 font-weight-bold">{{ trans('auth.forget_password') }}</h1>
 
-                    <form method="post" action="/forget-password" class="mt-35">
+                    <form method="post" action="/send-email" class="mt-35">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                         <div class="form-group">
-                            <label class="input-label" for="username">{{ trans('auth.email_or_mobile') }}:</label>
-                            <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username"
-                                   value="{{ old('username') }}" aria-describedby="emailHelp">
-                            @error('username')
+                            <label class="input-label" for="email">{{ trans('auth.email') }}:</label>
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                   aria-describedby="emailHelp">
+                            @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-
-                        @if(!empty(getGeneralSecuritySettings('captcha_for_forgot_pass')))
-                            @include('web.default.includes.captcha_input')
-                        @endif
-
 
                         <button type="submit" class="btn btn-primary btn-block mt-20">{{ trans('auth.reset_password') }}</button>
                     </form>

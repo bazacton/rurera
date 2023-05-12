@@ -2,14 +2,7 @@
 
 @section('content')
     <section>
-        <div class="d-flex align-items-center justify-content-between">
-            <h2 class="section-title">{{ trans('panel.notifications') }}</h2>
-
-            <a href="/panel/notifications/mark-all-as-read" class="delete-action d-flex align-items-center cursor-pointer text-hover-primary" data-title="{{ trans('update.convert_unread_messages_to_read') }}" data-confirm="{{ trans('update.yes_convert') }}">
-                <i data-feather="check" width="20" height="20"></i>
-                <span class="ml-5 font-16">{{ trans('update.mark_all_notifications_as_read') }}</span>
-            </a>
-        </div>
+        <h2 class="section-title">{{ trans('panel.notifications') }}</h2>
 
         @if(!empty($notifications) and !$notifications->isEmpty())
             @foreach($notifications as $notification)

@@ -2,6 +2,9 @@
 
 use App\Mixins\Financial\MultiCurrency;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\QuizAttemptLogs;
+use App\Models\QuizzAttempts;
+use App\Models\QuizzesResult;
 
 function getTemplate()
 {
@@ -765,7 +768,7 @@ function currencySign($currency = null)
             return '₡';
             break;
         case 'CZK':
-            return 'Kč';
+            return 'K�?';
             break;
         case 'CUP':
             return '₱';
@@ -2213,4 +2216,1049 @@ function getNavbarButton($roleId = null, $forGuest = false)
     return \App\Models\NavbarButton::where('role_id', $roleId)
         ->where('for_guest', $forGuest)
         ->first();
+}
+
+
+function esc_html($data){
+	return $data;
+}
+
+function esc_html__($data){
+	return $data;
+}
+
+
+function toolbar_tools(){
+$toolbar_tools = array(
+            'columns' => array(
+                'title' => esc_html__('Column layout', 'leform'),
+                'icon' => 'fas fa-columns',
+                'options' => array(
+                    '1' => esc_html__('1 column', 'leform'),
+                    '2' => esc_html__('2 columns', 'leform'),
+                    '3' => esc_html__('3 columns', 'leform'),
+                    '4' => esc_html__('4 columns', 'leform'),
+                    '6' => esc_html__('6 columns', 'leform')
+                ),
+                'type' => 'other'
+            ),
+            'html' => array(
+                'title' => esc_html__('HTML', 'leform'),
+                'icon' => 'fas fa-code',
+                'type' => 'other'
+            ),
+            'sum_quiz' => array(
+                'title' => esc_html__('SUM Q', 'leform'),
+                'icon' => 'fa fa-plus',
+                'type' => 'other'
+            ),
+            'sqroot_quiz' => array(
+                'title' => esc_html__('Sqroot', 'leform'),
+                'icon' => 'fas fa-square-root-alt',
+                'type' => 'other'
+            ),
+            'image_quiz' => array(
+                'title' => esc_html__('Image', 'leform'),
+                'icon' => 'fas fa-image',
+                'type' => 'other'
+            ),
+			'paragraph_quiz' => array(
+                'title' => esc_html__('Text', 'leform'),
+                'icon' => 'fas fa-heading',
+                'type' => 'other'
+            ),
+			'checkbox' => array(
+                'title' => esc_html__('Checkbox', 'leform'),
+                'icon' => 'far fa-check-square',
+                'type' => 'input'
+            ),
+            'radio' => array(
+                'title' => esc_html__('Radio Button', 'leform'),
+                'icon' => 'far fa-dot-circle',
+                'type' => 'input'
+            ),
+			'sortable_quiz' => array(
+                'title' => esc_html__('Sortable Quiz', 'leform'),
+                'icon' => 'fas fa-arrows-alt-v',
+                'type' => 'input'
+            ),
+
+            /*'imageselect' => array(
+                'title' => esc_html__('Image Select', 'leform'),
+                'icon' => 'far fa-images',
+                'type' => 'input'
+            ),*/
+            
+        );
+return $toolbar_tools;
+}
+function autocomplete_options(){
+$autocomplete_options = array(
+            'off' => esc_html__('None', 'leform'),
+            'name' => esc_html__('Full Name', 'leform') . ' (name)',
+            'given-name' => esc_html__('First Name', 'leform') . ' (given-name)',
+            'additional-name' => esc_html__('Middle Name', 'leform') . ' (additional-name)',
+            'family-name' => esc_html__('Last Name', 'leform') . ' (family-name)',
+            'email' => esc_html__('Email', 'leform') . ' (email)',
+            'tel' => esc_html__('Phone', 'leform') . ' (tel)',
+            'street-address' => esc_html__('Single Address Line', 'leform') . ' (street-address)',
+            'address-line1' => esc_html__('Address Line 1', 'leform') . ' (address-line1)',
+            'address-line2' => esc_html__('Address Line 2', 'leform') . ' (address-line2)',
+            'address-level1' => esc_html__('State or Province', 'leform') . ' (address-level1)',
+            'address-level2' => esc_html__('City', 'leform') . ' (address-level2)',
+            'postal-code' => esc_html__('ZIP Code', 'leform') . ' (postal-code)',
+            'country' => esc_html__('Country', 'leform') . ' (country)',
+            'cc-name' => esc_html__('Name on Card', 'leform') . ' (cc-name)',
+            'cc-number' => esc_html__('Card Number', 'leform') . ' (cc-number)',
+            'cc-csc' => esc_html__('CVC', 'leform') . ' (cc-csc)',
+            'cc-exp-month' => esc_html__('Expiry (month)', 'leform') . ' (cc-exp-month)',
+            'cc-exp-year' => esc_html__('Expiry (year)', 'leform') . ' (cc-exp-year)',
+            'cc-exp' => esc_html__('Expiry', 'leform') . ' (cc-exp)',
+            'cc-type' => esc_html__('Card Type', 'leform') . ' (cc-type)'
+        );
+return $autocomplete_options;
+}
+
+function element_properties_meta($chapters){
+$element_properties_meta = array(
+            'settings' => array(
+                'general-tab' => array('type' => 'tab', 'value' => 'general', 'label' => esc_html__('General', 'leform')),
+                'name' => array('value' => esc_html__('Untitled', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name helps to identify the form.', 'leform'), 'type' => 'text'),
+                'active' => array('value' => 'on', 'label' => esc_html__('Active', 'leform'), 'tooltip' => esc_html__('Inactive forms will not appear on the site.', 'leform'), 'type' => 'checkbox'),
+                'key-fields' => array('value' => array('primary' => '', 'secondary' => ''), 'caption' => array('primary' => esc_html__('Primary field', 'leform'), 'secondary' => esc_html__('Secondary field', 'leform')), 'placeholder' => array('primary' => esc_html__('Select primary field', 'leform'), 'secondary' => esc_html__('Select secondary field', 'leform')), 'label' => esc_html__('Key fields', 'leform'), 'tooltip' => esc_html__('The values of these fields are displayed on Log page in relevant columns.', 'leform'), 'type' => 'key-fields'),
+                'datetime-args' => array('value' => array('date-format' => 'yyyy-mm-dd', 'time-format' => 'hh:ii', 'locale' => 'en'), 'label' => esc_html__('Date and time parameters', 'leform'), 'tooltip' => esc_html__('Choose the date and time formats and language for datetimepicker. It is used for "date" and "time" fields.', 'leform'), 'type' => 'datetime-args', 'date-format-options' => array('yyyy-mm-dd' => 'YYYY-MM-DD', 'mm/dd/yyyy' => 'MM/DD/YYYY', 'dd/mm/yyyy' => 'DD/MM/YYYY', 'dd.mm.yyyy' => 'DD.MM.YYYY'), 'date-format-label' => esc_html__('Date format', 'leform'), 'time-format-options' => array('hh:ii aa' => '12 hours', 'hh:ii' => '24 hours'), 'time-format-label' => esc_html__('Time format', 'leform'), 'locale-options' => array('en', 'cs', 'da', 'de', 'es', 'fi', 'fr', 'hu', 'it', 'nl', 'pl', 'pt', 'ro', 'ru', 'sk', 'tr', 'zh'), 'locale-label' => esc_html__('Language', 'leform')),
+                'cross-domain' => array('value' => 'off', 'label' => esc_html__('Cross-domain calls', 'leform'), 'tooltip' => esc_html__('Enable this option if you want to use cross-domain embedding, i.e. plugin installed on domain1, and form is used on domain2. Due to security reasons this feature is automatically disabled if the form has Signature field.', 'leform'), 'type' => 'checkbox'),
+                'session-enable' => array('value' => 'off', 'label' => esc_html__('Enable sessions', 'leform'), 'tooltip' => esc_html__('Activate this option if you want to enable sessions for the form. Session allows to keep non-completed form data, so user can continue form filling when come back.', 'leform'), 'type' => 'checkbox'),
+                'session-length' => array('value' => '48', 'label' => esc_html__('Session length', 'leform'), 'tooltip' => esc_html__('Specify how many hours non-completed data are kept.', 'leform'), 'unit' => 'hrs', 'type' => 'units', 'visible' => array('session-enable' => array('on'))),
+                'style-tab' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'style' => array('caption' => array('style' => esc_html__('Load theme.', 'leform')), 'label' => esc_html__('Theme', 'leform'), 'tooltip' => esc_html__('Load existing theme or save current one. All parameters on "Style" tab will be overwritten once you load a theme.', 'leform'), 'type' => 'style'),
+                'style-sections' => array('type' => 'sections', 'sections' => array(
+                        'global' => array('label' => esc_html__('Global', 'leform'), 'icon' => 'fas fa-globe'),
+                        'labels' => array('label' => esc_html__('Labels', 'leform'), 'icon' => 'fas fa-font'),
+                        'inputs' => array('label' => esc_html__('Inputs', 'leform'), 'icon' => 'fas fa-pencil-alt'),
+                        'buttons' => array('label' => esc_html__('Buttons', 'leform'), 'icon' => 'far fa-paper-plane'),
+                        'errors' => array('label' => esc_html__('Errors', 'leform'), 'icon' => 'far fa-hand-paper'),
+                        'progress' => array('label' => esc_html__('Progress Bar', 'leform'), 'icon' => 'fas fa-sliders-h')
+                    )),
+                'start-global' => array('type' => 'section-start', 'section' => 'global'),
+                'text-style' => array('value' => array('family' => 'arial', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Text style', 'leform'), 'tooltip' => esc_html__('Adjust the text style.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'hr-1' => array('type' => 'hr'),
+                'wrapper-style-sections' => array('type' => 'sections', 'sections' => array(
+                        'wrapper-inline' => array('label' => esc_html__('Inline Mode', 'leform'), 'icon' => 'fab fa-wpforms'),
+                        'wrapper-popup' => array('label' => esc_html__('Popup Mode', 'leform'), 'icon' => 'far fa-window-maximize'),
+                    )),
+                'start-wrapper-inline' => array('type' => 'section-start', 'section' => 'wrapper-inline'),
+                'inline-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Wrapper background', 'leform'), 'tooltip' => esc_html__('Adjust the background style for inline view of the form.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'inline-border-style' => array('value' => array('width' => '0', 'style' => 'solid', 'radius' => '0', 'color' => '', 'top' => 'off', 'right' => 'off', 'bottom' => 'off', 'left' => 'off'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Wrapper border', 'leform'), 'tooltip' => esc_html__('Adjust the border style for inline view of the form.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'inline-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Wrapper shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow for inline view of the form.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'inline-padding' => array('value' => array('top' => '20', 'right' => '20', 'bottom' => '20', 'left' => '20'), 'caption' => array('top' => esc_html__('Top', 'leform'), 'right' => esc_html__('Right', 'leform'), 'bottom' => esc_html__('Bottom', 'leform'), 'left' => esc_html__('Left', 'leform')), 'label' => esc_html__('Padding', 'leform'), 'tooltip' => esc_html__('Adjust the padding for inline view of the form.', 'leform'), 'type' => 'padding'),
+                'end-wrapper-inline' => array('type' => 'section-end'),
+                'start-wrapper-popup' => array('type' => 'section-start', 'section' => 'wrapper-popup'),
+                'popup-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#ffffff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Popup background', 'leform'), 'tooltip' => esc_html__('Adjust the background style for popup view of the form.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'popup-border-style' => array('value' => array('width' => '0', 'style' => 'solid', 'radius' => '5', 'color' => '', 'top' => 'off', 'right' => 'off', 'bottom' => 'off', 'left' => 'off'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Popup border', 'leform'), 'tooltip' => esc_html__('Adjust the border style for popup view of the form.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'popup-shadow' => array('value' => array('style' => 'regular', 'size' => 'huge', 'color' => '#000'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Popup shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow for popup view of the form.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'popup-padding' => array('value' => array('top' => '20', 'right' => '20', 'bottom' => '20', 'left' => '20'), 'caption' => array('top' => esc_html__('Top', 'leform'), 'right' => esc_html__('Right', 'leform'), 'bottom' => esc_html__('Bottom', 'leform'), 'left' => esc_html__('Left', 'leform')), 'label' => esc_html__('Padding', 'leform'), 'tooltip' => esc_html__('Adjust the padding for popup view of the form.', 'leform'), 'type' => 'padding'),
+                'popup-overlay-color' => array('value' => 'rgba(255,255,255,0.7)', 'label' => esc_html__('Overlay color', 'leform'), 'tooltip' => esc_html__('Adjust the overlay color.', 'leform'), 'type' => 'color', 'group' => 'style'),
+                'popup-overlay-click' => array('value' => 'on', 'label' => esc_html__('Active overlay', 'leform'), 'tooltip' => esc_html__('If enabled, the popup will be closed when user click overlay.', 'leform'), 'type' => 'checkbox'),
+                'popup-close-color' => array('value' => array('color1' => '#FF9800', 'color2' => '#FFC107'), 'label' => esc_html__('Close icon colors', 'leform'), 'tooltip' => esc_html__('Adjust the color of the close icon.', 'leform'), 'caption' => array('color1' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Hover color', 'leform')), 'type' => 'two-colors', 'group' => 'style'),
+                'popup-spinner-color' => array('value' => array('color1' => '#FF5722', 'color2' => '#FF9800', 'color3' => '#FFC107'), 'label' => esc_html__('Spinner colors', 'leform'), 'tooltip' => esc_html__('Adjust the color of the spinner.', 'leform'), 'caption' => array('color1' => esc_html__('Small circle', 'leform'), 'color2' => esc_html__('Middle circle', 'leform'), 'color3' => esc_html__('Large circle', 'leform')), 'type' => 'three-colors', 'group' => 'style'),
+                'end-wrapper-popup' => array('type' => 'section-end'),
+                'hr-9' => array('type' => 'hr'),
+                'tooltip-anchor' => array('value' => 'none', 'label' => esc_html__('Tooltip anchor', 'leform'), 'tooltip' => esc_html__('Select the anchor for tooltips.', 'leform'), 'type' => 'select', 'options' => array('none' => esc_html__('Disable tooltips', 'leform'), 'label' => esc_html__('Label', 'leform'), 'description' => esc_html__('Description', 'leform'), 'input' => esc_html__('Input field', 'leform')), 'group' => 'style'),
+                'tooltip-theme' => array('value' => 'dark', 'label' => esc_html__('Tooltip theme', 'leform'), 'tooltip' => esc_html__('Select the theme of tooltips.', 'leform'), 'type' => 'select', 'options' => array('dark' => esc_html__('Dark', 'leform'), 'light' => esc_html__('Light', 'leform')), 'group' => 'style'),
+                'hr-2' => array('type' => 'hr'),
+                'max-width' => array('value' => array('value' => '720', 'unit' => 'px', 'position' => 'center'), 'label' => esc_html__('Form width', 'leform'), 'tooltip' => esc_html__('Specify the maximum form width and its alignment. Leave this field empty to set maximum form width as 100%.', 'leform'), 'caption' => array('value' => esc_html__('Width', 'leform'), 'unit' => esc_html__('Units', 'leform'), 'position' => esc_html__('Position', 'leform')), 'type' => 'block-width'),
+                'element-spacing' => array('value' => '20', 'label' => esc_html__('Element spacing', 'leform'), 'tooltip' => esc_html__('Specify the spacing between form elements.', 'leform'), 'unit' => 'px', 'type' => 'units'),
+                'responsiveness' => array('value' => array('size' => '480', 'custom' => '480'), 'caption' => array('size' => esc_html__('Width', 'leform'), 'custom' => esc_html__('Custom', 'leform')), 'label' => esc_html__('Responsiveness', 'leform'), 'tooltip' => esc_html__('At what form width should column layouts be stacked.', 'leform'), 'type' => 'select-size', 'options' => array('480' => esc_html__('Phone portrait (480px)', 'leform'), '768' => esc_html__('Phone landscape (768px)', 'leform'), '1024' => esc_html__('Tablet (1024px)', 'leform'), 'custom' => esc_html__('Custom', 'leform'))),
+                'end-global' => array('type' => 'section-end'),
+                'start-labels' => array('type' => 'section-start', 'section' => 'labels'),
+                'label-text-style' => array('value' => array('family' => '', 'size' => '16', 'color' => '#444', 'bold' => 'on', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label text style', 'leform'), 'tooltip' => esc_html__('Adjust the text style of labels.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'label-style' => array('value' => array('position' => 'top', 'width' => '3'), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform')), 'label' => esc_html__('Label position', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field.', 'leform'), 'type' => 'label-position'),
+                'description-text-style' => array('value' => array('family' => '', 'size' => '14', 'color' => '#888', 'bold' => 'off', 'italic' => 'on', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Description text style', 'leform'), 'tooltip' => esc_html__('Adjust the text style of descriptions.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'description-style' => array('value' => array('position' => 'bottom'), 'caption' => array('position' => esc_html__('Position', 'leform')), 'label' => esc_html__('Description position', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field.', 'leform'), 'type' => 'description-position'),
+                'required-position' => array('value' => 'none', 'label' => esc_html__('"Required" symbol position', 'leform'), 'tooltip' => esc_html__('Select the position of "required" symbol/text. The symbol/text is displayed for fields that are configured as "Required".', 'leform'), 'type' => 'select', 'options' => array('none' => esc_html__('Do not display', 'leform'), 'label-left' => esc_html__('To the left of the label', 'leform'), 'label-right' => esc_html__('To the right of the label', 'leform'), 'description-left' => esc_html__('To the left of the description', 'leform'), 'description-right' => esc_html__('To the right of the description', 'leform')), 'group' => 'style'),
+                'required-text' => array('value' => '*', 'label' => esc_html__('"Required" symbol/text', 'leform'), 'tooltip' => esc_html__('The symbol/text is displayed for fields that are configured as "Required".', 'leform'), 'type' => 'text', 'visible' => array('required-position' => array('label-left', 'label-right', 'description-left', 'description-right')), 'group' => 'style'),
+                'required-text-style' => array('value' => array('family' => '', 'size' => '', 'color' => '#d9534f', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('"Required" symbol/text style', 'leform'), 'tooltip' => esc_html__('Adjust the text style of "required" symbol/text.', 'leform'), 'type' => 'text-style', 'visible' => array('required-position' => array('label-left', 'label-right', 'description-left', 'description-right')), 'group' => 'style'),
+                'end-labels' => array('type' => 'section-end'),
+                'start-inputs' => array('type' => 'section-start', 'section' => 'inputs'),
+                'input-size' => array('value' => 'medium', 'label' => esc_html__('Input size', 'leform'), 'tooltip' => esc_html__('Choose the size of input fields.', 'leform'), 'type' => 'select', 'options' => array('tiny' => esc_html__('Tiny', 'leform'), 'small' => esc_html__('Small', 'leform'), 'medium' => esc_html__('Medium', 'leform'), 'large' => esc_html__('Large', 'leform'), 'huge' => esc_html__('Huge', 'leform')), 'group' => 'style'),
+                'input-icon' => array('value' => array('position' => 'inside', 'size' => '20', 'color' => '#444', 'background' => '', 'border' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'background' => esc_html__('Background', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Icon style', 'leform'), 'tooltip' => esc_html__('Adjust the style of input field icons.', 'leform'), 'type' => 'icon-style', 'group' => 'style'),
+                'textarea-height' => array('value' => '160', 'label' => esc_html__('Textarea height', 'leform'), 'tooltip' => esc_html__('Set the height of textarea fields.', 'leform'), 'unit' => 'px', 'type' => 'units'),
+                'input-style-sections' => array('type' => 'sections', 'sections' => array(
+                        'inputs-default' => array('label' => esc_html__('Default', 'leform'), 'icon' => 'fas fa-globe', 'group' => 'style'),
+                        'inputs-hover' => array('label' => esc_html__('Hover', 'leform'), 'icon' => 'far fa-hand-pointer', 'group' => 'style'),
+                        'inputs-focus' => array('label' => esc_html__('Focus', 'leform'), 'icon' => 'fas fa-i-cursor', 'group' => 'style')
+                    )),
+                'start-inputs-default' => array('type' => 'section-start', 'section' => 'inputs-default'),
+                'input-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Input text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of input fields.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'input-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#fff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Input background', 'leform'), 'tooltip' => esc_html__('Adjust the background of input fields.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'input-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Input border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of input fields.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'input-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Input shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of input fields.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'end-inputs-default' => array('type' => 'section-end'),
+                'start-inputs-hover' => array('type' => 'section-start', 'section' => 'inputs-hover'),
+                'input-hover-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'input-hover-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Input text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of hovered input fields.', 'leform'), 'type' => 'text-style', 'visible' => array('input-hover-inherit' => array('off')), 'group' => 'style'),
+                'input-hover-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#fff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Input background', 'leform'), 'tooltip' => esc_html__('Adjust the background of hovered input fields.', 'leform'), 'type' => 'background-style', 'visible' => array('input-hover-inherit' => array('off')), 'group' => 'style'),
+                'input-hover-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Input border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of hovered input fields.', 'leform'), 'type' => 'border-style', 'visible' => array('input-hover-inherit' => array('off')), 'group' => 'style'),
+                'input-hover-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Input shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of hovered input fields.', 'leform'), 'type' => 'shadow', 'visible' => array('input-hover-inherit' => array('off')), 'group' => 'style'),
+                'end-inputs-hover' => array('type' => 'section-end'),
+                'start-inputs-focus' => array('type' => 'section-start', 'section' => 'inputs-focus'),
+                'input-focus-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'input-focus-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Input text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of focused input fields.', 'leform'), 'type' => 'text-style', 'visible' => array('input-focus-inherit' => array('off')), 'group' => 'style'),
+                'input-focus-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#fff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Input background', 'leform'), 'tooltip' => esc_html__('Adjust the background of focused input fields.', 'leform'), 'type' => 'background-style', 'visible' => array('input-focus-inherit' => array('off')), 'group' => 'style'),
+                'input-focus-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Input border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of focused input fields.', 'leform'), 'type' => 'border-style', 'visible' => array('input-focus-inherit' => array('off')), 'group' => 'style'),
+                'input-focus-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Input shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of focused input fields.', 'leform'), 'type' => 'shadow', 'visible' => array('input-focus-inherit' => array('off')), 'group' => 'style'),
+                'end-inputs-focus' => array('type' => 'section-end'),
+                'hr-5' => array('type' => 'hr'),
+                'checkbox-radio-style' => array('value' => array('position' => 'left', 'size' => 'medium', 'align' => 'left', 'layout' => '1'), 'caption' => array('position' => esc_html__('Position', 'leform'), 'size' => esc_html__('Size', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Checkbox and radio style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox and radio button fields and their captions.', 'leform'), 'type' => 'checkbox-radio-style', 'group' => 'style'),
+                'checkbox-view' => array('value' => 'classic', 'options' => array('classic', 'fa-check', 'square', 'tgl'), 'label' => esc_html__('Checkbox view', 'leform'), 'tooltip' => esc_html__('Choose the checkbox style.', 'leform'), 'type' => 'checkbox-view', 'group' => 'style'),
+                'radio-view' => array('value' => 'classic', 'options' => array('classic', 'fa-check', 'dot'), 'label' => esc_html__('Radio button view', 'leform'), 'tooltip' => esc_html__('Choose the radio button style.', 'leform'), 'type' => 'radio-view', 'group' => 'style'),
+                'checkbox-radio-sections' => array('type' => 'sections', 'sections' => array(
+                        'checkbox-radio-unchecked' => array('label' => esc_html__('Unchecked', 'leform'), 'icon' => 'far fa-square'),
+                        'checkbox-radio-checked' => array('label' => esc_html__('Checked', 'leform'), 'icon' => 'far fa-check-square')
+                    )),
+                'start-checkbox-radio-unchecked' => array('type' => 'section-start', 'section' => 'checkbox-radio-unchecked'),
+                'checkbox-radio-unchecked-color' => array('value' => array('color1' => '#ccc', 'color2' => '#fff', 'color3' => '#444'), 'label' => esc_html__('Checkbox and radio colors', 'leform'), 'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'leform'), 'caption' => array('color1' => 'Border', 'color2' => 'Background', 'color3' => 'Mark'), 'type' => 'three-colors', 'group' => 'style'),
+                'end-checkbox-radio-unchecked' => array('type' => 'section-end'),
+                'start-checkbox-radio-checked' => array('type' => 'section-start', 'section' => 'checkbox-radio-checked'),
+                'checkbox-radio-checked-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit colors', 'leform'), 'tooltip' => esc_html__('Use the same colors as for unchecked state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'checkbox-radio-checked-color' => array('value' => array('color1' => '#ccc', 'color2' => '#fff', 'color3' => '#444'), 'label' => esc_html__('Checkbox and radio colors', 'leform'), 'tooltip' => esc_html__('Adjust colors of checkboxes and radio buttons.', 'leform'), 'caption' => array('color1' => 'Border', 'color2' => 'Background', 'color3' => 'Mark'), 'type' => 'three-colors', 'visible' => array('checkbox-radio-checked-inherit' => array('off')), 'group' => 'style'),
+                'end-checkbox-radio-checked' => array('type' => 'section-end'),
+                'hr-6' => array('type' => 'hr'),
+                'imageselect-style' => array('value' => array('align' => 'left', 'effect' => 'none'), 'caption' => array('align' => esc_html__('Alignment', 'leform'), 'effect' => esc_html__('Effect', 'leform')), 'label' => esc_html__('Image Select style', 'leform'), 'tooltip' => esc_html__('Adjust image alignment and effect.', 'leform'), 'type' => 'imageselect-style', 'options' => array('none' => esc_html__('None', 'leform'), 'grayscale' => esc_html__('Grayscale', 'leform')), 'group' => 'style'),
+                'imageselect-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Image label text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of image label.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'imageselects-style-sections' => array('type' => 'sections', 'sections' => array(
+                        'imageselects-default' => array('label' => esc_html__('Default', 'leform'), 'icon' => 'fas fa-globe'),
+                        'imageselects-hover' => array('label' => esc_html__('Hover', 'leform'), 'icon' => 'far fa-hand-pointer'),
+                        'imageselects-selected' => array('label' => esc_html__('Selected', 'leform'), 'icon' => 'far fa-check-square')
+                    )),
+                'start-imageselects-default' => array('type' => 'section-start', 'section' => 'imageselects-default'),
+                'imageselect-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Image border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of images.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'imageselect-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Image shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of images.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'end-imageselects-default' => array('type' => 'section-end'),
+                'start-imageselects-hover' => array('type' => 'section-start', 'section' => 'imageselects-hover'),
+                'imageselect-hover-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'imageselect-hover-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Image border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of hovered images.', 'leform'), 'type' => 'border-style', 'visible' => array('imageselect-hover-inherit' => array('off')), 'group' => 'style'),
+                'imageselect-hover-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Image shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of hovered images.', 'leform'), 'type' => 'shadow', 'visible' => array('imageselect-hover-inherit' => array('off')), 'group' => 'style'),
+                'end-imageselects-hover' => array('type' => 'section-end'),
+                'start-imageselects-selected' => array('type' => 'section-start', 'section' => 'imageselects-selected'),
+                'imageselect-selected-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'imageselect-selected-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Image border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of selected images.', 'leform'), 'type' => 'border-style', 'visible' => array('imageselect-selected-inherit' => array('off')), 'group' => 'style'),
+                'imageselect-selected-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Image shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of selected images.', 'leform'), 'type' => 'shadow', 'visible' => array('imageselect-selected-inherit' => array('off')), 'group' => 'style'),
+                'imageselect-selected-scale' => array('value' => 'on', 'label' => esc_html__('Zoom selected image', 'leform'), 'tooltip' => esc_html__('Zoom selected image.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'end-imageselects-selected' => array('type' => 'section-end'),
+                'hr-7' => array('type' => 'hr'),
+                'multiselect-style' => array('value' => array('align' => 'left', 'height' => '120', 'hover-background' => '#26B99A', 'hover-color' => '#ffffff', 'selected-background' => '#169F85', 'selected-color' => '#ffffff'), 'caption' => array('align' => esc_html__('Alignment', 'leform'), 'height' => esc_html__('Height', 'leform'), 'hover-color' => esc_html__('Hover colors', 'leform'), 'selected-color' => esc_html__('Selected colors', 'leform')), 'label' => esc_html__('Multiselect style', 'leform'), 'tooltip' => esc_html__('Choose how to display multiselect options.', 'leform'), 'type' => 'multiselect-style', 'group' => 'style'),
+                'hr-8' => array('type' => 'hr'),
+                'tile-style' => array('value' => array('size' => 'medium', 'width' => 'default', 'position' => 'left', 'layout' => 'inline'), 'caption' => array('size' => esc_html__('Size', 'leform'), 'width' => esc_html__('Width', 'leform'), 'position' => esc_html__('Position', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Tile style', 'leform'), 'tooltip' => esc_html__('Adjust the tile style.', 'leform'), 'type' => 'global-tile-style', 'group' => 'style'),
+                'tile-style-sections' => array('type' => 'sections', 'sections' => array(
+                        'tiles-default' => array('label' => esc_html__('Default', 'leform'), 'icon' => 'fas fa-globe'),
+                        'tiles-hover' => array('label' => esc_html__('Hover', 'leform'), 'icon' => 'far fa-hand-pointer'),
+                        'tiles-active' => array('label' => esc_html__('Selected', 'leform'), 'icon' => 'far fa-check-square')
+                    )),
+                'start-tiles-default' => array('type' => 'section-start', 'section' => 'tiles-default'),
+                'tile-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Tile text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of tiles.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'tile-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#ffffff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Vertical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Tile background', 'leform'), 'tooltip' => esc_html__('Adjust the background of tiles.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'tile-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#ccc', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Tile border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of tiles.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'tile-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Tile shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of tile.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'end-tiles-default' => array('type' => 'section-end'),
+                'start-tiles-hover' => array('type' => 'section-start', 'section' => 'tiles-hover'),
+                'tile-hover-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'tile-hover-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Tile text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of hovered tiles.', 'leform'), 'type' => 'text-style', 'visible' => array('tile-hover-inherit' => array('off')), 'group' => 'style'),
+                'tile-hover-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#ffffff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Tile background', 'leform'), 'tooltip' => esc_html__('Adjust the background of hovered tiles.', 'leform'), 'type' => 'background-style', 'visible' => array('tile-hover-inherit' => array('off')), 'group' => 'style'),
+                'tile-hover-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#169F85', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Tile border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of hovered tiles.', 'leform'), 'type' => 'border-style', 'visible' => array('tile-hover-inherit' => array('off')), 'group' => 'style'),
+                'tile-hover-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Tile shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of hovered tiles.', 'leform'), 'type' => 'shadow', 'visible' => array('tile-hover-inherit' => array('off')), 'group' => 'style'),
+                'end-tiles-hover' => array('type' => 'section-end'),
+                'start-tiles-active' => array('type' => 'section-start', 'section' => 'tiles-active'),
+                'tile-selected-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'tile-selected-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#444', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Tile text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of selected tiles.', 'leform'), 'type' => 'text-style', 'visible' => array('tile-selected-inherit' => array('off')), 'group' => 'style'),
+                'tile-selected-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#ffffff', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Tile background', 'leform'), 'tooltip' => esc_html__('Adjust the background of selected tiles.', 'leform'), 'type' => 'background-style', 'visible' => array('tile-selected-inherit' => array('off')), 'group' => 'style'),
+                'tile-selected-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#169F85', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Tile border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of selected tiles.', 'leform'), 'type' => 'border-style', 'visible' => array('tile-selected-inherit' => array('off')), 'group' => 'style'),
+                'tile-selected-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Tile shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of selected tiles.', 'leform'), 'type' => 'shadow', 'visible' => array('tile-selected-inherit' => array('off')), 'group' => 'style'),
+                'tile-selected-transform' => array('value' => 'zoom-in', 'label' => esc_html__('Transform', 'leform'), 'tooltip' => esc_html__('Adjust the transform of selected tiles.', 'leform'), 'type' => 'radio-bar', 'options' => array('none' => esc_html__('None', 'leform'), 'zoom-in' => esc_html__('Zoom In', 'leform'), 'zoom-out' => esc_html__('Zoom Out', 'leform'), 'shift-down' => esc_html__('Shift Down', 'leform')), 'group' => 'style'),
+                'end-tiles-active' => array('type' => 'section-end'),
+                'hr-10' => array('type' => 'hr'),
+                'rangeslider-skin' => array('value' => 'flat', 'label' => esc_html__('Range slider skin', 'leform'), 'tooltip' => esc_html__('Select the skin of range slider.', 'leform'), 'type' => 'select', 'options' => array('flat' => esc_html__('Flat', 'leform'), 'sharp' => esc_html__('Sharp', 'leform'), 'round' => esc_html__('Round', 'leform')), 'group' => 'style'),
+                'rangeslider-color' => array('value' => array('color1' => '#e8e8e8', 'color2' => '#888888', 'color3' => '#26B99A', 'color4' => '#169F85', 'color5' => '#ffffff'), 'label' => esc_html__('Range slider colors', 'leform'), 'tooltip' => esc_html__('Adjust colors of range slider.', 'leform'), 'caption' => array('color1' => 'Main', 'color2' => 'Min/max text', 'color3' => 'Selected', 'color4' => 'Handle', 'color5' => 'Tooltip text'), 'type' => 'five-colors', 'group' => 'style'),
+                'end-inputs' => array('type' => 'section-end'),
+                'start-buttons' => array('type' => 'section-start', 'section' => 'buttons'),
+                'button-style' => array('value' => array('size' => 'medium', 'width' => 'default', 'position' => 'center'), 'caption' => array('size' => esc_html__('Size', 'leform'), 'width' => esc_html__('Width', 'leform'), 'position' => esc_html__('Position', 'leform')), 'label' => esc_html__('Button style', 'leform'), 'tooltip' => esc_html__('Adjust the button size and position.', 'leform'), 'type' => 'global-button-style', 'group' => 'style'),
+                'button-style-sections' => array('type' => 'sections', 'sections' => array(
+                        'buttons-default' => array('label' => esc_html__('Default', 'leform'), 'icon' => 'fas fa-globe'),
+                        'buttons-hover' => array('label' => esc_html__('Hover', 'leform'), 'icon' => 'far fa-hand-pointer'),
+                        'buttons-active' => array('label' => esc_html__('Active', 'leform'), 'icon' => 'far fa-paper-plane')
+                    )),
+                'start-buttons-default' => array('type' => 'section-start', 'section' => 'buttons-default'),
+                'button-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#fff', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Button text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of buttons.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'button-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#26B99A', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Button background', 'leform'), 'tooltip' => esc_html__('Adjust the background of buttons.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'button-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#169F85', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Button border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of buttons.', 'leform'), 'type' => 'border-style', 'group' => 'style'),
+                'button-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Button shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of button.', 'leform'), 'type' => 'shadow', 'group' => 'style'),
+                'end-buttons-default' => array('type' => 'section-end'),
+                'start-buttons-hover' => array('type' => 'section-start', 'section' => 'buttons-hover'),
+                'button-hover-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'button-hover-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#fff', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Button text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of hovered buttons.', 'leform'), 'type' => 'text-style', 'visible' => array('button-hover-inherit' => array('off')), 'group' => 'style'),
+                'button-hover-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#169F85', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Button background', 'leform'), 'tooltip' => esc_html__('Adjust the background of hovered buttons.', 'leform'), 'type' => 'background-style', 'visible' => array('button-hover-inherit' => array('off')), 'group' => 'style'),
+                'button-hover-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#169F85', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Button border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of hovered buttons.', 'leform'), 'type' => 'border-style', 'visible' => array('button-hover-inherit' => array('off')), 'group' => 'style'),
+                'button-hover-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Button shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of hovered buttons.', 'leform'), 'type' => 'shadow', 'visible' => array('button-hover-inherit' => array('off')), 'group' => 'style'),
+                'end-buttons-hover' => array('type' => 'section-end'),
+                'start-buttons-active' => array('type' => 'section-start', 'section' => 'buttons-active'),
+                'button-active-inherit' => array('value' => 'on', 'label' => esc_html__('Inherit default style', 'leform'), 'tooltip' => esc_html__('Use the same style as for default state.', 'leform'), 'type' => 'checkbox', 'group' => 'style'),
+                'button-active-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#fff', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'center'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Button text', 'leform'), 'tooltip' => esc_html__('Adjust the text style of clicked buttons.', 'leform'), 'type' => 'text-style', 'visible' => array('button-active-inherit' => array('off')), 'group' => 'style'),
+                'button-active-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#169F85', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Button background', 'leform'), 'tooltip' => esc_html__('Adjust the background of clicked buttons.', 'leform'), 'type' => 'background-style', 'visible' => array('button-active-inherit' => array('off')), 'group' => 'style'),
+                'button-active-border-style' => array('value' => array('width' => '1', 'style' => 'solid', 'radius' => '0', 'color' => '#169F85', 'top' => 'on', 'right' => 'on', 'bottom' => 'on', 'left' => 'on'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'style' => esc_html__('Style', 'leform'), 'radius' => esc_html__('Radius', 'leform'), 'color' => esc_html__('Color', 'leform'), 'border' => esc_html__('Border', 'leform')), 'label' => esc_html__('Button border', 'leform'), 'tooltip' => esc_html__('Adjust the border style of clicked buttons.', 'leform'), 'type' => 'border-style', 'visible' => array('button-active-inherit' => array('off')), 'group' => 'style'),
+                'button-active-shadow' => array('value' => array('style' => 'regular', 'size' => '', 'color' => '#444'), 'caption' => array('style' => esc_html__('Style', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform')), 'label' => esc_html__('Button shadow', 'leform'), 'tooltip' => esc_html__('Adjust the shadow of clicked buttons.', 'leform'), 'type' => 'shadow', 'visible' => array('button-active-inherit' => array('off')), 'group' => 'style'),
+                'button-active-transform' => array('value' => 'zoom-out', 'label' => esc_html__('Transform', 'leform'), 'tooltip' => esc_html__('Adjust the transform of clicked buttons.', 'leform'), 'type' => 'radio-bar', 'options' => array('zoom-in' => esc_html__('Zoom In', 'leform'), 'zoom-out' => esc_html__('Zoom Out', 'leform'), 'shift-down' => esc_html__('Shift Down', 'leform')), 'group' => 'style'),
+                'end-buttons-active' => array('type' => 'section-end'),
+                'end-buttons' => array('type' => 'section-end'),
+                'start-errors' => array('type' => 'section-start', 'section' => 'errors'),
+                'error-background-style' => array('value' => array('image' => '', 'size' => 'auto', 'horizontal-position' => 'left', 'vertical-position' => 'top', 'repeat' => 'repeat', 'color' => '#d9534f', 'color2' => '', 'gradient' => 'no'), 'caption' => array('image' => esc_html__('Image URL', 'leform'), 'size' => esc_html__('Size', 'leform'), 'horizontal-position' => esc_html__('Horizontal position', 'leform'), 'vertical-position' => esc_html__('Verical position', 'leform'), 'repeat' => esc_html__('Repeat', 'leform'), 'color' => esc_html__('Color', 'leform'), 'color2' => esc_html__('Second color', 'leform'), 'gradient' => esc_html__('Gradient', 'leform')), 'label' => esc_html__('Bubble background', 'leform'), 'tooltip' => esc_html__('Adjust the background of error bubbles.', 'leform'), 'type' => 'background-style', 'group' => 'style'),
+                'error-text-style' => array('value' => array('family' => '', 'size' => '15', 'color' => '#fff', 'bold' => 'off', 'italic' => 'off', 'underline' => 'off', 'align' => 'left'), 'caption' => array('family' => esc_html__('Font family', 'leform'), 'size' => esc_html__('Size', 'leform'), 'color' => esc_html__('Color', 'leform'), 'style' => esc_html__('Style', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Error text style', 'leform'), 'tooltip' => esc_html__('Adjust the text style of errors.', 'leform'), 'type' => 'text-style', 'group' => 'style'),
+                'end-errors' => array('type' => 'section-end'),
+                'start-progress' => array('type' => 'section-start', 'section' => 'progress'),
+                'progress-enable' => array('value' => 'off', 'label' => esc_html__('Enable progress bar', 'leform'), 'tooltip' => esc_html__('If your form the form has several pages/steps, it is recommended to display progress bar for better user experience.', 'leform'), 'type' => 'checkbox'),
+                'progress-type' => array('value' => 'progress-1', 'label' => esc_html__('Progress style', 'leform'), 'tooltip' => esc_html__('Select the general view of progress bar.', 'leform'), 'type' => 'select-image', 'options' => array('progress-1' => '/images/progress-1.png', 'progress-2' => '/images/progress-2.png'), 'width' => 350, 'height' => 90, 'visible' => array('progress-enable' => array('on')), 'group' => 'style'),
+                'progress-color' => array('value' => array('color1' => '#e0e0e0', 'color2' => '#26B99A', 'color3' => '#FFFFFF', 'color4' => '#444'), 'label' => esc_html__('Colors', 'leform'), 'tooltip' => esc_html__('Adjust colors of progress bar.', 'leform'), 'caption' => array('color1' => 'Passive background', 'color2' => 'Active background', 'color3' => 'Page number (or %)', 'color4' => 'Page name'), 'type' => 'four-colors', 'visible' => array('progress-enable' => array('on')), 'group' => 'style'),
+                'progress-striped' => array('value' => 'off', 'label' => esc_html__('Double-tone stripes', 'leform'), 'tooltip' => esc_html__('Add double-tone diagonal stripes to progress bar.', 'leform'), 'type' => 'checkbox', 'visible' => array('progress-enable' => array('on')), 'group' => 'style'),
+                'progress-label-enable' => array('value' => 'off', 'label' => esc_html__('Show page name', 'leform'), 'tooltip' => esc_html__('Show page label.', 'leform'), 'type' => 'checkbox', 'visible' => array('progress-enable' => array('on')), 'group' => 'style'),
+                'progress-confirmation-enable' => array('value' => 'on', 'label' => esc_html__('Include confirmation page', 'leform'), 'tooltip' => esc_html__('Consider Confirmation page as part of total pages and include it into progress bar.', 'leform'), 'type' => 'checkbox', 'visible' => array('progress-enable' => array('on'))),
+                'progress-position' => array('value' => 'inside', 'label' => esc_html__('Position', 'leform'), 'tooltip' => esc_html__('Select the position of progress bar. It can be inside or outside of main form wrapper.', 'leform'), 'type' => 'select', 'options' => array('inside' => esc_html__('Inside', 'leform'), 'outside' => esc_html__('Outside', 'leform')), 'visible' => array('progress-enable' => array('on')), 'group' => 'style'),
+                'end-progress' => array('type' => 'section-end'),
+                'confirmation-tab' => array('type' => 'tab', 'value' => 'confirmation', 'label' => esc_html__('Confirmations', 'leform')),
+                'confirmations' => array('type' => 'confirmations', 'values' => array(), 'label' => esc_html__('Confirmations', 'leform'), 'message' => esc_html__('By default after successfull form submission the Confirmation Page is displayed. You can customize confirmation and use conditional logic. If several confirmations match form conditions, the first one (higher priority) will be applied. Sort confirmations (drag and drop) to set priority.', 'leform')),
+                'double-tab' => array('type' => 'tab', 'value' => 'double', 'label' => esc_html__('Double Opt-In', 'leform')),
+                'double-enable' => array('value' => 'off', 'label' => esc_html__('Enable', 'leform'), 'tooltip' => esc_html__('Activate it if you want users to confirm submitted data. If enabled, the plugin sends email message with confirmation link to certain email address (submitted by user). When confirmation link clicked, relevant record is marked as "confirmed". Moreover, if enabled, all notifications and integrations are executed only when data confirmed by user. Important! Double opt-in is disabled if user is requested to pay via existing Payment Gateway.', 'leform'), 'type' => 'checkbox'),
+                'double-email-recipient' => array('value' => '', 'label' => esc_html__('Recipient', 'leform'), 'tooltip' => esc_html__('Set email address to which confirmation link will be sent to.', 'leform'), 'type' => 'text-shortcodes'),
+                'double-email-subject' => array('value' => esc_html__('Please confirm your email address', 'leform'), 'label' => esc_html__('Subject', 'leform'), 'tooltip' => esc_html__('The subject of the email message.', 'leform'), 'type' => 'text-shortcodes'),
+                'double-email-message' => array('value' => esc_html__('Dear visitor!', 'leform') . '<br /><br />' . esc_html__('Please confirm your email address by clicking the following link:', 'leform') . '<br /><a href="{{confirmation-url}}">{{confirmation-url}}</a><br /><br />' . esc_html__('Thanks.', 'leform'), 'label' => esc_html__('Message', 'leform'), 'tooltip' => sprintf(esc_html__('The content of the email message. It is mandatory to include %s{{confirmation-url}}%s shortcode.', 'leform'), '<code>', '</code>'), 'type' => 'html'),
+                'double-from' => array('value' => array('email' => '{{global-from-email}}', 'name' => '{{global-from-name}}'), 'label' => esc_html__('From', 'leform'), 'tooltip' => esc_html__('Sets the "From" address and name. The email address and name set here will be shown as the sender of the email.', 'leform'), 'type' => 'from'),
+                'double-message' => array('value' => '<h4 style="text-align: center;">Thank you!</h4><p style="text-align: center;">Your email address successfully confirmed.</p>', 'label' => esc_html__('Thanksgiving message', 'leform'), 'tooltip' => esc_html__('This message is displayed when users successfully confirmed their e-mail addresses.', 'leform'), 'type' => 'html'),
+                'double-url' => array('value' => '', 'label' => esc_html__('Thanksgiving URL', 'leform'), 'tooltip' => esc_html__('This is alternate way of thanksgiving message. After confirmation users are redirected to this URL.', 'leform'), 'type' => 'text'),
+                'notification-tab' => array('type' => 'tab', 'value' => 'notification', 'label' => esc_html__('Notifications', 'leform')),
+                'notifications' => array('type' => 'notifications', 'values' => array(), 'label' => esc_html__('Notifications', 'leform'), 'message' => esc_html__('After successful form submission the notification, welcome, thanksgiving or whatever email can be sent. You can customize these emails and use conditional logic.', 'leform')),
+                'integration-tab' => array('type' => 'tab', 'value' => 'integration', 'label' => esc_html__('Integrations', 'leform')),
+                'integrations' => array('type' => 'integrations', 'values' => array(), 'label' => esc_html__('Integrations', 'leform'), 'message' => esc_html__('After successful form submission its data can be sent to 3rd party services (such as MailChimp, AWeber, GetResponse, etc.). You can configure integrations and use conditional logic. If you do not see your marketing/CRM provider, make sure that you enabled appropriate integration module on Advanced Settings page.', 'leform')),
+                'advanced-tab' => array('type' => 'tab', 'value' => 'advanced', 'label' => esc_html__('Advanced', 'leform')),
+                'advanced-sections' => array('type' => 'sections', 'sections' => array(
+                        'math' => array('label' => esc_html__('Math Expressions', 'leform'), 'icon' => 'fas fa-plus'),
+                        'payment-gateways' => array('label' => esc_html__('Payment Gateways', 'leform'), 'icon' => 'fas fa-dollar-sign'),
+                        'misc' => array('label' => esc_html__('Miscellaneous', 'leform'), 'icon' => 'fas fa-project-diagram')
+                    )),
+                'start-math' => array('type' => 'section-start', 'section' => 'math'),
+                'math-expressions' => array('type' => 'math-expressions', 'values' => array(), 'label' => esc_html__('Math expressions', 'leform'), 'tooltip' => esc_html__('Create math expressions and use them along the form.', 'leform')),
+                'end-math' => array('type' => 'section-end'),
+                'start-payment-gateways' => array('type' => 'section-start', 'section' => 'payment-gateways'),
+                'payment-gateways' => array('type' => 'payment-gateways', 'values' => array(), 'label' => esc_html__('Payment gateways', 'leform'), 'message' => esc_html__('After successful form submission user can be requested to pay some amount via certain payment gateway. Customize payment gateways here. Then go to "Confirmations" tab and create confirmation of one of the following types: "Display Confirmation page and request payment", "Display Message and request payment" or "Request payment".', 'leform')),
+                'end-payment-gateways' => array('type' => 'section-end'),
+                'start-misc' => array('type' => 'section-start', 'section' => 'misc'),
+                'misc-save-ip' => array('value' => 'on', 'label' => esc_html__('Save IP-address', 'leform'), 'tooltip' => esc_html__('Save user\'s IP-address in local database.', 'leform'), 'type' => 'checkbox'),
+                'misc-save-user-agent' => array('value' => 'on', 'label' => esc_html__('Save User-Agent', 'leform'), 'tooltip' => esc_html__('Save user\'s User-Agent in local database.', 'leform'), 'type' => 'checkbox'),
+                'misc-email-tech-info' => array('value' => 'on', 'label' => esc_html__('Send Technical Info by email', 'leform'), 'tooltip' => esc_html__('Include Technical Info into "{{form-data}}" shortcode sent by email.', 'leform'), 'type' => 'checkbox'),
+                'misc-record-tech-info' => array('value' => 'on', 'label' => esc_html__('Show Technical Info on log record details', 'leform'), 'tooltip' => esc_html__('Show Technical Info on log record details.', 'leform'), 'type' => 'checkbox'),
+                'personal-keys' => array('values' => array(), 'label' => esc_html__('Personal data key fields', 'leform'), 'tooltip' => esc_html__('Select fields which contains personal data keys. Usually it is an email field. WordPress uses this key to extract and handle personal data.', 'leform'), 'type' => 'personal-keys'),
+                'hr-11' => array('type' => 'hr'),
+                'antibot-enable' => array('value' => 'on', 'label' => esc_html__('Antibot protection', 'leform'), 'tooltip' => esc_html__('Enable protection against of repeated submissions.', 'leform'), 'type' => 'checkbox'),
+                'antibot-delay' => array('value' => '10', 'label' => esc_html__('Repeated submission delay', 'leform'), 'tooltip' => esc_html__('Specify the delay (seconds) when the same user can submit data through the form.', 'leform'), 'unit' => 'seconds', 'type' => 'units', 'visible' => array('antibot-enable' => array('on'))),
+                'antibot-check-form' => array('value' => 'on', 'label' => esc_html__('Check form data', 'leform'), 'tooltip' => esc_html__('Enable this feature to prohibit submission of the same data through the form.', 'leform'), 'type' => 'checkbox', 'visible' => array('antibot-enable' => array('on'))),
+                'antibot-check-ip' => array('value' => 'on', 'label' => esc_html__('Check IP-address', 'leform'), 'tooltip' => esc_html__('Enable this feature to prohibit submission from the same IP-address.', 'leform'), 'type' => 'checkbox', 'visible' => array('antibot-enable' => array('on'))),
+                'antibot-error' => array('value' => esc_html__('Thank you. We have already got your request.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('antibot-enable' => array('on'))),
+                'end-misc' => array('type' => 'section-end'),
+            ),
+			
+			
+            'imageselect' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Image select', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Mark one answer', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'mode' => array('value' => 'radio', 'label' => esc_html__('Mode', 'leform'), 'tooltip' => esc_html__('Select the mode of the Image Select.', 'leform'), 'type' => 'imageselect-mode'),
+                'submit-on-select' => array('value' => 'off', 'label' => esc_html__('Submit on select', 'leform'), 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'), 'caption' => esc_html__('Submit on select', 'leform'), 'type' => 'checkbox', 'visible' => array('mode' => array('radio'))),
+                'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 2', 'label' => 'Option 2', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '/assets/default/img/quiz/placeholder-image.png')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'image-options'),
+                'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                    'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                    array(
+                        'row' => esc_html__('Row', 'leform'), 
+                        'inline' => esc_html__('Inline', 'leform'), 
+                        )
+                ),
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'image-style' => array('value' => array('width' => "120", 'height' => "160", 'size' => 'contain'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'height' => esc_html__('Height', 'leform'), 'size' => esc_html__('Size', 'leform')), 'label' => esc_html__('Image style', 'leform'), 'tooltip' => esc_html__('Choose how to display images.', 'leform'), 'type' => 'local-imageselect-style'),
+                'label-enable' => array('value' => 'off', 'label' => esc_html__('Enable label', 'leform'), 'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'leform'), 'caption' => esc_html__('Label enabled', 'leform'), 'type' => 'checkbox'),
+                'label-height' => array('value' => '60', 'label' => esc_html__('Label height', 'leform'), 'tooltip' => esc_html__('Set the height of label area.', 'leform'), 'unit' => 'px', 'type' => 'units', 'visible' => array('label-enable' => array('on'))),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
+                
+            ),
+            'tile' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Tile', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Options', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'mode' => array('value' => 'radio', 'label' => esc_html__('Mode', 'leform'), 'tooltip' => esc_html__('Select the mode of the Tiles.', 'leform'), 'type' => 'tile-mode'),
+                'submit-on-select' => array('value' => 'off', 'label' => esc_html__('Submit on select', 'leform'), 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'), 'caption' => esc_html__('Submit on select', 'leform'), 'type' => 'checkbox', 'visible' => array('mode' => array('radio'))),
+                'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1'), array('value' => 'Option 2', 'label' => 'Option 2'), array('value' => 'Option 3', 'label' => 'Option 3')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'options'),
+                'description' => array('value' => 'Select options.', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'tooltip' => array('value' => '', 'label' => esc_html__('Tooltip', 'leform'), 'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'), 'type' => 'text'),
+                'required' => array('value' => 'off', 'label' => esc_html__('Required', 'leform'), 'tooltip' => esc_html__('If enabled, the user must select at least one option.', 'leform'), 'caption' => esc_html__('The field is required', 'leform'), 'type' => 'checkbox'),
+                'required-error' => array('value' => esc_html__('This field is required.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('required' => array('on'))),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'tile-style' => array('value' => array('size' => '', 'width' => '', 'position' => '', 'layout' => ''), 'caption' => array('size' => esc_html__('Size', 'leform'), 'width' => esc_html__('Width', 'leform'), 'position' => esc_html__('Position', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Tile style', 'leform'), 'tooltip' => esc_html__('Adjust the tile style.', 'leform'), 'type' => 'local-tile-style'),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+                'data' => array('type' => 'tab', 'value' => 'data', 'label' => esc_html__('Data', 'leform')),
+                'dynamic-default' => array('value' => 'off', 'label' => esc_html__('Dynamic default value', 'leform'), 'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'leform'), 'type' => 'checkbox'),
+                'dynamic-parameter' => array('value' => '', 'label' => esc_html__('Parameter name', 'leform'), 'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'leform'), 'type' => 'text', 'visible' => array('dynamic-default' => array('on'))),
+                'save' => array('value' => 'on', 'label' => esc_html__('Save to database', 'leform'), 'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'leform'), 'type' => 'checkbox'),
+                'logic-tab' => array('type' => 'tab', 'value' => 'logic', 'label' => esc_html__('Logic', 'leform')),
+                'logic-enable' => array('value' => 'off', 'label' => esc_html__('Enable conditional logic', 'leform'), 'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'checkbox'),
+                'logic' => array('values' => array('action' => 'show', 'operator' => 'and', 'rules' => array()), 'actions' => array('show' => esc_html__('Show this field', 'leform'), 'hide' => esc_html__('Hide this field', 'leform')), 'operators' => array('and' => esc_html__('if all of these rules match', 'leform'), 'or' => esc_html__('if any of these rules match', 'leform')), 'label' => esc_html__('Logic rules', 'leform'), 'tooltip' => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'logic-rules', 'visible' => array('logic-enable' => array('on'))),
+                'advanced' => array('type' => 'tab', 'value' => 'advanced', 'label' => esc_html__('Advanced', 'leform')),
+                'element-id' => array('value' => '', 'label' => esc_html__('ID', 'leform'), 'tooltip' => esc_html__('The unique ID of the input field.', 'leform'), 'type' => 'id'),
+                'validators' => array('values' => array(), 'allowed-values' => array('in-array', 'prevent-duplicates'), 'label' => esc_html__('Validators', 'leform'), 'tooltip' => esc_html__('Validators checks whether the data entered by the user is valid.', 'leform'), 'type' => 'validators')
+            ),
+            'multiselect' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Multiselect', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Options', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'options' => array('multi-select' => 'on', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1'), array('value' => 'Option 2', 'label' => 'Option 2'), array('value' => 'Option 3', 'label' => 'Option 3')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'options'),
+                'description' => array('value' => 'Select options.', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'tooltip' => array('value' => '', 'label' => esc_html__('Tooltip', 'leform'), 'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'), 'type' => 'text'),
+                'required' => array('value' => 'off', 'label' => esc_html__('Required', 'leform'), 'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'leform'), 'caption' => esc_html__('The field is required', 'leform'), 'type' => 'checkbox'),
+                'required-error' => array('value' => esc_html__('This field is required.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('required' => array('on'))),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'multiselect-style' => array('value' => array('height' => '', 'align' => ''), 'caption' => array('height' => esc_html__('Height', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Multiselect style', 'leform'), 'tooltip' => esc_html__('Adjust the multiselect field style (size and text alignment).', 'leform'), 'type' => 'local-multiselect-style'),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+                'data' => array('type' => 'tab', 'value' => 'data', 'label' => esc_html__('Data', 'leform')),
+                'max-allowed' => array('value' => '0', 'label' => esc_html__('Maximum selected options', 'leform'), 'tooltip' => esc_html__('Enter how many options can be selected. Set 0 for unlimited number.', 'leform'), 'type' => 'integer'),
+                'dynamic-default' => array('value' => 'off', 'label' => esc_html__('Dynamic default value', 'leform'), 'tooltip' => esc_html__('Allows the default value of the field to be set dynamically via a URL parameter.', 'leform'), 'type' => 'checkbox'),
+                'dynamic-parameter' => array('value' => '', 'label' => esc_html__('Parameter name', 'leform'), 'tooltip' => esc_html__('This is the name of the parameter that you will use to set the default value.', 'leform'), 'type' => 'text', 'visible' => array('dynamic-default' => array('on'))),
+                'save' => array('value' => 'on', 'label' => esc_html__('Save to database', 'leform'), 'tooltip' => esc_html__('If enabled, the submitted element data will be saved to the database and shown when viewing an entry.', 'leform'), 'type' => 'checkbox'),
+                'logic-tab' => array('type' => 'tab', 'value' => 'logic', 'label' => esc_html__('Logic', 'leform')),
+                'logic-enable' => array('value' => 'off', 'label' => esc_html__('Enable conditional logic', 'leform'), 'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'checkbox'),
+                'logic' => array('values' => array('action' => 'show', 'operator' => 'and', 'rules' => array()), 'actions' => array('show' => esc_html__('Show this field', 'leform'), 'hide' => esc_html__('Hide this field', 'leform')), 'operators' => array('and' => esc_html__('if all of these rules match', 'leform'), 'or' => esc_html__('if any of these rules match', 'leform')), 'label' => esc_html__('Logic rules', 'leform'), 'tooltip' => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'logic-rules', 'visible' => array('logic-enable' => array('on'))),
+                'advanced' => array('type' => 'tab', 'value' => 'advanced', 'label' => esc_html__('Advanced', 'leform')),
+                'element-id' => array('value' => '', 'label' => esc_html__('ID', 'leform'), 'tooltip' => esc_html__('The unique ID of the input field.', 'leform'), 'type' => 'id'),
+                'validators' => array('values' => array(), 'allowed-values' => array('in-array', 'prevent-duplicates'), 'label' => esc_html__('Validators', 'leform'), 'tooltip' => esc_html__('Validators checks whether the data entered by the user is valid.', 'leform'), 'type' => 'validators')
+            ),
+			
+            'checkbox' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Checkbox', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Mark one answer', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'options' => array(
+					'multi-select' => 'on', 
+					'values' => array(
+						array('value' => 'Option 1', 'label' => 'Option 1', 'image' => ''),
+						array('value' => 'Option 2', 'label' => 'Option 2', 'image' => ''),
+						array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '')
+						), 
+					'label' => esc_html__('Options', 'leform'), 
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+					'type' => 'image-options'
+					),
+	
+                'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                    array(
+                        'row' => esc_html__('Row', 'leform'), 
+                        'inline' => esc_html__('Inline', 'leform'), 
+                        )
+                ),
+				
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'checkbox-style' => array('value' => array('position' => '', 'align' => '', 'layout' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Checkbox style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'), 'type' => 'local-checkbox-style'),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+				
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
+                
+            ),
+            'radio' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Radio button', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Mark one answer', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'options' => array(
+					'multi-select' => 'off', 
+					'values' => array(
+						array('value' => 'Option 1', 'label' => 'Option 1', 'image' => ''),
+						array('value' => 'Option 2', 'label' => 'Option 2', 'image' => ''),
+						array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '')
+						), 
+					'label' => esc_html__('Options', 'leform'), 
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+					'type' => 'image-options'
+				),
+                'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                    array(
+                        'row' => esc_html__('Row', 'leform'), 
+                        'inline' => esc_html__('Inline', 'leform'), 
+                        )
+                ),
+				'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'radio-style' => array('value' => array('position' => '', 'align' => '', 'layout' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Radio button style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'), 'type' => 'local-checkbox-style'),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+				'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                
+            ),
+			
+			'sortable_quiz' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Sortable', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Arrange', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'options' => array(
+					'multi-select' => 'on', 
+					'values' => array(
+						array('value' => '1', 'label' => 'Option 1', 'image' => ''),
+						array('value' => '2', 'label' => 'Option 2', 'image' => ''),
+						array('value' => '3', 'label' => 'Option 3', 'image' => ''),
+						), 
+					'label' => esc_html__('Options', 'leform'), 
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+					'type' => 'sortable-options'
+					),
+	
+                'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                    array(
+                        'row' => esc_html__('Row', 'leform'), 
+                        'inline' => esc_html__('Inline', 'leform'), 
+                        )
+                ),
+				
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'checkbox-style' => array('value' => array('position' => '', 'align' => '', 'layout' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Checkbox style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'), 'type' => 'local-checkbox-style'),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+				
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
+                
+            ),
+			
+			/*'imageselect' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Image select', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
+                'label' => array('value' => esc_html__('Options', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
+                'mode' => array('value' => 'radio', 'label' => esc_html__('Mode', 'leform'), 'tooltip' => esc_html__('Select the mode of the Image Select.', 'leform'), 'type' => 'imageselect-mode'),
+                'submit-on-select' => array('value' => 'off', 'label' => esc_html__('Submit on select', 'leform'), 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'), 'caption' => esc_html__('Submit on select', 'leform'), 'type' => 'checkbox', 'visible' => array('mode' => array('radio'))),
+                'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 2', 'label' => 'Option 2', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '/assets/default/img/quiz/placeholder-image.png')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'image-options'),
+                'description' => array('value' => 'Select options.', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
+                'tooltip' => array('value' => '', 'label' => esc_html__('Tooltip', 'leform'), 'tooltip' => esc_html__('The tooltip appears when user click/hover tooltip anchor. The location of tooltip anchor is configured on Form Settings (tab "Style").', 'leform'), 'type' => 'text'),
+                'required' => array('value' => 'off', 'label' => esc_html__('Required', 'leform'), 'tooltip' => esc_html__('If enabled, the user must fill out the field.', 'leform'), 'caption' => esc_html__('The field is required', 'leform'), 'type' => 'checkbox'),
+                'required-error' => array('value' => esc_html__('This field is required.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('required' => array('on'))),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
+                'image-style' => array('value' => array('width' => "120", 'height' => "160", 'size' => 'contain'), 'caption' => array('width' => esc_html__('Width', 'leform'), 'height' => esc_html__('Height', 'leform'), 'size' => esc_html__('Size', 'leform')), 'label' => esc_html__('Image style', 'leform'), 'tooltip' => esc_html__('Choose how to display images.', 'leform'), 'type' => 'local-imageselect-style'),
+                'label-enable' => array('value' => 'off', 'label' => esc_html__('Enable label', 'leform'), 'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'leform'), 'caption' => esc_html__('Label enabled', 'leform'), 'type' => 'checkbox'),
+                'label-height' => array('value' => '60', 'label' => esc_html__('Label height', 'leform'), 'tooltip' => esc_html__('Set the height of label area.', 'leform'), 'unit' => 'px', 'type' => 'units', 'visible' => array('label-enable' => array('on'))),
+                'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        ),
+                        'label' => array(
+                            'label' => esc_html__('Label', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
+                        ),
+                        'description' => array(
+                            'label' => esc_html__('Description', 'leform'),
+                            'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
+                        )
+                    )
+                ),
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                'attempt_time' => array('value' => '', 'label' => esc_html__('Attempt Time', 'leform'), 'type' => 'number'),
+                'difficulty_level' => array('value' => 'none', 'label' => esc_html__('Difficulty Level', 'leform'), '', 'type' => 'select', 'options' => 
+                    array(
+                        'Below' => esc_html__('Below', 'leform'), 
+                        'Emerging' => esc_html__('Emerging', 'leform'), 
+                        'Expected' => esc_html__('Expected', 'leform'), 
+                        'Exceeding' => esc_html__('Exceeding', 'leform'), 
+                        'Challenge' => esc_html__('Challenge', 'leform'), 
+                        )
+                ),
+            ),
+			*/
+			
+			
+            'page' => array(
+                'general' => array('type' => 'tab', 'value' => 'general', 'label' => esc_html__('General', 'leform')),
+                'name' => array('value' => esc_html__('Page', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name helps to identify the page.', 'leform'), 'type' => 'text'),
+            ),
+            'page-confirmation' => array(
+                'general' => array('type' => 'tab', 'value' => 'general', 'label' => esc_html__('General', 'leform')),
+                'name' => array('value' => esc_html__('Confirmation', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name helps to identify the confirmation page.', 'leform'), 'type' => 'text')
+            ),
+            'columns' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Untitled', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown throughout the plugin.', 'leform'), 'type' => 'text'),
+                'widths' => array('value' => '', 'label' => esc_html__('Column width', 'leform'), 'tooltip' => esc_html__('Specify the width of each column. The row is divided into 12 equal pieces. You can decide how many pieces related to each columns. If you want all columns to be in one row, make sure that sum of widths is equal to 12.', 'leform'), 'type' => 'column-width'),                
+            ),
+            'html_bk' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('HTML Content', 'leform'), 'label' => esc_html__('Name', 'leform'), 'type' => 'text'),
+                'content' => array('value' => esc_html__('Default HTML Content.', 'leform') . '', 'label' => esc_html__('HTML', 'leform'), 'tooltip' => esc_html__('This is the content of HTML.', 'leform'), 'type' => 'html'),
+                'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
+                'css' => array('type' => 'css', 'values' => array(), 'label' => esc_html__('CSS styles', 'leform'), 'tooltip' => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'), 'selectors' => array(
+                        'wrapper' => array(
+                            'label' => esc_html__('Wrapper', 'leform'),
+                            'admin-class' => '.leform-element-{element-id}',
+                            'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
+                        )
+                    )
+                ),
+                'logic-tab' => array('type' => 'tab', 'value' => 'logic', 'label' => esc_html__('Logic', 'leform')),
+                'logic-enable' => array('value' => 'off', 'label' => esc_html__('Enable conditional logic', 'leform'), 'tooltip' => esc_html__('If enabled, you can create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'checkbox'),
+                'logic' => array('values' => array('action' => 'show', 'operator' => 'and', 'rules' => array()), 'actions' => array('show' => esc_html__('Show this element', 'leform'), 'hide' => esc_html__('Hide this element', 'leform')), 'operators' => array('and' => esc_html__('if all of these rules match', 'leform'), 'or' => esc_html__('if any of these rules match', 'leform')), 'label' => esc_html__('Logic rules', 'leform'), 'tooltip' => esc_html__('Create rules to show or hide this element depending on the values of other fields.', 'leform'), 'type' => 'logic-rules', 'visible' => array('logic-enable' => array('on'))),
+            ),
+            'html' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('HTML Content', 'leform'), 'label' => esc_html__('Name', 'leform'), 'type' => 'text'),
+                'content' => array('value' => esc_html__('Default HTML Content.', 'leform') . '', 'label' => esc_html__('HTML', 'leform'), 'tooltip' => esc_html__('This is the content of HTML.', 'leform'), 'type' => 'html'),
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                
+            ),
+            'sum_quiz' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'content' => array('value' => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="quiz-input-group"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                
+            ),
+    
+            'image_quiz' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'content' => array('value' => '<span class="block-holder"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                
+            ),
+			'paragraph_quiz' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'content' => array('value' => '<span class="block-holder editor-field" data-id="50191" data-field_type="paragraph" id="field-50191">Test Paragraph</span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                
+            ),
+            'sqroot_quiz' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('Square root Quiz', 'leform'), 'label' => esc_html__('Name', 'leform'), 'type' => 'text'),
+                'content' => array('value' => '<span class="block-holder" data-id="87714" data-field_type="select" id="field-87714"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contenteditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contenteditable="true">X</span></span></span></span>&nbsp;', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+                     
+                
+            )
+        );
+return $element_properties_meta;
+}
+
+function tabs_options(){
+    $tabs_options = '{"general-tab": "general", "name": "Form Test", "active": "on", "key-fields-primary": "", "key-fields-secondary": "", "datetime-args-date-format": "yyyy-mm-dd", "datetime-args-time-format": "hh:ii", "datetime-args-locale": "en", "cross-domain": "off", "session-enable": "off", "session-length": "48", "style-tab": "style", "text-style-family": "arial", "text-style-size": "15", "text-style-color": "#444", "text-style-bold": "off", "text-style-italic": "off", "text-style-underline": "off", "text-style-align": "left", "inline-background-style-image": "", "inline-background-style-size": "auto", "inline-background-style-horizontal-position": "left", "inline-background-style-vertical-position": "top", "inline-background-style-repeat": "repeat", "inline-background-style-color": "", "inline-background-style-color2": "", "inline-background-style-gradient": "no", "inline-border-style-width": "0", "inline-border-style-style": "solid", "inline-border-style-radius": "0", "inline-border-style-color": "", "inline-border-style-top": "off", "inline-border-style-right": "off", "inline-border-style-bottom": "off", "inline-border-style-left": "off", "inline-shadow-style": "regular", "inline-shadow-size": "", "inline-shadow-color": "#444", "inline-padding-top": "20", "inline-padding-right": "20", "inline-padding-bottom": "20", "inline-padding-left": "20", "popup-background-style-image": "", "popup-background-style-size": "auto", "popup-background-style-horizontal-position": "left", "popup-background-style-vertical-position": "top", "popup-background-style-repeat": "repeat", "popup-background-style-color": "#ffffff", "popup-background-style-color2": "", "popup-background-style-gradient": "no", "popup-border-style-width": "0", "popup-border-style-style": "solid", "popup-border-style-radius": "5", "popup-border-style-color": "", "popup-border-style-top": "off", "popup-border-style-right": "off", "popup-border-style-bottom": "off", "popup-border-style-left": "off", "popup-shadow-style": "regular", "popup-shadow-size": "huge", "popup-shadow-color": "#000", "popup-padding-top": "20", "popup-padding-right": "20", "popup-padding-bottom": "20", "popup-padding-left": "20", "popup-overlay-color": "rgba(255,255,255,0.7)", "popup-overlay-click": "on", "popup-close-color-color1": "#FF9800", "popup-close-color-color2": "#FFC107", "popup-spinner-color-color1": "#FF5722", "popup-spinner-color-color2": "#FF9800", "popup-spinner-color-color3": "#FFC107", "tooltip-anchor": "none", "max-width-value": "720", "max-width-unit": "px", "max-width-position": "center", "element-spacing": "20", "responsiveness-size": "480", "responsiveness-custom": "480", "label-text-style-family": "", "label-text-style-size": "16", "label-text-style-color": "#444", "label-text-style-bold": "on", "label-text-style-italic": "off", "label-text-style-underline": "off", "label-text-style-align": "left", "label-style-position": "top", "label-style-width": "3", "description-text-style-family": "", "description-text-style-size": "14", "description-text-style-color": "#888", "description-text-style-bold": "off", "description-text-style-italic": "on", "description-text-style-underline": "off", "description-text-style-align": "left", "description-style-position": "bottom", "required-position": "none", "required-text": "*", "required-text-style-family": "", "required-text-style-size": "", "required-text-style-color": "#d9534f", "required-text-style-bold": "off", "required-text-style-italic": "off", "required-text-style-underline": "off", "required-text-style-align": "left", "input-size": "medium", "input-icon-position": "inside", "input-icon-size": "20", "input-icon-color": "#444", "input-icon-background": "", "input-icon-border": "", "textarea-height": "160", "input-text-style-family": "", "input-text-style-size": "15", "input-text-style-color": "#444", "input-text-style-bold": "off", "input-text-style-italic": "off", "input-text-style-underline": "off", "input-text-style-align": "left", "input-background-style-image": "", "input-background-style-size": "auto", "input-background-style-horizontal-position": "left", "input-background-style-vertical-position": "top", "input-background-style-repeat": "repeat", "input-background-style-color": "#fff", "input-background-style-color2": "", "input-background-style-gradient": "no", "input-border-style-width": "1", "input-border-style-style": "solid", "input-border-style-radius": "0", "input-border-style-color": "#ccc", "input-border-style-top": "on", "input-border-style-right": "on", "input-border-style-bottom": "on", "input-border-style-left": "on", "input-shadow-style": "regular", "input-shadow-size": "", "input-shadow-color": "#444", "input-hover-inherit": "on", "input-hover-text-style-family": "", "input-hover-text-style-size": "15", "input-hover-text-style-color": "#444", "input-hover-text-style-bold": "off", "input-hover-text-style-italic": "off", "input-hover-text-style-underline": "off", "input-hover-text-style-align": "left", "input-hover-background-style-image": "", "input-hover-background-style-size": "auto", "input-hover-background-style-horizontal-position": "left", "input-hover-background-style-vertical-position": "top", "input-hover-background-style-repeat": "repeat", "input-hover-background-style-color": "#fff", "input-hover-background-style-color2": "", "input-hover-background-style-gradient": "no", "input-hover-border-style-width": "1", "input-hover-border-style-style": "solid", "input-hover-border-style-radius": "0", "input-hover-border-style-color": "#ccc", "input-hover-border-style-top": "on", "input-hover-border-style-right": "on", "input-hover-border-style-bottom": "on", "input-hover-border-style-left": "on", "input-hover-shadow-style": "regular", "input-hover-shadow-size": "", "input-hover-shadow-color": "#444", "input-focus-inherit": "on", "input-focus-text-style-family": "", "input-focus-text-style-size": "15", "input-focus-text-style-color": "#444", "input-focus-text-style-bold": "off", "input-focus-text-style-italic": "off", "input-focus-text-style-underline": "off", "input-focus-text-style-align": "left", "input-focus-background-style-image": "", "input-focus-background-style-size": "auto", "input-focus-background-style-horizontal-position": "left", "input-focus-background-style-vertical-position": "top", "input-focus-background-style-repeat": "repeat", "input-focus-background-style-color": "#fff", "input-focus-background-style-color2": "", "input-focus-background-style-gradient": "no", "input-focus-border-style-width": "1", "input-focus-border-style-style": "solid", "input-focus-border-style-radius": "0", "input-focus-border-style-color": "#ccc", "input-focus-border-style-top": "on", "input-focus-border-style-right": "on", "input-focus-border-style-bottom": "on", "input-focus-border-style-left": "on", "input-focus-shadow-style": "regular", "input-focus-shadow-size": "", "input-focus-shadow-color": "#444", "checkbox-radio-style-position": "left", "checkbox-radio-style-size": "medium", "checkbox-radio-style-align": "left", "checkbox-radio-style-layout": "1", "checkbox-view": "classic", "radio-view": "classic", "checkbox-radio-unchecked-color-color1": "#ccc", "checkbox-radio-unchecked-color-color2": "#fff", "checkbox-radio-unchecked-color-color3": "#444", "checkbox-radio-checked-inherit": "on", "checkbox-radio-checked-color-color1": "#ccc", "checkbox-radio-checked-color-color2": "#fff", "checkbox-radio-checked-color-color3": "#444", "imageselect-style-align": "left", "imageselect-style-effect": "none", "imageselect-text-style-family": "", "imageselect-text-style-size": "15", "imageselect-text-style-color": "#444", "imageselect-text-style-bold": "off", "imageselect-text-style-italic": "off", "imageselect-text-style-underline": "off", "imageselect-text-style-align": "left", "imageselect-border-style-width": "1", "imageselect-border-style-style": "solid", "imageselect-border-style-radius": "0", "imageselect-border-style-color": "#ccc", "imageselect-border-style-top": "on", "imageselect-border-style-right": "on", "imageselect-border-style-bottom": "on", "imageselect-border-style-left": "on", "imageselect-shadow-style": "regular", "imageselect-shadow-size": "", "imageselect-shadow-color": "#444", "imageselect-hover-inherit": "on", "imageselect-hover-border-style-width": "1", "imageselect-hover-border-style-style": "solid", "imageselect-hover-border-style-radius": "0", "imageselect-hover-border-style-color": "#ccc", "imageselect-hover-border-style-top": "on", "imageselect-hover-border-style-right": "on", "imageselect-hover-border-style-bottom": "on", "imageselect-hover-border-style-left": "on", "imageselect-hover-shadow-style": "regular", "imageselect-hover-shadow-size": "", "imageselect-hover-shadow-color": "#444", "imageselect-selected-inherit": "on", "imageselect-selected-border-style-width": "1", "imageselect-selected-border-style-style": "solid", "imageselect-selected-border-style-radius": "0", "imageselect-selected-border-style-color": "#ccc", "imageselect-selected-border-style-top": "on", "imageselect-selected-border-style-right": "on", "imageselect-selected-border-style-bottom": "on", "imageselect-selected-border-style-left": "on", "imageselect-selected-shadow-style": "regular", "imageselect-selected-shadow-size": "", "imageselect-selected-shadow-color": "#444", "imageselect-selected-scale": "on", "multiselect-style-align": "left", "multiselect-style-height": "120", "multiselect-style-hover-background": "#26B99A", "multiselect-style-hover-color": "#ffffff", "multiselect-style-selected-background": "#169F85", "multiselect-style-selected-color": "#ffffff", "tile-style-size": "medium", "tile-style-width": "default", "tile-style-position": "left", "tile-style-layout": "inline", "tile-text-style-family": "", "tile-text-style-size": "15", "tile-text-style-color": "#444", "tile-text-style-bold": "off", "tile-text-style-italic": "off", "tile-text-style-underline": "off", "tile-text-style-align": "center", "tile-background-style-image": "", "tile-background-style-size": "auto", "tile-background-style-horizontal-position": "left", "tile-background-style-vertical-position": "top", "tile-background-style-repeat": "repeat", "tile-background-style-color": "#ffffff", "tile-background-style-color2": "", "tile-background-style-gradient": "no", "tile-border-style-width": "1", "tile-border-style-style": "solid", "tile-border-style-radius": "0", "tile-border-style-color": "#ccc", "tile-border-style-top": "on", "tile-border-style-right": "on", "tile-border-style-bottom": "on", "tile-border-style-left": "on", "tile-shadow-style": "regular", "tile-shadow-size": "", "tile-shadow-color": "#444", "tile-hover-inherit": "on", "tile-hover-text-style-family": "", "tile-hover-text-style-size": "15", "tile-hover-text-style-color": "#444", "tile-hover-text-style-bold": "off", "tile-hover-text-style-italic": "off", "tile-hover-text-style-underline": "off", "tile-hover-text-style-align": "center", "tile-hover-background-style-image": "", "tile-hover-background-style-size": "auto", "tile-hover-background-style-horizontal-position": "left", "tile-hover-background-style-vertical-position": "top", "tile-hover-background-style-repeat": "repeat", "tile-hover-background-style-color": "#ffffff", "tile-hover-background-style-color2": "", "tile-hover-background-style-gradient": "no", "tile-hover-border-style-width": "1", "tile-hover-border-style-style": "solid", "tile-hover-border-style-radius": "0", "tile-hover-border-style-color": "#169F85", "tile-hover-border-style-top": "on", "tile-hover-border-style-right": "on", "tile-hover-border-style-bottom": "on", "tile-hover-border-style-left": "on", "tile-hover-shadow-style": "regular", "tile-hover-shadow-size": "", "tile-hover-shadow-color": "#444", "tile-selected-inherit": "on", "tile-selected-text-style-family": "", "tile-selected-text-style-size": "15", "tile-selected-text-style-color": "#444", "tile-selected-text-style-bold": "off", "tile-selected-text-style-italic": "off", "tile-selected-text-style-underline": "off", "tile-selected-text-style-align": "center", "tile-selected-background-style-image": "", "tile-selected-background-style-size": "auto", "tile-selected-background-style-horizontal-position": "left", "tile-selected-background-style-vertical-position": "top", "tile-selected-background-style-repeat": "repeat", "tile-selected-background-style-color": "#ffffff", "tile-selected-background-style-color2": "", "tile-selected-background-style-gradient": "no", "tile-selected-border-style-width": "1", "tile-selected-border-style-style": "solid", "tile-selected-border-style-radius": "0", "tile-selected-border-style-color": "#169F85", "tile-selected-border-style-top": "on", "tile-selected-border-style-right": "on", "tile-selected-border-style-bottom": "on", "tile-selected-border-style-left": "on", "tile-selected-shadow-style": "regular", "tile-selected-shadow-size": "", "tile-selected-shadow-color": "#444", "tile-selected-transform": "zoom-in", "button-style-size": "medium", "button-style-width": "default", "button-style-position": "center", "button-text-style-family": "", "button-text-style-size": "15", "button-text-style-color": "#fff", "button-text-style-bold": "off", "button-text-style-italic": "off", "button-text-style-underline": "off", "button-text-style-align": "center", "button-background-style-image": "", "button-background-style-size": "auto", "button-background-style-horizontal-position": "left", "button-background-style-vertical-position": "top", "button-background-style-repeat": "repeat", "button-background-style-color": "#26B99A", "button-background-style-color2": "", "button-background-style-gradient": "no", "button-border-style-width": "1", "button-border-style-style": "solid", "button-border-style-radius": "0", "button-border-style-color": "#169F85", "button-border-style-top": "on", "button-border-style-right": "on", "button-border-style-bottom": "on", "button-border-style-left": "on", "button-shadow-style": "regular", "button-shadow-size": "", "button-shadow-color": "#444", "button-hover-inherit": "on", "button-hover-text-style-family": "", "button-hover-text-style-size": "15", "button-hover-text-style-color": "#fff", "button-hover-text-style-bold": "off", "button-hover-text-style-italic": "off", "button-hover-text-style-underline": "off", "button-hover-text-style-align": "center", "button-hover-background-style-image": "", "button-hover-background-style-size": "auto", "button-hover-background-style-horizontal-position": "left", "button-hover-background-style-vertical-position": "top", "button-hover-background-style-repeat": "repeat", "button-hover-background-style-color": "#169F85", "button-hover-background-style-color2": "", "button-hover-background-style-gradient": "no", "button-hover-border-style-width": "1", "button-hover-border-style-style": "solid", "button-hover-border-style-radius": "0", "button-hover-border-style-color": "#169F85", "button-hover-border-style-top": "on", "button-hover-border-style-right": "on", "button-hover-border-style-bottom": "on", "button-hover-border-style-left": "on", "button-hover-shadow-style": "regular", "button-hover-shadow-size": "", "button-hover-shadow-color": "#444", "button-active-inherit": "on", "button-active-text-style-family": "", "button-active-text-style-size": "15", "button-active-text-style-color": "#fff", "button-active-text-style-bold": "off", "button-active-text-style-italic": "off", "button-active-text-style-underline": "off", "button-active-text-style-align": "center", "button-active-background-style-image": "", "button-active-background-style-size": "auto", "button-active-background-style-horizontal-position": "left", "button-active-background-style-vertical-position": "top", "button-active-background-style-repeat": "repeat", "button-active-background-style-color": "#169F85", "button-active-background-style-color2": "", "button-active-background-style-gradient": "no", "button-active-border-style-width": "1", "button-active-border-style-style": "solid", "button-active-border-style-radius": "0", "button-active-border-style-color": "#169F85", "button-active-border-style-top": "on", "button-active-border-style-right": "on", "button-active-border-style-bottom": "on", "button-active-border-style-left": "on", "button-active-shadow-style": "regular", "button-active-shadow-size": "", "button-active-shadow-color": "#444", "button-active-transform": "zoom-out", "error-background-style-image": "", "error-background-style-size": "auto", "error-background-style-horizontal-position": "left", "error-background-style-vertical-position": "top", "error-background-style-repeat": "repeat", "error-background-style-color": "#d9534f", "error-background-style-color2": "", "error-background-style-gradient": "no", "error-text-style-family": "", "error-text-style-size": "15", "error-text-style-color": "#fff", "error-text-style-bold": "off", "error-text-style-italic": "off", "error-text-style-underline": "off", "error-text-style-align": "left", "progress-enable": "off", "progress-type": "progress-1", "progress-color-color1": "#e0e0e0", "progress-color-color2": "#26B99A", "progress-color-color3": "#FFFFFF", "progress-color-color4": "#444", "progress-striped": "off", "progress-label-enable": "off", "progress-confirmation-enable": "on", "progress-position": "inside", "confirmation-tab": "confirmation", "confirmations": [], "double-tab": "double", "double-enable": "off", "double-email-recipient": "", "double-email-subject": "Please confirm your email address", "double-email-message": "Dear visitor!<br \/><br \/>Please confirm your email address by clicking the following link:<br \/><a href=\"{{confirmation-url}}\">{{confirmation-url}}<\/a><br \/><br \/>Thanks.", "double-from-email": "{{global-from-email}}", "double-from-name": "{{global-from-name}}", "double-message": "<h4 style=\"text-align: center;\">Thank you!<\/h4><p style=\"text-align: center;\">Your email address successfully confirmed.<\/p>", "double-url": "", "notification-tab": "notification", "notifications": [], "integration-tab": "integration", "integrations": [], "advanced-tab": "advanced", "math-expressions": [], "payment-gateways": [], "misc-save-ip": "on", "misc-save-user-agent": "on", "misc-email-tech-info": "on", "misc-record-tech-info": "on", "antibot-enable": "on", "antibot-delay": "10", "antibot-check-form": "on", "antibot-check-ip": "on", "antibot-error": "Thank you. We have already got your request."}';
+    return $tabs_options;
+}
+
+
+
+
+if( !function_exists('pre')){
+    function pre($data, $is_exit = true){
+        echo '<pre>';
+            print_r( $data );
+        echo '</pre>';
+        if( $is_exit == true){
+            exit;
+        }
+    }
+}
+
+
+function default_form_options($_type = 'settings', $chapters = array()) {
+    $element_properties_meta = element_properties_meta($chapters);
+        $form_options = array();
+        if (!array_key_exists($_type, $element_properties_meta))
+            return array();
+        foreach ($element_properties_meta[$_type] as $key => $value) {
+            if (array_key_exists('value', $value)) {
+                if (is_array($value['value'])) {
+                    foreach ($value['value'] as $option_key => $option_value) {
+                        $form_options[$key . '-' . $option_key] = $option_value;
+                    }
+                } else
+                    $form_options[$key] = $value['value'];
+            } else if (array_key_exists('values', $value))
+                $form_options[$key] = $value['values'];
+        }
+        return $form_options;
+    }
+    
+    
+    
+function lmsParseTag($content,$class_name)
+    {
+        $dom = new DOMDocument;
+        $dom->loadHTML($content);
+        
+        $xpath = new DOMXpath($dom);
+        $elements = $xpath->query('//*[contains(@class, "'.$class_name.'")]');
+        $element_data = array();
+        foreach ($elements as $tag) {
+            $attr = array();
+            foreach ($tag->attributes as $attribName => $attribNodeVal)
+            {
+               $attr[$attribName]=$tag->getAttribute($attribName);
+            }
+            $element_data[] = $attr;
+        }
+        return $element_data;
+    }    
+    
+    
+	
+	
+/*
+* Get Sub Chapter Title
+*/	
+function getSubChapterTitle($sub_chapter_id)
+{
+	$data = \Illuminate\Support\Facades\DB::table('webinar_sub_chapters')
+		->where('id', $sub_chapter_id)
+		->select('sub_chapter_title')
+		->first();
+		
+	return isset( $data->sub_chapter_title )? $data->sub_chapter_title : '';
+}
+
+function get_chapters_list($include_lessions = true, $webinar_id = 0){
+		$user = auth()->user();
+        $lession_chapters = array();
+        if( $include_lessions == true){
+        $lessions = \Illuminate\Support\Facades\DB::table('webinars')
+                    ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                    ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
+                    ->join('text_lessons', 'text_lessons.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+                    ->join('text_lesson_translations', 'text_lesson_translations.text_lesson_id', '=', 'text_lessons.id')
+                    ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'text_lessons.id as chapter_id', 'text_lesson_translations.title as chapter_title');
+        if( $webinar_id > 0){
+            $lessions->where('webinars.id', $webinar_id);
+        }
+        $lessions = $lessions->get();    
+    
+        
+        if (!empty($lessions)) {
+            foreach ($lessions as $lessionData) {
+                $lession_title = isset($lessionData->title) ? $lessionData->title : '';
+                $sub_chapter_id = isset($lessionData->sub_chapter_id) ? $lessionData->sub_chapter_id : '';
+                $chapter_id = isset($lessionData->chapter_id) ? $lessionData->chapter_id : '';
+                $chapter_title = isset($lessionData->chapter_title) ? $lessionData->chapter_title : '';
+                $lession_chapters[$sub_chapter_id][$chapter_id] = $chapter_title;
+            }
+        }
+         }
+        //DB::enableQueryLog();
+        $webinars = \Illuminate\Support\Facades\DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
+                ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+                ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
+                ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
+				
+				
+		if($user->role_name == 'teachers'){		
+			$webinars = \Illuminate\Support\Facades\DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
+				->leftJoin('author_permissions', function($join) use ($user)
+                         {
+							 $join->on('sub_chapter_id', '=', 'webinar_sub_chapters.id');
+                         })
+                ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+                ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
+                ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
+				
+			$webinars->where('author_permissions.author_id', $user->id);
+		}
+
+        if( $webinar_id > 0){
+            $webinars->where('webinars.id', $webinar_id);
+        }
+			
+
+        $webinars = $webinars->get();    
+		
+		//pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+        
+        $chapters_list = array();
+        if (!empty($webinars)) {
+            foreach ($webinars as $webinarData) {
+                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
+                $sub_chapter_id = isset($webinarData->sub_chapter_id) ? $webinarData->sub_chapter_id : '';
+                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
+                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
+                
+                $lessions_data = isset( $lession_chapters[$sub_chapter_id] )? $lession_chapters[$sub_chapter_id] : array();
+                
+                $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
+                $chapters_list[$sub_chapter_id]['chapters'][$chapter_id] = $chapter_title;
+                
+                if( !empty( $lessions_data ) ){
+                    foreach( $lessions_data as $lession_id => $lessionChapter){
+                        $chapters_list[$sub_chapter_id]['chapters'][$lession_id] = $lessionChapter;
+                    }
+                }
+            }
+        }
+        
+        return $chapters_list;
+}
+
+
+
+function sub_chapter_items_list(){
+    $lessions = \Illuminate\Support\Facades\DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
+                ->join('text_lessons', 'text_lessons.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+                ->join('text_lesson_translations', 'text_lesson_translations.text_lesson_id', '=', 'text_lessons.id')
+                ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'text_lessons.id as chapter_id', 'text_lesson_translations.title as chapter_title')
+                ->get();
+        
+        $lession_chapters = array();
+        if (!empty($lessions)) {
+            foreach ($lessions as $lessionData) {
+                $lession_title = isset($lessionData->title) ? $lessionData->title : '';
+                $sub_chapter_id = isset($lessionData->sub_chapter_id) ? $lessionData->sub_chapter_id : '';
+                $chapter_id = isset($lessionData->chapter_id) ? $lessionData->chapter_id : '';
+                $chapter_title = isset($lessionData->chapter_title) ? $lessionData->chapter_title : '';
+                $lession_chapters[$sub_chapter_id][$chapter_id]['title'] = $chapter_title;
+                $lession_chapters[$sub_chapter_id][$chapter_id]['type'] = 'lesson';
+            }
+        }
+        
+        $webinars = \Illuminate\Support\Facades\DB::table('webinars')
+                ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
+                ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
+                ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+                ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
+                ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title')
+                ->get();
+        
+        $chapters_list = array();
+        if (!empty($webinars)) {
+            foreach ($webinars as $webinarData) {
+                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
+                $sub_chapter_id = isset($webinarData->sub_chapter_id) ? $webinarData->sub_chapter_id : '';
+                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
+                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
+                
+                $lessions_data = isset( $lession_chapters[$sub_chapter_id] )? $lession_chapters[$sub_chapter_id] : array();
+                
+                $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
+                $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['title'] = $chapter_title;
+                $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['type'] = 'quiz';
+                
+                if( !empty( $lessions_data ) ){
+                    foreach( $lessions_data as $lession_id => $lessionChapter){
+                        $chapters_list[$sub_chapter_id]['chapters'][$lession_id] = $lessionChapter;
+                    }
+                }
+            }
+        }
+        
+        return $chapters_list;
+}
+
+
+
+function get_glossary_items($glossary_items_ids){
+    $glossary_items_ids = ( $glossary_items_ids != '')? json_decode($glossary_items_ids) : array();
+    $items = \Illuminate\Support\Facades\DB::table('glossary')
+                ->select('glossary.*')
+                ->WhereIn('glossary.id', $glossary_items_ids)
+                ->get();
+    return $items;
+}
+
+function get_subchapter_items($sub_chapter_id){
+    $items = \Illuminate\Support\Facades\DB::table('quizzes')
+                ->where('quizzes.sub_chapter_id', $sub_chapter_id)
+                ->get();
+	$quiz_count = $items->count();
+	
+	$items = \Illuminate\Support\Facades\DB::table('text_lessons')
+                ->where('text_lessons.sub_chapter_id', $sub_chapter_id)
+                ->get();
+	$lesson_count = $items->count();
+	
+    return $quiz_count+$lesson_count;
+}
+
+
+/*
+* Creating Quiz Attempt log
+*/
+
+function createAttemptLog($attempt_id, $log_details, $log_type = 'started', $result_question_id = 0){
+	$attemptObj = QuizzAttempts::find($attempt_id);
+	$resultObj = QuizzesResult::find($attemptObj->quiz_result_id);
+	
+	if( $resultObj->status == 'waiting'){
+		$QuizAttemptLog = QuizAttemptLogs::create([
+			'attempt_id' => $attempt_id,
+			'result_question_id' => $result_question_id,
+			'log_detail' => $log_details,
+			'log_type' => $log_type,
+			'created_at' => time()
+		]);
+		
+		if( $log_type == 'attempt'){
+			QuizAttemptLogs::where('attempt_id', $attempt_id)->where('result_question_id', $result_question_id)->where('log_type', 'viewed')->delete();
+		}
+		return $QuizAttemptLog->id;
+	}
+	return '';
+}
+
+/*
+ * Get Differences in Times
+ */
+function TimeDifference($start_time, $end_time, $return_type = 'minutes'){
+    
+    switch($return_type){
+        
+        case "minutes":
+            $response = ($end_time - $start_time) / 60;
+        break;
+        
+        case "hours":
+            $response = ($end_time - $start_time) / 60 / 60;
+        break;
+    }
+    return $response;
 }
