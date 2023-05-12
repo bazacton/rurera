@@ -773,19 +773,25 @@ ul.quiz-result-logs li { list-style:disc!important; margin:6px 0 0 0; }
 /*********************************
 Lms Blog Grid Card Style Start
 **********************************/
-.blog-grid-card { background-color:#fff; transition:all .5s ease; display:flex; align-items:center; padding-bottom:30px; border-bottom:1px solid rgba(157,176,197,.2); } 
+.blog-grid-card,
+.list-card { background-color:#fff; transition:all .5s ease; display:flex; align-items:center; padding-bottom:30px; border-bottom:1px solid rgba(157,176,197,.2); } 
 .lms-blog { max-width: 928px; } 
-.blog-grid-card .blog-grid-image { position:relative; } 
-.blog-grid-card .blog-grid-image img { width:150px; height:150px; border-radius:.375rem; border:.0625rem solid rgba(157,176,197,.5); } 
-.blog-grid-card .blog-grid-image:after { content:""; position:absolute; left:0; right:0; top:60%; bottom:0; background-image:linear-gradient(180deg,rgba(6,6,6,0),rgba(0,0,0,.8)); z-index:1; border-radius:.375rem; } 
+.blog-grid-card .blog-grid-image,
+.list-card .img-holder { position:relative; } 
+.list-card .img-holder img,
+.list-card .img-holder img { width:150px; height:150px; border-radius:.375rem; border:.0625rem solid rgba(157,176,197,.5); } 
+.blog-grid-card .blog-grid-image:after,
+.list-card .img-holder:after { content:""; position:absolute; left:0; right:0; top:60%; bottom:0; background-image:linear-gradient(180deg,rgba(6,6,6,0),rgba(0,0,0,.8)); z-index:1; border-radius:.375rem; } 
 .blog-grid-card .blog-grid-image .created-at { font-size:14px; font-weight:500; line-height:1.19; color:#fff; border-radius:20px; padding:10px 15px; box-shadow:0 3px 6px 0 rgba(0,0,0,.1); background-color:var(--primary); position:absolute; bottom:-16px; right:25px; transition:all .5s ease; z-index:2; } 
 .blog-grid-card .badge { padding-left:0; font-size:.85rem } 
-.blog-grid-card .blog-grid-detail { padding:0 20px 0 0; width:100%; } 
+.blog-grid-card .blog-grid-detail,
+.list-card .text-holder { padding:0 20px 0 0; width:100%; } 
 .blog-grid-card .blog-grid-detail .blog-grid-title { font-size:20px; font-weight:700; line-height:1.5; color:#171347; } 
 .blog-grid-card .blog-grid-detail .blog-grid-desc { font-size:14px; font-weight:400; line-height:1.7; color:#6c6c6c; overflow:hidden; pointer-events:none; } 
 .blog-grid-card .blog-grid-detail .blog-grid-footer { font-size:16px; font-weight:500; line-height:1.19; color:#6c6c6c; pointer-events:none; } 
 .blog-grid-card .blog-tags { padding:0; margin:15px 0 0 0; display:flex; flex-wrap: wrap; } 
-.blog-grid-card .blog-tags li { background-color:var(--primary); border-radius:3.75rem; padding:.60rem 1rem; font-weight:700; color:#fff; display:block; margin:.25rem .25rem 0 0; font-size:.875rem; text-align:center; } 
+.blog-grid-card .blog-tags li,
+.list-tags li { background-color:var(--primary); border-radius:3.75rem; padding:.60rem 1rem; font-weight:700; color:#fff; display:block; margin:.25rem .25rem 0 0; font-size:.875rem; text-align:center; } 
 @media (max-width: 575px){
  .blog-grid-card { flex-wrap: wrap; } 
  .blog-grid-card .blog-grid-detail { padding: 0 0 20px 0; } 
@@ -946,6 +952,7 @@ Lms FAQS Style Start
 .pages-sub-header .header-img-title:after { content: ""; width: 0px; height: 0px; position: absolute; border-left: 28px solid #fff; border-right: 4px solid transparent; border-top: 8px solid transparent; border-bottom: 8px solid transparent; right: -27px; top: 40px; } 
 .pages-sub-header { background:#fff; max-height: 380px; display: flex; align-items: center; } 
 .cart-banner.pages-sub-header { padding-bottom: 80px; } 
+.cart-banner.pages-sub-header.ebook-header {padding: 70px 0 40px 0; background: #f0f1f3;}
 .pages-sub-header .lms-subtitle { text-transform: uppercase; font-weight: bold; margin-bottom: 20px; font-size: 18px; color: var(--primary); } 
 .pages-sub-header p { font-size: 20px; padding: 0; } 
 .pages-sub-header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 32px; }
@@ -1186,7 +1193,7 @@ Lms Testimonial Style Start
 .lms-rating-star .rating-box { height: 20px; left: 0; overflow: hidden; position: absolute; top: 0; line-height: 20px; margin: 0; } 
 .lms-rating-star .rating-box:before { color: #ffc613; } 
 .lms-rating-star ~ h2 { padding-top: 10px; } 
-.testimonial-card p { color: #000; margin: 0 0 15px; font-size: 15px; } 
+.testimonial-card p { color: #000; margin: 0 0 15px; font-size: 15px; padding: 0; } 
 .testimonial-card .lms-rating-star { margin: 0 0 10px; } 
 .testimonial-card .author-name span { font-size: 15px; color: #000; font-weight: 500; margin: 0; } 
 /**********************************
@@ -1242,7 +1249,7 @@ Custom Pagination Style End
 .lms-service-box .lms-img-holder svg { color: var(--primary); width: 30px; height: 30px; } 
 .lms-service-box .post-title,
 .lms-service-box .post-title a { text-transform: capitalize; color: var(--primary); text-decoration: none; } 
-.lms-service-box .lms-text-holder p { margin-top: 3px; font-size: 14px; } 
+.lms-service-box .lms-text-holder p { margin-top: 3px; font-size: 14px; padding: 0; } 
 .element-title h2 { text-transform: capitalize; margin-bottom: 30px; margin-top: 0; color: var(--primary); } 
 .page-title h1 { font-size: 2rem; margin-top: 0; margin-bottom: 30px; } 
 .page-title-separator { width: 100%; margin-bottom: 35px; border-bottom: 4px solid #dfdbd8; } 
@@ -1385,8 +1392,7 @@ Custom Pagination Style End
 .container-headers-copy { width: 90%; height: auto; flex-direction: column; align-items: center; display: flex; } 
 .post-show h1, .post-show h2, .post-show h3 { font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px; } 
 .small-header { text-align: center; letter-spacing: 8px; margin-bottom: 0; font-size: 16px; font-weight: 800; } 
-.big-header.black-font { color: #fff; color: #000; margin-top: 10px; margin-bottom: 10px; font-size: 40px; position: relative; } 
-.post-show p, .post-show span { color: #818894; margin-top: 15px; } 
+.big-header.black-font { color: #fff; color: #000; margin-top: 10px; margin-bottom: 10px; font-size: 40px; position: relative; }  
 .paragraph-10 { width: 80%; color: gray; text-align: center; margin-left: auto; margin-right: auto; font-size: 20px; line-height: 28.6px; text-decoration: none; display: block; } 
 .container-images-2 { width: 90%; height: auto; max-width: 1350px; min-width: 0; justify-content: space-around; margin-left: auto; margin-right: auto; padding: 0 60px 20px; display: flex; } 
 .section-2 { margin-bottom: 0; padding-top: 50px; padding-bottom: 50px; } 
@@ -1429,9 +1435,7 @@ Custom Pagination Style End
 .first-section-header { color:#27325e; text-align: left; text-transform: capitalize; margin-top: 10px; margin-bottom: 10px; margin-right: 40px; font-family: Mont,sans-serif; font-size: 50px; font-style: normal; } 
 .section-wrap { width: 95%; height: auto; max-height: none; max-width: 1350px; flex-direction: row; margin-top: 40px; margin-left: auto; margin-right: auto; display: flex; } 
 .button.jumbo-button.sign-up.green.big-button { width: 250px; height: 60px; color: #fff; background-color: #27325e; border: 1px solid #27325e; border-radius: 100px; justify-content: center; text-decoration: none; align-items: center; margin-top: 0; margin-bottom: 0; margin-left: 0; display: flex; position: static; } 
-.paragraph-8 { margin-right: 40px; padding-left: 0; font-size: 18px; line-height: 150%; } 
-.post-show p, .post-show span { color: #818894; margin-top: 15px; } 
-p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; } 
+.paragraph-8 { margin-right: 40px; padding-left: 0; font-size: 18px; line-height: 150%; }  
 .div-block-46.green { width: 20px; height: 100%; background-color: #29cd9c; border-radius: 20px; margin-left: 10px; margin-right: 10px; } 
 .div-block-46.yellow { background-color: #ffe454; border-radius: 20px; } 
 .div-block-46 { width: 20px; height: 100%; margin-left: 10px; margin-right: 10px; } 
@@ -1443,13 +1447,11 @@ p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; }
 .div-block-44 { width: 50%; flex-direction: column; justify-content: center; display: flex; } 
 .div-block-45 { width: 100%; height: 20px; flex-direction: row; justify-content: center; align-items: center; display: flex; } 
 .div-block-46.green { width: 20px; background-color: #29cd9c; border-radius: 20px; margin-left: 10px; margin-right: 10px; } 
-.div-block-46.red { background-color: #f31e1e; border-radius: 20px; } 
-.post-show p, .post-show span { color: #363636; margin-top: 15px; } 
+.div-block-46.red { background-color: #f31e1e; border-radius: 20px; }  
 .paragraph-8 { margin-right: 40px; font-size: 18px; line-height: 150%; } 
 /**************************************** 
  Sigup Pages Style End
 *****************************************/
-
 /**************************************** 
  Lms Curriculums Style Start
 *****************************************/
@@ -1458,36 +1460,29 @@ p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; }
 .lms-course-banner p {padding: 0; margin-bottom: 30px;}
 .lms-course-select .form-inner {display: flex; margin: 0 -10px;}
 .lms-course-select .form-select-field {padding: 0 10px;}
+.form-select-field {position: relative;}
+.form-select-field:after {content: ""; position: absolute; right: 25px; border: 4px solid #495057; transform: rotate(45deg); border-top-color: transparent; border-left-color: transparent; top: 50%; margin-top: -6px; pointer-events: none;}
 .lms-course-select {margin: 0 0 30px;}
-.lms-course-select select {font-weight: 700; font-size: 16px; border: 2px solid #f0f1f3; border-radius: 6px;}
+.lms-course-select select {font-weight: 700; font-size: 16px; border: 2px solid #f0f1f3; border-radius: 6px; -webkit-appearance: none; -moz-appearance: none; appearance: none; padding-right: 50px;}
 .lms-element-nav {overflow: hidden;}
 .lms-element-nav ul {margin: 0 -22px; padding: 0; display: flex; align-items: center; flex-wrap: wrap;}
 .lms-element-nav li {padding: 0 22px; position: relative;}
-.lms-element-nav li:before {
-    content: "";
-    height: 2px;
-    width: 6px;
-    position: absolute;
-    left: 0;
-    background-color: #4d7aff;
-    top: 50%;
-    margin-top: -1px;
-}
+.lms-element-nav li:before {content: ""; height: 2px; width: 6px; position: absolute; left: 0; background-color: #4d7aff; top: 50%; margin-top: -1px;}
 .lms-element-nav li:first-child:before {display: none;}
 .lms-element-nav li a {font-weight: 500; color: #4d7aff; display: block; border-bottom: 1px solid #4d7aff; font-size: 18px;}
-.curriculums-head {border-bottom: 2px solid #eeeeee; position: relative; padding: 0 0 12px; margin: 0 0 20px;}
+.curriculums-head {position: relative; padding: 0 0 12px; margin: 0 0 20px;}
 .curriculums-head:before {content: ""; height: 7px; width: 500px; background-color: #e7604b; position: absolute; bottom: -2px; left: 0; border-radius: 50px;}
 .curriculums-head:after {animation: progress-active 2s cubic-bezier(.55,.2,.3,.67) infinite; background-color: #fff; content: ""; inset: 0; position: absolute; bottom: 0; left: 0; height: 7px; width: 500px; margin: 36px 0 0 0; border-radius: 50px;}
-
 @keyframes progress-increase {
     0% {left: -5%; width: 5%}
     to {left: 125%; width: 100%}
 }
 @keyframes progress-active {
-    0% {opacity: .5; transform: translateX(-100%)}
-    to {opacity: 0; transform: translateX(0)}
+    0% {opacity: .3; transform: translateX(-100%)}
+    to {opacity: .3; transform: translateX(0)}
 }
-.curriculums-head h4 {color: #183152; margin: 0; font-size: 22px; font-weight: 500;}
+.curriculums-head h4 {color: #183152; margin: 0; font-size: 22px; font-weight: 500;position: relative;}
+.curriculums-head h4:before {content: ""; height: 7px; width: 100%; background-color: #eeeeee; position: absolute; bottom: -14px; border-radius: 50px; z-index: -1;}
 .list-description p {padding: 0; font-size: 18px; color: #aaaaaa; line-height: 22px;}
 .curriculums-card {border-bottom: 2px solid #eeeeee; padding: 0 0 30px; margin: 0 0 30px;}
 .curriculums-card:last-child {border-bottom: 0;}
@@ -1520,17 +1515,7 @@ p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; }
 .round:hover .arrow{animation-name: bounceAlpha; animation-duration:1.4s; animation-iteration-count:infinite; animation-timing-function:linear;}
 .round:hover .arrow.primera{animation-name: bounceAlpha; animation-duration:1.4s; animation-delay:0.2s; animation-iteration-count:infinite; animation-timing-function:linear;}
 .scroll-btn {position: fixed; right: 30px; bottom: 30px; height: 40px; width: 40px; display: none;}
-@media (max-width: 767px){
-    .lms-curriculums {margin: 0;}
-    .list-description {margin: 0 0 15px;}
-    .footer {margin-top: 0;}
-    .curriculums-list p br {display: none;}
-    .pages-sub-header.lms-course-banner {padding: 50px 0 40px; margin: 0 0 50px;}
-    .curriculums-head:before,
-    .curriculums-head:after {width: 300px;}
-    .lms-element-nav ul {margin: 0 -10px;}
-    .lms-element-nav li {padding: 0 10px 10px;}
-}
+@media (max-width: 767px){.lms-curriculums {margin: 0;}.list-description {margin: 0 0 15px;}.footer {margin-top: 0;}.curriculums-list p br {display: none;}.pages-sub-header.lms-course-banner {padding: 50px 0 40px; margin: 0 0 50px;}.curriculums-head:before,.curriculums-head:after {width: 300px;}.lms-element-nav ul {margin: 0 -10px;}.lms-element-nav li {padding: 0 10px 10px;}}
 /**************************************** 
  Lms Curriculums Style End
 *****************************************/
@@ -1543,12 +1528,17 @@ p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; }
 .products-filter .sub-header-iconlist li a span img{width:100%;height:100%;}
 .products-filter .sub-header-iconlist li a{display:inline-block;font-size:1rem;color:var(--primary);}
 .products-filter label{min-width:80px;margin:0;text-align:left;}
-.products-filter .form-control{border-color:var(--primary);border-width:2px;font-size:16px;font-weight:700;color:var(--primary);height:50px;}
+.products-filter .form-control{border-color:#000;border-width:2px;font-size:16px;font-weight:400;color:#000;height:50px; background-color: inherit;max-width: 260px; margin-left: auto;}
+.products-filter .sub-header-iconlist li:hover a { color: #146ebe;}
 .products-filter .row {align-items: center;}
+.products-filter .reading-levels:after {content: "";position: absolute;top: 24px;right: 20px;width: 0;height: 0; border-left: 6px solid transparent;border-top: 7px solid #000;border-right: 6px solid transparent;}
+.products-filter .reading-levels {position: relative;}
+.products-filter .reading-levels select{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+.products-filter .sub-header-iconlist li svg { width: 50px; height: 50px; }
+.products-filter .sub-header-iconlist li svg g {fill: #183153;}
 /**************************************** 
  Products Filter Sub Header Style End
 *****************************************/
-
 /**************************************** 
  Lms Typo Graphy Page Style Start
 *****************************************/
@@ -1564,3 +1554,394 @@ p { margin-bottom: 0; padding-left: 20px; padding-right: 20px; }
 /**************************************** 
  Lms Typo Graphy Page Style End
 *****************************************/
+/***************************** 
+Lms Card Style Start 
+******************************/
+.lms-dashboard-card {box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);}
+.lms-dashboard-card .lms-card-timeline {border-left: 2px dashed #f6f6f6;margin-left: 10px;}
+.lms-dashboard-card .lms-card-list{position:relative;padding:0 0 30px 30px;}
+.lms-dashboard-card .lms-card-info{display:flex;align-items:flex-start;overflow: hidden;}
+.lms-dashboard-card .lms-card-title { margin-bottom: 40px;}
+.lms-dashboard-card .lms-card-info p a{color: #4458b8;}
+.lms-dashboard-card .lms-card-info p{width:100%;margin:-3px 0 0 0;font-size:14px;line-height:18px;color:#666;}
+.lms-dashboard-card .lms-card-info h5{display:flex;align-items:flex-start;width:35%;margin:0;font-size:14px;color:#666;}
+.lms-dashboard-card .lms-card-icons{position:absolute;left:-8px;top:2px;display:flex;}
+.lms-dashboard-card .lms-card-body {padding: 20px;background: #fff;}
+.lms-dashboard-card .lms-card-icons svg {width: 14px;height: 14px; color: #666;}
+.lms-dashboard-card .lms-card-info h5 span {margin: 0 0 0 10px;}
+.lms-dashboard-card .lms-card-info h5 span svg {width: 14px;height: 14px;color:#4458b8;}
+.lms-dashboard-card .lms-card-btn{display:inline-block;align-items:center;justify-content:center;font-size:13px;background:#556ee6;vertical-align:middle;padding:0 6px;color:#fff;border-radius:3px;height:30px;line-height:30px;}
+.lms-dashboard-card .lms-card-btn:hover{color: #fff;}
+.lms-dashboard-card .lms-card-btn svg{width:14px;height:14px;margin:-3px 0 0 5px;}
+.lms-dashboard-card .lms-card-list:last-child {padding-bottom: 0;}
+.lms-dashboard-card .lms-card-title h3 {text-transform: capitalize;}
+.lms-dashboard-card .lms-card-list.active .lms-card-icons{overflow: hidden;-webkit-animation: fade-right 1.5s linear infinite;animation: fade-right 1.5s linear infinite;}
+.lms-dashboard-card .lms-card-list.active .lms-card-icons svg{color: #fff;fill: #4458b8;}
+@keyframes fade-right{
+    0%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+    75%
+    {
+        -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+        opacity: 0;
+    }
+}
+/***************************** 
+Lms Card Style End
+******************************/
+/***************************** 
+Registertion Form Style Start 
+******************************/
+.custom-ridio-control{display:flex;align-items:center;gap:50px}
+.custom-ridio-control .custom-ridio label{margin:0;font-size:14px;font-weight:500;line-height:1.19;color:#171347}
+.custom-ridio-control .custom-ridio{display:flex}
+.custom-ridio-control .custom-ridio input{margin-right:8px}
+.custom-switch-control .custom-switch-group {display: flex;}
+.custom-switch-control {display: flex;align-items: center;justify-content: space-between;}
+.custom-switch-group span {display: inline-flex;margin-right: 10px;}
+.custom-switch-control .input-label { margin: 0;}
+.login-card .form-group .iti{width: 100%;}
+.login-card .form-group .iti--separate-dial-code .iti__selected-flag{background-color: rgba(0, 0, 0, .02);}
+.login-card .form-group .select2-container--default .select2-selection--single .select2-selection__rendered{line-height: 22px;padding: 0;}
+.login-card .form-group .select2-container--default .select2-selection--single .select2-selection__arrow b{margin-left: -10px;}
+.login-card .form-group .custom-file-label{font-size: 13px;height: 35px;line-height: 19px;color: #444;}
+.login-card .form-group .form-control, .login-card .form-group .select2-container .select2-selection{border-color: #dddd;}
+.login-card .form-group .form-control.form-textarea {height: 150px;}
+/***************************** 
+Registertion Form Style End
+******************************/
+/***************************** 
+Lms Performace Table Style Start 
+******************************/
+.lms-performace-table>li {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.lms-performace-table>li.lms-performace-head {
+    background: #ededed;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.lms-performace-table>li.lms-performace-head div:first-child {
+    width: 65%;
+    flex-grow: 1;
+}
+
+.lms-performace-table>li.lms-performace-head div span {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+
+.lms-performace-table>li.lms-performace-des div {
+    display: table-cell;
+    padding: 15px 10px;
+    width: 8%;
+}
+
+.lms-performace-table>li.lms-performace-des div:first-child {
+    width: 60px;
+    border-right: 1px solid #eeeeee;
+}
+
+.lms-performace-table>li.lms-performace-des div:first-child span {
+    color: #000;
+}
+
+.lms-performace-table>li.lms-performace-des {
+    padding: 0;
+    border: 1px solid #eeeeee;
+}
+
+.lms-performace-table>li.lms-performace-head div {
+    padding: 15px 15px;
+}
+.lms-performace-table>li.lms-performace-des div span {
+    font-size: 14px;
+    color: #999;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(2) {
+    width: 64%;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(5) {
+    width: 8%;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(4) {
+    width: 11%;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(6) {width: 6%;}
+.lms-performace-table>li.lms-performace-des div span svg {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.lms-performace-table>li.lms-performace-des div span a {
+    color: #4574b9;
+}
+.lms-performace-table>li.lms-performace-des div span a svg {
+    margin-left: 4px;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(6) span {
+    color: #000;
+    font-weight: 600;
+}
+/***************************** 
+Lms Performace Table Style End
+******************************/
+
+/***************************** 
+Lms SignUp Page Style Start
+******************************/
+.job-singup-sub-header {
+    background-color: #edf6fd;
+    min-height: 600px;
+    padding: 70px 0;
+    margin: 0 0 70px;
+}
+.job-singup-sub-header h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin: 0 0 20px;
+}
+.job-singup-sub-header p {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 500;
+    margin: 0 0 25px;
+}
+.job-singup-sub-header .btn-primary {
+    padding: 18px 40px;
+    display: inline-block;
+    line-height: normal;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.3) inset;
+}
+.lms-search-services .services-card {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.lms-search-services {
+    margin: 0 0 20px;
+}
+.services-card .img-holder {
+    position: relative;
+    margin: 0 0 30px;
+}
+.services-card .img-holder:before {
+    content: "";
+    position: absolute;
+    left: -140px;
+    top: -120px;
+    border: 1px dashed #27325e;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 0 0 250px 0;
+    width: 280px;
+    height: 280px;
+    transform: rotate(42deg);
+    z-index: -1;
+}
+.services-inner .row [class*="col-"]:first-child .img-holder:before,
+.services-inner .row [class*="col-"]:nth-child(4) .img-holder:before {
+    display: none;
+}
+
+.service-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.services-card p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 20px;
+}
+.lms-testimonial-slider .testimonial-card {
+    background-color: #f2f7f1;
+    padding: 25px;
+    margin: 0;
+    border-radius: 8px;
+}
+.lms-testimonial-slider .testimonial-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.lms-testimonial-slider .testimonial-body .img-holder figure {
+    background-color: #ddd;
+    display: inline-block;
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+}
+.lms-testimonial-slider .img-holder {
+    width: 300px;
+}
+.lms-testimonial-slider .testimonial-card .text-holder {
+    width: calc(100% - 300px);
+    padding: 0 0 0 25px;
+}
+.lms-testimonial-slider .testimonial-top {
+    margin: 0 0 15px;
+}
+.lms-testimonial-slider .testimonial-title {
+    font-size: 24px;
+    text-transform: capitalize;
+    margin: 0 0 5px;
+    display: block;
+    line-height: normal;
+}
+.lms-testimonial-slider .testimonial-top strong {
+    font-weight: 500;
+}
+.lms-testimonial-slider .testimonial-body p {
+    margin: 0;
+}
+.list-card .img-holder {
+    position: relative;
+}
+.list-card .text-holder {
+    padding: 0 0 0 20px;
+}
+.list-card .text-holder h5 {
+    margin: 0 0 10px;
+}
+.list-card {
+    margin: 0 0 30px;
+}
+.lms-work-list .section-title {
+    margin: 0 0 30px;
+}
+.lms-testimonial-slider,
+.lms-work-list {
+    padding: 0 0 70px;
+}
+.list-card .text-holder p {
+    margin: 0 0 15px;
+}
+.list-tags {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.lms-work-list .section-title h2 {
+    font-size: 24px;
+}
+.create-btn {
+    background-color: var(--primary);
+    border-radius: 3.75rem;
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    line-height: normal;
+}
+.create-btn:hover {
+    color:#fff;
+}
+.list-card.border-0 {
+    border-bottom: 0;
+}
+.lms-work-list .btn-holder {
+    padding: 0 15px;
+}
+.lms-testimonial-slider [class*="swiper-button-"] {
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    border-radius: 100%;
+}
+.lms-testimonial-slider [class*="swiper-button-"]:after {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 700;
+}
+.lms-testimonial-slider .swiper-button-next {
+    right: -10px;
+}
+.lms-testimonial-slider .swiper-button-prev {
+    left: -10px;
+}
+.lms-testimonial-slider .swiper-button-disabled {
+    visibility: hidden;
+    opacity: 0;
+}
+.lms-testimonial-slider .swiper-pagination {
+    position: relative;
+    bottom: 0;
+}
+.lms-testimonial-slider .swiper-pagination-bullet {
+    height: 4px;
+    border: 0;
+    width: 50px;
+    border-radius: 0;
+    background-color: #ccc !important;
+    padding: 0;
+}
+.lms-testimonial-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active:after {
+    width: 100%;
+    border-radius: 0;
+    height: 4px;
+}
+.lms-search-accordion .accordion-holder {
+    background-color: #f7f7f7;
+    padding: 25px;
+    border-radius: 8px;
+}
+.lms-search-accordion .accordion-holder .section-title {
+    text-align: center;
+    margin: 0 0 20px;
+}
+.lms-search-accordion .card {
+    margin: 0 0 15px;
+    border: 0;
+}
+.lms-search-accordion .card .card-header {
+    background-color: #fff;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+.lms-search-accordion .card .card-header button {
+    justify-content: flex-start;
+    padding: 12px 15px;
+    border: 0;
+    width: 100%;
+    height: auto;
+    position: relative;
+    font-weight: 700;
+}
+.lms-search-accordion .arrow {
+    right: 18px;
+    border: 2px solid #000;
+    top: 50%;
+    margin-top: -2px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    transition: transform .5s ease;
+    transform: rotate(130deg);
+}
+.lms-search-accordion .collapsed .arrow {
+    transform: rotate(-45deg);
+    margin-top: -8px;
+}
+/***************************** 
+Lms SignUp Page Style End
+******************************/

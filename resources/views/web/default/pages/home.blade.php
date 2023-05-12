@@ -79,7 +79,7 @@
                         <div class="stat-icon-box teacher">
                             <img src="/assets/default/img/stats/teacher.svg" alt=""/>
                         </div>
-                        <strong class="stat-number mt-10">{{ @(isset($skillfulTeachersCount)? $skillfulTeachersCount : '') }}</strong>
+                        <strong class="stat-number mt-10">{{ $skillfulTeachersCount }}</strong>
                         <h4 class="stat-title">{{ trans('home.skillful_teachers') }}</h4>
                         <p class="stat-desc mt-10">{{ trans('home.skillful_teachers_hint') }}</p>
                     </div>
@@ -90,7 +90,7 @@
                         <div class="stat-icon-box student">
                             <img src="/assets/default/img/stats/student.svg" alt=""/>
                         </div>
-                        <strong class="stat-number mt-10">{{ @(isset($studentsCount)? $studentsCount : '') }}</strong>
+                        <strong class="stat-number mt-10">{{ $studentsCount }}</strong>
                         <h4 class="stat-title">{{ trans('home.happy_students') }}</h4>
                         <p class="stat-desc mt-10">{{ trans('home.happy_students_hint') }}</p>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="stat-icon-box video">
                             <img src="/assets/default/img/stats/video.svg" alt=""/>
                         </div>
-                        <strong class="stat-number mt-10">{{ @(isset($liveClassCount)? $liveClassCount : '') }}</strong>
+                        <strong class="stat-number mt-10">{{ $liveClassCount }}</strong>
                         <h4 class="stat-title">{{ trans('home.live_classes') }}</h4>
                         <p class="stat-desc mt-10">{{ trans('home.live_classes_hint') }}</p>
                     </div>
@@ -112,7 +112,7 @@
                         <div class="stat-icon-box course">
                             <img src="/assets/default/img/stats/course.svg" alt=""/>
                         </div>
-                        <strong class="stat-number mt-10">{{ @(isset($offlineCourseCount)? $offlineCourseCount : '') }}</strong>
+                        <strong class="stat-number mt-10">{{ $offlineCourseCount }}</strong>
                         <h4 class="stat-title">{{ trans('home.offline_courses') }}</h4>
                         <p class="stat-desc mt-10">{{ trans('home.offline_courses_hint') }}</p>
                     </div>
