@@ -1646,6 +1646,7 @@ Lms Performace Table Style Start
     display: table-cell;
     padding: 15px 10px;
     width: 8%;
+    white-space: nowrap;
 }
 
 .lms-performace-table>li.lms-performace-des div:first-child {
@@ -1668,20 +1669,23 @@ Lms Performace Table Style Start
 .lms-performace-table>li.lms-performace-des div span {
     font-size: 14px;
     color: #999;
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 .lms-performace-table>li.lms-performace-des div:nth-child(2) {
     width: 64%;
 }
 .lms-performace-table>li.lms-performace-des div:nth-child(5) {
-    width: 8%;
+    width: 6%;
 }
 .lms-performace-table>li.lms-performace-des div:nth-child(4) {
     width: 11%;
 }
 .lms-performace-table>li.lms-performace-des div:nth-child(6) {width: 6%;}
 .lms-performace-table>li.lms-performace-des div span svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
@@ -1691,11 +1695,29 @@ Lms Performace Table Style Start
 }
 .lms-performace-table>li.lms-performace-des div span a svg {
     margin-left: 4px;
+    width: 14px;
+    height: 14px;
 }
 .lms-performace-table>li.lms-performace-des div:nth-child(6) span {
     color: #000;
     font-weight: 600;
 }
+.lms-performace-table>li.lms-performace-des .badge-btn>span,
+.lms-performace-table>li.lms-performace-des div:nth-child(6).badge-btn>span {
+    background: red;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 5px;
+    border-radius: 3px;
+    display: inline-block;
+    height: 25px;
+    margin: 0;
+    line-height: 23px;
+    font-weight: 500;
+}
+.lms-performace-table>li.lms-performace-des div:nth-child(6).badge-btn,
+.lms-performace-table>li.lms-performace-des div.badge-btn{width: 5%;}
+.lms-performace-table h5,.lms-performace-section .element-title h5 {text-transform: uppercase;}
 /***************************** 
 Lms Performace Table Style End
 ******************************/
@@ -1941,6 +1963,47 @@ Lms SignUp Page Style Start
 .lms-search-accordion .collapsed .arrow {
     transform: rotate(-45deg);
     margin-top: -8px;
+}
+.lms-call-to-action {
+    padding: 70px 0 0;
+}
+.action-card {
+    background-color: #1f58c3;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    padding: 15px;
+    border-radius: 8px;
+}
+.action-card .img-holder figure {
+    width: 250px;
+    height: 150px;
+    background-color: rgba(255,255,255,0.3);
+    overflow: hidden;
+    border-radius: 5px;
+}
+.action-card .text-holder {
+    width: calc(100% - 250px);
+    padding: 0 0 0 25px;
+    display: inline-flex;
+}
+.action-card .text-holder a {
+    color: #fff;
+}
+.action-card .text-holder h5 {
+    font-size: 24px;
+    font-weight: 500;
+}
+.call-to-action-btn {
+    margin-top: auto;
+    margin-left: auto;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    padding: 8px 25px;
+    display: inline-block;
+    line-height: normal;
+    font-size: 14px;
+    font-weight: 500;
 }
 /***************************** 
 Lms SignUp Page Style End
