@@ -20,6 +20,10 @@ class DashboardController extends Controller
 
     public function index()
     {
+        if (auth()->user()->isAuthor() || auth()->user()->isReviewer()) {
+            return redirect('/admin/questions_bank');
+        }
+
         $this->authorize('admin_general_dashboard_show');
 
         if (Gate::allows('admin_general_dashboard_daily_sales_statistics')) {

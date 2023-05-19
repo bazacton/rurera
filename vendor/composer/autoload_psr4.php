@@ -55,6 +55,7 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
     'Ssheduardo\\Redsys\\' => array($vendorDir . '/ssheduardo/redsys-laravel/src'),
+    'Spatie\\PdfToImage\\' => array($vendorDir . '/spatie/pdf-to-image/src'),
     'Spatie\\GoogleCalendar\\' => array($vendorDir . '/spatie/laravel-google-calendar/src'),
     'Spatie\\CalendarLinks\\' => array($vendorDir . '/spatie/calendar-links/src'),
     'Shetabit\\Payment\\' => array($vendorDir . '/shetabit/payment/src'),

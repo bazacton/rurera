@@ -173,6 +173,72 @@ $tabs_options    = tabs_options();
                     </div>
                     <div class="col-3 col-md-3">
                         <div class="row">
+
+                            <div class="lms-dashboard-card">
+                                <div class="lms-card-body">
+                                    <div class="lms-card-title">
+                                        <h4 style="text-transform: capitalize;">Activity</h4>
+                                    </div>
+                                    <ul class="lms-card-timeline">
+
+                                        @if( !empty( $questionLogs ))
+                                        @foreach($questionLogs as $logObj)
+
+
+                                        <li class="lms-card-list">
+                                            <div class="lms-card-icons"><i data-feather="arrow-right-circle" width="20"
+                                                                           height="20"
+                                                                           class=""></i></div>
+                                            <div class="lms-card-info">
+                                                <h5>{{$logObj->user->full_name}} @ <b>{{ dateTimeFormat
+                                                        ($logObj->action_at, 'j M y | H:i')
+                                                        }} <span><i data-feather="arrow-right" width="20" height="20"
+                                                                    class=""></i></span>
+                                                </h5>
+                                                <p>{{$logObj->action_type}}</p>
+                                                <p>{!! $logObj->log_data !!}</p>
+                                                @if($logObj->action_type == 'Status Updated - Published' &&
+                                                $logObj->action_role ==
+                                                'reviewer')
+                                                @php
+                                                $log_storred_data = json_decode($logObj->log_storred_data);
+                                                $log_storred_data = (array) $log_storred_data;
+                                                if(!empty($log_storred_data)){
+                                                $log_storred_data['Solution'] = $log_storred_data['Solution'].'
+                                                ('.$log_storred_data['Solution Label'].')';
+                                                $log_storred_data['Difficulty Level'] = $log_storred_data['Difficulty
+                                                Level'].'
+                                                ('.$log_storred_data['Difficulty Level Label'].')';
+                                                unset($log_storred_data['Solution Label']);
+                                                unset($log_storred_data['Difficulty Level Label']);
+                                                unset($log_storred_data['status_details']);
+                                                $log_storred_data['Accepted'] = 20;
+                                                }
+
+                                                @endphp
+                                                @if( !empty( $log_storred_data ))
+                                                @foreach( $log_storred_data as $storred_dataObj_key =>
+                                                $storred_dataObj_value)
+                                                <span>{{$storred_dataObj_key}}: {{$storred_dataObj_value}}</span><br>
+                                                @endforeach
+                                                @endif
+
+                                                @endif
+                                            </div>
+                                        </li>
+
+                                        @endforeach
+                                        @endif
+                                    </ul>
+                                    <div class="text-center mt-4"><a class="lms-card-btn" href="#">View More <i
+                                                data-feather="arrow-right"
+                                                width="20" height="20" class=""></i></a></div>
+                                </div>
+                            </div>
+
+
+
+
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="input-label">Question Title</label>
@@ -277,8 +343,10 @@ $tabs_options    = tabs_options();
                     @if(auth()->user()->isAuthor())
                         <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label class="input-label">Comments for Reviewer</label>
-                                <textarea class="note-codable summernote" id="comments_for_reviewer" name="comments_for_reviewer" aria-multiline="true">{{$questionObj->comments_for_reviewer}}</textarea>
+                                <label class="input-label">Comments for Reviewer</label><br>
+                                <textarea class="note-codable form-group" cols="100" rows="5"
+                                          id="comments_for_reviewer"
+                                          name="comments_for_reviewer" aria-multiline="true"></textarea>
                             </div>
                         </div>
                     @endif
@@ -621,6 +689,7 @@ $tabs_options    = tabs_options();
 @endsection
 
 @push('scripts_bottom')
+<script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
 <script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script>

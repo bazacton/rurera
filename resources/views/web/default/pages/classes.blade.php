@@ -16,7 +16,7 @@
                         <h1 class="text-white font-30 mb-15">{{ $pageTitle }}</h1>
                         <span class="course-count-badge py-5 px-10 text-white rounded">{{ $coursesCount }} {{ trans('product.courses') }}</span>
 
-                       
+
                     </div>
                 </div>
             </div>
@@ -30,24 +30,18 @@
 
 
                 <div class="row mt-20">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-12">
 
                         @if(empty(request()->get('card')) or request()->get('card') == 'grid')
                             <div class="row">
                                 @foreach($webinars as $webinar)
-                                    <div class="col-12 col-lg-6 mt-20">
+                                    <div class="col-12 col-lg-3 mt-20">
                                         @include('web.default.includes.webinar.grid-card',['webinar' => $webinar])
                                     </div>
                                 @endforeach
                             </div>
                         @endif
 
-                    </div>
-
-
-                    <div class="col-12 col-lg-4">
-                        <div class="mt-20 p-20 rounded-sm shadow-lg border border-gray300 filters-container">
-                        </div>
                     </div>
                 </div>
 

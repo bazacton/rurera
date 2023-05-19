@@ -57,13 +57,14 @@ class PagesController extends Controller
         }
 
         $data['robot'] = (!empty($data['robot']) and $data['robot'] == '1');
-
+        $subheader = isset( $data['subheader'] )? $data['subheader'] : 0;
         $page = Page::create([
             'link' => $data['link'],
             'name' => $data['name'],
             'robot' => $data['robot'],
             'status' => $data['status'],
             'created_at' => time(),
+            'subheader'    => $subheader,
         ]);
 
         PageTranslation::updateOrCreate([
@@ -119,13 +120,14 @@ class PagesController extends Controller
         }
 
         $data['robot'] = (!empty($data['robot']) and $data['robot'] == '1');
-
+        $subheader = isset( $data['subheader'] )? $data['subheader'] : 0;
         $page->update([
             'link' => $data['link'],
             'name' => $data['name'],
             'robot' => $data['robot'],
             'status' => $data['status'],
             'created_at' => time(),
+            'subheader'    => $subheader,
         ]);
 
         PageTranslation::updateOrCreate([

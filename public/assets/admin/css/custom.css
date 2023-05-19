@@ -1277,3 +1277,44 @@ li.sub-chapter-parent {
 	border: 1px solid #efefef;
     padding: 3px;
 }
+
+/*****************************
+Lms Card Style Start
+******************************/
+.lms-dashboard-card {box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, .03);}
+.lms-dashboard-card .lms-card-timeline {border-left: 2px dashed #f6f6f6;margin-left: 10px;}
+.lms-dashboard-card .lms-card-list{position:relative;padding:0 0 30px 30px;}
+.lms-dashboard-card .lms-card-info{display:flex;align-items:flex-start;overflow: hidden;}
+.lms-dashboard-card .lms-card-title { margin-bottom: 40px;}
+.lms-dashboard-card .lms-card-info p a{color: #4458b8;}
+.lms-dashboard-card .lms-card-info p{width:100%;margin:-3px 0 0 0;font-size:14px;line-height:18px;color:#666;}
+.lms-dashboard-card .lms-card-info h5{display:flex;align-items:flex-start;width:35%;margin:0;font-size:14px;color:#666;}
+.lms-dashboard-card .lms-card-icons{position:absolute;left:-8px;top:2px;display:flex;}
+.lms-dashboard-card .lms-card-body {padding: 20px;background: #fff;}
+.lms-dashboard-card .lms-card-icons svg {width: 14px;height: 14px; color: #666;}
+.lms-dashboard-card .lms-card-info h5 span {margin: 0 0 0 10px;}
+.lms-dashboard-card .lms-card-info h5 span svg {width: 14px;height: 14px;color:#4458b8;}
+.lms-dashboard-card .lms-card-btn{display:inline-block;align-items:center;justify-content:center;font-size:13px;background:#556ee6;vertical-align:middle;padding:0 6px;color:#fff;border-radius:3px;height:30px;line-height:30px;}
+.lms-dashboard-card .lms-card-btn:hover{color: #fff;}
+.lms-dashboard-card .lms-card-btn svg{width:14px;height:14px;margin:-3px 0 0 5px;}
+.lms-dashboard-card .lms-card-list:last-child {padding-bottom: 0;}
+.lms-dashboard-card .lms-card-title h3 {text-transform: capitalize;}
+.lms-dashboard-card .lms-card-list.active .lms-card-icons{overflow: hidden;-webkit-animation: fade-right 1.5s linear infinite;animation: fade-right 1.5s linear infinite;}
+.lms-dashboard-card .lms-card-list.active .lms-card-icons svg{color: #fff;fill: #4458b8;}
+@keyframes fade-right{
+    0%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+    75%
+    {
+        -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+        opacity: 0;
+    }
+}
+/*****************************
+Lms Card Style End
+******************************/

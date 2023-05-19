@@ -91,8 +91,16 @@
 
                     @if(!empty($navbarPages) and count($navbarPages))
                         @foreach($navbarPages as $navbarPage)
-                            <li class="nav-item">
+                            <li class="nav-item {{ (isset( $navbarPage['menu_classes']) && $navbarPage['menu_classes'] != '')
+                            ?$navbarPage['menu_classes'] : '' }}">
                                 <a class="nav-link" href="{{ $navbarPage['link'] }}">{{ $navbarPage['title'] }}</a>
+                                @if( isset( $navbarPage['submenu'] ) && $navbarPage['submenu'] != '')
+                                    <div class="sidenav-dropdown">
+                                        <ul class="sidenav-item-collapse">
+                                            {!! $navbarPage['submenu'] !!}
+                                        </ul>
+                                    </div>
+                                @endif
                             </li>
                         @endforeach
                     @endif
@@ -100,7 +108,7 @@
             </div>
 
             <div class="nav-icons-or-start-live navbar-order">
-                
+
                 <div class="xs-w-100 d-flex align-items-center justify-content-between ">
                     @if(!empty($authUser))
                     <div class="d-flex">

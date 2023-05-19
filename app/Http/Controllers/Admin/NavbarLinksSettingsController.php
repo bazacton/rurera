@@ -39,9 +39,6 @@ class NavbarLinksSettingsController extends Controller
     public function store(Request $request)
     {
         $this->authorize('admin_additional_pages_navbar_links');
-        $this->validate($request, [
-            'value.*' => 'required',
-        ]);
 
         $data = $request->all();
         $locale = $request->get('locale', getDefaultLocale());

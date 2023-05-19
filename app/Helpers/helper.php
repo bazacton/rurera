@@ -768,7 +768,7 @@ function currencySign($currency = null)
             return '₡';
             break;
         case 'CZK':
-            return 'K�?';
+            return 'K�?';
             break;
         case 'CUP':
             return '₱';
@@ -2282,13 +2282,18 @@ $toolbar_tools = array(
                 'icon' => 'fas fa-arrows-alt-v',
                 'type' => 'input'
             ),
+            'spreadsheet_area' => array(
+                    'title' => esc_html__('Spread Sheet Area', 'leform'),
+                    'icon' => 'fas fa-arrows-alt-v',
+                    'type' => 'other'
+                ),
 
             /*'imageselect' => array(
                 'title' => esc_html__('Image Select', 'leform'),
                 'icon' => 'far fa-images',
                 'type' => 'input'
             ),*/
-            
+
         );
 return $toolbar_tools;
 }
@@ -2563,8 +2568,8 @@ $element_properties_meta = array(
                 'antibot-error' => array('value' => esc_html__('Thank you. We have already got your request.', 'leform'), 'label' => esc_html__('Error message', 'leform'), 'type' => 'error', 'visible' => array('antibot-enable' => array('on'))),
                 'end-misc' => array('type' => 'section-end'),
             ),
-			
-			
+
+
             'imageselect' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Image select', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
@@ -2574,10 +2579,10 @@ $element_properties_meta = array(
                 'options' => array('multi-select' => 'off', 'values' => array(array('value' => 'Option 1', 'label' => 'Option 1', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 2', 'label' => 'Option 2', 'image' => '/assets/default/img/quiz/placeholder-image.png'), array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '/assets/default/img/quiz/placeholder-image.png')), 'label' => esc_html__('Options', 'leform'), 'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 'type' => 'image-options'),
                 'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
                 'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
-                    'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                    'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'row' => esc_html__('Row', 'leform'), 
-                        'inline' => esc_html__('Inline', 'leform'), 
+                        'row' => esc_html__('Row', 'leform'),
+                        'inline' => esc_html__('Inline', 'leform'),
                         )
                 ),
                 'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
@@ -2607,7 +2612,7 @@ $element_properties_meta = array(
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
                 'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
-                
+
             ),
             'tile' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
@@ -2696,32 +2701,32 @@ $element_properties_meta = array(
                 'element-id' => array('value' => '', 'label' => esc_html__('ID', 'leform'), 'tooltip' => esc_html__('The unique ID of the input field.', 'leform'), 'type' => 'id'),
                 'validators' => array('values' => array(), 'allowed-values' => array('in-array', 'prevent-duplicates'), 'label' => esc_html__('Validators', 'leform'), 'tooltip' => esc_html__('Validators checks whether the data entered by the user is valid.', 'leform'), 'type' => 'validators')
             ),
-			
+
             'checkbox' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Checkbox', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
                 'label' => array('value' => esc_html__('Mark one answer', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
                 'options' => array(
-					'multi-select' => 'on', 
+					'multi-select' => 'on',
 					'values' => array(
 						array('value' => 'Option 1', 'label' => 'Option 1', 'image' => ''),
 						array('value' => 'Option 2', 'label' => 'Option 2', 'image' => ''),
 						array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '')
-						), 
-					'label' => esc_html__('Options', 'leform'), 
-					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+						),
+					'label' => esc_html__('Options', 'leform'),
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
 					'type' => 'image-options'
 					),
-	
+
                 'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
                 'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
-				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'row' => esc_html__('Row', 'leform'), 
-                        'inline' => esc_html__('Inline', 'leform'), 
+                        'row' => esc_html__('Row', 'leform'),
+                        'inline' => esc_html__('Inline', 'leform'),
                         )
                 ),
-				
+
                 'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
                 'checkbox-style' => array('value' => array('position' => '', 'align' => '', 'layout' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Checkbox style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'), 'type' => 'local-checkbox-style'),
                 'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
@@ -2743,34 +2748,34 @@ $element_properties_meta = array(
                         )
                     )
                 ),
-				
+
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
                 'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
-                
+
             ),
             'radio' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Radio button', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
                 'label' => array('value' => esc_html__('Mark one answer', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
                 'options' => array(
-					'multi-select' => 'off', 
+					'multi-select' => 'off',
 					'values' => array(
 						array('value' => 'Option 1', 'label' => 'Option 1', 'image' => ''),
 						array('value' => 'Option 2', 'label' => 'Option 2', 'image' => ''),
 						array('value' => 'Option 3', 'label' => 'Option 3', 'image' => '')
-						), 
-					'label' => esc_html__('Options', 'leform'), 
-					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+						),
+					'label' => esc_html__('Options', 'leform'),
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
 					'type' => 'image-options'
 				),
                 'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
                 'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
-                'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+                'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'row' => esc_html__('Row', 'leform'), 
-                        'inline' => esc_html__('Inline', 'leform'), 
+                        'row' => esc_html__('Row', 'leform'),
+                        'inline' => esc_html__('Inline', 'leform'),
                         )
                 ),
 				'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
@@ -2797,34 +2802,34 @@ $element_properties_meta = array(
 				'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
-                
+
             ),
-			
+
 			'sortable_quiz' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Sortable', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
                 'label' => array('value' => esc_html__('Arrange', 'leform'), 'label' => esc_html__('Label', 'leform'), 'tooltip' => esc_html__('This is the label of the field.', 'leform'), 'type' => 'text'),
                 'options' => array(
-					'multi-select' => 'on', 
+					'multi-select' => 'on',
 					'values' => array(
 						array('value' => '1', 'label' => 'Option 1', 'image' => ''),
 						array('value' => '2', 'label' => 'Option 2', 'image' => ''),
 						array('value' => '3', 'label' => 'Option 3', 'image' => ''),
-						), 
-					'label' => esc_html__('Options', 'leform'), 
-					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'), 
+						),
+					'label' => esc_html__('Options', 'leform'),
+					'tooltip' => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
 					'type' => 'sortable-options'
 					),
-	
+
                 'description' => array('value' => '', 'label' => esc_html__('Description', 'leform'), 'tooltip' => esc_html__('This description appears below the field.', 'leform'), 'type' => 'text'),
                 'style' => array('type' => 'tab', 'value' => 'style', 'label' => esc_html__('Style', 'leform')),
-				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' => 
+				'template_style' => array('value' => 'row', 'label' => esc_html__('Template Style', 'leform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'row' => esc_html__('Row', 'leform'), 
-                        'inline' => esc_html__('Inline', 'leform'), 
+                        'row' => esc_html__('Row', 'leform'),
+                        'inline' => esc_html__('Inline', 'leform'),
                         )
                 ),
-				
+
                 'label-style' => array('value' => array('position' => '', 'width' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'width' => esc_html__('Width', 'leform'), 'align' => esc_html__('Alignment', 'leform')), 'label' => esc_html__('Label style', 'leform'), 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'), 'type' => 'label-style'),
                 'checkbox-style' => array('value' => array('position' => '', 'align' => '', 'layout' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Alignment', 'leform'), 'layout' => esc_html__('Layout', 'leform')), 'label' => esc_html__('Checkbox style', 'leform'), 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'), 'type' => 'local-checkbox-style'),
                 'description-style' => array('value' => array('position' => '', 'align' => ''), 'caption' => array('position' => esc_html__('Position', 'leform'), 'align' => esc_html__('Align', 'leform')), 'label' => esc_html__('Description style', 'leform'), 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'), 'type' => 'description-style'),
@@ -2846,14 +2851,14 @@ $element_properties_meta = array(
                         )
                     )
                 ),
-				
+
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
                 'field_id' => array('value' => '', 'label' => esc_html__('Field_id', 'leform'), 'type' => 'hidden'),
-                
+
             ),
-			
+
 			/*'imageselect' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Image select', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'), 'type' => 'text'),
@@ -2893,19 +2898,19 @@ $element_properties_meta = array(
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
                 'attempt_time' => array('value' => '', 'label' => esc_html__('Attempt Time', 'leform'), 'type' => 'number'),
-                'difficulty_level' => array('value' => 'none', 'label' => esc_html__('Difficulty Level', 'leform'), '', 'type' => 'select', 'options' => 
+                'difficulty_level' => array('value' => 'none', 'label' => esc_html__('Difficulty Level', 'leform'), '', 'type' => 'select', 'options' =>
                     array(
-                        'Below' => esc_html__('Below', 'leform'), 
-                        'Emerging' => esc_html__('Emerging', 'leform'), 
-                        'Expected' => esc_html__('Expected', 'leform'), 
-                        'Exceeding' => esc_html__('Exceeding', 'leform'), 
-                        'Challenge' => esc_html__('Challenge', 'leform'), 
+                        'Below' => esc_html__('Below', 'leform'),
+                        'Emerging' => esc_html__('Emerging', 'leform'),
+                        'Expected' => esc_html__('Expected', 'leform'),
+                        'Exceeding' => esc_html__('Exceeding', 'leform'),
+                        'Challenge' => esc_html__('Challenge', 'leform'),
                         )
                 ),
             ),
 			*/
-			
-			
+
+
             'page' => array(
                 'general' => array('type' => 'tab', 'value' => 'general', 'label' => esc_html__('General', 'leform')),
                 'name' => array('value' => esc_html__('Page', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name helps to identify the page.', 'leform'), 'type' => 'text'),
@@ -2917,7 +2922,7 @@ $element_properties_meta = array(
             'columns' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
                 'name' => array('value' => esc_html__('Untitled', 'leform'), 'label' => esc_html__('Name', 'leform'), 'tooltip' => esc_html__('The name will be shown throughout the plugin.', 'leform'), 'type' => 'text'),
-                'widths' => array('value' => '', 'label' => esc_html__('Column width', 'leform'), 'tooltip' => esc_html__('Specify the width of each column. The row is divided into 12 equal pieces. You can decide how many pieces related to each columns. If you want all columns to be in one row, make sure that sum of widths is equal to 12.', 'leform'), 'type' => 'column-width'),                
+                'widths' => array('value' => '', 'label' => esc_html__('Column width', 'leform'), 'tooltip' => esc_html__('Specify the width of each column. The row is divided into 12 equal pieces. You can decide how many pieces related to each columns. If you want all columns to be in one row, make sure that sum of widths is equal to 12.', 'leform'), 'type' => 'column-width'),
             ),
             'html_bk' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
@@ -2943,26 +2948,37 @@ $element_properties_meta = array(
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
-                
+
+            ),
+            'spreadsheet_area' => array(
+                'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
+                'name' => array('value' => esc_html__('HTML Content', 'leform'), 'label' => esc_html__('Name', 'leform'), 'type' => 'text'),
+                'content' => array('value' => esc_html__('Default Spreadsheet Area.', 'leform') . '', 'label'
+                => esc_html__('HTML', 'leform'), 'tooltip' => esc_html__('This is the spreadshee.', 'leform'), 'type' =>
+ 'html'),
+                'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
+                'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
+                'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
+
             ),
             'sum_quiz' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
-                'content' => array('value' => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="quiz-input-group"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'content' => array('value' => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="quiz-input-group"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
-                
+
             ),
-    
+
             'image_quiz' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
-                'content' => array('value' => '<span class="block-holder"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'content' => array('value' => '<span class="block-holder"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
-                
+
             ),
 			'paragraph_quiz' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
-                'content' => array('value' => '<span class="block-holder editor-field" data-id="50191" data-field_type="paragraph" id="field-50191">Test Paragraph</span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),      
+                'content' => array('value' => '<span class="block-holder editor-field" data-id="50191" data-field_type="paragraph" id="field-50191">Test Paragraph</span>', 'label' => esc_html__('Content', 'leform'), 'tooltip' => '', 'type' => 'html'),
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
-                
+
             ),
             'sqroot_quiz' => array(
                 'basic' => array('type' => 'tab', 'value' => 'basic', 'label' => esc_html__('Basic', 'leform')),
@@ -2971,8 +2987,8 @@ $element_properties_meta = array(
                 'elements_data' => array('value' => '', 'label' => '', 'tooltip' => '', 'type' => 'elements_data'),
                 'quiz-settings' => array('type' => 'tab', 'value' => 'settings', 'label' => esc_html__('Settings', 'leform')),
                 'score' => array('value' => '', 'label' => esc_html__('Score', 'leform'), 'type' => 'number'),
-                     
-                
+
+
             )
         );
 return $element_properties_meta;
@@ -3016,14 +3032,14 @@ function default_form_options($_type = 'settings', $chapters = array()) {
         }
         return $form_options;
     }
-    
-    
-    
+
+
+
 function lmsParseTag($content,$class_name)
     {
         $dom = new DOMDocument;
         $dom->loadHTML($content);
-        
+
         $xpath = new DOMXpath($dom);
         $elements = $xpath->query('//*[contains(@class, "'.$class_name.'")]');
         $element_data = array();
@@ -3036,21 +3052,21 @@ function lmsParseTag($content,$class_name)
             $element_data[] = $attr;
         }
         return $element_data;
-    }    
-    
-    
-	
-	
+    }
+
+
+
+
 /*
 * Get Sub Chapter Title
-*/	
+*/
 function getSubChapterTitle($sub_chapter_id)
 {
 	$data = \Illuminate\Support\Facades\DB::table('webinar_sub_chapters')
 		->where('id', $sub_chapter_id)
 		->select('sub_chapter_title')
 		->first();
-		
+
 	return isset( $data->sub_chapter_title )? $data->sub_chapter_title : '';
 }
 
@@ -3067,9 +3083,9 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0){
         if( $webinar_id > 0){
             $lessions->where('webinars.id', $webinar_id);
         }
-        $lessions = $lessions->get();    
-    
-        
+        $lessions = $lessions->get();
+
+
         if (!empty($lessions)) {
             foreach ($lessions as $lessionData) {
                 $lession_title = isset($lessionData->title) ? $lessionData->title : '';
@@ -3087,9 +3103,9 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0){
                 ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
                 ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
                 ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
-				
-				
-		if($user->role_name == 'teachers'){		
+
+
+		if($user->role_name == 'teachers'){
 			$webinars = \Illuminate\Support\Facades\DB::table('webinars')
                 ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
                 ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
@@ -3100,20 +3116,20 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0){
                 ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
                 ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
                 ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
-				
+
 			$webinars->where('author_permissions.author_id', $user->id);
 		}
 
         if( $webinar_id > 0){
             $webinars->where('webinars.id', $webinar_id);
         }
-			
 
-        $webinars = $webinars->get();    
-		
+
+        $webinars = $webinars->get();
+
 		//pre(DB::getQueryLog());
         //DB::disableQueryLog();
-        
+
         $chapters_list = array();
         if (!empty($webinars)) {
             foreach ($webinars as $webinarData) {
@@ -3121,12 +3137,12 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0){
                 $sub_chapter_id = isset($webinarData->sub_chapter_id) ? $webinarData->sub_chapter_id : '';
                 $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
                 $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
-                
+
                 $lessions_data = isset( $lession_chapters[$sub_chapter_id] )? $lession_chapters[$sub_chapter_id] : array();
-                
+
                 $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
                 $chapters_list[$sub_chapter_id]['chapters'][$chapter_id] = $chapter_title;
-                
+
                 if( !empty( $lessions_data ) ){
                     foreach( $lessions_data as $lession_id => $lessionChapter){
                         $chapters_list[$sub_chapter_id]['chapters'][$lession_id] = $lessionChapter;
@@ -3134,7 +3150,7 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0){
                 }
             }
         }
-        
+
         return $chapters_list;
 }
 
@@ -3148,7 +3164,7 @@ function sub_chapter_items_list(){
                 ->join('text_lesson_translations', 'text_lesson_translations.text_lesson_id', '=', 'text_lessons.id')
                 ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'text_lessons.id as chapter_id', 'text_lesson_translations.title as chapter_title')
                 ->get();
-        
+
         $lession_chapters = array();
         if (!empty($lessions)) {
             foreach ($lessions as $lessionData) {
@@ -3160,7 +3176,7 @@ function sub_chapter_items_list(){
                 $lession_chapters[$sub_chapter_id][$chapter_id]['type'] = 'lesson';
             }
         }
-        
+
         $webinars = \Illuminate\Support\Facades\DB::table('webinars')
                 ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
                 ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
@@ -3168,7 +3184,7 @@ function sub_chapter_items_list(){
                 ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
                 ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title')
                 ->get();
-        
+
         $chapters_list = array();
         if (!empty($webinars)) {
             foreach ($webinars as $webinarData) {
@@ -3176,13 +3192,13 @@ function sub_chapter_items_list(){
                 $sub_chapter_id = isset($webinarData->sub_chapter_id) ? $webinarData->sub_chapter_id : '';
                 $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
                 $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
-                
+
                 $lessions_data = isset( $lession_chapters[$sub_chapter_id] )? $lession_chapters[$sub_chapter_id] : array();
-                
+
                 $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
                 $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['title'] = $chapter_title;
                 $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['type'] = 'quiz';
-                
+
                 if( !empty( $lessions_data ) ){
                     foreach( $lessions_data as $lession_id => $lessionChapter){
                         $chapters_list[$sub_chapter_id]['chapters'][$lession_id] = $lessionChapter;
@@ -3190,7 +3206,7 @@ function sub_chapter_items_list(){
                 }
             }
         }
-        
+
         return $chapters_list;
 }
 
@@ -3210,12 +3226,12 @@ function get_subchapter_items($sub_chapter_id){
                 ->where('quizzes.sub_chapter_id', $sub_chapter_id)
                 ->get();
 	$quiz_count = $items->count();
-	
+
 	$items = \Illuminate\Support\Facades\DB::table('text_lessons')
                 ->where('text_lessons.sub_chapter_id', $sub_chapter_id)
                 ->get();
 	$lesson_count = $items->count();
-	
+
     return $quiz_count+$lesson_count;
 }
 
@@ -3227,7 +3243,7 @@ function get_subchapter_items($sub_chapter_id){
 function createAttemptLog($attempt_id, $log_details, $log_type = 'started', $result_question_id = 0){
 	$attemptObj = QuizzAttempts::find($attempt_id);
 	$resultObj = QuizzesResult::find($attemptObj->quiz_result_id);
-	
+
 	if( $resultObj->status == 'waiting'){
 		$QuizAttemptLog = QuizAttemptLogs::create([
 			'attempt_id' => $attempt_id,
@@ -3236,7 +3252,7 @@ function createAttemptLog($attempt_id, $log_details, $log_type = 'started', $res
 			'log_type' => $log_type,
 			'created_at' => time()
 		]);
-		
+
 		if( $log_type == 'attempt'){
 			QuizAttemptLogs::where('attempt_id', $attempt_id)->where('result_question_id', $result_question_id)->where('log_type', 'viewed')->delete();
 		}
@@ -3249,13 +3265,13 @@ function createAttemptLog($attempt_id, $log_details, $log_type = 'started', $res
  * Get Differences in Times
  */
 function TimeDifference($start_time, $end_time, $return_type = 'minutes'){
-    
+
     switch($return_type){
-        
+
         case "minutes":
             $response = ($end_time - $start_time) / 60;
         break;
-        
+
         case "hours":
             $response = ($end_time - $start_time) / 60 / 60;
         break;

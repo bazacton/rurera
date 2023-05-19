@@ -110,6 +110,16 @@
                                 </div>
 
                                 <div class="form-group custom-switches-stacked">
+                                    <label class="input-label">Subheader:</label>
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox" name="subheader" id="subheader" value="1" {{ (empty
+                                               ($page) || $page->subheader == '1') ? 'checked="checked"' : '' }}
+                                        class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group custom-switches-stacked">
                                     <label class="input-label">{{ trans('admin/main.status') }}:</label>
                                     <label class="custom-switch pl-0">
                                         <label class="custom-switch-description mb-0 mr-2">{{ trans('admin/main.draft') }}</label>

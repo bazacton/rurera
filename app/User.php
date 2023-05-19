@@ -94,12 +94,12 @@ class User extends Authenticatable
     {
         return $this->role_name === Role::$organization;
     }
-    
+
     public function isAuthor()
     {
         return $this->role_name === Role::$author;
     }
-    
+
     public function isReviewer()
     {
         return $this->role_name === Role::$reviewer;

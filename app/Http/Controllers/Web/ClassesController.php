@@ -43,7 +43,7 @@ class ClassesController extends Controller
 
         $webinars = $webinarsQuery->with([
             'tickets'
-        ])->paginate(6);
+        ])->paginate(500);
 
         $seoSettings = getSeoMetas('classes');
         $pageTitle = $seoSettings['title'] ?? '';

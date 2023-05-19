@@ -74,6 +74,27 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-group">
+                                            <label>Menu Classes</label>
+                                            <input type="text" name="value[menu_classes]" value="{{ (!empty
+                                                                                            ($navbar_link) && isset( $navbar_link->menu_classes )) ?
+                                                                                            $navbar_link->menu_classes : old('value
+                                                                                            .menu_classes') }}" class="form-control  @error('value.menu_classes') is-invalid @enderror"/>
+                                            @error('value.menu_classes')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Sub Menu</label>
+                                            <textarea placeholder='<li><a href="#">Sub Menu 1</a></li>' name="value[submenu]" class="form-control">{{ (!empty
+                                                ($navbar_link) && isset( $navbar_link->submenu )) ?
+                                                $navbar_link->submenu : old('value
+                                                .submenu') }}</textarea>
+                                        </div>
+
                                         <button type="submit" class="btn btn-primary mt-1">{{ trans('admin/main.submit') }}</button>
                                     </form>
                                 </div>

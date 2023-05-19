@@ -82,7 +82,7 @@ class CategoriesController extends Controller
                 }
 
                 $webinars = $webinarsQuery->with(['tickets'])
-                    ->paginate(6);
+                    ->paginate(500);
 
                 $seoSettings = getSeoMetas('categories');
                 $pageTitle = !empty($seoSettings['title']) ? $seoSettings['title'] : trans('site.categories_page_title');

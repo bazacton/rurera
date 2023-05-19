@@ -10,8 +10,8 @@
         <div class="row h-100 align-items-center justify-content-center text-center">
             <div class="col-12 col-md-9 col-lg-7">
                 <h1 class="font-30 font-weight-bold">{{ $page->title }}</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit<br> Lorem ipsum dolor sit amet</p>
-                <a href="#" class="btn-primary">Signup Button</a>
+                <p>Maximize Your Earnings ,Strategies to Help You Reach Your Full Potential.</p>
+                <a href="#" class="btn-primary">Lets Start Your Journey</a>
             </div>
         </div>
     </div>

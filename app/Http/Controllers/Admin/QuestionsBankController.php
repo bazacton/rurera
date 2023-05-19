@@ -53,6 +53,24 @@ class QuestionsBankController extends Controller {
 
 
         $totalQuestions = deepClone($query)->count();
+
+        $in_review = clone $query;
+        $approved = clone $query;
+        $improvement = clone $query;
+        $hold_reject = clone $query;
+
+        $in_review->where('quizzes_questions.question_status', 'Submit for review');
+        $totalInReview = deepClone($in_review)->count();
+
+        $approved->whereIn('quizzes_questions.question_status', array('Offline','Accepted','Published'));
+        $totalApproved = deepClone($approved)->count();
+
+        $improvement->where('quizzes_questions.question_status', 'Improvement required');
+        $totalImprovement = deepClone($improvement)->count();
+
+        $hold_reject->whereIn('quizzes_questions.question_status', array('On hold','Hard reject'));
+        $totalHoldReject = deepClone($hold_reject)->count();
+
         $query = $this->filters($query, $request);
         $questions = $query->with([
                     'webinar',
@@ -80,11 +98,14 @@ class QuestionsBankController extends Controller {
         //pre(DB::getQueryLog());
         //DB::disableQueryLog();
 
-
         $data = [
             'pageTitle' => trans('admin/pages/quiz.admin_quizzes_list'),
             'questions' => $questions,
             'totalQuestions' => $totalQuestions,
+            'totalInReview'    => $totalInReview,
+            'totalApproved'    => $totalApproved,
+            'totalImprovement'    => $totalImprovement,
+            'totalHoldReject'    => $totalHoldReject,
             'foundRecords' => $foundRecords,
             'totalActiveQuizzes' => 0,
             'totalStudents' => 0,
@@ -733,6 +754,9 @@ class QuestionsBankController extends Controller {
 
         $question = QuizzesQuestion::findOrFail($id);
 
+        $questionLogs = QuestionLogs::where('question_id', $id)->orderBy('id', 'desc')->with('user')
+                        ->get();
+
         $created_at = $question->created_at;
 
         $time_passed = TimeDifference($created_at, time(), 'minutes');
@@ -801,6 +825,7 @@ class QuestionsBankController extends Controller {
             'chapters' => $chapters_list,
             'categories' => $categories,
             'questionObj' => $question,
+            'questionLogs' => $questionLogs,
             'user' => $user,
         ];
         $data['glossary'] = $glossary;

@@ -198,35 +198,36 @@ function leform_save(_object, question_status) {
             post_elements.push(leform_encode64(JSON.stringify(leform_form_elements[i])));
 		}
     }
-    
+
     var question_title = $("[name=question_title]").val();
     var chapter_id = $("[name=chapter_id]").val();
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
     var glossary_ids = $("#glossary_ids").val();
-    
+
     var new_glossaries = $(".new_glossaries")
               .map(function(){return $(this).val();}).get();
-    
+
     var question_solve = $('#question_solve').summernote('code');
-    var comments_for_reviewer = $('#comments_for_reviewer').summernote('code');
-    
-    
+    //var comments_for_reviewer = $('#comments_for_reviewer').summernote('code');
+    var comments_for_reviewer = $('#comments_for_reviewer').val();
+
+
 	var question_layout = $(".leform-form");
-	
+
 	question_layout.find('.editor-field').each(function() {
-		
+
 		$.each($(this).data(), function (i) {
 			question_layout.find('.editor-field').removeAttr("data-"+i);
 		});
-		
-		
+
+
 	});
-	
+
 	question_layout.find('.editor-field').removeAttr("correct_answere");
 	var question_layout = leform_encode64(JSON.stringify(question_layout.html()));
-    
+
     var post_data = {"new_glossaries": new_glossaries, "question_solve": question_solve, "comments_for_reviewer": '', "question_title": question_title, "chapter_id": chapter_id, "question_score": question_score, "question_average_time": question_average_time, "glossary_ids": glossary_ids, "difficulty_level": difficulty_level, "action": "leform-form-save", "form-id": jQuery("#leform-id").val(), "form-options": leform_encode64(JSON.stringify(leform_form_options)), "form-pages": post_pages, "form-elements": post_elements, "question_layout": question_layout, "question_status": question_status};
     var form_submit_url = $(".form-class").attr('data-question_save_type');
     console.log(post_data);
@@ -242,10 +243,10 @@ function leform_save(_object, question_status) {
                  setTimeout(function () {
                     return_data.redirect_url && "" !== return_data.redirect_url ? (window.location.href = return_data.redirect_url) : window.location.reload();
                 }, 2e3);
-                
+
             }
-            
-            
+
+
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             jQuery(_object).find("i").attr("class", "far fa-save");
@@ -751,7 +752,7 @@ function _leform_properties_prepare(_object) {
                     temp += "</div>";
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'>" + temp + "</div></div>";
                     break;
-                    
+
 
                 case 'border-style':
                     temp = "";
@@ -953,10 +954,10 @@ function _leform_properties_prepare(_object) {
                 case 'text':
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
                     break;
-                    
+
                 case 'number':
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='number' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
-                    break;    
+                    break;
 
                 case 'integer':
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-number'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div></div>";
@@ -991,8 +992,8 @@ function _leform_properties_prepare(_object) {
                     <textarea class='content-area hide' name='leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
                     <div class='field-options field-options-"+key+"'>\n\
                     </div>\n\
-                    </div></div>"; 
-                                                                                                                                                                                                                        
+                    </div></div>";
+
                 case 'html':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                     \n\
@@ -1010,18 +1011,37 @@ function _leform_properties_prepare(_object) {
                     <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
                     <div class='field-options field-options-"+key+"'>\n\
                     </div>\n\
-                    </div></div>";                                                                                                                                                                                                            
-                
+                    </div></div>";
+
+                case 'spreadsheet_area':
+                    html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
+                    \n\
+                    <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
+                    <div class='lms-tools-bar'>\n\
+                    <ul class='leform-toolbar-list'>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    </ul>\n\
+                    </div>\n\
+                    <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote content-data'>" + properties[key] + "</textarea>\n\
+                    <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
+                    <div class='field-options field-options-"+key+"'>\n\
+                    </div>\n\
+                    </div></div>";
+
                 break;
-                
+
                 case 'elements_data':
                     html += "<input type='hidden' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
                     break;
-					
+
 				case 'hidden':
                     html += "<input type='hidden' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
-                    break;	
-                    
+                    break;
+
                 case 'ajax_select':
                    options = "";
                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' class='"+leform_meta[type][key]['class']+"' id='leform-" + key + "'>" + options + "</select></div></div></div>";
@@ -1052,9 +1072,9 @@ function _leform_properties_prepare(_object) {
                             }\n\
                         }\n\
                     });</script>";
-                   break;   
-              
-                
+                   break;
+
+
                 case 'html_bk':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                 \n\
@@ -1066,8 +1086,8 @@ function _leform_properties_prepare(_object) {
                 <div class='field-options field-options-"+key+"'>\n\
                 </div>\n\
                 </div></div>";
-                   
-                                                                                                                                                                                                                    
+
+
                     break;
 
                 case 'textarea':
@@ -1097,10 +1117,10 @@ function _leform_properties_prepare(_object) {
                     }
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "'>" + options + "</select></div></div></div>";
                     break;
-                    
+
                  case 'select_sub':
                     options = "";
-                    var chapters = leform_meta[type][key]['options'];   
+                    var chapters = leform_meta[type][key]['options'];
                     Object.keys(chapters).forEach(function(chapter_id){
                         var chapter_title = chapters[chapter_id]['title'];
                         var sub_chapters = chapters[chapter_id]['chapters'];
@@ -1110,16 +1130,16 @@ function _leform_properties_prepare(_object) {
                             selected = "";
                             if (sub_chapter_id == properties[key])
                                 selected = " selected='selected'";
-                            
+
                             options += "<option" + selected + " value='"+sub_chapter_id+"'>"+sub_chapter_title+"</option>";
-                            
+
                         });
                         options += "</optgroup>";
-                        
-                        
+
+
                     });
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "'>" + options + "</select></div></div></div>";
-                    break;   
+                    break;
 
                 case 'select-image':
                     options = "";
@@ -1294,11 +1314,11 @@ function _leform_properties_prepare(_object) {
                     options = "";
 					var is_selected = "";
 					for (var j = 0; j < properties[key].length; j++) {
-                        
+
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
-                            is_selected = " leform-properties-options-item-default";						
+                            is_selected = " leform-properties-options-item-default";
                     }
-					
+
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
@@ -1310,7 +1330,7 @@ function _leform_properties_prepare(_object) {
                     }
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Image</div><div>Label</div><div class='lms-hide'>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
-					
+
                     case 'sortable-options':
                     options = "";
                     for (var j = 0; j < properties[key].length; j++) {
@@ -1320,7 +1340,7 @@ function _leform_properties_prepare(_object) {
                         options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><input class='leform-properties-options-image' type='text' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Image</div><div>Label</div><div>Correct Order</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
-                    break;	
+                    break;
 
                 case 'logic-rules':
                     var input_ids = new Array();
@@ -1480,8 +1500,8 @@ function _leform_properties_prepare(_object) {
         html += "</div>";
     }
     jQuery("#leform-element-properties .leform-admin-popup-content-form").html(tab_html + html);
-    
-    
+
+
     /*var HelloButton = function (context) {
         var ui = $.summernote.ui;
 
@@ -1496,7 +1516,7 @@ function _leform_properties_prepare(_object) {
         return button.render();
       }
       */
-    
+
     if ($('.summernote').length) {
         $('.summernote').summernote({
             tabsize: 2,
@@ -1520,7 +1540,7 @@ function _leform_properties_prepare(_object) {
         });
     }
 
-    
+
     if (type == "settings") {
         for (var j = 0; j < leform_form_elements.length; j++) {
             if (leform_form_elements[j] == null)
@@ -1714,7 +1734,7 @@ function _leform_properties_prepare(_object) {
         });
         jQuery(jQuery(this).find("a").first().attr("href")).show();
     });
-    
+
     jQuery(".leform-slider").each(function () {
         var input = jQuery(this).parent().children("input");
         jQuery(this).slider({
@@ -4849,9 +4869,9 @@ function _leform_build_children(_parent, _parent_col) {
                         options += "<div class='field-holder leform-cr-container-" + properties["radio-size"] + " leform-cr-container-" + properties["radio-position"] + "'>" + option + "</div>";
                     }
                     var image_class = (is_image == true)? "lms-radio-img" : "";
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'><div class='lms-radio-select "+template_style+"-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='draggable3 leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'><div class='lms-radio-select "+template_style+"-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
-					
+
                     case "sortable_quiz":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     var sort_id = Math.floor((Math.random() * 99999) + 1);
@@ -4891,7 +4911,7 @@ function _leform_build_children(_parent, _parent_col) {
 					" + option + "</div>";
                     }
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'><div class='lms-sorting-fields' id='lmssort"+sort_id+"'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
-                    break;	
+                    break;
 
                 case "imageselect":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
@@ -5068,30 +5088,34 @@ function _leform_build_children(_parent, _parent_col) {
                 case "html":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element question-textarea quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     break;
-                    
+
+                case "spreadsheet_area":
+                    html += "<div id='1leform-element-" + i + "' class='spreadsheet-area' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+                    break;
+
                 case "sum_quiz":
                     var next_i = parseInt(i)+1;
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
-                    
+
                     options = "<div class='leform-col leform-col-12'><div class='leform-elements' _data-parent='" + i + "' _data-parent-col='" + i + "'>" + html_data + "</div></div>";
                     //html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-row leform-element' data-type='columns'>" + options + "</div>";
-                    
+
                     //html += '<div id="leform-element-1" class="leform-element-1 leform-row leform-element" data-type="columns"><div class="leform-col leform-col-12"><div class="leform-elements ui-sortable" _data-parent="" _data-parent-col="0" style="min-height: 60px;"></div></div></div>';
-                    
+
                     html += html_data;
-                    
+
                     break;
-                    
+
                 case "image_quiz":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
-                    break;   
+                    break;
 
 				case "paragraph_quiz":
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     html += html_data;
-                    
+
                     break;
-                    
+
                 case "sqroot_quiz":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     break;
@@ -5103,7 +5127,7 @@ function _leform_build_children(_parent, _parent_col) {
                         style += properties["style"];
                         options += "<div class='leform-col leform-col-" + leform_form_elements[i]["widths-" + j] + "'><div class='leform-elements' _data-parent='" + leform_form_elements[i]['id'] + "' _data-parent-col='" + j + "'>" + properties["html"] + "</div></div>";
                     }
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-row leform-element' data-type='" + leform_form_elements[i]["type"] + "'>" + options + "</div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-row containment-wrapper leform-element' data-type='" + leform_form_elements[i]["type"] + "'>" + options + "</div>";
                     break;
 
                 default:
@@ -5706,8 +5730,18 @@ function leform_build() {
         }
     }
 
+
+    //containment: "#containment-wrapper"
+
+
     jQuery(".leform-form").each(function () {
         var id = jQuery(this).attr("id");
+
+        jQuery("#leform-elements-"+id).draggable({
+                containment: ".spreadsheet-area",
+                //revert: true
+            });
+
         jQuery("#" + id + " .leform-elements, #" + id + ".leform-elements").sortable({
             connectWith: "#" + id + " .leform-elements, #" + id + ".leform-elements",
             items: ".leform-element",
@@ -5724,6 +5758,14 @@ function leform_build() {
             }
         });
     });
+
+
+    $( ".spreadsheet-area" ).droppable({
+            accept: "#leform-elements-1",
+        });
+        console.log('testing');
+
+
     _leform_sync_elements();
     leform_build_progress();
     if (typeof jQuery.fn.ionRangeSlider != typeof undefined && jQuery.fn.ionRangeSlider)
@@ -7807,7 +7849,7 @@ function leform_write_cookie(key, value, days) {
  * Custom Code
  */
 $(document).on('click','.editor-add-field',function(){
-    
+
     var field_id = $(this).attr('data-id');
     var field_type = $(this).attr('data-field_type');
     var random_id = Math.floor((Math.random() * 99999) + 1);
@@ -7821,40 +7863,40 @@ $(document).on('click','.editor-add-field',function(){
         field_data = '<span class="select-box quiz-input-group">\n\
         <select class="editor-field" data-id="'+random_id+'" data-options="" data-field_type="select" id="field-'+random_id+'" data-correct=""></select>\n\</span>';
     }
-	
+
     if( field_type == 'radio'){
         field_data = '<span class="quiz-input-group editor-field" data-options="" data-id="'+random_id+'" data-field_type="radio" id="field-'+random_id+'" data-correct=""><input type="radio" ></span>&nbsp;';
     }
-	
+
     if( field_type == 'checkbox'){
         field_data = '<span class="quiz-input-group editor-field" data-options="" data-id="'+random_id+'" data-field_type="checkbox" id="field-'+random_id+'" data-correct=""><input type="checkbox" ></span>&nbsp;';
     }
-    
+
     if( field_type == 'fraction'){
         field_data = '<span class="quiz-input-group" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><div class="field-group"><span class="divide-numbers"><span contentEditable="true">X</span><em class="divider"></em><span contentEditable="true">X</span></span></div></span>&nbsp;';
     }
-    
+
     if( field_type == 'sq_root'){
         field_data = '<span class="block-holder" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contentEditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span>&nbsp;';
     }
-    
+
     if( field_type == 'cube_root'){
         field_data = '<span class="block-holder" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><span class="lms-root-block"><sup class="lms-nthroot lms-non-leaf"><span contentEditable="true">X</span></sup><span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span></span>&nbsp;';
     }
-    
+
     if( field_type == 'image'){
         field_data = '<span class="block-holder"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>&nbsp;';
     }
-	
+
 	if( field_type == 'paragraph'){
         field_data = '<span class="block-holder editor-field" data-id="'+random_id+'" data-field_type="paragraph" id="field-'+random_id+'">Test Paragraph</span>&nbsp;';
     }
-    
-    
+
+
     pasteHtmlAtCaret(field_data);
     $(".note-editable").focus();
     //$(".content-data").append(field_data);
-    
+
 });
 
 
@@ -7868,19 +7910,19 @@ $(document).on('click','.editor-field',function(){
     //$(".field-options").html('');
     $(".field-options-all").slideUp();
     if( $("#field-options-"+field_id+"").length < 1){
-        
+
         var field_layout_html = "<div class='"+field_type+"-field-options field-options-all' id='field-options-"+field_id+"'>"+$('.fields-layout-options').find('.'+field_type+'-field-options').clone().html()+'</div>';
         var field_layout_html = field_layout_html.replace(/field_dynamic_id/g, field_id);
         var field_layout_html = field_layout_html.replace(/option_dynamic_id/g, option_id_unique);
-        
+
         if( field_type == 'select' || field_type == 'radio' || field_type == 'checkbox'){
-            
+
             var options = $(this).attr('data-options');
             var options_array = (options != '')? JSON.parse(options) : [];
-            
+
             var corrects = $(this).attr('data-correct');
-            var corrects_array = (corrects != '')? JSON.parse(corrects) : [];    
-            
+            var corrects_array = (corrects != '')? JSON.parse(corrects) : [];
+
             var field_layout_html = $(field_layout_html);
             field_layout_html.find('.repeater-fields').html('');
             var options_html = '';
@@ -7901,21 +7943,21 @@ $(document).on('click','.editor-field',function(){
                     options_html += "<div class='quiz-form-control'>"+options_item_html.html()+"</div>";
                 });
             }else{
-                
+
                 var option_id_unique = Math.floor((Math.random() * 99999) + 1);
                 var options_item_html = $('.fields-layout-options').find('.'+field_type+'-field-options').find('.repeater-fields').html();
                 options_item_html = options_item_html.replace(/field_dynamic_id/g, field_id);
                 options_item_html = options_item_html.replace(/option_dynamic_id/g, option_id_unique);
                 var options_item_html = $(options_item_html);
                 options_html += "<div class='quiz-form-control'>"+options_item_html.html()+"</div>";
-                
+
             }
             field_layout_html.find('.repeater-fields').append(options_html);
-            
+
             $('.field-options').append(field_layout_html);
-            
-            
-        }else{  
+
+
+        }else{
 
 
             $('.field-options').append(field_layout_html);
@@ -7926,7 +7968,7 @@ $(document).on('click','.editor-field',function(){
                 $(this).val(current_value);
             });
         }
-        
+
     }
     $('.field-options-content #field-options-'+field_id).slideDown();
 });
@@ -7951,7 +7993,7 @@ $(document).on('change','.select-correct-element-field',function(){
 	var field_id = $(this).attr('data-field_id');
         var field_type = $(this).attr('data-field_type');
 	var correct_options = $(".note-editable #field-"+field_id).attr('data-correct');
-	
+
 	if( correct_options != ''){
 		correct_options = jQuery.parseJSON(correct_options);
 	}else{
@@ -7960,26 +8002,26 @@ $(document).on('change','.select-correct-element-field',function(){
         if( field_type == 'radio_correct'){
             correct_options = [];
         }
-	
-	
-	
+
+
+
 	if( $(this).is(":checked") ){
 		correct_options.push($(this).val());
 	}else{
 		correct_options.splice($.inArray($(this).val(), correct_options), 1);
 	}
-	
-	
+
+
 	$(".note-editable #field-"+field_id).attr('data-correct', JSON.stringify(correct_options));
-	
-	
+
+
 });
 
 $(document).on('keyup change focus blur paste checked unchecked','.element-field',function(){
     var field_id = $(this).attr('data-field_id');
     var field_type = $(this).attr('data-field_type');
     $(".note-editable #field-"+field_id).attr('data-'+field_type, $(this).val());
-	
+
     if( field_type == 'select_option'){
         var options_html = '';
         var select_options = [];
@@ -7991,7 +8033,7 @@ $(document).on('keyup change focus blur paste checked unchecked','.element-field
         });
         $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(select_options));
         $(".note-editable #field-"+field_id).html(options_html);
-		
+
     }else if( field_type == 'radio_option'){
         var radio_options_html = '';
         var radio_options = [];
@@ -7999,11 +8041,11 @@ $(document).on('keyup change focus blur paste checked unchecked','.element-field
             radio_options_html += '<input type="radio" value="' + $(this).val() + '"> ' + $(this).val()+' ';
             var field_option_id = $(this).attr('data-field_option_id');
             radio_options.push($(this).val());
-            $("#"+field_option_id).val($(this).val());  
+            $("#"+field_option_id).val($(this).val());
         });
         $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(radio_options));
         $(".note-editable #field-"+field_id).html(radio_options_html);
-		
+
     }else if( field_type == 'checkbox_option'){
         var checkbox_options_html = '';
         var checkbox_options = [];
@@ -8011,21 +8053,21 @@ $(document).on('keyup change focus blur paste checked unchecked','.element-field
             checkbox_options_html += '<input type="checkbox" value="' + $(this).val() + '"> ' + $(this).val()+' ';
             var field_option_id = $(this).attr('data-field_option_id');
             checkbox_options.push($(this).val());
-            $("#"+field_option_id).val($(this).val());  
+            $("#"+field_option_id).val($(this).val());
         });
         $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(checkbox_options));
         $(".note-editable #field-"+field_id).html(checkbox_options_html);
-		
+
     }else if( field_type == 'field_size'){
-        
+
         $(".note-editable #field-"+field_id).removeClass('field_extra_small');
         $(".note-editable #field-"+field_id).removeClass('field_small');
         $(".note-editable #field-"+field_id).removeClass('field_medium');
         $(".note-editable #field-"+field_id).removeClass('field_large');
         $(".note-editable #field-"+field_id).addClass($(this).val());
-        
-        
-        
+
+
+
     }else if( field_type == 'link'){
 		if ( $(".note-editable #field-"+field_id).parent().is( "a" )) {
 			 $(".note-editable #field-"+field_id).unwrap();
@@ -8033,31 +8075,31 @@ $(document).on('keyup change focus blur paste checked unchecked','.element-field
 		if( $(this).val() != '' && $(this).val() != 'null' && $(this).val() != null){
 			$(".note-editable #field-"+field_id).wrapAll( '<a href="'+$(this).val()+'" target="_blank" />');
 		}
-		
+
     }else if( field_type == 'font_heading'){
 		if ( $(".note-editable #field-"+field_id).parent().is( "h1" ) || $(".note-editable #field-"+field_id).parent().is( "h2" ) || $(".note-editable #field-"+field_id).parent().is( "h3" )
-				 || $(".note-editable #field-"+field_id).parent().is( "h4" ) || 
+				 || $(".note-editable #field-"+field_id).parent().is( "h4" ) ||
 					$(".note-editable #field-"+field_id).parent().is( "h5" ) || $(".note-editable #field-"+field_id).parent().is( "h6" )) {
 					 $(".note-editable #field-"+field_id).unwrap();
 		}
 		if( $(this).val() != '' && $(this).val() != 'null' && $(this).val() != null){
 			$(".note-editable #field-"+field_id).wrapAll( "<"+$(this).val()+" />");
 		}
-		
+
     }else if( field_type == 'font_size'){
-		
+
         $(".note-editable #field-"+field_id).css('font-size', $(this).val());
-		
+
     }else if( field_type == 'font_color'){
-		
+
         $(".note-editable #field-"+field_id).css('color', $(this).val());
-		
+
     }else if( field_type == 'font_styles'){
-		
+
 		var data_value = $(this).attr('data-value');
-		
+
 		if( $(this).is(":checked") ){
-			
+
 			if( data_value == 'bold'){
 				$(".note-editable #field-"+field_id).css('font-weight', data_value);
 			}
@@ -8078,15 +8120,15 @@ $(document).on('keyup change focus blur paste checked unchecked','.element-field
 				$(".note-editable #field-"+field_id).css('text-decoration', '');
 			}
 		}
-		
+
     }else if( field_type == 'font_align'){
-		
+
         $(".note-editable #field-"+field_id).css('text-align', $(this).val());
 		$(".note-editable #field-"+field_id).css('display', 'block');
-		
+
     }else if( field_type == 'image'){
         $(".note-editable #field-"+field_id).attr('src', $(this).val());
-       
+
     }else{
          $(".note-editable #field-"+field_id).attr(field_type, $(this).val());
     }
@@ -8099,7 +8141,7 @@ function update_content_data(){
         var thisVal = thisVal.replace(/readonly="readonly"/g, '');
         var thisVal = thisVal.replace(/contenteditable="true"/g, 'contenteditable="false"');
         $(".content-area").val(thisVal);
-        
+
     }
 }
 
@@ -8118,26 +8160,26 @@ $(document).on('click','.generate-question-code',function(){
        var field_type = $(this).attr('data-field_type');
        question_fields_obj[0][field_id] = {};
        question_fields_obj[0][field_id]['field_type'] = field_type;
-       
+
        var fieldsListObj = thisParentObj.find('#field-options-'+field_id);
-	   
-       
+
+
        var select_options = [];
        fieldsListObj.find('.element-field').each(function (index) {
            var opt_field_type = $(this).attr('data-field_type');
            var opt_field_value = $(this).val();
            question_fields_obj[0][field_id][opt_field_type] = opt_field_value;
-           
+
            if( opt_field_type == 'select_option'){
-			 
+
                if( opt_field_value != ''){
                   select_options.push(opt_field_value);
                }
-           }        
-           
+           }
+
        });
         //console.log(select_options);
-       
+
        if( field_type == 'select'){
            if(select_options.length > 0 ){
 			    var correct_answer = $('input[name="correct-'+field_id+'"]:checked').val();
@@ -8147,9 +8189,9 @@ $(document).on('click','.generate-question-code',function(){
        }
     });
     thisParentObj.find('#leform-elements_data').val(leform_encode64(JSON.stringify(question_fields_obj)));
-    
+
     leform_properties_save();
-    
+
     //console.log(JSON.stringify(question_fields_obj));
     //console.log(question_fields_obj);
     //console.log(editorObj.html());
@@ -8173,7 +8215,7 @@ function pasteHtmlAtCaret(html) {
                 lastNode = frag.appendChild(node);
             }
             range.insertNode(frag);
-            
+
             // Preserve the selection
             if (lastNode) {
                 range = range.cloneRange();
@@ -8191,10 +8233,10 @@ function pasteHtmlAtCaret(html) {
 
 
 $(document).on('click','.quiz-stage-generate',function(){
-    
+
     var question_status = $(this).attr('data-status');
     leform_save(this, question_status);
-    
+
 });
 
 

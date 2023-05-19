@@ -16,22 +16,24 @@
                 @endif
             </a>
         </div>
-        
-        @if($authUser->role_name == 'teachers')
+
+        @if(auth()->user()->isAuthor())
             <div class="sidebar-brand">
                 <b>Author Points: {{ $authUser->author_points }}</b>
             </div>
         @endif
 
         <ul class="sidebar-menu">
-            @can('admin_general_dashboard_show')
-                <li class="{{ (request()->is(getAdminPanelUrl('/'))) ? 'active' : '' }}">
-                    <a href="/admin" class="nav-link">
-                        <i class="fas fa-fire"></i>
-                        <span>{{ trans('admin/main.dashboard') }}</span>
-                    </a>
-                </li>
-            @endcan
+            @if(!auth()->user()->isAuthor() && !auth()->user()->isReviewer())
+                @can('admin_general_dashboard_show')
+                    <li class="{{ (request()->is(getAdminPanelUrl('/'))) ? 'active' : '' }}">
+                        <a href="/admin" class="nav-link">
+                            <i class="fas fa-fire"></i>
+                            <span>{{ trans('admin/main.dashboard') }}</span>
+                        </a>
+                    </li>
+                @endcan
+            @endif
 
             @can('admin_marketing_dashboard')
                 <li class="{{ (request()->is(getAdminPanelUrl('/marketing', false))) ? 'active' : '' }}">
@@ -145,14 +147,14 @@
                         <span>{{ trans('admin/main.quizzes') }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        
+
                         <li class="{{ (request()->is('admin/quizzes*')) ? 'active' : '' }}">
                             <a class="nav-link " href="{{ getAdminPanelUrl('/quizzes') }}">
                                 <i class="fas fa-file"></i>
                                 <span>{{ trans('admin/main.quizzes') }}</span>
                             </a>
                         </li>
-                        
+
                         <li class="{{ (request()->is('admin/glossary*')) ? 'active' : '' }}">
                             <a class="nav-link " href="{{ getAdminPanelUrl('/glossary') }}">
                                 <i class="fas fa-file"></i>
@@ -162,9 +164,9 @@
                     </ul>
                 </li>
             @endcan()
-            
+
              @can('admin_questions_bank')
-            
+
                 <li class="{{ (request()->is('admin/questions_bank')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank') }}" class="nav-link">
                         <i class="fas fa-pen"></i>
@@ -172,7 +174,16 @@
                     </a>
                 </li>
             @endcan()
-            
+
+            @can('admin_books')
+                <li class="{{ (request()->is('admin/books')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/books') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Books</span>
+                    </a>
+                </li>
+            @endcan()
+
             @if($authUser->role_name == 'reviewer')
                     <li class="{{ (request()->is('admin/author_permissions')) ? 'active' : '' }}">
                         <a href="{{ getAdminPanelUrl('/author_permissions') }}" class="nav-link">
@@ -187,7 +198,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if($authUser->role_name == 'teachers')
                     <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
                         <a href="{{ getAdminPanelUrl('/author_points') }}/{{$authUser->id}}" class="nav-link">
@@ -196,8 +207,8 @@
                         </a>
                     </li>
                 @endif
-                        
-            
+
+
             @can('admin_glossary')
                 <li class="{{ (request()->is('admin/glossary')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/glossary') }}" class="nav-link">

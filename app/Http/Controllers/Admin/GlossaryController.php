@@ -23,18 +23,18 @@ class GlossaryController extends Controller {
         //DB::enableQueryLog();
 
         $query = Glossary::query();
-        
+
         if ($user->role_name == 'teachers') {
             $query->where('glossary.status', 'draft');
             $query->where('glossary.created_by', $user->id);
         }
-        
+
         $totalGlossary = deepClone($query)->count();
 
         $query = $this->filters($query, $request);
-        
-        
-        
+
+
+
 
         $glossary = $query->with('user')->join('category_translations', 'category_translations.category_id', '=', 'glossary.category_id')
                 ->where('category_translations.locale', 'en')
@@ -68,7 +68,7 @@ class GlossaryController extends Controller {
     }
 
     /*
-     * Create Question
+     * Create Glossary
      */
 
     public function create() {
@@ -89,7 +89,7 @@ class GlossaryController extends Controller {
         $user = auth()->user();
 
         $glossary = Glossary::findOrFail($id);
-        
+
         if( $glossary->created_by != $user->id || $glossary->status != 'draft'){
             $toastData = [
                 'title' => 'Request not completed',
@@ -98,7 +98,7 @@ class GlossaryController extends Controller {
             ];
             return redirect()->back()->with(['toast' => $toastData]);
         }
-        
+
         $categories = Category::where('parent_id', null)
                 ->with('subCategories')
                 ->get();
@@ -125,7 +125,7 @@ class GlossaryController extends Controller {
             $query->where('glossary.category_id', $category_id);
         }
 
-        
+
         if (!empty($status) and $status !== 'all') {
             $query->where('glossary.status', strtolower($status));
         }
@@ -136,7 +136,7 @@ class GlossaryController extends Controller {
 
     public function store(Request $request, $id = '') {
         $user = auth()->user();
-        
+
 
         $data = $request->all();
         $locale = $request->get('locale', getDefaultLocale());
@@ -171,7 +171,7 @@ class GlossaryController extends Controller {
             ]);
         } else {
             $this->authorize('admin_glossary_create');
-            
+
             $glossary = Glossary::create([
                 'category_id' => isset($data['category_id']) ? $data['category_id'] : '',
                 'title' => isset($data['title']) ? $data['title'] : '',
@@ -194,7 +194,7 @@ class GlossaryController extends Controller {
             return redirect()->route('adminEditGlossary', ['id' => $glossary->id]);
         }
     }
-    
+
     public function store_question_glossary(Request $request, $id = '') {
         $user = auth()->user();
         $this->authorize('admin_glossary');
@@ -231,7 +231,7 @@ class GlossaryController extends Controller {
         ]);
 
         if ($request->ajax()) {
-            
+
             $response = '<input type="hidden" name="new_glossaries[]" class="new_glossaries" value="'.$glossary->id.'">';
             $option_response = '<option value="'.$glossary->id.'" selected="selected">'.$glossary->title.'</option>';
             return response()->json([
@@ -240,13 +240,13 @@ class GlossaryController extends Controller {
                 'option_response' => $option_response,
                 'redirect_url' => ''
             ]);
-            
-            
-        } 
+
+
+        }
     }
 
     public function destroy(Request $request, $id) {
-        
+
         $this->authorize('admin_glossary_delete');
 
         Glossary::find($id)->delete();

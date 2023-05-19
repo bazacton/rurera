@@ -16,7 +16,16 @@ $tabs_options    = tabs_options();
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <script src="/assets/default/js/admin/jquery.min.js"></script>
 <script src="/assets/default/js/admin/question-create.js"></script>
+<style>
+    .draggable3{width:150px;}
+    .spreadsheet-area {
+        border: 1px solid #efefef;
+        padding: 10px;
+        background: #fff;
+        height:200px;
+    }
 
+</style>
 @endpush
 
 @section('content')
@@ -767,6 +776,9 @@ $tabs_options    = tabs_options();
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});
     });
+
+
+
 </script>
 
 @endpush

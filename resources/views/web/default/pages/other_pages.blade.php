@@ -1,6 +1,13 @@
 @extends(getTemplate().'.layouts.app')
 
+@push('styles_top')
+    @if($page->id == 11)
+        <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+    @endif
+@endpush
+
 @section('content')
+
 @if($page->id == 32)
 
 
@@ -216,5 +223,8 @@
                 @endsection
 
                 @push('scripts_bottom')
-
+                    @if($page->id == 11)
+                        <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+                        <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+                    @endif
                 @endpush
