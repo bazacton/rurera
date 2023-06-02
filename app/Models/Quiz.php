@@ -23,43 +23,47 @@ class Quiz extends Model implements TranslatableContract
 
     public function getTitleAttribute()
     {
-        return getTranslateAttributeValue($this, 'title');
+        return getTranslateAttributeValue($this , 'title');
     }
 
+    public function quizQuestionsList()
+    {
+        return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id');
+    }
 
     public function quizQuestions()
     {
-        return $this->hasMany('App\Models\QuizzesQuestion', 'quiz_id', 'id');
+        return $this->hasMany('App\Models\QuizzesQuestion' , 'quiz_id' , 'id');
     }
 
     public function quizResults()
     {
-        return $this->hasMany('App\Models\QuizzesResult', 'quiz_id', 'id');
+        return $this->hasMany('App\Models\QuizzesResult' , 'quiz_id' , 'id');
     }
 
     public function creator()
     {
-        return $this->belongsTo('App\User', 'creator_id', 'id');
+        return $this->belongsTo('App\User' , 'creator_id' , 'id');
     }
 
     public function webinar()
     {
-        return $this->belongsTo('App\Models\Webinar', 'webinar_id', 'id');
+        return $this->belongsTo('App\Models\Webinar' , 'webinar_id' , 'id');
     }
 
     public function teacher()
     {
-        return $this->belongsTo('App\User', 'creator_id', 'id');
+        return $this->belongsTo('App\User' , 'creator_id' , 'id');
     }
 
     public function certificates()
     {
-        return $this->hasMany('App\Models\Certificate', 'quiz_id', 'id');
+        return $this->hasMany('App\Models\Certificate' , 'quiz_id' , 'id');
     }
 
     public function chapter()
     {
-        return $this->belongsTo('App\Models\WebinarChapter', 'chapter_id', 'id');
+        return $this->belongsTo('App\Models\WebinarChapter' , 'chapter_id' , 'id');
     }
 
 
@@ -75,12 +79,12 @@ class Quiz extends Model implements TranslatableContract
         return $this->update(['total_mark' => $total_mark]);
     }
 
-    public function getUserCertificate($user, $quiz_result)
+    public function getUserCertificate($user , $quiz_result)
     {
         if (!empty($user) and !empty($quiz_result)) {
-            return Certificate::where('quiz_id', $this->id)
-                ->where('student_id', $user->id)
-                ->where('quiz_result_id', $quiz_result->id)
+            return Certificate::where('quiz_id' , $this->id)
+                ->where('student_id' , $user->id)
+                ->where('quiz_result_id' , $quiz_result->id)
                 ->first();
         }
 

@@ -190,6 +190,63 @@
         }
     };
 
+    window.handleMultiSelect2_bk = function (className, path, itemColumn, select_data) {
+                const $el = $('.' + className);
+
+                if ($el.length) {
+                    $el.select2({allowClear: true});
+                }
+            };
+
+    window.handleMultiSelect2 = function (className, path, itemColumn, select_data) {
+            const $el = $('.' + className);
+
+            if ($el.length) {
+                $el.select2({
+                    placeholder: $el.attr('data-placeholder'),
+                    minimumInputLength: 3,
+                    //allowClear: true,
+                    data: select_data,
+                    ajax: {
+                        url: path,
+                        dataType: 'json',
+                        type: "POST",
+                        quietMillis: 50,
+                        data: function (params) {
+                            return {
+                                term: params.term,
+                                option: $el.attr('data-search-option'),
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (item) {
+                                    if($.isArray(itemColumn)){
+                                        var text_label = [];
+                                        $.each(itemColumn, function (index, itemColumnName) {
+                                            if (!DataIsEmpty(item[itemColumnName])) {
+                                                text_label.push(item[itemColumnName]);
+                                            }
+                                        });
+                                        text_label = text_label.join(' / ');
+                                        return {
+                                            text: text_label,
+                                            id: item.id
+                                        };
+                                    }else {
+                                        return {
+                                            text: item[itemColumn],
+                                            id: item.id
+                                        };
+                                    }
+                                })
+                            };
+                        }
+                    }
+                });
+            }
+        };
+
     $(document).ready(function () {
 
         handleSearchableSelect2('search-user-select2', '/admin/users/search', 'name');
@@ -478,3 +535,16 @@
 
 
 })(jQuery);
+
+function DataIsEmpty(dataValue) {
+    is_empty = true;
+    if (dataValue != '' && dataValue != 'undefined' && dataValue != undefined) {
+        is_empty = false;
+    }
+    return is_empty;
+}
+$(document).ready(function() {
+    $(document).on('click', '.parent-remove', function (e) {
+        $(this).parent().remove();
+    });
+});

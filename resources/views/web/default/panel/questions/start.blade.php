@@ -8,21 +8,31 @@ $rand_id = rand(99,9999);
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 @endpush
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+    .image-field img{
+        width:50px;
+        height:50px
+    }
+    .image-field-box{
+        position:absolute !important;
+    }
+</style>
 @section('content')
 
 <div class="lms-content-holder">
     <div class="lms-content-header">
         <div class="header-left">
             <p>
-                <strong>{{$quiz->title}}</strong>
+                <strong>Test View</strong>
                 <span>Maths</span>
-                <span>{{$quiz->mastery_points}} Mastery Coins</span>
+                <span>1400 Mastery Coins</span>
             </p>
             <div class="ribbon-images">
                 <img src="../../assets/default/img/quiz/ribbon-img1.png" alt="">
@@ -32,7 +42,7 @@ $rand_id = rand(99,9999);
             </div>
         </div>
     </div>
-    
+
 
 
     @php
@@ -49,14 +59,14 @@ $rand_id = rand(99,9999);
                             <div class="correct-appriciate" style="display:none"></div>
                 <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                     <div class="left-content has-bg">
-                        <h2><span>Q {{$j}}</span> - {{ $question->question_title }} <span class="icon-img"><img src="../../assets/default/img/quiz/sound-img.png" alt=""></span> </h2>
+                        <span class="question-number-holder"> <span class="question-number">{{$j}}</span> <span class="question-icon"> <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none"> <path d="M1620 4674 c-46 -20 -77 -50 -103 -99 l-22 -40 -3 -1842 -2 -1843 -134 0 c-120 0 -137 -2 -177 -23 -24 -13 -57 -43 -74 -66 -27 -39 -30 -50 -30 -120 0 -66 4 -83 25 -114 14 -21 43 -50 64 -65 l39 -27 503 0 502 0 44 30 c138 97 118 306 -34 370 -27 11 -73 15 -168 15 l-130 0 0 750 0 750 1318 2 1319 3 40 28 c83 57 118 184 75 267 -10 19 -140 198 -290 398 -170 225 -270 367 -265 375 4 7 128 174 276 372 149 197 276 374 283 392 19 45 17 120 -5 168 -23 51 -79 101 -128 114 -26 7 -459 11 -1330 11 l-1293 0 0 20 c0 58 -56 137 -122 171 -45 23 -128 25 -178 3z"></path> </g> </svg> </span> </span>
                         <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                             <div class="question-layout">
                                 <span class="marks" data-marks="0">[{{$question->question_score}}]</span>
                                 {!! $question_layout !!}
 
                             </div>
-                            
+
                             @include('web.default.panel.questions.fail_view')
                         </div>
                     </div>
@@ -67,7 +77,7 @@ $rand_id = rand(99,9999);
     </div>
     <div class="question-area-temp hide"></div>
 
-    
+
     </div>
 
 
@@ -81,6 +91,10 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/vendors/video/video.min.js"></script>
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
 <script src="/assets/default/js/parts/quiz-start.min.js?var={{$rand_id}}"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
 const range = document.getElementById('range')

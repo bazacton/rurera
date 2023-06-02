@@ -3,26 +3,31 @@
 $toolbar_tools  = toolbar_tools();
 $element_properties_meta    = element_properties_meta($chapters);
 $tabs_options    = tabs_options();
-
+$rand_id = rand(999,99999);
 
 @endphp
 
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
-<link rel="stylesheet" href="/assets/default/css/quiz-create.css">
-<link rel="stylesheet" href="/assets/admin/css/quiz-css.css">
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/css/quiz-create.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/admin/css/quiz-css.css?ver={{$rand_id}}">
 <link href="/assets/default/css/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <script src="/assets/default/js/admin/jquery.min.js"></script>
-<script src="/assets/default/js/admin/question-create.js"></script>
+<script src="/assets/default/js/admin/question-create.js?ver={{$rand_id}}"></script>
+<link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
 <style>
-    .draggable3{width:150px;}
+    .draggable3 {
+        width: 150px;
+    }
+
     .spreadsheet-area {
         border: 1px solid #efefef;
         padding: 10px;
         background: #fff;
-        height:200px;
+        height: 200px;
     }
 
 </style>
@@ -48,7 +53,7 @@ $tabs_options    = tabs_options();
 
                 <div class="row">
 
-                    <div class="col-9 col-md-9">
+                    <div class="col-7 col-md-7">
                         <div class="hap-container">
                             <div class="hap-content">
                                 <div class="hap-content-area">
@@ -374,7 +379,7 @@ $tabs_options    = tabs_options();
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 col-md-3">
+                    <div class="col-5 col-md-5">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -388,27 +393,61 @@ $tabs_options    = tabs_options();
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12">
+
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="input-label">Chapter</label>
-
-
-                                    <select id="chapters"
-                                            class="custom-select @error('category_id')  is-invalid @enderror"
-                                            name="chapter_id">
-                                        @foreach($chapters as $chapter_id => $chapterData)
-                                        @if(!empty($chapterData['chapters']) and count($chapterData['chapters']))
-                                        <optgroup label="{{  $chapterData['title'] }}">
-                                            @foreach($chapterData['chapters'] as $sub_chapter_id => $sub_chapter_title)
-                                            <option value="{{ $sub_chapter_id }}">{{ $sub_chapter_title }}</option>
+                                    <label class="input-label">{{trans('admin/main.category')}}</label>
+                                    <select name="category_id" data-plugin-selectTwo
+                                            class="form-control populate ajax-category-courses">
+                                        <option value="">{{trans('admin/main.all_categories')}}</option>
+                                        @foreach($categories as $category)
+                                        @if(!empty($category->subCategories) and count($category->subCategories))
+                                        <optgroup label="{{  $category->title }}">
+                                            @foreach($category->subCategories as $subCategory)
+                                            <option value="{{ $subCategory->id }}" @if(request()->get('category_id') ==
+                                                $subCategory->id) selected="selected" @endif>{{ $subCategory->title }}
+                                            </option>
                                             @endforeach
                                         </optgroup>
                                         @else
-                                        <option value="{{ $chapter_id }}">{{ $chapterData['title'] }}</option>
+                                        <option value="{{ $category->id }}" @if(request()->get('category_id') ==
+                                            $category->id)
+                                            selected="selected" @endif>{{ $category->title }}
+                                        </option>
                                         @endif
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="input-label">Course</label>
+                                    <select name="course_id" data-plugin-selectTwo
+                                            class="form-control populate ajax-courses-dropdown">
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="input-label">Chapter</label>
+                                    <select id="chapter_id" class="form-control populate ajax-chapter-dropdown"
+                                            name="chapter_id">
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="input-label">Search Keywords / Tags</label>
+                                    <input type="text" value="{{ old('search_tags') }}" data-role="tagsinput"
+                                           name="search_tags"
+                                           class="form-control @error('search_tags')  is-invalid @enderror" placeholder=""/>
+                                    @error('search_tags')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-12">
@@ -499,10 +538,10 @@ $tabs_options    = tabs_options();
                                                               data-field_id="field_dynamic_id"></div>
                         <div class='quiz-form-control'><select class="element-field" data-field_type="field_size"
                                                                data-field_id="field_dynamic_id">
-                                <option value="field_extra_small">Extra Small</option>
-                                <option value="field_small" selected="selected">Small</option>
-                                <option value="field_medium">Medium</option>
-                                <option value="field_large">Large</option>
+                                <option value="extra-small">Extra Small</option>
+                                <option value="small" selected="selected">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
                             </select>
                         </div>
                         <i class="fas fa-plus repeater-class" data-field_id="field_dynamic_id"
@@ -534,6 +573,13 @@ $tabs_options    = tabs_options();
                                 <option value="field_small" selected="selected">Small</option>
                                 <option value="field_medium">Medium</option>
                                 <option value="field_large">Large</option>
+                                <option value="extra-large">Extra Large</option>
+                            </select>
+                        </div>
+                        <div class='quiz-form-control'>
+                            <select class="element-field" data-field_type="type" data-field_id="field_dynamic_id">
+                                <option value="text" selected="selected">Alpha numeric</option>
+                                <option value="number">Numbers</option>
                             </select>
                         </div>
                         <div class='quiz-form-control'><input type='text' class="element-field"
@@ -759,12 +805,18 @@ $tabs_options    = tabs_options();
 @push('scripts_bottom')
 <script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/vendors/summernote/summernote-table-headers.js"></script>
+<script src="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
 
         $('.glossary-items').select2();
+        $(".question-no-field").draggable({
+                containment: ".leform-builder",
+            });
+
     });
 
     var saveSuccessLang = '{{ trans("webinars.success_store") }}';
@@ -777,6 +829,30 @@ $tabs_options    = tabs_options();
         $("#add-glosary-modal-box").modal({backdrop: "static"});
     });
 
+    $(document).on('change', '.ajax-category-courses', function () {
+        var category_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/courses_by_categories',
+            data: {'category_id': category_id},
+            success: function (return_data) {
+                $(".ajax-courses-dropdown").html(return_data);
+                $(".ajax-chapter-dropdown").html('');
+            }
+        });
+    });
+
+    $(document).on('change', '.ajax-courses-dropdown', function () {
+        var course_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/chapters_by_course',
+            data: {'course_id': course_id},
+            success: function (return_data) {
+                $(".ajax-chapter-dropdown").html(return_data);
+            }
+        });
+    });
 
 
 </script>

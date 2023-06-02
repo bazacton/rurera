@@ -71,55 +71,7 @@
         </section>
     @endif
 
-    <div class="stats-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
-                    <div class="stats-item d-flex flex-column align-items-center text-center py-30 px-5 w-100">
-                        <div class="stat-icon-box teacher">
-                            <img src="/assets/default/img/stats/teacher.svg" alt=""/>
-                        </div>
-                        <strong class="stat-number mt-10">{{ $skillfulTeachersCount }}</strong>
-                        <h4 class="stat-title">{{ trans('home.skillful_teachers') }}</h4>
-                        <p class="stat-desc mt-10">{{ trans('home.skillful_teachers_hint') }}</p>
-                    </div>
-                </div>
 
-                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
-                    <div class="stats-item d-flex flex-column align-items-center text-center py-30 px-5 w-100">
-                        <div class="stat-icon-box student">
-                            <img src="/assets/default/img/stats/student.svg" alt=""/>
-                        </div>
-                        <strong class="stat-number mt-10">{{ $studentsCount }}</strong>
-                        <h4 class="stat-title">{{ trans('home.happy_students') }}</h4>
-                        <p class="stat-desc mt-10">{{ trans('home.happy_students_hint') }}</p>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
-                    <div class="stats-item d-flex flex-column align-items-center text-center py-30 px-5 w-100">
-                        <div class="stat-icon-box video">
-                            <img src="/assets/default/img/stats/video.svg" alt=""/>
-                        </div>
-                        <strong class="stat-number mt-10">{{ $liveClassCount }}</strong>
-                        <h4 class="stat-title">{{ trans('home.live_classes') }}</h4>
-                        <p class="stat-desc mt-10">{{ trans('home.live_classes_hint') }}</p>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
-                    <div class="stats-item d-flex flex-column align-items-center text-center py-30 px-5 w-100">
-                        <div class="stat-icon-box course">
-                            <img src="/assets/default/img/stats/course.svg" alt=""/>
-                        </div>
-                        <strong class="stat-number mt-10">{{ $offlineCourseCount }}</strong>
-                        <h4 class="stat-title">{{ trans('home.offline_courses') }}</h4>
-                        <p class="stat-desc mt-10">{{ trans('home.offline_courses_hint') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     @foreach($homeSections as $homeSection)

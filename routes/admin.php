@@ -339,6 +339,8 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
         Route::group(['prefix' => 'questions_bank'] , function () {
             Route::get('/' , 'QuestionsBankController@index');
             Route::get('/create' , 'QuestionsBankController@create');
+            Route::post('/search' , 'QuestionsBankController@search');
+            Route::get('/get_questions_by_ids' , 'QuestionsBankController@get_questions_by_ids');
             Route::get('/create_sub_chapters_auto' , 'QuestionsBankController@create_sub_chapters_auto')->name('adminCreateSubChapteAuto');
             Route::post('/store_sub_chapters_auto' , 'QuestionsBankController@store_sub_chapters_auto');
 
@@ -369,6 +371,8 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
             Route::post('/store' , 'BooksController@store');
             Route::post('/{id}/store' , 'BooksController@store');
             Route::post('/store_page' , 'BooksController@store_page');
+            Route::post('/{id}/searchinfobox' , 'BooksController@searchinfobox');
+            Route::get('/get_infobox_by_ids' , 'BooksController@get_infobox_by_ids');
         });
 
 

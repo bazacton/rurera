@@ -13,58 +13,6 @@
 
 @endphp
 
-<div class="top-navbar d-flex border-bottom hide">
-    <div class="container d-flex justify-content-between flex-column flex-lg-row">
-        <div class="top-contact-box border-bottom d-flex flex-column flex-md-row align-items-center justify-content-center">
-
-            <div class="d-flex align-items-center justify-content-center">
-                @if(!empty($generalSettings['site_phone']))
-                    <span class="d-flex align-items-center py-10 py-lg-0 text-dark-blue font-14">
-                        <i data-feather="phone" width="20" height="20" class="mr-10"></i>
-                        {{ $generalSettings['site_phone'] }}
-                    </span>
-                @endif
-
-                @if(!empty($generalSettings['site_email']))
-                    <div class="border-left mx-5 mx-lg-15 h-100"></div>
-
-                    <span class="d-flex align-items-center py-10 py-lg-0 text-dark-blue font-14">
-                        <i data-feather="mail" width="20" height="20" class="mr-10"></i>
-                        {{ $generalSettings['site_email'] }}
-                    </span>
-                @endif
-            </div>
-
-            <div class="d-flex align-items-center justify-content-between justify-content-md-center">
-                @if(!empty($localLanguage) and count($localLanguage) > 1)
-                    <form action="/locale" method="post" class="mr-15 mx-md-20">
-                        {{ csrf_field() }}
-
-                        <input type="hidden" name="locale">
-
-                        <div class="language-select">
-                            <div id="localItems"
-                                 data-selected-country="{{ localeToCountryCode(mb_strtoupper(app()->getLocale())) }}"
-                                 data-countries='{{ json_encode($localLanguage) }}'
-                            ></div>
-                        </div>
-                    </form>
-                @else
-                    <div class="mr-15 mx-md-20"></div>
-                @endif
-
-
-                <form action="/search" method="get" class="form-inline my-2 my-lg-0 navbar-search position-relative">
-                    <input class="form-control mr-5 rounded" type="text" name="search" placeholder="{{ trans('navbar.search_anything') }}" aria-label="Search">
-
-                    <button type="submit" class="btn-transparent d-flex align-items-center justify-content-center search-icon">
-                        <i data-feather="search" width="20" height="20" class="mr-10"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 @push('scripts_bottom')

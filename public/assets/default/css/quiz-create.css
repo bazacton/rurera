@@ -448,6 +448,9 @@
 	transition-timing-function: ease-in-out;
 	transition-duration: 300ms;
 }
+.lms-quiz-create .leform-admin-popup-title a i {
+    line-height: 50px;
+}
 .lms-quiz-create .leform-admin-popup-title a:hover {
 	color: #26B99A;
 }
@@ -2486,7 +2489,8 @@
 	cursor: default !important;
 }
 .leform-builder {
-	background: #f8f8f8 url(../img/quiz/builder-bg-light-2.png) 0 0 repeat;
+	/* background: #f8f8f8 url(../img/quiz/builder-bg-light-2.png) 0 0 repeat; */
+	background-color: #fff;
 	padding: 20px 20px 60px 20px;
 	border-bottom: 1px solid #d4d4d4;
 	border-left: 1px solid #d4d4d4;
@@ -2506,7 +2510,7 @@
 }
 .leform-element {
 	width: 100%;
-	outline: 1px dashed #aaa !important;
+	outline: 1px dashed #f3f1f1 !important;
 	height: auto !important;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -4004,6 +4008,7 @@ select.leform-block-form-value {
 	position: absolute;
 	left: 0;
 	right: 0;
+	width: 100% !important;
 }
 .leform-form-editor {
 	position: relative;
@@ -4214,7 +4219,15 @@ STYLE
     line-height: normal;
     margin: 2px 0;
 }
-
 .lms-hide{
 	display:none !important
+}
+.leform-form-editor input[type=checkbox] {
+    margin-right: 5px;
+}
+.leform-form-editor input[type="text"] {
+    margin-bottom: 5px;
+}
+.leform-form-editor p {
+    margin-bottom: 0;
 }

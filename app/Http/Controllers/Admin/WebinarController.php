@@ -138,17 +138,17 @@ class WebinarController extends Controller
         return view('admin.webinars.lists', $data);
     }
 
-	
+
 	public function search_sub_chapter(Request $request)
     {
         $term = $request->get('term');
         //$option = $request->get('option');
-		
-		
+
+
 		$sub_chapters = DB::table('webinar_sub_chapters')
         ->select('id', 'sub_chapter_title as name')
 		->where('sub_chapter_title', 'like', '%' . $term . '%');
-		
+
 			//pre($sub_chapters);
 
         return response()->json($sub_chapters->get(), 200);
@@ -336,8 +336,8 @@ class WebinarController extends Controller
         removeContentLocale();
 
         $teachers = User::where('role_name', Role::$teacher)->get();
-        
-        
+
+
         $categories = Category::where('parent_id', null)->get();
 
         $data = [
@@ -349,7 +349,7 @@ class WebinarController extends Controller
         return view('admin.webinars.create', $data);
     }
 
-	
+
 	public function store_sub_chapter(Request $request)
     {
         $this->authorize('admin_quizzes_create');
@@ -389,7 +389,7 @@ class WebinarController extends Controller
                     ->where('webinar_id', $webinar->id)
                     ->first();
             }
-			
+
 			$chapter_settings = array(
 				'Below'	=> array(
 					'questions'	=> isset( $data['Below'] )? $data['Below'] : '',
@@ -423,7 +423,7 @@ class WebinarController extends Controller
                 'created_at' => time(),
             ]);
 
-            
+
             if (!empty($sub_chapter->webinar_id)) {
                 WebinarChapterItem::makeItem($webinar->creator_id, $sub_chapter->chapter_id, $sub_chapter->id, 'sub_chapter');
             }
@@ -433,7 +433,7 @@ class WebinarController extends Controller
                 $redirectUrl = '';
 
                 $redirectUrl = '/admin/webinars/' . $data['webinar_id'] . '/edit';
-				
+
                 return response()->json([
                     'code' => 200,
                     'redirect_url' => $redirectUrl
@@ -447,12 +447,12 @@ class WebinarController extends Controller
             ]);
         }
     }
-	
-	
+
+
 	public function update_sub_chapter(Request $request, $id)
     {
         $this->authorize('admin_quizzes_create');
-		
+
 		$subChapter = SubChapters::find($id);
 
         $data = $request->all();
@@ -490,7 +490,7 @@ class WebinarController extends Controller
                     ->where('webinar_id', $webinar->id)
                     ->first();
             }
-			
+
 			$chapter_settings = array(
 				'Below'	=> array(
 					'questions'	=> isset( $data['Below'] )? $data['Below'] : '',
@@ -513,9 +513,9 @@ class WebinarController extends Controller
 					'points'	=> isset( $data['Challenge_points'] )? $data['Challenge_points'] : '',
 				)
 			);
-			
-			
-			
+
+
+
 
             $sub_chapter = $subChapter->update([
                 'webinar_id' => $webinar->id,
@@ -527,7 +527,7 @@ class WebinarController extends Controller
                 //'created_at' => time(),
             ]);
 
-            
+
             if (!empty($sub_chapter->webinar_id)) {
                 //WebinarChapterItem::makeItem($webinar->creator_id, $sub_chapter->chapter_id, $sub_chapter->id, 'sub_chapter');
             }
@@ -537,7 +537,7 @@ class WebinarController extends Controller
                 $redirectUrl = '';
 
                 $redirectUrl = '/admin/webinars/' . $data['webinar_id'] . '/edit';
-				
+
                 return response()->json([
                     'code' => 200,
                     'redirect_url' => $redirectUrl
@@ -631,6 +631,8 @@ class WebinarController extends Controller
             'status' => Webinar::$pending,
             'created_at' => time(),
             'updated_at' => time(),
+            'background_color' => isset( $data['background_color'] )? $data['background_color'] : '',
+            'icon_code' => isset( $data['icon_code'] )? $data['icon_code'] : '',
         ]);
 
         if ($webinar) {
@@ -755,7 +757,7 @@ class WebinarController extends Controller
 
         $tags = $webinar->tags->pluck('title')->toArray();
         $teachers = User::where('role_name', Role::$teacher)->get();
-        
+
         $sub_chapter_items_list = sub_chapter_items_list();
         $sub_chapter_questions = $sub_chapter_lessions = array();
         if( !empty($sub_chapter_items_list) ){
@@ -970,6 +972,9 @@ class WebinarController extends Controller
             'message_for_reviewer' => $data['message_for_reviewer'] ?? null,
             'status' => $data['status'],
             'updated_at' => time(),
+            'background_color' => isset( $data['background_color'] )? $data['background_color'] : '',
+            'icon_code' => isset( $data['icon_code'] )? $data['icon_code'] : '',
+
         ]);
 
         if ($webinar) {
@@ -1094,18 +1099,18 @@ class WebinarController extends Controller
 
         return response()->json($webinar, 200);
     }
-    
+
     public function courses_by_categories(Request $request)
     {
         $category_id = $request->get('category_id');
         //$courses = Webinar::where('category_id',$category_id)->get();
-        
+
         $query = Webinar::query();
         $courses = $query->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
                 ->select('webinars.id as webinar_id','webinar_translations.title as webinar_title')
                 ->where('webinars.category_id', $category_id)
                 ->paginate(100);
-        
+
         $response = '<option value="">Select Course</option>';
         if( !empty( $courses )){
             foreach( $courses as $courseData){
@@ -1114,17 +1119,17 @@ class WebinarController extends Controller
                 $response .= '<option value="'.$webinar_id.'">'.$webinar_title.'</option>';
             }
         }
-        
+
         echo $response;exit;
-        
+
     }
-    
+
     public function chapters_by_course(Request $request)
     {
         $course_id = $request->get('course_id');
-        
+
         $chapters_list  = get_chapters_list(false, $course_id);
-        
+
        $response = '<option value="">Select Chapter</option>';
        if( !empty( $chapters_list ) ){
             foreach($chapters_list as $chapter_id => $chapterData){
@@ -1141,11 +1146,11 @@ class WebinarController extends Controller
                 }
             }
        }
-        
+
         echo $response;exit;
-        
+
     }
-    
+
 
     public function exportExcel(Request $request)
     {

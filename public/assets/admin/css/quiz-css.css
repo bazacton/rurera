@@ -109,12 +109,12 @@
 	width: 100%;
 }
 
-.leform-element * {
+/* .leform-element * {
 	font-family: inherit;
 	font-size: 15px;
 	font-weight: normal;
 	box-sizing: border-box;
-}
+} */
 .leform-element form {
 	margin: 0 !important;
 	padding: 0 !important;
@@ -168,15 +168,15 @@
 	color: inherit;
 	display: inline-block;
 }
-
-
+.leform-column-label {
+    margin-bottom: 25px;
+}
 .leform-element label.leform-label {
-	line-height: 1em;
-	margin: 0 0 0.4em 0;
-	font-size: 16px;
+	/* line-height: 1em; */
+	margin: 0;
+	/* font-size: 16px; */
 	display: block;
 }
-
 .leform-form .leform-element-label-left .leform-column-label {
 	padding-right: 0.5em;
 }
@@ -488,6 +488,7 @@
 	font-weight: inherit;
 	color: inherit;
 	text-shadow: none;
+	overflow: visible;
 }
 .leform-element-html h1,
 .leform-element-html h2,
@@ -544,6 +545,11 @@
 }
 .leform-element-html img {
 	max-width: 100%;
+	width: auto !important;
+}
+img.note-float-right {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .leform-element-html hr {
 	border: 0;

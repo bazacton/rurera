@@ -50,6 +50,67 @@ $(document).on('click', '.book-dropzone', function (e) {
         dropZonObj.append($el);
     }
 
+    if (drag_type == "look_for_clues") {
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-look_for_clues-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/look_for_clues.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
+    if (drag_type == "picture_in_your_mind") {
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-picture_in_your_mind-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/picture_in_your_mind.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
+    if (drag_type == "try_do_it_yourself") {
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-try_do_it_yourself-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/try_do_it_yourself.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
+    if (drag_type == "think_and_remember") {
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-think_and_remember-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/think_and_remember.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
+    if (drag_type == "facts") {
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-facts-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/facts.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
+    if (drag_type == "quiz") {
+
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-quiz-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
+        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
 
     /*
     * Draggable
@@ -84,6 +145,57 @@ $(document).on('click', '.field_settings', function (e) {
             }
             $(this).addClass('summernote-editor_' + parent_field_id);
         }
+        if (field_type == 'select') {
+            $(this).addClass('search-questions-select2_' + parent_field_id);
+            var select_data = [];
+            if (!EditorIsEmpty(field_value)) {
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/questions_bank/get_questions_by_ids',
+                    data: {'questions_ids': field_value},
+                    success: function (return_data) {
+                        var select_data = return_data;
+                        handleMultiSelect2('search-questions-select2_' + parent_field_id, '/admin/questions_bank/search', 'title', select_data);
+                        var selected_values = [];
+                        $.each(select_data, function (index, valueObj) {
+                            selected_values.push(valueObj.id);
+                        });
+                        $('.search-questions-select2_' + parent_field_id).val(selected_values).trigger('change');
+                    }
+                });
+            } else {
+                handleMultiSelect2('search-questions-select2_' + parent_field_id, '/admin/questions_bank/search', 'title', select_data);
+            }
+
+        }
+
+        if (field_type == 'select_info') {
+            var book_page_id = $(".book-dropzone ").attr('data-page_id');
+            $(this).addClass('search-infobox-select2_' + parent_field_id);
+            var select_data = [];
+            if (!EditorIsEmpty(field_value)) {
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/books/get_infobox_by_ids',
+                    data: {'book_page_id': book_page_id, 'infobox_ids': field_value},
+                    success: function (return_data) {
+                        var select_data = return_data;
+                        console.log(return_data);
+                        handleMultiSelect2('search-infobox-select2_' + parent_field_id, '/admin/books/' + book_page_id + '/searchinfobox', 'title', select_data);
+                        var selected_values = [];
+                        $.each(select_data, function (index, valueObj) {
+                            selected_values.push(valueObj.id);
+                        });
+                        $('.search-infobox-select2_' + parent_field_id).val(selected_values).trigger('change');
+                    }
+                });
+            } else {
+                handleMultiSelect2('search-infobox-select2_' + parent_field_id, '/admin/books/' + book_page_id + '/searchinfobox', 'title', select_data);
+            }
+
+        }
+
+        $("ul.select2-selection__rendered").sortable({});
 
         $('.summernote-editor_' + parent_field_id).summernote({
             toolbar: [
@@ -109,16 +221,25 @@ $(document).on('click', '.field_settings', function (e) {
     $(".field-options .trigger_field").attr('data-id', field_id);
 });
 
-$(document).on('keyup', '.field-options .trigger_field', function (e) {
+$(document).on('keyup, change', '.field-options .trigger_field', function (e) {
     trigger_field_change($(this));
 });
 
 
 function trigger_field_change(thisObj) {
-    var data_id = thisObj.data('id');
-    var field_type = thisObj.data('field_type');
-    var field_id = thisObj.data('field_id');
-    var this_value = thisObj.val().replace(/\n/g, '<br />');
+    var data_id = thisObj.attr('data-id');
+    var field_type = thisObj.attr('data-field_type');
+    var field_id = thisObj.attr('data-field_id');
+    var this_value = thisObj.val();
+    if (field_type == 'select' || field_type == 'select_info') {
+
+        this_value = this_value.join(",");
+    }
+
+    this_value = this_value.replace(/\n/g, '<br />');
+    console.log('data-' + field_id);
+    console.log(".draggable_field_" + data_id);
+    console.log(this_value);
 
     $(".draggable_field_" + data_id).attr('data-' + field_id, this_value);
     if (field_type == 'text') {
@@ -257,10 +378,10 @@ function EditorIsEmpty(dataValue) {
 
 $(document).on('click', '.generate', function (e) {
     var book_page_id = $(".book-dropzone ").attr('data-page_id');
-    var posted_data = [];
+    var posted_data = {};
     $(".book-dropzone ").find(".field_settings").each(function (index) {
         var fieldObj = $(this);
-        var data_values = [];
+        var data_values = {};
         var field_style = field_position_top = field_position_left = '';
         var field_position = fieldObj.position();
         if (field_position != undefined && field_position != 'undefined') {
@@ -278,13 +399,7 @@ $(document).on('click', '.generate', function (e) {
         var is_new = fieldObj.attr('data-is_new');
 
 
-        posted_data[field_id] = [];
-
-        /*question_fields_obj[group_id]['fields'][field_id] = {};
-        question_fields_obj[group_id]['fields'][field_id]['field_style'] = field_style;
-        question_fields_obj[group_id]['fields'][field_id]['field_position_top'] = field_position_top;
-        question_fields_obj[group_id]['fields'][field_id]['field_position_left'] = field_position_left;
-        question_fields_obj[group_id]['fields'][field_id]['field_type'] = field_type;*/
+        posted_data[field_id] = {};
 
 
         $(this).find(".data_style_field").each(function (index) {
@@ -300,15 +415,12 @@ $(document).on('click', '.generate', function (e) {
         });
 
 
-
-
         $('.' + trigger_class).find(".trigger_field").each(function (index) {
             var triggerObj = $(this);
 
             var attr_id = triggerObj.data('field_id');
             var attr_value = fieldObj.attr('data-' + triggerObj.data('field_id'));
             data_values[attr_id] = attr_value;
-            //question_fields_obj[group_id]['fields'][field_id][attr_id] = attr_value;
         });
 
         posted_data[field_id]['book_page_id'] = book_page_id;
@@ -317,21 +429,15 @@ $(document).on('click', '.generate', function (e) {
         posted_data[field_id]['data_values'] = data_values;
         posted_data[field_id]['is_new'] = is_new;
 
-
-
-
-
     });
-    console.log(posted_data);
-    //var post_data = {'book_page_id': book_page_id,'field_type':field_type, 'field_style':field_style, 'data_values' : data_values };
-    /*$.ajax({
-       type: "POST",
-       url: '/admin/books/store_page',
-       data: post_data,
-       success: function (return_data) {
-          console.log(return_data);
-       }
-   });*/
 
-})
-;
+    $.ajax({
+        type: "POST",
+        url: '/admin/books/store_page',
+        data: posted_data,
+        success: function (return_data) {
+            console.log(return_data);
+        }
+    });
+
+});

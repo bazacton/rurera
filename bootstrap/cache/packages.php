@@ -46,6 +46,17 @@
       0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
     ),
   ),
+  'cviebrock/laravel-elasticsearch' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cviebrock\\LaravelElasticsearch\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Elasticsearch' => 'Cviebrock\\LaravelElasticsearch\\Facade',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 

@@ -158,7 +158,7 @@ class WebinarController extends Controller
             return $justReturnData ? false : back();
         }
 
-        
+
         $hasBought = $course->checkUserHasBought($user, true, true);
         $isPrivate = $course->private;
 
@@ -230,7 +230,7 @@ class WebinarController extends Controller
                 $course->quizzes = $this->checkQuizzesResults($user, $course->quizzes);
             }
         }
-        
+
         $webinar_sub_chapters = isset( $course->webinar_sub_chapters ) ? $course->webinar_sub_chapters : array();
         $sub_chapters = array();
         if( !empty( $webinar_sub_chapters ) ){
@@ -246,7 +246,11 @@ class WebinarController extends Controller
         $pageRobot = getPageRobot('course_show'); // index
         $canSale = ($course->canSale() and !$hasBought);
 
-       
+
+
+        $courses_list = Webinar::where('category_id', $course->category->id)->get();
+
+
 
         $data = [
             'pageTitle' => $course->title,
@@ -259,6 +263,7 @@ class WebinarController extends Controller
             'current_chapter' => isset( $_GET['chapter'] )? $_GET['chapter'] : 0,
             'sub_chapters'	=> $sub_chapters,
             'user' => $user,
+            'courses_list' => $courses_list,
             'webinarContentCount' => $webinarContentCount,
             'advertisingBanners' => $advertisingBanners->where('position', 'course'),
             'advertisingBannersSidebar' => $advertisingBanners->where('position', 'course_sidebar'),

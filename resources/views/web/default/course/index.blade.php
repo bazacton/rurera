@@ -7,97 +7,235 @@
 
 
 @section('content')
-    <section class="course-cover-container {{ empty($activeSpecialOffer) ? 'not-active-special-offer' : '' }}">
-        <img src="{{ $course->getImageCover() }}" class="img-cover course-cover-img" alt="{{ $course->title }}"/>
-
-        <div class="cover-content pt-40">
-            <div class="container position-relative">
-                @if(!empty($activeSpecialOffer))
-                    @include('web.default.course.special_offer')
-                @endif
+<section class="cart-banner position-relative text-center pages-sub-header">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center text-left">
+                <div class="col-12 col-md-9 col-lg-9">
+                    <p class="lms-subtitle">Start Learning with confidence</p>
+                    <h1 class="font-30 font-weight-bold">{{ $course->category->title }}</h1>
+                    {!!$course->description!!}
+                </div>
+                <div class="col-12 col-md-3 col-lg-3 sub-header-img">
+                    <figure><img src="../assets/default/img/sub-header-icon.png" alt="#">
+                        <figcaption>
+                            <div class="header-img-title">
+                                <strong>Want to read this book again?</strong>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
-    </section>  
+    </section>
 
-    <section class="container course-content-section {{ $course->type }} {{ ($hasBought or $course->isWebinar()) ? 'has-progress-bar' : '' }}">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="post-show" style="overflow:hidden;">
+
+
+<section class="categories-wrapp">
+    <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">
-                <div class="course-content-body user-select-none">
-                    <div class="course-body-on-cover text-white">
-                        <h1 class="font-30 course-title">
-                            {{ clean($course->title, 't') }}
-                        </h1>
+                <div class="categories-boxes row">
 
-                        @if(!empty($course->category))
-                            <span class="d-block font-16 mt-10">{{ trans('public.in') }} <a href="{{ $course->category->getUrl() }}" target="_blank" class="font-weight-500 text-decoration-underline text-white">{{ $course->category->title }}</a></span>
-                        @endif
-
-                        <div class="d-flex align-items-center">
-                            @include('web.default.includes.webinar.rate',['rate' => $course->getRate()])
-                            <span class="ml-10 mt-15 font-14">({{ $course->reviews->pluck('creator_id')->count() }} {{ trans('public.ratings') }})</span>
-                        </div>
-
-                        <div class="mt-15">
-                            <span class="font-14">{{ trans('public.created_by') }}</span>
-                            <a href="{{ $course->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $course->teacher->full_name }}</a>
-                        </div>
-
-                        @if($hasBought or $course->isWebinar())
-                            @php
-                                $percent = $course->getProgress();
-                            @endphp
-
-                            <div class="mt-30 d-flex align-items-center">
-                                <div class="progress course-progress flex-grow-1 shadow-xs rounded-sm">
-                                    <span class="progress-bar rounded-sm bg-warning" style="width: {{ $percent }}%"></span>
+                    @if( !empty( $courses_list ) )
+                        @foreach( $courses_list as $courseObj)
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <div class="categories-card">
+                                    <div class="categories-icon" style="background:{{$courseObj->background_color}}">
+                                        {!! $courseObj->icon_code !!}
+                                    </div>
+                                    <h4 class="categories-title">{{$courseObj->getTitleAttribute()}}</h4>
                                 </div>
-
-                                <span class="ml-15 font-14 font-weight-500">
-                                    @if($course->isWebinar())
-                                        @if($hasBought and $course->isProgressing())
-                                            {{ trans('public.course_learning_passed',['percent' => $percent]) }}
-                                        @else
-                                            {{ $course->sales_count }}/{{ $course->capacity }} {{ trans('quiz.students') }}
-                                        @endif
-                                    @else
-                                        {{ trans('public.course_learning_passed',['percent' => $percent]) }}
-                                    @endif
-                            </span>
                             </div>
-                        @endif
-                    </div>
-
-                    <div class="mt-35">
-
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade {{ (empty(request()->get('tab','')) or request()->get('tab','') == 'content') ? 'show active' : '' }}" id="content" role="tabpanel" aria-labelledby="content-tab">
-                                @include(getTemplate().'.course.tabs.information')
-                                @include(getTemplate().'.course.tabs.content')
-                            </div>
-                            
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="count-number-wrapp mt-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="section-title">
+                    <h2>{{ $course->title }}</h2>
+                </div>
+                <ul class="count-number-boxes row">
+                    <li class="count-number-card col-12 col-sm-6 col-md-6 col-lg-3">
+                        <div class="count-number-icon">
+                            <i data-feather="edit-2" width="20" height="20" class="" style="color:#8cc811"></i>
                         </div>
+                        <div class="count-number-body">
+                            <h5>answered</h5>
+                            <strong>1,355</strong>
+                            <h5>questions</h5>
+                        </div>
+                    </li>
+                    <li class="count-number-card col-12 col-sm-6 col-md-6 col-lg-3">
+                        <div class="count-number-icon">
+                            <i data-feather="clock" width="20" height="20" class="" style="color:#00aeef"></i>
+                        </div>
+                        <div class="count-number-body">
+                            <h5>spent</h5>
+                            <strong>11 hr 32 min</strong>
+                            <h5>practising</h5>
+                        </div>
+                    </li>
+                    <li class="count-number-card col-12 col-sm-6 col-md-6 col-lg-3">
+                        <div class="count-number-icon">
+                            <i data-feather="bar-chart" width="20" height="20" class="" style="color:#e67035"></i>
+                        </div>
+                        <div class="count-number-body">
+                            <h5>Made progress in</h5>
+                            <strong>73</strong>
+                            <h5>skills</h5>
+                        </div>
+                    </li>
+                    <li class="count-number-card col-12 col-sm-6 col-md-6 col-lg-3">
+                        <div class="count-number-icon">
+                            <i data-feather="bar-chart" width="20" height="20" class="" style="color:#e67035"></i>
+                        </div>
+                        <div class="count-number-body">
+                            <h5>Made progress in</h5>
+                            <strong>73</strong>
+                            <h5>skills</h5>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="lms-chapter-section mt-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 lms-chapter-area">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                        <div class="sidebar-nav">
+                            <h3 class="sidebar-title">Course topics</h3>
+                            <ul>
+                                @foreach($course->chapters as $chapter)
+                                    @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
+                                        <li><a href="#subject_{{$chapter->id}}">{{ $chapter->title}}</a></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-9 col-lg-10">
+                        <div class="accordion-content-wrapper" id="chaptersAccordion" role="tablist"
+                            aria-multiselectable="true">
 
+
+                            <ul class="lms-chapter-ul">
+                                @foreach($course->chapters as $chapter)
+
+                                @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
+                                <li id="subject_{{$chapter->id}}"><div class="element-title"><h2>{{ $chapter->title }}</h2></div>
+
+                                    @if(!empty($sub_chapters[$chapter->id]) and count($sub_chapters[$chapter->id]))
+                                    <div class="lms-chapter-ul-outer"><ul>
+                                        @foreach($sub_chapters[$chapter->id] as $sub_chapter)
+                                        @if(!empty($sub_chapter))
+                                            <li><a href="/course/learning/{{$course->slug}}?webinar={{$chapter->id}}&chapter={{$sub_chapter['id']}}">{{ $sub_chapter['title'] }}</a></li>
+                                        @endif
+                                        @endforeach
+                                        </ul>
+                                        <div class="lms-chapter-footer lms-chapter-bg-blue">
+                                            <span class="lms-chapter-icon">
+                                                <figure>
+                                                    <img src="../assets/default/img/lms-chapter-img2.png" alt="#" />
+                                                </figure>
+                                            </span>
+                                            <div class="lms-chapter-widget">
+                                                <h5 class="lms-widget-title">
+                                                    Learn and Earn With Fun
+                                                </h5>
+                                                <ul class="row">
+                                                    <li class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        Challege Quiz # 1(150 Coins)
+                                                    </li>
+                                                    <li class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        Challege Quiz # 2(200 Coins)
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+</div>
+</div>
+</div>
+</section>
 
-        {{-- Ads Bannaer --}}
-        @if(!empty($advertisingBanners) and count($advertisingBanners))
-            <div class="mt-30 mt-md-50">
-                <div class="row">
-                    @foreach($advertisingBanners as $banner)
-                        <div class="col-{{ $banner->size }}">
-                            <a href="{{ $banner->link }}">
-                                <img src="{{ $banner->image }}" class="img-cover rounded-sm" alt="{{ $banner->title }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-        {{-- ./ Ads Bannaer --}}
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="webinarReportModal" class="d-none">
         <h3 class="section-title after-line font-20 text-dark-blue">{{ trans('product.report_the_course') }}</h3>
@@ -177,4 +315,8 @@
     <script src="/assets/default/js/parts/comment.min.js"></script>
     <script src="/assets/default/js/parts/video_player_helpers.min.js"></script>
     <script src="/assets/default/js/parts/webinar_show.min.js"></script>
+    <script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+    </script>
 @endpush

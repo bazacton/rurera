@@ -23,6 +23,7 @@ var leform_font_weights = {
 var leform_preview_loading = false;
 /* Dialog Popup - begin */
 var leform_dialog_buttons_disable = false;
+
 function leform_dialog_open(_settings) {
     var settings = {
         width: 480,
@@ -51,12 +52,12 @@ function leform_dialog_open(_settings) {
         }
     }
     var objects = [settings, _settings],
-            settings = objects.reduce(function (r, o) {
-                Object.keys(o).forEach(function (k) {
-                    r[k] = o[k];
-                });
-                return r;
-            }, {});
+        settings = objects.reduce(function (r, o) {
+            Object.keys(o).forEach(function (k) {
+                r[k] = o[k];
+            });
+            return r;
+        }, {});
 
     leform_dialog_buttons_disable = false;
     jQuery("#leform-dialog .leform-dialog-loading").show();
@@ -108,6 +109,7 @@ function leform_dialog_open(_settings) {
         '-webkit-transform': 'translate(-50%, -50%) scale(1)'
     });
 }
+
 function leform_dialog_close() {
     jQuery("#leform-dialog-overlay").fadeOut(300);
     jQuery("#leform-dialog").css({
@@ -119,6 +121,7 @@ function leform_dialog_close() {
     }, 300);
     return false;
 }
+
 /* Dialog Popup - end */
 
 /* Settings - begin */
@@ -163,6 +166,7 @@ function leform_settings_save(_button) {
     });
     return false;
 }
+
 /* Settings - end */
 
 /* Form Editor - begin */
@@ -177,6 +181,7 @@ function leform_create() {
         leform_gettingstarted("create-form", 0);
     return false;
 }
+
 function leform_save(_object, question_status) {
     if (leform_sending)
         return false;
@@ -194,53 +199,77 @@ function leform_save(_object, question_status) {
     });
     var post_elements = new Array();
     for (var i = 0; i < leform_form_elements.length; i++) {
-        if (jQuery("#leform-element-" + i).length && leform_form_elements[i] != null){
+        if (jQuery("#leform-element-" + i).length && leform_form_elements[i] != null) {
             post_elements.push(leform_encode64(JSON.stringify(leform_form_elements[i])));
-		}
+        }
     }
 
     var question_title = $("[name=question_title]").val();
+    var category_id = $("[name=category_id]").val();
+    var course_id = $("[name=course_id]").val();
     var chapter_id = $("[name=chapter_id]").val();
+    var search_tags = $("[name=search_tags]").val();
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
     var glossary_ids = $("#glossary_ids").val();
 
     var new_glossaries = $(".new_glossaries")
-              .map(function(){return $(this).val();}).get();
+        .map(function () {
+            return $(this).val();
+        }).get();
 
     var question_solve = $('#question_solve').summernote('code');
     //var comments_for_reviewer = $('#comments_for_reviewer').summernote('code');
     var comments_for_reviewer = $('#comments_for_reviewer').val();
 
 
-	var question_layout = $(".leform-form");
+    var question_layout = $(".leform-form");
 
-	question_layout.find('.editor-field').each(function() {
+    question_layout.find('.editor-field').each(function () {
+        $.each($(this).data(), function (i) {
+            if( i != 'style') {
+                question_layout.find('.editor-field').removeAttr("data-" + i);
+            }
+        });
 
-		$.each($(this).data(), function (i) {
-			question_layout.find('.editor-field').removeAttr("data-"+i);
-		});
 
+    });
 
-	});
+    question_layout.find('.editor-field').removeAttr("correct_answere");
+    var question_layout = leform_encode64(JSON.stringify(question_layout.html()));
 
-	question_layout.find('.editor-field').removeAttr("correct_answere");
-	var question_layout = leform_encode64(JSON.stringify(question_layout.html()));
-
-    var post_data = {"new_glossaries": new_glossaries, "question_solve": question_solve, "comments_for_reviewer": '', "question_title": question_title, "chapter_id": chapter_id, "question_score": question_score, "question_average_time": question_average_time, "glossary_ids": glossary_ids, "difficulty_level": difficulty_level, "action": "leform-form-save", "form-id": jQuery("#leform-id").val(), "form-options": leform_encode64(JSON.stringify(leform_form_options)), "form-pages": post_pages, "form-elements": post_elements, "question_layout": question_layout, "question_status": question_status};
+    var post_data = {
+        "new_glossaries": new_glossaries,
+        "question_solve": question_solve,
+        "comments_for_reviewer": '',
+        "question_title": question_title,
+        "search_tags": search_tags,
+        "category_id": category_id,
+        "course_id": course_id,
+        "chapter_id": chapter_id,
+        "question_score": question_score,
+        "question_average_time": question_average_time,
+        "glossary_ids": glossary_ids,
+        "difficulty_level": difficulty_level,
+        "action": "leform-form-save",
+        "form-id": jQuery("#leform-id").val(),
+        "form-options": leform_encode64(JSON.stringify(leform_form_options)),
+        "form-pages": post_pages,
+        "form-elements": post_elements,
+        "question_layout": question_layout,
+        "question_status": question_status
+    };
     var form_submit_url = $(".form-class").attr('data-question_save_type');
-    console.log(post_data);
-    console.log(form_submit_url);
     jQuery.ajax({
         type: "POST",
         url: form_submit_url,//'store_question',
         data: post_data,
         success: function (return_data) {
             console.log(return_data);
-            if(200 === return_data.code){
-                Swal.fire({ icon: "success", html: '<h3 class="font-20 text-center text-dark-blue">' + saveSuccessLang + "</h3>", showConfirmButton: !1 });
-                 setTimeout(function () {
+            if (200 === return_data.code) {
+                Swal.fire({icon: "success", html: '<h3 class="font-20 text-center text-dark-blue">' + saveSuccessLang + "</h3>", showConfirmButton: !1});
+                setTimeout(function () {
                     return_data.redirect_url && "" !== return_data.redirect_url ? (window.location.href = return_data.redirect_url) : window.location.reload();
                 }, 2e3);
 
@@ -277,7 +306,13 @@ function leform_preview(_object) {
         if (jQuery("#leform-element-" + i).length && leform_form_elements[i] != null)
             post_elements.push(leform_encode64(JSON.stringify(leform_form_elements[i])));
     }
-    var post_data = {"action": "leform-form-preview", "form-id": jQuery("#leform-id").val(), "form-options": leform_encode64(JSON.stringify(leform_form_options)), "form-pages": post_pages, "form-elements": post_elements};
+    var post_data = {
+        "action": "leform-form-preview",
+        "form-id": jQuery("#leform-id").val(),
+        "form-options": leform_encode64(JSON.stringify(leform_form_options)),
+        "form-pages": post_pages,
+        "form-elements": post_elements
+    };
     jQuery.ajax({
         type: "POST",
         url: leform_ajax_handler,
@@ -334,6 +369,7 @@ function _leform_element_delete(_i) {
     }
     leform_form_elements[_i] = null;
 }
+
 function leform_element_delete(_object) {
     var message;
     var i = jQuery(_object).attr("id");
@@ -358,6 +394,7 @@ function leform_element_delete(_object) {
     });
     return false;
 }
+
 function _leform_element_duplicate(_parent_id, _new_parent_id, _i) {
     if (leform_form_elements[_i] == null)
         return;
@@ -380,6 +417,7 @@ function _leform_element_duplicate(_parent_id, _new_parent_id, _i) {
         }
     }
 }
+
 function leform_element_duplicate(_object, _page_num) {
     var message;
     var i = jQuery(_object).attr("id");
@@ -408,6 +446,7 @@ function leform_element_duplicate(_object, _page_num) {
     });
     return false;
 }
+
 function _leform_element_move(_parent_id, _i) {
     if (leform_form_elements[_i] == null)
         return;
@@ -415,6 +454,7 @@ function _leform_element_move(_parent_id, _i) {
     leform_form_elements[_i]["_parent-col"] = "0";
     leform_form_elements[_i]["_seq"] = leform_form_last_id;
 }
+
 function leform_element_move(_object, _page_num) {
     var message;
     var i = jQuery(_object).attr("id");
@@ -441,8 +481,10 @@ function leform_element_move(_object, _page_num) {
     });
     return false;
 }
+
 var leform_element_properties_active = null;
 var leform_element_properties_data_changed = false;
+
 function _leform_properties_prepare(_object) {
     var properties, i, id, input_fields = new Array();
     var html = "", tab_html = "", tooltip_html = "";
@@ -977,20 +1019,20 @@ function _leform_properties_prepare(_object) {
                     <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
                     <div class='lms-tools-bar'>\n\
                     <ul class='leform-toolbar-list'>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/radio-field.png' title='Radio' class='editor-add-field lms-tools-item' data-field_type='radio' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/checkbox-field.png' title='Checkbox' class='editor-add-field lms-tools-item' data-field_type='checkbox' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/image-field.png' title='Image' class='editor-add-field lms-tools-item' data-field_type='image' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/paragraph.png' title='Paragraph' class='editor-add-field lms-tools-item' data-field_type='paragraph' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/radio-field.png' title='Radio' class='editor-add-field lms-tools-item' data-field_type='radio' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/checkbox-field.png' title='Checkbox' class='editor-add-field lms-tools-item' data-field_type='checkbox' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/image-field.png' title='Image' class='editor-add-field lms-tools-item' data-field_type='image' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+					<li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/paragraph.png' title='Paragraph' class='editor-add-field lms-tools-item' data-field_type='paragraph' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     </ul>\n\
                     </div>\n\
                     <div class='leform-properties-content leform-wysiwyg'><div class='content-data' id='leform-" + key + "' contenteditable='true'>" + properties[key] + "</div>\n\
                     <textarea class='content-area hide' name='leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
-                    <div class='field-options field-options-"+key+"'>\n\
+                    <div class='field-options field-options-" + key + "'>\n\
                     </div>\n\
                     </div></div>";
 
@@ -1000,64 +1042,67 @@ function _leform_properties_prepare(_object) {
                     <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
                     <div class='lms-tools-bar'>\n\
                     <ul class='leform-toolbar-list'>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     </ul>\n\
                     </div>\n\
-                    <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote content-data'>" + properties[key] + "</textarea>\n\
+                    <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
                     <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
-                    <div class='field-options field-options-"+key+"'>\n\
+                    <div class='field-options field-options-" + key + "'>\n\
                     </div>\n\
                     </div></div>";
+
+                case 'html_notool_editor':
+
+                    html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
+                            \n\
+                            <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
+                            <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor-notool content-data'>" + properties[key] + "</textarea>\n\
+                            <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
+                            <div class='field-options field-options-" + key + "'>\n\
+                            </div>\n\
+                            </div></div>";
 
                 case 'spreadsheet_area':
-                    html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
-                    \n\
-                    <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
-                    <div class='lms-tools-bar'>\n\
-                    <ul class='leform-toolbar-list'>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/cube.png' title='Cube root' class='editor-add-field lms-tools-item' data-field_type='cube_root' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='"+key+"' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    </ul>\n\
-                    </div>\n\
-                    <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote content-data'>" + properties[key] + "</textarea>\n\
-                    <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
-                    <div class='field-options field-options-"+key+"'>\n\
-                    </div>\n\
-                    </div></div>";
+                    html += "";
 
-                break;
+                    break;
 
                 case 'elements_data':
                     html += "<input type='hidden' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
                     break;
 
-				case 'hidden':
+                case 'elements_fetcher':
+                    html += "<input type='hidden'  class='editor-field elements_fetcher' data-field_type='elements_fetcher' name='leform-" + key + "' id='leform-" + key + "' value='' placeholder='' />";
+                    break;
+
+                case 'elements_fetcher':
+                    html += "<input type='hidden' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
+                    break;
+
+                case 'hidden':
                     html += "<input type='hidden' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
                     break;
 
                 case 'ajax_select':
-                   options = "";
-                   html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' class='"+leform_meta[type][key]['class']+"' id='leform-" + key + "'>" + options + "</select></div></div></div>";
-                   html += "<script type='text/javascript'>$('."+leform_meta[type][key]['class']+"').select2({\n\
+                    options = "";
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' class='" + leform_meta[type][key]['class'] + "' id='leform-" + key + "'>" + options + "</select></div></div></div>";
+                    html += "<script type='text/javascript'>$('." + leform_meta[type][key]['class'] + "').select2({\n\
                         placeholder: $(this).data('placeholder'),\n\
                         minimumInputLength: 3,\n\
                         allowClear: true,\n\
                         ajax: {\n\
-                            url: '"+leform_meta[type][key]['ajax_url']+"',\n\
+                            url: '" + leform_meta[type][key]['ajax_url'] + "',\n\
                             dataType: 'json',\n\
                             type: 'POST',\n\
                             quietMillis: 50,\n\
                             data: function (params) {\n\
                                 return {\n\
                                     term: params.term,\n\
-                                    option: $('."+leform_meta[type][key]['class']+"').attr('data-search-option'),\n\
+                                    option: $('." + leform_meta[type][key]['class'] + "').attr('data-search-option'),\n\
                                 };\n\
                             },\n\
                             processResults: function (data) {\n\
@@ -1072,18 +1117,18 @@ function _leform_properties_prepare(_object) {
                             }\n\
                         }\n\
                     });</script>";
-                   break;
+                    break;
 
 
                 case 'html_bk':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                 \n\
                 <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
-                <input class='editor-add-field' data-field_type='select' data-id='"+key+"' type='button' value='Add Select' onclick='document.getElementById(\"leform-content\").focus();'>\n\
-                <input class='editor-add-field' data-field_type='blank' data-id='"+key+"' type='button' value='Add Blank' onclick='document.getElementById(\"leform-content\").focus();'>\n\
-                <input class='editor-add-field' data-field_type='fraction' data-id='"+key+"' type='button' value='Fraction' onclick='document.getElementById(\"leform-content\").focus();'>\n\
+                <input class='editor-add-field' data-field_type='select' data-id='" + key + "' type='button' value='Add Select' onclick='document.getElementById(\"leform-content\").focus();'>\n\
+                <input class='editor-add-field' data-field_type='blank' data-id='" + key + "' type='button' value='Add Blank' onclick='document.getElementById(\"leform-content\").focus();'>\n\
+                <input class='editor-add-field' data-field_type='fraction' data-id='" + key + "' type='button' value='Fraction' onclick='document.getElementById(\"leform-content\").focus();'>\n\
                 <div class='leform-properties-content leform-wysiwyg'><textarea class='content-data leform-tinymce tinymceEditor leform-tinymce-pre' name='leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
-                <div class='field-options field-options-"+key+"'>\n\
+                <div class='field-options field-options-" + key + "'>\n\
                 </div>\n\
                 </div></div>";
 
@@ -1091,7 +1136,7 @@ function _leform_properties_prepare(_object) {
                     break;
 
                 case 'textarea':
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><textarea name='leform-" + key + "' id='leform-" + key + "'>" + leform_escape_html(properties[key]) + "</textarea></div></div>";
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><textarea class='" + leform_meta[type][key]['classes'] + "' name='leform-" + key + "' id='" + key + "'>" + leform_escape_html(properties[key]) + "</textarea></div></div>";
                     break;
 
                 case 'text-number':
@@ -1118,20 +1163,20 @@ function _leform_properties_prepare(_object) {
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "'>" + options + "</select></div></div></div>";
                     break;
 
-                 case 'select_sub':
+                case 'select_sub':
                     options = "";
                     var chapters = leform_meta[type][key]['options'];
-                    Object.keys(chapters).forEach(function(chapter_id){
+                    Object.keys(chapters).forEach(function (chapter_id) {
                         var chapter_title = chapters[chapter_id]['title'];
                         var sub_chapters = chapters[chapter_id]['chapters'];
-                        options += "<optgroup label='"+chapter_title+"'>";
-                        Object.keys(sub_chapters).forEach(function(sub_chapter_id){
+                        options += "<optgroup label='" + chapter_title + "'>";
+                        Object.keys(sub_chapters).forEach(function (sub_chapter_id) {
                             var sub_chapter_title = sub_chapters[sub_chapter_id];
                             selected = "";
                             if (sub_chapter_id == properties[key])
                                 selected = " selected='selected'";
 
-                            options += "<option" + selected + " value='"+sub_chapter_id+"'>"+sub_chapter_title+"</option>";
+                            options += "<option" + selected + " value='" + sub_chapter_id + "'>" + sub_chapter_title + "</option>";
 
                         });
                         options += "</optgroup>";
@@ -1312,8 +1357,8 @@ function _leform_properties_prepare(_object) {
 
                 case 'image-options':
                     options = "";
-					var is_selected = "";
-					for (var j = 0; j < properties[key].length; j++) {
+                    var is_selected = "";
+                    for (var j = 0; j < properties[key].length; j++) {
 
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             is_selected = " leform-properties-options-item-default";
@@ -1323,15 +1368,15 @@ function _leform_properties_prepare(_object) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = " leform-properties-options-item-default";
-						if( j == 0 && is_selected == ''){
-							selected = " leform-properties-options-item-default";
-						}
+                        if (j == 0 && is_selected == '') {
+                            selected = " leform-properties-options-item-default";
+                        }
                         options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><input class='leform-properties-options-image' type='text' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='lms-hide'><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
                     }
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Image</div><div>Label</div><div class='lms-hide'>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
-                    case 'sortable-options':
+                case 'sortable-options':
                     options = "";
                     for (var j = 0; j < properties[key].length; j++) {
                         selected = "";
@@ -1341,6 +1386,30 @@ function _leform_properties_prepare(_object) {
                     }
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Image</div><div>Label</div><div>Correct Order</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
+
+                case 'matrix-columns-options':
+                options = "";
+                for (var j = 0; j < properties[key].length; j++) {
+                    selected = "";
+                    if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                        selected = " leform-properties-options-item-default";
+                    options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+                }
+                html += "<div class='leform-properties-item matrix-columns-"+key+"' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                break;
+
+                case 'matrix-columns-labels':
+                options = "";
+                for (var j = 0; j < properties[key].length; j++) {
+
+                    var selected_value = properties[key][j]['value'];
+                    selected = "";
+                    if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                        selected = " leform-properties-options-item-default";
+                    options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><select class='leform-properties-options-value' data-selected='"+selected_value+"'></option></select></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+                }
+                html += "<div class='leform-properties-item matrix-columns-labels-"+key+"' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div>Correct Answere</div><div></div></div><div class='leform-properties-options-box1'><div class='leform-properties-options-container-lebel' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                break;
 
                 case 'logic-rules':
                     var input_ids = new Array();
@@ -1500,6 +1569,11 @@ function _leform_properties_prepare(_object) {
         html += "</div>";
     }
     jQuery("#leform-element-properties .leform-admin-popup-content-form").html(tab_html + html);
+    render_matrix_columns_options();
+
+
+
+
 
 
     /*var HelloButton = function (context) {
@@ -1517,12 +1591,19 @@ function _leform_properties_prepare(_object) {
       }
       */
 
-    if ($('.summernote').length) {
-        $('.summernote').summernote({
+
+
+    //question-no-field
+    $( ".image-field-box" ).draggable();
+
+    if ($('.summernote-editor').length) {
+
+        $('.summernote-editor').summernote({
             tabsize: 2,
             height: 400,
-            placeholder: $('.summernote').attr('placeholder'),
+            placeholder: $('.summernote-editor').attr('placeholder'),
             dialogsInBody: true,
+            blockquoteBreakingLevel: 2,
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
@@ -1532,13 +1613,35 @@ function _leform_properties_prepare(_object) {
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
                 ['view', ['fullscreen', 'codeview', 'help']],
-                //['mybutton', ['hello']],
             ],
-            /*buttons: {
-                hello: HelloButton
-            },*/
-        });
+           popover: {
+             table: [
+               ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+               ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+               ['custom', ['tableHeaders']]
+             ],
+           },
+         });
     }
+
+    if ($('.summernote-editor-notool').length) {
+
+            $('.summernote-editor-notool').summernote({
+                tabsize: 2,
+                height: 400,
+                placeholder: $('.summernote-editor-notool').attr('placeholder'),
+                dialogsInBody: true,
+                blockquoteBreakingLevel: 2,
+                toolbar: [],
+                popover: {
+                 table: [
+                   ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                   ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                   ['custom', ['tableHeaders']]
+                 ],
+               },
+             });
+        }
 
 
     if (type == "settings") {
@@ -1632,6 +1735,22 @@ function _leform_properties_prepare(_object) {
         });
         jQuery(".leform-properties-options-item").disableSelection();
     }
+    /*if (properties.hasOwnProperty("options2")) {
+        jQuery(".leform-properties-options-box1").resizable({
+            grid: [5, 5],
+            handles: "s"
+        });
+
+        jQuery(".leform-properties-options-container").sortable({
+            items: ".leform-properties-options-item",
+            forcePlaceholderSize: true,
+            dropOnEmpty: true,
+            placeholder: "leform-properties-options-item-placeholder",
+            handle: ".leform-properties-options-item-handler"
+        });
+        jQuery(".leform-properties-options-item").disableSelection();
+    }*/
+
     jQuery(".leform-properties-content .leform-date input").each(function () {
         var object = this;
         var airdatepicker = jQuery(object).airdatepicker().data('airdatepicker');
@@ -1778,6 +1897,7 @@ function _leform_properties_prepare(_object) {
     // Prepare editor state - end
     return false;
 }
+
 function leform_properties_open(_object) {
     jQuery("#leform-element-properties .leform-admin-popup-content-form").html("");
     var window_height = 500;//2 * parseInt((jQuery(window).height() - 100) / 2, 10);
@@ -1798,6 +1918,7 @@ function leform_properties_open(_object) {
     }, 500);
     return false;
 }
+
 function leform_styles_html() {
     var html = "<select onchange='leform_styles_load(this);'><option value=''>" + leform_esc_html__("Select theme...") + "</option>";
     var type = -1;
@@ -1811,6 +1932,7 @@ function leform_styles_html() {
     html += (native_options == "" ? "" : "<optgroup label='" + leform_esc_html__("Native Themes") + "'>" + native_options + "</optgroup>") + (user_options == "" ? "" : "<optgroup label='" + leform_esc_html__("User Themes") + "'>" + user_options + "</optgroup>") + "</select>";
     return html;
 }
+
 function leform_styles_save(_object) {
     var html = '';
     leform_dialog_open({
@@ -1835,6 +1957,7 @@ function leform_styles_save(_object) {
         }
     });
 }
+
 function _leform_styles_save(_object) {
     var input, key, key2, style_options = {};
     if (leform_element_properties_active == null)
@@ -1872,7 +1995,13 @@ function _leform_styles_save(_object) {
             }
         }
     }
-    var post_data = {"action": "leform-style-save", "id": jQuery("#leform-style-id").val(), "name": leform_encode64(jQuery("#leform-style-name").val()), "options": leform_encode64(JSON.stringify(style_options)), "form-name": leform_encode64(leform_form_options['name'])};
+    var post_data = {
+        "action": "leform-style-save",
+        "id": jQuery("#leform-style-id").val(),
+        "name": leform_encode64(jQuery("#leform-style-name").val()),
+        "options": leform_encode64(JSON.stringify(style_options)),
+        "form-name": leform_encode64(leform_form_options['name'])
+    };
     jQuery.ajax({
         type: "POST",
         url: leform_ajax_handler,
@@ -1911,6 +2040,7 @@ function _leform_styles_save(_object) {
     });
     return false;
 }
+
 function leform_styles_load(_object) {
     var style_id = jQuery(_object).val();
     if (style_id == "")
@@ -1929,6 +2059,7 @@ function leform_styles_load(_object) {
         }
     });
 }
+
 function _leform_styles_load(_object, _style_id) {
     var input, key, key2, style_options = {};
     if (leform_element_properties_active == null)
@@ -2055,8 +2186,8 @@ function leform_properties_save() {
                     }
                 });
             } else if (input.length > 0) {
-                if (jQuery(input).hasClass("summernote")) {
-                    properties[key] = $('#'+jQuery(input).attr("id")).summernote('code');//wp.editor.getContent(jQuery(input).attr("id"));
+                if (jQuery(input).hasClass("summernote-editor")) {
+                    properties[key] = $('#' + jQuery(input).attr("id")).summernote('code');//wp.editor.getContent(jQuery(input).attr("id"));
                 } else if (jQuery(input).is(":checked"))
                     properties[key] = "on";
                 else
@@ -2117,7 +2248,27 @@ function leform_properties_save() {
             var selected = "off";
             if (jQuery(this).hasClass("leform-properties-options-item-default"))
                 selected = "on";
-            (properties["options"]).push({"default": selected, "label": jQuery(this).find(".leform-properties-options-label").val(), "value": jQuery(this).find(".leform-properties-options-label").val(), "image": jQuery(this).find(".leform-properties-options-image").val()});
+            (properties["options"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".leform-properties-options-label").val(),
+                "value": jQuery(this).find(".leform-properties-options-label").val(),
+                "image": jQuery(this).find(".leform-properties-options-image").val()
+            });
+        });
+    }
+
+    if (properties.hasOwnProperty("options2")) {
+        properties["options2"] = new Array();
+        jQuery(".leform-properties-options-container-lebel .leform-properties-options-item").each(function () {
+            var selected = "off";
+            if (jQuery(this).hasClass("leform-properties-options-item-default"))
+                selected = "on";
+            (properties["options2"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".leform-properties-options-label").val(),
+                "value": jQuery(this).find(".leform-properties-options-value").val(),
+                "image": jQuery(this).find(".leform-properties-options-image").val()
+            });
         });
     }
     if (properties.hasOwnProperty("confirmations")) {
@@ -2129,7 +2280,11 @@ function leform_properties_save() {
                 "rules": new Array()
             };
             jQuery(this).find(".leform-properties-logic-rule").each(function () {
-                (logic["rules"]).push({"field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10), "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(), "token": jQuery(this).find(".leform-properties-logic-rule-token").val()});
+                (logic["rules"]).push({
+                    "field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10),
+                    "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(),
+                    "token": jQuery(this).find(".leform-properties-logic-rule-token").val()
+                });
             });
             var temp = "";
             input = jQuery(this).find("[name='leform-confirmations-message']");
@@ -2159,7 +2314,11 @@ function leform_properties_save() {
                 "rules": new Array()
             };
             jQuery(this).find(".leform-properties-logic-rule").each(function () {
-                (logic["rules"]).push({"field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10), "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(), "token": jQuery(this).find(".leform-properties-logic-rule-token").val()});
+                (logic["rules"]).push({
+                    "field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10),
+                    "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(),
+                    "token": jQuery(this).find(".leform-properties-logic-rule-token").val()
+                });
             });
             attachments = new Array();
             jQuery(this).find(".leform-properties-attachment").each(function () {
@@ -2210,7 +2369,11 @@ function leform_properties_save() {
                 "rules": new Array()
             };
             jQuery(this).find(".leform-properties-logic-rule").each(function () {
-                (logic["rules"]).push({"field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10), "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(), "token": jQuery(this).find(".leform-properties-logic-rule-token").val()});
+                (logic["rules"]).push({
+                    "field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10),
+                    "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(),
+                    "token": jQuery(this).find(".leform-properties-logic-rule-token").val()
+                });
             });
             var content = jQuery(this).find(".leform-integrations-content");
             var data = {};
@@ -2336,7 +2499,11 @@ function leform_properties_save() {
             properties["logic"]["operator"] = leform_meta[properties['type']]['logic']['values']['operator'];
         properties["logic"]["rules"] = new Array();
         jQuery(".leform-properties-logic-rules .leform-properties-logic-rule").each(function () {
-            (properties["logic"]["rules"]).push({"field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10), "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(), "token": jQuery(this).find(".leform-properties-logic-rule-token").val()});
+            (properties["logic"]["rules"]).push({
+                "field": parseInt(jQuery(this).find(".leform-properties-logic-rule-field").val(), 10),
+                "rule": jQuery(this).find(".leform-properties-logic-rule-rule").val(),
+                "token": jQuery(this).find(".leform-properties-logic-rule-token").val()
+            });
         });
     }
     if (type == "settings") {
@@ -2356,6 +2523,7 @@ function leform_properties_save() {
     leform_build();
     return false;
 }
+
 function leform_properties_close() {
     if (leform_element_properties_data_changed) {
         leform_dialog_open({
@@ -2373,6 +2541,7 @@ function leform_properties_close() {
         _leform_properties_close();
     return false;
 }
+
 function _leform_properties_close() {
     leform_element_properties_data_changed = false;
     leform_element_properties_active = null;
@@ -2388,6 +2557,7 @@ function _leform_properties_close() {
         jQuery("body").removeClass("leform-static");
     });
 }
+
 function leform_properties_change() {
     if (leform_element_properties_active == null)
         return false;
@@ -2395,6 +2565,7 @@ function leform_properties_change() {
     leform_properties_visible_conditions(leform_element_properties_active);
     return false;
 }
+
 function leform_properties_visible_conditions(_object) {
     var type = jQuery(_object).attr("data-type");
     var input;
@@ -2434,6 +2605,7 @@ function leform_properties_visible_conditions(_object) {
         }
     }
 }
+
 function leform_properties_mask_preset_changed(_object) {
     var preset = jQuery(_object).val();
     var mask_object = jQuery(_object).closest(".leform-properties-content").find("input");
@@ -2446,6 +2618,7 @@ function leform_properties_mask_preset_changed(_object) {
     }
     return false;
 }
+
 function leform_properties_options_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -2463,6 +2636,7 @@ function leform_properties_options_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_options_copy(_object) {
     var option = jQuery(_object).closest(".leform-properties-options-item").clone();
     jQuery(option).removeClass("leform-properties-options-item-default");
@@ -2487,6 +2661,7 @@ function leform_properties_options_copy(_object) {
     leform_element_properties_data_changed = true;
     return false;
 }
+
 function leform_properties_options_default(_object) {
     var multi = jQuery(_object).closest(".leform-properties-options-container").attr("data-multi");
     var option = jQuery(_object).closest(".leform-properties-options-item");
@@ -2500,6 +2675,7 @@ function leform_properties_options_default(_object) {
     leform_element_properties_data_changed = true;
     return false;
 }
+
 function leform_properties_options_new(_object) {
     var option;
     if (_object != null) {
@@ -2533,6 +2709,7 @@ function leform_properties_options_new(_object) {
     leform_element_properties_data_changed = true;
     return false;
 }
+
 function leform_properties_options_item_get(_label, _value, _selected) {
     var html, selected = "";
     if (_selected)
@@ -2540,6 +2717,7 @@ function leform_properties_options_item_get(_label, _value, _selected) {
     html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(_value) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
+
 function leform_properties_imageselect_mode_set(_object) {
     var value = jQuery(_object).val();
     var options = jQuery(_object).closest(".leform-properties-item").parent().find(".leform-properties-options-container");
@@ -2586,6 +2764,7 @@ function leform_properties_css_add(_type, _values) {
     }
     return false;
 }
+
 function leform_properties_css_style_add(_object) {
     var value = jQuery(_object).closest(".leform-properties-content").find("textarea").val();
     if (value != "")
@@ -2594,6 +2773,7 @@ function leform_properties_css_style_add(_object) {
     jQuery(_object).closest(".leform-properties-content").find("textarea").val(value);
     return false;
 }
+
 function leform_properties_css_selector_change(_object) {
     if (jQuery(_object).val() == "")
         jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header label").html("");
@@ -2601,6 +2781,7 @@ function leform_properties_css_selector_change(_object) {
         jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header label").html(jQuery(_object).find("option:selected").text());
     return false;
 }
+
 function leform_properties_css_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-css .leform-properties-sub-item").each(function () {
@@ -2611,6 +2792,7 @@ function leform_properties_css_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_css_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -2628,6 +2810,7 @@ function leform_properties_css_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_validators_add(_field_id, _type, _validator, _values) {
     var extra_class = "", html = "", tooltip_html, selected, options, property_value;
     var seq = 0, last;
@@ -2712,6 +2895,7 @@ function leform_properties_validators_add(_field_id, _type, _validator, _values)
     }
     return false;
 }
+
 function leform_properties_validators_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-validators .leform-properties-sub-item").each(function () {
@@ -2722,6 +2906,7 @@ function leform_properties_validators_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_validators_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -2745,6 +2930,7 @@ function leform_properties_integrations_name_changed(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header>label").text(label);
     return false;
 }
+
 function leform_properties_integrations_logic_enable_changed(_object) {
     var parent = jQuery(_object).closest(".leform-properties-sub-item");
     if (jQuery(_object).is(":checked"))
@@ -2753,6 +2939,7 @@ function leform_properties_integrations_logic_enable_changed(_object) {
         jQuery(parent).find(".leform-properties-item[data-id='logic']").fadeOut(300);
     return false;
 }
+
 function leform_integrations_ajax_options_selected(_object) {
     var item_id = jQuery(_object).attr("data-id");
     var item_title = jQuery(_object).attr("data-title");
@@ -2760,12 +2947,14 @@ function leform_integrations_ajax_options_selected(_object) {
     jQuery(_object).closest(".leform-integrations-ajax-options").find("input[type='hidden']").val(item_id);
     return false;
 }
+
 function leform_integrations_custom_add(_object) {
     var template = jQuery(_object).closest("table").find(".leform-integrations-custom-template");
     if (jQuery(template).length > 0) {
         jQuery(template).before("<tr>" + jQuery(template).html() + "</tr>");
     }
 }
+
 function leform_integrations_ajax_options_focus(_object) {
     var item = jQuery(_object).closest(".leform-properties-sub-item");
     var provider = jQuery(item).find("input[name='leform-integrations-provider']").val();
@@ -2840,6 +3029,7 @@ function leform_integrations_ajax_options_focus(_object) {
         }
     });
 }
+
 function leform_integrations_ajax_multiselect_scroll(_object) {
     if (jQuery(_object).attr("data-next-offset") == "-1")
         return;
@@ -2968,6 +3158,7 @@ function leform_integrations_ajax_inline_html(_object) {
         }
     });
 }
+
 /*function leform_integrations_field_add(_object) {
  var template_class = jQuery(_object).attr("data-template");
  var template_object = jQuery(_object).parent().find("."+template_class);
@@ -3060,6 +3251,7 @@ function leform_properties_integrations_details_toggle(_object) {
     }
     return false;
 }
+
 function leform_properties_integrations_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3077,6 +3269,7 @@ function leform_properties_integrations_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_integrations_add(_values, _idx, _provider) {
     var extra_class = "", html = "", temp = "", property_value, enabled, logic_enable, logic_enable_id, provider = "", label = "";
 
@@ -3186,6 +3379,7 @@ function leform_properties_integrations_add(_values, _idx, _provider) {
     jQuery(".leform-properties-sub-item-new").removeClass("leform-properties-sub-item-new");
     return false;
 }
+
 function leform_integrations_zapier_connect(_object) {
     if (leform_sending)
         return false;
@@ -3247,6 +3441,7 @@ function leform_integrations_zapier_connect(_object) {
     });
 
 }
+
 function leform_properties_integrations_constantcontact_apikey_changed(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find("input[name=token]").val("");
     var token_link = jQuery(_object).closest(".leform-properties-sub-item").find(".leform-constantcontact-token-link");
@@ -3324,12 +3519,14 @@ function leform_properties_payment_gateways_details_toggle(_object) {
     }
     return false;
 }
+
 function leform_properties_payment_gateways_name_changed(_object) {
     var label = jQuery(_object).val().substring(0, 52) + (jQuery(_object).val().length > 52 ? "..." : "");
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header>label").text(label);
     leform_properties_payment_gateways_select_update();
     return false;
 }
+
 function leform_properties_payment_gateways_select_update() {
     var payment_gateways = new Array();
     jQuery(".leform-properties-content-payment-gateways .leform-properties-sub-item").each(function () {
@@ -3344,6 +3541,7 @@ function leform_properties_payment_gateways_select_update() {
         jQuery(this).html(options);
     });
 }
+
 function leform_properties_payment_gateways_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3362,6 +3560,7 @@ function leform_properties_payment_gateways_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_payment_gateways_add(_values, _idx, _provider) {
     var extra_class = "", html = "", property_value, enabled, provider = "", label = "";
 
@@ -3421,6 +3620,7 @@ function leform_properties_notifications_name_changed(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header>label").text(label);
     return false;
 }
+
 function leform_properties_notifications_logic_enable_changed(_object) {
     var parent = jQuery(_object).closest(".leform-properties-sub-item");
     if (jQuery(_object).is(":checked"))
@@ -3429,6 +3629,7 @@ function leform_properties_notifications_logic_enable_changed(_object) {
         jQuery(parent).find(".leform-properties-item[data-id='logic']").fadeOut(300);
     return false;
 }
+
 function leform_properties_notifications_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-notifications .leform-properties-sub-item").each(function () {
@@ -3439,6 +3640,7 @@ function leform_properties_notifications_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_notifications_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3456,6 +3658,7 @@ function leform_properties_notifications_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_notifications_add(_values) {
     var extra_class = "", html = "", temp = "", tooltip_html, selected, property_value, enabled, logic_enable, logic_enable_id;
 
@@ -3586,6 +3789,7 @@ function leform_properties_math_name_changed(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header>label").text(label);
     return false;
 }
+
 function leform_properties_math_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-math-expressions .leform-properties-sub-item").each(function () {
@@ -3596,6 +3800,7 @@ function leform_properties_math_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_math_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3627,6 +3832,7 @@ function leform_properties_math_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_math_add(_values) {
     var extra_class = "", html = "", tooltip_html, property_value;
 
@@ -3693,6 +3899,7 @@ function leform_properties_confirmations_name_changed(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-header>label").text(label);
     return false;
 }
+
 function leform_properties_confirmations_logic_enable_changed(_object) {
     var parent = jQuery(_object).closest(".leform-properties-sub-item");
     if (jQuery(_object).is(":checked"))
@@ -3701,6 +3908,7 @@ function leform_properties_confirmations_logic_enable_changed(_object) {
         jQuery(parent).find(".leform-properties-item[data-id='logic']").fadeOut(300);
     return false;
 }
+
 function leform_properties_confirmations_type_changed(_object) {
     var parent = jQuery(_object).closest(".leform-properties-sub-item");
     switch (jQuery(_object).val()) {
@@ -3757,6 +3965,7 @@ function leform_properties_confirmations_type_changed(_object) {
     }
     return false;
 }
+
 function leform_properties_confirmations_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-confirmations .leform-properties-sub-item").each(function () {
@@ -3767,6 +3976,7 @@ function leform_properties_confirmations_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_confirmations_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3784,6 +3994,7 @@ function leform_properties_confirmations_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_confirmations_add(_values) {
     var extra_class = "", html = "", temp = "", tooltip_html, selected, property_value, logic_enable, logic_enable_id;
 
@@ -3903,6 +4114,7 @@ function leform_properties_confirmations_add(_values) {
     jQuery(".leform-properties-sub-item-new").removeClass("leform-properties-sub-item-new");
     return false;
 }
+
 function leform_properties_filters_add(_type, _filter, _values) {
     var extra_class = "", html = "", tooltip_html, selected, property_value = "";
     var seq = 0, last;
@@ -3968,6 +4180,7 @@ function leform_properties_filters_add(_type, _filter, _values) {
     }
     return false;
 }
+
 function leform_properties_filters_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").addClass("leform-freeze");
     jQuery(".leform-properties-content-filters .leform-properties-sub-item").each(function () {
@@ -3978,6 +4191,7 @@ function leform_properties_filters_details_toggle(_object) {
     jQuery(_object).closest(".leform-properties-sub-item").find(".leform-properties-sub-item-body").slideToggle(300);
     return false;
 }
+
 function leform_properties_filters_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -3995,6 +4209,7 @@ function leform_properties_filters_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_logic_rule_delete(_object) {
     leform_dialog_open({
         echo_html: function () {
@@ -4012,12 +4227,14 @@ function leform_properties_logic_rule_delete(_object) {
     });
     return false;
 }
+
 function leform_properties_logic_rule_token_change(_object) {
     var rule = jQuery(_object).closest(".leform-properties-logic-rule");
     var html = leform_properties_logic_rule_token_get(jQuery(rule).find(".leform-properties-logic-rule-field").val(), jQuery(rule).find(".leform-properties-logic-rule-rule").val(), "");
     jQuery(rule).find(".leform-properties-logic-rule-token-container").html(html);
     return false;
 }
+
 function leform_properties_logic_rule_token_get(_field, _rule, _token) {
     var html = "", input = null, options = "";
 
@@ -4047,6 +4264,7 @@ function leform_properties_logic_rule_token_get(_field, _rule, _token) {
     }
     return html;
 }
+
 function leform_properties_logic_rule_get(_field_id, _field, _rule, _token) {
     var temp = "", html = "", field_options = "", rule_options = "";
 
@@ -4077,6 +4295,7 @@ function leform_properties_logic_rule_get(_field_id, _field, _rule, _token) {
     html = "<div class='leform-properties-logic-rule'><div class='leform-properties-logic-rule-table'><div><select class='leform-properties-logic-rule-field' onchange='leform_properties_logic_rule_token_change(this);'>" + field_options + "</select></div><div><select class='leform-properties-logic-rule-rule' onchange='leform_properties_logic_rule_token_change(this);'>" + rule_options + "</select></div><div class='leform-properties-logic-rule-token-container'>" + field_token + "</div><div><span onclick='return leform_properties_logic_rule_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span></div></div></div>";
     return html;
 }
+
 function leform_properties_logic_rule_new(_object, _field_id) {
     var rule_html = leform_properties_logic_rule_get(_field_id, null, null, null);
     jQuery(_object).closest(".leform-properties-content").find(".leform-properties-logic-rules").append(rule_html);
@@ -4096,6 +4315,7 @@ function leform_properties_attachment_media(_object) {
     });
     media_frame.open();
 }
+
 function leform_properties_attachment_delete(_object) {
     var attachment = jQuery(_object).closest(".leform-properties-attachment");
     jQuery(attachment).slideUp(300, function () {
@@ -4104,12 +4324,14 @@ function leform_properties_attachment_delete(_object) {
     leform_element_properties_data_changed = true;
     return false;
 }
+
 function leform_properties_attachment_token_change(_object) {
     var attachment = jQuery(_object).closest(".leform-properties-attachment");
     var html = leform_properties_attachment_token_get(jQuery(attachment).find(".leform-properties-attachment-source").val(), "");
     jQuery(attachment).find(".leform-properties-attachment-token-container").html(html);
     return false;
 }
+
 function leform_properties_attachment_token_get(_source, _token) {
     var html = "", input = null, options = "";
     if (_source == "media-library")
@@ -4131,11 +4353,13 @@ function leform_properties_attachment_token_get(_source, _token) {
     }
     return html;
 }
+
 function leform_properties_attachment_get(_source, _token) {
     var token = leform_properties_attachment_token_get(_source, _token);
     var html = "<div class='leform-properties-attachment'><div class='leform-properties-attachment-table'><div><select class='leform-properties-attachment-source' onchange='leform_properties_attachment_token_change(this);'><option value='form-element'" + (_source == "form-element" ? " selected='selected'" : "") + ">Form Element</option>" + (typeof UAP_CORE == typeof undefined ? "<option value='media-library'" + (_source == "media-library" ? " selected='selected'" : "") + ">Media Library</option>" : "") + "<option value='file'" + (_source == "file" ? " selected='selected'" : "") + ">File on Server</option></select></div><div class='leform-properties-attachment-token-container'>" + token + "</div><div><span onclick='return leform_properties_attachment_delete(this);' title='Delete the attachment'><i class='fas fa-trash-alt'></i></span></div></div></div>";
     return html;
 }
+
 function leform_properties_attachment_new(_object) {
     var attachment_html = leform_properties_attachment_get(null, null);
     jQuery(_object).closest(".leform-properties-content").find(".leform-properties-attachments").append(attachment_html);
@@ -4155,27 +4379,27 @@ function leform_init_tinymce() {
         var textarea = this;
         if (typeof wp != 'undefined' && wp.hasOwnProperty('editor') && typeof wp.editor.initialize == 'function') {
             wp.editor.initialize(
-                    jQuery(this).attr("id"),
-                    {
-                        tinymce: {
-                            content_css: leform_plugin_url + "/css/tiny-content.css",
-                            wpautop: false,
-                            fontsize_formats: 'inherit 10px 12px 14px 15px 16px 18px 20px 24px 28px 32px 36px',
-                            block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Header 5=h5;Header 6=h6',
-                            plugins: 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
-                            toolbar: [
-                                'formatselect fontsizeselect bold italic underline | bullist numlist | indent outdent | alignleft aligncenter alignright | link unlink | image | forecolor backcolor | hr | pastetext undo redo | lefrom-fields'
-                            ],
-                            height: '200',
-                            setup: function (editor) {
-                                jQuery(textarea).closest(".leform-wysiwyg").find(".leform-shortcode-selector-list-item").on("click", function () {
-                                    editor.insertContent(jQuery(this).attr("data-code"));
-                                });
-                            }
+                jQuery(this).attr("id"),
+                {
+                    tinymce: {
+                        content_css: leform_plugin_url + "/css/tiny-content.css",
+                        wpautop: false,
+                        fontsize_formats: 'inherit 10px 12px 14px 15px 16px 18px 20px 24px 28px 32px 36px',
+                        block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3;Header 4=h4;Header 5=h5;Header 6=h6',
+                        plugins: 'charmap colorpicker compat3x directionality fullscreen hr image lists media paste tabfocus textcolor wordpress wpautoresize wpdialogs wpeditimage wpemoji wpgallery wplink wptextpattern wpview',
+                        toolbar: [
+                            'formatselect fontsizeselect bold italic underline | bullist numlist | indent outdent | alignleft aligncenter alignright | link unlink | image | forecolor backcolor | hr | pastetext undo redo | lefrom-fields'
+                        ],
+                        height: '200',
+                        setup: function (editor) {
+                            jQuery(textarea).closest(".leform-wysiwyg").find(".leform-shortcode-selector-list-item").on("click", function () {
+                                editor.insertContent(jQuery(this).attr("data-code"));
+                            });
+                        }
 
-                        },
-                        quicktags: {buttons: '.'}
-                    }
+                    },
+                    quicktags: {buttons: '.'}
+                }
             );
         } else {
             jQuery(textarea).closest(".leform-wysiwyg").find(".leform-shortcode-selector-list-item").on("click", function (e) {
@@ -4189,7 +4413,9 @@ function leform_init_tinymce() {
         jQuery(this).removeClass("leform-tinymce-pre");
     });
 }
+
 var leform_shortcode_selector_setting = false;
+
 function leform_shortcode_selector_set(_object) {
     if (leform_shortcode_selector_setting)
         return;
@@ -4225,6 +4451,7 @@ function leform_shortcode_selector_set(_object) {
     leform_shortcode_selector_setting = false;
     return;
 }
+
 function leform_shortcode_selector_list_html(_class) {
     var type, items, label, id;
 
@@ -4273,10 +4500,12 @@ function leform_shortcode_selector_list_html(_class) {
     temp += "</ul>";
     return temp;
 }
+
 /* Element actions - end */
 
 /* Bulk Options - begin */
 var leform_bulk_options_object = null;
+
 function leform_bulk_options_open(_object) {
     leform_bulk_options_object = jQuery(_object).closest(".leform-properties-item");
     if (leform_bulk_options_object) {
@@ -4292,11 +4521,13 @@ function leform_bulk_options_open(_object) {
     }
     return false;
 }
+
 function leform_bulk_options_close() {
     leform_bulk_options_object = null;
     jQuery("#leform-bulk-options-overlay").fadeOut(300);
     jQuery("#leform-bulk-options").fadeOut(300);
 }
+
 function leform_bulk_category_add(_object) {
     var category = jQuery(_object).attr("data-category");
     if (!category)
@@ -4327,6 +4558,7 @@ function leform_bulk_category_add(_object) {
     jQuery(".leform-bulk-editor textarea").val(value);
     return false;
 }
+
 function leform_bulk_options_add() {
     var option;
     var html = "";
@@ -4348,10 +4580,12 @@ function leform_bulk_options_add() {
     leform_element_properties_data_changed = true;
     leform_bulk_options_close();
 }
+
 /* Bulk Options - end */
 
 /* Font Awesome selector - begin */
 var leform_fa_selector_active = null;
+
 function leform_fa_selector_open(_object) {
     var window_height = 2 * parseInt((jQuery(window).height() - 100) / 2, 10);
     var window_width = Math.max(40 * parseInt((jQuery(window).width() - 300) / 40, 10) + 6, 606);
@@ -4364,11 +4598,13 @@ function leform_fa_selector_open(_object) {
     leform_fa_selector_active = _object;
     return false;
 }
+
 function leform_fa_selector_close() {
     leform_fa_selector_active = null;
     jQuery(".leform-fa-selector-overlay").hide();
     jQuery(".leform-fa-selector").hide();
 }
+
 function leform_fa_selector_set(_object) {
     var icon_class;
     if (leform_fa_selector_active == null)
@@ -4385,6 +4621,7 @@ function leform_fa_selector_set(_object) {
     leform_fa_selector_close();
     return false;
 }
+
 /* Font Awesome selector - end */
 
 /* Pages - start */
@@ -4428,6 +4665,7 @@ function leform_pages_add() {
     }
     return false;
 }
+
 function _leform_pages_delete(_object) {
     var page_id = jQuery(_object).closest("li").attr("data-id");
     for (var i = 0; i < leform_form_pages.length; i++) {
@@ -4454,6 +4692,7 @@ function _leform_pages_delete(_object) {
         leform_pages_activate(jQuery(".leform-pages-bar-item").first().find("label"));
     leform_build_progress();
 }
+
 function leform_pages_delete(_object) {
     if (jQuery(".leform-pages-bar-item").length <= 1)
         return false;
@@ -4470,6 +4709,7 @@ function leform_pages_delete(_object) {
     });
     return false;
 }
+
 function leform_pages_activate(_object) {
     var page_id = jQuery(_object).closest("li").attr("data-id");
     if (leform_form_page_active == page_id)
@@ -4496,7 +4736,23 @@ function leform_pages_activate(_object) {
         jQuery(".leform-toolbar-tool-input, .leform-toolbar-tool-submit").show();
     return false;
 }
+
 /* Pages - end */
+
+function _draggable_init(){
+    jQuery(".containment-wrapper .image-field-box").each(function () {
+        $(this).draggable({
+            drag: function( event, ui ) {
+                //$(this).find('img').attr('data-left', ui.position.left);
+                //$(this).find('img').attr('data-top', ui.position.top);
+                //$(this).find('img').css({'top':ui.position.top, 'left':ui.position.left});
+                $(this).css({'top':ui.position.top, 'left':ui.position.left});
+            },
+            containment: $(this).parent().parent()
+        });
+    });
+
+}
 
 function _leform_sync_elements() {
     jQuery(".leform-elements").css({"min-height": "60px"});
@@ -4525,6 +4781,7 @@ function _leform_sync_elements() {
         });
     });
 }
+
 function _leform_build_hidden_list(_parent) {
     var html = "";
     for (var i = 0; i < leform_form_elements.length; i++) {
@@ -4540,7 +4797,8 @@ function _leform_build_hidden_list(_parent) {
         html = "<div class='leform-hidden-container'><label>Hidden fields:</label>" + html + "</div>";
     return html;
 }
-function _leform_build_children(_parent, _parent_col) {
+
+function _leform_build_children(_parent, _parent_col, image_styles = []) {
     var adminbar_height = parseInt(jQuery("#wpadminbar").height(), 10);
     var resizable_handle = "all";
     var html = "", style = "";
@@ -4824,17 +5082,19 @@ function _leform_build_children(_parent, _parent_col) {
                     for (var j = 0; j < leform_form_elements[i]["options"].length; j++) {
                         selected = "";
                         var image_url = leform_form_elements[i]["options"][j]["image"];
-                        var label_data = leform_form_elements[i]["options"][j]["label"];
-                        if( image_url != ''){
-                                var label_data = '<img src="'+leform_form_elements[i]["options"][j]["image"]+'" alt="">';
-                                var is_image = true;
+
+                        var label_data = '';
+                        if (image_url != '') {
+                            label_data += '<img src="' + leform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
+                            var is_image = true;
                         }
-                        option = "<input class='editor-field leform-checkbox-" + properties["checkbox-size"] + "'  type='checkbox' data-field_id='"+random_id+"' name='field-"+random_id+"' id='field-"+random_id+"-"+j+"' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-"+random_id+"-"+j+"'>" + label_data + "</label>";
-						options += "<div class='form-field leform-cr-container-" + properties["checkbox-size"] + " leform-cr-container-" + properties["checkbox-position"] + "'>\n\
+                        label_data += leform_form_elements[i]["options"][j]["label"];
+                        option = "<input class='editor-field leform-checkbox-" + properties["checkbox-size"] + "'  type='checkbox' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
+                        options += "<div class='form-field leform-cr-container-" + properties["checkbox-size"] + " leform-cr-container-" + properties["checkbox-position"] + "'>\n\
 					" + option + "</div>";
                     }
-                    var image_class = (is_image == true)? "lms-checkbox-img" : "";
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    var image_class = (is_image == true) ? "lms-checkbox-img" : "";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + "-fields " + image_class + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "radio":
@@ -4860,19 +5120,20 @@ function _leform_build_children(_parent, _parent_col) {
                     for (var j = 0; j < leform_form_elements[i]["options"].length; j++) {
                         selected = "";
                         var image_url = leform_form_elements[i]["options"][j]["image"];
-                        var label_data = leform_form_elements[i]["options"][j]["label"];
-                        if( image_url != ''){
-                                var label_data = '<img src="'+leform_form_elements[i]["options"][j]["image"]+'" alt="">';
-                                var is_image = true;
+                        var label_data = '';
+                        if (image_url != '') {
+                            label_data += '<img src="' + leform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
+                            var is_image = true;
                         }
-                        option = "<input class='editor-field' type='radio' data-field_id='"+random_id+"' name='field-"+random_id+"' id='field-"+random_id+"-"+j+"' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-"+random_id+"-"+j+"'>" + label_data + "</label>";
+                        label_data += leform_form_elements[i]["options"][j]["label"];
+                        option = "<input class='editor-field' type='radio' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
                         options += "<div class='field-holder leform-cr-container-" + properties["radio-size"] + " leform-cr-container-" + properties["radio-position"] + "'>" + option + "</div>";
                     }
-                    var image_class = (is_image == true)? "lms-radio-img" : "";
-                    html += "<div id='leform-element-" + i + "' class='draggable3 leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'><div class='lms-radio-select "+template_style+"-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    var image_class = (is_image == true) ? "lms-radio-img" : "";
+                    html += "<div id='leform-element-" + i + "' class='draggable3 leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + "-fields " + image_class + "'><div class='lms-radio-select " + template_style + "-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
-                    case "sortable_quiz":
+                case "sortable_quiz":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     var sort_id = Math.floor((Math.random() * 99999) + 1);
                     leform_form_elements[i]['field_id'] = random_id;
@@ -4897,20 +5158,83 @@ function _leform_build_children(_parent, _parent_col) {
                         selected = "";
                         var image_url = leform_form_elements[i]["options"][j]["image"];
                         var label_data = leform_form_elements[i]["options"][j]["label"];
-                        if( image_url != ''){
-                                var label_data = '<img src="'+leform_form_elements[i]["options"][j]["image"]+'" alt="">';
-                                var is_image = true;
+                        if (image_url != '') {
+                            var label_data = '<img src="' + leform_form_elements[i]["options"][j]["image"] + '" alt="">';
+                            var is_image = true;
                         }
-                        var image_class = (is_image == true)? "lms-sortable-img" : "";
-                        option = "<label for='field-"+random_id+"-"+j+"'>" + label_data + "</label>";
-						options += "<div class='field-holder ui-sortable-handle'><span class='sort-icon'>\n\
+                        var image_class = (is_image == true) ? "lms-sortable-img" : "";
+                        option = "<label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
+                        options += "<div class='field-holder ui-sortable-handle'><span class='sort-icon'>\n\
 					<span></span>\n\
 					<span></span>\n\
 					<span></span>\n\
 				</span>\n\
 					" + option + "</div>";
                     }
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields "+image_class+"'><div class='lms-sorting-fields' id='lmssort"+sort_id+"'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + "-fields " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    break;
+
+                case "matrix_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var sort_id = Math.floor((Math.random() * 99999) + 1);
+                    leform_form_elements[i]['field_id'] = random_id;
+                    var template_style = leform_form_elements[i]['template_style'];
+                    style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
+                    properties['checkbox-size'] = leform_form_options['checkbox-radio-style-size'];
+                    if (leform_form_elements[i]['checkbox-style-position'] == "")
+                        properties['checkbox-position'] = leform_form_options['checkbox-radio-style-position'];
+                    else
+                        properties['checkbox-position'] = leform_form_elements[i]['checkbox-style-position'];
+                    if (leform_form_elements[i]['checkbox-style-align'] == "")
+                        properties['checkbox-align'] = leform_form_options['checkbox-radio-style-align'];
+                    else
+                        properties['checkbox-align'] = leform_form_elements[i]['checkbox-style-align'];
+                    if (leform_form_elements[i]['checkbox-style-layout'] == "")
+                        properties['checkbox-layout'] = leform_form_options['checkbox-radio-style-layout'];
+                    else
+                        properties['checkbox-layout'] = leform_form_elements[i]['checkbox-style-layout'];
+                    extra_class = " leform-cr-layout-" + properties['checkbox-layout'] + " leform-cr-layout-" + properties['checkbox-align'];
+                    var label_options = '';
+                    var label_values = '';
+
+
+                    for (var j = 0; j < leform_form_elements[i]["options"].length; j++) {
+                        selected = "";
+                        var label_data = leform_form_elements[i]["options"][j]["label"];
+                        label_options += '<th scope="col" data-id="field-"' + random_id + '"-"' + j + '">'+label_data+'</th>';
+                    }
+
+                    for (var j = 0; j < leform_form_elements[i]["options2"].length; j++) {
+                       selected = "";
+                        var tr_options = '';
+
+                        for (var jj = 0; jj < leform_form_elements[i]["options"].length; jj++) {
+                            selected = "";
+                            option = "<input class='editor-field' type='radio' data-field_id='" + random_id + "' name='field-" + random_id + "-" + j + "' id='field-" + random_id + "-" + j + "' value='" + leform_escape_html(leform_form_elements[i]["options"][jj]["label"]) + "'" + selected + " />";
+                            tr_options += "<td><div class='field-holder leform-cr-container-" + properties["radio-size"] + " leform-cr-container-" + properties["radio-position"] + "'>" + option + "</div></td>";
+
+                        }
+
+
+                       var label_data = leform_form_elements[i]["options2"][j]["label"];
+                        label_values += '<tr><th scope="row">'+label_data+'</th>'+tr_options+'</tr>';
+                        label_data = 'test';
+
+                   }
+
+                    var options = "<table class=\"table table-bordered\">\n\
+                          <thead>\n\
+                            <tr>\n\
+                             <th scope='col'></th>\n\
+                              "+label_options+"\n\
+                            </tr>\n\
+                          </thead>\n\
+                          <tbody>\n\
+                           "+label_values+"\n\
+                          </tbody>\n\
+                        </table>";
+
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + "-fields " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "imageselect":
@@ -4948,9 +5272,9 @@ function _leform_build_children(_parent, _parent_col) {
                         if (properties["label-height"] > 0) {
                             properties['image-label'] = "<span class='leform-imageselect-label'>" + leform_escape_html(leform_form_elements[i]["options"][j]["label"]) + "</span>";
                         }
-                        options += "<input class='leform-imageselect' data-field_id='"+random_id+"' name='field-"+random_id+"' id='field-"+random_id+"-"+j+"' type='" + leform_form_elements[i]['mode'] + "' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-"+random_id+"-"+j+"'><span class='leform-imageselect-image' style='background-image: url(" + leform_form_elements[i]["options"][j]["image"] + ");'></span>" + properties['image-label'] + "</label>";
+                        options += "<input class='leform-imageselect' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' type='" + leform_form_elements[i]['mode'] + "' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'><span class='leform-imageselect-image' style='background-image: url(" + leform_form_elements[i]["options"][j]["image"] + ");'></span>" + properties['image-label'] + "</label>";
                     }
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box "+template_style+"-fields'><div class='lms-radio-select "+template_style+"-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + "-fields'><div class='lms-radio-select " + template_style + "-fields'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     //html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + ">" + options + "</div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
@@ -5094,7 +5418,7 @@ function _leform_build_children(_parent, _parent_col) {
                     break;
 
                 case "sum_quiz":
-                    var next_i = parseInt(i)+1;
+                    var next_i = parseInt(i) + 1;
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
 
                     options = "<div class='leform-col leform-col-12'><div class='leform-elements' _data-parent='" + i + "' _data-parent-col='" + i + "'>" + html_data + "</div></div>";
@@ -5107,10 +5431,23 @@ function _leform_build_children(_parent, _parent_col) {
                     break;
 
                 case "image_quiz":
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+                    console.log('image-quiz');
+                    var imageObj = $(leform_form_elements[i]["content"]);
+                    var image_field_id = imageObj.find('img').attr('data-id');
+                    var image_field_id = "leform-element-" + i;
+                    var imageStyle = !DataIsEmpty(image_styles[image_field_id])? image_styles[image_field_id] : '';
+                    if( !DataIsEmpty(imageStyle)) {
+                        imageObj.find('img').attr('data-style', imageStyle);
+                    }
+                    var image_content = imageObj.get(0).outerHTML;
+                    console.log(leform_form_elements[i]);
+
+
+
+                    html += "<div style='"+imageStyle+"' id='leform-element-" + i + "' class='image-field-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>"+image_content+"<div class='leform-element-cover'></div></div>";
                     break;
 
-				case "paragraph_quiz":
+                case "paragraph_quiz":
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     html += html_data;
 
@@ -5120,10 +5457,33 @@ function _leform_build_children(_parent, _parent_col) {
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     break;
 
+                case "question_label":
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
+                    break;
+
+                case "seperator":
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "</div>";
+                    break;
+
+                case "question_no":
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><span class='question-number-holder'><span class='question-number'>" + leform_form_elements[i]["content"] + "</span></span></div>";
+                    break;
+
+                case "insert_into_sentense":
+
+                    var insert_into_type = leform_form_elements[i]["insert_into_type"];
+                    var insert_symbols = leform_form_elements[i]["insert_symbols"];
+
+                    var insert_symbols_html = '';
+                    insert_symbols_html = '<div class="insert-options"><span class="given">'+insert_symbols+'</span></div>';
+
+                   html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><span class='insert-into-sentense-holder' data-into_type='"+insert_into_type+"'>"+insert_symbols_html+leform_form_elements[i]["content"] + "</span></div>";
+                   break;
+
                 case "columns":
                     options = "";
                     for (var j = 0; j < leform_form_elements[i]['_cols']; j++) {
-                        properties = _leform_build_children(leform_form_elements[i]['id'], j);
+                        properties = _leform_build_children(leform_form_elements[i]['id'], j, image_styles);
                         style += properties["style"];
                         options += "<div class='leform-col leform-col-" + leform_form_elements[i]["widths-" + j] + "'><div class='leform-elements' _data-parent='" + leform_form_elements[i]['id'] + "' _data-parent-col='" + j + "'>" + properties["html"] + "</div></div>";
                     }
@@ -5169,6 +5529,7 @@ function leform_build_style_text(_properties, _key) {
         style += "text-align:" + _properties[_key + "-align"] + ";";
     return {"style": style, "webfont": webfont};
 }
+
 function leform_build_style_background(_properties, _key) {
     var style = "";
     var integer, hposition = "left", vposition = "top";
@@ -5223,6 +5584,7 @@ function leform_build_style_background(_properties, _key) {
         style += "background-color:" + color1 + "; background-image:none;";
     return style;
 }
+
 function leform_build_style_border(_properties, _key) {
     var style = "";
     var integer;
@@ -5250,6 +5612,7 @@ function leform_build_style_border(_properties, _key) {
         style += "border-bottom:none !important;";
     return style;
 }
+
 function leform_build_shadow(_properties, _key) {
     var style = "box-shadow:none;";
     var color = "transparent";
@@ -5300,6 +5663,7 @@ function leform_build_shadow(_properties, _key) {
     }
     return style;
 }
+
 function leform_build_style_padding(_properties, _key) {
     var style = "";
     var integer;
@@ -5368,7 +5732,7 @@ function leform_build_progress() {
     return;
 }
 
-function leform_build() {
+function leform_build(image_styles = []) {
     var adminbar_height;
     if (jQuery("#wpadminbar").length > 0)
         adminbar_height = parseInt(jQuery("#wpadminbar").height(), 10);
@@ -5723,7 +6087,7 @@ function leform_build() {
     var output;
     for (var i = 0; i < leform_form_pages.length; i++) {
         if (leform_form_pages[i] != null) {
-            output = _leform_build_children(leform_form_pages[i]['id'], 0);
+            output = _leform_build_children(leform_form_pages[i]['id'], 0, image_styles);
             jQuery("#leform-form-" + leform_form_pages[i]['id']).append("<style>" + output["style"] + "</style>" + output["html"]);
             output = _leform_build_hidden_list(leform_form_pages[i]['id']);
             jQuery("#leform-form-" + leform_form_pages[i]['id']).append(output);
@@ -5737,10 +6101,10 @@ function leform_build() {
     jQuery(".leform-form").each(function () {
         var id = jQuery(this).attr("id");
 
-        jQuery("#leform-elements-"+id).draggable({
-                containment: ".spreadsheet-area",
-                //revert: true
-            });
+        jQuery("#" + id + " .leform-elements1, #" + id + ".leform-elements1").draggable({
+            containment: ".containment-wrapper",
+            //revert: true
+        });
 
         jQuery("#" + id + " .leform-elements, #" + id + ".leform-elements").sortable({
             connectWith: "#" + id + " .leform-elements, #" + id + ".leform-elements",
@@ -5754,16 +6118,18 @@ function leform_build() {
             },
             stop: function (event, ui) {
                 jQuery(".leform-element-helper").removeClass("leform-element-helper");
+                _draggable_init();
+
                 _leform_sync_elements();
             }
         });
     });
+    _draggable_init();
 
 
-    $( ".spreadsheet-area" ).droppable({
-            accept: "#leform-elements-1",
-        });
-        console.log('testing');
+    $(".spreadsheet-area1").draggable({
+        containment: ".leform-builder",
+    });
 
 
     _leform_sync_elements();
@@ -5791,6 +6157,7 @@ function leform_build() {
         return false;
     });
 }
+
 function leform_log_resize() {
     if (leform_record_active) {
         var popup_height = 2 * parseInt((jQuery(window).height() - 100) / 2, 10);
@@ -5801,12 +6168,14 @@ function leform_log_resize() {
         //jQuery("#leform-record-details .leform-admin-popup-content").height(popup_height - 52);
     }
 }
+
 function leform_log_ready() {
     leform_log_resize();
     jQuery(window).resize(function () {
         leform_log_resize();
     });
 }
+
 function leform_forms_resize() {
     if (leform_more_active) {
         var popup_height = 2 * parseInt((jQuery(window).height() - 100) / 2, 10);
@@ -5817,6 +6186,7 @@ function leform_forms_resize() {
         //jQuery("#leform-more-using .leform-admin-popup-content").height(popup_height - 52);
     }
 }
+
 function leform_forms_ready() {
     jQuery("span[title]").tooltipster({
         contentAsHTML: true,
@@ -5829,6 +6199,7 @@ function leform_forms_ready() {
         leform_forms_resize();
     });
 }
+
 function leform_form_resize() {
     var window_height = jQuery(window).height();
     var adminbar_height = jQuery("#wpadminbar").height();
@@ -5896,6 +6267,7 @@ function leform_form_resize() {
         //jQuery("#leform-stylemanager .leform-admin-popup-content").height(popup_height - 52);
     }
 }
+
 function leform_form_ready() {
     leform_form_resize();
     jQuery(window).resize(function () {
@@ -5962,6 +6334,22 @@ function leform_form_ready() {
 
     jQuery(".leform-toolbar-list li a").on("click", function (e) {
         e.preventDefault();
+
+        var image_styles = [];
+
+
+        jQuery(".image-field-box").each(function () {
+            var element_id = $(this).attr('id');
+            var styleAttr = $(this).attr('style');
+            image_styles[element_id] = styleAttr;
+        });
+
+        jQuery(".image-field img").each(function () {
+            var image_field_id = $(this).attr('data-id');
+            var styleAttr = $(this).attr('style');
+            //image_styles[image_field_id] = styleAttr;
+        });
+
         var type = jQuery(this).parent().attr("data-type");
         if (typeof type == undefined || type == "")
             return false;
@@ -6002,11 +6390,13 @@ function leform_form_ready() {
             }
             leform_form_elements.push(element);
             leform_form_changed = true;
-            leform_build();
+            leform_build(image_styles);
             if (leform_gettingstarted_enable == "on" && leform_form_elements.length <= 2)
                 leform_gettingstarted("element-properties", 0);
         }
     });
+
+
     jQuery("body").append('<div class="leform-context-menu"><ul><li><a href="#" onclick="return leform_properties_open(leform_context_menu_object);"><i class="fas fa-pencil-alt"></i>Properties</a></li><li class="leform-context-menu-last"><a href="#" onclick="return leform_element_duplicate(leform_context_menu_object);"><i class="far fa-copy"></i>Duplicate</a></li><li class="leform-context-menu-line"></li><li><a href="#" onclick="return leform_element_delete(leform_context_menu_object);"><i class="fas fa-trash-alt"></i>Delete</a></li></ul></div>');
     jQuery("body").on("click", function (e) {
         jQuery(".leform-context-menu").hide();
@@ -6233,6 +6623,7 @@ function _leform_forms_duplicate(_object) {
     });
     return false;
 }
+
 function leform_columns_toggle(_object) {
     var columns = {};
     var json_columns = "";
@@ -6279,7 +6670,9 @@ function leform_columns_toggle(_object) {
 
     return false;
 }
+
 var leform_more_active = null;
+
 function leform_more_using_open(_object) {
     jQuery("#leform-more-using .leform-admin-popup-content-form").html("");
     var window_height = 2 * parseInt((jQuery(window).height() - 100) / 2, 10);
@@ -6341,6 +6734,7 @@ function leform_more_using_close() {
 }
 
 var leform_stylemanager_active = null;
+
 function leform_stylemanager_open(_object) {
     var actions_html, html = "";
     jQuery("#leform-stylemanager .leform-admin-popup-content-form").html("");
@@ -6553,6 +6947,7 @@ function leform_stylemanager_imported(_object) {
 }
 
 var leform_preview_active = null;
+
 function leform_preview_size(_object) {
     if (jQuery(_object).hasClass("leform-preview-size-active"))
         return;
@@ -6564,6 +6959,7 @@ function leform_preview_size(_object) {
     jQuery("#leform-preview").width(window_width);
 
 }
+
 function leform_preview_loaded(_object) {
     if (jQuery(_object).attr("data-loading") != "true")
         return;
@@ -6573,6 +6969,7 @@ function leform_preview_loaded(_object) {
     leform_sending = false;
     return;
 }
+
 function leform_preview_open() {
     var max_width = parseInt(jQuery("#leform-preview").attr("data-width"), 10);
     var window_height = 2 * parseInt((jQuery(window).height() - 40) / 2, 10);
@@ -6659,6 +7056,7 @@ function _leform_stats_reset(_object) {
 }
 
 var leform_record_active = null;
+
 function leform_record_details_open(_object) {
     var href;
     jQuery("#leform-record-details .leform-admin-popup-content-form").html("");
@@ -6935,7 +7333,13 @@ function leform_field_analytics_load(_object) {
     leform_sending = true;
     jQuery(_object).find("i").attr("class", "fas fa-spinner fa-spin");
     jQuery(_object).addClass("leform-stats-button-disabled");
-    var post_data = {"action": "leform-field-analytics-load", "form-id": jQuery("#leform-stats-form").val(), "start-date": jQuery("#leform-stats-date-start").val(), "end-date": jQuery("#leform-stats-date-end").val(), "period": (jQuery("#leform-stats-period").is(":checked") ? "on" : "off")};
+    var post_data = {
+        "action": "leform-field-analytics-load",
+        "form-id": jQuery("#leform-stats-form").val(),
+        "start-date": jQuery("#leform-stats-date-start").val(),
+        "end-date": jQuery("#leform-stats-date-end").val(),
+        "period": (jQuery("#leform-stats-period").is(":checked") ? "on" : "off")
+    };
     jQuery.ajax({
         type: "POST",
         url: leform_ajax_handler,
@@ -7009,30 +7413,30 @@ function leform_field_analytics_ready() {
 
 function leform_field_analytics_build_charts(_charts) {
     var colors = new Array(
-            {
-                backgroundColor: 'rgb(255, 99, 132, 0.7)',
-                borderColor: 'rgb(255, 99, 132)',
-            },
-            {
-                backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                borderColor: 'rgb(75, 192, 192)',
-            },
-            {
-                backgroundColor: 'rgba(255, 205, 86, 0.7)',
-                borderColor: 'rgb(255, 205, 86)',
-            },
-            {
-                backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                borderColor: 'rgb(54, 162, 235)',
-            },
-            {
-                backgroundColor: 'rgba(153, 102, 255, 0.7)',
-                borderColor: 'rgb(153, 102, 255)',
-            },
-            {
-                backgroundColor: 'rgba(201, 203, 207, 0.7)',
-                borderColor: 'rgb(201, 203, 207)',
-            }
+        {
+            backgroundColor: 'rgb(255, 99, 132, 0.7)',
+            borderColor: 'rgb(255, 99, 132)',
+        },
+        {
+            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            borderColor: 'rgb(75, 192, 192)',
+        },
+        {
+            backgroundColor: 'rgba(255, 205, 86, 0.7)',
+            borderColor: 'rgb(255, 205, 86)',
+        },
+        {
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgb(54, 162, 235)',
+        },
+        {
+            backgroundColor: 'rgba(153, 102, 255, 0.7)',
+            borderColor: 'rgb(153, 102, 255)',
+        },
+        {
+            backgroundColor: 'rgba(201, 203, 207, 0.7)',
+            borderColor: 'rgb(201, 203, 207)',
+        }
     );
     if (_charts.length == 0) {
         jQuery(".leform-field-analytics-container").html("<div class='leform-field-analytics-noform'>No data found.</div>");
@@ -7074,12 +7478,12 @@ function leform_field_analytics_build_charts(_charts) {
                 data: {
                     labels: labels,
                     datasets: [{
-                            label: _charts[i]["title"],
-                            data: values,
-                            backgroundColor: colors[i % colors.length]["backgroundColor"],
-                            borderColor: colors[i % colors.length]["borderColor"],
-                            borderWidth: 1
-                        }]
+                        label: _charts[i]["title"],
+                        data: values,
+                        backgroundColor: colors[i % colors.length]["backgroundColor"],
+                        borderColor: colors[i % colors.length]["borderColor"],
+                        borderWidth: 1
+                    }]
                 },
                 options: {
                     responsive: true,
@@ -7097,13 +7501,13 @@ function leform_field_analytics_build_charts(_charts) {
                     },
                     scales: {
                         yAxes: [{
-                                maxBarThickness: 32
-                            }],
+                            maxBarThickness: 32
+                        }],
                         xAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }],
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
                     }
                 }
             });
@@ -7118,7 +7522,12 @@ function leform_stats_load(_object) {
     leform_sending = true;
     jQuery(_object).find("i").attr("class", "fas fa-spinner fa-spin");
     jQuery(_object).addClass("leform-stats-button-disabled");
-    var post_data = {"action": "leform-stats-load", "form-id": jQuery("#leform-stats-form").val(), "start-date": jQuery("#leform-stats-date-start").val(), "end-date": jQuery("#leform-stats-date-end").val()};
+    var post_data = {
+        "action": "leform-stats-load",
+        "form-id": jQuery("#leform-stats-form").val(),
+        "start-date": jQuery("#leform-stats-date-start").val(),
+        "end-date": jQuery("#leform-stats-date-end").val()
+    };
     jQuery.ajax({
         type: "POST",
         url: leform_ajax_handler,
@@ -7211,6 +7620,7 @@ function leform_stats_ready() {
 }
 
 var leform_chart = null;
+
 function leform_stats_build_chart(_labels, _impressions, _submits, _confirmed, _payments) {
     if (leform_chart)
         leform_chart.destroy();
@@ -7219,14 +7629,14 @@ function leform_stats_build_chart(_labels, _impressions, _submits, _confirmed, _
         data: {
             labels: _labels,
             datasets: [{
-                    label: "Impressions",
-                    lineTension: 0,
-                    fill: false,
-                    data: _impressions,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    borderWidth: 2
-                },
+                label: "Impressions",
+                lineTension: 0,
+                fill: false,
+                data: _impressions,
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                borderWidth: 2
+            },
                 {
                     label: "Submits",
                     lineTension: 0,
@@ -7268,10 +7678,10 @@ function leform_stats_build_chart(_labels, _impressions, _submits, _confirmed, _
              },*/
             scales: {
                 yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
         }
     });
@@ -7460,7 +7870,12 @@ function leform_record_field_save(_button) {
     var record_id = jQuery(_button).closest(".leform-record-details").attr("data-id");
     var icon = jQuery(_button).find("i").attr("class");
     jQuery(_button).find("i").attr("class", "fas fa-spinner fa-spin");
-    var post_data = {"action": "leform-record-field-save", "record-id": record_id, "field-id": field_id, "value": leform_encode64(jQuery(_button).closest(".leform-record-field-editor").find("textarea, input, select").serialize())};
+    var post_data = {
+        "action": "leform-record-field-save",
+        "record-id": record_id,
+        "field-id": field_id,
+        "value": leform_encode64(jQuery(_button).closest(".leform-record-field-editor").find("textarea, input, select").serialize())
+    };
     jQuery.ajax({
         type: "POST",
         url: leform_ajax_handler,
@@ -7514,6 +7929,7 @@ function leform_input_sort() {
     }
     return input_fields;
 }
+
 function _leform_input_sort(_parent, _parent_col, _page_id, _page_name) {
     var input_fields = new Array();
     var fields = new Array();
@@ -7563,6 +7979,7 @@ function _leform_input_sort(_parent, _parent_col, _page_id, _page_name) {
 }
 
 var leform_htmlform_connecting = false;
+
 function leform_htmlform_connect(_object) {
     if (leform_htmlform_connecting)
         return false;
@@ -7605,6 +8022,7 @@ function leform_htmlform_connect(_object) {
     });
     return false;
 }
+
 function leform_htmlform_disconnect(_object) {
     if (leform_htmlform_connecting)
         return false;
@@ -7649,6 +8067,7 @@ function leform_htmlform_disconnect(_object) {
 }
 
 var leform_gettingstarted_steps = {};
+
 function leform_gettingstarted(_screen, _step) {
     var screen_cookie = leform_read_cookie("leform-gettingstarted-" + _screen);
     if (screen_cookie == "off")
@@ -7685,6 +8104,7 @@ function leform_email_validator_changed(_object) {
 }
 
 var leform_global_message_timer;
+
 function leform_global_message_show(_type, _message) {
     clearTimeout(leform_global_message_timer);
     jQuery("#leform-global-message").fadeOut(300, function () {
@@ -7713,9 +8133,11 @@ function leform_escape_html(_text) {
         return map[m];
     });
 }
+
 function leform_is_numeric(_text) {
     return !isNaN(parseInt(_text)) && isFinite(_text);
 }
+
 function leform_random_string(_length) {
     var length, text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -7746,6 +8168,7 @@ function leform_utf8encode(string) {
     }
     return output;
 }
+
 function leform_encode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
@@ -7769,6 +8192,7 @@ function leform_encode64(input) {
     }
     return output;
 }
+
 function leform_utf8decode(input) {
     var string = "";
     var i = 0;
@@ -7791,6 +8215,7 @@ function leform_utf8decode(input) {
     }
     return string;
 }
+
 function leform_decode64(input) {
     var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var output = "";
@@ -7817,6 +8242,7 @@ function leform_decode64(input) {
     output = leform_utf8decode(output);
     return output;
 }
+
 function leform_esc_html__(_string) {
     var string;
     if (typeof leform_translations == typeof {} && leform_translations.hasOwnProperty(_string)) {
@@ -7827,6 +8253,7 @@ function leform_esc_html__(_string) {
         string = _string;
     return leform_escape_html(string);
 }
+
 function leform_read_cookie(key) {
     var pairs = document.cookie.split("; ");
     for (var i = 0, pair; pair = pairs[i] && pairs[i].split("="); i++) {
@@ -7835,6 +8262,7 @@ function leform_read_cookie(key) {
     }
     return null;
 }
+
 function leform_write_cookie(key, value, days) {
     if (days) {
         var date = new Date();
@@ -7848,48 +8276,49 @@ function leform_write_cookie(key, value, days) {
 /*
  * Custom Code
  */
-$(document).on('click','.editor-add-field',function(){
+$(document).on('click', '.editor-add-field', function () {
 
     var field_id = $(this).attr('data-id');
     var field_type = $(this).attr('data-field_type');
     var random_id = Math.floor((Math.random() * 99999) + 1);
-    var editorData =  $(".jqte_editor").html();
+    var editorData = $(".jqte_editor").html();
     var field_data = '';
-    if( field_type == 'blank'){
-        field_data = '<span class="quiz-input-group"><input type="text" data-field_type="text" size="1" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'"></span>';
+    if (field_type == 'blank') {
+        //field_data = '<span class="quiz-input-group"><input type="text" data-field_type="text" size="1" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'"></span>';
+        field_data = '<span class="input-holder"> <input type="text"  data-field_type="text" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"> </span>';
     }
-    if( field_type == 'select'){
+    if (field_type == 'select') {
 
         field_data = '<span class="select-box quiz-input-group">\n\
-        <select class="editor-field" data-id="'+random_id+'" data-options="" data-field_type="select" id="field-'+random_id+'" data-correct=""></select>\n\</span>';
+        <select class="editor-field" data-id="' + random_id + '" data-options="" data-field_type="select" id="field-' + random_id + '" data-correct=""></select>\n\</span>';
     }
 
-    if( field_type == 'radio'){
-        field_data = '<span class="quiz-input-group editor-field" data-options="" data-id="'+random_id+'" data-field_type="radio" id="field-'+random_id+'" data-correct=""><input type="radio" ></span>&nbsp;';
+    if (field_type == 'radio') {
+        field_data = '<span class="quiz-input-group editor-field" data-options="" data-id="' + random_id + '" data-field_type="radio" id="field-' + random_id + '" data-correct=""><input type="radio" ></span>&nbsp;';
     }
 
-    if( field_type == 'checkbox'){
-        field_data = '<span class="quiz-input-group editor-field" data-options="" data-id="'+random_id+'" data-field_type="checkbox" id="field-'+random_id+'" data-correct=""><input type="checkbox" ></span>&nbsp;';
+    if (field_type == 'checkbox') {
+        field_data = '<span class="input-holder editor-field" data-options="" data-id="' + random_id + '" data-field_type="checkbox" id="field-' + random_id + '" data-correct=""><input type="checkbox" ></span>&nbsp;';
     }
 
-    if( field_type == 'fraction'){
-        field_data = '<span class="quiz-input-group" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><div class="field-group"><span class="divide-numbers"><span contentEditable="true">X</span><em class="divider"></em><span contentEditable="true">X</span></span></div></span>&nbsp;';
+    if (field_type == 'fraction') {
+        field_data = '<span class="input-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><div class="field-group"><span class="divide-numbers"><span contentEditable="true">X</span><em class="divider"></em><span contentEditable="true">X</span></span></div></span>&nbsp;';
     }
 
-    if( field_type == 'sq_root'){
-        field_data = '<span class="block-holder" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contentEditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span>&nbsp;';
+    if (field_type == 'sq_root') {
+        field_data = '<span class="block-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contentEditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span>&nbsp;';
     }
 
-    if( field_type == 'cube_root'){
-        field_data = '<span class="block-holder" data-id="'+random_id+'" data-field_type="select" id="field-'+random_id+'"><span class="lms-root-block"><sup class="lms-nthroot lms-non-leaf"><span contentEditable="true">X</span></sup><span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span></span>&nbsp;';
+    if (field_type == 'cube_root') {
+        field_data = '<span class="block-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><span class="lms-root-block"><sup class="lms-nthroot lms-non-leaf"><span contentEditable="true">X</span></sup><span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span></span>&nbsp;';
     }
 
-    if( field_type == 'image'){
-        field_data = '<span class="block-holder"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>&nbsp;';
+    if (field_type == 'image') {
+        field_data = '<span class="block-holder image-field"><img data-field_type="image" data-id="' + random_id + '" id="field-' + random_id + '" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>&nbsp;';
     }
 
-	if( field_type == 'paragraph'){
-        field_data = '<span class="block-holder editor-field" data-id="'+random_id+'" data-field_type="paragraph" id="field-'+random_id+'">Test Paragraph</span>&nbsp;';
+    if (field_type == 'paragraph') {
+        field_data = '<span class="block-holder editor-field" data-id="' + random_id + '" data-field_type="paragraph" id="field-' + random_id + '">Test Paragraph</span>&nbsp;';
     }
 
 
@@ -7900,8 +8329,7 @@ $(document).on('click','.editor-add-field',function(){
 });
 
 
-
-$(document).on('click','.editor-field',function(){
+$(document).on('click', '.editor-field', function () {
     var thisObj = $(this);
     var field_id = $(this).attr('data-id');
     var field_type = $(this).attr('data-field_type');
@@ -7909,47 +8337,48 @@ $(document).on('click','.editor-field',function(){
     //var current_value = $(this).attr('data-'+field_type, $(this).val());
     //$(".field-options").html('');
     $(".field-options-all").slideUp();
-    if( $("#field-options-"+field_id+"").length < 1){
+    if ($("#field-options-" + field_id + "").length < 1) {
 
-        var field_layout_html = "<div class='"+field_type+"-field-options field-options-all' id='field-options-"+field_id+"'>"+$('.fields-layout-options').find('.'+field_type+'-field-options').clone().html()+'</div>';
+        var field_layout_html = "<div class='" + field_type + "-field-options field-options-all' id='field-options-" + field_id + "'>" + $('.fields-layout-options').find('.' + field_type + '-field-options').clone().html() + '</div>';
         var field_layout_html = field_layout_html.replace(/field_dynamic_id/g, field_id);
         var field_layout_html = field_layout_html.replace(/option_dynamic_id/g, option_id_unique);
 
-        if( field_type == 'select' || field_type == 'radio' || field_type == 'checkbox'){
+        if (field_type == 'select' || field_type == 'radio' || field_type == 'checkbox') {
 
             var options = $(this).attr('data-options');
-            var options_array = (options != '')? JSON.parse(options) : [];
+            options = leform_decode64(options);
+            var options_array = (options != '') ? JSON.parse(options) : [];
 
             var corrects = $(this).attr('data-correct');
-            var corrects_array = (corrects != '')? JSON.parse(corrects) : [];
+            var corrects_array = (corrects != '') ? JSON.parse(corrects) : [];
 
             var field_layout_html = $(field_layout_html);
             field_layout_html.find('.repeater-fields').html('');
             var options_html = '';
-            if(options_array.length > 1){
-                $.each(options_array, function( indx, value ) {
+            if (options_array.length > 1) {
+                $.each(options_array, function (indx, value) {
                     var option_id_unique = Math.floor((Math.random() * 99999) + 1);
-                    var options_item_html = $('.fields-layout-options').find('.'+field_type+'-field-options').find('.repeater-fields').html();
+                    var options_item_html = $('.fields-layout-options').find('.' + field_type + '-field-options').find('.repeater-fields').html();
                     options_item_html = options_item_html.replace(/field_dynamic_id/g, field_id);
                     options_item_html = options_item_html.replace(/option_dynamic_id/g, option_id_unique);
                     var options_item_html = $(options_item_html);
                     options_item_html.find('.element-field').val(value);
                     options_item_html.find('.element-field').attr('value', value);
-                    options_item_html.find('.select-correct-element-field').attr('value',value);
-                    if(jQuery.inArray(value, corrects_array) != -1) {
-                        options_item_html.find('.select-correct-element-field').attr('checked','checked');
+                    options_item_html.find('.select-correct-element-field').attr('value', value);
+                    if (jQuery.inArray(value, corrects_array) != -1) {
+                        options_item_html.find('.select-correct-element-field').attr('checked', 'checked');
                     }
 
-                    options_html += "<div class='quiz-form-control'>"+options_item_html.html()+"</div>";
+                    options_html += "<div class='quiz-form-control'>" + options_item_html.html() + "</div>";
                 });
-            }else{
+            } else {
 
                 var option_id_unique = Math.floor((Math.random() * 99999) + 1);
-                var options_item_html = $('.fields-layout-options').find('.'+field_type+'-field-options').find('.repeater-fields').html();
+                var options_item_html = $('.fields-layout-options').find('.' + field_type + '-field-options').find('.repeater-fields').html();
                 options_item_html = options_item_html.replace(/field_dynamic_id/g, field_id);
                 options_item_html = options_item_html.replace(/option_dynamic_id/g, option_id_unique);
                 var options_item_html = $(options_item_html);
-                options_html += "<div class='quiz-form-control'>"+options_item_html.html()+"</div>";
+                options_html += "<div class='quiz-form-control'>" + options_item_html.html() + "</div>";
 
             }
             field_layout_html.find('.repeater-fields').append(options_html);
@@ -7957,187 +8386,186 @@ $(document).on('click','.editor-field',function(){
             $('.field-options').append(field_layout_html);
 
 
-        }else{
+        } else {
 
 
             $('.field-options').append(field_layout_html);
 
             $('.field-options').find('.element-field').each(function () {
                 var element_field_type = $(this).attr('data-field_type');
-                var current_value = thisObj.attr('data-'+element_field_type);
+                var current_value = thisObj.attr('data-' + element_field_type);
                 $(this).val(current_value);
             });
         }
 
     }
-    $('.field-options-content #field-options-'+field_id).slideDown();
+    $('.field-options-content #field-options-' + field_id).slideDown();
 });
 
-$(document).on('click','.repeater-class',function(){
+$(document).on('click', '.repeater-class', function () {
     var field_type = $(this).attr('data-field_type');
     var field_id = $(this).attr('data-field_id');
-	var option_id_unique = Math.floor((Math.random() * 99999) + 1);
-    var field_layout_html = "<div class='"+field_type+"-field-options field-options-all' id='field-options-"+field_id+"'>"+$('.fields-layout-options').find('.'+field_type+'-field-options').find('.repeater-fields').html()+'</div>';
+    var option_id_unique = Math.floor((Math.random() * 99999) + 1);
+    var field_layout_html = "<div class='" + field_type + "-field-options field-options-all' id='field-options-" + field_id + "'>" + $('.fields-layout-options').find('.' + field_type + '-field-options').find('.repeater-fields').html() + '</div>';
     var field_layout_html = field_layout_html.replace(/field_dynamic_id/g, field_id);
-	var field_layout_html = field_layout_html.replace(/option_dynamic_id/g, option_id_unique);
-    $( ".field-options-content .repeater-fields" ).append(field_layout_html);
-    $('.field-options-content #field-options-'+field_id).slideDown();
+    var field_layout_html = field_layout_html.replace(/option_dynamic_id/g, option_id_unique);
+    $(".field-options-content .repeater-fields").append(field_layout_html);
+    $('.field-options-content #field-options-' + field_id).slideDown();
 });
 
-$(document).on('click','.remove-repeater-field',function(){
+$(document).on('click', '.remove-repeater-field', function () {
     $(this).closest('.quiz-form-control').remove();
 });
 
 
-$(document).on('change','.select-correct-element-field',function(){
-	var field_id = $(this).attr('data-field_id');
-        var field_type = $(this).attr('data-field_type');
-	var correct_options = $(".note-editable #field-"+field_id).attr('data-correct');
+$(document).on('change', '.select-correct-element-field', function () {
+    var field_id = $(this).attr('data-field_id');
+    var field_type = $(this).attr('data-field_type');
+    var correct_options = $(".note-editable #field-" + field_id).attr('data-correct');
 
-	if( correct_options != ''){
-		correct_options = jQuery.parseJSON(correct_options);
-	}else{
-		correct_options = [];
-	}
-        if( field_type == 'radio_correct'){
-            correct_options = [];
-        }
-
-
-
-	if( $(this).is(":checked") ){
-		correct_options.push($(this).val());
-	}else{
-		correct_options.splice($.inArray($(this).val(), correct_options), 1);
-	}
+    if (correct_options != '') {
+        correct_options = jQuery.parseJSON(correct_options);
+    } else {
+        correct_options = [];
+    }
+    if (field_type == 'radio_correct') {
+        correct_options = [];
+    }
 
 
-	$(".note-editable #field-"+field_id).attr('data-correct', JSON.stringify(correct_options));
+    if ($(this).is(":checked")) {
+        correct_options.push($(this).val());
+    } else {
+        correct_options.splice($.inArray($(this).val(), correct_options), 1);
+    }
+
+
+    $(".note-editable #field-" + field_id).attr('data-correct', JSON.stringify(correct_options));
 
 
 });
 
-$(document).on('keyup change focus blur paste checked unchecked','.element-field',function(){
+$(document).on('keyup change focus blur paste checked unchecked', '.element-field', function () {
     var field_id = $(this).attr('data-field_id');
     var field_type = $(this).attr('data-field_type');
-    $(".note-editable #field-"+field_id).attr('data-'+field_type, $(this).val());
+    $(".note-editable #field-" + field_id).attr('data-' + field_type, $(this).val());
 
-    if( field_type == 'select_option'){
+    if (field_type == 'select_option') {
         var options_html = '';
         var select_options = [];
         jQuery(this).closest('.repeater-fields').find('.element-field').each(function (index) {
             options_html += '<option value="' + $(this).val() + '">' + $(this).val() + '</option>';
-			var field_option_id = $(this).attr('data-field_option_id');
-			select_options.push($(this).val());
-			$("#"+field_option_id).val($(this).val());
+            var field_option_id = $(this).attr('data-field_option_id');
+            select_options.push($(this).val());
+            $("#" + field_option_id).val($(this).val());
         });
-        $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(select_options));
-        $(".note-editable #field-"+field_id).html(options_html);
 
-    }else if( field_type == 'radio_option'){
+        $(".note-editable #field-" + field_id).attr('data-options', leform_encode64(JSON.stringify(select_options)));
+        $(".note-editable #field-" + field_id).html(options_html);
+
+    } else if (field_type == 'radio_option') {
         var radio_options_html = '';
         var radio_options = [];
         jQuery(this).closest('.repeater-fields').find('.element-field').each(function (index) {
-            radio_options_html += '<input type="radio" value="' + $(this).val() + '"> ' + $(this).val()+' ';
+            radio_options_html += '<input type="radio" value="' + $(this).val() + '"> ' + $(this).val() + ' ';
             var field_option_id = $(this).attr('data-field_option_id');
             radio_options.push($(this).val());
-            $("#"+field_option_id).val($(this).val());
+            $("#" + field_option_id).val($(this).val());
         });
-        $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(radio_options));
-        $(".note-editable #field-"+field_id).html(radio_options_html);
+        $(".note-editable #field-" + field_id).attr('data-options', leform_encode64(JSON.stringify(radio_options)));
+        $(".note-editable #field-" + field_id).html(radio_options_html);
 
-    }else if( field_type == 'checkbox_option'){
+    } else if (field_type == 'checkbox_option') {
         var checkbox_options_html = '';
         var checkbox_options = [];
         jQuery(this).closest('.repeater-fields').find('.element-field').each(function (index) {
-            checkbox_options_html += '<input type="checkbox" value="' + $(this).val() + '"> ' + $(this).val()+' ';
+            checkbox_options_html += '<input type="checkbox" value="' + $(this).val() + '"> ' + $(this).val() + ' ';
             var field_option_id = $(this).attr('data-field_option_id');
             checkbox_options.push($(this).val());
-            $("#"+field_option_id).val($(this).val());
+            $("#" + field_option_id).val($(this).val());
         });
-        $(".note-editable #field-"+field_id).attr('data-options', JSON.stringify(checkbox_options));
-        $(".note-editable #field-"+field_id).html(checkbox_options_html);
+        $(".note-editable #field-" + field_id).attr('data-options', leform_encode64(JSON.stringify(checkbox_options)));
+        $(".note-editable #field-" + field_id).html(checkbox_options_html);
 
-    }else if( field_type == 'field_size'){
+    } else if (field_type == 'field_size') {
 
-        $(".note-editable #field-"+field_id).removeClass('field_extra_small');
-        $(".note-editable #field-"+field_id).removeClass('field_small');
-        $(".note-editable #field-"+field_id).removeClass('field_medium');
-        $(".note-editable #field-"+field_id).removeClass('field_large');
-        $(".note-editable #field-"+field_id).addClass($(this).val());
+        $(".note-editable #field-" + field_id).removeClass('extra-small');
+        $(".note-editable #field-" + field_id).removeClass('small');
+        $(".note-editable #field-" + field_id).removeClass('medium');
+        $(".note-editable #field-" + field_id).removeClass('large');
+        $(".note-editable #field-" + field_id).addClass($(this).val());
 
 
+    } else if (field_type == 'link') {
+        if ($(".note-editable #field-" + field_id).parent().is("a")) {
+            $(".note-editable #field-" + field_id).unwrap();
+        }
+        if ($(this).val() != '' && $(this).val() != 'null' && $(this).val() != null) {
+            $(".note-editable #field-" + field_id).wrapAll('<a href="' + $(this).val() + '" target="_blank" />');
+        }
 
-    }else if( field_type == 'link'){
-		if ( $(".note-editable #field-"+field_id).parent().is( "a" )) {
-			 $(".note-editable #field-"+field_id).unwrap();
-		}
-		if( $(this).val() != '' && $(this).val() != 'null' && $(this).val() != null){
-			$(".note-editable #field-"+field_id).wrapAll( '<a href="'+$(this).val()+'" target="_blank" />');
-		}
+    } else if (field_type == 'font_heading') {
+        if ($(".note-editable #field-" + field_id).parent().is("h1") || $(".note-editable #field-" + field_id).parent().is("h2") || $(".note-editable #field-" + field_id).parent().is("h3")
+            || $(".note-editable #field-" + field_id).parent().is("h4") ||
+            $(".note-editable #field-" + field_id).parent().is("h5") || $(".note-editable #field-" + field_id).parent().is("h6")) {
+            $(".note-editable #field-" + field_id).unwrap();
+        }
+        if ($(this).val() != '' && $(this).val() != 'null' && $(this).val() != null) {
+            $(".note-editable #field-" + field_id).wrapAll("<" + $(this).val() + " />");
+        }
 
-    }else if( field_type == 'font_heading'){
-		if ( $(".note-editable #field-"+field_id).parent().is( "h1" ) || $(".note-editable #field-"+field_id).parent().is( "h2" ) || $(".note-editable #field-"+field_id).parent().is( "h3" )
-				 || $(".note-editable #field-"+field_id).parent().is( "h4" ) ||
-					$(".note-editable #field-"+field_id).parent().is( "h5" ) || $(".note-editable #field-"+field_id).parent().is( "h6" )) {
-					 $(".note-editable #field-"+field_id).unwrap();
-		}
-		if( $(this).val() != '' && $(this).val() != 'null' && $(this).val() != null){
-			$(".note-editable #field-"+field_id).wrapAll( "<"+$(this).val()+" />");
-		}
+    } else if (field_type == 'font_size') {
 
-    }else if( field_type == 'font_size'){
+        $(".note-editable #field-" + field_id).css('font-size', $(this).val());
 
-        $(".note-editable #field-"+field_id).css('font-size', $(this).val());
+    } else if (field_type == 'font_color') {
 
-    }else if( field_type == 'font_color'){
+        $(".note-editable #field-" + field_id).css('color', $(this).val());
 
-        $(".note-editable #field-"+field_id).css('color', $(this).val());
+    } else if (field_type == 'font_styles') {
 
-    }else if( field_type == 'font_styles'){
+        var data_value = $(this).attr('data-value');
 
-		var data_value = $(this).attr('data-value');
+        if ($(this).is(":checked")) {
 
-		if( $(this).is(":checked") ){
+            if (data_value == 'bold') {
+                $(".note-editable #field-" + field_id).css('font-weight', data_value);
+            }
+            if (data_value == 'italic') {
+                $(".note-editable #field-" + field_id).css('font-style', data_value);
+            }
+            if (data_value == 'underline' || data_value == 'line-through') {
+                $(".note-editable #field-" + field_id).css('text-decoration', data_value);
+            }
+        } else {
+            if (data_value == 'bold') {
+                $(".note-editable #field-" + field_id).css('font-weight', '');
+            }
+            if (data_value == 'italic') {
+                $(".note-editable #field-" + field_id).css('font-style', '');
+            }
+            if (data_value == 'underline' || data_value == 'line-through') {
+                $(".note-editable #field-" + field_id).css('text-decoration', '');
+            }
+        }
 
-			if( data_value == 'bold'){
-				$(".note-editable #field-"+field_id).css('font-weight', data_value);
-			}
-			if( data_value == 'italic'){
-				$(".note-editable #field-"+field_id).css('font-style', data_value);
-			}
-			if( data_value == 'underline' || data_value == 'line-through'){
-				$(".note-editable #field-"+field_id).css('text-decoration', data_value);
-			}
-		}else{
-			if( data_value == 'bold'){
-				$(".note-editable #field-"+field_id).css('font-weight', '');
-			}
-			if( data_value == 'italic'){
-				$(".note-editable #field-"+field_id).css('font-style', '');
-			}
-			if( data_value == 'underline' || data_value == 'line-through'){
-				$(".note-editable #field-"+field_id).css('text-decoration', '');
-			}
-		}
+    } else if (field_type == 'font_align') {
 
-    }else if( field_type == 'font_align'){
+        $(".note-editable #field-" + field_id).css('text-align', $(this).val());
+        $(".note-editable #field-" + field_id).css('display', 'block');
 
-        $(".note-editable #field-"+field_id).css('text-align', $(this).val());
-		$(".note-editable #field-"+field_id).css('display', 'block');
+    } else if (field_type == 'image') {
+        $(".note-editable #field-" + field_id).attr('src', $(this).val());
 
-    }else if( field_type == 'image'){
-        $(".note-editable #field-"+field_id).attr('src', $(this).val());
-
-    }else{
-         $(".note-editable #field-"+field_id).attr(field_type, $(this).val());
+    } else {
+        $(".note-editable #field-" + field_id).attr(field_type, $(this).val());
     }
 });
 
-function update_content_data(){
+function update_content_data() {
     var thisVal = $('.note-editable').html();
-    console.log(thisVal);
-    if( thisVal != 'undefined' && thisVal != undefined){
+    if (thisVal != 'undefined' && thisVal != undefined) {
+        var thisVal = thisVal.replace("<p><br></p>","<br>");
         var thisVal = thisVal.replace(/readonly="readonly"/g, '');
         var thisVal = thisVal.replace(/contenteditable="true"/g, 'contenteditable="false"');
         $(".content-area").val(thisVal);
@@ -8145,49 +8573,63 @@ function update_content_data(){
     }
 }
 
-$(document).on('keyup focus blur change','.note-editable',function(){
+$(document).on('keyup focus blur change', '.note-editable', function () {
     update_content_data();
 });
 
-$(document).on('click','.generate-question-code',function(){
+$(document).on('click', '.generate-question-code', function () {
     update_content_data();
     var thisParentObj = $(this).closest('.leform-admin-popup-inner');
-    var editorObj =  thisParentObj.find(".note-editable");
+    var editorObj = thisParentObj.find(".note-editable");
+    var editorObj2 = thisParentObj.find(".leform-admin-popup-content");
     var question_fields_obj = [];
     question_fields_obj[0] = {};
     editorObj.find('.editor-field').each(function (index) {
-       var field_id = $(this).attr('data-id');
-       var field_type = $(this).attr('data-field_type');
-       question_fields_obj[0][field_id] = {};
-       question_fields_obj[0][field_id]['field_type'] = field_type;
+        console.log(field_type);
+        var field_id = $(this).attr('data-id');
+        var field_type = $(this).attr('data-field_type');
+        var left = $(this).attr('data-field_type');
+        var top = $(this).attr('data-field_type');
+        question_fields_obj[0][field_id] = {};
+        question_fields_obj[0][field_id]['field_type'] = field_type;
+        question_fields_obj[0][field_id]['left'] = left;
+        question_fields_obj[0][field_id]['top'] = top;
 
-       var fieldsListObj = thisParentObj.find('#field-options-'+field_id);
+        var fieldsListObj = thisParentObj.find('#field-options-' + field_id);
 
 
-       var select_options = [];
-       fieldsListObj.find('.element-field').each(function (index) {
-           var opt_field_type = $(this).attr('data-field_type');
-           var opt_field_value = $(this).val();
-           question_fields_obj[0][field_id][opt_field_type] = opt_field_value;
+        var select_options = [];
+        fieldsListObj.find('.element-field').each(function (index) {
+            var opt_field_type = $(this).attr('data-field_type');
+            var opt_field_value = $(this).val();
+            question_fields_obj[0][field_id][opt_field_type] = opt_field_value;
 
-           if( opt_field_type == 'select_option'){
+            if (opt_field_type == 'select_option') {
 
-               if( opt_field_value != ''){
-                  select_options.push(opt_field_value);
-               }
-           }
+                if (opt_field_value != '') {
+                    select_options.push(opt_field_value);
+                }
+            }
 
-       });
+        });
         //console.log(select_options);
 
-       if( field_type == 'select'){
-           if(select_options.length > 0 ){
-			    var correct_answer = $('input[name="correct-'+field_id+'"]:checked').val();
-                question_fields_obj[0][field_id]['select_option']  = select_options;
-                question_fields_obj[0][field_id]['correct_answer']  = correct_answer;
-           }
-       }
+        if (field_type == 'select') {
+            if (select_options.length > 0) {
+                var correct_answer = $('input[name="correct-' + field_id + '"]:checked').val();
+                question_fields_obj[0][field_id]['select_option'] = select_options;
+                question_fields_obj[0][field_id]['correct_answer'] = correct_answer;
+            }
+        }
     });
+
+
+    console.log('log start');
+    console.log(question_fields_obj);
+    console.log('log end');
+
+
+
     thisParentObj.find('#leform-elements_data').val(leform_encode64(JSON.stringify(question_fields_obj)));
 
     leform_properties_save();
@@ -8211,7 +8653,7 @@ function pasteHtmlAtCaret(html) {
             var el = document.createElement("div");
             el.innerHTML = html;
             var frag = document.createDocumentFragment(), node, lastNode;
-            while ( (node = el.firstChild) ) {
+            while ((node = el.firstChild)) {
                 lastNode = frag.appendChild(node);
             }
             range.insertNode(frag);
@@ -8232,7 +8674,7 @@ function pasteHtmlAtCaret(html) {
 }
 
 
-$(document).on('click','.quiz-stage-generate',function(){
+$(document).on('click', '.quiz-stage-generate', function () {
 
     var question_status = $(this).attr('data-status');
     leform_save(this, question_status);
@@ -8241,5 +8683,35 @@ $(document).on('click','.quiz-stage-generate',function(){
 
 
 window.addEventListener('beforeunload', function (event) {
-  event.stopImmediatePropagation();
+    event.stopImmediatePropagation();
+});
+
+
+$(document).on('focus blur change', '.matrix-columns-options', function () {
+    render_matrix_columns_options();
+});
+function render_matrix_columns_options(){
+
+    jQuery(".matrix-columns-labels-options2 .leform-properties-options-value").each(function () {
+        var thisLabel = $(this);
+        var selected_value = $(this).attr('data-selected');
+        var options_html = '';
+        jQuery(".matrix-columns-options .leform-properties-options-item input").each(function () {
+            var option_label = $(this).val();
+            var is_selected = (selected_value == option_label)? 'selected' : '';
+            options_html += '<option value="'+option_label+'" '+is_selected+'>'+option_label+'</option>';
+        });
+        thisLabel.html(options_html);
+    });
+
+
+    //leform-properties-options-item
+    //var thisObj = $(_object);
+    //console.log(thisObj.closest('.leform-tab-content').attr('id'));
+}
+
+
+$(document).on('change', '.matrix-columns-labels-options2 select', function () {
+    var option_value = $(this).val();
+    $(this).attr('data-selected', option_value);
 });

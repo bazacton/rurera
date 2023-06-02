@@ -8,11 +8,18 @@ $rand_id = rand(99,9999);
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 @endpush
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+    .ui-state-highlight{
+        margin:0px 10px;
+    }
+</style>
 
 @section('content')
 
@@ -49,21 +56,21 @@ $rand_id = rand(99,9999);
         </ul>
     </div>
     <div class="questions-data-block" data-total_questions="{{$quizQuestions->count()}}">
-	
+
 	<div class="question-step quiz-complete" style="display:none">
         <div class="question-layout-block">
                 <div class="left-content has-bg">
                     <h2>&nbsp;</h2>
                     <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
-                            
+
                         </div>
                     </div>
                 </div>
 
         </div>
     </div>
-	
+
 
 
     @php
@@ -80,10 +87,10 @@ $rand_id = rand(99,9999);
                             <div class="correct-appriciate" style="display:none"></div>
                 <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                     <div class="left-content has-bg">
-                        <h2><span>Q {{$j}}</span> - {{ $question->question_title }} <span class="icon-img"><img src="../../assets/default/img/quiz/sound-img.png" alt=""></span> </h2>
+                        <span class="question-number-holder"> <span class="question-number">{{$j}}</span>  </span>
                         <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                             <div class="question-layout">
-                                <span class="marks" data-marks="{{$question_points}}">[{{$question->question_score}}]</span>
+                                <span class="marks" data-marks="{{$question_points}}">{{$question->question_score}} marks</span>
                                 {!! $question_layout !!}
 
                             </div>
@@ -119,7 +126,7 @@ $rand_id = rand(99,9999);
                 </label>
             </div>
         </div>
-		
+
         <div class="range-price" data-time_elapsed="0">
             <strong class="t-minute">4<em>m</em></strong>
             <strong class="t-seconds">50<em>s</em></strong>
@@ -139,6 +146,8 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/vendors/video/video.min.js"></script>
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
 <script src="/assets/default/js/parts/quiz-start.min.js?var={{$rand_id}}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
 const range = document.getElementById('range')
@@ -162,6 +171,10 @@ const range = document.getElementById('range')
         })
         const scale = (num, in_min, in_max, out_min, out_max) = > {
 return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+
 }
+
+
+
 </script>
 @endpush

@@ -420,69 +420,69 @@ class QuizController extends Controller
                     },
                 ])
                 ->first();
-                    
+
                 $newQuizStart = QuizzesResult::where('quiz_id', $quiz->id)
                     ->where('user_id', $user->id)
                     ->where('status', 'waiting')
                     ->first();
-				
-	
+
+
 		$quiz_settings = json_decode($quiz->quiz_settings);
-		
+
 		$below_questions_no = isset( $quiz_settings->Below->questions )? $quiz_settings->Below->questions : 0;
 		$emerging_questions_no = isset( $quiz_settings->Emerging->questions )? $quiz_settings->Emerging->questions : 0;
 		$expected_questions_no = isset( $quiz_settings->Expected->questions )? $quiz_settings->Expected->questions : 0;
 		$exceeding_questions_no = isset( $quiz_settings->Exceeding->questions )? $quiz_settings->Exceeding->questions : 0;
 		$challenge_questions_no = isset( $quiz_settings->Challenge->questions )? $quiz_settings->Challenge->questions : 0;
-                
-		
+
+
 		$attempted_questions  = array();
-                if( isset( $newQuizStart->id ) ){
-                    $attempted_questions	= QuizzResultQuestions::where('quiz_id', $id)
-                                    ->where('user_id', $user->id)
-                                    //->where('quiz_result_id', $newQuizStart->id)
-                    ->pluck('question_id')->toArray();
-                }
-		
+        if( isset( $newQuizStart->id ) ){
+            $attempted_questions	= QuizzResultQuestions::where('quiz_id', $id)
+            ->where('user_id', $user->id)
+            //->where('quiz_result_id', $newQuizStart->id)
+            ->pluck('question_id')->toArray();
+        }
+
 		$questions_list = array();
 		$questions_list['below'] = QuizzesQuestion::where('quiz_id', $id)
 				->where('question_difficulty_level', 'Below')
-				->whereNotIn('id', $attempted_questions)
+				//->whereNotIn('id', $attempted_questions)
 				->orderBy('sort_order', 'ASC')
 				->limit($below_questions_no)
                 ->pluck('id')->toArray();
-				
+
 		$questions_list['emerging'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
 				->where('question_difficulty_level', 'Emerging')
-				->whereNotIn('id', $attempted_questions)
+				//->whereNotIn('id', $attempted_questions)
 				->orderBy('sort_order', 'ASC')
 				->limit($emerging_questions_no)
                 ->pluck('id')->toArray();
 
 		$questions_list['expected'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
 				->where('question_difficulty_level', 'Expected')
-				->whereNotIn('id', $attempted_questions)
+				//->whereNotIn('id', $attempted_questions)
 				->orderBy('sort_order', 'ASC')
 				->limit($expected_questions_no)
-                ->pluck('id')->toArray();	
+                ->pluck('id')->toArray();
 
 		$questions_list['exceeding'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
 				->where('question_difficulty_level', 'Exceeding')
-				->whereNotIn('id', $attempted_questions)
+				//->whereNotIn('id', $attempted_questions)
 				->orderBy('sort_order', 'ASC')
 				->limit($exceeding_questions_no)
-				->pluck('id')->toArray();	
-		
+				->pluck('id')->toArray();
+
 		$questions_list['challenge'] = QuizzesQuestion::select('id')->where('quiz_id', $id)
 				->where('question_difficulty_level', 'Challenge')
-				->whereNotIn('id', $attempted_questions)
+				//->whereNotIn('id', $attempted_questions)
 				->orderBy('sort_order', 'ASC')
 				->limit($challenge_questions_no)
 				->pluck('id')->toArray();
-  
+
 
         if ($quiz) {
-            
+
             if (empty($newQuizStart) || !isset($newQuizStart->id) || $newQuizStart->count() < 1) {
                 $newQuizStart = QuizzesResult::create([
 					'quiz_id' => $quiz->id,
@@ -504,18 +504,18 @@ class QuizController extends Controller
                         'created_at' => time(),
                         'questions_list' => json_encode($questions_list),
             ]);
-            
+
             //$quizAttempt = QuizzAttempts::find(6);
-			
+
 			$questions_list = json_decode($quizAttempt->questions_list);
-			
+
 			$questions_ids_list = array();
-			
+
 			foreach( $questions_list as $key => $question_ids){
 				$questions_ids_list = array_merge($questions_ids_list, $question_ids);
 			}
-			
-			
+
+
 			$attempt_log_id = createAttemptLog($quizAttempt->id, 'Session Started', 'started');
 
             $WebinarController = new WebinarController();
@@ -534,11 +534,11 @@ class QuizController extends Controller
                     }
                 }
             }
-            
+
             $quiz_settings = json_decode($quiz->quiz_settings);
-            $difficulty_level = $question->question_difficulty_level;
-            $question_points = $quiz_settings->$difficulty_level->points;
-            
+            $difficulty_level = isset( $question->question_difficulty_level )? $question->question_difficulty_level : '';
+            $question_points = isset( $quiz_settings->$difficulty_level->points )? $quiz_settings->$difficulty_level->points : 0;
+
             $data = [
                 'pageTitle' => trans('quiz.quiz_start'),
                 'quiz' => $quiz,
@@ -862,7 +862,7 @@ class QuizController extends Controller
 
         $quizzesIds = Quiz::where('creator_id', $user->id)->pluck('id')->toArray();
 
-								
+
        //DB::enableQueryLog();
         $quizResultQuestions = QuizzResultQuestions::where('quiz_result_id', $quizResultId)
             ->where(function ($query) use ($user, $quizzesIds) {
@@ -874,13 +874,13 @@ class QuizController extends Controller
                 },*/
                 //'quizz_result_questions'
             ])->get();
-            //pre(DB::getQueryLog());		
+            //pre(DB::getQueryLog());
             //DB::disableQueryLog();
-            
-            
-												
-								
-								
+
+
+
+
+
         $quizResult = QuizzesResult::where('id', $quizResultId)
             ->where(function ($query) use ($user, $quizzesIds) {
                 $query->where('user_id', $user->id)

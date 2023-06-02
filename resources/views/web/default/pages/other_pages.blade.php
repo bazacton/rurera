@@ -1,7 +1,7 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-    @if($page->id == 11)
+    @if($page->id == 11 || $page->id == 50)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
     @endif
 @endpush
@@ -103,7 +103,7 @@
         <div class="row">
             <div class="col-12 col-md-9 col-lg-9">
                 <p class="lms-subtitle">Programme of study</p>
-                <h1 class="font-30 font-weight-bold">England Curriculum</h1>
+                <h1 class="font-30 font-weight-bold">National Curriculum</h1>
                 <p>Skills available for England key stage 2, Year 5 maths objectives</p>
                 <div class="lms-course-select">
                     <form>
@@ -223,8 +223,11 @@
                 @endsection
 
                 @push('scripts_bottom')
-                    @if($page->id == 11)
+                    @if($page->id == 11 || $page->id == 50)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+                    @endif
+                    @if($page->id == 44)
+                        <script src="/assets/default/vendors/draw-lines/draw-lines.js"></script>
                     @endif
                 @endpush

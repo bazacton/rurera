@@ -268,8 +268,12 @@
                                         <span>{{ $questionData->title }}</span>
                                     </td>
                                     <td class="text-left">
-                                        <span class="text-primary mt-0 mb-1 font-weight-bold">{{ $questionData->category_title }} / {{ $questionData->subject_title }}</span>
-                                        <div class="text-small">{{ $questionData->sub_chapter_title }}</div>
+                                        <span class="text-primary mt-0 mb-1 font-weight-bold">
+                                            {{ isset ($questionData->category->id)?
+                                            $questionData->category->getTitleAttribute() : '-'}}
+                                            / {{ isset ($questionData->course->id)?
+                                            $questionData->course->getTitleAttribute() : '-'}}</span>
+                                        <div class="text-small">{{ isset ($questionData->subChapter->id)? $questionData->subChapter->sub_chapter_title : '' }}</div>
                                     </td>
                                     <td>
                                         <span>{{ $questionData->question_difficulty_level }}</span>
@@ -375,6 +379,33 @@
             }
         });
     });
+
+
+
+
+    $(document).on('change', '.ajax-category-courses', function () {
+        var category_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/courses_by_categories',
+            data: {'category_id': category_id},
+            success: function (return_data) {
+                $(".ajax-courses-dropdown").html(return_data);
+            }
+        });
+    });
+
+    $(document).on('change', '.ajax-courses-dropdown', function () {
+            var course_id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: '/admin/webinars/chapters_by_course',
+                data: {'course_id': course_id},
+                success: function (return_data) {
+                    $(".ajax-chapter-dropdown").html(return_data);
+                }
+            });
+        });
 </script>
 
 @endpush

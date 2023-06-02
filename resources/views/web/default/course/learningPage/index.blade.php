@@ -15,8 +15,8 @@ $rand_id = rand(99,9999);
         @include('web.default.course.learningPage.components.navbar')
 
         <div class="d-flex position-relative">
-           
-            
+
+
              @include('web.default.panel.includes.quiz-sidebar')
 
             <div class="learning-page-content flex-grow-1 bg-info-light p-15">

@@ -3239,7 +3239,7 @@ pre {
 /* 4.2 Section */
 .section {
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .section .section-header {
@@ -3959,7 +3959,6 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li ul.dropdown-menu li ul.dropdown-menu {
     padding-left: 10px;
 }
-
 .main-content {
     padding-left: 280px;
     padding-right: 30px;
@@ -3967,7 +3966,6 @@ body.layout-3 .main-footer {
     width: 100%;
     position: relative;
 }
-
 .main-footer {
     padding: 20px 30px 20px 280px;
     margin-top: 40px;
@@ -3976,11 +3974,9 @@ body.layout-3 .main-footer {
     display: inline-block;
     width: 100%;
 }
-
 .main-footer .footer-left {
     float: left;
 }
-
 .main-footer .footer-right {
     float: right;
 }

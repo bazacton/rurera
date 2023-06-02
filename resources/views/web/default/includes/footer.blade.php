@@ -22,6 +22,7 @@
                         <li><a href="/pages/faq">FAQ's</a></li>
                         <li><a href="/pages/User_Guides">Help Center</a></li>
                         <li><a href="/pages/Support_Page">Support Page</a></li>
+                        <li><a href="/pages/job_signup">Career</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +51,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="footer-copyright">
         <div class="container">

@@ -42,9 +42,9 @@
 
 /* Lms Chapter Holder Style Start */
 
-.lms-chapter-area .lms-chapter-ul {
+/* .lms-chapter-area .lms-chapter-ul {
     column-count: 3;
-}
+} */
 .lms-chapter-area .lms-chapter-ul >li{margin-bottom:30px; break-inside: avoid;}
 .lms-chapter-area .lms-chapter-ul >li ul li {
     width: 100%;
@@ -66,21 +66,21 @@
   counter-increment: my-sec-counter;
   content: counter(my-sec-counter, upper-alpha ) ". ";
 }
-.lms-chapter-area{counter-reset: my-sec-counter;}
+/* .lms-chapter-area{counter-reset: my-sec-counter;} */
 
 @media (max-width: 992px) {
-    .lms-chapter-area .lms-chapter-ul {
+    /* .lms-chapter-area .lms-chapter-ul {
         column-count: 2;
-    }
+    } */
 }
 @media (max-width: 767px) {
     .lms-side-menu-left{z-index: 1;}
     .learning-page .learning-page-tabs{top:0;}
 }
 @media (max-width: 640px) {
-    .lms-chapter-area .lms-chapter-ul {
+    /* .lms-chapter-area .lms-chapter-ul {
         column-count: 1;
-    }
+    } */
 }
 @media (max-width: 575px) {
     .lms-side-menu-left{width:100%;height: 50px;position: absolute;margin-bottom: 50px;left: 0;z-index: 1;}

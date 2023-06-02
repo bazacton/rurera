@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
     <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
     <link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.css">
     <style>
         .bootstrap-timepicker-widget table td input {
             width: 35px !important;
@@ -198,6 +199,27 @@
                                                         {{ $message }}
                                                     </div>
                                                     @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Icon Code</label>
+                                                <div class="input-group">
+                                                    <textarea name="icon_code" class="form-control">{{ !empty($webinar) ? $webinar->icon_code : '' }}</textarea>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Background Color</label>
+                                                <div class="input-group colorpickerinput">
+                                                    <input type="text" name="background_color" class="form-control"
+                                                           value="{{ !empty($webinar) ? $webinar->background_color : '' }}">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-fill-drip"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -884,4 +906,5 @@
 
     <script src="/assets/default/js/admin/quiz.min.js"></script>
     <script src="/assets/admin/js/webinar.min.js"></script>
+    <script src="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
 @endpush

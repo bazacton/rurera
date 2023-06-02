@@ -17,36 +17,46 @@ class QuizzesQuestion extends Model implements TranslatableContract
     static $multiple = 'multiple';
     static $descriptive = 'descriptive';
 
-    public $translatedAttributes = ['title', 'correct'];
+    public $translatedAttributes = ['title' , 'correct'];
 
     public function getTitleAttribute()
     {
-        return getTranslateAttributeValue($this, 'title');
+        return getTranslateAttributeValue($this , 'title');
     }
 
     public function getCorrectAttribute()
     {
-        return getTranslateAttributeValue($this, 'correct');
+        return getTranslateAttributeValue($this , 'correct');
     }
 
 
     public function quizzesQuestionsAnswers()
     {
-        return $this->hasMany('App\Models\QuizzesQuestionsAnswer', 'question_id', 'id');
+        return $this->hasMany('App\Models\QuizzesQuestionsAnswer' , 'question_id' , 'id');
     }
-    
+
     public function listQuestions()
     {
-        return $this->hasMany('App\Models\Translation\QuizzesQuestionTranslation', 'quizzes_question_id', 'id');
-}
-    
+        return $this->hasMany('App\Models\Translation\QuizzesQuestionTranslation' , 'quizzes_question_id' , 'id');
+    }
+
     public function teacher()
     {
-        return $this->belongsTo('App\User', 'creator_id', 'id');
+        return $this->belongsTo('App\User' , 'creator_id' , 'id');
     }
-    
-    public function webinar()
+
+    public function course()
     {
-        return $this->belongsTo('App\Models\Webinar', 'webinar_id', 'id');
+        return $this->belongsTo('App\Models\Webinar' , 'course_id' , 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category' , 'category_id' , 'id');
+    }
+
+    public function subChapter()
+    {
+        return $this->belongsTo('App\Models\SubChapters' , 'sub_chapter_id' , 'id');
     }
 }

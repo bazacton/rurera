@@ -33,19 +33,28 @@ class QuestionsBankController extends Controller {
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $QuizzesResult = QuizzesResult::find($QuizzResultQuestions->quiz_result_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
-        
+
+
+
         $quiz = Quiz::find($questionObj->quiz_id);
 
-        
+
         $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
         $question_response_layout = '';
         $question_data = $request->get('question_data');
         $question_data = json_decode(base64_decode(trim(stripslashes($question_data))), true);
+
         $questions_data = isset($question_data[0]) ? $question_data[0] : $question_data;
+
+        $field_type = isset( $questions_data['type'] )? $questions_data['type'] : '';
+        if( $field_type == 'insert_into_sentense'){
+            //pre('test');
+        }
         $incorrect_flag = false;
         $incorrect_array = $correct_array = $user_input_array = array();
         if (!empty($questions_data)) {
             foreach ($questions_data as $q_id => $user_input) {
+
                 $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
                 $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
                 $question_correct = isset($current_question_obj->correct_answere) ? $current_question_obj->correct_answere : '';
@@ -78,20 +87,20 @@ class QuestionsBankController extends Controller {
             'time_consumed' => $time_consumed,
         ]);
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //$questions_list = json_decode($QuizzesResult->questions_list);
             $questions_list = json_decode($quizAttempt->questions_list);
 
@@ -108,12 +117,12 @@ class QuestionsBankController extends Controller {
             if (!empty($questions_ids_list)) {
                 foreach ($questions_ids_list as $question_id) {
                     $questionObj = QuizzesQuestion::find($question_id);
-                    
+
                     $quiz_settings = json_decode($quiz->quiz_settings);
                     $difficulty_level = $questionObj->question_difficulty_level;
                     $question_points = $quiz_settings->$difficulty_level->points;
-                    
-                    
+
+
                     $newQuestionResult = $this->get_question_result_data($questionObj, $questionObj->quiz_id, $qattempt_id);
                     if (!isset($newQuestionResult->id) || $newQuestionResult->id == '') {
                         $newQuestionResult = $this->store_question_result($questionObj, $QuizzesResult, $quizAttempt);
@@ -146,31 +155,31 @@ class QuestionsBankController extends Controller {
                     $j++;
                 }
             }
-        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if ($incorrect_flag == false) {
 
-            
+
         } else {
-            
+
             $questions_list = json_decode($quizAttempt->questions_list);
             $questions_ids_list = array();
             foreach( $questions_list as $key => $question_ids){
@@ -194,7 +203,7 @@ class QuestionsBankController extends Controller {
             $QuizzesResult->update([
                 'questions_list' => json_encode($questions_list),
             ]);
-            
+
             $newQuestionResult = $this->store_question_result($questionObj, $QuizzesResult, $quizAttempt);
             $newQuestionResultData = $newQuestionResult;
             $question = $questionObj;
@@ -269,6 +278,11 @@ class QuestionsBankController extends Controller {
             $is_question_correct = ($question_correct != $user_input) ? false : $is_question_correct;
         } else {
 
+            if ($question_type == 'paragraph') {
+                $user_input = strip_tags($user_input);
+                $user_input = str_replace('&nbsp;', '', $user_input);
+            }
+
             if (!in_array($user_input, $question_correct)) {
                 $is_question_correct = false;
             } else {
@@ -276,6 +290,7 @@ class QuestionsBankController extends Controller {
             }
         }
         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
+
         return $response = array(
             'is_question_correct' => $is_question_correct,
             'question_correct' => $question_correct,

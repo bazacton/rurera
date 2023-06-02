@@ -30,31 +30,19 @@
                             <div class="table-responsive">
                                 <table class="table table-striped font-14">
                                     <tr>
-                                        <th>#</th>
-                                        <th>{{ trans('admin/main.user_name') }}</th>
-                                        <th>{{ trans('admin/main.rate') }}</th>
+                                        <th>{{ trans('admin/main.user_name') }} / City</th>
+                                        <th>By</th>
                                         <th class="text-center">{{ trans('admin/main.content') }}</th>
-                                        <th class="text-center">{{ trans('admin/main.status') }}</th>
                                         <th>{{ trans('admin/main.created_at') }}</th>
                                         <th>{{ trans('admin/main.action') }}</th>
                                     </tr>
                                     @foreach($testimonials as $testimonial)
                                         <tr>
-                                            <td>
-                                                <img src="{{ $testimonial->user_avatar }}" alt="" width="56" height="56" class="rounded-circle">
-                                            </td>
-                                            <td>{{ $testimonial->user_name }}</td>
-                                            <td>{{ $testimonial->rate }}</td>
-                                            <td class="text-center" width="30%">{{ nl2br(truncate($testimonial->comment, 150, true)) }}</td>
 
-                                            <td class="text-center">
-                                                @if($testimonial->status == 'active')
-                                                    <span class="text-success">{{ trans('admin/main.active') }}</span>
-                                                @else
-                                                    <span class="text-warning">{{ trans('admin/main.disable') }}</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ dateTimeFormat($testimonial->created_at, 'j M Y | H:i') }}</td>
+                                            <td>{{ $testimonial->user_name }}<br>{{ $testimonial->city }}</td>
+                                            <td>{{ $testimonial->testimonial_by }}</td>
+                                            <td class="text-center"  style="width:70%;">{{ nl2br($testimonial->comment) }}</td>
+                                            <td>{{ dateTimeFormat($testimonial->testimonial_date, 'j M Y') }}</td>
                                             <td width="150px">
 
                                                 @can('admin_supports_reply')
