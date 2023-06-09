@@ -282,7 +282,7 @@ class HomeController extends Controller
         }
 
         if (in_array(HomeSection::$testimonials, $selectedSectionsName)) {
-            $testimonials = Testimonial::where('status', 'active')->get();
+            $testimonials = Testimonial::where('status', 'active')->limit(12)->get();
         }
 
         if (in_array(HomeSection::$subscribes, $selectedSectionsName)) {

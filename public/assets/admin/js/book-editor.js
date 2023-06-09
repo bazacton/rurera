@@ -2,6 +2,23 @@ $(document).on('click', '.control-tool-item', function () {
     $(".field-options").addClass('hide');
     $('.control-tool-item').removeClass('active');
     $(this).addClass('active');
+    //$('body').css('cursor', "pointer");
+    //console.log('tet');
+});
+
+$(document).on('click', '.next-page', function () {
+    var thisObj = $(".book-dropzone.active");
+    thisObj.next().removeClass('hide');
+    thisObj.next().addClass('active');
+    thisObj.addClass('hide');
+    thisObj.removeClass('active');
+});
+$(document).on('click', '.prev-page', function () {
+    var thisObj = $(".book-dropzone.active");
+    thisObj.prev().removeClass('hide');
+    thisObj.prev().addClass('active');
+    thisObj.addClass('hide');
+    thisObj.removeClass('active');
 });
 
 
@@ -18,7 +35,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "text") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="p-fields" data-paragraph_value="Test text here..." data-color="#000000"><div class="field-data customizable-field data_style_field data_html_field" data-html_id="text_html" data-style_id="text_color" contenteditable="true">Test text here...</div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -30,7 +48,8 @@ $(document).on('click', '.book-dropzone', function (e) {
     if (drag_type == "highlighter") {
 
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="highlighter-fields" data-background=""><div class="field-data"><div class="stage-shapes resizeable data_style_field" data-style_id="highlighter_size"><div class="customizable-field text-highlighter data_style_field" data-style_id="highlighter_background"></div></div></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -42,7 +61,8 @@ $(document).on('click', '.book-dropzone', function (e) {
     if (drag_type == "check_it_makes_sense") {
 
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-check_it_makes_sense-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/infobox.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -52,7 +72,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "look_for_clues") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-look_for_clues-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/look_for_clues.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -62,7 +83,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "picture_in_your_mind") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-picture_in_your_mind-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/picture_in_your_mind.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -72,7 +94,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "try_do_it_yourself") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-try_do_it_yourself-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/try_do_it_yourself.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -82,7 +105,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "think_and_remember") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-think_and_remember-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/think_and_remember.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -92,7 +116,8 @@ $(document).on('click', '.book-dropzone', function (e) {
 
     if (drag_type == "facts") {
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-facts-fields" data-paragraph_value="Test text here..."><div class="field-data"><img src="/assets/default/img/book-icons/facts.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -103,7 +128,8 @@ $(document).on('click', '.book-dropzone', function (e) {
     if (drag_type == "quiz") {
 
         var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-trigger_class="infobox-quiz-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
-        $el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
         $el.append('</div>');
         if (!EditorIsEmpty(attribute_type)) {
             $el.find('.customizable-field').css(attribute_type, attribute_value);
@@ -118,7 +144,7 @@ $(document).on('click', '.book-dropzone', function (e) {
     $('.draggable_field_' + field_random_number).draggable({
         preventCollision: true,
         containment: dropZonObj,
-        handle: ".field-handle",
+        //handle: ".field-handle",
     });
 
 });
@@ -377,9 +403,9 @@ function EditorIsEmpty(dataValue) {
 
 
 $(document).on('click', '.generate', function (e) {
-    var book_page_id = $(".book-dropzone ").attr('data-page_id');
+    var book_page_id = $(".book-dropzone.active").attr('data-page_id');
     var posted_data = {};
-    $(".book-dropzone ").find(".field_settings").each(function (index) {
+    $(".book-dropzone.active").find(".field_settings").each(function (index) {
         var fieldObj = $(this);
         var data_values = {};
         var field_style = field_position_top = field_position_left = '';

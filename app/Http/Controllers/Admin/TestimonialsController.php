@@ -13,9 +13,29 @@ class TestimonialsController extends Controller
     public function index()
     {
         $this->authorize('admin_testimonials_list');
+        
+        
+        $int= mt_rand(1672531200,1685577600);
+        $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
+        
+        foreach( $testimonials as $testimonialObj){
+            $testimonial_date = mt_rand(1672531200,1685577600);
+            
+            $testimonialObj->update([
+                'testimonial_date'  => $testimonial_date ,
+            ]);
+            TestimonialTranslation::updateOrCreate([
+                'testimonial_id' => $testimonialObj->id ,
+            ] , [
+                'testimonial_date'  => $testimonial_date ,
+            ]);
+        }
+        pre('done');
+
 
         //$import = new TestimonialsImportController('assets/testimonials.csv');
         //Excel::import($import, 'assets/testimonials.csv');
+        //exit;
 
 
         removeContentLocale();
@@ -68,6 +88,7 @@ class TestimonialsController extends Controller
             'rate'        => 5 ,//$data['rate'] ,
             'status'      => $data['status'] ,
             'created_at'  => time() ,
+            'testimonial_date'  => isset($data['testimonial_date']) ? strtotime($data['testimonial_date']) : 0 ,
         ]);
 
         if (!empty($testimonial)) {
@@ -136,6 +157,7 @@ class TestimonialsController extends Controller
             'user_avatar' => $data['user_avatar'] ,
             'rate'        => 5 ,//$data['rate'] ,
             'status'      => $data['status'] ,
+            'testimonial_date'  => isset($data['testimonial_date']) ? strtotime($data['testimonial_date']) : 0 ,
         ]);
 
         TestimonialTranslation::updateOrCreate([

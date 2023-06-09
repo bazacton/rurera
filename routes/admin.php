@@ -367,7 +367,7 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
         Route::group(['prefix' => 'books'] , function () {
             Route::get('/' , 'BooksController@index');
             Route::get('/create' , 'BooksController@create');
-            Route::get('/{id}/edit' , 'BooksController@edit');
+            Route::get('/{id}/edit' , 'BooksController@edit')->name('adminEditBook');
             Route::post('/store' , 'BooksController@store');
             Route::post('/{id}/store' , 'BooksController@store');
             Route::post('/store_page' , 'BooksController@store_page');

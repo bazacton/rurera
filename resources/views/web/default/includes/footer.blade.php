@@ -17,12 +17,14 @@
                     </div>
                     <ul>
                         <li><a href="/blog">News</a></li>
-                        <li><a href="/pages/Privacy_Policy">Privacy Policy</a></li>
-                        <li><a href="/pages/Terms_of_service">term of services</a></li>
-                        <li><a href="/pages/faq">FAQ's</a></li>
-                        <li><a href="/pages/User_Guides">Help Center</a></li>
-                        <li><a href="/pages/Support_Page">Support Page</a></li>
-                        <li><a href="/pages/job_signup">Career</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-services">Term of Services</a></li>
+                        <li><a href="/user-guides">Help Center</a></li>
+                        <li><a href="/job-signup">Career</a></li>
+                        <li><a href="/support-page">Support Page</a></li>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/testimonials">Testimonials</a></li>
+                        <li><a href="/faqs">FAQ's</a></li>
                     </ul>
                 </div>
             </div>
@@ -32,9 +34,10 @@
                         <h5>Courses</h5>
                     </div>
                     <ul>
-                        <li><a href="/pages/Course-2">Course 2</a></li>
-                        <li><a href="/pages/Course-3">Course 3</a></li>
-                        <li><a href="/pages/Course-4">Course 4</a></li>
+                        <li><a href="/national-curriculum">National Curriculum</a></li>
+                        <li><a href="/Course-2">Course 2</a></li>
+                        <li><a href="/Course-3">Course 3</a></li>
+                        <li><a href="/Course-4">Course 4</a></li>
                     </ul>
                 </div>
             </div>

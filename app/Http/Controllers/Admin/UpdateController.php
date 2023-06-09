@@ -13,7 +13,7 @@ class UpdateController extends Controller
 {
     public function index()
     {
-        $this->authorize("admin_settings_update_app");
+        //$this->authorize("admin_settings_update_app");
 
         $data = [
             'pageTitle' => trans('update.update_app')
@@ -24,7 +24,7 @@ class UpdateController extends Controller
 
     public function basicUpdate(Request $request)
     {
-        $this->authorize("admin_settings_update_app");
+        //$this->authorize("admin_settings_update_app");
 
         $data = $request->all();
 
@@ -56,7 +56,7 @@ class UpdateController extends Controller
 
     public function customUpdate(Request $request)
     {
-        $this->authorize("admin_settings_update_app");
+        //$this->authorize("admin_settings_update_app");
 
         $data = $request->all();
 
@@ -109,7 +109,7 @@ class UpdateController extends Controller
 
     public function databaseUpdate(Request $request)
     {
-        $this->authorize("admin_settings_update_app");
+        //$this->authorize("admin_settings_update_app");
 
         $data = $request->all();
 

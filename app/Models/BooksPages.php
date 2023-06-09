@@ -10,7 +10,7 @@ class BooksPages extends Model
     protected $table = 'books_pages';
     public $timestamps = false;
 
-    protected $fillable = ['book_id' , 'page_no' , 'page_path' , 'created_by' , 'created_at'];
+    protected $fillable = ['book_id' , 'page_no' , 'page_title', 'page_path' , 'created_by' , 'created_at', 'sort_order'];
 
     public function PageInfoLinks()
     {

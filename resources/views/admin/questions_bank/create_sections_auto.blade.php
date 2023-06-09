@@ -26,7 +26,7 @@
                                         <option {{ !empty($trend) ? '' : 'selected' }} disabled>Select a Subject</option>
 
                                         @foreach($webinars as $webinar)
-                                            <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }}</option>
+                                            <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }} / {{$webinar->category_title}}</option>
                                         @endforeach
                                     </select>
                                     @error('webinar_id')
@@ -35,7 +35,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label class="input-label">List Each per line</label>
 									<div class="col-12 col-md-12 col-lg-12">
@@ -48,7 +48,7 @@
                                 </div>
 								@endif
                                 <div class="text-right mt-4">
-								
+
                                     <button class="btn btn-primary">{{ trans('admin/main.submit') }}</button>
                                 </div>
                             </form>

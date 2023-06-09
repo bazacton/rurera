@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
+use App\Models\Testimonial;
 
 class PagesController extends Controller
 {
@@ -26,17 +27,25 @@ class PagesController extends Controller
                 'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex' ,
                 'page'            => $page
             ];
-            if ($page->subheader == 0) {
-                return view('web.default.pages.nosubheader' , $data);
-            }
-
+            
             if ($page->id == 26) {
                 return view('web.default.pages.job_signup' , $data);
             } elseif ($page->id == 36) {
                 return view('web.default.pages.books' , $data);
             } elseif ($page->id == 35) {
                 return view('web.default.pages.stats' , $data);
+            } elseif ($page->id == 9) {
+                return view('web.default.pages.contact' , $data);
+            } elseif ($page->id == 17) {
+                return view('web.default.pages.faqs' , $data);
+            } elseif ($page->id == 11) {
+                $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
+                $data['testimonials'] = $testimonials;
+                return view('web.default.pages.testimonials' , $data);
             } else {
+                if ($page->subheader == 0) {
+                    return view('web.default.pages.nosubheader' , $data);
+                }
                 return view('web.default.pages.other_pages' , $data);
             }
         }

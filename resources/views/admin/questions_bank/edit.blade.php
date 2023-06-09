@@ -136,27 +136,7 @@ $rand_id = rand(999,99999);
                                             </form>
                                             <div class="leform-admin-popup-overlay"
                                                  id="leform-element-properties-overlay"></div>
-                                            <div class="leform-admin-popup" id="leform-element-properties">
-                                                <div class="leform-admin-popup-inner">
-                                                    <div class="leform-admin-popup-title">
-                                                        <a href="#" title="Close"
-                                                           onclick="return leform_properties_close();"><i
-                                                                class="fas fa-times"></i></a>
-                                                        <h3><i class="fas fa-cog"></i> Element Properties</h3>
-                                                    </div>
-                                                    <div class="leform-admin-popup-content">
-                                                        <div class="leform-admin-popup-content-form">
-                                                        </div>
-                                                    </div>
-                                                    <div class="leform-admin-popup-buttons">
-                                                        <a class="leform-admin-button generate-question-code"
-                                                           href="#"><i class="fas fa-check"></i><label>Save
-                                                                Details</label></a>
-                                                    </div>
-                                                    <div class="leform-admin-popup-loading"><i
-                                                            class="fas fa-spinner fa-spin"></i></div>
-                                                </div>
-                                            </div>
+
                                             <div class="leform-fa-selector-overlay"></div>
                                             <div class="leform-fa-selector">
                                                 <div class="leform-fa-selector-inner">
@@ -385,6 +365,39 @@ $rand_id = rand(999,99999);
                         <div class="row">
 
                             <div class="col-12">
+
+                                <div class="lms-element-properties">
+
+                                    <div class="leform-admin-popup" id="leform-element-properties">
+                                        <div class="leform-admin-popup-inner">
+                                            <div class="leform-admin-popup-title">
+                                                <a href="#" title="Close"
+                                                   onclick="return leform_properties_close();"><i
+                                                        class="fas fa-times"></i></a>
+                                                <h3><i class="fas fa-cog"></i> Element Properties</h3>
+                                            </div>
+                                            <div class="leform-admin-popup-content">
+                                                <div class="leform-admin-popup-content-form">
+                                                </div>
+                                            </div>
+                                            <div class="leform-admin-popup-buttons">
+                                                <a class="leform-admin-button generate-question-code"
+                                                   href="#"><i class="fas fa-check"></i><label>Save
+                                                        Details</label></a>
+                                            </div>
+                                            <div class="leform-admin-popup-loading"><i
+                                                    class="fas fa-spinner fa-spin"></i></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
                                 <div class="lms-dashboard-card">
                                     <div class="lms-card-body">
                                         <div class="lms-card-title">

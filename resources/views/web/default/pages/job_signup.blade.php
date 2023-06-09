@@ -8,18 +8,25 @@
 <section class="position-relative text-center job-singup-sub-header">
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-12 col-md-9 col-lg-7">
-                <h1 class="font-30 font-weight-bold">{{ $page->title }}</h1>
-                <p>Maximize Your Earnings ,Strategies to Help You Reach Your Full Potential.</p>
-                <a href="#" class="btn-primary">Lets Start Your Journey</a>
+            <div class="col-12 col-md-9 col-lg-9">
+                <h1 class="font-30 font-weight-bold">Work with Us</h1>
+                <p>We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br /> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
+                <a href="#" class="btn-primary rounded-pill">Find new positions</a>
             </div>
         </div>
     </div>
+    <div class="svg-container"></div>
 </section>
 <div class="lms-job-search">
-    <section class="lms-search-services">
+    <section class="lms-search-services mb-0">
         <div class="container">
             <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Hiring Process</h2>
+                        <p>Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="services-inner">
                         <div class="row">
@@ -27,19 +34,16 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/1.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg enable-background="new 0 0 64 64" height="64px" id="Icons" version="1.1" viewBox="0 0 64 64" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="usability_audit"><g><path d="M17.07,21h1.055l0.251,1.758c0.068,0.546,0.569,0.931,1.114,1.009l1.52,0.154    c0.216,0.031,0.484,0.015,0.764,0.015c0.428,0,0.881-0.051,1.207-0.116l0.539-0.115c0.539-0.108,1.09-0.387,1.223-0.92L25.25,21    c0,0,0.094-0.5,0.75-0.5s0.75,0.5,0.75,0.5l0.508,1.78c0.133,0.533,0.684,0.933,1.223,1.041l0.539,0.045    c0.326,0.065,0.779,0.069,1.207,0.069c0.279,0,0.549-0.03,0.764-0.062l1.52-0.225c0.545-0.078,1.046-0.342,1.114-0.888L33.875,21    h1.115c0.007,0.475,0.01,0.967,0.01,1.5c0,0,1-3.188,1-8c0-2.916-0.5-7-4-7c-1.458-1.708-3.946-2-7-2c-7.5,0-9,4.5-9,9    c0,4.971,1,8,1,8C17,21.943,17.029,21.459,17.07,21z M24.772,20.349l-0.515,2.061c-0.087,0.347-0.486,0.727-0.836,0.797    l-0.54,0.107c-0.282,0.057-0.696,0.091-1.108,0.091c-0.264,0-0.51-0.015-0.692-0.041l-1.521-0.217    c-0.32-0.046-0.648-0.38-0.688-0.701L18.62,20.43c-0.034-0.273,0.167-0.537,0.44-0.576l1.521-0.217    c0.262-0.038,0.631-0.06,1.013-0.06c0.319,0,0.617,0.016,0.836,0.043l2.016,0.252c0.121,0.015,0.22,0.071,0.279,0.159    C24.785,20.118,24.802,20.231,24.772,20.349z M33.128,22.445c-0.04,0.321-0.369,0.655-0.688,0.701l-1.521,0.217    c-0.183,0.026-0.429,0.041-0.692,0.041c-0.412,0-0.826-0.034-1.109-0.091l-0.538-0.107c-0.352-0.07-0.75-0.45-0.836-0.797    l-0.516-2.061c-0.029-0.117-0.013-0.23,0.048-0.317c0.06-0.088,0.159-0.145,0.279-0.159l2.016-0.252    c0.22-0.027,0.517-0.043,0.836-0.043c0.382,0,0.751,0.021,1.014,0.06l1.519,0.217c0.273,0.039,0.476,0.303,0.441,0.576    L33.128,22.445z M33.798,20c-0.131-0.328-0.417-0.589-0.788-0.642l-1.52-0.217c-0.296-0.042-0.694-0.064-1.084-0.064    c-0.328,0-0.649,0.016-0.898,0.047l-2.016,0.252c-0.375,0.047-0.639,0.301-0.731,0.624h-1.521    c-0.093-0.323-0.356-0.577-0.731-0.624l-2.016-0.252c-0.25-0.031-0.57-0.047-0.898-0.047c-0.39,0-0.787,0.022-1.084,0.064    l-1.52,0.217c-0.371,0.053-0.657,0.313-0.789,0.642h-1.012c0.222-1.455,0.588-2.648,0.811-4.5    c0.115-0.951,0.209-1.269,0.486-1.269c0.555,0,1.848,1.269,5.514,1.269c4.36,0,6.676-2.635,8.072-2.635    c0.365,0,0.668,0.181,0.928,0.635c1.475,2.58,1.859,4.35,1.961,6.5H33.798z M25,6.5c2.9,0,5.071,0.28,6.239,1.649l0.3,0.351H32    c0.742,0,3,0,3,6c0,0.264-0.003,0.523-0.009,0.777c-0.286-0.703-0.652-1.45-1.123-2.273c-0.538-0.941-1.273-1.139-1.796-1.139    c-0.762,0-1.489,0.4-2.41,0.908C28.266,13.543,26.527,14.5,24,14.5c-2.418,0-3.668-0.584-4.414-0.932    c-0.404-0.188-0.723-0.337-1.1-0.337l0,0c-1.207,0-1.373,1.267-1.477,2.123C17.004,15.076,17,14.792,17,14.5    C17,8.967,19.467,6.5,25,6.5z" fill="#37474F"></path><path d="M34.53,26.873c0.237-0.796,0.397-1.597,0.442-2.379C34.982,24.495,34.99,24.5,35,24.5c0.55,0,1-0.45,1-1    v-1c0,0.55-0.45,1.5-1,1.5c-0.001,0-0.329,0-0.885,0c-0.077,0.134-0.132,0.279-0.141,0.437c-0.059,1.009-0.306,2.028-0.681,3.009    C33.692,27.23,34.106,27.043,34.53,26.873z" fill="#37474F"></path><path d="M46.493,40.959c-0.272-1.634-1.811-3.223-3.435-3.547L38.5,36.5V36L32,34v-1.645    c-0.384,0.476-0.718,0.992-1,1.54v2.823c-0.154,0.226-0.474,0.623-0.987,1.024C30.011,37.829,30,37.913,30,38    c0,0.313,0.017,0.624,0.048,0.93c0.237-0.146,0.456-0.298,0.646-0.45l-0.453,1.554c0.134,0.575,0.321,1.128,0.559,1.655    l1.877-6.435l4.824,1.484v1.585l-1.871,0.748l-1.408,0.563l1.072,1.072l1.362,1.362l-2.729,3.358    c0.277,0.189,0.565,0.363,0.864,0.521L38,42l-2-2l2.5-1v-1.48l4.363,0.873c1.205,0.241,2.441,1.517,2.644,2.73l0.253,1.521    c0.05,0.297,0.084,0.713,0.104,1.164c0.333-0.393,0.629-0.816,0.892-1.263c-0.004-0.021-0.006-0.047-0.009-0.066    C46.606,41.64,46.493,40.959,46.493,40.959z" fill="#37474F"></path><path d="M39,50c-0.147,0-0.291-0.017-0.438-0.022L26,57.821l-0.567-0.354l7.446-9.164    c-0.289-0.172-0.57-0.354-0.843-0.549l-4.689,5.772l2.329-7.987c-0.266-0.328-0.511-0.673-0.741-1.028l-2.947,10.105    l-4.688-16.144C22.24,39.231,23.748,40,26.001,40c0.417,0,0.8-0.033,1.167-0.081c-0.053-0.326-0.096-0.655-0.121-0.989    C26.721,38.973,26.375,39,26.001,39c-3.182,0-4.613-1.712-5.001-2.28V32.65c1.488,1.42,3.24,2.35,5,2.35    c0.485,0,0.97-0.077,1.449-0.209c0.113-0.408,0.245-0.808,0.399-1.197C27.232,33.85,26.609,34,26,34    c-3.607,0-7.707-4.916-7.975-9.563c-0.009-0.157-0.063-0.303-0.141-0.437c-0.555,0-0.883,0-0.885,0c-0.55,0-1-0.95-1-1.5v1    c0,0.55,0.45,1,1,1c0.01,0,0.018-0.005,0.027-0.006c0.141,2.44,1.302,5.074,2.973,7.094V34l-6.5,2v0.501l-4.559,0.911    c-1.625,0.324-3.162,1.913-3.435,3.547l-0.253,1.521c-0.141,0.84-0.18,2.413-0.088,3.514L26,59l14.609-9.121    C40.081,49.95,39.547,50,39,50z M14.5,36.738l4.823-1.483l5.251,18.081l-9.227-11.269l1.359-1.36l1.072-1.072l-1.408-0.563    L14.5,38.323V36.738z M6.133,45.417c-0.042-0.959,0-2.132,0.107-2.773l0.253-1.521c0.206-1.235,1.417-2.485,2.645-2.73L13.5,37.52    V39l2.5,1l-2,2l11.552,14.108l-0.354,1.212L6.133,45.417z" fill="#37474F"></path><g><path d="M58.293,54.293l-8.586-8.586c-0.194-0.194-0.451-0.291-0.707-0.291c-0.159,0-0.313,0.051-0.458,0.126     l-0.836-0.836C49.139,42.849,50,40.527,50,38c0-6.075-4.925-11-11-11s-11,4.925-11,11s4.925,11,11,11     c2.527,0,4.849-0.861,6.706-2.294l0.836,0.836c-0.196,0.377-0.15,0.85,0.165,1.165l8.586,8.586     c0.194,0.194,0.451,0.291,0.707,0.291s0.513-0.097,0.707-0.291l1.586-1.586C58.682,55.318,58.682,54.682,58.293,54.293z M29,38     c0-5.522,4.478-10,10-10s10,4.478,10,10s-4.478,10-10,10S29,43.522,29,38z M47.058,45.472l0.735,0.735l-0.586,0.586l-0.735-0.735     C46.674,45.869,46.869,45.674,47.058,45.472z M56,56.586L47.414,48l1.583-1.584c0,0,0.001,0,0.003,0v-0.002L57.586,55L56,56.586z " fill="#37474F"></path></g></g></g></svg>
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Become a Content Creator</a>
+                                            <a href="#">Choose job</a>
                                         </h5>
-                                        <p>
-                                            become a content creator passion, <br />
-                                            meets world inspiring, engaging <br />
-                                            a community craving your perspective
-                                        </p>
+                                        <p>explore listings to find perfect match for your career.</p>
                                     </div>
                                 </div>
                             </div>
@@ -47,19 +51,16 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/2.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="news_updates"></g><g id="newspaper"></g><g id="fake_news"></g><g id="secret_document"></g><g id="interview"></g><g id="reporter"></g><g id="id_card"></g><g id="camera"></g><g id="television"></g><g id="crime_scane"></g><g id="note"><g><path d="M35,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,16,35,16z M35,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,22,35,22z    "></path><path d="M16,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S18.2,16,16,16z M16,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S17.1,22,16,22z    "></path><path d="M54,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S56.2,16,54,16z M54,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S55.1,22,54,22z    "></path><path d="M96,28.9c0-2.1-0.8-4.1-2.3-5.6c-1.5-1.5-3.5-2.3-5.6-2.3c-2.1,0-4.1,0.8-5.6,2.3c-0.4-0.4-1-0.4-1.4,0l-15,15V27V13    c0-0.6-0.4-1-1-1H5c-0.6,0-1,0.4-1,1v14v60c0,0.6,0.4,1,1,1h60h0c0,0,0,0,0,0c0.1,0,0.3,0,0.4-0.1c0,0,0.1,0,0.1-0.1    c0.1,0,0.1-0.1,0.2-0.1c0,0,0.1-0.1,0.1-0.1c0-0.1,0.1-0.1,0.1-0.2c0,0,0-0.1,0-0.1c0,0,0-0.1,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1    V64c0-0.1,0-0.2-0.1-0.3l24.2-24.2c0,0,0,0,0,0s0,0,0,0l3.5-3.5c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7    C95.2,33,96,31.1,96,28.9z M88.1,23c1.6,0,3.1,0.6,4.2,1.7c1.1,1.1,1.7,2.6,1.7,4.2c0,1.6-0.6,3.1-1.7,4.2l-8.4-8.4    C85,23.6,86.5,23,88.1,23z M60,66.8l-2.1-2.1l28-28l2.1,2.1L60,66.8z M48,66l3,3l-3.7,0.7L48,66z M53.3,68.5l-4.8-4.8l0.9-4.7    l8.6,8.6L53.3,68.5z M56.5,63.3l-2.8-2.8l28-28l2.8,2.8L56.5,63.3z M52.3,59.1L50.2,57l28-28l2.1,2.1L52.3,59.1z M6,14h58v12H6V14    z M6,86V60.4c11.1,16,30.4,22.8,43.9,25.6H6z M7.2,58.6c8.3,2,16.4,1.9,24-0.3c0.9,4.2,5.2,18.7,24.8,26.8    C43.1,83.1,19.4,77.1,7.2,58.6z M64,85.7c-28.7-8-31-28.6-31-28.8c0-0.3-0.2-0.6-0.4-0.7C32.3,56,32,56,31.7,56    C23.6,58.6,15,58.6,6,56.2V28h58v12c0,0.1,0,0.2,0.1,0.3l-16,16c0,0,0,0,0,0.1c0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.1-0.1,0.2    c0,0,0,0.1,0,0.1l-2.8,14c-0.1,0.3,0,0.7,0.3,0.9c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.1,0,0.2,0l14-2.8c0,0,0.1,0,0.1,0    c0.1,0,0.1,0,0.2-0.1c0.1,0,0.1-0.1,0.2-0.1c0,0,0.1,0,0.1,0l3.3-3.3V85.7z M89.5,37.3l-9.8-9.8l2.1-2.1l9.8,9.8L89.5,37.3z"></path><path d="M19,34h32c0.6,0,1-0.4,1-1s-0.4-1-1-1H19c-0.6,0-1,0.4-1,1S18.4,34,19,34z"></path><path d="M10,40h50c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,40,10,40z"></path><path d="M10,45h47c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,45,10,45z"></path><path d="M10,50h42c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,50,10,50z"></path><path d="M47,54c0-0.6-0.4-1-1-1H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h36C46.6,55,47,54.6,47,54z"></path></g></g><g id="recorder"></g><g id="station_television"></g><g id="file_storage"></g><g id="news_anchor"></g><g id="trending_news"></g><g id="world_news"></g><g id="document"></g><g id="radio"></g><g id="video_recorder"></g></svg>
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Register yourself</a>
+                                            <a href="#">Fill application</a>
                                         </h5>
-                                        <p>
-                                            Register yourself with us,<br />
-                                            and unlock a world of opportunities <br />and creative
-                                            possibilities.
-                                        </p>
+                                        <p>thoroughly with personal info, work experience, and qualifications.</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,19 +68,17 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/number-3.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg enable-background="new 0 0 48 48" height="48px" id="_x3C_Layer_x3E_" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="result_x2C__clipboard_x2C__check_mark"><path d="M40.5,46h-33C6.673,46,6,45.327,6,44.5v-38C6,5.673,6.673,5,7.5,5h7.042c0.276,0,0.5,0.224,0.5,0.5   S14.818,6,14.542,6H7.5C7.224,6,7,6.224,7,6.5v38C7,44.776,7.224,45,7.5,45h33c0.276,0,0.5-0.224,0.5-0.5v-38   C41,6.224,40.776,6,40.5,6h-6.957c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5H40.5C41.327,5,42,5.673,42,6.5v38   C42,45.327,41.327,46,40.5,46z" fill="#546E7A"></path><path d="M32.319,43H10c-0.551,0-1-0.449-1-1V8c0-0.551,0.449-1,1-1h4.5C14.776,7,15,7.224,15,7.5S14.776,8,14.5,8   H10v34h22.319L38,37.266V8h-4.5C33.224,8,33,7.776,33,7.5S33.224,7,33.5,7H38c0.551,0,1,0.449,1,1v29.266   c0,0.296-0.13,0.576-0.358,0.767l-5.682,4.735C32.78,42.918,32.553,43,32.319,43z" fill="#546E7A"></path><g><path d="M32.702,42.774c-0.101,0-0.203-0.022-0.299-0.067C32.154,42.59,32,42.348,32,42.073V38    c0-0.551,0.449-1,1-1h4.947c0.299,0,0.558,0.182,0.659,0.463c0.101,0.281,0.018,0.585-0.212,0.776l-5.246,4.372    C33.019,42.718,32.862,42.774,32.702,42.774z M33,38v3.433L37.119,38H33z" fill="#546E7A"></path></g><g><path d="M31.015,10h-14c-0.551,0-1-0.449-1-1V5c0-0.551,0.449-1,1-1h3.851c0.575-1.209,1.799-2,3.149-2    c1.351,0,2.575,0.791,3.15,2h3.85c0.551,0,1,0.449,1,1v4C32.015,9.551,31.566,10,31.015,10z M17.015,5v4h14V5h-4.184    c-0.211,0-0.4-0.133-0.471-0.333C26.005,3.67,25.063,3,24.015,3c-1.048,0-1.99,0.67-2.344,1.667C21.6,4.867,21.411,5,21.199,5    H17.015z" fill="#546E7A"></path></g><g><path d="M18.5,35h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,34.776,18.776,35,18.5,35z M15,34h3v-3h-3V34z" fill="#546E7A"></path><path d="M18.5,27h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,26.776,18.776,27,18.5,27z M15,26h3v-3h-3V26z" fill="#546E7A"></path><path d="M18.5,19h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,18.776,18.776,19,18.5,19z M15,18h3v-3h-3V18z" fill="#546E7A"></path><path d="M33.5,34h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,34,33.5,34z" fill="#546E7A"></path><path d="M33.5,32h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,32,33.5,32z" fill="#546E7A"></path><path d="M33.5,26h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,26,33.5,26z" fill="#546E7A"></path><path d="M33.5,24h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,24,33.5,24z" fill="#546E7A"></path><path d="M33.5,18h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5 S33.776,18,33.5,18z" fill="#546E7A"></path><path d="M33.5,16h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,16,33.5,16z" fill="#546E7A"></path></g></g></svg>
+
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Simple Identity verification</a>
+                                            <a href="#">Get shortlisted</a>
                                         </h5>
-                                        <p>
-                                            Streamline your experience with,<br />
-                                            simple identity verification,<br />
-                                            ensuring security and peace of mind
-                                        </p>
+                                        <p>if you meet requirements, stay informed about next steps.</p>
                                     </div>
                                 </div>
                             </div>
@@ -87,19 +86,16 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/number-4.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="news_updates"></g><g id="newspaper"></g><g id="fake_news"></g><g id="secret_document"></g><g id="interview"><path d="M88,64h-1v-4c0-0.6-0.4-1-1-1h-2v-7c0-0.3-0.1-0.5-0.3-0.7l-5-5c-0.1-0.1-0.2-0.2-0.3-0.2c0.4-0.6,0.6-1.3,0.6-2.1   c0-2.2-1.8-4-4-4s-4,1.8-4,4s1.8,4,4,4c0.8,0,1.5-0.2,2.1-0.6c0,0.1,0.1,0.2,0.2,0.3l4.7,4.7V59h-2c-0.6,0-1,0.4-1,1v4h-1.1   l-0.5-3.8C75.9,49.8,67,42,56.6,42c2.7-1.8,4.6-4.7,5.2-8H66c2.2,0,4-1.8,4-4v-4c0-1.9-1.3-3.4-3-3.9V15c0-6.1-4.9-11-11-11H44   c-6.1,0-11,4.9-11,11v7.1c-1.7,0.4-3,2-3,3.9v4c0,2.2,1.8,4,4,4h4.2c0.6,3.3,2.5,6.2,5.2,8C33,42,24.1,49.8,22.6,60.2L22.1,64H21   v-4c0-0.6-0.4-1-1-1h-2v-6.6l4.7-4.7c0.1-0.1,0.2-0.2,0.2-0.3c0.6,0.4,1.3,0.6,2.1,0.6c2.2,0,4-1.8,4-4s-1.8-4-4-4s-4,1.8-4,4   c0,0.8,0.2,1.5,0.6,2.1c-0.1,0-0.2,0.1-0.3,0.2l-5,5C16.1,51.5,16,51.7,16,52v7h-2c-0.6,0-1,0.4-1,1v4h-1c-0.6,0-1,0.4-1,1v6   c0,0.6,0.4,1,1,1h2v23c0,0.6,0.4,1,1,1h70c0.6,0,1-0.4,1-1V72h2c0.6,0,1-0.4,1-1v-6C89,64.4,88.6,64,88,64z M75,46   c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S76.1,46,75,46z M25,42c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S23.9,42,25,42z M81,61h4v3h-4   V61z M39.1,22C39.1,22,39.1,22,39.1,22C39,22,39,22,39.1,22L38,22v-6c0-3.9,3.1-7,7-7h10c3.9,0,7,3.1,7,7v6h-1c-4.1,0-5-3.1-5-3.2   c-0.1-0.4-0.4-0.7-0.8-0.7c-0.4-0.1-0.8,0.1-1,0.5C51.9,22.1,42.5,22.3,39.1,22z M68,26v4c0,1.1-0.9,2-2,2h-4v-8h4   C67.1,24,68,24.9,68,26z M44,6h12c5,0,9,4,9,9v7h-1v-6c0-5-4-9-9-9H45c-5,0-9,4-9,9v6h-1v-7C35,10,39,6,44,6z M34,32   c-1.1,0-2-0.9-2-2v-4c0-1.1,0.9-2,2-2h4v8H34z M40,32v-7.9c3,0.1,11.1,0.1,14.8-3.2c0.9,1.4,2.5,2.8,5.2,3.1V32c0,5.5-4.5,10-10,10   S40,37.5,40,32z M24.6,60.4C25.9,51.1,34,44,43.5,44h13.1c9.5,0,17.6,7.1,18.8,16.4l0.5,3.6H24.1L24.6,60.4z M15,61h4v3h-4V61z    M84,94H16V72h68V94z M87,70h-2H15h-2v-4h1h6h3h54h3h6h1V70z"></path></g><g id="reporter"></g><g id="id_card"></g><g id="camera"></g><g id="television"></g><g id="crime_scane"></g><g id="note"></g><g id="recorder"></g><g id="station_television"></g><g id="file_storage"></g><g id="news_anchor"></g><g id="trending_news"></g><g id="world_news"></g><g id="document"></g><g id="radio"></g><g id="video_recorder"></g></svg>
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Meet &amp; greet</a>
+                                            <a href="#">Prepare for interview</a>
                                         </h5>
-                                        <p>
-                                            Experience the thrill of meet &amp; greet,<br />connecting
-                                            with your favorite creators <br />
-                                            on our platform.
-                                        </p>
+                                        <p>research company, practice common questions, show enthusiasm.</p>
                                     </div>
                                 </div>
                             </div>
@@ -107,19 +103,16 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/number-5.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M462.55,443.34H49.45a5.38,5.38,0,1,0,0,10.76h413.1a5.38,5.38,0,0,0,0-10.76Z"/><path d="M333.43,288.79h0a5.39,5.39,0,0,0,5.37-5.39l-.13-81a56.37,56.37,0,0,1,56.14-56.58h.23a56.35,56.35,0,0,1,56.35,56.11l.12,81a5.38,5.38,0,0,0,5.38,5.38h0a5.38,5.38,0,0,0,5.36-5.39l-.12-81a67.06,67.06,0,0,0-44.85-63A43.63,43.63,0,0,0,394.63,57.9h-.18A43.67,43.67,0,0,0,372.17,139a67.25,67.25,0,0,0-44.25,63.4l.13,81A5.38,5.38,0,0,0,333.43,288.79Zm28.32-187.11a32.93,32.93,0,0,1,32.76-33h.12a32.88,32.88,0,0,1,.13,65.76,32.1,32.1,0,0,1-23.28-9.53A32.64,32.64,0,0,1,361.75,101.68Z"/><path d="M357.46,208V407.09a5.39,5.39,0,0,0,10.77,0V208a5.39,5.39,0,0,0-10.77,0Z"/><path d="M422,208V407.09a5.38,5.38,0,0,0,10.76,0V208A5.38,5.38,0,0,0,422,208Z"/><path d="M55.1,374.94a5.34,5.34,0,0,0,3.8-1.57l41.16-41.15v74.87a5.38,5.38,0,0,0,10.76,0V332.23L152,373.37a5.38,5.38,0,1,0,7.62-7.61l-50.33-50.33a5.13,5.13,0,0,0-1.23-.92h0l-.37-.18a.43.43,0,0,0-.12-.05l-.3-.11-.2-.07-.27-.07a1.83,1.83,0,0,0-.25-.06l-.26,0-.26,0-.47,0h-.06l-.54,0-.14,0-.39.06-.14,0-.37.1-.12,0-.38.14-.09,0-.38.19-.11.06-.33.2a2.85,2.85,0,0,0-.33.25l-.08.05a5,5,0,0,0-.47.45L51.3,365.76a5.37,5.37,0,0,0,3.8,9.18Z"/><path d="M198,257.19l41.14-41.14v191a5.38,5.38,0,0,0,10.76,0v-191l41.14,41.14a5.38,5.38,0,0,0,7.62,0,5.39,5.39,0,0,0,0-7.61l-50.33-50.33a6,6,0,0,0-.47-.41,5.35,5.35,0,0,0-6.68,0,3.73,3.73,0,0,0-.47.41l-50.33,50.33a5.38,5.38,0,0,0,7.62,7.61Z"/></svg>
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Submit your content</a>
+                                            <a href="#">Employment Conditions</a>
                                         </h5>
-                                        <p>
-                                            Submit your content and,<br />
-                                            unlock the power of our platform services <br />
-                                            for maximum exposure.
-                                        </p>
+                                        <p> Receive info on salary, benefits, and working hours after the interview.</p>
                                     </div>
                                 </div>
                             </div>
@@ -127,18 +120,16 @@
                                 <div class="services-card">
                                     <div class="img-holder">
                                         <figure>
-                                            <a href="#"><img src="/store/1/default_images/number_images/(six)6.png"
-                                                    alt="" /></a>
+                                            <a href="#">
+                                                <svg id="Layer_1" style="enable-background:new 0 0 66 66;" version="1.1" viewBox="0 0 66 66" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M63,33.66l-4.91-4.33c-0.43-0.39-0.96-0.68-1.51-0.85c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c-0.4-0.13-0.82-0.19-1.23-0.19   h-0.23v-2.16c5.25-0.51,9.37-4.95,9.37-10.33c0-5.72-4.66-10.38-10.39-10.38c-5.72,0-10.38,4.66-10.38,10.38   c0,1.14,0.19,2.23,0.53,3.26h-4.11v-5.09c0-2.55-2.08-4.63-4.63-4.63H21.12c-2.55,0-4.63,2.08-4.63,4.63v5.09H8.54   c-3.87,0-7.02,3.15-7.02,7.02v5.44c0,2.14,0.66,4.13,1.78,5.78v16.26c0,3.87,3.15,7.02,7.02,7.02h35.98c0.01,0,0.01,0,0.01,0h13.93   c2.29,0,4.16-1.87,4.16-4.16V36.78c0-0.4-0.06-0.79-0.17-1.15C64.03,34.87,63.6,34.19,63,33.66z M56.92,29.7   c0.19,0.11,0.36,0.23,0.52,0.37l4.91,4.33c0.13,0.11,0.25,0.24,0.36,0.37c0.04,0.04,0.07,0.09,0.1,0.14   C62.88,35,62.94,35.1,63,35.19c0.02,0.03,0.03,0.05,0.04,0.08h-4.83c-0.71,0-1.29-0.58-1.29-1.29V29.7z M54.1,6.4   c5.19,0,9.41,4.22,9.41,9.4c0,5.03-3.96,9.13-8.93,9.38c0,0,0,0,0,0c0,0,0,0,0,0c-0.16,0.01-0.31,0.02-0.47,0.02   c-5.18,0-9.4-4.22-9.4-9.41C44.7,10.62,48.92,6.4,54.1,6.4z M17.48,13.97c0-2.01,1.64-3.65,3.65-3.65h14.38   c2.01,0,3.65,1.64,3.65,3.65v5.08h-2.94v-3.76c0-1.6-1.31-2.91-2.91-2.91h-9.98c-1.6,0-2.91,1.31-2.91,2.91v3.76h-2.94V13.97z    M35.24,15.29v3.76H21.4v-3.76c0-1.06,0.86-1.93,1.93-1.93h9.98C34.37,13.36,35.24,14.23,35.24,15.29z M2.5,26.08   c0-3.33,2.71-6.04,6.04-6.04h36.09c1.62,3.62,5.25,6.15,9.47,6.15c0.01,0,0.02,0,0.03,0v2.11H41.75c-2.29,0-4.16,1.87-4.16,4.16   v8.38h-3.54v-1.61c0-1.15-0.93-2.08-2.08-2.08h-7.32c-1.15,0-2.08,0.93-2.08,2.08v1.61H11.81c-2.89,0-5.48-1.33-7.19-3.4v-0.02   c-0.08-0.1-0.16-0.2-0.24-0.31C3.2,35.54,2.5,33.61,2.5,31.52V26.08z M23.56,39.22c0-0.6,0.49-1.1,1.1-1.1h7.32   c0.6,0,1.1,0.49,1.1,1.1v3.73c0,0.6-0.49,1.1-1.1,1.1h-7.32c-0.61,0-1.1-0.49-1.1-1.1V39.22z M4.28,53.56V38.54   c0.05,0.06,0.11,0.11,0.16,0.16c1.87,1.92,4.48,3.12,7.37,3.12h10.77v1.14c0,1.15,0.93,2.08,2.08,2.08h7.32   c1.15,0,2.08-0.93,2.08-2.08v-1.14h3.54v14.6c0,1.28,0.6,2.42,1.51,3.18H10.32C6.99,59.6,4.28,56.89,4.28,53.56z M63.43,56.42   c0,1.75-1.43,3.18-3.18,3.18h-18.5c-1.75,0-3.18-1.43-3.18-3.18v-15.1v-8.87c0-1.75,1.43-3.18,3.18-3.18h12.87h0.72   c0.2,0,0.4,0.03,0.6,0.07v4.65c0,1.25,1.02,2.27,2.27,2.27h5.18c0.03,0.17,0.05,0.35,0.05,0.53V56.42z"/><path d="M60.1,53.36h-4.67c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49h4.67c0.27,0,0.49-0.22,0.49-0.49   C60.59,53.58,60.38,53.36,60.1,53.36z"/><path d="M46.94,53.36H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49h4.84c0.27,0,0.49-0.22,0.49-0.49   C47.43,53.58,47.21,53.36,46.94,53.36z"/><path d="M60.1,49.83H42.1c-0.27,0-0.49,0.22-0.49,0.49s0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   S60.38,49.83,60.1,49.83z"/><path d="M60.1,46.3H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   C60.59,46.52,60.38,46.3,60.1,46.3z"/><path d="M60.1,42.77H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   C60.59,42.99,60.38,42.77,60.1,42.77z"/><path d="M42.1,40.22h12.28c0.27,0,0.49-0.22,0.49-0.49c0-0.27-0.22-0.49-0.49-0.49H42.1c-0.27,0-0.49,0.22-0.49,0.49   C41.61,40,41.83,40.22,42.1,40.22z"/><path d="M42.1,36.68h12.28c0.27,0,0.49-0.22,0.49-0.49c0-0.27-0.22-0.49-0.49-0.49H42.1c-0.27,0-0.49,0.22-0.49,0.49   C41.61,36.46,41.83,36.68,42.1,36.68z"/><path d="M54.1,23.44c4.21,0,7.64-3.43,7.64-7.64c0-4.21-3.43-7.64-7.64-7.64c-4.21,0-7.64,3.43-7.64,7.64   C46.46,20.01,49.89,23.44,54.1,23.44z M54.1,9.14c3.67,0,6.66,2.99,6.66,6.66c0,3.67-2.99,6.66-6.66,6.66   c-3.67,0-6.66-2.99-6.66-6.66C47.44,12.13,50.43,9.14,54.1,9.14z"/><path d="M54.1,18.77c-0.68,0-1.24-0.55-1.24-1.24c0-0.27-0.22-0.49-0.49-0.49c-0.27,0-0.49,0.22-0.49,0.49   c0,1.05,0.74,1.93,1.73,2.16v0.6c0,0.27,0.22,0.49,0.49,0.49c0.27,0,0.49-0.22,0.49-0.49v-0.6c0.99-0.22,1.73-1.1,1.73-2.16   c0-1.22-1-2.22-2.22-2.22c-0.68,0-1.24-0.55-1.24-1.23c0-0.68,0.56-1.24,1.24-1.24c0.68,0,1.24,0.56,1.24,1.24   c0,0.27,0.22,0.49,0.49,0.49c0.27,0,0.49-0.22,0.49-0.49c0-1.05-0.74-1.94-1.73-2.16v-0.6c0-0.27-0.22-0.49-0.49-0.49   c-0.27,0-0.49,0.22-0.49,0.49v0.6c-0.99,0.22-1.73,1.11-1.73,2.16c0,1.22,1,2.22,2.22,2.22c0.68,0,1.24,0.56,1.24,1.24   C55.34,18.21,54.78,18.77,54.1,18.77z"/></g></svg>
+                                            </a>
                                         </figure>
                                     </div>
                                     <div class="text-holder">
                                         <h5 class="service-title">
-                                            <a href="#">Fast review process</a>
+                                            <a href="#">Get hired</a>
                                         </h5>
-                                        <p>
-                                            Experience our fast review process, <br />ensuring prompt
-                                            evaluation and <br />timely feedback for your content.
-                                        </p>
+                                        <p>await official offer letter, join our team. Congratulations!</p>
                                     </div>
                                 </div>
                             </div>
@@ -148,134 +139,131 @@
             </div>
         </div>
     </section>
-    <section class="lms-testimonial-slider">
+    <section class="lms-counter-section mt-30 mb-50 pt-70 pb-60" style="background-color: #f8f8f8;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center mb-40">
+                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Our impact</h2>
+                        <p>We truly Understand the challenges and limitations faced by educators and learners <br> in the current system.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Sats Practices</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">60</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Cities</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">5000</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Questions</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Books</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="stats-container mb-50 pb-30 pt-20">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-body">
-                                        <div class="img-holder">
-                                            <figure>
-                                                <a href="#"><img
-                                                        src="/store/1/default_images/testimonials/profile_picture (50).jpg"
-                                                        alt="" /></a>
-                                            </figure>
-                                        </div>
-                                        <div class="text-holder">
-                                            <div class="testimonial-top">
-                                                <h5 class="testimonial-title">
-                                                    <a href="#">Thriving as a Content Creator with an Exceptional
-                                                        Team.</a>
-                                                </h5>
-                                                <strong>
-                                                    A Life-Changing Discovery I'm Forever Grateful
-                                                    For</strong>
-                                            </div>
-                                            <p>
-                                                "As a content creator, it is pleasure of working with
-                                                the team , I can confidently say that it has been an
-                                                amazing experience. Working as a content writer for this
-                                                platform, I have been able to generate a good income
-                                                while collaborating with a fantastic team of
-                                                professionals"
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-body">
-                                        <div class="img-holder">
-                                            <figure>
-                                                <a href="#"><img
-                                                        src="/store/1/default_images/testimonials/profile_picture (28).jpg"
-                                                        alt="" /></a>
-                                            </figure>
-                                        </div>
-                                        <div class="text-holder">
-                                            <div class="testimonial-top">
-                                                <h5 class="testimonial-title">
-                                                    <a href="#">Unleashing the Power of Collaboration in Content
-                                                        Creation".</a>
-                                                </h5>
-                                                <strong>Exceeding Expectations with User-Friendly Interface
-                                                    and Seamless Navigation</strong>
-                                            </div>
-                                            <p>
-                                                "As a content writer, I have had the pleasure of
-                                                collaborating with a talented and dedicated team that
-                                                truly understands the value of quality content. Their
-                                                guidance and support have been instrumental in helping
-                                                me refine my skills and explore new horizons in the
-                                                world of content creation."
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-card">
-                                    <div class="testimonial-body">
-                                        <div class="img-holder">
-                                            <figure>
-                                                <a href="#"><img
-                                                        src="/store/1/default_images/testimonials/profile_picture (30).jpg"
-                                                        alt="" /></a>
-                                            </figure>
-                                        </div>
-                                        <div class="text-holder">
-                                            <div class="testimonial-top">
-                                                <h5 class="testimonial-title">
-                                                    <a href="#">Collaborating with an Exceptional Team of Talented
-                                                        Professionals as a Content Creator</a>
-                                                </h5>
-                                                <strong>
-                                                    A Game-Changer in my Educational Journey for Busy
-                                                    Professionals</strong>
-                                            </div>
-                                            <p>
-                                                "Working with this exceptional team of talented
-                                                professionals as a content creator has been an absolute
-                                                pleasure. From the moment I joined, I've enjoyed
-                                                collaborating with them and have gained invaluable
-                                                insights and knowledge along the way."
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Job perks</h2>
+                        <p>Joining a company dedicated to reshaping the teaching and learning process means <br> you have the opportunity to make a meaningful impact on education.</p>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
+                    <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
+                        <div class="stat-icon-box teacher">
+                            <svg data-name="Your Icons" id="Your_Icons" viewBox="0 0 96 96"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #231f20;
+                                        }
+                                    </style>
+                                </defs>
+                                <title />
+                                <path class="cls-1"
+                                    d="M59.74,50.33h-.29A3.89,3.89,0,0,0,56,48.25H51.8V46.87a12.78,12.78,0,0,0,8.46-8.45,12.54,12.54,0,0,0,.58-3.82V33h1a2.94,2.94,0,1,0,0-5.87h-1l0-1.65a14.31,14.31,0,0,1,.52-4.1c1-3.48.76-6.24-.67-8.22-1.87-2.59-5.3-3.11-7.18-3.19A10.32,10.32,0,0,1,51,9.47c-3.39-1.05-6-1.08-7.89-.09a4.15,4.15,0,0,0-1.74,1.68,6.32,6.32,0,0,0-5.69,2c-2.88,3.46-1.87,10.36-1.08,14h-.42a2.94,2.94,0,1,0,0,5.87h1V34.6a12.86,12.86,0,0,0,9,12.27v1.38H40.35a3.87,3.87,0,0,0-3.45,2.08h-.64A10.44,10.44,0,0,0,25.83,60.75V80.83a.5.5,0,0,0,.5.5H69.67a.5.5,0,0,0,.5-.5V60.75A10.44,10.44,0,0,0,59.74,50.33Zm1.1-22.24h1a1.94,1.94,0,1,1,0,3.87h-1ZM56,49.25a2.93,2.93,0,0,1,2.26,1.08H51.8V49.25Zm-2.48,2.08-1.72,2v-2ZM35.17,32h-1a1.94,1.94,0,1,1,0-3.87h.66c.14.58.26,1,.32,1.22Zm.38-5.32c-.75-3.52-1.62-9.85.91-12.89,1.13-1.36,2.87-1.92,5.17-1.66a.5.5,0,0,0,.54-.35,2.92,2.92,0,0,1,1.42-1.48c1.1-.59,3.24-1,7.12.16a11,11,0,0,0,2.73.51c1.7.07,4.79.53,6.41,2.78,1.24,1.71,1.41,4.19.51,7.36a15.52,15.52,0,0,0-.55,4.38l0,1.9a1.49,1.49,0,0,1-1.17.38c-.35-.11-.64-.64-.8-1.49-.08-.39-.14-.83-.2-1.29-.43-3.22-1.09-8-8.6-8H48.6a8,8,0,0,1-3.35-.65c-.26-.11-.55-.22-.84-.32a4.66,4.66,0,0,0-5.79,2.47A45.69,45.69,0,0,0,35.55,26.64Zm1.16,11.47a11.54,11.54,0,0,1-.54-3.51V29.41a.5.5,0,0,0,0-.12c0-2.87,2.09-7.78,3.33-10.45a3.69,3.69,0,0,1,4.56-1.95l.79.3a9.12,9.12,0,0,0,3.76.73c7.09-.18,7.61,3.89,8,7.16.06.48.13.94.2,1.35.24,1.25.74,2,1.48,2.25a2,2,0,0,0,1.48-.16V34.6a11.83,11.83,0,0,1-23.13,3.51Zm14.09,9v7.34L48,57.69,45.2,54.45V47.13a13.08,13.08,0,0,0,2.81.31A12.24,12.24,0,0,0,50.8,47.13ZM40.35,49.25H44.2v1.08H38.09A2.91,2.91,0,0,1,40.35,49.25Zm3.85,2.08v2l-1.7-2ZM36.92,61.44a2.23,2.23,0,1,1-2.23,2.23A2.23,2.23,0,0,1,36.92,61.44ZM69.17,80.33H26.83V60.75a9.44,9.44,0,0,1,9.43-9.42h.26a3.47,3.47,0,0,0-.1.85v8.31a3.22,3.22,0,1,0,1,0V52.18a2.74,2.74,0,0,1,.13-.85h3.63l3,3.49h0l3.42,4A.5.5,0,0,0,48,59a.52.52,0,0,0,.38-.17l6.45-7.45h4a2.74,2.74,0,0,1,.13.85v6.51a7.63,7.63,0,0,0-4.34,3.64,19.92,19.92,0,0,0-1.93,4.82,4.56,4.56,0,0,0-.16,2.78,4,4,0,0,0,2.74,2.25.88.88,0,0,0,.86.65.9.9,0,1,0,0-1.8.85.85,0,0,0-.56.2,3.1,3.1,0,0,1-2.1-1.63,3.8,3.8,0,0,1,.18-2.18,19.19,19.19,0,0,1,1.82-4.57,7,7,0,0,1,3.68-3.18h.62a7,7,0,0,1,3.68,3.18,19.19,19.19,0,0,1,1.82,4.57,3.8,3.8,0,0,1,.18,2.18,3.1,3.1,0,0,1-2.1,1.63.85.85,0,0,0-.56-.2.9.9,0,0,0,0,1.8.88.88,0,0,0,.86-.66,4,4,0,0,0,2.74-2.24,4.56,4.56,0,0,0-.16-2.78,19.92,19.92,0,0,0-1.93-4.82,7.63,7.63,0,0,0-4.34-3.64V52.18a3.47,3.47,0,0,0-.1-.85,9.44,9.44,0,0,1,9.34,9.42Z" />
+                                <path class="cls-1"
+                                    d="M42.47,30a.5.5,0,0,0,.5.5.5.5,0,0,0,.5-.5c0-1.11-1.15-2-2.61-2s-2.61.87-2.61,2a.5.5,0,0,0,.5.5.5.5,0,0,0,.5-.5c0-.52.75-1,1.61-1S42.47,29.51,42.47,30Z" />
+                                <path class="cls-1"
+                                    d="M53,30.53a.5.5,0,0,0,.5-.5c0-.52.76-1,1.62-1s1.6.46,1.6,1a.5.5,0,0,0,.5.5.5.5,0,0,0,.5-.5c0-1.11-1.14-2-2.6-2s-2.62.87-2.62,2A.5.5,0,0,0,53,30.53Z" />
+                                <path class="cls-1"
+                                    d="M54,37.83a.51.51,0,0,0-.5-.5.5.5,0,0,0-.5.5c0,2.38-1.68,3.59-5,3.59s-5-1.21-5-3.59a.5.5,0,0,0-.5-.5.51.51,0,0,0-.5.5c0,3,2.13,4.59,6,4.59S54,40.79,54,37.83Z" />
+                                <path class="cls-1"
+                                    d="M48,36.6a2.16,2.16,0,0,0,2.16-2.16v-2a2.16,2.16,0,0,0-4.32,0v2A2.16,2.16,0,0,0,48,36.6Zm-1.16-4.19a1.16,1.16,0,0,1,2.32,0v2a1.16,1.16,0,0,1-2.32,0Z" />
+                                <path class="cls-1"
+                                    d="M36.92,65.38a1.71,1.71,0,1,0-1.71-1.71A1.71,1.71,0,0,0,36.92,65.38Zm0-2.42a.71.71,0,0,1,0,1.42.71.71,0,1,1,0-1.42Z" />
+                            </svg>
+                        </div>
+                        <h4 class="stat-title">Healthcare benefits</h4>
+                        <p class="stat-desc mt-10">100% medical facility, maternity, and vision</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
+                    <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
+                        <div class="stat-icon-box student">
+                            <svg enable-background="new 0 0 64 64" height="64px" id="Icons" version="1.1" viewBox="0 0 64 64" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="stopwatch_x2C__timer"><g><path d="M38.067,27.49l-0.516,0.893c-0.275,0.477-0.305,0.979-0.067,1.116c0.238,0.138,0.658-0.14,0.933-0.616    l0.516-0.893c0.275-0.477,0.305-0.979,0.067-1.116C38.762,26.736,38.342,27.014,38.067,27.49z" fill="#37474F"/><path d="M41.5,33.514c0.137,0.238,0.639,0.209,1.115-0.066l0.893-0.516c0.477-0.275,0.754-0.695,0.617-0.934    c-0.138-0.237-0.64-0.208-1.116,0.067l-0.893,0.516C41.64,32.856,41.362,33.276,41.5,33.514z" fill="#37474F"/><path d="M42.97,38.999c-0.001,0.275,0.45,0.5,0.999,0.5H45c0.55,0,1-0.225,1-0.5s-0.449-0.5-1-0.5h-1.03    C43.42,38.499,42.97,38.724,42.97,38.999z" fill="#37474F"/><path d="M43.508,45.066l-0.892-0.516c-0.477-0.275-0.979-0.305-1.116-0.066c-0.138,0.237,0.139,0.657,0.615,0.933    l0.893,0.516c0.477,0.275,0.979,0.305,1.116,0.067C44.262,45.762,43.984,45.342,43.508,45.066z" fill="#37474F"/><path d="M38.417,49.115c-0.275-0.477-0.695-0.754-0.933-0.616s-0.208,0.64,0.067,1.116l0.515,0.893    c0.275,0.477,0.695,0.754,0.933,0.616c0.239-0.138,0.208-0.64-0.067-1.116L38.417,49.115z" fill="#37474F"/><path d="M32,49.969c-0.275,0-0.5,0.45-0.5,1l0,1.03c0,0.55,0.225,1,0.5,1s0.5-0.45,0.5-1l0-1.03    C32.5,50.419,32.274,49.969,32,49.969z" fill="#37474F"/><path d="M25.582,49.115l-0.516,0.892c-0.275,0.477-0.305,0.979-0.067,1.116s0.658-0.14,0.933-0.616l0.516-0.892    c0.275-0.477,0.305-0.979,0.067-1.116S25.856,48.639,25.582,49.115z" fill="#37474F"/><path d="M21.383,44.551l-0.893,0.515c-0.477,0.275-0.753,0.695-0.616,0.933c0.137,0.238,0.64,0.209,1.116-0.066    l0.892-0.515c0.477-0.275,0.754-0.695,0.616-0.933C22.362,44.246,21.86,44.275,21.383,44.551z" fill="#37474F"/><path d="M21.03,38.999c0-0.275-0.45-0.5-1-0.5l-1.031-0.001c-0.55,0-1,0.226-1,0.5c0,0.275,0.451,0.501,1,0.501    h1.03C20.58,39.499,21.03,39.274,21.03,38.999z" fill="#37474F"/><path d="M21.883,32.581l-0.892-0.516c-0.477-0.275-0.979-0.305-1.116-0.067c-0.138,0.238,0.14,0.658,0.616,0.934    l0.892,0.516c0.477,0.275,0.979,0.305,1.116,0.066C22.637,33.276,22.36,32.856,21.883,32.581z" fill="#37474F"/><path d="M25.933,27.49c-0.275-0.477-0.695-0.754-0.933-0.616s-0.208,0.64,0.067,1.116l0.515,0.893    c0.275,0.477,0.695,0.754,0.933,0.616s0.208-0.64-0.067-1.116L25.933,27.49z" fill="#37474F"/><path d="M32,22.999c-8.837,0-16,7.166-16,16s7.163,16,16,16s16-7.166,16-16S40.837,22.999,32,22.999z M32,53.999    c-8.284,0-15-6.719-15-15s6.716-15,15-15s15,6.719,15,15S40.284,53.999,32,53.999z" fill="#37474F"/><path d="M49.5,23.498l0.5,0.5l3-3l-3-3l-3,3l0.5,0.5l-2.407,2.407C42.055,21.269,38.227,19.52,34,19.1v-0.418    c2.887-0.863,5-3.515,5-6.683c0-3.867-3.133-7-7-7s-7,3.133-7,7c0,3.171,2.109,5.845,5,6.705V19.1    c-10.105,1.005-18,9.53-18,19.899c0,11.044,8.956,20,20,20c11.045,0,20-8.956,20-20c0-5.014-1.857-9.585-4.906-13.095L49.5,23.498    z M50,19.412l1.586,1.586L50,22.584l-1.586-1.586L50,19.412z M48.207,22.205l0.586,0.586l-2.375,2.374    c-0.191-0.199-0.385-0.396-0.584-0.587L48.207,22.205z M30,13.999v-3h4v3H30z M33,14.999v4h-2v-4H33z M26,11.999    c0-3.309,2.691-6,6-6s6,2.691,6,6c0,2.604-1.677,4.802-4,5.63v-2.63h1v-5h-6v5h1v2.633C27.676,16.805,26,14.604,26,11.999z     M51,38.999c0,10.477-8.523,19-19,19s-19-8.523-19-19s8.523-19,19-19S51,28.522,51,38.999z" fill="#37474F"/><path d="M32.38,27.656c0.071-0.173,0.12-0.387,0.12-0.627v-1.031c0-0.55-0.225-1-0.5-1s-0.5,0.45-0.5,1v1.031    c0,0.24,0.049,0.454,0.12,0.627l-1.365,9.557c-0.465,0.453-0.755,1.085-0.755,1.786c0,1.381,1.119,2.5,2.5,2.5s2.5-1.119,2.5-2.5    c0-0.701-0.29-1.333-0.755-1.786L32.38,27.656z M32,32.069l0.646,4.524c-0.208-0.056-0.421-0.095-0.646-0.095    s-0.439,0.039-0.646,0.095L32,32.069z M32,40.499c-0.828,0-1.5-0.673-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.673,1.5,1.5    S32.828,40.499,32,40.499z" fill="#37474F"/></g></g></svg>
+                        </div>
+                        <h4 class="stat-title">Flextime</h4>
+                        <p class="stat-desc mt-10">Full time remote and online work opportunity</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
+                    <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
+                        <div class="stat-icon-box video">
+                            <svg style="width: 55px;" viewBox="0 0 232.83 227.44" xmlns="http://www.w3.org/2000/svg"><g id="a"/><g id="b"><g id="c"><path d="M2.99,216.08c2.22-6.03,5.95-11.25,10.95-15.3s10.42-6.51,16
+                            .08-8.73c6.64-2.6,13.46-4.74,20.15-7.21,7.78-2.88,15.47-6.02,22.97-9.56,14.21-6.71,27.45-15.09,39.43-25.27,11.29-9.6,21.39-20.6,30.09-32.59s15.97-25.07,21.4-38.88c.66-1.67,1.28-3.35,1.88-5.03,.65-1.82-2.25-2.61-2.89-.8-4.96,13.9-11.84,27.07-20.18,39.23s-18.3,23.46-29.39,33.33c-11.64,10.36-24.61,18.97-38.58,25.86-7.49,3.69-15.18,6.93-22.99,9.89-6.87,2.6-13.87,4.84-20.74,7.42-11.74,4.4-23.16,10.57-29.06,22.19-.77,1.51-1.43,3.08-2.01,4.67-.67,1.81,2.23,2.6,2.89,.8h0Z"/><path d="M162.13,75.47c-3.14,14.53-10.71,27.65-19.62,39.38-8.88,11.69-19.29,22.24-29.93,32.32-5.61,5.31-11.43,10.43-17.71,14.92-6.18,4.42-12.74,7.91-19.7,10.93-14.54,6.3-29.61,11.52-43.45,19.32-5.82,3.28-11.16,7.26-15.82,12.07s-8.88,10.52-10.86,17c-.45,1.46-.73,2.95-.91,4.46l2.56-1.06c-2.08-2.64-2.87-5.81-3.69-9.01-.48-1.87-3.38-1.08-2.89,.8,.97,3.77,2.02,7.23,4.46,10.33,.91,1.16,2.43,.05,2.56-1.06,.78-6.48,4.68-12.38,8.89-17.17,4.34-4.95,9.46-9.22,15.13-12.57,13.61-8.04,28.6-13.33,43.1-19.48,7-2.97,13.73-6.21,20.03-10.5s12.15-9.21,17.75-14.37c10.78-9.93,21.23-20.48,30.37-31.95,9.15-11.48,17.19-24.23,21.33-38.43,.49-1.7,.92-3.42,1.3-5.15,.41-1.88-2.48-2.69-2.89-.8h0Z"/><path d="M23.63,194.27c3.06-7.67,7.14-15.19,12.08-21.81,1.15-1.55-1.45-3.05-2.59-1.51-5.1,6.85-9.22,14.61-12.38,22.53-.3,.76,.33,1.64,1.05,1.85,.85,.24,1.55-.3,1.85-1.05h0Z"/><path d="M35.45,171.7c.36-6.14-1.83-11.91-3.43-17.73-1.68-6.11-2.62-12.49-2.41-18.84,.39-12.3,5.48-23.45,12.17-33.56,1.64-2.47,3.26-4.96,4.91-7.42s3.52-4.95,5.98-6.71l-2.2-.9c4.24,10.86,4.43,22.95,2.9,34.38-1.56,11.7-5.02,23.45-10.05,34.13-1.5,3.18-3.18,6.33-5.23,9.2s-4.53,4.98-5.9,8.09c-.77,1.75,1.81,3.28,2.59,1.51,1.24-2.79,3.48-4.91,5.32-7.3,1.94-2.52,3.52-5.36,4.94-8.19,2.87-5.7,5.1-11.76,7.01-17.84,3.56-11.34,5.58-23.42,5.09-35.32-.28-6.62-1.37-13.26-3.79-19.45-.32-.82-1.34-1.51-2.2-.9-4.55,3.25-7.21,8.17-10.28,12.71-3.43,5.07-6.67,10.26-9.15,15.87s-4.18,11.57-4.84,17.73c-.71,6.54-.09,13.13,1.26,19.54,1.47,6.97,4.74,13.76,4.31,21.01-.11,1.93,2.89,1.92,3,0h0Z"/><path d="M61.1,180.87c5.31-2.87,9.3-8.02,12.2-13.2s5.2-11.23,5.21-17.26c0-1.93-3-1.93-3,0,0,5.51-2.13,11-4.8,15.75-2.66,4.75-6.25,9.48-11.13,12.12-1.7,.92-.19,3.51,1.51,2.59h0Z"/><path d="M75.45,148.18c-5.89-2.89-7.89-9.66-7.92-15.79s1.55-13.04,5.81-17.43c1.65-1.69,3.57-2.71,5.84-2.49s5.09,2.13,6.48,4.12c1.79,2.56,2.48,5.84,2.74,8.9,.3,3.63,.05,7.32-.76,10.87s-2.07,7.19-4.56,9.84c-2.17,2.3-4.76,2.97-7.75,1.86-1.81-.67-2.59,2.23-.8,2.89,3.28,1.22,6.7,.68,9.43-1.5,2.82-2.25,4.53-5.7,5.66-9.06,2.45-7.24,3-16.46-.34-23.52-2.7-5.71-10.04-9.66-15.82-5.91s-8.24,11.85-8.82,18.44c-.7,7.95,1.49,17.53,9.28,21.34,1.73,.85,3.25-1.74,1.51-2.59h0Z"/><path d="M63.52,181.02c9.86-3.95,20.68-4.98,30.68-.93,1.79,.73,2.57-2.18,.8-2.89-10.43-4.23-21.99-3.19-32.28,.93-1.77,.71-1,3.61,.8,2.89h0Z"/><path d="M91.91,180.95c-1.75,2.9-2.64,6.2-2.02,9.58,.54,2.94,2.31,5.58,4.49,7.57,4.79,4.38,11.79,6.65,18.24,6.28s12.42-3.74,13.94-10.28c1.73-7.48-5.3-13.28-11.37-15.98-6.89-3.07-17.59-4.9-22.8,2.08-1.16,1.55,1.45,3.04,2.59,1.51,3.68-4.93,11.97-3.46,16.87-1.73s12.01,5.82,11.99,11.86c-.02,5.42-5.09,8.79-9.96,9.42-5.46,.71-11.37-.89-15.85-4.06-2.2-1.56-4.16-3.75-4.95-6.31-.89-2.9-.13-5.84,1.43-8.44,1-1.66-1.59-3.17-2.59-1.51h0Z"/><path d="M103.33,158.8c3.03-1.08,6.11-2.03,9.26-2.66s6.36-1.02,9.39-.12c1.85,.55,2.65-2.34,.8-2.89-3.36-1-7-.63-10.39,0s-6.64,1.63-9.85,2.77c-1.81,.64-1.03,3.54,.8,2.89h0Z"/><path d="M125.55,155.55c12.52-4.51,24.93-9.47,37.91-12.55,9.55-2.27,19.73-3.45,29.5-2.01,5.27,.78,10.68,2.36,14.95,5.67l-.39-1.46c-1.78,4.28-6.75,6.95-10.65,8.92-4.71,2.38-9.72,4.38-14.76,5.94-12.58,3.89-26.24,4.9-39.1,1.73-6.8-1.68-13.15-4.6-18.96-8.52-1.6-1.08-3.11,1.51-1.51,2.59,11.15,7.53,24.26,11,37.67,10.79s25.65-3.85,37.25-9.49c5.07-2.46,10.69-5.72,12.95-11.17,.18-.43-.01-1.17-.39-1.46-8.21-6.36-19.29-7.5-29.35-7.04-11.68,.54-23.01,3.57-34.05,7.28-7.35,2.47-14.58,5.25-21.88,7.87-1.8,.65-1.03,3.55,.8,2.89h0Z"/><path d="M130.07,133.18c6.91-4.32,14.16-8.49,22.39-9.52,.81-.1,1.49-.62,1.5-1.5,0-.73-.7-1.6-1.5-1.5-8.81,1.09-16.49,5.29-23.9,9.93-1.63,1.02-.13,3.62,1.51,2.59h0Z"/><path d="M155.8,117.54c1.02-5.83,5.29-10.14,10.74-12.18,5.4-2.02,12.25-2.35,17.49,.36,4.49,2.32,7.24,7.41,4.92,12.27-1.35,2.82-3.84,4.6-6.52,6.05-3.37,1.81-7.02,3.11-10.79,3.77s-8.82,.83-12.3-1.23c-2.87-1.7-4.21-5.28-3.57-8.49,.37-1.89-2.52-2.69-2.89-.8-.7,3.55,.18,7.28,2.63,9.99,2.79,3.1,7.37,3.88,11.35,3.92,4.5,.04,9.02-1.02,13.16-2.72,3.59-1.48,7.37-3.34,9.87-6.41,4.09-5.04,3.77-12.21-1.08-16.65-5.22-4.78-13.46-5.39-20.08-3.83-7.59,1.79-14.41,7.19-15.81,15.17-.33,1.89,2.56,2.7,2.89,.8h0Z"/><path d="M156.57,99.08c3.47-1.32,6.81-2.96,10.05-4.78,3.02-1.7,6.01-3.55,8.67-5.79,1.48-1.24-.65-3.35-2.12-2.12-2.46,2.07-5.27,3.75-8.06,5.32-3,1.69-6.1,3.26-9.33,4.48-.76,.29-1.28,1.01-1.05,1.85,.2,.73,1.08,1.34,1.85,1.05h0Z"/><path d="M177.31,86.14c3.8-10.58,10.32-20.2,18.63-27.76,7.19-6.54,16.03-11.33,25.38-13.99,2.27-.65,8.83-2.48,8.51,1.77-.16,2.2-1.34,4.35-2.38,6.25s-2.12,3.74-3.35,5.5c-5.62,8.06-13.38,14.86-21.7,20.03-4.44,2.76-9.19,5.14-14.26,6.48-3.88,1.02-8.08,1.44-11.88-.11-.46-.19-1.14,.03-1.46,.39-1.1,1.24-2.32,2.33-3.66,3.31-1.55,1.13-.05,3.73,1.51,2.59s3-2.34,4.27-3.77l-1.46,.39c3.73,1.52,7.94,1.31,11.81,.5,4.81-1.01,9.41-3.05,13.68-5.43,9.46-5.27,18.09-12.62,24.6-21.29,1.4-1.86,2.65-3.81,3.79-5.83,1.23-2.17,2.47-4.43,3.12-6.86,.56-2.1,.63-4.59-1.05-6.21-1.5-1.46-3.79-1.71-5.78-1.56-4.52,.34-8.85,2.14-13,3.86-5.2,2.17-10.04,4.83-14.51,8.27-10.81,8.32-19.11,19.86-23.72,32.68-.65,1.82,2.24,2.6,2.89,.8h0Z"/><path d="M165.8,70.02c-3.83-8.16-6.01-17.24-7.07-26.17-1.14-9.55-1.12-19.57,1.66-28.86,1.36-4.54,3.45-8.91,6.64-12.45h-2.12c2.88,2.23,4.09,6.03,4.94,9.43,.92,3.65,1.38,7.38,1.81,11.11,.65,5.73,1,11.49,.68,17.26-.32,5.85-1.42,11.64-3.01,17.28-.88,3.13-1.92,6.25-3.27,9.21-1.2,2.61-2.76,5.05-3.69,7.79-.62,1.83,2.27,2.62,2.89,.8,.87-2.54,2.37-4.8,3.47-7.24,1.23-2.72,2.25-5.55,3.11-8.41,1.71-5.68,2.9-11.59,3.38-17.5,.5-6.23,.2-12.49-.5-18.7-.43-3.82-.87-7.65-1.73-11.41-.95-4.15-2.43-9-5.95-11.72-.61-.48-1.53-.66-2.12,0-6.39,7.09-8.85,16.77-9.6,26.07-.83,10.21,.35,20.66,2.85,30.58,1.25,4.96,2.89,9.83,5.06,14.46,.82,1.75,3.41,.23,2.59-1.51h0Z"/><path d="M138.48,122c2.02-2.98,3.58-6.28,4.82-9.65,1.31-3.55,2.31-7.34,2.4-11.14s-1.25-6.63-3.44-9.46-4.87-5.51-6.63-8.82c-7.79-14.64-9.77-32.03-9.82-48.39-.02-8.16,.34-17.24,4.29-24.59l-1.69,.69c1.49,.49,2.54,2.15,3.32,3.43,1.13,1.86,2.01,3.87,2.81,5.89,1.68,4.26,3.25,8.59,4.81,12.89,4.69,12.98,7.58,26.9,7,40.74-.33,7.85-1.77,15.58-3.87,23.14-.52,1.86,2.38,2.66,2.89,.8,1.95-7.01,3.33-14.18,3.84-21.44s.04-14.67-1.17-21.92-3.05-14.33-5.49-21.24c-.89-2.53-1.95-5-2.85-7.52-.75-2.09-1.46-4.18-2.27-6.25-1.57-3.99-3.7-9.93-8.22-11.42-.61-.2-1.39,.13-1.69,.69-3.54,6.58-4.38,14.39-4.63,21.74-.27,7.7,.13,15.48,1.09,23.12,1.08,8.62,2.95,17.19,6.3,25.24,1.54,3.7,3.27,7.31,5.79,10.45,2.14,2.68,4.99,5.2,6.15,8.51,1.3,3.72,.11,8.23-1.03,11.84-1.23,3.92-2.97,7.75-5.28,11.15-1.09,1.6,1.51,3.1,2.59,1.51h0Z"/><path d="M87.02,167.44c13.04-7.68,15.43-23.33,19.67-36.54,.59-1.84-2.3-2.63-2.89-.8-3.97,12.36-6.07,27.55-18.29,34.75-1.66,.98-.15,3.57,1.51,2.59h0Z"/><path d="M106.28,132.35c.42-6.73-2.19-13.05-4.53-19.21s-4.35-12.64-5.46-19.22c-1.96-11.59-.43-23.44,4.52-34.12,2.54-5.48,5.92-10.6,10.45-14.63l-2.36-.3c2.86,3.99,3.55,9.3,4.17,14.05,.71,5.51,1.63,10.98,2.36,16.49,.85,6.43,1.38,12.95,1.09,19.44-.27,6.12-1.48,12.12-3.49,17.9-2.28,6.55-5.58,12.71-9.55,18.39-1.11,1.59,1.49,3.09,2.59,1.51,7.24-10.37,12.21-22.43,13.27-35.1s-1.59-25.06-3.14-37.55c-.69-5.59-1.33-11.93-4.71-16.65-.58-.81-1.59-.99-2.36-.3-8.38,7.46-13.39,18.55-15.57,29.39-2.56,12.76-.28,25.55,3.91,37.71,2.48,7.19,6.3,14.4,5.81,22.21-.12,1.93,2.88,1.92,3,0h0Z"/></g></g></svg>
+                        </div>
+                        <h4 class="stat-title">Vacations</h4>
+                        <p class="stat-desc mt-10">Predetermined amount of days each year.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mt-25 mt-lg-0">
+                    <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
+                        <div class="stat-icon-box course">
+                            <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><title/><path d="M141.18,186v144.6c0,25,38.39,44.61,87.41,44.61s87.4-19.6,87.4-44.61V186c0-25-38.39-44.61-87.4-44.61S141.18,161,141.18,186Zm11.38,70.46c14.89,13.45,43,22.35,76,22.35s61.13-8.9,76-22.35v25.94c0,15.72-31.22,33.24-76,33.24s-76-17.52-76-33.24Zm76,11c-44.81,0-76-17.52-76-33.24V208.27c14.89,13.45,43,22.36,76,22.36s61.13-8.91,76-22.36v25.94C304.61,249.93,273.39,267.45,228.59,267.45Zm0,96.4c-44.81,0-76-17.52-76-33.24V304.67c14.89,13.45,43,22.35,76,22.35s61.13-8.9,76-22.35v25.94C304.61,346.33,273.39,363.85,228.59,363.85Zm0-211.08c44.8,0,76,17.52,76,33.24s-31.22,33.24-76,33.24-76-17.52-76-33.24S183.78,152.77,228.59,152.77Z"/><path d="M349.75,398.5a185.3,185.3,0,0,1-227.54,10h48.22a5.69,5.69,0,0,0,0-11.38H105.62a1.89,1.89,0,0,0-.23.05,4.93,4.93,0,0,0-1.13.23,4.7,4.7,0,0,0-1,.28,4.9,4.9,0,0,0-.82.55,5,5,0,0,0-1,.75c0,.05-.13.08-.18.14a4.9,4.9,0,0,0-.39.71,5.75,5.75,0,0,0-.57,1,6,6,0,0,0-.24,1.19,4.87,4.87,0,0,0-.15.76v64.8a5.69,5.69,0,1,0,11.37,0V414.45a196.29,196.29,0,0,0,245.81-7.28,5.69,5.69,0,1,0-7.37-8.67Z"/><path d="M151.87,88.43l-24,41.62a5.69,5.69,0,0,0,2.08,7.77,5.61,5.61,0,0,0,2.84.76,5.68,5.68,0,0,0,4.93-2.84l32.4-56.12c0-.06,0-.12.06-.18a5.33,5.33,0,0,0,.42-1.26,5.59,5.59,0,0,0,.23-.87,5.56,5.56,0,0,0-.07-1,6.39,6.39,0,0,0-.18-1.24c0-.06,0-.13,0-.19a5.58,5.58,0,0,0-.35-.58,5.34,5.34,0,0,0-.7-1.17,6.22,6.22,0,0,0-.72-.64,6.5,6.5,0,0,0-.74-.65L111.9,39.44a5.69,5.69,0,0,0-5.69,9.86l46,26.58C80.09,106.69,32.35,178,32.35,257a196.68,196.68,0,0,0,3.33,35.4,5.71,5.71,0,0,0,5.6,4.67,5.86,5.86,0,0,0,1-.09,5.68,5.68,0,0,0,4.58-6.61A185.28,185.28,0,0,1,43.73,257C43.73,184.3,86.59,118.53,151.87,88.43Z"/><path d="M478.89,256.11a5.66,5.66,0,0,0-7.77-2.08L425,280.64A189.37,189.37,0,0,0,426.72,257c0-83-52.61-157.54-130.92-185.53A5.69,5.69,0,1,0,292,82.15C365.76,108.53,415.34,178.78,415.34,257c0,5.62-.32,11.32-.9,17.13l-24.08-41.71a5.69,5.69,0,0,0-9.85,5.69l32.4,56.11,0,.05a5.64,5.64,0,0,0,2,2c.12.07.26.09.38.15a5.09,5.09,0,0,0,1.43.57,5.86,5.86,0,0,0,1,.09h0a5.74,5.74,0,0,0,2.84-.76l56.12-32.4A5.69,5.69,0,0,0,478.89,256.11Z"/></svg>
+                        </div>
+                        <h4 class="stat-title">Competitive salaries </h4>
+                        <p class="stat-desc mt-10">It help and retain valuable employees</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="lms-accordion-job-section mt-50">
+    </div>
+    <section class="lms-accordion-job-section mt-0">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <div class="element-title text-center">
-                        <h2 class="mt-0" style="font-size: 40px;">Open Positions</h2>
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mb-10" style="font-size: 40px;">Open Positions</h2>
+                        <p>We are always seeking talented individuals to join our team and contribute <br /> to our success. Explore some new positions:</p>
                     </div>
                     <div class="lms-accordion-job accordion" id="accordionExample">
                         <div class="card">
                             <div class="card-header" id="heading_1">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
-                                    data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">Web Design
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">Web Design
                                     Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_1" class="collapse" aria-labelledby="heading_1"
-                                data-parent="#accordionExample">
+                            <div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -292,10 +280,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -400,9 +388,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -410,15 +398,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_2">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_2" aria-expanded="false"
-                                    aria-controls="collapse_2">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2">
                                     Social Media Marketing Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_2" class="collapse" aria-labelledby="heading_2"
-                                data-parent="#accordionExample">
+                            <div id="collapse_2" class="collapse" aria-labelledby="heading_2" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -437,10 +422,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -548,9 +533,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -558,15 +543,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_3">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_3" aria-expanded="false"
-                                    aria-controls="collapse_3">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false" aria-controls="collapse_3">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_3" class="collapse" aria-labelledby="heading_3"
-                                data-parent="#accordionExample">
+                            <div id="collapse_3" class="collapse" aria-labelledby="heading_3" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -585,10 +567,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -696,9 +678,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -706,15 +688,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_4">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_4" aria-expanded="false"
-                                    aria-controls="collapse_4">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_4" class="collapse" aria-labelledby="heading_4"
-                                data-parent="#accordionExample">
+                            <div id="collapse_4" class="collapse" aria-labelledby="heading_4" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -733,10 +712,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -844,9 +823,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -854,15 +833,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_5">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_5" aria-expanded="false"
-                                    aria-controls="collapse_5">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" aria-controls="collapse_5">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_5" class="collapse" aria-labelledby="heading_5"
-                                data-parent="#accordionExample">
+                            <div id="collapse_5" class="collapse" aria-labelledby="heading_5" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -881,10 +857,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -992,9 +968,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -1002,15 +978,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_6">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_6" aria-expanded="false"
-                                    aria-controls="collapse_6">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_6" aria-expanded="false" aria-controls="collapse_6">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_6" class="collapse" aria-labelledby="heading_6"
-                                data-parent="#accordionExample">
+                            <div id="collapse_6" class="collapse" aria-labelledby="heading_6" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -1029,10 +1002,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -1140,9 +1113,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -1150,15 +1123,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_7">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_7" aria-expanded="false"
-                                    aria-controls="collapse_7">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_7" aria-expanded="false" aria-controls="collapse_7">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_7" class="collapse" aria-labelledby="heading_7"
-                                data-parent="#accordionExample">
+                            <div id="collapse_7" class="collapse" aria-labelledby="heading_7" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -1177,10 +1147,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -1288,9 +1258,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -1298,15 +1268,12 @@
                         </div>
                         <div class="card">
                             <div class="card-header" id="heading_8">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                    data-toggle="collapse" data-target="#collapse_8" aria-expanded="false"
-                                    aria-controls="collapse_8">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse_8" aria-expanded="false" aria-controls="collapse_8">
                                     Photography Teacher
                                     <small>Freelance / online / on-site</small>
                                 </button>
                             </div>
-                            <div id="collapse_8" class="collapse" aria-labelledby="heading_8"
-                                data-parent="#accordionExample">
+                            <div id="collapse_8" class="collapse" aria-labelledby="heading_8" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="mb-20">
                                         <img src="../assets/default/img/find-instructor-img1.png" alt="#">
@@ -1325,10 +1292,10 @@
                                     <ul class="lms-disc-list">
                                         <li>Thai / International</li>
                                         <li>Full-time position</li>
-                                        <li>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</li>
-                                        <li>40,000 – 60,000 baht per month standard salary</li>
+                                        <li>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</li>
+                                        <li>40,000 â€“ 60,000 baht per month standard salary</li>
                                         <li>Work Permit Available</li>
-                                        <li>National Thai holidays & Christmas and New Years</li>
+                                        <li>National Thai holidays &amp; Christmas and New Years</li>
                                         <li>Bonus scheme for filling Bootcamps and Pro courses</li>
                                     </ul>
                                     <h4>Managing</h4>
@@ -1436,9 +1403,9 @@
                                         <li>Ensuring the environment is maintained to a high quality</li>
                                     </ul>
                                     <h4>Hours and schedule</h4>
-                                    <p>9am to 6pm (12-1 lunch & 3:00 to 3:30pm break)</p>
+                                    <p>9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
                                     <h4>Pay and bonuses</h4>
-                                    <p>40,000 – 60,000 baht per month standard salary</p>
+                                    <p>40,000 â€“ 60,000 baht per month standard salary</p>
                                     <p><a href="#" class="lms-apply-btn">Apply for this teaching position</a></p>
                                     <p><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -1450,12 +1417,119 @@
             </div>
         </div>
     </section>
-    <section class="lms-jobsform-section mt-50">
+    <section class="lms-testimonial-slider mt-10 pt-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Explore our customers’ success stories</h2>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-body">
+                                        <div class="img-holder">
+                                            <figure>
+                                                <a href="#"><img src="/store/1/default_images/testimonials/profile_picture (50).jpg" alt=""></a>
+                                            </figure>
+                                        </div>
+                                        <div class="text-holder">
+                                            <div class="testimonial-top">
+                                                <h5 class="testimonial-title">
+                                                    <a href="#">Thriving as a Content Creator with an Exceptional
+                                                        Team.</a>
+                                                </h5>
+                                                <strong>
+                                                    A Life-Changing Discovery I'm Forever Grateful
+                                                    For</strong>
+                                            </div>
+                                            <p>
+                                                "As a content creator, it is pleasure of working with
+                                                the team , I can confidently say that it has been an
+                                                amazing experience. Working as a content writer for this
+                                                platform, I have been able to generate a good income
+                                                while collaborating with a fantastic team of
+                                                professionals"
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-body">
+                                        <div class="img-holder">
+                                            <figure>
+                                                <a href="#"><img src="/store/1/default_images/testimonials/profile_picture (28).jpg" alt=""></a>
+                                            </figure>
+                                        </div>
+                                        <div class="text-holder">
+                                            <div class="testimonial-top">
+                                                <h5 class="testimonial-title">
+                                                    <a href="#">Unleashing the Power of Collaboration in Content
+                                                        Creation".</a>
+                                                </h5>
+                                                <strong>Exceeding Expectations with User-Friendly Interface
+                                                    and Seamless Navigation</strong>
+                                            </div>
+                                            <p>
+                                                "As a content writer, I have had the pleasure of
+                                                collaborating with a talented and dedicated team that
+                                                truly understands the value of quality content. Their
+                                                guidance and support have been instrumental in helping
+                                                me refine my skills and explore new horizons in the
+                                                world of content creation."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-body">
+                                        <div class="img-holder">
+                                            <figure>
+                                                <a href="#"><img src="/store/1/default_images/testimonials/profile_picture (30).jpg" alt=""></a>
+                                            </figure>
+                                        </div>
+                                        <div class="text-holder">
+                                            <div class="testimonial-top">
+                                                <h5 class="testimonial-title">
+                                                    <a href="#">Collaborating with an Exceptional Team of Talented
+                                                        Professionals as a Content Creator</a>
+                                                </h5>
+                                                <strong>
+                                                    A Game-Changer in my Educational Journey for Busy
+                                                    Professionals</strong>
+                                            </div>
+                                            <p>
+                                                "Working with this exceptional team of talented
+                                                professionals as a content creator has been an absolute
+                                                pleasure. From the moment I joined, I've enjoyed
+                                                collaborating with them and have gained invaluable
+                                                insights and knowledge along the way."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="lms-jobsform-section mt-0 mb-50 pt-70 pb-70" style="background-color: #f8f8f8;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <div class="element-title text-center">
+                    <div class="section-title text-center mb-40">
                         <h2 class="mt-0" style="font-size: 40px;">Application Form</h2>
                     </div>
                     <div class="lms-jobs-form">
@@ -1469,11 +1543,11 @@
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="lms-form-description">
                                         <b>Thank you for your interest in joining our instructor team.</b>
-                                        <P>Please complete the form below to give us as much information as possible to help
+                                        <p>Please complete the form below to give us as much information as possible to help
                                             move to the next step. Once you
                                             send
                                             in your application we will review and get back to you with a date and time for
-                                            a chat online.</P>
+                                            a chat online.</p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -1500,7 +1574,7 @@
                                     <div class="form-group">
                                         <label class="input-label">List your main skills</label>
                                         <div class="input-field">
-                                            <input type="text" placeholder="Html Css etc" />
+                                            <input type="text" placeholder="Html Css etc">
                                         </div>
                                     </div>
                                 </div>
@@ -1577,7 +1651,7 @@
                                     <div class="form-group">
                                         <label class="input-label">First and last name</label>
                                         <div class="input-field">
-                                            <input type="text" placeholder="" />
+                                            <input type="text" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -1585,7 +1659,7 @@
                                     <div class="form-group">
                                         <label class="input-label">E-mail</label>
                                         <div class="input-field">
-                                            <input type="text" placeholder="" />
+                                            <input type="text" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -1593,7 +1667,7 @@
                                     <div class="form-group">
                                         <label class="input-label">Mobile/messenger ID</label>
                                         <div class="input-field">
-                                            <input type="text" placeholder="" />
+                                            <input type="text" placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -1609,7 +1683,7 @@
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="form-group text-right">
                                         <div class="input-field">
-                                            <input type="sumit" value="Send Application" />
+                                            <input type="submit" value="Send Application">
                                         </div>
                                     </div>
                                 </div>
@@ -1621,222 +1695,28 @@
             </div>
         </div>
     </section>
-    <section class="lms-work-list mt-50 pt-30">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>How it works</h2>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/mem-fee.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>Is there any cost associated with joining the platform?</h5>
-                            <p>
-                                Joining our platform is completely free. There are no
-                                subscription fees or charges for writing content. You retain
-                                100% of each transaction ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Any cost</li>
-                                <li>Subscription Fee</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/5.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>What are the available topics I can write about?</h5>
-                            <p>
-                                There is a wide range of topics available for writing content.
-                                You can explore subjects such as Mathematics, English, Science,
-                                Geography, History, and many more. The platform provides
-                                opportunities to write on various academic subjects and beyond
-                                ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Topics</li>
-                                <li>Writing</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/6.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>How much money can I make?</h5>
-                            <p>
-                                The amount of money you can make is up to you. You can work as
-                                much as you want. Some writers work full-time, while others use
-                                the platform to earn extra income alongside their regular jobs
-                                ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Money</li>
-                                <li>Earn</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/4.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>Any guidelines accepting written content?</h5>
-                            <p>
-                                We have guidelines regarding written content acceptance, which
-                                can be found in our writer-related information. While we strive
-                                to provide constructive feedback ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Guide Line</li>
-                                <li>Content</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/cont-rate.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>How content rate is decided?</h5>
-                            <p>
-                                The current content rates are outlined in our rates schedule
-                                which will be shared after registration ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Plagirisam</li>
-                                <li>References</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/7.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>Is it permissible to copy content from elsewhere?</h5>
-                            <p>
-                                No, copying content from elsewhere is not allowed. However, you
-                                can draw inspiration from the topic you are working on. It is
-                                important to create original content and ensure it is free from
-                                plagiarism. You can provide links or resources as references
-                                when submitting your work ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>copying content</li>
-                                <li>content originality</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/8.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>
-                                Is there a specific time commitment required for this
-                                opportunity?
-                            </h5>
-                            <p>
-                                The time commitment for this opportunity is very flexible.
-                                Initially, you will need to invest some time and effort to learn
-                                the platform. Afterward, you can determine the amount of work
-                                you want to undertake based on your own preferences ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Time</li>
-                                <li>Commitment</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="list-card border-0">
-                        <div class="img-holder">
-                            <figure>
-                                <img src="/store/1/default_images/how_it_work/3.png" alt="" />
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5>How long is the review process?</h5>
-                            <p>
-                                It depends on work but it normally gets reviewed within 24 hours
-                                ...
-                            </p>
-                            <ul class="list-tags">
-                                <li>Reviews</li>
-                                <li>Feedback</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="btn-holder">
-                    <a href="#" class="create-btn">Create your profile</a>
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="lms-call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="action-card">
-                        <div class="img-holder">
-                            <figure>
-                                <a href="#"><img src="/store/1/default_images/how_it_work/get-ready-to-start.jpg"
-                                        alt="" /></a>
-                            </figure>
-                        </div>
-                        <div class="text-holder">
-                            <h5><a href="#">Ready To Start</a></h5>
-                            <p>
-                                Start your journey now and explore a wide range of possibilities
-                                that are customized to match your career progression, regardless
-                                of where you stand in your professional life. Discover
-                                opportunities that align with your skills and interests and
-                                propel you forward on your career path.
-                            </p>
-                            <a href="#" class="call-to-action-btn">START NOW FOR FREE</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="action-card">
+                            <div class="img-holder">
+                                <figure>
+                                    <a href="#"><img src="/store/1/default_images/how_it_work/get-ready-to-start.jpg" alt=""></a>
+                                </figure>
+                            </div>
+                            <div class="text-holder">
+                                <h5><a href="#">Ready To Start</a></h5>
+                                <p>
+                                    Start by clarifying your learning objectives. Determine what skills or knowledge you want to acquire or improve upon. This step will guide you in selecting the appropriate learning platform and courses.
+                                </p>
+                                <a href="#" class="call-to-action-btn">Get Membership </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 </div>
 
 @endsection

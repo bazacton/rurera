@@ -176,9 +176,11 @@ class QuestionsBankController extends Controller
         $lessons = $lessons->get();
 
 
+
         $webinars = \Illuminate\Support\Facades\DB::table('webinars')
-            ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
-            ->select('webinars.id' , 'webinar_translations.title');
+                    ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
+                    ->join('category_translations' , 'category_translations.category_id' , '=' , 'webinars.category_id')
+                    ->select('webinars.id' , 'webinar_translations.title', 'category_translations.title as category_title');
 
         $webinars = $webinars->get();
 
@@ -266,7 +268,8 @@ class QuestionsBankController extends Controller
 
         $webinars = \Illuminate\Support\Facades\DB::table('webinars')
             ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
-            ->select('webinars.id' , 'webinar_translations.title');
+            ->join('category_translations' , 'category_translations.category_id' , '=' , 'webinars.category_id')
+            ->select('webinars.id' , 'webinar_translations.title', 'category_translations.title as category_title');
 
         $webinars = $webinars->get();
 
@@ -1177,11 +1180,9 @@ class QuestionsBankController extends Controller
         return redirect()->back();
     }
 
-    public function search(Request $request)
+    public function search_bk(Request $request)
     {
         $term = $request->get('term');
-
-
 
         $response = Elasticsearch::search([
            'index' => 'questions',
@@ -1200,6 +1201,27 @@ class QuestionsBankController extends Controller
        $questionIds = array_column($response['hits']['hits'], '_source', '_id');
         //pre($questionIds);
        return response()->json($questionIds , 200);
+    }
+
+    public function search(Request $request)
+    {
+        $term = $request->get('term');
+
+        //DB::enableQueryLog();
+        $questionIds = QuizzesQuestion::where('question_title', 'like', '%'.$term.'%')->orWhere('search_tags', 'like', '%'.$term.'%')->get();
+        $questions_array = array();
+        if( !empty( $questionIds ) ){
+            foreach( $questionIds as $questionObj){
+                $questions_array[$questionObj->id]  = array(
+                    'id' => $questionObj->id,
+                    'title' => $questionObj->question_title
+                );
+            }
+        }
+
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+       return response()->json($questions_array , 200);
     }
 
     public function get_questions_by_ids(Request $request)

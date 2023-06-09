@@ -247,9 +247,12 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
         Route::get('/{role}', 'UserController@handleInstructorsOrOrganizationsPage');
     });
 
-    Route::group(['prefix' => 'pages'], function () {
-        Route::get('/{link}', 'PagesController@index');
-    });
+
+    
+
+
+
+    
 
     // Captcha
     Route::group(['prefix' => 'captcha'], function () {
@@ -379,7 +382,21 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
             Route::post('/{item_type}/{item_slug}', 'GiftController@store');
         });
     });
-
+    
+    Route::get('/sitemap', function()
+    {
+       return Response::view('sitemap')->header('Content-Type', 'application/xml');
+    });
+    
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/{link}' , 'PagesController@index');
+    });
+    
+    Route::group(['prefix' => '{link}'], function () {
+        if (!Request::is('admin') && !Request::is('admin/*')) {
+            Route::get('/' , 'PagesController@index');
+        }
+    });
 
 });
 

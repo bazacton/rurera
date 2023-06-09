@@ -5,8 +5,10 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\Web\CartManagerController;
 use App\Mixins\Financial\MultiCurrency;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Currency;
 use App\Models\FloatingBar;
+use App\Models\Webinar;
 use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -17,21 +19,22 @@ class Share
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request , Closure $next)
     {
 
         if (auth()->check()) {
             $user = auth()->user();
-            view()->share('authUser', $user);
+            view()->share('authUser' , $user);
 
             if (!$user->isAdmin()) {
 
                 $unReadNotifications = $user->getUnReadNotifications();
 
-                view()->share('unReadNotifications', $unReadNotifications);
+                view()->share('unReadNotifications' , $unReadNotifications);
             }
         }
 
@@ -39,37 +42,87 @@ class Share
         $carts = $cartManagerController->getCarts();
         $totalCartsPrice = Cart::getCartsTotalPrice($carts);
 
-        view()->share('userCarts', $carts);
-        view()->share('totalCartsPrice', $totalCartsPrice);
+        view()->share('userCarts' , $carts);
+        view()->share('totalCartsPrice' , $totalCartsPrice);
 
         $generalSettings = getGeneralSettings();
-        view()->share('generalSettings', $generalSettings);
+        view()->share('generalSettings' , $generalSettings);
 
 
         $currency = currencySign();
-        view()->share('currency', $currency);
+        view()->share('currency' , $currency);
 
         if (getFinancialCurrencySettings('multi_currency')) {
             $multiCurrency = new MultiCurrency();
             $currencies = $multiCurrency->getCurrencies();
 
             if ($currencies->isNotEmpty()) {
-                view()->share('currencies', $currencies);
+                view()->share('currencies' , $currencies);
             }
         }
 
 
         // locale config
         if (!Session::has('locale')) {
-            Session::put('locale', mb_strtolower(getDefaultLocale()));
+            Session::put('locale' , mb_strtolower(getDefaultLocale()));
         }
         App::setLocale(session('locale'));
 
-        view()->share('categories', \App\Models\Category::getCategories());
-        view()->share('navbarPages', getNavbarLinks());
+
+        $categoryQuery = Category::query();
+        $course_navigation_data = $categoryQuery->with([
+            'webinars' => function ($query) {
+                $query->with('chapters');
+            }
+        ])->where('parent_id', '>', 0)->get();
+
+
+        $category_colors = array(
+            'ks1' => '#015da5',
+            'ks2' => '#015da5',
+            'year-2' => '#ad382b',
+            'year-1' => '#9f1dbe',
+            'year-5' => '#2bae68',
+            'year-3' => '#ad382b',
+            'year-4' => '#333333',
+            'year-6' => '#9f1dbe',
+        );
+        $course_navigation = array();
+        if (!empty($course_navigation_data)) {
+            foreach ($course_navigation_data as $categoryObj) {
+                if( $categoryObj->slug != '') {
+                    $category_name = $categoryObj->getTitleAttribute();
+                    $course_navigation[$categoryObj->slug]['title'] = $category_name;
+                    $course_navigation[$categoryObj->slug]['color'] = $category_colors[$categoryObj->slug];
+                    if (!empty($categoryObj->webinars)) {
+                        foreach ($categoryObj->webinars as $webinarObj) {
+                            $chapter_title = $webinarObj->getTitleAttribute();
+                            $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_title'] = $chapter_title;
+                            $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_slug'] = $webinarObj->slug;
+                            if (!empty($webinarObj->chapters)) {
+                                foreach ($webinarObj->chapters as $chapterObj) {
+                                    $topic_title = $chapterObj->getTitleAttribute();
+                                    $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id] = $topic_title;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //pre($course_navigation);
+
+
+        //$courses_list = Webinar::where('category_id', $course->category->id)->get();
+
+
+        view()->share('categories' , \App\Models\Category::getCategories());
+        view()->share('navbarPages' , getNavbarLinks());
+        view()->share('course_navigation' , $course_navigation);
 
         $floatingBar = FloatingBar::getFloatingBar($request);
-        view()->share('floatingBar', $floatingBar);
+        view()->share('floatingBar' , $floatingBar);
 
         return $next($request);
     }

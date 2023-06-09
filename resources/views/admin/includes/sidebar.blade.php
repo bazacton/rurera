@@ -165,12 +165,28 @@
                 </li>
             @endcan()
 
-             @can('admin_questions_bank')
+            @can('admin_questions_bank')
 
                 <li class="{{ (request()->is('admin/questions_bank')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank') }}" class="nav-link">
                         <i class="fas fa-pen"></i>
                         <span>{{ trans('admin/main.questions_bank') }}</span>
+                    </a>
+                </li>
+            @endcan()
+
+            @can('admin_bundles')
+
+                <li class="{{ (request()->is('admin/questions_bank/create_sections_auto')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/questions_bank/create_sections_auto') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Create Sections</span>
+                    </a>
+                </li>
+                <li class="{{ (request()->is('admin/questions_bank/create_sub_chapters_auto')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/questions_bank/create_sub_chapters_auto') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Create Sub Chapters</span>
                     </a>
                 </li>
             @endcan()

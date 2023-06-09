@@ -1906,7 +1906,7 @@ function leform_properties_open(_object) {
     //jQuery("#leform-element-properties").width(window_width);
     //jQuery("#leform-element-properties .leform-admin-popup-inner").height(window_height);
     //jQuery("#leform-element-properties .leform-admin-popup-content").height(window_height - 104);
-    jQuery("#leform-element-properties-overlay").fadeIn(300);
+    //jQuery("#leform-element-properties-overlay").fadeIn(300);
     jQuery("#leform-element-properties").fadeIn(300);
     leform_element_properties_active = _object;
     leform_element_properties_data_changed = false;

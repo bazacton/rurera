@@ -6,21 +6,24 @@
 @endpush
 
 @section('content')
-    <section class="site-top-banner search-top-banner opacity-04 position-relative">
-        <img src="{{ getPageBackgroundSettings('categories') }}" class="img-cover" alt=""/>
-
+    <section class="pages-sub-header courses-sub-header position-relative">
         <div class="container h-100">
-            <div class="row h-100 align-items-center justify-content-center text-center">
-                <div class="col-12 col-md-9 col-lg-7">
-                    <div class="top-search-categories-form">
-                        <h1 class="text-white font-30 mb-15">{{ $pageTitle }}</h1>
-                        <span class="course-count-badge py-5 px-10 text-white rounded">{{ $coursesCount }} {{ trans('product.courses') }}</span>
-
-
-                    </div>
-                </div>
+          <div class="row h-100 align-items-center justify-content-center flex-column text-center">
+            <div class="col-12 col-md-12 col-lg-8">
+              <h1 class="font-30 mb-30">Experience interactive <br> learning Experience </h1>
+              <p>Courses available for <a href="#">Maths</a>, <a href="#" style="color: #b88e88;">English</a>, 
+                <a href="#" style="color: #a5013e;">English Reading</a>, <a href="#" style="color: #015da5;">science</a> and 
+                <a href="#">computing</a>
+                <br> that will surely help you grow and capture innovative ideas.
+              </p>
+              <div class="mt-50 d-flex align-items-center justify-content-center position-relative">
+                <a href="#" class="btn btn-primary">View all courses</a>
+                <a href="#" class="btn btn-outline-primary ml-15">Take a Course</a>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="svg-container"></div>
     </section>
 
     <div class="container mt-30">

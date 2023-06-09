@@ -20,14 +20,14 @@
                             <form action="/admin/questions_bank/store_sub_chapters_auto"
                                   method="Post">
                                 {{ csrf_field() }}
-								
+
 								<div class="form-group">
                                     <label>Subject</label>
                                     <select class="form-control @error('webinar_id') is-invalid @enderror webinar_id" name="webinar_id">
                                         <option {{ !empty($trend) ? '' : 'selected' }} disabled>Select a Subject</option>
 
                                         @foreach($webinars as $webinar)
-                                            <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }}</option>
+                                        <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }} / {{$webinar->category_title}}</option>
                                         @endforeach
                                     </select>
                                     @error('webinar_id')
@@ -53,7 +53,7 @@
                                     @enderror
                                 </div>
 
-                                
+
                                 <div class="form-group">
                                     <label class="input-label">List Each per line</label>
 									<div class="col-12 col-md-12 col-lg-12">
@@ -66,7 +66,7 @@
                                 </div>
 								@endif
                                 <div class="text-right mt-4">
-								
+
                                     <button class="btn btn-primary">{{ trans('admin/main.submit') }}</button>
                                 </div>
                             </form>
@@ -79,7 +79,7 @@
 @endsection
 
 @push('scripts_bottom')
-	
+
     <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
     <script src="/assets/default/js/admin/filters.min.js"></script>
     <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>

@@ -86,6 +86,16 @@
                                             </div>
                                             @enderror
                                         </div>
+                                        
+                                        
+                                        <div class="form-group custom-switches-stacked">
+                                            <label class="custom-switch pl-0">
+                                                <input type="hidden" name="value[is_mega_menu]" value="0">
+                                                <input type="checkbox" name="value[is_mega_menu]" id="is_mega_menu" value="1" {{ (!empty($navbar_link) && isset( $navbar_link->is_mega_menu ) && $navbar_link->is_mega_menu == 1) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                                <span class="custom-switch-indicator"></span>
+                                                <label class="custom-switch-description mb-0 cursor-pointer" for="is_mega_menu">Mega Menu</label>
+                                            </label>
+                                        </div>
 
                                         <div class="form-group">
                                             <label>Sub Menu</label>

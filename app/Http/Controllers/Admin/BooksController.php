@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Spatie\PdfToImage\Pdf;
 use Elasticsearch;
+use File;
 
 class BooksController extends Controller
 {
@@ -119,6 +120,7 @@ class BooksController extends Controller
 
 
         $book = Books::where('id' , $id)->with('bookPages.PageInfoLinks')->first();
+
         $data = [
             'pageTitle' => 'Edit Book' ,
             'book'      => $book ,
@@ -162,45 +164,69 @@ class BooksController extends Controller
 
         $book_pdf = isset($data['book_pdf']) ? $data['book_pdf'] : '';
 
-
-        $book_pdf = ltrim($book_pdf , '/');
-        //$pdf        = new Pdf($book_pdf);
-        //$book_pages = $pdf->getNumberOfPages();
-
-        $book_pages = 14;
+        $book = ($id > 0)? Books::findOrFail($id) : array();
 
 
-        if ($id != '' && $id > 0) {
-            $this->authorize('admin_books_edit');
-            /*$glossary = Glossary::findOrFail($id);
-            $glossary->update([
-                'category_id' => isset($data['category_id']) ? $data['category_id'] : '' ,
-                'title'       => isset($data['title']) ? $data['title'] : '' ,
-                'description' => isset($data['description']) ? $data['description'] : '' ,
-                'created_at'  => time() ,
-            ]);*/
-        } else {
-            $this->authorize('admin_books_create');
+        if( !empty( $book_pdf ) ) {
+            $book_pdf = ltrim($book_pdf , '/');
+            $pdf = new Pdf($book_pdf);
+            $book_pages = $pdf->getNumberOfPages();
 
-            $book = Books::create([
-                'book_title' => isset($data['book_title']) ? $data['book_title'] : '' ,
-                'book_pdf'   => $book_pdf ,
-                'book_pages' => $book_pages ,
-                'created_by' => $user->id ,
-                'created_at' => time() ,
-            ]);
+            if ($id != '' && $id > 0) {
+                $book = ($id > 0)? Books::findOrFail($id) : array();
+                /*$glossary = Glossary::findOrFail($id);
+                $glossary->update([
+                    'category_id' => isset($data['category_id']) ? $data['category_id'] : '' ,
+                    'title'       => isset($data['title']) ? $data['title'] : '' ,
+                    'description' => isset($data['description']) ? $data['description'] : '' ,
+                    'created_at'  => time() ,
+                ]);*/
+            } else {
+                $this->authorize('admin_books_create');
 
-            $page_count = 1;
-            while ($page_count <= $book_pages) {
-                BooksPages::create([
-                    'book_id'    => $book->id ,
-                    'page_no'    => $page_count ,
-                    'page_path'  => 'store/1/books/' . $book->id . '/' . $page_count ,
+                $book = Books::create([
+                    'book_title' => isset($data['book_title']) ? $data['book_title'] : '' ,
+                    'book_pdf'   => $book_pdf ,
+                    'book_pages' => $book_pages ,
                     'created_by' => $user->id ,
                     'created_at' => time() ,
                 ]);
-                $page_count++;
+
+                File::isDirectory('store/1/books/' . $book->id . '/') or File::makeDirectory('store/1/books/' . $book->id . '/' , 0777 , true , true);
+                $page_count = 1;
+                while ($page_count <= $book_pages) {
+                    $pdf->setPage($page_count)->saveImage('store/1/books/' . $book->id . '/' . $page_count . '.jpg');
+                    BooksPages::create([
+                        'book_id'    => $book->id ,
+                        'page_no'    => $page_count ,
+                        'page_title'    => $page_count ,
+                        'page_path'  => 'store/1/books/' . $book->id . '/' . $page_count . '.jpg' ,
+                        'created_by' => $user->id ,
+                        'created_at' => time() ,
+                        'sort_order' => $page_count,
+                    ]);
+                    $page_count++;
+                }
             }
+        }else{
+            $book_pages = isset( $data['book_pages'] )? $data['book_pages'] : array();
+            $book_pages_titles = isset( $data['book_pages_titles'] )? $data['book_pages_titles'] : array();
+            $book_pages_ids = array();
+            if( !empty( $book_pages )){
+                foreach( $book_pages as $page_index => $page_id){
+                    $book_pages_ids[]   = $page_id;
+                    $page_title = isset( $book_pages_titles[$page_index] )? $book_pages_titles[$page_index] : '';
+                    $pageObj = BooksPages::findOrFail($page_id);
+                    $pageObj->update([
+                        'page_title' => $page_title,
+                        'sort_order' => $page_index
+                    ]);
+                }
+            }
+
+            BooksPages::whereNotIn('id' , $book_pages_ids)->where('book_id', $book->id)->update([
+                'status' => 'inactive'
+            ]);
         }
 
 
@@ -212,7 +238,7 @@ class BooksController extends Controller
                 'redirect_url' => $redirectUrl
             ]);
         } else {
-            return redirect()->route('adminEditGlossary' , ['id' => $book->id]);
+            return redirect()->route('adminEditBook' , ['id' => $book->id]);
         }
     }
 
@@ -223,10 +249,8 @@ class BooksController extends Controller
     {
         $user = auth()->user();
 
-
         $data = $request->all();
         $locale = $request->get('locale' , getDefaultLocale());
-
 
         $rules = [
             'book_title' => 'required|max:255' ,
@@ -295,8 +319,8 @@ class BooksController extends Controller
             }
         }
 
-        $book = BooksPagesInfoLinks::whereNotIn('id' , $field_ids_array)->delete();
-        $book = BooksPagesQuestions::whereNotIn('id' , $questions_ids_array)->delete();
+        $book = BooksPagesInfoLinks::whereNotIn('id' , $field_ids_array)->where('page_id' , $book_page_id)->delete();
+        $book = BooksPagesQuestions::whereNotIn('id' , $questions_ids_array)->where('page_id' , $book_page_id)->delete();
 
         //$field_ids_array
         return response()->json([

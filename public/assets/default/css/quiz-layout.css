@@ -350,7 +350,6 @@ Lms Form Fields Style
 	background: -webkit-linear-gradient(left,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%);
 	background: linear-gradient(to right,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c17c', endColorstr='#5c9f5c',GradientType=1 );
-
 }
 .form-field input[type="checkbox"]:checked ~ label:after {
 	opacity: 1;
@@ -1070,8 +1069,6 @@ Registertion Form Style Start
 /***************************** 
 Registertion Form Style End
 ******************************/
-
-
 /***************************** 
 Lms Text Bord Style Start
 ******************************/
@@ -1224,11 +1221,9 @@ Lms Text Bord Style Start
     background-color: #ccc;
     border-radius: 100%;
 }
-
 /***************************** 
 Lms Text Bord Style End
 ******************************/
-
 /***************************** 
 Lms Quiz Wf Style Start 
 ******************************/
@@ -1984,11 +1979,9 @@ span~.input-holder {
 .leform-form-editor .table tr td p {
     text-align: center;
 }
-
 /***************************** 
 Lms Quiz Wf Style End 
 ******************************/
-
 /************************************ 
  Quiz Top-Bar Style Start
 *************************************/
@@ -2094,7 +2087,6 @@ Lms Quiz Wf Style End
 /************************************ 
  Quiz Top-Bar Style End
 *************************************/
-
 /************************************ 
  Quiz Read Info Style Start
 *************************************/
@@ -2252,7 +2244,6 @@ Lms Quiz Wf Style End
 /************************************ 
  Quiz Read Info Style End
 *************************************/
-
 /**********************************
 Lms Table Style 
 **********************************/
@@ -2324,7 +2315,6 @@ Lms Table Style
 .leform-element table.table th b {
     font-weight: 500;
 }
-
 /************************************ 
  Tool Dropdown Style Start
 *************************************/
