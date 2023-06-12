@@ -2,19 +2,72 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Books extends Model
 {
+    use Sluggable;
 
     protected $table = 'books';
     public $timestamps = false;
 
-    protected $fillable = ['book_title' , 'book_pdf' , 'book_pages' , 'created_by' , 'created_at'];
+    protected $fillable = ['book_title' , 'book_slug' , 'book_pdf' , 'book_pages' , 'written_by' , 'illustrated_by' , 'publication_date' , 'cover_image' , 'words_bank' , 'reading_level' , 'reading_color' , 'age_group' , 'interest_area' , 'skill_set' , 'no_of_pages' , 'reading_points' , 'created_by' , 'created_at'];
+
+    static $reading_level = array(
+        'level-1' => 'level 1' ,
+        'level-2' => 'level 2' ,
+        'level-3' => 'level 3' ,
+    );
+
+    static $age_group = array(
+        '0-3'  => '0-3' ,
+        '3-6'  => '3-6' ,
+        '6-9'  => '6-9' ,
+        '9-12' => '9-12' ,
+    );
+
+    static $interest_area = array(
+        'Sport'     => 'Sport' ,
+        'Genre'     => 'Genre' ,
+        'Real-life' => 'Real-life' ,
+        'Fiction'   => 'Fiction' ,
+    );
+
+    static $skill_set = array(
+        'Paying Attention'        => 'Paying Attention' ,
+        'Understanding Sentences' => 'Understanding Sentences' ,
+        'Vocabulary'              => 'Vocabulary' ,
+    );
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'book_slug' => [
+                'source' => 'book_title'
+            ]
+        ];
+    }
+
+    public static function makeSlug($title)
+    {
+        return SlugService::createSlug(self::class , 'book_slug' , $title);
+    }
 
     public function bookPages()
     {
-        return $this->hasMany('App\Models\BooksPages' , 'book_id' , 'id')->orderBy('sort_order')->where('status', 'active');
+        return $this->hasMany('App\Models\BooksPages' , 'book_id' , 'id')->orderBy('sort_order')->where('status' , 'active');
+    }
+
+    public function bookFinalQuiz()
+    {
+        return $this->hasMany('App\Models\BooksPagesQuestions' , 'book_id' , 'id')->orderBy('sort_order')->where('quiz_type' , 'final')->where('status' , 'active');
     }
 
     public function bookPageInfoLinks()

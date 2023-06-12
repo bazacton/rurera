@@ -74,7 +74,7 @@ class Share
             'webinars' => function ($query) {
                 $query->with('chapters');
             }
-        ])->where('parent_id', '>', 0)->get();
+        ])->where('parent_id', '>', 0)->orderBy('order', 'ASC')->get();
 
 
         $category_colors = array(
@@ -91,9 +91,13 @@ class Share
         if (!empty($course_navigation_data)) {
             foreach ($course_navigation_data as $categoryObj) {
                 if( $categoryObj->slug != '') {
+                    $category_colors[$categoryObj->slug]    = $categoryObj->color;
                     $category_name = $categoryObj->getTitleAttribute();
                     $course_navigation[$categoryObj->slug]['title'] = $category_name;
                     $course_navigation[$categoryObj->slug]['color'] = $category_colors[$categoryObj->slug];
+                    if( $categoryObj->menu_data != '') {
+                        $course_navigation[$categoryObj->slug]['menu_data'] = $categoryObj->menu_data;
+                    }
                     if (!empty($categoryObj->webinars)) {
                         foreach ($categoryObj->webinars as $webinarObj) {
                             $chapter_title = $webinarObj->getTitleAttribute();

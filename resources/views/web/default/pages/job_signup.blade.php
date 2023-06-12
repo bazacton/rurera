@@ -5,20 +5,93 @@
 @endpush
 
 @section('content')
-<section class="position-relative text-center job-singup-sub-header">
+<section class="position-relative job-singup-sub-header gallery-sub-header">
     <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-12 col-md-9 col-lg-9">
-                <h1 class="font-30 font-weight-bold">Work with Us</h1>
-                <p>We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br /> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
+        <div class="row h-100">
+            <div class="col-12 col-md-6 col-lg-6">
+                <h1 class="font-30 font-weight-bold">Careers at Rurera</h1>
+                <p>We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
                 <a href="#" class="btn-primary rounded-pill">Find new positions</a>
             </div>
         </div>
     </div>
-    <div class="svg-container"></div>
+    <div class="masonry-grid-gallery">
+        <div class="masonry-grid">
+        <div class="row">
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="https:../assets/default/img/staff-1.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+            
+
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-6.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-4.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+
+
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-2.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-3.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+
+
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="https:../assets/default/img/staff-7.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt=""></a>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </section>
 <div class="lms-job-search">
-    <section class="lms-search-services mb-0">
+<section class="lms-search-services mb-0 pt-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -28,110 +101,57 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="services-inner">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg enable-background="new 0 0 64 64" height="64px" id="Icons" version="1.1" viewBox="0 0 64 64" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="usability_audit"><g><path d="M17.07,21h1.055l0.251,1.758c0.068,0.546,0.569,0.931,1.114,1.009l1.52,0.154    c0.216,0.031,0.484,0.015,0.764,0.015c0.428,0,0.881-0.051,1.207-0.116l0.539-0.115c0.539-0.108,1.09-0.387,1.223-0.92L25.25,21    c0,0,0.094-0.5,0.75-0.5s0.75,0.5,0.75,0.5l0.508,1.78c0.133,0.533,0.684,0.933,1.223,1.041l0.539,0.045    c0.326,0.065,0.779,0.069,1.207,0.069c0.279,0,0.549-0.03,0.764-0.062l1.52-0.225c0.545-0.078,1.046-0.342,1.114-0.888L33.875,21    h1.115c0.007,0.475,0.01,0.967,0.01,1.5c0,0,1-3.188,1-8c0-2.916-0.5-7-4-7c-1.458-1.708-3.946-2-7-2c-7.5,0-9,4.5-9,9    c0,4.971,1,8,1,8C17,21.943,17.029,21.459,17.07,21z M24.772,20.349l-0.515,2.061c-0.087,0.347-0.486,0.727-0.836,0.797    l-0.54,0.107c-0.282,0.057-0.696,0.091-1.108,0.091c-0.264,0-0.51-0.015-0.692-0.041l-1.521-0.217    c-0.32-0.046-0.648-0.38-0.688-0.701L18.62,20.43c-0.034-0.273,0.167-0.537,0.44-0.576l1.521-0.217    c0.262-0.038,0.631-0.06,1.013-0.06c0.319,0,0.617,0.016,0.836,0.043l2.016,0.252c0.121,0.015,0.22,0.071,0.279,0.159    C24.785,20.118,24.802,20.231,24.772,20.349z M33.128,22.445c-0.04,0.321-0.369,0.655-0.688,0.701l-1.521,0.217    c-0.183,0.026-0.429,0.041-0.692,0.041c-0.412,0-0.826-0.034-1.109-0.091l-0.538-0.107c-0.352-0.07-0.75-0.45-0.836-0.797    l-0.516-2.061c-0.029-0.117-0.013-0.23,0.048-0.317c0.06-0.088,0.159-0.145,0.279-0.159l2.016-0.252    c0.22-0.027,0.517-0.043,0.836-0.043c0.382,0,0.751,0.021,1.014,0.06l1.519,0.217c0.273,0.039,0.476,0.303,0.441,0.576    L33.128,22.445z M33.798,20c-0.131-0.328-0.417-0.589-0.788-0.642l-1.52-0.217c-0.296-0.042-0.694-0.064-1.084-0.064    c-0.328,0-0.649,0.016-0.898,0.047l-2.016,0.252c-0.375,0.047-0.639,0.301-0.731,0.624h-1.521    c-0.093-0.323-0.356-0.577-0.731-0.624l-2.016-0.252c-0.25-0.031-0.57-0.047-0.898-0.047c-0.39,0-0.787,0.022-1.084,0.064    l-1.52,0.217c-0.371,0.053-0.657,0.313-0.789,0.642h-1.012c0.222-1.455,0.588-2.648,0.811-4.5    c0.115-0.951,0.209-1.269,0.486-1.269c0.555,0,1.848,1.269,5.514,1.269c4.36,0,6.676-2.635,8.072-2.635    c0.365,0,0.668,0.181,0.928,0.635c1.475,2.58,1.859,4.35,1.961,6.5H33.798z M25,6.5c2.9,0,5.071,0.28,6.239,1.649l0.3,0.351H32    c0.742,0,3,0,3,6c0,0.264-0.003,0.523-0.009,0.777c-0.286-0.703-0.652-1.45-1.123-2.273c-0.538-0.941-1.273-1.139-1.796-1.139    c-0.762,0-1.489,0.4-2.41,0.908C28.266,13.543,26.527,14.5,24,14.5c-2.418,0-3.668-0.584-4.414-0.932    c-0.404-0.188-0.723-0.337-1.1-0.337l0,0c-1.207,0-1.373,1.267-1.477,2.123C17.004,15.076,17,14.792,17,14.5    C17,8.967,19.467,6.5,25,6.5z" fill="#37474F"></path><path d="M34.53,26.873c0.237-0.796,0.397-1.597,0.442-2.379C34.982,24.495,34.99,24.5,35,24.5c0.55,0,1-0.45,1-1    v-1c0,0.55-0.45,1.5-1,1.5c-0.001,0-0.329,0-0.885,0c-0.077,0.134-0.132,0.279-0.141,0.437c-0.059,1.009-0.306,2.028-0.681,3.009    C33.692,27.23,34.106,27.043,34.53,26.873z" fill="#37474F"></path><path d="M46.493,40.959c-0.272-1.634-1.811-3.223-3.435-3.547L38.5,36.5V36L32,34v-1.645    c-0.384,0.476-0.718,0.992-1,1.54v2.823c-0.154,0.226-0.474,0.623-0.987,1.024C30.011,37.829,30,37.913,30,38    c0,0.313,0.017,0.624,0.048,0.93c0.237-0.146,0.456-0.298,0.646-0.45l-0.453,1.554c0.134,0.575,0.321,1.128,0.559,1.655    l1.877-6.435l4.824,1.484v1.585l-1.871,0.748l-1.408,0.563l1.072,1.072l1.362,1.362l-2.729,3.358    c0.277,0.189,0.565,0.363,0.864,0.521L38,42l-2-2l2.5-1v-1.48l4.363,0.873c1.205,0.241,2.441,1.517,2.644,2.73l0.253,1.521    c0.05,0.297,0.084,0.713,0.104,1.164c0.333-0.393,0.629-0.816,0.892-1.263c-0.004-0.021-0.006-0.047-0.009-0.066    C46.606,41.64,46.493,40.959,46.493,40.959z" fill="#37474F"></path><path d="M39,50c-0.147,0-0.291-0.017-0.438-0.022L26,57.821l-0.567-0.354l7.446-9.164    c-0.289-0.172-0.57-0.354-0.843-0.549l-4.689,5.772l2.329-7.987c-0.266-0.328-0.511-0.673-0.741-1.028l-2.947,10.105    l-4.688-16.144C22.24,39.231,23.748,40,26.001,40c0.417,0,0.8-0.033,1.167-0.081c-0.053-0.326-0.096-0.655-0.121-0.989    C26.721,38.973,26.375,39,26.001,39c-3.182,0-4.613-1.712-5.001-2.28V32.65c1.488,1.42,3.24,2.35,5,2.35    c0.485,0,0.97-0.077,1.449-0.209c0.113-0.408,0.245-0.808,0.399-1.197C27.232,33.85,26.609,34,26,34    c-3.607,0-7.707-4.916-7.975-9.563c-0.009-0.157-0.063-0.303-0.141-0.437c-0.555,0-0.883,0-0.885,0c-0.55,0-1-0.95-1-1.5v1    c0,0.55,0.45,1,1,1c0.01,0,0.018-0.005,0.027-0.006c0.141,2.44,1.302,5.074,2.973,7.094V34l-6.5,2v0.501l-4.559,0.911    c-1.625,0.324-3.162,1.913-3.435,3.547l-0.253,1.521c-0.141,0.84-0.18,2.413-0.088,3.514L26,59l14.609-9.121    C40.081,49.95,39.547,50,39,50z M14.5,36.738l4.823-1.483l5.251,18.081l-9.227-11.269l1.359-1.36l1.072-1.072l-1.408-0.563    L14.5,38.323V36.738z M6.133,45.417c-0.042-0.959,0-2.132,0.107-2.773l0.253-1.521c0.206-1.235,1.417-2.485,2.645-2.73L13.5,37.52    V39l2.5,1l-2,2l11.552,14.108l-0.354,1.212L6.133,45.417z" fill="#37474F"></path><g><path d="M58.293,54.293l-8.586-8.586c-0.194-0.194-0.451-0.291-0.707-0.291c-0.159,0-0.313,0.051-0.458,0.126     l-0.836-0.836C49.139,42.849,50,40.527,50,38c0-6.075-4.925-11-11-11s-11,4.925-11,11s4.925,11,11,11     c2.527,0,4.849-0.861,6.706-2.294l0.836,0.836c-0.196,0.377-0.15,0.85,0.165,1.165l8.586,8.586     c0.194,0.194,0.451,0.291,0.707,0.291s0.513-0.097,0.707-0.291l1.586-1.586C58.682,55.318,58.682,54.682,58.293,54.293z M29,38     c0-5.522,4.478-10,10-10s10,4.478,10,10s-4.478,10-10,10S29,43.522,29,38z M47.058,45.472l0.735,0.735l-0.586,0.586l-0.735-0.735     C46.674,45.869,46.869,45.674,47.058,45.472z M56,56.586L47.414,48l1.583-1.584c0,0,0.001,0,0.003,0v-0.002L57.586,55L56,56.586z " fill="#37474F"></path></g></g></g></svg>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Choose job</a>
-                                        </h5>
-                                        <p>explore listings to find perfect match for your career.</p>
-                                    </div>
-                                </div>
+                    <ul class="steps-holder d-flex justify-content-center">
+                        <li class="step-item">
+                            <a href="#">step 1</a>
+                        </li>
+                        <li class="step-item">
+                            <a href="#">step 2</a>
+                        </li>
+                        <li class="step-item">
+                            <a href="#">step 3</a>
+                        </li>
+                        <li class="step-item">
+                            <a href="#">step 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="step-card mt-40 mb-30 text-center">
+                        <div class="step-card-body">
+                            <div class="text-holder">
+                                <h4 class="post-title">Fill Application</h4>
+                                <p class="mt-15">thoroughly with personal info, work experience, and qualifications.</p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="news_updates"></g><g id="newspaper"></g><g id="fake_news"></g><g id="secret_document"></g><g id="interview"></g><g id="reporter"></g><g id="id_card"></g><g id="camera"></g><g id="television"></g><g id="crime_scane"></g><g id="note"><g><path d="M35,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S37.2,16,35,16z M35,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S36.1,22,35,22z    "></path><path d="M16,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S18.2,16,16,16z M16,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S17.1,22,16,22z    "></path><path d="M54,16c-2.2,0-4,1.8-4,4s1.8,4,4,4s4-1.8,4-4S56.2,16,54,16z M54,22c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S55.1,22,54,22z    "></path><path d="M96,28.9c0-2.1-0.8-4.1-2.3-5.6c-1.5-1.5-3.5-2.3-5.6-2.3c-2.1,0-4.1,0.8-5.6,2.3c-0.4-0.4-1-0.4-1.4,0l-15,15V27V13    c0-0.6-0.4-1-1-1H5c-0.6,0-1,0.4-1,1v14v60c0,0.6,0.4,1,1,1h60h0c0,0,0,0,0,0c0.1,0,0.3,0,0.4-0.1c0,0,0.1,0,0.1-0.1    c0.1,0,0.1-0.1,0.2-0.1c0,0,0.1-0.1,0.1-0.1c0-0.1,0.1-0.1,0.1-0.2c0,0,0-0.1,0-0.1c0,0,0-0.1,0-0.1c0,0,0,0,0-0.1c0,0,0,0,0-0.1    V64c0-0.1,0-0.2-0.1-0.3l24.2-24.2c0,0,0,0,0,0s0,0,0,0l3.5-3.5c0.2-0.2,0.3-0.4,0.3-0.7c0-0.3-0.1-0.5-0.3-0.7    C95.2,33,96,31.1,96,28.9z M88.1,23c1.6,0,3.1,0.6,4.2,1.7c1.1,1.1,1.7,2.6,1.7,4.2c0,1.6-0.6,3.1-1.7,4.2l-8.4-8.4    C85,23.6,86.5,23,88.1,23z M60,66.8l-2.1-2.1l28-28l2.1,2.1L60,66.8z M48,66l3,3l-3.7,0.7L48,66z M53.3,68.5l-4.8-4.8l0.9-4.7    l8.6,8.6L53.3,68.5z M56.5,63.3l-2.8-2.8l28-28l2.8,2.8L56.5,63.3z M52.3,59.1L50.2,57l28-28l2.1,2.1L52.3,59.1z M6,14h58v12H6V14    z M6,86V60.4c11.1,16,30.4,22.8,43.9,25.6H6z M7.2,58.6c8.3,2,16.4,1.9,24-0.3c0.9,4.2,5.2,18.7,24.8,26.8    C43.1,83.1,19.4,77.1,7.2,58.6z M64,85.7c-28.7-8-31-28.6-31-28.8c0-0.3-0.2-0.6-0.4-0.7C32.3,56,32,56,31.7,56    C23.6,58.6,15,58.6,6,56.2V28h58v12c0,0.1,0,0.2,0.1,0.3l-16,16c0,0,0,0,0,0.1c0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.1-0.1,0.2    c0,0,0,0.1,0,0.1l-2.8,14c-0.1,0.3,0,0.7,0.3,0.9c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.1,0,0.2,0l14-2.8c0,0,0.1,0,0.1,0    c0.1,0,0.1,0,0.2-0.1c0.1,0,0.1-0.1,0.2-0.1c0,0,0.1,0,0.1,0l3.3-3.3V85.7z M89.5,37.3l-9.8-9.8l2.1-2.1l9.8,9.8L89.5,37.3z"></path><path d="M19,34h32c0.6,0,1-0.4,1-1s-0.4-1-1-1H19c-0.6,0-1,0.4-1,1S18.4,34,19,34z"></path><path d="M10,40h50c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,40,10,40z"></path><path d="M10,45h47c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,45,10,45z"></path><path d="M10,50h42c0.6,0,1-0.4,1-1s-0.4-1-1-1H10c-0.6,0-1,0.4-1,1S9.4,50,10,50z"></path><path d="M47,54c0-0.6-0.4-1-1-1H10c-0.6,0-1,0.4-1,1s0.4,1,1,1h36C46.6,55,47,54.6,47,54z"></path></g></g><g id="recorder"></g><g id="station_television"></g><g id="file_storage"></g><g id="news_anchor"></g><g id="trending_news"></g><g id="world_news"></g><g id="document"></g><g id="radio"></g><g id="video_recorder"></g></svg>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Fill application</a>
-                                        </h5>
-                                        <p>thoroughly with personal info, work experience, and qualifications.</p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="step-card mt-40 mb-30 text-center">
+                        <div class="step-card-body">
+                            <div class="text-holder">
+                                <h4 class="post-title">Get Shortlisted</h4>
+                                <p class="mt-15">if you meet requirements, stay informed about next steps.</p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg enable-background="new 0 0 48 48" height="48px" id="_x3C_Layer_x3E_" version="1.1" viewBox="0 0 48 48" width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="result_x2C__clipboard_x2C__check_mark"><path d="M40.5,46h-33C6.673,46,6,45.327,6,44.5v-38C6,5.673,6.673,5,7.5,5h7.042c0.276,0,0.5,0.224,0.5,0.5   S14.818,6,14.542,6H7.5C7.224,6,7,6.224,7,6.5v38C7,44.776,7.224,45,7.5,45h33c0.276,0,0.5-0.224,0.5-0.5v-38   C41,6.224,40.776,6,40.5,6h-6.957c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5H40.5C41.327,5,42,5.673,42,6.5v38   C42,45.327,41.327,46,40.5,46z" fill="#546E7A"></path><path d="M32.319,43H10c-0.551,0-1-0.449-1-1V8c0-0.551,0.449-1,1-1h4.5C14.776,7,15,7.224,15,7.5S14.776,8,14.5,8   H10v34h22.319L38,37.266V8h-4.5C33.224,8,33,7.776,33,7.5S33.224,7,33.5,7H38c0.551,0,1,0.449,1,1v29.266   c0,0.296-0.13,0.576-0.358,0.767l-5.682,4.735C32.78,42.918,32.553,43,32.319,43z" fill="#546E7A"></path><g><path d="M32.702,42.774c-0.101,0-0.203-0.022-0.299-0.067C32.154,42.59,32,42.348,32,42.073V38    c0-0.551,0.449-1,1-1h4.947c0.299,0,0.558,0.182,0.659,0.463c0.101,0.281,0.018,0.585-0.212,0.776l-5.246,4.372    C33.019,42.718,32.862,42.774,32.702,42.774z M33,38v3.433L37.119,38H33z" fill="#546E7A"></path></g><g><path d="M31.015,10h-14c-0.551,0-1-0.449-1-1V5c0-0.551,0.449-1,1-1h3.851c0.575-1.209,1.799-2,3.149-2    c1.351,0,2.575,0.791,3.15,2h3.85c0.551,0,1,0.449,1,1v4C32.015,9.551,31.566,10,31.015,10z M17.015,5v4h14V5h-4.184    c-0.211,0-0.4-0.133-0.471-0.333C26.005,3.67,25.063,3,24.015,3c-1.048,0-1.99,0.67-2.344,1.667C21.6,4.867,21.411,5,21.199,5    H17.015z" fill="#546E7A"></path></g><g><path d="M18.5,35h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,34.776,18.776,35,18.5,35z M15,34h3v-3h-3V34z" fill="#546E7A"></path><path d="M18.5,27h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,26.776,18.776,27,18.5,27z M15,26h3v-3h-3V26z" fill="#546E7A"></path><path d="M18.5,19h-4c-0.276,0-0.5-0.224-0.5-0.5v-4c0-0.276,0.224-0.5,0.5-0.5h4c0.276,0,0.5,0.224,0.5,0.5v4    C19,18.776,18.776,19,18.5,19z M15,18h3v-3h-3V18z" fill="#546E7A"></path><path d="M33.5,34h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,34,33.5,34z" fill="#546E7A"></path><path d="M33.5,32h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,32,33.5,32z" fill="#546E7A"></path><path d="M33.5,26h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,26,33.5,26z" fill="#546E7A"></path><path d="M33.5,24h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,24,33.5,24z" fill="#546E7A"></path><path d="M33.5,18h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5 S33.776,18,33.5,18z" fill="#546E7A"></path><path d="M33.5,16h-12c-0.276,0-0.5-0.224-0.5-0.5s0.224-0.5,0.5-0.5h12c0.276,0,0.5,0.224,0.5,0.5    S33.776,16,33.5,16z" fill="#546E7A"></path></g></g></svg>
-
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Get shortlisted</a>
-                                        </h5>
-                                        <p>if you meet requirements, stay informed about next steps.</p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="step-card mt-40 mb-30 text-center">
+                        <div class="step-card-body">
+                            <div class="text-holder">
+                                <h4 class="post-title">Prepare For Interview</h4>
+                                <p class="mt-15">research company, practice common questions, show enthusiasm.</p>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="news_updates"></g><g id="newspaper"></g><g id="fake_news"></g><g id="secret_document"></g><g id="interview"><path d="M88,64h-1v-4c0-0.6-0.4-1-1-1h-2v-7c0-0.3-0.1-0.5-0.3-0.7l-5-5c-0.1-0.1-0.2-0.2-0.3-0.2c0.4-0.6,0.6-1.3,0.6-2.1   c0-2.2-1.8-4-4-4s-4,1.8-4,4s1.8,4,4,4c0.8,0,1.5-0.2,2.1-0.6c0,0.1,0.1,0.2,0.2,0.3l4.7,4.7V59h-2c-0.6,0-1,0.4-1,1v4h-1.1   l-0.5-3.8C75.9,49.8,67,42,56.6,42c2.7-1.8,4.6-4.7,5.2-8H66c2.2,0,4-1.8,4-4v-4c0-1.9-1.3-3.4-3-3.9V15c0-6.1-4.9-11-11-11H44   c-6.1,0-11,4.9-11,11v7.1c-1.7,0.4-3,2-3,3.9v4c0,2.2,1.8,4,4,4h4.2c0.6,3.3,2.5,6.2,5.2,8C33,42,24.1,49.8,22.6,60.2L22.1,64H21   v-4c0-0.6-0.4-1-1-1h-2v-6.6l4.7-4.7c0.1-0.1,0.2-0.2,0.2-0.3c0.6,0.4,1.3,0.6,2.1,0.6c2.2,0,4-1.8,4-4s-1.8-4-4-4s-4,1.8-4,4   c0,0.8,0.2,1.5,0.6,2.1c-0.1,0-0.2,0.1-0.3,0.2l-5,5C16.1,51.5,16,51.7,16,52v7h-2c-0.6,0-1,0.4-1,1v4h-1c-0.6,0-1,0.4-1,1v6   c0,0.6,0.4,1,1,1h2v23c0,0.6,0.4,1,1,1h70c0.6,0,1-0.4,1-1V72h2c0.6,0,1-0.4,1-1v-6C89,64.4,88.6,64,88,64z M75,46   c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S76.1,46,75,46z M25,42c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S23.9,42,25,42z M81,61h4v3h-4   V61z M39.1,22C39.1,22,39.1,22,39.1,22C39,22,39,22,39.1,22L38,22v-6c0-3.9,3.1-7,7-7h10c3.9,0,7,3.1,7,7v6h-1c-4.1,0-5-3.1-5-3.2   c-0.1-0.4-0.4-0.7-0.8-0.7c-0.4-0.1-0.8,0.1-1,0.5C51.9,22.1,42.5,22.3,39.1,22z M68,26v4c0,1.1-0.9,2-2,2h-4v-8h4   C67.1,24,68,24.9,68,26z M44,6h12c5,0,9,4,9,9v7h-1v-6c0-5-4-9-9-9H45c-5,0-9,4-9,9v6h-1v-7C35,10,39,6,44,6z M34,32   c-1.1,0-2-0.9-2-2v-4c0-1.1,0.9-2,2-2h4v8H34z M40,32v-7.9c3,0.1,11.1,0.1,14.8-3.2c0.9,1.4,2.5,2.8,5.2,3.1V32c0,5.5-4.5,10-10,10   S40,37.5,40,32z M24.6,60.4C25.9,51.1,34,44,43.5,44h13.1c9.5,0,17.6,7.1,18.8,16.4l0.5,3.6H24.1L24.6,60.4z M15,61h4v3h-4V61z    M84,94H16V72h68V94z M87,70h-2H15h-2v-4h1h6h3h54h3h6h1V70z"></path></g><g id="reporter"></g><g id="id_card"></g><g id="camera"></g><g id="television"></g><g id="crime_scane"></g><g id="note"></g><g id="recorder"></g><g id="station_television"></g><g id="file_storage"></g><g id="news_anchor"></g><g id="trending_news"></g><g id="world_news"></g><g id="document"></g><g id="radio"></g><g id="video_recorder"></g></svg>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Prepare for interview</a>
-                                        </h5>
-                                        <p>research company, practice common questions, show enthusiasm.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M462.55,443.34H49.45a5.38,5.38,0,1,0,0,10.76h413.1a5.38,5.38,0,0,0,0-10.76Z"/><path d="M333.43,288.79h0a5.39,5.39,0,0,0,5.37-5.39l-.13-81a56.37,56.37,0,0,1,56.14-56.58h.23a56.35,56.35,0,0,1,56.35,56.11l.12,81a5.38,5.38,0,0,0,5.38,5.38h0a5.38,5.38,0,0,0,5.36-5.39l-.12-81a67.06,67.06,0,0,0-44.85-63A43.63,43.63,0,0,0,394.63,57.9h-.18A43.67,43.67,0,0,0,372.17,139a67.25,67.25,0,0,0-44.25,63.4l.13,81A5.38,5.38,0,0,0,333.43,288.79Zm28.32-187.11a32.93,32.93,0,0,1,32.76-33h.12a32.88,32.88,0,0,1,.13,65.76,32.1,32.1,0,0,1-23.28-9.53A32.64,32.64,0,0,1,361.75,101.68Z"/><path d="M357.46,208V407.09a5.39,5.39,0,0,0,10.77,0V208a5.39,5.39,0,0,0-10.77,0Z"/><path d="M422,208V407.09a5.38,5.38,0,0,0,10.76,0V208A5.38,5.38,0,0,0,422,208Z"/><path d="M55.1,374.94a5.34,5.34,0,0,0,3.8-1.57l41.16-41.15v74.87a5.38,5.38,0,0,0,10.76,0V332.23L152,373.37a5.38,5.38,0,1,0,7.62-7.61l-50.33-50.33a5.13,5.13,0,0,0-1.23-.92h0l-.37-.18a.43.43,0,0,0-.12-.05l-.3-.11-.2-.07-.27-.07a1.83,1.83,0,0,0-.25-.06l-.26,0-.26,0-.47,0h-.06l-.54,0-.14,0-.39.06-.14,0-.37.1-.12,0-.38.14-.09,0-.38.19-.11.06-.33.2a2.85,2.85,0,0,0-.33.25l-.08.05a5,5,0,0,0-.47.45L51.3,365.76a5.37,5.37,0,0,0,3.8,9.18Z"/><path d="M198,257.19l41.14-41.14v191a5.38,5.38,0,0,0,10.76,0v-191l41.14,41.14a5.38,5.38,0,0,0,7.62,0,5.39,5.39,0,0,0,0-7.61l-50.33-50.33a6,6,0,0,0-.47-.41,5.35,5.35,0,0,0-6.68,0,3.73,3.73,0,0,0-.47.41l-50.33,50.33a5.38,5.38,0,0,0,7.62,7.61Z"/></svg>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Employment Conditions</a>
-                                        </h5>
-                                        <p> Receive info on salary, benefits, and working hours after the interview.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <div class="services-card">
-                                    <div class="img-holder">
-                                        <figure>
-                                            <a href="#">
-                                                <svg id="Layer_1" style="enable-background:new 0 0 66 66;" version="1.1" viewBox="0 0 66 66" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M63,33.66l-4.91-4.33c-0.43-0.39-0.96-0.68-1.51-0.85c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0,0c-0.4-0.13-0.82-0.19-1.23-0.19   h-0.23v-2.16c5.25-0.51,9.37-4.95,9.37-10.33c0-5.72-4.66-10.38-10.39-10.38c-5.72,0-10.38,4.66-10.38,10.38   c0,1.14,0.19,2.23,0.53,3.26h-4.11v-5.09c0-2.55-2.08-4.63-4.63-4.63H21.12c-2.55,0-4.63,2.08-4.63,4.63v5.09H8.54   c-3.87,0-7.02,3.15-7.02,7.02v5.44c0,2.14,0.66,4.13,1.78,5.78v16.26c0,3.87,3.15,7.02,7.02,7.02h35.98c0.01,0,0.01,0,0.01,0h13.93   c2.29,0,4.16-1.87,4.16-4.16V36.78c0-0.4-0.06-0.79-0.17-1.15C64.03,34.87,63.6,34.19,63,33.66z M56.92,29.7   c0.19,0.11,0.36,0.23,0.52,0.37l4.91,4.33c0.13,0.11,0.25,0.24,0.36,0.37c0.04,0.04,0.07,0.09,0.1,0.14   C62.88,35,62.94,35.1,63,35.19c0.02,0.03,0.03,0.05,0.04,0.08h-4.83c-0.71,0-1.29-0.58-1.29-1.29V29.7z M54.1,6.4   c5.19,0,9.41,4.22,9.41,9.4c0,5.03-3.96,9.13-8.93,9.38c0,0,0,0,0,0c0,0,0,0,0,0c-0.16,0.01-0.31,0.02-0.47,0.02   c-5.18,0-9.4-4.22-9.4-9.41C44.7,10.62,48.92,6.4,54.1,6.4z M17.48,13.97c0-2.01,1.64-3.65,3.65-3.65h14.38   c2.01,0,3.65,1.64,3.65,3.65v5.08h-2.94v-3.76c0-1.6-1.31-2.91-2.91-2.91h-9.98c-1.6,0-2.91,1.31-2.91,2.91v3.76h-2.94V13.97z    M35.24,15.29v3.76H21.4v-3.76c0-1.06,0.86-1.93,1.93-1.93h9.98C34.37,13.36,35.24,14.23,35.24,15.29z M2.5,26.08   c0-3.33,2.71-6.04,6.04-6.04h36.09c1.62,3.62,5.25,6.15,9.47,6.15c0.01,0,0.02,0,0.03,0v2.11H41.75c-2.29,0-4.16,1.87-4.16,4.16   v8.38h-3.54v-1.61c0-1.15-0.93-2.08-2.08-2.08h-7.32c-1.15,0-2.08,0.93-2.08,2.08v1.61H11.81c-2.89,0-5.48-1.33-7.19-3.4v-0.02   c-0.08-0.1-0.16-0.2-0.24-0.31C3.2,35.54,2.5,33.61,2.5,31.52V26.08z M23.56,39.22c0-0.6,0.49-1.1,1.1-1.1h7.32   c0.6,0,1.1,0.49,1.1,1.1v3.73c0,0.6-0.49,1.1-1.1,1.1h-7.32c-0.61,0-1.1-0.49-1.1-1.1V39.22z M4.28,53.56V38.54   c0.05,0.06,0.11,0.11,0.16,0.16c1.87,1.92,4.48,3.12,7.37,3.12h10.77v1.14c0,1.15,0.93,2.08,2.08,2.08h7.32   c1.15,0,2.08-0.93,2.08-2.08v-1.14h3.54v14.6c0,1.28,0.6,2.42,1.51,3.18H10.32C6.99,59.6,4.28,56.89,4.28,53.56z M63.43,56.42   c0,1.75-1.43,3.18-3.18,3.18h-18.5c-1.75,0-3.18-1.43-3.18-3.18v-15.1v-8.87c0-1.75,1.43-3.18,3.18-3.18h12.87h0.72   c0.2,0,0.4,0.03,0.6,0.07v4.65c0,1.25,1.02,2.27,2.27,2.27h5.18c0.03,0.17,0.05,0.35,0.05,0.53V56.42z"/><path d="M60.1,53.36h-4.67c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49h4.67c0.27,0,0.49-0.22,0.49-0.49   C60.59,53.58,60.38,53.36,60.1,53.36z"/><path d="M46.94,53.36H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49h4.84c0.27,0,0.49-0.22,0.49-0.49   C47.43,53.58,47.21,53.36,46.94,53.36z"/><path d="M60.1,49.83H42.1c-0.27,0-0.49,0.22-0.49,0.49s0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   S60.38,49.83,60.1,49.83z"/><path d="M60.1,46.3H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   C60.59,46.52,60.38,46.3,60.1,46.3z"/><path d="M60.1,42.77H42.1c-0.27,0-0.49,0.22-0.49,0.49c0,0.27,0.22,0.49,0.49,0.49H60.1c0.27,0,0.49-0.22,0.49-0.49   C60.59,42.99,60.38,42.77,60.1,42.77z"/><path d="M42.1,40.22h12.28c0.27,0,0.49-0.22,0.49-0.49c0-0.27-0.22-0.49-0.49-0.49H42.1c-0.27,0-0.49,0.22-0.49,0.49   C41.61,40,41.83,40.22,42.1,40.22z"/><path d="M42.1,36.68h12.28c0.27,0,0.49-0.22,0.49-0.49c0-0.27-0.22-0.49-0.49-0.49H42.1c-0.27,0-0.49,0.22-0.49,0.49   C41.61,36.46,41.83,36.68,42.1,36.68z"/><path d="M54.1,23.44c4.21,0,7.64-3.43,7.64-7.64c0-4.21-3.43-7.64-7.64-7.64c-4.21,0-7.64,3.43-7.64,7.64   C46.46,20.01,49.89,23.44,54.1,23.44z M54.1,9.14c3.67,0,6.66,2.99,6.66,6.66c0,3.67-2.99,6.66-6.66,6.66   c-3.67,0-6.66-2.99-6.66-6.66C47.44,12.13,50.43,9.14,54.1,9.14z"/><path d="M54.1,18.77c-0.68,0-1.24-0.55-1.24-1.24c0-0.27-0.22-0.49-0.49-0.49c-0.27,0-0.49,0.22-0.49,0.49   c0,1.05,0.74,1.93,1.73,2.16v0.6c0,0.27,0.22,0.49,0.49,0.49c0.27,0,0.49-0.22,0.49-0.49v-0.6c0.99-0.22,1.73-1.1,1.73-2.16   c0-1.22-1-2.22-2.22-2.22c-0.68,0-1.24-0.55-1.24-1.23c0-0.68,0.56-1.24,1.24-1.24c0.68,0,1.24,0.56,1.24,1.24   c0,0.27,0.22,0.49,0.49,0.49c0.27,0,0.49-0.22,0.49-0.49c0-1.05-0.74-1.94-1.73-2.16v-0.6c0-0.27-0.22-0.49-0.49-0.49   c-0.27,0-0.49,0.22-0.49,0.49v0.6c-0.99,0.22-1.73,1.11-1.73,2.16c0,1.22,1,2.22,2.22,2.22c0.68,0,1.24,0.56,1.24,1.24   C55.34,18.21,54.78,18.77,54.1,18.77z"/></g></svg>
-                                            </a>
-                                        </figure>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h5 class="service-title">
-                                            <a href="#">Get hired</a>
-                                        </h5>
-                                        <p>await official offer letter, join our team. Congratulations!</p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="step-card mt-40 mb-30 text-center">
+                        <div class="step-card-body">
+                            <div class="text-holder">
+                                <h4 class="post-title">Get Hired</h4>
+                                <p class="mt-15">await official offer letter, join our team. Congratulations!</p>
                             </div>
                         </div>
                     </div>
@@ -139,43 +159,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-counter-section mt-30 mb-50 pt-70 pb-60" style="background-color: #f8f8f8;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="section-title text-center mb-40">
-                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Our impact</h2>
-                        <p>We truly Understand the challenges and limitations faced by educators and learners <br> in the current system.</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
-                    <div class="lms-counter-card">
-                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
-                        <p class="font-16 font-weight-normal">Sats Practices</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
-                    <div class="lms-counter-card">
-                        <strong class="custom-counter">60</strong><span class="plus-icons">+</span>
-                        <p class="font-16 font-weight-normal">Cities</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
-                    <div class="lms-counter-card">
-                        <strong class="custom-counter">5000</strong><span class="plus-icons">+</span>
-                        <p class="font-16 font-weight-normal">Questions</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
-                    <div class="lms-counter-card">
-                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
-                        <p class="font-16 font-weight-normal">Books</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="stats-container mb-50 pb-30 pt-20">
+    <div class="stats-container mb-50 pb-40 pt-20">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -246,11 +230,10 @@
             </div>
         </div>
     </div>
-    <section class="lms-accordion-job-section mt-0">
+    <section class="lms-accordion-job-section pt-80 pb-70">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                     <div class="section-title text-center mb-50">
                         <h2 class="mb-10" style="font-size: 40px;">Open Positions</h2>
                         <p>We are always seeking talented individuals to join our team and contribute <br /> to our success. Explore some new positions:</p>
@@ -1413,11 +1396,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
             </div>
         </div>
     </section>
-    <section class="lms-testimonial-slider mt-10 pt-50">
+    <section class="lms-testimonial-slider pt-80 pb-90">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1520,178 +1502,267 @@
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="lms-jobsform-section mt-0 mb-50 pt-70 pb-70" style="background-color: #f8f8f8;">
+    <section class="lms-counter-section pb-60">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="section-title text-center mb-40">
+                        <h2 class="mt-0 mb-10" style="font-size: 40px;">Our impact</h2>
+                        <p>We truly Understand the challenges and limitations faced by educators and learners <br> in the current system.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Sats Practices</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">60</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Cities</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">5000</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Questions</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-30">
+                    <div class="lms-counter-card">
+                        <strong class="custom-counter">100</strong><span class="plus-icons">+</span>
+                        <p class="font-16 font-weight-normal">Books</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="lms-jobsform-section mb-90 pt-80 pb-90" style="background-color: #f8f8f8;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="section-title text-center mb-40">
                         <h2 class="mt-0" style="font-size: 40px;">Application Form</h2>
                     </div>
                     <div class="lms-jobs-form">
                         <div class="lms-jobs-form-body">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-element-title">
-                                        <h2>Stage 1 : Instructor application form</h2>
-                                    </div>
+                            <div class="accordion" id="accordionExample2">
+                                <div class="card">
+                                <div class="card-header" id="headingOne">
+                                        <button class="text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <span class="icon-box">
+                                                <svg id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32"><style type="text/css">
+                                                    .st0{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                                                </style><g><path class="st0" d="M30.3,3.2v9.5c0,1.2-1,2.2-2.2,2.2H13.3c0-0.2,0-0.4,0-0.6c0-2.3-1.9-4.2-4.2-4.2V3.2c0-1.2,1-2.2,2.2-2.2   h16.8C29.3,1,30.3,2,30.3,3.2z"/><line class="st0" x1="16.6" x2="22.9" y1="5.6" y2="5.6"/><line class="st0" x1="13.8" x2="25.7" y1="10.3" y2="10.3"/><path class="st0" d="M15.1,31H3.4c-0.9,0-1.7-0.7-1.7-1.7l0,0c0-3.3,2.7-6,6-6h3c3.3,0,6,2.7,6,6l0,0C16.7,30.3,16,31,15.1,31z"/><path class="st0" d="M9.2,10.1C6.9,10.1,5,12,5,14.3s1.9,5.9,4.2,5.9s4.2-3.6,4.2-5.9S11.5,10.1,9.2,10.1z"/></g></svg>
+                                            </span>
+                                            Stage 1 : Rurera application form
+                                        </button>
+                                        <div class="form-field-counter">
+                                            <span class="counts-bar-box">
+                                                <span class="counts-bar" style="width: 20%;"></span>
+                                            </span>
+                                            <span class="counter-counts"><em>0</em> of 3 tasks</span>
+                                        </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="lms-form-description">
-                                        <b>Thank you for your interest in joining our instructor team.</b>
-                                        <p>Please complete the form below to give us as much information as possible to help
-                                            move to the next step. Once you
-                                            send
-                                            in your application we will review and get back to you with a date and time for
-                                            a chat online.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Position applying for</label>
-                                        <div class="input-field select-arrow">
-                                            <select class="lms-jobs-select">
-                                                <option value="" selected="selected">Content Creator/Instructional Designer
-                                                </option>
-                                                <option value="">Subject Matter Expert (SME)</option>
-                                                <option value="">Online Instructor/Educator</option>
-                                                <option value="">Curriculum Developer</option>
-                                                <option value="">Learning Experience Designer</option>
-                                                <option value="">Administrator</option>
-                                                <option value="">Quality Assurance Specialist</option>
-                                                <option value="">Marketing and Enrollment Manager</option>
-                                                <option value="">Technical Support Specialist</option>
-                                                <option value="">Data Analyst</option>
-                                            </select>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="lms-form-description">
+                                                    <b>Thanks for your interest in joining Team Rurera.</b>
+                                                    <p>Please complete the form below to give us as much information as possible to help
+                                                        move to the next step. Once you
+                                                        send
+                                                        in your application we will review and get back to you with a date and time for
+                                                        a chat online.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">Position applying for</label>
+                                                    <div class="input-field select-arrow">
+                                                        <select class="lms-jobs-select">
+                                                            <option value="" selected="selected">Content Creator/Instructional Designer
+                                                            </option>
+                                                            <option value="">Subject Matter Expert (SME)</option>
+                                                            <option value="">Online Instructor/Educator</option>
+                                                            <option value="">Curriculum Developer</option>
+                                                            <option value="">Learning Experience Designer</option>
+                                                            <option value="">Administrator</option>
+                                                            <option value="">Quality Assurance Specialist</option>
+                                                            <option value="">Marketing and Enrollment Manager</option>
+                                                            <option value="">Technical Support Specialist</option>
+                                                            <option value="">Data Analyst</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">List your main skills</label>
+                                                    <div class="input-field">
+                                                        <input type="text" placeholder="Html Css etc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">Training experience</label>
+                                                    <div class="input-field select-arrow">
+                                                        <select class="lms-jobs-select">
+                                                            <option value="" selected="selected">1</option>
+                                                            <option value="">2</option>
+                                                            <option value="">3</option>
+                                                            <option value="">4</option>
+                                                            <option value="">5</option>
+                                                            <option value="">6</option>
+                                                            <option value="">7</option>
+                                                            <option value="">8</option>
+                                                            <option value="">9</option>
+                                                            <option value="">10</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">List your main skills</label>
-                                        <div class="input-field">
-                                            <input type="text" placeholder="Html Css etc">
+                                </div>
+                                <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <button class="text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <span class="icon-box">
+                                            <svg style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Guide"/><g id="Layer_2"><g><path d="M6,6c0-0.93-0.64-1.71-1.5-1.93V2.5C4.5,2.22,4.28,2,4,2S3.5,2.22,3.5,2.5v1.57C2.64,4.29,2,5.07,2,6s0.64,1.71,1.5,1.93    v5.57C3.5,13.78,3.72,14,4,14s0.5-0.22,0.5-0.5V7.93C5.36,7.71,6,6.93,6,6z M4,7C3.45,7,3,6.55,3,6s0.45-1,1-1s1,0.45,1,1    S4.55,7,4,7z"/><path d="M8.5,9.07V2.5C8.5,2.22,8.28,2,8,2S7.5,2.22,7.5,2.5v6.57C6.64,9.29,6,10.07,6,11s0.64,1.71,1.5,1.93v0.57    C7.5,13.78,7.72,14,8,14s0.5-0.22,0.5-0.5v-0.57c0.86-0.22,1.5-1,1.5-1.93S9.36,9.29,8.5,9.07z M8,12c-0.55,0-1-0.45-1-1    s0.45-1,1-1s1,0.45,1,1S8.55,12,8,12z"/><path d="M14,5c0-0.93-0.64-1.71-1.5-1.93V2.5C12.5,2.22,12.28,2,12,2s-0.5,0.22-0.5,0.5v0.57C10.64,3.29,10,4.07,10,5    s0.64,1.71,1.5,1.93v6.57c0,0.28,0.22,0.5,0.5,0.5s0.5-0.22,0.5-0.5V6.93C13.36,6.71,14,5.93,14,5z M12,6c-0.55,0-1-0.45-1-1    s0.45-1,1-1s1,0.45,1,1S12.55,6,12,6z"/></g></g></svg>
+                                        </span>
+                                        Stage 2 : My preferences and availability
+                                    </button>
+                                    <div class="form-field-counter">
+                                        <span class="counts-bar-box">
+                                            <span class="counts-bar"></span>
+                                        </span>
+                                        <span class="counter-counts"><em>0</em> of 2 tasks</span>
+                                    </div>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="checkbox-group">
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox1">
+                                                        <label for="checkbox1">Full Time Availability</label>
+                                                    </div>
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox2">
+                                                        <label for="checkbox2">Extra-curricular activities</label>
+                                                    </div>
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox3">
+                                                        <label for="checkbox3">Meetings and collaboration</label>
+                                                    </div>
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox4">
+                                                        <label for="checkbox4">Grade level specialization</label>
+                                                    </div>
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox5">
+                                                        <label for="checkbox5">Teaching methods</label>
+                                                    </div>
+                                                    <div class="checkbox-field">
+                                                        <input type="checkbox" id="checkbox6">
+                                                        <label for="checkbox6">Professional development</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">Explain your availability to teach</label>
+                                                    <div class="input-field">
+                                                        <textarea class="field-textarea" placeholder="Detail here"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Training experience</label>
-                                        <div class="input-field select-arrow">
-                                            <select class="lms-jobs-select">
-                                                <option value="" selected="selected">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                                <option value="">4</option>
-                                                <option value="">5</option>
-                                                <option value="">6</option>
-                                                <option value="">7</option>
-                                                <option value="">8</option>
-                                                <option value="">9</option>
-                                                <option value="">10</option>
-                                            </select>
+                                </div>
+                                <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <button class="text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <span class="icon-box">
+                                            <svg id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+                                                .st0{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                                            </style><g><path class="st0" d="M30.3,3.2v9.5c0,1.2-1,2.2-2.2,2.2H13.3c0-0.2,0-0.4,0-0.6c0-2.3-1.9-4.2-4.2-4.2V3.2c0-1.2,1-2.2,2.2-2.2   h16.8C29.3,1,30.3,2,30.3,3.2z"/><line class="st0" x1="16.6" x2="22.9" y1="5.6" y2="5.6"/><line class="st0" x1="13.8" x2="25.7" y1="10.3" y2="10.3"/><path class="st0" d="M15.1,31H3.4c-0.9,0-1.7-0.7-1.7-1.7l0,0c0-3.3,2.7-6,6-6h3c3.3,0,6,2.7,6,6l0,0C16.7,30.3,16,31,15.1,31z"/><path class="st0" d="M9.2,10.1C6.9,10.1,5,12,5,14.3s1.9,5.9,4.2,5.9s4.2-3.6,4.2-5.9S11.5,10.1,9.2,10.1z"/></g></svg>
+                                        </span>
+                                        Stage 3 : Contact Details
+                                    </button>
+                                    <div class="form-field-counter">
+                                        <span class="counts-bar-box">
+                                            <span class="counts-bar"></span>
+                                        </span>
+                                        <span class="counter-counts"><em>0</em> of 4 tasks</span>
+                                    </div>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">First and last name</label>
+                                                    <div class="input-field">
+                                                        <input type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">E-mail</label>
+                                                    <div class="input-field">
+                                                        <input type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">Mobile/messenger ID</label>
+                                                    <div class="input-field">
+                                                        <input type="text" placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="input-label">Tell us about yourself and why you feel your a good
+                                                        fit</label>
+                                                    <div class="input-field">
+                                                        <textarea class="field-textarea" placeholder="Detail here"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-element-title">
-                                        <h2>My preferences and availability</h2>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="checkbox-group">
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox1">
-                                            <label for="checkbox1">Full Time Availability</label>
-                                        </div>
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox2">
-                                            <label for="checkbox2">Extra-curricular activities</label>
-                                        </div>
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox3">
-                                            <label for="checkbox3">Meetings and collaboration</label>
-                                        </div>
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox4">
-                                            <label for="checkbox4">Grade level specialization</label>
-                                        </div>
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox5">
-                                            <label for="checkbox5">Teaching methods</label>
-                                        </div>
-                                        <div class="checkbox-field">
-                                            <input type="checkbox" id="checkbox6">
-                                            <label for="checkbox6">Professional development</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Explain your availability to teach</label>
-                                        <div class="input-field">
-                                            <textarea class="field-textarea" placeholder="Detail here"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-element-title">
-                                        <h2>Stage 3 : Instructor application form</h2>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">First and last name</label>
-                                        <div class="input-field">
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">E-mail</label>
-                                        <div class="input-field">
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Mobile/messenger ID</label>
-                                        <div class="input-field">
-                                            <input type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Tell us about yourself and why you feel your a good
-                                            fit</label>
-                                        <div class="input-field">
-                                            <textarea class="field-textarea" placeholder="Detail here"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group text-right">
-                                        <div class="input-field">
-                                            <input type="submit" value="Send Application">
-                                        </div>
-                                    </div>
+                            <div class="form-group text-right mb-0 mt-20">
+                                <div class="input-field">
+                                    <input type="submit" value="Send Application">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3"></div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
             </div>
         </div>
     </section>
@@ -1722,5 +1793,6 @@
 @endsection
 
 @push('scripts_bottom')
+<script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 @endpush

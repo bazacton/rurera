@@ -22,29 +22,8 @@ class ClassesController extends Controller
 
     public function index(Request $request)
     {
-        $webinarsQuery = Webinar::where('webinars.status', 'active')
-            ->where('private', false);
 
-        $type = $request->get('type');
-        if (!empty($type) and is_array($type) and in_array('bundle', $type)) {
-            $webinarsQuery = Bundle::where('bundles.status', 'active');
-            $this->tableName = 'bundles';
-            $this->columnId = 'bundle_id';
-        }
-
-        $webinarsQuery = $this->handleFilters($request, $webinarsQuery);
-
-
-        $sort = $request->get('sort', null);
-
-        if (empty($sort) or $sort == 'newest') {
-            $webinarsQuery = $webinarsQuery->orderBy("{$this->tableName}.created_at", 'desc');
-        }
-
-        $webinars = $webinarsQuery->with([
-            'tickets'
-        ])->paginate(500);
-
+        $webinarsData = Category::with(['subCategories.webinars'])->orderBy("order", 'ASC')->paginate(300);
         $seoSettings = getSeoMetas('classes');
         $pageTitle = $seoSettings['title'] ?? '';
         $pageDescription = $seoSettings['description'] ?? '';
@@ -54,8 +33,7 @@ class ClassesController extends Controller
             'pageTitle' => $pageTitle,
             'pageDescription' => $pageDescription,
             'pageRobot' => $pageRobot,
-            'webinars' => $webinars,
-            'coursesCount' => $webinars->total()
+            'webinarsData' => $webinarsData,
         ];
 
         return view(getTemplate() . '.pages.classes', $data);

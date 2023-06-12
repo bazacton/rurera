@@ -371,6 +371,7 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
             Route::post('/store' , 'BooksController@store');
             Route::post('/{id}/store' , 'BooksController@store');
             Route::post('/store_page' , 'BooksController@store_page');
+            Route::post('/{id}/store_page' , 'BooksController@store_page');
             Route::post('/{id}/searchinfobox' , 'BooksController@searchinfobox');
             Route::get('/get_infobox_by_ids' , 'BooksController@get_infobox_by_ids');
         });

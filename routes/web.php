@@ -248,11 +248,11 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
     });
 
 
-    
 
 
 
-    
+
+
 
     // Captcha
     Route::group(['prefix' => 'captcha'], function () {
@@ -382,16 +382,20 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
             Route::post('/{item_type}/{item_slug}', 'GiftController@store');
         });
     });
-    
+
+    Route::group(['prefix' => 'books'], function () {
+        Route::get('/{book_slug}', 'BooksController@book');
+    });
+
     Route::get('/sitemap', function()
     {
        return Response::view('sitemap')->header('Content-Type', 'application/xml');
     });
-    
+
     Route::group(['prefix' => 'pages'], function () {
         Route::get('/{link}' , 'PagesController@index');
     });
-    
+
     Route::group(['prefix' => '{link}'], function () {
         if (!Request::is('admin') && !Request::is('admin/*')) {
             Route::get('/' , 'PagesController@index');

@@ -6,7 +6,6 @@
      data-questions_ids="{{isset($data_values->questions_ids)? $data_values->questions_ids : ''}}" data-dependent_info="{{isset($data_values->dependent_info)? $data_values->dependent_info : ''}}">
     <div class="field-data"><img src="/assets/default/img/book-icons/quiz.png">
     </div>
-    <span class="field-handle fas fa-arrows-alt"></span>
     <a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>
 </div>
 

@@ -8,17 +8,21 @@ $(document).on('click', '.control-tool-item', function () {
 
 $(document).on('click', '.next-page', function () {
     var thisObj = $(".book-dropzone.active");
-    thisObj.next().removeClass('hide');
-    thisObj.next().addClass('active');
-    thisObj.addClass('hide');
-    thisObj.removeClass('active');
+    if (thisObj.next().hasClass('book-dropzone') == true) {
+        thisObj.next().removeClass('hide');
+        thisObj.next().addClass('active');
+        thisObj.addClass('hide');
+        thisObj.removeClass('active');
+    }
 });
 $(document).on('click', '.prev-page', function () {
     var thisObj = $(".book-dropzone.active");
-    thisObj.prev().removeClass('hide');
-    thisObj.prev().addClass('active');
-    thisObj.addClass('hide');
-    thisObj.removeClass('active');
+    if (thisObj.prev().hasClass('book-dropzone') == true) {
+        thisObj.prev().removeClass('hide');
+        thisObj.prev().addClass('active');
+        thisObj.addClass('hide');
+        thisObj.removeClass('active');
+    }
 });
 
 
@@ -275,13 +279,17 @@ function trigger_field_change(thisObj) {
 
 
 jQuery(document).ready(function () {
+    $(".editor-zone").on("contextmenu", function () {
+        return false;
+    });
+
     $('.book-dropzone .field_settings').each(function () {
         var dropZonObj = $(this).closest('.book-dropzone');
         var field_id = $(this).attr('data-id');
         $('.draggable_field_' + field_id).draggable({
             preventCollision: true,
             containment: dropZonObj,
-            handle: ".field-handle",
+            //handle: ".field-handle",
         });
     });
 
@@ -459,10 +467,10 @@ $(document).on('click', '.generate', function (e) {
 
     $.ajax({
         type: "POST",
-        url: '/admin/books/store_page',
+        url: '/admin/books/'+book_page_id+'/store_page/',
         data: posted_data,
         success: function (return_data) {
-            console.log(return_data);
+            Swal.fire({icon: "success", html: '<h3 class="font-20 text-center text-dark-blue">Page Successfully Updated</h3>', showConfirmButton: !1});
         }
     });
 

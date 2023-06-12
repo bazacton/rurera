@@ -41,7 +41,7 @@
                                 <div class="col-12 col-lg-8 col-md-8">
                                     <div class="cell-inner text-center">
                                         <h2 class="text-white font-36 mb-15">Frequently asked questions</h2>
-                                        <p class="text-white mb-50">Discover a growing collection of ready-made training courses delivered through Rurera, and gear up 
+                                        <p class="text-white mb-50">Discover a growing collection of ready-made training courses delivered through Rurera, and gear up
                                             your people for success at work</p>
                                         <form>
                                             <div class="field-holder d-flex">
@@ -91,7 +91,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div id="accordion">
-                                    <div class="accordion-section-title"><h2>General</h2></div>
+                                    <div class="accordion-section-title"><h2 class="text-dark-charcoal">General</h2></div>
                                     <div class="card">
                                         <div class="card-header" id="headingon11">
                                             <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">How many Courses are available at Rurera ?</button></h5>
@@ -137,7 +137,7 @@
                                     <div class="card">
                                         <div class="card-header" id="headingfive">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">What can I do if I don’t receive the email verification code?</button>
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">What can I do if I donï¿½t receive the email verification code?</button>
                                             </h5>
                                         </div>
                                         <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#accordion">
@@ -147,10 +147,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-section-title"><h2>Login</h2></div>
+                                <div class="accordion-section-title"><h2 class="text-dark-charcoal">Login</h2></div>
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
-                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">I forgot my password — how can I reset it?</button></h5>
+                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">I forgot my password ï¿½ how can I reset it?</button></h5>
                                     </div>
                                     <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
                                         <div class="card-body">
@@ -162,7 +162,7 @@
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What can I do if I didn’t complete mobile phone number verification?</button>
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What can I do if I didnï¿½t complete mobile phone number verification?</button>
                                         </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-section-title"><h2>Account management</h2></div>
+                                <div class="accordion-section-title"><h2 class="text-dark-charcoal">Account management</h2></div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
                                         <h5 class="mb-0">
@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="card">
                                     <div class="card-header" id="heading10">
                                         <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapse10">What are the technical requirements for Rurera?</button></h5>
@@ -283,19 +283,19 @@
                                     </div>
                                 </div>
 
-                                
-                                
+
+
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="accordion-section-title"><h2>General</h2></div>
+                                <div class="accordion-section-title"><h2 class="text-dark-charcoal">General</h2></div>
                                 <div id="accordion2">
                                     <div class="card">
                                         <div class="card-header" id="heading4">
-                                            <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">What’s the best way to get started?</button></h5>
+                                            <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">Whatï¿½s the best way to get started?</button></h5>
                                         </div>
                                         <div id="collapse4" class="collapse show" aria-labelledby="heading4" data-parent="#accordion2">
                                             <div class="card-body">
-                                                At Rurera we believe a key to successfully coaching your child new skills is knowing what they are ready to handle. That’s why we suggest you Get Started with a conversation. Find out your child interests and
+                                                At Rurera we believe a key to successfully coaching your child new skills is knowing what they are ready to handle. Thatï¿½s why we suggest you Get Started with a conversation. Find out your child interests and
                                                 capabilities.
                                             </div>
                                         </div>
@@ -308,7 +308,7 @@
                                     </div>
                                     <div class="card">
                                         <div class="card-header" id="heading6">
-                                            <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">Is my child’s information kept private?</button></h5>
+                                            <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">Is my childï¿½s information kept private?</button></h5>
                                         </div>
                                         <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordion2"><div class="card-body">Yes, Information is completely private and confidential.</div></div>
                                     </div>
@@ -321,7 +321,7 @@
                                             </h5>
                                         </div>
                                         <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordion2">
-                                            <div class="card-body">If your child’s account is associated with your email address, you will be able to recover their username and reset their password using the forget password link given on login form.</div>
+                                            <div class="card-body">If your childï¿½s account is associated with your email address, you will be able to recover their username and reset their password using the forget password link given on login form.</div>
                                         </div>
                                     </div>
                                     <div class="card">
@@ -335,10 +335,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-section-title"><h2>Login</h2></div>
+                                <div class="accordion-section-title"><h2 class="text-dark-charcoal">Login</h2></div>
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
-                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">I forgot my password — how can I reset it?</button></h5>
+                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">I forgot my password ï¿½ how can I reset it?</button></h5>
                                     </div>
                                     <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
                                         <div class="card-body">
@@ -350,7 +350,7 @@
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What can I do if I didn’t complete mobile phone number verification?</button>
+                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What can I do if I didnï¿½t complete mobile phone number verification?</button>
                                         </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
@@ -373,7 +373,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-section-title"><h2>Account management</h2></div>
+                                <div class="accordion-section-title"><h2 class="text-dark-charcoal">Account management</h2></div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
                                         <h5 class="mb-0">
@@ -477,13 +477,13 @@
             </div>
         </div>
     </section>
-    
-    
+
+
     <section class="lms-services mt-50" style="padding: 70px 0 40px 0; background-color: #edf6fd; max-width: 100%;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="lms-section-heading text-center"><h2 class="section-title mt-0">Contact Us</h2></div>
+                <div class="lms-section-heading text-center"><h2 class="section-title mt-0 text-dark-charcoal">Contact Us</h2></div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="services-card text-center mb-30">
@@ -507,7 +507,7 @@
                             </svg>
                         </span>
                         <div class="services-text">
-                            <h6 class="font-24">Phone</h6>
+                            <h6 class="font-24 text-dark-charcoal">Phone</h6>
                             <p>+44 20 7946 0311</p>
                         </div>
                     </div>
@@ -527,7 +527,7 @@
                             </svg>
                         </span>
                         <div class="services-text">
-                            <h6 class="font-24">Email</h6>
+                            <h6 class="font-24 text-dark-charcoal">Email</h6>
                             <p>john.doe@example.co.uk</p>
                         </div>
                     </div>
@@ -548,7 +548,7 @@
                             </svg>
                         </span>
                         <div class="services-text">
-                            <h6 class="font-24">Location</h6>
+                            <h6 class="font-24 text-dark-charcoal">Location</h6>
                             <p>123 High Street, London, England, SW1A 1AA</p>
                         </div>
                     </div>

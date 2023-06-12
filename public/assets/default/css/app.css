@@ -222,8 +222,8 @@ html {
     --gray: #6c757d;
     --gray-dark: #343a40;
     --panel-bg: #fbfbfd;
-    --primary: #27325e;
-    --secondary: #1f3b64;
+    --primary: #0272b6 !important;
+    --secondary: #0272b6;
     --success: #e7f4f0;
     --info: #ebf7ff;
     --warning: #ffab00;
@@ -234,15 +234,15 @@ html {
     --gray: #818894;
     --gray300: #ececec;
     --gray200: #f1f1f1;
-    --primary-hover: #27325e;
-    --primary-border: #27325e;
-    --primary-border-hover: #27325e;
+    --primary-hover: #0272b6;
+    --primary-border: #0272b6;
+    --primary-border-hover: #0272b6;
     --primary-btn-shadow: 0 3px 6px 0 rgb(39 50 94 / 64%);
     --primary-btn-shadow-hover: 0 3px 8px 0 rgb(39 50 94 / 64%);
     --primary-btn-color: #fff;
     --primary-btn-color-hover: #fff;
-    --secondary-hover: #162a47;
-    --secondary-border: #162a47;
+    --secondary-hover: #0272b6;
+    --secondary-border: #0272b6;
     --secondary-border-hover: #13243d;
     --secondary-btn-shadow: 0 3px 6px 0 rgb(39 50 94 / 64%);
     --secondary-btn-shadow-hover: 0 3px 8px 0 rgb(39 50 94 / 64%);
@@ -253,6 +253,7 @@ html {
     --light-green: #0d7a50;
     --dark-green: #04492f;
     --category-color: #015da5;
+    --dark-charcoal:#333;
 }
 *,
 :after,
@@ -8267,6 +8268,14 @@ button.bg-gray200:hover {
 .py-70 {
     padding-top: 70px !important
 }
+.pt-80,
+.py-80 {
+    padding-top: 80px !important
+}
+.pt-90,
+.py-90 {
+    padding-top: 90px !important
+}
 .pr-50,
 .px-50 {
     padding-right: 50px !important
@@ -8282,6 +8291,14 @@ button.bg-gray200:hover {
 .pb-70,
 .py-70 {
     padding-bottom: 70px !important
+}
+.pb-80,
+.py-80 {
+    padding-bottom: 80px !important
+}
+.pb-90,
+.py-90 {
+    padding-bottom: 90px !important
 }
 .pl-50,
 .px-50 {
@@ -12109,8 +12126,9 @@ button.bg-gray200:hover {
     font-style: italic !important
 }
 .text-primary {
-    color: #27325e !important
+    color: #0272b6 !important;
 }
+.text-dark-charcoal{color: #333 !important;}
 
 a.text-primary:focus,
 a.text-primary:hover {
@@ -13431,7 +13449,7 @@ p {
     font-size: 2.5rem;
     font-weight: 700;
     line-height: 1.2;
-    color: var(--primary);
+    color:var(--dark-charcoal);
 }
 .section-title p {
     color: #586165;
@@ -14064,10 +14082,13 @@ p {
 
 /*Mega Menu style Start*/
 .navbar-nav .nav-item.has-mega-menu {position: initial;}
-.lms-mega-menu {position: absolute; top: 105%; left: 0; width: 1200px; background-color: #fff; box-shadow: 0 0 5px rgba(0,0,0,0.1); border-radius: 5px 5px 0 0; -webkit-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -moz-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; -o-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) all; opacity: 0; visibility: hidden;}
-.mega-menu-head {background-color: var(--category-color); padding: 0; transition: 0.5s; border-radius: 5px 5px 0 0;}
+.lms-mega-menu {position: absolute; top: 105%; left: 0; width: 1200px; background-color: #fff; box-shadow: 2px 2px 5px rgba(0,0,0,.2); border-radius: 5px 5px 0 0; opacity: 0; visibility: hidden; margin-top: 12px;}
+.mega-menu-head {background-color: var(--category-color); padding: 0; border-radius: 5px 5px 0 0;}
 .mega-menu-nav {margin: 0; padding: 0;}
-.mega-menu-nav a {font-size: 18px; color: rgba(255,255,255,0.9); padding: 30px 35px; display: inline-flex; line-height: normal; font-weight: 600; position: relative; text-transform: uppercase;}
+.lms-mega-menu .row [class*="col-"] .row { padding-bottom: 40px;}
+.lms-mega-menu .row [class*="pl-"] .row {margin-left: 0;}
+.mega-menu-nav a {font-size: 20px; color: #FFFFFFCC; padding: 30px 35px; display: inline-flex; line-height: normal; font-weight: 600; position: relative; text-transform: uppercase;}
+.mega-menu-nav a.active {color: #fff;}
 .courses-detail {background-color: #e7eef3; padding: 30px 25px;}
 .mega-menu-body .tab-pane>.row>[class*="col-"] .courses-detail {height: 100%;}
 .lms-mega-menu h2 {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color);}
@@ -14085,17 +14106,17 @@ p {
 .navbar-nav .has-mega-menu:hover .lms-mega-menu {opacity: 1; visibility: visible; top: 100%;}
 .lms-mega-menu .menu-colum-text p {font-size: 14px; margin-bottom: 15px;}
 .lms-mega-menu .menu-colum-text h4 {color: #000; margin: 0 0 10px; background-color: #eff3f6; padding: 5px 10px;}
-.topic-list li {margin-bottom: 6px; line-height: normal;}
+.topic-list li {margin-bottom: 5px; line-height: normal;}
 .topic-list li:last-child {margin-bottom: 0;}
-.topic-list li a {color: #000; font-size: 15px;}
+.topic-list li a {color: #000; font-size: 14px;}
 .topic-list li.load-more a {text-decoration: none; font-size: 14px; font-weight: 700;  text-transform: capitalize; color: var(--category-color);}
 .load-more {margin-top: 12px;}
 .get-offer {height: 100%; padding-right: 15px; margin-top: 40px;}
 .get-offer strong {display: flex; width: 100%; justify-content: center; align-items: center; box-shadow: 0 0 8px 8px rgba(0,0,0,0.2) inset; border-radius: 10px; box-sizing: border-box; height: 100%; font-size: 30px; color: #fff; text-transform: uppercase; background-color: var(--category-color);}
 .has-mega-menu .nav-link {position: relative;}
 .has-mega-menu .nav-link:after,
-.mega-menu-nav a:after {content: ""; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 12px solid var(--category-color); position: absolute; left: 50%; bottom: -28px; visibility: hidden; opacity: 0; transition: all 0.5s; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%);}
-.navbar-nav .has-mega-menu:hover .nav-link:after {visibility:visible; opacity:1; bottom:-4px;}
+.mega-menu-nav a:after {content: ""; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 12px solid var(--category-color); position: absolute; left: 50%; bottom: -28px; visibility: hidden; opacity: 0; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%);}
+.navbar-nav .has-mega-menu:hover .nav-link:after {visibility:visible; opacity:1; bottom:-14px;}
 .mega-menu-nav a:after {border-top: 12px solid var(--category-color); border-bottom: 0; bottom: -12px;}
 .mega-menu-nav a.active:after {opacity: 1; visibility: visible; z-index: 1;}
 /*Mega Menu style End*/
@@ -14581,7 +14602,7 @@ p {
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
-    color: var(--primary);
+    color:#171347;
     pointer-events: none
 }
 .stats-container .stats-item .stat-desc {
@@ -16372,7 +16393,9 @@ p {
     position: absolute;
     top: 10px;
     left: 10px;
-    border-radius: 10px 0 10px 0
+    border-radius: 10px 0 10px 0;
+    background-color:#fdb532;
+    color: #fff;
 }
 .subscribe-plan:hover {
     top: -15px;
@@ -16386,16 +16409,7 @@ p {
     position: relative;
     color: #171347
 }
-.subscribe-plan .plan-feature li:after {
-    content: "";
-    position: absolute;
-    left: -20px;
-    top: 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--secondary)
-}
+.subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: -30px;top: 3px;width: 20px;height: 20px;border-radius: 50%;color: var(--secondary);font-size: 12px;border: 1px solid var(--primary);text-align: center;line-height: 18px;background-color: #f0f9ff;}
 .rtl .subscribe-plan .plan-feature li:after {
     left: auto;
     right: -20px
@@ -18499,8 +18513,6 @@ Lms Describe Sentences Style
 /*********************************
 Lms Chapter Style Start
 **********************************/
-/* body .lms-chapter-area .lms-chapter-ul { column-count: 1; }
-body .lms-chapter-area .lms-chapter-ul >li { break-inside: avoid; } */
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {
     border: 2px solid var(--primary);
     border-radius: 10px;
@@ -18519,91 +18531,6 @@ body .lms-chapter-area .lms-chapter-ul >li { break-inside: avoid; } */
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {
     -moz-column-break-inside: avoid;
          break-inside: avoid;
-}
-body .lms-chapter-area .lms-chapter-ul .lms-chapter-title strong::before {
-    color: #fff;
-    background-color: #17abc5;
-    height: 33px;
-    width: 33px;
-    display: inline-block;
-    text-align: center;
-    line-height: 34px;
-    border-radius: 100%;
-    margin: 0 10px 0 0;
-    font-weight: 400;
-    font-size: 14px;
-}
-.lms-chapter-area .lms-chapter-ul .lms-chapter-title strong::before {
-    counter-increment: my-sec-counter;
-    content: counter(my-sec-counter, upper-alpha) ". ";
-}
-
-body .lms-chapter-area .lms-chapter-ul .lms-chapter-title strong {
-    color: #555;
-    font-weight: 500;
-}
-
-body .lms-chapter-area .lms-chapter-ul .lms-chapter-title {
-    border-bottom: 1px solid #efefef;
-    margin: 0 0 15px;
-    padding: 0 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-body .lms-chapter-area .lms-chapter-ul>li ul li a span {
-    font-size: 14px;
-    color: #000;
-    margin-left: 5px;
-    font-weight: bold;
-}
-
-body .lms-chapter-area .lms-chapter-ul>li ul li a span svg {
-    width: 12px;
-    height: 12px;
-    margin-left: 6px;
-}
-.lms-chapter-area .text-line-through {
-    text-decoration: line-through;
-}
-.lms-chapter-area .lms-has-border {
-    -webkit-text-decoration: 5px underline #ededed;
-            text-decoration: 5px underline #ededed;
-}
-
-body .lms-chapter-area .lms-chapter-ul>li ul li {
-    list-style: none;
-    display: inline-block;
-    vertical-align: middle;
-    width: 100%;
-    margin-bottom: 8px;
-}
-
-body .lms-chapter-area .lms-chapter-ul>li ul li a {
-    padding: 0;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #4574b9;
-}
-
-body .lms-chapter-area .lms-chapter-ul .lms-chapter-title span {
-    font-size: 15px;
-    color: #555;
-    position: relative;
-    padding: 0 0 12px;
-}
-
-body .lms-chapter-area .lms-chapter-ul .lms-chapter-title span:after {
-    content: "";
-    min-width: 240px;
-    background-color: #8d55fe;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 8px;
-    border-radius: 30px;
 }
 .mastery-banner-card {
     border-style: solid;
@@ -19957,6 +19884,60 @@ Lms Privacy Policy Style Start
 .lms-privacy-summary br {
     display: none;
 }
+.lms-icon-list li {
+    margin: 0 0 25px;
+    position: relative;
+    line-height: normal;
+    padding: 0 0 0 30px;
+}
+.lms-icon-list li:before {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid var(--primary);
+    content: "\2713";
+    background-color: #f0f9ff;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 700;
+    color: var(--primary);
+}
+.terms-info {
+    background-color: #f8f8f8;
+    padding: 25px;
+    border-radius: 5px;
+    min-height: 335px;
+    margin-bottom: 40px;
+}
+.terms-info svg {
+    width: 40px;
+    height: 40px;
+}
+.terms-info svg g,
+.terms-info svg path {
+    fill: var(--primary);
+}
+.terms-info .icon-box {
+    display: block;
+    margin: 0 0 10px;
+}
+.terms-info p {
+    margin: 0 0 15px;
+}
+.terms-info h4 {
+    color: #000;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+.terms-info .info-btn {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 500;
+}
 /*********************************
 Lms Privacy Policy Style End
 **********************************/
@@ -20175,20 +20156,27 @@ Lms Subscription Form Style Start
     padding: 0;
     margin: 0;
     gap: 10px;
-    justify-content: center;
+    justify-content:center;
+    background: var(--primary);
+    border-radius: 50px;
+        padding: 10px;
 }
 .lms-form-wrapper .lms-radio-btn-group li {
     list-style: none;
     line-height: normal;
     position: relative;
-    min-width: 210px;
+    min-width:150px;
 }
 .lms-form-wrapper .lms-radio-btn-group li input[type=radio] {
     display: none;
 }
 .lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label{
-    color: #1eb7bd;
+    color: #000;
+    background: #fff;
+    border-radius: 20px;
+    padding-left: 50px;
 }
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 15px;}
 .lms-subscription-form.shape {
     position: relative;
     width: 100%;
@@ -20209,23 +20197,47 @@ Lms Subscription Form Style Start
     transform-origin: top left;
     transform: skewY(-4deg);
 }
+.lms-form-wrapper .lms-radio-btn-group li .lms-label::before{
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top:11px;
+    font-size: 14px;
+    color: #000;
+    width: 24px;
+    height: 24px;
+    line-height: 21px;
+    border: 2px solid #000;
+    border-radius: 100%;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: 0.3s linear;
+        -o-transition: 0.3s linear;
+        transition: 0.3s linear;
+        font-weight: 600;
+            text-align: center;
+}
 .lms-form-wrapper .lms-radio-btn-group li .lms-label {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     box-sizing: border-box;
     width: 100%;
     height: 44px;
-    background-color:var(--primary);
+    background-color:transparent;
     cursor: pointer;
     outline: 0;
     font-size: 16px;
     transition: all .3s;
     position: relative;
-    color: #ffff;
-    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
+    color:#fff;
     font-weight: 500;
+    margin-bottom: 0;
+    border-radius: 20px;
+    padding-left: 15px;
+        -webkit-transition: 0.3s linear;
+        -o-transition: 0.3s linear;
+        transition: 0.3s linear;
 }
 .lms-count-field .input-group {
     position: relative;
@@ -20825,10 +20837,7 @@ Lms Testimonial Style End
 /**********************************
 Lms Services Style Start
 **********************************/
-.lms-services {
-    max-width: 1020px;
-    margin: 0 auto;
-}
+.lms-services { max-width: 1020px;margin: 0 auto;}
 .services-card .icon-box {
     background-color: #f7f7f5;
     border-radius: 100%;
@@ -20841,17 +20850,12 @@ Lms Services Style Start
     text-align: center;
     margin: 0 0 20px;
 }
-.services-card .icon-box i {
-    font-style: normal;
-}
-.services-card h6 {
-    margin: 0 0 10px;
-}
-.services-card p {
-    margin: 0 0 20px;
-    color: #000;
-    font-size: 15px;
-}
+.services-card .icon-box i {font-style: normal;}
+.services-card h6 {margin: 0 0 10px;}
+.lms-contact-info .services-card p {color: #586165;}
+.services-card p {margin: 0 0 20px;color: #000;font-size: 15px;}
+.services-card.has-shadow{border: 1px solid #eef1f3;border-radius: 4px;box-shadow: 0 -1px 24px 0 rgba(42, 44, 44, .2);}
+.services-card.has-shadow figure img{border-radius:4px 4px 0 0;object-fit: cover;}
 .call-us-btn {
     background-color: var(--primary);
     font-size: 16px;
@@ -20863,10 +20867,7 @@ Lms Services Style Start
     padding: 0 50px;
     box-shadow: -1px -1px 0px 1px rgba(255, 255, 255, 0.3) inset;
 }
-.call-us-btn span {
-    margin: 0;
-    color: #fff;
-}
+.call-us-btn span {margin: 0;color: #fff;}
 /**********************************
 Lms Services Style End
 **********************************/
@@ -20978,7 +20979,7 @@ Custom Pagination Style End
 .lms-service-box .post-title,
 .lms-service-box .post-title a {
     text-transform: capitalize;
-    color: var(--primary);
+    color: var(--dark-charcoal);
     text-decoration: none;
 }
 .lms-service-box .lms-text-holder p {
@@ -21010,315 +21011,8 @@ Custom Pagination Style End
 /**********************************
  lms Member Ship pate Style End
 **********************************/
-/**********************************
- lms Courses listing Style Start
-**********************************/
-.pages-sub-header.courses-sub-header h1 {
-    font-size: 60px;
-    line-height: 66px;
-    color: var(--secondary);
-}
-.courses-sub-header p a {
-    color:var(--secondary);
-    text-decoration: underline;
-}
-.courses-sub-header {
-    background:url(../../default/img/courses-sub-header.jpg) no-repeat;
-    min-height: 630px;
-    padding-top: 100px;
-    max-height: inherit;
-    align-items: flex-start;
-}
-.courses-sub-header .svg-container:before{bottom: 29px;}
-.courses-sub-header .btn {
-    font-size: 18px;
-    padding: 28px 50px;
-    border-radius: 50rem;
-}
-.courses-sub-header .btn-primary {
-    color: #fff;
-    border-color: transparent;
-    border-radius: 50rem;
-}
-.courses-sub-header .btn:hover {
-    color: #fff;
-    border-color: transparent;
-    background-color: var(--secondary);
-}
-.courses-sub-header .message-box {
-    top: auto;
-    bottom: -100px;
-    right: 10px;
-}
-.courses-sub-header .message-box:before {
-    content: "";
-    position: absolute;
-    top: -50px;
-    background: url(../../default/img/text-arrow.png) no-repeat top;
-    width: 31px;
-    height: 50px;
-    left: 28px;
-    transform: rotate(110deg);
-}
-.lms-service-section .lms-course-listing {
-    margin-left: 40px;
-}
-.lms-course-listing .webinar-card {
-    padding: 10px 20px 14px 20px;
-    background: #f1f1f1;
-    border-left: 20px solid var(--primary);
-    border-radius: 4px;
-    margin-bottom: 30px;
-    box-shadow: none;
-}
-.lms-course-listing .webinar-card:hover {
-    transform: translateY(0px);
-    box-shadow: none;
-}
-.lms-course-listing .webinar-card figure {
-    margin: 0;
-}
-.lms-course-listing .webinar-card-body {
-    position: relative;
-    padding: 0;
-}
-.lms-course-listing .webinar-card-body a h3 {
-    color: var(--primary);
-    margin: 0 0 5px 0;
-}
-.lms-course-listing .webinar-card-body a {
-    text-decoration: none;
-}
-.lms-course-listing .webinar-tags-list {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    padding-right: 175px;
-}
-.lms-course-listing .webinar-tags-list li {
-    list-style: none;
-    line-height: normal;
-    position: relative;
-}
-.lms-course-listing .webinar-tags-list li span {
-    color: var(--primary);
-    font-weight: 700;
-}
-.lms-course-listing .webinar-tags-list li:first-child {
-    margin-right: 3px;
-}
-.lms-course-listing .webinar-tags-list li a {
-    text-decoration: none;
-    color: #343434;
-    font-size: 14px;
-    font-weight: 400;
-    position: relative;
-    padding: 0 6px;
-}
-.lms-course-listing .webinar-tags-list li a::after {
-    content: "";
-    position: absolute;
-    right: -1px;
-    top: 2px;
-    width: 1px;
-    height: 14px;
-    background-color: var(--primary);
-}
-.lms-course-listing .webinar-tags-list li:last-child a::after {
-    display: none;
-}
-.lms-course-listing .lms-skill-btn {
-    display: flex;
-    align-items: center;
-    width: 170px;
-    justify-content: center;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.lms-course-listing .lms-skill-btn a {
-    font-size: 14px;
-    color: #fff;
-    display: block;
-    padding: 10px 18px;
-    text-decoration: none;
-    width: 100%;
-    text-align: center;
-    border-radius: 4px;
-    text-transform: capitalize;
-    border: 3px solid var(--primary);
-    padding: .5rem 1rem;
-    color: var(--primary);
-    font-weight: 600;
-    position: relative;
-    z-index: 1;
-}
-.lms-course-listing .lms-skill-btn a:after {
-    background-color: var(--primary);
-    content: "";
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    transition-duration: .3s;
-    transition-property: width;
-    transition-timing-function: ease-in-out;
-    width: 0;
-    z-index: -1;
-}
-.lms-course-listing .lms-skill-btn a:hover,
-.lms-course-listing .lms-skill-btn:hover a {
-    color: #fff;
-}
-.lms-course-listing .lms-skill-btn a:hover:after {
-    width: 100%;
-}
-/**********************************
- lms Courses listing Style End
-**********************************/
-/**********************************
- lms Course Sidebar Style Start
-**********************************/
-.lms-course-sidebar.lms-course-fixed {
-    padding: 20px 0;
-    background-color: var(--primary);
-    border-radius: 6px;
-    border: none;
-}
-/*
-.lms-course-sidebar ul { padding: 0; margin: 0; }
-.lms-course-sidebar > ul>li { padding-left: 20px; }
-.lms-course-sidebar ul > li a { font-weight: bold; color: #fff; font-size: 18px; text-transform: capitalize; display: block; margin-bottom: 20px; }
-.lms-course-sidebar ul li { list-style: none; line-height: normal; }
-.lms-course-sidebar ul li a { text-decoration: none; transition: all .1s ease-in-out; }
-.lms-course-sidebar ul li ul li a { font-size: 14px; color: #fff; padding: 10px; display: block; margin-bottom: 5px; }
-.lms-course-sidebar ul li > ul { margin-left: 15px; margin-right: 10px; }
-.lms-course-sidebar ul li ul li.active a,.lms-course-sidebar ul li ul li:hover a { background-color: #fff; color:var(--primary); border-radius: 3px; }
-.lms-course-sidebar>ul>li.active>a { padding:0 10px; background:rgba(255,255,255,0.07); border-radius:4px 0 0 4px; position:relative; line-height:50px; }
-.lms-course-sidebar>ul>li.active>a:after { content:''; position:absolute; height:0; width:0; border-top:25px solid transparent; border-bottom:25px solid transparent; border-left:15px solid #171347; right:-14px; } */
-.lms-course-sidebar ul li {
-    list-style: none;
-    line-height: normal;
-}
-.lms-course-sidebar ul li a {
-    text-decoration: none;
-    transition: all .1s ease-in-out;
-}
-.lms-course-sidebar {
-    border-radius: 6px;
-    background: #f9f9f9;
-    border: 1px solid #e2e2e2;
-}
-.lms-course-sidebar ul>li a {
-    font-weight: 700;
-    font-size: 18px;
-    text-transform: capitalize;
-    display: block;
-    margin-bottom: 0;
-    color: var(--primary);
-    border-bottom: 1px solid #e2e2e2;
-    padding: 15px;
-}
-.lms-course-sidebar ul li>ul {
-    margin-left: 15px;
-    margin-right: 15px;
-}
-.lms-course-sidebar ul li ul li a {
-    font-size: 14px;
-    color: var(--primary);
-    padding: 15px;
-    display: block;
-}
-.lms-course-sidebar ul li ul li:last-child a {
-    border-bottom: 0;
-}
-.lms-course-sidebar>ul>li {
-    border-bottom: 1px solid #e2e2e2;
-}
-.lms-course-sidebar>ul>li:last-child {
-    border-bottom: none;
-}
-/*Lms Course Sidebar Accordion Style Start */
-.lms-course-sidebar .accordion>.card {
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    overflow: visible;
-}
-.lms-course-sidebar .accordion>.card .lms-btn {
-    border: none;
-    outline: none;
-    transition: all .1s ease-in-out;
-    padding: 0 0 0 15px;
-    display: block;
-    background: rgba(255, 255, 255, 0.07);
-    border-radius: 4px 0 0 4px;
-    line-height: 50px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 700;
-    position: relative;
-    text-align: left;
-    width: 100%;
-}
-.lms-course-sidebar .accordion>.card .lms-btn::after {
-    content: '';
-    position: absolute;
-    height: 0;
-    width: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 15px solid #171347;
-    right: -14px;
-}
-.lms-course-sidebar .accordion>.card .lms-btn.collapsed {
-    background: transparent;
-}
-.lms-course-sidebar .accordion>.card .lms-btn.collapsed::after {
-    opacity: 0;
-    visibility: hidden;
-}
-.lms-course-sidebar .accordion>.card>.card-header {
-    border-radius: 0;
-    margin-bottom: 15px;
-    border: 0;
-    background: 0 0;
-    padding: 0 0 0 15px;
-}
-.lms-course-sidebar .accordion .card-body {
-    color: #fff;
-    font-size: 14px;
-    padding: 0 1rem 1rem 1rem;
-}
-.lms-course-sidebar .accordion .card-body .tags-list li a {
-    text-decoration: none;
-    color: #fff;
-    margin-bottom: 10px;
-    font-size: 13px;
-    font-weight: 400;
-    position: relative;
-    padding: 0 6px;
-    text-transform: capitalize;
-}
-.lms-course-sidebar .accordion .card-body .tags-list li {
-    display: flex;
-    align-items: center;
-}
-.lms-course-sidebar .accordion .card-body .tags-list li.active a {
-    font-weight: bold;
-}
-.lms-course-sidebar.lms-course-fixed.sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 100px;
-}
-/*Lms Course Sidebar Accordion Style End */
-/**********************************
- lms Course Sidebar Style End
-**********************************/
+
+
 /* Categories Boxes Style Start */
 .container-fluid .col-12 .post-show {
     overflow: visible !important;
@@ -21344,9 +21038,7 @@ Custom Pagination Style End
 .categories-card.active,
 .categories-card:hover {
     box-shadow: 0 4px 0px 2px #D3D3D3;
-    ;
     transform: scaleX(1.1);
-    ;
 }
 .categories-card.active .categories-icon,
 .categories-card:hover .categories-icon {
@@ -21390,7 +21082,7 @@ Custom Pagination Style End
     height: 56px;
 }
 .categories-boxes .categories-title {
-    padding: 20px;
+    padding: 20px 10px;
     font-size: 14px;
     text-transform: capitalize;
     color: var(--primary);
@@ -22938,15 +22630,18 @@ Lms Performace Table Style End
 Lms SignUp Page Style Start
 ******************************/
 .job-singup-sub-header {
-    background-color: #edf6fd;
+    background-color:#fff;
     padding: 60px 0 90px;
-    margin: 0 0 50px;
-    min-height: 400px;
+    margin: 0 0 70px;
+    min-height: 570px;
     display: flex;
     align-items: center;
+    overflow: hidden;
+}
+.masonry-grid .row {
+    column-count: 4;
 }
 .job-singup-sub-header h1 {
-    color: var(--primary);
     font-size: 2.5rem;
     margin: 0 0 10px;
 }
@@ -22963,13 +22658,34 @@ Lms SignUp Page Style Start
     line-height: normal;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
 }
+.gallery-sub-header .masonry-grid-gallery {
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    -webkit-transform: translateX(85.30184569647683px) rotate(-16deg);
+    -moz-transform: translateX(85.30184569647683px) rotate(-16deg);
+    -ms-transform: translateX(85.30184569647683px) rotate(-16deg);
+    transform: translateX(85.30184569647683px) rotate(-16deg);
+    width: 850px;
+}
+.gallery-sub-header .masonry-grid .grid-item {
+    margin-bottom: 0;
+}
+.gallery-sub-header .masonry-grid figure {
+    margin-bottom: 30px;
+}
+.gallery-sub-header .masonry-grid figure img {
+    box-shadow: 2px 2px 2px rgba(0,0,0, 0.4);
+    border-radius: 5px;
+    max-width: 100%;
+}
 .lms-search-services .services-card {
     text-align: center;
     margin-bottom: 50px;
-    padding: 0 20px 20px;
+    padding: 0 20px 0;
     margin-bottom: 30px;
     border-radius: 8px;
-    background-color: #fff;
     transition: -webkit-filter .2s ease-in-out;
     transition: filter .2s ease-in-out;
     transition: filter .2s ease-in-out, -webkit-filter .2s ease-in-out;
@@ -22994,89 +22710,21 @@ Lms SignUp Page Style Start
 .services-card .img-holder svg path {
     fill: var(--primary);
 }
-/* .services-card .img-holder:before {
-    content: "";
-    position: absolute;
-    left: -140px;
-    top: -120px;
-    border: 1px dashed #27325e;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 0 0 250px 0;
-    width: 280px;
-    height: 280px;
-    transform: rotate(42deg);
-    z-index: -1;
-}
-.services-inner .row [class*="col-"]:first-child .img-holder:before,
-.services-inner .row [class*="col-"]:nth-child(4) .img-holder:before,
-.services-inner .row [class*="col-"]:first-child .img-holder figure:before,
-.services-inner .row [class*="col-"]:nth-child(4) .img-holder figure:before {
-    display: none;
-}
-.services-inner [class*=col-]:nth-child(3) .services-card .img-holder:after,
-.services-inner [class*=col-]:nth-child(5) .services-card .img-holder:after {
-    content: "";
-    position: absolute;
-    left: -140px;
-    top: -38px;
-    border: 1px dashed #27325e;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 0 0 250px 0;
-    width: 270px;
-    height: 268px;
-    transform: rotate(-126deg);
-    z-index: -1;
-}
-.services-inner [class*=col-]:nth-child(3) .services-card .img-holder:before,
-.services-inner [class*=col-]:nth-child(3) .services-card .img-holder figure:before,
-.services-inner [class*=col-]:nth-child(5) .services-card .img-holder:before,
-.services-inner [class*=col-]:nth-child(5) .services-card .img-holder figure:before {
-    display: none;
-}
-.services-inner [class*=col-]:nth-child(3) .services-card .img-holder figure:after,
-.services-inner [class*=col-]:nth-child(5) .services-card .img-holder figure:after {
-    content: "";
-    position: absolute;
-    right: 68%;
-    top: 49px;
-    border: 1px solid #27325e;
-    width: 10px;
-    height: 10px;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    background-color: #fff;
-    transform: rotate(69deg);
-} */
 .services-card .img-holder figure {
     position: relative;
 }
-/* .services-card .img-holder figure:before {
-    content: "";
-    position: absolute;
-    right: 68%;
-    top: 78px;
-    border: 1px solid #27325e;
-    width: 10px;
-    height: 10px;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    background-color: #fff;
-    transform: rotate(10deg);
-} */
 .service-title {
     margin: 0 0 10px;
     font-size: 20px;
     text-transform: capitalize;
 }
 .services-card .service-title a {
-    color: var(--primary);
+    color:#171347;
 }
 .services-card p {
     margin: 0;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 24px;
 }
 .testimonial-card .author-name small {
     font-size: 14px;
@@ -23127,7 +22775,7 @@ Lms SignUp Page Style Start
     line-height: normal;
 }
 .lms-testimonial-slider .testimonial-title a {
-    color: var(--primary);
+    color:#171347;
 }
 .lms-testimonial-slider .testimonial-top strong {
     font-weight: 500;
@@ -24296,7 +23944,7 @@ Lms Masonry Style End
 .lms-video-section .lms-text-holder .lms-play .svg-icon {display: flex; align-items: center;}
 .lms-btn-group {display: flex; align-items: center; gap: 15px;}
 .lms-btn-group .lms-btn {font-size: 16px; border: 1px solid #000; max-width: 206px; min-width: 206px; text-align: center; height: 56px; display: flex; align-items: center; justify-content: center; font-weight: 500; transition: all .3s ease; color: #151824;}
-.lms-btn-group .lms-btn:hover {background: #3cb46e; border: 1px solid transparent; color: #fff;}
+.lms-btn-group .lms-btn:hover {background:var(--primary); border: 1px solid transparent; color: #fff;}
 .lms-text-section .lms-img-holder figure img {width: 100%;}
 .lms-text-section .lms-img-list {display: flex; gap: 20px; flex-wrap: wrap; margin-top: 25px;}
 .lms-text-section .lms-days-list li {font-size: 18px; color: #151824; margin-bottom: 3px;}
@@ -24419,16 +24067,17 @@ body{overflow-x: hidden;}
  Lms Accordion Job Style Start
 *************************************/
 .lms-accordion-job-section{background: #f8f8f8;padding: 50px 0 80px 0;}
-.lms-accordion-job {background: #fff;padding: 40px 20px 20px 20px; border-radius: 8px;}
+.lms-accordion-job {padding: 20px; border-radius: 8px;}
 .lms-accordion-job .card-header { background: #fff; padding:10px 15px; border-bottom: 0; margin-bottom: 0; }
 .lms-accordion-job .btn.focus, .lms-accordion-job .btn:focus { outline:none; box-shadow:none; }
-.lms-accordion-job .card-header .btn { font-weight: 600; display: flex; justify-content: space-between; color: var(--primary); text-decoration: none; padding:0 0 0 30px; position: relative; background: #fff; border: 0; font-size: 18px; }
-.lms-accordion-job .card-header .btn small { font-size: 15px; color: var(--primary); font-weight: 600; outline: none; }
+.lms-accordion-job .card-header .btn { font-weight: 600; display: flex; justify-content: space-between; color:#171347; text-decoration: none; padding:0 0 0 30px; position: relative; background: #fff; border: 0; font-size: 18px; }
+.lms-accordion-job .card-header .btn small { font-size: 15px; color:#171347; font-weight: 600; outline: none; }
 .lms-accordion-job>.card { position: relative; margin-bottom: 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(14,44,56,.15); border:0; }
+.lms-accordion-job>.card:last-child {margin-bottom: 0;}
 .lms-accordion-job>.card:not(:first-of-type) { border-top-left-radius: 8px; border-top-right-radius: 8px }
 .lms-accordion-job>.card:not(:last-of-type) { border-bottom: 0; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; }
 .lms-accordion-job>.card .btn.collapsed::before { content: "\ff0b"; }
-.lms-accordion-job>.card .btn.collapsed::before, 
+.lms-accordion-job>.card .btn.collapsed::before,
 .lms-accordion-job>.card .btn::before { position: absolute; left: -5px; top: 13px; font-size: 32px; color: var(--primary); font-weight: bold; width: 20px; height: 20px; line-height: 17px; border-radius: 100%; text-align: center; }
 .lms-accordion-job>.card .btn::before { content: "\2212"; line-height: 18px; }
 .lms-accordion-job .card-body { padding: 25px 24px 40px 44px; font-size: 16px; font-weight: 500; color: var(--primary); }
@@ -24445,7 +24094,7 @@ body{overflow-x: hidden;}
 /************************************
  Lms Jobs Form Style Start
 *************************************/
-.lms-jobs-form-body { background-color: #fff; box-shadow: 0 8px 32px rgba(14,44,56,.16); padding: 0 20px; border-radius: 6px; }
+.lms-jobs-form-body {border-radius: 6px; }
 .lms-jobs-form .form-element-title { margin: 0 -20px; background-color:var(--primary); padding: 16px 20px; margin-bottom: 24px; }
 .lms-jobs-form .row:nth-child(1) > .col-12 > .form-element-title { border-radius:6px 6px 0 0; }
 .lms-jobs-form .form-element-title h2 { color: #fff; font-size: 1.3rem; margin-top: 0;}
@@ -24464,18 +24113,35 @@ body{overflow-x: hidden;}
 .lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder,
 .lms-jobs-form .input-field textarea::-ms-input-placeholder { color:#444; }
 .lms-jobs-form .input-field input[type="text"],
-.lms-jobs-form .input-field .lms-jobs-select { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #C2C2C2; border-radius: 4px; outline: 0; height: 48px; font-size: 14px; font-weight: 500; color: #444; background-color: #f8f8f8; }
+.lms-jobs-form .input-field .lms-jobs-select { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #eeeeee; border-radius: 4px; outline: 0; height: 48px; font-size: 14px; font-weight: 500; color: #444; background-color: #fcfcfc; }
 .lms-jobs-form .input-field input[type="submit"] { height: 58px; width: 225px; text-align: center; border: 0; border-radius: 4px; background: var(--primary); color: #fff; font-size: 16px; font-weight: 500; outline: none; cursor: pointer; }
 .lms-jobs-form .input-field { margin: 0; }
-.lms-jobs-form .input-field textarea { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #C2C2C2; border-radius: 4px; outline: 0; height: 160px; font-size: 14px; font-weight: 500; background-color: #f8f8f8; color: #444; }
+.lms-jobs-form .input-field textarea { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #eeeeee; border-radius: 4px; outline: 0; height: 160px; font-size: 14px; font-weight: 500; background-color: #fcfcfc; color: #444; }
 .lms-jobs-form .form-group { margin-bottom: 25px; }
 .lms-jobs-form .input-label { font-size: 16px; font-weight: 500; }
 .lms-jobs-form .select-arrow { position: relative; }
-.lms-jobs-form .select-arrow:after { content: ""; position: absolute; right: 20px; top: 17px; width: 12px; height: 12px; border: 4px solid #000; border-left: 0; border-top: 0; transform: rotate(45deg); }
+.lms-jobs-form .select-arrow:after { content: ""; position: absolute; right: 20px; top: 50%; margin-top:-5px; width: 10px; height: 10px; border: 2px solid #000; border-left: 0; border-top: 0; transform: rotate(45deg); }
 .lms-jobs-form .input-field .lms-jobs-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 .lms-jobs-form .lms-form-description {margin-bottom: 25px;}
 .lms-jobs-form .lms-form-description p{margin: 0;color: #343434;}
 .lms-jobs-form .input-field{margin:0;height:auto;border:0;padding:0;border-radius:0;background:none;}
+.lms-jobs-form .card .icon-box {display: inline-block; line-height: normal; margin-right: 8px;}
+.lms-jobs-form .card .icon-box svg {width: 22px; height: 22px;}
+.lms-jobs-form .card-header {display: flex; align-items: center; background-color: inherit; border: 0; padding: 15px; position: relative;}
+.lms-jobs-form .card button {border: 0; background: none; padding: 0; color: #000; font-weight: 600; font-size: 18px; width: 100%;}
+.form-field-counter {margin-left: auto; display: inline-flex; align-items: center; position: absolute; right: 15px;}
+.lms-jobs-form .card .icon-box svg .st0 {stroke: var(--primary);}
+.lms-jobs-form .card .icon-box svg g {fill: var(--primary);}
+.lms-jobs-form .card button.collapsed .st0 {stroke: #a09fa2;}
+.lms-jobs-form .card button.collapsed .icon-box svg g {fill: #a09fa2;}
+.counts-bar-box {background-color: #efefef; border-radius: 12px; display: inline-block; height: 5px; width: 60px; position: relative; overflow: hidden;}
+.counts-bar-box .counts-bar {background-color: #198941; position: absolute; height: 100%;}
+.lms-jobs-form .lms-jobs-form-body .card {border: 0; box-shadow: 0 1px 5px rgba(0,0,0,0.2); margin: 0 0 20px; border-radius: 8px;}
+.lms-jobs-form .card:last-child {margin-bottom: 0;}
+.counter-counts {font-size: 12px; color: #979797; font-weight: 500; margin-left: 6px;}
+.counter-counts em {font-style: normal;}
+.lms-jobs-form .card-body .row [class*="col-"]:last-child .form-group {margin-bottom: 0;}
+.lms-jobs-form .card-body {padding-top: 10px;}
 /************************************
  Lms Jobs Form Style End
 *************************************/
@@ -24516,21 +24182,23 @@ body{overflow-x: hidden;}
 .lms-client-list .lms-client-logo:nth-child(3) {border-image: linear-gradient(to bottom, #3e4197, rgba(255, 255, 255, 05)) 1;border-right: 2px solid;}
 /* Lms Clients Section End */
 .lms-our-mission-section .lms-mission-holder h2 { font-size: 2.5rem; }
-.lms-counter-card {transition: all .6s ease; color: var(--primary); background-color: #fff; box-shadow: 0 2px 8px rgba(14,44,56,.15); padding: 12px 25px 15px; border-radius: 8px; text-align: center;}
+.lms-counter-card {transition: all .6s ease; color:#171347; background-color: #fff; box-shadow: 0 2px 8px rgba(14,44,56,.15); padding: 12px 25px 15px; border-radius: 8px; text-align: center;}
 .custom-counter { font-size: 2rem; line-height: 2rem; font-weight: 500; }
 .lms-counter-card p { font-size: 1rem; text-transform: capitalize; color: #343434; }
 .lms-counter-orange {color: var(--primary);}
 .lms-counter-orange span { font-size: 32px; display: inline-flex; font-weight: bold; padding: 0 10px; }
 .lms-counter-card .plus-icons { font-size: 32px; line-height: 36px; }
 .lms-counter-card:hover {box-shadow: 0 2px 15px rgba(14,44,56,0.4); background-color: var(--secondary); color: #fff;}
+.lms-counter-card:hover p {color: #fff;}
 /************************************
  Lms Company Style End
 *************************************/
 /*************************************
 Lms Contact Form Pages Style Start
 *************************************/
-.contact-sub-header h1{margin-bottom: 20px;}
-.pages-sub-header.contact-sub-header{background: linear-gradient(to top left, #10C0B4 0%, #99E0E0 100%);min-height: 500px;position: relative;border-radius: 0 0 80px 80px/ 0 0 60px 60px;}
+.contact-sub-header {background:url(../../default/img/contact-bg.jpg);}
+.contact-sub-header .text-holder.has-bg {background:var(--primary);padding: 30px 40px; border-radius: 8px;box-shadow: 0 15px 15px rgba(0, 0, 0, 0.2);position: relative;bottom: -30px;}
+.contact-sub-header .text-holder a {text-decoration: none;font-size: 16px;font-weight: 500;background:#fff;padding: 0 45px;height: 60px;display: inline-block;color:var(--primary);line-height: 60px;}
 .lms-services.lms-contact-form{margin-top: -30px;background: transparent;}
 .message-box-icon path {color: #fff;fill: rgba(0,0,0,0.4);}
 .lms-shape-circle {width: 75px;height: 75px;display: inline-flex;background: rgba(255, 255, 255, 0.2);border-radius: 100%;}
@@ -24544,6 +24212,9 @@ Lms Contact Form Pages Style Start
 .pages-sub-header.contact-sub-header .cell-shaps .shap-lg g {fill: rgba(255,255,255,0.3);}
 .lms-services.lms-contact-form .row {justify-content: center;}
 .lms-services.lms-contact-form [class*="col-"] {width: 290px;max-width: 290px;}
+.lms-services figure img {position: absolute;left: 0;top: 0; width: 100%;height: 100%;object-fit: contain;}
+.lms-services figure {height: 180px;width: 180px;display: flex; align-items: center;justify-content: center;position: relative; margin: auto;}
+.lms-text-holder.has-box-shadow { box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); border-radius: 8px;}
 .services-card.has-bg h6{line-height: 1.1;}
 .services-card.has-bg:before{position: absolute;bottom: 0;background-image: linear-gradient(270deg, #9effc1, var(--primary));content: "";left: 0;height: 11px;width: 100%;}
 .services-card.has-bg{background: #fff;position: relative;padding:20px 20px 30px 20px;box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);border-radius: 8px;-webkit-transform: translateY(0);-moz-transform: translateY(0);-o-transform: translateY(0);transform: translateY(0);-webkit-transition: 0.5s ease-in-out;-moz-transition: 0.5s ease-in-out;-o-transition: 0.5s ease-in-out;transition: 0.5s ease-in-out;}
@@ -24551,14 +24222,16 @@ Lms Contact Form Pages Style Start
 .services-card.has-bg .icon-box {display: flex; background: transparent;width: auto;height: auto;}
 .services-card.has-bg .icon-box svg {fill:var(--primary);stroke:var(--primary);width: 30px;height: 32px;}
 .lms-map-holder .gmap_iframe {height: 380px;}
-.lms-map-section .element-title h2{font-size: 2.5rem;}
+.lms-map-section .element-title h2{font-size: 2.5rem; color: var(--dark-charcoal);}
 .lms-contact-form-section{background-color: #eaf7f0; position: relative; padding-top: 100px;}
-.lms-contact-form {background: #fff;}
+.lms-contact-form {background: #fff; padding: 20px 30px 0 30px;}
 .lms-contact-form .form-element-title{background-color: #fff; margin: 0;}
-.lms-contact-form .form-element-title h2{color: #000; font-size: 3rem;}
-.lms-contact-form .row:nth-child(1)>.col-12>.form-element-title{padding: 30px 20px;}
-.lms-contact-form .input-label { width: 37%;padding: 15px 15px 0 0;}
-.lms-contact-form .input-field {width: 63%;}
+.lms-contact-form .form-element-title h2{color:var(--dark-charcoal); font-size: 2.5rem;}
+.lms-contact-form .row:nth-child(1)>.col-12>.form-element-title{padding:0; margin-bottom: 25px;}
+.lms-contact-form .form-element-title p{color: #586165;}
+.lms-contact-form .input-label{color: #444;}
+.lms-contact-form .input-label {width: 37%;padding: 15px 15px 0 0;}
+.lms-contact-form .input-field { width: 63%;}
 .message-box {position: absolute;right: 0;top: 0;font-size: 18px;color: #000;max-width: 180px;font-style: italic;font-weight: 500;padding-right: 10px;font-family: monospace;}
 .contact-sub-header .lms-subtitle{margin-bottom: 0;}
 .contact-sub-header p {font-size: 16px;}
@@ -24567,7 +24240,6 @@ Lms Contact Form Pages Style Start
 .contact-sub-header .message-box .icon-svg{ position: absolute;left: -30px;bottom: -25px;transform: rotate(-45deg);}
 .contact-sub-header .message-box .icon-svg svg {width: 30px;height: 30px;}
 .lms-contact-form-section .svg-container:before{top: 0;bottom: auto;-webkit-transform: scaleY(-1); -moz-transform: scaleY(-1); transform: scaleY(-1);}
-.lms-jobs-form.lms-contact-form .input-field input[type="submit"]{background-color:#10c0b4;}
 /*************************************
 Lms Contact Form Pages Style End
 *************************************/
@@ -24582,8 +24254,8 @@ Lms FAQS New Elements Style Start
 .cell-shaps svg.shap-lg {height: 103px; width: 103px; border-radius: 100%;}
 .cell-shaps svg.shap-sm g {fill: rgba(255,255,255,0.6);}
 .lms-call-to-action input[type="text"] {border: 0; height: 55px; width: calc(100% - 200px); border-radius: 8px 0 0 8px;}
-.lms-call-to-action input[type="text"]:focus::-moz-placeholder {color: transparent;}
-.lms-call-to-action input[type="text"]:focus::-webkit-input-placeholder {color: transparent;}
+body input[type="text"]:focus::-moz-placeholder {color: transparent;}
+body input[type="text"]:focus::-webkit-input-placeholder {color: transparent;}
 .lms-call-to-action button {min-width: 200px; height: 55px; max-width: 200px; border: 0; background-color: #fe4a55; color: #fff; border-radius: 0 8px 8px 0; font-weight: 500;}
 .lms-call-to-action .field-holder {position: relative;}
 .lms-call-to-action .row {align-items: center;}
@@ -24643,7 +24315,33 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1;}
 /*************************************
-Lms Lms Choose Membership Model Style End
+Lms Choose Membership Model Style End
+*************************************/
+
+/*************************************
+Lms Newsletter Style Start
+*************************************/
+.newsletter-inner .row {align-items: center;}
+.lms-newsletter {background-color: var(--primary);}
+.lms-newsletter strong {display: block; line-height: normal;}
+.lms-newsletter label {font-weight: 500;}
+.lms-newsletter input[type="text"] {border: 0; height: 48px; padding: 0 15px; border-radius: 5px 0 0 5px; vertical-align: middle; width: calc(100% - 160px); display: inline-block; margin-right: -4px;}
+.lms-newsletter button {height: 48px; min-width: 160px; max-width: 160px; border: 0; border-radius: 0 5px 5px 0; display: inline-block; margin-right: -4px; vertical-align: middle; background-color: var(--gray-dark); color: #fff; font-weight: 500; font-size: 18px;}
+/*************************************
+Lms Newsletter Style Style End
+*************************************/
+/*************************************
+ Steps Section Style Start
+*************************************/
+.steps-holder li { width: 25%;text-align: center;position: relative;}
+.step-card .post-title {font-size: 20px;color: var(--dark-charcoal);}
+.steps-holder li a {color: #999;text-decoration: none;outline: none;text-transform: capitalize;font-size: 16px;line-height: 22px; display: inline-flex;position: relative;}
+.steps-holder li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background: #fff;border: 2px solid #0272b6;border-radius: 100%;}
+.steps-holder {position: relative;padding-bottom: 25px}
+.steps-holder:before {content: "";position: absolute;left: 0;bottom: -5px;background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);width: 100%;height: 6px;}
+.steps-holder:after {-webkit-animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;background-color: #fff;content: "";inset: 0;position: absolute; top: 100%;left:50%; height: 6px; width: 50%;border-radius: 50px;z-index: 2;}
+/*************************************
+ Steps Section Style End
 *************************************/
 /*************************************
 Lms Responsive Style Start

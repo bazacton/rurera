@@ -6,7 +6,6 @@
      data-infobox_value="{{isset($data_values->infobox_value)? $data_values->infobox_value : ''}}">
     <div class="field-data"><img src="/assets/default/img/book-icons/try_do_it_yourself.png">
     </div>
-    <span class="field-handle fas fa-arrows-alt"></span>
     <a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>
 </div>
 

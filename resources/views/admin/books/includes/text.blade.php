@@ -8,7 +8,6 @@ $data_color = isset($data_values->text_color)? str_replace('color: ','', $data_v
     <div class="field-data customizable-field data_style_field data_html_field" data-html_id="text_html"
          data-style_id="text_color" contenteditable="true">{{isset($data_values->text_html)? $data_values->text_html : ''}}
     </div>
-    <span class="field-handle fas fa-arrows-alt"></span>
     <a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>
 </div>
 

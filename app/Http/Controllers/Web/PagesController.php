@@ -27,7 +27,7 @@ class PagesController extends Controller
                 'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex' ,
                 'page'            => $page
             ];
-            
+
             if ($page->id == 26) {
                 return view('web.default.pages.job_signup' , $data);
             } elseif ($page->id == 36) {
@@ -38,8 +38,10 @@ class PagesController extends Controller
                 return view('web.default.pages.contact' , $data);
             } elseif ($page->id == 17) {
                 return view('web.default.pages.faqs' , $data);
+            } elseif ($page->id == 77) {
+                return view('web.default.pages.contact2' , $data);
             } elseif ($page->id == 11) {
-                $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
+                $testimonials = Testimonial::where('status' , 'active')->orderBy('testimonial_date' , 'asc')->get();
                 $data['testimonials'] = $testimonials;
                 return view('web.default.pages.testimonials' , $data);
             } else {

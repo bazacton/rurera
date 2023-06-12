@@ -64,6 +64,8 @@ class CategoryController extends Controller
             'slug' => $data['slug'] ?? Category::makeSlug($data['title']),
             'icon' => $data['icon'],
             'order' => $order,
+            'color' => isset( $data['color'] )? $data['color'] : '',
+            'menu_data' => isset( $data['menu_data'] )? $data['menu_data'] : '',
         ]);
 
         CategoryTranslation::updateOrCreate([
@@ -122,6 +124,8 @@ class CategoryController extends Controller
             'icon' => $data['icon'],
             'slug' => $data['slug'] ?? Category::makeSlug($data['title']),
             'order' => $data['order'] ?? $category->order,
+            'color' => isset( $data['color'] )? $data['color'] : '',
+            'menu_data' => isset( $data['menu_data'] )? $data['menu_data'] : '',
         ]);
 
         CategoryTranslation::updateOrCreate([
@@ -204,6 +208,8 @@ class CategoryController extends Controller
                             'order' => $order,
                             'icon' => $subCategory['icon'] ?? null,
                             'slug' => $subCategory['slug'] ?? null,
+                            'color' => isset( $subCategory['color'] )? $subCategory['color'] : '',
+                            'menu_data' => isset( $subCategory['menu_data'] )? $subCategory['menu_data'] : '',
                         ]);
 
                         CategoryTranslation::updateOrCreate([
@@ -223,6 +229,8 @@ class CategoryController extends Controller
                             'slug' => ($checkSlug < 1 and !empty($subCategory['slug'])) ? $subCategory['slug'] : Category::makeSlug($subCategory['title']),
                             'icon' => $subCategory['icon'] ?? null,
                             'order' => $order,
+                            'color' => isset( $subCategory['color'] )? $subCategory['color'] : '',
+                            'menu_data' => isset( $subCategory['menu_data'] )? $subCategory['menu_data'] : '',
                         ]);
 
                         CategoryTranslation::updateOrCreate([

@@ -95,8 +95,17 @@ class BooksController extends Controller
     {
         $this->authorize('admin_books_create');
 
+        $reading_level = Books::$reading_level;
+        $age_group = Books::$age_group;
+        $interest_area = Books::$interest_area;
+        $skill_set = Books::$skill_set;
+
         $data = [
-            'pageTitle' => 'Books' ,
+            'pageTitle'     => 'Books' ,
+            'reading_level' => $reading_level ,
+            'age_group'     => $age_group ,
+            'interest_area' => $interest_area ,
+            'skill_set'     => $skill_set ,
         ];
 
         return view('admin.books.create' , $data);
@@ -119,12 +128,22 @@ class BooksController extends Controller
         exit;*/
 
 
-        $book = Books::where('id' , $id)->with('bookPages.PageInfoLinks')->first();
+        $reading_level = Books::$reading_level;
+        $age_group = Books::$age_group;
+        $interest_area = Books::$interest_area;
+        $skill_set = Books::$skill_set;
+
+        $book = Books::where('id' , $id)->with(['bookFinalQuiz.QuestionData','bookPages.PageInfoLinks'])->first();
+
 
         $data = [
-            'pageTitle' => 'Edit Book' ,
-            'book'      => $book ,
-            'rand_id'   => rand(99 , 9999) ,
+            'pageTitle'     => 'Edit Book' ,
+            'book'          => $book ,
+            'rand_id'       => rand(99 , 9999) ,
+            'reading_level' => $reading_level ,
+            'age_group'     => $age_group ,
+            'interest_area' => $interest_area ,
+            'skill_set'     => $skill_set ,
         ];
 
         return view('admin.books.edit' , $data);
@@ -164,16 +183,69 @@ class BooksController extends Controller
 
         $book_pdf = isset($data['book_pdf']) ? $data['book_pdf'] : '';
 
-        $book = ($id > 0)? Books::findOrFail($id) : array();
+        $book = ($id > 0) ? Books::findOrFail($id) : array();
+
+        $book_slug = ( isset( $data['book_slug'] ) && $data['book_slug'] != '')? $data['book_slug'] : Books::makeSlug($data['book_title']);
+
+        if (!empty($book)) {
+            $book->update([
+                'book_slug'       => $book_slug ,
+                'written_by'       => isset($data['written_by']) ? $data['written_by'] : '' ,
+                'illustrated_by'   => isset($data['illustrated_by']) ? $data['illustrated_by'] : '' ,
+                'publication_date' => isset($data['publication_date']) ? strtotime($data['publication_date']) : time() ,
+                'cover_image'      => isset($data['cover_image']) ? $data['cover_image'] : '' ,
+                'words_bank'       => isset($data['words_bank']) ? $data['words_bank'] : '' ,
+                'reading_level'    => isset($data['reading_level']) ? $data['reading_level'] : '' ,
+                'reading_color'    => isset($data['reading_color']) ? $data['reading_color'] : '' ,
+                'age_group'        => isset($data['age_group']) ? $data['age_group'] : '' ,
+                'interest_area'    => isset($data['interest_area']) ? $data['interest_area'] : '' ,
+                'skill_set'        => isset($data['skill_set']) ? $data['skill_set'] : '' ,
+                'no_of_pages'      => isset($data['no_of_pages']) ? $data['no_of_pages'] : 0 ,
+                'reading_points'   => isset($data['reading_points']) ? $data['reading_points'] : 0 ,
+            ]);
 
 
-        if( !empty( $book_pdf ) ) {
+            $final_questions = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
+
+            $final_questions_list = array();
+            if (!empty($final_questions)) {
+                foreach ($final_questions as $sort_order => $question_id) {
+
+                    $questionObj = BooksPagesQuestions::where('book_id' , $book->id)->where('quiz_type' , 'final')->where('question_id' , $question_id)->first();
+                    $final_questions_list[] = $question_id;
+
+                    if (isset($questionObj->id)) {
+                        $questionObj->update([
+                            'sort_order'          => $sort_order ,
+                        ]);
+                    } else {
+                        $BooksPagesQuestions = BooksPagesQuestions::create([
+                            'book_id'             => $book->id ,
+                            'page_id'             => 0 ,
+                            'books_info_links_id' => 0 ,
+                            'question_id'         => $question_id ,
+                            'sort_order'          => $sort_order ,
+                            'quiz_type'           => 'final',
+                            'created_by'          => $user->id ,
+                            'created_at'          => time() ,
+                        ]);
+                    }
+                }
+            }
+            BooksPagesQuestions::whereNotIn('question_id' , $final_questions_list)->where('book_id' , $book->id)->where('quiz_type' , 'final')->update([
+                'status' => 'inactive'
+            ]);
+        }
+
+
+        if (!empty($book_pdf)) {
             $book_pdf = ltrim($book_pdf , '/');
             $pdf = new Pdf($book_pdf);
             $book_pages = $pdf->getNumberOfPages();
 
             if ($id != '' && $id > 0) {
-                $book = ($id > 0)? Books::findOrFail($id) : array();
+                $book = ($id > 0) ? Books::findOrFail($id) : array();
+                pre($book);
                 /*$glossary = Glossary::findOrFail($id);
                 $glossary->update([
                     'category_id' => isset($data['category_id']) ? $data['category_id'] : '' ,
@@ -185,11 +257,24 @@ class BooksController extends Controller
                 $this->authorize('admin_books_create');
 
                 $book = Books::create([
-                    'book_title' => isset($data['book_title']) ? $data['book_title'] : '' ,
-                    'book_pdf'   => $book_pdf ,
-                    'book_pages' => $book_pages ,
-                    'created_by' => $user->id ,
-                    'created_at' => time() ,
+                    'book_title'       => isset($data['book_title']) ? $data['book_title'] : '' ,
+                    'book_slug'       => $book_slug ,
+                    'book_pdf'         => $book_pdf ,
+                    'book_pages'       => $book_pages ,
+                    'written_by'       => isset($data['written_by']) ? $data['written_by'] : '' ,
+                    'illustrated_by'   => isset($data['illustrated_by']) ? $data['illustrated_by'] : '' ,
+                    'publication_date' => isset($data['publication_date']) ? strtotime($data['publication_date']) : time() ,
+                    'cover_image'      => isset($data['cover_image']) ? $data['cover_image'] : '' ,
+                    'words_bank'       => isset($data['words_bank']) ? $data['words_bank'] : '' ,
+                    'reading_level'    => isset($data['reading_level']) ? $data['reading_level'] : '' ,
+                    'reading_color'    => isset($data['reading_color']) ? $data['reading_color'] : '' ,
+                    'age_group'        => isset($data['age_group']) ? $data['age_group'] : '' ,
+                    'interest_area'    => isset($data['interest_area']) ? $data['interest_area'] : '' ,
+                    'skill_set'        => isset($data['skill_set']) ? $data['skill_set'] : '' ,
+                    'no_of_pages'      => isset($data['no_of_pages']) ? $data['no_of_pages'] : 0 ,
+                    'reading_points'   => isset($data['reading_points']) ? $data['reading_points'] : 0 ,
+                    'created_by'       => $user->id ,
+                    'created_at'       => time() ,
                 ]);
 
                 File::isDirectory('store/1/books/' . $book->id . '/') or File::makeDirectory('store/1/books/' . $book->id . '/' , 0777 , true , true);
@@ -199,32 +284,32 @@ class BooksController extends Controller
                     BooksPages::create([
                         'book_id'    => $book->id ,
                         'page_no'    => $page_count ,
-                        'page_title'    => $page_count ,
+                        'page_title' => $page_count ,
                         'page_path'  => 'store/1/books/' . $book->id . '/' . $page_count . '.jpg' ,
                         'created_by' => $user->id ,
                         'created_at' => time() ,
-                        'sort_order' => $page_count,
+                        'sort_order' => $page_count ,
                     ]);
                     $page_count++;
                 }
             }
-        }else{
-            $book_pages = isset( $data['book_pages'] )? $data['book_pages'] : array();
-            $book_pages_titles = isset( $data['book_pages_titles'] )? $data['book_pages_titles'] : array();
+        } else {
+            $book_pages = isset($data['book_pages']) ? $data['book_pages'] : array();
+            $book_pages_titles = isset($data['book_pages_titles']) ? $data['book_pages_titles'] : array();
             $book_pages_ids = array();
-            if( !empty( $book_pages )){
-                foreach( $book_pages as $page_index => $page_id){
-                    $book_pages_ids[]   = $page_id;
-                    $page_title = isset( $book_pages_titles[$page_index] )? $book_pages_titles[$page_index] : '';
+            if (!empty($book_pages)) {
+                foreach ($book_pages as $page_index => $page_id) {
+                    $book_pages_ids[] = $page_id;
+                    $page_title = isset($book_pages_titles[$page_index]) ? $book_pages_titles[$page_index] : '';
                     $pageObj = BooksPages::findOrFail($page_id);
                     $pageObj->update([
-                        'page_title' => $page_title,
+                        'page_title' => $page_title ,
                         'sort_order' => $page_index
                     ]);
                 }
             }
 
-            BooksPages::whereNotIn('id' , $book_pages_ids)->where('book_id', $book->id)->update([
+            BooksPages::whereNotIn('id' , $book_pages_ids)->where('book_id' , $book->id)->update([
                 'status' => 'inactive'
             ]);
         }
@@ -251,6 +336,7 @@ class BooksController extends Controller
 
         $data = $request->all();
         $locale = $request->get('locale' , getDefaultLocale());
+        $book_page_id = $id;
 
         $rules = [
             'book_title' => 'required|max:255' ,

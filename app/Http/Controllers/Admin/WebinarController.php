@@ -85,7 +85,7 @@ class WebinarController extends Controller
                 }
             ]);
 
-        $webinars = $query->paginate(10);
+        $webinars = $query->paginate(200);
 
         if ($request->get('status', null) == 'active_finished') {
             foreach ($webinars as $key => $webinar) {

@@ -9,6 +9,5 @@
                  data-style_id="highlighter_background" style="{{isset($data_values->highlighter_background)? $data_values->highlighter_background : ''}}"></div>
         </div>
     </div>
-    <span class="field-handle fas fa-arrows-alt"></span>
     <a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>
 </div>

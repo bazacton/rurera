@@ -17,10 +17,8 @@
                     </div>
                     <ul>
                         <li><a href="/blog">News</a></li>
-                        <li><a href="/privacy-policy">Privacy Policy</a></li>
-                        <li><a href="/terms-of-services">Term of Services</a></li>
                         <li><a href="/user-guides">Help Center</a></li>
-                        <li><a href="/job-signup">Career</a></li>
+                        <li><a href="/careers">Careers</a></li>
                         <li><a href="/support-page">Support Page</a></li>
                         <li><a href="/about-us">About Us</a></li>
                         <li><a href="/testimonials">Testimonials</a></li>
@@ -35,9 +33,6 @@
                     </div>
                     <ul>
                         <li><a href="/national-curriculum">National Curriculum</a></li>
-                        <li><a href="/Course-2">Course 2</a></li>
-                        <li><a href="/Course-3">Course 3</a></li>
-                        <li><a href="/Course-4">Course 4</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,6 +65,10 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
+                    <ul class="footer-privacy-links">
+                        <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                    </ul>
                     <div class="footer-social">
                         <a href="https://www.instagram.com/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram"
