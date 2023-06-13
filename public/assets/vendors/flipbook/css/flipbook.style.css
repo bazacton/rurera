@@ -153,6 +153,8 @@
     position: absolute;
 }
 
+
+
 .flipbook-page3-bg {
     width: auto;
     height: 100%;
@@ -166,29 +168,6 @@
     position: absolute;
     transform: translateZ(0);
     /* -webkit-transform: translateZ(0); */
-}
-
-.flipbook-page3 img {
-    /*transform-origin:0 0;
-    -webkit-transform-origin:0 0;
-    transform:translateZ(0);
-    -webkit-transform:translateZ(0);*/
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    /* width:  100%; */
-    height: 100%;
-    margin: auto;
-    position: absolute;
-    transform-origin: 0 0;
-    -webkit-transform-origin: 0 0;
-    /* transform:translateZ(0); */
-    /* -webkit-transform:translateZ(0); */
-    float: left;
-    user-select: none;
-    pointer-events: none;
-    max-width: unset;
 }
 
 .flipbook-page3 canvas {
@@ -2442,3 +2421,8 @@ Flip Book Custom Style Start
 /****************************
 Flip Book Custom Style End
 ****************************/
+
+
+.book-info-link{
+    cursor: pointer;
+}

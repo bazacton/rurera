@@ -1,6 +1,6 @@
 .drag-controls {
     position: absolute;
-    right: -20px;
+    right: -40px;
     top: 30px;
     height: calc(100% - 120px);
     border: 1px solid #cccccc;
@@ -12,6 +12,7 @@
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
+
 
 .open .drag-controls {
     right: 1px;
@@ -121,8 +122,6 @@
 
 
 .book-dropzone {
-    height: 956px;
-    width: 676px;
     background-size: cover !important;
     position: relative;
 }

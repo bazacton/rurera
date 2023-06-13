@@ -384,7 +384,9 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
     });
 
     Route::group(['prefix' => 'books'], function () {
+        Route::get('/', 'BooksController@index');
         Route::get('/{book_slug}', 'BooksController@book');
+        Route::get('/{info_id}/info_detail', 'BooksController@info_detail');
     });
 
     Route::get('/sitemap', function()

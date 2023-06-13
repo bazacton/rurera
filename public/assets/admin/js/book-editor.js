@@ -200,7 +200,7 @@ $(document).on('click', '.field_settings', function (e) {
         }
 
         if (field_type == 'select_info') {
-            var book_page_id = $(".book-dropzone ").attr('data-page_id');
+            var book_page_id = $(".book-dropzone.active").attr('data-page_id');
             $(this).addClass('search-infobox-select2_' + parent_field_id);
             var select_data = [];
             if (!EditorIsEmpty(field_value)) {
@@ -210,7 +210,6 @@ $(document).on('click', '.field_settings', function (e) {
                     data: {'book_page_id': book_page_id, 'infobox_ids': field_value},
                     success: function (return_data) {
                         var select_data = return_data;
-                        console.log(return_data);
                         handleMultiSelect2('search-infobox-select2_' + parent_field_id, '/admin/books/' + book_page_id + '/searchinfobox', 'title', select_data);
                         var selected_values = [];
                         $.each(select_data, function (index, valueObj) {

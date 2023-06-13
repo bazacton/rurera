@@ -170,6 +170,18 @@
 
                                         <div class="col-6 col-md-6 col-lg-6">
                                             <div class="form-group">
+                                                <label>Book Category</label>
+                                                <select name="book_category" class="form-control" data-placeholder="Select Category">
+                                                    <option value="">Select Category</option>
+                                                    @foreach($book_categories as $book_category_value => $book_category_label)
+                                                    <option value="{{$book_category_value}}" {{ (!empty($book) and $book->book_category == $book_category_value) ? 'selected' : '' }}>{{$book_category_label}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-md-6 col-lg-6">
+                                            <div class="form-group">
                                                 <label>Reading Level</label>
                                                 <select name="reading_level" class="form-control" data-placeholder="Select Reading Level">
                                                     <option value="">Select Reading Level</option>
@@ -197,11 +209,13 @@
                                         <div class="col-6 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label>Interest Area</label>
-                                                <select name="interest_area" class="form-control" data-placeholder="Select Interest Area">
+                                                @php $book_interest_area = explode(',', $book->interest_area); @endphp
+                                                <select name="interest_area[]" class="form-control select2" data-placeholder="Select Interest Area" multiple="multiple">
                                                     <option value="">Select Interest Area</option>
                                                     @foreach($interest_area as $interest_area_value => $interest_area_label)
-                                                    <option value="{{$interest_area_value}}" {{ (!empty($book) and $book->interest_area == $interest_area_value) ? 'selected' : ''
-                                                        }}>{{$interest_area_label}}
+                                                    <option value="{{$interest_area_value}}" {{ (!empty($book) and in_array($interest_area_value, $book_interest_area)) ?
+                                                    'selected' : ''
+                                                    }}>{{$interest_area_label}}
                                                     </option>
                                                     @endforeach
                                                 </select>
@@ -254,6 +268,24 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-6 col-md-6 col-lg-6">
+                                            <div class="form-group">
+                                                <label class="input-label">Book Cover Image</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button type="button" class="input-group-text admin-file-manager"
+                                                                data-input="cover_image" data-preview="holder">
+                                                            <i class="fa fa-chevron-up"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" name="cover_image"
+                                                           id="cover_image"
+                                                           value="{{ !empty($book) ? $book->cover_image : old('cover_image') }}"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="col-12 col-md-12 col-lg-12">
                                             <div class="pages-list">
@@ -292,7 +324,8 @@
 
                                             <div class="form-group mt-15 ">
                                                 <label class="input-label d-block">Final Quiz</label>
-                                                <select id="questions_ids" data-search-option="questions_ids" class="form-control search-questions-select2" data-placeholder="Search Question"></select>
+                                                <select id="questions_ids" data-search-option="questions_ids" class="form-control book-search-questions-select2" data-placeholder="Search
+                                                Question"></select>
                                             </div>
 
 
@@ -325,7 +358,7 @@
                                 </div>
 
                                 <div class="tab-pane mt-3 fade" id="editor" role="tabpanel" aria-labelledby="editor-settings">
-                                    <div class="editor-zone" style="height:956px; width:676px;position:relative;">
+                                    <div class="editor-zone" style="position:relative;width: fit-content;">
 
                                         @if( !empty($book->bookPages ) )
                                         @php $i = 1; @endphp
@@ -333,6 +366,7 @@
                                         <div class="book-dropzone {{ ($i > 1)? 'hide' : 'active'}}"
                                              style="background:url('/{{$bookPage->page_path}}');"
                                              data-page_id="{{$bookPage->id}}">
+                                            <img src="/{{$bookPage->page_path}}" style="visibility: hidden;" />
 
 
                                             @if(!empty($bookPage->PageInfoLinks))
@@ -373,7 +407,7 @@
 <script src="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        handleMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
+        handleMultiSelect2('book-search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
         $(document).on('change', '.quiz-type', function (e) {
             var quiz_type = $(this).val();
@@ -381,7 +415,7 @@
             $('.' + quiz_type + "-fields").removeClass('hide-class');
         });
 
-        $(document).on('change', '.search-questions-select2', function (e) {
+        $(document).on('change', '.book-search-questions-select2', function (e) {
             var field_value = $(this).val();
             var field_label = $(this).text();
             $(".questions-list ul").append('<li data-id="' + field_value + '">' + field_label + '  <input type="hidden" name="question_list_ids[]" ' +

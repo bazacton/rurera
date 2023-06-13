@@ -16,7 +16,7 @@
                         <h5>Company</h5>
                     </div>
                     <ul>
-                        <li><a href="/blog">News</a></li>
+                        <li><a href="/blog">Blog</a></li>
                         <li><a href="/user-guides">Help Center</a></li>
                         <li><a href="/careers">Careers</a></li>
                         <li><a href="/support-page">Support Page</a></li>

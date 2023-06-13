@@ -4,11 +4,39 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Books;
+use App\Models\BooksPagesInfoLinks;
+use App\Models\BooksUserPagesInfoLinks;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
 class BooksController extends Controller
 {
+
+    public function index()
+    {
+
+        $books_data = Books::get();
+
+        $books = array();
+
+        if (!empty($books_data)) {
+            foreach ($books_data as $bookObj) {
+                if (isset($bookObj->book_category) && $bookObj->book_category != '') {
+                    $books[$bookObj->book_category][] = $bookObj;
+                }
+            }
+        }
+        if (!empty($books)) {
+            $data = [
+                'pageTitle' => 'Books' ,
+                'books'     => $books ,
+            ];
+            return view('web.default.pages.books' , $data);
+        }
+
+        abort(404);
+    }
+
     public function book($book_slug)
     {
 
@@ -35,8 +63,8 @@ class BooksController extends Controller
                                 $info_link_html .= '</span>';
                                 break;
 
-                            case "check_it_makes_sense":
-                                $info_link_html .= '<img src="/assets/default/img/book-icons/infobox.png" style="width: 42px;height: auto;">';
+                            default:
+                                $info_link_html .= '<span class="book-info-link" data-id="' . $pageInfoLinks['id'] . '" data-type="' . $pageInfoLinks['info_type'] . '"><img src="/assets/default/img/book-icons/' . $pageInfoLinks['info_type'] . '.png" style="width: 42px;height: auto;"></span>';
                                 break;
                         }
 
@@ -59,4 +87,53 @@ class BooksController extends Controller
 
         abort(404);
     }
+
+    public function info_detail($info_id)
+    {
+        $user = auth()->user();
+
+        $infoLinkData = BooksPagesInfoLinks::where('id' , $info_id)->first();
+        $info_type = isset($infoLinkData->info_type) ? $infoLinkData->info_type : '';
+        $response = '';
+
+        /*BooksUserPagesInfoLinks::create([
+            'user_id'             => $user->id ,
+            'book_info_link_id'   => $info_id ,
+            'status'              => 'active',
+            'created_by'          => $user->id ,
+            'created_at'          => time() ,
+        ]);*/
+
+        switch ($info_type) {
+
+            case "quiz":
+
+                $user_info_links_ids = BooksUserPagesInfoLinks::where('user_id' , $user->id)->pluck('book_info_link_id')->toArray();
+                $data_values = json_decode($infoLinkData->data_values);
+                $dependent_info = isset($data_values->dependent_info) ? explode(',' , $data_values->dependent_info) : '';
+
+                $all_infolinks_checked = (count(array_intersect($dependent_info , $user_info_links_ids))) ? true : false;
+
+                $response = view("web.default.books.includes." . $info_type , ["pageInfoLink" => $infoLinkData , "all_infolinks_checked" => $all_infolinks_checked]);
+                break;
+
+            default:
+
+                BooksUserPagesInfoLinks::create([
+                    'user_id'           => $user->id ,
+                    'book_info_link_id' => $info_id ,
+                    'status'            => 'active' ,
+                    'created_by'        => $user->id ,
+                    'created_at'        => time() ,
+                ]);
+                $response = view("web.default.books.includes." . $info_type , ["pageInfoLink" => $infoLinkData]);
+                break;
+        }
+
+        echo $response;
+        exit;
+
+    }
+
+
 }

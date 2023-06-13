@@ -238,12 +238,12 @@
   <div class="container">
     <div class="lms-testimonials row">
       <div class="col-12 mb-20">
-        <h1
-          class="font-weight-bold text-center w-100 mb-10 pt-0"
-          style="text-align:center;color:#27325e;padding-top:20px"
+        <h2
+          class="font-weight-bold text-center w-100 mb-10 font-40 pt-0 text-dark-charcoal"
+          style="text-align:center;padding-top:20px"
         >
           Learn Why millions Love us ?
-        </h1>
+        </h2>
         <p class="mb-25 text-center">
           Read about how learners are excelling with Rurera. Figure out
           thoughts<br />of students, teachers, and parents...
@@ -260,10 +260,10 @@
         </div>
         <div class="lms-masonry">
           <div class="masonry-grid row">
-              
+
              @foreach($testimonials as $testimonial)
                 <div class="grid-item col-lg-4 col-md-4 col-sm-6 student">
-                    
+
                     <div class="testimonial-card">
                         <div class="testimonial-body">
                           <p>{!! nl2br($testimonial->comment) !!}</p>
@@ -273,7 +273,7 @@
                         </div>
                       </div>
                 </div>
-            @endforeach  
+            @endforeach
           </div>
         </div>
       </div>

@@ -124,6 +124,19 @@
 
                                 <div class="col-6 col-md-6 col-lg-6">
                                     <div class="form-group">
+                                        <label>Book Category</label>
+                                        <select name="book_category" class="form-control" data-placeholder="Select Category">
+                                            <option value="">Select Category</option>
+                                            @foreach($book_categories as $book_category_value => $book_category_label)
+                                            <option value="{{$book_category_value}}">{{$book_category_label}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
                                         <label>Reading Level</label>
                                         <select name="reading_level" class="form-control" data-placeholder="Select Reading Level">
                                             <option value="">Select Reading Level</option>
@@ -151,11 +164,10 @@
                                 <div class="col-6 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label>Interest Area</label>
-                                        <select name="interest_area" class="form-control" data-placeholder="Select Interest Area">
+                                        <select name="interest_area[]" class="form-control select2" data-placeholder="Select Interest Area" multiple="multiple">
                                             <option value="">Select Interest Area</option>
                                             @foreach($interest_area as $interest_area_value => $interest_area_label)
-                                            <option value="{{$interest_area_value}}" {{ (!empty($book) and $book->interest_area == $interest_area_value) ? 'selected' : ''
-                                                }}>{{$interest_area_label}}
+                                            <option value="{{$interest_area_value}}">{{$interest_area_label}}
                                             </option>
                                             @endforeach
                                         </select>
@@ -205,6 +217,24 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <label class="input-label">Book Cover Image</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button type="button" class="input-group-text admin-file-manager"
+                                                        data-input="cover_image" data-preview="holder">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" name="cover_image"
+                                                   id="cover_image"
+                                                   value="{{ !empty($book) ? $book->cover_image : old('cover_image') }}"
+                                                   class="form-control"/>
+                                        </div>
                                     </div>
                                 </div>
 

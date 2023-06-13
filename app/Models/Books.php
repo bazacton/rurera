@@ -13,12 +13,19 @@ class Books extends Model
     protected $table = 'books';
     public $timestamps = false;
 
-    protected $fillable = ['book_title' , 'book_slug' , 'book_pdf' , 'book_pages' , 'written_by' , 'illustrated_by' , 'publication_date' , 'cover_image' , 'words_bank' , 'reading_level' , 'reading_color' , 'age_group' , 'interest_area' , 'skill_set' , 'no_of_pages' , 'reading_points' , 'created_by' , 'created_at'];
+    protected $fillable = ['book_title' , 'book_slug' , 'book_pdf' , 'book_pages' , 'written_by' , 'illustrated_by' , 'publication_date' , 'cover_image' , 'words_bank' , 'reading_level' , 'reading_color' , 'age_group' , 'interest_area' , 'skill_set' , 'no_of_pages' , 'reading_points', 'book_category' , 'created_by' , 'created_at'];
+
+    static $book_categories = array(
+            'Board Books' => 'Board Books' ,
+            'Picture Books' => 'Picture Books' ,
+            'Junior Books' => 'Junior Books' ,
+            'Middle Grade' => 'Middle Grade' ,
+        );
 
     static $reading_level = array(
-        'level-1' => 'level 1' ,
-        'level-2' => 'level 2' ,
-        'level-3' => 'level 3' ,
+        'level 1' => 'level 1' ,
+        'level 2' => 'level 2' ,
+        'level 3' => 'level 3' ,
     );
 
     static $age_group = array(
@@ -30,7 +37,6 @@ class Books extends Model
 
     static $interest_area = array(
         'Sport'     => 'Sport' ,
-        'Genre'     => 'Genre' ,
         'Real-life' => 'Real-life' ,
         'Fiction'   => 'Fiction' ,
     );

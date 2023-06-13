@@ -99,12 +99,14 @@ class BooksController extends Controller
         $age_group = Books::$age_group;
         $interest_area = Books::$interest_area;
         $skill_set = Books::$skill_set;
+        $book_categories = Books::$book_categories;
 
         $data = [
             'pageTitle'     => 'Books' ,
             'reading_level' => $reading_level ,
             'age_group'     => $age_group ,
             'interest_area' => $interest_area ,
+            'book_categories' => $book_categories ,
             'skill_set'     => $skill_set ,
         ];
 
@@ -132,6 +134,7 @@ class BooksController extends Controller
         $age_group = Books::$age_group;
         $interest_area = Books::$interest_area;
         $skill_set = Books::$skill_set;
+        $book_categories = Books::$book_categories;
 
         $book = Books::where('id' , $id)->with(['bookFinalQuiz.QuestionData','bookPages.PageInfoLinks'])->first();
 
@@ -143,6 +146,7 @@ class BooksController extends Controller
             'reading_level' => $reading_level ,
             'age_group'     => $age_group ,
             'interest_area' => $interest_area ,
+            'book_categories' => $book_categories ,
             'skill_set'     => $skill_set ,
         ];
 
@@ -185,7 +189,10 @@ class BooksController extends Controller
 
         $book = ($id > 0) ? Books::findOrFail($id) : array();
 
+
         $book_slug = ( isset( $data['book_slug'] ) && $data['book_slug'] != '')? $data['book_slug'] : Books::makeSlug($data['book_title']);
+
+        $interest_area = isset($data['interest_area']) ? implode(',', $data['interest_area']) : '';
 
         if (!empty($book)) {
             $book->update([
@@ -198,10 +205,11 @@ class BooksController extends Controller
                 'reading_level'    => isset($data['reading_level']) ? $data['reading_level'] : '' ,
                 'reading_color'    => isset($data['reading_color']) ? $data['reading_color'] : '' ,
                 'age_group'        => isset($data['age_group']) ? $data['age_group'] : '' ,
-                'interest_area'    => isset($data['interest_area']) ? $data['interest_area'] : '' ,
+                'interest_area'    => $interest_area ,
                 'skill_set'        => isset($data['skill_set']) ? $data['skill_set'] : '' ,
                 'no_of_pages'      => isset($data['no_of_pages']) ? $data['no_of_pages'] : 0 ,
                 'reading_points'   => isset($data['reading_points']) ? $data['reading_points'] : 0 ,
+                'book_category'   => isset($data['book_category']) ? $data['book_category'] : '' ,
             ]);
 
 
@@ -238,6 +246,7 @@ class BooksController extends Controller
         }
 
 
+
         if (!empty($book_pdf)) {
             $book_pdf = ltrim($book_pdf , '/');
             $pdf = new Pdf($book_pdf);
@@ -245,14 +254,6 @@ class BooksController extends Controller
 
             if ($id != '' && $id > 0) {
                 $book = ($id > 0) ? Books::findOrFail($id) : array();
-                pre($book);
-                /*$glossary = Glossary::findOrFail($id);
-                $glossary->update([
-                    'category_id' => isset($data['category_id']) ? $data['category_id'] : '' ,
-                    'title'       => isset($data['title']) ? $data['title'] : '' ,
-                    'description' => isset($data['description']) ? $data['description'] : '' ,
-                    'created_at'  => time() ,
-                ]);*/
             } else {
                 $this->authorize('admin_books_create');
 
@@ -269,10 +270,11 @@ class BooksController extends Controller
                     'reading_level'    => isset($data['reading_level']) ? $data['reading_level'] : '' ,
                     'reading_color'    => isset($data['reading_color']) ? $data['reading_color'] : '' ,
                     'age_group'        => isset($data['age_group']) ? $data['age_group'] : '' ,
-                    'interest_area'    => isset($data['interest_area']) ? $data['interest_area'] : '' ,
+                    'interest_area'    => $interest_area ,
                     'skill_set'        => isset($data['skill_set']) ? $data['skill_set'] : '' ,
                     'no_of_pages'      => isset($data['no_of_pages']) ? $data['no_of_pages'] : 0 ,
                     'reading_points'   => isset($data['reading_points']) ? $data['reading_points'] : 0 ,
+                    'book_category'   => isset($data['book_category']) ? $data['book_category'] : '' ,
                     'created_by'       => $user->id ,
                     'created_at'       => time() ,
                 ]);
