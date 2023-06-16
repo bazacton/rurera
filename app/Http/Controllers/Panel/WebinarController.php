@@ -1471,9 +1471,9 @@ class WebinarController extends Controller
 
         abort(403);
     }
-	
-	
-	
+
+
+
 	public function store_question_result($questionObj, $newQuizStart, $quizAttempt){
 		$user = auth()->user();
 		$newQuestionResult = QuizzResultQuestions::where('quiz_id', $newQuizStart->quiz_id)
@@ -1481,7 +1481,8 @@ class WebinarController extends Controller
 				->where('question_id', $questionObj->id)
 				->where('status', 'waiting')
                 ->first();
-		if (!isset( $newQuestionResult->id ) || $newQuestionResult->id != '') {		
+
+		if (!isset( $newQuestionResult->id ) || $newQuestionResult->id != '') {
 			$correct_answers = $this->get_question_correct_answers($questionObj);
 
 			$newQuestionResult = QuizzResultQuestions::create([
@@ -1498,9 +1499,11 @@ class WebinarController extends Controller
 				'time_consumed'		=> 0,
 				'difficulty_level'	=> $questionObj->question_difficulty_level,
 				'status'			=> 'waiting',
-				'created_at'		=> time()
+				'created_at'		=> time(),
+                'parent_type_id'   => $quizAttempt->parent_type_id ,
+                'quiz_result_type' => $quizAttempt->attempt_type ,
 			]);
-				
+
 		}else{
                     $newQuestionResult = $newQuestionResult->replicate();
                     $newQuestionResult->update([
@@ -1508,13 +1511,13 @@ class WebinarController extends Controller
                         'created_at'      => time()
                     ]);
 }
-				
+
 		createAttemptLog($quizAttempt->id, 'Viewed (and possibly read) question #'.$newQuestionResult->id, 'viewed', $newQuestionResult->id);
-		
+
 		return $newQuestionResult;
 	}
-	
-	
+
+
 	public function store_question_result_bk($questionObj, $newQuizStart, $quizAttempt){
 		$user = auth()->user();
 		$newQuestionResult = (object) array();
@@ -1522,7 +1525,7 @@ class WebinarController extends Controller
                 ->where('user_id', $user->id)
 				->where('question_id', $questionObj->id)
                 ->first();
-		if (!isset( $newQuestionResultValidate->id ) || $newQuestionResultValidate->id == '') {		
+		if (!isset( $newQuestionResultValidate->id ) || $newQuestionResultValidate->id == '') {
 			$correct_answers = $this->get_question_correct_answers($questionObj);
 
 			$newQuestionResult = QuizzResultQuestions::create([
@@ -1541,14 +1544,14 @@ class WebinarController extends Controller
 				'status'			=> 'waiting',
 				'created_at'		=> time()
 			]);
-			
+
 			createAttemptLog($quizAttempt->id, 'Viewed (and possibly read) question #'.$newQuestionResult->id, 'viewed', $newQuestionResult->id);
-				
-		}		
-		
+
+		}
+
 		return $newQuestionResult;
 	}
-	
+
 	/*
 	* Get Question Correct Answers
 	*/
@@ -1563,7 +1566,7 @@ class WebinarController extends Controller
 					$data_correct = isset( $elementData->{'data-correct'} )? json_decode($elementData->{'data-correct'}) : '';
 					$question_correct = ($question_correct != '')? $question_correct : $data_correct;
 					$question_correct = is_array($question_correct)? $question_correct : array($question_correct);
-					
+
 					if( $question_type == 'checkbox' || $question_type == 'radio'){
 						$question_correct = array();
 						$options_array = isset( $elementData->options )? $elementData->options : array();
@@ -1580,6 +1583,6 @@ class WebinarController extends Controller
 			}
 		}
 		return $correct_answers;
-				
+
 	}
 }

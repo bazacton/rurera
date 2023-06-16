@@ -3194,8 +3194,10 @@ function element_properties_meta($chapters)
                         'characters' => esc_html__('Characters' , 'leform') ,
                     )
             ) ,
-            'content'          => array('classes' => "note-editable", 'value' => '<p data-field_type="insert_into_sentense" type="paragraph" class="editor-field given" data-id="37851" id="field-37851" correct_answere="4">test text goes h</p>' , 'label' =>
-             esc_html__('Content' , 'leform') , 'tooltip' => '' , 'type' => 'html_notool_editor') ,
+            'content'          => array(
+                'classes'                                        => "note-editable" , 'value' => '<p data-field_type="insert_into_sentense" type="paragraph" class="editor-field given" data-id="37851" id="field-37851" correct_answere="4">test text goes h</p>' , 'label' =>
+                    esc_html__('Content' , 'leform') , 'tooltip' => '' , 'type' => 'html_notool_editor'
+            ) ,
             'elements_fetcher' => array('value' => "" , 'label' => esc_html__('Correct Sentense' , 'leform') , 'tooltip' => '' , 'type' => 'elements_fetcher') ,
         ) ,
 
@@ -3387,9 +3389,9 @@ function sub_chapter_items_list()
     $webinars = \Illuminate\Support\Facades\DB::table('webinars')
         ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
         ->join('webinar_sub_chapters' , 'webinar_sub_chapters.webinar_id' , '=' , 'webinars.id')
-        ->join('quizzes' , 'quizzes.sub_chapter_id' , '=' , 'webinar_sub_chapters.id')
-        ->join('quiz_translations' , 'quiz_translations.quiz_id' , '=' , 'quizzes.id')
-        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'quizzes.id as chapter_id' , 'quiz_translations.title as chapter_title')
+        ->join('webinar_chapter_items' , 'webinar_chapter_items.parent_id' , '=' , 'webinar_sub_chapters.id')
+        ->join('quiz_translations' , 'quiz_translations.quiz_id' , '=' , 'webinar_chapter_items.item_id')
+        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'webinar_chapter_items.id as item_id' , 'webinar_chapter_items.item_id as chapter_id' , 'quiz_translations.title as chapter_title')
         ->get();
 
     $chapters_list = array();
@@ -3399,12 +3401,14 @@ function sub_chapter_items_list()
             $sub_chapter_id = isset($webinarData->sub_chapter_id) ? $webinarData->sub_chapter_id : '';
             $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
             $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
+            $chapter_item_id = isset($webinarData->item_id) ? $webinarData->item_id : 0;
 
             $lessions_data = isset($lession_chapters[$sub_chapter_id]) ? $lession_chapters[$sub_chapter_id] : array();
 
             $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
             $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['title'] = $chapter_title;
             $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['type'] = 'quiz';
+            $chapters_list[$sub_chapter_id]['chapters'][$chapter_id]['item_id'] = $chapter_item_id;
 
             if (!empty($lessions_data)) {
                 foreach ($lessions_data as $lession_id => $lessionChapter) {

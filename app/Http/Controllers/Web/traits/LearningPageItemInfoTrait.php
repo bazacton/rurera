@@ -18,6 +18,7 @@ trait LearningPageItemInfoTrait
     {
         $data = $request->all();
 
+
         $validator = Validator::make($data, [
             'type' => 'required|in:file,session,text_lesson,quiz',
             'id' => 'required|numeric',
@@ -156,6 +157,11 @@ trait LearningPageItemInfoTrait
             $canTryAgainQuiz = true;
         }
 
+
+        //Dummy Statrt
+        $canTryAgainQuiz = true;
+        //Dummy Ends
+
         $quiz->can_try = $canTryAgainQuiz;
         $quiz->can_download_certificate = $canDownloadCertificate;
 
@@ -169,7 +175,8 @@ trait LearningPageItemInfoTrait
             ->where('status', WebinarChapter::$chapterActive)
             ->first();
 
-        if (!empty($quiz) and $this->checkCourseAccess($quiz->webinar_id)) {
+        //if (!empty($quiz) and $this->checkCourseAccess($quiz->webinar_id)) {
+        if (!empty($quiz)) {
             $quiz = $this->checkQuizResult($quiz);
 
             $hasExpired = false;

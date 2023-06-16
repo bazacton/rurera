@@ -84,7 +84,13 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
     Route::get('/getDefaultAvatar', 'DefaultAvatarController@make');
 
     Route::post('/question/validation', 'QuestionsBankController@validation');
-	Route::post('/question/test_complete', 'QuestionsBankController@test_complete');
+	//Route::post('/question/test_complete', 'QuestionsBankController@test_complete');
+
+
+
+    Route::post('/question_attempt/validation', 'QuestionsAttemptController@validation');
+    Route::post('/question_attempt/test_complete', 'QuestionsAttemptController@test_complete');
+
 
     Route::group(['prefix' => 'course'], function () {
         Route::get('/{slug}', 'WebinarController@course');
@@ -400,7 +406,9 @@ Route::group(['namespace' => 'Web', 'middleware' => ['check_mobile_app', 'impers
 
     Route::group(['prefix' => '{link}'], function () {
         if (!Request::is('admin') && !Request::is('admin/*')) {
-            Route::get('/' , 'PagesController@index');
+            if (!Request::is('panel') && !Request::is('panel/*')) {
+                Route::get('/' , 'PagesController@index');
+            }
         }
     });
 

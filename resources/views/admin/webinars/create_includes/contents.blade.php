@@ -33,6 +33,8 @@
     @include('admin.webinars.create_includes.accordions.quiz',[
              'webinar' => $webinar,
              'quizInfo' => null,
+             'subChapterItem' => null,
+             'chapter_item_id' => null,
              'webinarChapterPages' => true,
              'creator' => $webinar->creator
         ])

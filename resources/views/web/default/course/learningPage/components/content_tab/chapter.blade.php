@@ -31,7 +31,7 @@
                             @if(!empty($chapter->chapterItems) and count($chapter->chapterItems))
                                 @foreach($chapter->chapterItems as $chapterItem)
                                     @if($chapterItem->type == \App\Models\WebinarChapterItem::$chapterQuiz and !empty($chapterItem->quiz) and $chapterItem->quiz->status == 'active')
-                                            <div class="sub_chapter_items sub_chapter_item_id_{{ $chapterItem->quiz->sub_chapter_id  }} hide" role="tabpanel">
+                                            <div class="sub_chapter_items sub_chapter_item_id_{{ $quiz_sub_chapter[$chapterItem->quiz->id]  }} hide" role="tabpanel">
                                                 @include('web.default.course.learningPage.components.quiz_tab.quiz' ,['item' => $chapterItem->quiz, 'type' => 'quiz'])
                                             </div>
                                     @elseif($chapterItem->type == \App\Models\WebinarChapterItem::$chapterTextLesson and !empty($chapterItem->textLesson) and $chapterItem->textLesson->status == 'active')

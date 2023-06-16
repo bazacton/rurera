@@ -109,12 +109,36 @@ class BooksController extends Controller
             case "quiz":
 
                 $user_info_links_ids = BooksUserPagesInfoLinks::where('user_id' , $user->id)->pluck('book_info_link_id')->toArray();
-                $data_values = json_decode($infoLinkData->data_values);
-                $dependent_info = isset($data_values->dependent_info) ? explode(',' , $data_values->dependent_info) : '';
 
+
+                $data_values = json_decode($infoLinkData->data_values);
+                $questions_ids = (isset( $data_values->questions_ids ) && $data_values->questions_ids != '')? explode(',', $data_values->questions_ids) : array();
+                $dependent_info = isset($data_values->dependent_info) ? explode(',' , $data_values->dependent_info) : '';
+                $no_of_attempts = (isset( $data_values->no_of_attempts ) && $data_values->no_of_attempts != '')? $data_values->no_of_attempts : 0;
                 $all_infolinks_checked = (count(array_intersect($dependent_info , $user_info_links_ids))) ? true : false;
 
-                $response = view("web.default.books.includes." . $info_type , ["pageInfoLink" => $infoLinkData , "all_infolinks_checked" => $all_infolinks_checked]);
+                if( $all_infolinks_checked == true){
+
+                    $QuestionsAttemptController = new QuestionsAttemptController();
+
+                    $resultLogObj = $QuestionsAttemptController->createResultLog([
+                        'parent_type_id' => $infoLinkData->id,
+                        'quiz_result_type' => 'book_page',
+                        'questions_list' => $questions_ids,
+                        'no_of_attempts' => $no_of_attempts,
+                    ]);
+
+                    $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
+                    $attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj);
+                    $questionObj = isset( $nextQuestionArray['questionObj'] )? $nextQuestionArray['questionObj'] : array();
+                    $question_no = isset( $nextQuestionArray['question_no'] )? $nextQuestionArray['question_no'] : 0;
+                    $newQuestionResult = isset( $nextQuestionArray['newQuestionResult'] )? $nextQuestionArray['newQuestionResult'] : array();
+                    //pre($newQuestionResult);
+
+                }
+
+                $response = view("web.default.books.includes." . $info_type , ["pageInfoLink" => $infoLinkData , "all_infolinks_checked" => $all_infolinks_checked, "question" => $questionObj, "quizAttempt" => $attemptLogObj, "newQuestionResult" => $newQuestionResult, "question_no" => $question_no]);
                 break;
 
             default:

@@ -74,12 +74,13 @@ $chapter  = isset( $chapter )? $chapter : '';
 
 
 @if($sub_chapter_id > 0 && isset( $sub_chapter_lessions[$sub_chapter_id] ) && !empty( $sub_chapter_lessions[$sub_chapter_id] ))
-@foreach($sub_chapter_lessions[$sub_chapter_id] as $chapterItem)
-@include('admin.webinars.create_includes.accordions.text-lesson' ,['textLesson' => $chapterItem , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
+@foreach($sub_chapter_lessions[$sub_chapter_id] as $chapterItemsArray)
+@include('admin.webinars.create_includes.accordions.text-lesson' ,['textLesson' => $chapterItemsArray , 'chapter' => $chapter, 'chapterItem' => $chapterItemsArray])
 @endforeach
 @endif
 @if($sub_chapter_id > 0 && isset( $sub_chapter_questions[$sub_chapter_id] ) && !empty( $sub_chapter_questions[$sub_chapter_id] ))
-@foreach($sub_chapter_questions[$sub_chapter_id] as $chapterItem)
-@include('admin.webinars.create_includes.accordions.quiz' ,['quizInfo' => $chapterItem , 'chapter' => $chapter, 'chapterItem' => $chapterItem])
+@foreach($sub_chapter_questions[$sub_chapter_id] as $chapter_item_id => $chapterItemsArray)
+@include('admin.webinars.create_includes.accordions.quiz' ,['quizInfo' => $chapterItemsArray , 'chapter' => $chapter, 'subChapterItem' => $chapterItem, 'chapterItem' => $chapterItemsArray,
+'chapter_item_id' => $chapter_item_id])
 @endforeach
 @endif

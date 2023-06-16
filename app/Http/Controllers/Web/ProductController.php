@@ -35,7 +35,7 @@ class ProductController extends Controller
 
         $query = $this->handleFilters($request, $query);
 
-        $products = $query->paginate(9);
+        $products = $query->paginate(27);
 
         $categories = ProductCategory::whereNull('parent_id')
             ->with([

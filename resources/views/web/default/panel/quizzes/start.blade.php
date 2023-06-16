@@ -7,8 +7,8 @@ $rand_id = rand(99,9999);
 @endphp
 
 @push('styles_top')
-<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
 @endpush
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
@@ -16,8 +16,8 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
-    .ui-state-highlight{
-        margin:0px 10px;
+    .ui-state-highlight {
+        margin: 0px 10px;
     }
 </style>
 
@@ -57,62 +57,36 @@ $rand_id = rand(99,9999);
     </div>
     <div class="questions-data-block" data-total_questions="{{$quizQuestions->count()}}">
 
-	<div class="question-step quiz-complete" style="display:none">
-        <div class="question-layout-block">
+        <div class="question-step quiz-complete" style="display:none">
+            <div class="question-layout-block">
                 <div class="left-content has-bg">
                     <h2>&nbsp;</h2>
-                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
+                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1"
+                         _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
 
                         </div>
                     </div>
                 </div>
 
-        </div>
-    </div>
-
-
-
-    @php
-    $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
-    $hide_style = '';
-    if( $j != 1){
-		$hide_style = 'style=display:none;';
-    }
-    @endphp
-
-    <div class="question-area">
-        <div class="question-step question-step-{{ $question->id }}" data-qattempt="{{$quizAttempt->id}}" data-start_time="0" data-qresult="{{$newQuestionResultData->id}}" data-quiz_result_id="{{$newQuizStart->id}}" {{$hide_style}}>
-            <div class="question-layout-block">
-                            <div class="correct-appriciate" style="display:none"></div>
-                <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
-                    <div class="left-content has-bg">
-                        <span class="question-number-holder"> <span class="question-number">{{$j}}</span>  </span>
-                        <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
-                            <div class="question-layout">
-                                <span class="marks" data-marks="{{$question_points}}">{{$question->question_score}} marks</span>
-                                {!! $question_layout !!}
-
-                            </div>
-                            <div class="form-btn">
-                                <input class="submit-btn" type="button" data-question_no="{{$j}}" value="Submit">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
             </div>
         </div>
-    </div>
-    <div class="question-area-temp hide"></div>
 
-    <div class="right-content">
-        <div class="range-value-count">
-            <span>0</span>
+        <div class="question-area-block">
+            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+            $newQuestionResult])
         </div>
-        <!-- vertical range-slider -->
-        <div class="range-container vertical">
-            <div class="range-box">
+
+        <div class="question-area-temp hide"></div>
+
+
+        <div class="right-content">
+            <div class="range-value-count">
+                <span>0</span>
+            </div>
+            <!-- vertical range-slider -->
+            <div class="range-container vertical">
+                <div class="range-box">
                 <span class="range-bar-holder">
                     <span class="track-bar" style="background-color: #4bc1ef;"></span>
                     <span class="track-bar" style="background-color: #a4b96a;"></span>
@@ -120,21 +94,20 @@ $rand_id = rand(99,9999);
                     <span class="track-bar" style="background-color: #f59618;"></span>
                     <span class="track-bar" style="background-color: #c12f16;"></span>
                 </span>
-                <input orient="vertical" type="range" id="range" min="0" max="{{$quiz->mastery_points}}" value="0">
-                <label for="range" class="coin-marks-label">
-                    {{$quiz->mastery_points}}
-                </label>
+                    <input orient="vertical" type="range" id="range" min="0" max="{{$quiz->mastery_points}}" value="0">
+                    <label for="range" class="coin-marks-label">
+                        {{$quiz->mastery_points}}
+                    </label>
+                </div>
             </div>
-        </div>
 
-        <div class="range-price" data-time_elapsed="0">
-            <strong class="t-minute">4<em>m</em></strong>
-            <strong class="t-seconds">50<em>s</em></strong>
+            <div class="range-price" data-time_elapsed="0">
+                <strong class="t-minute">4<em>m</em></strong>
+                <strong class="t-seconds">50<em>s</em></strong>
+            </div>
+            <p class="mastery-text" style="color: #50517d;">{{$quiz->mastery_points}} Mastery Coins</p>
         </div>
-        <p class="mastery-text" style="color: #50517d;">{{$quiz->mastery_points}} Mastery Coins</p>
     </div>
-    </div>
-
 
 
 </div>
@@ -142,38 +115,39 @@ $rand_id = rand(99,9999);
 @endsection
 
 @push('scripts_bottom')
-<script src="/assets/default/js/sortable.js"></script>
+
 <script src="/assets/default/vendors/video/video.min.js"></script>
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
-<script src="/assets/default/js/parts/quiz-start.min.js?var={{$rand_id}}"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/assets/default/js/parts/quiz-start.min.js"></script>
+<script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 <script>
 
-const range = document.getElementById('range')
-        range.addEventListener('input', (e) = > {
-        const value = + e.target.value
-                const label = e.target.nextElementSibling
+    const range = document.getElementById('range')
+    range.addEventListener('input', (e) = > {
+        const value = +e.target.value
+        const label = e.target.nextElementSibling
 
-                const range_width = getComputedStyle(e.target).getPropertyValue('width')
-                const label_width = getComputedStyle(label).getPropertyValue('width')
+        const range_width = getComputedStyle(e.target).getPropertyValue('width')
+        const label_width = getComputedStyle(label).getPropertyValue('width')
 
-                const num_width = + range_width.substring(0, range_width.length - 2)
-                const num_label_width = + label_width.substring(0, label_width.length - 2)
+        const num_width = +range_width.substring(0, range_width.length - 2)
+        const num_label_width = +label_width.substring(0, label_width.length - 2)
 
-                const max = + e.target.max
-                const min = + e.target.min
+        const max = +e.target.max
+        const min = +e.target.min
 
-                const left = value * (num_width / max) - num_label_width / 2 + scale(value, min, max, 10, - 10)
-                label.style.left = `${left}px`
+        const left = value * (num_width / max) - num_label_width / 2 + scale(value, min, max, 10, -10)
+        label.style.left = `${left}px`
 
-                label.innerHTML = value
-        })
-        const scale = (num, in_min, in_max, out_min, out_max) = > {
-return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        label.innerHTML = value
+    }
+    )
+    const scale = (num, in_min, in_max, out_min, out_max) =
+    >
+    {
+        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 
-}
-
+    }
 
 
 </script>

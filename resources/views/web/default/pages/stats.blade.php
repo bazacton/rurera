@@ -14,4 +14,5 @@
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
 @endpush

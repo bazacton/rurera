@@ -9,11 +9,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-5 col-lg-5">
-                        <div class="text-holder has-bg text-white"><strong class="sub-title">24/7 customer support</strong>
-                            <h1 class="mt-20 font-36 font-weight-light">Need Help ?<br>We're Here for You.<br>Contact us</h1>
-                            <p class="mt-20">Whether you have a question, feedback, or any other inquiry, we are here to assist
-                                you. We have a contact form on our website that you can fill out.</p><a href="#"
-                                class="rounded-pill mt-30">Register Now</a>
+                        <div class="text-holder has-bg text-white"><strong class="sub-title" itemprop="sub title">24/7 customer support</strong>
+                            <h1 itemprop="title" class="mt-20 font-36 font-weight-light">Need Help ?<br>We're Here for You.<br>Contact us</h1>
+                            <p itemprop="description" class="mt-20">Whether you have a question, feedback, or any other inquiry, we are here to assist
+                                you. We have a contact form on our website that you can fill out.</p>
+                                <a itemprop="url" href="https://rurera.chimpstudio.co.uk/pages/contact_us" class="rounded-pill mt-30">Register Now</a>
                         </div>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/support.jpg" alt="#"></figure>
+                                <figure><img src="../assets/default/img/support.jpg" alt="support"  width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-0">
-                                    <h6 class="font-20 mb-15 text-dark-charcoal">24/7 Support</h6>
-                                    <p>Experience Uninterrupted 24/7 Support.</p>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">24/7 Support</h2>
+                                    <p itemprop="description">Experience Uninterrupted 24/7 Support.</p>
                                 </div>
                             </div>
                         </div>
@@ -36,10 +36,10 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/knowledge.jpg" alt="#"></figure>
+                                <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge"  width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-0">
-                                    <h6 class="font-20 mb-15 text-dark-charcoal">Knowledge Base</h6>
-                                    <p>your key resource for resolving doubts and getting instant guidance.</p>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Knowledge Base</h2>
+                                    <p itemprop="description">your key resource for resolving doubts and getting instant guidance.</p>
                                 </div>
                             </div>
                         </div>
@@ -47,10 +47,10 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/technical.jpg" alt="#"></figure>
+                                <figure><img src="../assets/default/img/technical.jpg" alt="technical"  width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-0">
-                                    <h6 class="font-20 mb-15 text-dark-charcoal">Technical Assistance</h6>
-                                    <p>Unlocking solutions for your challenges.</p>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Technical Assistance</h2>
+                                    <p itemprop="description">Unlocking solutions for your challenges.</p>
                                 </div>
                             </div>
                         </div>
@@ -63,10 +63,11 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="lms-text-holder d-flex justify-content-center flex-column align-items-center pt-50 pb-50 has-box-shadow">
-                            <h4 class="mb-10 font-24 text-dark-charcoal">Talk To Us</h4>
-                            <p class="font-16 mt-0 mb-20">Our Support team supports customers in whole over Uk and would love to
+                            <h2 itemprop="title"  class="mb-10 font-24 text-dark-charcoal">Talk To Us</h2>
+                            <p itemprop="description" class="font-16 mt-0 mb-20">Our Support team supports customers in whole over Uk and would love to
                                 answer your queries.</p>
-                            <div class="lms-btn-group mb-10"><a href="https://rurera.chimpstudio.co.uk/pages/contact_us"
+                            <div class="lms-btn-group mb-10">
+                                <a itemprop="url" href="https://rurera.chimpstudio.co.uk/pages/contact_us"
                                     class="lms-btn rounded-pill">Send Enquiry</a></div>
                         </div>
                     </div>
@@ -78,8 +79,8 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="section-title text-center mb-50 mt-20">
-                            <h2 class="font-40 mb-10 text-dark-charcoal">Get In Touch</h2>
-                            <p>Explore and locate us to find the right course for you.</p>
+                            <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Get In Touch</h2>
+                            <p itemprop="description">Explore and locate us to find the right course for you.</p>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-20">
@@ -88,8 +89,8 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-element-title text-left pr-0 pl-0">
-                                            <h2 class="font-40 mb-5 text-dark-charcoal">Contact form</h2>
-                                            <p>Let's explore how Rurera works for you?</p>
+                                            <h2 itemprop="title" class="font-40 mb-5 text-dark-charcoal">Contact form</h2>
+                                            <p itemprop="description">Let's explore how Rurera works for you?</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -170,7 +171,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title text-center mb-50">
-                            <h2 class="mt-0 mb-10 text-dark-charcoal" style="font-size: 40px;">Explore our customers’ success stories</h2>
+                            <h2 itemprop="title" class="mt-0 mb-10 text-dark-charcoal" style="font-size: 40px;">Explore our customers’ success stories</h2>
                         </div>
                     </div>
                     <div class="col-12">
@@ -181,22 +182,21 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a href="#"><img
-                                                            src="/store/1/default_images/testimonials/profile_picture (50).jpg"
-                                                            alt=""></a>
+                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img src="/store/1/default_images/testimonials/profile_picture (50).jpg"
+                                                            alt="testimonials" width="100%" height="auto" itemprop="image"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
-                                                    <h5 class="testimonial-title">
-                                                        <a href="#">Thriving as a Content Creator with an Exceptional
+                                                    <h3 itemprop="title" class="testimonial-title">
+                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Thriving as a Content Creator with an Exceptional
                                                             Team.</a>
-                                                    </h5>
-                                                    <strong>
+                                                    </h3>
+                                                    <strong itemprop="Forever">
                                                         A Life-Changing Discovery I'm Forever Grateful
                                                         For</strong>
                                                 </div>
-                                                <p>
+                                                <p itemprop="description">
                                                     "As a content creator, it is pleasure of working with
                                                     the team , I can confidently say that it has been an
                                                     amazing experience. Working as a content writer for this
@@ -213,21 +213,21 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a href="#"><img
+                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
                                                             src="/store/1/default_images/testimonials/profile_picture (28).jpg"
-                                                            alt=""></a>
+                                                            alt="profile" width="100%" height="auto" itemprop="image"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
-                                                    <h5 class="testimonial-title">
-                                                        <a href="#">Unleashing the Power of Collaboration in Content
+                                                    <h3 itemprop="title" class="testimonial-title">
+                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Unleashing the Power of Collaboration in Content
                                                             Creation".</a>
-                                                    </h5>
-                                                    <strong>Exceeding Expectations with User-Friendly Interface
+                                                    </h3>
+                                                    <strong itemprop="Exceeding">Exceeding Expectations with User-Friendly Interface
                                                         and Seamless Navigation</strong>
                                                 </div>
-                                                <p>
+                                                <p itemprop="description">
                                                     "As a content writer, I have had the pleasure of
                                                     collaborating with a talented and dedicated team that
                                                     truly understands the value of quality content. Their
@@ -244,22 +244,22 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a href="#"><img
+                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
                                                             src="/store/1/default_images/testimonials/profile_picture (30).jpg"
-                                                            alt=""></a>
+                                                            alt="picture" width="100%" height="auto" itemprop="image"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
-                                                    <h5 class="testimonial-title">
-                                                        <a href="#">Collaborating with an Exceptional Team of Talented
+                                                    <h3 itemprop="title" class="testimonial-title">
+                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Collaborating with an Exceptional Team of Talented
                                                             Professionals as a Content Creator</a>
-                                                    </h5>
-                                                    <strong>
+                                                    </h3>
+                                                    <strong itemprop="Journey">
                                                         A Game-Changer in my Educational Journey for Busy
                                                         Professionals</strong>
                                                 </div>
-                                                <p>
+                                                <p itemprop="description">
                                                     "Working with this exceptional team of talented
                                                     professionals as a content creator has been an absolute
                                                     pleasure. From the moment I joined, I've enjoyed
@@ -288,17 +288,17 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="section-title text-center mb-50">
-                            <h2 class="font-40 mb-10 text-dark-charcoal">Resources </h2>
-                            <p>Get to know more about Rurera</p>
+                            <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Resources </h2>
+                            <p itemprop="description">Get to know more about Rurera</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-1.jpg" alt="#"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-1.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
-                                    <p>Cooperative and associated relationship between parents and teachers</p>
-                                    <h6 class="font-16 mt-15 mb-0 text-primary">Mutual Collaboration</h6>
+                                    <p itemprop="description">Cooperative and associated relationship between parents and teachers</p>
+                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Mutual Collaboration</h3>
                                 </div>
                             </div>
                         </div>
@@ -306,10 +306,10 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-2.jpg" alt="#"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-2.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
-                                    <p>Promoting socialization and fostering a sense of community</p>
-                                    <h6 class="font-16 mt-15 mb-0 text-primary">Social Activities</h6>
+                                    <p itemprop="description">Promoting socialization and fostering a sense of community</p>
+                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Social Activities</h3>
                                 </div>
                             </div>
                         </div>
@@ -317,10 +317,10 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-3.jpg" alt="#"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-3.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
-                                    <p>Leverages digital tools, platforms, and interactive resources for learning</p>
-                                    <h6 class="font-16 mt-15 mb-0 text-primary">Smart Learning</h6>
+                                    <p itemprop="description">Leverages digital tools, platforms, and interactive resources for learning</p>
+                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Smart Learning</h3>
                                 </div>
                             </div>
                         </div>
@@ -328,10 +328,10 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-4.jpg" alt="#"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-4.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
-                                    <p>Vast repository of information, data, and resources that</p>
-                                    <h6 class="font-16 mt-15 mb-0 text-primary">Global Knowledge base</h6>
+                                    <p itemprop="description">Vast repository of information, data, and resources that</p>
+                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Global Knowledge base</h3>
                                 </div>
                             </div>
                         </div>
@@ -345,9 +345,10 @@
                     <div class="col-12">
                         <div class="newsletter-inner">
                             <div class="row">
-                                <div class="col-12 col-lg-6 col-md-6 mb-20"><strong class="mb-10 text-white font-24">Subscribe our
-                                        newsletter</strong>
-                                    <p class="mb-0 text-white">Discover a growing collection of ready-made training courses
+                                <div class="col-12 col-lg-6 col-md-6 mb-20">
+                                    <h2 itemprop="title" class="mb-10 text-white font-40">Subscribe our
+                                        newsletter</h2>
+                                    <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses
                                         delivered through Rurera, and gear up your people for success at work</p>
                                 </div>
                                 <div class="col-12 col-lg-6 col-md-6"><label class="mb-10 text-white">Your E-mail Address</label>
@@ -360,11 +361,11 @@
                 </div>
             </div>
         </section>
-        <a href="#" class="scroll-btn" style="display: none;">
+        <div  class="scroll-btn" style="display: block;">
             <div class="round">
                 <div id="cta"><span class="arrow primera next"></span><span class="arrow segunda next"></span></div>
             </div>
-        </a>
+        </div>
     @endsection
 
     @push('scripts_bottom')

@@ -36,13 +36,14 @@
 
     <div id="collapseQuiz{{ !empty($quizInfo) ? $quizInfo->id :'record' }}" aria-labelledby="quiz_{{ !empty($quizInfo) ? $quizInfo->id :'record' }}" class=" collapse @if(empty($quizInfo)) show @endif" role="tabpanel">
         <div class="panel-collapse text-gray">
-            @include('admin.quizzes.create_quiz_form',
+            @include('admin.quizzes.assign_quiz_form',
                     [
                         'inWebinarPage' => true,
                         'selectedWebinar' => $webinar,
                         'quiz' => $quizInfo ?? null,
                         'quizQuestions' => !empty($quizInfo) ? $quizInfo->quizQuestions : [],
                         'chapters' => $webinar->chapters,
+                        'subChapterItem' => $subChapterItem,
                         'webinarChapterPages' => !empty($webinarChapterPages),
                         'creator' => $webinar->creator
                     ]

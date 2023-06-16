@@ -34,6 +34,8 @@ class PagesController extends Controller
                 return view('web.default.pages.books' , $data);
             } elseif ($page->id == 35) {
                 return view('web.default.pages.stats' , $data);
+            } elseif ($page->id == 78) {
+                return view('web.default.pages.stats1' , $data);
             } elseif ($page->id == 9) {
                 return view('web.default.pages.contact' , $data);
             } elseif ($page->id == 17) {

@@ -54,6 +54,7 @@
                     <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_type]" class="form-control quiz-type" data-placeholder="Select Quiz Type">
                         <option value="practice" {{ (!empty($quiz) and $quiz->quiz_type == 'practice') ? 'selected' : '' }}>Practice</option>
                         <option value="assessment" {{ (!empty($quiz) and $quiz->quiz_type == 'assessment') ? 'selected' : '' }}>Assessment</option>
+                        <option value="sats" {{ (!empty($quiz) and $quiz->quiz_type == 'sats') ? 'selected' : '' }}>SATs</option>
                     </select>
                 </div>
 
@@ -71,8 +72,8 @@
                 </div>
 
                 @php
-                    $assessment_hide_class = (!empty($quiz ) && $quiz->quiz_type != 'assessment')? 'hide-class' : '';
-                    $practice_hide_class = (empty($quiz ) || $quiz->quiz_type == 'practice')? '' : 'hide-class';
+                $assessment_hide_class = (!empty($quiz ) && $quiz->quiz_type != 'assessment')? 'hide-class' : '';
+                $practice_hide_class = (empty($quiz ) || $quiz->quiz_type == 'practice')? '' : 'hide-class';
                 @endphp
 
 
@@ -98,77 +99,9 @@
                     </div>
 
 
-                    <div class="form-group mt-15 ">
-                        <label class="input-label d-block">Questions</label>
-
-                        <select id="questions_ids" data-search-option="questions_ids" class="form-control search-questions-select2" data-placeholder="Search Question"></select>
-                    </div>
-
-
-                    <div class="questions-list">
-                        <ul>
-
-                            @if( !empty( $quiz->quizQuestionsList))
-                                @foreach( $quiz->quizQuestionsList as $questionObj)
-                                    @if( !empty( $questionObj->QuestionData))
-                                        @foreach( $questionObj->QuestionData as $questionDataObj)
-                                            <li data-id="{{$questionDataObj->id}}">{{$questionDataObj->getTitleAttribute()}} <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new'
-                                            }}][question_list_ids][]"
-                                                                                                                                    value="{{$questionDataObj->id}}">
-                                                <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            @endif
-
-                        </ul>
-                    </div>
                 </div>
 
                 <div class="conditional-fields practice-fields {{$practice_hide_class}}">
-                    @if(empty($selectedWebinar))
-                    @if(!empty($webinars) and count($webinars))
-                    <div class="form-group mt-3">
-                        <label class="input-label">{{ trans('panel.webinar') }}</label>
-                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][webinar_id]" class="js-ajax-webinar_id custom-select">
-                            <option {{ !empty($quiz) ?
-                            'disabled' : 'selected disabled' }} value="">{{ trans('panel.choose_webinar') }}</option>
-                            @foreach($webinars as $webinar)
-                            <option value="{{ $webinar->id }}" {{ (!empty($quiz) and $quiz->webinar_id == $webinar->id) ? 'selected' : '' }}>{{ $webinar->title }}</option>
-                            @endforeach
-                        </select>
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    @else
-                    <div class="form-group">
-                        <label class="input-label d-block">{{ trans('admin/main.webinar') }}</label>
-                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][webinar_id]" class="js-ajax-webinar_id form-control search-webinar-select2"
-                                data-placeholder="{{ trans('admin/main.search_webinar') }}">
-
-                        </select>
-
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    @endif
-                    @else
-                    <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][webinar_id]" value="{{ $selectedWebinar->id }}">
-                    @endif
-
-
-                    <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][chapter_id]" value="{{ !empty($quiz) ? $quiz->chapter_id : '' }}" class="chapter-input">
-
-
-                    <div class="form-group mt-15 ">
-                        <label class="input-label d-block">Sub Chapter</label>
-                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][sub_chapter_id]" class="form-control search-sub_chapter-select2" data-placeholder="Select Sub Chapter">
-                            @if(!empty($quiz) && $quiz->sub_chapter_id > 0)
-                            <option value="{{ $quiz->sub_chapter_id }}" selected>{{ getSubChapterTitle($quiz->sub_chapter_id) }}</option>
-                            @endif
-                        </select>
-                    </div>
-
-
                     @php
                     $quiz_settings = array();
                     if( isset( $quiz->quiz_settings ) ){
@@ -265,6 +198,33 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group mt-15 ">
+                    <label class="input-label d-block">Questions</label>
+
+                    <select id="questions_ids" data-search-option="questions_ids" class="form-control search-questions-select2" data-placeholder="Search Question"></select>
+                </div>
+
+
+                <div class="questions-list">
+                    <ul>
+
+                        @if( !empty( $quiz->quizQuestionsList))
+                        @foreach( $quiz->quizQuestionsList as $questionObj)
+                        @if( !empty( $questionObj->QuestionData))
+                        @foreach( $questionObj->QuestionData as $questionDataObj)
+                        <li data-id="{{$questionDataObj->id}}">{{$questionDataObj->getTitleAttribute()}} <input type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new'
+                                                           }}][question_list_ids][]"
+                                                                                                                value="{{$questionDataObj->id}}">
+                            <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
+                        </li>
+                        @endforeach
+                        @endif
+                        @endforeach
+                        @endif
+
+                    </ul>
                 </div>
 
 

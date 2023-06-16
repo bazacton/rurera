@@ -1,3 +1,5 @@
+@php $rand_id = rand(999,99999); @endphp
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 @if($all_infolinks_checked == false)
 <div class="flipbook-quiz">
     <div class="slide-menu-head">
@@ -16,41 +18,26 @@ $content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($
 
 <div class="flipbook-quiz">
     <div class="slide-menu-head">
+
         <div class="menu-controls">
             <a href="#" class="close-btn"><i class="fa fa-chevron-right"></i></a>
         </div>
+
+        <div class="question-area-block">
+            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+            $newQuestionResult])
+        </div>
+
+        <div class="question-area-temp hide"></div>
+
         <span class="quiz-pagnation">2 of 2</span>
         <span class="quiz-info">Lorem ipsum dolor, adipisicing elit.</span>
-    </div>
-    <div class="slide-menu-body">
-        <div class="flipbook-content-box">
-            <div class="quiz-select">
-                <form>
-                    <div class="quiz-form-field">
-                        <input type="radio" id="quiz1" name="quiz">
-                        <label for="quiz1">Lorem ipsum dolor</label>
-                    </div>
-                    <div class="quiz-form-field">
-                        <input type="radio" id="quiz2" name="quiz">
-                        <label for="quiz2">Lorem ipsum dolor</label>
-                    </div>
-                    <div class="quiz-form-field">
-                        <input type="radio" id="quiz3" name="quiz">
-                        <label for="quiz3">Lorem ipsum dolor</label>
-                    </div>
-                    <div class="quiz-form-field">
-                        <input type="radio" id="quiz4" name="quiz">
-                        <label for="quiz4">Lorem ipsum dolor</label>
-                    </div>
-                    <div class="quiz-form-btn">
-                        <button type="submit">Check answers</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 @endif
 <script>
     $("body").addClass("quiz-open");
 </script>
+
+<script src="/assets/default/js/parts/quiz-start.min.js"></script>
+<script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>

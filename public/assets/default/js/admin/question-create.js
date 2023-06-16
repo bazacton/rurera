@@ -1055,6 +1055,8 @@ function _leform_properties_prepare(_object) {
                     </div>\n\
                     </div></div>";
 
+                break;
+
                 case 'html_notool_editor':
 
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\

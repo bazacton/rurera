@@ -52,13 +52,13 @@ class BlogController extends Controller
             }
         ])
             ->withCount('comments')
-            ->paginate(6);
+            ->paginate(35);
 
         $popularPosts = $this->getPopularPosts();
 
         $data = [
             'pageTitle' => $pageTitle,
-            'pageDescription' => $pageDescription,
+            'pageDescription' => 'Explore a wide range of topics, including courses, sats, books, rewards and more. Stay updated with the latest trends, tips, and strategies.',
             'pageRobot' => $pageRobot,
             'blog' => $blog,
             'blogCount' => $blogCount,

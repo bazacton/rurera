@@ -10,8 +10,8 @@
     <div class="row h-100 align-items-center text-left">
       <div class="col-12 col-md-9 col-lg-9">
         <p class="lms-subtitle">How we've helped others</p>
-        <h1 class="font-30 font-weight-bold">Testimonials</h1>
-        <p>
+        <h1 class="font-50 font-weight-bold">Testimonials</h1>
+        <p class="font-19">
           Welcome to our testimonial page! Here, you will find a collection of
           heartfelt testimonials and feedback from our valued customers who have
           experienced our products or services. These testimonials serve as a

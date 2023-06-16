@@ -11,6 +11,7 @@ use App\Models\AdvertisingBanner;
 use App\Models\Cart;
 use App\Models\Favorite;
 use App\Models\File;
+use App\Models\Quiz;
 use App\Models\QuizzesResult;
 use App\Models\RewardAccounting;
 use App\Models\Sale;
@@ -41,6 +42,7 @@ class WebinarController extends Controller
             }
         }*/
 
+
         $course = Webinar::where('slug', $slug)
             ->with([
                 'quizzes' => function ($query) use ($sub_chapter_id) {
@@ -48,6 +50,7 @@ class WebinarController extends Controller
                     ->with(['quizResults', 'quizQuestions']);
                 },
                 'webinar_sub_chapters' => function ($query) {
+                    $query->with(['quizzesItems']);
                     $query->orderBy('id', 'asc');
                 },
                 'tags',
@@ -154,6 +157,24 @@ class WebinarController extends Controller
             ->where('status', 'active')
             ->first();
 
+
+
+
+        $quizzes_ids = array();
+        $quiz_sub_chapter = array();
+        if( !empty( $course->webinar_sub_chapters ) ){
+            foreach( $course->webinar_sub_chapters as $subchapterObj){
+                if( !empty( $subchapterObj->quizzesItems ) ){
+                    foreach( $subchapterObj->quizzesItems as $quizzesItemObj){
+                        if( $quizzesItemObj->type == 'quiz'){
+                            $quizzes_ids[]  = $quizzesItemObj->item_id;
+                            $quiz_sub_chapter[$quizzesItemObj->item_id] = $quizzesItemObj->parent_id;
+                        }
+                    }
+                }
+            }
+        }
+
         if (empty($course)) {
             return $justReturnData ? false : back();
         }
@@ -211,11 +232,17 @@ class WebinarController extends Controller
 
         $quizzes = $course->quizzes->whereNull('chapter_id');
 
+        $quizzes = Quiz::where('status', 'active')
+                    ->whereIn('id', $quizzes_ids)
+                    ->get();
+
+
         if ($user) {
             $quizzes = $this->checkQuizzesResults($user, $quizzes);
 
             if (!empty($course->chapters) and count($course->chapters)) {
                 foreach ($course->chapters as $chapter) {
+                    //pre($chapter->chapterItems);
                     if (!empty($chapter->chapterItems) and count($chapter->chapterItems)) {
                         foreach ($chapter->chapterItems as $chapterItem) {
                             if (!empty($chapterItem->quiz)) {
@@ -247,9 +274,7 @@ class WebinarController extends Controller
         $canSale = ($course->canSale() and !$hasBought);
 
 
-
         $courses_list = Webinar::where('category_id', $course->category->id)->get();
-
 
 
         $data = [
@@ -262,6 +287,7 @@ class WebinarController extends Controller
             'current_webinar' => isset( $_GET['webinar'] )? $_GET['webinar'] : 0,
             'current_chapter' => isset( $_GET['chapter'] )? $_GET['chapter'] : 0,
             'sub_chapters'	=> $sub_chapters,
+            'quiz_sub_chapter' => $quiz_sub_chapter,
             'user' => $user,
             'courses_list' => $courses_list,
             'webinarContentCount' => $webinarContentCount,

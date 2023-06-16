@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name='robots' content="{{ $pageRobot ?? 'NOODP, nofollow, noindex' }}">
 
@@ -42,6 +42,7 @@
 <meta property='og:image' content='{{ url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '') }}'>
 <meta name='twitter:image' content='{{ url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '') }}'>
 <meta property='og:locale' content='{{ url(!empty($generalSettings['locale']) ? $generalSettings['locale'] : 'en_US') }}'>
+<meta property='og:url' content='{{ url('') }}'>
 <meta property='og:type' content='website'>
 
 {!! getSeoMetas('extra_meta_tags') !!}

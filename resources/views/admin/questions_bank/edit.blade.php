@@ -392,12 +392,6 @@ $rand_id = rand(999,99999);
 
                                 </div>
 
-
-
-
-
-
-
                                 <div class="lms-dashboard-card">
                                     <div class="lms-card-body">
                                         <div class="lms-card-title">
@@ -416,7 +410,7 @@ $rand_id = rand(999,99999);
                                                 <div class="lms-card-info">
                                                     <h5>{{$logObj->user->full_name}} @ <b>{{ dateTimeFormat
                                                             ($logObj->action_at, 'j M y | H:i')
-                                                            }} <span><i data-feather="arrow-right" width="20" height="20"
+                                                            }} </b><span><i data-feather="arrow-right" width="20" height="20"
                                                                         class=""></i></span>
                                                     </h5>
                                                     <p>{{$logObj->action_type}}</p>

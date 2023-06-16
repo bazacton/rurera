@@ -278,6 +278,8 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
 
             //Sub Chapter
             Route::post('/store_sub_chapter' , 'WebinarController@store_sub_chapter');
+            Route::post('/store_quiz_selection' , 'WebinarController@store_quiz_selection');
+            Route::post('/{id}/store_quiz_selection' , 'WebinarController@store_quiz_selection');
             Route::post('/{id}/update_sub_chapter' , 'WebinarController@update_sub_chapter');
             Route::get('/{id}/delete_sub_chapter' , 'WebinarController@delete_sub_chapter');
             Route::post('/search_sub_chapter' , 'WebinarController@search_sub_chapter');
@@ -321,6 +323,7 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
             Route::get('/result/{result_id}/delete' , 'QuizController@resultDelete');
             Route::get('/excel' , 'QuizController@exportExcel');
             Route::post('/{id}/order-items' , 'QuizController@orderItems');
+            Route::post('/search_quiz' , 'QuizController@search_quiz');
         });
 
         Route::group(['prefix' => 'quizzes-questions'] , function () {

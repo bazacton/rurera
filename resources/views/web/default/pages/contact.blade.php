@@ -8,11 +8,11 @@
     <section class="pages-sub-header about-sub-header has-bg mb-50 pt-50 pb-50" style="background:url(../assets/default/img/about-image.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center text-left"><div class="col-12 col-md-9 col-lg-9">
-                    <h1 class="font-30 font-weight-bold text-white">{{ trans('site.contact_us') }}</h1>
-                    <p class="text-white">Whether you have a question, feedback, or any other inquiry, we are here to assist you. We have a contact form on our website that you can fill out. This method allows us to gather the necessary details to assist you effectively.</p>
+                    <h1 itemprop="title" class="font-30 font-weight-bold text-white">{{ trans('site.contact_us') }}</h1>
+                    <p itemprop="description" class="text-white font-19">Whether you have a question, feedback, or any other inquiry, we are here to assist you. We have a contact form on our website that you can fill out. This method allows us to gather the necessary details to assist you effectively.</p>
                 </div>
                 <div class="col-12 col-md-9 col-lg-3">
-                    <figure><img src="../assets/default/img/rocket.png" alt="#"></figure>
+                    <figure><img src="../assets/default/img/rocket.png" alt="rocket" itemprop="image" width="100%" height="auto" ></figure>
                 </div>
             </div>
         </div>
@@ -35,8 +35,8 @@
                                         </g>
                                     </svg></span>
                                 <div class="services-text mt-20">
-                                    <h6 class="font-24">Address</h6>
-                                    <p>64 Kildare Crescent Allerton Bradford, BD15 7EQ Uk</p>
+                                    <h2 itemprop="title" class="font-24">Address</h2>
+                                    <p itemprop="description">64 Kildare Crescent Allerton Bradford, BD15 7EQ Uk</p>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +56,8 @@
                                 </svg>
                             </span>
                                 <div class="services-text mt-20">
-                                    <h6 class="font-24">Time schedule</h6>
-                                    <p>Office Hours 09:00-05:00PM Sunday Closed</p>
+                                    <h2 itemprop="title" class="font-24">Time schedule</h2>
+                                    <p itemprop="description">Office Hours 09:00-05:00PM Sunday Closed</p>
                                 </div>
                             </div>
                         </div>
@@ -75,10 +75,9 @@
                                     </g>
                                 </svg></span>
                                 <div class="services-text mt-20">
-                                    <h6 class="font-24">Call us</h6>
-
-                                    <p>+44 127 448 1886</p>
-                                    <p>+1 204 962 7186</p>
+                                    <h2 itemprop="title" class="font-24">Call us</h2>
+                                    <p itemprop="description">+44 127 448 1886</p>
+                                    <p itemprop="description">+1 204 962 7186</p>
                                 </div>
                             </div>
                         </div>
@@ -91,8 +90,8 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="element-title mb-50 text-center">
-                            <h2 class="mb-5">Get in Touch</h2>
-                            <p>Explore and locate us to find the right course for you.</p>
+                            <h2 itemprop="title" class="mb-5">Get in Touch</h2>
+                            <p itemprop="description">Explore and locate us to find the right course for you.</p>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -105,19 +104,18 @@
         </section>
         <section class="lms-jobsform-section lms-contact-form-section mt-50 pt-50 pb-50">
             <div class="lms-contact-box">
-                <span class="message-box"><img src="../assets/default/img/text-arrow.png" alt="#">Have something to ask ?</span>
+                <span class="message-box"><img src="../assets/default/img/text-arrow.png" alt="text arrow" itemprop="image" width="100%" height="auto"  >Have something to ask ?</span>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
-                    <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="lms-jobs-form lms-contact-form mb-40">
                             <div class="lms-jobs-form-body">
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="form-element-title text-center">
-                                            <h2>Contact form</h2>
-                                            <p>Let's explore how Rurera works for you?</p>
+                                            <h2 itemprop="title">Contact form</h2>
+                                            <p itemprop="description">Let's explore how Rurera works for you?</p>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -208,7 +206,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
                 </div>
             </div>
         </section>
@@ -216,27 +213,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="lms-text-holder"><strong class="mb-20">24/7 customer support</strong>
-                            <h2>Need Help ?<br> We're Here for You.</h2>
-                            <p class="mt-15 mb-0">Our highly trained support geeks<br>are always ready to help you.</p>
-                            <p class="mt-15 mb-0">New courses available !</p>
+                        <div class="lms-text-holder"><strong itemprop="text" class="mb-20">24/7 customer support</strong>
+                            <h2 itemprop="title">Need Help ?<br> We're Here for You.</h2>
+                            <p itemprop="description" class="mt-15 mb-0">Our highly trained support geeks<br>are always ready to help you.</p>
+                            <p itemprop="courses" class="mt-15 mb-0">New courses available !</p>
                             <ul class="lms-img-list">
-                                <li><img src="../assets/default/img/bran-img-1.jpg" alt="#"></li>
-                                <li><img src="../assets/default/img/bran-img-2.jpg" alt="#"></li>
-                                <li><img src="../assets/default/img/bran-img-3.jpg" alt="#"></li>
+                                <li><img src="../assets/default/img/bran-img-1.jpg" alt="bran image" itemprop="image" width="100%" height="auto"></li>
+                                <li><img src="../assets/default/img/bran-img-2.jpg" alt="bran image" itemprop="image" width="100%" height="auto"></li>
+                                <li><img src="../assets/default/img/bran-img-3.jpg" alt="bran image" itemprop="image" width="100%" height="auto"></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <div class="lms-img-holder">
-                            <figure><img class="w-100 fade-in-image" src="../assets/default/img/best-support.jpg" alt="#">
+                            <figure><img class="w-100 fade-in-image" src="../assets/default/img/best-support.jpg" alt="best support" width="100%" height="auto" itemprop="image">
                             </figure>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <a href="#" class="scroll-btn" style="display: block;">
+        <a itemprop="url" href="#" class="scroll-btn" style="display: block;">
             <div class="round">
                 <div id="cta">
                     <span class="arrow primera next"></span>

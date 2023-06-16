@@ -339,12 +339,16 @@
             </li>
             <li>
                 <a href="javascript:;" class="next-page">
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/>
+                    </svg>
                 </a>
             </li>
             <li>
                 <a href="javascript:;" class="prev-page">
-                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/></svg>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/>
+                    </svg>
                 </a>
             </li>
         </ul>
@@ -449,6 +453,11 @@
                     class="trigger_field form-control search-infobox-select2" data-field_type="select_info"
                     data-placeholder="Search Infobox" data-id="">
             </select>
+        </div>
+
+        <div class="option-field-item">
+            <label class="input-label">No of Attempts</label>
+            <input type="text" class="form-control trigger_field" data-field_id="no_of_attempts" data-field_type="textarea" data-id=""></input>
         </div>
     </div>
 

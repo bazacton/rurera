@@ -26,7 +26,7 @@ $navBtnText = $navbarButton->title;
 
             <a class="navbar-brand navbar-order d-flex align-items-center justify-content-center mr-0 {{ (empty($navBtnUrl) and empty($navBtnText)) ? 'ml-auto' : '' }}" href="/">
                 @if(!empty($generalSettings['logo']))
-                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo">
+                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" width="100%" height="auto" itemprop="image">
                 @endif
             </a>
 
@@ -42,52 +42,6 @@ $navBtnText = $navbarButton->title;
                 </div>
 
                 <ul class="navbar-nav mr-auto d-flex align-items-center">
-                    @if(!empty($categories) and count($categories))
-                    <li class="mr-lg-25">
-                        <div class="menu-category">
-                            <ul>
-                                <li class="cursor-pointer user-select-none d-flex xs-categories-toggle">
-                                    <i data-feather="grid" width="20" height="20" class="mr-10 d-none d-lg-block"></i>
-                                    All Courses
-
-                                    <ul class="cat-dropdown-menu">
-                                        @foreach($categories as $category)
-                                        <li>
-                                            <a href="{{ (!empty($category->subCategories) and count($category->subCategories)) ? '#!' : $category->getUrl() }}">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="{{ $category->icon }}" class="cat-dropdown-menu-icon mr-10" alt="{{ $category->title }} icon">
-                                                    {{ $category->title }}
-                                                </div>
-
-                                                @if(!empty($category->subCategories) and count($category->subCategories))
-                                                <i data-feather="chevron-right" width="20" height="20" class="d-none d-lg-inline-block ml-10"></i>
-                                                <i data-feather="chevron-down" width="20" height="20" class="d-inline-block d-lg-none"></i>
-                                                @endif
-                                            </a>
-
-                                            @if(!empty($category->subCategories) and count($category->subCategories))
-                                            <ul class="sub-menu">
-                                                @foreach($category->subCategories as $subCategory)
-                                                <li>
-                                                    <a href="{{ $subCategory->getUrl() }}">
-                                                        @if(!empty($subCategory->icon))
-                                                        <img src="{{ $subCategory->icon }}" class="cat-dropdown-menu-icon mr-10" alt="{{ $subCategory->title }} icon">
-                                                        @endif
-
-                                                        {{ $subCategory->title }}
-                                                    </a>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                            @endif
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    @endif
 
                     @if(!empty($navbarPages) and count($navbarPages))
                     @foreach($navbarPages as $navbarPage)
@@ -96,7 +50,7 @@ $navBtnText = $navbarButton->title;
                             ?' has-mega-menu' : '' }}">
                         <a class="nav-link" href="{{ $navbarPage['link'] }}">{{ $navbarPage['title'] }}</a>
 
-                        @if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'Courses') && !empty($course_navigation))
+                        @if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'courses') && !empty($course_navigation))
                         <div class="lms-mega-menu">
                             <div class="mega-menu-head">
                                 <ul class="mega-menu-nav d-flex nav">
@@ -153,14 +107,14 @@ $navBtnText = $navbarButton->title;
                                                         <ul class="topic-list">
                                                             @php $topics_count = 1; @endphp
                                                             @foreach($chapter_data['topics'] as $topic_id => $topic_title)
-                                                                @if( $topics_count <= 6)
+                                                                @if( $topics_count <= 8)
                                                                     <li><a href="/course/{{$chapter_data['chapter_slug']}}#subject_{{$topic_id}}">{{$topic_title}}</a></li>
                                                                 @else
                                                                     <li style="display:none;"><a href="/course/{{$chapter_data['chapter_slug']}}#subject_{{$topic_id}}">{{$topic_title}}</a></li>
                                                                 @endif
                                                                 @php $topics_count++; @endphp
                                                             @endforeach
-                                                            @if( count($chapter_data['topics']) > 6)
+                                                            @if( count($chapter_data['topics']) > 8)
                                                                 <li class="load-more"><a href="/course/{{$chapter_data['chapter_slug']}}">...</a></li>
                                                             @endif
                                                         </ul>
@@ -203,10 +157,7 @@ $navBtnText = $navbarButton->title;
                 <div class="xs-w-100 d-flex align-items-center justify-content-between ">
                     @if(!empty($authUser))
                     <div class="d-flex">
-
                         <div class="border-left mx-5 mx-lg-15"></div>
-
-                        @include(getTemplate().'.includes.notification-dropdown')
                     </div>
                     @endif
 
@@ -216,7 +167,7 @@ $navBtnText = $navbarButton->title;
                     <div class="dropdown">
                         <a href="#!" class="navbar-user d-flex align-items-center ml-50 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
-                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}">
+                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image">
                             <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->full_name }}</span>
                         </a>
 
@@ -226,25 +177,25 @@ $navBtnText = $navbarButton->title;
                             </div>
 
                             <a class="dropdown-item" href="{{ $authUser->isAdmin() ? '/admin' : '/panel' }}">
-                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" alt="nav-icon">
+                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto" itemprop="image" alt="nav-icon">
                                 <span class="font-14 text-dark-blue">{{ trans('public.my_panel') }}</span>
                             </a>
                             @if($authUser->isTeacher() or $authUser->isOrganization())
                             <a class="dropdown-item" href="{{ $authUser->getProfileUrl() }}">
-                                <img src="/assets/default/img/icons/profile.svg" width="25" alt="nav-icon">
+                                <img src="/assets/default/img/icons/profile.svg" width="25" height="auto" itemprop="image" alt="nav-icon">
                                 <span class="font-14 text-dark-blue">{{ trans('public.my_profile') }}</span>
                             </a>
                             @endif
                             <a class="dropdown-item" href="/logout">
-                                <img src="/assets/default/img/icons/sidebar/logout.svg" width="25" alt="nav-icon">
+                                <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image" width="25" alt="nav-icon">
                                 <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>
                             </a>
                         </div>
                     </div>
                     @else
                     <div class="d-flex align-items-center ml-md-50">
-                        <a href="/login" class="py-5 px-10 mr-10 text-dark-blue font-14">{{ trans('auth.login') }}</a>
-                        <a href="/register" class="py-5 px-10 text-dark-blue font-14">{{ trans('auth.register') }}</a>
+                        <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">{{ trans('auth.login') }}</a>
+                        <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Get Started</a>
                     </div>
                     @endif
                 </div>

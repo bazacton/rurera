@@ -14,7 +14,7 @@
 @endsection
 
 @push('scripts_bottom')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15) || $page->id == 72)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 39)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
                     @endif

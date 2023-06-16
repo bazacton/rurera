@@ -1,81 +1,136 @@
 <footer class="footer  position-relative user-select-none">
     <div class="container">
         <div class="row">
-            <div class="col-6 col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <div class="widget widget-aboutus">
                     <ul>
-                        <li><a href="#">i' m a school <span>&#8250;</span></a></li>
-                        <li><a href="#">i' m a teacher<span>&#8250;</span></a></li>
-                        <li><a href="#">i' m a parent<span>&#8250;</span></a></li>
+                        <li itemprop="school"><a itemprop="url" href="#">i' m a school <span>&#8250;</span></a></li>
+                        <li itemprop="teacher"><a itemprop="url"  href="#">i' m a teacher<span>&#8250;</span></a></li>
+                        <li itemprop="parent"><a itemprop="url" href="#">i' m a parent<span>&#8250;</span></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-6 col-md-3">
-                <div class="widget widget-links">
-                    <div class="widget-title">
-                        <h5>Company</h5>
+            <div class="col-12 col-md-6 col-lg-9">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-links">
+                            <div class="widget-title">
+                                <h2 itemprop="title">Company</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
+                                <li itemprop="about"><a itemprop="url" href="/about-us">About Us</a></li>
+                                <li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
+                                <li itemprop="features"><a itemprop="url" href="/features-3">Features</a></li>
+                                <li itemprop="careers"><a itemprop="url" href="/careers">Careers</a></li>
+                                <li itemprop="membership"><a itemprop="url" href="/membership-2">Membership</a></li>
+                                <li itemprop="paper"><a itemprop="url" href="/sat-paper-feature">Sat Paper Feature</a></li>
+                                <li itemprop="quiz"><a itemprop="url" href="/quiz-page">Quiz Questions</a></li>
+                                <li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
+                            </ul>
+                            <div class="widget-title mt-20">
+                                <h2 itemprop="title">Help Support</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="support"><a itemprop="url" href="/support-page">Support Page</a></li>
+                                <li itemprop="faqs"><a itemprop="url" href="/contact-us">Contact us</a></li>
+                                <li itemprop="guides"><a itemprop="url" href="/user-guides">Help Center</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/user-guides">Help Center</a></li>
-                        <li><a href="/careers">Careers</a></li>
-                        <li><a href="/support-page">Support Page</a></li>
-                        <li><a href="/about-us">About Us</a></li>
-                        <li><a href="/testimonials">Testimonials</a></li>
-                        <li><a href="/faqs">FAQ's</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="widget widget-location">
-                    <div class="widget-title">
-                        <h5>Courses</h5>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-location">
+                            <div class="widget-title">
+                                <h2 itemprop="title">Years</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="Year 1"><a itemprop="url" href="/classes?sort=newest">KS- 1 Year 1</a></li>
+                                <li itemprop="Year 2"><a itemprop="url" href="/classes?sort=newest">KS- 1 Year 2</a></li>
+                                <li itemprop="Year 3"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 3</a></li>
+                                <li itemprop="Year 4"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 4</a></li>
+                                <li itemprop="Year 5"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 5</a></li>
+                                <li itemprop="Year 6"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 6</a></li>
+                            </ul>
+                            <div class="widget-title mt-20">
+                                <h2 itemprop="title">Choose location</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/us-img.jpg" alt="#" width="100%" height="auto">United kingdom</a></li>
+                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/aus-img.jpg" alt="#" width="100%" height="auto">Australia</a></li>
+                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/soa-img.jpg" alt="#" width="100%" height="auto">South Africa</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul>
-                        <li><a href="/national-curriculum">National Curriculum</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-6 col-md-3">
-                <div class="widget widget-location">
-                    <div class="widget-title">
-                        <h5>choose location</h5>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-location">
+                            <div class="widget-title">
+                                <h2 itemprop="title">Courses</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="curriculum"><a itemprop="url" href="/national-curriculum">National Curriculum</a></li>
+                                <li itemprop="maths"><a itemprop="url" href="/course/maths">Maths</a></li>
+                                <li itemprop="english"><a itemprop="url" href="/course/english-year5">English</a></li>
+                                <li itemprop="science"><a itemprop="url" href="/course/science-year5">Science</a></li>
+                                <li itemprop="geography"><a itemprop="url" href="/course/geography-year1">Geography</a></li>
+                                <li itemprop="computing"><a itemprop="url" href="/course/computing-year5">Computing</a></li>
+                                <li itemprop="history"><a itemprop="url" href="/course/history-year-5">History</a></li>
+                                <li itemprop="religious"><a itemprop="url" href="/course/re-year-5">Religious</a></li>
+                                <li itemprop="art"><a itemprop="url" href="/course/art-year-5">Art</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul>
-                        <li><a href="#"><img src="/store/1/default_images/countries/us-img.jpg" alt="#">United kingdom</a></li>
-                        <li><a href="#"><img src="/store/1/default_images/countries/aus-img.jpg" alt="#">Australia</a></li>
-                        <li><a href="#"><img src="/store/1/default_images/countries/soa-img.jpg" alt="#">South Africa</a></li>
-                    </ul>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-location">
+                            <div class="widget-title">
+                                <h2 itemprop="title">Book Shelf</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="shelf"><a itemprop="url" href="/books-shelf">Book Shelf</a></li>
+                                <li itemprop="book"><a itemprop="url" href="/mybooks">My books</a></li>
+                                <li itemprop="new"><a itemprop="url" href="/new">New</a></li>
+                                <li itemprop="reading"><a itemprop="url" href="/activity2">Reading Progress</a></li>
+                                <li itemprop="flip"><a itemprop="url" href="/flipbook/">Flip Book</a></li>
+                            </ul>
+                            <div class="widget-title mt-20">
+                                <h2 itemprop="title">Rewards</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="rewards"><a itemprop="url" href="/products?category_id=3">Rewards Categories</a></li>
+                                <li itemprop="type"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical">Rewards  Type</a></li>
+                                <li itemprop="options"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical&options%5B%5D=only_available">Rewards Options</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <div class="footer-copyright">
         <div class="container">
             <div class="row">
                 <div class="col-6 col-md-4">
-                    <p>@ 2023 learning portal</p>
+                    <p itemprop="learning">@ 2023 learning portal</p>
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="footer-logo">
-                        <a href="/">
-                            <img src="/store/1/default_images/website-logo-white.png" class="img-cover" alt="footer logo">
+                        <a itemprop="url"  href="/">
+                            <img src="/store/1/default_images/website-logo-white.png" class="img-cover" alt="footer logo"  width="100%" height="auto">
                         </a>
                     </div>
                 </div>
                 <div class="col-6 col-md-4">
-                    <ul class="footer-privacy-links">
-                        <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
+                    <div class="d-flex justify-content-between align-items-center mt-15">
+                        <ul class="footer-privacy-links d-flex">
+                        <li itemprop="Terms"><a itemprop="url" href="/terms-and-conditions"class="text-dark-charcoal">Terms & Conditions</a></li>
+                        <li itemprop="Terms"><a itemprop="url" href="/privacy" class="text-dark-charcoal">Privacy Policy</a></li>
                     </ul>
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/">
+                    <div class="footer-social d-flex">
+                        <a itemprop="url"  href="https://www.instagram.com/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-instagram"
                                 viewBox="0 0 16 16" id="IconChangeColor">
                                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"id="mainIconPathAttribute"></path></svg>
                         </a>
-                        <a href="https://web.whatsapp.com/">
+                        <a itemprop="url"  href="https://web.whatsapp.com/">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-whatsapp"
                                 viewBox="0 0 16 16" id="IconChangeColor">
                                 <path
@@ -83,7 +138,7 @@
                                     id="mainIconPathAttribute"></path>
                             </svg>
                         </a>
-                        <a href="https://twitter.com/">
+                        <a itemprop="url"  href="https://twitter.com/">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-twitter"
                             viewBox="0 0 16 16" id="IconChangeColor">
                             <path
@@ -91,7 +146,7 @@
                                 id="mainIconPathAttribute" fill="#000000"></path>
                         </svg>
                         </a>
-                        <a href="https://www.facebook.com/">
+                        <a itemprop="url"  href="https://www.facebook.com/">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="20" height="20"
                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" id="IconChangeColor">
@@ -100,6 +155,7 @@
                             </path>
                         </svg>
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>

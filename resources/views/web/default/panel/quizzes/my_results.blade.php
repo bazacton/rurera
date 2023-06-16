@@ -155,57 +155,10 @@
                                 @foreach($quizzesResults as $result)
                                     <tr>
                                         <td class="text-left">
-                                            <div class="user-inline-avatar d-flex align-items-center">
-                                                <div class="avatar bg-gray200">
-                                                    <img src="{{ $result->quiz->creator->getAvatar() }}" class="img-cover" alt="">
-                                                </div>
-                                                <div class=" ml-5">
-                                                    <span class="d-block">{{ $result->quiz->creator->full_name }}</span>
-                                                    <span class="mt-5 font-12 text-gray d-block">{{ $result->quiz->creator->email }}</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="text-left">
-                                            <span class="d-block">{{ $result->quiz->title }}</span>
-                                            <span class="font-12 text-gray d-block">{{ $result->quiz->webinar->title }}</span>
+                                            <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">Result Details</a>
+                                            <a href="javascript:;" class="webinar-actions d-block mt-10 attempt-logs-detail" data-quiz_result_id="{{ $result->id }}">Logs</a>
                                         </td>
 
-                                        <td class="align-middle">{{ $result->user_grade }}</td>
-
-                                        <td class="align-middle">
-                                        <span class="d-block text-{{ ($result->status == 'passed') ? 'primary' : ($result->status == 'waiting' ? 'warning' : 'danger') }}">
-                                            {{ trans('quiz.'.$result->status) }}
-                                        </span>
-
-                                            @if($result->status =='failed' and $result->can_try)
-                                                <span class="d-block font-12 text-gray">{{ trans('quiz.quiz_chance_remained',['count' => $result->count_can_try]) }}</span>
-                                            @endif
-                                        </td>
-
-                                        <td class="align-middle">{{ dateTimeFormat($result->created_at,'j M Y H:i')}}</td>
-
-                                        <td class="align-middle text-right font-weight-normal">
-                                            <div class="btn-group dropdown table-actions table-actions-lg table-actions-lg">
-                                                <button type="button" class="btn-transparent dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i data-feather="more-vertical" height="20"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">Result Details</a>
-                                                    <a href="javascript:;" class="webinar-actions d-block mt-10 attempt-logs-detail" data-quiz_result_id="{{ $result->id }}">Logs</a>
-                                                    @if(!$result->can_try and $result->status != 'waiting')
-                                                        <a href="/panel/quizzes/{{ $result->id }}/result" class="webinar-actions d-block mt-10">{{ trans('public.view_answers') }}</a>
-                                                    @endif
-
-                                                    @if($result->status != 'passed')
-                                                        @if($result->can_try)
-                                                            <a href="/panel/quizzes/{{ $result->quiz->id }}/start" class="webinar-actions d-block mt-10">{{ trans('public.try_again') }}</a>
-                                                        @endif
-                                                    @endif
-
-                                                    <a href="{{ $result->quiz->webinar->getUrl() }}" class="webinar-actions d-block mt-10">{{ trans('webinars.webinar_page') }}</a>
-                                                </div>
-                                            </div>
-                                        </td>
                                     </tr>
                                 @endforeach
 

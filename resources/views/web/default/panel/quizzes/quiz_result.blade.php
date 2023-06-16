@@ -3,21 +3,14 @@
 @section('content')
 <div class="container">
     <section class="mt-40">
-        <h2 class="font-weight-bold font-16 text-dark-blue">{{ $quizResult->quiz->title }}</h2>
-        <p class="text-gray font-14 mt-5">
-            <a href="{{ $quizResult->quiz->webinar->getUrl() }}" target="_blank" class="text-gray">{{ $quizResult->quiz->webinar->title }}</a>
-            | {{ trans('public.by') }}
-            <span class="font-weight-bold">
-                <a href="{{ $quizResult->quiz->creator->getProfileUrl() }}" target="_blank" class=""> {{ $quizResult->quiz->creator->full_name }}</a>
-            </span>
-        </p>
+        <h2 class="font-weight-bold font-16 text-dark-blue">Result</h2>
 
         <div class="activities-container shadow-sm rounded-lg mt-25 p-20 p-lg-35">
             <div class="row">
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/58.svg" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold text-secondary mt-5">{{ $quizResult->quiz->pass_mark }}/{{ $questionsSumGrade }}</strong>
+                        <strong class="font-30 font-weight-bold text-secondary mt-5">Passing Marks/{{ $questionsSumGrade }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('public.min') }} {{ trans('quiz.grade') }}</span>
                     </div>
                 </div>
@@ -25,7 +18,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/88.svg" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold text-secondary mt-5">{{ $numberOfAttempt }}/{{ $quizResult->quiz->attempt }}</strong>
+                        <strong class="font-30 font-weight-bold text-secondary mt-5">{{ $numberOfAttempt }}/Total Attempts Allowed</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('quiz.attempts') }}</span>
                     </div>
                 </div>
@@ -53,14 +46,14 @@
     </section>
 
     <section class="mt-30 quiz-form">
-        <form action="{{ !empty($newQuizStart) ? '/panel/quizzes/'. $newQuizStart->quiz->id .'/update-result' : '' }} " method="post">
+        <form action="" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="quiz_result_id" value="{{ !empty($newQuizStart) ? $newQuizStart->id : ''}}" class="form-control" placeholder=""/>
             <input type="hidden" name="attempt_number" value="{{  $numberOfAttempt }}" class="form-control" placeholder=""/>
-            <input type="hidden" class="js-quiz-question-count" value="{{ $quizResult->quiz->quizQuestions->count() }}"/>
+            <input type="hidden" class="js-quiz-question-count" value="0"/>
 
             @foreach($quizResultQuestions as $key => $question)
-            @php 
+            @php
 
             $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->quiz_layout)))));
             $correct_answer_array = json_decode($question->correct_answer);
@@ -83,7 +76,7 @@
                             </div>
 
 
-                            <div class="rounded-sm border border-gray200 p-15 text-gray">{{ $key + 1 }}/{{ $quizResult->quiz->quizQuestions->count() }}</div>
+                            <div class="rounded-sm border border-gray200 p-15 text-gray">{{ $key + 1 }}/Total Counts</div>
                         </div>
 
 
@@ -100,7 +93,7 @@
                             </ul>
                             <div class="d-flex flex-column align-items-center text-center" style="float: right;">
                                 <img src="/assets/default/img/activity/58.svg" width="64" height="64" alt="" title="Time Consumed">
-                                <strong class="font-30 font-weight-bold text-secondary mt-5">{{$question->time_consumed}}</strong>	
+                                <strong class="font-30 font-weight-bold text-secondary mt-5">{{$question->time_consumed}}</strong>
                             </div>
 
                         </div>

@@ -364,7 +364,6 @@ class QuizController extends Controller
             ->first();
 
 
-
         if (empty($quiz)) {
             abort(404);
         }
@@ -440,13 +439,12 @@ class QuizController extends Controller
         //QuizzesQuestionsList::whereNotIn('id' , $quizQuestionsListArray)->update(array('status' => 'inactive'));
 
 
-
         $data = $request->get('ajax')[$id];
         $locale = $data['locale'] ?? getDefaultLocale();
 
         $rules = [
-            'title'      => 'required|max:255' ,
-            'webinar_id' => 'required|exists:webinars,id' ,
+            'title' => 'required|max:255' ,
+            //'webinar_id' => 'required|exists:webinars,id' ,
             //'pass_mark' => 'required',
             //'display_number_of_questions' => 'required_if:display_limited_questions,on|nullable|between:1,' . $quizQuestionsCount
         ];
@@ -521,7 +519,7 @@ class QuizController extends Controller
         $quiz->update([
             //'webinar_id' => !empty($webinar) ? $webinar->id : null,
             //'chapter_id' => !empty($chapter) ? $chapter->id : null,
-            'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
+            //'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
             'chapter_id'     => isset($data['chapter_id']) ? $data['chapter_id'] : 0 ,
             'webinar_title'  => !empty($webinar) ? $webinar->title : null ,
             'attempt'        => 100 ,
@@ -537,6 +535,21 @@ class QuizController extends Controller
         ]);
 
         if (!empty($quiz)) {
+
+            /*if (!empty($question_list_ids)) {
+                    foreach ($question_list_ids as $sort_order => $question_id) {
+                        QuizzesQuestionsList::create([
+                            'quiz_id'     => $quiz->id ,
+                            'question_id' => $question_id ,
+                            'status'      => 'active' ,
+                            'sort_order'  => $sort_order ,
+                            'created_by'  => $user->id ,
+                            'created_at'  => time()
+                        ]);
+                    }
+                }*/
+
+
             QuizTranslation::updateOrCreate([
                 'quiz_id' => $quiz->id ,
                 'locale'  => mb_strtolower($locale) ,
@@ -619,6 +632,18 @@ class QuizController extends Controller
         ];
 
         return view('admin.quizzes.results' , $data);
+    }
+
+    public function search_quiz(Request $request)
+    {
+        $term = $request->get('term');
+        //$option = $request->get('option');
+
+        $quizzes = DB::table('quiz_translations')
+            ->select('quiz_id' , 'title as name')
+            ->where('title' , 'like' , '%' . $term . '%');
+
+        return response()->json($quizzes->get() , 200);
     }
 
     public function resultsExportExcel($id)
