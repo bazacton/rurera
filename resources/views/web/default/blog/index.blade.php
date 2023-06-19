@@ -19,7 +19,7 @@
                                         <form class="w-75 mx-auto">
                                             <div class="field-holder has-icon d-flex">
                                                 <span class="search-icon">
-                                                    <img src="../assets/default/svgs/search.svg" alt="#" width="100%" height="auto">
+                                                    <img src="../assets/default/svgs/search.svg" alt="default search" title="default search" width="100%" height="auto" loading="eager">
                                                 </span>
                                                 <input class="px-40" type="text" placeholder="What we can help you find ?">
                                                 <button type="submit">Search</button>
@@ -68,7 +68,7 @@
                     <div class="col-12 col-lg-7 col-md-7">
                         <div class="svg-holder">
                             <span class="icon-svg">
-                                <img class="w-100" src="../assets/default/svgs/blog-newsletter.svg" width="100%" height="auto" alt="#" />
+                                <img class="w-100" src="../assets/default/svgs/blog-newsletter.svg" alt="default newsletter" title="default newsletter" width="100%" height="auto" loading="eager" />
                             </span>
                         </div>
                     </div>

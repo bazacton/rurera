@@ -9,9 +9,9 @@
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 col-md-6 col-lg-6">
-                <h1 class="font-50 font-weight-bold">Careers at Rurera</h1>
-                <p>We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
-                <a href="#" class="btn-primary rounded-pill">Find new positions</a>
+                <h1 itemprop="title" class="font-50 font-weight-bold">Careers at Rurera</h1>
+                <p itemprop="description">We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
+                <a itemprop="url" href="#" class="btn-primary rounded-pill">Find new positions</a>
             </div>
         </div>
     </div>
@@ -21,7 +21,28 @@
             <div class="grid-item col-lg-3 col-md-3 col-sm-6">
                 <div class="img-holder">
                     <figure>
-                        <a href="#"><img src="https:../assets/default/img/staff-1.jpg" alt=""></a>
+                        <a href="#"><img src="https:../assets/default/img/staff-1.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-6.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-4.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
                     </figure>
                 </div>
             </div>
@@ -29,7 +50,21 @@
             <div class="grid-item col-lg-3 col-md-3 col-sm-6">
                 <div class="img-holder">
                     <figure>
-                        <a href="#"><img src="../assets/default/img/staff-6.jpg" alt=""></a>
+                        <a href="#"><img src="../assets/default/img/staff-2.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="../assets/default/img/staff-3.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
+                    </figure>
+                </div>
+            </div>
+            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
+                <div class="img-holder">
+                    <figure>
+                        <a href="#"><img src="https:../assets/default/img/staff-7.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
                     </figure>
                 </div>
             </div>
@@ -37,50 +72,7 @@
             <div class="grid-item col-lg-3 col-md-3 col-sm-6">
                 <div class="img-holder">
                     <figure>
-                        <a href="#"><img src="../assets/default/img/staff-4.jpg" alt=""></a>
-                    </figure>
-                </div>
-            </div>
-
-
-
-            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt=""></a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#"><img src="../assets/default/img/staff-2.jpg" alt=""></a>
-                    </figure>
-                </div>
-            </div>
-            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#"><img src="../assets/default/img/staff-3.jpg" alt=""></a>
-                    </figure>
-                </div>
-            </div>
-
-
-
-            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#"><img src="https:../assets/default/img/staff-7.jpg" alt=""></a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="grid-item col-lg-3 col-md-3 col-sm-6">
-                <div class="img-holder">
-                    <figure>
-                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt=""></a>
+                        <a href="#"><img src="../assets/default/img/staff-5.jpg" alt="default staff image" title="default staff image" width="100%" height="auto" itemprop="image"></a>
                     </figure>
                 </div>
             </div>
@@ -94,24 +86,24 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10">Hiring Process</h2>
-                        <p>Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
+                        <h2 itemprop="title" class="mt-0 mb-10">Hiring Process</h2>
+                        <p itemprop="description">Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="process-holder">
-                        <ul class="process-list d-flex justify-content-center">
-                            <li class="process-item">
-                                <a href="#">step 1</a>
+                        <ul itemprop="process"  class="process-list d-flex justify-content-center">
+                            <li itemprop="item" class="process-item">
+                                <a href="#.">step 1</a>
                             </li>
-                            <li class="process-item">
-                                <a href="#">step 2</a>
+                            <li itemprop="item" class="process-item">
+                                <a href="#.">step 2</a>
                             </li>
-                            <li class="process-item">
-                                <a href="#">step 3</a>
+                            <li itemprop="item" class="process-item">
+                                <a href="#.">step 3</a>
                             </li>
-                            <li class="process-item">
-                                <a href="#">step 4</a>
+                            <li itemprop="item" class="process-item">
+                                <a href="#.">step 4</a>
                             </li>
                         </ul>
                     </div>

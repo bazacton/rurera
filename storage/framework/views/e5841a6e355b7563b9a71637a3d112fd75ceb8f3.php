@@ -1,33 +1,35 @@
-<div class="blog-grid-card">
-    <div class="blog-grid-image">
-        <img src="<?php echo e($post->image); ?>" class="img-cover" alt="<?php echo e($post->title); ?>">
-
+<div class="blog-grid-card"  itemscope itemtype="https://schema.org/NewsArticle">
+    <div class="blog-grid-detail">
         <span class="badge created-at d-flex align-items-center">
             <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
-            <span><?php echo e(dateTimeFormat($post->created_at, 'j M Y')); ?></span>
+            <span  itemprop="datePublished" content="2023-04-05T08:00:00+08:00"><?php echo e(dateTimeFormat($post->created_at, 'j M Y')); ?></span>
         </span>
-    </div>
-
-    <div class="blog-grid-detail">
-        <a href="<?php echo e($post->getUrl()); ?>">
-            <h3 class="blog-grid-title mt-10"><?php echo e($post->title); ?></h3>
+        <a itemprop="url" href="<?php echo e($post->getUrl()); ?>">
+            <h2 class="blog-grid-title mt-10" itemprop="title"><?php echo e($post->title); ?></h2>
         </a>
 
-        <div class="mt-20 blog-grid-desc"><?php echo truncate(strip_tags($post->description), 160); ?></div>
+        <div class="mt-20 blog-grid-desc" itemprop="description"><?php echo truncate(strip_tags($post->description), 200); ?></div>
+        <?php
+            $meta_description = explode(',', $post->meta_description);
+            if( !empty( $meta_description ) ){
 
-        <div class="blog-grid-footer d-flex align-items-center justify-content-between mt-15">
-            <span>
-                <i data-feather="user" width="20" height="20" class=""></i>
-                 <?php if(!empty($post->author->full_name)): ?>
-                <span class="ml-5"><?php echo e($post->author->full_name); ?></span>
-                 <?php endif; ?>
-              </span>
+            }
 
-            <span class="d-flex align-items-center">
-                <i data-feather="message-square" width="20" height="20" class=""></i>
-                <span class="ml-5"><?php echo e($post->comments_count); ?></span>
-            </span>
-        </div>
+        ?>
+
+        <?php if( !empty( $meta_description )): ?>
+        <ul class="blog-tags">
+            <?php $__currentLoopData = $meta_description; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $meta_title): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if(trim($meta_title) != ''): ?>
+                    <li itemprop="name"><?php echo e(trim($meta_title)); ?></li>
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
+        <?php endif; ?>
     </div>
+    <div class="blog-grid-image">
+        <img src="<?php echo e($post->image); ?>" class="img-cover" alt="<?php echo e($post->title); ?>" title="<?php echo e($post->title); ?>" width="100%" height="auto" itemprop="image" loading="eager">
+    </div>
+
 </div>
 <?php /**PATH E:\XAMPP_7.4.2\htdocs\rurera\resources\views/web/default/blog/grid-list.blade.php ENDPATH**/ ?>

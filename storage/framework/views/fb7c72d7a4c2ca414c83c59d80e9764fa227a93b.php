@@ -70,14 +70,12 @@
     <?php endif; ?>
 
 
-    
-    <?php echo $__env->make('web.default.pages.includes.home_statistics', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
     <?php $__currentLoopData = $homeSections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $homeSection): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
         <?php if($homeSection->name == \App\Models\HomeSection::$featured_classes and !empty($featureWebinars) and !$featureWebinars->isEmpty()): ?>
-            <section class="home-sections home-sections-swiper container">
+            <section class="home-sections container mt-0 ">
                 <div class="px-20 px-md-0">
                     <h2 class="section-title"><?php echo e(trans('home.featured_classes')); ?></h2>
                     <p class="section-hint"><?php echo e(trans('home.featured_classes_hint')); ?></p>
@@ -130,9 +128,9 @@
                                                         <div class="feature-price-box">
                                                             <?php if(!empty($feature->webinar->price ) and $feature->webinar->price > 0): ?>
                                                                 <?php if($feature->webinar->bestTicket() < $feature->webinar->price): ?>
-                                                                    <span class="real"><?php echo e(handlePrice($feature->webinar->bestTicket(), true, true, false, null, true)); ?></span>
+                                                                    <span class="real"><?php echo e(handlePrice($feature->webinar->bestTicket())); ?></span>
                                                                 <?php else: ?>
-                                                                    <?php echo e(handlePrice($feature->webinar->price, true, true, false, null, true)); ?>
+                                                                    <?php echo e(handlePrice($feature->webinar->price)); ?>
 
                                                                 <?php endif; ?>
                                                             <?php else: ?>
@@ -187,36 +185,6 @@
             </section>
         <?php endif; ?>
 
-        
-        <?php if($homeSection->name == \App\Models\HomeSection::$upcoming_courses and !empty($upcomingCourses) and !$upcomingCourses->isEmpty()): ?>
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <h2 class="section-title"><?php echo e(trans('update.upcoming_courses')); ?></h2>
-                        <p class="section-hint"><?php echo e(trans('update.upcoming_courses_home_section_hint')); ?></p>
-                    </div>
-
-                    <a href="/upcoming_courses?sort=newest" class="btn btn-border-white"><?php echo e(trans('home.view_all')); ?></a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container upcoming-courses-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            <?php $__currentLoopData = $upcomingCourses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $upcomingCourse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="swiper-slide">
-                                    <?php echo $__env->make('web.default.includes.webinar.upcoming_course_grid_card',['upcomingCourse' => $upcomingCourse], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination upcoming-courses-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        <?php endif; ?>
-
         <?php if($homeSection->name == \App\Models\HomeSection::$latest_classes and !empty($latestWebinars) and !$latestWebinars->isEmpty()): ?>
             <section class="home-sections home-sections-swiper container">
                 <div class="d-flex justify-content-between ">
@@ -248,7 +216,7 @@
         <?php endif; ?>
 
         <?php if($homeSection->name == \App\Models\HomeSection::$best_rates and !empty($bestRateWebinars) and !$bestRateWebinars->isEmpty()): ?>
-            <section class="home-sections home-sections-swiper container">
+            <section class="home-sections container">
                 <div class="d-flex justify-content-between">
                     <div>
                         <h2 class="section-title"><?php echo e(trans('home.best_rates')); ?></h2>
@@ -281,31 +249,25 @@
                 <h2 class="section-title"><?php echo e(trans('home.trending_categories')); ?></h2>
                 <p class="section-hint"><?php echo e(trans('home.trending_categories_hint')); ?></p>
 
+                <div class="row mt-40">
 
-                <div class="swiper-container trend-categories-swiper px-12 mt-40">
-                    <div class="swiper-wrapper py-20">
-                        <?php $__currentLoopData = $trendCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trend): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="swiper-slide">
-                                <a href="<?php echo e($trend->category->getUrl()); ?>">
-                                    <div class="trending-card d-flex flex-column align-items-center w-100">
-                                        <div class="trending-image d-flex align-items-center justify-content-center w-100" style="background-color: <?php echo e($trend->color); ?>">
-                                            <div class="icon mb-3">
-                                                <img src="<?php echo e($trend->getIcon()); ?>" width="10" class="img-cover" alt="<?php echo e($trend->category->title); ?>">
-                                            </div>
+                    <?php $__currentLoopData = $trendCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trend): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="col-6 col-md-3 col-lg-2 mt-20 mt-md-0">
+                            <a href="<?php echo e($trend->category->getUrl()); ?>">
+                                <div class="trending-card d-flex flex-column align-items-center w-100">
+                                    <div class="trending-image d-flex align-items-center justify-content-center w-100" style="background-color: <?php echo e($trend->color); ?>">
+                                        <div class="icon mb-3">
+                                            <img src="<?php echo e($trend->getIcon()); ?>" width="10" class="img-cover" alt="<?php echo e($trend->category->title); ?>">
                                         </div>
-
-                                        <div class="item-count px-10 px-lg-20 py-5 py-lg-10"><?php echo e($trend->category->webinars_count); ?> <?php echo e(trans('product.course')); ?></div>
-
-                                        <h3><?php echo e($trend->category->title); ?></h3>
                                     </div>
-                                </a>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                </div>
 
-                <div class="d-flex justify-content-center">
-                    <div class="swiper-pagination trend-categories-swiper-pagination"></div>
+                                    <div class="item-count px-10 px-lg-20 py-5 py-lg-10"><?php echo e($trend->category->webinars_count); ?> <?php echo e(trans('product.course')); ?></div>
+
+                                    <h3><?php echo e($trend->category->title); ?></h3>
+                                </div>
+                            </a>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </section>
         <?php endif; ?>
@@ -447,7 +409,7 @@
         <?php endif; ?>
 
         <?php if($homeSection->name == \App\Models\HomeSection::$testimonials and !empty($testimonials) and !$testimonials->isEmpty()): ?>
-            <div class="position-relative home-sections testimonials-container">
+            <div class="position-relative testimonials-container">
 
                 <div id="parallax1" class="ltr">
                     <div data-depth="0.2" class="gradient-box left-gradient-box"></div>
@@ -502,7 +464,7 @@
         <?php endif; ?>
 
         <?php if($homeSection->name == \App\Models\HomeSection::$subscribes and !empty($subscribes) and !$subscribes->isEmpty()): ?>
-            <div class="home-sections position-relative subscribes-container pe-none user-select-none">
+            <div class="position-relative subscribes-container pe-none user-select-none">
                 <div id="parallax4" class="ltr d-none d-md-block">
                     <div data-depth="0.2" class="gradient-box left-gradient-box"></div>
                 </div>
@@ -518,16 +480,10 @@
                             <div class="swiper-wrapper py-20">
 
                                 <?php $__currentLoopData = $subscribes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subscribe): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php
-                                        $subscribeSpecialOffer = $subscribe->activeSpecialOffer();
-                                    ?>
-
                                     <div class="swiper-slide">
                                         <div class="subscribe-plan position-relative bg-white d-flex flex-column align-items-center rounded-sm shadow pt-50 pb-20 px-20">
                                             <?php if($subscribe->is_popular): ?>
                                                 <span class="badge badge-primary badge-popular px-15 py-5"><?php echo e(trans('panel.popular')); ?></span>
-                                            <?php elseif(!empty($subscribeSpecialOffer)): ?>
-                                                <span class="badge badge-danger badge-popular px-15 py-5"><?php echo e(trans('update.percent_off', ['percent' => $subscribeSpecialOffer->percent])); ?></span>
                                             <?php endif; ?>
 
                                             <div class="plan-icon">
@@ -537,19 +493,8 @@
                                             <h3 class="mt-20 font-30 text-secondary"><?php echo e($subscribe->title); ?></h3>
                                             <p class="font-weight-500 text-gray mt-10"><?php echo e($subscribe->description); ?></p>
 
-                                            <div class="d-flex align-items-start mt-30">
-                                                <?php if(!empty($subscribe->price) and $subscribe->price > 0): ?>
-                                                    <?php if(!empty($subscribeSpecialOffer)): ?>
-                                                        <div class="d-flex align-items-end line-height-1">
-                                                            <span class="font-36 text-primary"><?php echo e(handlePrice($subscribe->getPrice())); ?></span>
-                                                            <span class="font-14 text-gray ml-5 text-decoration-line-through"><?php echo e(handlePrice($subscribe->price)); ?></span>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <span class="font-36 text-primary line-height-1"><?php echo e(handlePrice($subscribe->price)); ?></span>
-                                                    <?php endif; ?>
-                                                <?php else: ?>
-                                                    <span class="font-36 text-primary line-height-1"><?php echo e(trans('public.free')); ?></span>
-                                                <?php endif; ?>
+                                            <div class="d-flex align-items-start text-primary mt-30">
+                                                <span class="font-36 line-height-1"><?php echo e(addCurrencyToPrice($subscribe->price)); ?></span>
                                             </div>
 
                                             <ul class="mt-20 plan-feature">
@@ -572,17 +517,10 @@
 
                                                     <input name="amount" value="<?php echo e($subscribe->price); ?>" type="hidden">
                                                     <input name="id" value="<?php echo e($subscribe->id); ?>" type="hidden">
-
-                                                    <div class="d-flex align-items-center mt-50 w-100">
-                                                        <button type="submit" class="btn btn-primary <?php echo e(!empty($subscribe->has_installment) ? '' : 'btn-block'); ?>"><?php echo e(trans('update.purchase')); ?></button>
-
-                                                        <?php if(!empty($subscribe->has_installment)): ?>
-                                                            <a href="/panel/financial/subscribes/<?php echo e($subscribe->id); ?>/installments" class="btn btn-outline-primary flex-grow-1 ml-10"><?php echo e(trans('update.installments')); ?></a>
-                                                        <?php endif; ?>
-                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-block mt-50"><?php echo e(trans('financial.purchase')); ?></button>
                                                 </form>
                                             <?php else: ?>
-                                                <a href="/login" class="btn btn-primary btn-block mt-50"><?php echo e(trans('update.purchase')); ?></a>
+                                                <a href="/login" class="btn btn-primary btn-block mt-50"><?php echo e(trans('financial.purchase')); ?></a>
                                             <?php endif; ?>
                                         </div>
                                     </div>

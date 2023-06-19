@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="<?php echo e(app()->getLocale()); ?>">
+
 <?php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
 
     $isRtl = ((in_array(mb_strtoupper(app()->getLocale()), $rtlLanguages)) or (!empty($generalSettings['rtl_layout']) and $generalSettings['rtl_layout'] == 1));
+    $rand_no = rand(99,9999);
 ?>
 
 <head>
@@ -14,7 +16,12 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-    <link rel="stylesheet" href="/assets/default/css/app.css">
+    <link rel="stylesheet" href="/assets/default/css/app.css?ver=<?php echo e($rand_no); ?>">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="canonical" href="<?php echo e(url()->current()); ?>">
 
     <?php if($isRtl): ?>
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -40,12 +47,9 @@
     <?php endif; ?>
 </head>
 
-<body class="<?php if($isRtl): ?> rtl <?php endif; ?>">
+<body class="menu-closed <?php if($isRtl): ?> rtl <?php endif; ?>">
 
-<div id="app" class="<?php echo e((!empty($floatingBar) and $floatingBar->position == 'top' and $floatingBar->fixed) ? 'has-fixed-top-floating-bar' : ''); ?>">
-    <?php if(!empty($floatingBar) and $floatingBar->position == 'top'): ?>
-        <?php echo $__env->make('web.default.includes.floating_bar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php endif; ?>
+<div id="app">
 
     <?php if(!isset($appHeader)): ?>
         <?php echo $__env->make('web.default.includes.top_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -63,10 +67,6 @@
     <?php endif; ?>
 
     <?php echo $__env->make('web.default.includes.advertise_modal.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-    <?php if(!empty($floatingBar) and $floatingBar->position == 'bottom'): ?>
-        <?php echo $__env->make('web.default.includes.floating_bar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php endif; ?>
 </div>
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>

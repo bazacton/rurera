@@ -3,7 +3,7 @@
 <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name='robots' content="<?php echo e($pageRobot ?? 'NOODP, nofollow, noindex'); ?>">
 
@@ -42,6 +42,7 @@
 <meta property='og:image' content='<?php echo e(url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '')); ?>'>
 <meta name='twitter:image' content='<?php echo e(url(!empty($generalSettings['fav_icon']) ? $generalSettings['fav_icon'] : '')); ?>'>
 <meta property='og:locale' content='<?php echo e(url(!empty($generalSettings['locale']) ? $generalSettings['locale'] : 'en_US')); ?>'>
+<meta property='og:url' content='<?php echo e(url('')); ?>'>
 <meta property='og:type' content='website'>
 
 <?php echo getSeoMetas('extra_meta_tags'); ?>

@@ -14122,7 +14122,7 @@ p {
 .mega-menu-nav a.active {color: #fff;}
 .courses-detail {background-color: #e7eef3; padding: 30px 25px;}
 .mega-menu-body .tab-pane>.row>[class*="col-"] .courses-detail {height: 100%;}
-.lms-mega-menu h2 {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color);}
+.lms-mega-menu strong {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color);}
 .courses-detail .detail-text img {margin: 0 0 15px;}
 .lms-mega-menu p {color: #000; margin: 0 0 20px;}
 .menu-colum-text {padding-top: 40px;}

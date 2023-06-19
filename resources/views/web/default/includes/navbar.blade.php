@@ -26,7 +26,7 @@ $navBtnText = $navbarButton->title;
 
             <a class="navbar-brand navbar-order d-flex align-items-center justify-content-center mr-0 {{ (empty($navBtnUrl) and empty($navBtnText)) ? 'ml-auto' : '' }}" href="/">
                 @if(!empty($generalSettings['logo']))
-                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" width="100%" height="auto" itemprop="image">
+                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo" width="100%" height="auto" itemprop="image" loading="eager" >
                 @endif
             </a>
 
@@ -102,7 +102,8 @@ $navBtnText = $navbarButton->title;
                                                     <div class="col-12 col-lg-3 col-md-6">
                                                 @endif
                                                     <div class="menu-colum-text">
-                                                        <a href="/course/{{$chapter_data['chapter_slug']}}"><h2>{{isset( $chapter_data['chapter_title'] )? $chapter_data['chapter_title'] : ''}}</h2></a>
+                                                        <a
+                                                            href="/course/{{$chapter_data['chapter_slug']}}"><strong>{{isset( $chapter_data['chapter_title'] )? $chapter_data['chapter_title'] : ''}}</strong></a>
                                                         @if( isset( $chapter_data['topics']) && !empty( $chapter_data['topics'] ) )
                                                         <ul class="topic-list">
                                                             @php $topics_count = 1; @endphp
@@ -153,7 +154,6 @@ $navBtnText = $navbarButton->title;
             </div>
 
             <div class="nav-icons-or-start-live navbar-order">
-
                 <div class="xs-w-100 d-flex align-items-center justify-content-between ">
                     @if(!empty($authUser))
                     <div class="d-flex">
@@ -167,7 +167,7 @@ $navBtnText = $navbarButton->title;
                     <div class="dropdown">
                         <a href="#!" class="navbar-user d-flex align-items-center ml-50 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
-                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image">
+                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image" alt="rounded circle" loading="eager" title="rounded circle">
                             <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->full_name }}</span>
                         </a>
 
@@ -177,17 +177,17 @@ $navBtnText = $navbarButton->title;
                             </div>
 
                             <a class="dropdown-item" href="{{ $authUser->isAdmin() ? '/admin' : '/panel' }}">
-                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto" itemprop="image" alt="nav-icon">
+                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto" itemprop="image" alt="nav-icon" title="nav-icon" loading="eager">
                                 <span class="font-14 text-dark-blue">{{ trans('public.my_panel') }}</span>
                             </a>
                             @if($authUser->isTeacher() or $authUser->isOrganization())
                             <a class="dropdown-item" href="{{ $authUser->getProfileUrl() }}">
-                                <img src="/assets/default/img/icons/profile.svg" width="25" height="auto" itemprop="image" alt="nav-icon">
+                                <img src="/assets/default/img/icons/profile.svg" width="25" height="auto" itemprop="image" alt="nav-icon"  title="nav-icon" loading="eager">
                                 <span class="font-14 text-dark-blue">{{ trans('public.my_profile') }}</span>
                             </a>
                             @endif
                             <a class="dropdown-item" href="/logout">
-                                <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image" width="25" alt="nav-icon">
+                                <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image" width="25" alt="nav-icon"  title="nav-icon" loading="eager">
                                 <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>
                             </a>
                         </div>
