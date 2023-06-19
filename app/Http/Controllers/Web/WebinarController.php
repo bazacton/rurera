@@ -175,6 +175,7 @@ class WebinarController extends Controller
             }
         }
 
+
         if (empty($course)) {
             return $justReturnData ? false : back();
         }
@@ -235,6 +236,7 @@ class WebinarController extends Controller
         $quizzes = Quiz::where('status', 'active')
                     ->whereIn('id', $quizzes_ids)
                     ->get();
+
 
 
         if ($user) {

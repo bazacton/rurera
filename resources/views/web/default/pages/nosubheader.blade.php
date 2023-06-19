@@ -4,6 +4,9 @@
 @if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
     @endif
+@if($page->id == 44)
+        <link rel="stylesheet" href="/assets/default/css/quiz-layout.css">
+    @endif
 @endpush
 
 @section('content')

@@ -12137,11 +12137,7 @@ button.bg-gray200:hover {
 .font-italic {
     font-style: italic !important
 }
-.text-primary {
-    color: #0272b6 !important;
-}
 .text-dark-charcoal{color: #333 !important;}
-
 a.text-primary:focus,
 a.text-primary:hover {
     color: #26a553 !important
@@ -12149,7 +12145,6 @@ a.text-primary:hover {
 .text-secondary {
     color: #1f3b64 !important
 }
-
 a.text-secondary:focus,
 a.text-secondary:hover {
     color: #0d192a !important
@@ -12157,7 +12152,6 @@ a.text-secondary:hover {
 .text-success {
     color: #e7f4f0 !important
 }
-
 a.text-success:focus,
 a.text-success:hover {
     color: #b3dccf !important
@@ -12165,7 +12159,6 @@ a.text-success:hover {
 .text-info {
     color: #ebf7ff !important
 }
-
 a.text-info:focus,
 a.text-info:hover {
     color: #9fd8ff !important
@@ -12173,7 +12166,6 @@ a.text-info:hover {
 .text-warning {
     color: #ffab00 !important
 }
-
 a.text-warning:focus,
 a.text-warning:hover {
     color: #b37800 !important
@@ -12181,7 +12173,6 @@ a.text-warning:hover {
 .text-danger {
     color: #f63c3c !important
 }
-
 a.text-danger:focus,
 a.text-danger:hover {
     color: #db0a0a !important
@@ -12189,7 +12180,6 @@ a.text-danger:hover {
 .text-light {
     color: #f8f9fa !important
 }
-
 a.text-light:focus,
 a.text-light:hover {
     color: #cbd3da !important
@@ -12215,7 +12205,6 @@ a.text-white:hover {
 .text-gray {
     color: #818894 !important
 }
-
 a.text-gray:focus,
 a.text-gray:hover {
     color: #5c626c !important
@@ -12223,7 +12212,6 @@ a.text-gray:hover {
 .text-gray300 {
     color: #ececec !important
 }
-
 a.text-gray300:focus,
 a.text-gray300:hover {
     color: #c6c6c6 !important
@@ -12231,7 +12219,6 @@ a.text-gray300:hover {
 .text-gray200 {
     color: #f1f1f1 !important
 }
-
 a.text-gray200:focus,
 a.text-gray200:hover {
     color: #cbcbcb !important
@@ -14122,7 +14109,7 @@ p {
 .mega-menu-nav a.active {color: #fff;}
 .courses-detail {background-color: #e7eef3; padding: 30px 25px;}
 .mega-menu-body .tab-pane>.row>[class*="col-"] .courses-detail {height: 100%;}
-.lms-mega-menu strong {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color);}
+.lms-mega-menu strong {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color); display: block;}
 .courses-detail .detail-text img {margin: 0 0 15px;}
 .lms-mega-menu p {color: #000; margin: 0 0 20px;}
 .menu-colum-text {padding-top: 40px;}
@@ -15323,7 +15310,7 @@ p {
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
 }
-.find-instructor-section-hero:hover {
+.find-instructor-testimonial .find-instructor-section-hero:hover {
     -webkit-transform: translateY(-15px);
     -moz-transform: translateY(-15px);
     -o-transform: translateY(-15px);
@@ -20949,6 +20936,7 @@ Lms Testimonial Style Start
 .testimonial-tabs li:hover a {color: #fff; background-color:var(--primary);border: 1px solid transparent;}
 .testimonial-tabs li a .icon-svg svg{width: 26px; height: 26px; margin-right: 10px;display: flex; fill:#000;color: #000; transition: 0.4s ease-in-out;}
 .lms-text-holder .icon-svg{display: inline-flex;}
+.lms-text-holder .icon-svg img {width: 35px; height: 35px;}
 .lms-text-section.container-w {max-width: 1200px;border-radius: 10px;}
 @keyframes pulse-purple {
     0% {
@@ -22760,6 +22748,62 @@ Lms Performace Table Style Start
 .leaderboard>li.lms-performace-des .score-des span {
     width: calc(100% - 65px);
 }
+.leaderboard>li.lms-performace-head.leaderboard-title div:first-child {
+    max-width: 12%;
+    min-width: 12%;
+}
+.leaderboard>li.lms-performace-head.leaderboard-title div:first-child h5{color: #878787;}
+.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {
+    max-width: 30%;
+    min-width: 30%;
+    text-align: left;
+}
+.leaderboard>li.lms-performace-des.leaderboard-des .sr-no {
+    max-width: 12%;
+    min-width: 12%;
+}
+.leaderboard>li.lms-performace-des.leaderboard-des .score-des {
+    padding-left: 20px;
+    flex-wrap: wrap;
+    min-width: 30%;
+    max-width: 30%;
+}
+.lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{
+    min-width: 37%;
+    max-width: 37%;
+    text-align: left;
+}
+.leaderboard>li.lms-performace-des.leaderboard-des .coin-earn{
+    min-width: 37%;
+    max-width: 37%;
+    text-align: left;
+}
+.leaderboard>li.lms-performace-des.leaderboard-des .coin-earn > .badge-btn{width: auto; padding: 0;}
+.lms-performace-table>li.lms-performace-des .sr-no span {
+    color: #6b707eff;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.lms-performace-table>li.lms-performace-des.leaderboard-des div{white-space: normal;}
+.lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px;}
+.lms-performace-table>li.lms-performace-des.leaderboard-des div{padding: 22px 15px;}
+.lms-performace-table>li.lms-performace-des .icon-table-1{color: #ffd000;}
+.lms-performace-table>li.lms-performace-des .icon-table-2 {color: #c7c7c7;}
+.leaderboard-tab .nav-tabs {
+    border-bottom: 0;
+    justify-content: end;
+}
+.leaderboard-tab .nav-tabs .nav-link{border:0;border-radius: 0;background: transparent;border-bottom: 2px solid transparent;padding:0; font-size: 14px;color: #878787;}
+.leaderboard-tab .nav-tabs .nav-link.active {
+    background: transparent;
+    border-color: var(--primary);
+    color: #333;
+}
+.leaderboard-tab .nav-tabs .nav-item{margin:0 0 10px 20px;}
+.leaderboard-tab .nav-tabs .nav-link:hover {color: var(--primary);}
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -22792,7 +22836,7 @@ Lms SignUp Page Style Start
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
 }
 .gallery-sub-header .masonry-grid-gallery {
-    position: absolute !important;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: 1;
@@ -24536,20 +24580,21 @@ Lms Newsletter Style Style End
 /*************************************
  process Section Style End
 *************************************/
+/*************************************
+ Gallery Fram Section  Style Start
+*************************************/
 .gallery-frame-section .row {
     align-items: center;
     justify-content: center;
-    margin: 0 -8px;
+    margin: 0 -5px;
 }
 .gallery-frame {
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 2px;
 }
 .gallery-frame figure img {
     max-width: 100%;
@@ -24558,9 +24603,111 @@ Lms Newsletter Style Style End
     position: initial;
 }
 .gallery-frame-section .col-12 {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
+/*************************************
+ Gallery Fram Section  Style End
+*************************************/
+/*************************************
+Sats Listing Style Start
+*************************************/
+.sats-listing-card {
+    border: 1px solid #dfdfdf;
+    border-radius: 10px;
+    padding: 20px;
+}
+.sats-listing-card .img-holder {
+    margin-bottom: 15px;
+}
+.sats-listing-card .img-holder img {
+    max-width: 100%;
+    transition: all .5s;
+}
+.sats-listing-card:hover .img-holder img {
+    transform: scale(0.98);
+    -webkit-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+}
+.sats-listing-card .text-holder span {
+    color: #6d6d6d;
+    font-weight: 500;
+    display: block;
+    margin: 0 0 5px;
+    line-height: normal;
+}
+.sats-listing-card .text-holder h4 {
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+.sats-listing-card .text-holder h4 a {
+    color: #000;
+}
+.practice-btn {
+    background-color: #015eab;
+    color: #fff;
+    display: inline-block;
+    line-height: normal;
+    padding: 10px 20px;
+    border-radius: 5px;
+    min-width: 125px;
+    text-align: center;
+}
+.progress-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5a5a5a;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+.progress-link:hover {
+    color: #5a5a5a;
+}
+.practice-btn:hover {
+    color: #fff;
+}
+.sats-listing-card .img-holder figure {
+    position: relative;
+}
+.sats-listing-card .img-holder figure > a {
+    display: block;
+}
+.sats-listing-card .img-holder figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 15px 15px;
+    pointer-events: none;
+}
+.completed-label {
+    background-color: #00412c;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: auto;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: inline-block;
+    line-height: normal;
+}
+.listing-search {
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 10px;
+}
+.listing-search button {
+    height: 40px;
+}
+.clear-btn {
+    font-weight: 500;
+}
+/*************************************
+Sats Listing Style End
+*************************************/
+
 /*************************************
 Lms Responsive Style Start
 *************************************/
@@ -24640,6 +24787,26 @@ Lms Responsive Style Start
         width: 100%;
     }
     .lms-contact-form-section .message-box{display: none;}
+    .gallery-sub-header {
+        flex-direction: column-reverse;
+        padding-top: 0 !important;
+    }
+    .gallery-sub-header .masonry-grid-gallery {
+        position: relative;
+        padding: 20px;
+        width: 100%;
+        transform: none;
+        margin-bottom: 30px;
+    }
+    .gallery-sub-header .simple .masonry-grid [class*="col-"] {
+        width: 33.333%;
+    }
+    .masonry-grid-gallery.has-bg:before {
+        top: 0;
+        height: 100%;
+        width: 100%;
+        transform: none;
+    }
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {
@@ -24914,6 +25081,9 @@ Lms Responsive Style Start
     }
     .footer .footer-social {
         text-align: left;
+    }
+    .gallery-sub-header .simple .masonry-grid [class*="col-"] {
+        width: 50%;
     }
 }
 @media screen and (max-width: 575px) {

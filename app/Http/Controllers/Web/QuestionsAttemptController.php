@@ -91,7 +91,7 @@ class QuestionsAttemptController extends Controller
     *
     * @return Question Object
     */
-    public function nextQuestion($quizAttempt)
+    public function nextQuestion($quizAttempt, $exclude_array = array())
     {
         $user = auth()->user();
         $questions_list = ($quizAttempt->questions_list != '') ? json_decode($quizAttempt->questions_list) : array();
@@ -105,53 +105,26 @@ class QuestionsAttemptController extends Controller
         if (!empty($questions_list)) {
             foreach ($questions_list as $question_count => $question_id) {
                 $question_count++;
+                if (!in_array($question_id , $exclude_array)) {
 
-                $check_question_passed = QuizzResultQuestions::where('parent_type_id' , $quizAttempt->parent_type_id)
-                    ->where('quiz_result_type' , $quizAttempt->attempt_type)
-                    ->where('user_id' , $user->id)
-                    ->where('question_id' , $question_id)
-                    ->where('quiz_result_id' , $quizAttempt->quiz_result_id)
-                    ->where('status' , '=' , 'correct')
-                    ->count();
+                    $check_question_passed = QuizzResultQuestions::where('parent_type_id' , $quizAttempt->parent_type_id)->where('quiz_result_type' , $quizAttempt->attempt_type)->where('user_id' , $user->id)->where('question_id' , $question_id)->where('quiz_result_id' , $quizAttempt->quiz_result_id)->where('status' , '=' , 'correct')->count();
 
-                if ($check_question_passed == 0) {
-                    $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id' , $quizAttempt->parent_type_id)
-                        ->where('quiz_result_type' , $quizAttempt->attempt_type)
-                        ->where('user_id' , $user->id)
-                        ->where('question_id' , $question_id)
-                        ->where('quiz_result_id' , $quizAttempt->quiz_result_id)
-                        ->where('status' , '!=' , 'waiting')
-                        ->count();
+                    if ($check_question_passed == 0) {
+                        $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id' , $quizAttempt->parent_type_id)->where('quiz_result_type' , $quizAttempt->attempt_type)->where('user_id' , $user->id)->where('question_id' , $question_id)->where('quiz_result_id' , $quizAttempt->quiz_result_id)->where('status' , '!=' , 'waiting')->count();
 
-                    $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult , $QuizzResultQuestionsCount);
+                        $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult , $QuizzResultQuestionsCount);
 
-                    if ($questionAttemptAllowed == true) {
-                        $questionObj = QuizzesQuestion::find($question_id);
-                        $question_no = $question_count;
-                        $correct_answers = $this->get_question_correct_answers($questionObj);
+                        if ($questionAttemptAllowed == true) {
+                            $questionObj = QuizzesQuestion::find($question_id);
+                            $question_no = $question_count;
+                            $correct_answers = $this->get_question_correct_answers($questionObj);
 
-                        $newQuestionResult = QuizzResultQuestions::create([
-                            'question_id'      => $questionObj->id ,
-                            'quiz_result_id'   => $quizAttempt->quiz_result_id ,
-                            'quiz_attempt_id'  => $quizAttempt->id ,
-                            'user_id'          => $user->id ,
-                            'correct_answer'   => json_encode($correct_answers) ,
-                            'user_answer'      => '' ,
-                            'quiz_layout'      => $questionObj->question_layout ,
-                            'quiz_grade'       => $questionObj->question_score ,
-                            'average_time'     => $questionObj->question_average_time ,
-                            'time_consumed'    => 0 ,
-                            'difficulty_level' => $questionObj->question_difficulty_level ,
-                            'status'           => 'waiting' ,
-                            'created_at'       => time() ,
-                            'parent_type_id'   => $quizAttempt->parent_type_id ,
-                            'quiz_result_type' => $quizAttempt->attempt_type ,
-                        ]);
+                            $newQuestionResult = QuizzResultQuestions::create(['question_id' => $questionObj->id , 'quiz_result_id' => $quizAttempt->quiz_result_id , 'quiz_attempt_id' => $quizAttempt->id , 'user_id' => $user->id , 'correct_answer' => json_encode($correct_answers) , 'user_answer' => '' , 'quiz_layout' => $questionObj->question_layout , 'quiz_grade' => $questionObj->question_score , 'average_time' => $questionObj->question_average_time , 'time_consumed' => 0 , 'difficulty_level' => $questionObj->question_difficulty_level , 'status' => 'waiting' , 'created_at' => time() , 'parent_type_id' => $quizAttempt->parent_type_id , 'quiz_result_type' => $quizAttempt->attempt_type ,]);
 
-                        break;
+                            break;
+                        }
                     }
                 }
-
             }
         }
 
@@ -216,6 +189,10 @@ class QuestionsAttemptController extends Controller
                 $is_attempt_allowed = true;
                 break;
 
+            case "sats":
+               $is_attempt_allowed = true;
+               break;
+
             case "practice":
 
                 if ($QuizzResultQuestionsCount == 0) {
@@ -248,7 +225,7 @@ class QuestionsAttemptController extends Controller
                         $options_array = isset($elementData->options) ? $elementData->options : array();
                         if (!empty($options_array)) {
                             foreach ($options_array as $optionData) {
-                                if ($optionData->default == 'on') {
+                                if (isset( $optionData->default ) && $optionData->default == 'on') {
                                     $question_correct[] = $optionData->value;
                                 }
                             }

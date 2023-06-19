@@ -25,7 +25,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/support.jpg" alt="support"  width="100%" height="auto" itemprop="image"></figure>
+                                <figure><img src="../assets/default/img/support.jpg" alt="support" title="support"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
                                     <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">24/7 Support</h2>
                                     <p itemprop="description">Experience Uninterrupted 24/7 Support.</p>
@@ -36,7 +36,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge"  width="100%" height="auto" itemprop="image"></figure>
+                                <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge" title="knowledge"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
                                     <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Knowledge Base</h2>
                                     <p itemprop="description">your key resource for resolving doubts and getting instant guidance.</p>
@@ -47,7 +47,7 @@
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="services-card text-center mb-30 pr-40 pl-40">
                             <div class="services-card-body">
-                                <figure><img src="../assets/default/img/technical.jpg" alt="technical"  width="100%" height="auto" itemprop="image"></figure>
+                                <figure><img src="../assets/default/img/technical.jpg" alt="technical" title="technical"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
                                     <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Technical Assistance</h2>
                                     <p itemprop="description">Unlocking solutions for your challenges.</p>
@@ -183,7 +183,7 @@
                                             <div class="img-holder">
                                                 <figure>
                                                     <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img src="/store/1/default_images/testimonials/profile_picture (50).jpg"
-                                                            alt="testimonials" width="100%" height="auto" itemprop="image"></a>
+                                                            alt="testimonials" title="testimonials"  width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
@@ -215,7 +215,7 @@
                                                 <figure>
                                                     <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
                                                             src="/store/1/default_images/testimonials/profile_picture (28).jpg"
-                                                            alt="profile" width="100%" height="auto" itemprop="image"></a>
+                                                            alt="profile" title="profile" width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
@@ -246,7 +246,7 @@
                                                 <figure>
                                                     <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
                                                             src="/store/1/default_images/testimonials/profile_picture (30).jpg"
-                                                            alt="picture" width="100%" height="auto" itemprop="image"></a>
+                                                            alt="picture" title="picture" width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
@@ -295,7 +295,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-1.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-1.jpg" alt="info box image" title="info box image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
                                     <p itemprop="description">Cooperative and associated relationship between parents and teachers</p>
                                     <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Mutual Collaboration</h3>
@@ -306,7 +306,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-2.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-2.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
                                     <p itemprop="description">Promoting socialization and fostering a sense of community</p>
                                     <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Social Activities</h3>
@@ -317,7 +317,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-3.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-3.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
                                     <p itemprop="description">Leverages digital tools, platforms, and interactive resources for learning</p>
                                     <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Smart Learning</h3>
@@ -328,7 +328,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="services-card has-shadow text-center mb-30 pb-30">
                             <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-4.jpg" alt="info box image" width="100%" height="auto" itemprop="image"></figure>
+                                <figure class="w-100"><img src="../assets/default/img/info-box-4.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-20 pr-30 pl-30">
                                     <p itemprop="description">Vast repository of information, data, and resources that</p>
                                     <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Global Knowledge base</h3>

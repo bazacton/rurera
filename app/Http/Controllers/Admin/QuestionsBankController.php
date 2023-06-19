@@ -502,16 +502,16 @@ class QuestionsBankController extends Controller
             'question_average_time'     => (isset($questionData['question_average_time']) && $questionData['question_average_time'] != '') ? $questionData['question_average_time'] : 1 ,
             'question_difficulty_level' => isset($questionData['difficulty_level']) ? $questionData['difficulty_level'] : '' ,
             'question_template_type'    => 'sum_quiz' , //isset( $questionData['type'] )? $questionData['type'] : '',
-            'chapter_id'                => (isset($questionData['chapter_id']) && $questionData['chapter_id'] != '') ? $questionData['chapter_id'] : 0 ,
+            'chapter_id'                => 0 ,
             'question_title'            => isset($questionData['question_title']) ? $questionData['question_title'] : '' ,
             'question_layout'           => isset($_POST['question_layout']) ? $_POST['question_layout'] : '' , //isset( $questionData['content'] )? $questionData['content'] : '',
             'question_solve'            => isset($_POST['question_solve']) ? $_POST['question_solve'] : '' ,
             'glossary_ids'              => isset($_POST['glossary_ids']) ? json_encode($_POST['glossary_ids']) : '' ,
             'elements_data'             => json_encode($elements_data) ,
             'layout_elements'           => $layout_elements_layout ,
-            'category_id'               => (isset($questionData['category_id']) && $questionData['category_id'] != '') ? $questionData['category_id'] : 0 ,
-            'course_id'                 => (isset($questionData['course_id']) && $questionData['course_id'] != '') ? $questionData['course_id'] : 0 ,
-            'sub_chapter_id'            => isset($quiz->sub_chapter_id) ? $quiz->sub_chapter_id : 0 ,
+            'category_id'               => 0 ,
+            'course_id'                 => 0 ,
+            'sub_chapter_id'            => 0 ,
             'type'                      => 'descriptive' ,
             'created_at'                => time() ,
             'question_status'           => (isset($questionData['question_status']) && $questionData['question_status'] != '') ? $questionData['question_status'] : 'Draft' ,
@@ -653,16 +653,16 @@ class QuestionsBankController extends Controller
             'question_average_time'     => (isset($questionData['question_average_time']) && $questionData['question_average_time'] != '') ? $questionData['question_average_time'] : 1 ,
             'question_difficulty_level' => isset($questionData['difficulty_level']) ? $questionData['difficulty_level'] : '' ,
             'question_template_type'    => 'sum_quiz' , //isset( $questionData['type'] )? $questionData['type'] : '',
-            'chapter_id'                => (isset($questionData['chapter_id']) && $questionData['chapter_id'] != '') ? $questionData['chapter_id'] : 0 ,
+            'chapter_id'                => 0 ,
             'question_title'            => isset($questionData['question_title']) ? $questionData['question_title'] : '' ,
             'question_layout'           => isset($_POST['question_layout']) ? $_POST['question_layout'] : '' , //isset( $questionData['content'] )? $questionData['content'] : '',
             'question_solve'            => isset($questionData['question_solve']) ? $questionData['question_solve'] : '' ,
             'glossary_ids'              => isset($_POST['glossary_ids']) ? json_encode($_POST['glossary_ids']) : '' ,
             'elements_data'             => json_encode($elements_data) ,
             'layout_elements'           => $layout_elements_layout ,
-            'category_id'               => (isset($questionData['category_id']) && $questionData['category_id'] != '') ? $questionData['category_id'] : 0 ,
-            'course_id'                 => (isset($questionData['course_id']) && $questionData['course_id'] != '') ? $questionData['course_id'] : 0 ,
-            'sub_chapter_id'            => isset($quiz->sub_chapter_id) ? $quiz->sub_chapter_id : 0 ,
+            'category_id'               => 0 ,
+            'course_id'                 => 0 ,
+            'sub_chapter_id'            => 0 ,
             'type'                      => 'descriptive' ,
             'updated_at'                => time() ,
             'question_status'           => (isset($questionData['question_status']) && $questionData['question_status'] != '') ? $questionData['question_status'] : 'Draft' ,
@@ -1212,9 +1212,21 @@ class QuestionsBankController extends Controller
         $questions_array = array();
         if( !empty( $questionIds ) ){
             foreach( $questionIds as $questionObj){
+
+                $search_tags = ( isset( $questionObj->search_tags ) && $questionObj->search_tags != '')? explode( ' | ', $questionObj->search_tags) : array();
+                $search_keywords = '';
+                if( !empty( $search_tags ) ){
+                    foreach( $search_tags as $tag_value){
+                        $search_keywords .= '<li>'. $tag_value .'</li>';
+                    }
+                }
+
+
                 $questions_array[$questionObj->id]  = array(
                     'id' => $questionObj->id,
-                    'title' => $questionObj->question_title
+                    'title' => $questionObj->question_title,
+                    'question_difficulty_level' => $questionObj->question_difficulty_level,
+                    'search_tags' => $search_keywords,
                 );
             }
         }

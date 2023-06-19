@@ -73,8 +73,17 @@ $rand_id = rand(99,9999);
         </div>
 
         <div class="question-area-block">
-            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+            @if( is_array( $question ))
+            @php $question_no = 1; @endphp
+            @foreach( $question as $questionObj)
+            @include('web.default.panel.questions.question_layout',['question'=> $questionObj, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
             $newQuestionResult])
+            @php $question_no++; @endphp
+            @endforeach
+            @else
+            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+                        $newQuestionResult])
+            @endif
         </div>
 
         <div class="question-area-temp hide"></div>

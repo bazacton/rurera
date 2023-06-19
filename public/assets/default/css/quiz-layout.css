@@ -126,11 +126,10 @@ Lms Signs Style
 .lms-radio-select label:after {
     content: "";
     position: absolute;
-    width: 100%;
+    width: 0;
     height: 100%;
     top: 0;
     left: 0;
-    transform: scale(0);
     transition: 0.4s ease-in-out;
     background-color: #70c17c2b;
     border-color: #70c17c;
@@ -145,7 +144,7 @@ Lms Signs Style
     border-color: #70c17c;
 }
 .lms-radio-select input[type=radio]:checked~label:after {
-    transform: scale(1);
+    width: 100%;
     transition: 0.4s;
 }
 .row-fields .lms-radio-select input[type=radio]:checked~label:after {
@@ -203,9 +202,9 @@ Lms Signs Style
     margin: 0 10px;
 }
 .question-fields .left-content {
-    width: 100%;
+    /* width: 100%;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto; */
 }
 .lms-radio-img .field-holder label {
     padding: 5px;
@@ -1248,7 +1247,7 @@ Lms Quiz Wf Style Start
     position: absolute;
 }
 .question-number-holder ~ .leform-elements {
-    margin-top: -14px;
+    margin-top: -15px;
 }
 .question-layout br {
     display: none;

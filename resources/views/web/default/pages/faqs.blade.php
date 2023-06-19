@@ -23,7 +23,7 @@
                                         <form class="w-75 mx-auto">
                                             <div class="field-holder d-flex has-icon">
                                                 <span class="search-icon">
-                                                    <img src="../assets/default/svgs/search.svg" alt="search svg image" width="100%" height="auto" itemprop="image">
+                                                    <img src="../assets/default/svgs/search.svg" alt="search svg image" title="search svg image" width="100%" height="auto" loading="eager" itemprop="image">
                                                 </span>
                                                 <input class="pl-40" type="text" placeholder="What we can help you find ?">
                                                 <button type="submit">Search</button>
@@ -679,13 +679,13 @@
                     </p>
                     <ul class="lms-img-list">
                         <li itemprop="image">
-                        <img src="../assets/default/img/bran-img-1.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" />
+                        <img src="../assets/default/img/bran-img-1.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
                         </li>
                         <li itemprop="image">
-                        <img src="../assets/default/img/support.png" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" />
+                        <img src="../assets/default/img/support.png" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
                         </li>
                         <li itemprop="image">
-                        <img src="../assets/default/img/bran-img-3.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" />
+                        <img src="../assets/default/img/bran-img-3.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
                         </li>
                     </ul>
                     </b>
@@ -695,7 +695,7 @@
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="lms-img-holder d-flex flex-column justify-content-center align-items-end h-100">
                     <figure>
-                        <img style="width: 500px; height: 400px;" src="../assets/default/svgs/glob.svg" alt="glob svg image" title="glob svg image" width="100%" height="auto" itemprop="image" />
+                        <img style="width: 500px; height: 400px;" src="../assets/default/svgs/glob.svg" alt="glob svg image" title="glob svg image" width="100%" height="auto" itemprop="image" loading="eager" />
                     </figure>
                 </div>
             </div>

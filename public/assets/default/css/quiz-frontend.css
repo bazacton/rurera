@@ -19,7 +19,8 @@
     overflow: hidden;
 }
 .menu-closed .panel-sidebar ~ .learning-page-content {
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    margin-left: 15px;
 }
 .panel-sidebar ~ .learning-page-content {
     margin-left: 254px;
@@ -311,7 +312,8 @@ form .marks,
 Lms Top Content Style 
 ************************/
 .learning-page .learning-page-tabs {
-    position: fixed;
+    /* position: fixed; */
+    position: relative;
 }
 .lms-content-header {
     display: flex;

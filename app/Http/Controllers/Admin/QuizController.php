@@ -303,6 +303,7 @@ class QuizController extends Controller
             'created_at'                  => time() ,
             'quiz_settings'               => json_encode($quiz_settings) ,
             'mastery_points'              => isset($data['mastery_points']) ? $data['mastery_points'] : 0 ,
+            'show_all_questions'      => isset($data['show_all_questions']) ? $data['show_all_questions'] : 0 ,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -357,6 +358,7 @@ class QuizController extends Controller
                     $query->with('quizzesQuestionsAnswers');
                 } ,
                 'quizQuestionsList' => function ($query) {
+                    $query->where('status' , 'active');
                     $query->orderBy('sort_order' , 'asc');
                     $query->with('QuestionData');
                 } ,
@@ -433,7 +435,7 @@ class QuizController extends Controller
         $user = $quiz->creator;
 
         $quizQuestionsCount = $quiz->quizQuestions->count();
-        $quizQuestionsListArray = $quiz->quizQuestionsList->pluck('id')->toArray();
+        $quizQuestionsListArray = $quiz->quizQuestionsList->pluck('question_id')->toArray();
 
 
         //QuizzesQuestionsList::whereNotIn('id' , $quizQuestionsListArray)->update(array('status' => 'inactive'));
@@ -452,6 +454,30 @@ class QuizController extends Controller
         $validate = Validator::make($data , $rules);
 
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
+
+
+        $quiz_question_ids = array();
+        if (!empty($question_list_ids)) {
+            foreach ($question_list_ids as $sort_order => $question_id) {
+                $quiz_question_ids[] = $question_id;
+                if( in_array( $question_id, $quizQuestionsListArray)){
+                    $questionListObj = QuizzesQuestionsList::query()->where('quiz_id', $id)->where('question_id' ,
+                        $question_id)->update([
+                                                'sort_order'  => $sort_order ,
+                                            ]);
+                }else{
+                    QuizzesQuestionsList::create([
+                        'quiz_id'     => $quiz->id ,
+                        'question_id' => $question_id ,
+                        'status'      => 'active' ,
+                        'sort_order'  => $sort_order ,
+                        'created_by'  => $user->id ,
+                        'created_at'  => time()
+                    ]);
+                }
+            }
+        }
+        QuizzesQuestionsList::where('quiz_id', $id)->whereNotIn('question_id' , $quiz_question_ids)->update(array('status' => 'inactive'));
 
         if ($validate->fails()) {
             return response()->json([
@@ -520,34 +546,36 @@ class QuizController extends Controller
             //'webinar_id' => !empty($webinar) ? $webinar->id : null,
             //'chapter_id' => !empty($chapter) ? $chapter->id : null,
             //'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
-            'chapter_id'     => isset($data['chapter_id']) ? $data['chapter_id'] : 0 ,
-            'webinar_title'  => !empty($webinar) ? $webinar->title : null ,
             'attempt'        => 100 ,
             'pass_mark'      => isset($data['pass_mark']) ? $data['pass_mark'] : 1 ,
-            'sub_chapter_id' => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0 ,
             'time'           => 20 ,
             'quiz_type'      => isset($data['quiz_type']) ? $data['quiz_type'] : '' ,
-            'status'         => (!empty($data['status']) and $data['status'] == 'on') ? Quiz::ACTIVE : Quiz::INACTIVE ,
+            'status'         => Quiz::ACTIVE ,
             'certificate'    => (!empty($data['certificate']) and $data['certificate'] == 'on') ? true : false ,
             'updated_at'     => time() ,
             'quiz_settings'  => json_encode($quiz_settings) ,
             'mastery_points' => $mastery_points ,
+            'show_all_questions'      => isset($data['show_all_questions']) ? $data['show_all_questions'] : 0 ,
         ]);
 
         if (!empty($quiz)) {
 
-            /*if (!empty($question_list_ids)) {
+            if (!empty($question_list_ids)) {
                     foreach ($question_list_ids as $sort_order => $question_id) {
-                        QuizzesQuestionsList::create([
-                            'quiz_id'     => $quiz->id ,
-                            'question_id' => $question_id ,
-                            'status'      => 'active' ,
-                            'sort_order'  => $sort_order ,
-                            'created_by'  => $user->id ,
-                            'created_at'  => time()
-                        ]);
+                        if( in_array( $question_id, $quizQuestionsListArray)){
+
+                        }else{
+                            QuizzesQuestionsList::create([
+                                'quiz_id'     => $quiz->id ,
+                                'question_id' => $question_id ,
+                                'status'      => 'active' ,
+                                'sort_order'  => $sort_order ,
+                                'created_by'  => $user->id ,
+                                'created_at'  => time()
+                            ]);
+                        }
                     }
-                }*/
+                }
 
 
             QuizTranslation::updateOrCreate([
@@ -556,23 +584,6 @@ class QuizController extends Controller
             ] , [
                 'title' => $data['title'] ,
             ]);
-
-            $checkChapterItem = WebinarChapterItem::where('user_id' , $user->id)
-                ->where('item_id' , $quiz->id)
-                ->where('type' , WebinarChapterItem::$chapterQuiz)
-                ->first();
-
-            if (!empty($quiz->chapter_id)) {
-                if (empty($checkChapterItem)) {
-                    WebinarChapterItem::makeItem($user->id , $quiz->chapter_id , $quiz->id , WebinarChapterItem::$chapterQuiz);
-                } elseif ($checkChapterItem->chapter_id != $quiz->chapter_id) {
-                    $checkChapterItem->delete(); // remove quiz from old chapter and assign it to new chapter
-
-                    WebinarChapterItem::makeItem($user->id , $quiz->chapter_id , $quiz->id , WebinarChapterItem::$chapterQuiz);
-                }
-            } else if (!empty($checkChapterItem)) {
-                $checkChapterItem->delete();
-            }
         }
 
         removeContentLocale();

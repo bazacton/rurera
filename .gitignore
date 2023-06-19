@@ -3,3 +3,5 @@ storage\
 storage/
 .env
 .idea
+*.log
+*.log

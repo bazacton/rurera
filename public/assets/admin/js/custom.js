@@ -191,61 +191,110 @@
     };
 
     window.handleMultiSelect2_bk = function (className, path, itemColumn, select_data) {
-                const $el = $('.' + className);
+        const $el = $('.' + className);
 
-                if ($el.length) {
-                    $el.select2({allowClear: true});
-                }
-            };
+        if ($el.length) {
+            $el.select2({allowClear: true});
+        }
+    };
 
     window.handleMultiSelect2 = function (className, path, itemColumn, select_data) {
-            const $el = $('.' + className);
+        const $el = $('.' + className);
 
-            if ($el.length) {
-                $el.select2({
-                    placeholder: $el.attr('data-placeholder'),
-                    minimumInputLength: 3,
-                    //allowClear: true,
-                    data: select_data,
-                    ajax: {
-                        url: path,
-                        dataType: 'json',
-                        type: "POST",
-                        quietMillis: 50,
-                        data: function (params) {
-                            return {
-                                term: params.term,
-                                option: $el.attr('data-search-option'),
-                            };
-                        },
-                        processResults: function (data) {
-                            return {
-                                results: $.map(data, function (item) {
-                                    if($.isArray(itemColumn)){
-                                        var text_label = [];
-                                        $.each(itemColumn, function (index, itemColumnName) {
-                                            if (!DataIsEmpty(item[itemColumnName])) {
-                                                text_label.push(item[itemColumnName]);
-                                            }
-                                        });
-                                        text_label = text_label.join(' / ');
-                                        return {
-                                            text: text_label,
-                                            id: item.id
-                                        };
-                                    }else {
-                                        return {
-                                            text: item[itemColumn],
-                                            id: item.id
-                                        };
-                                    }
-                                })
-                            };
-                        }
+        if ($el.length) {
+            $el.select2({
+                placeholder: $el.attr('data-placeholder'),
+                minimumInputLength: 3,
+                //allowClear: true,
+                data: select_data,
+                ajax: {
+                    url: path,
+                    dataType: 'json',
+                    type: "POST",
+                    quietMillis: 50,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            option: $el.attr('data-search-option'),
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                if ($.isArray(itemColumn)) {
+                                    var text_label = [];
+                                    $.each(itemColumn, function (index, itemColumnName) {
+                                        if (!DataIsEmpty(item[itemColumnName])) {
+                                            text_label.push(item[itemColumnName]);
+                                        }
+                                    });
+                                    text_label = text_label.join(' / ');
+                                    return {
+                                        text: text_label,
+                                        id: item.id
+                                    };
+                                } else {
+                                    return {
+                                        text: item[itemColumn],
+                                        id: item.id
+                                    };
+                                }
+                            })
+                        };
                     }
-                });
+                }
+            });
+        }
+    };
+
+    window.handleQuestionsMultiSelect2 = function (className, path, itemColumn, select_data) {
+        const $el = $('.' + className);
+
+        if ($el.length) {
+            $el.select2({
+                placeholder: $el.attr('data-placeholder'),
+                minimumInputLength: 3,
+                //allowClear: true,
+                data: select_data,
+                ajax: {
+                    url: path,
+                    dataType: 'json',
+                    type: "POST",
+                    quietMillis: 50,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            option: $el.attr('data-search-option'),
+                        };
+                    },
+                    processResults: function (data) {
+                        questions_list_populate(data);
+                        return {
+                            results: $.map(data, function (item) {
+                                return '';
+                            })
+                        };
+                    }
+                }
+            });
+        }
+    };
+
+    function questions_list_populate(data) {
+        var html_response = '';
+        $.map(data, function (item) {
+            if (DataIsEmpty($('.questions-list ul li[data-id="' + item.id + '"]').attr('data-id'))) {
+                html_response += '<li data-id="' + item.id + '">\n' +
+                    '<div class="question-title">' + item.title + '</div>\n' +
+                    '<div class="question-keywords">\n' +
+                    '<ul>' + item.search_tags + '</ul>\n' +
+                    '</div>\n' +
+                    '<div class="question-select">Select</div>\n' +
+                    '</li>';
             }
-        };
+        });
+        $(".questions-block ul").html(html_response);
+    }
 
     $(document).ready(function () {
 
@@ -481,8 +530,8 @@
     })
 
     /**********
-    * Captcha
-    * *********/
+     * Captcha
+     * *********/
     $(document).ready(function () {
         function captcha_src(callback) {
 
@@ -514,7 +563,6 @@
         }
 
 
-
         $('body').on('click', '#refreshCaptcha', function (e) {
             e.preventDefault();
             refreshCaptcha();
@@ -526,7 +574,7 @@
             if ($refreshCaptcha.length) {
                 $refreshCaptcha.trigger('click')
             }
-        },100)
+        }, 100)
     })
 
     /**********
@@ -543,7 +591,8 @@ function DataIsEmpty(dataValue) {
     }
     return is_empty;
 }
-$(document).ready(function() {
+
+$(document).ready(function () {
     $(document).on('click', '.parent-remove', function (e) {
         $(this).parent().remove();
     });
