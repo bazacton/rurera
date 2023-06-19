@@ -55,9 +55,9 @@
                                 <h2 itemprop="title">Choose location</h2>
                             </div>
                             <ul>
-                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/us-img.jpg" alt="#" width="100%" height="auto">United kingdom</a></li>
-                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/aus-img.jpg" alt="#" width="100%" height="auto">Australia</a></li>
-                                <li itemprop="images"><a itemprop="url" href="#"><img src="/store/1/default_images/countries/soa-img.jpg" alt="#" width="100%" height="auto">South Africa</a></li>
+                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/us-img.jpg" alt="countries image" title="countries image" width="100%" height="auto" loading="eager">United kingdom</a></li>
+                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/aus-img.jpg" alt="countries image" title="countries image" width="100%" height="auto"  loading="eager">Australia</a></li>
+                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/soa-img.jpg" alt="countries image" title="countries image" width="100%" height="auto"  loading="eager">South Africa</a></li>
                             </ul>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                 <div class="col-6 col-md-4">
                     <div class="footer-logo">
                         <a itemprop="url"  href="/">
-                            <img src="/store/1/default_images/website-logo-white.png" class="img-cover" alt="footer logo"  width="100%" height="auto">
+                            <img src="/store/1/default_images/website-logo-white.png" class="img-cover" alt="footer logo" title="footer logo"  width="100%" height="auto" loading="eager">
                         </a>
                     </div>
                 </div>
