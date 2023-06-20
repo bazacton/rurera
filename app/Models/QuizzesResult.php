@@ -16,17 +16,22 @@ class QuizzesResult extends Model
 
     public function quiz()
     {
-        return $this->belongsTo('App\Models\Quiz', 'quiz_id', 'id');
+        return $this->belongsTo('App\Models\Quiz' , 'quiz_id' , 'id');
     }
-    
+
     public function quizz_result_questions()
     {
-        return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id');
+        return $this->belongsTo('App\Models\QuizzResultQuestions' , 'id' , 'quiz_result_id');
+    }
+
+    public function attempts()
+    {
+        return $this->hasMany('App\Models\QuizzAttempts' , 'quiz_result_id' , 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User' , 'user_id' , 'id');
     }
 
 
@@ -36,7 +41,7 @@ class QuizzesResult extends Model
 
         if ($quiz->display_limited_questions and !empty($quiz->display_number_of_questions)) {
 
-            $results = json_decode($this->results, true);
+            $results = json_decode($this->results , true);
             $quizQuestionIds = [];
 
             if (!empty($results)) {
@@ -47,7 +52,7 @@ class QuizzesResult extends Model
                 }
             }
 
-            $quizQuestions = $quiz->quizQuestions()->whereIn('id',$quizQuestionIds)->get();
+            $quizQuestions = $quiz->quizQuestions()->whereIn('id' , $quizQuestionIds)->get();
         } else {
             $quizQuestions = $quiz->quizQuestions;
         }

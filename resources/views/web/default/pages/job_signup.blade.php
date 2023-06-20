@@ -8,8 +8,8 @@
 <section class="position-relative job-singup-sub-header gallery-sub-header">
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-12 col-md-6 col-lg-6">
-                <h1 itemprop="title" class="font-50 font-weight-bold">Careers at Rurera</h1>
+            <div class="col-12 col-md-12 col-lg-6">
+                <h1 itemprop="title" class="font-50 font-weight-bold">Job Opportunities at Rurera</h1>
                 <p itemprop="description">We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
                 <a itemprop="url" href="https://rurera.chimpstudio.co.uk/contact-us" class="btn-primary rounded-pill">Find new positions</a>
             </div>
@@ -1448,10 +1448,10 @@
                                         </div>
                                         <div class="text-holder">
                                             <div class="testimonial-top">
-                                                <h3 itemprop="title" class="testimonial-title">
-                                                    <a href="#">Thriving as a Content Creator with an Exceptional
+                                                <div itemprop="title" class="testimonial-title font-weight-bold">
+                                                    <a href="#.">Thriving as a Content Creator with an Exceptional
                                                         Team.</a>
-                                                </h3>
+                                                </div>
                                                 <strong>
                                                     A Life-Changing Discovery I'm Forever Grateful
                                                     For</strong>
@@ -1478,10 +1478,10 @@
                                         </div>
                                         <div class="text-holder">
                                             <div class="testimonial-top">
-                                                <h3 itemprop="title" class="testimonial-title">
-                                                    <a href="#">Unleashing the Power of Collaboration in Content
+                                                <div itemprop="title" class="testimonial-title font-weight-bold">
+                                                    <a href="#.">Unleashing the Power of Collaboration in Content
                                                         Creation".</a>
-                                                </h3>
+                                                </div>
                                                 <strong>Exceeding Expectations with User-Friendly Interface
                                                     and Seamless Navigation</strong>
                                             </div>
@@ -1507,10 +1507,10 @@
                                         </div>
                                         <div class="text-holder">
                                             <div class="testimonial-top">
-                                                <h3 itemprop="title" class="testimonial-title">
-                                                    <a href="#">Collaborating with an Exceptional Team of Talented
+                                                <div itemprop="title" class="testimonial-title font-weight-bold">
+                                                    <a href="#.">Collaborating with an Exceptional Team of Talented
                                                         Professionals as a Content Creator</a>
-                                                </h3>
+                                                </div>
                                                 <strong>
                                                     A Game-Changer in my Educational Journey for Busy
                                                     Professionals</strong>
@@ -1573,8 +1573,7 @@
     </section>
     <section class="lms-jobsform-section mb-90 pt-80 pb-90" style="background-color: #f8f8f8;">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
+            <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="section-title text-center mb-40">
                         <h2 itemprop="title" class="mt-0">Application Form</h2>
@@ -1596,7 +1595,7 @@
                                             <span class="counts-bar-box">
                                                 <span class="counts-bar" style="width: 20%;"></span>
                                             </span>
-                                            <span class="counter-counts"><em>0</em> of 3 tasks</span>
+                                            <span itemprop="counter" class="counter-counts"><em>0</em> of 3 tasks</span>
                                         </div>
                                 </div>
 
@@ -1605,8 +1604,8 @@
                                         <div class="row">
                                             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                                 <div class="lms-form-description">
-                                                    <b>Thanks for your interest in joining Team Rurera.</b>
-                                                    <p>Please complete the form below to give us as much information as possible to help
+                                                    <b itemprop="description">Thanks for your interest in joining Team Rurera.</b>
+                                                    <p itemprop="description">Please complete the form below to give us as much information as possible to help
                                                         move to the next step. Once you
                                                         send
                                                         in your application we will review and get back to you with a date and time for
@@ -1790,7 +1789,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2"></div>
             </div>
         </div>
     </section>
@@ -1801,21 +1799,26 @@
                         <div class="action-card">
                             <div class="img-holder">
                                 <figure>
-                                    <a href="#"><img src="/store/1/default_images/how_it_work/get-ready-to-start.jpg" alt=""></a>
+                                    <a href="#."><img src="/store/1/default_images/how_it_work/get-ready-to-start.jpg" alt="get ready start" title="get ready start" width="100%" height="auto" itemprop="image" loading="eager"></a>
                                 </figure>
                             </div>
                             <div class="text-holder">
-                                <h5><a href="#">Ready To Start</a></h5>
-                                <p>
+                                <h2 itemprop="title"><a href="#.">Ready To Start</a></h2>
+                                <p itemprop="description">
                                     Start by clarifying your learning objectives. Determine what skills or knowledge you want to acquire or improve upon. This step will guide you in selecting the appropriate learning platform and courses.
                                 </p>
-                                <a href="#" class="call-to-action-btn">Get Membership </a>
+                                <a href="/membership" class="call-to-action-btn">Get Membership </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+</div>
+<div class="scroll-btn" style="display: block;">
+    <div class="round">
+        <div id="cta"><span class="arrow primera next"></span><span class="arrow segunda next"></span></div>
+    </div>
 </div>
 
 @endsection

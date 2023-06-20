@@ -9,9 +9,9 @@
   <div class="container h-100">
     <div class="row h-100 align-items-center text-left">
       <div class="col-12 col-md-9 col-lg-9">
-        <p class="lms-subtitle">How we've helped others</p>
-        <h1 class="font-50 font-weight-bold">Testimonials</h1>
-        <p class="font-19">
+        <p itemprop="sub title" class="lms-subtitle">How we've helped others</p>
+        <h1 itemprop="title" class="font-50 font-weight-bold">Hear It from Our Clients</h1>
+        <p itemprop="description" class="font-19">
           Welcome to our testimonial page! Here, you will find a collection of
           heartfelt testimonials and feedback from our valued customers who have
           experienced our products or services. These testimonials serve as a
@@ -29,12 +29,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-1.jpg" alt="#" />
+              <img src="../assets/default/img/bran-img-1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
-            <h3 class="post-title">Cristian Miller</h3>
-            <p>Rurera is an advance emerging learning platform. Love it!</p>
+            <h2 itemprop="title" class="post-title">Cristian Miller</h2>
+            <p itemprop="description">Rurera is an advance emerging learning platform. Love it!</p>
           </div>
         </div>
       </div>
@@ -42,12 +42,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-2.jpg" alt="#" />
+              <img src="../assets/default/img/bran-img-2.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
-            <h3 class="post-title">Peter J.</h3>
-            <p>
+            <h2 itemprop="title" class="post-title">Peter J.</h2>
+            <p itemprop="description">
               My first choice is Rurera when it comes to pro level learning.
             </p>
           </div>
@@ -57,12 +57,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-3.jpg" alt="#" />
+              <img src="../assets/default/img/bran-img-3.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
-            <h3 class="post-title">Fiona Thompson</h3>
-            <p>Rurera has recognized itself a great platform. Recommmended</p>
+            <h2 itemprop="title" class="post-title">Fiona Thompson</h2>
+            <p itemprop="description">Rurera has recognized itself a great platform. Recommmended</p>
           </div>
         </div>
       </div>
@@ -70,12 +70,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-1.jpg" alt="#" />
+              <img src="../assets/default/img/bran-img-1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
-            <h3 class="post-title">Kyle Matt</h3>
-            <p>As a teacher i would encourage to follow Rurera for sure.</p>
+            <h2 itemprop="title" class="post-title">Kyle Matt</h2>
+            <p itemprop="description">As a teacher i would encourage to follow Rurera for sure.</p>
           </div>
         </div>
       </div>
@@ -87,12 +87,12 @@
         <div class="col-12">
           <div class="lms-text-section">
             <div class="lms-text-holder text-center">
-              <small>Deliver your best work with</small><b>Rurera</b>
-              <p class="mt-10">
+              <small itemprop="best work">Deliver your best work with</small><b>Rurera</b>
+              <p itemprop="description" class="mt-10">
                 Find all you need to set learners up for success Journey!
               </p>
               <div class="lms-btn-group mt-30">
-                <a href="#" class="lms-btn rounded-pill"
+                <a href="/contact-us" class="lms-btn rounded-pill"
                   >Get Started<span class="svg-icon"
                     ><svg
                       width="10"
@@ -121,8 +121,8 @@
     <div class="row align-items-center">
       <div class="col-12 col-lg-12 mb-50">
         <div class="element-title text-center">
-          <h2 class="font-weight-bold mb-15">What people are saying</h2>
-          <p class="text-center mb-10">
+          <h2 itemprop="title"  class="font-weight-bold mb-15">What people are saying</h2>
+          <p itemprop="description"  class="text-center mb-10">
             Read about how learners are excelling with Rurera. Figure out
             thoughts<br />of students, teachers, and parents...
           </p>
@@ -131,17 +131,17 @@
       <div class="col-12 col-lg-6">
         <div class="position-relative left">
           <div class="find-instructor-circle">
-            <span class="lms-serial-no">#1</span>
+            <span itemprop="number" class="lms-serial-no">#1</span>
           </div>
-          <p>Happy parent / 4 June 2023</p>
-          <h2 class="font-36 font-weight-bold text-dark">Cristian Miller</h2>
-          <p class="font-16 font-weight-normal text-gray mt-10">As a parent, I want to share my incredible experience that has made a significant impact on my child's education. Rurera has truly transformed the way my child learns and engages with educational content. Recommended!</p>
+          <p itemprop="datePublished" content="2023-06-05">Happy parent / 4 June 2023</p>
+          <h3 itemprop="title" class="font-36 font-weight-bold text-dark">Cristian Miller</h3>
+          <p itemprop="description" class="font-16 font-weight-normal text-gray mt-10">As a parent, I want to share my incredible experience that has made a significant impact on my child's education. Rurera has truly transformed the way my child learns and engages with educational content. Recommended!</p>
         </div>
       </div>
       <div class="col-12 col-lg-6 mt-20 mt-lg-0">
         <div class="video-box d-flex flex-column align-items-center justify-content-center position-relative">
             <a href="javascript:;" id="play-vidio" class="home-video-play-button d-flex align-items-center justify-content-center position-relative">
-                <img id="poster-img" src="/store/1/default_images/home_video_section.png" alt="">
+                <img id="poster-img" src="/store/1/default_images/home_video_section.png" alt="home video section" title="home video section" width="100%" height="auto" itemprop="image" loading="eager">
                 <span class="play-btn-holder">
                     <svg class="feather feather-play" fill="#fff" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 60 60" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"></path> <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"></path> </g> </g></svg>
                 </span>
@@ -166,7 +166,7 @@
             <img
               src="../assets/default/img/testimonial-2.jpg"
               class="find-instructor-section-hero"
-              alt="Find the best instructor"
+              alt="Find the best instructor" title="Find the best instructor" width="100%" height="auto" itemprop="image" loading="eager"
             />
           </div>
         </div>
@@ -174,11 +174,11 @@
       <div class="col-12 col-lg-6">
         <div class="position-relative right">
           <div class="find-instructor-circle">
-            <span class="lms-serial-no">#2</span>
+            <span itemprop="number" class="lms-serial-no">#2</span>
           </div>
-            <p>Experienced Teacher / 30 May 2023</p>
-          <h2 class="font-36 font-weight-bold text-dark">Peter J.</h2>
-          <p class="font-16 font-weight-normal text-gray mt-10">One of the standout features of Rurera is its assessment and analytics capabilities. It provides real-time data on student performance, allowing me to track their progress and identify areas where additional support is needed.</p>
+            <p itemprop="datePublished" content="2023-06-05">Experienced Teacher / 30 May 2023</p>
+          <h3 itemprop="title" class="font-36 font-weight-bold text-dark">Peter J.</h3>
+          <p itemprop="description" class="font-16 font-weight-normal text-gray mt-10">One of the standout features of Rurera is its assessment and analytics capabilities. It provides real-time data on student performance, allowing me to track their progress and identify areas where additional support is needed.</p>
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="lms-text-holder d-flex justify-content-between">
                     <div class="d-flex flex-column">
-                        <h4 class="mb-10 font-24 align-items-center d-flex"> <span class="icon-svg mr-20">
+                        <h3 class="mb-10 font-24 align-items-center d-flex"> <span class="icon-svg mr-20">
                                 <svg height="30px" width="30px" version="1.1" id="Capa_1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     viewBox="0 0 279.682 279.682" xml:space="preserve" fill="#000000">
@@ -223,8 +223,8 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </span>Expand your knowledge and grow your learning experience</h4>
-                        <p class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
+                            </span>Expand your knowledge and grow your learning experience</h3>
+                        <p itemprop="description" class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
                     </div>
                     <div class="lms-btn-group justify-content-center"><a
                             href="https://rurera.chimpstudio.co.uk/pages/contact_us" class="lms-btn rounded-pill">Get
@@ -238,13 +238,13 @@
   <div class="container">
     <div class="lms-testimonials row">
       <div class="col-12 mb-20">
-        <h2
+        <h2 itemprop="title"
           class="font-weight-bold text-center w-100 mb-10 font-40 pt-0 text-dark-charcoal"
           style="text-align:center;padding-top:20px"
         >
           Learn Why millions Love us ?
         </h2>
-        <p class="mb-25 text-center">
+        <p itemprop="description" class="mb-25 text-center">
           Read about how learners are excelling with Rurera. Figure out
           thoughts<br />of students, teachers, and parents...
         </p>
@@ -266,8 +266,8 @@
 
                     <div class="testimonial-card">
                         <div class="testimonial-body">
-                          <p>{!! nl2br($testimonial->comment) !!}</p>
-                          <div class="author-name">
+                          <p itemprop="description">{!! nl2br($testimonial->comment) !!}</p>
+                          <div itemprop="author" class="author-name">
                             <span>{{ $testimonial->user_name }}</span><small><em>|</em>{{ $testimonial->testimonial_by }}</small>
                           </div>
                         </div>
@@ -280,13 +280,13 @@
     </div>
   </div>
 </section>
-<a href="#" class="scroll-btn" style="display:block"
+<div class="scroll-btn" style="display:block"
   ><div class="round">
     <div id="cta">
       <span class="arrow primera next"></span
       ><span class="arrow segunda next"></span>
     </div></div
-></a>
+></div>
 
 @endsection
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\traits;
 
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\File;
 use App\Models\Quiz;
 use App\Models\QuizzesResult;
@@ -126,7 +127,7 @@ trait LearningPageItemInfoTrait
     {
         $user = auth()->user();
 
-        $userQuizDone = QuizzesResult::where('quiz_id', $quiz->id)
+        $userQuizDone = QuizzesResult::where('parent_type_id', $quiz->id)
             ->where('user_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -177,7 +178,10 @@ trait LearningPageItemInfoTrait
 
         //if (!empty($quiz) and $this->checkCourseAccess($quiz->webinar_id)) {
         if (!empty($quiz)) {
+            $QuestionsAttemptController = new QuestionsAttemptController();
+            $resultData = $QuestionsAttemptController->get_result_data($quiz->id);
             $quiz = $this->checkQuizResult($quiz);
+
 
             $hasExpired = false;
             $expiredMessage = null;
@@ -218,6 +222,7 @@ trait LearningPageItemInfoTrait
                     'title' => $quiz->title,
                     'can_try' => $quiz->can_try,
                     'has_expired' => $hasExpired,
+                    'resultData' => $resultData,
                     'expired_message' => $expiredMessage,
                     'expire_time_message' => $expireTimeMessage,
                 ]

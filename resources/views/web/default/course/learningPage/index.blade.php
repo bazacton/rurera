@@ -17,13 +17,12 @@ $rand_id = rand(99,9999);
         <div class="d-flex position-relative">
 
 
-             @include('web.default.panel.includes.quiz-sidebar')
 
             <div class="learning-page-content flex-grow-1 bg-info-light p-15">
                 @include('web.default.course.learningPage.components.content')
             </div>
 
-            <div class="learning-page-tabs show">
+            <div class="learning-page-tabs hide">
 
 
                 <div class="tab-content h-100" id="nav-tabContent">

@@ -36,24 +36,10 @@ class QuestionsAttemptController extends Controller
         $no_of_attempts = isset($params['no_of_attempts']) ? $params['no_of_attempts'] : 0;
 
 
-        $newQuizStart = QuizzesResult::where('parent_type_id' , $parent_type_id)
-            ->where('quiz_result_type' , $quiz_result_type)
-            ->where('user_id' , $user->id)
-            ->where('status' , 'waiting')
-            ->first();
+        $newQuizStart = QuizzesResult::where('parent_type_id' , $parent_type_id)->where('quiz_result_type' , $quiz_result_type)->where('user_id' , $user->id)->where('status' , 'waiting')->first();
 
         if (empty($newQuizStart) || !isset($newQuizStart->id) || $newQuizStart->count() < 1) {
-            $newQuizStart = QuizzesResult::create([
-                'user_id'          => $user->id ,
-                'results'          => '' ,
-                'user_grade'       => 0 ,
-                'status'           => 'waiting' ,
-                'created_at'       => time() ,
-                'questions_list'   => json_encode($questions_list) ,
-                'parent_type_id'   => $parent_type_id ,
-                'quiz_result_type' => $quiz_result_type ,
-                'no_of_attempts'   => $no_of_attempts ,
-            ]);
+            $newQuizStart = QuizzesResult::create(['user_id' => $user->id , 'results' => '' , 'user_grade' => 0 , 'status' => 'waiting' , 'created_at' => time() , 'questions_list' => json_encode($questions_list) , 'parent_type_id' => $parent_type_id , 'quiz_result_type' => $quiz_result_type , 'no_of_attempts' => $no_of_attempts ,]);
         }
 
         return $newQuizStart;
@@ -70,16 +56,7 @@ class QuestionsAttemptController extends Controller
     public function createAttemptLog($newQuizStart)
     {
         $user = auth()->user();
-        $quizAttempt = QuizzAttempts::create([
-            'quiz_result_id' => $newQuizStart->id ,
-            'user_id'        => $user->id ,
-            'start_grade'    => $newQuizStart->user_grade ,
-            'end_grade'      => 0 ,
-            'created_at'     => time() ,
-            'questions_list' => $newQuizStart->questions_list ,
-            'parent_type_id' => $newQuizStart->parent_type_id ,
-            'attempt_type'   => $newQuizStart->quiz_result_type ,
-        ]);
+        $quizAttempt = QuizzAttempts::create(['quiz_result_id' => $newQuizStart->id , 'user_id' => $user->id , 'start_grade' => $newQuizStart->user_grade , 'end_grade' => 0 , 'created_at' => time() , 'questions_list' => $newQuizStart->questions_list , 'parent_type_id' => $newQuizStart->parent_type_id , 'attempt_type' => $newQuizStart->quiz_result_type ,]);
         return $quizAttempt;
     }
 
@@ -91,7 +68,7 @@ class QuestionsAttemptController extends Controller
     *
     * @return Question Object
     */
-    public function nextQuestion($quizAttempt, $exclude_array = array())
+    public function nextQuestion($quizAttempt , $exclude_array = array())
     {
         $user = auth()->user();
         $questions_list = ($quizAttempt->questions_list != '') ? json_decode($quizAttempt->questions_list) : array();
@@ -128,11 +105,7 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-        return array(
-            'questionObj'       => $questionObj ,
-            'question_no'       => $question_no ,
-            'newQuestionResult' => $newQuestionResult ,
-        );
+        return array('questionObj' => $questionObj , 'question_no' => $question_no , 'newQuestionResult' => $newQuestionResult ,);
 
     }
 
@@ -190,8 +163,8 @@ class QuestionsAttemptController extends Controller
                 break;
 
             case "sats":
-               $is_attempt_allowed = true;
-               break;
+                $is_attempt_allowed = true;
+                break;
 
             case "practice":
 
@@ -225,7 +198,7 @@ class QuestionsAttemptController extends Controller
                         $options_array = isset($elementData->options) ? $elementData->options : array();
                         if (!empty($options_array)) {
                             foreach ($options_array as $optionData) {
-                                if (isset( $optionData->default ) && $optionData->default == 'on') {
+                                if (isset($optionData->default) && $optionData->default == 'on') {
                                     $question_correct[] = $optionData->value;
                                 }
                             }
@@ -304,11 +277,7 @@ class QuestionsAttemptController extends Controller
         } else {
             $question_answer_status = 'correct';
         }
-        $QuizzResultQuestions->update([
-            'status'        => $question_answer_status ,
-            'user_answer'   => json_encode($user_input_array) ,
-            'time_consumed' => ($time_consumed < 0) ? $time_consumed : 0 ,
-        ]);
+        $QuizzResultQuestions->update(['status' => $question_answer_status , 'user_answer' => json_encode($user_input_array) , 'time_consumed' => ($time_consumed < 0) ? $time_consumed : 0 ,]);
         createAttemptLog($quizAttempt->id , 'Answered question: #' . $QuizzResultQuestions->id , 'attempt' , $QuizzResultQuestions->id);
 
         $questions_list = json_decode($quizAttempt->questions_list);
@@ -316,11 +285,7 @@ class QuestionsAttemptController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        $resultLogObj = $QuestionsAttemptController->createResultLog([
-            'parent_type_id'   => $quizAttempt->parent_type_id ,
-            'quiz_result_type' => $quizAttempt->attempt_type ,
-            'questions_list'   => $questions_list ,
-        ]);
+        $resultLogObj = $QuestionsAttemptController->createResultLog(['parent_type_id' => $quizAttempt->parent_type_id , 'quiz_result_type' => $quizAttempt->attempt_type , 'questions_list' => $questions_list ,]);
 
         $attemptLogObj = $quizAttempt;
         $attempt_log_id = createAttemptLog($attemptLogObj->id , 'Session Started' , 'started');
@@ -333,12 +298,7 @@ class QuestionsAttemptController extends Controller
         if ($incorrect_flag == false) {
 
             if (isset($questionObj->id)) {
-                $question_response_layout = view('web.default.panel.questions.question_layout' , [
-                    'question'          => $questionObj ,
-                    'quizAttempt'       => $quizAttempt ,
-                    'newQuestionResult' => $newQuestionResult ,
-                    'question_no'       => $question_no
-                ])->render();
+                $question_response_layout = view('web.default.panel.questions.question_layout' , ['question' => $questionObj , 'quizAttempt' => $quizAttempt , 'newQuestionResult' => $newQuestionResult , 'question_no' => $question_no])->render();
             }
 
         } else {
@@ -359,29 +319,17 @@ class QuestionsAttemptController extends Controller
                 $question_difficulty_level = strtolower($questionObj->question_difficulty_level);
                 if ($quizAttempt->attempt_type == 'practice') {
 
-                    $practice_question = QuizzesQuestion::where('quiz_id' , $questionObj->quiz_id)
-                        ->where('question_difficulty_level' , $questionObj->question_difficulty_level)
-                        ->whereNotIn('id' , $questions_ids_list)
-                        ->first();
+                    $practice_question = QuizzesQuestion::where('quiz_id' , $questionObj->quiz_id)->where('question_difficulty_level' , $questionObj->question_difficulty_level)->whereNotIn('id' , $questions_ids_list)->first();
 
                     if (isset($practice_question->id)) {
                         $questions_list->$question_difficulty_level = array_merge($questions_list->$question_difficulty_level , array($practice_question->id));
                     }
-                    $quizAttempt->update([
-                        'questions_list' => json_encode($questions_list) ,
-                    ]);
-                    $QuizzesResult->update([
-                        'questions_list' => json_encode($questions_list) ,
-                    ]);
+                    $quizAttempt->update(['questions_list' => json_encode($questions_list) ,]);
+                    $QuizzesResult->update(['questions_list' => json_encode($questions_list) ,]);
 
                 }
 
-                $question_response_layout = view('web.default.panel.questions.question_layout' , [
-                    'question'          => $questionObj ,
-                    'quizAttempt'       => $quizAttempt ,
-                    'newQuestionResult' => $newQuestionResult ,
-                    'question_no'       => $question_no
-                ])->render();
+                $question_response_layout = view('web.default.panel.questions.question_layout' , ['question' => $questionObj , 'quizAttempt' => $quizAttempt , 'newQuestionResult' => $newQuestionResult , 'question_no' => $question_no])->render();
 
             }
         }
@@ -389,15 +337,7 @@ class QuestionsAttemptController extends Controller
         $question = $questionObj;
 
 
-        $response = array(
-            'incorrect_array'          => $incorrect_array ,
-            'correct_array'            => $correct_array ,
-            'incorrect_flag'           => $incorrect_flag ,
-            'question'                 => $question ,
-            'question_response_layout' => $question_response_layout ,
-            'newQuestionResult'        => $newQuestionResult ,
-            'question_result_id'       => isset($newQuestionResult->id) ? $newQuestionResult->id : '' ,
-        );
+        $response = array('incorrect_array' => $incorrect_array , 'correct_array' => $correct_array , 'incorrect_flag' => $incorrect_flag , 'question' => $question , 'question_response_layout' => $question_response_layout , 'newQuestionResult' => $newQuestionResult , 'question_result_id' => isset($newQuestionResult->id) ? $newQuestionResult->id : '' ,);
         echo json_encode($response);
         exit;
     }
@@ -431,10 +371,7 @@ class QuestionsAttemptController extends Controller
         }
         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
 
-        return $response = array(
-            'is_question_correct' => $is_question_correct ,
-            'question_correct'    => $question_correct ,
-        );
+        return $response = array('is_question_correct' => $is_question_correct , 'question_correct' => $question_correct ,);
     }
 
 
@@ -446,9 +383,7 @@ class QuestionsAttemptController extends Controller
         $quizAttempt = QuizzAttempts::find($attempt_id);
         createAttemptLog($attempt_id , 'Session End' , 'end');
         $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
-        $QuizzesResult->update([
-            'status' => 'passed' ,
-        ]);
+        $QuizzesResult->update(['status' => 'passed' ,]);
 
         $quiz_user_data = json_decode(base64_decode(trim(stripslashes($quiz_user_data))) , true);
         $quiz_user_data = isset($quiz_user_data[0]) ? $quiz_user_data[0] : $quiz_user_data;
@@ -525,6 +460,57 @@ class QuestionsAttemptController extends Controller
     					<ul class="lms-radio-btn-group lms-user-answer-block">' . $user_input_response . '</ul>
     			</div><hr>';
         return $question_layout;
+    }
+
+    /*
+         * GET Result Data
+         */
+    public function get_result_data($parent_id)
+    {
+        $user = auth()->user();
+
+        $userQuizDone = QuizzesResult::where('parent_type_id' , $parent_id)->with(['attempts' => function ($query) {
+                $query->with('quizz_result_questions');
+            }])->where('user_id' , $user->id)->orderBy('created_at' , 'desc')->get();
+
+
+        $result_status = '';
+        $resultCount = $resultsData = array();
+        $is_passed = $in_progress = false;
+        $current_status = '';
+        if (!empty($userQuizDone)) {
+            foreach ($userQuizDone as $userQuizObj) {
+
+                if ($userQuizObj->status == 'waiting') {
+                    $in_progress = true;
+                }
+
+                if ($userQuizObj->status == 'passed') {
+                    $is_passed = true;
+                }
+
+                $resultsData[$userQuizObj->id]['resultObjData'] = $userQuizObj;
+                $resultCount[$userQuizObj->id]['waiting'] = 0;
+                $resultCount[$userQuizObj->id]['incorrect'] = 0;
+                $resultCount[$userQuizObj->id]['correct'] = 0;
+                if (!empty($userQuizObj->attempts)) {
+                    foreach ($userQuizObj->attempts as $attemptObj) {
+                        $resultCount[$userQuizObj->id]['waiting'] += $attemptObj->quizz_result_questions->where('status' , 'waiting')->count();
+                        $resultCount[$userQuizObj->id]['incorrect'] += $attemptObj->quizz_result_questions->where('status' , 'incorrect')->count();
+                        $resultCount[$userQuizObj->id]['correct'] += $attemptObj->quizz_result_questions->where('status' , 'correct')->count();
+
+                    }
+                }
+            }
+        }
+
+        $current_status = ($in_progress == true)? 'waiting' : $current_status;
+        $current_status = ($is_passed == true)? 'passed' : $current_status;
+        $response = (object)array('resultsObj' => $userQuizDone , 'resultsData' => $resultsData , 'resultCount' =>
+            $resultCount , 'is_passed' => $is_passed , 'in_progress' => $in_progress, 'current_status' =>
+            $current_status);
+
+        return $response;
     }
 
 

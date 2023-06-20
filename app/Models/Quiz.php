@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\Traits\SequenceContent;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
