@@ -16,17 +16,10 @@ class PagesController extends Controller
             $link = '/' . $link;
         }
 
-        $page = Page::where('link' , $link)
-            ->where('status' , 'publish')
-            ->first();
+        $page = Page::where('link' , $link)->where('status' , 'publish')->first();
 
         if (!empty($page)) {
-            $data = [
-                'pageTitle'       => $page->title ,
-                'pageDescription' => $page->seo_description ,
-                'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex' ,
-                'page'            => $page
-            ];
+            $data = ['pageTitle' => $page->title , 'pageDescription' => $page->seo_description , 'pageRobot' => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex' , 'page' => $page];
 
             if ($page->id == 26) {
                 return view('web.default.pages.job_signup' , $data);
@@ -42,6 +35,8 @@ class PagesController extends Controller
                 return view('web.default.pages.faqs' , $data);
             } elseif ($page->id == 77) {
                 return view('web.default.pages.contact2' , $data);
+            } elseif ($page->id == 44) {
+                return view('web.default.pages.quizpage' , $data);
             } elseif ($page->id == 11) {
                 $testimonials = Testimonial::where('status' , 'active')->orderBy('testimonial_date' , 'asc')->get();
                 $data['testimonials'] = $testimonials;

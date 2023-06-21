@@ -1986,7 +1986,7 @@ Lms Quiz Wf Style End
 *************************************/
 .quiz-topbar {
     background-color: #4c5387;
-    padding: 15px 0;
+    padding: 15px 0 15px;
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -2097,23 +2097,30 @@ Lms Quiz Wf Style End
     max-width: 700px;
     margin: 0 auto;
 }
-.quiz-show .read-quiz-content {
-    margin-left: 900px;
+.read-quiz-content.pr-300 {
+    max-width: 1000px;
 }
+.pr-300 {
+    padding-right: 300px;
+}
+/* .quiz-show .read-quiz-content {
+    margin-left: 900px;
+} */
 .read-quiz-info {
-    position: fixed;
+    position: absolute;
     left: -630px;
     height: 100%;
     background-color: #eeeeee;
-    padding: 55px 12px 0 30px;
+    /* padding: 55px 12px 0 30px; */
     top: 0;
     transition: all 0.2s ease-in-out;
-    max-width: 630px;
-    min-width: 630px;
-    margin-left: 3px;
+    /* margin-left: 3px; */
+    width: 33.333%;
 }
-.quiz-show .read-quiz-info {
-    left: 0;
+.read-quiz-info ~ .read-quiz-content {
+    width: calc(100% - 33.333%);
+    max-width: inherit;
+    padding-left: 630px;
 }
 .lms-quiz-section {
     position: relative;
@@ -2239,6 +2246,19 @@ Lms Quiz Wf Style End
 .prev-btn:hover svg g,
 .next-btn:hover svg g {
     fill: #fff;
+}
+.read-quiz-info .flipbook-nav .flipbook-menu-btn {
+    padding: 0 !important;
+    line-height: 60px;
+    font-size: 44px !important;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset;
+}
+.read-quiz-info .flipbook-nav .fa-angle-right:before {
+    margin-left: 5px;
+    line-height: normal;
+}
+.read-quiz-info .flipbook-nav .fa-angle-left:before {
+    margin-right: 5px;
 }
 /************************************ 
  Quiz Read Info Style End

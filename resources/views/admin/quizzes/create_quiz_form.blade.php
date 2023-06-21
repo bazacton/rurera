@@ -90,6 +90,40 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="input-label">Quiz Slug</label>
+                    <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_slug]"
+                           value="{{ !empty($quiz) ? $quiz->quiz_slug : old('quiz_slug') }}" class="form-control "
+                           placeholder=""/>
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label">Quiz Image</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="input-group-text admin-file-manager" data-input="quiz_image"
+                                    data-preview="holder">
+                                <i class="fa fa-upload"></i>
+                            </button>
+                        </div>
+                        <input type="text" name="quiz_image" id="quiz_image"
+                               value="{{ !empty($quiz) ? $quiz->quiz_image : old('quiz_image') }}"
+                               class="form-control @error('quiz_image')  is-invalid @enderror"/>
+                        <div class="input-group-append">
+                            <button type="button" class="input-group-text admin-file-view" data-input="quiz_image">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </div>
+                        @error('quiz_image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+
+
+                <div class="form-group">
                     <label class="input-label">Mastery Points</label>
                     <input type="number" value="{{ !empty($quiz) ? $quiz->mastery_points : old('mastery_points') }}"
                            name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][mastery_points]"
@@ -99,7 +133,18 @@
                 @php
                 $assessment_hide_class = (!empty($quiz ) && $quiz->quiz_type != 'assessment')? 'hide-class' : '';
                 $practice_hide_class = (empty($quiz ) || $quiz->quiz_type == 'practice')? '' : 'hide-class';
+                $sats_hide_class = (empty($quiz ) || $quiz->quiz_type == 'sats')? '' : 'hide-class';
                 @endphp
+
+                <div class="conditional-fields sats-fields {{$sats_hide_class}}">
+                    <div class="form-group">
+                        <label class="input-label">Quiz Sub Title</label>
+                        <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][sub_title]"
+                               value="{{ !empty($quiz) ? $quiz->sub_title : old('sub_title') }}" class="form-control "
+                               placeholder=""/>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
 
 
                 <div class="conditional-fields sats-fields assessment-fields {{$assessment_hide_class}}">
@@ -282,7 +327,8 @@
                 <div class="form-group custom-switches-stacked">
                     <label class="custom-switch pl-0">
                         <input type="hidden" name="show_all_questions" value="disable">
-                        <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][show_all_questions]" id="show_all_questions" value="1" {{
+                        <input type="checkbox" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][show_all_questions]"
+                               id="show_all_questions" value="1" {{
                                (!empty($quiz) and $quiz->show_all_questions == '1') ? 'checked="checked"' : ''
                         }} class="custom-switch-input"/>
                         <span class="custom-switch-indicator"></span>

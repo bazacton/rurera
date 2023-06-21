@@ -1,110 +1,18 @@
 @extends('web.default.layouts.app')
 
+@push('styles_top')
+    <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+@endpush
+
 @section('content')
-<section class="products-top-header search-top-banner position-relative job-singup-sub-header gallery-sub-header pb-0"
+<section class="products-top-header search-top-banner position-relative job-singup-sub-header gallery-sub-header pb-0 flex-column"
         style="min-height: 680px;">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-12 col-md-12 col-lg-4">
-                    <h1 class="font-50 font-weight-bold">Rewards</h1>
-                    <p>We are a dynamic and innovative company, constantly striving for excellence in everything we do.
-                        Joining our team <br> means joining a diverse and inclusive learning environment where collaboration
-                        and creativity are valued.</p>
-                    <a href="#" class="btn-primary rounded-pill">Find new positions</a>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-8 gallery-frame-section pl-30">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="gallery-frame">
-                                        <figure><img src="../assets/default/img/fram-image-2.jpg" alt="fram images" title="fram images"
-                                                width="100%" height="auto" itemprop="image"></figure>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-3.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-4.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-5.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-6.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-1.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-7.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-8.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-9.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                                            <div class="gallery-frame">
-                                                <figure><img src="../assets/default/img/fram-image-10.jpg" alt="fram images"
-                                                        title="fram images" width="100%" height="auto" itemprop="image"></figure>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="gallery-frame">
-                                        <figure><img src="../assets/default/img/fram-image-11.jpg" alt="fram images" title="fram images"
-                                                width="100%" height="auto" itemprop="image"></figure>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <h1 class="font-50 font-weight-bold">Learn, Practice and Win with Rurera</h1>
+                    <p>Unlock Knowledge and Reward Yourself with Exciting Toys. It implies through continuous learning and improvement, students can increase their chances of winning playful toys.</p>
+                    <a href="#" class="btn btn-outline-primary rounded-pill">Find new positions</a>
                 </div>
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="top-search-categories-form">
@@ -122,6 +30,260 @@
                                     <button type="submit" class="btn btn-primary">Search</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 gallery-frame-section pl-30">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="gallery-frame">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <figure>
+                                                <img src="../assets/default/img/fram-image-2.jpg" alt="fram images" title="fram images"
+                                                    width="100%" height="auto" itemprop="image" loading="eager">
+                                            </figure>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <figure>
+                                                <img src="../assets/default/img/fram-image-2.jpg" alt="fram images" title="fram images"
+                                                    width="100%" height="auto" itemprop="image" loading="eager">
+                                            </figure>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <figure>
+                                                <img src="../assets/default/img/fram-image-2.jpg" alt="fram images" title="fram images"
+                                                    width="100%" height="auto" itemprop="image" loading="eager">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-3.jpg" alt="fram images"
+                                                    title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-3.jpg" alt="fram images"
+                                                    title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-3.jpg" alt="fram images"
+                                                    title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-4.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-4.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-4.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-5.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-5.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-5.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-6.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-6.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-6.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-1.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-1.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-1.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-7.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-7.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-7.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-8.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-8.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-8.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-9.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-9.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-9.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-12">
+                                    <div class="gallery-frame">
+                                        <div class="swiper-container">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-10.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-10.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure><img src="../assets/default/img/fram-image-10.jpg" alt="fram images"
+                                                title="fram images" width="100%" height="auto" itemprop="image"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="gallery-frame">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <figure><img src="../assets/default/img/fram-image-11.jpg" alt="fram images" title="fram images"
+                                        width="100%" height="auto" itemprop="image"></figure>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <figure><img src="../assets/default/img/fram-image-11.jpg" alt="fram images" title="fram images"
+                                        width="100%" height="auto" itemprop="image"></figure>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <figure><img src="../assets/default/img/fram-image-11.jpg" alt="fram images" title="fram images"
+                                        width="100%" height="auto" itemprop="image"></figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,5 +326,6 @@
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/js/parts/products_lists.min.js"></script>
 @endpush

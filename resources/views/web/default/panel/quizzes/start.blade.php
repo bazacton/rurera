@@ -47,6 +47,63 @@ $rand_id = rand(99,9999);
                 </span>
             </a>
         </div>
+
+        <section class="quiz-topbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-12">
+                        <div class="quiz-top-info"><p>{{$question->title}} ( {{$question_no}}/
+                                {{count($questions_list)}}
+                                Questions )</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                        <div class="topbar-right">
+                            <div class="quiz-pagination">
+                                <ul>
+                                    @if( !empty( $questions_list ) )
+                                    @php $question_count = 1; @endphp
+                                    @foreach( $questions_list as $question_id)
+                                    @php $is_flagged = false;
+                                    $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                    ($newQuizStart->flagged_questions) : array();
+                                    @endphp
+                                    @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                    $flagged_questions))
+                                    @php $is_flagged = true; @endphp
+                                    @endif
+                                    <li data-question_id="{{$question_id}}" class="{{ ( $is_flagged == true)?
+                                    'has-flag' : ''}}"><a
+                                            href="#">
+                                        @if( $is_flagged == true)
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt"
+                                             height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+                                             preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                               fill="#000000" stroke="none">
+                                                <path
+                                                    d="M1620 4674 c-46 -20 -77 -50 -103 -99 l-22 -40 -3 -1842 -2 -1843 -134 0 c-120 0 -137 -2 -177 -23 -24 -13 -57 -43 -74 -66 -27 -39 -30 -50 -30 -120 0 -66 4 -83 25 -114 14 -21 43 -50 64 -65 l39 -27 503 0 502 0 44 30 c138 97 118 306 -34 370 -27 11 -73 15 -168 15 l-130 0 0 750 0 750 1318 2 1319 3 40 28 c83 57 118 184 75 267 -10 19 -140 198 -290 398 -170 225 -270 367 -265 375 4 7 128 174 276 372 149 197 276 374 283 392 19 45 17 120 -5 168 -23 51 -79 101 -128 114 -26 7 -459 11 -1330 11 l-1293 0 0 20 c0 58 -56 137 -122 171 -45 23 -128 25 -178 3z"
+                                                ></path>
+                                            </g>
+                                        </svg>
+                                        @endif
+                                        {{$question_count}}</a></li>
+                                    @php $question_count++; @endphp
+                                    @endforeach
+                                    @endif
+                                </ul>
+                            </div>
+                            <div class="quiz-timer">
+                                <span class="timer-number">4<em>m</em></span> <span
+                                    class="timer-number">50<em>s</em></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     </div>
     <div class="user-question-panel hide">
         <ul class="question-list">
@@ -55,13 +112,15 @@ $rand_id = rand(99,9999);
             @endwhile
         </ul>
     </div>
-    <div class="questions-data-block" data-total_questions="{{$quizQuestions->count()}}">
+    <div class="questions-data-block read-quiz-content pr-300 mt-60" data-total_questions="{{$quizQuestions->count()}}">
 
         <div class="question-step quiz-complete" style="display:none">
             <div class="question-layout-block">
                 <div class="left-content has-bg">
                     <h2>&nbsp;</h2>
-                    <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1"
+                    <div id="leform-form-1"
+                         class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                         _data-parent="1"
                          _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
 
@@ -76,20 +135,23 @@ $rand_id = rand(99,9999);
             @if( is_array( $question ))
             @php $question_no = 1; @endphp
             @foreach( $question as $questionObj)
-            @include('web.default.panel.questions.question_layout',['question'=> $questionObj, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+            @include('web.default.panel.questions.question_layout',['question'=> $questionObj,'prev_question' =>
+            0, 'next_question' => 0, 'question_no' =>
+            $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
             $newQuestionResult])
             @php $question_no++; @endphp
             @endforeach
             @else
-            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' => $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult',
-                        $newQuestionResult])
+            @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' =>
+            $question_no, 'prev_question' => $prev_question, 'next_question' => $next_question , 'quizAttempt' => $quizAttempt, 'newQuestionResult',
+            $newQuestionResult])
             @endif
         </div>
 
         <div class="question-area-temp hide"></div>
 
 
-        <div class="right-content">
+        <div class="right-content mt-100 pt-20" >
             <div class="range-value-count">
                 <span>0</span>
             </div>
@@ -129,35 +191,5 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
 <script src="/assets/default/js/parts/quiz-start.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
-<script>
 
-    const range = document.getElementById('range')
-    range.addEventListener('input', (e) = > {
-        const value = +e.target.value
-        const label = e.target.nextElementSibling
-
-        const range_width = getComputedStyle(e.target).getPropertyValue('width')
-        const label_width = getComputedStyle(label).getPropertyValue('width')
-
-        const num_width = +range_width.substring(0, range_width.length - 2)
-        const num_label_width = +label_width.substring(0, label_width.length - 2)
-
-        const max = +e.target.max
-        const min = +e.target.min
-
-        const left = value * (num_width / max) - num_label_width / 2 + scale(value, min, max, 10, -10)
-        label.style.left = `${left}px`
-
-        label.innerHTML = value
-    }
-    )
-    const scale = (num, in_min, in_max, out_min, out_max) =
-    >
-    {
-        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-
-    }
-
-
-</script>
 @endpush

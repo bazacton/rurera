@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="lazyImage product-show-image-card position-relative">
-                    <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="main-s-image img-cover rounded-lg" loading="lazy">
+                    <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="main-s-image img-cover rounded-lg" loading="lazy" width="100%" height="auto">
 
                     @if(!empty($product->video_demo))
                         <button id="productDemoVideoBtn"
@@ -60,7 +60,7 @@
                         </h1>
 
                         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between mt-20">
-                           
+
                             <div class="d-flex align-items-center mt-15 mt-md-0">
                                 <span class="mr-5">{{ trans('update.availability') }}</span>
                                 @if(($product->getAvailability() > 0))
@@ -94,7 +94,7 @@
                             @endforeach
                         @endif
 
-                       
+
 
                         <div class="product-show-cart-actions d-flex align-items-center flex-wrap ">
                             <div class="cart-quantity d-flex align-items-center mt-20 mr-15">
@@ -111,7 +111,7 @@
                             </div>
 
                             <div class="d-flex flex-column flex-md-row align-itemsmd-center w-100 mt-20">
-                                
+
 
                                 @if($product->getAvailability() > 0 and !empty($product->point) and $product->point > 0)
                                     <input type="hidden" class="js-product-points" value="{{ $product->point }}">
@@ -162,17 +162,17 @@
         </div>
 
         <div class="mt-30">
-            
+
             <div class="tab-content" id="nav-tabContent">
                 @include('web.default.products.includes.tabs.files')
                 <br>
                 <h3>Description</h3>
-                
+
                 @include('web.default.products.includes.tabs.description')
-                
+
                 @include('web.default.products.includes.tabs.specifications')
-                
-                
+
+
                 <div class="tab-pane fade {{ (request()->get('tab') == 'description') ? 'show active' : '' }} " id="description" role="tabpanel"
                      aria-labelledby="description-tab">
                     @include('web.default.products.includes.tabs.description')

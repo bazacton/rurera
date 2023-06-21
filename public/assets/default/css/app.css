@@ -14642,6 +14642,7 @@ p {
     color: #fff;
     transition: all .5s ease
 }
+.stats-container .stats-item.green:hover{background-color: #13ad68;}
 .stats-container .stats-item.simple .stat-icon-box {
     background-image: none;
     padding: 0;
@@ -14651,6 +14652,10 @@ p {
     height: 70px;
     width: 60px;
     fill: var(--primary);
+}
+.stats-container .stats-item.simple .stat-icon-box svg .a {
+    stroke:var(--primary);
+    fill: none;
 }
 .stats-container .stats-item.simple .stat-icon-box .education-svg path,
 .stats-container .stats-item.simple:hover .stat-icon-box .education-svg path{fill:none;}
@@ -14668,6 +14673,9 @@ p {
 }
 .stats-container .stats-item.simple:hover .stat-icon-box svg path {
     fill: #fff;
+}
+.stats-container .stats-item.simple:hover .stat-icon-box svg .a {
+    stroke: #fff;
 }
 .swiper-pagination {
     bottom: -50px;
@@ -22752,6 +22760,10 @@ Lms Performace Table Style Start
     max-width: 12%;
     min-width: 12%;
 }
+.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(3),
+.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(3){max-width:25%; min-width: 25%;}
+.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(4),
+.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(4){max-width:17%; min-width: 17%;}
 .leaderboard>li.lms-performace-head.leaderboard-title div:first-child h5{color: #878787;}
 .leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {
     max-width: 30%;
@@ -22769,26 +22781,24 @@ Lms Performace Table Style Start
     max-width: 30%;
 }
 .lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{
-    min-width: 37%;
-    max-width: 37%;
+    min-width: 16%;
+    max-width: 16%;
     text-align: left;
 }
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn{
-    min-width: 37%;
-    max-width: 37%;
+    min-width: 16%;
+    max-width: 16%;
     text-align: left;
 }
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn > .badge-btn{width: auto; padding: 0;}
-.lms-performace-table>li.lms-performace-des .sr-no span {
-    color: #6b707eff;
-    align-items: center;
+.lms-performace-table>li.lms-performace-des.leaderboard-des .sr-no span {
+    color: #878787;
     font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
+    font-weight:500;
+    display: block;
 }
 .lms-performace-table>li.lms-performace-des.leaderboard-des div{white-space: normal;}
-.lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px; font-weight: 500;}
+.lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px; font-weight: 500; text-transform:capitalize;}
 .lms-performace-table>li.lms-performace-des.leaderboard-des div{padding: 22px 15px;}
 .lms-performace-table>li.lms-performace-des .icon-table-1{color: #ffd000;}
 .lms-performace-table>li.lms-performace-des .icon-table-2 {color: #c7c7c7;}
@@ -22800,11 +22810,17 @@ Lms Performace Table Style Start
 .leaderboard-tab .nav-tabs .nav-link{border:0;border-radius: 0;background: transparent;border-bottom: 2px solid transparent;padding:0; font-size: 14px;color: #878787;}
 .leaderboard-tab .nav-tabs .nav-link.active {
     background: transparent;
-    border-color: var(--primary);
-    color: #333;
+    border-color: #13ad68;
+    color:#13ad68;
 }
 .leaderboard-tab .nav-tabs .nav-item{margin:0 0 10px 20px;}
-.leaderboard-tab .nav-tabs .nav-link:hover {color: var(--primary);}
+.leaderboard-tab .nav-tabs .nav-link:hover {color:#13ad68;}
+.leaderboard-sub-header .btn-primary{ background-color: #13ad68;border-color: #13ad68;}
+.leaderboard-sub-header .btn-outline-primary {
+   color: #13ad68;
+   border-color:#13ad68;
+}
+.leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: #13ad68;}
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -24549,6 +24565,34 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
+.membership-sub-header { position: relative;}
+/* .membership-sub-header:before,
+.membership-sub-header:after{position: absolute; left: -30px; top: -50px; height: 180px; width: 180px; content: ""; border-radius: 30px; background-image: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(30,183,89,0.2)); transform: rotate(45deg); box-shadow: 0 5px 0 5px rgba(0,0,0,0.03); -webkit-animation: bounce 3s infinite ease-in-out;
+    -o-animation: bounce 3s infinite ease-in-out;
+    -ms-animation: bounce 3s infinite ease-in-out; 
+    -moz-animation: bounce 3s infinite ease-in-out; 
+    animation: bounce 3s infinite ease-in-out;}
+.membership-sub-header:after {left: auto; right: -30px; top:auto; bottom: -50px;}
+@-webkit-keyframes bounce {
+    0% { transform: translateY(-5px) rotate(45deg)  }
+    50% { transform: translateY(10px) rotate(45deg) }
+    100% { transform: translateY(-5px) rotate(45deg) }
+}
+@keyframes bounce {
+    0% { transform: translateY(-5px) rotate(45deg)  }
+    50% { transform: translateY(10px) rotate(45deg) }
+    100% { transform: translateY(-5px) rotate(45deg) }
+} */
+.membership-sub-header:before,
+.membership-sub-header:after {
+    background: url(../../default/svgs/shape.svg);
+    position: absolute; 
+    left: 0; top: 0; 
+    height: 180px; 
+    width: 180px; 
+    content: "";
+}
+.membership-sub-header:after {left: auto; right: 0; top:auto; bottom: 0;}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -24608,6 +24652,11 @@ Lms Newsletter Style Style End
 .gallery-frame-section .col-12 {
     padding-left: 5px;
     padding-right: 5px;
+}
+.gallery-frame-section {
+    position: absolute;
+    right: 0;
+    top: 50px;
 }
 /*************************************
  Gallery Fram Section  Style End
@@ -24710,7 +24759,81 @@ Sats Listing Style Start
 /*************************************
 Sats Listing Style End
 *************************************/
-
+/*************************************
+ Reward page  Style Start
+*************************************/
+.reward-box {
+    background: #fff;
+    border-radius: 34px;
+    padding: 22px;
+    min-height: 170px;
+}
+.reward-section {background-image: linear-gradient(to left, #f1eff7, #f1eff7, #f1eff7, #edecf74a, #edecf74a); position: relative;}
+.reward-section:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0px;
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 50% 50%/0 0 100% 100%;
+    z-index: 2;
+    height: 70px;
+}
+.reward-section:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    background: #fff;
+    border-radius: 50% 50% 0 0/100% 100% 0 0;
+    z-index: 2;
+    height: 70px;
+}
+.reward-holder .row {margin: 0 -5px;}
+.reward-holder [class*='col-']{padding: 0 5px}
+.reward-box .img-holder figure{margin: 0;}
+.reward-box .img-holder ~ .text-holder {margin-left: 25px;}
+.reward-box .text-holder p{margin-bottom: 0; font-size: 16px;}
+.reward-box strong {display: block;color:var(--primary);}
+.categories-banner{background: url(img/category-banner.png) no-repeat;padding: 0 50px;background-size: 100% 100%;min-height: 210px;display: flex;align-items: center;width: 100%; margin-bottom: 30px;}
+.categories-banner .text-holder{margin-left: 100px;}
+.categories-banner .text-holder p{margin-bottom: 0;}
+.categories-list {margin: 0; padding: 0; list-style: none;}
+.categories-list li{line-height: normal;list-style: none;}
+.categories-list .categories-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.categories-box .img-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.categories-box .img-holder figure {
+    background: #f0eeef;
+    border-radius: 100%;
+    margin: 0 0 20px 0;
+}
+.categories-box .img-holder figure img {
+    object-fit: contain;
+    padding: 10px;
+    border-radius: 100%;
+}
+.categories-list .categories-box .post-title a,
+.categories-list .categories-box .post-title {
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--dark-charcoal);
+    font-weight: 400;
+}
+.categories-list .categories-box .post-title{margin-bottom: 0;}
+/*************************************
+ Reward page Style End
+*************************************/
 /*************************************
 Lms Responsive Style Start
 *************************************/

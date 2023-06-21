@@ -2109,7 +2109,15 @@
 .flipbook-bookLayer.flipbook-move {
     padding-right: 60px;
 }
-
+.flipbook-main-wrapper span.fa {
+    font-weight: 900;
+}
+.read-quiz-info .flipbook-bookLayer.flipbook-move {
+    padding-right: 0;
+}
+.read-quiz-info .flipbook-main-wrapper {
+    top: 35px;
+}
 /****************************
 Flip Book Custom Style Start
 ****************************/
@@ -2133,6 +2141,18 @@ Flip Book Custom Style Start
     position: initial;
     display: flex;
     flex-direction: row-reverse;
+}
+.read-quiz-info .flipbook-page3.flipbook-page3-front {
+    position: absolute;
+    margin-left: 0;
+}
+.read-quiz-info .flipbook-page3-front:first-child .flipbook-page3-inner {
+    position: absolute;
+    display: block;
+}
+.read-quiz-info .flipbook-page3-front:first-child .flipbook-page3-bg {
+    position: absolute;
+    width: auto;
 }
 .flipbook-page3-front:first-child .flipbook-data img {
     position: relative;

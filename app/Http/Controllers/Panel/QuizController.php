@@ -359,6 +359,8 @@ class QuizController extends Controller
             $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj);
             $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
             $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
+            $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
+            $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
             $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
 
             $question_points = isset($question->question_score) ? $question->question_score : 0;
@@ -397,8 +399,9 @@ class QuizController extends Controller
             }else{
                 $question = $questionObj;
             }
-
-            $data = ['pageTitle' => trans('quiz.quiz_start') , 'quiz' => $quiz , 'quizQuestions' => $quiz->quizQuestions , 'attempt_count' => $resultLogObj->count() + 1 , 'newQuizStart' => $resultLogObj , 'quizAttempt' => $attemptLogObj , 'question' => $question , 'question_no' => $question_no , 'question_points' => $question_points , 'newQuestionResult' => $newQuestionResult];
+            $data = ['pageTitle' => trans('quiz.quiz_start') , 'questions_list' => $questions_list, 'quiz' => $quiz ,
+                     'quizQuestions' =>
+                $quiz->quizQuestions , 'attempt_count' => $resultLogObj->count() + 1 , 'newQuizStart' => $resultLogObj , 'quizAttempt' => $attemptLogObj , 'question' => $question , 'question_no' => $question_no , 'prev_question' => $prev_question, 'next_question' => $next_question , 'question_points' => $question_points , 'newQuestionResult' => $newQuestionResult];
             return view(getTemplate() . '.panel.quizzes.start' , $data);
         }
         abort(404);

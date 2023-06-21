@@ -1,11 +1,17 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
     @endif
 @if($page->id == 44)
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+        <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
+        <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
+        <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
         <link rel="stylesheet" href="/assets/default/css/quiz-layout.css">
+
     @endif
 @endpush
 
@@ -17,7 +23,7 @@
 @endsection
 
 @push('scripts_bottom')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 39)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 39 || $page->id == 94)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
                     @endif

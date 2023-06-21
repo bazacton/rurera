@@ -34,7 +34,16 @@ class SatsController extends Controller
     public function start(Request $request , $id)
     {
         $quiz = Quiz::find($id);
-        $data = ['pageTitle' => 'Start', 'quiz' => $quiz];
+
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $resultData = $QuestionsAttemptController->get_result_data($id);
+        $is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
+        $in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
+        $current_status = isset($resultData->current_status) ? $resultData->current_status : '';
+
+
+        $data = ['pageTitle' => 'Start' , 'quiz' => $quiz];
         return view('web.default.quizzes.start' , $data);
     }
 
