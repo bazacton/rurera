@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\Traits\SequenceContent;
+use Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -12,6 +14,7 @@ class Quiz extends Model implements TranslatableContract
 {
     use Translatable;
     use SequenceContent;
+    use Sluggable;
 
     const ACTIVE = 'active';
     const INACTIVE = 'inactive';
@@ -25,6 +28,21 @@ class Quiz extends Model implements TranslatableContract
     public function getTitleAttribute()
     {
         return getTranslateAttributeValue($this , 'title');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return ['quiz_slug' => ['source' => 'title']];
+    }
+
+    public static function makeSlug($title)
+    {
+        return strtolower(SlugService::createSlug(self::class, 'quiz_slug', $title));
     }
 
     public function quizQuestionsList()
@@ -83,10 +101,7 @@ class Quiz extends Model implements TranslatableContract
     public function getUserCertificate($user , $quiz_result)
     {
         if (!empty($user) and !empty($quiz_result)) {
-            return Certificate::where('quiz_id' , $this->id)
-                ->where('student_id' , $user->id)
-                ->where('quiz_result_id' , $quiz_result->id)
-                ->first();
+            return Certificate::where('quiz_id' , $this->id)->where('student_id' , $user->id)->where('quiz_result_id' , $quiz_result->id)->first();
         }
 
         return null;

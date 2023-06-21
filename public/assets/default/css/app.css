@@ -20290,7 +20290,7 @@ Lms Subscription Form Style Start
     justify-content:center;
     background: var(--primary);
     border-radius: 50px;
-        padding: 10px;
+    padding: 2px;
 }
 .lms-form-wrapper .lms-radio-btn-group li {
     list-style: none;
@@ -20307,7 +20307,7 @@ Lms Subscription Form Style Start
     border-radius: 20px;
     padding-left: 50px;
 }
-.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 15px;}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 10px;}
 .lms-subscription-form.shape {
     position: relative;
     width: 100%;
@@ -20332,7 +20332,8 @@ Lms Subscription Form Style Start
     content: "\2713";
     position: absolute;
     left: 0;
-    top:11px;
+    top:50%;
+    margin-top: -12px;
     font-size: 14px;
     color: #000;
     width: 24px;
@@ -24565,12 +24566,12 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
-.membership-sub-header { position: relative;}
+.membership-sub-header { position: relative; overflow: hidden; background: url(../../default/svgs/bg-doted.svg) top left;}
 /* .membership-sub-header:before,
 .membership-sub-header:after{position: absolute; left: -30px; top: -50px; height: 180px; width: 180px; content: ""; border-radius: 30px; background-image: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(30,183,89,0.2)); transform: rotate(45deg); box-shadow: 0 5px 0 5px rgba(0,0,0,0.03); -webkit-animation: bounce 3s infinite ease-in-out;
     -o-animation: bounce 3s infinite ease-in-out;
-    -ms-animation: bounce 3s infinite ease-in-out; 
-    -moz-animation: bounce 3s infinite ease-in-out; 
+    -ms-animation: bounce 3s infinite ease-in-out;
+    -moz-animation: bounce 3s infinite ease-in-out;
     animation: bounce 3s infinite ease-in-out;}
 .membership-sub-header:after {left: auto; right: -30px; top:auto; bottom: -50px;}
 @-webkit-keyframes bounce {
@@ -24585,14 +24586,17 @@ Lms Choose Membership Model Style Start
 } */
 .membership-sub-header:before,
 .membership-sub-header:after {
-    background: url(../../default/svgs/shape.svg);
-    position: absolute; 
-    left: 0; top: 0; 
-    height: 180px; 
-    width: 180px; 
+    background: url(../../default/svgs/membership-head-shape.svg) no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: -80px;
+    top: -100px;
+    height: 400px;
+    width: 400px;
     content: "";
+    opacity: 0.8;
 }
-.membership-sub-header:after {left: auto; right: 0; top:auto; bottom: 0;}
+.membership-sub-header:after {left: auto; right: -80px; top: auto; bottom: -100px; transform: scale(-1);}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -24762,13 +24766,18 @@ Sats Listing Style End
 /*************************************
  Reward page  Style Start
 *************************************/
+.products-sub-header .btn-primary {color: #ffff;background: #5e00d7; border: 0;box-shadow: none;}
+.products-sub-header .btn-outline-primary{border-color:#5e00d7; color:#5e00d7;}
+.products-sub-header .btn-outline-primary:hover{border-color:transparent; color:#fff;background: #5e00d7;}
 .reward-box {
     background: #fff;
     border-radius: 34px;
     padding: 22px;
     min-height: 170px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
 }
-.reward-section {background-image: linear-gradient(to left, #f1eff7, #f1eff7, #f1eff7, #edecf74a, #edecf74a); position: relative;}
+.reward-section {background:#f2f0f7; position: relative;}
 .reward-section:before {
     content: "";
     position: absolute;
@@ -24791,8 +24800,8 @@ Sats Listing Style End
     z-index: 2;
     height: 70px;
 }
-.reward-holder .row {margin: 0 -5px;}
-.reward-holder [class*='col-']{padding: 0 5px}
+.reward-holder .row {margin: 0 -8px;}
+.reward-holder [class*='col-']{padding: 0 8px}
 .reward-box .img-holder figure{margin: 0;}
 .reward-box .img-holder ~ .text-holder {margin-left: 25px;}
 .reward-box .text-holder p{margin-bottom: 0; font-size: 16px;}

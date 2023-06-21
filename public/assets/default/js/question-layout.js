@@ -108,7 +108,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
         data: {
             "question_id": question_id,
             "question_data": question_data,
-            "qresult_id": qresult_id,s
+            "qresult_id": qresult_id,
             "qattempt_id": qattempt_id,
             "time_consumed": time_consumed
         },
@@ -343,7 +343,6 @@ function sort_init() {
 }
 
 
-
 function init_question_functions() {
 
     //sort_init();
@@ -408,6 +407,9 @@ function init_question_functions() {
             }
         });
     });
+
+
+
 
 
 }

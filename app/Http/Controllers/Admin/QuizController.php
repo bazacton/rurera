@@ -288,6 +288,7 @@ class QuizController extends Controller
         );
 
         $quiz = Quiz::create([
+            'quiz_slug'                  => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] :Quiz::makeSlug($data['title']) ,
             'webinar_id'                  => isset($webinar->id) ? $webinar->id : 0 ,
             'chapter_id'                  => !empty($chapter) ? $chapter->id : null ,
             'creator_id'                  => isset($webinar->creator_id) ? $webinar->creator_id : $user->id ,
@@ -303,7 +304,10 @@ class QuizController extends Controller
             'created_at'                  => time() ,
             'quiz_settings'               => json_encode($quiz_settings) ,
             'mastery_points'              => isset($data['mastery_points']) ? $data['mastery_points'] : 0 ,
-            'show_all_questions'      => isset($data['show_all_questions']) ? $data['show_all_questions'] : 0 ,
+            'show_all_questions'        => isset($data['show_all_questions']) ? $data['show_all_questions'] : 0 ,
+            'sub_title'                     => isset($data['sub_title']) ? $data['sub_title'] : '' ,
+            'quiz_image'                 => isset($data['quiz_image']) ? $data['quiz_image'] : '' ,
+            'quiz_pdf'                  => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '' ,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -546,6 +550,7 @@ class QuizController extends Controller
             //'webinar_id' => !empty($webinar) ? $webinar->id : null,
             //'chapter_id' => !empty($chapter) ? $chapter->id : null,
             //'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
+            'quiz_slug'       => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] :Quiz::makeSlug($data['title']) ,
             'attempt'        => 100 ,
             'pass_mark'      => isset($data['pass_mark']) ? $data['pass_mark'] : 1 ,
             'time'           => 20 ,
@@ -556,6 +561,9 @@ class QuizController extends Controller
             'quiz_settings'  => json_encode($quiz_settings) ,
             'mastery_points' => $mastery_points ,
             'show_all_questions'      => isset($data['show_all_questions']) ? $data['show_all_questions'] : 0 ,
+            'sub_title'                     => isset($data['sub_title']) ? $data['sub_title'] : '' ,
+            'quiz_image'                 => isset($data['quiz_image']) ? $data['quiz_image'] : '' ,
+            'quiz_pdf'                  => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '' ,
         ]);
 
         if (!empty($quiz)) {

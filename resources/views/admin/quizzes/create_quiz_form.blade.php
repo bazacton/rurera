@@ -106,7 +106,7 @@
                                 <i class="fa fa-upload"></i>
                             </button>
                         </div>
-                        <input type="text" name="quiz_image" id="quiz_image"
+                        <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_image]" id="quiz_image"
                                value="{{ !empty($quiz) ? $quiz->quiz_image : old('quiz_image') }}"
                                class="form-control @error('quiz_image')  is-invalid @enderror"/>
                         <div class="input-group-append">
@@ -115,6 +115,27 @@
                             </button>
                         </div>
                         @error('quiz_image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label">Quiz PDF</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="input-group-text admin-file-manager"
+                                    data-input="quiz_pdf"
+                                    data-preview="holder">
+                                <i class="fa fa-upload"></i>
+                            </button>
+                        </div>
+                        <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_pdf]" id="quiz_pdf"
+                               value="{{ !empty($quiz) ? $quiz->quiz_pdf : old('quiz_pdf') }}"
+                               class="form-control @error('quiz_pdf')  is-invalid @enderror"/>
+                        @error('quiz_pdf')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -144,6 +165,8 @@
                                placeholder=""/>
                         <div class="invalid-feedback"></div>
                     </div>
+
+
                 </div>
 
 
