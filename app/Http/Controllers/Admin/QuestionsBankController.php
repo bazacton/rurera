@@ -517,6 +517,7 @@ class QuestionsBankController extends Controller
             'question_status'           => (isset($questionData['question_status']) && $questionData['question_status'] != '') ? $questionData['question_status'] : 'Draft' ,
             'comments_for_reviewer'     => (isset($questionData['comments_for_reviewer']) && $questionData['comments_for_reviewer'] != '') ? $questionData['comments_for_reviewer'] : '',
             'search_tags'              => $search_tags,
+            'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -668,6 +669,7 @@ class QuestionsBankController extends Controller
             'question_status'           => (isset($questionData['question_status']) && $questionData['question_status'] != '') ? $questionData['question_status'] : 'Draft' ,
             'comments_for_reviewer'     => (isset($questionData['comments_for_reviewer']) && $questionData['comments_for_reviewer'] != '') ? $questionData['comments_for_reviewer'] : '',
             'search_tags'              => $search_tags,
+            'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
         ]);
 
         if (!empty($quizQuestion)) {

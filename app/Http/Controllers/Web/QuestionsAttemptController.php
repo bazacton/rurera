@@ -135,6 +135,7 @@ class QuestionsAttemptController extends Controller
                                     'created_at'       => time(),
                                     'parent_type_id'   => $quizAttempt->parent_type_id,
                                     'quiz_result_type' => $quizAttempt->attempt_type,
+                                    'review_required' => $questionObj->review_required,
                                 ]);
 
                                 break;
@@ -287,6 +288,9 @@ class QuestionsAttemptController extends Controller
         $QuizzesResult = QuizzesResult::find($QuizzResultQuestions->quiz_result_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
+        $review_required = $questionObj->review_required;
+        $review_required = ( $review_required == 1)? true : false;
+
         $attempt_type = $quizAttempt->attempt_type;
 
 
@@ -338,6 +342,9 @@ class QuestionsAttemptController extends Controller
         } else {
             $question_answer_status = 'correct';
         }
+
+        $question_answer_status = ($review_required == true)? 'in_review' : $question_answer_status;
+
         $QuizzResultQuestions->update([
             'status'               => $question_answer_status,
             'user_answer'          => json_encode($user_input_array),
@@ -567,6 +574,9 @@ class QuestionsAttemptController extends Controller
     public function get_result_data($parent_id, $q_result_id = 0)
     {
         $user = auth()->user();
+        if( !isset( $user->id)){
+            return array();
+        }
 
         $userQuizDone = QuizzesResult::where('parent_type_id', $parent_id)->with([
             'attempts' => function ($query) {

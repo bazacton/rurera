@@ -212,6 +212,7 @@ function leform_save(_object, question_status) {
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
+    var review_required = ($('[name=review_required]').prop('checked'))? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
 
     var new_glossaries = $(".new_glossaries")
@@ -252,6 +253,7 @@ function leform_save(_object, question_status) {
         "question_average_time": question_average_time,
         "glossary_ids": glossary_ids,
         "difficulty_level": difficulty_level,
+        "review_required": review_required,
         "action": "leform-form-save",
         "form-id": jQuery("#leform-id").val(),
         "form-options": leform_encode64(JSON.stringify(leform_form_options)),

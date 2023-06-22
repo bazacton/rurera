@@ -200,9 +200,9 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
 
                 thisObj.closest('.questions-data-block').find('.question-fields').hide();
-                thisObj.closest('.questions-data-block').find('.correct-appriciate').html(appricate_word);
-                thisObj.closest('.questions-data-block').find('.correct-appriciate').addClass(appricate_color);
-                thisObj.closest('.questions-data-block').find('.correct-appriciate').show(300).delay(2000).hide(300);
+                thisObj.closest('.question-area').find('.correct-appriciate').html(appricate_word);
+                thisObj.closest('.question-area').find('.correct-appriciate').addClass(appricate_color);
+                thisObj.closest('.question-area').find('.correct-appriciate').show(300).delay(2000).hide(300);
 
                 var question_response_layout = return_data.question_response_layout;
                 if (question_response_layout != '') {
@@ -211,7 +211,11 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     $(".question-step.question-step-" + next_question_no).css({display: "block"}).show(3000).animate({opacity: 1});
 
                     var question_response_layout = return_data.question_response_layout;
-                    $(".question-area-block").html(question_response_layout);
+                    var messageInterval = setTimeout(function(){
+                            $(".question-area-block").html(question_response_layout);
+                            clearInterval(messageInterval);
+                    },2000);
+
 
                     var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
                     $(".question-step").attr('data-start_time', total_elapsed_time);

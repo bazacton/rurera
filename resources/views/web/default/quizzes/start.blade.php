@@ -91,7 +91,7 @@ $rand_id = rand(99,9999);
 
                                     <tr class="odd">
                                         <td>{{$attempt_count}}</td>
-                                        <td>2008-11-28 2:30pm</td>
+                                        <td>{{ dateTimeFormat($resultObj->created_at, 'j M Y H:iA') }}</td>
                                         <td>{{$resultObj->time_consumed}} / {{$resultObj->average_time}}</td>
                                         <td>{{$resultObj->attempted}} / {{$resultObj->total_questions}}</td>
                                         <td>{{$resultObj->correct}}</td>

@@ -452,6 +452,20 @@ $rand_id = rand(999,99999);
                                 </div>
                             </div>
 
+                            <div class="col-12">
+                                <div class="form-group custom-switches-stacked">
+                                    <label class="custom-switch pl-0">
+                                        <input type="hidden" name="review_required" value="disable">
+                                        <input type="checkbox"
+                                               name="review_required"
+                                               id="review_required" value="1"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer"
+                                               for="review_required">Review Required</label>
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-12 col-md-12">

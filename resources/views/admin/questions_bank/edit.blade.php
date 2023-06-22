@@ -22,12 +22,14 @@ $rand_id = rand(999,99999);
     .image-field, .image-field-box {
         width: fit-content;
     }
-    .image-field img, .containment-wrapper{
-            position:relative !important;
-        }
-    .image-field-box{
-                position:absolute !important;
-            }
+
+    .image-field img, .containment-wrapper {
+        position: relative !important;
+    }
+
+    .image-field-box {
+        position: absolute !important;
+    }
 </style>
 @endpush
 
@@ -66,13 +68,13 @@ $rand_id = rand(999,99999);
                                                         <ul class="leform-pages-bar-items hide">
                                                             <li class="leform-pages-bar-item" data-id="1"
                                                                 data-name="Page"><label
-                                                                    onclick="return leform_pages_activate(this);">Page</label><span><a
-                                                                        href="#" data-type="page"
-                                                                        onclick="return leform_properties_open(this);"><i
-                                                                            class="fas fa-cog"></i></a><a href="#"
-                                                                                                          class="leform-pages-bar-item-delete leform-pages-bar-item-delete-disabled"
-                                                                                                          onclick="return leform_pages_delete(this);"><i
-                                                                            class="fas fa-trash-alt"></i></a></span>
+                                                                        onclick="return leform_pages_activate(this);">Page</label><span><a
+                                                                            href="#" data-type="page"
+                                                                            onclick="return leform_properties_open(this);"><i
+                                                                                class="fas fa-cog"></i></a><a href="#"
+                                                                                                              class="leform-pages-bar-item-delete leform-pages-bar-item-delete-disabled"
+                                                                                                              onclick="return leform_pages_delete(this);"><i
+                                                                                class="fas fa-trash-alt"></i></a></span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -85,9 +87,9 @@ $rand_id = rand(999,99999);
                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
                                                                 class="leform-toolbar-list-options"
                                                                 data-type="' . esc_html($key) . '" data-option="2"><a
-                                                                    href="#"
-                                                                    title="' . esc_html($value['title']) . '"><i
-                                                                        class="' . esc_html($value['icon']) . '"></i></a>
+                                                                        href="#"
+                                                                        title="' . esc_html($value['title']) . '"><i
+                                                                            class="' . esc_html($value['icon']) . '"></i></a>
                                                                 <ul class="' . esc_html($key) . '">';
                                                                     foreach ($value['options'] as $option_key =>
                                                                     $option_value) {
@@ -108,7 +110,7 @@ $rand_id = rand(999,99999);
                                                             <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
                                                                 data-type="' . esc_html($key) . '"><a href="#"
                                                                                                       title="' . esc_html($value['title']) . '"><i
-                                                                        class="' . esc_html($value['icon']) . '"></i></a>
+                                                                            class="' . esc_html($value['icon']) . '"></i></a>
                                                             </li>
                                                             ';
                                                             }
@@ -143,72 +145,81 @@ $rand_id = rand(999,99999);
                                                     <div class="leform-fa-selector-header">
                                                         <a href="#" title="Close"
                                                            onclick="return leform_fa_selector_close();"><i
-                                                                class="fas fa-times"></i></a>
+                                                                    class="fas fa-times"></i></a>
                                                         <input type="text" placeholder="Search...">
                                                     </div>
                                                     <div class="leform-fa-selector-content">
                                                         <span title="No icon" onclick="leform_fa_selector_set(this);"><i
-                                                                class=""></i></span><span title="Star"
-                                                                                          onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-star"></i></span><span
-                                                            title="Star O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-star-o"></i></span><span
-                                                            title="Check" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-check"></i></span><span
-                                                            title="Close" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-close"></i></span><span
-                                                            title="Lock" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-lock"></i></span><span
-                                                            title="Picture O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-picture-o"></i></span><span
-                                                            title="Upload" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-upload"></i></span><span
-                                                            title="Download" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-download"></i></span><span
-                                                            title="Calendar" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-calendar"></i></span><span
-                                                            title="Clock O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-clock-o"></i></span><span
-                                                            title="Chevron Left"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-chevron-left"></i></span><span
-                                                            title="Chevron Right"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-chevron-right"></i></span><span
-                                                            title="Phone" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-phone"></i></span><span
-                                                            title="Envelope" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-envelope"></i></span><span
-                                                            title="Envelope O"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-envelope-o"></i></span><span
-                                                            title="Pencil" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-pencil"></i></span><span
-                                                            title="Angle Double Left"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-angle-double-left"></i></span><span
-                                                            title="Angle Double Right"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-angle-double-right"></i></span><span
-                                                            title="Spinner" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-spinner"></i></span><span
-                                                            title="Smile O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-smile-o"></i></span><span
-                                                            title="Frown O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-frown-o"></i></span><span
-                                                            title="Meh O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-meh-o"></i></span><span
-                                                            title="Send" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-send"></i></span><span
-                                                            title="Send O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-send-o"></i></span><span
-                                                            title="User" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-user"></i></span><span
-                                                            title="User O" onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-user-o"></i></span><span
-                                                            title="Building O"
-                                                            onclick="leform_fa_selector_set(this);"><i
-                                                                class="leform-fa leform-fa-building-o"></i></span>
+                                                                    class=""></i></span><span title="Star"
+                                                                                              onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-star"></i></span><span
+                                                                title="Star O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-star-o"></i></span><span
+                                                                title="Check" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-check"></i></span><span
+                                                                title="Close" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-close"></i></span><span
+                                                                title="Lock" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-lock"></i></span><span
+                                                                title="Picture O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-picture-o"></i></span><span
+                                                                title="Upload"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-upload"></i></span><span
+                                                                title="Download"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-download"></i></span><span
+                                                                title="Calendar"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-calendar"></i></span><span
+                                                                title="Clock O" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-clock-o"></i></span><span
+                                                                title="Chevron Left"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-chevron-left"></i></span><span
+                                                                title="Chevron Right"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-chevron-right"></i></span><span
+                                                                title="Phone" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-phone"></i></span><span
+                                                                title="Envelope"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-envelope"></i></span><span
+                                                                title="Envelope O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-envelope-o"></i></span><span
+                                                                title="Pencil"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-pencil"></i></span><span
+                                                                title="Angle Double Left"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-angle-double-left"></i></span><span
+                                                                title="Angle Double Right"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-angle-double-right"></i></span><span
+                                                                title="Spinner" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-spinner"></i></span><span
+                                                                title="Smile O" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-smile-o"></i></span><span
+                                                                title="Frown O" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-frown-o"></i></span><span
+                                                                title="Meh O" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-meh-o"></i></span><span
+                                                                title="Send" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-send"></i></span><span
+                                                                title="Send O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-send-o"></i></span><span
+                                                                title="User" onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-user"></i></span><span
+                                                                title="User O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-user-o"></i></span><span
+                                                                title="Building O"
+                                                                onclick="leform_fa_selector_set(this);"><i
+                                                                    class="leform-fa leform-fa-building-o"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,7 +232,7 @@ $rand_id = rand(999,99999);
                                                     <div class="leform-dialog-title">
                                                         <a href="#" title="Close"
                                                            onclick="return leform_dialog_close();"><i
-                                                                class="fas fa-times"></i></a>
+                                                                    class="fas fa-times"></i></a>
                                                         <h3><i class="fas fa-cog"></i><label></label></h3>
                                                     </div>
                                                     <div class="leform-dialog-content">
@@ -231,12 +242,12 @@ $rand_id = rand(999,99999);
                                                     <div class="leform-dialog-buttons">
                                                         <a class="leform-dialog-button leform-dialog-button-ok" href="#"
                                                            onclick="return false;"><i
-                                                                class="fas fa-check"></i><label></label></a>
+                                                                    class="fas fa-check"></i><label></label></a>
                                                         <a class="leform-dialog-button leform-dialog-button-cancel"
                                                            href="#" onclick="return false;"><i class="fas fa-times"></i><label></label></a>
                                                     </div>
                                                     <div class="leform-dialog-loading"><i
-                                                            class="fas fa-spinner fa-spin"></i></div>
+                                                                class="fas fa-spinner fa-spin"></i></div>
                                                 </div>
                                             </div>
                                             <input type="hidden" id="leform-id" value="3"/>
@@ -373,7 +384,7 @@ $rand_id = rand(999,99999);
                                             <div class="leform-admin-popup-title">
                                                 <a href="#" title="Close"
                                                    onclick="return leform_properties_close();"><i
-                                                        class="fas fa-times"></i></a>
+                                                            class="fas fa-times"></i></a>
                                                 <h3><i class="fas fa-cog"></i> Element Properties</h3>
                                             </div>
                                             <div class="leform-admin-popup-content">
@@ -386,7 +397,7 @@ $rand_id = rand(999,99999);
                                                         Details</label></a>
                                             </div>
                                             <div class="leform-admin-popup-loading"><i
-                                                    class="fas fa-spinner fa-spin"></i></div>
+                                                        class="fas fa-spinner fa-spin"></i></div>
                                         </div>
                                     </div>
 
@@ -404,14 +415,16 @@ $rand_id = rand(999,99999);
 
 
                                             <li class="lms-card-list">
-                                                <div class="lms-card-icons"><i data-feather="arrow-right-circle" width="20"
+                                                <div class="lms-card-icons"><i data-feather="arrow-right-circle"
+                                                                               width="20"
                                                                                height="20"
                                                                                class=""></i></div>
                                                 <div class="lms-card-info">
                                                     <h5>{{$logObj->user->full_name}} @ <b>{{ dateTimeFormat
                                                             ($logObj->action_at, 'j M y | H:i')
-                                                            }} </b><span><i data-feather="arrow-right" width="20" height="20"
-                                                                        class=""></i></span>
+                                                            }} </b><span><i data-feather="arrow-right" width="20"
+                                                                            height="20"
+                                                                            class=""></i></span>
                                                     </h5>
                                                     <p>{{$logObj->action_type}}</p>
                                                     <p>{!! $logObj->log_data !!}</p>
@@ -424,7 +437,8 @@ $rand_id = rand(999,99999);
                                                     if(!empty($log_storred_data)){
                                                     $log_storred_data['Solution'] = $log_storred_data['Solution'].'
                                                     ('.$log_storred_data['Solution Label'].')';
-                                                    $log_storred_data['Difficulty Level'] = $log_storred_data['Difficulty
+                                                    $log_storred_data['Difficulty Level'] =
+                                                    $log_storred_data['Difficulty
                                                     Level'].'
                                                     ('.$log_storred_data['Difficulty Level Label'].')';
                                                     unset($log_storred_data['Solution Label']);
@@ -449,8 +463,8 @@ $rand_id = rand(999,99999);
                                             @endif
                                         </ul>
                                         <div class="text-center mt-4"><a class="lms-card-btn" href="#">View More <i
-                                                    data-feather="arrow-right"
-                                                    width="20" height="20" class=""></i></a></div>
+                                                        data-feather="arrow-right"
+                                                        width="20" height="20" class=""></i></a></div>
                                     </div>
                                 </div>
                             </div>
@@ -531,6 +545,24 @@ $rand_id = rand(999,99999);
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-12">
+                                <div class="form-group custom-switches-stacked">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox"
+                                               name="review_required"
+                                               id="review_required" value="1" {{
+                                               (!empty($questionObj) and $questionObj->review_required == '1') ?
+                                        'checked="checked"' : ''
+                                        }} class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer"
+                                               for="review_required">Review Required</label>
+                                    </label>
+                                </div>
+                            </div>
+
+
                             @if(auth()->user()->isReviewer())
                             @if($questionObj->question_status == 'Submit for review' || $questionObj->question_status ==
                             'On hold')

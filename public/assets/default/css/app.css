@@ -24409,7 +24409,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
 .membership-sub-header { position: relative; overflow: hidden;}
 .membership-sub-header:before,
-.membership-sub-header:after {
+/* .membership-sub-header:after {
     background: url(../../default/svgs/membership-head-shape.svg) no-repeat;
     background-size: contain;
     position: absolute;
@@ -24420,7 +24420,7 @@ Lms Choose Membership Model Style Start
     content: "";
     opacity: 0.8;
 }
-.membership-sub-header:after {left: auto; right: -80px; top: auto; bottom: -100px; transform: scale(-1);}
+.membership-sub-header:after {left: auto; right: -80px; top: auto; bottom: -100px; transform: scale(-1);} */
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -24460,7 +24460,7 @@ Sats Listing Style Start
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 .sats-listing-card .img-holder {
     margin-bottom: 15px;
@@ -24517,6 +24517,13 @@ Sats Listing Style Start
 .sats-listing-card .img-holder figure > a {
     display: block;
 }
+.waiting {
+    background-color: #fdfd9b;
+    color: #222;
+}
+.passed {
+    background-color: #7eb282;
+}
 .sats-listing-card .img-holder figcaption {
     position: absolute;
     top: 0;
@@ -24568,7 +24575,7 @@ Sats Listing Style End
     margin-bottom: 16px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
 }
-.reward-section {background:#f2f0f7; position: relative;}
+.reward-section {background:#3d358b; position: relative;}
 .reward-section:before {
     content: "";
     position: absolute;
@@ -24722,6 +24729,116 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {
 .dataTables_wrapper .paginate_button.next {
     border-radius: 0 5px 5px 0;
 }
+/*************************************
+  Processs Section Style Start
+*************************************/
+.process-section .process-card {
+    position: relative;
+    padding-bottom: 120px;
+    padding-top: 120px;
+}
+.process-section .process-card .post-title{font-size: 20px;}
+.process-section .process-card p {font-size: 24px;line-height: 30px;}
+.process-card.process-one{padding-top: 0;padding-bottom: 0;}
+.process-card.process-one:before {
+    content: "";
+    position: absolute;
+    left: 29%;
+    bottom: 0px;
+    border: 5px dashed #cac8cc;
+    width: 80%;
+    height: 150px;
+    border-bottom-right-radius: 100px;
+    border-top: 0;
+    border-left: 0;
+    z-index: 0;
+}
+.process-card.process-card.process-one:after {
+    content: "";
+    position: absolute;
+    right: -299px;
+    top: 14%;
+    width: 226px;
+    height: 179px;
+    border-radius: 50% 0/55% 0;
+    border-top: 5px dashed #cac8cc;
+    border-left: 5px dashed #cac8cc;
+}
+.curved-shapes-holder.right:before {
+    content: "";
+    position: absolute;
+    left: 22%;
+    top: 1px;
+    width: 150px;
+    height: 150px;
+    border-top: 5px dashed #cac8cc;
+    border-left: 5px dashed #cac8cc;
+    border-top-left-radius: 59%;
+}
+.process-card.process-two:after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    width: 200px;
+    height: 120px;
+    border-bottom: 5px dashed #cac8cc;
+    border-left: 5px dashed #cac8cc;
+    border-bottom-left-radius: 115px;
+}
+.process-card.process-three:after {
+    content: "";
+    position: absolute;
+    right: 181px;
+    bottom: -6px;
+    width: 41%;
+    height: 120px;
+    border-bottom: 5px dashed #cac8cc;
+    border-right: 5px dashed #cac8cc;
+    border-bottom-right-radius: 115px;
+}
+.process-card.process-two:before,
+.process-card.process-foure:before{
+    content: "";
+    position: absolute;
+    left: 15%;
+    top: -5px;
+    width: 200px;
+    height: 120px;
+    border-top: 5px dashed #cac8cc;
+    border-left: 5px dashed #cac8cc;
+    border-top-left-radius: 115px;
+}
+.process-card.process-three:before{
+    content: "";
+    position: absolute;
+    left: 40%;
+    top: -5px;
+    width: 45%;
+    height: 120px;
+    border-top: 5px dashed #cac8cc;
+    border-right: 5px dashed #cac8cc;
+    border-top-right-radius: 115px;
+}
+.process-card.process-foure:after{
+    content: "";
+    position: absolute;
+    left: 17%;
+    border: 0;
+    width: 45%;
+    height: 100px;
+    border-left: 5px dashed #cac8cc;
+}
+.process-card.process-foure:before{left: 17%;top: 1px;}
+.process-section .img-holder figure {
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+.process-section .img-holder figure img{border-radius: 10px;}
+.process-section .img-holder{position: relative;}
+/*************************************
+  Processs Section Style End
+*************************************/
 /*************************************
 Lms Responsive Style Start
 *************************************/
@@ -25164,24 +25281,23 @@ Lms Responsive Style Start
 Lms Responsive Style End
 *************************************/
 
-.card {
-    float: left;
-    width: 100%;
-    height: 175px; 
-    background: #fff;
-    box-shadow: 0 0px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-  }
-  .card.inverted {
-    width: 175px;
-    height: 175px;
-    margin: 1em;
-    background: #445963;
-    box-shadow: 0 0px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-  }
-  
-  .gridify.tiny {
-    background-image: 
-      linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px),
-      linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
-      background-size: 100% 12px, 12px 100%;
-  }
+.text-scribble {
+    display: inline-block;
+    padding: 0.125rem;
+    z-index: 1;
+    position: relative;
+}
+.text-scribble:before {
+    background-image: url(../../default/svgs/scribble.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: -200%;
+    content: "";
+    display: block;
+    height: 265px;
+    left: -58px;
+    position: absolute;
+    right: 0;
+    width: 265px;
+    z-index: -1;
+}

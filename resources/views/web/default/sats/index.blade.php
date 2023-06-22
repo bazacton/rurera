@@ -374,6 +374,8 @@
                 $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
                 $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
                 $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
+                $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
+                $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
 
                 @endphp
                 <div class="col-12 col-lg-3 col-md-6">
@@ -391,9 +393,7 @@
                         <div class="text-holder">
                             <span>Math Arithmatic</span>
                             <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}</a></h4>
-                            <a href="/sats/{{$satObj->id}}/start" class="practice-btn {{$current_status}}">{{($in_progress == true)? 'Resume' :
-                                'Practice
-                                Now'}}</a>
+                            <a href="/sats/{{$satObj->id}}/start" class="practice-btn {{$current_status}}">{{$button_label}}</a>
                         </div>
                     </div>
                 </div>

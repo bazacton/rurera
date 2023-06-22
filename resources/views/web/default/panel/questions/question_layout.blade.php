@@ -21,14 +21,17 @@
 
 @php
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
+$search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
+$is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
 @endphp
 
 <div class="question-area">
+    <div class="correct-appriciate" style="display:none"></div>
     <div class="question-step question-step-{{ $question->id }}" data-elapsed="0" data-qattempt="{{$quizAttempt->id}}"
          data-start_time="0" data-qresult="{{$newQuestionResult->id}}"
          data-quiz_result_id="{{$quizAttempt->quiz_result_id}}">
         <div class="question-layout-block">
-            <div class="correct-appriciate" style="display:none"></div>
+
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
                     @php $already_flagged = ($quizResultObj->flagged_questions != '') ? json_decode($quizResultObj->flagged_questions) : array();
@@ -55,6 +58,12 @@ $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashe
                             {!! $question_layout !!}
                         </div>
                         <div class="form-btn">
+                            @if( $question->review_required == 1)
+                                <div class="question-label-tag">Review Required</div>
+                            @endif
+                            @if( $is_development == true)
+                                <div class="question-label-tag">Developer Review Required</div>
+                            @endif
                             <input class="question-submit-btn submit-btn" type="button" data-question_no="1"
                                    value="Submit">
                         </div>
@@ -66,7 +75,7 @@ $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashe
     </div>
     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
         <a href="javascript:;" class="review-btn">
-            Review
+            Finish
             <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
