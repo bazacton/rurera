@@ -43,6 +43,7 @@ class SatsController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);
 
+        $started_already = false;
         if( $started_already == true){
             $QuizController = new QuizController();
             return $QuizController->start($request,$id);

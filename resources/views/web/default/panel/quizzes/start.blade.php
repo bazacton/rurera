@@ -179,6 +179,7 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 <script>
+    init_question_functions();
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;

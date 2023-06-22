@@ -33,7 +33,7 @@ $rand_id = rand(99,9999);
                         </svg>
                     </button>
                     <div
-                        class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                            class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
@@ -44,7 +44,177 @@ $rand_id = rand(99,9999);
 
                     </div>
                 </div>
+
+                <section class="lms-data-table mt-80">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped table-bordered dataTable" style="width: 100%;"
+                                       aria-describedby="example_info">
+                                    <thead>
+                                    <tr>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Date: activate to sort column descending">Date
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Time: activate to sort column ascending">Time
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Questions: activate to sort column ascending">Questions
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Correct: activate to sort column ascending">Correct
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Incorrect: activate to sort column ascending">Incorrect
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Unanswered: activate to sort column ascending">Unanswered
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Total: activate to sort column ascending">Total
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Percent: activate to sort column ascending">Percent
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                            aria-label="Quiz: activate to sort column ascending">Quiz Status
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="odd">
+                                        <td class="sorting_1">2008-11-28 2:30pm</td>
+                                        <td>2.30</td>
+                                        <td>20</td>
+                                        <td>5</td>
+                                        <td>12</td>
+                                        <td>8</td>
+                                        <td>5</td>
+                                        <td>25%</td>
+                                        <td>Resume</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">2009-11-28 2:30pm</td>
+                                        <td>1.30</td>
+                                        <td>24</td>
+                                        <td>7</td>
+                                        <td>15</td>
+                                        <td>11</td>
+                                        <td>6</td>
+                                        <td>27%</td>
+                                        <td>pending</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">2001-11-28 2:30pm</td>
+                                        <td>2.31</td>
+                                        <td>22</td>
+                                        <td>9</td>
+                                        <td>15</td>
+                                        <td>9</td>
+
+                                        <td>8</td>
+                                        <td>29%</td>
+                                        <td>Progress</td>
+                                    </tr>
+
+
+                                    <tr class="odd">
+                                        <td class="sorting_1">2009-11-28 2:30pm</td>
+                                        <td>1.30</td>
+                                        <td>24</td>
+                                        <td>6</td>
+                                        <td>15</td>
+                                        <td>11</td>
+
+                                        <td>6</td>
+                                        <td>27%</td>
+                                        <td>Resume</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">2001-11-28 2:30pm</td>
+                                        <td>2.31</td>
+                                        <td>22</td>
+                                        <td>12</td>
+                                        <td>15</td>
+                                        <td>9</td>
+
+                                        <td>8</td>
+                                        <td>29%</td>
+                                        <td>Resume Progress</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">2008-11-28 2:30pm</td>
+                                        <td>2.30</td>
+                                        <td>20</td>
+                                        <td>5</td>
+                                        <td>12</td>
+                                        <td>8</td>
+
+                                        <td>5</td>
+                                        <td>25%</td>
+                                        <td>Resume pending</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">2009-11-28 2:30pm</td>
+                                        <td>1.30</td>
+                                        <td>24</td>
+                                        <td>13</td>
+                                        <td>15</td>
+                                        <td>11</td>
+
+                                        <td>6</td>
+                                        <td>27%</td>
+                                        <td>Resume Progress</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <td class="sorting_1">2001-11-28 2:30pm</td>
+                                        <td>2.31</td>
+                                        <td>22</td>
+                                        <td>12</td>
+                                        <td>15</td>
+                                        <td>9</td>
+
+                                        <td>8</td>
+                                        <td>29%</td>
+                                        <td>Resume pending</td>
+                                    </tr>
+
+
+                                    <tr class="odd">
+                                        <td class="sorting_1">2009-11-28 2:30pm</td>
+                                        <td>1.30</td>
+                                        <td>24</td>
+                                        <td>4</td>
+                                        <td>15</td>
+                                        <td>11</td>
+
+                                        <td>6</td>
+                                        <td>27%</td>
+                                        <td>Resume Progress</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <td class="sorting_1">2001-11-28 2:30pm</td>
+                                        <td>2.31</td>
+                                        <td>22</td>
+                                        <td>7</td>
+                                        <td>15</td>
+                                        <td>9</td>
+                                        
+                                        <td>8</td>
+                                        <td>29%</td>
+                                        <td>pending</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+
+
         </div>
     </div>
 </div>

@@ -14,6 +14,8 @@
     <!-- General CSS File -->
     <script src="/assets/default/js/admin/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/assets/admin/vendor/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/default/vendors/data-table/dataTables.min.css"/>
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
@@ -97,6 +99,8 @@
 
 <script src="/assets/default/js/parts/main.min.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
+
 
 <script>
     @if(session()->has('registration_package_limited'))
@@ -110,6 +114,10 @@
     @endif
 
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
+
+    if(jQuery('.lms-data-table table').length > 0){
+        $('.lms-data-table table').DataTable();
+      }
 </script>
 </body>
 </html>
