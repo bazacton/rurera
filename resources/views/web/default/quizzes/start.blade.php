@@ -1,4 +1,4 @@
-@extends('web.default.layouts.app',['appFooter' => false, 'appHeader' => false])
+@extends('web.default.layouts.appstart',['appFooter' => false, 'appHeader' => false])
 @php
 $rand_id = rand(99,9999);
 @endphp

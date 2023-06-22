@@ -2679,7 +2679,7 @@ a.badge-gray200:focus {
     border-top: 1px solid #ececec
 }
 .table thead th {
-    vertical-align: bottom;
+    vertical-align: middle;
     border-bottom: 2px solid #ececec
 }
 .table tbody+tbody {
@@ -17805,7 +17805,9 @@ p {
 }
 .table td,
 .table th {
-    border-top: none !important
+    border-top: none !important;
+    text-align: center;
+    vertical-align: middle;
 }
 .table-actions.dropdown .dropdown-toggle:after {
     display: none
@@ -19410,22 +19412,9 @@ Lms Products Top Header Style Start
     color: var(--primary);
 }
 .products-top-header {
-    height: 315px;
+    height: 500px;
     padding-top: 6rem;
-    background: #d6d8df;
-}
-/* .products-top-header:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: .6;
-    background-color: #fff;
-} */
-.products-top-header.opacity-04:after {
-    opacity: .4
+    background: #fff;
 }
 /*********************************************
 Lms Products Top Header Style End
@@ -20228,179 +20217,31 @@ Lms Setup Progress Style End
 /**********************************
 Lms Subscription Form Style Start
 **********************************/
-.lms-setup-progress span {
-    margin-top: 0;
-}
-.lms-subscription-form img {
-    border-radius: 0;
-}
-.lms-subscription-form .lms-form-wrapper {
-    max-width: 980px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-.lms-subscription-form .lms-form-wrapper span {
-    margin-top: 0;
-}
+.lms-setup-progress span {margin-top: 0;}
+.lms-subscription-form img {border-radius: 0;}
+.lms-subscription-form .lms-form-wrapper {max-width: 980px; margin: 0 auto; position: relative; z-index: 1;}
+.lms-subscription-form .lms-form-wrapper span {margin-top: 0;}
 .lms-subscription-form .lms-form-wrapper br,
-.lms-form-wrapper .lms-radio-btn-group li br {
-    display: none;
-}
-.lms-subscription-form {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 32px;
-}
-.lms-subscription-form .input-group>.form-control {
-    flex: 0 0 50px;
-    height: 44px;;
-    border: 0;
-    text-align: center;
-    outline: none;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    padding: 6px;
-}
-.lms-subscription-form .form-control:focus {
-    background-color: #fff;
-    border-color: inherit;
-    outline: 0;
-    box-shadow: none;
-}
-.lms-subscription-form .lmd-form-title {
-    margin-bottom: 20px;
-    color: #fff;
-    font-size: 2.5rem;
-}
-.lms-payment-plan {
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.lms-payment-field {
-    margin-right: 52px;
-    width: 100%;
-    text-align: center;
-}
-.lms-form-wrapper .lms-radio-btn-group {
-    padding: 0;
-    margin: 0;
-    gap: 10px;
-    justify-content:center;
-    background: var(--primary);
-    border-radius: 50px;
-    padding: 2px;
-}
-.lms-form-wrapper .lms-radio-btn-group li {
-    list-style: none;
-    line-height: normal;
-    position: relative;
-    min-width:150px;
-}
-.lms-form-wrapper .lms-radio-btn-group li input[type=radio] {
-    display: none;
-}
-.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label{
-    color: #000;
-    background: #fff;
-    border-radius: 20px;
-    padding-left: 50px;
-}
+.lms-form-wrapper .lms-radio-btn-group li br {display: none;}
+.lms-subscription-form {display: flex; flex-wrap: wrap; padding-top: 32px;}
+.lms-subscription-form .input-group>.form-control {flex: 0 0 50px; height: 44px; border: 0; text-align: center; outline: none; font-size: 16px; font-weight: 600; letter-spacing: 1px; padding: 6px;}
+.lms-subscription-form .form-control:focus {background-color: #fff; border-color: inherit; outline: 0; box-shadow: none;}
+.lms-subscription-form .lmd-form-title {margin-bottom: 20px; color: #fff; font-size: 2.5rem;}
+.lms-payment-plan {flex-wrap: wrap; justify-content: center;}
+.lms-payment-field {margin-right: 52px; width: 100%; text-align: center;}
+.lms-form-wrapper .lms-radio-btn-group {margin: 0; gap: 0; border-radius: 50px; padding: 0; width: auto; box-shadow: 0 0 4px rgba(0,0,0,0.2); overflow: hidden;}
+.lms-form-wrapper .lms-radio-btn-group li {list-style: none; line-height: normal; position: relative; min-width:150px;}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio] {display: none;}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label{color: #000; background: #fff; border-radius: 20px; padding-left: 42px; justify-content: flex-start;}
 .lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 10px;}
-.lms-subscription-form.shape {
-    position: relative;
-    width: 100%;
-    background: var(--primary);
-    margin-top: 120px;
-    padding-bottom: 80px;
-}
-.lms-subscription-form.shape.shape:after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    content: "";
-    background: inherit;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform-origin: top left;
-    transform: skewY(-4deg);
-}
-.lms-form-wrapper .lms-radio-btn-group li .lms-label::before{
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top:50%;
-    margin-top: -12px;
-    font-size: 14px;
-    color: #000;
-    width: 24px;
-    height: 24px;
-    line-height: 21px;
-    border: 2px solid #000;
-    border-radius: 100%;
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition: 0.3s linear;
-        -o-transition: 0.3s linear;
-        transition: 0.3s linear;
-        font-weight: 600;
-            text-align: center;
-}
-.lms-form-wrapper .lms-radio-btn-group li .lms-label {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    box-sizing: border-box;
-    width: 100%;
-    height: 44px;
-    background-color:transparent;
-    cursor: pointer;
-    outline: 0;
-    font-size: 16px;
-    transition: all .3s;
-    position: relative;
-    color:#fff;
-    font-weight: 500;
-    margin-bottom: 0;
-    border-radius: 20px;
-    padding-left: 15px;
-        -webkit-transition: 0.3s linear;
-        -o-transition: 0.3s linear;
-        transition: 0.3s linear;
-}
-.lms-count-field .input-group {
-    position: relative;
-    display: flex;
-    width: 142px;
-    align-items: center;
-    border: 1px solid #d1d1d1;
-    border-radius: 6px;
-    outline: 0;
-    overflow: hidden;
-}
-.lms-count-field .input-group .btn-number {
-    width: 45px;
-    height: 44px;
-    border: 0;
-    outline: 0;
-    font-size: 26px;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .1s ease-in-out;
-    color: #3a3a3a;
-    box-sizing: border-box;
-    background-color: #fff;
-    font-weight: 500;
-}
-.lms-count-field .input-group .quantity-left-minus {
-    border-right: 1px solid #d1d1d1;
-    border-radius: 0;
-}
+.lms-subscription-form.shape {position: relative; width: 100%; background: var(--primary); margin-top: 120px; padding-bottom: 80px;}
+.lms-subscription-form.shape.shape:after {position: absolute; width: 100%; height: 100%; content: ""; background: inherit; top: 0; right: 0; bottom: 0; left: 0; transform-origin: top left; transform: skewY(-4deg);}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label:before{content: "\2713"; position: absolute; left: 0; top:50%; margin-top: -12px; font-size: 14px; color: #000; width: 24px; height: 24px; line-height: 21px; border: 2px solid #000; border-radius: 100%; opacity: 0; visibility: hidden; -webkit-transition: 0.3s linear; -o-transition: 0.3s linear; transition: 0.3s linear; font-weight: 600; text-align: center;}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label {display: flex; justify-content: left; align-items: center; box-sizing: border-box; width: 100%; height: 38px; background-color:var(--primary); cursor: pointer; outline: 0; font-size: 16px; transition: all .3s; position: relative; color:#fff; font-weight: 500; margin-bottom: 0; border-radius: 0; padding-left: 0; -webkit-transition: 0.3s linear; -o-transition: 0.3s linear; transition: 0.3s linear; justify-content: center;}
+.lms-form-wrapper .lms-radio-btn-group li:last-child .lms-label {border-radius: 0 20px 20px 0;}
+.lms-count-field .input-group {position: relative; display: flex; width: 142px; align-items: center; border: 1px solid #d1d1d1; border-radius: 6px; outline: 0; overflow: hidden;}
+.lms-count-field .input-group .btn-number {width: 45px; height: 44px; border: 0; outline: 0; font-size: 26px; padding: 0; display: inline-flex; align-items: center; justify-content: center; transition: all .1s ease-in-out; color: #3a3a3a; box-sizing: border-box; background-color: #fff; font-weight: 500;}
+.lms-count-field .input-group .quantity-left-minus {border-right: 1px solid #d1d1d1; border-radius: 0;}
 .lms-count-field .input-group .quantity-right-plus {
     border-left: 1px solid #d1d1d1;
     border-radius: 0;
@@ -24566,24 +24407,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
-.membership-sub-header { position: relative; overflow: hidden; background: url(../../default/svgs/bg-doted.svg) top left;}
-/* .membership-sub-header:before,
-.membership-sub-header:after{position: absolute; left: -30px; top: -50px; height: 180px; width: 180px; content: ""; border-radius: 30px; background-image: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(30,183,89,0.2)); transform: rotate(45deg); box-shadow: 0 5px 0 5px rgba(0,0,0,0.03); -webkit-animation: bounce 3s infinite ease-in-out;
-    -o-animation: bounce 3s infinite ease-in-out;
-    -ms-animation: bounce 3s infinite ease-in-out;
-    -moz-animation: bounce 3s infinite ease-in-out;
-    animation: bounce 3s infinite ease-in-out;}
-.membership-sub-header:after {left: auto; right: -30px; top:auto; bottom: -50px;}
-@-webkit-keyframes bounce {
-    0% { transform: translateY(-5px) rotate(45deg)  }
-    50% { transform: translateY(10px) rotate(45deg) }
-    100% { transform: translateY(-5px) rotate(45deg) }
-}
-@keyframes bounce {
-    0% { transform: translateY(-5px) rotate(45deg)  }
-    50% { transform: translateY(10px) rotate(45deg) }
-    100% { transform: translateY(-5px) rotate(45deg) }
-} */
+.membership-sub-header { position: relative; overflow: hidden;}
 .membership-sub-header:before,
 .membership-sub-header:after {
     background: url(../../default/svgs/membership-head-shape.svg) no-repeat;
@@ -24630,48 +24454,13 @@ Lms Newsletter Style Style End
  process Section Style End
 *************************************/
 /*************************************
- Gallery Fram Section  Style Start
-*************************************/
-.gallery-frame-section .row {
-    align-items: center;
-    justify-content: center;
-    margin: 0 -5px;
-}
-.gallery-frame {
-    width: 100%;
-    margin-bottom: 10px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.gallery-frame figure img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    position: initial;
-    box-shadow: 2px 2px 2px rgba(0,0,0, 0.4);
-    border-radius: 5px;
-}
-.gallery-frame-section .col-12 {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.gallery-frame-section {
-    position: absolute;
-    right: 0;
-    top: 50px;
-}
-/*************************************
- Gallery Fram Section  Style End
-*************************************/
-/*************************************
 Sats Listing Style Start
 *************************************/
 .sats-listing-card {
-    border: 1px solid #dfdfdf;
     border-radius: 10px;
     padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 .sats-listing-card .img-holder {
     margin-bottom: 15px;
@@ -24769,11 +24558,13 @@ Sats Listing Style End
 .products-sub-header .btn-primary {color: #ffff;background: #5e00d7; border: 0;box-shadow: none;}
 .products-sub-header .btn-outline-primary{border-color:#5e00d7; color:#5e00d7;}
 .products-sub-header .btn-outline-primary:hover{border-color:transparent; color:#fff;background: #5e00d7;}
+.products-sub-header .reward-program-section .reward-program-section-hero-card .reward-program-section-hero {left: 0;}
+.products-sub-header .reward-program-section .example-reward-card {right: 0;}
 .reward-box {
     background: #fff;
     border-radius: 34px;
     padding: 22px;
-    min-height: 170px;
+    min-height: 150px;
     margin-bottom: 16px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
 }
@@ -24806,9 +24597,6 @@ Sats Listing Style End
 .reward-box .img-holder ~ .text-holder {margin-left: 25px;}
 .reward-box .text-holder p{margin-bottom: 0; font-size: 16px;}
 .reward-box strong {display: block;color:var(--primary);}
-.categories-banner{background: url(img/category-banner.png) no-repeat;padding: 0 50px;background-size: 100% 100%;min-height: 210px;display: flex;align-items: center;width: 100%; margin-bottom: 30px;}
-.categories-banner .text-holder{margin-left: 100px;}
-.categories-banner .text-holder p{margin-bottom: 0;}
 .categories-list {margin: 0; padding: 0; list-style: none;}
 .categories-list li{line-height: normal;list-style: none;}
 .categories-list .categories-box {
@@ -24840,6 +24628,20 @@ Sats Listing Style End
     font-weight: 400;
 }
 .categories-list .categories-box .post-title{margin-bottom: 0;}
+.footer-banner .banner-holder {position: relative;}
+.education-icon-box li {display: inline-flex; position: absolute;}
+.education-icon-box {position: absolute;left: 50%;}
+.education-icon-box li:nth-child(2) {left: 10px;top: -42px;}
+.education-icon-box li:nth-child(1) figure { width: 80px;height: 80px;}
+.education-icon-box li:nth-child(1) {left: -70px;top: 14px;}
+.education-icon-box li figure {width: 100px;height: 100px;background:#fff8f0;border-radius: 100%;padding: 6px;box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);}
+.education-icon-box li:nth-child(3) {left: 0px;top: 69px;}
+.education-icon-box li:nth-child(4) {left: 166px;top: 40px;}
+.education-icon-box li:nth-child(5) {left: 100px;top: 45px;}
+.education-icon-box li:nth-child(5) figure {width: 50px;height: 50px;}
+.education-icon-box li:nth-child(4) figure {width: 100px;height: 100px;}
+.education-icon-box li:nth-child(6) {left: 120px;top: -70px;}
+.ads-rewards-banner{background: url(../../default/img/ads-rewards.png) no-repeat;box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);}
 /*************************************
  Reward page Style End
 *************************************/
@@ -24979,7 +24781,7 @@ Lms Responsive Style Start
         max-width: 100%;
     }
     .lms-form-wrapper .lms-radio-btn-group {
-        gap: 10px;
+        gap: 0;
         width: 100%;
         flex-wrap: wrap;
     }

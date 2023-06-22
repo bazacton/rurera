@@ -48,7 +48,8 @@ $(document).on('click', '.question-submit-btn', function (e) {
     var total_questions = thisObj.closest('.questions-data-block').attr('data-total_questions');
     var thisForm = $(this).closest('form');
     var question_id = $(this).closest('form').data('question_id');
-    var question_layout = thisForm.find('.question-layout').html();
+    var user_question_layout = thisForm.find('.question-layout').html();
+    var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
     $(this).closest('form').find('.editor-field').each(function () {
         $(this).removeClass('validate-error');
@@ -110,9 +111,12 @@ $(document).on('click', '.question-submit-btn', function (e) {
             "question_data": question_data,
             "qresult_id": qresult_id,
             "qattempt_id": qattempt_id,
+            "user_question_layout": user_question_layout,
             "time_consumed": time_consumed
         },
         success: function (return_data) {
+            var question_status_class = (return_data.incorrect_flag == true)? 'incorrect' : 'correct';
+            $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
 
                 var question_response_layout = return_data.question_response_layout;
@@ -346,7 +350,7 @@ function sort_init() {
 function init_question_functions() {
 
     //sort_init();
-    $(document).on('click', '.flag-question', function (e) {
+    $(document).on('click', '.flag-question.notflaged', function (e) {
         var question_id = $(this).attr('data-question_id');
         var qresult_id = $(this).attr('data-qresult_id');
 
@@ -357,13 +361,33 @@ function init_question_functions() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {"question_id": question_id, "qresult_id": qresult_id},
+            data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'flag'},
             success: function (return_data) {
                 $(".quiz-pagination li[data-question_id='" + question_id + "']").addClass('has-flag');
-                thisObj.remove();
+                thisObj.removeClass('notflaged');
+                thisObj.addClass('flaged');
             }
         });
     });
+
+    $(document).on('click', '.flag-question.flaged', function (e) {
+            var question_id = $(this).attr('data-question_id');
+            var qresult_id = $(this).attr('data-qresult_id');
+            var thisObj = $(this);
+            jQuery.ajax({
+                type: "POST",
+                url: '/question_attempt/flag_question',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'unflag'},
+                success: function (return_data) {
+                    $(".quiz-pagination li[data-question_id='" + question_id + "']").removeClass('has-flag');
+                    thisObj.removeClass('flaged');
+                    thisObj.addClass('notflaged');
+                }
+            });
+        });
 
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
         var question_id = $(this).attr('data-question_id');
@@ -400,23 +424,134 @@ function init_question_functions() {
             success: function (return_data) {
                 var question_response_layout = return_data.question_response_layout;
                 if (question_response_layout != '') {
-                    $(".question-area-block").html(question_response_layout);
-                    $(".quiz-pagination").remove();
-                    $(".right-content").remove();
+                    //$(".question-area-block").html(question_response_layout);
+                    $(".question-step").html(question_response_layout);
+
+                    //$(".quiz-pagination").remove();
+                    //$(".right-content").remove();
                 }
             }
         });
     });
 
 
-
-
-
 }
 
 
+function leform_random_string(_length) {
+    var length, text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    if (typeof _length == "undefined")
+        length = 16;
+    else
+        length = _length;
+    for (var i = 0; i < length; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
 
+function leform_utf8encode(string) {
+    string = string.replace(/\x0d\x0a/g, "\x0a");
+    var output = "";
+    for (var n = 0; n < string.length; n++) {
+        var c = string.charCodeAt(n);
+        if (c < 128) {
+            output += String.fromCharCode(c);
+        } else if ((c > 127) && (c < 2048)) {
+            output += String.fromCharCode((c >> 6) | 192);
+            output += String.fromCharCode((c & 63) | 128);
+        } else {
+            output += String.fromCharCode((c >> 12) | 224);
+            output += String.fromCharCode(((c >> 6) & 63) | 128);
+            output += String.fromCharCode((c & 63) | 128);
+        }
+    }
+    return output;
+}
 
+function leform_encode64(input) {
+    var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var output = "";
+    var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+    var i = 0;
+    input = leform_utf8encode(input);
+    while (i < input.length) {
+        chr1 = input.charCodeAt(i++);
+        chr2 = input.charCodeAt(i++);
+        chr3 = input.charCodeAt(i++);
+        enc1 = chr1 >> 2;
+        enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+        enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+        enc4 = chr3 & 63;
+        if (isNaN(chr2)) {
+            enc3 = enc4 = 64;
+        } else if (isNaN(chr3)) {
+            enc4 = 64;
+        }
+        output = output + keyString.charAt(enc1) + keyString.charAt(enc2) + keyString.charAt(enc3) + keyString.charAt(enc4);
+    }
+    return output;
+}
 
+function leform_utf8decode(input) {
+    var string = "";
+    var i = 0;
+    var c = 0, c1 = 0, c2 = 0;
+    while (i < input.length) {
+        c = input.charCodeAt(i);
+        if (c < 128) {
+            string += String.fromCharCode(c);
+            i++;
+        } else if ((c > 191) && (c < 224)) {
+            c2 = input.charCodeAt(i + 1);
+            string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+            i += 2;
+        } else {
+            c2 = input.charCodeAt(i + 1);
+            c3 = input.charCodeAt(i + 2);
+            string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+            i += 3;
+        }
+    }
+    return string;
+}
+
+function leform_decode64(input) {
+    var keyString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    var output = "";
+    var chr1, chr2, chr3;
+    var enc1, enc2, enc3, enc4;
+    var i = 0;
+    input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+    while (i < input.length) {
+        enc1 = keyString.indexOf(input.charAt(i++));
+        enc2 = keyString.indexOf(input.charAt(i++));
+        enc3 = keyString.indexOf(input.charAt(i++));
+        enc4 = keyString.indexOf(input.charAt(i++));
+        chr1 = (enc1 << 2) | (enc2 >> 4);
+        chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+        chr3 = ((enc3 & 3) << 6) | enc4;
+        output = output + String.fromCharCode(chr1);
+        if (enc3 != 64) {
+            output = output + String.fromCharCode(chr2);
+        }
+        if (enc4 != 64) {
+            output = output + String.fromCharCode(chr3);
+        }
+    }
+    output = leform_utf8decode(output);
+    return output;
+}
+
+function leform_esc_html__(_string) {
+    var string;
+    if (typeof leform_translations == typeof {} && leform_translations.hasOwnProperty(_string)) {
+        string = leform_translations[_string];
+        if (string.length == 0)
+            string = _string;
+    } else
+        string = _string;
+    return leform_escape_html(string);
+}
 
 

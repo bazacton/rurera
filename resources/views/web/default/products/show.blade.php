@@ -15,13 +15,13 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="lazyImage product-show-image-card position-relative">
-                    <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="main-s-image img-cover rounded-lg" loading="lazy" width="100%" height="auto">
+                    <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="main-s-image img-cover rounded-lg" loading="lazy" width="100%" height="auto" itemprop="image">
 
                     @if(!empty($product->video_demo))
                         <button id="productDemoVideoBtn"
                                 data-video-path="{{ url($product->video_demo) }}"
                                 class="product-video-demo-icon cursor-pointer btn-transparent d-flex align-items-center justify-content-center">
-                            <img src="/assets/default/img/icons/play-bold.svg" alt="play icon" class=""/>
+                            <img src="/assets/default/img/icons/play-bold.svg" alt="play icon" title="play icon" width="100%" height="auto" itemprop="image" loading="eager" class=""/>
                         </button>
                     @endif
                 </div>
@@ -29,11 +29,11 @@
 
                 <div class="product-show-thumbnail-card d-flex align-items-center mt-20">
                     <div class="thumbnail-card is-first-thumbnail-card cursor-pointer position-relative">
-                        <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="img-cover rounded-sm">
+                        <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="img-cover rounded-sm" loading="lazy" width="100%" height="auto" itemprop="image">
 
                         @if(!empty($product->video_demo))
                             <span class="product-video-demo-thumb-icon d-flex align-items-center justify-content-center">
-                                <img src="/assets/default/img/icons/play-bold.svg" alt="play icon" class=""/>
+                                <img src="/assets/default/img/icons/play-bold.svg" alt="play icon"  title="play icon" width="100%" height="auto" itemprop="image" loading="eager" class=""/>
                             </span>
                         @endif
                     </div>
@@ -41,7 +41,7 @@
                     @if(!empty($product->images) and count($product->images))
                         @foreach($product->images as $image)
                             <div class="thumbnail-card cursor-pointer ml-20 ml-lg-35">
-                                <img src="{{ $image->path }}" alt="{{ $product->title }}" class="img-cover rounded-sm">
+                                <img src="{{ $image->path }}" alt="{{ $product->title }}" class="img-cover rounded-sm" loading="lazy" width="100%" height="auto" itemprop="image">
                             </div>
                         @endforeach
                     @endif
@@ -209,7 +209,7 @@
                     @foreach($advertisingBanners as $banner)
                         <div class="col-{{ $banner->size }}">
                             <a href="{{ $banner->link }}">
-                                <img src="{{ $banner->image }}" class="img-cover rounded-sm" alt="{{ $banner->title }}">
+                                <img src="{{ $banner->image }}" class="img-cover rounded-sm" alt="{{ $banner->title }}" width="100%" height="auto" itemprop="image" loading="eager">
                             </a>
                         </div>
                     @endforeach

@@ -31,11 +31,13 @@ $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashe
             <div class="correct-appriciate" style="display:none"></div>
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
+                    @php $already_flagged = ($quizResultObj->flagged_questions != '') ? json_decode($quizResultObj->flagged_questions) : array();
+                    $flag_class = (in_array($question->id, $already_flagged))? 'flaged' : 'notflaged';
+                    @endphp
                     <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
-                        <span class="question-icon flag-question"
+                        <span class="question-icon flag-question {{$flag_class}}"
                               data-qresult_id="{{$newQuestionResult->quiz_result_id}}"
-                              data-question_id="{{
-                        $question->id }}">
+                              data-question_id="{{$question->id }}">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 version="1.0" width="512.000000pt" height="512.000000pt"

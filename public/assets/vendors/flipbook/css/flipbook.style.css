@@ -2116,7 +2116,8 @@
     padding-right: 0;
 }
 .read-quiz-info .flipbook-main-wrapper {
-    top: 35px;
+    top: 0;
+    background: none !important;
 }
 /****************************
 Flip Book Custom Style Start
