@@ -18,7 +18,7 @@ class QuizzAttempts extends Model
 
     public function quizz_result_questions()
     {
-        return $this->belongsTo('App\Models\QuizzResultQuestions' , 'id' , 'quiz_attempt_id');
+        return $this->hasMany('App\Models\QuizzResultQuestions' , 'quiz_attempt_id' , 'id');
     }
 
     public function user()

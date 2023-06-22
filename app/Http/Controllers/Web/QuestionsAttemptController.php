@@ -626,10 +626,11 @@ class QuestionsAttemptController extends Controller
     /*
      * Check if Started Already
      */
-    public function started_already($parent_id){
+    public function started_already($parent_id)
+    {
         $user = auth()->user();
         $QuizzesResult = QuizzesResult::where('parent_type_id', $parent_id)->where('user_id', $user->id)->where('status', 'waiting')->first();
-        return ( isset( $QuizzesResult->id ) )? true : false;
+        return (isset($QuizzesResult->id)) ? true : false;
     }
 
 
@@ -866,6 +867,57 @@ class QuestionsAttemptController extends Controller
     {
         $questions_status_array = QuizzResultQuestions::where('quiz_result_id', $QuizzesResult->id)->whereIn('question_id', $questions_list)->pluck('status', 'question_id')->toArray();;
         return $questions_status_array;
+    }
+
+    /*
+     * Prepare Result Array to display results layout
+     */
+
+    public function prepare_result_array($resultData)
+    {
+        $resultsData = isset($resultData->resultsData) ? $resultData->resultsData : array();
+        $response_data = array();
+        if (!empty($resultsData)) {
+
+            foreach ($resultsData as $q_result_id => $resultsObj) {
+                $resultObjData = isset($resultsObj['resultObjData']) ? $resultsObj['resultObjData'] : (object)array();
+                $questions_list = isset($resultObjData->questions_list) ? json_decode($resultObjData->questions_list) : array();
+                $response_data[$q_result_id]['total_questions'] = count($questions_list);
+                $response_data[$q_result_id]['correct'] = 0;
+                $response_data[$q_result_id]['incorrect'] = 0;
+                $response_data[$q_result_id]['unanswered'] = 0;
+                $response_data[$q_result_id]['in_review'] = 0;
+                $response_data[$q_result_id]['time_consumed'] = 0;
+                $response_data[$q_result_id]['average_time'] = 0;
+                $response_data[$q_result_id]['status'] = $resultObjData->status;
+                $response_data[$q_result_id]['created_at'] = $resultObjData->created_at;
+                $response_data[$q_result_id]['attempted'] = 0;
+
+                if (!empty($resultObjData->attempts)) {
+                    foreach ($resultObjData->attempts as $attemptObj) {
+                        if (!empty($attemptObj->quizz_result_questions)) {
+                            foreach ($attemptObj->quizz_result_questions as $resultQuestionObj) {
+                                $response_data[$q_result_id]['attempted'] += ($resultQuestionObj->status != 'waiting') ? 1 : 0;
+                                $response_data[$q_result_id]['correct'] += ($resultQuestionObj->status == 'correct') ? 1 : 0;
+                                $response_data[$q_result_id]['incorrect'] += ($resultQuestionObj->status == 'incorrect') ? 1 : 0;
+                                $response_data[$q_result_id]['in_review'] += ($resultQuestionObj->status == 'in_review') ? 1 : 0;
+                                $response_data[$q_result_id]['time_consumed'] += $resultQuestionObj->time_consumed;
+                                $response_data[$q_result_id]['average_time'] += $resultQuestionObj->average_time;
+                            }
+                        }
+                    }
+                }
+                $response_data[$q_result_id]['unanswered'] = count($questions_list) - $response_data[$q_result_id]['attempted'];
+                $response_data[$q_result_id]['percentage'] = ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'];
+                $response_data[$q_result_id]['time_consumed'] = gmdate("i:s", $response_data[$q_result_id]['time_consumed']);
+                $response_data[$q_result_id]['average_time'] = gmdate("i:s", $response_data[$q_result_id]['average_time']);
+                $response_data[$q_result_id] = (object) $response_data[$q_result_id];
+
+
+            }
+        }
+
+        return (object)$response_data;
     }
 
 }

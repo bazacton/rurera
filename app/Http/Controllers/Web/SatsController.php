@@ -23,8 +23,8 @@ class SatsController extends Controller
 
         if (!empty($sats)) {
             $data = [
-                'pageTitle' => 'SATs',
-                'sats' => $sats,
+                'pageTitle'                  => 'SATs',
+                'sats'                       => $sats,
                 'QuestionsAttemptController' => $QuestionsAttemptController
             ];
             return view('web.default.sats.index', $data);
@@ -44,17 +44,19 @@ class SatsController extends Controller
         $started_already = $QuestionsAttemptController->started_already($id);
 
         $started_already = false;
-        if( $started_already == true){
+        if ($started_already == true) {
             $QuizController = new QuizController();
-            return $QuizController->start($request,$id);
-        }else {
+            return $QuizController->start($request, $id);
+        } else {
             $resultData = $QuestionsAttemptController->get_result_data($id);
+            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
             $is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
             $in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
             $current_status = isset($resultData->current_status) ? $resultData->current_status : '';
             $data = [
-                'pageTitle' => 'Start',
-                'quiz'      => $quiz
+                'pageTitle'  => 'Start',
+                'quiz'       => $quiz,
+                'resultData' => $resultData
             ];
             return view('web.default.quizzes.start', $data);
         }

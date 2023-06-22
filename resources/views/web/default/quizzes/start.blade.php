@@ -45,7 +45,8 @@ $rand_id = rand(99,9999);
                     </div>
                 </div>
 
-                <section class="lms-data-table mt-80">
+                @if( !empty( $resultData ) )
+                <section class="lms-data-table my-80">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -53,6 +54,10 @@ $rand_id = rand(99,9999);
                                        aria-describedby="example_info">
                                     <thead>
                                     <tr>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Date: activate to sort column descending">Attempt #
+                                        </th>
                                         <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Date: activate to sort column descending">Date
@@ -73,10 +78,7 @@ $rand_id = rand(99,9999);
                                             aria-label="Unanswered: activate to sort column ascending">Unanswered
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                            aria-label="Total: activate to sort column ascending">Total
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
-                                            aria-label="Percent: activate to sort column ascending">Percent
+                                            aria-label="Percent: activate to sort column ascending">Accuracy
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
                                             aria-label="Quiz: activate to sort column ascending">Quiz Status
@@ -84,134 +86,35 @@ $rand_id = rand(99,9999);
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="odd">
-                                        <td class="sorting_1">2008-11-28 2:30pm</td>
-                                        <td>2.30</td>
-                                        <td>20</td>
-                                        <td>5</td>
-                                        <td>12</td>
-                                        <td>8</td>
-                                        <td>5</td>
-                                        <td>25%</td>
-                                        <td>Resume</td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td class="sorting_1">2009-11-28 2:30pm</td>
-                                        <td>1.30</td>
-                                        <td>24</td>
-                                        <td>7</td>
-                                        <td>15</td>
-                                        <td>11</td>
-                                        <td>6</td>
-                                        <td>27%</td>
-                                        <td>pending</td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td class="sorting_1">2001-11-28 2:30pm</td>
-                                        <td>2.31</td>
-                                        <td>22</td>
-                                        <td>9</td>
-                                        <td>15</td>
-                                        <td>9</td>
-
-                                        <td>8</td>
-                                        <td>29%</td>
-                                        <td>Progress</td>
-                                    </tr>
-
+                                    @php $attempt_count = 1; @endphp
+                                    @foreach( $resultData as $resultObj)
 
                                     <tr class="odd">
-                                        <td class="sorting_1">2009-11-28 2:30pm</td>
-                                        <td>1.30</td>
-                                        <td>24</td>
-                                        <td>6</td>
-                                        <td>15</td>
-                                        <td>11</td>
+                                        <td>{{$attempt_count}}</td>
+                                        <td>2008-11-28 2:30pm</td>
+                                        <td>{{$resultObj->time_consumed}} / {{$resultObj->average_time}}</td>
+                                        <td>{{$resultObj->attempted}} / {{$resultObj->total_questions}}</td>
+                                        <td>{{$resultObj->correct}}</td>
+                                        <td>{{$resultObj->incorrect}}</td>
+                                        <td>{{$resultObj->unanswered}}</td>
+                                        <td>{{$resultObj->percentage}}%</td>
+                                        @if( $resultObj->status == 'waiting')
+                                            <td><a href="javascript:;" class="quiz-start-btn" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start">Resume</a></td>
+                                        @else
+                                            <td>Progress</td>
+                                        @endif
 
-                                        <td>6</td>
-                                        <td>27%</td>
-                                        <td>Resume</td>
                                     </tr>
-                                    <tr class="even">
-                                        <td class="sorting_1">2001-11-28 2:30pm</td>
-                                        <td>2.31</td>
-                                        <td>22</td>
-                                        <td>12</td>
-                                        <td>15</td>
-                                        <td>9</td>
+                                    @php $attempt_count++; @endphp
+                                    @endforeach
 
-                                        <td>8</td>
-                                        <td>29%</td>
-                                        <td>Resume Progress</td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td class="sorting_1">2008-11-28 2:30pm</td>
-                                        <td>2.30</td>
-                                        <td>20</td>
-                                        <td>5</td>
-                                        <td>12</td>
-                                        <td>8</td>
-
-                                        <td>5</td>
-                                        <td>25%</td>
-                                        <td>Resume pending</td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td class="sorting_1">2009-11-28 2:30pm</td>
-                                        <td>1.30</td>
-                                        <td>24</td>
-                                        <td>13</td>
-                                        <td>15</td>
-                                        <td>11</td>
-
-                                        <td>6</td>
-                                        <td>27%</td>
-                                        <td>Resume Progress</td>
-                                    </tr>
-                                    <tr class="odd">
-                                        <td class="sorting_1">2001-11-28 2:30pm</td>
-                                        <td>2.31</td>
-                                        <td>22</td>
-                                        <td>12</td>
-                                        <td>15</td>
-                                        <td>9</td>
-
-                                        <td>8</td>
-                                        <td>29%</td>
-                                        <td>Resume pending</td>
-                                    </tr>
-
-
-                                    <tr class="odd">
-                                        <td class="sorting_1">2009-11-28 2:30pm</td>
-                                        <td>1.30</td>
-                                        <td>24</td>
-                                        <td>4</td>
-                                        <td>15</td>
-                                        <td>11</td>
-
-                                        <td>6</td>
-                                        <td>27%</td>
-                                        <td>Resume Progress</td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td class="sorting_1">2001-11-28 2:30pm</td>
-                                        <td>2.31</td>
-                                        <td>22</td>
-                                        <td>7</td>
-                                        <td>15</td>
-                                        <td>9</td>
-                                        
-                                        <td>8</td>
-                                        <td>29%</td>
-                                        <td>pending</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </section>
+                @endif
             </div>
 
 
