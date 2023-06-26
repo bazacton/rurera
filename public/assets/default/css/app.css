@@ -15247,6 +15247,7 @@ p {
 .find-instructor-circle.gradient-none {background-image: none;}
 
 .find-instructor-circle.has-bg {background-color: #ebebff;}
+.find-instructor-circle.has-bg .lms-serial-no {color: #222;}
 .find-instructor-testimonial .left {
     padding-left: 130px;
 }
