@@ -4,7 +4,7 @@ $(document).on('click', '.book-info-link', function () {
     var info_type = $(this).attr('data-type');
     $.ajax({
         type: "GET",
-        url: '/books/' + info_id + '/info_detail/',
+        url: '/books/' + info_id + '/info_detail',
         data: {},
         success: function (return_data) {
             $(".infolinks-data").html(return_data);

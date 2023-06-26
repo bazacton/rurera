@@ -15,7 +15,7 @@ class SatsController extends Controller
     {
 
         $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
-        $sats = $query->paginate(30);
+        $sats = $query->paginate(8);
 
         //pre($sats);
 

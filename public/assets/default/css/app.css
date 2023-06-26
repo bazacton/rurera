@@ -18978,6 +18978,18 @@ Lms Footer Style Start
     color: #171347 !important;
     text-transform: capitalize;
 }
+.hiring-label {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #fae095;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    box-shadow: 0 0 0 1px #ce9e19 inset;
+    line-height: normal;
+    margin-left: 5px;
+    font-weight: 500;
+}
 .footer .widget.widget-aboutus ul li a {
     font-weight: bold;
     font-size: 1.7em;
@@ -23897,7 +23909,7 @@ lms Key Stage Style Start
 }
 /*Choose Sats Style*/
 .choose-sats .sats-box {
-    border: 1px dashed #000;
+    border: 2px dashed #000;
     padding: 30px 25px;
     text-align: center;
     line-height: normal;
@@ -23919,6 +23931,7 @@ lms Key Stage Style Start
     display: block;
     line-height: normal;
     text-align: center;
+    font-weight: 600;
 }
 .choose-sats .row .row [class*="col-"] {
     padding: 0 5px 10px;
@@ -24084,7 +24097,8 @@ Lms Masonry Style End
 .lms-accordion-simple {position: relative;}
 .lms-accordion-simple .card {max-width: 630px; position: static;}
 .lms-accordion-simple .card .lms-img-holder {position: absolute; left: 785px; -webkit-transition: 1s ease-in-out 0s; -moz-transition: 1s ease-in-out 0s; -o-transition: 1s ease-in-out 0s; transition: 1s ease-in-out 0s; top:-10%; visibility: hidden; opacity: 0;}
-.lms-accordion-simple .card.active .lms-img-holder{top:-8%; display:block; opacity: 1; visibility:visible;}
+.lms-accordion-simple .card.active .lms-img-holder{top:0; display:block; opacity: 1; visibility:visible;}
+.lms-accordion-simple .card .lms-img-holder img {border-radius: 10px;box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);}
 /* Lms Accordion Modern Style Start */
 .lms-accordion-simple-section .element-title h2 {color: #222; font-weight: bold; font-size: 2rem; margin-bottom: 45px;}
 .lms-accordion-modern.accordion .btn {font-size: 21px; font-weight: bold; color: #151824; padding: 0 32px 0 0; position: relative;}
@@ -24162,7 +24176,7 @@ body{overflow-x: hidden;}
 /************************************
  Lms Accordion Job Style Start
 *************************************/
-.lms-accordion-job-section{background: #f8f8f8;padding: 50px 0 80px 0;}
+.lms-accordion-job-section{background: url(../../default/svgs/diagonal-lines.svg) #f8f8f8;padding: 50px 0 80px 0;}
 .lms-accordion-job {padding: 20px; border-radius: 8px;}
 .lms-accordion-job .card-header { background: #fff; padding:10px 15px; border-bottom: 0; margin-bottom: 0; }
 .lms-accordion-job .btn.focus, .lms-accordion-job .btn:focus { outline:none; box-shadow:none; }
@@ -24365,19 +24379,19 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
 .lms-choose-membership .modal-body{padding: 1rem 2rem 4rem 2rem;}
-.lms-choose-membership .modal-body .nav-link {width: 300px; margin: 0 auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold;}
+.lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
 .lms-choose-membership .book-form {margin: 0 auto;}
-.lms-choose-membership .book-form .form-group{margin-bottom: 30px;}
-.lms-choose-membership .book-form .input-field {border: 0;border-radius: 0;background: none;padding: 0;height: auto;width: 100%;position: relative;}
-.lms-choose-membership .book-form .input-field input[type="text"] {background: #fff; border-radius: 6px;height: 46px;width: 100%;padding: 11px;border: 2px solid #b4bac8;color: #b5b8bf;}
-.lms-choose-membership .book-form .input-field input::-webkit-input-placeholder {color: #b5b8bf;}
-.lms-choose-membership .book-form .input-field input::-moz-placeholder {color: #b5b8bf;}
-.lms-choose-membership .book-form .input-field input:-ms-input-placeholder {color: #b5b8bf;}
-.lms-choose-membership .book-form .input-field input:-moz-placeholder {color: #b5b8bf;}
-.lms-choose-membership .book-form .input-field.input-card .icon-svg {display: inline-flex;position: absolute;left: 11px;top: 12px;}
-.lms-choose-membership .book-form .input-field.input-card .icon-svg svg {width: 24px;height: 24px;fill: #b5b8bf;}
-.lms-choose-membership .book-form .input-field.input-card .icon-svg .st0{fill:#b5b8bf;}
-.lms-choose-membership .book-form .input-field.input-card input[type="text"] {padding-left: 50px;}
+.lms-choose-membership .form-group{margin-bottom: 30px;}
+.lms-choose-membership .input-field {border: 0;border-radius: 0;background: none;padding: 0;height: auto;width: 100%;position: relative;}
+.lms-choose-membership .input-field input[type="text"] {background: #fff; border-radius: 6px;height: 46px;width: 100%;padding: 11px;border: 2px solid #b4bac8;color: #b5b8bf;}
+.lms-choose-membership .input-field input::-webkit-input-placeholder {color: #b5b8bf;}
+.lms-choose-membership .input-field input::-moz-placeholder {color: #b5b8bf;}
+.lms-choose-membership .input-field input:-ms-input-placeholder {color: #b5b8bf;}
+.lms-choose-membership .input-field input:-moz-placeholder {color: #b5b8bf;}
+.lms-choose-membership .input-field.input-card .icon-svg {display: inline-flex;position: absolute;left: 11px;top: 12px;}
+.lms-choose-membership .input-field.input-card .icon-svg svg {width: 24px;height: 24px;fill: #b5b8bf;}
+.lms-choose-membership .input-field.input-card .icon-svg .st0{fill:#b5b8bf;}
+.lms-choose-membership .input-field.input-card input[type="text"] {padding-left: 50px;}
 .lms-choose-membership .book-form p {font-size: 14px;}
 .lms-choose-membership .book-form p a {font-weight: 600; padding: 0 5px;color: var(--primary-hover);}
 .lms-choose-membership .subscription span {font-size: 16px;font-weight: 600;}
@@ -24398,7 +24412,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .book-detail p {position: relative;}
 .lms-choose-membership .book-detail p .icon-svg {position: absolute;left: -50px;top: 0;width: 40px;height: 40px;border: 2px solid var(--primary-hover);display: inline-flex;border-radius: 100%;align-items: center;justify-content: center;}
 .lms-choose-membership .book-detail p .icon-svg svg {width: 28px;height: 28px;fill: var(--primary-hover);}
-.lms-choose-membership .book-form .input-field input[type="text"]:focus {border-color:var(--primary-hover);}
+.lms-choose-membership .input-field input[type="text"]:focus {border-color:var(--primary-hover);}
 .lms-choose-membership .subscribe-plan-holder strong {padding: 0 100px;display: inline-block;line-height: 26px;color: var(--primary-hover);}
 .membership-steps-list li.active::before { background:#64c07d;}
 .membership-steps-list li.active a .icon-svg{background:#64c07d;}
@@ -24408,23 +24422,119 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
 .membership-sub-header { position: relative; overflow: hidden;}
-.membership-sub-header:before,
-/* .membership-sub-header:after {
-    background: url(../../default/svgs/membership-head-shape.svg) no-repeat;
-    background-size: contain;
-    position: absolute;
-    left: -80px;
-    top: -100px;
-    height: 400px;
-    width: 400px;
-    content: "";
-    opacity: 0.8;
-}
-.membership-sub-header:after {left: auto; right: -80px; top: auto; bottom: -100px; transform: scale(-1);} */
+.lms-choose-membership .form-separator {position: relative;overflow: hidden;text-align: center;margin: 30px 0;}
+.lms-choose-membership .form-separator span {display: inline-block;padding: 0 15px;font-size: 20px;color: #b5b8bf;position: relative;}
+.lms-choose-membership .form-separator span:before { content: "";position: absolute;left: 100%;width: 999px;height: 1px;background: #b5b8bf;top: 16px;}
+.lms-choose-membership .form-separator span:after {content: "";position: absolute;right: 100%;width: 999px;height: 1px;background: #b5b8bf;top: 16px;}
+.lms-choose-membership .social-login {border-radius: 50px;border: 2px solid #b4bac8;font-size: 20px;font-weight: bold;color: #b5b8bf;}
+.lms-choose-membership .form-login-reading .input-field input[type="text"] {height: 60px;}
+.lms-choose-membership .error-message {font-size: 18px;color: #ee3565;font-weight: 500;}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
+/*************************************
+  Exame Listing Style Start
+*************************************/
+.exame-listing .exame-holder{display: flex; flex-wrap: wrap;background: #fff;border-radius: 10px;}
+.exame-listing .exame-holder .exame-list {padding: 15px;border-bottom: 1px solid #edecef; position: relative; width: 50%;}
+.exame-listing .exame-holder .exame-list .icon-savg svg { width: 35px;height: 35px;}
+.exame-listing .exame-holder .exame-list .icon-savg {display: flex;}
+.exame-listing .exame-holder .exame-list .img-holder~.text-holder {margin-left: 20px;}
+.exame-listing .exame-holder .exame-list.border-right {border-right: 1px solid #edecef;}
+.exame-listing .exame-holder .exame-list:after {content: "\203A";position: absolute;right: 25px;font-size: 40px;color: #3f5d6b;bottom: 50%;transform: translateY(45%);cursor: pointer;}
+.exame-listing .exame-holder .exame-list:nth-child(3),
+.exame-listing .exame-holder .exame-list:nth-child(3){border-bottom: 0;}
+.bg-exames {background-color: #f6b801;
+background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220, 220, 200, .4) 12px, transparent 12px);
+    background-size: 100% 12px, 12px 100%;
+}
+/*************************************
+  Exame Listing Style End
+*************************************/
+/*************************************
+  Counter Has Bg Style Start
+*************************************/
+.counter-text .btn-review {
+    border: 1px solid #95a6ae;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #95a6ae;
+}
+.lms-counter-card{position: relative;}
+.lms-counter-card.counter-purple-bg {
+    box-shadow: none;
+    background: #3d358b;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 45px 15px 0 15px;
+}
+.lms-counter-card.counter-purple-bg p {
+    font-size: 14px;
+    line-height: 26px;
+}
+.lms-counter-card.counter-orange-bg {
+    background: #f18700;
+    width: 180px;
+    margin: auto;
+    padding: 30px 15px 30px 15px;
+    box-shadow: none;
+}
+.counter-yellow-bg .custom-counter {
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 500;
+    transform: rotate(47deg);
+    display:inline-block;
+    margin-bottom: 32px;
+    text-align: center;
+    padding-left: 54px;
+}
+.counter-yellow-bg p {
+    transform: rotate(47deg);
+    display: block;
+    padding-right: 30px;
+}
+.lms-counter-card.counter-yellow-bg {
+    background: #f6b801;
+    width: 175px;
+    margin: auto;
+    box-shadow: none;
+    transform: rotate(-50deg);
+    height: 175px;
+    padding: 50px 15px 30px;
+    text-align: center;
+}
+.lms-counter-card.counter-purple-bg:before {
+    content: "";
+    position: absolute;
+    left: 80px;
+    top: -68px;
+    width: 300px;
+    height: 150px;
+    border-top: 5px dashed #cac8cc;
+    border-radius: 100%;
 
+}
+.lms-counter-card.counter-yellow-bg:after {
+    content: "";
+    position: absolute;
+    right: -101px;
+    bottom: -152px;
+    width: 200px;
+    height: 150px;
+    border-bottom: 5px dashed #cac8cc;
+    transform: rotate(60deg);
+    border-radius: 100%;
+}
+/*************************************
+  Counter Has Bg Style Style End
+*************************************/
 /*************************************
 Lms Newsletter Style Start
 *************************************/
@@ -24444,12 +24554,15 @@ Lms Newsletter Style Style End
 .process-holder{overflow: hidden; padding-bottom: 15px;}
 .process-list li { width: 25%;text-align: center;position: relative;}
 .process-list li a {color: #999;text-decoration: none;outline: none;text-transform: capitalize;font-size: 16px;line-height: 22px; display: inline-flex;position: relative;}
-.process-list li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background: #fff;border: 2px solid #0272b6;border-radius: 100%;}
+.process-list li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background:#fff;border: 2px solid #0272b6;border-radius: 100%; z-index: 3;}
 .process-list {position: relative;padding-bottom: 25px}
 .process-list:before {content: "";position: absolute;left: 0;bottom: -5px;background-image: radial-gradient(circle, #0272b6, #0272b6, #0272b6, #0272b6, #ffffff);width: 100%;height: 6px;}
-.process-list:after {-webkit-animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;background-color: #fff;content: "";inset: 0;position: absolute; top: 100%;left:0; height: 6px; width: 100%;border-radius: 50px;z-index: 2;}
+.process-list:after {-webkit-animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;background-color:#fff;content: "";inset: 0;position: absolute; top: 46px;left:0; height: 6px; width: 100%;border-radius: 50px;z-index: 2;}
 .process-card .post-title {font-size: 20px;color: var(--dark-charcoal);}
 .process-list.steps-3 li {width: 33.333%;}
+.process-list.has-bg li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background:#e66f51;border: 2px solid #ffffff;border-radius: 100%; z-index: 3;}
+.process-list.has-bg:before {content: "";position: absolute;left: 0;bottom: -5px;background-image: radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);width: 100%;height: 6px;}
+.process-list.has-bg:after {-webkit-animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;background-color:#d6664a;content: "";inset: 0;position: absolute; top: 46px;left:0; height: 6px; width: 100%;border-radius: 50px;z-index: 2;}
 /*************************************
  process Section Style End
 *************************************/
@@ -24517,11 +24630,11 @@ Sats Listing Style Start
 .sats-listing-card .img-holder figure > a {
     display: block;
 }
-.waiting {
+.sats-listing-card .waiting {
     background-color: #fdfd9b;
     color: #222;
 }
-.passed {
+.sats-listing-card .passed {
     background-color: #7eb282;
 }
 .sats-listing-card .img-holder figcaption {
@@ -24562,9 +24675,9 @@ Sats Listing Style End
 /*************************************
  Reward page  Style Start
 *************************************/
-.products-sub-header .btn-primary {color: #ffff;background: #5e00d7; border: 0;box-shadow: none;}
-.products-sub-header .btn-outline-primary{border-color:#5e00d7; color:#5e00d7;}
-.products-sub-header .btn-outline-primary:hover{border-color:transparent; color:#fff;background: #5e00d7;}
+.products-sub-header .btn-primary {color: #ffff;background:#3d358b; border: 0;box-shadow: none;}
+.products-sub-header .btn-outline-primary{border-color:#3d358b; color:#3d358b;}
+.products-sub-header .btn-outline-primary:hover{border-color:transparent; color:#fff;background:#3d358b;}
 .products-sub-header .reward-program-section .reward-program-section-hero-card .reward-program-section-hero {left: 0;}
 .products-sub-header .reward-program-section .example-reward-card {right: 0;}
 .reward-box {
@@ -24732,13 +24845,9 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {
 /*************************************
   Processs Section Style Start
 *************************************/
-.process-section .process-card {
-    position: relative;
-    padding-bottom: 120px;
-    padding-top: 120px;
-}
-.process-section .process-card .post-title{font-size: 20px;}
-.process-section .process-card p {font-size: 24px;line-height: 30px;}
+.process-section .process-card {position: relative;padding-bottom: 120px;padding-top: 120px;}
+.process-section .process-card .post-title{font-size: 24px;}
+.process-section .process-card p {font-size: 19px;line-height: 26px;}
 .process-card.process-one{padding-top: 0;padding-bottom: 0;}
 .process-card.process-one:before {
     content: "";
@@ -24753,7 +24862,7 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {
     border-left: 0;
     z-index: 0;
 }
-.process-card.process-card.process-one:after {
+.process-card.process-one:after {
     content: "";
     position: absolute;
     right: -299px;
@@ -24763,17 +24872,6 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {
     border-radius: 50% 0/55% 0;
     border-top: 5px dashed #cac8cc;
     border-left: 5px dashed #cac8cc;
-}
-.curved-shapes-holder.right:before {
-    content: "";
-    position: absolute;
-    left: 22%;
-    top: 1px;
-    width: 150px;
-    height: 150px;
-    border-top: 5px dashed #cac8cc;
-    border-left: 5px dashed #cac8cc;
-    border-top-left-radius: 59%;
 }
 .process-card.process-two:after {
     content: "";
@@ -24830,18 +24928,26 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {
     border-left: 5px dashed #cac8cc;
 }
 .process-card.process-foure:before{left: 17%;top: 1px;}
-.process-section .img-holder figure {
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
-    border-radius: 10px;
-}
+.process-section .img-holder figure {box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);border-radius: 10px;}
 .process-section .img-holder figure img{border-radius: 10px;}
-.process-section .img-holder{position: relative;}
+.process-section .img-holder{position: relative; z-index: 1;}
+.process-holder .svg-shapes-top {position: absolute;right: -176px;top: 144px;}
+.process-holder .svg-shapes-bottom {position: absolute;left: 281px;bottom: 0px;transform: rotate(88deg);}
+.process-holder .svg-shapes-bottom svg path,
+.process-holder .svg-shapes-top svg path {fill: #cac8cc;}
 /*************************************
   Processs Section Style End
 *************************************/
 /*************************************
 Lms Responsive Style Start
 *************************************/
+@media(max-width:1200px) {
+    .process-card.process-card.process-one:after,
+    .svg-shapes-bottom,.svg-shapes-top,
+    .process-card.process-one:before {
+        display: none;
+    }
+}
 @media (min-width:991px) {
     .lms-performace-table>li.lms-performace-head div {
         white-space: nowrap;
@@ -25109,6 +25215,28 @@ Lms Responsive Style Start
     .lms-quiz-section .quiz-toggle-btn {
         top: 80%;
     }
+    .process-section .process-card .text-holder {
+        text-align: center;
+        margin-bottom: 50px;
+        max-width: 500px;
+    }
+    .process-section .process-card .process-card-body {
+        flex-direction: column;
+    }
+    .process-card.process-one:before,
+    .process-card.process-one:after,
+    .process-card.process-two:after,
+    .process-card.process-two:before,
+    .process-card.process-foure:before,
+    .process-card.process-three:before,
+    .process-card.process-three:after,
+    .process-card.process-foure:after{display: none;}
+    .process-card.process-one .text-holder,
+    .process-card.process-foure .img-holder,
+    .process-card.process-two .img-holder,
+    .process-card.process-three .text-holder{margin-bottom: 50px;}
+    .process-section .process-card{padding-top: 30px; padding-bottom: 30px;}
+    .process-section .img-holder figure img{width: 100%;}
 }
 @media screen and (max-width: 640px) {
     .lms-radio-btn-group li {
@@ -25280,7 +25408,6 @@ Lms Responsive Style Start
 /*************************************
 Lms Responsive Style End
 *************************************/
-
 .text-scribble {
     display: inline-block;
     padding: 0.125rem;
@@ -25291,13 +25418,48 @@ Lms Responsive Style End
     background-image: url(../../default/svgs/scribble.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    bottom: -200%;
+    bottom: -70%;
     content: "";
     display: block;
-    height: 265px;
-    left: -58px;
+    height: 100%;
+    left: 0;
     position: absolute;
     right: 0;
-    width: 265px;
+    width: 100%;
     z-index: -1;
 }
+
+/*************************************
+Time Table Style Start
+*************************************/
+.time-tables-sub-header .icon-box {
+    border-top: 2px solid rgba(255,255,255,0.2);
+    padding-top: 25px;
+    margin-top: 35px;
+    display: flex;
+    gap: 15px;
+}
+.time-tables-sub-header .icon-holder {
+    width: 42px;
+    height: 40px;
+    display: inline-flex;
+    border-radius: 100%;
+    background-color: #fff;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.time-tables-sub-header .icon-holder img {
+    width: 100%;
+    height: 100%;
+}
+.time-tables-sub-header .text-holder {
+    width: calc(100% - 40px);
+    text-align: left;
+}
+.time-tables-sub-header .text-holder strong {
+    line-height: normal;
+}
+/*************************************
+Time Table Style End
+*************************************/

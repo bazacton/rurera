@@ -31,15 +31,9 @@
                         @endif
                     </select>
                 </div>
+                <input type="hidden" name="chapter_id" class="chapter_id_field">
+                <input type="hidden" name="sub_chapter_id" class="sub_chapter_id_field">
 
-                <div class="form-group mt-15 ">
-                    <label class="input-label d-block">Sub Chapter</label>
-                    <select name="sub_chapter_id" class="form-control search-sub_chapter-select2" data-placeholder="Select Sub Chapter">
-                        @if(!empty($subChapterItem))
-                        <option value="{{ $subChapterItem->item_id }}" selected>{{ getSubChapterTitle($subChapterItem->item_id) }}</option>
-                        @endif
-                    </select>
-                </div>
                 <input type="hidden" name="webinar_id" value="{{$selectedWebinar->id}}">
 
 
@@ -69,7 +63,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 @endphp
 <script type="text/javascript">
     $(document).ready(function () {
-        handleMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
+        //handleMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
         $(document).on('change', '.quiz-type', function (e) {
             var quiz_type = $(this).val();

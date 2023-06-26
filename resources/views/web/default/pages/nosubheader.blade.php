@@ -1,7 +1,7 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94 || $page->id == 96)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
     @endif
 @if($page->id == 44)
@@ -23,7 +23,7 @@
 @endsection
 
 @push('scripts_bottom')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 39 || $page->id == 94)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 39 || $page->id == 94 || $page->id == 96)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
                     @endif

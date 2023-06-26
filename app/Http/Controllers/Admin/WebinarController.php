@@ -722,60 +722,17 @@ class WebinarController extends Controller
 
         $webinar = Webinar::where('id' , $id)
             ->with([
-                'tickets' ,
-                'sessions' ,
-                'files' ,
-                'faqs' ,
-                'category'              => function ($query) {
-                    $query->with([
-                        'filters' => function ($query) {
-                            $query->with('options');
-                        }
-                    ]);
-                } ,
-                'filterOptions' ,
-                'prerequisites' ,
-                'quizzes'               => function ($query) {
-                    $query->with([
-                        'quizQuestions' => function ($query) {
-                            $query->orderBy('order' , 'asc');
-                        }
-                    ]);
-                } ,
+
                 'webinar_sub_chapters'  => function ($query) {
                     $query->select('id' , 'sub_chapter_title');
                 } ,
-                'webinarPartnerTeacher' => function ($query) {
-                    $query->with([
-                        'teacher' => function ($query) {
-                            $query->select('id' , 'full_name');
-                        }
-                    ]);
-                } ,
-                'tags' ,
-                'textLessons' ,
-                'assignments' ,
                 'chapters'              => function ($query) {
                     $query->orderBy('order' , 'asc');
-                    $query->with([
-                        'chapterItems' => function ($query) {
-                            $query->orderBy('order' , 'asc');
-
-                            $query->with([
-                                'quiz' => function ($query) {
-                                    $query->with([
-                                        'quizQuestions' => function ($query) {
-                                            $query->orderBy('order' , 'asc');
-                                        }
-                                    ]);
-                                }
-                            ]);
-                        }
-                    ]);
                 } ,
             ])
             ->first();
 
+        //pre($webinar);
         if (empty($webinar)) {
             abort(404);
         }
@@ -787,14 +744,13 @@ class WebinarController extends Controller
             ->with('subCategories')
             ->get();
 
-        $teacherQuizzes = Quiz::where('webinar_id' , null)
-            ->where('creator_id' , $webinar->teacher_id)
-            ->get();
+
 
         $tags = $webinar->tags->pluck('title')->toArray();
         $teachers = User::where('role_name' , Role::$teacher)->get();
 
-        $sub_chapter_items_list = sub_chapter_items_list();
+        $sub_chapter_items_list = sub_chapter_items_list($id);
+
         $sub_chapter_questions = $sub_chapter_lessions = array();
         if (!empty($sub_chapter_items_list)) {
             foreach ($sub_chapter_items_list as $sub_chapter_id => $subChapterData) {
@@ -819,20 +775,20 @@ class WebinarController extends Controller
             'webinar'                => $webinar ,
             'webinarCategoryFilters' => !empty($webinar->category) ? $webinar->category->filters : null ,
             'webinarFilterOptions'   => $webinar->filterOptions->pluck('filter_option_id')->toArray() ,
-            'tickets'                => $webinar->tickets ,
+            'tickets'                => array() ,
             'sub_chapter_questions'  => $sub_chapter_questions ,
             'sub_chapter_lessions'   => $sub_chapter_lessions ,
-            'chapters'               => $webinar->chapters ,
-            'sessions'               => $webinar->sessions ,
-            'files'                  => $webinar->files ,
+            'chapters'               => array() ,
+            'sessions'               => array() ,
+            'files'                  => array() ,
             'textLessons'            => $webinar->textLessons ,
-            'faqs'                   => $webinar->faqs ,
-            'assignments'            => $webinar->assignments ,
+            'faqs'                   => array() ,
+            'assignments'            => array() ,
             'teachers'               => $teachers ,
-            'teacherQuizzes'         => $teacherQuizzes ,
-            'prerequisites'          => $webinar->prerequisites ,
-            'webinarQuizzes'         => $webinar->quizzes ,
-            'webinarPartnerTeacher'  => $webinar->webinarPartnerTeacher ,
+            'teacherQuizzes'         => array() ,
+            'prerequisites'          => array() ,
+            'webinarQuizzes'         => array() ,
+            'webinarPartnerTeacher'  => array() ,
             'webinarTags'            => $tags ,
             'defaultLocale'          => getDefaultLocale() ,
         ];

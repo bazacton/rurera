@@ -52,9 +52,6 @@
                                                 {{ trans('public.add_text_lesson') }}
                                             </button>
 
-                                            <button type="button" class="js-add-course-content-btn d-block mb-10 btn-transparent" data-webinar-id="{{ $webinar->id }}" data-type="quiz" data-chapter="{{ !empty($chapter) ? $chapter->id :'' }}">
-                                                {{ trans('public.add_quiz') }}
-                                            </button>
 
                                             <button type="button" class="js-add-course-content-btn d-block mb-10 btn-transparent" data-webinar-id="{{ $webinar->id }}" data-type="sub" data-chapter="{{ !empty($chapter) ? $chapter->id :'' }}">
                                                 Sub Chapter

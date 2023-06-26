@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
     <link rel="stylesheet" href="/assets/default/css/app.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 
 
     @if($isRtl)
@@ -118,6 +119,35 @@
     if(jQuery('.lms-data-table table').length > 0){
         $('.lms-data-table table').DataTable();
       }
+    if(jQuery('.quiz-pagination .swiper-container').length > 0){
+                  console.log('slides-count');
+                  console.log($(".quiz-pagination ul li").length);
+                const swiper = new Swiper('.quiz-pagination .swiper-container', {
+                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                  spaceBetween: 0,
+                    slidesPerGroup: 5,
+                  navigation: {
+                      nextEl: ".swiper-button-next",
+                      prevEl: ".swiper-button-prev",
+                  },
+                  breakpoints: {
+                    320: {
+                      slidesPerView: 3,
+                      spaceBetween: 5
+                    },
+
+                    480: {
+                      slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                      spaceBetween: 5
+                    },
+
+                    640: {
+                      slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                      spaceBetween: 5
+                    }
+                  }
+                })
+              }
 </script>
 </body>
 </html>

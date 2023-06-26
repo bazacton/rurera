@@ -6,12 +6,13 @@
 
 @section('content')
 <section class="content-section">
-    <section class="position-relative job-singup-sub-header gallery-sub-header pb-10 pt-80 mb-70"
-             style="min-height: 480px;">
+    <section class="position-relative job-singup-sub-header gallery-sub-header pb-80 pt-80 mb-0"
+             style="min-height: 480px;background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
+    background-size: 100% 12px, 12px 100%;">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <h1 class="font-50 font-weight-bold">Online SATs Preps</h1>
+                    <h1 class="font-50 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Preps</h1>
                     <h2 class="mb-15 font-30">Maximize Your Performance: Excel on SATs Test Day</h2>
                     <p class="font-19">
                         Don't leave your SATs performance to chance. Join us and unlock your full potential for success
@@ -222,25 +223,25 @@
             </div>
         </div>
     </section>
-    <section class="lms-search-services mb-0 mt-30 pt-0">
+    <section class="lms-search-services mb-0 mt-0 pt-80 pb-60" style="background: url(../assets/default/svgs/bank-note.svg) #f27530;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10">SATs practice steps to Success with Rurera</h2>
-                        <p>
-                            Work through a variety of practice questions to improve your skills and become familiar with
-                            the <br/>
+                        <h2 class="mt-0 mb-10 text-white">SATs practice steps to Success with Rurera</h2>
+                        <p class="text-white">
+                            Work through a variety of practice questions to improve your skills
+                            and become familiar with the <br />
                             types of questions you'll encounter on the SATs.
                         </p>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="process-holder">
-                        <ul class="process-list d-flex justify-content-center steps-3">
-                            <li class="process-item"><a href="#">step 1</a></li>
-                            <li class="process-item"><a href="#">step 2</a></li>
-                            <li class="process-item"><a href="#">step 3</a></li>
+                        <ul class="process-list d-flex justify-content-center steps-3 has-bg">
+                            <li class="process-item"><a href="#" class="text-white">step 1</a></li>
+                            <li class="process-item"><a href="#" class="text-white">step 2</a></li>
+                            <li class="process-item"><a href="#" class="text-white">step 3</a></li>
                         </ul>
                     </div>
                 </div>
@@ -248,9 +249,11 @@
                     <div class="process-card mt-40 mb-30 text-center">
                         <div class="process-card-body">
                             <div class="text-holder">
-                                <h4 class="post-title">Learn &amp; Understand</h4>
-                                <p class="mt-15">Build knowledge through quizzes, inspirations and faq’s with immediate
-                                    feedback.</p>
+                                <h4 class="post-title text-white">Learn &amp; Understand</h4>
+                                <p class="mt-15 text-white">
+                                    Build knowledge through quizzes, inspirations and faq’s with
+                                    immediate feedback.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -259,9 +262,11 @@
                     <div class="process-card mt-40 mb-30 text-center">
                         <div class="process-card-body">
                             <div class="text-holder">
-                                <h4 class="post-title">Take Practice Tests :</h4>
-                                <p class="mt-15">Improve exam skills and target weak areas for success and improve your
-                                    performance.</p>
+                                <h4 class="post-title text-white">Take Practice Tests :</h4>
+                                <p class="mt-15 text-white">
+                                    Improve exam skills and target weak areas for success and
+                                    improve your performance.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -270,9 +275,11 @@
                     <div class="process-card mt-40 mb-30 text-center">
                         <div class="process-card-body">
                             <div class="text-holder">
-                                <h4 class="post-title">Track progress</h4>
-                                <p class="mt-15">Monitor your progress, identify areas of improvement, and adjust your
-                                    study plan.</p>
+                                <h4 class="post-title text-white">Track progress</h4>
+                                <p class="mt-15 text-white">
+                                    Monitor your progress, identify areas of improvement, and adjust
+                                    your study plan.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -280,12 +287,12 @@
             </div>
         </div>
     </section>
-    <section class="my-70">
+    <section class="my-80">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10">SATs practice steps to Success with Rurera</h2>
+                    <div class="section-title text-left mb-50">
+                        <h2 class="mt-0 mb-10">KS2 SATs Online 10-Minutes test practices</h2>
                         <p> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
@@ -408,21 +415,21 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section container-w mt-60 mb-80 pt-30 pb-30 pr-30 pl-30"
-             style="background-color: #75c0fa;">
+    <section class="lms-column-section lms-text-section mx-w-100 mt-60 mb-80 pt-70 pb-70 pr-30 pl-30"
+             style="background: url(../assets/default/svgs/diagonal-lines.svg) #7679ee;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="lms-text-holder d-flex justify-content-between">
                         <div class="d-flex flex-column">
-                            <h4 class="mb-10 font-24 align-items-center d-flex text-white">
-                                    <span class="icon-svg mr-15">
-                                        <img src="../assets/default/svgs/bulb-white.svg" alt="#">
-                                    </span>
+                            <h4 class="mb-10 font-30 align-items-center d-flex text-white">
+                                <span class="icon-svg mr-15">
+                                    <img src="../assets/default/svgs/bulb-white.svg" alt="#">
+                                </span>
                                 Exploring the National Curriculum in the UK?
                             </h4>
                             <p class="font-16 text-white"> Our resources will help you navigate and provide a
-                                comprehensive learning experience for your students.</p>
+                                comprehensive<br> learning experience for your students.</p>
                         </div>
                         <div class="lms-btn-group justify-content-center">
                             <a href="https://rurera.chimpstudio.co.uk/national-curriculum"
@@ -769,74 +776,84 @@
             </div>
         </div>
     </section>
-    <section class="choose-sats py-80 mt-90" style="background-color: cornsilk;">
+    <section class="choose-sats py-80 mt-90" style="background-color:#3d358b;background-image: radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0), radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10">About SATs</h2>
-                        <p class="font-19">With engaging learning experiences, proven strategies, and ample practice,
-                            you'll be <br> well-prepared to achieve your best scores on the SATs.</p>
+                        <h2 class="mt-0 mb-10 text-white">About SATs</h2>
+                        <p class="font-19 text-white">
+                            With engaging learning experiences, proven strategies, and ample
+                            practice, you'll be <br />well-prepared to achieve your best scores
+                            on the SATs.
+                        </p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/exam-multiple.svg" alt="#">
-                                <span>100+ Sats Pratices</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/exam-multiple-white.svg" alt="#" />
+                                <span class="text-white">100+ Sats Pratices</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/lessons.svg" alt="#">
-                                <span>Lesson Topics</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/lessons-white.svg" alt="#" />
+                                <span class="text-white">Lesson Topics</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/impact.svg" alt="#">
-                                <span>Impactful</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/impact-white.svg" alt="#" />
+                                <span class="text-white">Impactful</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/sav-time.svg" alt="#">
-                                <span>Time saving</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/sav-time-white.svg" alt="#" />
+                                <span class="text-white">Time saving</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/study.svg" alt="#">
-                                <span>Study Resources</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/study-white.svg" alt="#" />
+                                <span class="text-white">Study Resources</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/flexibility.svg" alt="#">
-                                <span>Flexibility</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/flexibility-white.svg" alt="#" />
+                                <span class="text-white">Flexibility</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/logic.svg" alt="#">
-                                <span>Logic</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/logic-white.svg" alt="#" />
+                                <span class="text-white">Logic</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
-                            <div class="sats-box">
-                                <img src="../assets/default/svgs/support.svg" alt="#">
-                                <span>Friendly support</span>
+                            <div class="sats-box border-white has-bg">
+                                <img src="../assets/default/svgs/support-white.svg" alt="#" />
+                                <span class="text-white">Friendly support</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6">
                     <div>
-                        <h2 class="font-36 font-weight-bold text-dark">Ignite Your Path to Success with 100+ SATs</h2>
-                        <p class="font-19 font-weight-normal mb-0 mt-10"> Work through a variety of practice questions
-                            to improve your skills and become familiar with the
-                            types of questions you'll encounter on the SATs. </p>
+                        <h2 class="font-36 font-weight-bold text-white">
+                            Ignite Your Path to Success with 100+ SATs
+                        </h2>
+                        <p class="font-19 font-weight-normal mb-0 mt-10 text-white">
+                            Work through a variety of practice questions to improve your skills
+                            and become familiar with the types of questions you'll encounter on
+                            the SATs.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1008,7 +1025,7 @@
                 </div>
             </div>
     </section>
-    <section class="lms-newsletter mt-60 py-70" style="background-color: var(--gray-dark);">
+    <section class="lms-newsletter mt-60 py-70" style="background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801">
         <div class="container">
             <div class="row">
                 <div class="col-12">

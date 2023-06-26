@@ -529,6 +529,7 @@
     });
 
     $('body').on('click', '.js-add-course-content-btn, .add-new-interactive-file-btn', function (e) {
+
         e.preventDefault();
         const $this = $(this);
         const type = $this.attr('data-type');

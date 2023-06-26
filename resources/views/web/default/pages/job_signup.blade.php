@@ -9,7 +9,7 @@
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 col-md-12 col-lg-6">
-                <h1 itemprop="title" class="font-50 font-weight-bold">Job Opportunities at Rurera</h1>
+                <h1 itemprop="title" class="font-50 font-weight-bold"><span class="text-scribble mr-10">Job</span>Opportunities at Rurera</h1>
                 <p itemprop="description">We are a dynamic and innovative company, constantly striving for excellence in everything we do. Joining our team <br> means joining a diverse and inclusive learning environment where collaboration and creativity are valued.</p>
                 <a itemprop="url" href="https://rurera.chimpstudio.co.uk/contact-us" class="btn-primary rounded-pill">Find new positions</a>
             </div>
@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 itemprop="title" class="mt-0 mb-10">Hiring Process</h2>
+                        <h2 itemprop="title" class="mt-0 mb-10">Hiring<span class="text-scribble ml-10">Process</span></h2>
                         <p itemprop="description">Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
                     </div>
                 </div>
@@ -1571,7 +1571,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-jobsform-section mb-90 pt-80 pb-90" style="background-color: #f8f8f8;">
+    <section class="lms-jobsform-section mb-90 pt-80 pb-90" style="background: url(../assets/default/svgs/diagonal-lines.svg) #f8f8f8;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">

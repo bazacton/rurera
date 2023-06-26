@@ -3364,15 +3364,18 @@ function get_chapters_list($include_lessions = true , $webinar_id = 0)
 }
 
 
-function sub_chapter_items_list()
+function sub_chapter_items_list($id = 0)
 {
-    $lessions = \Illuminate\Support\Facades\DB::table('webinars')
+    $lessionsQuery = \Illuminate\Support\Facades\DB::table('webinars')
         ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
         ->join('webinar_sub_chapters' , 'webinar_sub_chapters.webinar_id' , '=' , 'webinars.id')
         ->join('text_lessons' , 'text_lessons.sub_chapter_id' , '=' , 'webinar_sub_chapters.id')
         ->join('text_lesson_translations' , 'text_lesson_translations.text_lesson_id' , '=' , 'text_lessons.id')
-        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'text_lessons.id as chapter_id' , 'text_lesson_translations.title as chapter_title')
-        ->get();
+        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'text_lessons.id as chapter_id' , 'text_lesson_translations.title as chapter_title');
+    if( $id > 0){
+        $lessionsQuery->where('webinars.id', $id);
+    }
+    $lessions = $lessionsQuery->get();
 
     $lession_chapters = array();
     if (!empty($lessions)) {
@@ -3386,13 +3389,16 @@ function sub_chapter_items_list()
         }
     }
 
-    $webinars = \Illuminate\Support\Facades\DB::table('webinars')
+    $webinarsQuery = \Illuminate\Support\Facades\DB::table('webinars')
         ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
         ->join('webinar_sub_chapters' , 'webinar_sub_chapters.webinar_id' , '=' , 'webinars.id')
         ->join('webinar_chapter_items' , 'webinar_chapter_items.parent_id' , '=' , 'webinar_sub_chapters.id')
         ->join('quiz_translations' , 'quiz_translations.quiz_id' , '=' , 'webinar_chapter_items.item_id')
-        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'webinar_chapter_items.id as item_id' , 'webinar_chapter_items.item_id as chapter_id' , 'quiz_translations.title as chapter_title')
-        ->get();
+        ->select('webinars.id' , 'webinar_sub_chapters.id as sub_chapter_id' , 'webinar_sub_chapters.sub_chapter_title as title' , 'webinar_chapter_items.id as item_id' , 'webinar_chapter_items.item_id as chapter_id' , 'quiz_translations.title as chapter_title');
+    if( $id > 0){
+        $webinarsQuery->where('webinars.id', $id);
+    }
+    $webinars = $webinarsQuery->get();
 
     $chapters_list = array();
     if (!empty($webinars)) {

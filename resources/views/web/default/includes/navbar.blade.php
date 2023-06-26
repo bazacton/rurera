@@ -50,7 +50,7 @@ $navBtnText = $navbarButton->title;
                             ?' has-mega-menu' : '' }}">
                         <a class="nav-link" href="{{ $navbarPage['link'] }}">{{ $navbarPage['title'] }}</a>
 
-                        @if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'courses') && !empty($course_navigation))
+                        @if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'Courses') && !empty($course_navigation))
                         <div class="lms-mega-menu">
                             <div class="mega-menu-head">
                                 <ul class="mega-menu-nav d-flex nav">

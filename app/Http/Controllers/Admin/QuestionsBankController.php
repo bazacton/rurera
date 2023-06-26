@@ -316,6 +316,7 @@ class QuestionsBankController extends Controller
         $webinar_ids = $request->get('webinar_ids' , null);
         $question_status = $request->get('question_status' , null);
         $difficulty_level = $request->get('difficulty_level' , null);
+        $review_required = $request->get('review_required' , null);
 
 
         $category_id = $request->get('category_id' , '');
@@ -326,7 +327,7 @@ class QuestionsBankController extends Controller
         $query = fromAndToDateFilter($from , $to , $query , 'quizzes_questions.created_at');
 
         if (!empty($title)) {
-            $query->whereTranslationLike('title' , '%' . $title . '%');
+            $query->whereTranslationLike('title' , '%' . $title . '%')->orWhere('search_tags', 'LIKE' , '%' . $title . '%');
         }
 
         if (!empty($sort)) {
@@ -399,6 +400,10 @@ class QuestionsBankController extends Controller
 
         if ($chapter_id != '') {
             $query->where('quizzes_questions.chapter_id' , $chapter_id);
+        }
+
+        if ($review_required != '') {
+            $query->where('quizzes_questions.review_required' , $review_required);
         }
 
         if (!empty($question_status) and $question_status !== 'all') {

@@ -82,29 +82,31 @@
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                <div class="quiz-pagination swiper-container">
-                                    <ul class="swiper-wrapper">
-                                        <li class="swiper-slide"><a href="#">1</a></li>
-                                        <li class="swiper-slide"><a href="#">2</a></li>
-                                        <li class="swiper-slide"><a href="#">3</a></li>
-                                        <li class="swiper-slide"><a href="#">4</a></li>
-                                        <li class="swiper-slide"><a href="#">5</a></li>
-                                        <li class="swiper-slide"><a href="#">6</a></li>
-                                        <li class="swiper-slide"><a href="#">7</a></li>
-                                        <li class="swiper-slide"><a href="#">8</a></li>
-                                        <li class="has-flag swiper-slide"><a href="#"> 9</a></li>
-                                        <li class="swiper-slide"><a href="#">10</a></li>
-                                        <li class="has-flag swiper-slide"><a href="#">11</a></li>
-                                        <li class="swiper-slide"><a href="#">12</a></li>
-                                        <li class="swiper-slide"><a href="#">13</a></li>
-                                        <li class="swiper-slide"><a href="#">14</a></li>
-                                        <li class="swiper-slide"><a href="#">15</a></li>
-                                        <li class="swiper-slide"><a href="#">16</a></li>
-                                        <li class="swiper-slide"><a href="#">17</a></li>
-                                        <li class="swiper-slide"><a href="#">18</a></li>
-                                        <li class="swiper-slide"><a href="#">19</a></li>
-                                        <li class="has-flag swiper-slide"><a href="#">20</a></li>
-                                    </ul>
+                                <div class="quiz-pagination">
+                                    <div class="swiper-container">
+                                        <ul class="swiper-wrapper">
+                                            <li class="swiper-slide"><a href="#">1</a></li>
+                                            <li class="swiper-slide"><a href="#">2</a></li>
+                                            <li class="swiper-slide"><a href="#">3</a></li>
+                                            <li class="swiper-slide"><a href="#">4</a></li>
+                                            <li class="swiper-slide"><a href="#">5</a></li>
+                                            <li class="swiper-slide"><a href="#">6</a></li>
+                                            <li class="swiper-slide"><a href="#">7</a></li>
+                                            <li class="swiper-slide"><a href="#">8</a></li>
+                                            <li class="has-flag swiper-slide"><a href="#"> 9</a></li>
+                                            <li class="swiper-slide"><a href="#">10</a></li>
+                                            <li class="has-flag swiper-slide"><a href="#">11</a></li>
+                                            <li class="swiper-slide"><a href="#">12</a></li>
+                                            <li class="swiper-slide"><a href="#">13</a></li>
+                                            <li class="swiper-slide"><a href="#">14</a></li>
+                                            <li class="swiper-slide"><a href="#">15</a></li>
+                                            <li class="swiper-slide"><a href="#">16</a></li>
+                                            <li class="swiper-slide"><a href="#">17</a></li>
+                                            <li class="swiper-slide"><a href="#">18</a></li>
+                                            <li class="swiper-slide"><a href="#">19</a></li>
+                                            <li class="has-flag swiper-slide"><a href="#">20</a></li>
+                                        </ul>
+                                    </div>
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-button-next"></div>
                                 </div>

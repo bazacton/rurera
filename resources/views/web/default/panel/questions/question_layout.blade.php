@@ -37,6 +37,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                     @php $already_flagged = ($quizResultObj->flagged_questions != '') ? json_decode($quizResultObj->flagged_questions) : array();
                     $flag_class = (in_array($question->id, $already_flagged))? 'flaged' : 'notflaged';
                     @endphp
+                    ( {{$question_no}}/{{count(json_decode($quizAttempt->questions_list))}} Questions )
                     <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
                         <span class="question-icon flag-question {{$flag_class}}"
                               data-qresult_id="{{$newQuestionResult->quiz_result_id}}"

@@ -1,5 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="300.000000pt" height="300.000000pt" viewBox="0 0 300.000000 300.000000" preserveAspectRatio="xMidYMid meet">
-<g transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-<path d="M723 1565 c-28 -20 -31 -73 -5 -104 22 -28 42 -29 272 -7 137 13 311 19 675 21 452 4 486 3 442 -11 -77 -25 -55 -40 54 -35 52 2 104 7 116 12 27 10 32 54 7 63 -9 4 -114 17 -233 31 -156 17 -298 25 -511 29 -162 4 -407 9 -545 12 -220 4 -253 3 -272 -11z"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="180" viewBox="0 0 1080 180" xml:space="preserve" style="&#10;    height: 180px;&#10;">
+
+<g transform="matrix(1 0 0 1 540 540)" id="b9d31e5f-15fd-4830-906d-b3e55a37b0d9" style="&#10;    height: 40px;&#10;">
+<rect style="stroke: none;stroke-width: 1;stroke-dasharray: none;stroke-linecap: butt;stroke-dashoffset: 0;stroke-linejoin: miter;stroke-miterlimit: 4;fill: rgb(255,255,255);fill-rule: nonzero;opacity: 1;visibility: hidden;height: 180px;" vector-effect="non-scaling-stroke" x="-540" y="-540" rx="0" ry="0" width="1080" height="1080"/>
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="c2b46ea5-aae9-418e-8eaf-8f45f1546684">
+</g>
+<g transform="matrix(0.67 0 0 1 539.1 100.4)" id="a17dbe9c-5ca9-4c92-9ccc-a7d46b9b760a">
+<path style="stroke: rgb(0,0,0); stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(242, 117, 48); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke" transform=" translate(-1500.2, -1503.04)" d="M 723 1565 C 695 1545 692 1492 718 1461 C 740 1433 760 1432 990 1454 C 1127 1467 1301 1473 1665 1475 C 2117 1479 2151 1478 2107 1464 C 2030 1439 2052 1424 2161 1429 C 2213 1431 2265 1436 2277 1441 C 2304 1451 2309 1495 2284 1504 C 2275 1508 2170 1521 2051 1535 C 1895 1552 1753 1560 1540 1564 C 1378 1568 1133 1573 995 1576 C 775 1580 742 1579 723 1565 z" stroke-linecap="round"/>
 </g>
 </svg>

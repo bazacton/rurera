@@ -22,7 +22,7 @@
                                 <li itemprop="about"><a itemprop="url" href="/about-us">About Us</a></li>
                                 <li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
                                 <li itemprop="features"><a itemprop="url" href="/features-3">Features</a></li>
-                                <li itemprop="careers"><a itemprop="url" href="/careers">Careers</a></li>
+                                <li itemprop="careers"><a itemprop="url" href="/careers">Careers <span class="hiring-label">Hiring!</span></a></li>
                                 <li itemprop="membership"><a itemprop="url" href="/membership-2">Membership</a></li>
                                 <li itemprop="paper"><a itemprop="url" href="/sat-paper-feature">Sat Paper Feature</a></li>
                                 <li itemprop="quiz"><a itemprop="url" href="/quiz-page">Quiz Questions</a></li>

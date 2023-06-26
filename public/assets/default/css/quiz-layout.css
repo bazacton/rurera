@@ -2008,20 +2008,23 @@ Lms Quiz Wf Style End
     justify-content: flex-end;
 }
 .quiz-pagination {
-    padding-top: 10px;
-    padding-left: 30px;
-    padding-right: 35px;
-    width: 600px;
-    margin: -10px 0 0 0;
+    position: relative;
+    padding: 0 30px;
+    margin: 0;
+    max-width: 600px;
 }
-.quiz-pagination .swiper-button-next, 
-.quiz-pagination .swiper-button-prev {
+.quiz-pagination .swiper-container {
+    padding-top: 10px;
+    margin-top: -10px;
+}
+.quiz-pagination .swiper-button-next,
+.quiz-pagination .swiper-button-prev{
     width: 25px;
     height: 25px;
-    background-color:#fff;
+    background-color:transparent;
     border-radius:100%;
     text-align: center;
-    margin-top: -5px;
+    margin-top: -8px;
     left: 0px;
 }
 .quiz-pagination .swiper-button-next {
@@ -2032,15 +2035,16 @@ Lms Quiz Wf Style End
 .quiz-pagination .swiper-button-prev:after {
     font-size: 15px;
     font-weight: 700;
+    color: #fff;
 }
-.quiz-pagination ul {
+.quiz-pagination .swiper-container ul {
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     width: 100%;
 }
-.quiz-pagination li {
+.quiz-pagination .swiper-container li {
     margin: 6px 6px 0 0;
 }
 .quiz-pagination li a {
@@ -2056,6 +2060,7 @@ Lms Quiz Wf Style End
     border-radius: 3px;
     position: relative;
     transition: all .5s ease;
+    width: 100%;
 }
 .quiz-pagination .incorrect a {
     background-color: red;
@@ -2069,7 +2074,8 @@ Lms Quiz Wf Style End
     background-color: orange;
     border-color: #fbd796;
 }
-.timer-number {
+.timer-number,
+.lms-quiz-section .timer-number {
     font-size: 34px;
     color: #f4fefd;
     margin-left: 20px;
@@ -2134,8 +2140,11 @@ Lms Quiz Wf Style End
 }
 .read-quiz-content {
     transition: all 0.2s ease-in-out;
-    max-width: 700px;
-    margin: 0 auto;
+    /* max-width: 700px;
+    margin: 0 auto; */
+}
+.container-fluid.read-quiz-content {
+    padding: 0;
 }
 .read-quiz-content.pr-300 {
     max-width: 1000px;
@@ -2159,7 +2168,7 @@ Lms Quiz Wf Style End
 }
 .read-quiz-info ~ .read-quiz-content {
     max-width: inherit;
-    padding-left: 634px;
+    padding-left: 33.333%;
     padding-right: 0;
     width: 100%;
 }

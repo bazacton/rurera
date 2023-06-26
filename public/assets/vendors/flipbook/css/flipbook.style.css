@@ -2128,7 +2128,7 @@ Flip Book Custom Style Start
     padding: 30px;
     height: 100%;
 }
-.flipbook-page3-front:first-child .flipbook-page3-bg {
+/* .flipbook-page3-front:first-child .flipbook-page3-bg {
     position: initial;
     width: 50%;
 }
@@ -2142,7 +2142,7 @@ Flip Book Custom Style Start
     position: initial;
     display: flex;
     flex-direction: row-reverse;
-}
+} */
 .read-quiz-info .flipbook-page3.flipbook-page3-front {
     position: absolute;
     margin-left: 0;
@@ -2155,9 +2155,9 @@ Flip Book Custom Style Start
     position: absolute;
     width: auto;
 }
-.flipbook-page3-front:first-child .flipbook-data img {
+/* .flipbook-page3-front:first-child .flipbook-data img {
     position: relative;
-}
+} */
 .listing-card .card-body {
     display: flex;
     flex-wrap: wrap;

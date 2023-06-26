@@ -9,7 +9,6 @@ $rand_id = rand(99,9999);
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
@@ -21,6 +20,7 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
 <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
+<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
@@ -34,50 +34,7 @@ $rand_id = rand(99,9999);
 @endpush
 @section('content')
 <div class="content-section">
-    <section class="quiz-topbar">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 col-sm-12">
-                    <div class="quiz-top-info"><p>{{$question->title}} ( {{$question_no}}/
-                            {{count($questions_list)}}
-                            Questions )</p>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
-                    <div class="topbar-right">
-                        <div class="quiz-pagination">
-                            <ul>
-                                @if( !empty( $questions_list ) )
-                                @php $question_count = 1; @endphp
-                                @foreach( $questions_list as $question_id)
-                                @php $is_flagged = false;
-                                $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
-                                ($newQuizStart->flagged_questions) : array();
-                                @endphp
-                                @if( is_array( $flagged_questions ) && in_array( $question_id,
-                                $flagged_questions))
-                                @php $is_flagged = true;
-                                @endphp
-                                @endif
-                                @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                <li data-question_id="{{$question_id}}" class="{{ ( $is_flagged == true)?
-                                        'has-flag' : ''}} {{$question_status_class}}"><a
-                                        href="javascript:;">
-                                        {{$question_count}}</a></li>
-                                @php $question_count++; @endphp
-                                @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                        <div class="quiz-timer">
-                            <span class="timer-number">4<em>m</em></span> <span
-                                class="timer-number">50<em>s</em></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <section class="lms-quiz-section">
 
         @if( $quiz->quiz_pdf != '')
@@ -126,6 +83,56 @@ $rand_id = rand(99,9999);
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
 
+            <section class="quiz-topbar">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="quiz-top-info"><p>{{$question->title}}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                                <div class="topbar-right">
+                                    <div class="quiz-pagination">
+                                        <div class="swiper-container">
+                                        <ul class="swiper-wrapper">
+                                            @if( !empty( $questions_list ) )
+                                            @php $question_count = 1; @endphp
+                                            @foreach( $questions_list as $question_id)
+                                            @php $is_flagged = false;
+                                            $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                            ($newQuizStart->flagged_questions) : array();
+                                            @endphp
+                                            @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                            $flagged_questions))
+                                            @php $is_flagged = true;
+                                            @endphp
+                                            @endif
+                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                            <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                    'has-flag' : ''}} {{$question_status_class}}"><a
+                                                    href="javascript:;">
+                                                    {{$question_count}}</a></li>
+                                            @php $question_count++; @endphp
+                                            @endforeach
+                                            @endif
+                                        </ul>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                    <div class="quiz-timer">
+                                        <span class="timer-number">4<em>m</em></span> <span
+                                            class="timer-number">50<em>s</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+<div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
             <div class="question-step quiz-complete" style="display:none">
                 <div class="question-layout-block">
                     <div class="left-content has-bg">
@@ -164,6 +171,8 @@ $rand_id = rand(99,9999);
             <div class="question-area-temp hide"></div>
 
         </div>
+    </div>
+</div>
     </section>
 
 
@@ -184,10 +193,36 @@ $rand_id = rand(99,9999);
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
-    if (jQuery('.read-quiz-info, .read-quiz-content').length > 0) {
-        $('.read-quiz-info, .read-quiz-content').css({
-            'padding-top': header_height
-        });
-    }
+
+
+    if(jQuery('.quiz-pagination .swiper-container').length > 0){
+              console.log('slides-count');
+              console.log($(".quiz-pagination ul li").length);
+            const swiper = new Swiper('.quiz-pagination .swiper-container', {
+              slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+              spaceBetween: 0,
+              slidesPerGroup: 5,
+              navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+              },
+              breakpoints: {
+                320: {
+                  slidesPerView: 3,
+                  spaceBetween: 5
+                },
+
+                480: {
+                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                  spaceBetween: 5
+                },
+
+                640: {
+                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                  spaceBetween: 5
+                }
+              }
+            })
+          }
 </script>
 @endpush

@@ -3,6 +3,11 @@
 @push('styles_top')
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
+<style>
+    .hide{
+        display:none;
+    }
+</style>
 @endpush
 
 @push('libraries_top')
@@ -131,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 hide">
                         <div class="form-group">
                             <label class="input-label">{{trans('admin/main.category')}}</label>
                             <select name="category_id" data-plugin-selectTwo
@@ -155,7 +160,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 hide">
                         <div class="form-group">
                             <label class="input-label">Course</label>
                             <select name="course_id" data-plugin-selectTwo
@@ -164,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 hide">
                         <div class="form-group">
                             <label class="input-label">Chapter</label>
                             <select id="chapters" class="form-control populate ajax-chapter-dropdown" name="chapter_id">
@@ -196,6 +201,22 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="input-label">Teacher Review</label>
+                                                <select name="review_required" data-plugin-selectTwo class="form-control populate">
+                                                    <option value="">All</option>
+                                                    <option value="1" @if(request()->get('review_required') == '1') selected
+                                                        @endif>Yes
+                                                    </option>
+                                                    <option value="0" @if(request()->get('review_required') == '0') selected
+                                                        @endif>No
+                                                    </option>
+
+                                                </select>
+                                            </div>
+                                        </div>
 
                     <div class="col-md-3">
                         <div class="form-group">

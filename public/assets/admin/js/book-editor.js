@@ -466,7 +466,7 @@ $(document).on('click', '.generate', function (e) {
 
     $.ajax({
         type: "POST",
-        url: '/admin/books/'+book_page_id+'/store_page/',
+        url: '/admin/books/'+book_page_id+'/store_page',
         data: posted_data,
         success: function (return_data) {
             Swal.fire({icon: "success", html: '<h3 class="font-20 text-center text-dark-blue">Page Successfully Updated</h3>', showConfirmButton: !1});
