@@ -3498,3 +3498,30 @@ function TimeDifference($start_time , $end_time , $return_type = 'minutes')
     }
     return $response;
 }
+
+
+
+function rurera_encode($data_array){
+    $encoded_string = htmlentities(trim(stripslashes(base64_encode(json_encode($data_array)))));
+    return $encoded_string;
+}
+
+function rurera_decode($encoded_string){
+    $decoded_string = json_decode(base64_decode(html_entity_decode($encoded_string)));
+    return $decoded_string;
+}
+
+function array_neighbor($arr, $key)
+{
+    krsort($arr);
+    $keys = array_keys($arr);
+    $keyIndexes = array_flip($keys);
+
+    $return = array();
+    if (isset($keys[$keyIndexes[$key]-1]))
+        $return['next'] = $keys[$keyIndexes[$key]-1];
+    if (isset($keys[$keyIndexes[$key]+1]))
+        $return['prev'] = $keys[$keyIndexes[$key]+1];
+
+    return $return;
+}

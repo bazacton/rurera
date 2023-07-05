@@ -115,7 +115,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
             "time_consumed": time_consumed
         },
         success: function (return_data) {
-            var question_status_class = (return_data.incorrect_flag == true)? 'incorrect' : 'correct';
+            var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
 
@@ -211,10 +211,10 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     $(".question-step.question-step-" + next_question_no).css({display: "block"}).show(3000).animate({opacity: 1});
 
                     var question_response_layout = return_data.question_response_layout;
-                    var messageInterval = setTimeout(function(){
-                            $(".question-area-block").html(question_response_layout);
-                            clearInterval(messageInterval);
-                    },2000);
+                    var messageInterval = setTimeout(function () {
+                        $(".question-area-block").html(question_response_layout);
+                        clearInterval(messageInterval);
+                    }, 2000);
 
 
                     var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
@@ -375,44 +375,47 @@ function init_question_functions() {
     });
 
     $(document).on('click', '.flag-question.flaged', function (e) {
-            var question_id = $(this).attr('data-question_id');
-            var qresult_id = $(this).attr('data-qresult_id');
-            var thisObj = $(this);
-            jQuery.ajax({
-                type: "POST",
-                url: '/question_attempt/flag_question',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'unflag'},
-                success: function (return_data) {
-                    $(".quiz-pagination li[data-question_id='" + question_id + "']").removeClass('has-flag');
-                    thisObj.removeClass('flaged');
-                    thisObj.addClass('notflaged');
-                }
-            });
+        var question_id = $(this).attr('data-question_id');
+        var qresult_id = $(this).attr('data-qresult_id');
+        var thisObj = $(this);
+        jQuery.ajax({
+            type: "POST",
+            url: '/question_attempt/flag_question',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'unflag'},
+            success: function (return_data) {
+                $(".quiz-pagination li[data-question_id='" + question_id + "']").removeClass('has-flag');
+                thisObj.removeClass('flaged');
+                thisObj.addClass('notflaged');
+            }
         });
+    });
 
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
         var question_id = $(this).attr('data-question_id');
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
-        var thisObj = $(this);
-        jQuery.ajax({
-            type: "POST",
-            url: '/question_attempt/jump_question',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {"question_id": question_id, "qattempt_id": qattempt_id},
-            success: function (return_data) {
-                var question_response_layout = return_data.question_response_layout;
-                if (question_response_layout != '') {
-                    $(".question-area-block").html(question_response_layout);
-                }
-            }
+
+        var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
+        var questions_layout = [];
+        var questions_layout_obj = $.map(questions_layout_obj, function (value, index) {
+            questions_layout[index] = value;
         });
+
+        var question_layout = leform_decode64(questions_layout[question_id]);
+        var question_layout = JSON.parse(question_layout);
+        $(".question-area-block").html(question_layout);
     });
+
+
+    function rurera_lookup(array, prop, value) {
+        for (var i = 0, len = array.length; i < len; i++) {
+            if (array[i] && array[i][prop] === value) {
+                return array[i];
+            }
+        }
+    }
 
     $(document).on('click', '.questions-nav-controls .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');

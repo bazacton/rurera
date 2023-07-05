@@ -51,6 +51,7 @@ class PagesController extends Controller
                 $QuestionsAttemptController = new QuestionsAttemptController();
                 $data = [
                     'pageTitle'                  => '11+',
+					'pageDescription' => $page->seo_description,
                     'sats'                       => $sats,
                     'QuestionsAttemptController' => $QuestionsAttemptController
                 ];

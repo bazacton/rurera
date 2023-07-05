@@ -96,6 +96,7 @@ class QuestionsAttemptController extends Controller
 
         $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
         $question_no = $next_question = $prev_question = 0;
+        $questionAttemptAllowed = false;
 
         $questionObj = $newQuestionResult = array();
         if (!empty($questions_list)) {

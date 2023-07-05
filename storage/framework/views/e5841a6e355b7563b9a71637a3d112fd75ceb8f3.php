@@ -4,10 +4,10 @@
             <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
             <span  itemprop="datePublished" content="2023-04-05T08:00:00+08:00"><?php echo e(dateTimeFormat($post->created_at, 'j M Y')); ?></span>
         </span>
-        <a itemprop="url" href="<?php echo e($post->getUrl()); ?>">
-            <h2 class="blog-grid-title mt-10" itemprop="title"><?php echo e($post->title); ?></h2>
-        </a>
 
+        <h2 class="blog-grid-title mt-10" itemprop="title">
+            <a itemprop="url" href="<?php echo e($post->getUrl()); ?>"><?php echo e($post->title); ?></a>
+        </h2>
         <div class="mt-20 blog-grid-desc" itemprop="description"><?php echo truncate(strip_tags($post->description), 200); ?></div>
         <?php
             $meta_description = explode(',', $post->meta_description);

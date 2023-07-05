@@ -12480,7 +12480,7 @@ body {
     top: -.11rem
 }
 .font-72 {
-    font-size: 4.5rem
+    font-size: 4.5rem !important;
 }
 .font-48,
 .font-72 {
@@ -12488,56 +12488,56 @@ body {
     line-height: 1.22
 }
 .font-48 {
-    font-size: 3rem
+    font-size: 3rem !important;
 }
 .font-50{font-size: 3.125rem;}
 .font-40 {
-    font-size: 2.5rem;
+    font-size: 2.5rem !important;
     font-weight: 700;
     line-height: 1.33;
 }
 .font-36 {
-    font-size: 2.25rem;
+    font-size: 2.25rem !important;
     font-weight: 700;
     line-height: 1.22
 }
 @media (max-width:767px) {
     .font-36 {
-        font-size: 1.25rem
+        font-size: 1.25rem !important;
     }
 }
 .font-30 {
-    font-size: 1.875rem;
+    font-size: 1.875rem !important;
     font-weight: 700;
     line-height: 1.22
 }
 @media (max-width:767px) {
     .font-30 {
-        font-size: 1.25rem
+        font-size: 1.25rem !important;
     }
 }
 .font-24 {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     font-weight: 700;
     line-height: 1.5
 }
 @media (max-width:767px) {
     .font-24 {
-        font-size: 1rem
+        font-size: 1rem !important;
     }
 }
 .font-20 {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
     font-weight: 500;
     line-height: 1.22
 }
 .font-19 {
-    font-size: 1.188rem;
+    font-size: 1.188rem !important;
     font-weight: 400;
     line-height: 1.6;
 }
 .font-18 {
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
         font-weight: 400;
         line-height: 1.6;
 }
@@ -12547,13 +12547,13 @@ body {
     }
 }
 .font-16 {
-    font-size: 1rem;
+    font-size: 1rem !important;
     font-weight: 400;
     line-height: 1.5
 }
 @media (max-width:767px) {
     .font-16 {
-        font-size: .75rem
+        font-size: .75rem !important;
     }
 }
 .font-14 {
@@ -19398,7 +19398,7 @@ Lms Search Top Banner Style Start
 .sub-header.lms-call-to-action input[type="text"]{border: 1px solid #00000036; width: calc(100% - 150px); height: 51px;}
 .blog-sub-header.lms-call-to-action button,
 .sub-header.lms-call-to-action button {min-width: 150px; max-width: 150px; height: 51px;}
-.lms-call-to-action .search-icon {position: absolute; left: 15px; top: 50%; transform: translateY(-40%);}
+.lms-call-to-action .search-icon {position: absolute; left: 15px; top: 50%; transform: translateY(-45%); height: 24px; width: 24px;}
 .lms-call-to-action .search-icon svg {height: 20px; width: 20px;}
 .lms-call-to-action .search-icon svg path {fill: #ccc;}
 /*********************************************
@@ -19428,9 +19428,19 @@ Lms Products Top Header Style Start
     color: var(--primary);
 }
 .products-top-header {
-    height: 500px;
+    min-height: 500px;
     padding-top: 6rem;
     background: #fff;
+}
+.products-top-header .banner-holder {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -30px;
+}
+.search-top-banner .banner-holder .education-icon-box img {
+    position: initial;
 }
 /*********************************************
 Lms Products Top Header Style End
@@ -22721,6 +22731,9 @@ Lms SignUp Page Style Start
     transform: translateX(85.30184569647683px) rotate(-16deg);
     width: 850px;
 }
+.masonry-grid-gallery.has-fix-height {
+    height: 570px;
+}
 .gallery-sub-header .masonry-grid .grid-item {
     margin-bottom: 0;
 }
@@ -22732,6 +22745,9 @@ Lms SignUp Page Style Start
     border-radius: 5px;
     max-width: 100%;
     position: initial;
+}
+.gallery-sub-header .masonry-grid figure img.has-shadow-x {
+    box-shadow: 0px 2px 2px rgba(0,0,0, 0.4);
 }
 .masonry-grid-gallery.simple {
     transform: none;
@@ -22767,6 +22783,11 @@ Lms SignUp Page Style Start
 .job-singup-sub-header li img {
     max-width: 25px;
     margin: 0 15px 0 0;
+}
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .gallery-sub-header .masonry-grid-gallery {
+        width: 670px;
+    }
 }
 .lms-search-services .services-card {
     text-align: center;
@@ -23271,7 +23292,7 @@ Lms Books Library Style Start
     visibility: hidden;
 }
 .book-library-sub-header {
-    background: url(../../default/img/bookshelwallpaper.png) no-repeat 0 0 /cover;
+    /* background: url(../../default/img/bookshelwallpaper.png) no-repeat 0 0 /cover; */
     min-height: 490px;
     padding-top: 100px;
     align-items: flex-start;
@@ -23373,9 +23394,11 @@ Lms Books Library Style Start
 .progress-card .text-holder p {
     color: var(--primary);
 }
+.lms-books-reading h3 {
+    color: var(--primary);
+}
 .lms-books-reading h3,
 .lms-books-listing h3 {
-    color: var(--primary);
     text-transform: capitalize;
     margin: 0 0 30px;
 }
@@ -23500,7 +23523,6 @@ Lms Books Library Style Start
     padding: 70px 0 35px;
 }
 .lms-books-listing h3 a {
-    color: var(--primary);
     font-size: 24px;
     text-transform: capitalize;
 }
@@ -23622,9 +23644,9 @@ Lms Books Library Style Start
     fill: var(--light-green);
 }
 .listing-card .read-btn.continue {
-    background-color:var(--light-green);
     color: #fff;
-    border-color: var(--dark-green);
+    border-color: rgba(0,0,0,0.4);
+    background-color: var(--primary);
 }
 .listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--light-green);}
 .listing-card .read-btn.continue:hover .btn-icon svg g{fill:var(--light-green);}
@@ -23922,6 +23944,13 @@ lms Key Stage Style Start
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.choose-sats .sats-box.border-solid {
+    border-style: solid;
+    min-width: 230px;
+}
+.choose-sats .sats-box.border-transparent {
+    border-color: rgba(0,0,0,0.1);
 }
 .choose-sats .sats-box img {
     max-width: 50px;
@@ -24364,9 +24393,11 @@ Lms FAQS New Elements Style Start
 .cell-shaps svg.shap-lg {height: 103px; width: 103px; border-radius: 100%;}
 .cell-shaps svg.shap-sm g {fill: rgba(255,255,255,0.6);}
 .lms-call-to-action input[type="text"] {border: 0; height: 55px; width: calc(100% - 200px); border-radius: 8px 0 0 8px;}
+.products-top-header.lms-call-to-action input[type="text"] {height: 50px;}
 body input[type="text"]:focus::-moz-placeholder {color: transparent;}
 body input[type="text"]:focus::-webkit-input-placeholder {color: transparent;}
 .lms-call-to-action button {min-width: 200px; height: 55px; max-width: 200px; border: 0; background-color:var(--primary); color: #fff; border-radius: 0 8px 8px 0; font-weight: 500;}
+.products-top-header.lms-call-to-action button {height: 50px;}
 .lms-call-to-action .field-holder {position: relative;}
 .lms-call-to-action .row {align-items: center;}
 .cell-shaps.text-right .shap-sm {right: -20px; top: 50%; margin-top: -40px;}
@@ -24506,7 +24537,7 @@ background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px
 .counter-yellow-bg p {
     transform: rotate(47deg);
     display: block;
-    padding-right: 55px;
+    padding-right: 22px;
 }
 .lms-counter-card.counter-yellow-bg {
     background: #f6b801;
@@ -24515,14 +24546,14 @@ background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px
     box-shadow: none;
     transform: rotate(-50deg);
     height: 175px;
-    padding: 20px 15px 20px;
+    padding:36px 29px 20px 15px;
     text-align: center;
 }
 .lms-counter-card.counter-purple-bg:before {
     content: "";
     position: absolute;
     left: 80px;
-    top: -68px;
+    top: -74px;
     width: 300px;
     height: 150px;
     border-top: 5px dashed #cac8cc;
@@ -24534,7 +24565,7 @@ background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px
     position: absolute;
     right: -101px;
     bottom: -152px;
-    width: 200px;
+    width: 230px;
     height: 150px;
     border-bottom: 5px dashed #cac8cc;
     transform: rotate(60deg);
@@ -24542,16 +24573,26 @@ background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px
 }
 .counter-holder .svg-shapes-bottom {
     position: absolute;
-    left: 48px;
-    bottom: -18px;
+    left: 69px;
+    bottom: -12px;
     transform: rotate(-52deg);
 }
+.lms-counter-card.counter-purple-bg .plus-icons,
+.lms-counter-card.counter-orange-bg .plus-icons{margin-left: 5px;}
 .counter-holder .svg-shapes-bottom svg path,
 .counter-holder .svg-shapes-top svg path{fill: #cac8cc;}
+.counter-holder .svg-shapes-top svg,
+.counter-holder .svg-shapes-bottom svg{width: 40px; height: 40px;}
 .counter-holder .svg-shapes-top {
     position: absolute;
-    right: -128px;
-    top: -49px;
+    right: -121px;
+    top: -36px;
+    transform: rotate(45deg);
+}
+.lms-counter-card.counter-yellow-bg .plus-icons {
+    position: absolute;
+    right: 29px;
+    top: 90px;
     transform: rotate(45deg);
 }
 /*************************************
@@ -25440,7 +25481,7 @@ Lms Responsive Style End
     background-image: url(../../default/svgs/scribble.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    bottom: -70%;
+    bottom: -55%;
     content: "";
     display: block;
     height: 100%;
@@ -25455,9 +25496,9 @@ Lms Responsive Style End
 Time Table Style Start
 *************************************/
 .time-tables-sub-header .icon-box {
-    border-top: 2px solid rgba(255,255,255,0.2);
+    border-top: 2px solid rgba(255,255,255,0.4);
     padding-top: 25px;
-    margin-top: 35px;
+    margin-top: 40px;
     display: flex;
     gap: 15px;
 }

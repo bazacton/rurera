@@ -50,7 +50,7 @@ $navBtnText = $navbarButton->title;
                             ?' has-mega-menu' : ''); ?>">
                         <a class="nav-link" href="<?php echo e($navbarPage['link']); ?>"><?php echo e($navbarPage['title']); ?></a>
 
-                        <?php if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'courses') && !empty($course_navigation)): ?>
+                        <?php if( (isset( $navbarPage['title']) && $navbarPage['title'] == 'Courses') && !empty($course_navigation)): ?>
                         <div class="lms-mega-menu">
                             <div class="mega-menu-head">
                                 <ul class="mega-menu-nav d-flex nav">

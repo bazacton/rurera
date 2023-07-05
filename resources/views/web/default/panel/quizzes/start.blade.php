@@ -87,7 +87,7 @@ $rand_id = rand(99,9999);
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-5 col-md-6 col-sm-12">
-                                <div class="quiz-top-info"><p>{{$question->title}}</p>
+                                <div class="quiz-top-info"><p>Test</p>
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
@@ -150,9 +150,11 @@ $rand_id = rand(99,9999);
                 </div>
             </div>
 
-            <div class="question-area-block">
+            <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
+
                 @if( is_array( $question ))
                 @php $question_no = 1; @endphp
+
                 @foreach( $question as $questionObj)
                 @include('web.default.panel.questions.question_layout',['question'=> $questionObj,'prev_question' =>
                 0, 'next_question' => 0, 'question_no' =>
@@ -161,10 +163,10 @@ $rand_id = rand(99,9999);
                 @php $question_no++; @endphp
                 @endforeach
                 @else
-                @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' =>
-                $question_no, 'prev_question' => $prev_question, 'next_question' => $next_question , 'quizAttempt' =>
-                $quizAttempt, 'newQuestionResult' => $newQuestionResult, 'quizResultObj' => $newQuizStart
-                ])
+                @php $first_question = rurera_decode($questions_layout[$first_question_id]);
+                echo $first_question;
+                @endphp
+
                 @endif
             </div>
 
