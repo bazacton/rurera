@@ -2258,7 +2258,7 @@ function toolbar_tools()
         ) ,
         'question_templates' => array(
             'title'   => esc_html__('Questions Templates' , 'leform') ,
-            'icon'    => 'fas fa-layer-plus' ,
+            'icon'    => 'fas fa-layer-group' ,
             'options' => array(
                 '1' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> 1 column' , 'leform') ,
                 '2' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> 2 columns' , 'leform') ,
@@ -2318,15 +2318,15 @@ function toolbar_tools()
             'icon'  => 'fas fa-cut' ,
             'type'  => 'other'
         ) ,
-        'question_no'        => array(
+        /*'question_no'        => array(
             'title' => esc_html__('Seperator' , 'leform') ,
             'icon'  => 'fas fa-question-circle' ,
             'type'  => 'other'
-        ) ,
+        ) ,*/
 
         'matrix_quiz' => array(
             'title' => esc_html__('Sortable Quiz' , 'leform') ,
-            'icon'  => 'fas fa-arrows-alt-v' ,
+            'icon'  => 'fas fa-table' ,
             'type'  => 'input'
         ) ,
 

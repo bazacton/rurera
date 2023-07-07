@@ -394,6 +394,9 @@ function init_question_functions() {
     });
 
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+        if( $(this).hasClass('correct') || $(this).hasClass('incorrect')){
+            return;
+        }
         var question_id = $(this).attr('data-question_id');
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
 
@@ -407,6 +410,29 @@ function init_question_functions() {
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
     });
+
+    $(document).on('click', '.quiz-pagination ul li.correct, .quiz-pagination ul li.incorrect', function (e) {
+        var question_id = $(this).attr('data-question_id');
+        var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+        var qresult_id = $(this).attr('data-qresult_id');
+        var thisObj = $(this);
+        jQuery.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: '/question_attempt/jump_question',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {"question_id": question_id, "qattempt_id": qattempt_id},
+            success: function (return_data) {
+                var question_response_layout = return_data.question_response_layout;
+                if (question_response_layout != '') {
+                    $(".question-area-block").html(question_response_layout);
+                }
+            }
+        });
+    });
+
 
 
     function rurera_lookup(array, prop, value) {

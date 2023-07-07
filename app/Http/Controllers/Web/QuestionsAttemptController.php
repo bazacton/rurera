@@ -92,6 +92,7 @@ class QuestionsAttemptController extends Controller
         $user = auth()->user();
         $questions_list = ($quizAttempt->questions_list != '') ? json_decode($quizAttempt->questions_list) : array();
 
+
         $questions_list = $this->get_questions_list($questions_list, $quizAttempt);
 
         $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
@@ -138,6 +139,8 @@ class QuestionsAttemptController extends Controller
                                     'quiz_result_type' => $quizAttempt->attempt_type,
                                     'review_required' => $questionObj->review_required,
                                 ]);
+
+
 
                                 break;
                             } else {
@@ -216,6 +219,12 @@ class QuestionsAttemptController extends Controller
                 break;
 
             case "sats":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
+
+            case "11plus":
                 if ($QuizzResultQuestionsCount == 0) {
                     $is_attempt_allowed = true;
                 }
@@ -309,7 +318,7 @@ class QuestionsAttemptController extends Controller
         $incorrect_flag = false;
         $show_fail_message = true;
 
-        if ($quizAttempt->attempt_type == 'sats') {
+        if ($quizAttempt->attempt_type == 'sats' || $quizAttempt->attempt_type == '11plus') {
             $show_fail_message = false;
         }
 
@@ -696,6 +705,7 @@ class QuestionsAttemptController extends Controller
         $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
         $AttemptAllowed = isset($nextQuestionArray['AttemptAllowed']) ? $nextQuestionArray['AttemptAllowed'] : false;
 
+        //$AttemptAllowed = false;
 
         if ($AttemptAllowed == true) {
             $question_response_layout = view('web.default.panel.questions.question_layout', [
@@ -735,7 +745,6 @@ class QuestionsAttemptController extends Controller
         $resultData = $QuestionsAttemptController->get_result_data($QuizzesResult->parent_type_id, $QuizzesResult->id);
         $resultsDataArray = isset($resultData->resultsData) ? $resultData->resultsData : array();
         $resultObj = isset($resultsDataArray[$QuizzesResult->id]['resultObjData']) ? $resultsDataArray[$QuizzesResult->id]['resultObjData'] : array();
-
 
         $resultAttempts = isset($resultObj->attempts) ? $resultObj->attempts : array();
         $question_response_layout = '';

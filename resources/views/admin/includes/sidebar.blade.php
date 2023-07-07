@@ -215,14 +215,14 @@
                     </li>
                 @endif
 
-                @if($authUser->role_name == 'teachers')
-                    <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
-                        <a href="{{ getAdminPanelUrl('/author_points') }}/{{$authUser->id}}" class="nav-link">
-                            <i class="fas fa-pen"></i>
-                            <span>Points Breakdown</span>
-                        </a>
-                    </li>
-                @endif
+            @if(auth()->user()->isAuthor())
+                <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/author_points') }}/{{$authUser->id}}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Points Breakdown</span>
+                    </a>
+                </li>
+            @endif
 
 
             @can('admin_glossary')

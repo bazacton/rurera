@@ -20,10 +20,11 @@ class PagesController extends Controller
         $page = Page::where('link', $link)->where('status', 'publish')->first();
 
         if (!empty($page)) {
-            $data = ['pageTitle'       => $page->title,
-                     'pageDescription' => $page->seo_description,
-                     'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
-                     'page'            => $page
+            $data = [
+                'pageTitle'       => $page->title,
+                'pageDescription' => $page->seo_description,
+                'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+                'page'            => $page
             ];
 
             if ($page->id == 26) {
@@ -44,18 +45,17 @@ class PagesController extends Controller
                 return view('web.default.pages.quizpage', $data);
             } elseif ($page->id == 95) {
 
-
                 $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
                 $sats = $query->paginate(30);
-
                 $QuestionsAttemptController = new QuestionsAttemptController();
                 $data = [
                     'pageTitle'                  => '11+',
-					'pageDescription' => $page->seo_description,
+                    'pageDescription'            => $page->seo_description,
                     'sats'                       => $sats,
                     'QuestionsAttemptController' => $QuestionsAttemptController
                 ];
                 return view('web.default.pages.11plus', $data);
+
             } elseif ($page->id == 11) {
                 $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
                 $data['testimonials'] = $testimonials;

@@ -1551,6 +1551,24 @@ span~.input-holder {
 .leform-element input.input-simple:focus::-webkit-input-placeholder {
     color: transparent;
 }
+.input-holder .input-label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.input_line {
+    border-right: 0 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+}
+.input-holder .input-label.right {
+    right: 10px;
+    left: auto;
+}
+.input-holder .input-label ~ input.input-simple {
+    padding: 0 25px;
+}
 .input-holder .wf-input-label {
     position: absolute;
     text-align: center;

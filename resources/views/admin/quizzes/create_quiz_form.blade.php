@@ -78,6 +78,9 @@
                         <option value="sats" {{ (!empty($quiz) and $quiz->quiz_type == 'sats') ? 'selected' : ''
                             }}>SATs
                         </option>
+                        <option value="11plus" {{ (!empty($quiz) and $quiz->quiz_type == '11plus') ? 'selected' : ''
+                            }}>11 Plus
+                        </option>
                     </select>
                 </div>
 
@@ -157,7 +160,7 @@
                 $sats_hide_class = (empty($quiz ) || $quiz->quiz_type == 'sats')? '' : 'hide-class';
                 @endphp
 
-                <div class="conditional-fields sats-fields {{$sats_hide_class}}">
+                <div class="conditional-fields sats-fields 11plus-fields {{$sats_hide_class}}">
                     <div class="form-group">
                         <label class="input-label">Quiz Sub Title</label>
                         <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][sub_title]"
@@ -170,7 +173,7 @@
                 </div>
 
 
-                <div class="conditional-fields sats-fields assessment-fields {{$assessment_hide_class}}">
+                <div class="conditional-fields sats-fields 11plus-fields assessment-fields {{$assessment_hide_class}}">
                     <div class="form-group">
                         <label class="input-label">No of Attempts</label>
                         <input type="number" value="{{ !empty($quiz) ? $quiz->attempt : old('attempt') }}"
@@ -327,7 +330,6 @@
 
                 <div class="questions-list">
                     <ul>
-
                         @if( !empty( $quiz->quizQuestionsList))
                         @foreach( $quiz->quizQuestionsList as $questionObj)
                         @if( !empty( $questionObj->QuestionData))
@@ -346,7 +348,6 @@
                     </ul>
                 </div>
 
-
                 <div class="form-group custom-switches-stacked">
                     <label class="custom-switch pl-0">
                         <input type="hidden" name="show_all_questions" value="disable">
@@ -359,7 +360,6 @@
                                for="show_all_questions">Show All Questions</label>
                     </label>
                 </div>
-
 
             </div>
         </div>

@@ -457,7 +457,7 @@ class QuizController extends Controller
 
             $question_points = isset($question->question_score) ? $question->question_score : 0;
 
-            if ($show_all_questions == true) {
+            /*if ($show_all_questions == 'testing') {
 
                 $questions_array = $exclude_array = array();
                 $exclude_array[] = $questionObj->id;
@@ -476,7 +476,8 @@ class QuizController extends Controller
                     }
                 }
 
-            }
+            }*/
+
 
             if ($quiz->quiz_type == 'practice') {
                 $quiz_settings = json_decode($quiz->quiz_settings);
@@ -485,38 +486,64 @@ class QuizController extends Controller
             }
 
 
-            if ($show_all_questions == true) {
+            /*if ($show_all_questions == 'test') {
                 $question = array();
                 $question = $questions_array;
             } else {
                 $question = $questionObj;
-            }
+            }*/
 
+
+
+
+
+            $question = $questionObj;
+
+            $questions_array = $exclude_array = array();
+            $exclude_array[] = $questionObj->id;
+            $questions_array[] = $questionObj;
             $questions_layout = array();
             $first_question_id = 0;
-            if (!empty($question)) {
-                foreach ($question as $question_no_index => $questionObj) {
-                    $question_no = $question_no_index+1;
+            if (!empty($questions_list)) {
+                foreach ($questions_list as $question_no_index => $question_id) {
 
-                    if ($question_no_index == 0) {
-                        $first_question_id = $questionObj->id;
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array);
+                    $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
+                    $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
+                    $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
+                    $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
+                    $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+                    $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
+                    if (isset($questionObj->id)) {
+                        $questions_array[] = $questionObj;
+                        $exclude_array[] = $questionObj->id;
+
+                        $question_no = $question_no_index+1;
+                        if ($question_no_index == 0) {
+                            $first_question_id = $questionObj->id;
+                        }
+                        $question_response_layout = view('web.default.panel.questions.question_layout', [
+                            'question'          => $questionObj,
+                            'prev_question'     => $prev_question,
+                            'next_question'     => $next_question,
+                            'quizAttempt'       => $attemptLogObj,
+                            'questionsData'     => rurera_encode($question),
+                            'newQuestionResult' => $newQuestionResult,
+                            'question_no'       => $question_no,
+                            'quizResultObj'     => $QuizzesResult
+                        ])->render();
+                        $questions_layout[$questionObj->id] = rurera_encode(stripslashes($question_response_layout));
                     }
-                    $array_neighbor = array_neighbor($question, $question_no_index);
-                    $prev_question_id = isset($array_neighbor['prev']) ? $question[$array_neighbor['prev']]->id : 0;
-                    $next_question_id = isset($array_neighbor['next']) ? $question[$array_neighbor['next']]->id : 0;
-                    $question_response_layout = view('web.default.panel.questions.question_layout', [
-                        'question'          => $questionObj,
-                        'prev_question'     => $prev_question_id,
-                        'next_question'     => $next_question_id,
-                        'quizAttempt'       => $attemptLogObj,
-                        'questionsData'     => rurera_encode($question),
-                        'newQuestionResult' => $newQuestionResult,
-                        'question_no'       => $question_no,
-                        'quizResultObj'     => $QuizzesResult
-                    ])->render();
-                    $questions_layout[$questionObj->id] = rurera_encode(stripslashes($question_response_layout));
+
                 }
             }
+            $question = $questions_array;
+
+
+
+
+
+
 
 
             $question = rurera_encode($question);

@@ -19106,6 +19106,7 @@ Lms Blog Grid Card Style Start
     align-items: center;
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(157, 176, 197, .2);
+    border-radius: 0.375rem;
 }
 .blog-grid-card .blog-grid-image,
 .list-card .img-holder {
@@ -19127,9 +19128,9 @@ Lms Blog Grid Card Style Start
     right: 0;
     top: 60%;
     bottom: 0;
-    background-image: linear-gradient(180deg, rgba(6, 6, 6, 0), rgba(0, 0, 0, .8));
+    background-image: linear-gradient(180deg, rgba(6, 6, 6, 0), rgba(0, 0, 0, .2));
     z-index: 1;
-    border-radius: .375rem;
+    border-radius: .375rem .375rem 0 0;
 }
 .blog-grid-card .blog-grid-image .created-at {
     font-size: 14px;
@@ -19211,7 +19212,7 @@ Lms Blog Grid Card Style Start
     width: calc(100% - 83%);
 }
 .blog-grid-card .blog-grid-image img {
-    border-radius: 0.375rem;
+    border-radius: 0.375rem 0.375rem 0 0;
     max-width: 100%
 }
 .cart-banner {
@@ -19248,7 +19249,7 @@ Lms Blog Grid Card Style Start
     margin-right: 20px;
 }
 .lms-blog-grid .blog-grid-card .blog-grid-detail .blog-grid-desc {font-size: 16px;line-height: 22px;color:#586165;}
-.lms-blog-grid .blog-grid-card {border: 0;}
+.lms-blog-grid .blog-grid-card {border: 0; align-items: flex-start;}
 
 .blog-newsletter .svg-holder path {fill: rgba(0,0,0,0.1);stroke: rgba(255,255,255,0.1);}
 .blog-newsletter .svg-holder polygon {
@@ -19714,6 +19715,9 @@ Lms FAQS Style Start
 .pages-sub-header .sub-header-img figure {
     position: relative;
     min-height: 300px;
+}
+.pages-sub-header.lms-course-banner .sub-header-img figure {
+    min-height: auto;
 }
 .pages-sub-header .sub-header-img figure figcaption {
     position: absolute;
@@ -22197,6 +22201,7 @@ Custom Pagination Style End
     height: 40px;
     width: 40px;
     display: none;
+    z-index: 1;
 }
 @media (max-width: 767px) {
     .lms-curriculums {
@@ -23293,8 +23298,8 @@ Lms Books Library Style Start
 }
 .book-library-sub-header {
     /* background: url(../../default/img/bookshelwallpaper.png) no-repeat 0 0 /cover; */
-    min-height: 490px;
-    padding-top: 100px;
+    min-height: 530px;
+    padding-top: 80px;
     align-items: flex-start;
     position: relative;
 }
@@ -23346,19 +23351,19 @@ Lms Books Library Style Start
     transition: all 0.6s ease;
     z-index: -1;
     background-color: #fff !important;
-    color: var(--light-green);
+    color: var(--primary);
 }
 
 .progress-btn:hover::before,
 .progress-btn:hover {
-    color: var(--light-green);
+    color: var(--primary);
 }
 .progress-btn:hover:before {
     border-radius: 0;
     transform: translateY(0) scaleY(1);
 }
 .progress-btn {
-    background-color: var(--light-green);
+    background-color: var(--primary);
     min-width: 225px;
     display: inline-flex;
     text-align: center;
@@ -23366,7 +23371,7 @@ Lms Books Library Style Start
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    border: 1px solid var(--dark-green);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-bottom-width: 5px;
     font-size: 18px;
     text-transform: uppercase;
@@ -23382,23 +23387,23 @@ Lms Books Library Style Start
     margin-right: 5px;
     margin-left: -10px;
 }
-.progress-btn:hover .icon-svg svg{fill:var(--light-green);}
+.progress-btn:hover .icon-svg svg{fill:var(--primary);}
 .progress-btn .icon-svg svg{fill:#fff;}
 .progress-card .text-holder h4 {
-    color: var(--primary);
+    /* color: var(--primary); */
     text-transform: uppercase;
-    margin: 0 0 5px;
+    margin: 0 0 10px;
     font-weight: 700;
     font-size: 18px;
 }
 .progress-card .text-holder p {
-    color: var(--primary);
+    /* color: var(--primary); */
 }
 .lms-books-reading h3 {
     color: var(--primary);
 }
 .lms-books-reading h3,
-.lms-books-listing h3 {
+.lms-books-listing h2 {
     text-transform: capitalize;
     margin: 0 0 30px;
 }
@@ -23446,6 +23451,7 @@ Lms Books Library Style Start
     -ms-transition: all 1s ease-in-out;
     -o-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
+    pointer-events: none;
 }
 .lms-books-reading figure:hover:before,
 .lms-books-listing .listing-card:hover figure:before,
@@ -23532,6 +23538,7 @@ Lms Books Library Style Start
 .lms-books-listing .listing-card figure {
     position: relative;
     overflow:hidden;
+    border-radius: 14px;
 }
 .lms-books-listing .listing-card .img-holder img {
     border-radius: 14px;
@@ -23570,11 +23577,11 @@ Lms Books Library Style Start
     top: 50%;
     transform: translateY(-50%);
 }
-.listing-card .read-btn {
-    color: var(--light-green);
+.listing-card .read-btn, .book-btn {
+    color: var(--primary);
     font-weight: 600;
     font-size: 16px;
-    border: 1px solid var(--light-green);
+    border: 1px solid var(--primary);
     padding: 15px 25px;
     border-radius: 8px;
     border-bottom-width: 5px;
@@ -23612,15 +23619,17 @@ Lms Books Library Style Start
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--light-green);
+    background: var(--primary);
     border-radius: 50% 50% 0 0;
     transform: translateY(100%) scaleY(0.5);
     transition: all 0.6s ease;
     z-index:-1;
   }
-  .listing-card .read-btn:hover{
+  .listing-card .read-btn:hover,
+  .book-btn:hover{
     color:#fff;
-    background-color: var(--light-green);
+    background-color: var(--primary);
+    border-color: rgba(0,0,0,0.4);
   }
   .listing-card .read-btn:hover:before {
     border-radius: 0;
@@ -23641,15 +23650,15 @@ Lms Books Library Style Start
     max-width: 100%;
 }
 .listing-card .read-btn .btn-icon svg g {
-    fill: var(--light-green);
+    fill: var(--primary);
 }
 .listing-card .read-btn.continue {
     color: #fff;
     border-color: rgba(0,0,0,0.4);
     background-color: var(--primary);
 }
-.listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--light-green);}
-.listing-card .read-btn.continue:hover .btn-icon svg g{fill:var(--light-green);}
+.listing-card .read-btn.continue:hover::before, .listing-card .read-btn.continue:hover{color: var(--primary);}
+.listing-card .read-btn.continue:hover .btn-icon svg g{fill:#fff;}
 .listing-card .read-btn.continue::before{background-color: #fff;}
 .listing-card .read-btn.continue .btn-icon svg g{fill: #fff;}
 .listing-card .read-btn.continue .btn-icon {
@@ -23745,6 +23754,47 @@ Lms Books Library Style Start
     font-weight: 700;
     line-height: normal;
     display: block;
+}
+.gallery-slider {
+    position: relative;
+}
+.gallery-slider ul {
+    padding: 5px;
+}
+.gallery-slider li {
+    display: inline-block;
+    vertical-align: top;
+    width: 8.333%;
+    padding: 5px;
+}
+.gallery-slider li img {
+    max-width: 100%;
+    border-radius: 10px;
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+.gallery-slider .gallery-caption {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index:2;
+}
+.gallery-slider-holder {
+    position: relative;
+}
+.gallery-slider-holder:before {
+    background-color: rgba(0,0,0,0.9);
+    content:"";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index:2;
+    pointer-events:none;
 }
 .lms-library-slider .swiper-container {
     max-width: 1000px;

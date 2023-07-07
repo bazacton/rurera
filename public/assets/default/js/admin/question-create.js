@@ -8289,7 +8289,7 @@ $(document).on('click', '.editor-add-field', function () {
     var field_data = '';
     if (field_type == 'blank') {
         //field_data = '<span class="quiz-input-group"><input type="text" data-field_type="text" size="1" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'"></span>';
-        field_data = '<span class="input-holder"> <input type="text"  data-field_type="text" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"> </span>';
+        field_data = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><input type="text"  data-field_type="text" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"> </span>';
     }
     if (field_type == 'select') {
 
@@ -8327,7 +8327,7 @@ $(document).on('click', '.editor-add-field', function () {
 
 
     pasteHtmlAtCaret(field_data);
-    $(".note-editable").focus();
+    //$(".note-editable").focus();
     //$(".content-data").append(field_data);
 
 });
@@ -8499,6 +8499,24 @@ $(document).on('keyup change focus blur paste checked unchecked', '.element-fiel
         $(".note-editable #field-" + field_id).removeClass('large');
         $(".note-editable #field-" + field_id).addClass($(this).val());
 
+    } else if (field_type == 'label') {
+        $(".note-editable #field-" + field_id).closest('span').find('.input-label').html($(this).val());
+
+    } else if (field_type == 'label_position') {
+
+        $(".note-editable #field-" + field_id).closest('span').find('.input-label').removeClass('left');
+        $(".note-editable #field-" + field_id).closest('span').find('.input-label').removeClass('right');
+        $(".note-editable #field-" + field_id).closest('span').find('.input-label').addClass($(this).val());
+
+    } else if (field_type == 'style_field') {
+
+        $(".note-editable #field-" + field_id).closest('span').removeClass('input_box');
+        $(".note-editable #field-" + field_id).closest('span').removeClass('input_line');
+        $(".note-editable #field-" + field_id).closest('span').addClass($(this).val());
+
+        $(".note-editable #field-" + field_id).removeClass('input_box');
+        $(".note-editable #field-" + field_id).removeClass('input_line');
+        $(".note-editable #field-" + field_id).addClass($(this).val());
 
     } else if (field_type == 'link') {
         if ($(".note-editable #field-" + field_id).parent().is("a")) {
@@ -8719,3 +8737,11 @@ $(document).on('change', '.matrix-columns-labels-options2 select', function () {
     var option_value = $(this).val();
     $(this).attr('data-selected', option_value);
 });
+
+function EditorIsEmpty(dataValue) {
+    is_empty = true;
+    if (dataValue != '' && dataValue != 'undefined' && dataValue != undefined) {
+        is_empty = false;
+    }
+    return is_empty;
+}
