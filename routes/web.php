@@ -393,6 +393,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{sat_id}/start' , 'SatsController@start');
     });
 
+
+    Route::group(['prefix' => '11plus'] , function () {
+            Route::get('/' , 'ElevenplusController@index');
+            Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
+        });
+
     Route::get('/sitemap' , function () {
         return Response::view('sitemap')->header('Content-Type' , 'application/xml');
     });

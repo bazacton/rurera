@@ -571,6 +571,7 @@ class QuestionsBankController extends Controller
 
         $chapters_list = get_chapters_list();
 
+
         $questions_array = $columns_array = $form_pages = $elements_data = $elements_array = array();
         if (array_key_exists('form-elements' , $_POST) && is_array($_POST['form-elements'])) {
             foreach ($_POST['form-elements'] as $encoded_element) {
@@ -588,6 +589,8 @@ class QuestionsBankController extends Controller
                         $default_element_options = default_form_options($element_options['type']);
 
                         $field_type = isset($element_options['type']) ? $element_options['type'] : '';
+
+
                         $field_id = isset($element_options['field_id']) ? $element_options['field_id'] : '';
                         $fields_data[$field_id] = $element_options;
                         $elements_data[$field_id] = $element_options;
@@ -614,6 +617,7 @@ class QuestionsBankController extends Controller
                                 }
                             }
                         }
+
                         $element_options['elements_data'] = $fields_data;
 
 

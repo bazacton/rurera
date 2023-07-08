@@ -60,7 +60,6 @@ $(document).on('click', '.question-submit-btn', function (e) {
         var field_type = $(this).attr('type');
         var field_value = $(this).val();
 
-        console.log(field_type);
 
         if (field_type == 'paragraph') {
             var field_value = $(this).html();
@@ -333,11 +332,7 @@ $(document).on('click', '.lms-quest-btn', function (e) {
 
 
 function sort_init() {
-    $("p.given").html(chunkWords($("p.given").text()));
-    $("span.given").draggable({
-        helper: "clone",
-        revert: "invalid"
-    });
+
 
     makeDropText($("p.given span.w"));
 
@@ -352,6 +347,134 @@ function sort_init() {
 
 
 function init_question_functions() {
+
+    console.log('init_question_functions');
+
+
+
+    $(document).on('click', '.match-question .stems li', function (e) {
+      stem = $(this);
+      stem.toggleClass("selected");
+
+      $(".match-question .stems li")
+        .not(stem)
+        .removeClass("selected");
+
+      $(".match-question .options li").removeClass("selected");
+      $(".match-question .line").removeClass("highlighted");
+
+      if (stem.hasClass("selected")) {
+        var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
+        stem_lines.addClass("highlighted");
+
+        stem_lines.each(function() {
+          var $option = $(this).data("option");
+          $('.match-question .options li[id="' + $option + '"]').addClass("selected");
+        });
+        $(".options").addClass("ready");
+      } else {
+        $(".options").removeClass("ready");
+        $('.match-question .line[data-stem="' + stem.attr("id") + '"]').removeClass(
+          "highlighted"
+        );
+      }
+    });
+
+    $(document).on('click', '.match-question .options li', function (e) {
+      if ($(".options").hasClass("ready")) {
+        $(this).toggleClass("selected");
+        var stem = $(".match-question .stems li.selected");
+        var selected_value = stem.attr('id');
+        var data_id = $(this).attr('data-id');
+        $("#"+data_id).val(selected_value);
+        var option = $(this);
+        if (!line_exists(stem, option)) {
+          $('.match-question .line[data-stem="' + stem.attr("id") + '"]').remove();
+          drawLine(stem, option);
+        } else {
+          $(
+            '.match-question .line[data-stem="' +
+              stem.attr("id") +
+              '"][data-option="' +
+              option.attr("id") +
+              '"]'
+          ).remove();
+        }
+
+         var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
+        if(stem_lines.length>0){
+          stem.addClass('matched');
+        } else{
+          stem.removeClass('matched');
+        }
+
+      }
+    });
+
+
+    function lineDistance(x, y, x0, y0) {
+        return Math.sqrt((x -= x0) * x + (y -= y0) * y);
+      }
+
+      function line_exists(stem, option) {
+        var $exists = false;
+        $(".line").each(function() {
+          if (
+            $(this).data("stem") === stem.attr("id") &&
+            $(this).data("option") === option.attr("id")
+          ) {
+            $exists = true;
+          }
+        });
+        return $exists;
+      }
+
+      function drawLine(stem, option) {
+        var pointA = stem.offset();
+        pointA.left = pointA.left + stem.outerWidth();
+        pointA.top = pointA.top + stem.outerHeight() / 2;
+        var pointB = option.offset();
+        pointB.top = pointB.top + option.outerHeight() / 2;
+        var angle =
+          Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
+          180 /
+          Math.PI;
+        var distance = lineDistance(
+          pointA.left,
+          pointA.top,
+          pointB.left,
+          pointB.top
+        );
+
+        var line = $('<div class="line highlighted"/>');
+        line.append($('<div class="point"/>'))
+        line.attr("data-stem", stem.attr("id"));
+        line.attr("data-option", option.attr("id"));
+        $(".match-question").append(line);
+        line.css("transform", "rotate(" + angle + "deg)");
+
+        // Set Width
+        line.css("width", distance + "px");
+
+        // Set Position
+        line.css("position", "absolute");
+
+        if (pointB.top > pointA.top) {
+          $(line).offset({ top: pointA.top, left: pointA.left });
+        } else {
+          $(line).offset({ top: pointB.top, left: pointA.left });
+        }
+      }
+
+
+
+
+    $("p.given").html(chunkWords($("p.given").text()));
+    $("span.given").draggable({
+        helper: "clone",
+        revert: "invalid"
+    });
+    makeDropText($("p.given span.w"));
 
     //sort_init();
     $(document).on('click', '.flag-question.notflaged', function (e) {
@@ -587,4 +710,59 @@ function leform_esc_html__(_string) {
     return leform_escape_html(string);
 }
 
+//Match Draw
 
+
+function lineDistance(x, y, x0, y0) {
+    return Math.sqrt((x -= x0) * x + (y -= y0) * y);
+  }
+
+  function line_exists(stem, option) {
+    var $exists = false;
+    $(".line").each(function() {
+      if (
+        $(this).data("stem") === stem.attr("id") &&
+        $(this).data("option") === option.attr("id")
+      ) {
+        $exists = true;
+      }
+    });
+    return $exists;
+  }
+
+  function drawLine(stem, option) {
+    var pointA = stem.offset();
+    pointA.left = pointA.left + stem.outerWidth();
+    pointA.top = pointA.top + stem.outerHeight() / 2;
+    var pointB = option.offset();
+    pointB.top = pointB.top + option.outerHeight() / 2;
+    var angle =
+      Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
+      180 /
+      Math.PI;
+    var distance = lineDistance(
+      pointA.left,
+      pointA.top,
+      pointB.left,
+      pointB.top
+    );
+
+    var line = $('<div class="line highlighted"/>');
+    line.append($('<div class="point"/>'))
+    line.attr("data-stem", stem.attr("id"));
+    line.attr("data-option", option.attr("id"));
+    $(".question").append(line);
+    line.css("transform", "rotate(" + angle + "deg)");
+
+    // Set Width
+    line.css("width", distance + "px");
+
+    // Set Position
+    line.css("position", "absolute");
+
+    if (pointB.top > pointA.top) {
+      $(line).offset({ top: pointA.top, left: pointA.left });
+    } else {
+      $(line).offset({ top: pointB.top, left: pointA.left });
+    }
+  }

@@ -257,6 +257,17 @@ class QuestionsAttemptController extends Controller
                     $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                     $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
 
+                    if ($question_type == 'match_quiz') {
+
+                        $question_correct = array();
+                        $options_array = isset($elementData->options2) ? $elementData->options2 : array();
+                        if (!empty($options_array)) {
+                            foreach ($options_array as $question_key => $optionData) {
+                                $question_correct[] = $optionData->value;
+                            }
+                        }
+                    }
+
                     if ($question_type == 'checkbox' || $question_type == 'radio') {
                         $question_correct = array();
                         $options_array = isset($elementData->options) ? $elementData->options : array();
@@ -323,8 +334,17 @@ class QuestionsAttemptController extends Controller
         }
 
         $incorrect_array = $correct_array = $user_input_array = array();
+
         if (!empty($questions_data)) {
             foreach ($questions_data as $q_id => $user_input) {
+
+                $q_index = $q_id;
+                $sub_index = '';
+                if( strpos($q_id,"-")){
+                    $q_index = explode('-', $q_index);
+                    $q_id = isset( $q_index[0] )? $q_index[0] : '';
+                    $sub_index = isset( $q_index[1] )? $q_index[1] : $sub_index;
+                }
 
                 $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
                 $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
@@ -332,18 +352,32 @@ class QuestionsAttemptController extends Controller
                 $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
                 $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
-                $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input);
+                $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
                 $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : true;
                 $user_input = is_array($user_input) ? $user_input : array($user_input);
                 if ($is_question_correct == false) {
-                    $incorrect_array[$q_id]['correct'] = $question_correct;
-                    $incorrect_array[$q_id]['user_input'] = $user_input;
+                    if( $sub_index != '') {
+                        $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
+                        $incorrect_array[$q_id][$sub_index]['user_input'] = $user_input;
+                    }else{
+                        $incorrect_array[$q_id]['correct'] = $question_correct;
+                        $incorrect_array[$q_id]['user_input'] = $user_input;
+                    }
                     $incorrect_flag = true;
                 } else {
-                    $correct_array[$q_id] = $question_correct;
+                    if( $sub_index != '') {
+                        $correct_array[$q_id][$sub_index] = $question_correct;
+                    }else {
+                        $correct_array[$q_id] = $question_correct;
+                    }
                 }
-                $user_input_array[$q_id] = $user_input;
+                if( $sub_index != '') {
+                    $user_input_array[$q_id][$sub_index] = $user_input;
+                }else {
+                    $user_input_array[$q_id] = $user_input;
+                }
+
             }
         }
 
@@ -455,7 +489,7 @@ class QuestionsAttemptController extends Controller
         exit;
     }
 
-    function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input)
+    function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index = 0)
     {
         $is_question_correct = true;
         if ($question_type == 'checkbox' || $question_type == 'radio') {
@@ -469,6 +503,13 @@ class QuestionsAttemptController extends Controller
                 }
             }
             $is_question_correct = ($question_correct != $user_input) ? false : $is_question_correct;
+        } else if ($question_type == 'match_quiz') {
+            $question_correct = array();
+            $options_array = $current_question_obj->options;
+            $question_value = isset( $options_array[$sub_index]->value )? $options_array[$sub_index]->value : '';
+
+            $question_correct[] = $question_value;
+            $is_question_correct = ($question_value != $user_input) ? false : $is_question_correct;
         } else {
 
             if ($question_type == 'paragraph') {

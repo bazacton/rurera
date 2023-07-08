@@ -6,24 +6,47 @@
 @endpush
 
 @section('content')
-<section class="pages-sub-header courses-sub-header position-relative">
+<section class="position-relative job-singup-sub-header gallery-sub-header find-instructor-section pt-100 pb-80 mb-0" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
     <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center flex-column text-center">
-            <div class="col-12 col-md-12 col-lg-8">
-                <h1 class="font-30 mb-30">Experience interactive <br> learning Experience </h1>
-                <p>Courses available for <a href="#">Maths</a>, <a href="#" style="color: #b88e88;">English</a>,
-                    <a href="#" style="color: #a5013e;">English Reading</a>, <a href="#" style="color: #015da5;">science</a> and
-                    <a href="#">computing</a>
-                    <br> that will surely help you grow and capture innovative ideas.
+        <div class="row h-100">
+            <div class="col-12 col-md-7 col-lg-7">
+                <h1 class="font-50 font-weight-bold">Experience interactive <br />
+                    <span class="text-scribble">Courses</span> learning experience</h1>
+                <p class="font-19">
+                Courses available for Maths, English, English Reading, science and computing
+                that will surely help you grow and capture innovative ideas.
                 </p>
-                <div class="mt-50 d-flex align-items-center justify-content-center position-relative">
-                    <a href="#" class="btn btn-primary">View all courses</a>
-                    <a href="#" class="btn btn-outline-primary ml-15">Take a Course</a>
+                <div class="d-flex align-items-center">
+                    <a href="#" class="btn-primary rounded-pill">View all courses</a>
+                    <a href="#" class="btn-primary rounded-pill ml-15">Take course</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 col-lg-5">
+                <figure class="position-relative mt-30" style="z-index: 1;">
+                    <img src="../assets/default/img/courses-banner-image.png" alt="courses banner image" title="courses" width="100%" height="auto" itemprop="image" loading="eager">
+                    <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" title="courses">
+                    <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" style="bottom: 25px; left: 20px;">
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="lms-search-services mb-0 py-80" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(238,238,238,0.1) 10px), repeating-linear-gradient(rgba(204,204,204,0.1), #f18700 ); background-color: #f18700;">
+    <div class="container">
+        <div class="row">
+        <div class="col-12 col-lg-12">
+                <div class="lms-setup-progress w-100">
+                    <ul class="d-flex align-items-center">
+                        <li itemprop="member" class="lms-subscription-step d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center">1</span><span itemprop="become" class="step-name">Register / signup</span></li>
+                        <li itemprop="member" class="separator"></li>
+                        <li class="lms-account-setup d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center">2</span><span itemprop="account" class="step-name">Choose desired key stage course</span></li>
+                        <li itemprop="member" class="separator"></li>
+                        <li itemprop="member" class="lms-confirmation-step d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center">3</span><span itemprop="welcome" class="step-name">Take & Subscribe course</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="svg-container"></div>
 </section>
 
 <div class="container mt-30">
@@ -66,6 +89,26 @@
         </form>
     </section>
 </div>
+<section class="lms-newsletter py-70 mt-15 mb-50" style="background: url(assets/default/svgs/bank-note-white.svg) #7679ee;">
+    <div class="container">
+       <div class="row">
+          <div class="col-12">
+             <div class="newsletter-inner">
+                <div class="row">
+                   <div class="col-12 col-lg-6 col-md-6 mb-20">
+                      <h2 itemprop="title" class="mb-10 text-white font-40">Take your next Step to subscribe!</h2>
+                      <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses delivered through Rurera, and gear up your people for success at work</p>
+                   </div>
+                   <div class="col-12 col-lg-6 col-md-6">
+                      <label class="mb-10 text-white">Your E-mail Address</label> 
+                      <div class="form-field position-relative"><input type="text" placeholder="Enter Your E-mail"><button type="submit">Subscribe</button></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
 
 @endsection
 

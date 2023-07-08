@@ -4210,9 +4210,9 @@ STYLE
 .question-layout .leform-element-html p:empty {
     display: none;
 }
-.question-layout p br {
+/*.question-layout p br {
 	display: none;
-}
+}*/
 .markscoin{
     position:absolute;
     width:20px;

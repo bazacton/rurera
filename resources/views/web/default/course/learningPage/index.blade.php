@@ -89,7 +89,9 @@ $rand_id = rand(99,9999);
     <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 
     <script src="/assets/default/js/parts/video_player_helpers.min.js"></script>
+
     <script src="/assets/learning_page/scripts.min.js?var={{$rand_id}}"></script>
+
 
     @if((!empty($isForumPage) and $isForumPage) or (!empty($isForumAnswersPage) and $isForumAnswersPage))
     <script src="/assets/learning_page/forum.min.js"></script>

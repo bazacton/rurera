@@ -114,9 +114,8 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 <script>
     var Questioninterval = setInterval(function() {
       var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');
-
       seconds_count = parseInt(seconds_count)+parseInt(1);
       $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count);
-      console.log(seconds_count);
     }, 1000);
 </script>
+

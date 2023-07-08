@@ -15337,15 +15337,20 @@ p {
     right: 0;
 }
 .find-instructor-testimonial .vidio-holder iframe {border-radius: 24px;}
-.lms-wave-shape-bottom, .lms-wave-shape {position: relative;}
+.lms-wave-shape-bottom, .lms-wave-shape, .lms-wave-shape-top {position: relative;}
 .lms-wave-shape{margin-bottom: 90px;}
-.lms-wave-shape:before, .lms-wave-shape-bottom::before{content:"";background:url(../../default/img/border-wave.svg);pointer-events:none;position:absolute;left:0;top:0;-webkit-background-size:contain;background-size:contain;-webkit-background-position:50% 100%;background-position:50% 100%;-webkit-transform:scaleY(-1);-moz-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1);height:30px;width:100%;}
+.lms-wave-shape:before, .lms-wave-shape-bottom::before,
+.lms-wave-shape-top::before{content:"";background:url(../../default/img/border-wave.svg);pointer-events:none;position:absolute;left:0;top:0;-webkit-background-size:contain;background-size:contain;-webkit-background-position:50% 100%;background-position:50% 100%;-webkit-transform:scaleY(-1);-moz-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1);height:30px;width:100%;}
 .lms-wave-shape-bottom::before{top:auto; bottom: 0;-webkit-transform:scaleY(1);-moz-transform:scaleY(1);-ms-transform:scaleY(1);transform:scaleY(1);}
 .find-instructor-circle .lms-serial-no {
     color: #fff;
     font-size: 3rem;
     z-index: 2;
     font-weight: 500;
+}
+.lms-wave-shape-top::before {
+    bottom: auto;
+    top: 0;
 }
 .find-instructor-section .find-instructor-section-circle,
 .find-instructor-section .find-instructor-section-dots {
@@ -16418,10 +16423,11 @@ p {
     transition: all .3s ease
 }
 .subscribe-plan {
-    position: relative;
     border: 3px solid transparent;
     transition: all .4s ease;
-    top: 0
+    box-shadow: 0 0 1px 2px rgba(0,0,0,0.05);
+    top: 0;
+    border-radius: 1.1rem;
 }
 .subscribe-plan .badge-popular {
     position: absolute;
@@ -16430,6 +16436,10 @@ p {
     border-radius: 10px 0 10px 0;
     background-color:#fdb532;
     color: #fff;
+}
+.subscribe-plan p {
+    font-size: 14px;
+    color: #555;
 }
 .subscribe-plan:hover {
     top: -15px;
@@ -16441,13 +16451,25 @@ p {
 }
 .subscribe-plan .plan-feature li {
     position: relative;
-    color: #171347
+    padding-left: 30px;
+    font-size: 15px;
 }
-.subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: -30px;top: 3px;width: 20px;height: 20px;border-radius: 50%;color: var(--secondary);font-size: 12px;border: 1px solid var(--primary);text-align: center;line-height: 18px;background-color: #f0f9ff;}
+.subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: 0;top: 0;width: 20px;height: 20px;border-radius: 3px;color: #d5d6d7;font-size: 12px;border: 1px solid #edeef1; text-align: center;line-height: 18px;background-color: rgba(243, 244, 245, 0.5);}
 .rtl .subscribe-plan .plan-feature li:after {
     left: auto;
     right: -20px
 }
+.subscribe-plan button.btn {
+    height: 44px;
+    border-color: #ccc;
+    color: #333;
+    font-size: 18px;
+}
+.subscribe-plan.subscribe-highlight .plan-feature li:after {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(0,0,0,0.2);
+}
+.subscribe-plan button.btn:hover {color: var(--white);}
 .registration-package-statistics .registration-package-statistics-icon {
     width: 48px;
     height: 48px
@@ -20263,15 +20285,49 @@ Lms Subscription Form Style Start
 .lms-form-wrapper .lms-radio-btn-group li {list-style: none; line-height: normal; position: relative; min-width:150px;}
 .lms-form-wrapper .lms-radio-btn-group li input[type=radio] {display: none;}
 .lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label{color: #000; background: #fff; border-radius: 20px; padding-left: 42px; justify-content: flex-start;}
-.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 10px;}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:before{opacity: 1; visibility: visible; left: 10px; color: #fff; border-color: #fff;}
 .lms-subscription-form.shape {position: relative; width: 100%; background: var(--primary); margin-top: 120px; padding-bottom: 80px;}
 .lms-subscription-form.shape.shape:after {position: absolute; width: 100%; height: 100%; content: ""; background: inherit; top: 0; right: 0; bottom: 0; left: 0; transform-origin: top left; transform: skewY(-4deg);}
-.lms-form-wrapper .lms-radio-btn-group li .lms-label:before{content: "\2713"; position: absolute; left: 0; top:50%; margin-top: -12px; font-size: 14px; color: #000; width: 24px; height: 24px; line-height: 21px; border: 2px solid #000; border-radius: 100%; opacity: 0; visibility: hidden; -webkit-transition: 0.3s linear; -o-transition: 0.3s linear; transition: 0.3s linear; font-weight: 600; text-align: center;}
-.lms-form-wrapper .lms-radio-btn-group li .lms-label {display: flex; justify-content: left; align-items: center; box-sizing: border-box; width: 100%; height: 38px; background-color:var(--primary); cursor: pointer; outline: 0; font-size: 16px; transition: all .3s; position: relative; color:#fff; font-weight: 500; margin-bottom: 0; border-radius: 0; padding-left: 0; -webkit-transition: 0.3s linear; -o-transition: 0.3s linear; transition: 0.3s linear; justify-content: center;}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label:before{content: "\2713"; position: absolute; left: 0; top:50%; margin-top: -12px; font-size: 14px; color: #000; width: 24px; height: 24px; line-height: 21px; border: 2px solid #000; border-radius: 100%; opacity: 0; visibility: hidden; -webkit-transition: 0.3s linear; -o-transition: 0.3s linear; transition: 0.3s linear; font-weight: 600; text-align: center; z-index: 1;}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label {display: flex; justify-content: left; align-items: center; box-sizing: border-box; width: 100%; height: 38px; background-color:#fff; cursor: pointer; outline: 0; font-size: 16px; position: relative; color:#fff; font-weight: 500; margin-bottom: 0; border-radius: 0; padding-left: 0; justify-content: center;}
 .lms-form-wrapper .lms-radio-btn-group li:last-child .lms-label {border-radius: 0 20px 20px 0;}
 .lms-count-field .input-group {position: relative; display: flex; width: 142px; align-items: center; border: 1px solid #d1d1d1; border-radius: 6px; outline: 0; overflow: hidden;}
 .lms-count-field .input-group .btn-number {width: 45px; height: 44px; border: 0; outline: 0; font-size: 26px; padding: 0; display: inline-flex; align-items: center; justify-content: center; transition: all .1s ease-in-out; color: #3a3a3a; box-sizing: border-box; background-color: #fff; font-weight: 500;}
 .lms-count-field .input-group .quantity-left-minus {border-right: 1px solid #d1d1d1; border-radius: 0;}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label:after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    pointer-events: none;
+    background-color: var(--primary);
+    border-radius: 50px;
+    visibility:hidden;
+    opacity:0;
+}
+@keyframes slide-right {
+  from {
+    right: 100%;
+  }
+  to {
+    right: 0;
+  }
+}
+.lms-form-wrapper .lms-radio-btn-group li .lms-label span {
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label:after {
+    animation: 0.5s slide-right;
+    visibility:visible;
+    opacity:1;
+}
+.lms-form-wrapper .lms-radio-btn-group li input[type=radio]:checked+.lms-label span {
+    color: #fff;
+}
 .lms-count-field .input-group .quantity-right-plus {
     border-left: 1px solid #d1d1d1;
     border-radius: 0;
@@ -22789,9 +22845,13 @@ Lms SignUp Page Style Start
     max-width: 25px;
     margin: 0 15px 0 0;
 }
+.job-singup-sub-header li .img-sm {
+    max-width: 18px;
+    margin: 0 5px 0 0;
+}
 @media (min-width: 1200px) and (max-width: 1600px) {
     .gallery-sub-header .masonry-grid-gallery {
-        width: 670px;
+        width: 600px;
     }
 }
 .lms-search-services .services-card {
@@ -23324,6 +23384,9 @@ Lms Books Library Style Start
     max-width: 1000px;
     margin: 0 auto;
 }
+.progress-card.has-shadow {
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.080) inset;
+}
 .progress-card .icon-holder {
     width: 30px;
     height: 30px;
@@ -23612,7 +23675,8 @@ Lms Books Library Style Start
 }
 .listing-card .read-btn.bg-light-green:hover::before,
 .listing-card .read-btn.bg-light-green:hover{color: var(--light-green);}
-.listing-card .read-btn:before {
+.listing-card .read-btn:before,
+.book-btn:before {
     content: '';
     position: absolute;
     top: 0;
@@ -23625,13 +23689,16 @@ Lms Books Library Style Start
     transition: all 0.6s ease;
     z-index:-1;
   }
-  .listing-card .read-btn:hover,
-  .book-btn:hover{
+  .listing-card .read-btn:hover{
     color:#fff;
     background-color: var(--primary);
     border-color: rgba(0,0,0,0.4);
   }
-  .listing-card .read-btn:hover:before {
+  .book-btn:hover{
+    color:#fff;
+  }
+  .listing-card .read-btn:hover:before,
+  .book-btn:hover:before {
     border-radius: 0;
     transform: translateY(0) scaleY(1);
   }
@@ -23652,7 +23719,8 @@ Lms Books Library Style Start
 .listing-card .read-btn .btn-icon svg g {
     fill: var(--primary);
 }
-.listing-card .read-btn.continue {
+.listing-card .read-btn.continue,
+.book-btn.bg-primary {
     color: #fff;
     border-color: rgba(0,0,0,0.4);
     background-color: var(--primary);
@@ -24404,6 +24472,7 @@ Lms Contact Form Pages Style Start
 .lms-services.lms-contact-form [class*="col-"] {width: 290px;max-width: 290px;}
 .lms-services figure img {position: absolute;left: 0;top: 0; width: 100%;height: 100%;object-fit: contain;}
 .lms-services figure {height: 180px;width: 180px;display: flex; align-items: center;justify-content: center;position: relative; margin: auto;}
+.lms-services .icon-md {width: 100px; height: 100px;}
 .lms-text-holder.has-box-shadow { box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); border-radius: 8px;}
 .services-card.has-bg h6{line-height: 1.1;}
 .services-card.has-bg:before{position: absolute;bottom: 0;background-image: linear-gradient(270deg, #9effc1, var(--primary));content: "";left: 0;height: 11px;width: 100%;}
