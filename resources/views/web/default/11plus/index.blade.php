@@ -377,7 +377,7 @@
 
                 @if( !empty( $data))
                 <div class="col-12">
-                <section class="lms-data-table my-80 11plus-block">
+                <section class="lms-data-table my-80 elevenplus-block">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -453,7 +453,13 @@
                                         <td><a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a></td>
                                        <td>{{$total_attempts}}</td>
                                         <td>{{$total_questions_attempt}}</td>
-                                       <td>{{$total_percentage}}</td>
+                                       <td> <div class="attempt-progress">
+                                              <span class="progress-number">{{$total_percentage}}%</span>
+                                              <span class="progress-holder">
+                                                  <span class="progressbar" style="width: {{$total_percentage}}%;"></span>
+                                              </span>
+                                           </div>
+                                       </td>
 
                                    </tr>
                                     @endforeach

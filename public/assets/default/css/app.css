@@ -25645,3 +25645,66 @@ Time Table Style Start
 /*************************************
 Time Table Style End
 *************************************/
+
+.elevenplus-block thead {
+    background-color: var(--primary);
+}
+.elevenplus-block .table thead th {
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+}
+.elevenplus-block .table tbody {
+    border-style: solid;
+    border-color: #ececec;
+    border-width: 0 1px 1px 1px;
+}
+.elevenplus-block .table tbody tr:nth-of-type(odd) {
+    background-color: #fff;
+}
+.elevenplus-block .table tbody td {
+    border: 0;
+    border-bottom: 1px solid #ececec;
+    padding: 20px 15px;
+}
+.elevenplus-block .table thead th:first-child,
+.elevenplus-block .table tbody td:first-child{
+    text-align: left;
+}
+.attempt-progress {
+    border: 2px solid #6e6e6e;
+    text-align: left;
+    position: relative;
+    border-radius: 3px;
+    height: 40px;
+    min-width: 480px;
+    background-color: #ededed;
+}
+.attempt-progress .progress-number {
+    background-color: rgba(255,255,255,0.5);
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 3px 5px;
+    color: #333;
+    border-radius: 2px;
+}
+.attempt-progress .progressbar {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgb(249,116,147);
+    background: -moz-linear-gradient(top,  rgba(249,116,147,1) 0%, rgba(249,116,147,1) 45%, rgba(243,33,78,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(249,116,147,1) 0%,rgba(249,116,147,1) 45%,rgba(243,33,78,1) 100%);
+    background: linear-gradient(to bottom,  rgba(249,116,147,1) 0%,rgba(249,116,147,1) 45%,rgba(243,33,78,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f97493', endColorstr='#f3214e',GradientType=1 );
+}
+.progress-holder {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
