@@ -32,9 +32,10 @@ class TimestablesController extends Controller
         );
         $tables_types = [
             '*',
-            '-'
+            '-',
+            '+',
         ];
-        $total_questions = 5;
+        $total_questions = 10;
         $marks = 5;
 
 
@@ -46,10 +47,11 @@ class TimestablesController extends Controller
                 $from_value = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
                 $to_value = rand(0, 20);
                 $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
-                $questions_list[$from_value][] = array(
+                $questions_list[] = (object) array(
                     'from'  => $from_value,
                     'to'    => $to_value,
                     'type'  => $type,
+                    'table_no'  => $from_value,
                     'marks' => $marks,
                 );
                 $questions_count++;

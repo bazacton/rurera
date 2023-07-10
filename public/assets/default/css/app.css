@@ -25769,6 +25769,7 @@ Attempt Progress Style End
     padding: 0 0 10px 10px;
 }
 .questions-select-number label {
+    background-color: #fff;
     border: 1px solid rgba(0,0,0,0.1);
     width: 100%;
     text-align: center;
@@ -25781,6 +25782,9 @@ Attempt Progress Style End
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
+}
+.questions-select-number label.disabled {
+    background-color: inherit;
 }
 .questions-select-number label.selectable {
     background-color: #fff;
@@ -25806,6 +25810,9 @@ Attempt Progress Style End
     margin: 0 auto;
     height: 55px;
 }
+.questions-submit-btn:hover {
+    color: #fff;
+}
 .questions-submit-btn:before, .questions-submit-btn:after {
     content: " ";
     position: absolute;
@@ -25829,4 +25836,77 @@ Attempt Progress Style End
     -ms-transform: skew(30deg, 0deg);
     -webkit-transform: skew(30deg, 0deg);
     transform: skew(30deg, 0deg);
+}
+/*Question Block Style*/
+.questions-block {
+    background-color: #333333;
+    border: 2px solid #000;
+    border-bottom-width: 5px;
+    border-radius: 20px;
+    padding: 10px;
+}
+.questions-status span {
+    background-color: #000;
+    height: 24px;
+    flex-basis: 10%;
+    margin: 0 3px;
+    border-radius: 5px;
+}
+.questions-status {
+    margin: 0 -3px;
+}
+.questions-status .successful {
+    background-color: #3ebc3f;
+}
+.questions-status .wrong {
+    background-color: #d11d1e;
+}
+.questions-arithmetic-box {
+    background-color: #7679ee;
+    border-radius: 5px;
+    min-height: 60px;
+    box-shadow: 0 -2px 0 3px #000;
+}
+.questions-arithmetic-box input[type="text"] {
+    border: 0;
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+    width: calc(100% - 200px);
+    background-color: inherit;
+    margin-left: 8px;
+}
+.questions-arithmetic-box span {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+}
+.questions-arithmetic-box span span {
+    font-weight: 400;
+}
+.questions-block-numbers ul {
+    margin: 0 -6px;
+}
+.questions-block-numbers li {
+    flex-basis: 33%;
+    padding: 0 6px 12px;
+}
+.questions-block-numbers a {
+    display: block;
+    background-color: #dfffd8;
+    border: 2px solid #000;
+    border-bottom-width: 5px;
+    border-radius: 10px;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+.questions-block-numbers .delete a {
+    background-color: #fe0000;
+    color: #fff;
+}
+.questions-block-numbers .enter a {
+    background-color: #008001;
+    color: #fff;
 }

@@ -3,6 +3,7 @@
 
 @php
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
+$rand_no = rand(99,9999);
 
     $isRtl = ((in_array(mb_strtoupper(app()->getLocale()), $rtlLanguages)) or (!empty($generalSettings['rtl_layout']) and $generalSettings['rtl_layout'] == 1));
 @endphp
@@ -19,7 +20,7 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-    <link rel="stylesheet" href="/assets/default/css/app.css">
+    <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 

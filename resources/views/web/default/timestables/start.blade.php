@@ -73,11 +73,39 @@ $rand_id = rand(99,9999);
             </div>
 
             <div class="question-area-block">
+                seconds
+                <div class="time-count-seconds">0</div>
+                mili
+                <div class="time-count-mili prevm active">0</div>
+
+                mili 2
+                <div class="time-count-mili nextm">0</div>
+
+                <div class="col-12 col-lg-4 mx-auto">
+                <div class="questions-block"> <div class="questions-status d-flex mb-20"> <span class="wrong"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span class="successful"></span> <span></span> </div><div class="questions-arithmetic-box d-flex align-items-center justify-content-center mb-20"> <span>10 <span>÷</span> 10 <span>=</span></span> <input type="text"> </div><div class="questions-block-numbers"> <ul class="d-flex justify-content-center flex-wrap"> <li><span>7</span></li><li><span>8</span></li><li><span>9</span></li><li><span>4</span></li><li><span>5</span></li><li><span>6</span></li><li><span>1</span></li><li><span>2</span></li><li><span>3</span></li><li class="delete"><a href="#">Delete</a></li><li><span>0</span></li><li class="enter"><a href="#">Enter</a></li></ul> </div></div>
+                </div>
 
                 @if( is_array( $questions_list ))
                     @php $question_no = 1; @endphp
 
-                    @foreach( $questions_list as $questionObj)
+                    @foreach( $questions_list as $questionIndex => $questionObj)
+
+                        @php $active  = ($questionIndex == 0)? 'active' : ''; @endphp
+
+
+                        <form action="javascript:;" method="post">
+
+                            {{$questionIndex}}
+                                <div class="question-block {{$active}}" data-tconsumed="0">
+                                {{$questionObj->from}} {{$questionObj->type}} {{$questionObj->to}} =  <input type="text" class="editor-field"> <br>
+                                </div>
+
+                        </form>
+
+
+
+
+
 
                     @php $question_no++; @endphp
                     @endforeach
@@ -85,6 +113,7 @@ $rand_id = rand(99,9999);
                 @endif
             </div>
 
+                    <div class="next">Next</div>
             <div class="question-area-temp hide"></div>
 
         </div>
@@ -107,10 +136,25 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 <script>
     //init_question_functions();
+
+    $(document).on('click', '.next', function (e) {
+        $(".prevm").removeClass('active');
+        $(".nextm").addClass('active');
+    });
+
+    var Questionintervals = setInterval(function() {
+        var seconds_count = $(".question-block.active").attr('data-tconsumed');
+        seconds_count = parseInt(seconds_count) + parseInt(1);
+        $(".question-block.active").attr('data-tconsumed', seconds_count);
+        $(".time-count-seconds").html(parseInt(seconds_count)/10);
+    }, 100);
+
+
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
+
 
 
     if(jQuery('.quiz-pagination .swiper-container').length > 0){
