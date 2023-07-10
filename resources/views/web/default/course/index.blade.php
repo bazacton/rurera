@@ -81,7 +81,7 @@
         </div>
     </div>
 </section>
-<section class="count-number-wrapp mt-30">
+<section class="count-number-wrapp mt-30" style="display:none">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">
@@ -139,7 +139,7 @@
         <div class="row">
             <div class="col-12 lms-chapter-area">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-3 col-lg-2">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="sidebar-nav">
                             <h3 class="sidebar-title">Course topics</h3>
                             <ul>
@@ -151,7 +151,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-9 col-lg-10">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="accordion-content-wrapper" id="chaptersAccordion" role="tablist"
                             aria-multiselectable="true">
 

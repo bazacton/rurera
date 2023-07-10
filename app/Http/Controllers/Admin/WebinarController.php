@@ -1095,6 +1095,7 @@ class WebinarController extends Controller
     public function courses_by_categories(Request $request)
     {
         $category_id = $request->get('category_id');
+        $course_id = $request->get('course_id');
         //$courses = Webinar::where('category_id',$category_id)->get();
 
         $query = Webinar::query();
@@ -1108,7 +1109,8 @@ class WebinarController extends Controller
             foreach ($courses as $courseData) {
                 $webinar_id = isset($courseData['webinar_id']) ? $courseData['webinar_id'] : '';
                 $webinar_title = isset($courseData['webinar_title']) ? $courseData['webinar_title'] : '';
-                $response .= '<option value="' . $webinar_id . '">' . $webinar_title . '</option>';
+                $selected = ($course_id == $webinar_id)? 'selected' : '';
+                $response .= '<option value="' . $webinar_id . '" '. $selected .'>' . $webinar_title . '</option>';
             }
         }
 
@@ -1120,8 +1122,10 @@ class WebinarController extends Controller
     public function chapters_by_course(Request $request)
     {
         $course_id = $request->get('course_id');
+        $selected_chapter_id = $request->get('chapter_id');
 
         $chapters_list = get_chapters_list(false , $course_id);
+        //pre($chapters_list);
 
         $response = '<option value="">Select Chapter</option>';
         if (!empty($chapters_list)) {
@@ -1130,7 +1134,8 @@ class WebinarController extends Controller
                     $response .= '<optgroup label="' . $chapterData['title'] . '">';
                     if (isset($chapterData['chapters']) && !empty($chapterData['chapters'])) {
                         foreach ($chapterData['chapters'] as $sub_chapter_id => $sub_chapter_title) {
-                            $response .= '<option value="' . $sub_chapter_id . '">' . $sub_chapter_title . '</option>';
+                            $selected = ($selected_chapter_id == $sub_chapter_id)? 'selected' : '';
+                            $response .= '<option value="' . $sub_chapter_id . '" '. $selected .'>' . $sub_chapter_title . '</option>';
                         }
                     }
                     $response .= '</optgroup>';

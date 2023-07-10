@@ -6806,9 +6806,11 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0)
     $webinars = \Illuminate\Support\Facades\DB::table('webinars')
         ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
         ->join('webinar_sub_chapters', 'webinar_sub_chapters.webinar_id', '=', 'webinars.id')
-        ->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
-        ->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
-        ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
+        ->join('webinar_chapter_translations', 'webinar_chapter_translations.webinar_chapter_id', '=', 'webinar_sub_chapters.chapter_id')
+        //->join('quizzes', 'quizzes.sub_chapter_id', '=', 'webinar_sub_chapters.id')
+        //->join('quiz_translations', 'quiz_translations.quiz_id', '=', 'quizzes.id')
+        //->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'quizzes.id as chapter_id', 'quiz_translations.title as chapter_title');
+        ->select('webinars.id', 'webinar_sub_chapters.id as sub_chapter_id', 'webinar_sub_chapters.sub_chapter_title as title', 'webinar_chapter_translations.webinar_chapter_id as chapter_id', 'webinar_chapter_translations.title as chapter_title');
 
 
     if ($user->role_name == 'teachers') {
@@ -6845,8 +6847,8 @@ function get_chapters_list($include_lessions = true, $webinar_id = 0)
 
             $lessions_data = isset($lession_chapters[$sub_chapter_id]) ? $lession_chapters[$sub_chapter_id] : array();
 
-            $chapters_list[$sub_chapter_id]['title'] = $webinar_title;
-            $chapters_list[$sub_chapter_id]['chapters'][$chapter_id] = $chapter_title;
+            $chapters_list[$chapter_id]['title'] = $chapter_title;
+            $chapters_list[$chapter_id]['chapters'][$sub_chapter_id] = $webinar_title;
 
             if (!empty($lessions_data)) {
                 foreach ($lessions_data as $lession_id => $lessionChapter) {

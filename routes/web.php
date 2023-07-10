@@ -400,6 +400,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     });
 
+    Route::group(['prefix' => 'timestables'] , function () {
+            //Route::get('/' , 'TimestablesController@index');
+        Route::get('/generate' , 'TimestablesController@genearte');
+
+    });
+
     Route::get('/sitemap' , function () {
         return Response::view('sitemap')->header('Content-Type' , 'application/xml');
     });
