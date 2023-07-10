@@ -460,7 +460,6 @@
                                               </span>
                                            </div>
                                        </td>
-
                                    </tr>
                                     @endforeach
 

@@ -15388,6 +15388,14 @@ p {
     height: 54px;
     border-radius: 50%
 }
+.find-instructor-section figure {
+    z-index: 1;
+}
+.find-instructor-section .sub-thumb {
+    position: absolute;
+    right: -100px;
+    bottom: -80px;
+}
 @media (max-width:767px) {
     .find-instructor-section .find-instructor-section-hero {
         max-width: 250px;
@@ -25671,6 +25679,9 @@ Time Table Style End
 .elevenplus-block .table tbody td:first-child{
     text-align: left;
 }
+/*************************************
+Attempt Progress Style Start
+*************************************/
 .attempt-progress {
     border: 2px solid #6e6e6e;
     text-align: left;
@@ -25708,3 +25719,6 @@ Time Table Style End
     top: 0;
     width: 100%;
 }
+/*************************************
+Attempt Progress Style End
+*************************************/

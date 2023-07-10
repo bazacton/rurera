@@ -98,6 +98,7 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
             Route::post('/{id}/order-items', 'QuizController@orderItems');
         });
         Route::get('/{id}/start', 'QuizController@start');
+        Route::get('/{result_id}/check_answers' , 'QuizController@check_answers');
         Route::post('/{id}/store-result', 'QuizController@quizzesStoreResult');
         Route::get('/{quizResultId}/status', 'QuizController@status')->name('quiz_status');
 

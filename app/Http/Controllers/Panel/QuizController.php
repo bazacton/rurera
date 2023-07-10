@@ -494,9 +494,6 @@ class QuizController extends Controller
             }*/
 
 
-
-
-
             $question = $questionObj;
 
             $questions_array = $exclude_array = array();
@@ -518,7 +515,7 @@ class QuizController extends Controller
                         $questions_array[] = $questionObj;
                         $exclude_array[] = $questionObj->id;
 
-                        $question_no = $question_no_index+1;
+                        $question_no = $question_no_index + 1;
                         if ($question_no_index == 0) {
                             $first_question_id = $questionObj->id;
                         }
@@ -540,12 +537,6 @@ class QuizController extends Controller
             $question = $questions_array;
 
 
-
-
-
-
-
-
             $question = rurera_encode($question);
 
 
@@ -561,10 +552,8 @@ class QuizController extends Controller
                 'newQuizStart'   => $resultLogObj,
                 'quizAttempt'    => $attemptLogObj,
                 'question'       => $question,
-
-                'questions_layout' => $questions_layout,
-                'first_question_id'   => $first_question_id,
-
+                'questions_layout'  => $questions_layout,
+                'first_question_id' => $first_question_id,
                 'question_no'            => $question_no,
                 'prev_question'          => $prev_question,
                 'next_question'          => $next_question,
@@ -575,6 +564,49 @@ class QuizController extends Controller
             return view(getTemplate() . '.panel.quizzes.start', $data);
         }
         abort(404);
+    }
+
+
+    /*
+     * Check Answers
+     */
+    public function check_answers(Request $request, $result_id)
+    {
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $QuizzesResult = QuizzesResult::find($result_id);
+        $quiz = Quiz::find($QuizzesResult->parent_type_id);
+
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->get();
+
+        $questions_layout = $questions_list = array();
+        $first_question_id = 0;
+        $count = 1;
+        if (!empty($QuizzResultQuestions)) {
+            foreach ($QuizzResultQuestions as $QuizzResultQuestionObj) {
+                if( $count == 1){
+                    $first_question_id  = $QuizzResultQuestionObj->question_id;
+                }
+                $question_response_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+                $questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
+                $questions_list[] = $QuizzResultQuestionObj->question_id;
+                $count++;
+            }
+        }
+        $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
+
+        $data = [
+            'pageTitle'      => trans('quiz.quiz_start'),
+
+
+            'quiz'           => $quiz,
+            'question' => array(),
+            'questions_list' => $questions_list,
+            'first_question_id' => $first_question_id,
+            'questions_status_array' => $questions_status_array,
+            'questions_layout'  => $questions_layout,
+        ];
+        return view(getTemplate() . '.panel.quizzes.check_answers', $data);
     }
 
     public function quizzesStoreResult(Request $request, $id)

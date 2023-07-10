@@ -102,7 +102,7 @@ $rand_id = rand(99,9999);
                                         @if( $resultObj->status == 'waiting')
                                             <td><a href="javascript:;" class="quiz-start-btn" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start">Resume</a></td>
                                         @else
-                                            <td>Progress</td>
+                                        <td><a href="/panel/quizzes/{{$resultObj->result_id}}/check_answers">Check Answers</a></td>
                                         @endif
 
                                     </tr>

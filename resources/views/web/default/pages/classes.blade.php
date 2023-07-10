@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<section class="position-relative job-singup-sub-header gallery-sub-header find-instructor-section pt-100 pb-80 mb-0" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+<section class="position-relative job-singup-sub-header gallery-sub-header find-instructor-section pt-80 pb-50 mb-0" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 col-md-7 col-lg-7">
@@ -20,6 +20,12 @@
                     <a href="#" class="btn-primary rounded-pill">View all courses</a>
                     <a href="#" class="btn-primary rounded-pill ml-15">Take course</a>
                 </div>
+                <ul class="pt-30">
+                    <li class="mb-10 font-19"><img src="../assets/default/svgs/check-simple.svg" class="img-sm mr-10" alt="#" />KS1 & KS2 courses available</li>
+                    <li class="mb-10 font-19"><img src="../assets/default/svgs/check-simple.svg" class="img-sm mr-10" alt="#" />Get detailed performance Reports</li>
+                    <li class="mb-10 font-19"><img src="../assets/default/svgs/check-simple.svg" class="img-sm mr-10" alt="#" />Engage and captivate student attention</li>
+                    <li class="mb-10 font-19"><img src="../assets/default/svgs/check-simple.svg" class="img-sm mr-10" alt="#" />Breakthrough insights</li>
+                </ul>
             </div>
             <div class="col-12 col-md-5 col-lg-5">
                 <figure class="position-relative mt-30" style="z-index: 1;">
@@ -31,7 +37,7 @@
         </div>
     </div>
 </section>
-<section class="lms-search-services mb-0 py-80" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(238,238,238,0.1) 10px), repeating-linear-gradient(rgba(204,204,204,0.1), #f18700 ); background-color: #f18700;">
+<section class="lms-search-services mb-0 py-50" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(238,238,238,0.1) 10px), repeating-linear-gradient(rgba(204,204,204,0.1), #f18700 ); background-color: #f18700;">
     <div class="container">
         <div class="row">
         <div class="col-12 col-lg-12">
@@ -62,9 +68,8 @@
                     @foreach( $webinarsData as $parentCategory)
                     @if( !empty( $parentCategory->subCategories))
                     @foreach( $parentCategory->subCategories as $subCategory)
-                    <div class="categories-element-title"><h2><span>{{$parentCategory->getTitleAttribute()}} - {{$subCategory->getTitleAttribute()}}</span></h2>
-                        <p>Indices show us how to multiply a number by
-                            itself</p></div>
+                    <div class="categories-element-title"><h2 class="font-36"><span>{{$parentCategory->getTitleAttribute()}} - {{$subCategory->getTitleAttribute()}}</span></h2>
+                        <p>KS1 courses - Comprehensive list of courses for Children Aged 5, 6 and 7.</p></div>
 
 
                     @if( !empty( $subCategory->webinars))
@@ -89,7 +94,39 @@
         </form>
     </section>
 </div>
-<section class="lms-newsletter py-70 mt-15 mb-50" style="background: url(assets/default/svgs/bank-note-white.svg) #7679ee;">
+<section class="mt-60 pt-80 pb-90 find-instructor-section" style="background: url(../assets/default/svgs/diagonal-lines-white-light.svg) #3d358b;">
+    <div class="container">
+       <div class="row">
+          <div class="col-12">
+            <div class="section-title mb-50">
+                <h2 class="mb-10 text-white">The next-generation e-learning platform</h2>
+                <p class="font-19 text-white">Track progress, manage time effectively,<br> and access detailed answer explanations.</p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 col-md-5">
+             <figure class="position-relative mb-80">
+                <img src="../assets/default/img/courseabout-1.jpg" class="rounded-sm" alt="The next-generation e-learning platform">
+                <img src="../assets/default/img/courseabout-2.jpg" class="rounded-sm sub-thumb" alt="sub image">
+                <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" style="right: -70px;" alt="circle">
+                <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots">
+             </figure>
+          </div>
+          <div class="col-12 col-lg-7 col-md-7 pl-30">
+            <div class="pl-50 ml-50">
+                <h3 class="font-24 mb-5 text-white">KS1 &amp; KS2 courses available</h3>
+                <p class="mb-25 text-white font-18">create courses, or drip feed your content to build and nurture any students you want.</p>
+                <h3 class="font-24 mb-5 text-white">Get detailed performance Reports</h3>
+                <p class="mb-25 text-white font-18">Rurera offers a user-friendly platform where teachers can analyze individual and group performance trends.</p>
+                <h3 class="font-24 mb-5 text-white">Engage and captivate student attention</h3>
+                <p class="mb-0 text-white font-18 mb-25">It helps identify students who may need additional support or recognition.</p>
+                <h3 class="font-24 mb-5 text-white">Learn From Anywhere</h3>
+                <p class="mb-0 text-white font-18">Whether you a student or parent have option to study from home easily.</p>
+            </div>
+          </div>
+       </div>
+    </div>
+</section>
+<section class="lms-newsletter py-70 mt-80 mb-50" style="background: url(assets/default/svgs/bank-note-white.svg) #7679ee;">
     <div class="container">
        <div class="row">
           <div class="col-12">

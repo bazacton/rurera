@@ -137,9 +137,8 @@ class QuestionsAttemptController extends Controller
                                     'created_at'       => time(),
                                     'parent_type_id'   => $quizAttempt->parent_type_id,
                                     'quiz_result_type' => $quizAttempt->attempt_type,
-                                    'review_required' => $questionObj->review_required,
+                                    'review_required'  => $questionObj->review_required,
                                 ]);
-
 
 
                                 break;
@@ -310,7 +309,7 @@ class QuestionsAttemptController extends Controller
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
         $review_required = $questionObj->review_required;
-        $review_required = ( $review_required == 1)? true : false;
+        $review_required = ($review_required == 1) ? true : false;
 
         $attempt_type = $quizAttempt->attempt_type;
 
@@ -340,10 +339,10 @@ class QuestionsAttemptController extends Controller
 
                 $q_index = $q_id;
                 $sub_index = '';
-                if( strpos($q_id,"-")){
+                if (strpos($q_id, "-")) {
                     $q_index = explode('-', $q_index);
-                    $q_id = isset( $q_index[0] )? $q_index[0] : '';
-                    $sub_index = isset( $q_index[1] )? $q_index[1] : $sub_index;
+                    $q_id = isset($q_index[0]) ? $q_index[0] : '';
+                    $sub_index = isset($q_index[1]) ? $q_index[1] : $sub_index;
                 }
 
                 $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
@@ -357,24 +356,24 @@ class QuestionsAttemptController extends Controller
                 $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : true;
                 $user_input = is_array($user_input) ? $user_input : array($user_input);
                 if ($is_question_correct == false) {
-                    if( $sub_index != '') {
+                    if ($sub_index != '') {
                         $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
                         $incorrect_array[$q_id][$sub_index]['user_input'] = $user_input;
-                    }else{
+                    } else {
                         $incorrect_array[$q_id]['correct'] = $question_correct;
                         $incorrect_array[$q_id]['user_input'] = $user_input;
                     }
                     $incorrect_flag = true;
                 } else {
-                    if( $sub_index != '') {
+                    if ($sub_index != '') {
                         $correct_array[$q_id][$sub_index] = $question_correct;
-                    }else {
+                    } else {
                         $correct_array[$q_id] = $question_correct;
                     }
                 }
-                if( $sub_index != '') {
+                if ($sub_index != '') {
                     $user_input_array[$q_id][$sub_index] = $user_input;
-                }else {
+                } else {
                     $user_input_array[$q_id] = $user_input;
                 }
 
@@ -387,7 +386,7 @@ class QuestionsAttemptController extends Controller
             $question_answer_status = 'correct';
         }
 
-        $question_answer_status = ($review_required == true)? 'in_review' : $question_answer_status;
+        $question_answer_status = ($review_required == true) ? 'in_review' : $question_answer_status;
 
         $QuizzResultQuestions->update([
             'status'               => $question_answer_status,
@@ -506,7 +505,7 @@ class QuestionsAttemptController extends Controller
         } else if ($question_type == 'match_quiz') {
             $question_correct = array();
             $options_array = $current_question_obj->options;
-            $question_value = isset( $options_array[$sub_index]->value )? $options_array[$sub_index]->value : '';
+            $question_value = isset($options_array[$sub_index]->value) ? $options_array[$sub_index]->value : '';
 
             $question_correct[] = $question_value;
             $is_question_correct = ($question_value != $user_input) ? false : $is_question_correct;
@@ -625,7 +624,7 @@ class QuestionsAttemptController extends Controller
     public function get_result_data($parent_id, $q_result_id = 0)
     {
         $user = auth()->user();
-        if( !isset( $user->id)){
+        if (!isset($user->id)) {
             return array();
         }
 
@@ -851,7 +850,9 @@ class QuestionsAttemptController extends Controller
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'           => $field_type,
                                     'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
                                     'user_selected_value' => $user_selected_value,
                                     'correct_value'       => $correct_value,
                                 ])->render();
@@ -866,12 +867,32 @@ class QuestionsAttemptController extends Controller
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'           => $field_type,
                                     'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
                                     'user_selected_value' => $user_selected_value,
                                     'correct_value'       => $correct_value,
                                 ])->render();
                             }
                         }
+                        break;
+
+                    case "text":
+
+                        if (!empty($user_values)) {
+                            foreach ($user_values as $user_selected_key => $user_selected_value) {
+                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'           => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }
+
+
                         break;
                 }
             }
@@ -881,9 +902,13 @@ class QuestionsAttemptController extends Controller
         $question_layout = '<div class="question-area"><div class="question-step question-step-' . $resultQuestionObj->question_id . '" data-elapsed="0" data-qattempt="' . $resultQuestionObj->quiz_attempt_id . '"
                  data-start_time="0" data-qresult="' . $resultQuestionObj->id . '"
                  data-quiz_result_id="' . $resultQuestionObj->quiz_result_id . '">';
-        //$question_layout .= $script;
+
         $question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($questionObj->question_layout)))));
         //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($resultQuestionObj->user_question_layout)))));
+
+
+        $question_layout .= $script;
+
         $user_input_response = '';
         $correct_answer_response = '';
         $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
@@ -950,6 +975,7 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['in_review'] = 0;
                 $response_data[$q_result_id]['time_consumed'] = 0;
                 $response_data[$q_result_id]['average_time'] = 0;
+                $response_data[$q_result_id]['result_id'] = $resultObjData->id;
                 $response_data[$q_result_id]['status'] = $resultObjData->status;
                 $response_data[$q_result_id]['created_at'] = $resultObjData->created_at;
                 $response_data[$q_result_id]['attempted'] = 0;
@@ -969,10 +995,10 @@ class QuestionsAttemptController extends Controller
                     }
                 }
                 $response_data[$q_result_id]['unanswered'] = count($questions_list) - $response_data[$q_result_id]['attempted'];
-                $response_data[$q_result_id]['percentage'] = ($response_data[$q_result_id]['correct'] > 0 )? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'] : 0;
+                $response_data[$q_result_id]['percentage'] = ($response_data[$q_result_id]['correct'] > 0) ? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'] : 0;
                 $response_data[$q_result_id]['time_consumed'] = gmdate("i:s", $response_data[$q_result_id]['time_consumed']);
                 $response_data[$q_result_id]['average_time'] = gmdate("i:s", $response_data[$q_result_id]['average_time']);
-                $response_data[$q_result_id] = (object) $response_data[$q_result_id];
+                $response_data[$q_result_id] = (object)$response_data[$q_result_id];
 
 
             }
