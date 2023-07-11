@@ -140,7 +140,6 @@ class QuestionsAttemptController extends Controller
                                     'review_required'  => $questionObj->review_required,
                                 ]);
 
-
                                 break;
                             } else {
                                 $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
@@ -804,6 +803,41 @@ class QuestionsAttemptController extends Controller
         echo json_encode($response);
         exit;
 
+    }
+
+    /*
+     * Submit TableTimes Results
+     */
+    public function timestables_submit(Request $request){
+        $timestables_data = $request->get('timestables_data');
+
+
+        $results = array();
+
+        if( !empty( $timestables_data)){
+            foreach( $timestables_data as $tableData){
+                $results[$tableData['table_no']][] = $tableData;
+            }
+        }
+        pre($results);
+
+
+
+        $user = auth()->user();
+
+        $QuizzesResult = QuizzesResult::create([
+            'user_id'          => $user->id,
+            'results'          => '',
+            'user_grade'       => 0,
+            'status'           => 'waiting',
+            'created_at'       => time(),
+            'quiz_result_type' => 'timestables',
+            'no_of_attempts'   => 100,
+        ]);
+
+
+
+        pre($timestables_data);
     }
 
 

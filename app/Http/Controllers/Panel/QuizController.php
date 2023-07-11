@@ -454,6 +454,7 @@ class QuizController extends Controller
             $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
             $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
             $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
+            $first_question_id = $questionObj->id;
 
             $question_points = isset($question->question_score) ? $question->question_score : 0;
 
@@ -497,14 +498,15 @@ class QuizController extends Controller
             $question = $questionObj;
 
             $questions_array = $exclude_array = array();
-            $exclude_array[] = $questionObj->id;
-            $questions_array[] = $questionObj;
+            //$exclude_array[] = $questionObj->id;
+            //$questions_array[] = $questionObj;
             $questions_layout = array();
-            $first_question_id = 0;
+
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
 
                     $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array);
+
                     $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
                     $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
                     $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;

@@ -74,7 +74,7 @@ $rand_id = rand(99,9999);
                     </div>
 
                     <div class="question-area-block" data-total_questions="{{count($questions_list)}}">
-                        <div class="col-12 col-lg-4 mx-auto">
+                        <div class="col-12 col-lg-8 mx-auto">
 
                             @if( is_array( $questions_list ))
                             @php $question_no = 1; @endphp
@@ -90,21 +90,11 @@ $rand_id = rand(99,9999);
 
 
                                     <div class="questions-status d-flex mb-20">
-                                        <span class="wrong"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span class="successful"></span>
-                                        <span></span>
                                     </div>
                                     <div class="questions-arithmetic-box d-flex align-items-center justify-content-center mb-20">
                                         <span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
                                         <input type="text" data-from="{{$questionObj->from}}"
-                                               data-type="{{$questionObj->type}}" data-to="{{$questionObj->to}}"
+                                               data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                class="editor-fields" id="editor-fields-{{$questionIndex}}">
                                     </div>
                                     <div class="questions-block-numbers">
@@ -185,9 +175,19 @@ $rand_id = rand(99,9999);
         var from = $("#editor-fields-" + data_id).attr('data-from');
         var to = $("#editor-fields-" + data_id).attr('data-to');
         var type = $("#editor-fields-" + data_id).attr('data-type');
+        var table_no = $("#editor-fields-" + data_id).attr('data-table_no');
         var answer = $("#editor-fields-" + data_id).val();
 
-        user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed};
+
+
+        var correct_answer = rurera_correct_value(from, to, type);
+        var is_correct = (answer == correct_answer)? true : false;
+        user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
+
+        var status_class = (answer == correct_answer)? 'successful' : 'wrong';
+
+        $('.questions-status').append('<span class="'+status_class+'"></span>');
+
 
         $('.questions-block').addClass('hide');
         $('.questions-block').removeClass('active');
@@ -206,6 +206,23 @@ $rand_id = rand(99,9999);
             }, 100);
         } else {
             var response_layout = '';
+
+
+            jQuery.ajax({
+                type: "POST",
+                url: '/question_attempt/timestables_submit',
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {'timestables_data':user_data},
+                success: function (return_data) {
+                    console.log(return_data);
+                }
+            });
+
+
+
 
             $.each(user_data, function (field_id, user_data_obj) {
                 var from = user_data_obj.from;

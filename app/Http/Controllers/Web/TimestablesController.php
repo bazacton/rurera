@@ -26,9 +26,9 @@ class TimestablesController extends Controller
     public function genearte()
     {
         $tables_numbers = array(
-            1,
-            2,
-            3
+            4,
+            6,
+            8
         );
         $tables_types = [
             'x',

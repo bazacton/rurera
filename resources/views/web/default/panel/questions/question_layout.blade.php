@@ -37,7 +37,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                     @php $already_flagged = ($quizResultObj->flagged_questions != '') ? json_decode($quizResultObj->flagged_questions) : array();
                     $flag_class = (in_array($question->id, $already_flagged))? 'flaged' : 'notflaged';
                     @endphp
-                    ( {{$question_no}}/{{count(json_decode($quizAttempt->questions_list))}} Questions )
+                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{count(json_decode($quizAttempt->questions_list))}} Questions )</span>
                     <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
                         <span class="question-icon flag-question {{$flag_class}}"
                               data-qresult_id="{{$newQuestionResult->quiz_result_id}}"
@@ -58,7 +58,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                             <span class="marks" data-marks="{{$question->question_score}}">{{$question->question_score}} marks</span>
                             {!! $question_layout !!}
                         </div>
-                        <div class="form-btn">
+                        <div class="form-btn pl-50 ml-10">
                             @if( $question->review_required == 1)
                                 <div class="question-label-tag">Review Required</div>
                             @endif

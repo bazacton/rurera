@@ -242,6 +242,7 @@ Lms Signs Style
     height: auto;
     overflow: hidden;
     padding-bottom: 40px;
+    border-radius: 0;
 }
 .question-area .lms-radio-select {
     margin: 0;
@@ -2561,3 +2562,7 @@ Lms Table Style
     float: right;
   }
 }
+.read-quiz-content > .row > [class*="col-"] {
+    max-width: 800px;
+}
+.question-number-holder:hover .flag-question svg g {fill: var(--primary);}
