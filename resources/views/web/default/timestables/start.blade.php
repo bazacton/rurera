@@ -106,21 +106,20 @@ $rand_id = rand(99,9999);
                                         <input type="text" data-from="{{$questionObj->from}}"
                                                data-type="{{$questionObj->type}}" data-to="{{$questionObj->to}}"
                                                class="editor-fields" id="editor-fields-{{$questionIndex}}">
-                                        <span class="time-count-seconds">0</span>
                                     </div>
                                     <div class="questions-block-numbers">
                                         <ul class="d-flex justify-content-center flex-wrap">
-                                            <li><a href="#">7</a></li>
-                                            <li><a href="#">8</a></li>
-                                            <li><a href="#">9</a></li>
-                                            <li><a href="#">4</a></li>
-                                            <li><a href="#">5</a></li>
-                                            <li><a href="#">6</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
+                                            <li id="key-7"><a href="javascript:;">7</a></li>
+                                            <li id="key-8"><a href="javascript:;">8</a></li>
+                                            <li id="key-9"><a href="javascript:;">9</a></li>
+                                            <li id="key-4"><a href="javascript:;">4</a></li>
+                                            <li id="key-5"><a href="javascript:;">5</a></li>
+                                            <li id="key-6"><a href="javascript:;">6</a></li>
+                                            <li id="key-1"><a href="javascript:;">1</a></li>
+                                            <li id="key-2"><a href="javascript:;">2</a></li>
+                                            <li id="key-3"><a href="javascript:;">3</a></li>
                                             <li class="delete"><a href="#">Delete</a></li>
-                                            <li><a href="#">0</a></li>
+                                            <li id="key-0"><a href="javascript:;">0</a></li>
                                             <li class="enter"><a href="#">Enter</a></li>
                                         </ul>
                                     </div>
@@ -165,11 +164,13 @@ $rand_id = rand(99,9999);
             var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
             seconds_count = parseInt(seconds_count) + parseInt(1);
             $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
-            $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+            //$('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
         } else {
             clearInterval(Questionintervals);
         }
     }, 100);
+
+
 
     $(document).on('submit', '.question-form', function (e) {
 
@@ -201,7 +202,7 @@ $rand_id = rand(99,9999);
                 var seconds_count = $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed');
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+                //$('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             }, 100);
         } else {
             var response_layout = '';
@@ -219,7 +220,7 @@ $rand_id = rand(99,9999);
                 var is_correct_label = (user_answer == correct_answer)? 'Correct' : 'Incorrect';
 
                 response_layout += '<div class="question-answer-block">\n\
-                    '+from+' '+action_type+' '+to+' = '+user_answer+'   '+is_correct_label+'\n\
+                    '+from+' '+action_type+' '+to+' = '+user_answer+'   '+is_correct_label+' ('+time_consumed_seconds+' seconds)\n\
                     </div>';
 
                 console.log(user_answer+'===='+correct_answer+'====='+time_consumed+'======='+time_consumed_seconds);
@@ -234,15 +235,12 @@ $rand_id = rand(99,9999);
     function rurera_correct_value(from, to, operator) {
         var correct_value = '';
         switch (operator) {
-            case "+":
-                var correct_value = parseInt(from) + parseInt(to);
+
+            case "÷":
+                var correct_value = parseInt(from) / parseInt(to);
                 break;
 
-            case "-":
-                var correct_value = parseInt(from) - parseInt(to);
-                break;
-
-            case "*":
+            case "x":
                 var correct_value = parseInt(from) * parseInt(to);
                 break;
         }

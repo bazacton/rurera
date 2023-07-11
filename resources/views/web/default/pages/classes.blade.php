@@ -179,7 +179,7 @@
         </div>
     </div>
 </section>
-<section class="lms-newsletter py-70 mt-80 mb-50" style="background: url(assets/default/svgs/bank-note-white.svg) #7679ee;">
+<section class="lms-newsletter py-70 mt-70 mb-50" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
     <div class="container">
        <div class="row">
           <div class="col-12">

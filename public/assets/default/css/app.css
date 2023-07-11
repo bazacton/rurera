@@ -13777,15 +13777,30 @@ p {
     right: auto;
     left: 15px
 }
+.user-profile-dropdown .sub-dropdown {
+    position: relative;
+    z-index: 1;
+    margin-left: -20px;
+    padding-left: 20px;
+}
 .user-profile-dropdown .sidenav-item-collapse {
     position: absolute;
     top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.1);
-    display: none;
+    right: 100%;
+    background-color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    width: 170px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .16);
+    transition: all .3s;
+    transform: translate3d(0, 54px, 0);
 }
-.user-profile-dropdown .sidenav-item-collapse.show {
-    display: block;
+.user-profile-dropdown .sub-dropdown:hover .sidenav-item-collapse {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
 }
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {

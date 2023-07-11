@@ -31,9 +31,8 @@ class TimestablesController extends Controller
             3
         );
         $tables_types = [
-            '*',
-            '-',
-            '+',
+            'x',
+            '÷',
         ];
         $total_questions = 10;
         $marks = 5;
@@ -44,14 +43,19 @@ class TimestablesController extends Controller
         $questions_count = 1;
         if ($total_questions > 0) {
             while ($questions_count <= $total_questions) {
-                $from_value = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
-                $to_value = rand(0, 20);
+                $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
                 $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                $from_value = $table_no;
+                $limit = 20;
+                $min = 0;
+                $min = ($type == '÷')? 1 :$min;
+                $limit = ($type == '÷')? $from_value :$limit;
+                $to_value = rand($min, $limit);
                 $questions_list[] = (object) array(
                     'from'  => $from_value,
                     'to'    => $to_value,
                     'type'  => $type,
-                    'table_no'  => $from_value,
+                    'table_no'  => $table_no,
                     'marks' => $marks,
                 );
                 $questions_count++;
