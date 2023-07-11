@@ -13253,7 +13253,9 @@ a.badge-circle-gray200:focus {
     border-right: 10px solid transparent;
     border-bottom: 10px solid #fff
 }
-
+.dropdown-menu.user-profile-dropdown .dropdown-item:active {
+    background-color: inherit;
+}
 html.html-modal-open {
     overflow: hidden;
     touch-action: none
@@ -13760,9 +13762,9 @@ p {
     right: 0 !important;
     left: auto !important
 }
-#panel_app .top-navbar .dropdown .dropdown-menu {
+/* #panel_app .top-navbar .dropdown .dropdown-menu {
     transform: translateZ(0) !important
-}
+} */
 .top-navbar .dropdown .dropdown-menu:after {
     right: 15px;
     left: auto
@@ -13774,6 +13776,16 @@ p {
 .rtl .top-navbar .dropdown .dropdown-menu:after {
     right: auto;
     left: 15px
+}
+.user-profile-dropdown .sidenav-item-collapse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.1);
+    display: none;
+}
+.user-profile-dropdown .sidenav-item-collapse.show {
+    display: block;
 }
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {
@@ -25901,6 +25913,7 @@ Attempt Progress Style End
     text-align: center;
     font-size: 20px;
     font-weight: 500;
+    transition: all .5s ease;
 }
 .questions-block-numbers .delete a {
     background-color: #fe0000;
@@ -25908,5 +25921,9 @@ Attempt Progress Style End
 }
 .questions-block-numbers .enter a {
     background-color: #008001;
+    color: #fff;
+}
+.questions-block-numbers a:active {
+    background-color: var(--primary);
     color: #fff;
 }

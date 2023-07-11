@@ -3,7 +3,7 @@ $getPanelSidebarSettings = getPanelSidebarSettings();
 @endphp
 
 
-<div class="panel-sidebar px-25 pt-15" id="panelSidebar" style="position: inherit;top: 0px;">
+<div class="panel-sidebar top-navbar px-25 pt-15" id="panelSidebar" style="position: inherit;top: 0px;">
     <button class="btn-transparent panel-sidebar-close sidebarNavToggle">
         <i data-feather="align-justify" width="24" height="24"></i>
         <i data-feather="x" width="24" height="24"></i>
@@ -16,7 +16,7 @@ $getPanelSidebarSettings = getPanelSidebarSettings();
     </div>
 
 
-    <div class="nav-icons-or-start-live navbar-order user-panel-menu">
+    <div class="nav-icons-or-start-live navbar-order user-panel-menu ml-auto">
         <div class="xs-w-100 d-flex align-items-center justify-content-between ">
             @if(!empty($authUser))
             <div class="d-flex">
@@ -42,60 +42,43 @@ $getPanelSidebarSettings = getPanelSidebarSettings();
                         <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
                     </div>
 
-                    <a class="dropdown-item" href="javascript:;">
+                    <a class="dropdown-item" href="javascript:;" id="sub-dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                         <span class="font-14 text-dark-blue">{{ trans('panel.financial') }}</span>
-                        <ul class="sidenav-item-collapse">
-
-                            @if($authUser->isOrganization() || $authUser->isTeacher())
-                            <li class="mt-5 {{ (request()->is('panel/financial/sales')) ? 'active' : '' }}">
-                                <a href="/panel/financial/sales">{{ trans('financial.sales_report') }}</a>
+                        <ul class="sidenav-item-collapse" aria-labelledby="sub-dropdown1">
+                            <li class="mt-0">
+                                <a href="/panel/financial/summary">Financial summary</a>
                             </li>
-                            @endif
-
-                            <li class="mt-5 {{ (request()->is('panel/financial/summary')) ? 'active' : '' }}">
-                                <a href="/panel/financial/summary">{{ trans('financial.financial_summary') }}</a>
+                            <li class="mt-10">
+                                <a href="/panel/financial/payout">Payout</a>
                             </li>
 
-                            <li class="mt-5 {{ (request()->is('panel/financial/payout')) ? 'active' : '' }}">
-                                <a href="/panel/financial/payout">{{ trans('financial.payout') }}</a>
+                            <li class="mt-5">
+                                <a href="/panel/financial/account">Charge account</a>
                             </li>
 
-                            <li class="mt-5 {{ (request()->is('panel/financial/account')) ? 'active' : '' }}">
-                                <a href="/panel/financial/account">{{ trans('financial.charge_account') }}</a>
+                            <li class="mt-5">
+                                <a href="/panel/financial/subscribes">Subscribe</a>
                             </li>
-
-                            <li class="mt-5 {{ (request()->is('panel/financial/subscribes')) ? 'active' : '' }}">
-                                <a href="/panel/financial/subscribes">{{ trans('financial.subscribes') }}</a>
-                            </li>
-
-                            @if(($authUser->isOrganization() || $authUser->isTeacher()) and
-                            getRegistrationPackagesGeneralSettings('status'))
-                            <li class="mt-5 {{ (request()->is('panel/financial/registration-packages')) ? 'active' : '' }}">
-                                <a href="{{ route('panelRegistrationPackagesLists') }}">{{
-                                    trans('update.registration_packages') }}</a>
-                            </li>
-                            @endif
                         </ul>
                     </a>
 
 
+                    <a class="dropdown-item" href="javascript:;" id="sub-dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                    <a class="dropdown-item" href="javascript:;">
-
-                                            <span class="font-14 text-dark-blue">{{ trans('panel.support') }}</span>
-                        <ul class="sidenav-item-collapse">
-                                            <li class="mt-5 {{ (request()->is('panel/support/new')) ? 'active' : '' }}">
-                                                <a href="/panel/support/new">{{ trans('public.new') }}</a>
-                                            </li>
-                                            <li class="mt-5 {{ (request()->is('panel/support')) ? 'active' : '' }}">
-                                                <a href="/panel/support">{{ trans('panel.classes_support') }}</a>
-                                            </li>
-                                            <li class="mt-5 {{ (request()->is('panel/support/tickets')) ? 'active' : '' }}">
-                                                <a href="/panel/support/tickets">{{ trans('panel.support_tickets') }}</a>
-                                            </li>
-                                        </ul>
-                                        </a>
+                        <span class="font-14 text-dark-blue">{{ trans('panel.support') }}</span>
+                        <ul class="sidenav-item-collapse" aria-labelledby="sub-dropdown2">
+                            <li class="mt-0">
+                                <a href="/panel/support/new">New</a>
+                            </li>
+                            <li class="mt-10">
+                                <a href="/panel/support">Courses support</a>
+                            </li>
+                            <li class="mt-10">
+                                <a href="/panel/support/tickets">Tickets</a>
+                            </li>
+                        </ul>
+                    </a>
 
 
                     <a class="dropdown-item" href="/panel/notifications">
