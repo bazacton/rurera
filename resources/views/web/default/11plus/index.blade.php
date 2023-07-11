@@ -133,8 +133,9 @@
 
                                         @foreach( $data as $dataObj)
                                         @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
-                                        $total_attempts = $total_questions_attempt = $correct_questions = $total_questions =
+                                        $total_attempts = $total_questions_attempt = $correct_questions =
                                         $incorrect_questions = 0;
+                                        $total_questions = isset( $dataObj->quizQuestionsList )? count( $dataObj->quizQuestionsList) : 0;
 
                                         $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
                                         $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
@@ -159,7 +160,6 @@
                                         $total_questions_attempt += $resultObj->attempted;
                                         $correct_questions += $resultObj->correct;
                                         $incorrect_questions += $resultObj->incorrect;
-                                        $total_questions = $resultObj->total_questions;
                                         $total_attempts++;
 
 
@@ -186,7 +186,7 @@
                                             <td>{{$total_questions_attempt}}</td>
                                             <td>
                                                 <div class="attempt-progress">
-                                                    <span class="progress-number">{{$total_percentage}}%</span>
+                                                    <span class="progress-number">{{round($total_percentage, 2)}}%</span>
                                                     <span class="progress-holder">
                                                   <span class="progressbar"
                                                         style="width: {{$total_percentage}}%;"></span>

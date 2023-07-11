@@ -1246,6 +1246,8 @@ Lms Quiz Wf Style Start
     float: left;
     margin-right: 20px;
     position: absolute;
+    margin-top: -5px;
+    cursor: pointer;
 }
 .question-number-holder ~ .leform-elements {
     margin-top: -15px;
@@ -1387,7 +1389,7 @@ Lms Quiz Wf Style Start
 .lms-quiz-section .marks,
 .marks {
     position: absolute;
-    right: 0;
+    right: -65px;
     bottom: 15px;
     margin: 0;
     color: #000;

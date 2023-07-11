@@ -808,26 +808,25 @@ class QuestionsAttemptController extends Controller
     /*
      * Submit TableTimes Results
      */
-    public function timestables_submit(Request $request){
+    public function timestables_submit(Request $request)
+    {
         $timestables_data = $request->get('timestables_data');
 
 
         $results = array();
 
-        if( !empty( $timestables_data)){
-            foreach( $timestables_data as $tableData){
+        if (!empty($timestables_data)) {
+            foreach ($timestables_data as $tableData) {
                 $results[$tableData['table_no']][] = $tableData;
             }
         }
-        pre($results);
-
 
 
         $user = auth()->user();
 
         $QuizzesResult = QuizzesResult::create([
             'user_id'          => $user->id,
-            'results'          => '',
+            'results'          => json_encode($results),
             'user_grade'       => 0,
             'status'           => 'waiting',
             'created_at'       => time(),
@@ -835,6 +834,50 @@ class QuestionsAttemptController extends Controller
             'no_of_attempts'   => 100,
         ]);
 
+        $QuizzAttempts = QuizzAttempts::create([
+            'quiz_result_id' => $QuizzesResult->id,
+            'user_id'        => $user->id,
+            'start_grade'    => $QuizzesResult->user_grade,
+            'end_grade'      => 0,
+            'created_at'     => time(),
+            'attempt_type'   => $QuizzesResult->quiz_result_type,
+        ]);
+
+
+        if (!empty($timestables_data)) {
+            foreach ($timestables_data as $tableData) {
+
+                $correct_answers = isset($tableData['correct_answer']) ? $tableData['correct_answer'] : '';
+                $user_answer = isset($tableData['answer']) ? $tableData['answer'] : '';
+                $from = isset($tableData['from']) ? $tableData['from'] : '';
+                $to = isset($tableData['to']) ? $tableData['to'] : '';
+                $type = isset($tableData['type']) ? $tableData['type'] : '';
+                $time_consumed = isset($tableData['time_consumed']) ? $tableData['time_consumed'] : '';
+                $table_no = isset($tableData['table_no']) ? $tableData['table_no'] : '';
+                $is_correct = isset($tableData['is_correct']) ? $tableData['is_correct'] : '';
+
+                $newQuestionResult = QuizzResultQuestions::create([
+                    'question_id'      => 0,
+                    'quiz_result_id'   => $QuizzesResult->id,
+                    'quiz_attempt_id'  => $QuizzAttempts->id,
+                    'user_id'          => $user->id,
+                    'correct_answer'   => $correct_answers,
+                    'user_answer'      => $user_answer,
+                    'quiz_layout'      => json_encode($tableData),
+                    'quiz_grade'       => 5,
+                    'average_time'     => 0,
+                    'time_consumed'    => $time_consumed,
+                    'difficulty_level' => 'Expected',
+                    'status'           => ($is_correct == 'true') ? 'correct' : 'incorrect',
+                    'created_at'       => time(),
+                    'parent_type_id'   => $table_no,
+                    'quiz_result_type' => $QuizzAttempts->attempt_type,
+                    'review_required'  => 0
+                ]);
+
+
+            }
+        }
 
 
         pre($timestables_data);
@@ -884,7 +927,7 @@ class QuestionsAttemptController extends Controller
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'           => $field_type,
+                                    'field_type'          => $field_type,
                                     'field_key'           => $field_key,
                                     'user_selected_key'   => $user_selected_key,
                                     'user_selected_value' => $user_selected_value,
@@ -901,7 +944,7 @@ class QuestionsAttemptController extends Controller
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'           => $field_type,
+                                    'field_type'          => $field_type,
                                     'field_key'           => $field_key,
                                     'user_selected_key'   => $user_selected_key,
                                     'user_selected_value' => $user_selected_value,
@@ -917,7 +960,7 @@ class QuestionsAttemptController extends Controller
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'           => $field_type,
+                                    'field_type'          => $field_type,
                                     'field_key'           => $field_key,
                                     'user_selected_key'   => $user_selected_key,
                                     'user_selected_value' => $user_selected_value,

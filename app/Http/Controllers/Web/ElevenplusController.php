@@ -14,8 +14,9 @@ class ElevenplusController extends Controller
     public function index()
     {
 
-        $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', '11plus');
+        $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', '11plus');
         $elevenPlus = $query->paginate(8);
+
 
         //pre($sats);
 
