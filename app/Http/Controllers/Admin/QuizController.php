@@ -308,6 +308,7 @@ class QuizController extends Controller
             'sub_title'                     => isset($data['sub_title']) ? $data['sub_title'] : '' ,
             'quiz_image'                 => isset($data['quiz_image']) ? $data['quiz_image'] : '' ,
             'quiz_pdf'                  => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '' ,
+            'quiz_instructions' => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '' ,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -564,6 +565,7 @@ class QuizController extends Controller
             'sub_title'                     => isset($data['sub_title']) ? $data['sub_title'] : '' ,
             'quiz_image'                 => isset($data['quiz_image']) ? $data['quiz_image'] : '' ,
             'quiz_pdf'                  => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '' ,
+            'quiz_instructions' => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '' ,
         ]);
 
         if (!empty($quiz)) {

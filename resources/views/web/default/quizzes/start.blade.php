@@ -24,6 +24,7 @@ $rand_id = rand(99,9999);
                     <span class="font-12 font-weight-400 text-gray">Go to the quiz page for more information</span>
                 </div>
                 <div class="d-flex align-items-center justify-content-center w-100">
+
                     <button id="collapseBtn" type="button" class="btn-transparent ml-auto ml-lg-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -33,8 +34,8 @@ $rand_id = rand(99,9999);
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     </button>
-                    <div
-                            class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                    <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                        {{ $quiz->quiz_instructions }}
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>

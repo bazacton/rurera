@@ -54,11 +54,11 @@ $getPanelSidebarSettings = getPanelSidebarSettings();
                                 <a href="/panel/financial/payout">Payout</a>
                             </li>
 
-                            <li class="mt-5">
+                            <li class="mt-10">
                                 <a href="/panel/financial/account">Charge account</a>
                             </li>
 
-                            <li class="mt-5">
+                            <li class="mt-10">
                                 <a href="/panel/financial/subscribes">Subscribe</a>
                             </li>
                         </ul>

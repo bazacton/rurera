@@ -101,6 +101,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="input-label">Quiz Instructions</label>
+                    <textarea rows="7" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_instructions]" class="form-control ">{{ !empty($quiz) ? $quiz->quiz_instructions : old('quiz_instructions') }}</textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-group">
                     <label class="input-label">Quiz Image</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -109,7 +115,8 @@
                                 <i class="fa fa-upload"></i>
                             </button>
                         </div>
-                        <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_image]" id="quiz_image"
+                        <input type="text" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_image]"
+                               id="quiz_image"
                                value="{{ !empty($quiz) ? $quiz->quiz_image : old('quiz_image') }}"
                                class="form-control @error('quiz_image')  is-invalid @enderror"/>
                         <div class="input-group-append">
@@ -335,9 +342,9 @@
                         @if( !empty( $questionObj->QuestionData))
                         @foreach( $questionObj->QuestionData as $questionDataObj)
                         <li data-id="{{$questionDataObj->id}}">{{$questionDataObj->getTitleAttribute()}} <input
-                                type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new'
+                                    type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new'
                                                            }}][question_list_ids][]"
-                                value="{{$questionDataObj->id}}">
+                                    value="{{$questionDataObj->id}}">
                             <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
                         </li>
                         @endforeach
