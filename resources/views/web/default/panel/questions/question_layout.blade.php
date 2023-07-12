@@ -66,7 +66,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                 <div class="question-label-tag">Developer Review Required</div>
                             @endif
                             <input class="question-submit-btn submit-btn" type="button" data-question_no="1"
-                                   value="Submit">
+                                   value="Mark answer">
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
         <a href="javascript:;" class="review-btn">
             Finish
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
+            <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path
