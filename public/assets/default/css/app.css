@@ -24876,7 +24876,7 @@ Heatmap Table style Start
     cursor: pointer;
 }
 .heatmap-select-option input[type=radio]:checked + label {
-    background-color: #ee1c63;
+    background-color: var(--primary);
     color: #fff;
 }
 .heatmap-select-option .select-field {
@@ -24885,6 +24885,7 @@ Heatmap Table style Start
     padding-left: 1px;
     border: 1px solid #dedede;
     border-radius: 5px;
+    overflow: hidden;
 }
 .heatmap-select-option strong {
     font-size: 18px;
@@ -24913,7 +24914,7 @@ Heatmap Table style Start
     font-size:16px;
 }
 .heatmap-table .correct {
-    background-color: #84b741;
+    background-color: var(--primary);
 }
 .heatmap-table .wrong {
     background-color: #ee1c63;

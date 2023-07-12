@@ -33,6 +33,10 @@
 @if($page->id == 49)
 <script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
 @endif
+@if($page->id == 114)
+<script src="/assets/default/vendors/jquery-ui/jquery-ui.min.js"></script>
+@endif
+
 
 @if($page->id == 16)
                         <script src="/assets/default/js/parts/counter.js"></script>

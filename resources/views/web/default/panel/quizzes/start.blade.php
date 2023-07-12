@@ -19,12 +19,13 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
-<script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
+
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
     }
+
     .field-holder.wrong, .form-field.wrong, .form-field.wrong label {
         background: #ff4a4a;
         color: #fff;
@@ -41,42 +42,7 @@ $rand_id = rand(99,9999);
         <div class="read-quiz-info quiz-show"></div>
         <script>
 
-            $(".read-quiz-info").flipBook({
-                pdfUrl: '{{$quiz->quiz_pdf}}',
-                btnZoomIn: {enabled: true},
-                btnZoomOut: {enabled: true},
-                btnToc: {enabled: false},
-                btnShare: {enabled: false},
-                btnDownloadPages: {enabled: false},
-                btnDownloadPdf: {enabled: false},
-                btnSound: {enabled: false},
-                btnAutoplay: {enabled: false},
-                btnSelect: {enabled: false},
-                btnBookmark: {enabled: false},
-                btnThumbs: {enabled: false},
-                btnPrint: {enabled: false},
-                currentPage: {enabled: false},
-                viewMode: "swipe",
-                singlePageMode: true,
-                skin: 'dark',
-                menuMargin: 10,
-                menuBackground: 'none',
-                menuShadow: 'none',
-                menuAlignHorizontal: 'right',
-                menuOverBook: true,
-                btnRadius: 40,
-                btnMargin: 4,
-                btnSize: 14,
-                btnPaddingV: 16,
-                btnPaddingH: 16,
-                btnBorder: '2px solid rgba(255,255,255,.7)',
-                btnBackground: "rgba(0,0,0,.3)",
-                btnColor: 'rgb(255,120,60)',
-                sideBtnRadius: 60,
-                sideBtnSize: 60,
-                sideBtnBackground: "rgba(0,0,0,.7)",
-                sideBtnColor: 'rgb(255,120,60)',
-            });
+
         </script>
         @endif
 
@@ -84,16 +50,16 @@ $rand_id = rand(99,9999);
              data-total_questions="{{$quizQuestions->count()}}">
 
             <section class="quiz-topbar">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-6 col-sm-12">
-                                <div class="quiz-top-info"><p>Test</p>
-                                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            <div class="quiz-top-info"><p>Test</p>
                             </div>
-                            <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
-                                <div class="topbar-right">
-                                    <div class="quiz-pagination">
-                                        <div class="swiper-container">
+                        </div>
+                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                            <div class="topbar-right">
+                                <div class="quiz-pagination">
+                                    <div class="swiper-container">
                                         <ul class="swiper-wrapper">
                                             @if( !empty( $questions_list ) )
                                             @php $question_count = 1; @endphp
@@ -107,74 +73,77 @@ $rand_id = rand(99,9999);
                                             @php $is_flagged = true;
                                             @endphp
                                             @endif
-                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                            @php $question_status_class = isset( $questions_status_array[$question_id]
+                                            )? $questions_status_array[$question_id] : 'waiting'; @endphp
                                             <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
                                                     'has-flag' : ''}} {{$question_status_class}}"><a
-                                                    href="javascript:;">
+                                                        href="javascript:;">
                                                     {{$question_count}}</a></li>
                                             @php $question_count++; @endphp
                                             @endforeach
                                             @endif
                                         </ul>
-                                        </div>
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-button-next"></div>
                                     </div>
-                                    <div class="quiz-timer">
-                                        <span class="timer-number">4<em>m</em></span> <span
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                                <div class="quiz-timer">
+                                    <span class="timer-number">4<em>m</em></span> <span
                                             class="timer-number">50<em>s</em></span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
 
-<div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
-            <div class="question-step quiz-complete" style="display:none">
-                <div class="question-layout-block">
-                    <div class="left-content has-bg">
-                        <h2>&nbsp;</h2>
-                        <div id="leform-form-1"
-                             class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
-                             _data-parent="1"
-                             _data-parent-col="0" style="display: block;">
-                            <div class="question-layout">
+                    <div class="question-step quiz-complete" style="display:none">
+                        <div class="question-layout-block">
+                            <div class="left-content has-bg">
+                                <h2>&nbsp;</h2>
+                                <div id="leform-form-1"
+                                     class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                                     _data-parent="1"
+                                     _data-parent-col="0" style="display: block;">
+                                    <div class="question-layout">
 
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 
+                    <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
+
+                        @if( is_array( $question ))
+                        @php $question_no = 1; @endphp
+
+                        @foreach( $question as $questionObj)
+                        @include('web.default.panel.questions.question_layout',['question'=>
+                        $questionObj,'prev_question' =>
+                        0, 'next_question' => 0, 'question_no' =>
+                        $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult' => $newQuestionResult,
+                        'quizResultObj' => $newQuizStart
+                        ])
+                        @php $question_no++; @endphp
+                        @endforeach
+                        @else
+                        @php $first_question = rurera_decode($questions_layout[$first_question_id]);
+                        echo $first_question;
+                        @endphp
+
+                        @endif
+                    </div>
+
+                    <div class="question-area-temp hide"></div>
+
                 </div>
             </div>
-
-            <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
-
-                @if( is_array( $question ))
-                @php $question_no = 1; @endphp
-
-                @foreach( $question as $questionObj)
-                @include('web.default.panel.questions.question_layout',['question'=> $questionObj,'prev_question' =>
-                0, 'next_question' => 0, 'question_no' =>
-                $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult' => $newQuestionResult, 'quizResultObj' => $newQuizStart
-                ])
-                @php $question_no++; @endphp
-                @endforeach
-                @else
-                @php $first_question = rurera_decode($questions_layout[$first_question_id]);
-                echo $first_question;
-                @endphp
-
-                @endif
-            </div>
-
-            <div class="question-area-temp hide"></div>
-
         </div>
-    </div>
-</div>
     </section>
 
 
@@ -190,12 +159,14 @@ $rand_id = rand(99,9999);
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
+
 <script>
     //init_question_functions();
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
+
 
 </script>
 @endpush

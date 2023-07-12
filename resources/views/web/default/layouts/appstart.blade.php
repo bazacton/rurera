@@ -15,6 +15,7 @@ $rand_no = rand(99,9999);
     <!-- General CSS File -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+
     <link rel="stylesheet" href="/assets/admin/vendor/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/default/vendors/data-table/dataTables.min.css"/>
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
@@ -102,7 +103,7 @@ $rand_no = rand(99,9999);
 <script src="/assets/default/js/parts/main.min.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
-
+<script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
 
 <script>
     @if(session()->has('registration_package_limited'))
@@ -151,6 +152,45 @@ $rand_no = rand(99,9999);
                   }
                 })
               }
+    
+    $(document).ready(function () {
+            $(".read-quiz-info").flipBook({
+                pdfUrl: '{{$quiz->quiz_pdf}}',
+                btnZoomIn: {enabled: true},
+                btnZoomOut: {enabled: true},
+                btnToc: {enabled: false},
+                btnShare: {enabled: false},
+                btnDownloadPages: {enabled: false},
+                btnDownloadPdf: {enabled: false},
+                btnSound: {enabled: false},
+                btnAutoplay: {enabled: false},
+                btnSelect: {enabled: false},
+                btnBookmark: {enabled: false},
+                btnThumbs: {enabled: false},
+                btnPrint: {enabled: false},
+                currentPage: {enabled: false},
+                viewMode: "swipe",
+                singlePageMode: true,
+                skin: 'dark',
+                menuMargin: 10,
+                menuBackground: 'none',
+                menuShadow: 'none',
+                menuAlignHorizontal: 'right',
+                menuOverBook: true,
+                btnRadius: 40,
+                btnMargin: 4,
+                btnSize: 14,
+                btnPaddingV: 16,
+                btnPaddingH: 16,
+                btnBorder: '2px solid rgba(255,255,255,.7)',
+                btnBackground: "rgba(0,0,0,.3)",
+                btnColor: 'rgb(255,120,60)',
+                sideBtnRadius: 60,
+                sideBtnSize: 60,
+                sideBtnBackground: "rgba(0,0,0,.7)",
+                sideBtnColor: 'rgb(255,120,60)',
+            });
+        });
 </script>
 </body>
 </html>
