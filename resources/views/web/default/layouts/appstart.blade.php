@@ -126,7 +126,9 @@ $rand_no = rand(99,9999);
                 const swiper = new Swiper('.quiz-pagination .swiper-container', {
                   slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
                   spaceBetween: 0,
-                    slidesPerGroup: 5,
+                  slidesPerGroup: 10,
+                  observer: true,
+                  observeParents: true,
                   navigation: {
                       nextEl: ".swiper-button-next",
                       prevEl: ".swiper-button-prev",

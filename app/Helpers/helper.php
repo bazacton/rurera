@@ -2380,6 +2380,7 @@ function toolbar_tools()
             'type'  => 'input'
         ),
 
+
         /*'spreadsheet_area' => array(
             'title' => esc_html__('Spread Sheet Area' , 'leform') ,
             'icon'  => 'fas fa-arrows-alt-v' ,
@@ -6480,7 +6481,7 @@ function element_properties_meta($chapters)
 
         ),
 
-        'image_quiz'     => array(
+        'image_quiz'       => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6500,7 +6501,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'paragraph_quiz' => array(
+        'paragraph_quiz'   => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6520,7 +6521,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'sqroot_quiz'    => array(
+        'sqroot_quiz'      => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6554,7 +6555,7 @@ function element_properties_meta($chapters)
                 'type'  => 'number'
             ),
         ),
-        'question_label' => array(
+        'question_label'   => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6572,7 +6573,8 @@ function element_properties_meta($chapters)
                 'type'    => 'elements_data'
             ),
         ),
-        'seperator'      => array(
+
+        'seperator'        => array(
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
@@ -6586,7 +6588,7 @@ function element_properties_meta($chapters)
                 'type'    => 'hidden'
             ),
         ),
-        'question_no'    => array(
+        'question_no'      => array(
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',

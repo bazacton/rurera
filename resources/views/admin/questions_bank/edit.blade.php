@@ -470,41 +470,45 @@ $rand_id = rand(999,99999);
                             </div>
                             <div class="col-12">
                                 <div class="search-fields-block" style="background: #efefef;padding: 10px;">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Year</label>
-                                        <select name="category_id" data-course_id="{{$questionObj->course_id}}"
-                                                data-plugin-selectTwo
-                                                class="form-control populate ajax-category-courses">
-                                            <option value="">All</option>
-                                            @foreach($categories as $category)
-                                            @if(!empty($category->subCategories) and count($category->subCategories))
-                                            <optgroup label="{{  $category->title }}">
-                                                @foreach($category->subCategories as $subCategory)
-                                                <option value="{{ $subCategory->id }}" @if($questionObj->category_id ==
-                                                    $subCategory->id) selected="selected" @endif>{{ $subCategory->title
-                                                    }}
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Year</label>
+                                            <select name="category_id" data-course_id="{{$questionObj->course_id}}"
+                                                    data-plugin-selectTwo
+                                                    class="form-control populate ajax-category-courses">
+                                                <option value="">All</option>
+                                                @foreach($categories as $category)
+                                                @if(!empty($category->subCategories) and
+                                                count($category->subCategories))
+                                                <optgroup label="{{  $category->title }}">
+                                                    @foreach($category->subCategories as $subCategory)
+                                                    <option value="{{ $subCategory->id }}" @if($questionObj->category_id
+                                                        ==
+                                                        $subCategory->id) selected="selected" @endif>{{
+                                                        $subCategory->title
+                                                        }}
+                                                    </option>
+                                                    @endforeach
+                                                </optgroup>
+                                                @else
+                                                <option value="{{ $category->id }}" @if(request()->get('category_id') ==
+                                                    $category->id)
+                                                    selected="selected" @endif>{{ $category->title }}
                                                 </option>
+                                                @endif
                                                 @endforeach
-                                            </optgroup>
-                                            @else
-                                            <option value="{{ $category->id }}" @if(request()->get('category_id') ==
-                                                $category->id)
-                                                selected="selected" @endif>{{ $category->title }}
-                                            </option>
-                                            @endif
-                                            @endforeach
-                                        </select>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Subject</label>
-                                        <select data-chapter_id="{{$questionObj->chapter_id}}" name="course_id" data-plugin-selectTwo
-                                                class="form-control populate ajax-courses-dropdown">
-                                        </select>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Subject</label>
+                                            <select data-chapter_id="{{$questionObj->chapter_id}}" name="course_id"
+                                                    data-plugin-selectTwo
+                                                    class="form-control populate ajax-courses-dropdown">
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
 
                                     <div class="col-12">
                                         <div class="form-group">
@@ -516,25 +520,25 @@ $rand_id = rand(999,99999);
                                         </div>
                                     </div>
 
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="input-label">Search Keywords / Tags</label>
-                                        @php
-                                        $search_tags = explode(' | ', $questionObj->search_tags);
-                                        $search_tags = implode(',', $search_tags);
-                                        @endphp
-                                        <input type="text" value="{{ $search_tags }}" data-role="tagsinput"
-                                               name="search_tags"
-                                               class="form-control @error('search_tags')  is-invalid @enderror"
-                                               placeholder=""/>
-                                        @error('search_tags')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Search Keywords / Tags</label>
+                                            @php
+                                            $search_tags = explode(' | ', $questionObj->search_tags);
+                                            $search_tags = implode(',', $search_tags);
+                                            @endphp
+                                            <input type="text" value="{{ $search_tags }}" data-role="tagsinput"
+                                                   name="search_tags"
+                                                   class="form-control @error('search_tags')  is-invalid @enderror"
+                                                   placeholder=""/>
+                                            @error('search_tags')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
-                                        @enderror
                                     </div>
                                 </div>
-                            </div>
                             </div>
 
 
@@ -643,6 +647,13 @@ $rand_id = rand(999,99999);
                                 @endif
                             </select>
                             <a href="javascript:;" class="add-glossary-modal">Add New Glossary</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <label class="input-label">Question Example</label>
+                            <textarea class="note-codable summernote" id="question_example" name="question_example"
+                                      aria-multiline="true">{{$question_example}}</textarea>
                         </div>
                     </div>
                     <div class="col-12 col-md-12">
@@ -957,7 +968,7 @@ $rand_id = rand(999,99999);
         $.ajax({
             type: "GET",
             url: '/admin/webinars/chapters_by_course',
-            data: {'course_id': course_id, 'chapter_id':chapter_id},
+            data: {'course_id': course_id, 'chapter_id': chapter_id},
             success: function (return_data) {
                 $(".ajax-chapter-dropdown").html(return_data);
             }

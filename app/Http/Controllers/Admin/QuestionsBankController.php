@@ -523,6 +523,7 @@ class QuestionsBankController extends Controller
             'comments_for_reviewer'     => (isset($questionData['comments_for_reviewer']) && $questionData['comments_for_reviewer'] != '') ? $questionData['comments_for_reviewer'] : '',
             'search_tags'              => $search_tags,
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
+            'question_example'            => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -679,6 +680,7 @@ class QuestionsBankController extends Controller
             'comments_for_reviewer'     => (isset($questionData['comments_for_reviewer']) && $questionData['comments_for_reviewer'] != '') ? $questionData['comments_for_reviewer'] : '',
             'search_tags'              => $search_tags,
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
+            'question_example'            => isset($questionData['question_example']) ? $questionData['question_example'] : '' ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -873,6 +875,7 @@ class QuestionsBankController extends Controller
             'elements_data'             => $question->elements_data ,
             'layout_elements'           => $form_elements ,
             'question_solve'            => $question->question_solve ,
+            'question_example'            => $question->question_example ,
             'glossary_ids'              => $glossary_ids ,
             'chapters'                  => $chapters_list ,
             'categories'                => $categories ,

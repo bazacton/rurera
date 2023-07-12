@@ -2073,6 +2073,7 @@ Lms Quiz Wf Style End
 }
 .quiz-pagination .swiper-container li {
     margin: 6px 6px 0 0;
+    width: 21px;
 }
 .quiz-pagination li a {
     border: 2px solid #ecefff;
@@ -2261,6 +2262,16 @@ Lms Quiz Wf Style End
     height:100%;
     width: 3px;
     background-color: #535480;
+}
+.lms-quiz-section .question-area {
+    min-height: 700px;
+    position: relative;
+}
+.question-area .questions-nav-controls {
+    position:absolute;
+    display:flex;
+    width: 100%;
+    bottom: -50px;
 }
 .prev-next-controls {
     display: flex;

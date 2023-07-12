@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
+use App\Models\QuizzesResult;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
@@ -25,6 +26,11 @@ class TimestablesController extends Controller
     //public function genearte(Request $request, $id)
     public function genearte()
     {
+        $user = auth()->user();
+        $times_tables_data = $this->user_times_tables_data($user->id);
+        pre($times_tables_data);
+
+
         $tables_numbers = array(
             4,
             6,
@@ -48,15 +54,15 @@ class TimestablesController extends Controller
                 $from_value = $table_no;
                 $limit = 20;
                 $min = 0;
-                $min = ($type == '÷')? 1 :$min;
-                $limit = ($type == '÷')? $from_value :$limit;
+                $min = ($type == '÷') ? 1 : $min;
+                $limit = ($type == '÷') ? $from_value : $limit;
                 $to_value = rand($min, $limit);
-                $questions_list[] = (object) array(
-                    'from'  => $from_value,
-                    'to'    => $to_value,
-                    'type'  => $type,
-                    'table_no'  => $table_no,
-                    'marks' => $marks,
+                $questions_list[] = (object)array(
+                    'from'     => $from_value,
+                    'to'       => $to_value,
+                    'type'     => $type,
+                    'table_no' => $table_no,
+                    'marks'    => $marks,
                 );
                 $questions_count++;
             }
@@ -67,6 +73,44 @@ class TimestablesController extends Controller
             'questions_list' => $questions_list,
         ];
         return view('web.default.timestables.start', $data);
+    }
+
+   /*
+    * Get User Times Tables
+   */
+    public function user_times_tables_data($user_id)
+    {
+        $times_tables_data = QuizzesResult::where('user_id', $user_id)->where('quiz_result_type', 'timestables')->get();
+        $times_tables_data = $times_tables_data->groupBy(function($times_tables_obj){
+            return date('y-d',$times_tables_obj->created_at);
+        });
+
+        $tables_array = array();
+        if( !empty( $times_tables_data )){
+            foreach( $times_tables_data as $date => $times_tables_array){
+                if( !empty( $times_tables_array ) ){
+                    foreach( $times_tables_array as $times_tablesObj){
+                        $results = json_decode($times_tablesObj->results);
+
+                        if( !empty( $results)){
+                            foreach( $results as $table_no => $table_rows){
+                                if( !empty( $table_rows ) ){
+                                    foreach( $table_rows as $tableRowObj){
+                                        if( $tableRowObj->type == 'x') {
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['label'] = $tableRowObj->from . ' ' . $tableRowObj->type . ' ' . $tableRowObj->to;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['time_consumed'] = ($tableRowObj->time_consumed / 10);
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['is_correct'] = ($tableRowObj->is_correct == 'true')? true : false;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['class'] = '';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $tables_array;
     }
 
 

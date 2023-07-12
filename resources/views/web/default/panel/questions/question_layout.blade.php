@@ -42,7 +42,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                         <span class="question-icon flag-question {{$flag_class}}"
                               data-qresult_id="{{$newQuestionResult->quiz_result_id}}"
                               data-question_id="{{$question->id }}">
-                            <svg
+                            <svg style="width: 42px;height: 42px;"
                                 xmlns="http://www.w3.org/2000/svg"
                                 version="1.0" width="512.000000pt" height="512.000000pt"
                                 viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"> <g
@@ -87,7 +87,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
         </a>
         @if( isset( $prev_question ) && $prev_question > 0)
         <a href="javascript:;" class="prev-btn" data-question_id="{{$prev_question}}">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
+            <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path
@@ -99,7 +99,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
         @if( isset( $next_question ) && $next_question > 0)
         <a href="javascript:;" class="next-btn" data-question_id="{{$next_question}}">
             Next
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
+            <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                     <path

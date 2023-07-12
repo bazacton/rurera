@@ -221,6 +221,8 @@ function leform_save(_object, question_status) {
         }).get();
 
     var question_solve = $('#question_solve').summernote('code');
+    var question_example = $('#question_example').summernote('code');
+
     //var comments_for_reviewer = $('#comments_for_reviewer').summernote('code');
     var comments_for_reviewer = $('#comments_for_reviewer').val();
 
@@ -243,6 +245,7 @@ function leform_save(_object, question_status) {
     var post_data = {
         "new_glossaries": new_glossaries,
         "question_solve": question_solve,
+        "question_example": question_example,
         "comments_for_reviewer": '',
         "question_title": question_title,
         "search_tags": search_tags,
@@ -5535,6 +5538,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                 case "question_label":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
                     break;
+
 
                 case "seperator":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "</div>";

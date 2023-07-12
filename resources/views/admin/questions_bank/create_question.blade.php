@@ -564,6 +564,13 @@ $rand_id = rand(999,99999);
                     </div>
                     <div class="col-12 col-md-12">
                         <div class="form-group">
+                            <label class="input-label">Question Example</label>
+                            <textarea class="note-codable summernote" id="question_example" name="question_example"
+                                      aria-multiline="true"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
                             <label class="input-label">Solution</label>
                             <textarea class="note-codable summernote" id="question_solve" name="question_solve"
                                       aria-multiline="true"></textarea>

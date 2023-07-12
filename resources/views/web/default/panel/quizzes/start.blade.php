@@ -197,35 +197,5 @@ $rand_id = rand(99,9999);
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
 
-
-    if(jQuery('.quiz-pagination .swiper-container').length > 0){
-              console.log('slides-count');
-              console.log($(".quiz-pagination ul li").length);
-            const swiper = new Swiper('.quiz-pagination .swiper-container', {
-              slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
-              spaceBetween: 0,
-              slidesPerGroup: 5,
-              navigation: {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-              },
-              breakpoints: {
-                320: {
-                  slidesPerView: 3,
-                  spaceBetween: 5
-                },
-
-                480: {
-                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
-                  spaceBetween: 5
-                },
-
-                640: {
-                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
-                  spaceBetween: 5
-                }
-              }
-            })
-          }
 </script>
 @endpush
