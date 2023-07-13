@@ -91,6 +91,9 @@ class QuizController extends Controller
         $teacher_ids = $request->get('teacher_ids', null);
         $webinar_ids = $request->get('webinar_ids', null);
         $status = $request->get('status', null);
+        $year_group = $request->get('year_group', null);
+        $subject = $request->get('subject', null);
+        $examp_board = $request->get('examp_board', null);
 
         $query = fromAndToDateFilter($from, $to, $query, 'created_at');
 
@@ -168,6 +171,18 @@ class QuizController extends Controller
 
         if (!empty($status) and $status !== 'all') {
             $query->where('status', strtolower($status));
+        }
+
+        if (!empty($year_group) and $year_group !== 'All') {
+            $query->where('year_group', $year_group);
+        }
+
+        if (!empty($subject) and $subject !== 'All') {
+            $query->where('subject', $subject);
+        }
+
+        if (!empty($examp_board) and $examp_board !== 'All') {
+            $query->where('examp_board', $examp_board);
         }
 
         return $query;
@@ -316,6 +331,9 @@ class QuizController extends Controller
             'quiz_image'                  => isset($data['quiz_image']) ? $data['quiz_image'] : '',
             'quiz_pdf'                    => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '',
             'quiz_instructions'           => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '',
+            'year_group'                  => isset($data['year_group']) ? $data['year_group'] : '',
+            'subject'                     => isset($data['subject']) ? $data['subject'] : '',
+            'examp_board'                 => isset($data['examp_board']) ? $data['examp_board'] : '',
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -573,6 +591,9 @@ class QuizController extends Controller
             'quiz_image'         => isset($data['quiz_image']) ? $data['quiz_image'] : '',
             'quiz_pdf'           => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '',
             'quiz_instructions'  => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '',
+            'year_group'         => isset($data['year_group']) ? $data['year_group'] : '',
+            'subject'            => isset($data['subject']) ? $data['subject'] : '',
+            'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
         ]);
 
         if (!empty($quiz)) {

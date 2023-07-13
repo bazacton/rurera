@@ -827,9 +827,7 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-
-
-        $new_array = array_merge($results, $get_last_results);
+        $new_array = array_merge($get_last_results, $results);
 
         $new_result_data = array();
         if( !empty( $new_array )){

@@ -102,7 +102,8 @@
 
                 <div class="form-group">
                     <label class="input-label">Quiz Instructions</label>
-                    <textarea rows="7" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_instructions]" class="form-control ">{{ !empty($quiz) ? $quiz->quiz_instructions : old('quiz_instructions') }}</textarea>
+                    <textarea rows="7" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_instructions]"
+                              class="form-control ">{{ !empty($quiz) ? $quiz->quiz_instructions : old('quiz_instructions') }}</textarea>
                     <div class="invalid-feedback"></div>
                 </div>
 
@@ -165,7 +166,9 @@
                 $assessment_hide_class = (!empty($quiz ) && $quiz->quiz_type != 'assessment')? 'hide-class' : '';
                 $practice_hide_class = (empty($quiz ) || $quiz->quiz_type == 'practice')? '' : 'hide-class';
                 $sats_hide_class = (empty($quiz ) || $quiz->quiz_type == 'sats')? '' : 'hide-class';
+                $eleven_plus_hide_class = (empty($quiz ) || $quiz->quiz_type == '11plus')? 'hide-class' : '';
                 @endphp
+
 
                 <div class="conditional-fields sats-fields 11plus-fields {{$sats_hide_class}}">
                     <div class="form-group">
@@ -175,10 +178,94 @@
                                placeholder=""/>
                         <div class="invalid-feedback"></div>
                     </div>
-
-
                 </div>
 
+                <div class="conditional-fields 11plus-fields {{$eleven_plus_hide_class}}">
+
+
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Year Group</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_group]"
+                                class="form-control" data-placeholder="Select Year Group">
+                            <option value="All" {{ (!empty($quiz) and ($quiz->year_group == 'All' || $quiz->year_group
+                                == '')) ? 'selected'
+                                : ''
+                                }}>All
+                            </option>
+                            <option value="Year 3" {{ (!empty($quiz) and $quiz->year_group == 'Year 3') ?
+                                'selected'
+                                : '' }}>Year 3
+                            </option>
+
+                            <option value="Year 4" {{ (!empty($quiz) and $quiz->year_group == 'Year 4') ?
+                                'selected'
+                                : '' }}>Year 4
+                            </option>
+
+                            <option value="Year 5" {{ (!empty($quiz) and $quiz->year_group == 'Year 5') ?
+                                'selected'
+                                : '' }}>Year 5
+                            </option>
+
+                            <option value="Year 6" {{ (!empty($quiz) and $quiz->year_group == 'Year 6') ?
+                                'selected'
+                                : '' }}>Year 6
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Subject</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][subject]"
+                                class="form-control" data-placeholder="Select Year Group">
+                            <option value="All" {{ (!empty($quiz) and ($quiz->subject == 'All' || $quiz->subject == ''))
+                                ? 'selected'
+                                : ''
+                                }}>All
+                            </option>
+                            <option value="Math" {{ (!empty($quiz) and $quiz->subject == 'Math') ?
+                                'selected'
+                                : '' }}>Math
+                            </option>
+
+                            <option value="Non-Verbal Reasoning" {{ (!empty($quiz) and $quiz->subject == 'Non-Verbal
+                                Reasoning') ?
+                                'selected'
+                                : '' }}>Non-Verbal Reasoning
+                            </option>
+
+                            <option value="Verbal Reasoning" {{ (!empty($quiz) and $quiz->subject == 'Verbal Reasoning')
+                                ?
+                                'selected'
+                                : '' }}>Verbal Reasoning
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Exam Board</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][examp_board]"
+                                class="form-control" data-placeholder="Select Year Group">
+                            <option value="All" {{ (!empty($quiz) and ($quiz->examp_board == 'All' || $quiz->examp_board == ''))
+                                ? 'selected'
+                                : ''
+                                }}>All
+                            </option>
+                            <option value="GL" {{ (!empty($quiz) and $quiz->examp_board == 'GL') ?
+                                'selected'
+                                : '' }}>GL
+                            </option>
+
+                            <option value="CEM" {{ (!empty($quiz) and $quiz->examp_board == 'CEM') ?
+                                'selected'
+                                : '' }}>CEM
+                            </option>
+
+                        </select>
+                    </div>
+
+                </div>
 
                 <div class="conditional-fields sats-fields 11plus-fields assessment-fields {{$assessment_hide_class}}">
                     <div class="form-group">
@@ -404,6 +491,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
             $(".conditional-fields").addClass('hide-class');
             $('.' + quiz_type + "-fields").removeClass('hide-class');
         });
+        $(".quiz-type").change();
 
         $(document).on('change', '.search-questions-select2', function (e) {
             var field_value = $(this).val();

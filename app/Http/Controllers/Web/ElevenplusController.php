@@ -11,10 +11,27 @@ use App\Models\Testimonial;
 class ElevenplusController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
 
+        $year_group = $request->get('year_group', null);
+        $subject = $request->get('subject', null);
+        $examp_board = $request->get('examp_board', null);
+
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', '11plus');
+
+        if (!empty($year_group) and $year_group !== 'All') {
+            $query->where('year_group', $year_group);
+        }
+
+        if (!empty($subject) and $subject !== 'All') {
+            $query->where('subject', $subject);
+        }
+
+        if (!empty($examp_board) and $examp_board !== 'All') {
+            $query->where('examp_board', $examp_board);
+        }
+
         $elevenPlus = $query->paginate(8);
 
 

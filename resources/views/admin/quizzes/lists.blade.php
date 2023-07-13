@@ -190,6 +190,42 @@
                         </div>
                     </div>
 
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="input-label">Year Group</label>
+                            <select name="year_group" data-plugin-selectTwo class="form-control populate">
+                                <option value="All">All</option>
+                                <option value="Year 3" @if(request()->get('year_group') == 'Year 3') selected @endif>Year 3</option>
+                                <option value="Year 4" @if(request()->get('year_group') == 'Year 4') selected @endif>Year 4</option>
+                                <option value="Year 5" @if(request()->get('year_group') == 'Year 5') selected @endif>Year 5</option>
+                                <option value="Year 6" @if(request()->get('year_group') == 'Year 6') selected @endif>Year 6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="input-label">Subject</label>
+                            <select name="subject" data-plugin-selectTwo class="form-control populate">
+                                <option value="All">All</option>
+                                <option value="Math" @if(request()->get('subject') == 'Math') selected @endif>Math</option>
+                                <option value="Non-Verbal Reasoning" @if(request()->get('subject') == 'Non-Verbal Reasoning') selected @endif>Non-Verbal Reasoning</option>
+                                <option value="Verbal Reasoning" @if(request()->get('subject') == 'Verbal Reasoning') selected @endif>Verbal Reasoning</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="input-label">Exam Board</label>
+                            <select name="examp_board" data-plugin-selectTwo class="form-control populate">
+                                <option value="All">All</option>
+                                <option value="GL" @if(request()->get('examp_board') == 'GL') selected @endif>GL</option>
+                                <option value="CEM" @if(request()->get('examp_board') == 'CEM') selected @endif>CEM</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="col-12 col-md-3 d-flex align-items-center justify-content-end">
                         <button type="submit" class="btn btn-primary w-100">{{ trans('admin/main.show_results') }}
                         </button>
