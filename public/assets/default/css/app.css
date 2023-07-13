@@ -24788,7 +24788,7 @@ Questions Select, Questions Block style Start
     background-color: var(--primary);
     box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
-.questions-arithmetic-box input[type="text"] {border: 0; font-size: 22px; color: #fff; font-weight: 700; width: calc(100% - 200px); background-color: inherit; margin-left: 8px;     position: relative;
+.questions-arithmetic-box input[type="text"] {border: 0; font-size: 22px; color: #fff; font-weight: 700; width: calc(100% - 300px); background-color: inherit; margin-left: 8px;     position: relative;
     z-index: 1;}
 .questions-arithmetic-box span {font-size: 35px; color: #fff; font-weight: 700; position: relative;
     z-index: 1;}
@@ -24812,6 +24812,17 @@ Questions Select, Questions Block style Start
 .questions-block-numbers .delete a {color: #fe0000;}
 .questions-block-numbers .enter a {    color: #008001;}
 .questions-block-numbers a:active {background-color: var(--primary); color: #fff;}
+.questions-controls {
+    position: relative;
+    z-index: 1;
+}
+.questions-controls svg path {
+    transition: all .5s;
+}
+.questions-controls a:hover svg path {fill: #fff;}
+.questions-controls a:hover svg path {fill: #000;}
+.questions-controls a.setting-btn svg path {fill: none;}
+.questions-controls a.setting-btn:hover svg path {stroke: #fff;}
 /**********************************************
 Questions Select, Questions Block style End
 **********************************************/
@@ -24825,11 +24836,9 @@ Heatmap Table style Start
     padding-top: 0;
     line-height: normal;
 }
-
 .heatmap-heading {
     position: relative;
 }
-
 .heatmap-heading:before {
     background-color: #6d6d6d;
     content: "";
@@ -24839,12 +24848,10 @@ Heatmap Table style Start
     top: 50%;
     width: 9px;
 }
-
 .heatmap-table-boxes li {
     padding-left: 8px;
     flex: 2 1 0;
 }
-
 .heatmap-box {
     background-color: #60a747;
     min-height: 130px;
@@ -24853,24 +24860,20 @@ Heatmap Table style Start
     padding: 12px 0 0;
     min-width: 150px;
 }
-
 .heatmap-table-boxes ul {
     margin-left: -8px;
 }
-
 .box-top {
     background-color: rgba(0,0,0,0.2);
     color: #fff;
     display: flex;
     margin: 0 0 30px;
 }
-
 .box-top span {
     flex-basis: 100%;
     text-align: center;
     padding: 6px 0;
 }
-
 .box-body {
     display: flex;
     width: 100%;
@@ -24882,22 +24885,18 @@ Heatmap Table style Start
     font-weight: 400;
     color: #000;
 }
-
 .heatmap-table-boxes li:last-child {
     flex: 1 1 0;
 }
-
 .heatmap-select-option {
     border-bottom: 1px solid #dedede;
     padding-bottom: 10px;
     display: flex;
     align-items: center;
 }
-
 .heatmap-select-option .heatmap-download-btn {
     margin-left: auto;
 }
-
 .heatmap-select-option input[type=radio] {
     position: absolute;
     width: 0;
@@ -24949,16 +24948,75 @@ Heatmap Table style Start
     font-size:16px;
 }
 .heatmap-table .correct {
-    background-color: var(--primary);
+    background-color: #81b745;
 }
 .heatmap-table .wrong {
     background-color: #ee1c63;
+    color: #000;
 }
 .heatmap-table-text .text-label {
     font-weight: 400;
 }
 .heatmap-table-text li {
     font-weight: 700;
+}
+.range-play-btn {
+    height: 34px;
+    width: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 100%;
+    font-size: 20px;
+    margin-right: 10px;
+    flex-basis: 34px;
+}
+.heatmap-range-slider {
+    display: flex;
+    align-items: center;
+    margin: 0 0 30px;
+}
+.heatmap-range-slider .ui-slider.ui-widget-content {
+    background-color: var(--primary);
+    margin-right: 20px;
+    flex-basis: 80%;
+    width: 80%;
+    border: 0;
+    height: 2px;
+}
+.heatmap-range-slider .ui-slider .ui-slider-range {
+    background-color: #e9e9e9;
+}
+.heatmap-range-slider .ui-slider-horizontal .ui-slider-handle {
+    background-color: var(--primary);
+    border-radius: 100%;
+    border: 0;
+    top: 50%;
+    margin-top: -8px;
+    margin-left: -1px;
+    height: 16px;
+    width: 16px;
+}
+.heatmap-range-slider .range-value {
+    background-color: rgba(0,0,0,0.1);
+    display: inline-flex;
+    padding: 10px 12px;
+    border-radius: 5px;
+    flex-basis: 130px;
+    width: 130px;
+}
+.range-value input {
+    width: calc(100% - 82px);
+    border: 0;
+    background-color: initial;
+    font-weight: 700;
+}
+.range-value span {
+    max-width: 80px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
 }
 /***************************
 Heatmap Table style End

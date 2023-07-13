@@ -50,20 +50,8 @@ class QuizController extends Controller
                 ]);
             },
             'quizResults',
-        ])->paginate(10);
+        ])->paginate(100);
 
-
-        /*if (!empty($quizzes)) {
-            foreach ($quizzes as $quizzObj) {
-
-                if( !empty( $quizzObj->quizQuestionsList ) ){
-                    foreach( $quizzObj->quizQuestionsList as $quizQuestionsListObj){
-                        pre($quizQuestionsListObj);
-
-                    }
-                }
-            }
-        }*/
         //pre($quizzes);
 
         //pre(DB::getQueryLog());
