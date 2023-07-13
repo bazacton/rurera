@@ -275,9 +275,6 @@
                             </div>
                             <div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a skilled and experienced Senior Software Developer to join our dynamic team. As a Senior Software Developer, you will be responsible for designing, developing, and implementing high-quality software solutions. You will collaborate with cross-functional teams to analyze user requirements, create technical specifications, and deliver robust software applications.</p>
                                 
@@ -314,8 +311,7 @@
                                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">1600$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -330,9 +326,6 @@
                             </div>
                             <div id="collapse_2" class="collapse" aria-labelledby="heading_2" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a skilled and experienced Database Administrator to join our team. As a Database Administrator, you will be responsible for the performance, integrity, and security of our databases. You will work closely with software developers, system administrators, and other stakeholders to ensure the efficient operation of our database systems.</p>
                                     
@@ -366,8 +359,7 @@
                                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">1600$ per month standard salary</p>
+                                   
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -382,9 +374,7 @@
                             </div>
                             <div id="collapse_3" class="collapse" aria-labelledby="heading_3" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a skilled and experienced Math Assessment Specialist to join our team. As a Math Assessment Specialist, you will play a crucial role in developing and implementing effective math assessment strategies and materials. You will work closely with curriculum developers, educators, and other stakeholders to ensure high-quality math assessments that align with educational standards.</p>
                                 
@@ -420,8 +410,7 @@
                                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">2000$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -436,9 +425,7 @@
                             </div>
                             <div id="collapse_4" class="collapse" aria-labelledby="heading_4" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a Math Curriculum Designer to join our education team. As a Math Curriculum Designer, you will play a key role in developing and designing a comprehensive and effective math curriculum that aligns with educational standards and meets the needs of students and educators. You will collaborate with subject matter experts, instructional designers, and educators to create engaging and rigorous math curricula that promote conceptual understanding and support student learning.</p>
                                     
@@ -472,8 +459,7 @@
                                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">2000$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -488,9 +474,7 @@
                             </div>
                             <div id="collapse_5" class="collapse" aria-labelledby="heading_5" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                   
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking an Associate Digital Designer to join our creative team. As an Associate Digital Designer, you will support the design and production of digital assets for various digital platforms. Your role will involve collaborating with the design team to create visually appealing and engaging digital materials that effectively communicate our brand's message and enhance user experience.</p>
                                     
@@ -524,8 +508,7 @@
                                 
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">1600$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -540,9 +523,7 @@
                             </div>
                             <div id="collapse_6" class="collapse" aria-labelledby="heading_6" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h4>
                                     <p itemprop="description">We are seeking a Science Curriculum Designer to join our education team. As a Science Curriculum Designer, you will play a critical role in developing and designing a comprehensive and engaging science curriculum that aligns with educational standards and promotes inquiry-based learning. You will collaborate with subject matter experts, instructional designers, and educators to create curriculum materials that foster scientific understanding, critical thinking, and hands-on exploration.</p>
 
@@ -577,8 +558,7 @@
                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">2500$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -593,9 +573,7 @@
                             </div>
                             <div id="collapse_7" class="collapse" aria-labelledby="heading_7" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                   
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a talented and detail-oriented Content Production Specialist to join our team. As a Content Production Specialist, you will be responsible for creating, editing, and managing various types of content across multiple platforms. Your role will involve working closely with the content team to ensure the production of high-quality and engaging content that meets our brand standards and resonates with our target audience.</p>
                                     
@@ -630,8 +608,7 @@
                                 
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">1900$month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -646,9 +623,7 @@
                             </div>
                             <div id="collapse_7" class="collapse" aria-labelledby="heading_7" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a Language Arts Curriculum Designer to join our education team. As a Language Arts Curriculum Designer, you will play a crucial role in developing and designing a comprehensive and engaging language arts curriculum that aligns with educational standards and promotes literacy and language development. You will collaborate with subject matter experts, instructional designers, and educators to create curriculum materials that foster reading, writing, communication, and critical thinking skills.</p>
                                     
@@ -683,8 +658,7 @@
                                 
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">1700$month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -699,9 +673,7 @@
                             </div>
                             <div id="collapse_7" class="collapse" aria-labelledby="heading_7" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a skilled and detail-oriented QA Analyst to join our quality assurance team. As a QA Analyst, you will be responsible for ensuring the quality and reliability of our software products through rigorous testing and defect identification. Your role will involve designing and executing test plans, conducting functional and regression testing, and collaborating with cross-functional teams to deliver high-quality software solutions.</p>
                                     
@@ -736,8 +708,7 @@
                                 
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">2800$month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>
@@ -752,9 +723,7 @@
                             </div>
                             <div id="collapse_8" class="collapse" aria-labelledby="heading_8" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="mb-20">
-                                        <img src="../assets/default/img/find-instructor-img1.png" alt="find instructor" title="find instructor" width="100%" height="auto" itemprop="image" loading="eager">
-                                    </div>
+                                    
                                     <h3 itemprop="title" class="font-24">Overview</h3>
                                     <p itemprop="description">We are seeking a highly skilled and experienced Senior UI/UX Designer to join our design team. As a Senior UI/UX Designer, you will be responsible for creating intuitive and visually appealing user interfaces and seamless user experiences across various digital platforms. Your role will involve leading the UI/UX design process, collaborating with cross-functional teams, and ensuring the delivery of exceptional design solutions that meet user needs and business objectives.</p>
                                     
@@ -791,8 +760,7 @@
                                     
                                     <h3 itemprop="title" class="font-24">Hours and schedule</h3>
                                     <p itemprop="description">9am to 6pm (12-1 lunch &amp; 3:00 to 3:30pm break)</p>
-                                    <h3 itemprop="title" class="font-24">Monthly Salary</h3>
-                                    <p itemprop="description">2000$ per month standard salary</p>
+                                    
                                     <p itemprop="description"><a href="#" class="lms-apply-btn">Apply for this position</a></p>
                                     <p itemprop="description"><a href="#" class="lms-contact-btn">Contact us</a></p>
                                 </div>

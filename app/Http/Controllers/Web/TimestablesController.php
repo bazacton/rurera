@@ -35,7 +35,7 @@ class TimestablesController extends Controller
         );
         $tables_types = [
             'x',
-            '÷',
+            //'÷',
         ];
         $total_questions = 10;
         $marks = 5;
@@ -49,8 +49,8 @@ class TimestablesController extends Controller
                 $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
                 $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
                 $from_value = $table_no;
-                $limit = 20;
-                $min = 0;
+                $limit = 12;
+                $min = 2;
                 $min = ($type == '÷') ? 1 : $min;
                 $limit = ($type == '÷') ? $from_value : $limit;
                 $to_value = rand($min, $limit);
@@ -78,8 +78,8 @@ class TimestablesController extends Controller
     public function summary()
     {
         $user = auth()->user();
+
         $times_tables_data = $this->user_times_tables_data($user->id, 'x');
-        //pre($times_tables_data);
 
         $data = [
             'pageTitle'         => 'Timestables Summary',
@@ -95,15 +95,16 @@ class TimestablesController extends Controller
     {
         $times_tables_data = QuizzesResult::where('user_id', $user_id)->where('quiz_result_type', 'timestables')->get();
         $times_tables_data = $times_tables_data->groupBy(function ($times_tables_obj) {
-            return date('y-d', $times_tables_obj->created_at);
+            return date('Y-m-d', $times_tables_obj->created_at);
         });
 
         $tables_array = array();
         if (!empty($times_tables_data)) {
             foreach ($times_tables_data as $date => $times_tables_array) {
+                $date = strtotime($date);
                 if (!empty($times_tables_array)) {
                     foreach ($times_tables_array as $times_tablesObj) {
-                        $results = json_decode($times_tablesObj->results);
+                        $results = json_decode($times_tablesObj->other_data);
 
                         if (!empty($results)) {
                             foreach ($results as $table_no => $table_rows) {

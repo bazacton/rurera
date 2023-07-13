@@ -119,10 +119,6 @@
                                             </th>
 
                                             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
-                                                colspan="1" aria-label="Percent: activate to sort column ascending">
-                                                Questions Attempted
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
                                                 colspan="1"
                                                 aria-label="Percent: activate to sort column ascending">Average Score %
                                             </th>
@@ -183,7 +179,6 @@
                                             </td>
                                             <td>{{$total_questions}}</td>
                                             <td>{{$total_attempts}}</td>
-                                            <td>{{$total_questions_attempt}}</td>
                                             <td>
                                                 <div class="attempt-progress">
                                                     <span class="progress-number">{{round($total_percentage, 2)}}%</span>

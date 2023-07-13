@@ -812,6 +812,12 @@ class QuestionsAttemptController extends Controller
     {
         $timestables_data = $request->get('timestables_data');
 
+        $user = auth()->user();
+
+        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->orderBy('id', 'DESC')->first();
+        $get_last_results = isset( $last_time_table_data->other_data )? $last_time_table_data->other_data : '';
+
+        $get_last_results  = (array) json_decode($get_last_results);
 
         $results = array();
 
@@ -821,6 +827,23 @@ class QuestionsAttemptController extends Controller
             }
         }
 
+
+
+        $new_array = array_merge($results, $get_last_results);
+
+        $new_result_data = array();
+        if( !empty( $new_array )){
+            foreach( $new_array as $array_data){
+                if( !empty( $array_data ) ){
+                    foreach( $array_data as $key => $arrayDataObj){
+                        $arrayDataObj  = (array) $arrayDataObj;
+                        $new_result_data[$arrayDataObj['from']][] = $arrayDataObj;
+                    }
+                }
+
+
+            }
+        }
 
         $user = auth()->user();
 
@@ -832,6 +855,7 @@ class QuestionsAttemptController extends Controller
             'created_at'       => time(),
             'quiz_result_type' => 'timestables',
             'no_of_attempts'   => 100,
+            'other_data'          => json_encode($new_result_data),
         ]);
 
         $QuizzAttempts = QuizzAttempts::create([
