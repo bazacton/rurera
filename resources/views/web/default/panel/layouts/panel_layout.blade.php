@@ -49,7 +49,7 @@
 
     
     <div class="panel-page-section">
-        @include(getTemplate(). '.panel.includes.sidebar')
+        @include(getTemplate(). '.includes.navbar')
 
         <div class="panel-content">
             <div class="container">

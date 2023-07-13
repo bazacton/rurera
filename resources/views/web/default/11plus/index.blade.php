@@ -85,14 +85,20 @@
                                            aria-describedby="example_info">
                                         <thead>
                                         <tr>
+
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
                                                 rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Date: activate to sort column descending">Title
                                             </th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
+                                                                                                                                        rowspan="1"
+                                                                                                                                        colspan="1" aria-sort="ascending"
+                                                                                                                                        aria-label="Date: activate to sort column descending">&nbsp;
+                                                                                                                                    </th>
                                             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
                                                 colspan="1" aria-label="Percent: activate to sort column ascending">
-                                                Total Questions
+                                                Questions
                                             </th>
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
                                                 rowspan="1"
@@ -158,6 +164,11 @@
 
                                         <tr class="odd">
                                             <td><a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a>
+                                            </td>
+                                            <td>
+                                                @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
+                                                    <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
+                                                @endif
                                             </td>
                                             <td>{{$total_questions}}</td>
                                             <td>{{$total_attempts}}</td>

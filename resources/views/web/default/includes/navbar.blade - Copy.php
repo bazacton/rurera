@@ -45,12 +45,6 @@ $navBtnText = $navbarButton->title;
 
                     @if(!empty($navbarPages) and count($navbarPages))
                     @foreach($navbarPages as $navbarPage)
-                    @if($authUser->isAdmin())
-                        @if( !isset( $navbarPage['is_student_panel'] ) || $navbarPage['is_student_panel'] != 1)
-                            @php continue; @endphp
-                        @endif
-                    @endif
-
                     <li class="nav-item {{ (isset( $navbarPage['menu_classes']) && $navbarPage['menu_classes'] != '')
                             ?$navbarPage['menu_classes'] : '' }}{{ (isset( $navbarPage['is_mega_menu']) && $navbarPage['is_mega_menu'] == 1)
                             ?' has-mega-menu' : '' }}">
@@ -85,8 +79,6 @@ $navBtnText = $navbarButton->title;
                             <div class="mega-menu-body tab-content">
                                 @php $count = 1; @endphp
                                 @foreach($course_navigation as $navigation_slug => $nagivation_data)
-
-
 
                                 <div class="tab-pane fade {{ ($count == 1)? 'show active' : ''}}" id="{{$navigation_slug}}" role="tabpanel" aria-labelledby="{{$navigation_slug}}-tab">
                                     <div class="row">
