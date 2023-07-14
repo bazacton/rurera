@@ -139,7 +139,7 @@ class QuestionsAttemptController extends Controller
                                     'parent_type_id'   => $quizAttempt->parent_type_id,
                                     'quiz_result_type' => $quizAttempt->attempt_type,
                                     'review_required'  => $questionObj->review_required,
-                                    'is_active'  => $prevNewQuestionResult->is_active,
+                                    'is_active'  => isset( $prevNewQuestionResult->is_active )? $prevNewQuestionResult->is_active : 0,
                                 ]);
 
                                 break;
@@ -810,7 +810,8 @@ class QuestionsAttemptController extends Controller
         if (!empty($resultAttempts)) {
 
             foreach ($resultAttempts as $resultAttemptObj) {
-                $attemptsQuestions = $resultAttemptObj->quizz_result_questions->get();
+                //$attemptsQuestions = $resultAttemptObj->quizz_result_questions->get();
+                $attemptsQuestions = $resultAttemptObj->quizz_result_questions;
                 if (!empty($attemptsQuestions)) {
                     foreach ($attemptsQuestions as $resultQuestionObj) {
                         $question_response_layout .= $this->get_question_result_layout($resultQuestionObj->id);
