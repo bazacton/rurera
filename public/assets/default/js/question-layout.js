@@ -114,11 +114,12 @@ $(document).on('click', '.question-submit-btn', function (e) {
             "time_consumed": time_consumed
         },
         success: function (return_data) {
+            console.log(return_data);
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
 
-                var question_response_layout = return_data.question_response_layout;
+                /*var question_response_layout = return_data.question_response_layout;
                 if (question_response_layout != '') {
                     var question_response_layout = return_data.question_response_layout;
                     $(".question-area-temp").html(question_response_layout);
@@ -140,7 +141,8 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     });
 
                 });
-                var fail_page_link = '/panel/questions/' + question_id + '/fail';
+                */
+                /*var fail_page_link = '/panel/questions/' + question_id + '/fail';
                 fetch(fail_page_link)
                     .then((response) => response.text())
                     .then((html) => {
@@ -158,15 +160,15 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     })
                     .catch((error) => {
                         console.warn(error);
-                    });
+                    });*/
 
-
+                thisForm.find('.question-submit-btn').remove();
                 thisForm.find('.form-btn').append('<span class="question-all-good">All Not Good</span>');
             } else {
 
                 quiz_user_data[0]['correct'][question_id] = question_data_array;
 
-                var marks_count = thisForm.find('.marks').attr('data-marks');
+                /*var marks_count = thisForm.find('.marks').attr('data-marks');
                 var marks_counter = 1;
                 var markscoin_html = '';
                 if (marks_count > 0) {
@@ -201,44 +203,55 @@ $(document).on('click', '.question-submit-btn', function (e) {
                 thisObj.closest('.questions-data-block').find('.question-fields').hide();
                 thisObj.closest('.question-area').find('.correct-appriciate').html(appricate_word);
                 thisObj.closest('.question-area').find('.correct-appriciate').addClass(appricate_color);
-                thisObj.closest('.question-area').find('.correct-appriciate').show(300).delay(2000).hide(300);
+                thisObj.closest('.question-area').find('.correct-appriciate').show(300).delay(2000).hide(300);*/
+                var next_question_no = parseInt(question_no) + 1;
 
-                var question_response_layout = return_data.question_response_layout;
-                if (question_response_layout != '') {
-                    $(".question-step").css({display: "none"}).hide().animate({opacity: 0});
-                    thisObj.closest('.questions-data-block').find('.question-fields').show(2500);
-                    $(".question-step.question-step-" + next_question_no).css({display: "block"}).show(3000).animate({opacity: 1});
+                thisForm.find('.question-submit-btn').remove();
+                if (return_data.incorrect_flag == true) {
+                    thisForm.find('.form-btn').append('<span class="question-all-good">All Not Good</span>');
+                }else {
 
+                    thisForm.find('.form-btn').append('<span class="question-all-good">All Good</span>');
+
+                    /*
                     var question_response_layout = return_data.question_response_layout;
-                    var messageInterval = setTimeout(function () {
-                        $(".question-area-block").html(question_response_layout);
-                        clearInterval(messageInterval);
-                    }, 2000);
+                    if (question_response_layout != '') {
+                        $(".question-step").css({display: "none"}).hide().animate({opacity: 0});
+                        thisObj.closest('.questions-data-block').find('.question-fields').show(2500);
+                        $(".question-step.question-step-" + next_question_no).css({display: "block"}).show(3000).animate({opacity: 1});
+
+                        var question_response_layout = return_data.question_response_layout;
+                        var messageInterval = setTimeout(function () {
+                            $(".question-area-block").html(question_response_layout);
+                            clearInterval(messageInterval);
+                        }, 2000);
 
 
-                    var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
-                    $(".question-step").attr('data-start_time', total_elapsed_time);
+                        var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
+                        $(".question-step").attr('data-start_time', total_elapsed_time);
+                        */
 
-                } else {
-                    thisObj.closest('.questions-data-block').find('.right-content').addClass('hide');
-                    $(".quiz-complete").show(2000);
+                    if (question_response_layout == '') {
+                        thisObj.closest('.questions-data-block').find('.right-content').addClass('hide');
+                        $(".quiz-complete").show(2000);
 
-                    quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
-                    //quiz_user_data = JSON.stringify(quiz_user_data);
-                    jQuery.ajax({
-                        type: "POST",
-                        url: '/question_attempt/test_complete',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        data: {"attempt_id": qattempt_id, "quiz_user_data": quiz_user_data},
-                        success: function (return_data) {
-                            console.log(return_data);
-                            $(".quiz-complete").css({display: "block"}).show(10).animate({opacity: 1});
-                            $(".quiz-complete").find(".question-layout").html(return_data);
-                            $(".quiz-complete").children().unbind('click');
-                        }
-                    });
+                        quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
+                        //quiz_user_data = JSON.stringify(quiz_user_data);
+                        jQuery.ajax({
+                            type: "POST",
+                            url: '/question_attempt/test_complete',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {"attempt_id": qattempt_id, "quiz_user_data": quiz_user_data},
+                            success: function (return_data) {
+                                console.log(return_data);
+                                $(".quiz-complete").css({display: "block"}).show(10).animate({opacity: 1});
+                                $(".quiz-complete").find(".question-layout").html(return_data);
+                                $(".quiz-complete").children().unbind('click');
+                            }
+                        });
+                    }
                 }
 
             }
@@ -521,6 +534,7 @@ function init_question_functions() {
 
 
 
+    var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
         console.log('testing4444');
         if( $(this).hasClass('correct') || $(this).hasClass('incorrect')){
@@ -542,10 +556,16 @@ function init_question_functions() {
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
 
-        jQuery.ajax({
+        currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
+            beforeSend : function()    {
+                console.log(currentRequest);
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+            },
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

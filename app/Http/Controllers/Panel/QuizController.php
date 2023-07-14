@@ -515,7 +515,7 @@ class QuizController extends Controller
                     $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
                     $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
                     $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
-                    if( $newQuestionResult->is_active == 1){
+                    if( isset( $newQuestionResult->is_active ) && $newQuestionResult->is_active == 1){
                         $active_question_id = $newQuestionResult->question_id;
                     }
 
@@ -543,6 +543,8 @@ class QuizController extends Controller
                 }
             }
             $question = $questions_array;
+
+            //pre($questions_layout);
 
 
             $question = rurera_encode($question);

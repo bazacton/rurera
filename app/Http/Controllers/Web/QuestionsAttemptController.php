@@ -145,6 +145,7 @@ class QuestionsAttemptController extends Controller
                                 break;
                             } else {
                                 $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
+                                break;
                             }
                         }else{
                             if( $attempted_questions == true) {

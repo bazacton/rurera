@@ -486,28 +486,7 @@ class QuizController extends Controller
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
 
 
-        $quiz_question_ids = array();
-        if (!empty($question_list_ids)) {
-            foreach ($question_list_ids as $sort_order => $question_id) {
-                $quiz_question_ids[] = $question_id;
-                if (in_array($question_id, $quizQuestionsListArray)) {
-                    $questionListObj = QuizzesQuestionsList::query()->where('quiz_id', $id)->where('question_id',
-                        $question_id)->update([
-                        'sort_order' => $sort_order,
-                    ]);
-                } else {
-                    QuizzesQuestionsList::create([
-                        'quiz_id'     => $quiz->id,
-                        'question_id' => $question_id,
-                        'status'      => 'active',
-                        'sort_order'  => $sort_order,
-                        'created_by'  => $user->id,
-                        'created_at'  => time()
-                    ]);
-                }
-            }
-        }
-        QuizzesQuestionsList::where('quiz_id', $id)->whereNotIn('question_id', $quiz_question_ids)->update(array('status' => 'inactive'));
+
 
         if ($validate->fails()) {
             return response()->json([
@@ -598,10 +577,17 @@ class QuizController extends Controller
 
         if (!empty($quiz)) {
 
+
+
+            $quiz_question_ids = array();
             if (!empty($question_list_ids)) {
                 foreach ($question_list_ids as $sort_order => $question_id) {
+                    $quiz_question_ids[] = $question_id;
                     if (in_array($question_id, $quizQuestionsListArray)) {
-
+                        $questionListObj = QuizzesQuestionsList::query()->where('quiz_id', $id)->where('question_id',
+                            $question_id)->update([
+                            'sort_order' => $sort_order,
+                        ]);
                     } else {
                         QuizzesQuestionsList::create([
                             'quiz_id'     => $quiz->id,
@@ -614,7 +600,7 @@ class QuizController extends Controller
                     }
                 }
             }
-
+            QuizzesQuestionsList::where('quiz_id', $id)->whereNotIn('question_id', $quiz_question_ids)->update(array('status' => 'inactive'));
 
             QuizTranslation::updateOrCreate([
                 'quiz_id' => $quiz->id,

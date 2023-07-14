@@ -12432,7 +12432,10 @@ body {
 .font-48 {
     font-size: 3rem !important;
 }
-.font-50{font-size: 3.125rem;}
+.font-50{
+    font-size: 3.125rem !important;
+    line-height: 3.5rem !important;
+}
 .font-40 {
     font-size: 2.5rem !important;
     font-weight: 700;
@@ -22725,6 +22728,12 @@ Lms SignUp Page Style Start
     -ms-transform: translateX(85.30184569647683px) rotate(-16deg);
     transform: translateX(85.30184569647683px) rotate(-16deg);
     width: 850px;
+}
+.masonry-grid-gallery.transform-none {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
 }
 .masonry-grid-gallery.has-fix-height {
     height: 570px;
