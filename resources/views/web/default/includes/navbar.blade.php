@@ -45,7 +45,7 @@ $navBtnText = $navbarButton->title;
 
                     @if(!empty($navbarPages) and count($navbarPages))
                     @foreach($navbarPages as $navbarPage)
-                    @if($authUser->isAdmin())
+                    @if(isset( $authUser ) && $authUser->isUser())
                         @if( !isset( $navbarPage['is_student_panel'] ) || $navbarPage['is_student_panel'] != 1)
                             @php continue; @endphp
                         @endif

@@ -346,6 +346,7 @@ function sort_init() {
 }
 
 
+
 function init_question_functions() {
 
     console.log('init_question_functions');
@@ -516,14 +517,19 @@ function init_question_functions() {
         });
     });
 
+
+
+
+
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+        console.log('testing4444');
         if( $(this).hasClass('correct') || $(this).hasClass('incorrect')){
             return;
         }
         $(".quiz-pagination ul li").removeClass('active');
         $(this).addClass('active');
         var question_id = $(this).attr('data-question_id');
-        $('.quiz-pagination ul li[data-question_id="'+question_id+'"]').click();
+        //$('.quiz-pagination ul li[data-question_id="'+question_id+'"]').click();
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
 
         var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
@@ -535,7 +541,23 @@ function init_question_functions() {
         var question_layout = leform_decode64(questions_layout[question_id]);
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
+
+        jQuery.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: '/question_attempt/mark_as_active',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {"question_id": question_id, "qattempt_id": qattempt_id},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+
     });
+
+
 
     $(document).on('click', '.quiz-pagination ul li.correct, .quiz-pagination ul li.incorrect', function (e) {
         var question_id = $(this).attr('data-question_id');
@@ -560,8 +582,8 @@ function init_question_functions() {
             }
         });
     });
-
-
+    var active_question_id = $(".question-area-block").attr('data-active_question_id');
+    $('.quiz-pagination ul li[data-question_id="' + active_question_id + '"]').click();
 
     function rurera_lookup(array, prop, value) {
         for (var i = 0, len = array.length; i < len; i++) {

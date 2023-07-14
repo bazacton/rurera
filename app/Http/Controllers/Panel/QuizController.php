@@ -501,11 +501,13 @@ class QuizController extends Controller
             //$exclude_array[] = $questionObj->id;
             //$questions_array[] = $questionObj;
             $questions_layout = array();
+            $active_question_id = 0;
 
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
 
-                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array);
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true);
+
 
                     $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
                     $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
@@ -513,6 +515,10 @@ class QuizController extends Controller
                     $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
                     $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
                     $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
+                    if( $newQuestionResult->is_active == 1){
+                        $active_question_id = $newQuestionResult->question_id;
+                    }
+
                     if (isset($questionObj->id)) {
                         $questions_array[] = $questionObj;
                         $exclude_array[] = $questionObj->id;
@@ -546,22 +552,23 @@ class QuizController extends Controller
 
 
             $data = [
-                'pageTitle'      => trans('quiz.quiz_start'),
-                'questions_list' => $questions_list,
-                'quiz'           => $quiz,
-                'quizQuestions'  => $quiz->quizQuestions,
-                'attempt_count'  => $resultLogObj->count() + 1,
-                'newQuizStart'   => $resultLogObj,
-                'quizAttempt'    => $attemptLogObj,
-                'question'       => $question,
-                'questions_layout'  => $questions_layout,
-                'first_question_id' => $first_question_id,
+                'pageTitle'              => trans('quiz.quiz_start'),
+                'questions_list'         => $questions_list,
+                'quiz'                   => $quiz,
+                'quizQuestions'          => $quiz->quizQuestions,
+                'attempt_count'          => $resultLogObj->count() + 1,
+                'newQuizStart'           => $resultLogObj,
+                'quizAttempt'            => $attemptLogObj,
+                'question'               => $question,
+                'questions_layout'       => $questions_layout,
+                'first_question_id'      => $first_question_id,
                 'question_no'            => $question_no,
                 'prev_question'          => $prev_question,
                 'next_question'          => $next_question,
                 'question_points'        => $question_points,
                 'newQuestionResult'      => $newQuestionResult,
                 'questions_status_array' => $questions_status_array,
+                'active_question_id'     => $active_question_id,
             ];
             return view(getTemplate() . '.panel.quizzes.start', $data);
         }
@@ -586,8 +593,8 @@ class QuizController extends Controller
         $count = 1;
         if (!empty($QuizzResultQuestions)) {
             foreach ($QuizzResultQuestions as $QuizzResultQuestionObj) {
-                if( $count == 1){
-                    $first_question_id  = $QuizzResultQuestionObj->question_id;
+                if ($count == 1) {
+                    $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
                 $question_response_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
                 $questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
@@ -598,15 +605,15 @@ class QuizController extends Controller
         $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
         $data = [
-            'pageTitle'      => trans('quiz.quiz_start'),
+            'pageTitle' => trans('quiz.quiz_start'),
 
 
-            'quiz'           => $quiz,
-            'question' => array(),
-            'questions_list' => $questions_list,
-            'first_question_id' => $first_question_id,
+            'quiz'                   => $quiz,
+            'question'               => array(),
+            'questions_list'         => $questions_list,
+            'first_question_id'      => $first_question_id,
             'questions_status_array' => $questions_status_array,
-            'questions_layout'  => $questions_layout,
+            'questions_layout'       => $questions_layout,
         ];
         return view(getTemplate() . '.panel.quizzes.check_answers', $data);
     }

@@ -209,6 +209,7 @@
                             <select name="subject" data-plugin-selectTwo class="form-control populate">
                                 <option value="All">All</option>
                                 <option value="Math" @if(request()->get('subject') == 'Math') selected @endif>Math</option>
+                                <option value="English" @if(request()->get('subject') == 'English') selected @endif>English</option>
                                 <option value="Non-Verbal Reasoning" @if(request()->get('subject') == 'Non-Verbal Reasoning') selected @endif>Non-Verbal Reasoning</option>
                                 <option value="Verbal Reasoning" @if(request()->get('subject') == 'Verbal Reasoning') selected @endif>Verbal Reasoning</option>
                             </select>

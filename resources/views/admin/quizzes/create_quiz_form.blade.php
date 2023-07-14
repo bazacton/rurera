@@ -223,6 +223,10 @@
                                 : ''
                                 }}>All
                             </option>
+                            <option value="English" {{ (!empty($quiz) and $quiz->subject == 'English') ?
+                                                            'selected'
+                                                            : '' }}>English
+                                                        </option>
                             <option value="Math" {{ (!empty($quiz) and $quiz->subject == 'Math') ?
                                 'selected'
                                 : '' }}>Math

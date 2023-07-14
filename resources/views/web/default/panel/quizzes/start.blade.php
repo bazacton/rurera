@@ -104,24 +104,24 @@ $rand_id = rand(99,9999);
                                         <ul class="swiper-wrapper">
                                             @if( !empty( $questions_list ) )
                                             @php $question_count = 1; @endphp
-                                            @foreach( $questions_list as $question_id)
-                                            @php $is_flagged = false;
-                                            $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
-                                            ($newQuizStart->flagged_questions) : array();
-                                            @endphp
-                                            @if( is_array( $flagged_questions ) && in_array( $question_id,
-                                            $flagged_questions))
-                                            @php $is_flagged = true;
-                                            @endphp
-                                            @endif
-                                            @php $question_status_class = isset( $questions_status_array[$question_id]
-                                            )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                            <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                                    'has-flag' : ''}} {{$question_status_class}}"><a
-                                                        href="javascript:;">
-                                                    {{$question_count}}</a></li>
-                                            @php $question_count++; @endphp
-                                            @endforeach
+                                                @foreach( $questions_list as $question_id)
+                                                @php $is_flagged = false;
+                                                $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                                ($newQuizStart->flagged_questions) : array();
+                                                @endphp
+                                                @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                                    $flagged_questions))
+                                                    @php $is_flagged = true;
+                                                    @endphp
+                                                @endif
+                                                @php $question_status_class = isset( $questions_status_array[$question_id]
+                                                )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                                <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                        'has-flag' : ''}} {{$question_status_class}}"><a
+                                                            href="javascript:;">
+                                                        {{$question_count}}</a></li>
+                                                @php $question_count++; @endphp
+                                                @endforeach
                                             @endif
                                         </ul>
                                     </div>
@@ -158,7 +158,7 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
+                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
