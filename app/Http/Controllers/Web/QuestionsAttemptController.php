@@ -1115,9 +1115,16 @@ class QuestionsAttemptController extends Controller
                     }
                 }
                 $response_data[$q_result_id]['unanswered'] = count($questions_list) - $response_data[$q_result_id]['attempted'];
-                $response_data[$q_result_id]['percentage'] = ($response_data[$q_result_id]['correct'] > 0) ? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'] : 0;
-                $response_data[$q_result_id]['time_consumed'] = gmdate("i:s", $response_data[$q_result_id]['time_consumed']);
-                $response_data[$q_result_id]['average_time'] = gmdate("i:s", $response_data[$q_result_id]['average_time']);
+                $percentage = ($response_data[$q_result_id]['correct'] > 0) ? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'] : 0;
+                $response_data[$q_result_id]['percentage'] = round($percentage, 2);
+
+
+                $time_consumed = isset( $response_data[$q_result_id]['time_consumed'] )? $response_data[$q_result_id]['time_consumed'] : 0;
+                //$time_consumed = ( $time_consumed > 0)? ($time_consumed/60) : 0;
+                $average_time = isset( $response_data[$q_result_id]['average_time'] )? $response_data[$q_result_id]['average_time'] : 0;
+                $average_time = $average_time * 60;
+                $response_data[$q_result_id]['time_consumed'] = gmdate("i:s", $time_consumed);
+                $response_data[$q_result_id]['average_time'] = gmdate("i:s", $average_time);
                 $response_data[$q_result_id] = (object)$response_data[$q_result_id];
 
 

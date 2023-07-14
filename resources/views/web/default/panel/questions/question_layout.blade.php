@@ -65,6 +65,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                             @if( $is_development == true)
                                 <div class="question-label-tag">Developer Review Required</div>
                             @endif
+                            <div>Question ID: {{ $question->id }}</div>
                             <input class="question-submit-btn submit-btn" type="button" data-question_no="1"
                                    value="Mark answer">
                         </div>

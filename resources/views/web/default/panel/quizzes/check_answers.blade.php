@@ -102,9 +102,9 @@ $rand_id = rand(99,9999);
                                             @php $question_count = 1; @endphp
                                             @foreach( $questions_list as $question_id)
                                             @php $is_flagged = false; @endphp
-                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; $question_status_class = ''; @endphp
-                                            <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                                    'has-flag' : ''}} {{$question_status_class}}"><a
+                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                            <li data-question_id="{{$question_id}}" class="swiper-slide {{$question_status_class}} {{ ( $is_flagged == true)?
+                                                    'has-flag' : ''}} "><a
                                                     href="javascript:;">
                                                     {{$question_count}}</a></li>
                                             @php $question_count++; @endphp
@@ -173,7 +173,7 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 <script>
-    //init_question_functions();
+    init_question_functions();
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;

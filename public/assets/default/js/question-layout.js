@@ -27,6 +27,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
     clearInterval(Questioninterval);
     console.log('question-submit');
+    rurera_loader($(this), 'button');
 
     var question_data = [];
     question_data[0] = {};
@@ -163,7 +164,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     });*/
 
                 thisForm.find('.question-submit-btn').remove();
-                thisForm.find('.form-btn').append('<span class="question-all-good">All Not Good</span>');
+                thisForm.find('.form-btn').append('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
             } else {
 
                 quiz_user_data[0]['correct'][question_id] = question_data_array;
@@ -208,10 +209,10 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
                 thisForm.find('.question-submit-btn').remove();
                 if (return_data.incorrect_flag == true) {
-                    thisForm.find('.form-btn').append('<span class="question-all-good">All Not Good</span>');
+                    thisForm.find('.form-btn').append('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
                 }else {
 
-                    thisForm.find('.form-btn').append('<span class="question-all-good">All Good</span>');
+                    thisForm.find('.form-btn').append('<span class="question-status-correct">Well done! Thats exactly right.</span>');
 
                     /*
                     var question_response_layout = return_data.question_response_layout;
@@ -868,3 +869,30 @@ function lineDistance(x, y, x0, y0) {
       $(line).offset({ top: pointB.top, left: pointA.left });
     }
   }
+function rurera_loader(thisObj, loader_type) {
+
+        switch (loader_type) {
+            case "button":
+                thisObj.wrap('<div class="rurera-loader-holder"></div>');
+                thisObj.closest('.rurera-loader-holder').addClass('rurera-processing');
+                thisObj.closest('.rurera-loader-holder').append('<div class="rurera-button-loader" style="display: block;">\n\
+                    <div class="spinner">\n\
+                        <div class="double-bounce1"></div>\n\
+                        <div class="double-bounce2"></div>\n\
+                    </div>\n\
+                </div>');
+
+                break;
+
+            case "page":
+                $('body').addClass('rurera-processing');
+                $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
+                                <div class="spinner">\n\
+                                    <div class="double-bounce1"></div>\n\
+                                    <div class="double-bounce2"></div>\n\
+                                </div>\n\
+                            </div>');
+
+                break;
+        }
+    }

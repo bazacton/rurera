@@ -47,7 +47,7 @@ class Quiz extends Model implements TranslatableContract
 
     public function quizQuestionsList()
     {
-        return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id');
+        return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id')->orderBy('sort_order', 'ASC');
     }
 
     public function quizQuestions()
