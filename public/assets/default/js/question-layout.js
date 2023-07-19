@@ -164,7 +164,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     });*/
 
                 thisForm.find('.question-submit-btn').remove();
-                thisForm.find('.form-btn').append('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
             } else {
 
                 quiz_user_data[0]['correct'][question_id] = question_data_array;
@@ -209,10 +209,10 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
                 thisForm.find('.question-submit-btn').remove();
                 if (return_data.incorrect_flag == true) {
-                    thisForm.find('.form-btn').append('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
                 }else {
 
-                    thisForm.find('.form-btn').append('<span class="question-status-correct">Well done! Thats exactly right.</span>');
+                    thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
 
                     /*
                     var question_response_layout = return_data.question_response_layout;
@@ -577,8 +577,6 @@ function init_question_functions() {
         });
 
     });
-
-
 
     $(document).on('click', '.quiz-pagination ul li.correct, .quiz-pagination ul li.incorrect', function (e) {
         var question_id = $(this).attr('data-question_id');

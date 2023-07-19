@@ -106,6 +106,7 @@
                                 <li itemprop="rewards"><a itemprop="url" href="/products?category_id=3">Rewards Categories</a></li>
                                 <li itemprop="type"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical">Rewards  Type</a></li>
                                 <li itemprop="options"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical&options%5B%5D=only_available">Rewards Options</a></li>
+                                <li itemprop="sitemap"><a href="/site-map">Site map</a></li>
                             </ul>
                         </div>
                     </div>

@@ -16372,6 +16372,7 @@ p {
 .subscribe-plan:hover {
     top: -15px;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .15) !important;
+    background-color: var(--primary);
 }
 .subscribe-plan .plan-icon {
     width: 120px;
@@ -16401,6 +16402,38 @@ p {
 .registration-package-statistics .registration-package-statistics-icon {
     width: 48px;
     height: 48px;
+}
+.subscribe-plan .subscribe-icon {
+    position: relative;
+}
+.subscribe-plan .subscribe-icon img {
+    transition: all .4s ease;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.subscribe-plan .subscribe-icon .box-white-svg {
+    visibility: hidden;
+    opacity: 0;
+}
+.subscribe-plan:hover img {
+    visibility: hidden;
+    opacity: 0;
+}
+.subscribe-plan:hover .box-white-svg {
+    opacity: 1;
+    visibility: visible;
+}
+.subscribe-plan:hover h3,
+.subscribe-plan:hover span,
+.subscribe-plan:hover p,
+.subscribe-plan:hover .plan-feature li,
+.subscribe-plan:hover .btn{
+    color: #fff !important;
+}
+.subscribe-plan:hover .plan-feature li:after {
+    background-color: rgba(255,255,255,0.1);
+    border-color: rgba(0,0,0,0.2);
 }
 .registration-package-statistics .registration-package-statistics-icon img {
     width: 100%;
@@ -19721,7 +19754,7 @@ Lms FAQS Style Start
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 28px solid #ffecc7;
+    border-left: 28px solid #fff;
     border-right: 4px solid transparent;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
@@ -21032,7 +21065,7 @@ Custom Pagination Style End
 }
 .categories-wrapp {
     background: #f0f1f3;
-    padding: 60px 0 30px 0;
+    padding: 90px 0 60px 0;
 }
 .categories-boxes .categories-card {
     position: relative;
@@ -25555,3 +25588,12 @@ Lms Responsive Style Start
  }
 @keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
  }
+ .circle-icon-list img {
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

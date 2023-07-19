@@ -5496,6 +5496,21 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input leform-ta-" + leform_form_elements[i]['star-style-position'] + "'" + properties["tooltip-input"] + "><fieldset class='leform-star-rating" + extra_class + "'>" + options + "</fieldset></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
+
+                case "question_templates":
+                   var next_i = parseInt(i) + 1;
+                   console.log(leform_form_elements);
+                   var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+
+                   options = "<div class='leform-col leform-col-12'><div class='leform-elements' _data-parent='" + i + "' _data-parent-col='" + i + "'>" + html_data + "</div></div>";
+                   //html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-row leform-element' data-type='columns'>" + options + "</div>";
+
+                   //html += '<div id="leform-element-1" class="leform-element-1 leform-row leform-element" data-type="columns"><div class="leform-col leform-col-12"><div class="leform-elements ui-sortable" _data-parent="" _data-parent-col="0" style="min-height: 60px;"></div></div></div>';
+
+                   html += html_data;
+
+                   break;
+
                 case "html":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element question-textarea quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
                     break;
@@ -6463,6 +6478,7 @@ function leform_form_ready() {
             }
             for (var key in leform_meta[type]) {
                 if (leform_meta[type].hasOwnProperty(key)) {
+
                     switch (leform_meta[type][key]['type']) {
                         case 'column-width':
                             for (var i = 0; i < columns; i++) {

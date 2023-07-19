@@ -6277,7 +6277,7 @@ function element_properties_meta($chapters)
 			*/
 
 
-        'page'              => array(
+        'page'               => array(
             'general' => array(
                 'type'  => 'tab',
                 'value' => 'general',
@@ -6290,7 +6290,7 @@ function element_properties_meta($chapters)
                 'type'    => 'text'
             ),
         ),
-        'page-confirmation' => array(
+        'page-confirmation'  => array(
             'general' => array(
                 'type'  => 'tab',
                 'value' => 'general',
@@ -6303,7 +6303,7 @@ function element_properties_meta($chapters)
                 'type'    => 'text'
             )
         ),
-        'columns'           => array(
+        'columns'            => array(
             'basic'  => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6322,7 +6322,26 @@ function element_properties_meta($chapters)
                 'type'    => 'column-width'
             ),
         ),
-        'html_bk'           => array(
+        'question_templates' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value'   => '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="37851" id="field-37851" correct_answere="4"></span>',
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+        'html_bk'            => array(
             'basic'        => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6388,7 +6407,7 @@ function element_properties_meta($chapters)
                 'visible'   => array('logic-enable' => array('on'))
             ),
         ),
-        'html'              => array(
+        'html'               => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6423,7 +6442,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'spreadsheet_area'  => array(
+        'spreadsheet_area'   => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6460,7 +6479,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'sum_quiz'          => array(
+        'sum_quiz'           => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6481,7 +6500,7 @@ function element_properties_meta($chapters)
 
         ),
 
-        'image_quiz'       => array(
+        'image_quiz'     => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6501,7 +6520,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'paragraph_quiz'   => array(
+        'paragraph_quiz' => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6521,7 +6540,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        'sqroot_quiz'      => array(
+        'sqroot_quiz'    => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6555,7 +6574,7 @@ function element_properties_meta($chapters)
                 'type'  => 'number'
             ),
         ),
-        'question_label'   => array(
+        'question_label' => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
@@ -6574,7 +6593,7 @@ function element_properties_meta($chapters)
             ),
         ),
 
-        'seperator'        => array(
+        'seperator'   => array(
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
@@ -6588,7 +6607,7 @@ function element_properties_meta($chapters)
                 'type'    => 'hidden'
             ),
         ),
-        'question_no'      => array(
+        'question_no' => array(
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',

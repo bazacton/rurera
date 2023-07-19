@@ -303,13 +303,16 @@ Lms Form Fields Style
 }
 .form-field label {
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.05);
     border-radius: 2px;
 	position: relative;
 	cursor: pointer;
     padding: 15px;
 	width: 100%;
+    height: 100%;
     margin-bottom: 0;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .form-field input[type="checkbox"] ~ label {
     min-height: 52px;
@@ -322,7 +325,7 @@ Lms Form Fields Style
     right: 15px;
     top: 50%;
     margin-top: -15px;
-    border: 1px solid #efefef;
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 2px;
 }
 .form-field label:after {
@@ -357,6 +360,9 @@ Lms Form Fields Style
     -ms-transform: scale(1);
     transform: scale(1);
 }
+.form-field label:hover {
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
 .row-fields.lms-checkbox-img label {
     padding: 5px;
 }
@@ -384,12 +390,15 @@ Lms Form Fields Style
 .lms-checkbox-img label img {
     border-radius: 3px;
     max-width: 50px;
+    height: 100%;
+    object-fit: contain;
 }
 .lms-checkbox-img label {
     border-radius: 5px;
 }
-.submit-btn {
-    border: 5px solid #f2efea;
+.submit-btn,
+.question-submit-btn {
+    border: 1px solid #8fc963;
     background-color: #8fc963;
     border-radius: 5px;
     font-size: 20px;
@@ -397,6 +406,46 @@ Lms Form Fields Style
     height: 55px;
     color: #f5ffec;
     text-transform: uppercase;
+}
+.question-submit-btn.submit-btn,
+.question-submit-btn {
+    border-color: #8fc963;
+    font-size: 15px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 45px;
+    padding-left: 20px;
+    padding-right: 35px;
+}
+.prev-next-controls .question-submit-btn:after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    height: 7px;
+    width: 14px;
+    border: 2px solid;
+    border-top: 0;
+    border-right: 0;
+    transform: rotate(-50deg);
+    margin: -5px 0 0 0;
+}
+.prev-next-controls .question-submit-btn {
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+}
+.prev-next-controls .question-submit-btn svg {
+    display: none;
+}
+.question-submit-btn.submit-btn:hover,
+.question-submit-btn:hover {
+    background-color: initial;
+    color: #8fc963;
 }
 .inline-fields {
     display: flex;
@@ -478,6 +527,24 @@ Lms Form Fields Style
     margin-right: 14px;
     width: 31.777%;
     max-width: 31.777%;
+    margin-bottom: 14px;
+}
+.inline-fields.lms-checkbox-img {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(31.777%, 1fr));
+    align-items: inherit;
+}
+.inline-fields.lms-checkbox-img .form-field {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+.inline-fields.lms-checkbox-img label {
+    display: inline-flex;
+    align-items: center;
 }
 .inline-fields .form-field:nth-child(3), 
 .inline-fields .form-field:nth-child(6) {
@@ -1289,7 +1356,7 @@ Lms Quiz Wf Style Start
 .leform-element[data-type="radio"], 
 .leform-element[data-type="sortable_quiz"],
 .leform-element[data-type="html"] {
-    padding-left: 60px;
+    padding-left: 70px;
 }
 .leform-form-editor .leform-element[data-type="question_label"],
 .leform-form-editor .leform-element[data-type="checkbox"], 
@@ -2267,12 +2334,12 @@ Lms Quiz Wf Style End
     min-height: 700px;
     position: relative;
 }
-.question-area .questions-nav-controls {
+/* .question-area .questions-nav-controls {
     position:absolute;
     display:flex;
     width: 100%;
     bottom: -50px;
-}
+} */
 .prev-next-controls {
     display: flex;
     align-items: center;
@@ -2285,7 +2352,7 @@ Lms Quiz Wf Style End
 }
 .prev-next-controls .review-btn {
     position: absolute;
-    right: 0;
+    left: 70px;
 }
 .review-btn,
 .prev-btn,
@@ -2578,4 +2645,15 @@ Lms Table Style
 .read-quiz-content > .row > [class*="col-"] {
     max-width: 800px;
 }
-.question-number-holder:hover .flag-question svg g {fill: var(--primary);}
+.question-number-holder .flag-question:hover svg g {fill: var(--primary);}
+.disable-div:before {
+    content: "";
+    background: #efefef;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 9999999999;
+    opacity: 0.1;
+}

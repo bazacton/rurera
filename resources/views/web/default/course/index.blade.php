@@ -7,44 +7,26 @@
 
 
 @section('content')
-<section class="cart-banner position-relative text-center pages-sub-header">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center text-left">
-                <div class="col-12 col-md-9 col-lg-9">
-                    <p class="lms-subtitle">Start Learning with confidence</p>
-                    <h1 class="font-30 font-weight-bold">{{ $course->category->title }}</h1>
-                    {!!$course->description!!}
-                </div>
-                <div class="col-12 col-md-3 col-lg-3 sub-header-img">
-                    <figure><img src="../assets/default/img/sub-header-icon.png" alt="#">
-                        <figcaption>
-                            <div class="header-img-title">
-                                <strong>Want to read this book again?</strong>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
+<section class="cart-banner position-relative text-center pages-sub-header" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center text-left">
+            <div class="col-12 col-md-9 col-lg-9 font-19 pl-0">
+                <!-- <p class="lms-subtitle font-19">Start Learning with confidence</p> -->
+                <h1 class="font-50 font-weight-bold mb-15">{{ $course->category->title }}</h1>
+                {!!$course->description!!}
+            </div>
+            <div class="col-12 col-md-3 col-lg-3 sub-header-img">
+                <figure style="min-height: auto;"><img src="../assets/default/img/sub-header-icon.png" alt="#">
+                    <figcaption>
+                        <div class="header-img-title">
+                            <strong>Want to read this book again?</strong>
+                        </div>
+                    </figcaption>
+                </figure>
             </div>
         </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+</section>
 
 
 
@@ -54,11 +36,11 @@
 
 <section class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 p-0">
                 <div class="post-show" style="overflow:hidden;">
 
 
-<section class="categories-wrapp">
+<section class="categories-wrapp mb-80">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">

@@ -447,7 +447,7 @@ class QuizController extends Controller
             $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
             $attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
 
-            $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj);
+            $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, array(), 0, false, $questions_list);
             $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
             $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
             $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
@@ -503,17 +503,19 @@ class QuizController extends Controller
             $questions_layout = array();
             $active_question_id = 0;
 
+            //pre($questions_list);
+
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
-                    if ($question_no_index > 0) {
-                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true);
+                    //if ($question_no_index > 0) {
+                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list);
                         $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
                         $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
                         $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
                         $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
                         $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
                         $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
-                    }
+                    //}
                     if( isset( $newQuestionResult->is_active ) && $newQuestionResult->is_active == 1){
                         $active_question_id = $newQuestionResult->question_id;
                     }

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/assets/default/css/quiz-layout.css">
 
     @endif
+
 @endpush
 
 @section('content')
@@ -35,6 +36,9 @@
 @endif
 @if($page->id == 114)
 <script src="/assets/default/vendors/jquery-ui/jquery-ui.min.js"></script>
+@endif
+@if($page->id == 115)
+<script src="/assets/default/vendors/parallax/parallax.min.js"></script>
 @endif
 
 
