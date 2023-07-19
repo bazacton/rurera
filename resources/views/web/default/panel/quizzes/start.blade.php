@@ -94,7 +94,7 @@ $rand_id = rand(99,9999);
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
-                            <div class="quiz-top-info"><p>Test</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">

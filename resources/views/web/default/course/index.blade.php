@@ -14,6 +14,9 @@
                 <!-- <p class="lms-subtitle font-19">Start Learning with confidence</p> -->
                 <h1 class="font-50 font-weight-bold mb-15">{{ $course->category->title }}</h1>
                 {!!$course->description!!}
+                <div class="d-flex align-items-center">
+                    <a href="#" class="btn-primary rounded-pill">Subscribe Now</a>
+                </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3 sub-header-img">
                 <figure style="min-height: auto;"><img src="../assets/default/img/sub-header-icon.png" alt="#">

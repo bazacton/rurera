@@ -6,7 +6,9 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
 <link rel="stylesheet" href="/assets/default/css/panel.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-
+<style>
+    .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate{display:none !important;}
+</style>
 @endpush
 
 @section('content')
@@ -35,6 +37,7 @@ $rand_id = rand(99,9999);
                         </svg>
                     </button>
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                        <h3>Instructions:</h3>
                         {{ $quiz->quiz_instructions }}
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">

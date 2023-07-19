@@ -32,7 +32,7 @@ class ElevenplusController extends Controller
             $query->where('examp_board', $examp_board);
         }
 
-        $elevenPlus = $query->paginate(8);
+        $elevenPlus = $query->paginate(100);
 
 
         //pre($sats);

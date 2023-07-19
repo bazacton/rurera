@@ -775,7 +775,7 @@ class QuestionsAttemptController extends Controller
                 'next_question'     => $next_question,
                 'quizAttempt'       => $attemptLogObj,
                 'newQuestionResult' => $newQuestionResult,
-                'question_no'       => $question_no-1,
+                'question_no'       => $question_no,
                 'quizResultObj'     => $QuizzesResult,
                 'disable_submit'    => 'true',
                 'class'             => 'disable-div',
