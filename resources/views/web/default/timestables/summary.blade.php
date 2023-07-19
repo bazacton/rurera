@@ -60,7 +60,7 @@
                 </div>
                 <div class="heatmap-heading mb-30 pl-15">
                     <h2 class="font-weight-normal m-0 font-18">Heatmap</h2>
-                    <span>How quickly Rumaisa correctly answers each indivdual questions</span>
+                    <span>How quickly {{ $authUser->full_name }} correctly answers each indivdual questions</span>
                 </div>
                 <div class="heatmap-select-option">
                     <div class="select-field">
@@ -69,7 +69,7 @@
                         <input type="radio" id="select-two" name="heatmap">
                         <label for="select-two" class="border-right-0"> 2-20<span>&#215;</span> </label>
                     </div>
-                    <strong>Rumaisa Heatmap as of May 2023</strong>
+                    <strong>{{ $authUser->full_name }} Heatmap as of July 2023</strong>
                     <a href="#" class="heatmap-download-btn"> <img src="../assets/default/img/download.png"
                                                                    alt="download button"> </a>
                 </div>
@@ -134,7 +134,7 @@
                     <div id="storlekslider"></div>
                     <div class="range-value">
                         <input type="text" name="storlek" id="storlek_testet" value=""/>
-                        <span>May 2023</span>
+                        <span>July 2023</span>
                     </div>
                 </div>
                 <div class="heatmap-table-text">

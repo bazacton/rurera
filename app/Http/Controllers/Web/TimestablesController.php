@@ -84,6 +84,7 @@ class TimestablesController extends Controller
         $data = [
             'pageTitle'         => 'Timestables Summary',
             'times_tables_data' => $times_tables_data,
+            'authUser' => $user,
         ];
         return view('web.default.timestables.summary', $data);
     }
