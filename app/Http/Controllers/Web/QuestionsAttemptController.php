@@ -96,9 +96,9 @@ class QuestionsAttemptController extends Controller
 
         $questions_list = $this->get_questions_list($questions_list, $quizAttempt);
 
-        //if(empty( $QuizzesResult ) ) {
+        if(empty( $QuizzesResult ) ) {
             $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
-        //}
+        }
         $question_no = $next_question = $prev_question = 0;
         $questionAttemptAllowed = false;
 
@@ -226,7 +226,9 @@ class QuestionsAttemptController extends Controller
                 break;
 
             case "assessment":
-                $is_attempt_allowed = true;
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
                 break;
 
             case "sats":

@@ -15,29 +15,29 @@ class TimestablesController extends Controller
     public function index()
     {
         $data = [
-            'pageTitle' => '11 Plus',
+            'pageTitle' => 'Times Tables',
         ];
-        return view('web.default.11plus.index', $data);
+        return view('web.default.timestables.index', $data);
     }
 
     /*
-     * Start SAT Quiz
+     * Generate Quiz
      */
-    //public function genearte(Request $request, $id)
-    public function genearte()
+    public function genearte(Request $request)
     {
         $user = auth()->user();
+        $question_type = $request->post('question_type');
+        $no_of_questions = $request->post('no_of_questions');
+        $tables_numbers = $request->post('question_values');
+        $tables_types = [];
 
-        $tables_numbers = array(
-            4,
-            6,
-            8
-        );
-        $tables_types = [
-            'x',
-            //'÷',
-        ];
-        $total_questions = 10;
+        if( $question_type == 'multiplication' || $question_type == 'multiplication_division') {
+            $tables_types[] = 'x';
+        }
+        if( $question_type == 'division' || $question_type == 'multiplication_division') {
+            $tables_types[] = '÷';
+        }
+        $total_questions = $no_of_questions;
         $marks = 5;
 
 

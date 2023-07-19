@@ -85,37 +85,45 @@ $rand_id = rand(99,9999);
 
 
                             <div class="questions-block {{$class}}" data-id="{{$questionIndex}}" data-tconsumed="0">
-                                <form action="javascript:;" class="question-form" method="post"
-                                      data-id="{{$questionIndex}}">
-
-
-                                    <div class="questions-status d-flex mb-20">
-                                    </div>
-                                    <div class="questions-arithmetic-box d-flex align-items-center justify-content-center mb-20">
-                                        <span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
-                                        <input type="text" data-from="{{$questionObj->from}}"
-                                               data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
-                                               class="editor-fields" id="editor-fields-{{$questionIndex}}">
-                                    </div>
-                                    <div class="questions-block-numbers">
-                                        <ul class="d-flex justify-content-center flex-wrap">
-                                            <li id="key-7"><a href="javascript:;">7</a></li>
-                                            <li id="key-8"><a href="javascript:;">8</a></li>
-                                            <li id="key-9"><a href="javascript:;">9</a></li>
-                                            <li id="key-4"><a href="javascript:;">4</a></li>
-                                            <li id="key-5"><a href="javascript:;">5</a></li>
-                                            <li id="key-6"><a href="javascript:;">6</a></li>
-                                            <li id="key-1"><a href="javascript:;">1</a></li>
-                                            <li id="key-2"><a href="javascript:;">2</a></li>
-                                            <li id="key-3"><a href="javascript:;">3</a></li>
-                                            <li class="delete"><a href="#">Delete</a></li>
-                                            <li id="key-0"><a href="javascript:;">0</a></li>
-                                            <li class="enter"><a href="#">Enter</a></li>
-                                        </ul>
-                                    </div>
-
-                                </form>
-                            </div>
+                            <form action="javascript:;" class="question-form" method="post"
+                                                                  data-id="{{$questionIndex}}">
+                                <div class="questions-status d-flex mb-15">
+                                </div>
+                                <div class="questions-arithmetic-box d-flex align-items-center justify-content-center">
+                            		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
+                                   <input type="text" data-from="{{$questionObj->from}}"
+                                                                           data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
+                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}">
+                                   <div class="questions-controls">
+                                       <a href="#" class="setting-btn mr-5">
+                                        <img src="../assets/default/svgs/setting.svg" alt="mute svg">
+                                       </a>
+                                       <a href="#">
+                                        <img src="../assets/default/svgs/vol-mute.svg" alt="mute svg">
+                                       </a>
+                                       <a href="#">
+                                           <img src="../assets/default/svgs/spr-mute.svg" alt="mute svg">
+                                       </a>
+                                   </div>
+                                </div>
+                                <div class="questions-block-numbers">
+                                   <ul class="d-flex justify-content-center flex-wrap">
+                                      <li id="key-7"><a href="javascript:;">7</a></li>
+                            			<li id="key-8"><a href="javascript:;">8</a></li>
+                            			<li id="key-9"><a href="javascript:;">9</a></li>
+                            			<li id="key-4"><a href="javascript:;">4</a></li>
+                            			<li id="key-5"><a href="javascript:;">5</a></li>
+                            			<li id="key-6"><a href="javascript:;">6</a></li>
+                            			<li id="key-1"><a href="javascript:;">1</a></li>
+                            			<li id="key-2"><a href="javascript:;">2</a></li>
+                            			<li id="key-3"><a href="javascript:;">3</a></li>
+                            			<li class="delete"><a href="#">Delete</a></li>
+                            			<li id="key-0"><a href="javascript:;">0</a></li>
+                            			<li class="enter"><a href="#">Enter</a></li>
+                                   </ul>
+                                </div>
+                            	</form>
+                             </div>
 
 
                             @php $question_no++; @endphp
@@ -221,6 +229,8 @@ $rand_id = rand(99,9999);
                 }
             });
 
+            window.location.href = '/timestables/summary';
+
 
 
 
@@ -243,6 +253,7 @@ $rand_id = rand(99,9999);
                 console.log(user_answer+'===='+correct_answer+'====='+time_consumed+'======='+time_consumed_seconds);
 
             });
+            response_layout = '';
 
             $(".question-area-block").html(response_layout);
         }

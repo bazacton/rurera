@@ -24910,6 +24910,7 @@ Questions Select, Questions Block style Start
 .questions-controls a:hover svg path {fill: #000;}
 .questions-controls a.setting-btn svg path {fill: none;}
 .questions-controls a.setting-btn:hover svg path {stroke: #000;}
+.questions-controls a img {width: 28px; height: 28px;}
 /**********************************************
 Questions Select, Questions Block style End
 **********************************************/

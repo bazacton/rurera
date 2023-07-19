@@ -376,15 +376,12 @@ class QuizController extends Controller
     {
         $user = auth()->user();
         $quiz = Quiz::where('id', $id)->with([
-            'quizQuestions'     => function ($query) {
-                $query->with('quizzesQuestionsAnswers');
-            },
             'quizQuestionsList' => function ($query) {
                 $query->where('status', 'active');
             },
         ])->first();
 
-        $newQuizStart = QuizzesResult::where('quiz_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
 
         $questions_list = array();
         if (!empty($quiz->quizQuestionsList)) {
@@ -414,7 +411,6 @@ class QuizController extends Controller
             if ($quiz->quiz_type == 'practice') {
                 $questions_list_ids = $questions_list;
                 $questions_list = array();
-
                 if (!empty($difficulty_level_array)) {
                     foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
                         $questions_list[$difficulty_level_key] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_limit[$difficulty_level_key])->pluck('id')->toArray();
@@ -424,11 +420,12 @@ class QuizController extends Controller
 
             $attempted_questions = array();
             if (isset($newQuizStart->id)) {
-                $attempted_questions = QuizzResultQuestions::where('quiz_id', $id)->where('user_id', $user->id)
-                    //->where('quiz_result_id', $newQuizStart->id)
+                $attempted_questions = QuizzResultQuestions::where('user_id', $user->id)
+                    ->where('quiz_result_id', $newQuizStart->id)
                     ->pluck('question_id')->toArray();
             }
         }
+
 
 
         if ($quiz) {
@@ -444,8 +441,9 @@ class QuizController extends Controller
                 'no_of_attempts'   => $quiz->attempt
             ]);
 
+
             $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
-            $attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
+            //$attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
 
             $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, array(), 0, false, $questions_list);
             $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
@@ -458,26 +456,6 @@ class QuizController extends Controller
 
             $question_points = isset($question->question_score) ? $question->question_score : 0;
 
-            /*if ($show_all_questions == 'testing') {
-
-                $questions_array = $exclude_array = array();
-                $exclude_array[] = $questionObj->id;
-                $questions_array[] = $questionObj;
-
-                if (!empty($questions_list)) {
-                    foreach ($questions_list as $question_id) {
-
-                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array);
-                        $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
-                        if (isset($questionObj->id)) {
-                            $questions_array[] = $questionObj;
-                            $exclude_array[] = $questionObj->id;
-                        }
-
-                    }
-                }
-
-            }*/
 
 
             if ($quiz->quiz_type == 'practice') {
@@ -485,14 +463,6 @@ class QuizController extends Controller
                 $difficulty_level = isset($question->question_difficulty_level) ? $question->question_difficulty_level : '';
                 $question_points = isset($quiz_settings->$difficulty_level->points) ? $quiz_settings->$difficulty_level->points : 0;
             }
-
-
-            /*if ($show_all_questions == 'test') {
-                $question = array();
-                $question = $questions_array;
-            } else {
-                $question = $questionObj;
-            }*/
 
 
             $question = $questionObj;
@@ -503,12 +473,12 @@ class QuizController extends Controller
             $questions_layout = array();
             $active_question_id = 0;
 
-            //pre($questions_list);
 
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
                     //if ($question_no_index > 0) {
                         $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $QuizzesResult);
+
                         $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
                         $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
                         $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
@@ -528,6 +498,7 @@ class QuizController extends Controller
                         if ($question_no_index == 0) {
                             $first_question_id = $questionObj->id;
                         }
+                        $question_response_layout = '';
                         $question_response_layout = view('web.default.panel.questions.question_layout', [
                             'question'          => $questionObj,
                             'prev_question'     => $prev_question,
@@ -544,8 +515,6 @@ class QuizController extends Controller
                 }
             }
             $question = $questions_array;
-
-            //pre($questions_layout);
 
 
             $question = rurera_encode($question);

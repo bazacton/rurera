@@ -119,8 +119,8 @@ $(document).on('click', '.question-submit-btn', function (e) {
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
-
-                /*var question_response_layout = return_data.question_response_layout;
+                var question_response_layout = return_data.question_response_layout;
+                /*
                 if (question_response_layout != '') {
                     var question_response_layout = return_data.question_response_layout;
                     $(".question-area-temp").html(question_response_layout);
