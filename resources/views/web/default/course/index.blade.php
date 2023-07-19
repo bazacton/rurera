@@ -10,19 +10,19 @@
 <section class="cart-banner position-relative text-center pages-sub-header" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
     <div class="container h-100">
         <div class="row h-100 align-items-center text-left">
-            <div class="col-12 col-md-9 col-lg-9 font-19 pl-0">
+            <div class="col-12 col-md-8 col-lg-8 font-19 pl-0">
                 <!-- <p class="lms-subtitle font-19">Start Learning with confidence</p> -->
                 <h1 class="font-50 font-weight-bold mb-15">{{ $course->category->title }}</h1>
                 {!!$course->description!!}
-                <div class="d-flex align-items-center">
-                    <a href="#" class="btn-primary rounded-pill">Subscribe Now</a>
+                <div class="d-flex align-items-center mt-30">
+                    <a href="https://rurera.chimpstudio.co.uk/membership-2" class="btn btn-primary rounded-pill">Subscribe Now</a>
                 </div>
             </div>
-            <div class="col-12 col-md-3 col-lg-3 sub-header-img">
+            <div class="col-12 col-md-4 col-lg-4 sub-header-img">
                 <figure style="min-height: auto;"><img src="../assets/default/img/sub-header-icon.png" alt="#">
                     <figcaption>
                         <div class="header-img-title">
-                            <strong>Want to read this book again?</strong>
+                            <strong>Want to subscribe this course ?</strong>
                         </div>
                     </figcaption>
                 </figure>
@@ -43,7 +43,7 @@
                 <div class="post-show" style="overflow:hidden;">
 
 
-<section class="categories-wrapp mb-80">
+<section class="categories-wrapp mb-80 lms-wave-shape-top">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">
@@ -125,8 +125,8 @@
             <div class="col-12 lms-chapter-area">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="sidebar-nav">
-                            <h3 class="sidebar-title">Course topics</h3>
+                        <div class="sidebar-nav mb-70">
+                            <h3 class="sidebar-title font-36 mb-40 text-dark-charcoal">Course topics</h3>
                             <ul>
                                 @foreach($course->chapters as $chapter)
                                     @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
@@ -145,13 +145,13 @@
                                 @foreach($course->chapters as $chapter)
 
                                 @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
-                                <li id="subject_{{$chapter->id}}"><div class="element-title"><h2>{{ $chapter->title }}</h2></div>
+                                <li id="subject_{{$chapter->id}}"><div class="element-title mb-40"><h2 class="font-36 text-dark-charcoal">{{ $chapter->title }}</h2></div>
 
                                     @if(!empty($sub_chapters[$chapter->id]) and count($sub_chapters[$chapter->id]))
                                     <div class="lms-chapter-ul-outer"><ul>
                                         @foreach($sub_chapters[$chapter->id] as $sub_chapter)
                                         @if(!empty($sub_chapter))
-                                            <li><a href="/course/learning/{{$course->slug}}?webinar={{$chapter->id}}&chapter={{$sub_chapter['id']}}">{{ $sub_chapter['title'] }}</a></li>
+                                            <li><a href="/course/{{$sub_chapter['id']}}/start">{{ $sub_chapter['title'] }}</a></li>
                                         @endif
                                         @endforeach
                                         </ul>

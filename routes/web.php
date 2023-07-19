@@ -134,8 +134,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                 });
             });
 
+
+
             Route::post('/direct-payment' , 'WebinarController@directPayment');
         });
+
+        Route::get('/{quiz_id}/start' , 'WebinarController@start');
     });
 
     Route::group(['prefix' => 'certificate_validation'] , function () {

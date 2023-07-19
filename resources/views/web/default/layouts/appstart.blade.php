@@ -150,7 +150,12 @@ $rand_no = rand(99,9999);
                       spaceBetween: 5
                     }
                   }
-                })
+                });
+                $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+                    var question_id = $(this).attr('data-question_id');
+                    var li_index = $('.quiz-pagination ul li[data-question_id="'+question_id+'"]').index();
+                    swiper.slideTo(li_index);
+                });
               }
     
 

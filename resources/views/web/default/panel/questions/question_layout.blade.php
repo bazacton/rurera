@@ -84,8 +84,8 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                 </g>
                             </svg>
                         </a>
-                        @if( isset( $prev_question ) && $prev_question > 0)
-                        <a href="javascript:;" class="prev-btn" data-question_id="{{$prev_question}}">
+                        @php $prev_class = (isset( $prev_question ) && $prev_question > 0)? '' : 'disable-btn'; @endphp
+                        <a href="javascript:;" class="{{$prev_class}} prev-btn" data-question_id="{{$prev_question}}">
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
                                 <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
@@ -94,9 +94,8 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                 </g>
                             </svg>
                         </a>
-                        @endif
-                        @if( isset( $next_question ) && $next_question > 0)
-                        <a href="javascript:;" class="next-btn" data-question_id="{{$next_question}}">
+                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn'; @endphp
+                        <a href="javascript:;" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0" width="512.000000pt" height="512.000000pt"
                                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
@@ -106,7 +105,6 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                 </g>
                             </svg>
                         </a>
-                        @endif
                     @if( !isset( $disable_submit ) || $disable_submit == 'false')
                         <a href="javascript:;" class="question-submit-btn">
                             mark answer

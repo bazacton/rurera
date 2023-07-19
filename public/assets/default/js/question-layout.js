@@ -27,7 +27,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
     clearInterval(Questioninterval);
     console.log('question-submit');
-    rurera_loader($(this), 'button');
+    rurera_loader($(this), 'div');
 
     var question_data = [];
     question_data[0] = {};
@@ -165,6 +165,11 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
                 thisForm.find('.question-submit-btn').remove();
                 thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                const interval = setInterval(() => {
+                    init_question_functions();
+                    $(".prev-next-controls .next-btn").click();
+                    clearInterval(interval);
+                }, 3000);
             } else {
 
                 quiz_user_data[0]['correct'][question_id] = question_data_array;
@@ -210,9 +215,21 @@ $(document).on('click', '.question-submit-btn', function (e) {
                 thisForm.find('.question-submit-btn').remove();
                 if (return_data.incorrect_flag == true) {
                     thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+
+                    const interval = setInterval(() => {
+                        init_question_functions();
+                        $(".next-btn").click();
+                        clearInterval(interval);
+                    }, 3000);
+
                 }else {
 
                     thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
+                    const interval = setInterval(() => {
+                        init_question_functions();
+                        $(".prev-next-controls .next-btn").click();
+                        clearInterval(interval);
+                    }, 3000);
 
                     /*
                     var question_response_layout = return_data.question_response_layout;
@@ -537,14 +554,23 @@ function init_question_functions() {
 
     var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
-        console.log('testing4444');
+        if(!$(this).hasClass('swiper-slide')){
+            rurera_loader($(this), 'div');
+        }
+
+        var question_id = $(this).attr('data-question_id');
+        console.log(question_id);
+        var li_obj = $('.quiz-pagination ul li[data-question_id="'+question_id+'"]');
         if( $(this).hasClass('correct') || $(this).hasClass('incorrect')){
+            return;
+        }
+        if( li_obj.hasClass('correct') || li_obj.hasClass('incorrect')){
+            li_obj.click();
             return;
         }
         $(".quiz-pagination ul li").removeClass('active');
         $(this).addClass('active');
-        var question_id = $(this).attr('data-question_id');
-        //$('.quiz-pagination ul li[data-question_id="'+question_id+'"]').click();
+        $('.quiz-pagination ul li[data-question_id="'+question_id+'"]').addClass('active');
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
 
         var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
@@ -870,6 +896,17 @@ function lineDistance(x, y, x0, y0) {
 function rurera_loader(thisObj, loader_type) {
 
         switch (loader_type) {
+            case "div":
+               thisObj.addClass('rurera-processing');
+               thisObj.append('<div class="rurera-button-loader" style="display: block;">\n\
+                   <div class="spinner">\n\
+                       <div class="double-bounce1"></div>\n\
+                       <div class="double-bounce2"></div>\n\
+                   </div>\n\
+               </div>');
+
+               break;
+
             case "button":
                 thisObj.wrap('<div class="rurera-loader-holder"></div>');
                 thisObj.closest('.rurera-loader-holder').addClass('rurera-processing');

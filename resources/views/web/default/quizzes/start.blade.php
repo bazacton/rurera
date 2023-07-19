@@ -27,18 +27,12 @@ $rand_id = rand(99,9999);
                 </div>
                 <div class="d-flex align-items-center justify-content-center w-100">
 
-                    <button id="collapseBtn" type="button" class="btn-transparent ml-auto ml-lg-20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-menu">
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
-                    </button>
+
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
-                        <h3>Instructions:</h3>
-                        {{ $quiz->quiz_instructions }}
+                        @if( isset( $quiz->quiz_instructions ) && $quiz->quiz_instructions != '')
+                            <h3>Instructions:</h3>
+                            {{ $quiz->quiz_instructions }}
+                        @endif
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
@@ -51,10 +45,12 @@ $rand_id = rand(99,9999);
                 </div>
 
                 @if( !empty( $resultData ) )
+
                 <section class="lms-data-table my-80">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
+                                <h3>Summary of your previous attempts</h3>
                                 <table class="table table-striped table-bordered dataTable" style="width: 100%;"
                                        aria-describedby="example_info">
                                     <thead>

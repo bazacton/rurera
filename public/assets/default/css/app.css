@@ -19692,7 +19692,7 @@ Lms FAQS Style Start
 **********************************/
 .pages-sub-header .sub-header-img {
     position: relative;
-    text-align: center;
+    text-align: right;
 }
 .pages-sub-header.about-sub-header{min-height: 400px;}
 .pages-sub-header .lms-wave-shape::before{display: none;}
@@ -19726,7 +19726,8 @@ Lms FAQS Style Start
 .pages-sub-header .sub-header-img figure figcaption {
     position: absolute;
     top: 14px;
-    right: 88%;
+    left: -50px;
+    text-align: center;
 }
 .pages-sub-header .header-img-title {
     display: block;

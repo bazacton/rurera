@@ -87,7 +87,7 @@ class QuestionsAttemptController extends Controller
     *
     * @return Question Object
     */
-    public function nextQuestion($quizAttempt, $exclude_array = array(), $jump_question_id = 0, $attempted_questions = false, $questions_list = array())
+    public function nextQuestion($quizAttempt, $exclude_array = array(), $jump_question_id = 0, $attempted_questions = false, $questions_list = array(), $QuizzesResult = array())
     {
         $user = auth()->user();
         $questions_list_get = ($quizAttempt->questions_list != '') ? json_decode($quizAttempt->questions_list) : array();
@@ -96,7 +96,9 @@ class QuestionsAttemptController extends Controller
 
         $questions_list = $this->get_questions_list($questions_list, $quizAttempt);
 
-        $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
+        //if(empty( $QuizzesResult ) ) {
+            $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
+        //}
         $question_no = $next_question = $prev_question = 0;
         $questionAttemptAllowed = false;
 
@@ -117,7 +119,6 @@ class QuestionsAttemptController extends Controller
 
                         if ($check_question_passed == 0) {
                             $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id', $quizAttempt->parent_type_id)->where('quiz_result_type', $quizAttempt->attempt_type)->where('user_id', $user->id)->where('question_id', $question_id)->where('quiz_result_id', $quizAttempt->quiz_result_id)->where('status', '!=', 'waiting')->count();
-
                             $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult, $QuizzResultQuestionsCount);
 
                             $questionObj = QuizzesQuestion::find($question_id);

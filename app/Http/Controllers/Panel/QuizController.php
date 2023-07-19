@@ -508,7 +508,7 @@ class QuizController extends Controller
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
                     //if ($question_no_index > 0) {
-                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list);
+                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $QuizzesResult);
                         $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
                         $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
                         $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;

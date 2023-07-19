@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Panel\QuizController;
 use App\Http\Controllers\Web\traits\CheckContentLimitationTrait;
 use App\Http\Controllers\Web\traits\InstallmentsTrait;
 use App\Mixins\Cashback\CashbackRules;
@@ -18,6 +19,7 @@ use App\Models\Sale;
 use App\Models\TextLesson;
 use App\Models\CourseLearning;
 use App\Models\WebinarChapter;
+use App\Models\WebinarChapterItem;
 use App\Models\WebinarReport;
 use App\Models\Webinar;
 use Illuminate\Http\Request;
@@ -271,6 +273,7 @@ class WebinarController extends Controller
                         );
                 }
         }
+
 
         $pageRobot = getPageRobot('course_show'); // index
         $canSale = ($course->canSale() and !$hasBought);
@@ -894,5 +897,41 @@ class WebinarController extends Controller
         }
 
         abort(404);
+    }
+
+    /*
+     * Start Course Quiz
+     */
+    public function start(Request $request, $sub_chapter_id)
+    {
+
+        $chapterItem = WebinarChapterItem::where('type' , 'quiz')
+                        ->where('parent_id' , $sub_chapter_id)
+                        ->first();
+
+        $id = isset( $chapterItem->item_id )? $chapterItem->item_id : 0;
+
+        $quiz = Quiz::find($id);
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $started_already = $QuestionsAttemptController->started_already($id);
+
+        $started_already = false;
+        if ($started_already == true) {
+            $QuizController = new QuizController();
+            return $QuizController->start($request, $id);
+        } else {
+            $resultData = $QuestionsAttemptController->get_result_data($id);
+            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+            $is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
+            $in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
+            $current_status = isset($resultData->current_status) ? $resultData->current_status : '';
+            $data = [
+                'pageTitle'  => 'Start',
+                'quiz'       => $quiz,
+                'resultData' => $resultData
+            ];
+            return view('web.default.quizzes.start', $data);
+        }
     }
 }
