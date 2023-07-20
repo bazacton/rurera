@@ -13,6 +13,9 @@ class ElevenplusController extends Controller
 
     public function index(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
 
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
@@ -56,6 +59,9 @@ class ElevenplusController extends Controller
      */
     public function start(Request $request, $id)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
@@ -79,8 +85,6 @@ class ElevenplusController extends Controller
             return view('web.default.quizzes.start', $data);
         }
     }
-
-
 
 
 }

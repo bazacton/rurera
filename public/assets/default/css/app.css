@@ -16383,8 +16383,8 @@ p {
     padding-left: 30px;
     font-size: 15px;
 }
-.subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: 0;top: 0;width: 20px;height: 20px;border-radius: 3px;color: #d5d6d7;font-size: 12px;border: 1px solid #edeef1; text-align: center;line-height: 18px;background-color: rgba(243, 244, 245, 0.5);}
-.subscribe-plan .plan-feature li.subscribe-no:after {content: "\2716"; color: #f77a7a; background-color: initial; border-color: transparent; top: 50%; margin-top: -10px; }
+.subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: 0;top: 0;width: 20px;height: 20px;border-radius: 3px;color: #333;font-size: 12px;border: 1px solid #edeef1; text-align: center;line-height: 18px;background-color: rgba(243, 244, 245, 0.5);}
+.subscribe-plan .plan-feature li.subscribe-no:after {content: "\00D7"; color: #f77a7a; font-size: 18px;}
 .rtl .subscribe-plan .plan-feature li:after {
     left: auto;
     right: -20px;
@@ -16435,6 +16435,7 @@ p {
 .subscribe-plan:hover .plan-feature li:after {
     background-color: rgba(255,255,255,0.1);
     border-color: rgba(0,0,0,0.2);
+    color: #fff;
 }
 .registration-package-statistics .registration-package-statistics-icon img {
     width: 100%;
@@ -18558,11 +18559,33 @@ Lms Chapter Style Start
     -moz-column-count: 2;
          column-count: 2;
     gap: 15px;
-    padding: 10px 30px 30px 30px;
+    padding: 10px 30px 20px 30px;
 }
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {
     -moz-column-break-inside: avoid;
          break-inside: avoid;
+}
+.show-more-btn {
+    color: var(--primary);
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+    padding-right: 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.show-more-btn:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    border: 2px solid;
+    height: 8px;
+    width: 8px;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -4px;
 }
 .mastery-banner-card {
     border-style: solid;

@@ -38,9 +38,9 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
     var question_data = [];
     question_data[0] = {};
-    var appricate_words_array = ['Wonderful', 'Excellent', 'Brilliant', 'Fantastic', 'Spectacular', 'Gorgeous', 'Exceptional', 'Marvelous', 'Extrodinary']
+    var appricate_words_array = ['Wonderful', 'Excellent', 'Brilliant', 'Fantastic', 'Spectacular', 'Gorgeous', 'Exceptional', 'Marvelous', 'Extrodinary'];
     var appricate_word = appricate_words_array[Math.floor(Math.random() * appricate_words_array.length)];
-    var appricate_colors_array = ['red', 'orange', 'blue', 'green']
+    var appricate_colors_array = ['red', 'orange', 'blue', 'green'];
     var appricate_color = appricate_colors_array[Math.floor(Math.random() * appricate_colors_array.length)];
     var thisObj = $(this);
     var attempt_id = $(".question-area .question-step").attr('data-qattempt');

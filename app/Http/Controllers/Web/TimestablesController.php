@@ -25,6 +25,10 @@ class TimestablesController extends Controller
      */
     public function genearte(Request $request)
     {
+
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $user = auth()->user();
         $question_type = $request->post('question_type');
         $no_of_questions = $request->post('no_of_questions');
@@ -77,6 +81,10 @@ class TimestablesController extends Controller
      */
     public function summary()
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+
         $user = auth()->user();
 
         $times_tables_data = $this->user_times_tables_data($user->id, 'x');

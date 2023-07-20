@@ -2688,8 +2688,7 @@ Lms Table Style
     background: #ccc;
     pointer-events: none;
 }
-.frontend-field-error, 
-.form-field:has(.frontend-field-error), 
-.input-holder:has(.frontend-field-error) {
+.frontend-field-error, .field-holder:has(.frontend-field-error), 
+.form-field:has(.frontend-field-error), .input-holder:has(.frontend-field-error) {
     border: 1px solid #dd4343;
 }

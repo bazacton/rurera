@@ -13,6 +13,9 @@ class SatsController extends Controller
 
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
 
         $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
         $sats = $query->paginate(100);
@@ -38,6 +41,9 @@ class SatsController extends Controller
      */
     public function start(Request $request, $id)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();

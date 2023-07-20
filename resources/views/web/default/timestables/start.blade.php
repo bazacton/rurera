@@ -108,18 +108,18 @@ $rand_id = rand(99,9999);
                                 </div>
                                 <div class="questions-block-numbers">
                                    <ul class="d-flex justify-content-center flex-wrap">
-                                      <li id="key-7"><a href="javascript:;">7</a></li>
-                            			<li id="key-8"><a href="javascript:;">8</a></li>
-                            			<li id="key-9"><a href="javascript:;">9</a></li>
-                            			<li id="key-4"><a href="javascript:;">4</a></li>
-                            			<li id="key-5"><a href="javascript:;">5</a></li>
-                            			<li id="key-6"><a href="javascript:;">6</a></li>
-                            			<li id="key-1"><a href="javascript:;">1</a></li>
-                            			<li id="key-2"><a href="javascript:;">2</a></li>
-                            			<li id="key-3"><a href="javascript:;">3</a></li>
-                            			<li class="delete"><a href="#">Delete</a></li>
-                            			<li id="key-0"><a href="javascript:;">0</a></li>
-                            			<li class="enter"><a href="#">Enter</a></li>
+                                      <li id="key-7" data-value="8"><a href="javascript:;">7</a></li>
+                            			<li id="key-8" data-value="8"><a href="javascript:;">8</a></li>
+                            			<li id="key-9" data-value="9"><a href="javascript:;">9</a></li>
+                            			<li id="key-4" data-value="4"><a href="javascript:;">4</a></li>
+                            			<li id="key-5" data-value="5"><a href="javascript:;">5</a></li>
+                            			<li id="key-6" data-value="6"><a href="javascript:;">6</a></li>
+                            			<li id="key-1" data-value="1"><a href="javascript:;">1</a></li>
+                            			<li id="key-2" data-value="2"><a href="javascript:;">2</a></li>
+                            			<li id="key-3" data-value="3"><a href="javascript:;">3</a></li>
+                            			<li class="delete" data-value="delete"><a href="javascript:;">Delete</a></li>
+                            			<li id="key-0" data-value="0"><a href="javascript:;">0</a></li>
+                            			<li class="enter" data-value="enter"><a href="javascript:;">Enter</a></li>
                                    </ul>
                                 </div>
                             	</form>
@@ -167,6 +167,20 @@ $rand_id = rand(99,9999);
             clearInterval(Questionintervals);
         }
     }, 100);
+
+    $(document).on('click', '.questions-block-numbers ul li', function (e) {
+        var current_value = $(this).attr('data-value');
+        var current_field_value = $(this).closest('form').find('.editor-fields').val();
+        if( current_value == 'delete'){
+            current_field_value = current_field_value.substring(0,current_field_value.length - 1);
+            $(this).closest('form').find('.editor-fields').val(current_field_value);
+        }else if( current_value == 'enter'){
+            $(this).closest('form').submit();
+        }else {
+            $(this).closest('form').find('.editor-fields').val(current_field_value + current_value);
+        }
+    });
+
 
 
 

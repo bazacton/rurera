@@ -155,6 +155,7 @@
                                         @endif
                                         @endforeach
                                         </ul>
+                                        <span class="show-more-btn ml-30 mb-40">Show More</span>
                                         <div class="lms-chapter-footer lms-chapter-bg-blue">
                                             <span class="lms-chapter-icon">
                                                 <figure>
