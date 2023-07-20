@@ -24,6 +24,7 @@ $rand_no = rand(99,9999);
     <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 
 
     @if($isRtl)
@@ -104,6 +105,7 @@ $rand_no = rand(99,9999);
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
 <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 
 <script>
     @if(session()->has('registration_package_limited'))

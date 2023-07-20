@@ -25,6 +25,13 @@ quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
 $(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+
+
+    returnType = rurera_validation_process($(this).closest('form'));
+    if (returnType == false) {
+        return false;
+    }
+
     clearInterval(Questioninterval);
     console.log('question-submit');
     rurera_loader($(this), 'div');
@@ -222,7 +229,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
                         clearInterval(interval);
                     }, 3000);
 
-                }else {
+                } else {
 
                     thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
                     const interval = setInterval(() => {
@@ -377,105 +384,103 @@ function sort_init() {
 }
 
 
-
 function init_question_functions() {
 
     console.log('init_question_functions');
 
 
-
     $(document).on('click', '.match-question .stems li', function (e) {
-      stem = $(this);
-      stem.toggleClass("selected");
+        stem = $(this);
+        stem.toggleClass("selected");
 
-      $(".match-question .stems li")
-        .not(stem)
-        .removeClass("selected");
+        $(".match-question .stems li")
+            .not(stem)
+            .removeClass("selected");
 
-      $(".match-question .options li").removeClass("selected");
-      $(".match-question .line").removeClass("highlighted");
+        $(".match-question .options li").removeClass("selected");
+        $(".match-question .line").removeClass("highlighted");
 
-      if (stem.hasClass("selected")) {
-        var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
-        stem_lines.addClass("highlighted");
+        if (stem.hasClass("selected")) {
+            var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
+            stem_lines.addClass("highlighted");
 
-        stem_lines.each(function() {
-          var $option = $(this).data("option");
-          $('.match-question .options li[id="' + $option + '"]').addClass("selected");
-        });
-        $(".options").addClass("ready");
-      } else {
-        $(".options").removeClass("ready");
-        $('.match-question .line[data-stem="' + stem.attr("id") + '"]').removeClass(
-          "highlighted"
-        );
-      }
+            stem_lines.each(function () {
+                var $option = $(this).data("option");
+                $('.match-question .options li[id="' + $option + '"]').addClass("selected");
+            });
+            $(".options").addClass("ready");
+        } else {
+            $(".options").removeClass("ready");
+            $('.match-question .line[data-stem="' + stem.attr("id") + '"]').removeClass(
+                "highlighted"
+            );
+        }
     });
 
     $(document).on('click', '.match-question .options li', function (e) {
-      if ($(".options").hasClass("ready")) {
-        $(this).toggleClass("selected");
-        var stem = $(".match-question .stems li.selected");
-        var selected_value = stem.attr('id');
-        var data_id = $(this).attr('data-id');
-        $("#"+data_id).val(selected_value);
-        var option = $(this);
-        if (!line_exists(stem, option)) {
-          $('.match-question .line[data-stem="' + stem.attr("id") + '"]').remove();
-          drawLine(stem, option);
-        } else {
-          $(
-            '.match-question .line[data-stem="' +
-              stem.attr("id") +
-              '"][data-option="' +
-              option.attr("id") +
-              '"]'
-          ).remove();
-        }
+        if ($(".options").hasClass("ready")) {
+            $(this).toggleClass("selected");
+            var stem = $(".match-question .stems li.selected");
+            var selected_value = stem.attr('id');
+            var data_id = $(this).attr('data-id');
+            $("#" + data_id).val(selected_value);
+            var option = $(this);
+            if (!line_exists(stem, option)) {
+                $('.match-question .line[data-stem="' + stem.attr("id") + '"]').remove();
+                drawLine(stem, option);
+            } else {
+                $(
+                    '.match-question .line[data-stem="' +
+                    stem.attr("id") +
+                    '"][data-option="' +
+                    option.attr("id") +
+                    '"]'
+                ).remove();
+            }
 
-         var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
-        if(stem_lines.length>0){
-          stem.addClass('matched');
-        } else{
-          stem.removeClass('matched');
-        }
+            var stem_lines = $('.match-question .line[data-stem="' + stem.attr("id") + '"]');
+            if (stem_lines.length > 0) {
+                stem.addClass('matched');
+            } else {
+                stem.removeClass('matched');
+            }
 
-      }
+        }
     });
 
 
     function lineDistance(x, y, x0, y0) {
         return Math.sqrt((x -= x0) * x + (y -= y0) * y);
-      }
+    }
 
-      function line_exists(stem, option) {
+    function line_exists(stem, option) {
         var $exists = false;
-        $(".line").each(function() {
-          if (
-            $(this).data("stem") === stem.attr("id") &&
-            $(this).data("option") === option.attr("id")
-          ) {
-            $exists = true;
-          }
+        $(".line").each(function () {
+            if (
+                $(this).data("stem") === stem.attr("id") &&
+                $(this).data("option") === option.attr("id")
+            ) {
+                $exists = true;
+            }
         });
         return $exists;
-      }
+    }
 
-      function drawLine(stem, option) {
+    function drawLine(stem, option) {
         var pointA = stem.offset();
         pointA.left = pointA.left + stem.outerWidth();
         pointA.top = pointA.top + stem.outerHeight() / 2;
         var pointB = option.offset();
         pointB.top = pointB.top + option.outerHeight() / 2;
         var angle =
-          Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
-          180 /
-          Math.PI;
+            Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
+            180 /
+            Math.PI;
         var distance = lineDistance(
-          pointA.left,
-          pointA.top,
-          pointB.left,
-          pointB.top
+            pointA.left,
+            pointA.top,
+            pointB.left,
+            pointB.top
         );
 
         var line = $('<div class="line highlighted"/>');
@@ -492,13 +497,11 @@ function init_question_functions() {
         line.css("position", "absolute");
 
         if (pointB.top > pointA.top) {
-          $(line).offset({ top: pointA.top, left: pointA.left });
+            $(line).offset({top: pointA.top, left: pointA.left});
         } else {
-          $(line).offset({ top: pointB.top, left: pointA.left });
+            $(line).offset({top: pointB.top, left: pointA.left});
         }
-      }
-
-
+    }
 
 
     $("p.given").html(chunkWords($("p.given").text()));
@@ -549,28 +552,25 @@ function init_question_functions() {
     });
 
 
-
-
-
     var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
-        if(!$(this).hasClass('swiper-slide')){
+        if (!$(this).hasClass('swiper-slide')) {
             rurera_loader($(this), 'div');
         }
 
         var question_id = $(this).attr('data-question_id');
         console.log(question_id);
-        var li_obj = $('.quiz-pagination ul li[data-question_id="'+question_id+'"]');
-        if( $(this).hasClass('correct') || $(this).hasClass('incorrect')){
+        var li_obj = $('.quiz-pagination ul li[data-question_id="' + question_id + '"]');
+        if ($(this).hasClass('correct') || $(this).hasClass('incorrect')) {
             return;
         }
-        if( li_obj.hasClass('correct') || li_obj.hasClass('incorrect')){
+        if (li_obj.hasClass('correct') || li_obj.hasClass('incorrect')) {
             li_obj.click();
             return;
         }
         $(".quiz-pagination ul li").removeClass('active');
         $(this).addClass('active');
-        $('.quiz-pagination ul li[data-question_id="'+question_id+'"]').addClass('active');
+        $('.quiz-pagination ul li[data-question_id="' + question_id + '"]').addClass('active');
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
 
         var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
@@ -587,9 +587,9 @@ function init_question_functions() {
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
-            beforeSend : function()    {
+            beforeSend: function () {
                 console.log(currentRequest);
-                if(currentRequest != null) {
+                if (currentRequest != null) {
                     currentRequest.abort();
                 }
             },
@@ -682,6 +682,7 @@ function textWrapper(str, sp) {
     }
     return "<span class='w'>" + txt + "</span>";
 }
+
 function makeDropText(obj) {
     return obj.droppable({
         drop: function (e, ui) {
@@ -842,36 +843,36 @@ function leform_esc_html__(_string) {
 
 function lineDistance(x, y, x0, y0) {
     return Math.sqrt((x -= x0) * x + (y -= y0) * y);
-  }
+}
 
-  function line_exists(stem, option) {
+function line_exists(stem, option) {
     var $exists = false;
-    $(".line").each(function() {
-      if (
-        $(this).data("stem") === stem.attr("id") &&
-        $(this).data("option") === option.attr("id")
-      ) {
-        $exists = true;
-      }
+    $(".line").each(function () {
+        if (
+            $(this).data("stem") === stem.attr("id") &&
+            $(this).data("option") === option.attr("id")
+        ) {
+            $exists = true;
+        }
     });
     return $exists;
-  }
+}
 
-  function drawLine(stem, option) {
+function drawLine(stem, option) {
     var pointA = stem.offset();
     pointA.left = pointA.left + stem.outerWidth();
     pointA.top = pointA.top + stem.outerHeight() / 2;
     var pointB = option.offset();
     pointB.top = pointB.top + option.outerHeight() / 2;
     var angle =
-      Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
-      180 /
-      Math.PI;
+        Math.atan2(pointB.top - pointA.top, pointB.left - pointA.left) *
+        180 /
+        Math.PI;
     var distance = lineDistance(
-      pointA.left,
-      pointA.top,
-      pointB.left,
-      pointB.top
+        pointA.left,
+        pointA.top,
+        pointB.left,
+        pointB.top
     );
 
     var line = $('<div class="line highlighted"/>');
@@ -888,46 +889,259 @@ function lineDistance(x, y, x0, y0) {
     line.css("position", "absolute");
 
     if (pointB.top > pointA.top) {
-      $(line).offset({ top: pointA.top, left: pointA.left });
+        $(line).offset({top: pointA.top, left: pointA.left});
     } else {
-      $(line).offset({ top: pointB.top, left: pointA.left });
+        $(line).offset({top: pointB.top, left: pointA.left});
     }
-  }
+}
+
 function rurera_loader(thisObj, loader_type) {
 
-        switch (loader_type) {
-            case "div":
-               thisObj.addClass('rurera-processing');
-               thisObj.append('<div class="rurera-button-loader" style="display: block;">\n\
+    switch (loader_type) {
+        case "div":
+            thisObj.addClass('rurera-processing');
+            thisObj.append('<div class="rurera-button-loader" style="display: block;">\n\
                    <div class="spinner">\n\
                        <div class="double-bounce1"></div>\n\
                        <div class="double-bounce2"></div>\n\
                    </div>\n\
                </div>');
 
-               break;
+            break;
 
-            case "button":
-                thisObj.wrap('<div class="rurera-loader-holder"></div>');
-                thisObj.closest('.rurera-loader-holder').addClass('rurera-processing');
-                thisObj.closest('.rurera-loader-holder').append('<div class="rurera-button-loader" style="display: block;">\n\
+        case "button":
+            thisObj.wrap('<div class="rurera-loader-holder"></div>');
+            thisObj.closest('.rurera-loader-holder').addClass('rurera-processing');
+            thisObj.closest('.rurera-loader-holder').append('<div class="rurera-button-loader" style="display: block;">\n\
                     <div class="spinner">\n\
                         <div class="double-bounce1"></div>\n\
                         <div class="double-bounce2"></div>\n\
                     </div>\n\
                 </div>');
 
-                break;
+            break;
 
-            case "page":
-                $('body').addClass('rurera-processing');
-                $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
+        case "page":
+            $('body').addClass('rurera-processing');
+            $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
                                 <div class="spinner">\n\
                                     <div class="double-bounce1"></div>\n\
                                     <div class="double-bounce2"></div>\n\
                                 </div>\n\
                             </div>');
 
-                break;
+            break;
+    }
+}
+
+/*
+ * Validation Process by Form
+ */
+function rurera_validation_process(form_name) {
+    var has_empty = new Array();
+    var alert_messages = new Array();
+    var radio_fields = new Array();
+    var checkbox_fields = new Array();
+    form_name.find('.rurera-req-field, .editor-field').each(function (index_no) {
+        is_visible = true;
+        var thisObj = jQuery(this);
+        var visible_id = thisObj.data('visible');
+        has_empty[index_no] = false;
+        if (rurera_is_field(visible_id) == true) {
+            is_visible = jQuery("#" + visible_id).is(':hidden');
+            if (jQuery("#" + visible_id).css('display') !== 'none') {
+                is_visible = true;
+            } else {
+                is_visible = false;
+            }
+        }
+        /*if (thisObj.attr('type') == 'checkbox') {
+            thisObj = jQuery("#" + thisObj.attr('name'));
+            if (thisObj.val() == 'off') {
+                thisObj.val('');
+            }
+        }*/
+        if (thisObj.attr('type') == 'radio') {
+            var field_name = thisObj.attr('name');
+            var is_field_checked = jQuery('input[name="' + field_name + '"]').is(':checked');
+            if (is_field_checked == false) {
+                radio_fields[index_no] = thisObj;
+            }
+            is_visible = false;
+        }
+        if (thisObj.attr('type') == 'checkbox') {
+            var field_name = thisObj.attr('name');
+            var is_field_checked = jQuery('input[name="' + field_name + '"]').is(':checked');
+            if (is_field_checked == false) {
+                checkbox_fields[index_no] = thisObj;
+            }
+            is_visible = false;
+        }
+        if (!thisObj.val() && is_visible == true) {
+            if (thisObj.hasClass('rurera-req-field') || thisObj.hasClass('editor-field')) {
+                array_length = alert_messages.length;
+                alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, '');
+                has_empty[index_no] = true;
+            }
+        } else {
+            if (is_visible == true) {
+                has_empty[index_no] = rurera_check_field_type(thisObj, alert_messages, has_empty[index_no]);
+            }
+        }
+        if (has_empty[index_no] == false) {
+            thisObj.next('.chosen-container').removeClass('frontend-field-error');
+            thisObj.next('.rurera-req-field').next('.pbwp-box').removeClass('frontend-field-error');
+            thisObj.removeClass('frontend-field-error');
+            thisObj.closest('.jqte').removeClass('frontend-field-error');
+        }
+    });
+    if (radio_fields.length > 0) {
+        for (i = 0; i < radio_fields.length; i++) {
+            var thisnewObj = radio_fields[i];
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'radio');
+            has_empty[index_no] = true;
         }
     }
+    if (checkbox_fields.length > 0) {
+        for (i = 0; i < checkbox_fields.length; i++) {
+            var thisnewObj = checkbox_fields[i];
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'checkbox');
+            has_empty[index_no] = true;
+        }
+    }
+    var error_messages = ' test error message<br><br>';
+    if (has_empty.length > 0 && jQuery.inArray(true, has_empty) != -1) {
+        array_length = alert_messages.length;
+        for (i = 0; i < array_length; i++) {
+            if (i > 0) {
+                error_messages = error_messages + '<br>';
+            }
+            error_messages = error_messages + alert_messages[i];
+        }
+        //jQuery.growl.remove();
+        console.log(error_messages);
+        /*var error_message = jQuery.growl.error({
+            message: error_messages,
+            duration: 10000,
+        });*/
+        return false;
+    }
+}
+
+function rurera_is_field(field_value) {
+    if (field_value != 'undefined' && field_value != undefined && field_value != '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/*
+ * Making list of errors
+ */
+function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type='') {
+    thisObj.addClass('frontend-field-error');
+    if( field_type == 'checkbox' || field_type == 'radio'){
+
+        var field_name = thisObj.attr('name');
+        $('[name="'+field_name+'"]').addClass('frontend-field-error');
+    }
+
+    if (thisObj.is('select')) {
+        thisObj.next('.chosen-container').addClass('frontend-field-error');
+        var field_label = thisObj.closest('.field-holder').children('label').html();
+        if (rurera_is_field(field_label) == false) {
+            var field_label = thisObj.find(":selected").text();
+        }
+        if (rurera_is_field(field_label) == false) {
+            var field_label = thisObj.closest('.rurera-dev-appended-cats').children().children().children('label').html();
+        }
+    } else {
+        var field_label = thisObj.closest('.field-holder').children('label').html();
+        if (typeof field_label === 'undefined') {
+            var field_label = thisObj.attr('placeholder');
+        }
+    }
+    if (thisObj.is(':hidden')) {
+        thisObj.next('.rurera-req-field').next('.pbwp-box').addClass('frontend-field-error');
+    }
+    if (thisObj.hasClass('rurera_editor')) {
+        thisObj.closest('.jqte').addClass('frontend-field-error');
+    }
+
+    var res = '';
+    if (typeof field_label !== "undefined") {
+        res = field_label.replace("*", " ");
+    } else {
+        res = 'Label / Placeholder is missing';
+    }
+    return '* ' + res + error_msg;
+}
+
+/*
+ * Check if Provided data for field is valid
+ */
+
+function rurera_check_field_type(thisObj, alert_messages, has_empty) {
+    /*
+     * Check for Email Field
+     */
+    if (thisObj.hasClass('rurera-email-field')) {
+        var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, ' is not valid Email!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Number Field
+     */
+    if (thisObj.hasClass('rurera-number-field')) {
+        var pattern = /[0-9 -()+]+$/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid Number!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for URL Field
+     */
+    if (thisObj.hasClass('rurera-url-field')) {
+        var pattern = /^(http|https)?:\/\/[a-zA-Z0-9-\.]+\.[a-z]{2,4}/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid URL!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Date Field
+     */
+    if (thisObj.hasClass('rurera-date-field')) {
+        //var pattern = /([0-9][1-2])\/([0-2][0-9]|[3][0-1])\/((19|20)[0-9]{2})/;
+        var pattern = /^\d{1,2}.\d{1,2}.\d{4} \d{2}:\d{2}$/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid Date!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Range Field
+     */
+    if (thisObj.hasClass('rurera-range-field')) {
+        var min_val = thisObj.data('min');
+        var max_val = thisObj.data('max');
+        if (!(thisObj.val() >= min_val) || !(thisObj.val() <= max_val)) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not in Range! ( ' + min_val + ' - ' + max_val + ' )');
+            has_empty = true;
+        }
+    }
+    return has_empty;
+}

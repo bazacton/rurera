@@ -187,7 +187,7 @@
                       <div class="questions-select-option">
                          <ul class="mb-20 d-flex align-items-center">
                              <li>
-                                 <input type="radio" value="multiplication_division" id="multi-divi" name="question_type" />
+                                 <input  type="radio" value="multiplication_division" id="multi-divi" name="question_type" />
                                  <label for="multi-divi" class="d-inline-flex flex-column justify-content-center">
                                     <span class="mb-5">
                                        8 per correct answer
@@ -196,7 +196,7 @@
                                  </label>
                              </li>
                              <li>
-                                 <input type="radio" value="multiplication" id="multi-only" name="question_type" />
+                                 <input checked type="radio" value="multiplication" id="multi-only" name="question_type" />
                                  <label for="multi-only" class="d-inline-flex flex-column justify-content-center">
                                     <span class="mb-5">4 per correct answer</span>
                                     <strong>Multiplication only</strong>
@@ -212,7 +212,7 @@
                          </ul>
                          <ul class="mb-20 d-flex align-items-center">
                              <li>
-                                 <input type="radio" id="ten-questions" value="10" name="no_of_questions" />
+                                 <input checked type="radio" id="ten-questions" value="10" name="no_of_questions" />
                                  <label for="ten-questions" class="d-inline-flex flex-column justify-content-center">
                                     <strong>10 questions</strong>
                                  </label>
@@ -238,10 +238,10 @@
                             <li><input type="checkbox" value="5" name="question_values[]" disabled="disabled" id="five" /> <label for="five" class="disabled">5</label></li>
                             <li><input type="checkbox" value="3" name="question_values[]" checked id="three" /> <label for="three">3</label></li>
                             <li><input type="checkbox" value="4" name="question_values[]" checked id="four" /> <label for="four">4</label></li>
-                            <li><input type="checkbox" value="8" name="question_values[]" checked id="eight" /> <label for="eight">8</label></li>
-                            <li><input type="checkbox" value="6" name="question_values[]" checked id="six" /> <label for="six">6</label></li>
-                            <li><input type="checkbox" value="7" name="question_values[]" checked id="seven" /> <label for="seven">7</label></li>
-                            <li><input type="checkbox" value="9" name="question_values[]" checked id="nine" /> <label for="nine">9</label></li>
+                            <li><input type="checkbox" value="8" name="question_values[]" id="eight" /> <label for="eight">8</label></li>
+                            <li><input type="checkbox" value="6" name="question_values[]" id="six" /> <label for="six">6</label></li>
+                            <li><input type="checkbox" value="7" name="question_values[]" id="seven" /> <label for="seven">7</label></li>
+                            <li><input type="checkbox" value="9" name="question_values[]" id="nine" /> <label for="nine">9</label></li>
                             <li><input type="checkbox" value="11" name="question_values[]" id="eleven" disabled="disabled" /> <label for="eleven" class="disabled">11</label></li>
                             <li><input type="checkbox" value="12" name="question_values[]" id="twelve" /> <label for="twelve" class="selectable">12</label></li>
                             <li><input type="checkbox" value="13" name="question_values[]" id="thirteen" /> <label for="thirteen" class="selectable">13</label></li>

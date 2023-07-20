@@ -16384,6 +16384,7 @@ p {
     font-size: 15px;
 }
 .subscribe-plan .plan-feature li:after {content: "\2713"; position: absolute;left: 0;top: 0;width: 20px;height: 20px;border-radius: 3px;color: #d5d6d7;font-size: 12px;border: 1px solid #edeef1; text-align: center;line-height: 18px;background-color: rgba(243, 244, 245, 0.5);}
+.subscribe-plan .plan-feature li.subscribe-no:after {content: "\2716"; color: #f77a7a; background-color: initial; border-color: transparent; top: 50%; margin-top: -10px; }
 .rtl .subscribe-plan .plan-feature li:after {
     left: auto;
     right: -20px;
