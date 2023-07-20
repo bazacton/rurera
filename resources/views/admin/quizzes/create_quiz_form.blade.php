@@ -25,6 +25,7 @@
         color: #fff;
     }
 </style>
+<link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 
 <div data-action="{{ getAdminPanelUrl() }}/quizzes/{{ !empty($quiz) ? $quiz->id .'/update' : 'store' }}"
      class="js-content-form quiz-form webinar-form">
@@ -103,7 +104,7 @@
                 <div class="form-group">
                     <label class="input-label">Quiz Instructions</label>
                     <textarea rows="7" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_instructions]"
-                              class="form-control ">{{ !empty($quiz) ? $quiz->quiz_instructions : old('quiz_instructions') }}</textarea>
+                              class="summernote form-control ">{{ !empty($quiz) ? $quiz->quiz_instructions : old('quiz_instructions') }}</textarea>
                     <div class="invalid-feedback"></div>
                 </div>
 
@@ -486,8 +487,13 @@
 @php
 $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 @endphp
+<script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/vendors/summernote/summernote-table-headers.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+
+
         handleQuestionsMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
         $(document).on('change', '.quiz-type', function (e) {

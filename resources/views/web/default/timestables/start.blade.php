@@ -170,6 +170,7 @@ $rand_id = rand(99,9999);
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
         var current_value = $(this).attr('data-value');
+        $(this).closest('form').find('.editor-fields').focus();
         var current_field_value = $(this).closest('form').find('.editor-fields').val();
         if( current_value == 'delete'){
             current_field_value = current_field_value.substring(0,current_field_value.length - 1);

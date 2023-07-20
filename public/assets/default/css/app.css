@@ -25134,6 +25134,41 @@ Heatmap Table style Start
 Heatmap Table style End
 ***************************/
 
+/***************************
+Main Home style Start
+***************************/
+.home-banner .choose-sats .sats-box {
+    background-color: rgba(255,255,255,0.98);
+    border-color: rgba(0,0,0,0.4);
+    min-height: 135px;
+    padding: 20px 12px;
+}
+.home-banner .choose-sats .sats-box span {
+    font-size: 22px;
+    font-weight: 500;
+}
+.home-banner .sats-box p {
+    font-size: 14px;
+}
+.home-banner .sats-box a {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    display: block;
+    padding-top: 8px;
+}
+.feature-grid figure {
+    display: inline-block;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+}
+.feature-grid figure img {
+    max-width: 100%;
+}
+/***************************
+Main Home style End
+***************************/
 /*************************************
 Lms Responsive Style Start
 *************************************/

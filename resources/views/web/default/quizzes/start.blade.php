@@ -31,7 +31,7 @@ $rand_id = rand(99,9999);
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
                         @if( isset( $quiz->quiz_instructions ) && $quiz->quiz_instructions != '')
                             <h3>Instructions:</h3>
-                            {{ $quiz->quiz_instructions }}
+                        {!! $quiz->quiz_instructions !!}
                         @endif
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
