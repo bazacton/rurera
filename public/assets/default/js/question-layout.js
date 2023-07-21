@@ -173,8 +173,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
                 thisForm.find('.question-submit-btn').remove();
                 thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
                 const interval = setInterval(() => {
-                    init_question_functions();
-                    $(".prev-next-controls .next-btn").click();
+                    $('#next-btn')[0].click();
                     clearInterval(interval);
                 }, 3000);
             } else {
@@ -224,8 +223,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
                     thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
 
                     const interval = setInterval(() => {
-                        init_question_functions();
-                        $(".next-btn").click();
+                        $('#next-btn')[0].click();
                         clearInterval(interval);
                     }, 3000);
 
@@ -233,8 +231,7 @@ $(document).on('click', '.question-submit-btn', function (e) {
 
                     thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
                     const interval = setInterval(() => {
-                        init_question_functions();
-                        $(".prev-next-controls .next-btn").click();
+                        $('#next-btn')[0].click();
                         clearInterval(interval);
                     }, 3000);
 
@@ -565,6 +562,10 @@ function init_question_functions() {
 
     var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+        if ($(this).hasClass('disable-btn')) {
+            return;
+        }
+
         if (!$(this).hasClass('swiper-slide')) {
             rurera_loader($(this), 'div');
         }
