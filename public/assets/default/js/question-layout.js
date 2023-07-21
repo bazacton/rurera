@@ -640,7 +640,18 @@ function init_question_functions() {
 
     $(document).on('click', '.questions-nav-controls .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
-        var thisObj = $(this);
+
+        var total_questions = $('.quiz-pagination ul li').length;
+        var total_correct = $('.quiz-pagination ul li.correct').length;
+        var total_incorrect = $('.quiz-pagination ul li.incorrect').length;
+        console.log('Total: '+total_questions);
+        var total_attempted = (parseInt(total_correct)+parseInt(total_incorrect));
+        console.log('Attempted: '+(parseInt(total_correct)+parseInt(total_incorrect)));
+        $(".review_submit .modal-body p").html('You have attempted '+ total_attempted + ' questions out of '+ total_questions +'. Are you sure you want to submit?');
+
+
+
+        /*var thisObj = $(this);
         jQuery.ajax({
             type: "POST",
             url: '/question_attempt/jump_review',
@@ -652,15 +663,30 @@ function init_question_functions() {
             success: function (return_data) {
                 var question_response_layout = return_data.question_response_layout;
                 if (question_response_layout != '') {
-                    //$(".question-area-block").html(question_response_layout);
                     $(".question-step").html(question_response_layout);
-
-                    //$(".quiz-pagination").remove();
-                    //$(".right-content").remove();
                 }
             }
-        });
+        });*/
     });
+
+    $(document).on('click', '.submit_quiz_final', function (e) {
+           var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+           rurera_loader($(this), 'div');
+           var thisObj = $(this);
+           jQuery.ajax({
+               type: "POST",
+               url: '/question_attempt/jump_review',
+               dataType: 'json',
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data: {"qattempt_id": qattempt_id},
+               success: function (return_data) {
+                window.location.href = '/panel/quizzes/1861/check_answers';
+               }
+           });
+       });
+
 
 
 }

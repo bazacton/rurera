@@ -9,7 +9,7 @@ $rand_id = rand(99,9999);
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
@@ -191,9 +191,21 @@ $rand_id = rand(99,9999);
 
 </div>
 
+<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p></p>
+               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
+           </div>
+       </div>
+   </div>
+</div>
+<a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 @endsection
-
 @push('scripts_bottom')
+
 
 <script src="/assets/default/vendors/video/video.min.js"></script>
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
@@ -201,6 +213,7 @@ $rand_id = rand(99,9999);
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 
 <script>

@@ -96,7 +96,13 @@ $rand_id = rand(99,9999);
                             </div>
                             <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                                 <div class="topbar-right">
-                                   
+                                    <div class="quiz-pagination">
+
+                                    </div>
+                                    <div class="quiz-timer">
+                                        <span class="timer-number">4<em>m</em></span> <span
+                                            class="timer-number">50<em>s</em></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -104,23 +110,37 @@ $rand_id = rand(99,9999);
                 </section>
 
 
-<div class="justify-content-center" style="display: grid;">
-                <div class="col-lg-12 col-md-12 col-sm-12 mt-50">
+<div class="row justify-content-center">
+                <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
+            <div class="question-step quiz-complete" style="display:none">
+                <div class="question-layout-block">
+                    <div class="left-content has-bg">
+                        <h2>&nbsp;</h2>
+                        <div id="leform-form-1"
+                             class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                             _data-parent="1"
+                             _data-parent-col="0" style="display: block;">
+                            <div class="question-layout">
 
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="question-area-block">
+                </div>
+            </div>
+
+            <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
 
                 @if( !empty( $questions_layout ))
                     @foreach( $questions_layout as $question_layout_template)
-                            {!! $question_layout_template !!}
+                        {!! $question_layout_template !!}
                     @endforeach
                 @endif
             </div>
 
-
             <div class="question-area-temp hide"></div>
 
-                </div>
+        </div>
     </div>
 </div>
     </section>

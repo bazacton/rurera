@@ -119,7 +119,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="https://chimpgroup.com/theme/jobcareer-wordpress-job-board-theme/assets/extra-images/feature/Export-x4.jpg" alt="feature image"></a>
+                            <a href="#"><img src="../assets/default/img/ks1-year4-feature.jpg" alt="feature image"></a>
                         </figure>
                         <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 4)</a></h4>
                         <p>Get an awesome chance to test science, history, religious education and art subjects via quizzes.</p>
@@ -128,7 +128,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="https://chimpgroup.com/theme/jobcareer-wordpress-job-board-theme/assets/extra-images/feature/Export-x5.jpg" alt="feature image"></a>
+                            <a href="#"><img src="../assets/default/img/export-x5.jpg" alt="feature image"></a>
                         </figure>
                         <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 5)</a></h4>
                         <p>Explore our wide range of resources for Computing, maths, english, science, history, religious and art.</p>
@@ -238,36 +238,36 @@
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
-                        <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(20%) sepia(28%) saturate(3293%) hue-rotate(225deg) brightness(97%) contrast(96%);"> 
+                        <img class="mb-15" src="../assets/default/svgs/student-user.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(20%) sepia(28%) saturate(3293%) hue-rotate(225deg) brightness(97%) contrast(96%);"> 
                         <span class="font-18">National Curriculum</span>
                         <p class="pt-10">Explore wide range of learning resources available including for Years 1-6 and Functional Skills courses.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
-                        <img class="mb-15" src="../assets/default/svgs/lessons.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(82%) sepia(51%) saturate(5470%) hue-rotate(9deg) brightness(108%) contrast(99%);"> 
+                        <img class="mb-15" src="../assets/default/svgs/graphic-design.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(82%) sepia(51%) saturate(5470%) hue-rotate(9deg) brightness(108%) contrast(99%);"> 
                         <span class="font-18">Quick assessments</span>
-                        <p class="pt-10">Real-time marking data allows for quick identification of students who may require additional support or challenges.</p>
+                        <p class="pt-10">Real-time marking data helps identify students who need extra support or more challenges quickly.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
-                        <img class="mb-15" src="../assets/default/svgs/impact.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(46%) sepia(70%) saturate(3496%) hue-rotate(359deg) brightness(96%) contrast(98%);"> 
+                        <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(46%) sepia(70%) saturate(3496%) hue-rotate(359deg) brightness(96%) contrast(98%);"> 
                         <span class="font-18">Real time diagnostics</span>
-                        <p class="pt-10">It help identify students' knowledge gaps and areas of strength and recommend most suitable study path for quick progress.</p>
+                        <p class="pt-10">It helps find students' learning gaps, strengths, and suggests the best study path for faster progress.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
-                        <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(43%) sepia(68%) saturate(2203%) hue-rotate(219deg) brightness(104%) contrast(87%);"> 
+                        <img class="mb-15" src="../assets/default/svgs/support-white.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(43%) sepia(68%) saturate(2203%) hue-rotate(219deg) brightness(104%) contrast(87%);"> 
                         <span class="font-18">Get Rewards</span>
-                        <p class="pt-10">Enjoy the fun of learning with Reward Coins, earning rewards and creating lasting memories with favorite toys.</p>
+                        <p class="pt-10">Have fun learning with Reward Coins, earn rewards, and make lasting memories with favorite toys.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="home-sections home-sections-swiper container reward-program-section position-relative mt-90">
+    <section class="home-sections home-sections-swiper container reward-program-section position-relative mt-90" style="background-color: #dbedff;">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="position-relative reward-program-section-hero-card"> <img src="/store/1/default_images/home_sections_banners/club_points_banner.png" class="reward-program-section-hero" alt="Win Club Points">

@@ -78,7 +78,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
-                        <a href="javascript:;" class="review-btn">
+                        <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
@@ -133,9 +133,17 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                 </g>
                             </svg>
                         </a>
+
+
+
+
+
                         @endif
                     </div>
                 </div>
+
+
+
 
 
             </form>

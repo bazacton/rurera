@@ -36,17 +36,9 @@
                                 <li itemprop="quiz"><a itemprop="url" href="/quiz-page">Quiz Questions</a></li>
                                 <li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
                             </ul>
-                            <div class="widget-title mt-20">
-                                <h2 itemprop="title">Help Support</h2>
-                            </div>
-                            <ul>
-                                <li itemprop="support"><a itemprop="url" href="/support-page">Support Page</a></li>
-                                <li itemprop="faqs"><a itemprop="url" href="/contact-us">Contact us</a></li>
-                                <li itemprop="guides"><a itemprop="url" href="/user-guides">Help Center</a></li>
-                            </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <!-- <div class="col-6 col-md-4 col-lg-3">
                         <div class="widget widget-location">
                             <div class="widget-title">
                                 <h2 itemprop="title">Years</h2>
@@ -68,7 +60,7 @@
                                 <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/soa-img.jpg" alt="countries image" title="countries image" width="100%" height="auto"  loading="eager">South Africa</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-6 col-md-4 col-lg-3">
                         <div class="widget widget-location">
                             <div class="widget-title">
@@ -76,14 +68,22 @@
                             </div>
                             <ul>
                                 <li itemprop="curriculum"><a itemprop="url" href="/national-curriculum">National Curriculum</a></li>
-                                <li itemprop="maths"><a itemprop="url" href="/course/maths">Maths</a></li>
+                                <!-- <li itemprop="maths"><a itemprop="url" href="/course/maths">Maths</a></li>
                                 <li itemprop="english"><a itemprop="url" href="/course/english-year5">English</a></li>
                                 <li itemprop="science"><a itemprop="url" href="/course/science-year5">Science</a></li>
                                 <li itemprop="geography"><a itemprop="url" href="/course/geography-year1">Geography</a></li>
                                 <li itemprop="computing"><a itemprop="url" href="/course/computing-year5">Computing</a></li>
                                 <li itemprop="history"><a itemprop="url" href="/course/history-year-5">History</a></li>
                                 <li itemprop="religious"><a itemprop="url" href="/course/re-year-5">Religious</a></li>
-                                <li itemprop="art"><a itemprop="url" href="/course/art-year-5">Art</a></li>
+                                <li itemprop="art"><a itemprop="url" href="/course/art-year-5">Art</a></li> -->
+                            </ul>
+                            <div class="widget-title mt-20">
+                                <h2 itemprop="title">Help Support</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="support"><a itemprop="url" href="/support-page">Support Page</a></li>
+                                <li itemprop="faqs"><a itemprop="url" href="/contact-us">Contact us</a></li>
+                                <li itemprop="guides"><a itemprop="url" href="/user-guides">Help Center</a></li>
                             </ul>
                         </div>
                     </div>
