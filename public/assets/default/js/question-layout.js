@@ -551,11 +551,12 @@ function init_question_functions() {
     $(document).on('keyup', 'body', function (evt) {
         if (evt.key === 'ArrowLeft') {
               $('#prev-btn')[0].click();
-              console.log('left key');
           }
           if (evt.key === 'ArrowRight') {
-              console.log('right key');
               $('#next-btn')[0].click();
+          }
+        if (evt.key === 'Enter') {
+            $('#question-submit-btn')[0].click();
           }
     });
 

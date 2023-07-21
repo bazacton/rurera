@@ -121,7 +121,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                         </a>
                         @endif
                         @if( !isset( $disable_submit ) || $disable_submit == 'false')
-                        <a href="javascript:;" class="question-submit-btn">
+                        <a href="javascript:;" id="question-submit-btn" class="question-submit-btn">
                             mark answer
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
