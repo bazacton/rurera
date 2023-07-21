@@ -551,6 +551,17 @@ function init_question_functions() {
         });
     });
 
+    $(document).on('keyup', 'body', function (evt) {
+        if (evt.key === 'ArrowLeft') {
+              $('#prev-btn')[0].click();
+              console.log('left key');
+          }
+          if (evt.key === 'ArrowRight') {
+              console.log('right key');
+              $('#next-btn')[0].click();
+          }
+    });
+
 
     var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
@@ -671,6 +682,7 @@ function init_question_functions() {
 
     $(document).on('click', '.submit_quiz_final', function (e) {
            var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+        var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
            rurera_loader($(this), 'div');
            var thisObj = $(this);
            jQuery.ajax({
@@ -682,7 +694,7 @@ function init_question_functions() {
                },
                data: {"qattempt_id": qattempt_id},
                success: function (return_data) {
-                window.location.href = '/panel/quizzes/1861/check_answers';
+                window.location.href = '/panel/quizzes/'+quiz_result_id+'/check_answers';
                }
            });
        });

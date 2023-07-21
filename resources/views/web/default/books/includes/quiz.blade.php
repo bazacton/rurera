@@ -25,7 +25,7 @@ $content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($
 
         <div class="question-area-block">
             @include('web.default.panel.questions.question_layout',['question'=> $question, 'question_no' =>
-            $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult' => $newQuestionResult, 'quizResultObj' => $QuizzesResult])
+            $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult' => $newQuestionResult, 'prev_question' => 0,'next_question' => 0,'quizResultObj' => $QuizzesResult])
         </div>
 
         <div class="question-area-temp hide"></div>

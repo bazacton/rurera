@@ -116,9 +116,10 @@ class BooksController extends Controller
 
                 $data_values = json_decode($infoLinkData->data_values);
                 $questions_ids = (isset($data_values->questions_ids) && $data_values->questions_ids != '') ? explode(',', $data_values->questions_ids) : array();
-                $dependent_info = isset($data_values->dependent_info) ? explode(',', $data_values->dependent_info) : '';
+                $dependent_info = isset($data_values->dependent_info) ? explode(',', $data_values->dependent_info) : array();
                 $no_of_attempts = (isset($data_values->no_of_attempts) && $data_values->no_of_attempts != '') ? $data_values->no_of_attempts : 0;
                 $all_infolinks_checked = (count(array_intersect($dependent_info, $user_info_links_ids))) ? true : false;
+                $all_infolinks_checked = true;
 
                 if ($all_infolinks_checked == true) {
 
@@ -149,7 +150,7 @@ class BooksController extends Controller
                     "question"              => $questionObj,
                     "quizAttempt"           => $attemptLogObj,
                     "newQuestionResult"     => $newQuestionResult,
-                    "question_no"           => $question_no
+                    "question_no"           => $question_no,
                 ]);
                 break;
 

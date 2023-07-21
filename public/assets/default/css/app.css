@@ -23632,6 +23632,7 @@ Lms Books Library Style Start
     position: relative;
     overflow:hidden;
     border-radius: 14px;
+    text-align: center;
 }
 .lms-books-listing .listing-card .img-holder img {
     border-radius: 14px;

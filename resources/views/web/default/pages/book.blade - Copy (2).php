@@ -22,86 +22,83 @@
     $(document).ready(function () {
 
         var pages = []
+    @php
+        $book_title = isset( $book->book_title )? $book->book_title : '';
+                        $cover_image = isset( $book->cover_image )? $book->cover_image : '';
+                        $written_by = isset( $book->written_by )? $book->written_by : '';
+                        $illustrated_by = isset( $book->illustrated_by )? $book->illustrated_by : '';
 
-        pages[1] = {
-           htmlContent:'<div style="color:#fff;position:absolute;left: 250px;font-size: 33px;width: 250px;top: 800px;"><a href="https://google.com" style="color:red;">Chimp Test Link</a></div>'
+                        $publication_date = isset( $book->publication_date )? dateTimeFormat($book->publication_date, 'Y-n-d') : '';
+                        $no_of_pages = isset( $book->no_of_pages )? $book->no_of_pages : '';
+                        $age_group = isset( $book->age_group )? $book->age_group : '';
+                        $interest_area_array = isset( $book->interest_area )? explode(',', $book->interest_area) : '';
+                        $skill_set = isset( $book->skill_set )? $book->skill_set : '';
+                        $words_bank = isset( $book->words_bank )? $book->words_bank : '';
+                        $reading_level = isset( $book->reading_level )? $book->reading_level : '';
+
+
+                        $landing_page = '<div class="flipbook-data">' .
+                        '<div class="flipbook-listing"> ' .
+                        '<div class="listing-card"> ' .
+                        '<div class="card-body"> ' .
+                        '<div class="img-holder"> <figure> <a href="#"> <img src="'. $cover_image .'" alt=""> </a> </figure> </div>' .
+                        '<div class="text-holder"> ' .
+                        '<h4>'. $book_title .'</h4> ' .
+                        '<span class="listing-sub-title">Written by <strong>'. $written_by .'</strong> and illustrated by <strong>'. $illustrated_by .'</strong></span> ' .
+                        '<div class="listing-tags"> ' .
+                        '<ul> ' .
+                        '<li> <span>'. $age_group .'</span> <em>reading <br/> age</em> </li>' .
+                        '<li> <span>'. $no_of_pages .'</span> <em>Page <br/> count</em> </li>' .
+                        '<li> <span>1000L</span> <em>Lexile <br/> measure</em> </li>' .
+                        '<li> <span>'. $publication_date .'</span> <em>Publication <br/> date</em> </li>' .
+                        '</ul> ' .
+                        '</div>' .
+                        '<div class="people-reading"> <span> <img src="/assets/vendors/flipbook/images/reading-peo-img1.png" alt=""> 30k people are currently reading </span> </div>' .
+                        '</div></div>' .
+                        '<div class="card-footer"> <div class="btn-options"> ' .
+                        '<a href="#" class="listing-btn"><i class="fa-book fa"></i>Read the eBook</a> ' .
+                        '<a href="#" class="listing-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> ' .
+                        '<a href="#" class="remove-btn">Remove from reading </a> ' .
+                        '</div></div></div></div>' .
+                        '<div class="author-book-types"> <h5>What kind of book is The '.$book_title.'</h5> ' .
+                        '<ul> ';
+
+                        if( !empty( $interest_area_array ) )
+                        {
+                            foreach( $interest_area_array as $interest_area)
+                            {
+                                $landing_page .= '<li><a href="#">'. $interest_area .'</a></li>';
+                            }
+                        }
+                        $landing_page .= '</ul> </div><div class="book-title-img-holder"> <figure> <img src="/assets/vendors/flipbook/images/book-title-img.png" alt=""> </figure> </div></div>';
+
+@endphp
+
+        pages[0] = {
+           src: "/store/1/books/15/3.jpg",
+           thumb: "/store/1/books/15/3.jpg",
+           title: "Title Page",
+           htmlContent:'<div style="color:#fff;position:absolute;left: 0px;width: 100%;top: 0px;">@php echo $landing_page @endphp</div>'
         }
+
+        @php $counter = 1; @endphp
+        @if(!empty( $book->bookPages ) )
+            @foreach( $book->bookPages as $bookPage)
+                {
+                    pages[{{$counter}}] = {
+                        src: "/{{$bookPage->page_path}}",
+                        thumb: "/{{$bookPage->page_path}}",
+                        title: "{{$bookPage->page_title}}",
+                    }
+                    @php $counter++; @endphp
+                }
+            @endforeach
+        @endif
+
 
         $("#container").flipBook({
             //pdfUrl:"pdf/learning.pdf",
-            //pages:pages,
-			pages:[
-                /*{
-                    src:"/assets/vendors/flipbook/images/book2/page1.jpg",
-					thumb:"/assets/vendors/flipbook/images/book2/thumb1.jpg",
-					title:"Cover",
-					htmlContent:'<div class="flipbook-data"> <div class="flipbook-listing"> <div class="listing-card"> <div class="card-body"> <div class="img-holder"> <figure> <a href="#"> <img src="/assets/vendors/flipbook/images/listing-img2.png" alt=""> </a> </figure> </div><div class="text-holder"> <h4>The Phantom Tollbooth</h4> <span class="listing-sub-title">Written by <strong>Norton Juster</strong> and illustrated by <strong>Jules Feiffer</strong></span> <div class="listing-tags"> <ul> <li> <span>8 - 12</span> <em>reading <br/> age</em> </li><li> <span>288</span> <em>Page <br/> count</em> </li><li> <span>1000L</span> <em>Lexile <br/> measure</em> </li><li> <span>Oct 12, 1998</span> <em>Publication <br/> date</em> </li></ul> </div><div class="people-reading"> <span> <img src="/assets/vendors/flipbook/images/reading-peo-img1.png" alt=""> 30k people are currently reading </span> </div></div></div><div class="card-footer"> <div class="btn-options"> <a href="#" class="listing-btn"><i class="fa-book fa"></i>Read the eBook</a> <a href="#" class="listing-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> <a href="#" class="remove-btn">Remove from reading </a> </div></div></div></div><div class="author-book-types"> <h5>What kind of book is The Phantom Tollbooth</h5> <ul> <li><a href="#">imaginary places</a></li><li><a href="#">rescues and rescuing</a></li><li><a href="#">magic</a></li><li><a href="#">word play</a></li><li><a href="#">curiosity</a></li><li><a href="#">action and adventure</a></li><li><a href="#">fantasy and magic</a></li><li><a href="#">classics</a></li><li><a href="#">fiction</a></li></ul> </div><div class="book-title-img-holder"> <figure> <img src="/assets/vendors/flipbook/images/book-title-img.png" alt=""> </figure> </div></div>'
-				},*/
-
-                @php $page_count = 1;
-
-                $book_title = isset( $book->book_title )? $book->book_title : '';
-                $cover_image = isset( $book->cover_image )? $book->cover_image : '';
-                $written_by = isset( $book->written_by )? $book->written_by : '';
-                $illustrated_by = isset( $book->illustrated_by )? $book->illustrated_by : '';
-
-                $publication_date = isset( $book->publication_date )? dateTimeFormat($book->publication_date, 'Y-n-d') : '';
-                $no_of_pages = isset( $book->no_of_pages )? $book->no_of_pages : '';
-                $age_group = isset( $book->age_group )? $book->age_group : '';
-                $interest_area_array = isset( $book->interest_area )? explode(',', $book->interest_area) : '';
-                $skill_set = isset( $book->skill_set )? $book->skill_set : '';
-                $words_bank = isset( $book->words_bank )? $book->words_bank : '';
-                $reading_level = isset( $book->reading_level )? $book->reading_level : '';
-
-
-                $landing_page = '<div class="flipbook-data">' .
-                '<div class="flipbook-listing"> ' .
-                '<div class="listing-card"> ' .
-                '<div class="card-body"> ' .
-                '<div class="img-holder"> <figure> <a href="#"> <img src="'. $cover_image .'" alt=""> </a> </figure> </div>' .
-                '<div class="text-holder"> ' .
-                '<h4>'. $book_title .'</h4> ' .
-                '<span class="listing-sub-title">Written by <strong>'. $written_by .'</strong> and illustrated by <strong>'. $illustrated_by .'</strong></span> ' .
-                '<div class="listing-tags"> ' .
-                '<ul> ' .
-                '<li> <span>'. $age_group .'</span> <em>reading <br/> age</em> </li>' .
-                '<li> <span>'. $no_of_pages .'</span> <em>Page <br/> count</em> </li>' .
-                '<li> <span>1000L</span> <em>Lexile <br/> measure</em> </li>' .
-                '<li> <span>'. $publication_date .'</span> <em>Publication <br/> date</em> </li>' .
-                '</ul> ' .
-                '</div>' .
-                '<div class="people-reading"> <span> <img src="/assets/vendors/flipbook/images/reading-peo-img1.png" alt=""> 30k people are currently reading </span> </div>' .
-                '</div></div>' .
-                '<div class="card-footer"> <div class="btn-options"> ' .
-                '<a href="#" class="listing-btn"><i class="fa-book fa"></i>Read the eBook</a> ' .
-                '<a href="#" class="listing-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> ' .
-                '<a href="#" class="remove-btn">Remove from reading </a> ' .
-                '</div></div></div></div>' .
-                '<div class="author-book-types"> <h5>What kind of book is The '.$book_title.'</h5> ' .
-                '<ul> ';
-
-                if( !empty( $interest_area_array ) )
-                {
-                    foreach( $interest_area_array as $interest_area)
-                    {
-                        $landing_page .= '<li><a href="#">'. $interest_area .'</a></li>';
-                    }
-                }
-                $landing_page .= '</ul> </div><div class="book-title-img-holder"> <figure> <img src="/assets/vendors/flipbook/images/book-title-img.png" alt=""> </figure> </div></div>';
-                @endphp
-                @if(!empty( $book->bookPages ) )
-                    @foreach( $book->bookPages as $bookPage)
-                        {
-                            @php $page_content_data = isset( $page_content[$bookPage->id])? $page_content[$bookPage->id] : ''; @endphp
-                            src:"/{{$bookPage->page_path}}",
-        					thumb:"/{{$bookPage->page_path}}",
-        					title:"{{$bookPage->page_title}}",
-        					htmlContent: '{!! ($page_count == 1)? $landing_page.$page_content_data : $page_content_data !!}'
-        				},
-                    @php $page_count++; @endphp
-                    @endforeach
-                @endif
-            ],
+            pages:pages,
             btnToc : {enabled:false},
 			btnShare : {enabled:false},
 			btnDownloadPages : {enabled:false},
