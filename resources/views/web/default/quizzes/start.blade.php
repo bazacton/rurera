@@ -93,12 +93,12 @@ $rand_id = rand(99,9999);
                                     <tr class="odd">
                                         <td>{{$attempt_count}}</td>
                                         <td>{{ dateTimeFormat($resultObj->created_at, 'j M Y H:iA') }}</td>
-                                        <td>{{$resultObj->time_consumed}} / {{$resultObj->average_time}}</td>
+                                        <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->time_consumed .'/'. $resultObj->average_time }} </td>
                                         <td>{{$resultObj->attempted}} / {{$resultObj->total_questions}}</td>
-                                        <td>{{$resultObj->correct}}</td>
-                                        <td>{{$resultObj->incorrect}}</td>
-                                        <td>{{$resultObj->unanswered}}</td>
-                                        <td>{{$resultObj->percentage}}%</td>
+                                        <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->correct }} </td>
+                                        <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->incorrect }} </td>
+                                        <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->unanswered }} </td>
+                                        <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->percentage.'%'}} </td>
                                         @if( $resultObj->status == 'waiting')
                                             <td><a href="javascript:;" class="quiz-start-btn" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start">Resume</a></td>
                                         @else

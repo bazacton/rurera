@@ -32,6 +32,7 @@ $rand_id = rand(99,9999);
     .editor-field.correct{
         background: #70c17c !important;
     }
+    .question-area{min-height:300px !important;}
 
 </style>
 @endpush
@@ -95,30 +96,7 @@ $rand_id = rand(99,9999);
                             </div>
                             <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                                 <div class="topbar-right">
-                                    <div class="quiz-pagination">
-                                        <div class="swiper-container">
-                                        <ul class="swiper-wrapper">
-                                            @if( !empty( $questions_list ) )
-                                            @php $question_count = 1; @endphp
-                                            @foreach( $questions_list as $question_id)
-                                            @php $is_flagged = false; @endphp
-                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                            <li data-question_id="{{$question_id}}" class="swiper-slide {{$question_status_class}} {{ ( $is_flagged == true)?
-                                                    'has-flag' : ''}} "><a
-                                                    href="javascript:;">
-                                                    {{$question_count}}</a></li>
-                                            @php $question_count++; @endphp
-                                            @endforeach
-                                            @endif
-                                        </ul>
-                                        </div>
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-button-next"></div>
-                                    </div>
-                                    <div class="quiz-timer">
-                                        <span class="timer-number">4<em>m</em></span> <span
-                                            class="timer-number">50<em>s</em></span>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -126,35 +104,23 @@ $rand_id = rand(99,9999);
                 </section>
 
 
-<div class="row justify-content-center">
-                <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
-            <div class="question-step quiz-complete" style="display:none">
-                <div class="question-layout-block">
-                    <div class="left-content has-bg">
-                        <h2>&nbsp;</h2>
-                        <div id="leform-form-1"
-                             class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
-                             _data-parent="1"
-                             _data-parent-col="0" style="display: block;">
-                            <div class="question-layout">
+<div class="justify-content-center" style="display: grid;">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-50">
 
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+            <div class="question-area-block">
+
+                @if( !empty( $questions_layout ))
+                    @foreach( $questions_layout as $question_layout_template)
+                            {!! $question_layout_template !!}
+                    @endforeach
+                @endif
             </div>
 
-            <div class="question-area-block" data-questions_layout="{{json_encode($questions_layout)}}">
-
-                @php $first_question = rurera_decode($questions_layout[$first_question_id]);
-                echo $first_question;
-                @endphp
-            </div>
 
             <div class="question-area-temp hide"></div>
 
-        </div>
+                </div>
     </div>
 </div>
     </section>

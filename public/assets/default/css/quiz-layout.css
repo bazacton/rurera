@@ -2169,6 +2169,7 @@ Lms Quiz Wf Style End
 .quiz-pagination .swiper-container li {
     margin: 6px 6px 0 0;
     width: 21px;
+    max-width: 22.25px;
 }
 .quiz-pagination li a {
     border: 2px solid #ecefff;

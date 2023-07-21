@@ -559,6 +559,7 @@ class QuizController extends Controller
         $quiz = Quiz::find($QuizzesResult->parent_type_id);
 
         $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->get();
+        $quizAttempt = QuizzAttempts::where('quiz_result_id', $result_id)->first();
 
         $questions_layout = $questions_list = array();
         $first_question_id = 0;
@@ -568,8 +569,28 @@ class QuizController extends Controller
                 if ($count == 1) {
                     $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
-                $question_response_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
-                $questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
+
+                $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
+
+                $question_response_layout = view('web.default.panel.questions.question_layout', [
+                        'question'          => $questionObj,
+                        'prev_question'     => 0,
+                        'next_question'     => 0,
+                        'quizAttempt'       => $quizAttempt,
+                        'newQuestionResult' => $QuizzResultQuestionObj,
+                        'question_no'       => $count,
+                        'quizResultObj'     => $QuizzesResult,
+                        'disable_submit'    => 'true',
+                        'disable_finish'    => 'true',
+                        'disable_prev'    => 'true',
+                        'disable_next'    => 'true',
+                        'class'             => 'disable-div',
+                    ])->render();
+
+
+                $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+                //$questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
+                $questions_layout[$QuizzResultQuestionObj->question_id] = $question_response_layout;
                 $questions_list[] = $QuizzResultQuestionObj->question_id;
                 $count++;
             }

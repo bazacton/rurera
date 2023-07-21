@@ -1,857 +1,367 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-    <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/assets/default/vendors/owl-carousel2/owl.carousel.min.css">
+<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+
 @endpush
 
 @section('content')
+<section class="content-section">
 
-    @if(!empty($heroSectionData))
-
-        @if(!empty($heroSectionData['has_lottie']) and $heroSectionData['has_lottie'] == "1")
-            @push('scripts_bottom')
-                <script src="/assets/default/vendors/lottie/lottie-player.js"></script>
-            @endpush
-        @endif
-
-        <section class="slider-container  {{ ($heroSection == "2") ? 'slider-hero-section2' : '' }}" @if(empty($heroSectionData['is_video_background'])) style="background-image: url('{{ $heroSectionData['hero_background'] }}')" @endif>
-
-            @if($heroSection == "1")
-                @if(!empty($heroSectionData['is_video_background']))
-                    <video playsinline autoplay muted loop id="homeHeroVideoBackground" class="img-cover">
-                        <source src="{{ $heroSectionData['hero_background'] }}" type="video/mp4">
-                    </video>
-                @endif
-
-                <div class="mask"></div>
-            @endif
-
-            <div class="container user-select-none">
-
-                @if($heroSection == "2")
-                    <div class="row slider-content align-items-center hero-section2 flex-column-reverse flex-md-row">
-                        <div class="col-12 col-md-7 col-lg-6">
-                            <h1 class="text-secondary font-weight-bold">{{ $heroSectionData['title'] }}</h1>
-                            <p class="slide-hint text-gray mt-20">{!! nl2br($heroSectionData['description']) !!}</p>
-
-                            <form action="/search" method="get" class="d-inline-flex mt-30 mt-lg-30 w-100">
-                                <div class="form-group d-flex align-items-center m-0 slider-search p-10 bg-white w-100">
-                                    <input type="text" name="search" class="form-control border-0 mr-lg-50" placeholder="{{ trans('home.slider_search_placeholder') }}"/>
-                                    <button type="submit" class="btn btn-primary rounded-pill">{{ trans('home.find') }}</button>
+    <section class="home-banner slider-hero-section position-relative pt-100 pb-100" style="background: url(../assets/default/img/home-banner.jpg) 0 0 /cover no-repeat; min-height: 650px;">
+        <div class="container user-select-none">
+            <div class="row slider-content align-items-center hero-section2 flex-column-reverse flex-md-row">
+                <div class="col-12 col-md-12 col-lg-10 text-center mx-auto"> 
+                    <h1 class="font-50 font-weight-bold text-dark-charcoal">Learn, Practice & Win with <br> <span class="text-scribble">Rurera</span></h1>
+                    <p class="font-19 pt-15">It is a fully-featured educational platform that serve courses and real <br>practices  for KS1, KS2, SATs, 11plus and much more...</p>
+                    <div class="choose-sats mt-50">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="sats-box justify-content: center">
+                                    <span class="mb-10" style="color: #3d358b;">Practice papers</span>
+                                    <p>Available for ks1, ks2, sats, 11 plus and much more.</p>
+                                    <a href="#">Learn more</a>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-12 col-md-5 col-lg-6">
-                            @if(!empty($heroSectionData['has_lottie']) and $heroSectionData['has_lottie'] == "1")
-                                <lottie-player src="{{ $heroSectionData['hero_vector'] }}" background="transparent" speed="1" class="w-100" loop autoplay></lottie-player>
-                            @else
-                                <img src="{{ $heroSectionData['hero_vector'] }}" alt="{{ $heroSectionData['title'] }}" class="img-cover">
-                            @endif
-                        </div>
-                    </div>
-                @else
-                    <div class="text-center slider-content">
-                        <h1>{{ $heroSectionData['title'] }}</h1>
-                        <div class="row h-100 align-items-center justify-content-center text-center">
-                            <div class="col-12 col-md-9 col-lg-7">
-                                <p class="mt-30 slide-hint">{!! nl2br($heroSectionData['description']) !!}</p>
-
-                                <form action="/search" method="get" class="d-inline-flex mt-30 mt-lg-50 w-100">
-                                    <div class="form-group d-flex align-items-center m-0 slider-search p-10 bg-white w-100">
-                                        <input type="text" name="search" class="form-control border-0 mr-lg-50" placeholder="{{ trans('home.slider_search_placeholder') }}"/>
-                                        <button type="submit" class="btn btn-primary rounded-pill">{{ trans('home.find') }}</button>
-                                    </div>
-                                </form>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="sats-box justify-content: center">
+                                    <span class="mb-10" style="color: #f18700;">Interactive questions</span>
+                                    <p>Over 5000+ questions are there to test and pass exam.</p>
+                                    <a href="#">Learn more</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="sats-box justify-content: center">
+                                    <span class="mb-10" style="color: #7679ee;">Strong Foundation</span>
+                                    <p>Fostering a strong impact in every aspect of your Child's life.</p>
+                                    <a href="#">Learn more</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
-            </div>
-        </section>
-    @endif
-
-
-
-
-    @foreach($homeSections as $homeSection)
-
-        @if($homeSection->name == \App\Models\HomeSection::$featured_classes and !empty($featureWebinars) and !$featureWebinars->isEmpty())
-            <section class="home-sections container mt-0 ">
-                <div class="px-20 px-md-0">
-                    <h2 class="section-title">{{ trans('home.featured_classes') }}</h2>
-                    <p class="section-hint">{{ trans('home.featured_classes_hint') }}</p>
-                </div>
-
-                <div class="feature-slider-container position-relative d-flex justify-content-center mt-10">
-                    <div class="swiper-container features-swiper-container pb-25">
-                        <div class="swiper-wrapper py-10">
-                            @foreach($featureWebinars as $feature)
-                                <div class="swiper-slide">
-
-                                    <a href="{{ $feature->webinar->getUrl() }}">
-                                        <div class="feature-slider d-flex h-100" style="background-image: url('{{ $feature->webinar->getImage() }}')">
-                                            <div class="mask"></div>
-                                            <div class="p-5 p-md-25 feature-slider-card">
-                                                <div class="d-flex flex-column feature-slider-body position-relative h-100">
-                                                    @if($feature->webinar->bestTicket() < $feature->webinar->price)
-                                                        <span class="badge badge-danger mb-2 ">{{ trans('public.offer',['off' => $feature->webinar->bestTicket(true)['percent']]) }}</span>
-                                                    @endif
-                                                    <a href="{{ $feature->webinar->getUrl() }}">
-                                                        <h3 class="card-title mt-1">{{ $feature->webinar->title }}</h3>
-                                                    </a>
-
-                                                    <div class="user-inline-avatar mt-15 d-flex align-items-center">
-                                                        <div class="avatar bg-gray200">
-                                                            <img src="{{ $feature->webinar->teacher->getAvatar() }}" class="img-cover" alt="{{ $feature->webinar->teacher->full_naem }}">
-                                                        </div>
-                                                        <a href="{{ $feature->webinar->teacher->getProfileUrl() }}" target="_blank" class="user-name font-14 ml-5">{{ $feature->webinar->teacher->full_name }}</a>
-                                                    </div>
-
-                                                    <p class="mt-25 feature-desc text-gray">{{ $feature->description }}</p>
-
-                                                    @include('web.default.includes.webinar.rate',['rate' => $feature->webinar->getRate()])
-
-                                                    <div class="feature-footer mt-auto d-flex align-items-center justify-content-between">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div class="d-flex align-items-center">
-                                                                <i data-feather="clock" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="duration ml-5 text-dark-blue font-14">{{ convertMinutesToHourAndMinute($feature->webinar->duration) }} {{ trans('home.hours') }}</span>
-                                                            </div>
-
-                                                            <div class="vertical-line mx-10"></div>
-
-                                                            <div class="d-flex align-items-center">
-                                                                <i data-feather="calendar" width="20" height="20" class="webinar-icon"></i>
-                                                                <span class="date-published ml-5 text-dark-blue font-14">{{ dateTimeFormat(!empty($feature->webinar->start_date) ? $feature->webinar->start_date : $feature->webinar->created_at,'j M Y') }}</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="feature-price-box">
-                                                            @if(!empty($feature->webinar->price ) and $feature->webinar->price > 0)
-                                                                @if($feature->webinar->bestTicket() < $feature->webinar->price)
-                                                                    <span class="real">{{ handlePrice($feature->webinar->bestTicket()) }}</span>
-                                                                @else
-                                                                    {{ handlePrice($feature->webinar->price) }}
-                                                                @endif
-                                                            @else
-                                                                {{ trans('public.free') }}
-                                                            @endif
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="swiper-pagination features-swiper-pagination"></div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$latest_bundles and !empty($latestBundles) and !$latestBundles->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <h2 class="section-title">{{ trans('update.latest_bundles') }}</h2>
-                        <p class="section-hint">{{ trans('update.latest_bundles_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?type[]=bundle" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container latest-bundle-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($latestBundles as $latestBundle)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $latestBundle])
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination bundle-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$latest_classes and !empty($latestWebinars) and !$latestWebinars->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between ">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.latest_classes') }}</h2>
-                        <p class="section-hint">{{ trans('home.latest_webinars_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?sort=newest" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container latest-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($latestWebinars as $latestWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $latestWebinar])
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination latest-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$best_rates and !empty($bestRateWebinars) and !$bestRateWebinars->isEmpty())
-            <section class="home-sections container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.best_rates') }}</h2>
-                        <p class="section-hint">{{ trans('home.best_rates_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?sort=best_rates" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container best-rates-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($bestRateWebinars as $bestRateWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $bestRateWebinar])
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination best-rates-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$trend_categories and !empty($trendCategories) and !$trendCategories->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <h2 class="section-title">{{ trans('home.trending_categories') }}</h2>
-                <p class="section-hint">{{ trans('home.trending_categories_hint') }}</p>
-
-                <div class="row mt-40">
-
-                    @foreach($trendCategories as $trend)
-                        <div class="col-6 col-md-3 col-lg-2 mt-20 mt-md-0">
-                            <a href="{{ $trend->category->getUrl() }}">
-                                <div class="trending-card d-flex flex-column align-items-center w-100">
-                                    <div class="trending-image d-flex align-items-center justify-content-center w-100" style="background-color: {{ $trend->color }}">
-                                        <div class="icon mb-3">
-                                            <img src="{{ $trend->getIcon() }}" width="10" class="img-cover" alt="{{ $trend->category->title }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="item-count px-10 px-lg-20 py-5 py-lg-10">{{ $trend->category->webinars_count }} {{ trans('product.course') }}</div>
-
-                                    <h3>{{ $trend->category->title }}</h3>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </section>
-        @endif
-
-        {{-- Ads Bannaer --}}
-        @if($homeSection->name == \App\Models\HomeSection::$full_advertising_banner and !empty($advertisingBanners1) and count($advertisingBanners1))
-            <div class="home-sections container">
-                <div class="row">
-                    @foreach($advertisingBanners1 as $banner1)
-                        <div class="col-{{ $banner1->size }}">
-                            <a href="{{ $banner1->link }}">
-                                <img src="{{ $banner1->image }}" class="img-cover rounded-sm" alt="{{ $banner1->title }}">
-                            </a>
-                        </div>
-                    @endforeach
+                    </div>  
                 </div>
             </div>
-        @endif
-        {{-- ./ Ads Bannaer --}}
-
-        @if($homeSection->name == \App\Models\HomeSection::$best_sellers and !empty($bestSaleWebinars) and !$bestSaleWebinars->isEmpty())
-            <section class="home-sections container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.best_sellers') }}</h2>
-                        <p class="section-hint">{{ trans('home.best_sellers_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?sort=bestsellers" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container best-sales-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($bestSaleWebinars as $bestSaleWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $bestSaleWebinar])
+        </div>
+    </section>
+    <section class="py-40" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #f27530;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mx-auto">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="d-flex align-items-center justify-content-sm-center"> 
+                                    <span class="mr-15"> <img src="../assets/default/svgs/exam-full-white.svg" alt="globe svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> 
+                                    </span> 
+                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">5000+ <small class="pt-5 font-16">Quiz practices</small></span> 
                                 </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination best-sales-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$discount_classes and !empty($hasDiscountWebinars) and !$hasDiscountWebinars->isEmpty())
-            <section class="home-sections container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.discount_classes') }}</h2>
-                        <p class="section-hint">{{ trans('home.discount_classes_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?discount=on" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container has-discount-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-                            @foreach($hasDiscountWebinars as $hasDiscountWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $hasDiscountWebinar])
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination has-discount-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$free_classes and !empty($freeWebinars) and !$freeWebinars->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.free_classes') }}</h2>
-                        <p class="section-hint">{{ trans('home.free_classes_hint') }}</p>
-                    </div>
-
-                    <a href="/classes?free=on" class="btn btn-border-white">{{ trans('home.view_all') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container free-webinars-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-
-                            @foreach($freeWebinars as $freeWebinar)
-                                <div class="swiper-slide">
-                                    @include('web.default.includes.webinar.grid-card',['webinar' => $freeWebinar])
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination free-webinars-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$store_products and !empty($newProducts) and !$newProducts->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('update.store_products') }}</h2>
-                        <p class="section-hint">{{ trans('update.store_products_hint') }}</p>
-                    </div>
-
-                    <a href="/products" class="btn btn-border-white">{{ trans('update.all_products') }}</a>
-                </div>
-
-                <div class="mt-10 position-relative">
-                    <div class="swiper-container new-products-swiper px-12">
-                        <div class="swiper-wrapper py-20">
-
-                            @foreach($newProducts as $newProduct)
-                                <div class="swiper-slide">
-                                    @include('web.default.products.includes.card',['product' => $newProduct])
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination new-products-swiper-pagination"></div>
-                    </div>
-                </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$testimonials and !empty($testimonials) and !$testimonials->isEmpty())
-            <div class="position-relative testimonials-container">
-
-                <div id="parallax1" class="ltr">
-                    <div data-depth="0.2" class="gradient-box left-gradient-box"></div>
-                </div>
-
-                <section class="container home-sections home-sections-swiper">
-                    <div class="text-center">
-                        <h2 class="section-title">{{ trans('home.testimonials') }}</h2>
-                        <p class="section-hint">{{ trans('home.testimonials_hint') }}</p>
-                    </div>
-
-                    <div class="position-relative">
-                        <div class="swiper-container testimonials-swiper px-12">
-                            <div class="swiper-wrapper">
-
-                                @foreach($testimonials as $testimonial)
-                                    <div class="swiper-slide">
-                                        <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center">
-                                            <div class="d-flex flex-column align-items-center">
-                                                <div class="testimonials-user-avatar">
-                                                    <img src="{{ $testimonial->user_avatar }}" alt="{{ $testimonial->user_name }}" class="img-cover rounded-circle">
-                                                </div>
-                                                <h4 class="font-16 font-weight-bold text-secondary mt-30">{{ $testimonial->user_name }}</h4>
-                                                <span class="d-block font-14 text-gray">{{ $testimonial->user_bio }}</span>
-                                                @include('web.default.includes.webinar.rate',['rate' => $testimonial->rate, 'dontShowRate' => true])
-                                            </div>
-
-                                            <p class="mt-25 text-gray font-14">{!! nl2br($testimonial->comment) !!}</p>
-
-                                            <div class="bottom-gradient"></div>
-                                        </div>
-                                    </div>
-                                @endforeach
                             </div>
-
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                            <div class="swiper-pagination testimonials-swiper-pagination"></div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="d-flex align-items-center justify-content-sm-center"> 
+                                    <span class="mr-15"> <img src="../assets/default/svgs/book-opend-white.svg" alt="globe svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span> 
+                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">100+ <small class="pt-5 font-16">Books</small></span> 
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="d-flex align-items-center justify-content-sm-center"> 
+                                    <span class="mr-15"> <img src="../assets/default/svgs/globe-sm.svg" alt="globe svg" title="globe svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span> 
+                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">60+ <small class="pt-5 font-16">Cities</small></span> 
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="d-flex align-items-center justify-content-sm-center"> 
+                                    <span class="mr-15"> <img src="../assets/default/svgs/study-full-white.svg" alt="book svg" title="book svg" width="100%" height="auto" itemprop="image" loading="eager" style="width: 45px; height: 45px;"> </span> 
+                                    <span class="text-white font-24 font-weight-500 d-inline-flex flex-column line-height-1">5000+ <small class="pt-5 font-16">Questions</small></span> 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </section>
-
-                <div id="parallax2" class="ltr">
-                    <div data-depth="0.4" class="gradient-box right-gradient-box"></div>
-                </div>
-
-                <div id="parallax3" class="ltr">
-                    <div data-depth="0.8" class="gradient-box bottom-gradient-box"></div>
                 </div>
             </div>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$subscribes and !empty($subscribes) and !$subscribes->isEmpty())
-            <div class="position-relative subscribes-container pe-none user-select-none">
-                <div id="parallax4" class="ltr d-none d-md-block">
-                    <div data-depth="0.2" class="gradient-box left-gradient-box"></div>
-                </div>
-
-                <section class="container home-sections home-sections-swiper">
-                    <div class="text-center">
-                        <h2 class="section-title">{{ trans('home.subscribe_now') }}</h2>
-                        <p class="section-hint">{{ trans('home.subscribe_now_hint') }}</p>
-                    </div>
-
-                    <div class="position-relative mt-30">
-                        <div class="swiper-container subscribes-swiper px-12">
-                            <div class="swiper-wrapper py-20">
-
-                                @foreach($subscribes as $subscribe)
-                                    <div class="swiper-slide">
-                                        <div class="subscribe-plan position-relative bg-white d-flex flex-column align-items-center rounded-sm shadow pt-50 pb-20 px-20">
-                                            @if($subscribe->is_popular)
-                                                <span class="badge badge-primary badge-popular px-15 py-5">{{ trans('panel.popular') }}</span>
-                                            @endif
-
-                                            <div class="plan-icon">
-                                                <img src="{{ $subscribe->icon }}" class="img-cover" alt="">
-                                            </div>
-
-                                            <h3 class="mt-20 font-30 text-secondary">{{ $subscribe->title }}</h3>
-                                            <p class="font-weight-500 text-gray mt-10">{{ $subscribe->description }}</p>
-
-                                            <div class="d-flex align-items-start text-primary mt-30">
-                                                <span class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>
-                                            </div>
-
-                                            <ul class="mt-20 plan-feature">
-                                                <li class="mt-10">{{ $subscribe->days }} {{ trans('financial.days_of_subscription') }}</li>
-                                                <li class="mt-10">
-                                                    @if($subscribe->infinite_use)
-                                                        {{ trans('update.unlimited') }}
-                                                    @else
-                                                        {{ $subscribe->usable_count }}
-                                                    @endif
-                                                    <span class="ml-5">{{ trans('update.subscribes') }}</span>
-                                                </li>
-                                            </ul>
-
-                                            @if(auth()->check())
-                                                <form action="/panel/financial/pay-subscribes" method="post" class="w-100">
-                                                    {{ csrf_field() }}
-                                                    <input name="amount" value="{{ $subscribe->price }}" type="hidden">
-                                                    <input name="id" value="{{ $subscribe->id }}" type="hidden">
-                                                    <button type="submit" class="btn btn-primary btn-block mt-50">{{ trans('financial.purchase') }}</button>
-                                                </form>
-                                            @else
-                                                <a href="/login" class="btn btn-primary btn-block mt-50">{{ trans('financial.purchase') }}</a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div class="swiper-pagination subscribes-swiper-pagination"></div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <div id="parallax5" class="ltr d-none d-md-block">
-                    <div data-depth="0.4" class="gradient-box right-gradient-box"></div>
-                </div>
-
-                <div id="parallax6" class="ltr d-none d-md-block">
-                    <div data-depth="0.6" class="gradient-box bottom-gradient-box"></div>
-                </div>
-            </div>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$find_instructors and !empty($findInstructorSection))
-            <section class="home-sections home-sections-swiper container find-instructor-section position-relative">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-6">
-                        <div class="">
-                            <h2 class="font-36 font-weight-bold text-dark">{{ $findInstructorSection['title'] ?? '' }}</h2>
-                            <p class="font-16 font-weight-normal text-gray mt-10">{{ $findInstructorSection['description'] ?? '' }}</p>
-
-                            <div class="mt-35 d-flex align-items-center">
-                                @if(!empty($findInstructorSection['button1']))
-                                    <a href="{{ $findInstructorSection['button1']['link'] }}" class="btn btn-primary">{{ $findInstructorSection['button1']['title'] }}</a>
-                                @endif
-
-                                @if(!empty($findInstructorSection['button2']))
-                                    <a href="{{ $findInstructorSection['button2']['link'] }}" class="btn btn-outline-primary ml-15">{{ $findInstructorSection['button2']['title'] }}</a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                        <div class="position-relative ">
-                            <img src="{{ $findInstructorSection['image'] }}" class="find-instructor-section-hero" alt="{{ $findInstructorSection['title'] }}">
-                            <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle">
-                            <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots">
-
-                            <div class="example-instructor-card bg-white rounded-sm shadow-lg  p-5 p-md-15 d-flex align-items-center">
-                                <div class="example-instructor-card-avatar">
-                                    <img src="/assets/default/img/home/toutor_finder.svg" class="img-cover rounded-circle" alt="user name">
-                                </div>
-
-                                <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.looking_for_an_instructor') }}</span>
-                                    <span class="text-gray font-12 font-weight-500">{{ trans('update.find_the_best_instructor_now') }}</span>
-                                </div>
-                            </div>
-                        </div>
+        </div>
+    </section>
+    <section class="pt-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title mb-50 text-center">
+                        <h2 class="mb-10">Redefining Personalized learning</h2>
+                        <p>we've combined the best of education, real quiz practices into real results to cater and pass the exams.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$reward_program and !empty($rewardProgramSection))
-            <section class="home-sections home-sections-swiper container reward-program-section position-relative">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-6">
-                        <div class="position-relative reward-program-section-hero-card">
-                            <img src="{{ $rewardProgramSection['image'] }}" class="reward-program-section-hero" alt="{{ $rewardProgramSection['title'] }}">
-
-                            <div class="example-reward-card bg-white rounded-sm shadow-lg p-5 p-md-15 d-flex align-items-center">
-                                <div class="example-reward-card-medal">
-                                    <img src="/assets/default/img/rewards/medal.png" class="img-cover rounded-circle" alt="medal">
-                                </div>
-
-                                <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.you_got_50_points') }}</span>
-                                    <span class="text-gray font-12 font-weight-500">{{ trans('update.for_completing_the_course') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                        <div class="">
-                            <h2 class="font-36 font-weight-bold text-dark">{{ $rewardProgramSection['title'] ?? '' }}</h2>
-                            <p class="font-16 font-weight-normal text-gray mt-10">{{ $rewardProgramSection['description'] ?? '' }}</p>
-
-                            <div class="mt-35 d-flex align-items-center">
-                                @if(!empty($rewardProgramSection['button1']))
-                                    <a href="{{ $rewardProgramSection['button1']['link'] }}" class="btn btn-primary">{{ $rewardProgramSection['button1']['title'] }}</a>
-                                @endif
-
-                                @if(!empty($rewardProgramSection['button2']))
-                                    <a href="{{ $rewardProgramSection['button2']['link'] }}" class="btn btn-outline-primary ml-15">{{ $rewardProgramSection['button2']['title'] }}</a>
-                                @endif
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20" class="mb-20">
+                            <a href="#"><img src="../assets/default/img/ks1-year1-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS1 (Year 1)</a></h4>
+                        <p>Students can take quiz to test their knowledge of Geography, science, history, religious and art.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$become_instructor and !empty($becomeInstructorSection))
-            <section class="home-sections home-sections-swiper container find-instructor-section position-relative">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-6">
-                        <div class="">
-                            <h2 class="font-36 font-weight-bold text-dark">{{ $becomeInstructorSection['title'] ?? '' }}</h2>
-                            <p class="font-16 font-weight-normal text-gray mt-10">{{ $becomeInstructorSection['description'] ?? '' }}</p>
-
-                            <div class="mt-35 d-flex align-items-center">
-                                @if(!empty($becomeInstructorSection['button1']))
-                                    <a href="{{ empty($authUser) ? '/login' : (($authUser->isUser()) ? $becomeInstructorSection['button1']['link'] : '/panel/financial/registration-packages') }}" class="btn btn-primary">{{ $becomeInstructorSection['button1']['title'] }}</a>
-                                @endif
-
-                                @if(!empty($becomeInstructorSection['button2']))
-                                    <a href="{{ empty($authUser) ? '/login' : (($authUser->isUser()) ? $becomeInstructorSection['button2']['link'] : '/panel/financial/registration-packages') }}" class="btn btn-outline-primary ml-15">{{ $becomeInstructorSection['button2']['title'] }}</a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                        <div class="position-relative ">
-                            <img src="{{ $becomeInstructorSection['image'] }}" class="find-instructor-section-hero" alt="{{ $becomeInstructorSection['title'] }}">
-                            <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle">
-                            <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots">
-
-                            <div class="example-instructor-card bg-white rounded-sm shadow-lg border p-5 p-md-15 d-flex align-items-center">
-                                <div class="example-instructor-card-avatar">
-                                    <img src="/assets/default/img/home/become_instructor.svg" class="img-cover rounded-circle" alt="user name">
-                                </div>
-
-                                <div class="flex-grow-1 ml-15">
-                                    <span class="font-14 font-weight-bold text-secondary d-block">{{ trans('update.become_an_instructor') }}</span>
-                                    <span class="text-gray font-12 font-weight-500">{{ trans('update.become_instructor_tagline') }}</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/ks1-year2-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS1 (Year 2)</a></h4>
+                        <p>Find out everything required to test science, history, religious education and art subjects.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$forum_section and !empty($forumSection))
-            <section class="home-sections home-sections-swiper container find-instructor-section position-relative">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                        <div class="position-relative ">
-                            <img src="{{ $forumSection['image'] }}" class="find-instructor-section-hero" alt="{{ $forumSection['title'] }}">
-                            <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle">
-                            <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots">
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6">
-                        <div class="">
-                            <h2 class="font-36 font-weight-bold text-dark">{{ $forumSection['title'] ?? '' }}</h2>
-                            <p class="font-16 font-weight-normal text-gray mt-10">{{ $forumSection['description'] ?? '' }}</p>
-
-                            <div class="mt-35 d-flex align-items-center">
-                                @if(!empty($forumSection['button1']))
-                                    <a href="{{ $forumSection['button1']['link'] }}" class="btn btn-primary">{{ $forumSection['button1']['title'] }}</a>
-                                @endif
-
-                                @if(!empty($forumSection['button2']))
-                                    <a href="{{ $forumSection['button2']['link'] }}" class="btn btn-outline-primary ml-15">{{ $forumSection['button2']['title'] }}</a>
-                                @endif
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/ks1-year3-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 3)</a></h4>
+                        <p>Explore our wide range of resources for Maths, english, science, history, religious and art.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$video_or_image_section and !empty($boxVideoOrImage))
-            <section class="home-sections home-sections-swiper position-relative">
-                <div class="home-video-mask"></div>
-                <div class="container home-video-container d-flex flex-column align-items-center justify-content-center position-relative" style="background-image: url('{{ $boxVideoOrImage['background'] ?? '' }}')">
-                    <a href="{{ $boxVideoOrImage['link'] ?? '' }}" class="home-video-play-button d-flex align-items-center justify-content-center position-relative">
-                        <i data-feather="play" width="36" height="36" class=""></i>
-                    </a>
-
-                    <div class="mt-50 pt-10 text-center">
-                        <h2 class="home-video-title">{{ $boxVideoOrImage['title'] ?? '' }}</h2>
-                        <p class="home-video-hint mt-10">{{ $boxVideoOrImage['description'] ?? '' }}</p>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="https://chimpgroup.com/theme/jobcareer-wordpress-job-board-theme/assets/extra-images/feature/Export-x4.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 4)</a></h4>
+                        <p>Get an awesome chance to test science, history, religious education and art subjects via quizzes.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        @if($homeSection->name == \App\Models\HomeSection::$instructors and !empty($instructors) and !$instructors->isEmpty())
-            <section class="home-sections container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.instructors') }}</h2>
-                        <p class="section-hint">{{ trans('home.instructors_hint') }}</p>
-                    </div>
-
-                    <a href="/instructors" class="btn btn-border-white">{{ trans('home.all_instructors') }}</a>
-                </div>
-
-                <div class="position-relative mt-20 ltr">
-                    <div class="owl-carousel customers-testimonials instructors-swiper-container">
-
-                        @foreach($instructors as $instructor)
-                            <div class="item">
-                                <div class="shadow-effect">
-                                    <div class="instructors-card d-flex flex-column align-items-center justify-content-center">
-                                        <div class="instructors-card-avatar">
-                                            <img src="{{ $instructor->getAvatar(108) }}" alt="{{ $instructor->full_name }}" class="rounded-circle img-cover">
-                                        </div>
-                                        <div class="instructors-card-info mt-10 text-center">
-                                            <a href="{{ $instructor->getProfileUrl() }}" target="_blank">
-                                                <h3 class="font-16 font-weight-bold text-dark-blue">{{ $instructor->full_name }}</h3>
-                                            </a>
-
-                                            <p class="font-14 text-gray mt-5">{{ $instructor->bio }}</p>
-                                            <div class="stars-card d-flex align-items-center justify-content-center mt-10">
-                                                @php
-                                                    $i = 5;
-                                                @endphp
-                                                @while(--$i >= 5 - $instructor->rates())
-                                                    <i data-feather="star" width="20" height="20" class="active"></i>
-                                                @endwhile
-                                                @while($i-- >= 0)
-                                                    <i data-feather="star" width="20" height="20" class=""></i>
-                                                @endwhile
-                                            </div>
-
-                                            @if(!empty($instructor->hasMeeting()))
-                                                <a href="{{ $instructor->getProfileUrl() }}?tab=appointments" class="btn btn-primary btn-sm rounded-pill mt-15">{{ trans('home.reserve_a_live_class') }}</a>
-                                            @else
-                                                <a href="{{ $instructor->getProfileUrl() }}" class="btn btn-primary btn-sm rounded-pill mt-15">{{ trans('public.profile') }}</a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="https://chimpgroup.com/theme/jobcareer-wordpress-job-board-theme/assets/extra-images/feature/Export-x5.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 5)</a></h4>
+                        <p>Explore our wide range of resources for Computing, maths, english, science, history, religious and art.</p>
                     </div>
                 </div>
-            </section>
-        @endif
-
-        {{-- Ads Bannaer --}}
-        @if($homeSection->name == \App\Models\HomeSection::$half_advertising_banner and !empty($advertisingBanners2) and count($advertisingBanners2))
-            <div class="home-sections container">
-                <div class="row">
-                    @foreach($advertisingBanners2 as $banner2)
-                        <div class="col-{{ $banner2->size }}">
-                            <a href="{{ $banner2->link }}">
-                                <img src="{{ $banner2->image }}" class="img-cover rounded-sm" alt="{{ $banner2->title }}">
-                            </a>
-                        </div>
-                    @endforeach
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/ks1-year6-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 6)</a></h4>
+                        <p>Find out wide range of resources for to Maths, science, history, religious education and art quizzes.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/sats-home-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">SATs</a></h4>
+                        <p>It provide opportunity to practice online as per past curriculum exams from past papers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/11-plus-home-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">11+ Exam</a></h4>
+                        <p>Rurera provide opportunity to practice 11+ exams online as per defined criteria set.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/book-shelf-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Advanced ebook shelf</a></h4>
+                        <p>It offers reading progress, like percentage of the book read or estimated time remaining.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/timetables-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Timestables Revision </a></h4>
+                        <p>Offering interactive games specifically designed for learning times tables and division.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/national-curriculum.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">National Curriculum</a></h4>
+                        <p>It offer national curriculum and a wide range of resources, including books and assessments.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/leader-board-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Leaderboard</a></h4>
+                        <p>Recognizing Outstanding Performance and Achievement where Success Takes Center Stage.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/performance-mintering-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Performance Monitoring</a></h4>
+                        <p>It provides an easy overview of performance trends who may need additional support or recognition.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/rewards-features.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Rewards</a></h4>
+                        <p>Start practicing quizes , SATs, 11+ and read books to earn coins and later redeem to toys.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40">
+                        <figure class="mb-20">
+                            <a href="#"><img src="../assets/default/img/membership-feature.jpg" alt="feature image"></a>
+                        </figure>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Memberships</a></h4>
+                        <p>It offers flexible and easy to use packages options for students, parents and teachers.</p>
+                    </div>
                 </div>
             </div>
-        @endif
-        {{-- ./ Ads Bannaer --}}
-
-        @if($homeSection->name == \App\Models\HomeSection::$organizations and !empty($organizations) and !$organizations->isEmpty())
-            <section class="home-sections home-sections-swiper container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.organizations') }}</h2>
-                        <p class="section-hint">{{ trans('home.organizations_hint') }}</p>
+        </div>
+    </section>
+    <section class="choose-sats pt-80 pb-90 mt-50" style="background-color: #7679ee; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mt-0 mb-10 text-white">Discover how Rurera Support success</h2>
+                        <p class="text-white">we've combined the best of education, real quiz practices into real results to cater and pass the exams.</p>
                     </div>
-
-                    <a href="/organizations" class="btn btn-border-white">{{ trans('home.all_organizations') }}</a>
                 </div>
-
-                <div class="position-relative mt-20">
-                    <div class="swiper-container organization-swiper-container px-12">
-                        <div class="swiper-wrapper py-20">
-
-                            @foreach($organizations as $organization)
-                                <div class="swiper-slide">
-                                    <div class="home-organizations-card d-flex flex-column align-items-center justify-content-center">
-                                        <div class="home-organizations-avatar">
-                                            <img src="{{ $organization->getAvatar(120) }}" class="img-cover rounded-circle" alt="{{ $organization->full_name }}">
-                                        </div>
-                                        <a href="{{ $organization->getProfileUrl() }}" class="mt-25 d-flex flex-column align-items-center justify-content-center">
-                                            <h3 class="home-organizations-title">{{ $organization->full_name }}</h3>
-                                            <p class="home-organizations-desc mt-10">{{ $organization->bio }}</p>
-                                            <span class="home-organizations-badge badge mt-15">{{ $organization->webinars_count }} {{ trans('panel.classes') }}</span>
-                                        </a>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
+                        <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(20%) sepia(28%) saturate(3293%) hue-rotate(225deg) brightness(97%) contrast(96%);"> 
+                        <span class="font-18">National Curriculum</span>
+                        <p class="pt-10">Explore wide range of learning resources available including for Years 1-6 and Functional Skills courses.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
+                        <img class="mb-15" src="../assets/default/svgs/lessons.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(82%) sepia(51%) saturate(5470%) hue-rotate(9deg) brightness(108%) contrast(99%);"> 
+                        <span class="font-18">Quick assessments</span>
+                        <p class="pt-10">Real-time marking data allows for quick identification of students who may require additional support or challenges.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
+                        <img class="mb-15" src="../assets/default/svgs/impact.svg" alt="Rurera Support image" style="    filter: brightness(0) saturate(100%) invert(46%) sepia(70%) saturate(3496%) hue-rotate(359deg) brightness(96%) contrast(98%);"> 
+                        <span class="font-18">Real time diagnostics</span>
+                        <p class="pt-10">It help identify students' knowledge gaps and areas of strength and recommend most suitable study path for quick progress.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sats-box d-inline-flex border-solid border-transparent bg-white">
+                        <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="Rurera Support image" style="filter: brightness(0) saturate(100%) invert(43%) sepia(68%) saturate(2203%) hue-rotate(219deg) brightness(104%) contrast(87%);"> 
+                        <span class="font-18">Get Rewards</span>
+                        <p class="pt-10">Enjoy the fun of learning with Reward Coins, earning rewards and creating lasting memories with favorite toys.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="home-sections home-sections-swiper container reward-program-section position-relative mt-90">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <div class="position-relative reward-program-section-hero-card"> <img src="/store/1/default_images/home_sections_banners/club_points_banner.png" class="reward-program-section-hero" alt="Win Club Points">
+                    <div class="example-reward-card bg-white rounded-sm shadow-lg p-5 p-md-15 d-flex align-items-center">
+                        <div class="example-reward-card-medal"> <img src="/assets/default/img/rewards/medal.png" class="img-cover rounded-circle" alt="medal"> </div>
+                        <div class="flex-grow-1 ml-15"> <span class="font-14 font-weight-bold text-secondary d-block">You earned 50 points!</span> <span class="text-gray font-12 font-weight-500">for completing the course...</span> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mt-20 mt-lg-0">
+                <div>
+                    <h2 class="font-36 font-weight-bold text-dark">Win Coins Points</h2>
+                    <p class="font-16 font-weight-normal text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
+                    <div class="mt-35 d-flex align-items-center"> <a href="https://rurera.chimpstudio.co.uk/rewards" class="btn btn-primary">Rewards</a> <a href="https://rurera.chimpstudio.co.uk/products" class="btn btn-outline-primary ml-15">Points Club</a> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials-container pt-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center mb-0">
+                        <h2 class="mt-0 mb-10">Testimonials</h2>
+                        <p>What our customers say about us</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="swiper-container testimonials-swiper px-10">
+                        <div class="swiper-wrapper mb-50">
+                            <div class="swiper-slide">
+                                <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div class="testimonials-user-avatar"> <img src="/store/923/avatar/testimonial-grid1.png" alt="James Turner" class="img-cover rounded-circle"> </div>
+                                        <h4 class="font-16 font-weight-bold text-secondary mt-30">Natalie Turner</h4> <span class="d-block font-14 text-gray"></span>
                                     </div>
+                                    <p class="mt-10 text-gray font-14">Rurera has been a lifesaver for me in high school. I used to get all F's, but now I have all B's and even a C. My grades have significantly improved, thanks to Rurera.</p>
+                                    <div class="bottom-gradient"></div>
                                 </div>
-                            @endforeach
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div class="testimonials-user-avatar"> <img src="/store/923/avatar/617a4f9983fe5.png" alt="James Turner" class="img-cover rounded-circle"> </div>
+                                        <h4 class="font-16 font-weight-bold text-secondary mt-30">Liam Reed</h4> <span class="d-block font-14 text-gray"></span>
+                                    </div>
+                                    <p class="mt-10 text-gray font-14">Thanks to Rurera, my grades have gone up, and I enjoy practicing with the platform. I used to dislike learning, but now I have a thirst for knowledge and want to learn more.</p>
+                                    <div class="bottom-gradient"></div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="testimonials-card position-relative py-15 py-lg-30 px-10 px-lg-20 rounded-sm shadow bg-white text-center mt-80">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div class="testimonials-user-avatar"> <img src="/store/923/avatar/testimonial-grid3.png" alt="James Turner" class="img-cover rounded-circle"> </div>
+                                        <h4 class="font-16 font-weight-bold text-secondary mt-30">Michael Foster</h4> <span class="d-block font-14 text-gray"></span>
+                                    </div>
+                                    <p class="mt-10 text-gray font-14">It allows students to work on their own levels and at their own pace. I also love that I can see what they are doing when they are doing it, provide feedback or help in real time.</p>
+                                    <div class="bottom-gradient"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="lms-newsletter mt-90 py-70" style="background: url(../assets/default/svgs/diagonal-lines-white.svg) #f6b801">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="newsletter-inner">
+                        <div class="row">
+                            <div class="col-12 col-lg-8 col-md-8">
+                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your Exams Prep today!</h2>
+                                <p itemprop="description" class="mb-0 text-white"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-4">
+                                <div class="form-field position-relative text-right"> <button class="rounded bg-white"> <a href="https://rurera.chimpstudio.co.uk/sats" style="color:var(--gray-dark);">Signup</a> </button> </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="d-flex justify-content-center">
-                        <div class="swiper-pagination organization-swiper-pagination"></div>
-                    </div>
                 </div>
-            </section>
-        @endif
+            </div>
+        </div>
+    </section>
 
-        @if($homeSection->name == \App\Models\HomeSection::$blog and !empty($blog) and !$blog->isEmpty())
-            <section class="home-sections container">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        <h2 class="section-title">{{ trans('home.blog') }}</h2>
-                        <p class="section-hint">{{ trans('home.blog_hint') }}</p>
-                    </div>
 
-                    <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
-                </div>
+</section>
 
-                <div class="row mt-35">
-
-                    @foreach($blog as $post)
-                        <div class="col-12 col-md-4 col-lg-4 mt-20 mt-lg-0">
-                            @include('web.default.blog.grid-list',['post' =>$post])
-                        </div>
-                    @endforeach
-
-                </div>
-            </section>
-        @endif
-
-    @endforeach
 @endsection
 
 @push('scripts_bottom')
-    <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/default/vendors/owl-carousel2/owl.carousel.min.js"></script>
-    <script src="/assets/default/vendors/parallax/parallax.min.js"></script>
-    <script src="/assets/default/js/parts/home.min.js"></script>
+<script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/parallax/parallax.min.js"></script>
 @endpush
