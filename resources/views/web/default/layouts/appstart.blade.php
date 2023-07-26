@@ -110,6 +110,8 @@ $rand_no = rand(99,9999);
 <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 
+<script src="/assets/default/js/question-layout.js?ver={{$rand_no}}"></script>
+
 <script>
     @if(session()->has('registration_package_limited'))
     (function () {

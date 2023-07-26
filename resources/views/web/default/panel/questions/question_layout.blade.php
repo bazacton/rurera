@@ -135,9 +135,6 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                         </a>
 
 
-
-
-
                         @endif
                     </div>
                 </div>

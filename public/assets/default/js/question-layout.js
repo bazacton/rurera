@@ -25,10 +25,10 @@ quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
 $(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
-
-
     returnType = rurera_validation_process($(this).closest('form'));
     if (returnType == false) {
+        jQuery.noConflict();
+        $("#validation_error").modal('show');
         return false;
     }
 

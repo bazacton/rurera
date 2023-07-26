@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
 <style>
-    .hide{
-        display:none;
+    .hide {
+        display: none;
     }
 </style>
 @endpush
@@ -97,6 +97,13 @@
         <section class="card">
             <div class="card-body">
                 <form action="/admin/questions_bank" method="get" class="row mb-0">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="input-label">Question ID</label>
+                            <input type="text" class="form-control" name="question_id"
+                                   value="{{ request()->get('question_id') }}">
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="input-label">{{ trans('admin/main.search') }}</label>
@@ -191,20 +198,20 @@
                     </div>
 
                     <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="input-label">Teacher Review</label>
-                                                <select name="review_required" data-plugin-selectTwo class="form-control populate">
-                                                    <option value="">All</option>
-                                                    <option value="1" @if(request()->get('review_required') == '1') selected
-                                                        @endif>Yes
-                                                    </option>
-                                                    <option value="0" @if(request()->get('review_required') == '0') selected
-                                                        @endif>No
-                                                    </option>
+                        <div class="form-group">
+                            <label class="input-label">Teacher Review</label>
+                            <select name="review_required" data-plugin-selectTwo class="form-control populate">
+                                <option value="">All</option>
+                                <option value="1" @if(request()->get('review_required') == '1') selected
+                                    @endif>Yes
+                                </option>
+                                <option value="0" @if(request()->get('review_required') == '0') selected
+                                    @endif>No
+                                </option>
 
-                                                </select>
-                                            </div>
-                                        </div>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -282,7 +289,9 @@
                                             $questionData->category->getTitleAttribute() : '-'}}
                                             / {{ isset ($questionData->course->id)?
                                             $questionData->course->getTitleAttribute() : '-'}}</span>
-                                        <div class="text-small">{{ isset ($questionData->subChapter->id)? $questionData->subChapter->sub_chapter_title : '' }}</div>
+                                        <div class="text-small">{{ isset ($questionData->subChapter->id)?
+                                            $questionData->subChapter->sub_chapter_title : '' }}
+                                        </div>
                                     </td>
                                     <td>
                                         <span>{{ $questionData->question_difficulty_level }}</span>
@@ -390,8 +399,6 @@
     });
 
 
-
-
     $(document).on('change', '.ajax-category-courses', function () {
         var category_id = $(this).val();
         $.ajax({
@@ -405,16 +412,16 @@
     });
 
     $(document).on('change', '.ajax-courses-dropdown', function () {
-            var course_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: '/admin/webinars/chapters_by_course',
-                data: {'course_id': course_id},
-                success: function (return_data) {
-                    $(".ajax-chapter-dropdown").html(return_data);
-                }
-            });
+        var course_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/chapters_by_course',
+            data: {'course_id': course_id},
+            success: function (return_data) {
+                $(".ajax-chapter-dropdown").html(return_data);
+            }
         });
+    });
 </script>
 
 @endpush

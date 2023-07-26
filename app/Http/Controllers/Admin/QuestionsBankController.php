@@ -317,6 +317,8 @@ class QuestionsBankController extends Controller
         $question_status = $request->get('question_status' , null);
         $difficulty_level = $request->get('difficulty_level' , null);
         $review_required = $request->get('review_required' , null);
+        $question_id = $request->get('question_id' , null);
+
 
 
         $category_id = $request->get('category_id' , '');
@@ -393,6 +395,12 @@ class QuestionsBankController extends Controller
         if (!empty($teacher_ids)) {
             $query->whereIn('creator_id' , $teacher_ids);
         }
+
+        if (!empty($question_id)) {
+            $query->where('id' , $question_id);
+        }
+
+
 
         if ($course_id != '') {
             $query->where('quizzes.webinar_id' , $course_id);

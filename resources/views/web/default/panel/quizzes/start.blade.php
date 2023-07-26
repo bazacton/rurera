@@ -202,6 +202,16 @@ $rand_id = rand(99,9999);
        </div>
    </div>
 </div>
+<div class="modal fade validation_error" id="validation_error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p>Please fill all the required fields before submitting.</p>
+           </div>
+       </div>
+   </div>
+</div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 @endsection
 @push('scripts_bottom')
