@@ -44,11 +44,17 @@ class User extends Authenticatable
      */
     protected $guarded = ['id'];
     protected $hidden = [
-        'password', 'remember_token', 'google_id', 'facebook_id', 'role_id'
+        'password',
+        'remember_token',
+        'google_id',
+        'facebook_id',
+        'role_id'
     ];
 
     static $statuses = [
-        'active', 'pending', 'inactive'
+        'active',
+        'pending',
+        'inactive'
     ];
     /**
      * The attributes that should be cast to native types.
@@ -103,6 +109,11 @@ class User extends Authenticatable
     public function isReviewer()
     {
         return $this->role_name === Role::$reviewer;
+    }
+
+    public function isParent()
+    {
+        return $this->role_name === Role::$parent;
     }
 
     public function hasPermission($section_name)
@@ -674,16 +685,25 @@ class User extends Authenticatable
                             $type = 'instructors';
                         }
 
-                        $query->whereIn('type', ['students_and_instructors', $type]);
+                        $query->whereIn('type', [
+                            'students_and_instructors',
+                            $type
+                        ]);
                     }
                 });
         })->orWhere(function ($query) {
             $type = ['all'];
 
             if ($this->isUser()) {
-                $type = array_merge($type, ['students', 'students_and_instructors']);
+                $type = array_merge($type, [
+                    'students',
+                    'students_and_instructors'
+                ]);
             } elseif ($this->isTeacher()) {
-                $type = array_merge($type, ['instructors', 'students_and_instructors']);
+                $type = array_merge($type, [
+                    'instructors',
+                    'students_and_instructors'
+                ]);
             } elseif ($this->isOrganization()) {
                 $type = array_merge($type, ['organizations']);
             }
@@ -837,7 +857,12 @@ class User extends Authenticatable
         $address = null;
 
         if ($full) {
-            $regionIds = [$this->country_id, $this->province_id, $this->city_id, $this->district_id];
+            $regionIds = [
+                $this->country_id,
+                $this->province_id,
+                $this->city_id,
+                $this->district_id
+            ];
 
             $regions = Region::whereIn('id', $regionIds)->get();
 

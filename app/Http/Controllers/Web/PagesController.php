@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mixins\Installment\InstallmentPlans;
 use App\Models\Page;
 use App\Models\Quiz;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
@@ -43,6 +45,13 @@ class PagesController extends Controller
                 return view('web.default.pages.contact2', $data);
             } elseif ($page->id == 44) {
                 return view('web.default.pages.quizpage', $data);
+            } elseif ($page->id == 119) {
+
+                $subscribes = Subscribe::all();
+                $data['subscribes'] = $subscribes ?? [];
+
+
+                return view('web.default.pages.packages', $data);
             } elseif ($page->id == 95) {
 
                 $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');

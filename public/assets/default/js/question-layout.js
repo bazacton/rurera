@@ -985,8 +985,10 @@ function rurera_validation_process(form_name) {
     form_name.find('.rurera-req-field, .editor-field').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
+        index_no = rurera_is_field(index_no)? index_no : 0;
         var visible_id = thisObj.data('visible');
         has_empty[index_no] = false;
+        checkbox_fields[index_no] = false;
         if (rurera_is_field(visible_id) == true) {
             is_visible = jQuery("#" + visible_id).is(':hidden');
             if (jQuery("#" + visible_id).css('display') !== 'none') {
@@ -1007,6 +1009,7 @@ function rurera_validation_process(form_name) {
             if (is_field_checked == false) {
                 radio_fields[index_no] = thisObj;
             }
+            has_empty[index_no] = true;
             is_visible = false;
         }
         if (thisObj.attr('type') == 'checkbox') {
@@ -1015,6 +1018,7 @@ function rurera_validation_process(form_name) {
             if (is_field_checked == false) {
                 checkbox_fields[index_no] = thisObj;
             }
+            has_empty[index_no] = true;
             is_visible = false;
         }
         if (!thisObj.val() && is_visible == true) {
@@ -1040,15 +1044,17 @@ function rurera_validation_process(form_name) {
             var thisnewObj = radio_fields[i];
             array_length = alert_messages.length;
             alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'radio');
-            has_empty[index_no] = true;
+            has_empty[i] = true;
         }
     }
     if (checkbox_fields.length > 0) {
         for (i = 0; i < checkbox_fields.length; i++) {
             var thisnewObj = checkbox_fields[i];
-            array_length = alert_messages.length;
-            alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'checkbox');
-            has_empty[index_no] = true;
+            if( rurera_is_field(thisnewObj)) {
+                array_length = alert_messages.length;
+                alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'checkbox');
+                has_empty[i] = true;
+            }
         }
     }
     var error_messages = ' test error message<br><br>';

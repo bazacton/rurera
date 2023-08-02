@@ -21,6 +21,7 @@ use App\Models\Follow;
 use App\Models\Meeting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -603,5 +604,14 @@ class UserController extends Controller
                 'message' => trans('site.user_disabled_public_message')
             ]);
         }
+    }
+
+    public function switch_user(Request $request){
+        $child_id = $request->post('child_id');
+        Auth::logout();
+        Auth::loginUsingId($child_id, true);
+        $user = auth()->user();
+        //Auth::setUser($user);
+        pre($user);
     }
 }

@@ -15230,7 +15230,8 @@ p {
 }
 .find-instructor-testimonial .find-instructor-section-hero {
     max-width: 435px;
-    max-height: 290px;
+    height: 250px;
+    object-fit: cover;
     box-shadow: 0 0px 15px 1px rgba(0, 0, 0, .3);
     border-radius: 40px 40px 40px 40px;
     -webkit-transform: translateY(0);
@@ -15318,8 +15319,7 @@ p {
 }
 @media (max-width:767px) {
     .find-instructor-section .find-instructor-section-hero {
-        max-width: 250px;
-        max-height: 270px;
+        max-width: 100%;
     }
     .find-instructor-section .example-instructor-card {
         right: -5px;
@@ -25170,6 +25170,29 @@ Main Home style Start
 /***************************
 Main Home style End
 ***************************/
+
+.rurera-loader-holder { width: fit-content;}
+.rurera-button-loader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; border-radius: 3px; display: none;}
+.rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; display: inline-block; top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
+.rurera-button-loader .double-bounce1, .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #fff; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
+.rurera-processing { pointer-events: none; position:relative;}
+.rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
+@-webkit-keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
+ }
+@-moz-keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
+ }
+@keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
+ }
+ .circle-icon-list img {
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 /*************************************
 Lms Responsive Style Start
 *************************************/
@@ -25276,6 +25299,9 @@ Lms Responsive Style Start
         width: 100%;
         transform: none;
     }
+    .choose-sats .sats-box {
+        margin-bottom: 15px;
+    }
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {
@@ -25311,11 +25337,6 @@ Lms Responsive Style Start
     .lms-subscription-form .lms-form-wrapper {
         width: 100%;
         max-width: 100%;
-    }
-    .lms-form-wrapper .lms-radio-btn-group {
-        gap: 0;
-        width: 100%;
-        flex-wrap: wrap;
     }
     .lms-form-wrapper .lms-radio-btn-group label {
         margin: 0;
@@ -25382,9 +25403,6 @@ Lms Responsive Style Start
         right: auto;
         left: 50%;
         top: 10px;
-    }
-    .find-instructor-section .container .row:last-child {
-        margin-top: 50px !important;
     }
     .about-sub-header .svg-container {
         display: none;
@@ -25469,11 +25487,18 @@ Lms Responsive Style Start
     .process-card.process-three .text-holder{margin-bottom: 50px;}
     .process-section .process-card{padding-top: 30px; padding-bottom: 30px;}
     .process-section .img-holder figure img{width: 100%;}
+    .newsletter-inner { text-align: center; }
+    .newsletter-inner .form-field { text-align: center !important; margin-top: 30px; }
+    .lms-text-section blockquote p { padding: 0; }
+    .testimonials-container .swiper-container {padding: 0 !important;}
+    .find-instructor-section figure img { max-width: 100%; }
+    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
+    .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
+    .find-instructor-section [class*="col-"] > .pl-50,
+    .find-instructor-section [class*="col-"] > .ml-50{ padding-left: 0 !important; margin-left: 0 !important; }
+    .find-instructor-section .sub-thumb { right: 30px; bottom: -50px; max-width: 50%; }
 }
 @media screen and (max-width: 640px) {
-    .lms-radio-btn-group li {
-        width: 31%;
-    }
     .lms-faqs .nav-tabs {
         height: auto;
         margin: 0 -2px 30px;
@@ -25576,11 +25601,24 @@ Lms Responsive Style Start
     .gallery-sub-header .simple .masonry-grid [class*="col-"] {
         width: 50%;
     }
+    .lms-form-wrapper .lms-radio-btn-group li {
+        min-width: 115px;
+    }
+    .lms-jobs-form .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .form-field-counter {
+        position: relative;
+        right: 0;
+        margin: 10px 0 0;
+    }
+    .lms-jobs-form .input-field {
+        text-align: left;
+    }
+    .job-singup-sub-header .btn-primary {padding-left: 25px; padding-right: 25px;}
 }
 @media screen and (max-width: 575px) {
-    .lms-radio-btn-group li {
-        width: 48%;
-    }
     .lms-service-section {
         margin-top: 80px !important;
     }
@@ -25590,6 +25628,7 @@ Lms Responsive Style Start
     }
     .lms-btn-group {
         flex-direction: column;
+        margin-top: 25px;
     }
     .lms-btn-group .lms-btn {
         width: 100%;
@@ -25597,7 +25636,7 @@ Lms Responsive Style Start
         min-width: auto;
     }
     .lms-column-section .lms-text-holder {
-        margin: 0 0 30px;
+        flex-direction: column;
     }
     .lms-categories-section .element-title h2.mt-20 {
         margin-top: 0 !important;
@@ -25622,11 +25661,9 @@ Lms Responsive Style Start
         max-width: 100%;
         flex: 0 0 100%;
     }
+    .sats-listing-card {text-align: center;}
 }
 @media screen and (max-width: 480px) {
-    .lms-radio-btn-group li {
-        width: 100%;
-    }
     .lms-count-field .lms-text-holder {
         flex-direction: column;
     }
@@ -25636,26 +25673,4 @@ Lms Responsive Style Start
     .search-books ul li {
         width: 100%;
     }
-}
-
-.rurera-loader-holder { width: fit-content;}
-.rurera-button-loader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; border-radius: 3px; display: none;}
-.rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; display: inline-block; top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
-.rurera-button-loader .double-bounce1, .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #fff; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
-.rurera-processing { pointer-events: none; position:relative;}
-.rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
-@-webkit-keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
- }
-@-moz-keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
- }
-@keyframes sk-bounce { 0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
- }
- .circle-icon-list img {
-    width: 35px;
-    height: 35px;
-    background-color: #fff;
-    border-radius: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
 }

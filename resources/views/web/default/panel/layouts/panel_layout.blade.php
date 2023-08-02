@@ -106,8 +106,8 @@
 
 @stack('styles_bottom')
 @stack('scripts_bottom')
+<script src="/assets/default/js/question-layout.js"></script>
 <script src="/assets/default/js//parts/main.min.js"></script>
-
 <script src="/assets/default/js/panel/public.min.js"></script>
 
 <script>

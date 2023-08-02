@@ -11,6 +11,7 @@ use App\Models\PaymentChannel;
 use App\Models\Sale;
 use App\Models\Setting;
 use App\Models\Subscribe;
+use App\Models\UserSubscriptions;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class SubscribesController extends Controller
         $paymentChannels = PaymentChannel::where('status', 'active')->get();
 
         $subscribe = Subscribe::where('id', $request->input('id'))->first();
+        $expiry_date = strtotime('+1 month', time());
 
         if (empty($subscribe)) {
             $toastData = [
@@ -99,6 +101,17 @@ class SubscribesController extends Controller
             'commission_price' => 0,
             'created_at' => time(),
         ]);
+
+        $UserSubscriptions = UserSubscriptions::create([
+            "buyer_id" => $user->id,
+            "user_id" => $user->id,
+            'order_item_id' => $orderItem->id,
+            'subscribe_id' => $subscribe->id,
+            "status" => 'active',
+            "created_at" => time(),
+            "expiry_at" => $expiry_date,
+        ]);
+
 
         if ($amount > 0) {
 

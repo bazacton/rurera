@@ -4852,14 +4852,63 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style'    => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'    => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'    => esc_html__('Left', 'leform'),
+                        'image-top' => esc_html__('Top', 'leform'),
+                        'image-right'    => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                    )
+            ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
             'label-style'       => array(
@@ -5461,14 +5510,51 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style' => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'    => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'    => esc_html__('Left', 'leform'),
+                        'image-top' => esc_html__('Top', 'leform'),
+                        'image-right'    => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -5615,14 +5701,51 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style'    => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                    'value'   => 'option-small',
+                    'label'   => esc_html__('Template Size', 'leform'),
+                    '',
+                    'type'    => 'select',
+                    'options' =>
+                        array(
+                            'option-small'    => esc_html__('Small', 'leform'),
+                            'option-medium' => esc_html__('Medium', 'leform'),
+                            'option-large'    => esc_html__('Large', 'leform'),
+                        )
+                ),
+                'template_alignment' => array(
+                    'value'   => 'image-left',
+                    'label'   => esc_html__('Template Alignment', 'leform'),
+                    '',
+                    'type'    => 'select',
+                    'options' =>
+                        array(
+                            'image-left'    => esc_html__('Left', 'leform'),
+                            'image-top' => esc_html__('Top', 'leform'),
+                            'image-right'    => esc_html__('Right', 'leform'),
+                        )
+                ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
             'label-style'       => array(
@@ -5764,14 +5887,51 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style' => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'    => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'    => esc_html__('Left', 'leform'),
+                        'image-top' => esc_html__('Top', 'leform'),
+                        'image-right'    => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -5943,14 +6103,51 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style' => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                    'value'   => 'option-small',
+                    'label'   => esc_html__('Template Size', 'leform'),
+                    '',
+                    'type'    => 'select',
+                    'options' =>
+                        array(
+                            'option-small'    => esc_html__('Small', 'leform'),
+                            'option-medium' => esc_html__('Medium', 'leform'),
+                            'option-large'    => esc_html__('Large', 'leform'),
+                        )
+                ),
+                'template_alignment' => array(
+                    'value'   => 'image-left',
+                    'label'   => esc_html__('Template Alignment', 'leform'),
+                    '',
+                    'type'    => 'select',
+                    'options' =>
+                        array(
+                            'image-left'    => esc_html__('Left', 'leform'),
+                            'image-top' => esc_html__('Top', 'leform'),
+                            'image-right'    => esc_html__('Right', 'leform'),
+                        )
+                ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -6122,14 +6319,51 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Style', 'leform')
             ),
             'template_style' => array(
-                'value'   => 'row',
+                'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'row'    => esc_html__('Row', 'leform'),
-                        'inline' => esc_html__('Inline', 'leform'),
+                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-2' => esc_html__('2 In Row', 'leform'),
+                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                    )
+            ),
+            'template_size' => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'    => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'    => esc_html__('Left', 'leform'),
+                        'image-top' => esc_html__('Top', 'leform'),
+                        'image-right'    => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style' => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
                     )
             ),
 

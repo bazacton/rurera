@@ -382,7 +382,7 @@ class HomeController extends Controller
             'forumSection' => $forumSection ?? null,
         ];
 
-        return view(getTemplate() . '.pages.home', $data);
+        return view(getTemplate() . '.pages.home2', $data);
     }
 
     private function getHomeDefaultStatistics()

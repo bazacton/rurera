@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['check_mobile_app', 'impersonate', 'panel', 'share', 'check_maintenance']], function () {
 
-    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/', 'DashboardController@dashboard')->name('panel_dashboard');
 
     Route::group(['prefix' => 'users'], function () {
         Route::post('/search', 'UserController@search');
@@ -138,6 +138,14 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
 	Route::group(['prefix' => 'ajax'], function () {
         Route::post('helper', 'AjaxController@helper');
         Route::post('quiz_attempts', 'AjaxController@quiz_attempts');
+
+    });
+
+    /*
+     * Parent Module
+     */
+    Route::group(['prefix' => 'parent'], function () {
+        Route::post('create_student', 'ParentController@create_student');
 
     });
 

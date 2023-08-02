@@ -163,6 +163,15 @@ $rand_no = rand(99,9999);
                     var li_index = $('.quiz-pagination ul li[data-question_id="'+question_id+'"]').index();
                     swiper.slideTo(li_index);
                 });
+
+
+                $(document).on('click', '.flag-question.notflaged', function (e) {
+                    var question_id = $(this).attr('data-question_id');
+                    var li_index = $('.quiz-pagination ul li[data-question_id="' + question_id + '"]').index();
+                     swiper.slideTo(li_index);
+                });
+
+
               }
     
 

@@ -327,8 +327,8 @@ Lms Form Fields Style
     padding: 15px;
 	width: 100%;
     margin-bottom: 0;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 .lms-checkbox-img .form-field label {
     height: 100%;
@@ -409,10 +409,12 @@ Lms Form Fields Style
 }
 .lms-checkbox-img label img {
     border-radius: 3px;
-    max-width: 50px;
-    height: 100%;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-    margin-right: 5px;
+    margin-right: 10px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .lms-checkbox-img label {
     border-radius: 5px;
@@ -559,11 +561,28 @@ Lms Form Fields Style
     margin-bottom: 14px;
 }
 .inline-fields.lms-checkbox-img {
+    align-items: inherit;
+}
+.option-row-1 {
     display: grid;
     grid-auto-rows: 1fr;
     gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(31.777%, 1fr));
     align-items: inherit;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+}
+.option-row-2 {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 14px;
+    align-items: inherit;
+    grid-template-columns: repeat(auto-fill, minmax(48.888%, 1fr));
+}
+.option-row-3 {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 14px;
+    align-items: inherit;
+    grid-template-columns: repeat(auto-fill, minmax(31.777%, 1fr));
 }
 .inline-fields.lms-checkbox-img .form-field {
     width: 100%;
@@ -584,6 +603,131 @@ Lms Form Fields Style
 .leform-form-editor .input-holder input.input-simple {
     margin-bottom: 0;
 }
+.form-field input[type="checkbox"]:checked ~ label {
+    border-color: #70c17c;
+    color: #70c17c;
+    background-color: #def7e4;
+}
+.form-field input[type="checkbox"]:checked ~ label img {
+    margin-right: 15px;
+    filter: invert(90%) sepia(4%) saturate(7377%) hue-rotate(63deg) brightness(111%) contrast(51%);
+}
+/*option medium style*/
+.lms-checkbox-img.option-medium .form-field label {
+    font-size: 24px;
+}
+.lms-checkbox-img.option-medium label img {
+    width: 80px;
+    height: 80px;
+}
+.lms-checkbox-img.image-top.option-medium .form-field label {
+    min-height: 180px;
+}
+.lms-checkbox-img.option-medium .form-field label:before {
+    height: 50px;
+    width: 50px;
+    margin-top: -25px;
+}
+.lms-checkbox-img.option-medium .form-field label:after {
+    right: 30px;
+    font-size: 24px;
+    margin-top: -18px;
+}
+
+/*option large style*/
+.lms-checkbox-img.option-large .form-field label {
+    font-size: 30px;
+}
+.lms-checkbox-img.option-large label img {
+    width: 110px;
+    height: 110px;
+}
+.lms-checkbox-img.image-top.option-large .form-field label {
+    min-height: 230px;
+}
+.lms-checkbox-img.option-large .form-field label:before {
+    height: 70px;
+    width: 70px;
+    margin-top: -35px;
+}
+.lms-checkbox-img.option-large .form-field label:after {
+    right: 38px;
+    font-size: 30px;
+    margin-top: -20px;
+}
+/*image top style*/
+.lms-checkbox-img.image-top .form-field label {
+    flex-direction: column;
+    min-height: 150px;
+    justify-content: center;
+}
+.lms-checkbox-img.image-top .form-field label:before {
+    border-radius: 0;
+    height: 20px;
+    width: 20px;
+    top:10px;
+    margin: 0;
+    right: 10px;
+}
+.lms-checkbox-img.image-top .form-field label:after {
+    right: 13px;
+    top: 9px;
+    margin-top: 0;
+    width: 15px;
+    height: 15px;
+    font-size: 14px;
+}
+.lms-checkbox-img.image-top label img {
+    margin: 0 0 15px;
+}
+.lms-checkbox-img.image-top .form-field input[type="checkbox"]:checked ~ label img {
+    margin-right: 0;
+}
+/*image right style*/
+.lms-checkbox-img.image-right .form-field label img {
+    position:absolute;
+    right: 5px;
+    margin: 0;
+}
+.lms-checkbox-img.image-right .form-field input[type="checkbox"]:checked ~ label img {
+    margin-right: 7px;
+}
+.lms-checkbox-img.image-right .form-field label {
+    min-height: 60px;
+}
+.lms-checkbox-img.image-right .form-field input[type="checkbox"]:checked ~ label {
+    padding-left: 52px;
+}
+.lms-checkbox-img.image-right .form-field input[type="checkbox"] ~ label {
+    padding-left: 12px;
+}
+.lms-checkbox-img.image-right .form-field label:before {
+    left: 12px;
+    right: auto;
+    top: 50%;
+    transform:translateY(-50%);
+    margin: 0;
+    border-radius:3px;
+    opacity: 0;
+}
+.lms-checkbox-img.image-right .form-field label:after {
+    font-size: 18px;
+    top: 50%;
+    margin: 2px 0 0 0;
+    height: 30px;
+    width: 30px;
+    text-align:center;
+    transform:translateY(-50%);
+    left: 12px;
+    right: auto;
+}
+.lms-checkbox-img.image-right .form-field input[type="checkbox"]:checked ~ label:before {
+    opacity: 1;
+}
+.lms-checkbox-img.image-right .form-field input[type="checkbox"]:checked ~ label:after {
+    transform:translateY(-50%); 
+}
+
 /**********************************
 Lms Question List Style 
 **********************************/
@@ -744,8 +888,10 @@ Lms Question List Style
     flex-direction: column;
 }
 .question-layout-block form.question-fields .questions-total-holder {
-    margin: -9px 0 0;
+    margin: -9px 0 15px !important;
     padding-left: 100px;
+    color: #adabab;
+    font-size: 14px;
 }
 .question-layout-block form.question-fields .questions-nav-controls {
     margin-top: auto;

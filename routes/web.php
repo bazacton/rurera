@@ -422,6 +422,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{link}' , 'PagesController@index');
     });
 
+    Route::post('switch_user', 'UserController@switch_user');
+
+
+
     Route::group(['prefix' => '{link}'] , function () {
         if (!Request::is('admin') && !Request::is('admin/*')) {
             if (!Request::is('panel') && !Request::is('panel/*')) {

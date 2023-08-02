@@ -277,7 +277,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 mt-20 mt-lg-0">
+            <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
                 <div>
                     <h2 class="font-36 font-weight-bold text-dark">Win Coins Points</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>

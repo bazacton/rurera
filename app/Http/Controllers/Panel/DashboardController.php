@@ -11,6 +11,7 @@ use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\Support;
 use App\Models\Webinar;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -89,7 +90,19 @@ class DashboardController extends Controller
 
         $data['giftModal'] = $this->showGiftModal($user);
 
-        return view(getTemplate() . '.panel.dashboard.index', $data);
+        if (auth()->user()->isParent()) {
+
+            $childs = User::where('role_id', 1)
+                           ->where('parent_type', 'parent')
+                           ->where('parent_id', $user->id)
+                           ->get();
+
+            $data['childs'] = $childs;
+
+            return view(getTemplate() . '.panel.parent.dashboard', $data);
+        }else{
+            return view(getTemplate() . '.panel.dashboard.index', $data);
+        }
     }
 
     private function showGiftModal($user)

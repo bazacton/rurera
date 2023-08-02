@@ -22,7 +22,7 @@ class SubscribesController extends Controller
         ])->paginate(10);
 
         $data = [
-            'pageTitle' => trans('admin/pages/financial.subscribes'),
+            'pageTitle'  => trans('admin/pages/financial.subscribes'),
             'subscribes' => $subscribes
         ];
 
@@ -47,36 +47,41 @@ class SubscribesController extends Controller
         $this->authorize('admin_subscribe_create');
 
         $this->validate($request, [
-            'title' => 'required|string',
+            'title'        => 'required|string',
             'usable_count' => 'required|numeric',
-            'days' => 'required|numeric',
-            'price' => 'required|numeric',
-            'icon' => 'required|string',
+            'days'         => 'required|numeric',
+            'price'        => 'required|numeric',
+            'icon'         => 'required|string',
         ]);
 
         $data = $request->all();
 
         $subscribe = Subscribe::create([
-            'usable_count' => $data['usable_count'],
-            'days' => $data['days'],
-            'price' => $data['price'],
-            'icon' => $data['icon'],
-            'is_popular' => (!empty($data['is_popular']) and $data['is_popular'] == '1'),
-            'infinite_use' => (!empty($data['infinite_use']) and $data['infinite_use'] == '1'),
-            'created_at' => time(),
+            'usable_count'   => $data['usable_count'],
+            'days'           => $data['days'],
+            'price'          => $data['price'],
+            'icon'           => $data['icon'],
+            'is_popular'     => (!empty($data['is_popular']) and $data['is_popular'] == '1'),
+            'infinite_use'   => (!empty($data['infinite_use']) and $data['infinite_use'] == '1'),
+            'created_at'     => time(),
+            'is_courses'     => isset($data['is_courses']) ? $data['is_courses'] : 0,
+            'is_timestables' => isset($data['is_timestables']) ? $data['is_timestables'] : 0,
+            'is_bookshelf'   => isset($data['is_bookshelf']) ? $data['is_bookshelf'] : 0,
+            'is_sats'        => isset($data['is_sats']) ? $data['is_sats'] : 0,
+            'is_elevenplus'  => isset($data['is_elevenplus']) ? $data['is_elevenplus'] : 0,
         ]);
 
         if (!empty($subscribe)) {
             SubscribeTranslation::updateOrCreate([
                 'subscribe_id' => $subscribe->id,
-                'locale' => mb_strtolower($data['locale']),
+                'locale'       => mb_strtolower($data['locale']),
             ], [
-                'title' => $data['title'],
+                'title'       => $data['title'],
                 'description' => !empty($data['description']) ? $data['description'] : null,
             ]);
         }
 
-        return redirect(getAdminPanelUrl().'/financial/subscribes');
+        return redirect(getAdminPanelUrl() . '/financial/subscribes');
     }
 
     public function edit(Request $request, $id)
@@ -101,37 +106,42 @@ class SubscribesController extends Controller
         $this->authorize('admin_subscribe_edit');
 
         $this->validate($request, [
-            'title' => 'required|string',
+            'title'        => 'required|string',
             'usable_count' => 'required|numeric',
-            'days' => 'required|numeric',
-            'price' => 'required|numeric',
-            'icon' => 'required|string',
+            'days'         => 'required|numeric',
+            'price'        => 'required|numeric',
+            'icon'         => 'required|string',
         ]);
 
         $data = $request->all();
         $subscribe = Subscribe::findOrFail($id);
 
         $subscribe->update([
-            'usable_count' => $data['usable_count'],
-            'days' => $data['days'],
-            'price' => $data['price'],
-            'icon' => $data['icon'],
-            'is_popular' => (!empty($data['is_popular']) and $data['is_popular'] == '1'),
-            'infinite_use' => (!empty($data['infinite_use']) and $data['infinite_use'] == '1'),
-            'created_at' => time(),
+            'usable_count'   => $data['usable_count'],
+            'days'           => $data['days'],
+            'price'          => $data['price'],
+            'icon'           => $data['icon'],
+            'is_popular'     => (!empty($data['is_popular']) and $data['is_popular'] == '1'),
+            'infinite_use'   => (!empty($data['infinite_use']) and $data['infinite_use'] == '1'),
+            'created_at'     => time(),
+            'is_courses'     => isset($data['is_courses']) ? $data['is_courses'] : 0,
+            'is_timestables' => isset($data['is_timestables']) ? $data['is_timestables'] : 0,
+            'is_bookshelf'   => isset($data['is_bookshelf']) ? $data['is_bookshelf'] : 0,
+            'is_sats'        => isset($data['is_sats']) ? $data['is_sats'] : 0,
+            'is_elevenplus'  => isset($data['is_elevenplus']) ? $data['is_elevenplus'] : 0,
         ]);
 
         SubscribeTranslation::updateOrCreate([
             'subscribe_id' => $subscribe->id,
-            'locale' => mb_strtolower($data['locale']),
+            'locale'       => mb_strtolower($data['locale']),
         ], [
-            'title' => $data['title'],
+            'title'       => $data['title'],
             'description' => !empty($data['description']) ? $data['description'] : null,
         ]);
 
         removeContentLocale();
 
-        return redirect(getAdminPanelUrl().'/financial/subscribes');
+        return redirect(getAdminPanelUrl() . '/financial/subscribes');
     }
 
     public function delete($id)
@@ -142,6 +152,6 @@ class SubscribesController extends Controller
 
         $promotion->delete();
 
-        return redirect(getAdminPanelUrl().'/financial/subscribes');
+        return redirect(getAdminPanelUrl() . '/financial/subscribes');
     }
 }
