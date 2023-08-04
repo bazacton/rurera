@@ -905,6 +905,10 @@ class WebinarController extends Controller
     public function start(Request $request, $sub_chapter_id)
     {
 
+        if(!auth()->subscription('courses')){
+            return view('web.default.quizzes.not_subscribed');
+        }
+
         $chapterItem = WebinarChapterItem::where('type' , 'quiz')
                         ->where('parent_id' , $sub_chapter_id)
                         ->first();

@@ -17,6 +17,7 @@ use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\Sale;
 use App\Models\TicketUser;
+use App\Models\UserSubscriptions;
 use App\PaymentChannels\ChannelManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -63,6 +64,10 @@ class PaymentController extends Controller
 
             $order->update([
                 'status' => Order::$paid
+            ]);
+
+            UserSubscriptions::where('order_id', $order->id)->update([
+                'status' => 'active'
             ]);
 
             session()->put($this->order_session_key, $order->id);
@@ -166,6 +171,10 @@ class PaymentController extends Controller
                 $this->setPaymentAccounting($order);
 
                 $order->update(['status' => Order::$paid]);
+                UserSubscriptions::where('order_id', $order->id)->update([
+                    'status' => 'active'
+                ]);
+
             } else {
                 if ($order->type === Order::$meeting) {
                     $orderItem = OrderItem::where('order_id', $order->id)->first();

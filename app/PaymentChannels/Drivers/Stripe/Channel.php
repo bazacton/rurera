@@ -34,6 +34,7 @@ class Channel implements IChannel
         $price = $order->total_amount;
         $generalSettings = getGeneralSettings();
         $currency = currency();
+        $currency = 'USD';
 
         Stripe::setApiKey($this->api_secret);
 
@@ -44,7 +45,7 @@ class Channel implements IChannel
                     'currency' => $currency,
                     'unit_amount_decimal' => $price * 100,
                     'product_data' => [
-                        'name' => $generalSettings['site_name'] . ' payment',
+                        'name' => 'Rurera payment',
                     ],
                 ],
                 'quantity' => 1,

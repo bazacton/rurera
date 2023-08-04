@@ -121,6 +121,7 @@ Lms Signs Style
     /* font-size: 15px; */
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    width: 100%;
 }
 .lms-radio-select.inline-fields .field-holder label {
     width: 100%;

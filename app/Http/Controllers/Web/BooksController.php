@@ -40,6 +40,10 @@ class BooksController extends Controller
     public function book($book_slug)
     {
 
+        if(!auth()->subscription('bookshelf')){
+            return view('web.default.quizzes.not_subscribed');
+        }
+
         $bookObj = Books::where('book_slug', $book_slug)->with([
             'bookFinalQuiz.QuestionData',
             'bookPages.PageInfoLinks'

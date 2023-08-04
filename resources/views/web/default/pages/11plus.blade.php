@@ -8,7 +8,30 @@
 <section class="content-section">
     <section class="position-relative job-singup-sub-header gallery-sub-header pb-90 pt-80 mb-70" style="min-height:780px; background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
     background-size: 100% 12px, 12px 100%;">
-    <div class="masonry-grid-gallery has-fix-height">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <h1 class="font-50 font-weight-bold"><span class="text-scribble mr-10">11 Plus</span> and Entrance Exams</h1>
+                    <h2 class="mb-15 font-30">Unlocking Opportunities: Ace the 11 Plus Exam and Secure Your Future!</h2>
+                    <p class="font-19">Assessing a student's academic ability and determining their eligibility for admission to selective
+                    secondary schools or grammar schools.</p>
+                    <ul class="mb-30 p-0">
+                        <li class="mb-10 font-19"><img src="../assets/default/svgs/mobile.svg" alt="mobile" title="mobile" width="100%" height="auto" itemprop="image" loading="eager">Learning practice
+                        </li>
+                        <li class="mb-10 font-19"><img src="../assets/default/svgs/preparation.svg" alt="preparation" title="preparation" width="100%" height="auto" itemprop="image" loading="eager">Test preparation
+                        </li>
+                        <li class="mb-10 font-19"><img src="../assets/default/svgs/graphic-design.svg" alt="graphic-design" title="graphic-design" width="100%" height="auto" itemprop="image" loading="eager">Score
+                            guarantee</li>
+                        <li class="font-19"><img src="../assets/default/svgs/book-opend.svg" alt="book-opend" title="book-opend" width="100%" height="auto" itemprop="image" loading="eager">100% results</li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <a href="#" class="btn-primary rounded-pill">11 plus exams</a>
+                        <a href="#" class="btn-primary rounded-pill ml-15">More practices</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="masonry-grid-gallery has-fix-height">
             <div class="masonry-grid">
                 <div class="row">
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
@@ -133,27 +156,6 @@
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-12 col-md-6 col-lg-6">
-                    <h1 class="font-50 font-weight-bold"><span class="text-scribble mr-10">11 Plus</span> and Entrance Exams</h1>
-                    <h2 class="mb-15 font-30">Unlocking Opportunities: Ace the 11 Plus Exam and Secure Your Future!</h2>
-                    <p class="font-19">Assessing a student's academic ability and determining their eligibility for admission to selective
-                    secondary schools or grammar schools.</p>
-                    <ul class="mb-30 p-0">
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/mobile.svg" alt="mobile" title="mobile" width="100%" height="auto" itemprop="image" loading="eager">Learning practice
-                        </li>
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/preparation.svg" alt="preparation" title="preparation" width="100%" height="auto" itemprop="image" loading="eager">Test preparation
-                        </li>
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/graphic-design.svg" alt="graphic-design" title="graphic-design" width="100%" height="auto" itemprop="image" loading="eager">Score
-                            guarantee</li>
-                        <li class="font-19"><img src="../assets/default/svgs/book-opend.svg" alt="book-opend" title="book-opend" width="100%" height="auto" itemprop="image" loading="eager">100% results</li>
-                    </ul>
-                    <div class="d-flex align-items-center"><a href="#" class="btn-primary rounded-pill">11 plus exams</a><a
-                            href="#" class="btn-primary rounded-pill ml-15">More practices</a></div>
                 </div>
             </div>
         </div>
@@ -839,7 +841,7 @@
                     <p class="">Asking the right questions is indeed a skill that requires careful consideration.</p>
                 </div>
             </div>
-            <div class="col-8 mx-auto">
+            <div class="col-12 col-lg-8 col-md-12 mx-auto">
                 <div class="mt-0">
                     <div class="lms-faqs mx-w-100 mt-0">
                         <div id="accordion">

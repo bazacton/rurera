@@ -25,9 +25,11 @@ class TimestablesController extends Controller
      */
     public function genearte(Request $request)
     {
-
         if (!auth()->check()) {
             return redirect('/login');
+        }
+        if(!auth()->subscription('timestables')){
+            return view('web.default.quizzes.not_subscribed');
         }
         $user = auth()->user();
         $question_type = $request->post('question_type');

@@ -11,6 +11,7 @@ use App\Models\PaymentChannel;
 use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\TicketUser;
+use App\Models\UserSubscriptions;
 use App\PaymentChannels\ChannelManager;
 use App\User;
 use Illuminate\Http\Request;
@@ -164,6 +165,9 @@ class PaymentsController extends Controller
                     $this->setPaymentAccounting($order);
 
                     $order->update(['status' => Order::$paid]);
+                    UserSubscriptions::where('order_id', $order->id)->update([
+                        'status' => 'active'
+                    ]);
                 } else {
                     if ($order->type === Order::$meeting) {
                         $reserveMeeting->update(['locked_at' => null]);

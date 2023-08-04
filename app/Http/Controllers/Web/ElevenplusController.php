@@ -62,6 +62,10 @@ class ElevenplusController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+
+        if(!auth()->subscription('11plus')){
+            return view('web.default.quizzes.not_subscribed');
+        }
         $quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();

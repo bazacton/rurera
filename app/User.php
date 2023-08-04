@@ -18,6 +18,7 @@ use App\Models\QuizzesResult;
 use App\Models\Region;
 use App\Models\ReserveMeeting;
 use App\Models\RewardAccounting;
+use App\Models\UserSubscriptions;
 use App\Models\Role;
 use App\Models\Follow;
 use App\Models\Sale;
@@ -359,6 +360,36 @@ class User extends Authenticatable
     public function userRegistrationPackage()
     {
         return $this->hasOne('App\Models\UserRegistrationPackage', 'user_id', 'id');
+    }
+
+    public function subscription($slug)
+    {
+
+        $subscription_package = '';
+        switch ($slug) {
+            case "courses":
+                $subscription_package = 'is_courses';
+                break;
+            case "timestables":
+                $subscription_package = 'is_timestables';
+                break;
+            case "bookshelf":
+                $subscription_package = 'is_bookshelf';
+                break;
+            case "sats":
+                $subscription_package = 'is_sats';
+                break;
+            case "11plus":
+                $subscription_package = 'is_elevenplus';
+                break;
+        }
+
+        $is_subscribed = UserSubscriptions::where('user_id', $this->id)
+            ->where('status', 'active')->where($subscription_package, 1)->count();
+
+        $is_subscribed = ($is_subscribed > 0)? true : false;
+        return $is_subscribed;
+
     }
 
     public function organization()

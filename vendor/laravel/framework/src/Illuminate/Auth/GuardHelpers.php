@@ -61,6 +61,16 @@ trait GuardHelpers
     }
 
     /**
+     * Determine if the current user is subscribed to the specific module.
+     *
+     * @return bool
+     */
+    public function subscription($slug)
+    {
+        return $this->user()->subscription($slug);
+    }
+
+    /**
      * Determine if the current user is a guest.
      *
      * @return bool
