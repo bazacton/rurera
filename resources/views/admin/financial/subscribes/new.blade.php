@@ -94,6 +94,19 @@
 
 
                                 <div class="form-group">
+                                        <label>Trial Period</label>
+                                        <input type="text" name="trial_period"
+                                               class="form-control  @error('trial_period') is-invalid @enderror"
+                                               value="{{ !empty($subscribe) ? $subscribe->trial_period : old('trial_period') }}"/>
+                                        @error('trial_period')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+
+                                <div class="form-group">
                                     <label>{{ trans('admin/main.price') }}</label>
                                     <input type="text" name="price"
                                            class="form-control  @error('price') is-invalid @enderror"

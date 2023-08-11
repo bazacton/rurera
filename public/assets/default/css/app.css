@@ -13945,8 +13945,9 @@ p {
     color: #fff;
 }
 @media (max-width:991px) {
-    .navbar1 {
-        padding: 0 15px
+    .navbar1, .navbar {
+        padding: 0 15px;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,0.04);
     }
     .navbar1 .navbar-order {
         order: 3
@@ -24366,7 +24367,7 @@ Lms Responsive Style Start
     .lms-contact-form-section .message-box{display: none;}
     .gallery-sub-header {
         flex-direction: column;
-        padding-top: 60px !important;
+        padding-top: 30px !important;
     }
     .gallery-sub-header .masonry-grid-gallery {
         position: relative;
@@ -24387,6 +24388,19 @@ Lms Responsive Style Start
     .choose-sats .sats-box {
         margin-bottom: 15px;
     }
+    .navbar-nav .nav-item.has-mega-menu {position: relative;}
+    .navbar-nav .has-mega-menu:hover .lms-mega-menu {z-index: 1; margin-top: 6px;}
+    .navbar1 .navbar-nav>li.has-mega-menu .nav-link,
+    .navbar .navbar-nav>li.has-mega-menu .nav-link{display: inline-block;}
+    .navbar-nav .has-mega-menu .lms-mega-menu {width: 100%;}
+    .navbar-nav .has-mega-menu .lms-mega-menu a {padding: 0 20px 15px;}
+    .lms-mega-menu .mega-menu-head {padding-top: 20px; padding-bottom: 5px;}
+    .navbar-nav .has-mega-menu .lms-mega-menu .view-btn {padding: 17px 30px;}
+    .lms-mega-menu .mega-menu-body {max-height: 365px; overflow: hidden; overflow-y: auto;}
+    .mega-menu-body .menu-colum-text {padding-left: 25px; padding-top: 25px;}
+    .mega-menu-body .pl-30 .menu-colum-text {padding-left: 0;}
+    .mega-menu-nav a:after {display: none;}
+    .lms-wave-shape-top::before {top: -1px;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {
@@ -24552,7 +24566,7 @@ Lms Responsive Style Start
     }
     .process-section .process-card .text-holder {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 0;
         max-width: 500px;
     }
     .process-section .process-card .process-card-body {
@@ -24584,8 +24598,12 @@ Lms Responsive Style Start
     .find-instructor-section .sub-thumb { right: 30px; bottom: -50px; max-width: 50%; }
     .lms-newsletter.blog-newsletter {padding-top: 80px; padding-bottom: 80px;}
     .blog-newsletter .svg-holder {display: none;}
-    .products-top-header .banner-holder {display: none !important;}
+    .products-top-header .banner-holder .education-icon-box,
+    .footer-banner .banner-holder .education-icon-box {display: none;}
     .products-top-header form {width: 100% !important;}
+    .gallery-sub-header .book-btn {font-size: 15px; min-width: 165px; padding: 15px 15px;}
+    .reward-section:after {bottom: -1px;}
+    .process-holder {padding-bottom: 0;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {
@@ -24718,6 +24736,9 @@ Lms Responsive Style Start
     .gallery-sub-header .masonry-grid .grid-item {text-align: center;}
     .gallery-sub-header .masonry-grid-gallery {height: auto; margin-bottom: 0; padding-bottom: 0; margin-top: 20px;}
     .gallery-sub-header .masonry-grid .grid-item:last-child .img-holder figure {margin-bottom: 0;}
+    .reward-box {flex-direction: column;}
+    .reward-box .img-holder {margin-bottom: 15px;}
+    .reward-box .img-holder ~ .text-holder {margin-left: 0; text-align: center;}
 }
 @media screen and (max-width: 575px) {
     .lms-service-section {

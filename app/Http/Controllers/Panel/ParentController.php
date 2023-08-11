@@ -52,7 +52,48 @@ class ParentController extends Controller
         return redirect()->route('panel_dashboard');
     }
 
+    public function update_child(Request $request, $user_id)
+    {
+        $data = $request->post();
+        $locale = $data['locale'] ?? getDefaultLocale();
+        $userData = User::find($user_id);
 
+        $rules = [
+            'full_name' => 'required',
+            'email'     => 'required|email',
+            'password'  => 'required',
+        ];
+
+        $validate = Validator::make($data, $rules);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'code'   => 422,
+                'errors' => $validate->errors()
+            ], 422);
+        }
+
+        $user = auth()->user();
+
+        $userObj = $userData->update([
+            'full_name'   => $data['full_name'],
+            'email'       => $data['email'],
+            'password'    => User::generatePassword($data['password']),
+        ]);
+
+        return redirect()->route('update_child', ['id' => $user_id]);
+    }
+
+    public function user(Request $request, $user_id)
+    {
+        $user = auth()->user();
+
+        $userData = User::find($user_id);
+
+        $data['pageTitle'] = 'Edit User';
+        $data['userData'] = $userData;
+        return view(getTemplate() . '.panel.parent.user_edit', $data);
+    }
 
 
 }

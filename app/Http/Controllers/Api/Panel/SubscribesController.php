@@ -205,7 +205,7 @@ class SubscribesController extends Controller
             'seller_id' => $webinar->creator_id,
             'webinar_id' => $webinar->id,
             'subscribe_id' => $subscribe->id,
-            'type' => Sale::$webinar,
+            'type' => Sale::$subscribe,
             'payment_method' => Sale::$subscribe,
             'amount' => 0,
             'total_amount' => 0,

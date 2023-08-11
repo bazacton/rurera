@@ -19,94 +19,99 @@
             <div class="row">
                 <form action="/panel/financial/pay-subscribes" method="post" class="w-100">
                     {{ csrf_field() }}
-                <div class="col-12">
+                    <div class="col-12">
 
-                    <div class="lms-form-wrapper mb-50">
-                        <div class="lms-choose-plan d-flex mb-30">
-                            <div class="lms-choose-field">
-                                <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
-                                <div class="lms-radio-select">
-                                    <ul class="lms-radio-btn-group d-inline-flex align-items-center">
-                                        <li>
-                                            <input type="radio" id="month" value="1" data-discount="0" name="subscribe_for" checked="checked"/>
-                                            <label class="lms-label" for="month">
-                                                <span>01 month</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="three_months" value="3" data-discount="5" name="subscribe_for"/>
-                                            <label class="lms-label" for="three_months">
-                                                <span>03 month <span>(5%)</span> </span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="six_months" value="6" data-discount="10" name="subscribe_for"/>
-                                            <label class="lms-label" for="six_months">
-                                                <span>06 month <span>(10%)</span> </span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="year" value="12" data-discount="20" name="subscribe_for"/>
-                                            <label class="lms-label" for="year">
-                                                <span>whole year <span>(20%)</span></span>
-                                            </label>
-                                        </li>
-                                    </ul>
+                        <div class="lms-form-wrapper mb-50">
+                            <div class="lms-choose-plan d-flex mb-30">
+                                <div class="lms-choose-field">
+                                    <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
+                                    <div class="lms-radio-select">
+                                        <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+                                            <li>
+                                                <input type="radio" id="month" value="1" data-discount="0"
+                                                       name="subscribe_for" checked="checked"/>
+                                                <label class="lms-label" for="month">
+                                                    <span>01 month</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="three_months" value="3" data-discount="5"
+                                                       name="subscribe_for"/>
+                                                <label class="lms-label" for="three_months">
+                                                    <span>03 month <span>(5%)</span> </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="six_months" value="6" data-discount="10"
+                                                       name="subscribe_for"/>
+                                                <label class="lms-label" for="six_months">
+                                                    <span>06 month <span>(10%)</span> </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="year" value="12" data-discount="20"
+                                                       name="subscribe_for"/>
+                                                <label class="lms-label" for="year">
+                                                    <span>whole year <span>(20%)</span></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="lms-count-field">
-                                <strong class="choose-title d-block mb-20 font-24">Choose number</strong>
-                                <div class="input-group">
+                                <div class="lms-count-field">
+                                    <strong class="choose-title d-block mb-20 font-24">Choose number</strong>
+                                    <div class="input-group">
                                     <span class="input-group-btn">
                                         <button type="button" class="quantity-left-minus btn btn-number"
                                                 data-type="minus" data-field="">
                                             <span class="icon-minus">−</span>
                                         </button>
                                     </span>
-                                    <input type="text" id="quantity" name="quantity"
-                                           class="form-control input-number" value="1" min="1"
-                                           max="100">
-                                    <span class="input-group-btn">
+                                        <input type="text" id="quantity" name="quantity"
+                                               class="form-control input-number" value="1" min="1"
+                                               max="100">
+                                        <span class="input-group-btn">
                                         <button type="button" class="quantity-right-plus btn btn-number"
                                                 data-type="plus" data-field="">
                                             <span class="icon-plus">+</span>
                                         </button>
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="childs-block">
-                            <div class="child-item lms-choose-plan-selected mt-10">
-                                <div class="lms-jobs-form">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-4 col-md-8">
-                                            <div class="input-field">
-                                                <input type="text" name="student_name[]" placeholder="Enter your name..">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-2 col-md-4">
-                                            <div class="field-btn select-arrow">
-                                                <button type="button" data-toggle="modal" class="package_label"
-                                                        data-target="#choose-plan-modal">Monthly
-                                                </button>
-                                                <input type="hidden" name="package_id[]" class="package_id">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
 
+
+                            <div class="childs-block">
+                                <div class="child-item lms-choose-plan-selected mt-10">
+                                    <div class="lms-jobs-form">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4 col-md-8">
+                                                <div class="input-field">
+                                                    <input type="text" name="student_name[]"
+                                                           placeholder="Enter your name..">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-4">
+                                                <div class="field-btn select-arrow">
+                                                    <button type="button" data-toggle="modal" class="package_label"
+                                                            data-target="#choose-plan-modal">Monthly
+                                                    </button>
+                                                    <input type="hidden" name="package_id[]" class="package_id">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br><br><br><br>
+                            <div class="total-amount"></div>
+
+                            <button type="submit" class="btn btn-primary btn-block mt-50">{{
+                                trans('financial.purchase') }}
+                            </button>
                         </div>
-                        <br><br><br><br>
-                        <div class="total-amount"></div>
-                        
-                        <button type="submit" class="btn btn-primary btn-block mt-50">{{
-                                                                trans('financial.purchase') }}
-                                                            </button>
                     </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -154,7 +159,8 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="select-plan">
                                         <input type="radio" class="choose-package" data-label="{{ $subscribe->title }}"
-                                               id="{{$subscribe->id}}" data-price="{{$subscribe->price}}" value="{{ $subscribe->id }}" name="package">
+                                               id="{{$subscribe->id}}" data-price="{{$subscribe->price}}"
+                                               value="{{ $subscribe->id }}" name="package">
                                         <label for="{{$subscribe->id}}" data-label="{{ $subscribe->title }}">
                                             <div class="subscribe-plan position-relative d-flex flex-column rounded-lg py-25 px-20">
                                                         <span class="subscribe-icon mb-35">
@@ -305,7 +311,6 @@
     });
 
 
-
     $(document).on('click', '.package_label', function (e) {
         var current_index = $(".package_label").index($(this));
         $(this).closest('.field-btn').find('.package_id').attr('data-current_index', current_index);
@@ -326,25 +331,35 @@
         var current_index = $(".choose-plan-modal").attr('data-current_index');
         var package_label = $(this).closest('.subscribe-plan-holder').find($('input[class="choose-package"]:checked')).attr('data-label');
         var package_price = $(this).closest('.subscribe-plan-holder').find($('input[class="choose-package"]:checked')).attr('data-price');
-        $('.package_id[data-current_index="'+current_index+'"]').val($(this).closest('.subscribe-plan-holder').find($('input[class="choose-package"]:checked')).val());
-        $('.package_id[data-current_index="'+current_index+'"]').attr('data-price',package_price);
-        $('.package_label[data-index_no="'+current_index+'"]').html(package_label);
+        $('.package_id[data-current_index="' + current_index + '"]').val($(this).closest('.subscribe-plan-holder').find($('input[class="choose-package"]:checked')).val());
+        $('.package_id[data-current_index="' + current_index + '"]').attr('data-price', package_price);
+        $('.package_label[data-index_no="' + current_index + '"]').html(package_label);
         $("#choose-plan-modal").modal('hide');
         calculate_total_amount();
     });
 
-    function calculate_total_amount(){
+    function calculate_total_amount() {
 
         var total_amount = 0;
+        var child_count = 0;
         $('.childs-block').find('.package_id').each(function (index_no) {
-            if( $(this).attr('data-price') != 'undefined') {
-                total_amount = parseInt(total_amount) + parseInt($(this).attr('data-price'));
+            if ($(this).attr('data-price') != 'undefined') {
+                child_count++;
+                var discount_percentage = 0;
+                if (child_count > 1) {
+                    discount_percentage = 5;
+                }
+                var current_price = parseInt($(this).attr('data-price'));
+                var discount_amount = (parseFloat(current_price) * parseInt(discount_percentage)) / 100;
+                current_price = (parseFloat(current_price) - parseFloat(discount_amount));
+                total_amount = parseInt(total_amount) + parseInt(current_price);
+                console.log(child_count);
             }
         });
 
         var discount_percentage = $('input[name="subscribe_for"]:checked').attr('data-discount');
 
-        var discount_amount = (parseFloat(total_amount)*parseInt(discount_percentage)) / 100;
+        var discount_amount = (parseFloat(total_amount) * parseInt(discount_percentage)) / 100;
         total_amount = (parseFloat(total_amount) - parseFloat(discount_amount));
 
         $(".total-amount").html(total_amount);

@@ -18,7 +18,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="login-card">
-                    <h1 class="font-20 font-weight-bold">{{ trans('auth.signup') }}</h1>
+                    <h1 class="font-20 font-weight-bold">{{ trans('auth.signup') }} as Parent</h1>
 
                     <form method="post" action="/register" class="mt-35">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

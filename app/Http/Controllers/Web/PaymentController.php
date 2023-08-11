@@ -95,6 +95,8 @@ class PaymentController extends Controller
         try {
             $channelManager = ChannelManager::makeChannel($paymentChannel);
             $redirect_url = $channelManager->paymentRequest($order);
+            pre($redirect_url, false);
+
 
             if (in_array($paymentChannel->class_name, PaymentChannel::$gatewayIgnoreRedirect)) {
                 return $redirect_url;

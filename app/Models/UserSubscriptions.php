@@ -26,4 +26,9 @@ class UserSubscriptions extends Model
         'expiry_at',
     ];
 
+    public function subscribe()
+    {
+        return $this->hasOne('App\Models\Subscribe', 'id', 'subscribe_id');
+    }
+
 }

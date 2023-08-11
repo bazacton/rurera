@@ -883,6 +883,7 @@ class QuestionsAttemptController extends Controller
 
         $user = auth()->user();
 
+
         $QuizzesResult = QuizzesResult::create([
             'user_id'          => $user->id,
             'results'          => json_encode($results),
@@ -938,7 +939,6 @@ class QuestionsAttemptController extends Controller
 
             }
         }
-
 
         pre($timestables_data);
     }

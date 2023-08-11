@@ -92,7 +92,6 @@ class RewardAccounting extends Model
                     $score = $reward->score;
             }
         }
-
         return $score;
     }
 }

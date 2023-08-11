@@ -9,6 +9,7 @@ use App\Models\Quiz;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {

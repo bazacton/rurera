@@ -362,6 +362,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserRegistrationPackage', 'user_id', 'id');
     }
 
+    public function userSubscriptions()
+    {
+        return $this->hasOne('App\Models\UserSubscriptions', 'user_id', 'id')->where('status', 'active');
+    }
+
+
     public function subscription($slug)
     {
 
@@ -387,7 +393,7 @@ class User extends Authenticatable
         $is_subscribed = UserSubscriptions::where('user_id', $this->id)
             ->where('status', 'active')->where($subscription_package, 1)->count();
 
-        $is_subscribed = ($is_subscribed > 0)? true : false;
+        $is_subscribed = ($is_subscribed > 0) ? true : false;
         return $is_subscribed;
 
     }

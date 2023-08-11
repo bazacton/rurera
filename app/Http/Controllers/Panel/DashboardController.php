@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Mixins\RegistrationPackage\UserPackage;
+use App\Models\Subscribe;
 use App\Models\Comment;
 use App\Models\Gift;
 use App\Models\Meeting;
@@ -49,7 +50,10 @@ class DashboardController extends Controller
 
             $monthlySales = Sale::where('seller_id', $user->id)
                 ->whereNull('refund_at')
-                ->whereBetween('created_at', [$firstDayMonth, $lastDayMonth])
+                ->whereBetween('created_at', [
+                    $firstDayMonth,
+                    $lastDayMonth
+                ])
                 ->get();
 
             $data['pendingAppointments'] = $pendingAppointments;
@@ -92,15 +96,25 @@ class DashboardController extends Controller
 
         if (auth()->user()->isParent()) {
 
+
             $childs = User::where('role_id', 1)
-                           ->where('parent_type', 'parent')
-                           ->where('parent_id', $user->id)
-                           ->get();
+                ->where('parent_type', 'parent')
+                ->where('parent_id', $user->id)
+                ->with([
+                    'userSubscriptions' => function ($query) {
+                        $query->with(['subscribe']);
+                    }
+                ])
+                ->get();
+
 
             $data['childs'] = $childs;
+            $subscribes = Subscribe::all();
+            $data['subscribes'] = $subscribes ?? [];
 
             return view(getTemplate() . '.panel.parent.dashboard', $data);
-        }else{
+            //return view(getTemplate() . '.panel.dashboard.index', $data);
+        } else {
             return view(getTemplate() . '.panel.dashboard.index', $data);
         }
     }
@@ -127,7 +141,11 @@ class DashboardController extends Controller
             ];
 
             $result = (string)view()->make('web.default.panel.dashboard.gift_modal', $data);
-            $result = str_replace(array("\r\n", "\n", "  "), '', $result);
+            $result = str_replace(array(
+                "\r\n",
+                "\n",
+                "  "
+            ), '', $result);
 
             return $result;
         }
@@ -152,14 +170,20 @@ class DashboardController extends Controller
             if (!$user->isUser()) {
                 $monthlySales = Sale::where('seller_id', $user->id)
                     ->whereNull('refund_at')
-                    ->whereBetween('created_at', [$start_date, $end_date])
+                    ->whereBetween('created_at', [
+                        $start_date,
+                        $end_date
+                    ])
                     ->sum('total_amount');
 
                 $data[] = round($monthlySales, 2);
             } else {
                 $monthlyPurchase = Sale::where('buyer_id', $user->id)
                     ->whereNull('refund_at')
-                    ->whereBetween('created_at', [$start_date, $end_date])
+                    ->whereBetween('created_at', [
+                        $start_date,
+                        $end_date
+                    ])
                     ->count();
 
                 $data[] = $monthlyPurchase;
@@ -168,7 +192,7 @@ class DashboardController extends Controller
 
         return [
             'months' => $months,
-            'data' => $data
+            'data'   => $data
         ];
     }
 }

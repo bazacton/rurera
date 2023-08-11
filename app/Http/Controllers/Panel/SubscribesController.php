@@ -66,6 +66,7 @@ class SubscribesController extends Controller
         );
 
 
+
         if (empty($subscribeArr)) {
             $toastData = [
                 'msg'    => trans('site.subscribe_not_valid'),
@@ -84,6 +85,7 @@ class SubscribesController extends Controller
 
         $user = auth()->user();
         $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
+
 
         if ($activeSubscribe) {
             $toastData = [

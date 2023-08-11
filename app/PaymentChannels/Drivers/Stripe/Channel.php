@@ -55,6 +55,7 @@ class Channel implements IChannel
             'cancel_url' => $this->makeCallbackUrl('cancel'),
         ]);
 
+
         /*$order->update([
             'reference_id' => $checkout->id,
         ]);*/
@@ -96,7 +97,6 @@ class Channel implements IChannel
                 $order->update([
                     'status' => Order::$paying
                 ]);
-
                 return $order;
             }
         }

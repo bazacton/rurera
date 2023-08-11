@@ -40,6 +40,7 @@ class Badge extends Model implements TranslatableContract
 
         $courses = $user->webinars;
 
+
         foreach (self::$badgeTypes as $type) {
             if (!empty($badges[$type]) and !$badges[$type]->isEmpty()) {
 

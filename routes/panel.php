@@ -146,7 +146,8 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
      */
     Route::group(['prefix' => 'parent'], function () {
         Route::post('create_student', 'ParentController@create_student');
-
+        Route::post('update_child/{id}', 'ParentController@update_child');
+        Route::get('user/{id}', 'ParentController@user')->name('update_child');
     });
 
     Route::group(['prefix' => 'quizzes-questions'], function () {

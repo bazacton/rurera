@@ -608,10 +608,6 @@ class UserController extends Controller
 
     public function switch_user(Request $request){
         $child_id = $request->post('child_id');
-        Auth::logout();
         Auth::loginUsingId($child_id, true);
-        $user = auth()->user();
-        //Auth::setUser($user);
-        pre($user);
     }
 }

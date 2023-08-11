@@ -142,13 +142,17 @@ class RegisterController extends Controller
             }
         }
 
+        $roleName = 'parent';
+        $roleId = 9;
+
         $user = User::create([
             'role_name' => $roleName,
             'role_id' => $roleId,
             'mobile' => $data['mobile'] ?? null,
             'email' => $data['email'] ?? null,
             'full_name' => $data['full_name'],
-            'status' => User::$pending,
+            //'status' => User::$pending,
+            'status' => 'active',
             'access_content' => $accessContent,
             'password' => Hash::make($data['password']),
             'affiliate' => $usersAffiliateStatus,
