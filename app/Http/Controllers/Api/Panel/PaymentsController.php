@@ -12,6 +12,7 @@ use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\TicketUser;
 use App\Models\UserSubscriptions;
+use App\Models\ParentsOrders;
 use App\PaymentChannels\ChannelManager;
 use App\User;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class PaymentsController extends Controller
     public function paymentByCredit(Request $request)
     {
         validateParam($request->all(), [
-            'order_id' => ['required',
+            'order_id' => [
+                'required',
                 Rule::exists('orders', 'id')->where('status', Order::$pending),
 
             ],
@@ -80,10 +82,12 @@ class PaymentsController extends Controller
     {
         $user = apiAuth();
         validateParam($request->all(), [
-            'gateway_id' => ['required',
+            'gateway_id' => [
+                'required',
                 Rule::exists('payment_channels', 'id')
             ],
-            'order_id' => ['required',
+            'order_id'   => [
+                'required',
                 Rule::exists('orders', 'id')->where('status', Order::$pending)
                     ->where('user_id', $user->id),
 
@@ -124,7 +128,16 @@ class PaymentsController extends Controller
             $redirect_url = $channelManager->paymentRequest($order);
 
 
-            if (in_array($paymentChannel->class_name, ['Paytm', 'Payu', 'Zarinpal', 'Stripe', 'Paysera', 'Cashu', 'Iyzipay', 'MercadoPago'])) {
+            if (in_array($paymentChannel->class_name, [
+                'Paytm',
+                'Payu',
+                'Zarinpal',
+                'Stripe',
+                'Paysera',
+                'Cashu',
+                'Iyzipay',
+                'MercadoPago'
+            ])) {
 
                 return $redirect_url;
             }
@@ -168,6 +181,12 @@ class PaymentsController extends Controller
                     UserSubscriptions::where('order_id', $order->id)->update([
                         'status' => 'active'
                     ]);
+                    if (isset($order->parent_id) && $order->parent_id > 0) {
+                        ParentsOrders::where('id', $order->parent_id)->update([
+                            'status' => 'active'
+                        ]);
+                    }
+                    $this->actionsAfterPaymentSuccess($order);
                 } else {
                     if ($order->type === Order::$meeting) {
                         $reserveMeeting->update(['locked_at' => null]);
@@ -179,8 +198,8 @@ class PaymentsController extends Controller
                 return redirect('/payments/status');
             } else {
                 $toastData = [
-                    'title' => trans('cart.fail_purchase'),
-                    'msg' => trans('cart.gateway_error'),
+                    'title'  => trans('cart.fail_purchase'),
+                    'msg'    => trans('cart.gateway_error'),
                     'status' => 'error'
                 ];
 
@@ -189,8 +208,8 @@ class PaymentsController extends Controller
 
         } catch (\Exception $exception) {
             $toastData = [
-                'title' => trans('cart.fail_purchase'),
-                'msg' => trans('cart.gateway_error'),
+                'title'  => trans('cart.fail_purchase'),
+                'msg'    => trans('cart.gateway_error'),
                 'status' => 'error'
             ];
             return redirect('cart')->with(['toast' => $toastData]);
@@ -208,7 +227,7 @@ class PaymentsController extends Controller
                 if (!empty($orderItem->reserve_meeting_id)) {
                     $reserveMeeting = ReserveMeeting::where('id', $orderItem->reserve_meeting_id)->first();
                     $reserveMeeting->update([
-                        'sale_id' => $sale->id,
+                        'sale_id'     => $sale->id,
                         'reserved_at' => time()
                     ]);
                 }
@@ -245,7 +264,7 @@ class PaymentsController extends Controller
         if (!empty($order)) {
             $data = [
                 'pageTitle' => trans('public.cart_page_title'),
-                'order' => $order,
+                'order'     => $order,
             ];
 
             return view('web.default.cart.status_pay', $data);
@@ -275,8 +294,9 @@ class PaymentsController extends Controller
     public function charge(Request $request)
     {
         validateParam($request->all(), [
-            'amount' => 'required|numeric',
-            'gateway_id' => ['required',
+            'amount'     => 'required|numeric',
+            'gateway_id' => [
+                'required',
                 Rule::exists('payment_channels', 'id')->where('status', 'active')
             ]
             ,
@@ -292,28 +312,28 @@ class PaymentsController extends Controller
         $paymentChannel = PaymentChannel::find($gateway_id);
 
         $order = Order::create([
-            'user_id' => $userAuth->id,
-            'status' => Order::$pending,
-            'payment_method' => Order::$paymentChannel,
+            'user_id'           => $userAuth->id,
+            'status'            => Order::$pending,
+            'payment_method'    => Order::$paymentChannel,
             'is_charge_account' => true,
-            'total_amount' => $amount,
-            'amount' => $amount,
-            'created_at' => time(),
-            'type' => Order::$charge,
+            'total_amount'      => $amount,
+            'amount'            => $amount,
+            'created_at'        => time(),
+            'type'              => Order::$charge,
         ]);
 
 
         OrderItem::updateOrCreate([
-            'user_id' => $userAuth->id,
+            'user_id'  => $userAuth->id,
             'order_id' => $order->id,
         ], [
-            'amount' => $amount,
-            'total_amount' => $amount,
-            'tax' => 0,
-            'tax_price' => 0,
-            'commission' => 0,
+            'amount'           => $amount,
+            'total_amount'     => $amount,
+            'tax'              => 0,
+            'tax_price'        => 0,
+            'commission'       => 0,
             'commission_price' => 0,
-            'created_at' => time(),
+            'created_at'       => time(),
         ]);
 
 
@@ -325,7 +345,7 @@ class PaymentsController extends Controller
             $paymentRequest = new Request();
             $paymentRequest->merge([
                 'gateway_id' => $paymentChannel->id,
-                'order_id' => $order->id
+                'order_id'   => $order->id
             ]);
 
             return $paymentController->paymentRequest($paymentRequest);
@@ -366,6 +386,75 @@ class PaymentsController extends Controller
             </script>
         </form>';
         return '';
+    }
+
+    /*
+     * After Payment actions
+     */
+    public function actionsAfterPaymentSuccess($order)
+    {
+        $user = auth()->user();
+        $action_data_array = isset($order->action_data) ? $order->action_data : '';
+        if ($action_data_array == '') {
+            return;
+        }
+        $action_data_array = json_decode($action_data_array);
+
+        if (!empty($action_data_array)) {
+
+            foreach ($action_data_array as $action_dataObj) {
+                $action_type = isset($action_dataObj->type) ? $action_dataObj->type : '';
+                $action_data = isset($action_dataObj->action_data) ? (array)$action_dataObj->action_data : array();
+
+                switch ($action_type) {
+
+                    case "updateSubscribePlan":
+
+                        $package_id = isset($action_dataObj->package_id) ? $action_dataObj->package_id : '';
+                        $ParentsOrders = ParentsOrders::find($package_id);
+                        $ParentsOrders->update($action_data);
+
+
+                        break;
+
+                    case "updatePlan":
+
+                        $child_id = isset($action_dataObj->child_id) ? $action_dataObj->child_id : '';
+                        $package_id = isset($action_dataObj->package_id) ? $action_dataObj->package_id : 0;
+                        $total_discount = isset($action_dataObj->total_discount) ? $action_dataObj->total_discount : 0;
+                        $packages_amount = isset($action_dataObj->packages_amount) ? $action_dataObj->packages_amount : 0;
+                        $package_expiry = isset($action_dataObj->package_expiry) ? $action_dataObj->package_expiry : 0;
+                        $child_subscribed = UserSubscriptions::where('user_id', $child_id)->where('buyer_id', $user->id)->where('status', 'active')->first();
+
+                        $subscribeObj = isset($action_dataObj->subscribeObj) ? $action_dataObj->subscribeObj : array();
+                        $orderItem = OrderItem::where('order_id', $order->id)->first();
+
+                        $UserSubscriptions = $child_subscribed->replicate();
+                        $UserSubscriptions->order_id = $order->id;
+                        $UserSubscriptions->order_item_id = $orderItem->id;
+                        $UserSubscriptions->subscribe_id = $package_id;
+                        $UserSubscriptions->is_courses = $subscribeObj->is_courses;
+                        $UserSubscriptions->is_timestables = $subscribeObj->is_timestables;
+                        $UserSubscriptions->is_bookshelf = $subscribeObj->is_bookshelf;
+                        $UserSubscriptions->is_sats = $subscribeObj->is_sats;
+                        $UserSubscriptions->is_elevenplus = $subscribeObj->is_elevenplus;
+                        $UserSubscriptions->status = 'active';
+                        $UserSubscriptions->child_discount = $total_discount;
+                        $UserSubscriptions->charged_amount = $packages_amount;
+                        $UserSubscriptions->created_at = time();
+                        $UserSubscriptions->expiry_at = $package_expiry;
+                        $UserSubscriptions->save();
+
+                        $child_subscribed->update([
+                            "status" => 'inactive',
+                        ]);
+
+
+                        break;
+                }
+
+            }
+        }
     }
 
 }

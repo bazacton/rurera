@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\UserMeta;
+use App\Models\UserSubscriptions;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,9 +78,9 @@ class ParentController extends Controller
         $user = auth()->user();
 
         $userObj = $userData->update([
-            'full_name'   => $data['full_name'],
-            'email'       => $data['email'],
-            'password'    => User::generatePassword($data['password']),
+            'full_name' => $data['full_name'],
+            'email'     => $data['email'],
+            'password'  => User::generatePassword($data['password']),
         ]);
 
         return redirect()->route('update_child', ['id' => $user_id]);
@@ -94,6 +96,36 @@ class ParentController extends Controller
         $data['userData'] = $userData;
         return view(getTemplate() . '.panel.parent.user_edit', $data);
     }
+
+    public function switchUser(Request $request, $user_id)
+    {
+        $userData = User::find($user_id);
+        $userObj = $userData->update([
+            'is_from_parent' => 1,
+        ]);
+        Auth::loginUsingId($user_id, true);
+        return redirect('/panel');
+    }
+
+    public function CancelSubscription(Request $request){
+        $child_id = $request->post('child_id');
+        $subscription = UserSubscriptions::where('status', 'active')
+                        ->where('user_id', $child_id)->first();
+        $userObj = $subscription->update([
+                    'status' => 'inactive',
+        ]);
+        $userData = User::find($child_id);
+        $userObj = $userData->update([
+            'status' => 'inactive',
+        ]);
+        return response()->json([
+            'code' => 200,
+        ]);
+
+    }
+
+
+
 
 
 }

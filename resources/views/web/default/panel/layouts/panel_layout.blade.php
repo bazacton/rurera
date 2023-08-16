@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
     <link rel="stylesheet" href="/assets/default/css/app.css">
     <link rel="stylesheet" href="/assets/default/css/panel.css">
+    <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 
     @if($isRtl)
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -109,6 +110,7 @@
 <script src="/assets/default/js/question-layout.js"></script>
 <script src="/assets/default/js//parts/main.min.js"></script>
 <script src="/assets/default/js/panel/public.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 
 <script>
 

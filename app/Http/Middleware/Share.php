@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Currency;
 use App\Models\FloatingBar;
 use App\Models\Webinar;
+use App\User;
 use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -19,22 +20,22 @@ class Share
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
+     * @param \Closure $next
      *
      * @return mixed
      */
-    public function handle($request , Closure $next)
+    public function handle($request, Closure $next)
     {
 
         if (auth()->check()) {
             $user = auth()->user();
-            view()->share('authUser' , $user);
+            view()->share('authUser', $user);
 
             if (!$user->isAdmin()) {
 
                 $unReadNotifications = $user->getUnReadNotifications();
 
-                view()->share('unReadNotifications' , $unReadNotifications);
+                view()->share('unReadNotifications', $unReadNotifications);
             }
         }
 
@@ -42,29 +43,29 @@ class Share
         $carts = $cartManagerController->getCarts();
         $totalCartsPrice = Cart::getCartsTotalPrice($carts);
 
-        view()->share('userCarts' , $carts);
-        view()->share('totalCartsPrice' , $totalCartsPrice);
+        view()->share('userCarts', $carts);
+        view()->share('totalCartsPrice', $totalCartsPrice);
 
         $generalSettings = getGeneralSettings();
-        view()->share('generalSettings' , $generalSettings);
+        view()->share('generalSettings', $generalSettings);
 
 
         $currency = currencySign();
-        view()->share('currency' , $currency);
+        view()->share('currency', $currency);
 
         if (getFinancialCurrencySettings('multi_currency')) {
             $multiCurrency = new MultiCurrency();
             $currencies = $multiCurrency->getCurrencies();
 
             if ($currencies->isNotEmpty()) {
-                view()->share('currencies' , $currencies);
+                view()->share('currencies', $currencies);
             }
         }
 
 
         // locale config
         if (!Session::has('locale')) {
-            Session::put('locale' , mb_strtolower(getDefaultLocale()));
+            Session::put('locale', mb_strtolower(getDefaultLocale()));
         }
         App::setLocale(session('locale'));
 
@@ -78,8 +79,8 @@ class Share
 
 
         $category_colors = array(
-            'ks1' => '#015da5',
-            'ks2' => '#015da5',
+            'ks1'    => '#015da5',
+            'ks2'    => '#015da5',
             'year-2' => '#ad382b',
             'year-1' => '#9f1dbe',
             'year-5' => '#2bae68',
@@ -90,12 +91,12 @@ class Share
         $course_navigation = array();
         if (!empty($course_navigation_data)) {
             foreach ($course_navigation_data as $categoryObj) {
-                if( $categoryObj->slug != '') {
-                    $category_colors[$categoryObj->slug]    = $categoryObj->color;
+                if ($categoryObj->slug != '') {
+                    $category_colors[$categoryObj->slug] = $categoryObj->color;
                     $category_name = $categoryObj->getTitleAttribute();
                     $course_navigation[$categoryObj->slug]['title'] = $category_name;
                     $course_navigation[$categoryObj->slug]['color'] = $category_colors[$categoryObj->slug];
-                    if( $categoryObj->menu_data != '') {
+                    if ($categoryObj->menu_data != '') {
                         $course_navigation[$categoryObj->slug]['menu_data'] = $categoryObj->menu_data;
                     }
                     if (!empty($categoryObj->webinars)) {
@@ -121,12 +122,42 @@ class Share
         //$courses_list = Webinar::where('category_id', $course->category->id)->get();
 
 
-        view()->share('categories' , \App\Models\Category::getCategories());
-        view()->share('navbarPages' , getNavbarLinks());
-        view()->share('course_navigation' , $course_navigation);
+        view()->share('categories', \App\Models\Category::getCategories());
+        $navData = array();
+        $navData['navbarPages'] = getNavbarLinks();
+        $navData['profile_navs'] = array();
+
+        if (auth()->check()) {
+            if( $user->is_from_parent > 0){
+                $parent = User::where('id', $user->parent_id)->get();
+                $navData['profile_navs'] = $parent;
+            }
+            if (auth()->user()->isParent()) {
+                $childs = User::where('role_id', 1)
+                    ->where('parent_type', 'parent')
+                    ->where('parent_id', $user->id)
+                    ->with([
+                        'userSubscriptions' => function ($query) {
+                            $query->with(['subscribe']);
+                        }
+                    ]);
+
+
+                $childs = $childs->get();
+
+                $navData['profile_navs'] = $childs;
+
+
+            }
+        }
+
+
+        view()->share('navData', $navData);
+        view()->share('course_navigation', $course_navigation);
+
 
         $floatingBar = FloatingBar::getFloatingBar($request);
-        view()->share('floatingBar' , $floatingBar);
+        view()->share('floatingBar', $floatingBar);
 
         return $next($request);
     }

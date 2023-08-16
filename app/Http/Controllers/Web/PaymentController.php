@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Mixins\Cashback\CashbackAccounting;
+use App\Http\Controllers\Api\Panel\PaymentsController;
 use App\Models\Accounting;
 use App\Models\BecomeInstructor;
 use App\Models\Cart;
@@ -18,6 +19,7 @@ use App\Models\RewardAccounting;
 use App\Models\Sale;
 use App\Models\TicketUser;
 use App\Models\UserSubscriptions;
+use App\Models\ParentsOrders;
 use App\PaymentChannels\ChannelManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -69,6 +71,12 @@ class PaymentController extends Controller
             UserSubscriptions::where('order_id', $order->id)->update([
                 'status' => 'active'
             ]);
+
+            if( isset( $order->parent_id ) && $order->parent_id > 0) {
+                ParentsOrders::where('id', $order->parent_id)->update([
+                    'status' => 'active'
+                ]);
+            }
 
             session()->put($this->order_session_key, $order->id);
 
@@ -176,6 +184,13 @@ class PaymentController extends Controller
                 UserSubscriptions::where('order_id', $order->id)->update([
                     'status' => 'active'
                 ]);
+                if( isset( $order->parent_id ) && $order->parent_id > 0) {
+                    ParentsOrders::where('id', $order->parent_id)->update([
+                        'status' => 'active'
+                    ]);
+                }
+                $paymentController = new PaymentsController();
+                $paymentController->actionsAfterPaymentSuccess($order);
 
             } else {
                 if ($order->type === Order::$meeting) {
@@ -419,5 +434,7 @@ class PaymentController extends Controller
 
         }
     }
+
+
 
 }

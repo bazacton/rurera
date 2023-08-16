@@ -277,6 +277,9 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
             Route::get('/{id}/installments', 'SubscribesController@getInstallmentsBySubscribe');
         });
         Route::post('/pay-subscribes', 'SubscribesController@pay');
+        Route::post('/update_subscribe_plan', 'SubscribesController@updateSubscribePlan');
+        Route::post('/update-plan', 'SubscribesController@updatePlan');
+
 
         Route::group(['prefix' => 'registration-packages'], function () {
             Route::get('/', 'RegistrationPackagesController@index')->name('panelRegistrationPackagesLists');
@@ -301,6 +304,7 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         Route::post('metas/{meta_id}/update', 'UserController@updateMeta');
         Route::get('metas/{meta_id}/delete', 'UserController@deleteMeta');
         Route::get('/deleteAccount', 'UserController@deleteAccount');
+        Route::post('/update-user', 'UserController@updateUser');
     });
 
     Route::group(['prefix' => 'support'], function () {
@@ -341,6 +345,9 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         Route::get('/{noticeboard_id}/delete', 'NoticeboardController@delete');
         Route::get('/{noticeboard_id}/saveStatus', 'NoticeboardController@saveStatus');
     });
+
+    Route::get('/switch_user/{id}', 'ParentController@switchUser');
+    Route::post('/cancel_subscription', 'ParentController@CancelSubscription');
 
     Route::group(['prefix' => 'notifications'], function () {
         Route::get('/', 'NotificationsController@index');

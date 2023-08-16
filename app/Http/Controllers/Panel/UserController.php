@@ -99,19 +99,19 @@ class UserController extends Controller
             ->get();
 
         $data = [
-            'pageTitle' => trans('panel.settings'),
-            'user' => $user,
-            'categories' => $categories,
-            'educations' => $userMetas->where('name', 'education'),
-            'experiences' => $userMetas->where('name', 'experience'),
-            'occupations' => $occupations,
+            'pageTitle'     => trans('panel.settings'),
+            'user'          => $user,
+            'categories'    => $categories,
+            'educations'    => $userMetas->where('name', 'education'),
+            'experiences'   => $userMetas->where('name', 'experience'),
+            'occupations'   => $occupations,
             'userLanguages' => $userLanguages,
-            'currentStep' => $step,
-            'countries' => $countries,
-            'provinces' => $provinces,
-            'cities' => $cities,
-            'districts' => $districts,
-            'userBanks' => $userBanks,
+            'currentStep'   => $step,
+            'countries'     => $countries,
+            'provinces'     => $provinces,
+            'cities'        => $cities,
+            'districts'     => $districts,
+            'userBanks'     => $userBanks,
         ];
 
         return view(getTemplate() . '.panel.setting.index', $data);
@@ -136,7 +136,7 @@ class UserController extends Controller
 
         $rules = [
             'identity_scan' => 'required_with:account_type',
-            'bio' => 'nullable|string|min:3|max:48',
+            'bio'           => 'nullable|string|min:3|max:48',
         ];
 
         if ($step == 1) {
@@ -144,8 +144,8 @@ class UserController extends Controller
 
             $rules = array_merge($rules, [
                 'full_name' => 'required|string',
-                'email' => (($registerMethod == 'email') ? 'required' : 'nullable') . '|email|max:255|unique:users,email,' . $user->id,
-                'mobile' => (($registerMethod == 'mobile') ? 'required' : 'nullable') . '|numeric|unique:users,mobile,' . $user->id,
+                'email'     => (($registerMethod == 'email') ? 'required' : 'nullable') . '|email|max:255|unique:users,email,' . $user->id,
+                'mobile'    => (($registerMethod == 'mobile') ? 'required' : 'nullable') . '|numeric|unique:users,mobile,' . $user->id,
             ]);
         }
 
@@ -169,13 +169,13 @@ class UserController extends Controller
                 $joinNewsletter = (!empty($data['join_newsletter']) and $data['join_newsletter'] == 'on');
 
                 $updateData = [
-                    'email' => $data['email'],
-                    'full_name' => $data['full_name'],
-                    'mobile' => $data['mobile'],
-                    'language' => $data['language'],
-                    'timezone' => $data['timezone'] ?? null,
-                    'currency' => $data['currency'] ?? null,
-                    'newsletter' => $joinNewsletter,
+                    'email'          => $data['email'],
+                    'full_name'      => $data['full_name'],
+                    'mobile'         => $data['mobile'],
+                    'language'       => $data['language'],
+                    'timezone'       => $data['timezone'] ?? null,
+                    'currency'       => $data['currency'] ?? null,
+                    'newsletter'     => $joinNewsletter,
                     'public_message' => (!empty($data['public_messages']) and $data['public_messages'] == 'on'),
                 ];
 
@@ -192,7 +192,7 @@ class UserController extends Controller
             } elseif ($step == 3) {
                 $updateData = [
                     'about' => $data['about'],
-                    'bio' => $data['bio'],
+                    'bio'   => $data['bio'],
                 ];
             } elseif ($step == 6) {
                 UserOccupation::where('user_id', $user->id)->delete();
@@ -200,7 +200,7 @@ class UserController extends Controller
 
                     foreach ($data['occupations'] as $category_id) {
                         UserOccupation::create([
-                            'user_id' => $user->id,
+                            'user_id'     => $user->id,
                             'category_id' => $category_id
                         ]);
                     }
@@ -208,15 +208,15 @@ class UserController extends Controller
             } elseif ($step == 7) {
                 $updateData = [
                     'identity_scan' => $data['identity_scan'] ?? '',
-                    'certificate' => $data['certificate'] ?? '',
-                    'address' => $data['address'] ?? '',
+                    'certificate'   => $data['certificate'] ?? '',
+                    'address'       => $data['address'] ?? '',
                 ];
 
                 if (!empty($data['bank_id'])) {
                     UserSelectedBank::query()->where('user_id', $user->id)->delete();
 
                     $userSelectedBank = UserSelectedBank::query()->create([
-                        'user_id' => $user->id,
+                        'user_id'      => $user->id,
                         'user_bank_id' => $data['bank_id']
                     ]);
 
@@ -226,9 +226,9 @@ class UserController extends Controller
                         foreach ($data['bank_specifications'] as $specificationId => $specificationValue) {
                             if (!empty($specificationValue)) {
                                 $specificationInsert[] = [
-                                    'user_selected_bank_id' => $userSelectedBank->id,
+                                    'user_selected_bank_id'      => $userSelectedBank->id,
                                     'user_bank_specification_id' => $specificationId,
-                                    'value' => $specificationValue
+                                    'value'                      => $specificationValue
                                 ];
                             }
                         }
@@ -245,7 +245,7 @@ class UserController extends Controller
                                 'user_id' => $user->id,
                             ],
                             [
-                                'api_key' => $data['zoom_api_key'] ?? null,
+                                'api_key'    => $data['zoom_api_key'] ?? null,
                                 'api_secret' => $data['zoom_api_secret'] ?? null,
                                 'created_at' => time()
                             ]
@@ -257,19 +257,19 @@ class UserController extends Controller
             } elseif ($step == 9) {
                 $updateData = [
                     "level_of_training" => !empty($data['level_of_training']) ? (new UserLevelOfTraining())->getValue($data['level_of_training']) : null,
-                    "meeting_type" => $data['meeting_type'] ?? null,
-                    "group_meeting" => (!empty($data['group_meeting']) and $data['group_meeting'] == 'on'),
-                    "country_id" => $data['country_id'] ?? null,
-                    "province_id" => $data['province_id'] ?? null,
-                    "city_id" => $data['city_id'] ?? null,
-                    "district_id" => $data['district_id'] ?? null,
-                    "location" => (!empty($data['latitude']) and !empty($data['longitude'])) ? DB::raw("POINT(" . $data['latitude'] . "," . $data['longitude'] . ")") : null,
+                    "meeting_type"      => $data['meeting_type'] ?? null,
+                    "group_meeting"     => (!empty($data['group_meeting']) and $data['group_meeting'] == 'on'),
+                    "country_id"        => $data['country_id'] ?? null,
+                    "province_id"       => $data['province_id'] ?? null,
+                    "city_id"           => $data['city_id'] ?? null,
+                    "district_id"       => $data['district_id'] ?? null,
+                    "location"          => (!empty($data['latitude']) and !empty($data['longitude'])) ? DB::raw("POINT(" . $data['latitude'] . "," . $data['longitude'] . ")") : null,
                 ];
 
                 $updateUserMeta = [
-                    "gender" => $data['gender'] ?? null,
-                    "age" => $data['age'] ?? null,
-                    "address" => $data['address'] ?? null,
+                    "gender"            => $data['gender'] ?? null,
+                    "age"               => $data['age'] ?? null,
+                    "address"           => $data['address'] ?? null,
                     'live_chat_js_code' => !empty($data['live_chat_js_code']) ? $data['live_chat_js_code'] : null
                 ];
 
@@ -289,8 +289,8 @@ class UserController extends Controller
                     } else if (!empty($value)) {
                         UserMeta::create([
                             'user_id' => $user->id,
-                            'name' => $name,
-                            'value' => $value
+                            'name'    => $name,
+                            'value'   => $value
                         ]);
                     }
                 }
@@ -315,8 +315,8 @@ class UserController extends Controller
             }
 
             $toastData = [
-                'title' => trans('public.request_success'),
-                'msg' => trans('panel.user_setting_success'),
+                'title'  => trans('public.request_success'),
+                'msg'    => trans('panel.user_setting_success'),
                 'status' => 'success'
             ];
             return redirect($url)->with(['toast' => $toastData]);
@@ -331,8 +331,8 @@ class UserController extends Controller
         if ($joinNewsletter) {
             if (empty($check)) {
                 Newsletter::create([
-                    'user_id' => $user_id,
-                    'email' => $email,
+                    'user_id'    => $user_id,
+                    'email'      => $email,
                     'created_at' => time()
                 ]);
             } else {
@@ -390,8 +390,8 @@ class UserController extends Controller
 
             UserMeta::create([
                 'user_id' => $user->id,
-                'name' => $data['name'],
-                'value' => $data['value'],
+                'name'    => $data['name'],
+                'value'   => $data['value'],
             ]);
 
             return response()->json([
@@ -461,7 +461,10 @@ class UserController extends Controller
 
     public function manageUsers(Request $request, $user_type)
     {
-        $valid_type = ['instructors', 'students'];
+        $valid_type = [
+            'instructors',
+            'students'
+        ];
         $organization = auth()->user();
 
         if ($organization->isOrganization() and in_array($user_type, $valid_type)) {
@@ -485,7 +488,10 @@ class UserController extends Controller
                 $from = strtotime($from);
                 $to = strtotime($to);
 
-                $query->whereBetween('created_at', [$from, $to]);
+                $query->whereBetween('created_at', [
+                    $from,
+                    $to
+                ]);
             } else {
                 if (!empty($from)) {
                     $from = strtotime($from);
@@ -509,7 +515,10 @@ class UserController extends Controller
             }
 
             if (!empty($type)) {
-                if (in_array($type, ['active', 'inactive'])) {
+                if (in_array($type, [
+                    'active',
+                    'inactive'
+                ])) {
                     $query->where('status', $type);
                 } elseif ($type == 'verified') {
                     $query->where('verified', true);
@@ -520,11 +529,11 @@ class UserController extends Controller
                 ->paginate(10);
 
             $data = [
-                'pageTitle' => trans('public.' . $user_type),
-                'user_type' => $user_type,
-                'organization' => $organization,
-                'users' => $users,
-                'activeCount' => $activeCount,
+                'pageTitle'     => trans('public.' . $user_type),
+                'user_type'     => $user_type,
+                'organization'  => $organization,
+                'users'         => $users,
+                'activeCount'   => $activeCount,
                 'inActiveCount' => $inActiveCount,
                 'verifiedCount' => $verifiedCount,
             ];
@@ -537,7 +546,10 @@ class UserController extends Controller
 
     public function createUser($user_type)
     {
-        $valid_type = ['instructors', 'students'];
+        $valid_type = [
+            'instructors',
+            'students'
+        ];
         $organization = auth()->user();
 
         if ($organization->isOrganization() and in_array($user_type, $valid_type)) {
@@ -562,14 +574,14 @@ class UserController extends Controller
             }
 
             $data = [
-                'pageTitle' => trans('public.new') . ' ' . trans('quiz.' . $user_type),
-                'new_user' => true,
-                'user_type' => $user_type,
-                'user' => $organization,
-                'categories' => $categories,
+                'pageTitle'       => trans('public.new') . ' ' . trans('quiz.' . $user_type),
+                'new_user'        => true,
+                'user_type'       => $user_type,
+                'user'            => $organization,
+                'categories'      => $categories,
                 'organization_id' => $organization->id,
-                'userLanguages' => $userLanguages,
-                'currentStep' => 1,
+                'userLanguages'   => $userLanguages,
+                'currentStep'     => 1,
             ];
 
             return view(getTemplate() . '.panel.setting.index', $data);
@@ -580,15 +592,18 @@ class UserController extends Controller
 
     public function storeUser(Request $request, $user_type)
     {
-        $valid_type = ['instructors', 'students'];
+        $valid_type = [
+            'instructors',
+            'students'
+        ];
         $organization = auth()->user();
 
         if ($organization->isOrganization() and in_array($user_type, $valid_type)) {
             $this->validate($request, [
-                'email' => 'required|string|email|max:255|unique:users',
+                'email'     => 'required|string|email|max:255|unique:users',
                 'full_name' => 'required|string',
-                'mobile' => 'required|numeric|unique:users',
-                'password' => 'required|confirmed|min:6',
+                'mobile'    => 'required|numeric|unique:users',
+                'password'  => 'required|confirmed|min:6',
             ]);
 
             $data = $request->all();
@@ -599,27 +614,27 @@ class UserController extends Controller
             $usersAffiliateStatus = (!empty($referralSettings) and !empty($referralSettings['users_affiliate_status']));
 
             $user = User::create([
-                'role_name' => $role_name,
-                'role_id' => $role_id,
-                'email' => $data['email'],
-                'organ_id' => $organization->id,
-                'password' => Hash::make($data['password']),
-                'full_name' => $data['full_name'],
-                'mobile' => $data['mobile'],
-                'language' => $data['language'],
-                'timezone' => $data['timezone'],
-                'currency' => $data['currency'] ?? null,
-                'affiliate' => $usersAffiliateStatus,
-                'newsletter' => (!empty($data['join_newsletter']) and $data['join_newsletter'] == 'on'),
+                'role_name'      => $role_name,
+                'role_id'        => $role_id,
+                'email'          => $data['email'],
+                'organ_id'       => $organization->id,
+                'password'       => Hash::make($data['password']),
+                'full_name'      => $data['full_name'],
+                'mobile'         => $data['mobile'],
+                'language'       => $data['language'],
+                'timezone'       => $data['timezone'],
+                'currency'       => $data['currency'] ?? null,
+                'affiliate'      => $usersAffiliateStatus,
+                'newsletter'     => (!empty($data['join_newsletter']) and $data['join_newsletter'] == 'on'),
                 'public_message' => (!empty($data['public_messages']) and $data['public_messages'] == 'on'),
-                'created_at' => time()
+                'created_at'     => time()
             ]);
 
 
             $notifyOptions = [
                 '[organization.name]' => $organization->full_name,
-                '[u.name]' => $user->full_name,
-                '[u.role]' => trans("update.role_{$user->role_name}"),
+                '[u.name]'            => $user->full_name,
+                '[u.role]'            => trans("update.role_{$user->role_name}"),
             ];
             sendNotification('new_user_item_rating', $notifyOptions, 1);
 
@@ -632,7 +647,10 @@ class UserController extends Controller
 
     public function editUser($user_type, $user_id, $step = 1)
     {
-        $valid_type = ['instructors', 'students'];
+        $valid_type = [
+            'instructors',
+            'students'
+        ];
         $organization = auth()->user();
 
         if ($organization->isOrganization() and in_array($user_type, $valid_type)) {
@@ -655,16 +673,16 @@ class UserController extends Controller
 
                 $data = [
                     'organization_id' => $organization->id,
-                    'edit_new_user' => true,
-                    'user' => $user,
-                    'user_type' => $user_type,
-                    'categories' => $categories,
-                    'educations' => $userMetas->where('name', 'education'),
-                    'experiences' => $userMetas->where('name', 'experience'),
-                    'pageTitle' => trans('panel.settings'),
-                    'occupations' => $occupations,
-                    'userLanguages' => $userLanguages,
-                    'currentStep' => $step,
+                    'edit_new_user'   => true,
+                    'user'            => $user,
+                    'user_type'       => $user_type,
+                    'categories'      => $categories,
+                    'educations'      => $userMetas->where('name', 'education'),
+                    'experiences'     => $userMetas->where('name', 'experience'),
+                    'pageTitle'       => trans('panel.settings'),
+                    'occupations'     => $occupations,
+                    'userLanguages'   => $userLanguages,
+                    'currentStep'     => $step,
                 ];
 
                 return view(getTemplate() . '.panel.setting.index', $data);
@@ -676,7 +694,10 @@ class UserController extends Controller
 
     public function deleteUser($user_type, $user_id)
     {
-        $valid_type = ['instructors', 'students'];
+        $valid_type = [
+            'instructors',
+            'students'
+        ];
         $organization = auth()->user();
 
         if ($organization->isOrganization() and in_array($user_type, $valid_type)) {
@@ -733,7 +754,7 @@ class UserController extends Controller
     public function contactInfo(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'required',
+            'user_id'   => 'required',
             'user_type' => 'required|in:student,instructor',
         ]);
 
@@ -777,13 +798,13 @@ class UserController extends Controller
             }
 
             return response()->json([
-                'code' => 200,
-                'avatar' => $user->getAvatar(),
-                'name' => $user->full_name,
-                'email' => !empty($user->email) ? $user->email : '-',
-                'phone' => !empty($user->mobile) ? $user->mobile : '-',
+                'code'        => 200,
+                'avatar'      => $user->getAvatar(),
+                'name'        => $user->full_name,
+                'email'       => !empty($user->email) ? $user->email : '-',
+                'phone'       => !empty($user->mobile) ? $user->mobile : '-',
                 'description' => $description,
-                'location' => $location,
+                'location'    => $location,
             ], 200);
         }
 
@@ -820,9 +841,9 @@ class UserController extends Controller
             ]);
 
             return response()->json([
-                'code' => 200,
-                'title' => trans('public.request_success'),
-                'text' => trans('update.delete_account_request_stored_msg'),
+                'code'        => 200,
+                'title'       => trans('public.request_success'),
+                'text'        => trans('update.delete_account_request_stored_msg'),
                 'dont_reload' => true
             ]);
         }
@@ -846,4 +867,38 @@ class UserController extends Controller
 
         return response()->json([], 422);
     }
+
+    /*
+     * Update User Details
+     */
+    public function updateUser(Request $request)
+    {
+        $user = auth()->user();
+        $full_name = $request->input('full_name');
+        $email = $request->input('email');
+        $country_label = $request->input('country_label');
+        $postal_code = $request->input('postal_code');
+        $time_zone = $request->input('time_zone');
+        $complete_address = $request->input('complete_address');
+        $userObj = User::find($user->id);
+
+        $userObj->update([
+            'full_name'     => $full_name,
+            'email'         => $email,
+            'country_label' => $country_label,
+            'postal_code'   => $postal_code,
+            'time_zone'     => $time_zone,
+            'address'       => $complete_address,
+        ]);
+
+        $toastData = [
+            'title'  => '',
+            'msg'    => 'Updated Successfully',
+            'status' => 'success'
+        ];
+        return back()->with(['toast' => $toastData]);
+
+    }
+
+
 }

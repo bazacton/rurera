@@ -7,6 +7,7 @@ use App\Models\PaymentChannel;
 use App\PaymentChannels\IChannel;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
+use Stripe\PaymentMethod;
 use Stripe\Stripe;
 
 class Channel implements IChannel
@@ -38,22 +39,37 @@ class Channel implements IChannel
 
         Stripe::setApiKey($this->api_secret);
 
-        $checkout = Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => $currency,
-                    'unit_amount_decimal' => $price * 100,
-                    'product_data' => [
-                        'name' => 'Rurera payment',
-                    ],
+        /*try {
+
+        } catch (\Stripe\Exception\CardException $e) {
+            $error = $e->getError();
+            echo "Card error: " . $error->message;
+            pre('--testing33');
+        }*/
+        try {
+            $checkout = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items'           => [
+                    [
+                        'price_data' => [
+                            'currency'            => $currency,
+                            'unit_amount_decimal' => $price * 100,
+                            'product_data'        => [
+                                'name' => 'Rurera payment',
+                            ],
+                        ],
+                        'quantity'   => 1,
+                    ]
                 ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => $this->makeCallbackUrl('success'),
-            'cancel_url' => $this->makeCallbackUrl('cancel'),
-        ]);
+                'mode'                 => 'payment',
+                'success_url'          => $this->makeCallbackUrl('success'),
+                'cancel_url'           => $this->makeCallbackUrl('cancel'),
+            ]);
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            // Handle Stripe API errors
+            echo "Error: " . $e->getMessage();
+            pre('---testing');
+        }
 
 
         /*$order->update([

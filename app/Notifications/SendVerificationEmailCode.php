@@ -42,6 +42,8 @@ class SendVerificationEmailCode extends Notification
     public function toMail($notifiable)
     {
         $generalSettings = getGeneralSettings();
+        $generalSettings['site_name'] = isset( $generalSettings['site_name'] )? $generalSettings['site_name'] : 'Rurera';
+        $generalSettings['site_email'] = isset( $generalSettings['site_email'] )? $generalSettings['site_email'] : 'info@rurera.com';
         $subject = trans('auth.email_confirmation');
 
         $confirm = [

@@ -100,6 +100,7 @@ class DashboardController extends Controller
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', $user->id)
+                ->where('status', 'active')
                 ->with([
                     'userSubscriptions' => function ($query) {
                         $query->with(['subscribe']);
@@ -108,7 +109,15 @@ class DashboardController extends Controller
                 ->get();
 
 
+
+            $time_zones = User::$timeZones;
+
             $data['childs'] = $childs;
+            $data['time_zones'] = $time_zones;
+            $data['countries_list'] = User::$countriesList;
+            $data['userObj'] = $user;
+
+
             $subscribes = Subscribe::all();
             $data['subscribes'] = $subscribes ?? [];
 

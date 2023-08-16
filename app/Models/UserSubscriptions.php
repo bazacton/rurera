@@ -14,6 +14,7 @@ class UserSubscriptions extends Model
         'buyer_id',
         'user_id',
         'order_id',
+        'order_parent_id',
         'order_item_id',
         'subscribe_id',
         'is_courses',
@@ -24,6 +25,8 @@ class UserSubscriptions extends Model
         'status',
         'created_at',
         'expiry_at',
+        'child_discount',
+        'charged_amount',
     ];
 
     public function subscribe()
