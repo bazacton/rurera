@@ -223,7 +223,8 @@
             </div>
         </div>
     </section>
-    <section class="lms-search-services mb-0 mt-0 pt-80 pb-60" style="background: url(../assets/default/svgs/bank-note.svg) #f27530;">
+    <section class="lms-search-services mb-0 mt-0 pt-80 pb-60"
+             style="background: url(../assets/default/svgs/bank-note.svg) #f27530;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -231,7 +232,7 @@
                         <h2 class="mt-0 mb-10 text-white">SATs practice steps to Success with Rurera</h2>
                         <p class="text-white">
                             Work through a variety of practice questions to improve your skills
-                            and become familiar with the <br />
+                            and become familiar with the <br/>
                             types of questions you'll encounter on the SATs.
                         </p>
                     </div>
@@ -373,39 +374,56 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                <div class="sats-listing-card medium">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Questions</th>
+                            <th>Attempts</th>
+                            <th>Last attempt</th>
+                            <th>Accuracy</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if( !empty( $sats))
+                        @foreach( $sats as $satObj)
+                        @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
 
-                @if( !empty( $sats))
-                @foreach( $sats as $satObj)
-                @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
+                        $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
+                        $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
+                        $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
+                        $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
+                        $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
 
-                $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
-                $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
-                $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
-                $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
-                $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
+                        @endphp
+                        <tr>
+                            <td>
+                                <img src="../assets/default/img/sats-list-img1.png" alt="">
+                                <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a></h4>
+                            </td>
+                            <td>54</td>
+                            <td>0</td>
+                            <td>12</td>
+                            <td>
+                                <div class="attempt-progress">
+                                    <span class="progress-number">0%</span>
+                                    <span class="progress-holder">
+                                                                                    <span class="progressbar"
+                                                                                          style="width: 0%;"></span>
+                                                                                </span>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
 
-                @endphp
-                <div class="col-12 col-lg-3 col-md-6">
-                    <div class="sats-listing-card">
-                        <div class="img-holder">
-                            <figure>
-                                <a href="/sats/{{$satObj->id}}/start"><img src="../assets/default/img/sats-list-img1.png" alt=""></a>
-                            </figure>
-                            @if( $is_passed == true)
-                                <figcaption>
-                                    <span class="completed-label">Completed</span>
-                                </figcaption>
-                            @endif
-                        </div>
-                        <div class="text-holder">
-                            <span>Math Arithmatic</span>
-                            <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}</a></h4>
-                            <a href="/sats/{{$satObj->id}}/start" class="practice-btn {{$current_status}}">{{$button_label}}</a>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                @endforeach
-                @endif
+            </div>
+
 
                 <div class="col-12">
                     <div class="mt-60">
@@ -787,7 +805,7 @@
                         <h2 class="mt-0 mb-10 text-white">About SATs</h2>
                         <p class="font-19 text-white">
                             With engaging learning experiences, proven strategies, and ample
-                            practice, you'll be <br />well-prepared to achieve your best scores
+                            practice, you'll be <br/>well-prepared to achieve your best scores
                             on the SATs.
                         </p>
                     </div>
@@ -796,49 +814,49 @@
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/exam-multiple-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/exam-multiple-white.svg" alt="#"/>
                                 <span class="text-white">100+ Sats Pratices</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/lessons-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/lessons-white.svg" alt="#"/>
                                 <span class="text-white">Lesson Topics</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/impact-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/impact-white.svg" alt="#"/>
                                 <span class="text-white">Impactful</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/sav-time-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/sav-time-white.svg" alt="#"/>
                                 <span class="text-white">Time saving</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/study-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/study-white.svg" alt="#"/>
                                 <span class="text-white">Study Resources</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/flexibility-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/flexibility-white.svg" alt="#"/>
                                 <span class="text-white">Flexibility</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/logic-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/logic-white.svg" alt="#"/>
                                 <span class="text-white">Logic</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/support-white.svg" alt="#" />
+                                <img src="../assets/default/svgs/support-white.svg" alt="#"/>
                                 <span class="text-white">Friendly support</span>
                             </div>
                         </div>
@@ -1025,7 +1043,8 @@
                 </div>
             </div>
     </section>
-    <section class="lms-newsletter mt-60 py-70" style="background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801">
+    <section class="lms-newsletter mt-60 py-70"
+             style="background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801">
         <div class="container">
             <div class="row">
                 <div class="col-12">

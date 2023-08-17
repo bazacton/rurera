@@ -13109,7 +13109,7 @@ a.badge-circle-gray200:focus {
     border: unset;
     top: 40%;
     transition: all .1s;
-    overflow: visible !important
+    overflow: visible !important;
 }
 .dropdown-menu.user-profile-dropdown {
     min-width: 125px
@@ -24002,6 +24002,41 @@ Sats Listing Style Start
 .listing-search {border-bottom: 1px solid #dfdfdf; padding-bottom: 10px;}
 .listing-search button {height: 40px;}
 .clear-btn {font-weight: 500;}
+.sats-listing-card.medium .row {align-items: center;}
+.sats-listing-card.medium .img-holder {margin-bottom: 0;}
+.sats-listing-card.medium .text-holder h4 {margin-bottom: 0;}
+.sats-listing-card table {
+    width: 100%;
+}
+.sats-listing-card table img {
+    max-width: 60px;
+    display: inline-block;
+    margin-right: 15px;
+}
+.sats-listing-card table h4 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sats-listing-card thead {
+    background-color: var(--primary);
+}
+.sats-listing-card.medium {
+    padding: 0 0 10px;
+    width: 100%;
+}
+.sats-listing-card thead th {
+    padding: 15px 20px;
+    color: #fff;
+    text-align: left;
+}
+.sats-listing-card tbody tr td {
+    padding: 15px 20px;
+}
+.sats-listing-card .attempt-progress {
+    min-width: 150px;
+}
+
 /*************************************
 Sats Listing Style End
 *************************************/
@@ -24351,6 +24386,9 @@ Choose Plan Style End
     height: 56px;
     font-size: 16px;
 }
+.db-form-tabs .lms-jobs-form .input-field select {
+    padding-right: 40px;
+}
 .db-form-tabs .lms-jobs-form .input-field {
     margin-bottom: 15px;
 }
@@ -24440,6 +24478,7 @@ Choose Plan Style End
     justify-content: space-between;
     align-items: start;
     border-bottom: 0;
+    border-radius: 0.75rem;
 }
 .db-form-tabs .list-group-item img {
     max-width: 38px;
@@ -24448,6 +24487,18 @@ Choose Plan Style End
     min-width: 38px;
     min-height: 38px;
     border-radius: 50%;
+}
+.db-form-tabs .billing-card .list-group-item img {
+    border-radius: 3px;
+    min-height: auto;
+    max-height: inherit;
+}
+.db-form-tabs .list-group-item img {
+    border-radius: 0;
+    min-width: auto;
+    background-color: inherit;
+    min-height: auto;
+    filter: invert(30%) sepia(20%) saturate(253%) hue-rotate(169deg) brightness(94%) contrast(91%);
 }
 .db-form-tabs h6 {
     color: #495057;
@@ -24500,13 +24551,26 @@ Choose Plan Style End
     height: 16px;
     width: 16px;
     display: inline-flex;
-    line-height: 16px;
-    text-align: center;
     align-items: center;
     justify-content: center;
 }
 .db-form-tabs .dropdown-toggle:after {
     display: none;
+}
+.db-form-tabs .dropdown-menu {
+    min-width: 150px;
+}
+.db-form-tabs .dropdown-menu li {
+    list-style: none;
+    padding-left: 0;
+}
+.db-form-tabs .dropdown-menu li:after {
+    display: none;
+}
+.db-form-tabs .dropdown-menu li .dropdown-item {
+    padding-left: 10px;
+    padding-right: 0;
+    font-size: 15px;
 }
 .db-form-tabs a.dropdown-toggle span {
     height: 3px;
@@ -24524,6 +24588,71 @@ Choose Plan Style End
 }
 .db-security .card-body .text-muted {
     margin-bottom: 15px;
+}
+.db-form-tabs .card-body .btn {
+    height: auto;
+    padding: 8px 15px;
+}
+.db-form-tabs .list-group-item {
+    border-style: dashed;
+}
+.db-form-tabs .list-group-item:hover {background-color: rgba(17,60,252,0.1);}
+.db-security ul.small {
+    padding-left: 2rem;
+}
+.db-security ul.small li {
+    list-style-type: circle;
+    margin-bottom: 5px;
+}
+.form-switch .form-check-input {
+    width: 2em;
+    border-radius: 2em;
+    background: url(/assets/default/svgs/switch-circle.svg);
+    transition: background-position .15s ease-in-out;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #e9ecef;
+}
+.form-switch .form-check-input:checked {
+    background: url(/assets/default/svgs/switch-circle-white.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #287eff;
+}
+.form-check-input {
+    border-color: #e9ecef;
+    -webkit-appearance: none;
+    border: 1px solid rgba(0,0,0,.25);
+    width: 1em;
+    height: 1em;
+}
+.db-notifications .list-group-custom li:after {
+    display: none;
+}
+.db-form-tabs .list-group-item h6 {
+    font-weight: 500;
+}
+.db-notifications small {
+    font-size: .875em;
+    color: #9399a1!important;
+    display: block;
+    padding-top: 5px;
+}
+.db-form-tabs .lms-faqs {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+.db-form-tabs .lms-faqs .card {
+    padding: 0;
+    background-color: inherit;
+    box-shadow: none;
+}
+.db-form-tabs .lms-faqs .card:last-child {
+    margin-bottom: 0;
 }
 
 /*************************************

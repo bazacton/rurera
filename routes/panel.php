@@ -305,6 +305,8 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         Route::get('metas/{meta_id}/delete', 'UserController@deleteMeta');
         Route::get('/deleteAccount', 'UserController@deleteAccount');
         Route::post('/update-user', 'UserController@updateUser');
+        Route::post('/update-user-password', 'UserController@updateUserPassword');
+
     });
 
     Route::group(['prefix' => 'support'], function () {

@@ -222,7 +222,7 @@ class PaymentsController extends Controller
             Accounting::charge($order);
         } else {
             foreach ($order->orderItems as $orderItem) {
-                $sale = Sale::createSales($orderItem, $order->payment_method);
+                $sale = Sale::createSales($orderItem, $order->payment_method, $order->order_type);
 
                 if (!empty($orderItem->reserve_meeting_id)) {
                     $reserveMeeting = ReserveMeeting::where('id', $orderItem->reserve_meeting_id)->first();

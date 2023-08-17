@@ -94,10 +94,10 @@ class Sale extends Model
         return $this->belongsTo('App\Models\InstallmentOrderPayment', 'installment_payment_id', 'id');
     }
 
-    public static function createSales($orderItem, $payment_method)
+    public static function createSales($orderItem, $payment_method, $orderType = '')
     {
-        $orderType = Order::$webinar;
-        if (!empty($orderItem->reserve_meeting_id)) {
+        $orderType = ($orderType == '')? Order::$webinar : $orderType;
+        /*if (!empty($orderItem->reserve_meeting_id)) {
             $orderType = Order::$meeting;
         } elseif (!empty($orderItem->subscribe_id)) {
             $orderType = Order::$subscribe;
@@ -115,7 +115,7 @@ class Sale extends Model
 
         if (!empty($orderItem->gift_id)) {
             $orderType = Order::$gift;
-        }
+        }*/
 
         $seller_id = OrderItem::getSeller($orderItem);
 

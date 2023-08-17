@@ -900,5 +900,44 @@ class UserController extends Controller
 
     }
 
+    /*
+     * Update User Password
+     */
+    public function updateUserPassword(Request $request)
+    {
+        $user = auth()->user();
+        $old_password = $request->input('old_password');
+        $new_password = $request->input('new_password');
+        $new_re_password = $request->input('new_re_password');
+        $userObj = User::find($user->id);
+        if (!Hash::check($old_password, $userObj->password)) {
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Password Incorrect',
+                'status' => 'error'
+            ];
+        } else if ($new_password != $new_re_password) {
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Password does not match!',
+                'status' => 'error'
+            ];
+        } else {
+
+            $userObj->update([
+                'password' => User::generatePassword($new_password),
+            ]);
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Updated Successfully',
+                'status' => 'success'
+            ];
+        }
+
+
+        return back()->with(['toast' => $toastData]);
+
+    }
+
 
 }

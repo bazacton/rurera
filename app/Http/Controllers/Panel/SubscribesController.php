@@ -114,7 +114,12 @@ class SubscribesController extends Controller
             $package_total_days = round($package_total_days / (60 * 60 * 24));
             $remaining_days = ($package_expiry - $current_date);
             $remaining_days = round($remaining_days / (60 * 60 * 24));
-            $per_day_amount = ($packages_amount / $package_total_days);
+
+            $expiry_total_days = ($expiry_date - $current_date);
+            $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
+            $per_day_amount = ($packages_amount / $expiry_total_days);
+
+            //$per_day_amount = ($packages_amount / $package_total_days);
             $packages_amount = ($remaining_days * $per_day_amount);
         }
 
@@ -161,6 +166,10 @@ class SubscribesController extends Controller
             $ParentsOrders->update($parentOrdersData);
         }
 
+        $user->update([
+            'payment_frequency' => $ParentsOrders->payment_frequency
+        ]);
+
 
         if ($activeSubscribe) {
             $toastData = [
@@ -183,6 +192,7 @@ class SubscribesController extends Controller
             'payment_data'   => json_encode($full_data),
             "created_at"     => time(),
             "parent_id"      => $ParentsOrders->id,
+            'order_type'     => 'subscribe',
         ]);
 
         $orderItem = OrderItem::updateOrCreate([
@@ -264,7 +274,7 @@ class SubscribesController extends Controller
         }
 
         // Handle Free
-        Sale::createSales($orderItem, Sale::$credit);
+        Sale::createSales($orderItem, Sale::$credit, 'subscribe');
 
         $toastData = [
             'title'  => 'public.request_success',
@@ -277,7 +287,24 @@ class SubscribesController extends Controller
     /*
      * Update Subscribe Plan
      */
+
     public function updateSubscribePlan(Request $request)
+    {
+        $user = auth()->user();
+        $subscribe_for = $request->input('subscribe_for_package');
+        $user->update([
+            'payment_frequency' => $subscribe_for
+        ]);
+
+        $toastData = [
+            'title'  => '',
+            'msg'    => 'Updated Successfully',
+            'status' => 'success'
+        ];
+        return back()->with(['toast' => $toastData]);
+    }
+
+    public function updateSubscribePlan_bk(Request $request)
     {
         $user = auth()->user();
         $subscribe_for = $request->input('subscribe_for');
@@ -352,6 +379,7 @@ class SubscribesController extends Controller
             'order_tax'          => $taxPrice,
             'transaction_amount' => round($amount + $taxPrice, 2),
             'payment_data'       => json_encode($payment_data),
+            'payment_frequency'  => $subscribe_for,
             'expiry_at'          => $expiry_date,
         ];
 
@@ -377,6 +405,7 @@ class SubscribesController extends Controller
             "created_at"     => time(),
             "parent_id"      => $ParentsOrders->id,
             "action_data"    => $action_data,
+            'order_type'     => 'plan_expiry_update',
         ]);
 
         $orderItem = OrderItem::updateOrCreate([
@@ -417,7 +446,7 @@ class SubscribesController extends Controller
         }
 
         // Handle Free
-        Sale::createSales($orderItem, Sale::$credit);
+        Sale::createSales($orderItem, Sale::$credit, 'plan_expiry_update');
 
         $toastData = [
             'title'  => 'public.request_success',
@@ -526,14 +555,14 @@ class SubscribesController extends Controller
 
             $action_data = array(
                 array(
-                    'type'             => 'updatePlan',
-                    'child_id'         => $child_id,
-                    'package_id'       => $package_id,
-                    'total_discount'   => $total_discount,
-                    'packages_amount'  => $packages_amount,
-                    'package_expiry'   => $package_expiry,
-                    'subscribeObj'     => $subscribeObj,
-                    'action_data'      => array()
+                    'type'            => 'updatePlan',
+                    'child_id'        => $child_id,
+                    'package_id'      => $package_id,
+                    'total_discount'  => $total_discount,
+                    'packages_amount' => $packages_amount,
+                    'package_expiry'  => $package_expiry,
+                    'subscribeObj'    => $subscribeObj,
+                    'action_data'     => array()
                 )
             );
 
@@ -551,7 +580,8 @@ class SubscribesController extends Controller
                 'payment_data'   => '',
                 "created_at"     => time(),
                 "parent_id"      => $ParentsOrders->id,
-                'action_data'   => $action_data,
+                'action_data'    => $action_data,
+                'order_type'     => 'plan_update',
             ]);
 
             $orderItem = OrderItem::updateOrCreate([
@@ -616,7 +646,7 @@ class SubscribesController extends Controller
             }
 
             // Handle Free
-            Sale::createSales($orderItem, Sale::$credit);
+            Sale::createSales($orderItem, Sale::$credit, 'plan_update');
         }
 
         $toastData = [
@@ -725,7 +755,7 @@ class SubscribesController extends Controller
         }
 
         // Handle Free
-        Sale::createSales($orderItem, Sale::$credit);
+        Sale::createSales($orderItem, Sale::$credit, $order->order_type);
 
         $toastData = [
             'title'  => 'public.request_success',

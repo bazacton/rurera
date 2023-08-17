@@ -53,94 +53,106 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                 <form action="/panel/setting/update-user" method="post" class="w-100">
-                        {{ csrf_field() }}
-                <div class="lms-jobs-form">
-                    <div class="row">
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field">
-                                <input type="text" name="full_name" value="{{$userObj->full_name}}" placeholder="Full Name">
+                    {{ csrf_field() }}
+                    <div class="lms-jobs-form">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field">
+                                    <input type="text" name="full_name" value="{{$userObj->full_name}}"
+                                           placeholder="Full Name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field">
-                                <input type="email" name="email" value="{{$userObj->email}}"  placeholder="Email address">
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field">
+                                    <input type="email" name="email" value="{{$userObj->email}}"
+                                           placeholder="Email address">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field select-arrow">
-                                <select name="country_label" class="lms-jobs-select">
-                                    <option value="" selected="selected">Country</option>
-                                    @if( !empty( $countries_list ) )
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field select-arrow">
+                                    <select name="country_label" class="lms-jobs-select">
+                                        <option value="" selected="selected">Country</option>
+                                        @if( !empty( $countries_list ) )
                                         @foreach($countries_list as $countryObj)
-                                           @php $is_selected = ($userObj->country_label == $countryObj['value'])? 'selected' : ''; @endphp
-                                            <option {{$is_selected}} value="{{ isset( $countryObj['value'] )? $countryObj['value'] : ''}}">{{ isset( $countryObj['label'] )? $countryObj['label'] : ''}}</option>
+                                        @php $is_selected = ($userObj->country_label == $countryObj['value'])?
+                                        'selected' : ''; @endphp
+                                        <option {{$is_selected}}
+                                                value="{{ isset( $countryObj['value'] )? $countryObj['value'] : ''}}">{{
+                                            isset( $countryObj['label'] )? $countryObj['label'] : ''}}
+                                        </option>
                                         @endforeach
-                                    @endif
-                                </select>
+                                        @endif
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field">
-                                <input type="text" value="{{$userObj->postal_code}}" name="postal_code" placeholder="Postal Code">
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field">
+                                    <input type="text" value="{{$userObj->postal_code}}" name="postal_code"
+                                           placeholder="Postal Code">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field select-arrow">
-                                <select name="time_zone" class="lms-jobs-select">
-                                    <option value="" selected="selected">Time Zone</option>
-                                    @if( !empty( $time_zones ) )
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field select-arrow">
+                                    <select name="time_zone" class="lms-jobs-select">
+                                        <option value="" selected="selected">Time Zone</option>
+                                        @if( !empty( $time_zones ) )
                                         @foreach($time_zones as $timeZoneData)
 
-                                            @php $is_selected = ($userObj->timezone == $timeZoneData['value'])? 'selected' : ''; @endphp
-                                            <option {{$is_selected}} value="{{ isset( $timeZoneData['value'] )? $timeZoneData['value'] : ''}}">{{ isset( $timeZoneData['label'] )? $timeZoneData['label'] : ''}}</option>
+                                        @php $is_selected = ($userObj->timezone == $timeZoneData['value'])? 'selected' :
+                                        ''; @endphp
+                                        <option {{$is_selected}}
+                                                value="{{ isset( $timeZoneData['value'] )? $timeZoneData['value'] : ''}}">
+                                            {{ isset( $timeZoneData['label'] )? $timeZoneData['label'] : ''}}
+                                        </option>
                                         @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-md-6">
-                            <div class="input-field select-arrow">
-                                <select name="course_eidtion" class="lms-jobs-select">
-                                    <option value="" selected="selected">Course Edition</option>
-                                    <option value="">timezone</option>
-                                    <option value="">Course Edition</option>
-                                    <option value="">English</option>
-                                    <option value="">Computing</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-field">
-                                <label for="avatar">Select Avatar</label>
-                                <input type="file" id="avatar">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-field">
-                                <label>Complete Address (invoice/Shipping)</label>
-                                <textarea name="complete_address">{{$userObj->address}}</textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="field-btn">
-                                <button type="submit" class="submit-btn">Update Details</button>
-                                <a href="#" class="cancel-btn">Cancel</a>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header pb-0">
-                                    <h5 class="card-title fw-normal">Delete your account</h5>
+                                        @endif
+                                    </select>
                                 </div>
-                                <div class="card-body">
-                                    <p class="text-muted">Please note, deleting your account is a permanent action and
-                                        will no be recoverable once completed.</p>
-                                    <button class="btn btn-danger">Delete</button>
+                            </div>
+                            <div class="col-12 col-lg-4 col-md-6">
+                                <div class="input-field select-arrow">
+                                    <select name="course_eidtion" class="lms-jobs-select">
+                                        <option value="" selected="selected">Course Edition</option>
+                                        <option value="">timezone</option>
+                                        <option value="">Course Edition</option>
+                                        <option value="">English</option>
+                                        <option value="">Computing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-field">
+                                    <label for="avatar">Select Avatar</label>
+                                    <input type="file" id="avatar">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-field">
+                                    <label>Complete Address (invoice/Shipping)</label>
+                                    <textarea name="complete_address">{{$userObj->address}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="field-btn">
+                                    <button type="submit" class="submit-btn">Update Details</button>
+                                    <a href="#" class="cancel-btn">Cancel</a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header pb-0">
+                                        <h5 class="card-title fw-normal">Delete your account</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="text-muted">Please note, deleting your account is a permanent action
+                                            and
+                                            will no be recoverable once completed.</p>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </form>
             </div>
             <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
@@ -148,14 +160,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="billing-card">
-                                <div class="card-body">
-                                    <span class="text-plan">Current plan</span>
-                                    <h4 class="mb-0 mt-2">$39/ per month</h4>
+                                <div class="card-header">
+                                    <h6 class="card-title mb-0">Current plan</h6>
+                                    <a class="btn btn-sm btn-primary" data-toggle="modal"
+                                       data-target="#update-expiry-modal" href="javascript:;">Update Plan</a>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="alert alert-danger mb-0">
-                                        You are near your API limits.
-                                    </div>
+                                <div class="card-body">
+                                    @if( isset( $ParentsOrders->payment_frequency ) )
+                                    <h4 class="mb-0 mt-2">{{$frequencyArray[$ParentsOrders->payment_frequency]}} Expires
+                                        on {{ dateTimeFormat($ParentsOrders->expiry_at,'j F Y') }}</h4>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -182,7 +196,7 @@
                                                 </div>
                                                 <div class="col-auto">
                                                     <a href="#" class="dropdown-toggle after-none"
-                                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                                       data-toggle="dropdown" aria-expanded="false">
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
@@ -210,19 +224,8 @@
                                         <h5 class="card-title fw-normal mb-0">Invoices</h5>
                                         <small class="text-muted">Showing data from</small>
                                     </div>
-                                    <div class="card-action">
-                                        <div class="dropdown">
-                                            <a href="#" class="card-options-remove text-danger"
-                                               data-toggle="card-remove">
-                                                <img src="assets/images/svg" alt="">
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                            class="me-3 fa fa-share"></i>Share</a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
+                                @if( !empty( $Sales ) && $Sales->count() > 0 )
                                 <div class="table-responsive">
                                     <table class="table table-border table-hover table-nowrap card-table mb-0">
                                         <thead>
@@ -234,33 +237,21 @@
                                         </tr>
                                         </thead>
                                         <tbody class="font-size-base">
+                                        @foreach( $Sales as $saleObj)
                                         <tr>
-                                            <td><a href="invoices.html">Invoice #10022</a></td>
-                                            <td>Oct. 24, 2020</td>
-                                            <td>$29.00</td>
-                                            <td><span class="badge bg-secondary">Outstanding</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="invoices.html">Invoice #10012</a></td>
-                                            <td>Aug. 11, 2020</td>
-                                            <td>$29.00</td>
+                                            <td><a href="invoices.html">Invoice #{{$saleObj->id}}</a></td>
+                                            <td>{{ dateTimeFormat($saleObj->created_at,'j F Y') }}</td>
+                                            <td>${{$saleObj->total_amount}}</td>
                                             <td><span class="badge bg-success">Paid</span></td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="invoices.html">Invoice #10043</a></td>
-                                            <td>July. 5, 2020</td>
-                                            <td>$29.00</td>
-                                            <td><span class="badge bg-success">Paid</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="invoices.html">Invoice #10045</a></td>
-                                            <td>Jun. 16, 2020</td>
-                                            <td>$29.00</td>
-                                            <td><span class="badge bg-success">Paid</span></td>
-                                        </tr>
+                                        @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
+                                @endif
+
+
                             </div>
                         </div>
                     </div>
@@ -269,193 +260,83 @@
             <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
                 <div class="db-members">
                     <div class="row g-3 list-unstyled">
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <p class="text-uppercase text-muted small mb-1">Seats used</p>
-                                            <h4 class="mb-0">4 out of 6</h4>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="btn btn-sm btn-outline-primary" href="#!">Upgrade</a>
-                                        </div>
-                                    </div> <!--[ row end ]-->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <p class="text-uppercase text-muted small mb-1">Default role</p>
-                                            <h4 class="h4 mb-0">Staff</h4>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="btn btn-sm btn-dark" href="#!">Change</a>
-                                        </div>
-                                    </div> <!--[ row end ]-->
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header pb-0">
                                     <h5 class="card-title fw-normal mb-0">Members</h5>
                                     <!--[ Dropdown ]-->
                                     <div class="dropdown">
-                                        <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false">Invite member
+
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                                data-target="#addChildModal">Add Child
                                         </button>
-                                        <form class="dropdown-menu dropdown-menu-end border-0 rounded-4 shadow"
-                                              style="width: 300px;">
-                                            <div class="card-header">
-                                                <h6 class="card-title mb-0">Invite a member</h6>
-                                                <span class="badge bg-primary">2 seats left</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row g-0 align-items-center mb-2">
-                                                    <div class="col-3">
-                                                        <label class="mb-0">Name</label>
-                                                    </div>
-                                                    <div class="col">
-                                                        <input class="form-control form-control-flush" type="text"
-                                                               placeholder="Full name">
-                                                    </div>
-                                                </div> <!--[ row end ]-->
-                                                <div class="row g-0 align-items-center mb-2">
-                                                    <div class="col-3">
-                                                        <label class="mb-0">Email</label>
-                                                    </div>
-                                                    <div class="col">
-                                                        <input class="form-control form-control-flush" type="text"
-                                                               placeholder="Email address">
-                                                    </div>
-                                                </div> <!--[ row end ]-->
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-3">
-                                                    </div>
-                                                    <div class="col">
-                                                        <button class="btn btn-block btn-primary" type="submit">Invite
-                                                            member
-                                                        </button>
-                                                    </div>
-                                                </div> <!--[ row end ]-->
-                                            </div>
-                                        </form>
+
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="list-group list-group-custom list-group-flush mb-0">
+                                    <div class="list-group list-group-custom list-group-flush mb-0 totalChilds"
+                                         data-childs="{{$childs->count()}}">
+
+                                        @if( !empty( $childs ) )
+                                        @foreach($childs as $childObj)
+
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <a href="#" class="avatar"><img src="./assets/images/avatar1.jpg"
-                                                                                    alt="..."
-                                                                                    class="avatar rounded-circle"></a>
+                                                    <a href="javascript:;" class="avatar"><img
+                                                                src="{{$childObj->getAvatar()}}"
+                                                                alt="{{$childObj->full_name}}"
+                                                                class="avatar rounded-circle"></a>
                                                 </div>
+
                                                 <div class="col-5 ms-2">
-                                                    <h6 class="mb-1"><a href="#">amelia green</a></h6>
-                                                    <small class="text-muted">amelia.green@company.com</small>
+                                                    <h6 class="mb-1"><a href="#">{{$childObj->full_name}}</a></h6>
+                                                    <small class="text-muted">{{$childObj->email}}</small>
                                                 </div>
                                                 <div class="col-auto ms-auto mr-md-3">
-                                                    <select class="form-control custom-select" data-bs-toggle="select">
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">Staff</option>
-                                                        <option value="3">Custom</option>
-                                                    </select>
+                                                    @if(isset( $childObj->userSubscriptions->subscribe ) )
+                                                    @php $package_id = $childObj->userSubscriptions->subscribe->id;
+                                                    @endphp
+                                                    {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
+                                                    @endif
                                                 </div>
                                                 <div class="col-auto">
                                                     <a href="#" class="dropdown-toggle after-none"
-                                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                                       data-toggle="dropdown" aria-expanded="false">
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
                                                     </a>
                                                     <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2 rounded-4">
-                                                        <li><a class="dropdown-item" href="#">File Info</a></li>
-                                                        <li><a class="dropdown-item" href="#">Copy to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Move to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Rename</a></li>
-                                                        <li><a class="dropdown-item" href="#">Block</a></li>
-                                                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                                                        <li>
+
+                                                            <a href="javascript:;" data-package_id="{{$package_id}}"
+                                                               data-toggle="modal"
+                                                               data-target="#update-plan-modal"
+                                                               data-child="{{$childObj->id}}"
+                                                               class="dropdown-item update-package">Update Package
+                                                            </a>
+
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"
+                                                               data-child="{{$childObj->id}}"
+                                                               class="dropdown-item cancel-subscription">
+                                                                Cancel
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;" data-child="{{$childObj->id}}"
+                                                               class="dropdown-item js-switch-user">Switch
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div> <!--[ row end ]-->
                                         </div>
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto">
-                                                    <a href="#" class="avatar"><img src="./assets/images/avatar2.jpg"
-                                                                                    alt="..."
-                                                                                    class="avatar rounded-circle"></a>
-                                                </div>
-                                                <div class="col-5 ms-2">
-                                                    <h6 class="mb-1"><a href="#">charlotte green</a></h6>
-                                                    <small class="text-muted">charlotte.green@company.com</small>
-                                                </div>
-                                                <div class="col-auto ms-auto mr-md-3">
-                                                    <select class="form-control custom-select" data-bs-toggle="select">
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">Staff</option>
-                                                        <option value="3">Custom</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="dropdown-toggle after-none"
-                                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <span></span>
-                                                        <span></span>
-                                                        <span></span>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2 rounded-4">
-                                                        <li><a class="dropdown-item" href="#">File Info</a></li>
-                                                        <li><a class="dropdown-item" href="#">Copy to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Move to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Rename</a></li>
-                                                        <li><a class="dropdown-item" href="#">Block</a></li>
-                                                        <li><a class="dropdown-item" href="#">Delete</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div> <!--[ row end ]-->
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-auto">
-                                                    <a href="#" class="avatar"><img src="./assets/images/avatar3.jpg"
-                                                                                    alt="..."
-                                                                                    class="avatar rounded-circle"></a>
-                                                </div>
-                                                <div class="col-5 ms-2">
-                                                    <h6 class="mb-1"><a href="#">susie willis</a></h6>
-                                                    <small class="text-muted">susie.willis@company.com</small>
-                                                </div>
-                                                <div class="col-auto ms-auto mr-md-3">
-                                                    <select class="form-control custom-select" data-bs-toggle="select">
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">Staff</option>
-                                                        <option value="3">Custom</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <a href="#" class="dropdown-toggle after-none"
-                                                       data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <span></span>
-                                                        <span></span>
-                                                        <span></span>
-                                                    </a>
-                                                    <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2 rounded-4">
-                                                        <li><a class="dropdown-item" href="#">File Info</a></li>
-                                                        <li><a class="dropdown-item" href="#">Copy to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Move to</a></li>
-                                                        <li><a class="dropdown-item" href="#">Rename</a></li>
-                                                        <li><a class="dropdown-item" href="#">Block</a></li>
-                                                        <li><a class="dropdown-item" href="#">Delete</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div> <!--[ row end ]-->
-                                        </div>
+
+                                        @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -467,48 +348,53 @@
                 <div class="db-security">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title fw-normal">Change your password</h5>
-                                    <p class="text-muted">We will email you a confirmation when changing your password,
-                                        so please expect that email after submitting.</p>
-                                    <button class="btn btn-warning">Forgot your password?</button>
+                            <form action="/panel/setting/update-user-password" method="post" class="w-100">
+                                {{ csrf_field() }}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-normal">Change your password</h5>
+                                        <p class="text-muted">We will email you a confirmation when changing your
+                                            password,
+                                            so please expect that email after submitting.</p>
+                                        <button class="btn btn-warning">Forgot your password?</button>
+                                    </div>
+                                    <div class="card-footer">
+                                        <form class="row g-3 justify-content-between">
+                                            <div class="col-lg-4 col-md-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Current password</label>
+                                                    <input type="password" name="old_password" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">New password</label>
+                                                    <input type="password" name="new_password" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Confirm password</label>
+                                                    <input type="password" name="new_re_password" class="form-control">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Update Password</button>
+                                                <button type="button" class="btn btn-link">Cancel</button>
+                                            </div>
+                                            <div class="col-lg-7 col-md-12">
+                                                <div class="bg-body border dashed p-3">
+                                                    <h6 class="mb-2">Password requirements</h6>
+                                                    <p class="text-muted mb-2">To create a new password, you have to
+                                                        meet
+                                                        all of the following requirements:</p>
+                                                    <!--[ List group ]-->
+                                                    <ul class="small text-muted lh-lg mb-0">
+                                                        <li>Minimum 8 character</li>
+                                                        <li>At least one special character</li>
+                                                        <li>At least one number</li>
+                                                        <li>Can’t be the same as a previous password</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <form class="row g-3 justify-content-between">
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Current password</label>
-                                                <input type="password" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">New password</label>
-                                                <input type="password" class="form-control">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Confirm password</label>
-                                                <input type="password" class="form-control">
-                                            </div>
-                                            <button type="button" class="btn btn-primary">Update Password</button>
-                                            <button type="button" class="btn btn-link">Cancel</button>
-                                        </div>
-                                        <div class="col-lg-7 col-md-12">
-                                            <div class="bg-body border dashed p-3">
-                                                <h6 class="mb-2">Password requirements</h6>
-                                                <p class="text-muted mb-2">To create a new password, you have to meet
-                                                    all of the following requirements:</p>
-                                                <!--[ List group ]-->
-                                                <ul class="small text-muted lh-lg mb-0">
-                                                    <li>Minimum 8 character</li>
-                                                    <li>At least one special character</li>
-                                                    <li>At least one number</li>
-                                                    <li>Can’t be the same as a previous password</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <div class="col-12">
                             <div class="card">
@@ -802,221 +688,227 @@
         </div>
     </div>
 
-
-    <form action="/panel/financial/update_subscribe_plan" method="post" class="w-100">
-        {{ csrf_field() }}
-        <div class="col-12">
+    <div class="modal fade choose-expiry-modal update-expiry-model" id="update-expiry-modal" tabindex="-1"
+         aria-labelledby="update-expiry-modalLabel" aria-hidden="true">
 
 
-            <div class="lms-form-wrapper mb-50">
+        <form action="/panel/financial/update_subscribe_plan" method="post" class="w-100">
+            {{ csrf_field() }}
 
-                <div class="lms-choose-plan d-flex mb-30">
-                    <div class="lms-choose-field">
-                        <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
-                        <p>Update Subscription duration</p>
-                        <div class="lms-radio-select">
-                            <ul class="lms-radio-btn-group d-inline-flex align-items-center">
-                                <li>
-                                    <input type="radio" id="month" value="1" data-discount="0"
-                                           name="subscribe_for" checked="checked"/>
-                                    <label class="lms-label" for="month">
-                                        <span>01 month</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="three_months" value="3" data-discount="5"
-                                           name="subscribe_for"/>
-                                    <label class="lms-label" for="three_months">
-                                        <span>03 month <span>(5%)</span> </span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="six_months" value="6" data-discount="10"
-                                           name="subscribe_for"/>
-                                    <label class="lms-label" for="six_months">
-                                        <span>06 month <span>(10%)</span> </span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="year" value="12" data-discount="20"
-                                           name="subscribe_for"/>
-                                    <label class="lms-label" for="year">
-                                        <span>whole year <span>(20%)</span></span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong>Choose a plan</strong>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
                     </div>
-                </div>
 
-                <button type="submit" class="btn btn-primary btn-block mt-50">
-                    Update
-                </button>
-            </div>
-        </div>
-    </form>
+                    <div class="modal-body">
+                        <div class="col-12">
 
 
-    <div class="row">
-        <div class="col-12 col-lg-12 mt-35">
-            <button type="button" class="hide add-child btn btn-sm btn-border-white" data-toggle="modal"
-                    data-target="#addChildModal">Add Child
-            </button>
+                            <div class="lms-form-wrapper mb-50">
 
-            <div class="bg-white noticeboard rounded-sm panel-shadow py-10 py-md-20 px-15 px-md-30">
-                <h3 class="font-16 text-dark-blue font-weight-bold">Childs</h3>
+                                <div class="lms-choose-plan d-flex mb-30">
+                                    <div class="lms-choose-field">
+                                        <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
+                                        <div class="lms-radio-select">
+                                            <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+
+                                                @php
+                                                $payment_frequency = isset( $userObj->payment_frequency )?
+                                                $userObj->payment_frequency : 1; @endphp
+                                                <li>
+                                                    @php $checked = (isset( $payment_frequency) &&
+                                                    $payment_frequency == 1)? 'checked' : ''; @endphp
+                                                    <input type="radio" id="package_month" value="1" data-discount="0"
+                                                           name="subscribe_for_package" {{$checked}}/>
+                                                    <label class="lms-label" for="package_month">
+                                                        <span>01 month</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    @php $checked = (isset( $payment_frequency) &&
+                                                    $payment_frequency == 3)? 'checked' : ''; @endphp
+                                                    <input type="radio" id="package_three_months" value="3" data-discount="5"
+                                                           name="subscribe_for_package" {{$checked}}/>
+                                                    <label class="lms-label" for="package_three_months">
+                                                        <span>03 month <span>(5%)</span> </span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    @php $checked = (isset( $payment_frequency) &&
+                                                    $payment_frequency == 6)? 'checked' : ''; @endphp
+                                                    <input type="radio" id="package_six_months" value="6" data-discount="10"
+                                                           name="subscribe_for_package" {{$checked}}/>
+                                                    <label class="lms-label" for="package_six_months">
+                                                        <span>06 month <span>(10%)</span> </span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    @php $checked = (isset( $payment_frequency) &&
+                                                    $payment_frequency == 12)? 'checked' : ''; @endphp
+                                                    <input type="radio" id="package_year" value="12" data-discount="20"
+                                                           name="subscribe_for_package" {{$checked}}/>
+                                                    <label class="lms-label" for="package_year">
+                                                        <span>whole year <span>(20%)</span></span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-                @if( !empty( $childs ) )
-                @foreach($childs as $childObj)
-                <div class="noticeboard-item py-15">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="js-noticeboard-title font-weight-500 text-secondary">
-                                {{$childObj->full_name}}</h4>
-                            <div class="font-12 text-gray mt-5">
-                                <span class="mr-5">{{$childObj->email}}</span>
-                                |
-                                <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($childObj->created_at,'j M Y | H:i') }}</span>
+                                <button type="submit" class="btn btn-primary btn-block mt-50">
+                                    Update
+                                </button>
                             </div>
                         </div>
-
-                        <div>
-                            @php $package_id = 0; @endphp
-                            @if(isset( $childObj->userSubscriptions->subscribe ) )
-                            @php $package_id = $childObj->userSubscriptions->subscribe->id; @endphp
-                            {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
-                            @endif
-                            <button type="button" data-child="{{$childObj->id}}"
-                                    class="js-switch-user btn btn-sm btn-border-white">Switch
-                            </button>
-                            <a href="/panel/parent/user/{{$childObj->id}}" data-child="{{$childObj->id}}"
-                               class="btn btn-sm btn-border-white">Modify
-                            </a>
-                            <button type="button" data-child="{{$childObj->id}}"
-                                    class="cancel-subscription btn btn-sm btn-border-white">
-                                Cancel
-                            </button>
-                            <button data-package_id="{{$package_id}}" type="button" data-toggle="modal"
-                                    data-target="#update-plan-modal" data-child="{{$childObj->id}}"
-                                    class="update-package btn btn-sm btn-border-white">Update Package
-                            </button>
-                        </div>
                     </div>
                 </div>
-                @endforeach
-                @endif
-
             </div>
-
-        </div>
-
+        </form>
     </div>
+
 </section>
 
+<div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
 
-<section class="mb-0 pt-70 pb-60">
-    <div class="container">
-        <div class="row">
-            <form action="/panel/financial/pay-subscribes" method="post" class="w-100">
-                {{ csrf_field() }}
-                <div class="col-12">
+                <form action="/panel/financial/pay-subscribes" method="post" class="w-100">
+                    {{ csrf_field() }}
+                    <div class="col-12">
+                        @php $discount = isset( $ParentsOrders->payment_frequency )?
+                        $frequency_discounts[$ParentsOrders->payment_frequency] : 0; @endphp
 
-                    <div class="lms-form-wrapper mb-50">
-                        <div class="lms-choose-plan d-flex mb-30">
-                            <div class="lms-choose-field hide">
-                                <strong class="choose-title d-block mb-20 font-24">Add Child</strong>
-                                <div class="lms-radio-select">
-                                    <ul class="lms-radio-btn-group d-inline-flex align-items-center">
-                                        <li>
-                                            <input type="radio" id="month" value="1" data-discount="0"
-                                                   name="subscribe_for" checked="checked"/>
-                                            <label class="lms-label" for="month">
-                                                <span>01 month</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="three_months" value="3" data-discount="5"
-                                                   name="subscribe_for"/>
-                                            <label class="lms-label" for="three_months">
-                                                <span>03 month <span>(5%)</span> </span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="six_months" value="6" data-discount="10"
-                                                   name="subscribe_for"/>
-                                            <label class="lms-label" for="six_months">
-                                                <span>06 month <span>(10%)</span> </span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" id="year" value="12" data-discount="20"
-                                                   name="subscribe_for"/>
-                                            <label class="lms-label" for="year">
-                                                <span>whole year <span>(20%)</span></span>
-                                            </label>
-                                        </li>
-                                    </ul>
+
+                        <div class="lms-form-wrapper mb-50">
+
+                            @if( isset( $ParentsOrders->id ) )
+                            <input type="radio" class="hide subscribe_for" name="subscribe_for"
+                                   value="{{isset($ParentsOrders->payment_frequency)? $ParentsOrders->payment_frequency : 1}}"
+                                   data-discount="{{$discount}}" checked>
+                            @else
+                            <div class="lms-choose-plan d-flex mb-30">
+                                <div class="lms-choose-field">
+                                    <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
+                                    <div class="lms-radio-select">
+                                        <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+
+                                            @php
+                                            $payment_frequency = isset( $ParentsOrders->payment_frequency )?
+                                            $ParentsOrders->payment_frequency : 1; @endphp
+                                            <li>
+                                                @php $checked = (isset( $payment_frequency) &&
+                                                $payment_frequency == 1)? 'checked' : ''; @endphp
+                                                <input type="radio" id="month" value="1" data-discount="0"
+                                                       name="subscribe_for" {{$checked}}/>
+                                                <label class="lms-label" for="month">
+                                                    <span>01 month</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                @php $checked = (isset( $payment_frequency) &&
+                                                $payment_frequency == 3)? 'checked' : ''; @endphp
+                                                <input type="radio" id="three_months" value="3" data-discount="5"
+                                                       name="subscribe_for" {{$checked}}/>
+                                                <label class="lms-label" for="three_months">
+                                                    <span>03 month <span>(5%)</span> </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                @php $checked = (isset( $payment_frequency) &&
+                                                $payment_frequency == 6)? 'checked' : ''; @endphp
+                                                <input type="radio" id="six_months" value="6" data-discount="10"
+                                                       name="subscribe_for" {{$checked}}/>
+                                                <label class="lms-label" for="six_months">
+                                                    <span>06 month <span>(10%)</span> </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                @php $checked = (isset( $payment_frequency) &&
+                                                $payment_frequency == 12)? 'checked' : ''; @endphp
+                                                <input type="radio" id="year" value="12" data-discount="20"
+                                                       name="subscribe_for" {{$checked}}/>
+                                                <label class="lms-label" for="year">
+                                                    <span>whole year <span>(20%)</span></span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="lms-count-field">
-                                <strong class="choose-title d-block mb-20 font-24">Choose number</strong>
-                                <div class="input-group">
+                            @endif
+
+                            <div class="lms-choose-plan d-flex mb-30">
+
+                                <div class="lms-count-field">
+                                    <strong class="choose-title d-block mb-20 font-24">Choose number</strong>
+                                    <div class="input-group">
                                     <span class="input-group-btn">
                                         <button type="button" class="quantity-left-minus btn btn-number"
                                                 data-type="minus" data-field="">
                                             <span class="icon-minus">−</span>
                                         </button>
                                     </span>
-                                    <input type="text" id="quantity" name="quantity"
-                                           class="form-control input-number" value="1" min="1"
-                                           max="100">
-                                    <span class="input-group-btn">
+                                        <input type="text" id="quantity" name="quantity"
+                                               class="form-control input-number" value="1" min="1"
+                                               max="100">
+                                        <span class="input-group-btn">
                                         <button type="button" class="quantity-right-plus btn btn-number"
                                                 data-type="plus" data-field="">
                                             <span class="icon-plus">+</span>
                                         </button>
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="childs-block">
-                            <div class="child-item lms-choose-plan-selected mt-10">
-                                <div class="lms-jobs-form">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-4 col-md-8">
-                                            <div class="input-field">
-                                                <input type="text" name="student_name[]"
-                                                       placeholder="Enter your name..">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-2 col-md-4">
-                                            <div class="field-btn select-arrow">
-                                                <button type="button" data-toggle="modal" class="package_label"
-                                                        data-target="#choose-plan-modal">Package
-                                                </button>
-                                                <input type="hidden" name="package_id[]" class="package_id">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
-                        <br><br><br><br>
-                        <div class="total-amount"></div>
 
-                        <button type="submit" class="btn btn-primary btn-block mt-50">{{
-                            trans('financial.purchase') }}
-                        </button>
+                            <div class="childs-block">
+                                <div class="child-item lms-choose-plan-selected mt-10">
+                                    <div class="lms-jobs-form">
+                                        <div class="row">
+                                            <div class="col-12 col-lg-4 col-md-8">
+                                                <div class="input-field">
+                                                    <input type="text" name="student_name[]"
+                                                           placeholder="Enter your name..">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-2 col-md-4">
+                                                <div class="field-btn select-arrow">
+                                                    <button type="button" data-toggle="modal" class="package_label"
+                                                            data-target="#choose-plan-modal">Package
+                                                    </button>
+                                                    <input type="hidden" name="package_id[]" class="package_id">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br><br><br><br>
+                            <div class="total-amount"></div>
+
+                            <button type="submit" class="btn btn-primary btn-block mt-50">{{
+                                trans('financial.purchase') }}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
 
 <div class="child-hidden-block hide">
     <div class="child-item lms-choose-plan-selected mt-10">
@@ -1202,40 +1094,6 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="addChildModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
-            <div class="modal-body">
-
-                <form method="Post" action="panel/parent/create_student" class="create_student_form mt-35">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                        <label class="input-label" for="full_name">Full Name:</label>
-                        <input name="full_name" type="text" class="form-control rurera-req-field" id="full_name">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="input-label" for="email">Email :</label>
-                        <input name="email" type="text" class="form-control rurera-req-field rurera-email-field"
-                               id="email">
-                    </div>
-                    <div class="form-group">
-                        <label class="input-label" for="password">Password :</label>
-                        <input name="password" type="password" class="form-control rurera-req-field" id="password">
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary btn-block mt-20 submit-button">Submit</button>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @push('scripts_bottom')
@@ -1286,7 +1144,7 @@
     function calculate_total_amount() {
 
         var total_amount = 0;
-        var child_count = 0;
+        var child_count = $(".totalChilds").attr('data-childs');
         $('.childs-block').find('.package_id').each(function (index_no) {
             if ($(this).attr('data-price') != 'undefined') {
                 child_count++;
@@ -1308,7 +1166,9 @@
         total_amount = (parseFloat(total_amount) - parseFloat(discount_amount));
         total_amount = parseFloat(total_amount).toFixed(2);
 
-        $(".total-amount").html(total_amount);
+        if (total_amount != 'NaN') {
+            $(".total-amount").html(total_amount);
+        }
     }
 
 

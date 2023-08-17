@@ -22,6 +22,13 @@ class ParentsOrders extends Model
         'expiry_at',
     ];
 
+    static $frequencyArray = array(
+        '1' => 'Monthly',
+        '3' => '3 Months',
+        '6' => '6 Months',
+        '12' => 'Yearly',
+    );
+
     public function userSubscribed()
     {
         return $this->hasMany('App\Models\UserSubscriptions', 'order_parent_id', 'id');

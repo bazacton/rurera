@@ -119,7 +119,7 @@ class MarketingController extends Controller
                 }
 
                 // Handle Free
-                Sale::createSales($orderItem, Sale::$credit);
+                Sale::createSales($orderItem, Sale::$credit, $order->order_type);
 
                 $toastData = [
                     'title' => trans('public.request_success'),

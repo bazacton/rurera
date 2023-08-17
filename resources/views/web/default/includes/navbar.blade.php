@@ -70,10 +70,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                     @if($count == 1)
                                     <style>
                                         :root {
-                                            --category-color: { {
-                                            $ nagivation_data ['color']
-                                        }
-                                        };
+                                            --category-color: #2c72af;
                                         }
                                     </style>
                                     @endif

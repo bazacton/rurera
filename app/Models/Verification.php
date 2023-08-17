@@ -25,7 +25,7 @@ class Verification extends Model
 
     public function sendEmailCode()
     {
-        $this->notify(new SendVerificationEmailCode($this));
+        //$this->notify(new SendVerificationEmailCode($this));
     }
 
     public function sendSMSCode()

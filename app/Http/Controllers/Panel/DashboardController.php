@@ -12,6 +12,7 @@ use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\Support;
 use App\Models\Webinar;
+use App\Models\ParentsOrders;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -108,14 +109,32 @@ class DashboardController extends Controller
                 ])
                 ->get();
 
+            $Sales = Sale::where('buyer_id', $user->id)->whereIn('type',array('subscribe', 'plan_expiry_update','plan_update'))->get();
+
+
+            $ParentsOrders = ParentsOrders::where('user_id', $user->id)
+                ->where('status', 'active')
+                ->first();
 
 
             $time_zones = User::$timeZones;
+            $frequencyArray = ParentsOrders::$frequencyArray;
 
             $data['childs'] = $childs;
             $data['time_zones'] = $time_zones;
             $data['countries_list'] = User::$countriesList;
             $data['userObj'] = $user;
+            $data['ParentsOrders'] = $ParentsOrders;
+            $data['frequencyArray'] = $frequencyArray;
+            $data['Sales'] = $Sales;
+            $frequency_discounts = array(
+                1 => 0,
+                3 => 5,
+                6 => 10,
+                12 => 20,
+            );
+            $data['frequency_discounts'] = $frequency_discounts;
+
 
 
             $subscribes = Subscribe::all();
