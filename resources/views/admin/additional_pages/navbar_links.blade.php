@@ -99,10 +99,28 @@
 
                                         <div class="form-group custom-switches-stacked">
                                             <label class="custom-switch pl-0">
+                                                <input type="hidden" name="value[is_other_panel]" value="0">
+                                                    <input type="checkbox" name="value[is_other_panel]" id="is_other_panel" value="1" {{ (!empty($navbar_link) && isset( $navbar_link->is_other_panel ) && $navbar_link->is_other_panel == 1) ? 'checked="checked"' : '' }} {{ (!isset( $navbar_link->is_other_panel )) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                                <span class="custom-switch-indicator"></span>
+                                                <label class="custom-switch-description mb-0 cursor-pointer" for="is_other_panel">Show on all Other Panels</label>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group custom-switches-stacked">
+                                            <label class="custom-switch pl-0">
                                                 <input type="hidden" name="value[is_student_panel]" value="0">
                                                 <input type="checkbox" name="value[is_student_panel]" id="is_student_panel" value="1" {{ (!empty($navbar_link) && isset( $navbar_link->is_student_panel ) && $navbar_link->is_student_panel == 1) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
                                                 <span class="custom-switch-indicator"></span>
                                                 <label class="custom-switch-description mb-0 cursor-pointer" for="is_student_panel">Show on Student Panel</label>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group custom-switches-stacked">
+                                            <label class="custom-switch pl-0">
+                                                <input type="hidden" name="value[is_parent_panel]" value="0">
+                                                <input type="checkbox" name="value[is_parent_panel]" id="is_parent_panel" value="1" {{ (!empty($navbar_link) && isset( $navbar_link->is_parent_panel ) && $navbar_link->is_parent_panel == 1) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                                <span class="custom-switch-indicator"></span>
+                                                <label class="custom-switch-description mb-0 cursor-pointer" for="is_parent_panel">Show on Parent Panel</label>
                                             </label>
                                         </div>
 

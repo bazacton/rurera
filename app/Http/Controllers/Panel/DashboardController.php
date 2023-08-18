@@ -94,6 +94,7 @@ class DashboardController extends Controller
         }
 
         $data['giftModal'] = $this->showGiftModal($user);
+        $data['userObj'] = $user;
 
         if (auth()->user()->isParent()) {
 
@@ -123,7 +124,7 @@ class DashboardController extends Controller
             $data['childs'] = $childs;
             $data['time_zones'] = $time_zones;
             $data['countries_list'] = User::$countriesList;
-            $data['userObj'] = $user;
+
             $data['ParentsOrders'] = $ParentsOrders;
             $data['frequencyArray'] = $frequencyArray;
             $data['Sales'] = $Sales;

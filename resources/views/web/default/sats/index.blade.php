@@ -373,57 +373,155 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-12 col-md-9">
+                    <div class="sats-listing-card medium">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Questions</th>
+                                <th>Attempts</th>
+                                <th>Last attempt</th>
+                                <th>Accuracy</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if( !empty( $sats))
+                            @foreach( $sats as $satObj)
+                            @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
 
-                <div class="col-12">
-                <div class="sats-listing-card medium">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Questions</th>
-                            <th>Attempts</th>
-                            <th>Last attempt</th>
-                            <th>Accuracy</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if( !empty( $sats))
-                        @foreach( $sats as $satObj)
-                        @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
+                            $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
+                            $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
+                            $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
+                            $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
+                            $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
 
-                        $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
-                        $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
-                        $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
-                        $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
-                        $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
+                            @endphp
+                            <tr>
+                                <td>
+                                    <img src="../assets/default/img/sats-list-img1.png" alt="">
+                                    <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a></h4>
+                                </td>
+                                <td>54</td>
+                                <td>0</td>
+                                <td>12</td>
+                                <td>
+                                    <div class="attempt-progress">
+                                        <span class="progress-number">0%</span>
+                                        <span class="progress-holder">
+                                                                                        <span class="progressbar"
+                                                                                            style="width: 0%;"></span>
+                                                                                    </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
 
-                        @endphp
-                        <tr>
-                            <td>
-                                <img src="../assets/default/img/sats-list-img1.png" alt="">
-                                <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a></h4>
-                            </td>
-                            <td>54</td>
-                            <td>0</td>
-                            <td>12</td>
-                            <td>
-                                <div class="attempt-progress">
-                                    <span class="progress-number">0%</span>
-                                    <span class="progress-holder">
-                                                                                    <span class="progressbar"
-                                                                                          style="width: 0%;"></span>
-                                                                                </span>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endif
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-
+                <div class="col-12 col-md-3">
+                    <div class="filters-container">
+                        <div class="accordion lms-list-accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <div class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Year Group <span class="arrow"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="Categories-list pb-15">
+                                            <h6 class="font-19 mt-20">KS1</h6>
+                                            <a href="/products?category_id=1" class="d-flex align-items-center font-14 mt-10">
+                                                <span>English</span>
+                                            </a>
+                                            <a href="/products?category_id=2" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Math</span>
+                                            </a>
+                                            <h6 class="font-19 mt-15">KS2</h6>
+                                            <a href="/products?category_id=3" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Math airthmatic </span>
+                                            </a>
+                                            <a href="/products?category_id=4" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Math Reasoning </span>
+                                            </a>
+                                            <a href="/products?category_id=5" class="d-flex align-items-center font-14 mt-15">
+                                                <span>English reading</span>
+                                            </a>
+                                            <a href="/products?category_id=6" class="d-flex align-items-center font-14 mt-15">
+                                                <span>English SPag</span>
+                                            </a>
+                                            <h6 class="font-19 mt-15">Assesment Type</h6>
+                                            <a href="/products?category_id=7" class="d-flex align-items-center font-14 mt-10">
+                                                <span>Past Yearly asseement</span>
+                                            </a>
+                                            <a href="/products?category_id=8" class="d-flex align-items-center font-14 mt-10">
+                                                <span>Practice asseement</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                <div class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> School Year <span class="arrow"></span>
+                                    </button>
+                                </div>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="Categories-list pb-15">
+                                            <h6 class="font-19 mt-20">School Year</h6>
+                                            <a href="/products?category_id=1" class="d-flex align-items-center font-14 mt-10">
+                                                <span>Year 6</span>
+                                            </a>
+                                            <a href="/products?category_id=2" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Year 5</span>
+                                            </a>
+                                            <a href="/products?category_id=3" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Year 4</span>
+                                            </a>
+                                            <a href="/products?category_id=4" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Year 3</span>
+                                            </a>
+                                            <a href="/products?category_id=5" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Year 2</span>
+                                            </a>
+                                            <h6 class="font-19 mt-15">Subject</h6>
+                                            <a href="/products?category_id=6" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Maths</span>
+                                            </a>
+                                            <a href="/products?category_id=7" class="d-flex align-items-center font-14 mt-15">
+                                                <span>English </span>
+                                            </a>
+                                            <a href="/products?category_id=8" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Verbal Reasoning</span>
+                                            </a>
+                                            <a href="/products?category_id=9" class="d-flex align-items-center font-14 mt-15">
+                                                <span>Non-Verbal Reasoning</span>
+                                            </a>
+                                            <h6 class="font-19 mt-15">Exam Board</h6>
+                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                                <span>GL</span>
+                                            </a>
+                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                                <span>CEM</span>
+                                            </a>
+                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                                <span>All Boards</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-12">
                     <div class="mt-60">

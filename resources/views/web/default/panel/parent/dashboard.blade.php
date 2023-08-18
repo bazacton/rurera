@@ -359,7 +359,8 @@
                                         <button class="btn btn-warning">Forgot your password?</button>
                                     </div>
                                     <div class="card-footer">
-                                        <form class="row g-3 justify-content-between">
+
+                                        <div class="row justify-content-between">
                                             <div class="col-lg-4 col-md-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Current password</label>
@@ -391,7 +392,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -409,8 +410,9 @@
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="avatar lg text-center"><i
-                                                                class="fa fa-mobile fa-3x"></i></div>
+                                                    <div class="avatar lg text-center">
+                                                        <img src="assets/default/svgs/iphone.svg" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="col ml-n2">
                                                     <h6 class="mb-1">iPhone 11</h6>
@@ -425,8 +427,9 @@
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="avatar lg text-center"><i
-                                                                class="fa fa-desktop fa-2x"></i></div>
+                                                    <div class="avatar lg text-center">
+                                                        <img src="assets/default/svgs/desktop.svg" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="col ml-n2">
                                                     <h6 class="mb-1">iMac OSX · <span class="font-weight-normal">Safari 10.2</span>
@@ -441,8 +444,9 @@
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="avatar lg text-center"><i
-                                                                class="fa fa-laptop fa-3x"></i></div>
+                                                    <div class="avatar lg text-center">
+                                                        <img src="assets/default/svgs/laptop.svg" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="col ml-n2">
                                                     <h6 class="mb-1">HP Laptop Win10</h6>
@@ -456,8 +460,9 @@
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="avatar lg text-center"><i
-                                                                class="fa fa-desktop fa-2x"></i></div>
+                                                    <div class="avatar lg text-center">
+                                                        <img src="assets/default/svgs/desktop.svg" alt="">
+                                                    </div>
                                                 </div>
                                                 <div class="col ml-n2">
                                                     <h6 class="mb-1">iMac OSX · <span class="font-weight-normal">Edge browser</span>
@@ -730,7 +735,8 @@
                                                 <li>
                                                     @php $checked = (isset( $payment_frequency) &&
                                                     $payment_frequency == 3)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_three_months" value="3" data-discount="5"
+                                                    <input type="radio" id="package_three_months" value="3"
+                                                           data-discount="5"
                                                            name="subscribe_for_package" {{$checked}}/>
                                                     <label class="lms-label" for="package_three_months">
                                                         <span>03 month <span>(5%)</span> </span>
@@ -739,7 +745,8 @@
                                                 <li>
                                                     @php $checked = (isset( $payment_frequency) &&
                                                     $payment_frequency == 6)? 'checked' : ''; @endphp
-                                                    <input type="radio" id="package_six_months" value="6" data-discount="10"
+                                                    <input type="radio" id="package_six_months" value="6"
+                                                           data-discount="10"
                                                            name="subscribe_for_package" {{$checked}}/>
                                                     <label class="lms-label" for="package_six_months">
                                                         <span>06 month <span>(10%)</span> </span>

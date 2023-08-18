@@ -61,24 +61,11 @@
                     <div class="text-center">
                         <img src="/assets/default/img/activity/36.svg" class="account-balance-icon" alt="">
 
-                        <h3 class="font-16 font-weight-500 text-gray mt-25">{{ trans('panel.account_balance') }}</h3>
-                        <span class="mt-5 d-block font-30 text-secondary">{{ handlePrice($authUser->getAccountingBalance()) }}</span>
+                        <h3 class="font-16 font-weight-500 text-gray mt-25">Reward Points</h3>
+                        <span class="mt-5 d-block font-30 text-secondary">{{$userObj->getRewardPoints()}}</span>
                     </div>
 
-                    @php
-                        $getFinancialSettings = getFinancialSettings();
-                        $drawable = $authUser->getPayout();
-                        $can_drawable = ($drawable > ((!empty($getFinancialSettings) and !empty($getFinancialSettings['minimum_payout'])) ? (int)$getFinancialSettings['minimum_payout'] : 0))
-                    @endphp
 
-                    <div class="mt-20 pt-30 border-top border-gray300 d-flex align-items-center @if($can_drawable) justify-content-between @else justify-content-center @endif">
-                        @if($can_drawable)
-                            <span class="font-16 font-weight-500 text-gray">{{ trans('panel.with_drawable') }}:</span>
-                            <span class="font-16 font-weight-bold text-secondary">{{ handlePrice($drawable) }}</span>
-                        @else
-                            <a href="/panel/financial/account" class="font-16 font-weight-bold text-dark-blue">{{ trans('financial.charge_account') }}</a>
-                        @endif
-                    </div>
                 </div>
             </div>
 
