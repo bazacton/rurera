@@ -23,8 +23,10 @@ quiz_user_data[0] = {};
 quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
-$(document).on('click', '.question-submit-btn', function (e) {
+$("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function(e){
+//$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+    console.log('question-submit');
     returnType = rurera_validation_process($(this).closest('form'));
     if (returnType == false) {
         jQuery.noConflict();
@@ -33,7 +35,6 @@ $(document).on('click', '.question-submit-btn', function (e) {
     }
 
     clearInterval(Questioninterval);
-    console.log('question-submit');
     rurera_loader($(this), 'div');
 
     var question_data = [];
@@ -1009,7 +1010,7 @@ function rurera_validation_process(form_name) {
             if (is_field_checked == false) {
                 radio_fields[index_no] = thisObj;
             }
-            has_empty[index_no] = true;
+            //has_empty[index_no] = true;
             is_visible = false;
         }
         if (thisObj.attr('type') == 'checkbox') {
@@ -1018,7 +1019,7 @@ function rurera_validation_process(form_name) {
             if (is_field_checked == false) {
                 checkbox_fields[index_no] = thisObj;
             }
-            has_empty[index_no] = true;
+            //has_empty[index_no] = true;
             is_visible = false;
         }
         if (!thisObj.val() && is_visible == true) {

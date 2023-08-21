@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
 <script src="/assets/vendors/flipbook/js/flipbook.min.js?ver={{$random_id}}"></script>
+
 <script src="/assets/default/js/book.js?ver={{$random_id}}"></script>
 <style>
     .page-content-area{

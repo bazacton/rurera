@@ -51,7 +51,9 @@
     
     <div class="panel-page-section">
         @include(getTemplate(). '.includes.navbar')
-
+        @if(auth()->user()->isUser())
+            @include(getTemplate(). '.panel.includes.sidebar')
+        @endif
         <div class="panel-content">
             <div class="container">
                 <div class="row"> 

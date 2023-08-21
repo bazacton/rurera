@@ -56,6 +56,7 @@ class BooksController extends Controller
                 $info_link_html = '';
                 if (!empty($page_data->PageInfoLinks)) {
                     foreach ($page_data->PageInfoLinks as $pageInfoLinks) {
+
                         $data_values = isset($pageInfoLinks['data_values']) ? json_decode($pageInfoLinks['data_values']) : array();
                         $info_link_html .= '<div class="info_link_div info_link_' . $pageInfoLinks['info_type'] . '" style="width: max-content;position:absolute;' . $pageInfoLinks['info_style'] . '">';
                         switch ($pageInfoLinks['info_type']) {
@@ -149,12 +150,12 @@ class BooksController extends Controller
 
                 $response = view("web.default.books.includes." . $info_type, [
                     "pageInfoLink"          => $infoLinkData,
-                    "QuizzesResult"         => $QuizzesResult,
+                    "QuizzesResult"         => isset( $QuizzesResult)? $QuizzesResult : array(),
                     "all_infolinks_checked" => $all_infolinks_checked,
-                    "question"              => $questionObj,
-                    "quizAttempt"           => $attemptLogObj,
-                    "newQuestionResult"     => $newQuestionResult,
-                    "question_no"           => $question_no,
+                    "question"              => isset( $questionObj )? $questionObj : array(),
+                    "quizAttempt"           => isset( $attemptLogObj )? $attemptLogObj : array(),
+                    "newQuestionResult"     => isset( $newQuestionResult )? $newQuestionResult : array(),
+                    "question_no"           => isset( $question_no )? $question_no : 0,
                 ]);
                 break;
 
