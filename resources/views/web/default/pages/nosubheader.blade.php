@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="/assets/default/css/quiz-layout.css">
 
     @endif
-
+@if($page->id == 121)
+                        <script src="/assets/default/vendors/charts/chart.js"></script>
+                    @endif
 @endpush
 
 @section('content')
@@ -45,4 +47,5 @@
 @if($page->id == 16)
                         <script src="/assets/default/js/parts/counter.js"></script>
                     @endif
+
 @endpush

@@ -1,14 +1,16 @@
 
 @php $random_id = rand(999,99999); @endphp
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></scrip>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/assets/default/css/app.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
 <script src="/assets/vendors/flipbook/js/flipbook.min.js?ver={{$random_id}}"></script>
-
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/default/js/book.js?ver={{$random_id}}"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .page-content-area{
         position: absolute;
@@ -18,7 +20,8 @@
         position: relative;
     }
 </style>
-<script type="text/javascript">
+
+<script type="text/javascript" >
 
     $(document).ready(function () {
 
@@ -94,10 +97,11 @@
                     @foreach( $book->bookPages as $bookPage)
                         {
                             @php $page_content_data = isset( $page_content[$bookPage->id])? $page_content[$bookPage->id] : ''; @endphp
+                            @php $read_time = isset( $bookPage->BooksPageUserReadings->read_time )? $bookPage->BooksPageUserReadings->read_time : 0 @endphp
                             src:"/{{$bookPage->page_path}}",
         					thumb:"/{{$bookPage->page_path}}",
         					title:"{{$bookPage->page_title}}",
-        					htmlContent: '{!! ($page_count == 1)? $landing_page.$page_content_data : $page_content_data !!}'
+        					htmlContent: '<div class="loadedDiv" data-page_id="{{$bookPage->id}}" data-time_lapsed="{{$read_time}}" data-start_time="0">{!! ($page_count == 1)? $landing_page.$page_content_data : $page_content_data !!}</div>'
         				},
                     @php $page_count++; @endphp
                     @endforeach
@@ -370,3 +374,92 @@
             </span>
         </div>
     </div>
+
+
+<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p></p>
+               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
+           </div>
+       </div>
+   </div>
+</div>
+<div class="modal fade validation_error" id="validation_error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p>Please fill all the required fields before submitting.</p>
+           </div>
+       </div>
+   </div>
+</div>
+<a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
+
+<script type="text/javascript">
+    var startTime = new Date();
+    var interval;
+    var is_stopped = false;
+
+    // Start the timer
+    function startTimer() {
+        interval = setInterval(updateTime, 5000); // Update every 10 seconds (5000 milliseconds)
+    }
+
+    // Update the displayed time and send to server
+    function updateTime() {
+        //loadedDiv
+        if( is_stopped == true){
+            return;
+        }
+        $(".loadedDiv:visible").addClass('testing444');
+        var page_ids = [];
+        $(".loadedDiv:visible").each(function(){
+            page_ids.push($(this).attr('data-page_id'));
+        });
+
+        var elapsedSeconds = $(".loadedDiv:visible").attr('data-time_lapsed');
+        $(".loadedDiv:visible").attr('data-time_lapsed', parseInt(elapsedSeconds)+5);
+
+
+        var divVal = $(".loadedDiv:visible").attr('data-time_lapsed');
+        if( divVal == 0 || divVal == undefined || divVal == 'undefined'){
+            $(".loadedDiv:visible").attr('data-start_time', new Date());
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '/books/update_reading',
+            headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+            data: {'page_ids': page_ids, 'time_lapsed': $(".loadedDiv:visible").attr('data-time_lapsed')},
+            success: function (return_data) {
+                console.log(return_data);
+            }
+        });
+
+    }
+
+    // Stop the timer and send the final time to server
+    function stopTimer() {
+        clearInterval(interval);
+        updateTime(); // Send the final time before stopping
+    }
+
+    window.addEventListener('blur', function () {
+        is_stopped = true;
+        clearInterval(interval);
+    });
+
+    window.addEventListener('focus', function () {
+        is_stopped = false;
+        startTimer();
+    });
+
+
+</script>
+<img src="/assets/default/img/icons/sidebar/dashboard.svg" onload="startTimer()" onbeforeunload="stopTimer()" style="display:none;">

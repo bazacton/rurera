@@ -23,7 +23,7 @@ quiz_user_data[0] = {};
 quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
-$("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function(e){
+$("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
     console.log('question-submit');
@@ -36,6 +36,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
     clearInterval(Questioninterval);
     rurera_loader($(this), 'div');
+
+
+    var quiz_type = $(".question-area-block").attr('data-type');
+    if (!rurera_is_field(quiz_type)) {
+        quiz_type = 'quiz';
+    }
 
     var question_data = [];
     question_data[0] = {};
@@ -123,9 +129,14 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             "time_consumed": time_consumed
         },
         success: function (return_data) {
-            console.log(return_data);
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
+            console.log(quiz_type);
+            console.log(return_data);
+            if( return_data.is_complete == true) {
+                $(".question-area-block").html('Thank you for attempting!');
+
+            } else {
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
                 var question_response_layout = return_data.question_response_layout;
                 /*
@@ -171,12 +182,19 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         console.warn(error);
                     });*/
 
-                thisForm.find('.question-submit-btn').remove();
-                thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
-                const interval = setInterval(() => {
-                    $('#next-btn')[0].click();
-                    clearInterval(interval);
-                }, 3000);
+                if (quiz_type == 'book') {
+                    if (question_response_layout != '') {
+                        var question_response_layout = return_data.question_response_layout;
+                        $(".question-area-block").html(question_response_layout);
+                    }
+                } else {
+                    thisForm.find('.question-submit-btn').remove();
+                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                    const interval = setInterval(() => {
+                        $('#next-btn')[0].click();
+                        clearInterval(interval);
+                    }, 3000);
+                }
             } else {
 
                 quiz_user_data[0]['correct'][question_id] = question_data_array;
@@ -219,22 +237,39 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 thisObj.closest('.question-area').find('.correct-appriciate').show(300).delay(2000).hide(300);*/
                 var next_question_no = parseInt(question_no) + 1;
 
-                thisForm.find('.question-submit-btn').remove();
+                if (quiz_type != 'book') {
+                    thisForm.find('.question-submit-btn').remove();
+                }
                 if (return_data.incorrect_flag == true) {
-                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
 
-                    const interval = setInterval(() => {
-                        $('#next-btn')[0].click();
-                        clearInterval(interval);
-                    }, 3000);
+                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                    if (quiz_type == 'book') {
+                        if (question_response_layout != '') {
+                            var question_response_layout = return_data.question_response_layout;
+                            $(".question-area-block").html(question_response_layout);
+                        }
+                    } else {
+                        const interval = setInterval(() => {
+                            $('#next-btn')[0].click();
+                            clearInterval(interval);
+                        }, 3000);
+                    }
 
                 } else {
+
+                    if (quiz_type == 'book') {
+                        if (question_response_layout != '') {
+                            var question_response_layout = return_data.question_response_layout;
+                            $(".question-area-block").html(question_response_layout);
+                        }
+                    }
 
                     thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
                     const interval = setInterval(() => {
                         $('#next-btn')[0].click();
                         clearInterval(interval);
                     }, 3000);
+
 
                     /*
                     var question_response_layout = return_data.question_response_layout;
@@ -278,6 +313,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 }
 
             }
+        }
         }
     });
 
@@ -551,14 +587,14 @@ function init_question_functions() {
 
     $(document).on('keyup', 'body', function (evt) {
         if (evt.key === 'ArrowLeft') {
-              $('#prev-btn')[0].click();
-          }
-          if (evt.key === 'ArrowRight') {
-              $('#next-btn')[0].click();
-          }
+            $('#prev-btn')[0].click();
+        }
+        if (evt.key === 'ArrowRight') {
+            $('#next-btn')[0].click();
+        }
         if (evt.key === 'Enter') {
             $('#question-submit-btn')[0].click();
-          }
+        }
     });
 
 
@@ -658,11 +694,10 @@ function init_question_functions() {
         var total_questions = $('.quiz-pagination ul li').length;
         var total_correct = $('.quiz-pagination ul li.correct').length;
         var total_incorrect = $('.quiz-pagination ul li.incorrect').length;
-        console.log('Total: '+total_questions);
-        var total_attempted = (parseInt(total_correct)+parseInt(total_incorrect));
-        console.log('Attempted: '+(parseInt(total_correct)+parseInt(total_incorrect)));
-        $(".review_submit .modal-body p").html('You have attempted '+ total_attempted + ' questions out of '+ total_questions +'. Are you sure you want to submit?');
-
+        console.log('Total: ' + total_questions);
+        var total_attempted = (parseInt(total_correct) + parseInt(total_incorrect));
+        console.log('Attempted: ' + (parseInt(total_correct) + parseInt(total_incorrect)));
+        $(".review_submit .modal-body p").html('You have attempted ' + total_attempted + ' questions out of ' + total_questions + '. Are you sure you want to submit?');
 
 
         /*var thisObj = $(this);
@@ -684,24 +719,23 @@ function init_question_functions() {
     });
 
     $(document).on('click', '.submit_quiz_final', function (e) {
-           var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+        var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
         var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
-           rurera_loader($(this), 'div');
-           var thisObj = $(this);
-           jQuery.ajax({
-               type: "POST",
-               url: '/question_attempt/jump_review',
-               dataType: 'json',
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               },
-               data: {"qattempt_id": qattempt_id},
-               success: function (return_data) {
-                window.location.href = '/panel/quizzes/'+quiz_result_id+'/check_answers';
-               }
-           });
-       });
-
+        rurera_loader($(this), 'div');
+        var thisObj = $(this);
+        jQuery.ajax({
+            type: "POST",
+            url: '/question_attempt/jump_review',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {"qattempt_id": qattempt_id},
+            success: function (return_data) {
+                window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+            }
+        });
+    });
 
 
 }
@@ -986,7 +1020,7 @@ function rurera_validation_process(form_name) {
     form_name.find('.rurera-req-field, .editor-field').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
-        index_no = rurera_is_field(index_no)? index_no : 0;
+        index_no = rurera_is_field(index_no) ? index_no : 0;
         var visible_id = thisObj.data('visible');
         has_empty[index_no] = false;
         checkbox_fields[index_no] = false;
@@ -1051,7 +1085,7 @@ function rurera_validation_process(form_name) {
     if (checkbox_fields.length > 0) {
         for (i = 0; i < checkbox_fields.length; i++) {
             var thisnewObj = checkbox_fields[i];
-            if( rurera_is_field(thisnewObj)) {
+            if (rurera_is_field(thisnewObj)) {
                 array_length = alert_messages.length;
                 alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'checkbox');
                 has_empty[i] = true;
@@ -1089,12 +1123,12 @@ function rurera_is_field(field_value) {
 /*
  * Making list of errors
  */
-function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type='') {
+function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type = '') {
     thisObj.addClass('frontend-field-error');
-    if( field_type == 'checkbox' || field_type == 'radio'){
+    if (field_type == 'checkbox' || field_type == 'radio') {
 
         var field_name = thisObj.attr('name');
-        $('[name="'+field_name+'"]').addClass('frontend-field-error');
+        $('[name="' + field_name + '"]').addClass('frontend-field-error');
     }
 
     if (thisObj.is('select')) {

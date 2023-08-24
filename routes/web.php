@@ -392,7 +392,9 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'books'] , function () {
         Route::get('/' , 'BooksController@index');
         Route::get('/{book_slug}' , 'BooksController@book');
+        Route::get('/{book_slug}/activity' , 'BooksController@bookActivity');
         Route::get('/{info_id}/info_detail' , 'BooksController@info_detail');
+        Route::post('/update_reading' , 'BooksController@update_reading');
     });
 
     Route::group(['prefix' => 'sats'] , function () {

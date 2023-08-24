@@ -10,6 +10,18 @@ class BooksUserPagesInfoLinks extends Model
     protected $table = 'books_user_pages_info_links';
     public $timestamps = false;
 
-    protected $fillable = ['user_id' , 'book_info_link_id' , 'status' , 'created_by' , 'created_at'];
+    protected $fillable = [
+        'user_id',
+        'book_info_link_id',
+        'status',
+        'created_by',
+        'created_at'
+    ];
+
+    public function bookInfoLinkDetail()
+    {
+        return $this->hasOne('App\Models\BooksPagesInfoLinks', 'id', 'book_info_link_id');
+    }
+
 
 }

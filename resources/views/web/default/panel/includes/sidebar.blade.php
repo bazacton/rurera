@@ -4,6 +4,7 @@
 
 
 <div class="panel-sidebar px-25 pt-15" id="panelSidebar" style="position: inherit;top: 0px;">
+    <div class="container">
 
     <div class="nav-icons-or-start-live navbar-order">
                     <div class="xs-w-100 d-flex align-items-center justify-content-between ">
@@ -277,4 +278,5 @@
             </a>
         </li>
     </ul>
+</div>
 </div>

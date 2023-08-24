@@ -165,10 +165,13 @@ $rand_id = rand(99,9999);
                         @php $question_no = 1; @endphp
 
                         @foreach( $question as $questionObj)
-                        @include('web.default.panel.questions.question_layout',['question'=>
-                        $questionObj,'prev_question' =>
-                        0, 'next_question' => 0, 'question_no' =>
-                        $question_no, 'quizAttempt' => $quizAttempt, 'newQuestionResult' => $newQuestionResult,
+                        @include('web.default.panel.questions.question_layout',[
+                        'question'=> $questionObj,
+                        'prev_question' => 0,
+                        'next_question' => 0,
+                        'question_no' => $question_no,
+                        'quizAttempt' => $quizAttempt,
+                        'newQuestionResult' => $newQuestionResult,
                         'quizResultObj' => $newQuizStart
                         ])
                         @php $question_no++; @endphp

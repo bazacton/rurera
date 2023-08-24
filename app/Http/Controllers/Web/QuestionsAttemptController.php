@@ -91,12 +91,12 @@ class QuestionsAttemptController extends Controller
     {
         $user = auth()->user();
         $questions_list_get = ($quizAttempt->questions_list != '') ? json_decode($quizAttempt->questions_list) : array();
-        $questions_list = !empty( $questions_list )? $questions_list : $questions_list_get;
+        $questions_list = !empty($questions_list) ? $questions_list : $questions_list_get;
 
 
         $questions_list = $this->get_questions_list($questions_list, $quizAttempt);
 
-        if(empty( $QuizzesResult ) ) {
+        if (empty($QuizzesResult)) {
             $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
         }
         $question_no = $next_question = $prev_question = 0;
@@ -143,16 +143,17 @@ class QuestionsAttemptController extends Controller
                                     'parent_type_id'   => $quizAttempt->parent_type_id,
                                     'quiz_result_type' => $quizAttempt->attempt_type,
                                     'review_required'  => $questionObj->review_required,
-                                    'is_active'  => isset( $prevNewQuestionResult->is_active )? $prevNewQuestionResult->is_active : 0,
+                                    'is_active'        => isset($prevNewQuestionResult->is_active) ? $prevNewQuestionResult->is_active : 0,
                                 ]);
 
                                 break;
                             } else {
-                                $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
-                                break;
+                                //$newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
+                                //break;
+                                continue;
                             }
-                        }else{
-                            if( $attempted_questions == true) {
+                        } else {
+                            if ($attempted_questions == true) {
                                 $questionObj = QuizzesQuestion::find($question_id);
                                 $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
                                 break;
@@ -341,6 +342,7 @@ class QuestionsAttemptController extends Controller
         }
         $incorrect_flag = false;
         $show_fail_message = true;
+        $is_complete = false;
 
         if ($quizAttempt->attempt_type == 'sats' || $quizAttempt->attempt_type == '11plus') {
             $show_fail_message = false;
@@ -473,15 +475,18 @@ class QuestionsAttemptController extends Controller
 
                 }
 
-                $question_response_layout = view('web.default.panel.questions.question_layout', [
-                    'question'          => $questionObj,
-                    'prev_question'     => $prev_question,
-                    'next_question'     => $next_question,
-                    'quizAttempt'       => $quizAttempt,
-                    'newQuestionResult' => $newQuestionResult,
-                    'question_no'       => $question_no,
-                    'quizResultObj'     => $QuizzesResult
-                ])->render();
+                $question_response_layout = '';
+                if( isset( $newQuestionResult->quiz_result_id )) {
+                    $question_response_layout = view('web.default.panel.questions.question_layout', [
+                        'question'          => $questionObj,
+                        'prev_question'     => $prev_question,
+                        'next_question'     => $next_question,
+                        'quizAttempt'       => $quizAttempt,
+                        'newQuestionResult' => $newQuestionResult,
+                        'question_no'       => $question_no,
+                        'quizResultObj'     => $QuizzesResult
+                    ])->render();
+                }
 
             }
         }
@@ -490,6 +495,7 @@ class QuestionsAttemptController extends Controller
 
         $response = array(
             'show_fail_message'        => $show_fail_message,
+            'is_complete'              => ( $question_response_layout == '')? true : $is_complete,
             'incorrect_array'          => $incorrect_array,
             'correct_array'            => $correct_array,
             'incorrect_flag'           => $incorrect_flag,
@@ -795,7 +801,8 @@ class QuestionsAttemptController extends Controller
     /*
      * Mark as Active
      */
-    public function mark_as_active(Request $request){
+    public function mark_as_active(Request $request)
+    {
         $question_id = $request->get('question_id');
         $qattempt_id = $request->get('qattempt_id');
         $attemptLogObj = QuizzAttempts::find($qattempt_id);
@@ -853,9 +860,9 @@ class QuestionsAttemptController extends Controller
         $user = auth()->user();
 
         $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->orderBy('id', 'DESC')->first();
-        $get_last_results = isset( $last_time_table_data->other_data )? $last_time_table_data->other_data : '';
+        $get_last_results = isset($last_time_table_data->other_data) ? $last_time_table_data->other_data : '';
 
-        $get_last_results  = (array) json_decode($get_last_results);
+        $get_last_results = (array)json_decode($get_last_results);
 
         $results = array();
 
@@ -868,11 +875,11 @@ class QuestionsAttemptController extends Controller
         $new_array = array_merge($get_last_results, $results);
 
         $new_result_data = array();
-        if( !empty( $new_array )){
-            foreach( $new_array as $array_data){
-                if( !empty( $array_data ) ){
-                    foreach( $array_data as $key => $arrayDataObj){
-                        $arrayDataObj  = (array) $arrayDataObj;
+        if (!empty($new_array)) {
+            foreach ($new_array as $array_data) {
+                if (!empty($array_data)) {
+                    foreach ($array_data as $key => $arrayDataObj) {
+                        $arrayDataObj = (array)$arrayDataObj;
                         $new_result_data[$arrayDataObj['from']][] = $arrayDataObj;
                     }
                 }
@@ -892,7 +899,7 @@ class QuestionsAttemptController extends Controller
             'created_at'       => time(),
             'quiz_result_type' => 'timestables',
             'no_of_attempts'   => 100,
-            'other_data'          => json_encode($new_result_data),
+            'other_data'       => json_encode($new_result_data),
         ]);
 
         $QuizzAttempts = QuizzAttempts::create([
@@ -944,132 +951,132 @@ class QuestionsAttemptController extends Controller
     }
 
     public function get_question_result_layout($result_question_id)
-        {
+    {
 
-            $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
-            if ($resultQuestionObj->status == 'waiting') {
-                return;
+        $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
+        if ($resultQuestionObj->status == 'waiting') {
+            return;
+        }
+        $questionObj = QuizzesQuestion::find($resultQuestionObj->question_id);
+        $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
+
+        $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
+        $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
+
+
+        $question_answers_array = array();
+        if (!empty($elements_data)) {
+            foreach ($elements_data as $field_key => $elementData) {
+                $value = isset($correct_answers->$field_key) ? $correct_answers->$field_key : array();
+                $value = is_array($value) ? $value : array($value);
+                $user_value = isset($user_answers->$field_key) ? $user_answers->$field_key : array();
+                $user_value = is_array($user_value) ? $user_value : array($user_value);
+                $question_answers_array[$field_key]['type'] = isset($elementData->type) ? $elementData->type : '';
+                $question_answers_array[$field_key]['correct_value'] = $value;
+                $question_answers_array[$field_key]['user_value'] = $user_value;
             }
-            $questionObj = QuizzesQuestion::find($resultQuestionObj->question_id);
-            $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
-
-            $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
-            $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
+        }
 
 
-            $question_answers_array = array();
-            if (!empty($elements_data)) {
-                foreach ($elements_data as $field_key => $elementData) {
-                    $value = isset($correct_answers->$field_key) ? $correct_answers->$field_key : array();
-                    $value = is_array($value) ? $value : array($value);
-                    $user_value = isset($user_answers->$field_key) ? $user_answers->$field_key : array();
-                    $user_value = is_array($user_value) ? $user_value : array($user_value);
-                    $question_answers_array[$field_key]['type'] = isset( $elementData->type ) ? $elementData->type : '';
-                    $question_answers_array[$field_key]['correct_value'] = $value;
-                    $question_answers_array[$field_key]['user_value'] = $user_value;
+        $script = '';
+        if (!empty($question_answers_array)) {
+            foreach ($question_answers_array as $field_key => $question_answer_data) {
+                $field_type = isset($question_answer_data['type']) ? $question_answer_data['type'] : '';
+                $user_values = isset($question_answer_data['user_value']) ? $question_answer_data['user_value'] : array();
+                $correct_values = isset($question_answer_data['correct_value']) ? $question_answer_data['correct_value'] : array();
+
+                switch ($field_type) {
+
+                    case "radio":
+
+                        if (!empty($user_values)) {
+                            foreach ($user_values as $user_selected_key => $user_selected_value) {
+                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'          => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }
+
+
+                        break;
+
+                    case "checkbox":
+                        if (!empty($user_values)) {
+                            foreach ($user_values as $user_selected_key => $user_selected_value) {
+                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'          => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }
+                        break;
+
+                    case "text":
+
+                        if (!empty($user_values)) {
+                            foreach ($user_values as $user_selected_key => $user_selected_value) {
+                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'          => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }
+
+                        break;
                 }
             }
+        }
 
 
-            $script = '';
-            if (!empty($question_answers_array)) {
-                foreach ($question_answers_array as $field_key => $question_answer_data) {
-                    $field_type = isset($question_answer_data['type']) ? $question_answer_data['type'] : '';
-                    $user_values = isset($question_answer_data['user_value']) ? $question_answer_data['user_value'] : array();
-                    $correct_values = isset($question_answer_data['correct_value']) ? $question_answer_data['correct_value'] : array();
-
-                    switch ($field_type) {
-
-                        case "radio":
-
-                            if (!empty($user_values)) {
-                                foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                    $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                    $script .= view('web.default.panel.questions.question_script', [
-                                        'field_type'          => $field_type,
-                                        'field_key'           => $field_key,
-                                        'user_selected_key'   => $user_selected_key,
-                                        'user_selected_value' => $user_selected_value,
-                                        'correct_value'       => $correct_value,
-                                    ])->render();
-                                }
-                            }
-
-
-                            break;
-
-                        case "checkbox":
-                            if (!empty($user_values)) {
-                                foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                    $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                    $script .= view('web.default.panel.questions.question_script', [
-                                        'field_type'          => $field_type,
-                                        'field_key'           => $field_key,
-                                        'user_selected_key'   => $user_selected_key,
-                                        'user_selected_value' => $user_selected_value,
-                                        'correct_value'       => $correct_value,
-                                    ])->render();
-                                }
-                            }
-                            break;
-
-                        case "text":
-
-                            if (!empty($user_values)) {
-                                foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                    $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                    $script .= view('web.default.panel.questions.question_script', [
-                                        'field_type'          => $field_type,
-                                        'field_key'           => $field_key,
-                                        'user_selected_key'   => $user_selected_key,
-                                        'user_selected_value' => $user_selected_value,
-                                        'correct_value'       => $correct_value,
-                                    ])->render();
-                                }
-                            }
-
-                            break;
-                    }
-                }
-            }
-
-
-            $question_layout = '<div class="question-area"><div class="question-step question-step-' . $resultQuestionObj->question_id . '" data-elapsed="0" data-qattempt="' . $resultQuestionObj->quiz_attempt_id . '"
+        $question_layout = '<div class="question-area"><div class="question-step question-step-' . $resultQuestionObj->question_id . '" data-elapsed="0" data-qattempt="' . $resultQuestionObj->quiz_attempt_id . '"
                      data-start_time="0" data-qresult="' . $resultQuestionObj->id . '"
                      data-quiz_result_id="' . $resultQuestionObj->quiz_result_id . '">';
 
-            //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($questionObj->question_layout)))));
-            //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($resultQuestionObj->user_question_layout)))));
+        //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($questionObj->question_layout)))));
+        //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($resultQuestionObj->user_question_layout)))));
 
 
-            $question_layout .= $script;
+        $question_layout .= $script;
 
-            $user_input_response = '';
-            $correct_answer_response = '';
-            $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
+        $user_input_response = '';
+        $correct_answer_response = '';
+        $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
 
 
-            if (!empty($correct_answers)) {
-                foreach ($correct_answers as $field_id => $correct_answer_array) {
-                    if (!empty($correct_answer_array)) {
-                        foreach ($correct_answer_array as $correct_answer) {
-                            $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';
-                        }
+        if (!empty($correct_answers)) {
+            foreach ($correct_answers as $field_id => $correct_answer_array) {
+                if (!empty($correct_answer_array)) {
+                    foreach ($correct_answer_array as $correct_answer) {
+                        $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';
                     }
                 }
             }
+        }
 
-            if (!empty($user_answers)) {
-                foreach ($user_answers as $field_id => $user_input_data_array) {
-                    if (!empty($user_input_data_array)) {
-                        foreach ($user_input_data_array as $user_input_data) {
-                            $user_input_response .= '<li><label class="lms-question-label ' . $label_class . '" for="radio2"><span>' . $user_input_data . '</span></label></li>';
-                        }
+        if (!empty($user_answers)) {
+            foreach ($user_answers as $field_id => $user_input_data_array) {
+                if (!empty($user_input_data_array)) {
+                    foreach ($user_input_data_array as $user_input_data) {
+                        $user_input_response .= '<li><label class="lms-question-label ' . $label_class . '" for="radio2"><span>' . $user_input_data . '</span></label></li>';
                     }
                 }
             }
+        }
 
-            $question_layout .= '<div class="lms-radio-lists">
+        $question_layout .= '<div class="lms-radio-lists">
             					<span class="list-title">Correct answer:</span>
             					<ul class="lms-radio-btn-group lms-user-answer-block">' . $correct_answer_response . '</ul>
             					<span class="list-title">You answered:</span>
@@ -1077,9 +1084,9 @@ class QuestionsAttemptController extends Controller
             			</div><hr>';
 
 
-            $question_layout .= '</div></div>';
-            return $question_layout;
-        }
+        $question_layout .= '</div></div>';
+        return $question_layout;
+    }
 
 
     public function get_question_result_layout_bk($result_question_id)
@@ -1103,7 +1110,7 @@ class QuestionsAttemptController extends Controller
                 $value = is_array($value) ? $value : array($value);
                 $user_value = isset($user_answers->$field_key) ? $user_answers->$field_key : array();
                 $user_value = is_array($user_value) ? $user_value : array($user_value);
-                $question_answers_array[$field_key]['type'] = isset( $elementData->type ) ? $elementData->type : '';
+                $question_answers_array[$field_key]['type'] = isset($elementData->type) ? $elementData->type : '';
                 $question_answers_array[$field_key]['correct_value'] = $value;
                 $question_answers_array[$field_key]['user_value'] = $user_value;
             }
@@ -1274,9 +1281,9 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['percentage'] = round($percentage, 2);
 
 
-                $time_consumed = isset( $response_data[$q_result_id]['time_consumed'] )? $response_data[$q_result_id]['time_consumed'] : 0;
+                $time_consumed = isset($response_data[$q_result_id]['time_consumed']) ? $response_data[$q_result_id]['time_consumed'] : 0;
                 //$time_consumed = ( $time_consumed > 0)? ($time_consumed/60) : 0;
-                $average_time = isset( $response_data[$q_result_id]['average_time'] )? $response_data[$q_result_id]['average_time'] : 0;
+                $average_time = isset($response_data[$q_result_id]['average_time']) ? $response_data[$q_result_id]['average_time'] : 0;
                 $average_time = $average_time * 60;
                 $response_data[$q_result_id]['time_consumed'] = gmdate("i:s", $time_consumed);
                 $response_data[$q_result_id]['average_time'] = gmdate("i:s", $average_time);
@@ -1288,7 +1295,6 @@ class QuestionsAttemptController extends Controller
 
         return (object)$response_data;
     }
-
 
 
 }

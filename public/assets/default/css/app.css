@@ -20999,9 +20999,9 @@ Custom Pagination Style End
     left: 0;
     top: 50px;
     width: 200px;
-    background: #f8f8f8;
-    padding: 10px 20px 20px;
-    box-shadow: 0 3px 5px 1px rgba(0, 0, 0, .1);
+    background: #fff;
+    padding: 5px 0 15px;
+    box-shadow: 0 5px 5px 1px rgba(0, 0, 0, .1);
     border-radius: 4px;
     transition: all 0.6s cubic-bezier(0.68, -0.90, 0.265, 2.90) 0s;
     z-index: 99;
@@ -21014,6 +21014,7 @@ Custom Pagination Style End
     top: 40px;
 }
 .panel-page-section .panel-sidebar {
+    border-top: 1px solid rgba(0,0,0,0.1);
     width: 100%;
     position: relative;
     display: flex;
@@ -21046,8 +21047,10 @@ Custom Pagination Style End
     padding-bottom: 0;
     padding-top: 0;
     display: flex;
-    justify-content: end;
+    justify-content: start;
     align-items: center;
+    margin-left: -12px;
+    margin-right: -12px;
 }
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item {
     padding: 0 12px;
@@ -22193,7 +22196,8 @@ Lms Activity-Timeline Style Start
 }
 .timeline-list li:last-child:after {content: ""; background-color: #b2b2b2; border-radius: 100%; position: absolute; left: 9px; top: 100%; height: 6px; width: 6px; margin-top: 25px;}
 .timeline-icon {width: 26px;}
-.timeline-icon svg {height: 26px; width: 26px; background-color: #fff; border-radius: 100%;}
+.timeline-icon svg,
+.timeline-icon img {height: 26px; width: 26px; background-color: #fff; border-radius: 100%;}
 .timeline-text {width: calc(100% - 26px); padding: 0 0 0 12px; transform: none; }
 .timeline-text p {color: #858585; font-size: 17px;}
 .timeline-text p strong {color: var(--secondary); text-transform: capitalize;}

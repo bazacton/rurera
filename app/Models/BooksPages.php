@@ -17,4 +17,9 @@ class BooksPages extends Model
         return $this->hasMany('App\Models\BooksPagesInfoLinks' , 'page_id' , 'id');
     }
 
+    public function BooksPageUserReadings()
+    {
+        return $this->hasOne('App\Models\BooksUserReading', 'page_id', 'id');
+    }
+
 }

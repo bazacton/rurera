@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Books;
+use App\Models\BooksPages;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\BooksUserPagesInfoLinks;
+use App\Models\BooksUserReading;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller
 {
@@ -39,20 +42,25 @@ class BooksController extends Controller
 
     public function book($book_slug)
     {
-
-        if(!auth()->subscription('bookshelf')){
+        if (!auth()->subscription('bookshelf')) {
             return view('web.default.quizzes.not_subscribed');
         }
+        $user = auth()->user();
+
 
         $bookObj = Books::where('book_slug', $book_slug)->with([
             'bookFinalQuiz.QuestionData',
-            'bookPages.PageInfoLinks'
+            'bookPages.PageInfoLinks',
+            'bookPages.BooksPageUserReadings' => function ($query) use ($user) {
+                $query->where('user_id', $user->id)->where('status', 'active');
+            } ,
         ])->first();
 
         $page_content = array();
         $info_type = array();
         if (!empty($bookObj->bookPages)) {
             foreach ($bookObj->bookPages as $page_data) {
+
                 $info_link_html = '';
                 if (!empty($page_data->PageInfoLinks)) {
                     foreach ($page_data->PageInfoLinks as $pageInfoLinks) {
@@ -82,7 +90,7 @@ class BooksController extends Controller
                 $page_content[$page_data->id] = $info_link_html;
             }
         }
-        //pre('test');
+        //pre($bookObj);
 
         if (!empty($bookObj)) {
             $data = [
@@ -91,6 +99,54 @@ class BooksController extends Controller
                 'page_content' => $page_content,
             ];
             return view('web.default.pages.book', $data);
+        }
+
+        abort(404);
+    }
+
+    /*
+     * Book Activity
+     */
+
+    public function bookActivity($book_slug)
+    {
+
+
+        if (!auth()->subscription('bookshelf')) {
+            return view('web.default.quizzes.not_subscribed');
+        }
+
+        $bookObj = Books::where('book_slug', $book_slug)->with([
+            'bookUserActivities.bookInfoLinkDetail.BooksInfoLinkPage',
+            'bookPageInfoLinks.BooksInfoLinkPage',
+            'BooksUserReadings'
+        ])->first();
+
+
+        $bookPageInfoLinks = $bookObj->bookPageInfoLinks;
+
+        $bookUserActivities = $bookObj->bookUserActivities;
+
+        $bookUserActivities = $bookUserActivities->groupBy(function ($bookUserActivitiesQuery) {
+            return date('d F Y', $bookUserActivitiesQuery->created_at);
+        });
+
+        $bookPageInfoLinks = $bookPageInfoLinks->groupBy(function ($bookPageInfoLinks) {
+            return $bookPageInfoLinks->BooksInfoLinkPage->page_no;
+        });
+
+        //pre($bookPageInfoLinks);
+
+        //pre($bookUserActivities);
+
+        if (!empty($bookObj)) {
+            $data = [
+                'pageTitle'          => $bookObj->book_title,
+                'book'               => $bookObj,
+                'bookUserActivities' => $bookUserActivities,
+                'bookPageInfoLinks'  => $bookPageInfoLinks,
+            ];
+            return view('web.default.books.activity', $data);
         }
 
         abort(404);
@@ -115,6 +171,15 @@ class BooksController extends Controller
         switch ($info_type) {
 
             case "quiz":
+
+                BooksUserPagesInfoLinks::create([
+                    'user_id'           => $user->id,
+                    'book_id'           => $infoLinkData->book_id,
+                    'book_info_link_id' => $info_id,
+                    'status'            => 'active',
+                    'created_by'        => $user->id,
+                    'created_at'        => time(),
+                ]);
 
                 $user_info_links_ids = BooksUserPagesInfoLinks::where('user_id', $user->id)->pluck('book_info_link_id')->toArray();
 
@@ -150,12 +215,12 @@ class BooksController extends Controller
 
                 $response = view("web.default.books.includes." . $info_type, [
                     "pageInfoLink"          => $infoLinkData,
-                    "QuizzesResult"         => isset( $QuizzesResult)? $QuizzesResult : array(),
+                    "QuizzesResult"         => isset($QuizzesResult) ? $QuizzesResult : array(),
                     "all_infolinks_checked" => $all_infolinks_checked,
-                    "question"              => isset( $questionObj )? $questionObj : array(),
-                    "quizAttempt"           => isset( $attemptLogObj )? $attemptLogObj : array(),
-                    "newQuestionResult"     => isset( $newQuestionResult )? $newQuestionResult : array(),
-                    "question_no"           => isset( $question_no )? $question_no : 0,
+                    "question"              => isset($questionObj) ? $questionObj : array(),
+                    "quizAttempt"           => isset($attemptLogObj) ? $attemptLogObj : array(),
+                    "newQuestionResult"     => isset($newQuestionResult) ? $newQuestionResult : array(),
+                    "question_no"           => isset($question_no) ? $question_no : 0,
                 ]);
                 break;
 
@@ -163,6 +228,7 @@ class BooksController extends Controller
 
                 BooksUserPagesInfoLinks::create([
                     'user_id'           => $user->id,
+                    'book_id'           => $infoLinkData->book_id,
                     'book_info_link_id' => $info_id,
                     'status'            => 'active',
                     'created_by'        => $user->id,
@@ -175,6 +241,42 @@ class BooksController extends Controller
         echo $response;
         exit;
 
+    }
+
+    /*
+     * Update Reading of Pages for Book
+     */
+    public function update_reading(Request $request)
+    {
+        $user = auth()->user();
+        $page_ids = $request->get('page_ids');
+        $time_lapsed = $request->get('time_lapsed');
+        //pre('test');
+        if (!empty($page_ids)) {
+            foreach ($page_ids as $page_id) {
+                $bookPage = BooksPages::find($page_id);
+                $bookUserReadingObj = BooksUserReading::where('page_id', $page_id)->where('user_id', $user->id)->where('status', 'active')->first();
+                if (isset($bookUserReadingObj->id)) {
+                    $bookUserReadingObj->update([
+                        'page_id'    => $page_id,
+                        'read_time'  => $time_lapsed,
+                        'updated_at' => time(),
+                    ]);
+
+                } else {
+                    BooksUserReading::create([
+                        'user_id'    => $user->id,
+                        'book_id'    => $bookPage->book_id,
+                        'page_id'    => $page_id,
+                        'read_time'  => $time_lapsed,
+                        'status'     => 'active',
+                        'created_at' => time(),
+                        'updated_at' => time(),
+                    ]);
+                }
+            }
+        }
+        pre($page_ids);
     }
 
 
