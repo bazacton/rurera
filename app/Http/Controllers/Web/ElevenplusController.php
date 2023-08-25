@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
+use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
@@ -16,6 +17,7 @@ class ElevenplusController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        $user = auth()->user();
 
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
@@ -41,12 +43,21 @@ class ElevenplusController extends Controller
         //pre($sats);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+        $childs = array();
+        if (auth()->user()->isParent()) {
+            $childs = User::where('role_id', 1)
+                ->where('parent_type', 'parent')
+                ->where('parent_id', $user->id)
+                ->where('status', 'active')
+                ->get();
+        }
 
         if (!empty($elevenPlus)) {
             $data = [
                 'pageTitle'                  => '11 Plus',
                 'data'                       => $elevenPlus,
-                'QuestionsAttemptController' => $QuestionsAttemptController
+                'QuestionsAttemptController' => $QuestionsAttemptController,
+                'childs'                     => $childs
             ];
             return view('web.default.11plus.index', $data);
         }
@@ -63,7 +74,7 @@ class ElevenplusController extends Controller
             return redirect('/login');
         }
 
-        if(!auth()->subscription('11plus')){
+        if (!auth()->subscription('11plus')) {
             return view('web.default.quizzes.not_subscribed');
         }
         $quiz = Quiz::find($id);

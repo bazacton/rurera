@@ -9,6 +9,7 @@ use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use App\Models\QuizzResultQuestions;
 use App\Models\QuizzAttempts;
+use App\Models\RewardAccounting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Translation\QuizzesQuestionTranslation;
@@ -369,6 +370,8 @@ class QuestionsAttemptController extends Controller
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
                 $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
+
+                $this->update_reward_points($QuizzResultQuestions, $is_question_correct);
                 $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : true;
                 $user_input = is_array($user_input) ? $user_input : array($user_input);
                 if ($is_question_correct == false) {
@@ -476,7 +479,7 @@ class QuestionsAttemptController extends Controller
                 }
 
                 $question_response_layout = '';
-                if( isset( $newQuestionResult->quiz_result_id )) {
+                if (isset($newQuestionResult->quiz_result_id)) {
                     $question_response_layout = view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
                         'prev_question'     => $prev_question,
@@ -495,7 +498,7 @@ class QuestionsAttemptController extends Controller
 
         $response = array(
             'show_fail_message'        => $show_fail_message,
-            'is_complete'              => ( $question_response_layout == '')? true : $is_complete,
+            'is_complete'              => ($question_response_layout == '') ? true : $is_complete,
             'incorrect_array'          => $incorrect_array,
             'correct_array'            => $correct_array,
             'incorrect_flag'           => $incorrect_flag,
@@ -511,6 +514,7 @@ class QuestionsAttemptController extends Controller
     function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index = 0)
     {
         $is_question_correct = true;
+
         if ($question_type == 'checkbox' || $question_type == 'radio') {
             $question_correct = array();
             $options_array = $current_question_obj->options;
@@ -544,10 +548,65 @@ class QuestionsAttemptController extends Controller
         }
         $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
 
+        //$this->update_reward_points($current_question_obj, $is_question_correct);
+
+        //RewardAccounting
+
         return $response = array(
             'is_question_correct' => $is_question_correct,
             'question_correct'    => $question_correct,
         );
+    }
+
+    /*
+     * Update Rewards Points if Answere is correct
+     */
+    public function update_reward_points($QuizzResultQuestions, $is_question_correct)
+    {
+        if ($is_question_correct != true) {
+            return;
+        }
+        $user = auth()->user();
+        $question_score = isset($QuizzResultQuestions->quiz_grade) ? $QuizzResultQuestions->quiz_grade : 0;
+        $parent_id = isset($QuizzResultQuestions->parent_type_id) ? $QuizzResultQuestions->parent_type_id : 0;
+        $question_id = isset($QuizzResultQuestions->question_id) ? $QuizzResultQuestions->question_id : 0;
+        $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
+
+        $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_id', $parent_id)->where('parent_type', $parent_type)->first();
+        $score = isset($RewardAccountingObj->score) ? json_decode($RewardAccountingObj->score) : 0;
+        $score += $question_score;
+        $full_data = isset($RewardAccountingObj->full_data) ? (array) json_decode($RewardAccountingObj->full_data) : array();
+
+        $is_exists = (isset( $full_data['$question_id'] ) && $full_data['$question_id'] != '')? true : false;
+        if( $is_exists == true){
+            return;
+        }
+        $full_data[$question_id] = $question_score;
+        $full_data = json_encode($full_data);
+
+        if (isset($RewardAccountingObj->id)) {
+
+            $RewardAccountingObj->update([
+                'score'       => $score,
+                'full_data'   => $full_data,
+                'updated_at' => time(),
+            ]);
+
+        } else {
+            RewardAccounting::create([
+                'user_id'     => $user->id,
+                'item_id'     => 0,
+                'type'        => 'coins',
+                'score'       => $score,
+                'status'      => 'addiction',
+                'created_at'  => time(),
+                'parent_id'   => $parent_id,
+                'parent_type' => $parent_type,
+                'full_data'   => $full_data,
+                'updated_at' => time(),
+            ]);
+        }
+
     }
 
 
@@ -610,7 +669,7 @@ class QuestionsAttemptController extends Controller
                 $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
 
-                $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input);
+                $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, 0);
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
                 $correct_answers = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : array();
                 if (!empty($question_validate_response['question_correct'])) {

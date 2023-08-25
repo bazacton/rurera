@@ -160,13 +160,6 @@ class BooksController extends Controller
         $info_type = isset($infoLinkData->info_type) ? $infoLinkData->info_type : '';
         $response = '';
 
-        /*BooksUserPagesInfoLinks::create([
-            'user_id'             => $user->id ,
-            'book_info_link_id'   => $info_id ,
-            'status'              => 'active',
-            'created_by'          => $user->id ,
-            'created_at'          => time() ,
-        ]);*/
 
         switch ($info_type) {
 
@@ -212,6 +205,7 @@ class BooksController extends Controller
                     //pre($newQuestionResult);
 
                 }
+
 
                 $response = view("web.default.books.includes." . $info_type, [
                     "pageInfoLink"          => $infoLinkData,

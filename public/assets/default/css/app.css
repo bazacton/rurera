@@ -23126,6 +23126,87 @@ Dashboard Form-Tabs Style Start
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
+.user-assign-topics {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.user-assign-topics button.dropdown-toggle {
+    border: 0;
+    background-color: inherit;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.user-assign-topics button.dropdown-toggle:after{
+    content: "";
+    border: 0;
+    height: 2px;
+    width: 14px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #666;
+}
+.user-assign-topics button.dropdown-toggle:before {
+    content: "";
+    height: 14px;
+    width: 2px;
+    position: absolute;
+    left: 6px;
+    top: -6px;
+    background-color: #666;
+}
+.dataTable .user-assign-topics ~ a,
+.user-assign-topics ~ a {
+    padding-left: 18px;
+}
+.user-assign-topics .dropdown-menu {
+    min-width: 220px;
+    transform: translate3d(0, 25px, 0) !important;
+}
+.user-assign-topics .checkbox-btn {
+    padding-top: 5px;
+}
+.user-assign-topics .checkbox-btn button {
+    width:100%;
+}
+.user-assign-topics input[type=checkbox] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.checkbox-field {
+    position: relative;
+    margin: 0 0 10px;
+}
+.user-assign-topics label {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+}
+.user-assign-topics label:after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 16px;
+    width: 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    content: "";
+    margin-top: -8px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 14px;
+}
+.user-assign-topics input[type=checkbox]:checked ~ label:after {
+    content:"\2713";
+}
 
 /*************************************
 Lms Responsive Style Start

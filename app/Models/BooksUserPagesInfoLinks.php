@@ -12,6 +12,7 @@ class BooksUserPagesInfoLinks extends Model
 
     protected $fillable = [
         'user_id',
+        'book_id',
         'book_info_link_id',
         'status',
         'created_by',

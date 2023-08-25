@@ -25,11 +25,20 @@
                                         <label class="input-label">Year Group</label>
                                         <div class="input-field select-arrow">
                                             <select name="year_group" class="lms-jobs-select">
-                                                <<option value="All">All</option>
-                                                <option value="Year 3" @if(request()->get('year_group') == 'Year 3') selected @endif>Year 3</option>
-                                                <option value="Year 4" @if(request()->get('year_group') == 'Year 4') selected @endif>Year 4</option>
-                                                <option value="Year 5" @if(request()->get('year_group') == 'Year 5') selected @endif>Year 5</option>
-                                                <option value="Year 6" @if(request()->get('year_group') == 'Year 6') selected @endif>Year 6</option>
+                                                <
+                                                <option value="All">All</option>
+                                                <option value="Year 3" @if(request()->get('year_group') == 'Year 3')
+                                                    selected @endif>Year 3
+                                                </option>
+                                                <option value="Year 4" @if(request()->get('year_group') == 'Year 4')
+                                                    selected @endif>Year 4
+                                                </option>
+                                                <option value="Year 5" @if(request()->get('year_group') == 'Year 5')
+                                                    selected @endif>Year 5
+                                                </option>
+                                                <option value="Year 6" @if(request()->get('year_group') == 'Year 6')
+                                                    selected @endif>Year 6
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -40,9 +49,15 @@
                                         <div class="input-field select-arrow">
                                             <select name="subject" class="lms-jobs-select">
                                                 <option value="All">All</option>
-                                                <option value="Math" @if(request()->get('subject') == 'Math') selected @endif>Math</option>
-                                                <option value="Non-Verbal Reasoning" @if(request()->get('subject') == 'Non-Verbal Reasoning') selected @endif>Non-Verbal Reasoning</option>
-                                                <option value="Verbal Reasoning" @if(request()->get('subject') == 'Verbal Reasoning') selected @endif>Verbal Reasoning</option>
+                                                <option value="Math" @if(request()->get('subject') == 'Math') selected
+                                                    @endif>Math
+                                                </option>
+                                                <option value="Non-Verbal Reasoning" @if(request()->get('subject') ==
+                                                    'Non-Verbal Reasoning') selected @endif>Non-Verbal Reasoning
+                                                </option>
+                                                <option value="Verbal Reasoning" @if(request()->get('subject') ==
+                                                    'Verbal Reasoning') selected @endif>Verbal Reasoning
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -53,8 +68,12 @@
                                         <div class="input-field select-arrow">
                                             <select class="lms-jobs-select" name="examp_board">
                                                 <option value="All">All</option>
-                                                <option value="GL" @if(request()->get('examp_board') == 'GL') selected @endif>GL</option>
-                                                <option value="CEM" @if(request()->get('examp_board') == 'CEM') selected @endif>CEM</option>
+                                                <option value="GL" @if(request()->get('examp_board') == 'GL') selected
+                                                    @endif>GL
+                                                </option>
+                                                <option value="CEM" @if(request()->get('examp_board') == 'CEM') selected
+                                                    @endif>CEM
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -92,10 +111,10 @@
                                                 aria-label="Date: activate to sort column descending">Title
                                             </th>
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
-                                                                                                                                        rowspan="1"
-                                                                                                                                        colspan="1" aria-sort="ascending"
-                                                                                                                                        aria-label="Date: activate to sort column descending">&nbsp;
-                                                                                                                                    </th>
+                                                rowspan="1"
+                                                colspan="1" aria-sort="ascending"
+                                                aria-label="Date: activate to sort column descending">&nbsp;
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
                                                 colspan="1" aria-label="Percent: activate to sort column ascending">
                                                 Questions
@@ -119,7 +138,8 @@
                                         @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
                                         $total_attempts = $total_questions_attempt = $correct_questions =
                                         $incorrect_questions = 0;
-                                        $total_questions = isset( $dataObj->quizQuestionsList )? count( $dataObj->quizQuestionsList) : 0;
+                                        $total_questions = isset( $dataObj->quizQuestionsList )? count(
+                                        $dataObj->quizQuestionsList) : 0;
 
                                         $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
                                         $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
@@ -163,11 +183,31 @@
                                         @endphp
 
                                         <tr class="odd">
-                                            <td><a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a>
+                                            <td>
+                                                <div class="dropdown user-assign-topics">
+                                                    <button class="dropdown-toggle" type="button" id="checkbox"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false"></button>
+                                                    <div class="dropdown-menu" onclick="event.stopPropagation()">
+                                                        @if( !empty( $childs) )
+                                                            @foreach( $childs as $childObj)
+                                                                <div class="checkbox-field">
+                                                                    <input type="checkbox" name="child_ids[]" value="{{$childObj->id}}" id="child_{{$dataObj->id}}_{{$childObj->id}}">
+                                                                    <label for="child_{{$dataObj->id}}_{{$childObj->id}}">{{$childObj->full_name}}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                        <div class="checkbox-btn">
+                                                            <button type="button" class="btn btn-primary btn-sm">Assign
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a>
                                             </td>
                                             <td>
                                                 @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
-                                                    <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
+                                                <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
                                                 @endif
                                             </td>
                                             <td>{{$total_questions}}</td>
