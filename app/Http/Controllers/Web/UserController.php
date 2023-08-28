@@ -15,6 +15,7 @@ use App\Models\RewardAccounting;
 use App\Models\Sale;
 use App\Models\UserOccupation;
 use App\Models\Webinar;
+use App\Models\UserAssignedTopics;
 use App\User;
 use App\Models\Role;
 use App\Models\Follow;
@@ -33,7 +34,7 @@ class UserController extends Controller
         $user = User::where('id', $id)
             //->whereIn('role_name', [Role::$organization, Role::$teacher, Role::$user])
             ->with([
-                'blog' => function ($query) {
+                'blog'     => function ($query) {
                     $query->where('status', 'publish');
                     $query->withCount([
                         'comments' => function ($query) {
@@ -114,9 +115,14 @@ class UserController extends Controller
                     ->orWhere('teacher_id', $user->id);
             })
             ->orderBy('updated_at', 'desc')
-            ->with(['teacher' => function ($qu) {
-                $qu->select('id', 'full_name', 'avatar');
-            }, 'reviews', 'tickets', 'feature'])
+            ->with([
+                'teacher' => function ($qu) {
+                    $qu->select('id', 'full_name', 'avatar');
+                },
+                'reviews',
+                'tickets',
+                'feature'
+            ])
             ->get();
 
         $meetingIds = Meeting::where('creator_id', $user->id)->pluck('id');
@@ -141,24 +147,24 @@ class UserController extends Controller
         }
 
         $data = [
-            'pageTitle' => $user->full_name . ' ' . trans('public.profile'),
-            'user' => $user,
-            'userBadges' => $userBadges,
-            'meeting' => $meeting,
-            'times' => $times,
-            'userRates' => $user->rates(),
-            'userFollowers' => $followers,
-            'userFollowing' => $followings,
+            'pageTitle'          => $user->full_name . ' ' . trans('public.profile'),
+            'user'               => $user,
+            'userBadges'         => $userBadges,
+            'meeting'            => $meeting,
+            'times'              => $times,
+            'userRates'          => $user->rates(),
+            'userFollowers'      => $followers,
+            'userFollowing'      => $followings,
             'authUserIsFollower' => $authUserIsFollower,
-            'educations' => $userMetas->where('name', 'education'),
-            'experiences' => $userMetas->where('name', 'experience'),
-            'occupations' => $occupations,
-            'webinars' => $webinars,
-            'appointments' => $appointments,
-            'meetingTimezone' => $meeting ? $meeting->getTimezone() : null,
-            'instructors' => $instructors,
-            'forumTopics' => $this->getUserForumTopics($user->id),
-            'cashbackRules' => $cashbackRules,
+            'educations'         => $userMetas->where('name', 'education'),
+            'experiences'        => $userMetas->where('name', 'experience'),
+            'occupations'        => $occupations,
+            'webinars'           => $webinars,
+            'appointments'       => $appointments,
+            'meetingTimezone'    => $meeting ? $meeting->getTimezone() : null,
+            'instructors'        => $instructors,
+            'forumTopics'        => $this->getUserForumTopics($user->id),
+            'cashbackRules'      => $cashbackRules,
         ];
 
         return view('web.default.user.profile', $data);
@@ -198,8 +204,8 @@ class UserController extends Controller
         if (empty($follow)) {
             Follow::create([
                 'follower' => $authUser->id,
-                'user_id' => $user->id,
-                'status' => Follow::$accepted,
+                'user_id'  => $user->id,
+                'status'   => Follow::$accepted,
             ]);
 
             $followStatus = true;
@@ -208,7 +214,7 @@ class UserController extends Controller
         }
 
         return response()->json([
-            'code' => 200,
+            'code'   => 200,
             'follow' => $followStatus
         ], 200);
     }
@@ -220,7 +226,10 @@ class UserController extends Controller
         $date = $request->get('date');
 
         $user = User::where('id', $id)
-            ->whereIn('role_name', [Role::$teacher, Role::$organization])
+            ->whereIn('role_name', [
+                Role::$teacher,
+                Role::$organization
+            ])
             ->where('status', 'active')
             ->first();
 
@@ -251,7 +260,10 @@ class UserController extends Controller
 
                     $reserveMeeting = ReserveMeeting::where('meeting_time_id', $meetingTime->id)
                         ->where('day', $date)
-                        ->whereIn('status', ['pending', 'open'])
+                        ->whereIn('status', [
+                            'pending',
+                            'open'
+                        ])
                         ->first();
 
                     if ($reserveMeeting && ($reserveMeeting->locked_at || $reserveMeeting->reserved_at)) {
@@ -263,10 +275,10 @@ class UserController extends Controller
                     }*/
 
                     $resultMeetingTimes[] = [
-                        "id" => $meetingTime->id,
-                        "time" => $meetingTime->time,
-                        "description" => $meetingTime->description,
-                        "can_reserve" => $can_reserve,
+                        "id"           => $meetingTime->id,
+                        "time"         => $meetingTime->time,
+                        "description"  => $meetingTime->description,
+                        "can_reserve"  => $can_reserve,
                         'meeting_type' => $meetingTime->meeting_type
                     ];
                 }
@@ -326,10 +338,12 @@ class UserController extends Controller
                             ->orWhere('users.ban_end_at', '<', time());
                     });
             })
-            ->with(['meeting' => function ($query) {
-                $query->with('meetingTimes');
-                $query->withCount('meetingTimes');
-            }]);
+            ->with([
+                'meeting' => function ($query) {
+                    $query->with('meetingTimes');
+                    $query->withCount('meetingTimes');
+                }
+            ]);
 
         $instructors = $this->filterInstructors($request, deepClone($query), $role)
             ->paginate(6);
@@ -344,12 +358,15 @@ class UserController extends Controller
             }
 
             return response()->json([
-                'html' => $html,
+                'html'      => $html,
                 'last_page' => $instructors->lastPage(),
             ], 200);
         }
 
-        if (empty($request->get('sort')) or !in_array($request->get('sort'), ['top_rate', 'top_sale'])) {
+        if (empty($request->get('sort')) or !in_array($request->get('sort'), [
+                'top_rate',
+                'top_sale'
+            ])) {
             $bestRateInstructorsQuery = $this->getBestRateUsers(deepClone($query), $role);
 
             $bestSalesInstructorsQuery = $this->getTopSalesUsers(deepClone($query), $role);
@@ -368,12 +385,12 @@ class UserController extends Controller
             ->get();
 
         $data = [
-            'pageTitle' => trans('home.instructors'),
-            'instructors' => $instructors,
-            'instructorsCount' => deepClone($query)->count(),
-            'bestRateInstructors' => $bestRateInstructors ?? null,
+            'pageTitle'            => trans('home.instructors'),
+            'instructors'          => $instructors,
+            'instructorsCount'     => deepClone($query)->count(),
+            'bestRateInstructors'  => $bestRateInstructors ?? null,
             'bestSalesInstructors' => $bestSalesInstructors ?? null,
-            'categories' => $categories,
+            'categories'           => $categories,
         ];
 
         return $data;
@@ -508,7 +525,7 @@ class UserController extends Controller
 
             if (empty($user->email)) {
                 $user->update([
-                    'email' => $email,
+                    'email'      => $email,
                     'newsletter' => true,
                 ]);
             } else if ($user->email == $email) {
@@ -525,8 +542,8 @@ class UserController extends Controller
         if (!empty($check)) {
             if (!empty($check->user_id) and !empty($user_id) and $check->user_id != $user_id) {
                 $toastData = [
-                    'title' => trans('public.request_failed'),
-                    'msg' => trans('update.this_email_used_by_another_user'),
+                    'title'  => trans('public.request_failed'),
+                    'msg'    => trans('update.this_email_used_by_another_user'),
                     'status' => 'error'
                 ];
                 return back()->with(['toast' => $toastData]);
@@ -537,8 +554,8 @@ class UserController extends Controller
             }
         } else {
             Newsletter::create([
-                'user_id' => $user_id,
-                'email' => $data['newsletter_email'],
+                'user_id'    => $user_id,
+                'email'      => $data['newsletter_email'],
                 'created_at' => time()
             ]);
         }
@@ -549,8 +566,8 @@ class UserController extends Controller
         }
 
         $toastData = [
-            'title' => trans('public.request_success'),
-            'msg' => trans('site.create_newsletter_success'),
+            'title'  => trans('public.request_success'),
+            'msg'    => trans('site.create_newsletter_success'),
             'status' => 'success'
         ];
         return back()->with(['toast' => $toastData]);
@@ -567,21 +584,21 @@ class UserController extends Controller
                 $data = $request->all();
 
                 $validator = Validator::make($data, [
-                    'title' => 'required|string',
-                    'email' => 'required|email',
+                    'title'       => 'required|string',
+                    'email'       => 'required|email',
                     'description' => 'required|string',
-                    'captcha' => 'required|captcha',
+                    'captcha'     => 'required|captcha',
                 ]);
 
                 if ($validator->fails()) {
                     return response()->json([
-                        'code' => 422,
+                        'code'   => 422,
                         'errors' => $validator->errors()
                     ], 422);
                 }
 
                 $mail = [
-                    'title' => $data['title'],
+                    'title'   => $data['title'],
                     'message' => trans('site.you_have_message_from', ['email' => $data['email']]) . "\n" . $data['description'],
                 ];
 
@@ -593,21 +610,59 @@ class UserController extends Controller
                     ]);
                 } catch (Exception $e) {
                     return response()->json([
-                        'code' => 500,
+                        'code'    => 500,
                         'message' => trans('site.server_error_try_again')
                     ]);
                 }
             }
 
             return response()->json([
-                'code' => 403,
+                'code'    => 403,
                 'message' => trans('site.user_disabled_public_message')
             ]);
         }
     }
 
-    public function switch_user(Request $request){
+    public function switch_user(Request $request)
+    {
         $child_id = $request->post('child_id');
         Auth::loginUsingId($child_id, true);
     }
+
+    /*
+     * Assign Users Topic
+     */
+    public function assign_user_topic(Request $request)
+    {
+        $user = auth()->user();
+        $child_ids = $request->post('child_ids');
+        $topic_id = $request->post('topic_id');
+        $topic_type = $request->post('topic_type');
+
+        $UserAssignedTopicsArray = UserAssignedTopics::where('topic_id', $topic_id)->where('topic_type', $topic_type)->where('parent_id', $user->id)->where('status', 'active')->pluck('assigned_to_id')->toArray();
+
+        $unselected_childs = array_diff($UserAssignedTopicsArray, $child_ids);
+        UserAssignedTopics::where('topic_id', $topic_id)->whereIn('assigned_to_id', $unselected_childs)->where('topic_type', $topic_type)->where('parent_id', $user->id)->where('status', 'active')->update([
+            'status'    => 'inactive',
+        ]);
+
+        if (!empty($child_ids)) {
+            foreach ($child_ids as $child_id) {
+                $UserAssignedTopicsObj = UserAssignedTopics::where('topic_id', $topic_id)->where('assigned_to_id', $child_id)->where('topic_type', $topic_type)->where('parent_id', $user->id)->where('status', 'active')->first();
+                if (!isset($UserAssignedTopicsObj->id)) {
+                    UserAssignedTopics::create([
+                        'assigned_to_id' => $child_id,
+                        'parent_id'      => $user->id,
+                        'topic_id'       => $topic_id,
+                        'topic_type'     => $topic_type,
+                        'status'         => 'active',
+                        'created_at'     => time(),
+                    ]);
+                }
+
+            }
+        }
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 @endpush
 
 @section('content')
@@ -11,7 +12,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
-                        <h2 class="mt-0 mb-10">11Plus Online 10-Minutes test practices</h2>
+                        <h2 class="mt-0 mb-10 testing222">11Plus Online 10-Minutes test practices</h2>
                         <p> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
@@ -184,25 +185,7 @@
 
                                         <tr class="odd">
                                             <td>
-                                                <div class="dropdown user-assign-topics">
-                                                    <button class="dropdown-toggle" type="button" id="checkbox"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false"></button>
-                                                    <div class="dropdown-menu" onclick="event.stopPropagation()">
-                                                        @if( !empty( $childs) )
-                                                            @foreach( $childs as $childObj)
-                                                                <div class="checkbox-field">
-                                                                    <input type="checkbox" name="child_ids[]" value="{{$childObj->id}}" id="child_{{$dataObj->id}}_{{$childObj->id}}">
-                                                                    <label for="child_{{$dataObj->id}}_{{$childObj->id}}">{{$childObj->full_name}}</label>
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
-                                                        <div class="checkbox-btn">
-                                                            <button type="button" class="btn btn-primary btn-sm">Assign
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                                 <a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a>
                                             </td>
                                             <td>
@@ -219,6 +202,26 @@
                                                   <span class="progressbar"
                                                         style="width: {{$total_percentage}}%;"></span>
                                               </span>
+                                                </div>
+                                                <div class="dropdown user-assign-topics" data-topic_type="11plus" data-topic_id="{{$dataObj->id}}">
+                                                    <button class="dropdown-toggle" type="button" id="checkbox"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false"></button>
+                                                    <div class="dropdown-menu" onclick="event.stopPropagation()">
+                                                        @if( !empty( $childs) )
+                                                            @foreach( $childs as $childObj)
+                                                                @php $is_checked = isset( $parent_assigned_list[$dataObj->id][$childObj->id])? 'checked' : ''; @endphp
+                                                                <div class="checkbox-field">
+                                                                    <input type="checkbox" name="child_ids[]" value="{{$childObj->id}}" id="child_{{$dataObj->id}}_{{$childObj->id}}" {{$is_checked}} class="child_ids">
+                                                                    <label for="child_{{$dataObj->id}}_{{$childObj->id}}">{{$childObj->full_name}}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                        <div class="checkbox-btn">
+                                                            <button type="button" class="assign-topic-btn btn btn-primary btn-sm">Assign
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -247,6 +250,9 @@
 @endsection
 
 @push('scripts_bottom')
+<script src="/assets/default/js/helpers.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
+
 @endpush

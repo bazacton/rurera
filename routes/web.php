@@ -426,6 +426,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::post('switch_user', 'UserController@switch_user');
 
+    Route::post('assign_user_topic', 'UserController@assign_user_topic');
+
 
 
     Route::group(['prefix' => '{link}'] , function () {

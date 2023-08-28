@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
+use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -24,6 +25,19 @@ class ElevenplusController extends Controller
         $examp_board = $request->get('examp_board', null);
 
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', '11plus');
+
+
+        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
+
+        $parent_assigned_list = array();
+        if (!empty($parent_assignedArray)) {
+            foreach ($parent_assignedArray as $parent_assignedObj) {
+                $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
+                $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
+                $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
+            }
+        }
+
 
         if (!empty($year_group) and $year_group !== 'All') {
             $query->where('year_group', $year_group);
@@ -57,7 +71,8 @@ class ElevenplusController extends Controller
                 'pageTitle'                  => '11 Plus',
                 'data'                       => $elevenPlus,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
-                'childs'                     => $childs
+                'childs'                     => $childs,
+                'parent_assigned_list'       => $parent_assigned_list,
             ];
             return view('web.default.11plus.index', $data);
         }
