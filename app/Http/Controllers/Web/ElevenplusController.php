@@ -53,9 +53,6 @@ class ElevenplusController extends Controller
 
         $elevenPlus = $query->paginate(100);
 
-
-        //pre($sats);
-
         $QuestionsAttemptController = new QuestionsAttemptController();
         $childs = array();
         if (auth()->user()->isParent()) {

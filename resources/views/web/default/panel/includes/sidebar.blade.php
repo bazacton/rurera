@@ -78,7 +78,7 @@
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.store')
                 </span>
-                    <span class="font-14 text-dark-blue font-weight-500"><a href="/panel/store/purchases">{{ trans('update.store') }}</a></span>
+                    <span class="font-14 text-dark-blue font-weight-500"><a href="/panel/store/purchases">Purchases</a></span>
                 </a>
             </li>
 

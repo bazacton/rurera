@@ -120,20 +120,9 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
-
-        $organization = null;
-        if (!empty($data['organization_id']) and !empty($data['user_id'])) {
-            $organization = auth()->user();
-            $user = User::where('id', $data['user_id'])
-                ->where('organ_id', $organization->id)
-                ->first();
-        } else {
-            $user = auth()->user();
-        }
+        $user = auth()->user();
 
         $step = $data['step'] ?? 1;
-        $nextStep = (!empty($data['next_step']) and $data['next_step'] == '1') ?? false;
-
         $rules = [
             'identity_scan' => 'required_with:account_type',
             'bio'           => 'nullable|string|min:3|max:48',
@@ -149,170 +138,35 @@ class UserController extends Controller
             ]);
         }
 
-        $this->validate($request, $rules);
+        //$this->validate($request, $rules);
+
 
         if (!empty($user)) {
 
-            if (!empty($data['password'])) {
-                $this->validate($request, [
-                    'password' => 'required|confirmed|min:6',
-                ]);
-
-                $user->update([
-                    'password' => User::generatePassword($data['password'])
-                ]);
-            }
-
             $updateData = [];
 
-            if ($step == 1) {
-                $joinNewsletter = (!empty($data['join_newsletter']) and $data['join_newsletter'] == 'on');
 
-                $updateData = [
-                    'email'          => $data['email'],
-                    'full_name'      => $data['full_name'],
-                    'mobile'         => $data['mobile'],
-                    'language'       => $data['language'],
-                    'timezone'       => $data['timezone'] ?? null,
-                    'currency'       => $data['currency'] ?? null,
-                    'newsletter'     => $joinNewsletter,
-                    'public_message' => (!empty($data['public_messages']) and $data['public_messages'] == 'on'),
-                ];
+            $updateData = [
+                'display_name' => $data['display_name'],
 
-                $this->handleNewsletter($data['email'], $user->id, $joinNewsletter);
-            } elseif ($step == 2) {
-                $updateData = [
-                    'cover_img' => $data['cover_img'],
-                ];
-
-                if (!empty($data['profile_image'])) {
-                    $profileImage = $this->createImage($user, $data['profile_image']);
-                    $updateData['avatar'] = $profileImage;
-                }
-            } elseif ($step == 3) {
-                $updateData = [
-                    'about' => $data['about'],
-                    'bio'   => $data['bio'],
-                ];
-            } elseif ($step == 6) {
-                UserOccupation::where('user_id', $user->id)->delete();
-                if (!empty($data['occupations'])) {
-
-                    foreach ($data['occupations'] as $category_id) {
-                        UserOccupation::create([
-                            'user_id'     => $user->id,
-                            'category_id' => $category_id
-                        ]);
-                    }
-                }
-            } elseif ($step == 7) {
-                $updateData = [
-                    'identity_scan' => $data['identity_scan'] ?? '',
-                    'certificate'   => $data['certificate'] ?? '',
-                    'address'       => $data['address'] ?? '',
-                ];
-
-                if (!empty($data['bank_id'])) {
-                    UserSelectedBank::query()->where('user_id', $user->id)->delete();
-
-                    $userSelectedBank = UserSelectedBank::query()->create([
-                        'user_id'      => $user->id,
-                        'user_bank_id' => $data['bank_id']
-                    ]);
-
-                    if (!empty($data['bank_specifications'])) {
-                        $specificationInsert = [];
-
-                        foreach ($data['bank_specifications'] as $specificationId => $specificationValue) {
-                            if (!empty($specificationValue)) {
-                                $specificationInsert[] = [
-                                    'user_selected_bank_id'      => $userSelectedBank->id,
-                                    'user_bank_specification_id' => $specificationId,
-                                    'value'                      => $specificationValue
-                                ];
-                            }
-                        }
-
-                        UserSelectedBankSpecification::query()->insert($specificationInsert);
-                    }
-                }
-
-            } elseif ($step == 8) {
-                if (!$user->isUser()) {
-                    if (!empty($data['zoom_api_key']) and !empty($data['zoom_api_secret'])) {
-                        UserZoomApi::updateOrCreate(
-                            [
-                                'user_id' => $user->id,
-                            ],
-                            [
-                                'api_key'    => $data['zoom_api_key'] ?? null,
-                                'api_secret' => $data['zoom_api_secret'] ?? null,
-                                'created_at' => time()
-                            ]
-                        );
-                    } else {
-                        UserZoomApi::where('user_id', $user->id)->delete();
-                    }
-                }
-            } elseif ($step == 9) {
-                $updateData = [
-                    "level_of_training" => !empty($data['level_of_training']) ? (new UserLevelOfTraining())->getValue($data['level_of_training']) : null,
-                    "meeting_type"      => $data['meeting_type'] ?? null,
-                    "group_meeting"     => (!empty($data['group_meeting']) and $data['group_meeting'] == 'on'),
-                    "country_id"        => $data['country_id'] ?? null,
-                    "province_id"       => $data['province_id'] ?? null,
-                    "city_id"           => $data['city_id'] ?? null,
-                    "district_id"       => $data['district_id'] ?? null,
-                    "location"          => (!empty($data['latitude']) and !empty($data['longitude'])) ? DB::raw("POINT(" . $data['latitude'] . "," . $data['longitude'] . ")") : null,
-                ];
-
-                $updateUserMeta = [
-                    "gender"            => $data['gender'] ?? null,
-                    "age"               => $data['age'] ?? null,
-                    "address"           => $data['address'] ?? null,
-                    'live_chat_js_code' => !empty($data['live_chat_js_code']) ? $data['live_chat_js_code'] : null
-                ];
-
-                foreach ($updateUserMeta as $name => $value) {
-                    $checkMeta = UserMeta::where('user_id', $user->id)
-                        ->where('name', $name)
-                        ->first();
-
-                    if (!empty($checkMeta)) {
-                        if (!empty($value)) {
-                            $checkMeta->update([
-                                'value' => $value
-                            ]);
-                        } else {
-                            $checkMeta->delete();
-                        }
-                    } else if (!empty($value)) {
-                        UserMeta::create([
-                            'user_id' => $user->id,
-                            'name'    => $name,
-                            'value'   => $value
-                        ]);
-                    }
-                }
+            ];
+            if (!empty($data['profile_image'])) {
+                $profileImage = $this->createImage($user, $data['profile_image']);
+                $updateData['avatar'] = $profileImage;
             }
+
 
             if (!empty($updateData)) {
                 $user->update($updateData);
             }
 
+            if (!empty($data['secret_word'])) {
+                $user->update([
+                    'secret_word' => User::generatePassword($data['secret_word'])
+                ]);
+            }
+
             $url = '/panel/setting';
-            if (!empty($organization)) {
-                $userType = $user->isTeacher() ? 'instructors' : 'students';
-                $url = "/panel/manage/{$userType}/{$user->id}/edit";
-            }
-
-            if ($step <= 9) {
-                if ($nextStep) {
-                    $step = $step + 1;
-                }
-
-                $url .= '/step/' . (($step <= 8) ? $step : 9);
-            }
 
             $toastData = [
                 'title'  => trans('public.request_success'),

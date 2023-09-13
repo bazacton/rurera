@@ -5,9 +5,7 @@
 @endpush
 
 @section('content')
-    @if(empty($new_user))
-        @include('web.default.panel.setting.setting_includes.progress')
-    @endif
+
 
     <form method="post" id="userSettingForm" class="mt-30" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
         {{ csrf_field() }}
@@ -23,65 +21,11 @@
             @include('web.default.panel.setting.setting_includes.basic_information')
         @endif
 
-        @if(empty($new_user) and !empty($currentStep))
-            @switch($currentStep)
-                @case(2)
-                @include('web.default.panel.setting.setting_includes.image')
-                @break
-
-                @case(3)
-                @include('web.default.panel.setting.setting_includes.about')
-                @break
-
-                @case(4)
-                @include('web.default.panel.setting.setting_includes.education')
-                @break
-
-                @case(5)
-                @include('web.default.panel.setting.setting_includes.experiences')
-                @break
-
-                @case(6)
-                @include('web.default.panel.setting.setting_includes.occupations')
-                @break
-
-                @case(7)
-                @include('web.default.panel.setting.setting_includes.identity_and_financial')
-                @break
-
-                @case(8)
-                @if(!$user->isUser())
-                    @include('web.default.panel.setting.setting_includes.zoom_api')
-                @endif
-                @break
-
-                @case(9)
-                @if(!$user->isUser())
-                    @include('web.default.panel.setting.setting_includes.settings')
-                @endif
-                @break
-            @endswitch
-        @endif
     </form>
 
     <div class="create-webinar-footer d-flex align-items-center justify-content-between mt-20 pt-15 border-top">
-        <div class="d-flex align-items-center">
-            @if(!empty($user) and empty($new_user))
-                @if(!empty($currentStep) and $currentStep > 1)
-                    <a href="/panel/setting/step/{{ ($currentStep - 1) }}" class="btn btn-sm btn-primary">{{ trans('webinars.previous') }}</a>
-                @else
-                    <a href="" class="btn btn-sm btn-primary disabled">{{ trans('webinars.previous') }}</a>
-                @endif
-
-                <button type="button" id="getNextStep" class="btn btn-sm btn-primary ml-15" @if(!empty($currentStep) and (($user->isUser() and $currentStep == 7) or (!$user->isUser() and $currentStep == 9))) disabled @endif>{{ trans('webinars.next') }}</button>
-            @endif
-        </div>
 
         <div class="d-flex align-items-center">
-            @if(empty($new_user) and empty($edit_new_user))
-                <a href="/panel/setting/deleteAccount" class="delete-action btn btn-sm btn-danger" data-confirm="{{ trans('update.delete_account_modal_confirm_btn_text') }}" data-title="{{ trans('update.delete_account_modal_hint') }}">{{ trans('update.delete_account') }}</a>
-            @endif
-
             <button type="button" id="saveData" class="btn btn-sm btn-primary ml-15">{{ trans('public.save') }}</button>
         </div>
     </div>

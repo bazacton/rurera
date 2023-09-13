@@ -4786,30 +4786,30 @@ function element_properties_meta($chapters)
 
 
         'imageselect' => array(
-            'basic'             => array(
+            'basic'              => array(
                 'type'  => 'tab',
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'              => array(
+            'name'               => array(
                 'value'   => esc_html__('Image select', 'leform'),
                 'label'   => esc_html__('Name', 'leform'),
                 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
                 'type'    => 'text'
             ),
-            'label'             => array(
+            'label'              => array(
                 'value'   => esc_html__('Mark one answer', 'leform'),
                 'label'   => esc_html__('Label', 'leform'),
                 'tooltip' => esc_html__('This is the label of the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'mode'              => array(
+            'mode'               => array(
                 'value'   => 'radio',
                 'label'   => esc_html__('Mode', 'leform'),
                 'tooltip' => esc_html__('Select the mode of the Image Select.', 'leform'),
                 'type'    => 'imageselect-mode'
             ),
-            'submit-on-select'  => array(
+            'submit-on-select'   => array(
                 'value'   => 'off',
                 'label'   => esc_html__('Submit on select', 'leform'),
                 'tooltip' => esc_html__('If enabled, the form is submitted when user do selection.', 'leform'),
@@ -4817,7 +4817,7 @@ function element_properties_meta($chapters)
                 'type'    => 'checkbox',
                 'visible' => array('mode' => array('radio'))
             ),
-            'options'           => array(
+            'options'            => array(
                 'multi-select' => 'off',
                 'values'       => array(
                     array(
@@ -4840,39 +4840,39 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
                 'type'         => 'image-options'
             ),
-            'description'       => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'             => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style'    => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
+            'template_size'      => array(
                 'value'   => 'option-small',
                 'label'   => esc_html__('Template Size', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-small'  => esc_html__('Small', 'leform'),
                         'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'    => esc_html__('Large', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
                     )
             ),
             'template_alignment' => array(
@@ -4882,36 +4882,36 @@ function element_properties_meta($chapters)
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'    => esc_html__('Left', 'leform'),
-                        'image-top' => esc_html__('Top', 'leform'),
-                        'image-right'    => esc_html__('Right', 'leform'),
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
                     )
             ),
-            'list_style' => array(
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-            'list_style' => array(
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-            'label-style'       => array(
+            'label-style'        => array(
                 'value'   => array(
                     'position' => '',
                     'width'    => '',
@@ -4926,7 +4926,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
                 'type'    => 'label-style'
             ),
-            'image-style'       => array(
+            'image-style'        => array(
                 'value'   => array(
                     'width'  => "120",
                     'height' => "160",
@@ -4941,14 +4941,14 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose how to display images.', 'leform'),
                 'type'    => 'local-imageselect-style'
             ),
-            'label-enable'      => array(
+            'label-enable'       => array(
                 'value'   => 'off',
                 'label'   => esc_html__('Enable label', 'leform'),
                 'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'leform'),
                 'caption' => esc_html__('Label enabled', 'leform'),
                 'type'    => 'checkbox'
             ),
-            'label-height'      => array(
+            'label-height'       => array(
                 'value'   => '60',
                 'label'   => esc_html__('Label height', 'leform'),
                 'tooltip' => esc_html__('Set the height of label area.', 'leform'),
@@ -4956,7 +4956,7 @@ function element_properties_meta($chapters)
                 'type'    => 'units',
                 'visible' => array('label-enable' => array('on'))
             ),
-            'description-style' => array(
+            'description-style'  => array(
                 'value'   => array(
                     'position' => '',
                     'align'    => ''
@@ -4969,7 +4969,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
+            'css'                => array(
                 'type'      => 'css',
                 'values'    => array(),
                 'label'     => esc_html__('CSS styles', 'leform'),
@@ -4992,23 +4992,23 @@ function element_properties_meta($chapters)
                     )
                 )
             ),
-            'elements_data'     => array(
+            'elements_data'      => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings'     => array(
+            'quiz-settings'      => array(
                 'type'  => 'tab',
                 'value' => 'settings',
                 'label' => esc_html__('Settings', 'leform')
             ),
-            'score'             => array(
+            'score'              => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
                 'type'  => 'number'
             ),
-            'field_id'          => array(
+            'field_id'           => array(
                 'value' => '',
                 'label' => esc_html__('Field_id', 'leform'),
                 'type'  => 'hidden'
@@ -5498,39 +5498,39 @@ function element_properties_meta($chapters)
                 'type'         => 'image-options'
             ),
 
-            'description'    => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'          => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style' => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
+            'template_size'      => array(
                 'value'   => 'option-small',
                 'label'   => esc_html__('Template Size', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-small'  => esc_html__('Small', 'leform'),
                         'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'    => esc_html__('Large', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
                     )
             ),
             'template_alignment' => array(
@@ -5540,21 +5540,21 @@ function element_properties_meta($chapters)
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'    => esc_html__('Left', 'leform'),
-                        'image-top' => esc_html__('Top', 'leform'),
-                        'image-right'    => esc_html__('Right', 'leform'),
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
                     )
             ),
-            'list_style' => array(
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -5649,24 +5649,24 @@ function element_properties_meta($chapters)
 
         ),
         'radio'    => array(
-            'basic'             => array(
+            'basic'              => array(
                 'type'  => 'tab',
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'              => array(
+            'name'               => array(
                 'value'   => esc_html__('Radio button', 'leform'),
                 'label'   => esc_html__('Name', 'leform'),
                 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
                 'type'    => 'text'
             ),
-            'label'             => array(
+            'label'              => array(
                 'value'   => esc_html__('Mark one answer', 'leform'),
                 'label'   => esc_html__('Label', 'leform'),
                 'tooltip' => esc_html__('This is the label of the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'options'           => array(
+            'options'            => array(
                 'multi-select' => 'off',
                 'values'       => array(
                     array(
@@ -5689,66 +5689,66 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
                 'type'         => 'image-options'
             ),
-            'description'       => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'             => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style'    => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
-                    'value'   => 'option-small',
-                    'label'   => esc_html__('Template Size', 'leform'),
-                    '',
-                    'type'    => 'select',
-                    'options' =>
-                        array(
-                            'option-small'    => esc_html__('Small', 'leform'),
-                            'option-medium' => esc_html__('Medium', 'leform'),
-                            'option-large'    => esc_html__('Large', 'leform'),
-                        )
-                ),
-                'template_alignment' => array(
-                    'value'   => 'image-left',
-                    'label'   => esc_html__('Template Alignment', 'leform'),
-                    '',
-                    'type'    => 'select',
-                    'options' =>
-                        array(
-                            'image-left'    => esc_html__('Left', 'leform'),
-                            'image-top' => esc_html__('Top', 'leform'),
-                            'image-right'    => esc_html__('Right', 'leform'),
-                        )
-                ),
-            'list_style' => array(
+            'template_size'      => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'  => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-            'label-style'       => array(
+            'label-style'        => array(
                 'value'   => array(
                     'position' => '',
                     'width'    => '',
@@ -5763,7 +5763,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
                 'type'    => 'label-style'
             ),
-            'radio-style'       => array(
+            'radio-style'        => array(
                 'value'   => array(
                     'position' => '',
                     'align'    => '',
@@ -5778,7 +5778,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
                 'type'    => 'local-checkbox-style'
             ),
-            'description-style' => array(
+            'description-style'  => array(
                 'value'   => array(
                     'position' => '',
                     'align'    => ''
@@ -5791,7 +5791,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
+            'css'                => array(
                 'type'      => 'css',
                 'values'    => array(),
                 'label'     => esc_html__('CSS styles', 'leform'),
@@ -5814,18 +5814,18 @@ function element_properties_meta($chapters)
                     )
                 )
             ),
-            'elements_data'     => array(
+            'elements_data'      => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings'     => array(
+            'quiz-settings'      => array(
                 'type'  => 'tab',
                 'value' => 'settings',
                 'label' => esc_html__('Settings', 'leform')
             ),
-            'score'             => array(
+            'score'              => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
                 'type'  => 'number'
@@ -5875,39 +5875,39 @@ function element_properties_meta($chapters)
                 'type'         => 'sortable-options'
             ),
 
-            'description'    => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'          => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style' => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
+            'template_size'      => array(
                 'value'   => 'option-small',
                 'label'   => esc_html__('Template Size', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-small'  => esc_html__('Small', 'leform'),
                         'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'    => esc_html__('Large', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
                     )
             ),
             'template_alignment' => array(
@@ -5917,21 +5917,21 @@ function element_properties_meta($chapters)
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'    => esc_html__('Left', 'leform'),
-                        'image-top' => esc_html__('Top', 'leform'),
-                        'image-right'    => esc_html__('Right', 'leform'),
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
                     )
             ),
-            'list_style' => array(
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -6091,63 +6091,63 @@ function element_properties_meta($chapters)
                 'type'         => 'matrix-columns-labels'
             ),
 
-            'description'    => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'          => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style' => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
-                    'value'   => 'option-small',
-                    'label'   => esc_html__('Template Size', 'leform'),
-                    '',
-                    'type'    => 'select',
-                    'options' =>
-                        array(
-                            'option-small'    => esc_html__('Small', 'leform'),
-                            'option-medium' => esc_html__('Medium', 'leform'),
-                            'option-large'    => esc_html__('Large', 'leform'),
-                        )
-                ),
-                'template_alignment' => array(
-                    'value'   => 'image-left',
-                    'label'   => esc_html__('Template Alignment', 'leform'),
-                    '',
-                    'type'    => 'select',
-                    'options' =>
-                        array(
-                            'image-left'    => esc_html__('Left', 'leform'),
-                            'image-top' => esc_html__('Top', 'leform'),
-                            'image-right'    => esc_html__('Right', 'leform'),
-                        )
-                ),
-            'list_style' => array(
+            'template_size'      => array(
+                'value'   => 'option-small',
+                'label'   => esc_html__('Template Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'option-small'  => esc_html__('Small', 'leform'),
+                        'option-medium' => esc_html__('Medium', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_alignment' => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Template Alignment', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
+                    )
+            ),
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -6307,39 +6307,39 @@ function element_properties_meta($chapters)
                 'type'         => 'matrix-columns-labels'
             ),
 
-            'description'    => array(
+            'description'        => array(
                 'value'   => '',
                 'label'   => esc_html__('Description', 'leform'),
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'          => array(
+            'style'              => array(
                 'type'  => 'tab',
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
-            'template_style' => array(
+            'template_style'     => array(
                 'value'   => 'option-row-1',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1'    => esc_html__('1 In Row', 'leform'),
+                        'option-row-1' => esc_html__('1 In Row', 'leform'),
                         'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3'    => esc_html__('3 In Row', 'leform'),
+                        'option-row-3' => esc_html__('3 In Row', 'leform'),
                     )
             ),
-            'template_size' => array(
+            'template_size'      => array(
                 'value'   => 'option-small',
                 'label'   => esc_html__('Template Size', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-small'    => esc_html__('Small', 'leform'),
+                        'option-small'  => esc_html__('Small', 'leform'),
                         'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'    => esc_html__('Large', 'leform'),
+                        'option-large'  => esc_html__('Large', 'leform'),
                     )
             ),
             'template_alignment' => array(
@@ -6349,21 +6349,21 @@ function element_properties_meta($chapters)
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'    => esc_html__('Left', 'leform'),
-                        'image-top' => esc_html__('Top', 'leform'),
-                        'image-right'    => esc_html__('Right', 'leform'),
+                        'image-left'  => esc_html__('Left', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
                     )
             ),
-            'list_style' => array(
+            'list_style'         => array(
                 'value'   => 'none',
                 'label'   => esc_html__('Bullet list Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        ''    => esc_html__('None', 'leform'),
+                        ''                    => esc_html__('None', 'leform'),
                         'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'    => esc_html__('Numbers', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
 
@@ -7278,4 +7278,33 @@ function array_neighbor($arr, $key)
         $return['prev'] = $keys[$keyIndexes[$key] + 1];
 
     return $return;
+}
+
+/*
+ * Assign topic to user
+ */
+function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_assigned_list){
+    ?>
+    <div class="dropdown user-assign-topics" data-topic_type="<?php echo $topic_type; ?>" data-topic_id="<?php echo $topic_id; ?>">
+        <button class="dropdown-toggle" type="button" id="checkbox"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"></button>
+        <div class="dropdown-menu" onclick="event.stopPropagation()">
+            <?php if( !empty( $childs) ){
+            foreach( $childs as $childObj){
+            $is_checked = isset( $parent_assigned_list[$topic_id][$childObj->id])? 'checked' : '';
+            ?>
+            <div class="checkbox-field">
+                <input type="checkbox" name="child_ids[]" value="<?php echo $childObj->id; ?>"
+                       id="child_<?php echo $topic_id.'_'.$childObj->id; ?>" <?php echo $is_checked; ?> class="child_ids">
+                <label for="child_<?php echo $topic_id.'_'.$childObj->id; ?>"><?php echo $childObj->full_name; ?></label>
+            </div>
+            <?php } } ?>
+            <div class="checkbox-btn">
+                <button type="button" class="assign-topic-btn btn btn-primary btn-sm">Assign
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php
 }

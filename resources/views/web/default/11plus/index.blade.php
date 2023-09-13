@@ -203,26 +203,7 @@
                                                         style="width: {{$total_percentage}}%;"></span>
                                               </span>
                                                 </div>
-                                                <div class="dropdown user-assign-topics" data-topic_type="11plus" data-topic_id="{{$dataObj->id}}">
-                                                    <button class="dropdown-toggle" type="button" id="checkbox"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false"></button>
-                                                    <div class="dropdown-menu" onclick="event.stopPropagation()">
-                                                        @if( !empty( $childs) )
-                                                            @foreach( $childs as $childObj)
-                                                                @php $is_checked = isset( $parent_assigned_list[$dataObj->id][$childObj->id])? 'checked' : ''; @endphp
-                                                                <div class="checkbox-field">
-                                                                    <input type="checkbox" name="child_ids[]" value="{{$childObj->id}}" id="child_{{$dataObj->id}}_{{$childObj->id}}" {{$is_checked}} class="child_ids">
-                                                                    <label for="child_{{$dataObj->id}}_{{$childObj->id}}">{{$childObj->full_name}}</label>
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
-                                                        <div class="checkbox-btn">
-                                                            <button type="button" class="assign-topic-btn btn btn-primary btn-sm">Assign
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                {{ user_assign_topic_template($dataObj->id, '11plus', $childs, $parent_assigned_list) }}
                                             </td>
                                         </tr>
                                         @endforeach

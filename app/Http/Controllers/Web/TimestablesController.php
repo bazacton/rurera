@@ -20,6 +20,14 @@ class TimestablesController extends Controller
         return view('web.default.timestables.index', $data);
     }
 
+    public function landing()
+    {
+        $data = [
+            'pageTitle' => 'Times Tables',
+        ];
+        return view('web.default.timestables.landing', $data);
+    }
+
     /*
      * Generate Quiz
      */
@@ -28,7 +36,7 @@ class TimestablesController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
-        if(!auth()->subscription('timestables')){
+        if (!auth()->subscription('timestables')) {
             return view('web.default.quizzes.not_subscribed');
         }
         $user = auth()->user();
@@ -37,10 +45,10 @@ class TimestablesController extends Controller
         $tables_numbers = $request->post('question_values');
         $tables_types = [];
 
-        if( $question_type == 'multiplication' || $question_type == 'multiplication_division') {
+        if ($question_type == 'multiplication' || $question_type == 'multiplication_division') {
             $tables_types[] = 'x';
         }
-        if( $question_type == 'division' || $question_type == 'multiplication_division') {
+        if ($question_type == 'division' || $question_type == 'multiplication_division') {
             $tables_types[] = '÷';
         }
         $total_questions = $no_of_questions;
@@ -90,14 +98,14 @@ class TimestablesController extends Controller
         $user = auth()->user();
 
         $times_tables_data = $this->user_times_tables_data($user->id, 'x');
-        $average_time = isset( $times_tables_data['average_time'] )? $times_tables_data['average_time'] : array();
-        $times_tables_data = isset( $times_tables_data['tables_array'] )? $times_tables_data['tables_array'] : array();
+        $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
+        $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
 
         $data = [
             'pageTitle'         => 'Timestables Summary',
             'times_tables_data' => $times_tables_data,
-            'average_time' => $average_time,
-            'authUser' => $user,
+            'average_time'      => $average_time,
+            'authUser'          => $user,
         ];
         return view('web.default.timestables.summary', $data);
     }
@@ -126,7 +134,7 @@ class TimestablesController extends Controller
                                 $time_consumed = 0;
                                 if (!empty($table_rows)) {
                                     foreach ($table_rows as $tableRowObj) {
-                                        if( $data_type == '' || $tableRowObj->type == $data_type) {
+                                        if ($data_type == '' || $tableRowObj->type == $data_type) {
                                             $time_consumed += ($tableRowObj->time_consumed / 10);
 
                                             $tables_array[$date][$table_no][$tableRowObj->to]['label'] = $tableRowObj->from . ' ' . $tableRowObj->type . ' ' . $tableRowObj->to;

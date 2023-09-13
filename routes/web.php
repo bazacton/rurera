@@ -399,6 +399,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'sats'] , function () {
         Route::get('/' , 'SatsController@index');
+        Route::get('/sats_landing' , 'SatsController@sats_landing');
         Route::get('/{sat_id}/start' , 'SatsController@start');
     });
 
@@ -411,6 +412,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'timestables'] , function () {
         Route::get('/' , 'TimestablesController@index');
+        Route::get('/landing' , 'TimestablesController@landing');
         Route::post('/generate' , 'TimestablesController@genearte');
         Route::get('/summary' , 'TimestablesController@summary');
 

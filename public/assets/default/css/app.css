@@ -13656,6 +13656,16 @@ p {
     border: 1px solid #e1e1e1;
     border-radius: 10px;
     padding: 0 10px;
+    visibility: hidden;
+    opacity: 0;
+    display: block !important;
+    transition: all .5s ease;
+    margin-top: -15px;
+}
+.top-navbar .dropdown:hover .user-profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    margin-top: -5px;
 }
 .top-navbar .dropdown-menu.user-profile-dropdown .dropdown-item {
     padding: 12px 6px !important;
@@ -13936,6 +13946,7 @@ p {
     padding: 10px 20px;
     position: relative;
     height: auto;
+    background-color: #fff;
 }
 .navbar1 .navbar-nav{position: relative;}
 .navbar1.sticky {
@@ -14293,8 +14304,8 @@ p {
     transition: all .3s ease
 }
 .footer {
-    margin-top: 90px;
     position: relative;
+    padding-top: 30px;
 }
 /* .footer:before {
     background: url(../../default/img/footer.png) repeat-x bottom center;
@@ -14336,7 +14347,7 @@ p {
     font-size: 14px
 }
 .footer ul li a {
-    color: #333 !important
+    color: #333 !important;
 }
 .footer ul li.header {
     font-size: 16px
@@ -14348,8 +14359,13 @@ p {
     height: 24px
 }
 .footer .footer-logo {
-    width: 170px;
-    height: 50px
+    width: 100px;
+    height: auto;
+    margin: 0;
+}
+.footer .footer-logo img {
+    -o-object-fit: contain;
+    object-fit: contain;
 }
 .footer .border-blue {
     border-top: 1px solid #305995
@@ -18980,54 +18996,87 @@ Lms Product Card Style Start
 /*********************************
 Lms Footer Style Start
 **********************************/
-.footer .footer-social a svg {color: #000;}
 .footer .footer-social {
     text-align: right;
 }
 .footer-privacy-links {
     gap: 10px;
+    margin-right: 15px;
+}
+.footer .footer-privacy-links li a {
+    color: #bababa !important;
+    text-decoration: underline;
 }
 .footer .footer-social a {
     text-decoration: none;
-    margin-right: 15px;
+    margin-right: 5px;
     display: inline-flex;
+    height: 32px;
+    width: 32px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+.footer .footer-social a[data-original-title="instagram"] {
+    background-color: #d776b3;
+}
+.footer .footer-social a[data-original-title="whatsapp"] {
+    background-color: #0d9f16;
+}
+.footer .footer-social a[data-original-title="twitter"] {
+    background-color: #15acf7;
+}
+.footer .footer-social a[data-original-title="facebook"] {
+    background-color: #4267b2;
+}
+.footer .footer-social a[data-original-title="facebook"] svg path {
+    fill: none;
+}
+.footer .footer-social a svg {color: #fff;}
+.footer .footer-social a svg path {
+    fill: #fff;
 }
 .footer .footer-social a:nth-child(3) {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .footer .footer-social a:last-child {
     margin-right: 0;
 }
 .footer .widget {
-    margin-bottom: 50px;
+    margin-bottom: 0;
 }
 .footer .widget ul {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 .footer .widget ul li {
     line-height: normal;
     list-style: none;
-    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0;
 }
 .footer .widget ul li a {
     text-decoration: none;
-    outline: none;
-    font-size: 1em;
-    line-height: 1.2em;
     color: #171347 !important;
+    font-weight: 500;
+    line-height: 1.2em;
     text-transform: capitalize;
+    padding: 0 5px;
+    margin: 0 5px;
 }
 .hiring-label {
     display: inline-block;
     vertical-align: middle;
     background-color: #fae095;
-    padding: 4px 10px;
+    padding: 2px 8px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 12px;
     box-shadow: 0 0 0 1px #ce9e19 inset;
     line-height: normal;
-    margin-left: 5px;
+    margin-left: 2px;
     font-weight: 500;
 }
 .footer .widget.widget-aboutus ul li a {
@@ -19057,18 +19106,24 @@ Lms Footer Style Start
     text-transform: capitalize;
     font-size: 1rem;
 }
-.footer-copyright p {
-    font-size: 14px;
-    color: #1e2e4f !important;
-    margin-top: 15px;
-}
 .footer-copyright {
     display: flex;
     align-items: center;
-    padding-bottom: 60px;
+    padding-bottom: 30px;
+    justify-content: center;
+    padding-top: 20px;
 }
-.footer .footer-copyright .footer-logo {
-    margin: 0 auto;
+.footer-copyright .copyright-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.footer-copyright p {
+    font-size: 14px;
+    color: #bababa;
+    margin-top: 0;
+    margin-right: 15px;
 }
 /*********************************
 Lms Footer Style End
@@ -23206,6 +23261,44 @@ Dashboard Form-Tabs Style End
 }
 .user-assign-topics input[type=checkbox]:checked ~ label:after {
     content:"\2713";
+}
+.process-nav .nav {
+    flex-direction: column;
+    border-bottom: 0;
+}
+.process-nav .nav-tabs .nav-link {
+    border: 0;
+    padding: 5px 0 0;
+    margin: 5px 0 0;
+    color: #999;
+    font-weight: 500;
+}
+.process-nav .nav-tabs .nav-link.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+.process-nav .nav-tabs .nav-item a.active:after {
+    display: none;
+}
+.coin-counts {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+}
+.coin-counts strong {
+    color: var(--primary);
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+}
+.coin-counts img {
+    max-width: 26px;
+    max-height: 26px;
+    object-fit: contain;
+    margin-right: 8px;
+    display: inline-block;
+    margin-top: -3px;
 }
 
 /*************************************

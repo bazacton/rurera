@@ -151,7 +151,13 @@
                                     <div class="lms-chapter-ul-outer"><ul>
                                         @foreach($sub_chapters[$chapter->id] as $sub_chapter)
                                         @if(!empty($sub_chapter))
-                                            <li><a href="/course/{{$sub_chapter['id']}}/start">{{ $sub_chapter['title'] }}</a></li>
+                                            <li>
+
+
+                                                <a href="/course/{{$sub_chapter['id']}}/start">{{ $sub_chapter['title'] }}</a>
+                                            <br>
+                                                {{ user_assign_topic_template($sub_chapter['id'], 'practice', $childs, $parent_assigned_list) }}
+                                            </li>
                                         @endif
                                         @endforeach
                                         </ul>
@@ -259,6 +265,7 @@
 @endsection
 
 @push('scripts_bottom')
+<script src="/assets/default/js/helpers.js"></script>
     <script src="/assets/default/js/parts/time-counter-down.min.js"></script>
     <script src="/assets/default/vendors/barrating/jquery.barrating.min.js"></script>
     <script src="/assets/default/vendors/video/video.min.js"></script>

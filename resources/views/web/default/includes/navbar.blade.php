@@ -46,6 +46,9 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </div>
 
                 <ul class="navbar-nav mr-auto d-flex align-items-center">
+                    @if(!empty($authUser))
+                    <li class="nav-item "><a class="nav-link" href="/panel">Dashboard</a></li>
+                    @endif
 
                     @if(!empty($navbarPages) and count($navbarPages))
                     @foreach($navbarPages as $navbarPage)
@@ -204,8 +207,20 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     </li>
                     @endforeach
                     @endif
+                    @if(!empty($authUser))
+                        <li class="nav-item "><a class="nav-link" href="/panel">Analytics</a></li>
+                    @endif
                 </ul>
             </div>
+
+            @if(!empty($authUser))
+                <div class="coin-counts">
+                    <strong>
+                        <img src="assets/default/img/coin-img.png" alt="">
+                        {{$authUser->getRewardPoints()}}
+                    </strong>
+                </div>
+            @endif
 
             <div class="nav-icons-or-start-live navbar-order">
                 <div class="xs-w-100 d-flex align-items-center justify-content-between ">

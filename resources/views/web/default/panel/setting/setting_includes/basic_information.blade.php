@@ -3,10 +3,30 @@
 
     <div class="row mt-20">
         <div class="col-12 col-lg-4">
+
+           <div class="form-group">
+               <label class="input-label">{{ trans('auth.profile_image') }}</label>
+               <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="rounded-circle my-15 d-block ml-5">
+
+               <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
+                   <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
+                   {{ trans('auth.select_image') }}
+               </button>
+
+               <div class="input-group">
+                   <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
+                   @error('profile_image')
+                   <div class="invalid-feedback">
+                       {{ $message }}
+                   </div>
+                   @enderror
+               </div>
+           </div>
+
             <div class="form-group">
-                <label class="input-label">{{ trans('public.email') }}</label>
-                <input type="text" name="email" value="{{ (!empty($user) and empty($new_user)) ? $user->email : old('email') }}" class="form-control @error('email')  is-invalid @enderror" placeholder=""/>
-                @error('email')
+                <label class="input-label">Display Name</label>
+                <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
+                @error('display_name')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
@@ -14,91 +34,55 @@
             </div>
 
             <div class="form-group">
-                <label class="input-label">{{ trans('auth.name') }}</label>
-                <input type="text" name="full_name" value="{{ (!empty($user) and empty($new_user)) ? $user->full_name : old('full_name') }}" class="form-control @error('full_name')  is-invalid @enderror" placeholder=""/>
-                @error('full_name')
+                <label class="input-label">Secret Word</label>
+                <input type="password" name="secret_word" value="{{ old('secret_word') }}" class="form-control @error('secret_word')  is-invalid @enderror" placeholder=""/>
+                @error('secret_word')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label class="input-label">{{ trans('auth.password') }}</label>
-                <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password')  is-invalid @enderror" placeholder=""/>
-                @error('password')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">{{ trans('auth.password_repeat') }}</label>
-                <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control @error('password_confirmation')  is-invalid @enderror" placeholder=""/>
-                @error('password_confirmation')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">{{ trans('public.mobile') }}</label>
-                <input type="tel" name="mobile" value="{{ (!empty($user) and empty($new_user)) ? $user->mobile : old('mobile') }}" class="form-control @error('mobile')  is-invalid @enderror" placeholder=""/>
-                @error('mobile')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">{{ trans('auth.language') }}</label>
-                <select name="language" class="form-control">
-                    <option value="">{{ trans('auth.language') }}</option>
-                    @foreach($userLanguages as $lang => $language)
-                        <option value="{{ $lang }}" @if(!empty($user) and mb_strtolower($user->language) == mb_strtolower($lang)) selected @endif>{{ $language }}</option>
-                    @endforeach
-                </select>
-                @error('language')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">{{ trans('update.timezone') }}</label>
-                <select name="timezone" class="form-control select2" data-allow-clear="false">
-                    <option value="" {{ empty($user->timezone) ? 'selected' : '' }} disabled>{{ trans('public.select') }}</option>
-                    @foreach(getListOfTimezones() as $timezone)
-                        <option value="{{ $timezone }}" @if(!empty($user) and $user->timezone == $timezone) selected @endif>{{ $timezone }}</option>
-                    @endforeach
-                </select>
-                @error('timezone')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group mt-30 d-flex align-items-center justify-content-between">
-                <label class="cursor-pointer input-label" for="newsletterSwitch">{{ trans('auth.join_newsletter') }}</label>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" name="join_newsletter" class="custom-control-input" id="newsletterSwitch" {{ (!empty($user) and $user->newsletter) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="newsletterSwitch"></label>
-                </div>
-            </div>
-
-            <div class="form-group mt-30 d-flex align-items-center justify-content-between">
-                <label class="cursor-pointer input-label" for="publicMessagesSwitch">{{ trans('auth.public_messages') }}</label>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" name="public_messages" class="custom-control-input" id="publicMessagesSwitch" {{ (!empty($user) and $user->public_message) ? 'checked' : '' }}>
-                    <label class="custom-control-label" for="publicMessagesSwitch"></label>
-                </div>
-            </div>
         </div>
     </div>
 
 </section>
+
+
+<div class="modal fade" id="avatarCropModalContainer" tabindex="-1" role="dialog" aria-labelledby="avatarCrop">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">{{ trans('public.edit_selected_image') }}</h4>
+            </div>
+            <div class="modal-body">
+                <div id="imageCropperContainer">
+                    <div class="cropit-preview"></div>
+                    <div class="cropit-tools">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="mr-20">
+                                <button type="button" class="btn btn-transparent rotate-cw mr-10">
+                                    <i data-feather="rotate-cw" width="18" height="18"></i>
+                                </button>
+                                <button type="button" class="btn btn-transparent rotate-ccw">
+                                    <i data-feather="rotate-ccw" width="18" height="18"></i>
+                                </button>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span>-</span>
+                                <input type="range" class="cropit-image-zoom-input mx-10">
+                                <span>+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-transparent" id="cancelAvatarCrop">{{ trans('public.cancel') }}</button>
+                        <button class="btn btn-green" id="storeAvatar">{{ trans('public.select') }}</button>
+                    </div>
+                    <input type="file" class="cropit-image-input">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
