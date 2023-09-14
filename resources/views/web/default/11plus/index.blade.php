@@ -17,8 +17,58 @@
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>
+                <div class="col-12 col-md-12 mb-50 my-50">
+                    <div class="sats-summary">
+                        <div class="row">
+                        <div class="col-2 col-md-2">
+                            <label>11+ Assessments</label>
+                            <div class="score">{{$authUser->getConductedAssessments('11plus')}} / {{count($data)}}</div>
+                        </div>
+                            <div class="col-2 col-md-2">
+                            <label>Average Score</label>
+                                @php $resultData = $QuestionsAttemptController->get_result_data('11plus', 0, 'type');
+                                    $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                                    $total_attempts = $total_questions_attempt = $correct_questions = 0;
+                                @endphp
+
+                                @if( !empty( $resultData ) )
+                                    @foreach( $resultData as $resultObj)
+                                        @php
+                                            $total_questions_attempt += $resultObj->attempted;
+                                            $correct_questions += $resultObj->correct;
+                                        @endphp
+
+                                    @endforeach
+                                @endif
+                                @php
+                                    $total_percentage = 0;
+                                    if( $total_questions_attempt > 0 && $correct_questions > 0){
+                                        $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
+                                    }
+                                @endphp
+                            <div class="score">{{round($total_percentage, 2)}}%</div>
+                        </div>
+                            <div class="col-2 col-md-2">
+                            <label>Hight Score</label>
+                            <div class="score">22 / 100</div>
+                        </div>
+                            <div class="col-2 col-md-2">
+                            <label>Average time</label>
+                                @php $assessmentTime = $authUser->assesstmentTotalTimeAllowed('11plus');
+                                $average_time = isset( $assessmentTime['average_time'] )? $assessmentTime['average_time'] : 0;
+                                $time_consumed = isset( $assessmentTime['time_consumed'] )? $assessmentTime['time_consumed'] : 0;
+                                @endphp
+                            <div class="score">{{$time_consumed}}m / {{$average_time}}m</div>
+                        </div>
+                            <div class="col-2 col-md-2">
+                            <label>Coins earned</label>
+                            <div class="score">{{$authUser->getRewardPointsByType('11plus')}}</div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12">
-                    <div class="listing-search lms-jobs-form mb-50">
+                    <div class="listing-search lms-jobs-form mb-20">
                         <form>
                             <div class="row align-items-center">
                                 <div class="col-12 col-lg-3 col-md-6">
@@ -96,8 +146,9 @@
 
 
                 @if( !empty( $data))
+                
                 <div class="col-12">
-                    <section class="lms-data-table my-80 elevenplus-block">
+                    <section class="lms-data-table my-30 elevenplus-block">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">

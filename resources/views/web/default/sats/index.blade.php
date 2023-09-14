@@ -92,6 +92,56 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-12 col-md-12">
+                <div class="sats-summary">
+                    <div class="row">
+                    <div class="col-2 col-md-2">
+                        <label>SATs Assessments</label>
+                        <div class="score">{{$authUser->getConductedAssessments('sats')}} / {{count($sats)}}</div>
+                    </div>
+                        <div class="col-2 col-md-2">
+                        <label>Average Score</label>
+                            @php $resultData = $QuestionsAttemptController->get_result_data('sats', 0, 'type');
+                                $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                                $total_attempts = $total_questions_attempt = $correct_questions = 0;
+                            @endphp
+
+                            @if( !empty( $resultData ) )
+                                @foreach( $resultData as $resultObj)
+                                    @php
+                                        $total_questions_attempt += $resultObj->attempted;
+                                        $correct_questions += $resultObj->correct;
+                                    @endphp
+
+                                @endforeach
+                            @endif
+                            @php
+                                $total_percentage = 0;
+                                if( $total_questions_attempt > 0 && $correct_questions > 0){
+                                    $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
+                                }
+                            @endphp
+                        <div class="score">{{round($total_percentage, 2)}}%</div>
+                    </div>
+                        <div class="col-2 col-md-2">
+                        <label>Hight Score</label>
+                        <div class="score">22 / 100</div>
+                    </div>
+                        <div class="col-2 col-md-2">
+                        <label>Average time</label>
+                            @php $assessmentTime = $authUser->assesstmentTotalTimeAllowed('sats');
+                            $average_time = isset( $assessmentTime['average_time'] )? $assessmentTime['average_time'] : 0;
+                            $time_consumed = isset( $assessmentTime['time_consumed'] )? $assessmentTime['time_consumed'] : 0;
+                            @endphp
+                        <div class="score">{{$time_consumed}}m / {{$average_time}}m</div>
+                    </div>
+                        <div class="col-2 col-md-2">
+                        <label>Coins earned</label>
+                        <div class="score">{{$authUser->getRewardPointsByType('sats')}}</div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
                 <div class="col-12 col-md-9">
                     <div class="sats-listing-card medium">
                         <table>
@@ -120,7 +170,8 @@
                                 <td>
 
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
-                                    <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a></h4>
+                                    <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a>
+                                    </h4>
                                 </td>
                                 <td>54</td>
                                 <td>0</td>
@@ -130,10 +181,11 @@
                                         <span class="progress-number">0%</span>
                                         <span class="progress-holder">
                                                                                         <span class="progressbar"
-                                                                                            style="width: 0%;"></span>
+                                                                                              style="width: 0%;"></span>
                                                                                     </span>
                                     </div>
-                                    {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list) }}
+                                    {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)
+                                    }}
 
 
                                 </td>
@@ -151,38 +203,49 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <div class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Year Group <span class="arrow"></span>
+                                        <button class="btn btn-link btn-block text-left" type="button"
+                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne"> Year Group <span class="arrow"></span>
                                         </button>
                                     </div>
                                 </div>
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="Categories-list pb-15">
                                             <h6 class="font-19 mt-20">KS1</h6>
-                                            <a href="/products?category_id=1" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=1"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>English</span>
                                             </a>
-                                            <a href="/products?category_id=2" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=2"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Math</span>
                                             </a>
                                             <h6 class="font-19 mt-15">KS2</h6>
-                                            <a href="/products?category_id=3" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=3"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Math airthmatic </span>
                                             </a>
-                                            <a href="/products?category_id=4" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=4"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Math Reasoning </span>
                                             </a>
-                                            <a href="/products?category_id=5" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=5"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>English reading</span>
                                             </a>
-                                            <a href="/products?category_id=6" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=6"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>English SPag</span>
                                             </a>
                                             <h6 class="font-19 mt-15">Assesment Type</h6>
-                                            <a href="/products?category_id=7" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=7"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>Past Yearly asseement</span>
                                             </a>
-                                            <a href="/products?category_id=8" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=8"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>Practice asseement</span>
                                             </a>
                                         </div>
@@ -191,51 +254,66 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
-                                <div class="mb-0">
-                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> School Year <span class="arrow"></span>
-                                    </button>
+                                    <div class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo"> School Year <span class="arrow"></span>
+                                        </button>
+                                    </div>
                                 </div>
-                                </div>
-                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="Categories-list pb-15">
                                             <h6 class="font-19 mt-20">School Year</h6>
-                                            <a href="/products?category_id=1" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=1"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>Year 6</span>
                                             </a>
-                                            <a href="/products?category_id=2" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=2"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Year 5</span>
                                             </a>
-                                            <a href="/products?category_id=3" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=3"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Year 4</span>
                                             </a>
-                                            <a href="/products?category_id=4" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=4"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Year 3</span>
                                             </a>
-                                            <a href="/products?category_id=5" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=5"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Year 2</span>
                                             </a>
                                             <h6 class="font-19 mt-15">Subject</h6>
-                                            <a href="/products?category_id=6" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=6"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Maths</span>
                                             </a>
-                                            <a href="/products?category_id=7" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=7"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>English </span>
                                             </a>
-                                            <a href="/products?category_id=8" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=8"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Verbal Reasoning</span>
                                             </a>
-                                            <a href="/products?category_id=9" class="d-flex align-items-center font-14 mt-15">
+                                            <a href="/products?category_id=9"
+                                               class="d-flex align-items-center font-14 mt-15">
                                                 <span>Non-Verbal Reasoning</span>
                                             </a>
                                             <h6 class="font-19 mt-15">Exam Board</h6>
-                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=10"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>GL</span>
                                             </a>
-                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=10"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>CEM</span>
                                             </a>
-                                            <a href="/products?category_id=10" class="d-flex align-items-center font-14 mt-10">
+                                            <a href="/products?category_id=10"
+                                               class="d-flex align-items-center font-14 mt-10">
                                                 <span>All Boards</span>
                                             </a>
                                         </div>
@@ -256,10 +334,6 @@
     </section>
 
 
-
-
-
-    
     <a href="#" class="scroll-btn" style="display: block;">
         <div class="round">
             <div id="cta"><span class="arrow primera next"></span> <span class="arrow segunda next"></span></div>

@@ -700,14 +700,16 @@ class QuestionsAttemptController extends Controller
     /*
          * GET Result Data
          */
-    public function get_result_data($parent_id, $q_result_id = 0)
+    public function get_result_data($parent_id, $q_result_id = 0, $parent_type = 'id')
     {
         $user = auth()->user();
         if (!isset($user->id)) {
             return array();
         }
+        $column_name = ( $parent_type == 'id' )? 'parent_type_id' : '';
+        $column_name = ( $parent_type == 'type' )? 'quiz_result_type' : $column_name;
 
-        $userQuizDone = QuizzesResult::where('parent_type_id', $parent_id)->with([
+        $userQuizDone = QuizzesResult::where($column_name, $parent_id)->with([
             'attempts' => function ($query) {
                 $query->with('quizz_result_questions');
             }

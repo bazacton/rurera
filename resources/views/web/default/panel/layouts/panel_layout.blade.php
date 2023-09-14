@@ -128,6 +128,115 @@
     @endif
 
     {!! !empty(getCustomCssAndJs('js')) ? getCustomCssAndJs('js') : '' !!}
+
+            var options = {
+                type: 'bar',
+                data: {
+                    labels: ["Jul 2017", "Jan 2018", "Jul 2018", "Jan 2019", "Jul 2019"],
+                    datasets: [
+                        {
+                            label: '# of Votes',
+                            data: [10, 12, 5, 15, 20],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290',
+                        },  
+                        {
+                            label: '# of Points',
+                            data: [20, 10, 5, 10, 10],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290',
+                        },
+                        {
+                            label: '# of Points',
+                            data: [10, 5, 15, 20, 10],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290'
+                        },
+                        {
+                            label: '# of Points',
+                            data: [5, 2, 2, 15, 5],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290'
+                        },
+                        {
+                            label: '# of Points',
+                            data: [10, 2, 2, 10, 20],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290'
+                        },
+                        {
+                            label: '# of Points',
+                            data: [20, 5, 10, 15, 20],
+                            borderWidth: 0,
+                            backgroundColor: '#417290',
+                            borderColor: '#417290'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    categoryPercentage: 1,
+                    scales: {
+                        x: {
+                        grid: {
+                            display: false
+                        },
+                        border: {
+                            display: false
+                        }
+                        },
+                        y: {
+                        grid: {
+                            display: false
+                        },
+                        border: {
+                            display: false
+                        }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            }
+            var ctx = document.getElementById('chartBarHorizontal2').getContext('2d');
+            new Chart(ctx, options);
+        </script>
+        <script>    
+            var ctxPie = document.getElementById('pieChart');
+            var pieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Organic Se...', 'Direct', 'Social', 'Referral'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5],
+                        backgroundColor: [
+                            '#417290',
+                            '#b0c6d3',
+                            '#e6e6e6',
+                            '#b6ecf7'
+                        ],
+                        borderColor: [
+                            '#417290',
+                            '#b0c6d3',
+                            '#e6e6e6',
+                            '#b6ecf7'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {}
+            });
+        </script>
 </script>
 </body>
 </html>

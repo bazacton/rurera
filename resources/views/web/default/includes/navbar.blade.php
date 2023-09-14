@@ -213,7 +213,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </ul>
             </div>
 
-            @if(!empty($authUser))
+            @if(isset( $authUser ) && $authUser->isUser())
                 <div class="coin-counts">
                     <strong>
                         <img src="assets/default/img/coin-img.png" alt="">
@@ -240,7 +240,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                             <img src="{{ $authUser->getAvatar() }}" class="rounded-circle"
                                  alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
-                            <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->full_name }}</span>
                         </a>
 
                         <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">

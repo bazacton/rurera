@@ -18994,6 +18994,43 @@ Lms Product Card Style Start
     right: 15px;
 }
 /*********************************
+User Verticle Tabs Style Start
+**********************************/
+.verticle-tabs {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-start;
+}
+.verticle-tabs .nav-pills {
+    width: 20%;
+    display: inline-flex;
+    border-right: 0;
+    background-color: #fff;
+    box-shadow: 0 12px 23px 0 rgba(62,73,84,.04);
+    border-radius: 8px 0 0 8px;
+}
+.verticle-tabs .tab-content {
+    width: calc(100% - 20%);
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 12px 23px 0 rgba(62,73,84,.04);
+    border-radius: 0 8px 8px 8px;
+}
+.verticle-tabs .nav-pills .nav-link {
+    border-bottom: 1px solid #f5f5f5;
+    border-radius: 0;
+}
+.verticle-tabs .nav-pills .nav-link:last-child {
+    border-bottom: 0;
+}
+.verticle-tabs .nav-pills .nav-link:first-child {
+    border-radius: 8px 0 0 0;
+}
+.verticle-tabs .nav-pills .nav-link:last-child {
+    border-radius: 0 0 0 8px;
+}
+
+/*********************************
 Lms Footer Style Start
 **********************************/
 .footer .footer-social {
@@ -23300,6 +23337,197 @@ Dashboard Form-Tabs Style End
     display: inline-block;
     margin-top: -3px;
 }
+/*************************************
+Assignments Table Style Start
+*************************************/
+.assignments-table {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 23px 0 rgba(62,73,84,.04);
+}
+.assignments-table .nav-tabs {
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0 30px;
+    margin-bottom: 0;
+}
+.assignments-table .nav-tabs .nav-item a.active:after {
+    display: none;
+}
+.assignments-table .nav-tabs .nav-link {
+    color: #9e9dab;
+    box-shadow: none;
+    background-color: inherit;
+    border: 0;
+    padding: 22px 0;
+    font-weight: 500;
+    margin-right: 25px;
+    position: relative;
+    border-radius: 0;
+    border-bottom: 2px solid transparent;
+}
+
+.assignments-table .nav-tabs .nav-link.active {
+    background-color: inherit;
+    color: #203769;
+    box-shadow: none;
+    border-bottom-color: #3e97fb;
+}
+
+.assignments-list {
+    padding: 30px 30px 0;
+}
+
+.assignments-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.assignments-list li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 30px;
+}
+
+.lms-jobs-form .assignments-table .checkbox-field,
+.assignments-table .checkbox-field{
+    margin: 0;
+}
+
+.assignments-table .checkbox-field input[type=checkbox] {
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+.assignments-table .checkbox-field label {
+    margin-left: 0;
+    position: relative;
+    padding-left: 42px;
+    color: #1a315a;
+    font-weight: 500;
+}
+
+.assignments-table .checkbox-field label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 24px;
+    width: 24px;
+    background-color: #f1f0f5;
+    border-radius: 4px;
+    margin-top: -12px;
+    text-align: center;
+    line-height: 24px;
+    color: #fff;
+}
+.assignments-table .checkbox-field input[type=checkbox]:checked ~ label:before {
+    background-color: #51cc8b;
+    content: "\2713";
+}
+.assignments-table .checkbox-field label span {
+    display: block;
+    line-height: normal;
+    font-weight: 600;
+    color: #b0b9c2;
+    padding-top: 2px;
+    font-size: 14px;
+}
+.assignment-controls {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: right;
+}
+.assignment-controls a {
+    display: inline-flex;
+    line-height: normal;
+    height: 35px;
+    width: 35px;
+    background-color: #f9faf5;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.assignment-controls a img {
+    max-width: 20px;
+    height: 20px;
+    filter: invert(72%) sepia(14%) saturate(256%) hue-rotate(193deg) brightness(90%) contrast(83%);
+}
+.assignment-controls .status-label {
+    margin-right: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: gray;
+    padding: 2px 6px;
+    display: inline-block;
+    line-height: normal;
+    border-radius: 3px;
+}
+.assignment-controls .status-label.success {
+    color: #7bc391;
+    background-color: #e3fff3;
+}
+.assignment-controls .status-label.in-process {
+    color: #5e81e7;
+    background-color: #f1faff;
+}
+/*************************************
+Product Tabs Slider Style Start
+*************************************/
+.product-tabs {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 12px 23px 0 rgba(62,73,84,.04);
+}
+.product-tabs .nav-tabs {
+    border: 0;
+    margin: 0 0 30px;
+    border-bottom: 1px solid #f5f5f5;
+    padding: 0 30px;
+}
+.product-tabs .nav-tabs .nav-link {
+    background-color: inherit;
+    border: 0;
+    padding: 22px 0;
+    margin-right: 25px;
+    font-weight: 500;
+    position: relative;
+    border-bottom: 2px solid transparent;
+}
+.product-tabs .nav-tabs .nav-link.active {
+    border-bottom-color: #3e97fb;
+    color: #203769;
+}
+.product-tabs .nav-tabs .nav-item a.active:after {
+    display: none;
+}
+.product-tabs .tab-content {
+    padding: 0 30px 30px;
+}
+.product-tabs .product-card {
+    background-color: inherit;
+}
+.product-tabs .swiper-button-prev,
+.product-tabs .swiper-button-next{
+    margin-top: -50px;
+}
+.product-tabs .swiper-button-prev {
+    left: 0;
+}
+.product-tabs .swiper-button-next {
+    right: 0;
+}
+.product-tabs .swiper-button-next:after, 
+.product-tabs .swiper-button-prev:after {
+    font-size: 26px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
 
 /*************************************
 Lms Responsive Style Start
