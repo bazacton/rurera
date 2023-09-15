@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
+use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -77,13 +78,33 @@ class TimestablesController extends Controller
                 );
                 $questions_count++;
             }
-        }
+            $QuizzesResult = QuizzesResult::create([
+                'user_id'          => $user->id,
+                'results'          => json_encode($questions_list),
+                'user_grade'       => 0,
+                'status'           => 'waiting',
+                'created_at'       => time(),
+                'quiz_result_type' => 'timestables',
+                'no_of_attempts'   => 100,
+                'other_data'       => json_encode($questions_list),
+            ]);
 
+            $QuizzAttempts = QuizzAttempts::create([
+                'quiz_result_id' => $QuizzesResult->id,
+                'user_id'        => $user->id,
+                'start_grade'    => $QuizzesResult->user_grade,
+                'end_grade'      => 0,
+                'created_at'     => time(),
+                'attempt_type'   => $QuizzesResult->quiz_result_type,
+            ]);
+            $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+        }
 
 
         $data = [
             'pageTitle'      => 'Start',
             'questions_list' => $questions_list,
+            'QuizzAttempts' => $QuizzAttempts,
         ];
         return view('web.default.timestables.start', $data);
     }

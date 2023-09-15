@@ -917,10 +917,13 @@ class QuestionsAttemptController extends Controller
     public function timestables_submit(Request $request)
     {
         $timestables_data = $request->get('timestables_data');
+        $attempt_id = $request->get('attempt_id');
 
         $user = auth()->user();
 
-        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->orderBy('id', 'DESC')->first();
+        $QuizzAttempts = QuizzAttempts::find($attempt_id);
+
+        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('id', '!=', $QuizzAttempts->quiz_result_id)->where('quiz_result_type', 'timestables')->orderBy('id', 'DESC')->first();
         $get_last_results = isset($last_time_table_data->other_data) ? $last_time_table_data->other_data : '';
 
         $get_last_results = (array)json_decode($get_last_results);
@@ -952,27 +955,20 @@ class QuestionsAttemptController extends Controller
         $user = auth()->user();
 
 
-        $QuizzesResult = QuizzesResult::create([
+        $QuizzAttempts = QuizzAttempts::find($attempt_id);
+        $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
+
+        $QuizzesResult->update([
             'user_id'          => $user->id,
             'results'          => json_encode($results),
             'user_grade'       => 0,
             'status'           => 'waiting',
-            'created_at'       => time(),
             'quiz_result_type' => 'timestables',
             'no_of_attempts'   => 100,
             'other_data'       => json_encode($new_result_data),
         ]);
 
-        $QuizzAttempts = QuizzAttempts::create([
-            'quiz_result_id' => $QuizzesResult->id,
-            'user_id'        => $user->id,
-            'start_grade'    => $QuizzesResult->user_grade,
-            'end_grade'      => 0,
-            'created_at'     => time(),
-            'attempt_type'   => $QuizzesResult->quiz_result_type,
-        ]);
-
-        $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+        $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
 
         if (!empty($timestables_data)) {

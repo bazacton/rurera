@@ -64,6 +64,8 @@ class AnalyticsController extends Controller
                         }
 
 
+                        $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables')? ($practice_time/10) : $practice_time;
+
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['parent_type'] = $QuizzesAttemptObj->attempt_type;
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['parent_type_id'] = $QuizzesAttemptObj->parent_type_id;
 

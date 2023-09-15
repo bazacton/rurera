@@ -73,7 +73,7 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-total_questions="{{count($questions_list)}}">
+                    <div class="question-area-block" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
                         <div class="col-12 col-lg-8 mx-auto">
 
                             @if( is_array( $questions_list ))
@@ -188,6 +188,8 @@ $rand_id = rand(99,9999);
     $(document).on('submit', '.question-form', function (e) {
 
         var total_questions = $(".question-area-block").attr('data-total_questions');
+        var attempt_id = $(".question-area-block").attr('data-attempt_id');
+
 
         clearInterval(Questionintervals);
         var data_id = $(this).attr('data-id');
@@ -238,13 +240,13 @@ $rand_id = rand(99,9999);
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {'timestables_data':user_data},
+                data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
                     console.log(return_data);
                 }
             });
 
-            window.location.href = '/timestables/summary';
+            //window.location.href = '/timestables/summary';
 
 
 
@@ -270,7 +272,7 @@ $rand_id = rand(99,9999);
             });
             response_layout = '';
 
-            $(".question-area-block").html(response_layout);
+            //$(".question-area-block").html(response_layout);
         }
 
     });
