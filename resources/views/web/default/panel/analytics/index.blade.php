@@ -27,18 +27,21 @@
                     <div class="card-body">
 
                         @if( !empty( $analyticDataArray['data'] ) )
-                        @foreach( $analyticDataArray['data'] as $analyticData)
+                        @foreach( $analyticDataArray['data'] as $attempt_id => $analyticData)
                         @php $parent_type_id = isset( $analyticData['parent_type_id'] )? $analyticData['parent_type_id'] : '';
                         $parent_type = isset( $analyticData['parent_type'] )? $analyticData['parent_type'] : '';
-
+                        $result_id = isset( $analyticData['result_id'] )? $analyticData['result_id'] : 0;
+                        $start_time = isset( $analyticData['start_time'] )? $analyticData['start_time'] : 0;
+                        $end_time = isset( $analyticData['end_time'] )? $analyticData['end_time'] : 0;
                         @endphp
                         <div class="card-header" id="headingOnes">
                             <h2 class="mb-0">
                                 <a href="javascript:;" class="text-left">
                                     {{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}
+                                    | <span class="start_end_time" style="font-size: 16px;">{{ dateTimeFormat($start_time,'H:i') }} - {{ dateTimeFormat($end_time,'H:i') }}</span>
                                 </a>
-                                @if( $parent_type == 'sats' || $parent_type == '11plus')
-                                    <span style="float:right;font-size: 15px;"><a href="/{{$parent_type}}/{{$parent_type_id}}/start">More Details</a></span>
+                                @if( $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment')
+                                    <span style="float:right;font-size: 15px;"><a href="/panel/quizzes/{{$result_id}}/check_answers">More Details</a></span>
                                 @endif
                             </h2>
                         </div>

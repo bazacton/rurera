@@ -208,7 +208,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     @endforeach
                     @endif
                     @if(!empty($authUser))
-                        <li class="nav-item "><a class="nav-link" href="/panel">Analytics</a></li>
+                        <li class="nav-item "><a class="nav-link" href="/panel/analytics">Analytics</a></li>
                     @endif
                 </ul>
             </div>

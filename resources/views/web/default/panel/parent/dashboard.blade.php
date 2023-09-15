@@ -56,19 +56,41 @@
                     {{ csrf_field() }}
                     <div class="lms-jobs-form">
                         <div class="row">
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <label class="field-label">First name</label>
+                                <div class="input-field">
+                                    <span class="field-icon"><img src="../assets/default/svgs/user-alt-2-svgrepo-com.svg" alt=""></span>
+                                    <input type="text" placeholder="Ex: Jhon">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <label class="field-label">Last name</label>
+                                <div class="input-field">
+                                    <span class="field-icon"><img src="../assets/default/svgs/user-alt-2-svgrepo-com.svg" alt=""></span>
+                                    <input type="text" placeholder="Ex: Doe">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                                <label class="field-label">Email Address</label>
+                                <div class="input-field">
+                                    <span class="field-icon"><img src="../assets/default/svgs/envelope-mail-svgrepo-com.svg" alt=""></span>
+                                    <input type="email" placeholder="Ex: Jhondoe@gmail.com">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6">
+                            <label class="field-label"></label>
                                 <div class="input-field">
                                     <input type="text" name="full_name" value="{{$userObj->full_name}}"
                                            placeholder="Full Name">
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
                                 <div class="input-field">
                                     <input type="email" name="email" value="{{$userObj->email}}"
                                            placeholder="Email address">
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
                                 <div class="input-field select-arrow">
                                     <select name="country_label" class="lms-jobs-select">
                                         <option value="" selected="selected">Country</option>
@@ -85,13 +107,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
                                 <div class="input-field">
                                     <input type="text" value="{{$userObj->postal_code}}" name="postal_code"
                                            placeholder="Postal Code">
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
                                 <div class="input-field select-arrow">
                                     <select name="time_zone" class="lms-jobs-select">
                                         <option value="" selected="selected">Time Zone</option>
@@ -109,7 +131,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-6 col-md-6">
                                 <div class="input-field select-arrow">
                                     <select name="course_eidtion" class="lms-jobs-select">
                                         <option value="" selected="selected">Course Edition</option>
@@ -128,7 +150,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="input-field">
-                                    <label>Complete Address (invoice/Shipping)</label>
+                                    <label class="field-label">Complete Address (invoice/Shipping)</label>
                                     <textarea name="complete_address">{{$userObj->address}}</textarea>
                                 </div>
                             </div>
@@ -158,7 +180,7 @@
             <div class="tab-pane fade" id="billing" role="tabpanel" aria-labelledby="billing-tab">
                 <div class="db-billing">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-4 col-md-6">
                             <div class="billing-card">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0">Current plan</h6>
@@ -167,21 +189,21 @@
                                 </div>
                                 <div class="card-body">
                                     @if( isset( $ParentsOrders->payment_frequency ) )
-                                    <h4 class="mb-0 mt-2">{{$frequencyArray[$ParentsOrders->payment_frequency]}} Expires
+                                    <h4 class="mb-0">{{$frequencyArray[$ParentsOrders->payment_frequency]}} Expires
                                         on {{ dateTimeFormat($ParentsOrders->expiry_at,'j F Y') }}</h4>
                                     @endif
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 col-lg-4 col-md-6">
                             <div class="billing-card">
                                 <div class="card-header">
                                     <h6 class="card-title mb-0">Payment methods</h6>
                                     <a class="btn btn-sm btn-primary" href="#!">Add method</a>
                                 </div>
                                 <div class="card-body">
-                                    <div class="list-group list-group-custom list-group-flush my-2">
+                                    <div class="list-group list-group-custom list-group-flush">
                                         <div class="list-group-item">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
@@ -217,7 +239,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 col-lg-12 col-md-12">
                             <div class="billing-card">
                                 <div class="card-header">
                                     <div>
@@ -347,7 +369,7 @@
             <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
                 <div class="db-security">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-6 col-md-6">
                             <form action="/panel/setting/update-user-password" method="post" class="w-100">
                                 {{ csrf_field() }}
                                 <div class="card">
@@ -361,7 +383,7 @@
                                     <div class="card-footer">
 
                                         <div class="row justify-content-between">
-                                            <div class="col-lg-4 col-md-12">
+                                            <div class="col-lg-12 col-md-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Current password</label>
                                                     <input type="password" name="old_password" class="form-control">
@@ -377,8 +399,8 @@
                                                 <button type="submit" class="btn btn-primary">Update Password</button>
                                                 <button type="button" class="btn btn-link">Cancel</button>
                                             </div>
-                                            <div class="col-lg-7 col-md-12">
-                                                <div class="bg-body border dashed p-3">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="bg-body border dashed p-3 mt-20">
                                                     <h6 class="mb-2">Password requirements</h6>
                                                     <p class="text-muted mb-2">To create a new password, you have to
                                                         meet
@@ -397,7 +419,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 col-lg-6 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h5>Device History</h5>
@@ -601,7 +623,7 @@
             <div class="tab-pane fade" id="FAQs" role="tabpanel" aria-labelledby="FAQs-tab">
                 <div class="db-faqs">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-7 col-md-12">
                             <div class="lms-faqs mx-w-100 mt-0">
                                 <div id="accordion">
                                     <div class="card">

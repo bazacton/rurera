@@ -123,10 +123,7 @@
                             @endphp
                         <div class="score">{{round($total_percentage, 2)}}%</div>
                     </div>
-                        <div class="col-2 col-md-2">
-                        <label>Hight Score</label>
-                        <div class="score">22 / 100</div>
-                    </div>
+
                         <div class="col-2 col-md-2">
                         <label>Average time</label>
                             @php $assessmentTime = $authUser->assesstmentTotalTimeAllowed('sats');

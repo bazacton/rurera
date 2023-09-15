@@ -7,6 +7,8 @@ use App\Models\QuizAttemptLogs;
 use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
 use App\Models\BooksPagesInfoLinks;
+use App\Models\SubChapters;
+use App\Models\WebinarChapterItem;
 
 function getTemplate()
 {
@@ -7335,18 +7337,24 @@ function getTopicTitle($topic_id, $topic_type){
             
             case "timestables":
                 $topic_title = 'Times Tables';
-            break;
+            break;//912
             
             case "book_page":
-                $bookData = BooksPagesInfoLinks::where('id', $topic_id)->with([
-                                    'BooksInfoLinkPage',
-                                    'BooksInfoLinkBookData'
-                                ])->first();
+               $bookData = BooksPagesInfoLinks::where('id', $topic_id)->with([
+                    'BooksInfoLinkPage',
+                    'BooksInfoLinkBookData'
+                ])->first();
                 $book_title = $bookData->BooksInfoLinkBookData->book_title;
                 $page_no = $bookData->BooksInfoLinkPage->page_no;
 
                 $topic_title = $book_title .' Page# '. $page_no;
             break;
+
+            case "assessment":
+                $checkChapterItem = WebinarChapterItem::where('item_id', $topic_id)->where('type', 'quiz')->first();
+                $SubChaptersData = SubChapters::where('id', $checkChapterItem->parent_id)->first();
+                $topic_title = $SubChaptersData->sub_chapter_title;
+               break;
 
 
         }

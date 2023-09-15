@@ -13108,7 +13108,7 @@ a.badge-circle-gray200:focus {
     z-index: 511;
     border: unset;
     top: 40%;
-    transition: all .1s;
+    transition: all .5s;
     overflow: visible !important;
     visibility: hidden;
     opacity: 0;
@@ -22281,31 +22281,45 @@ body{overflow-x: hidden;}
 .lms-jobs-form .checkbox-group { margin-bottom: 20px; }
 .lms-jobs-form .checkbox-field { display: flex; align-items: center; margin-bottom: 8px; }
 .lms-jobs-form .checkbox-field label { font-size: 16px; font-weight: 500; text-transform: capitalize; margin-left: 15px; margin-bottom: 0; }
-.lms-jobs-form .input-field input[type="text"]::-webkit-input-placeholder, .lms-jobs-form .input-field textarea::-webkit-input-placeholder { color:#444; opacity: 1; }
-.lms-jobs-form .input-field input[type="text"]::-moz-placeholder, .lms-jobs-form .input-field textarea::-moz-placeholder { color:#444; opacity: 1; }
-.lms-jobs-form .input-field input[type="text"]:-ms-input-placeholder, .lms-jobs-form .input-field textarea:-ms-input-placeholder { color:#444; opacity: 1; }
-.lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder, .lms-jobs-form .input-field textarea::-ms-input-placeholder { color:#444; opacity: 1; }
+.lms-jobs-form .input-field input[type="text"]::-webkit-input-placeholder, 
+.lms-jobs-form .input-field textarea::-webkit-input-placeholder,
+.lms-jobs-form .input-field input[type="email"]::-webkit-input-placeholder { color:#cbd5e1; opacity: 1; }
+
+.lms-jobs-form .input-field input[type="text"]::-moz-placeholder, 
+.lms-jobs-form .input-field textarea::-moz-placeholder,
+.lms-jobs-form .input-field input[type="email"]::-moz-placeholder { color:#cbd5e1; opacity: 1; }
+
+.lms-jobs-form .input-field input[type="text"]:-ms-input-placeholder, 
+.lms-jobs-form .input-field textarea:-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="email"]:-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+
+.lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder, 
+.lms-jobs-form .input-field textarea::-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="email"]::-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]::placeholder,
-.lms-jobs-form .input-field textarea::placeholder { color:#444; opacity: 1; }
+.lms-jobs-form .input-field textarea::placeholder,
+.lms-jobs-form .input-field input[type="email"]::placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]:-ms-input-placeholder,
-.lms-jobs-form .input-field textarea:-ms-input-placeholder { color:#444; }
+.lms-jobs-form .input-field textarea:-ms-input-placeholder { color:#cbd5e1; }
 .lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder,
-.lms-jobs-form .input-field textarea::-ms-input-placeholder { color:#444; }
+.lms-jobs-form .input-field textarea::-ms-input-placeholder { color:#cbd5e1; }
 .lms-jobs-form .input-field input[type="text"],
 .lms-jobs-form .input-field input[type="email"],
 .lms-jobs-form .input-field input[type="password"],
 .lms-jobs-form .input-field .lms-jobs-select { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #eeeeee; border-radius: 4px; outline: 0; height: 48px; font-size: 14px; font-weight: 500; color: #444; background-color: #fcfcfc; }
 .lms-jobs-form .input-field input[type="submit"] { height: 58px; width: 225px; text-align: center; border: 0; border-radius: 4px; background: var(--primary); color: #fff; font-size: 16px; font-weight: 500; outline: none; cursor: pointer; }
 .lms-jobs-form .input-field { margin: 0; }
-.lms-jobs-form .input-field textarea { box-sizing: border-box; width: 100%; padding:11px 20px 11px 20px; border: 1px solid #eeeeee; border-radius: 4px; outline: 0; height: 160px; font-size: 14px; font-weight: 500; background-color: #fcfcfc; color: #444; }
+.lms-jobs-form .input-field textarea {box-sizing: border-box; width: 100%; padding: 11px 20px 11px 20px; border: 1px solid #cbd5e1;border-radius: 6px;outline: 0;height: 90px;font-size: 14px;font-weight: 500;background-color: #fff;color: #444;}
 .lms-jobs-form .form-group { margin-bottom: 25px; }
 .lms-jobs-form .input-label { font-size: 16px; font-weight: 500; }
 .lms-jobs-form .select-arrow { position: relative; }
-.lms-jobs-form .select-arrow:after { content: ""; position: absolute; right: 20px; top: 50%; margin-top:-5px; width: 10px; height: 10px; border: 2px solid #000; border-left: 0; border-top: 0; transform: rotate(45deg); }
+.lms-jobs-form .select-arrow:after { content: ""; position: absolute; right: 20px; top: 50%; margin-top:-5px; width: 8px; height: 8px; border: 1px solid #96a4b9; border-left: 0; border-top: 0; transform: rotate(45deg); }
 .lms-jobs-form .input-field .lms-jobs-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 .lms-jobs-form .lms-form-description {margin-bottom: 25px;}
 .lms-jobs-form .lms-form-description p{margin: 0;color: #343434;}
-.lms-jobs-form .input-field{margin:0;height:auto;border:0;padding:0;border-radius:0;background:none;}
+.lms-jobs-form .input-field{margin:0;height:auto;border:0;padding:0;border-radius:0;background:none; position: relative;}
 .lms-jobs-form .card .icon-box {display: inline-block; line-height: normal; margin-right: 8px;}
 .lms-jobs-form .card .icon-box svg {width: 22px; height: 22px;}
 .lms-jobs-form .card-header {display: flex; align-items: center; background-color: inherit; border: 0; padding: 15px; position: relative;}
@@ -22323,6 +22337,32 @@ body{overflow-x: hidden;}
 .counter-counts em {font-style: normal;}
 .lms-jobs-form .card-body .row [class*="col-"]:last-child .form-group {margin-bottom: 0;}
 .lms-jobs-form .card-body {padding-top: 10px;}
+.lms-jobs-form .field-icon img {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    filter: invert(75%) sepia(13%) saturate(374%) hue-rotate(176deg) brightness(89%) contrast(88%);
+}
+.lms-jobs-form .field-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    width: 18px;
+    height: 18px;
+    margin-top: -3px;
+}
+.lms-jobs-form .input-field .field-icon ~ select,
+.lms-jobs-form .input-field .field-icon ~ input {
+    padding-left:35px;
+}
+.lms-jobs-form .field-label {
+    color: #b3baca;
+    font-size: 14px;
+    margin-bottom: 5px;
+    min-height: 18px;
+}
 /************************************
  Lms Jobs Form Style End
 *************************************/
@@ -22921,6 +22961,13 @@ Choose Plan Style End
 /*************************************
 Dashboard Form-Tabs Style Start
 *************************************/
+.lms-jobs-form {
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 700px;
+}
 .db-form-tabs {margin: 0 0 40px;}
 .db-form-tabs .nav-tabs {margin: 0 0 30px; border: 0;}
 .db-form-tabs .nav-tabs a {color: #b5bcc2; border: 1px solid #fff; border-radius: 5px; font-size: 16px; padding: 10px 16px; }
@@ -22931,7 +22978,7 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .lms-jobs-form .input-field input[type="text"],
 .db-form-tabs .lms-jobs-form .input-field input[type="email"],
 .db-form-tabs .lms-jobs-form .input-field input[type="password"],
-.db-form-tabs .lms-jobs-form .input-field select{height: 38px; font-size: 16px;}
+.db-form-tabs .lms-jobs-form .input-field select{background-color: #fff; height: 42px; font-size: 14px; border-color: #cbd5e1; border-radius: 6px;font-weight: 400; color: #cbd6e2;}
 .db-form-tabs .lms-jobs-form .input-field select {padding-right: 40px;}
 .db-form-tabs .lms-jobs-form .input-field {margin-bottom: 15px;}
 .db-form-tabs .lms-jobs-form .row {margin: 0 -7px;}
@@ -22947,9 +22994,9 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .card-body h5 {font-size: 1.25rem; font-weight: 400; margin-bottom: 0; }
 .db-form-tabs .lms-jobs-form .btn-danger {width: auto; padding: 0 15px; background-color: #dc3545; color: #fff; font-size: 14px; font-weight: 400; height: 35px;}
 .db-form-tabs .billing-card,
-.db-form-tabs .card {background-color: #fff; margin-bottom: 30px; border-radius: 0.75rem; box-shadow: 0 0 15px rgba(0,0,0,0.05); border: 0; padding: 10px 0;}
+.db-form-tabs .card {background-color: #fff;box-shadow: 0 0 15px rgba(0,0,0,0.05); margin-bottom: 30px;padding: 10px 0;border: 1px solid #e2e8f0;border-radius: 10px;}
 .db-form-tabs .text-plan {color: #9399a1; font-size: 16px;}
-.db-form-tabs h4 {font-size: 1.5rem; font-weight: 500;}
+.db-form-tabs h4 {font-size: 1.3rem; font-weight: 500;}
 .db-form-tabs .card-footer {border-top: 1px dashed #e9ecef; background-color: #fff; padding: 1.25rem; }
 .db-form-tabs .alert-danger {background-color: #f8d7da; color: #842029; border: 1px dashed #f5c2c7;}
 .db-form-tabs .card-header {background-color: #fff; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: start; border-bottom: 0; border-radius: 0.75rem;}
@@ -22989,9 +23036,19 @@ Dashboard Form-Tabs Style Start
 .db-notifications .list-group-custom li:after {display: none;}
 .db-form-tabs .list-group-item h6 {font-weight: 500;}
 .db-notifications small {font-size: .875em; color: #9399a1!important; display: block; padding-top: 5px; }
-.db-form-tabs .lms-faqs {background-color: #fff; padding: 25px 30px; border-radius: 0.75rem; box-shadow: 0 0 15px rgba(0,0,0,0.05);}
-.db-form-tabs .lms-faqs .card {padding: 0; background-color: inherit; box-shadow: none;}
+.db-form-tabs .lms-faqs {border: 1px solid #e2e8f0;background-color: #fff;border-radius: 10px;padding: 30px;max-width: 700px;margin: 0;}
+.db-form-tabs .lms-faqs .card {padding: 0; background-color: inherit; box-shadow: none; border: 0;}
 .db-form-tabs .lms-faqs .card:last-child {margin-bottom: 0;}
+.db-members .card {background-color: inherit; box-shadow: none; border: 0; }
+.db-members .card .card-header {background-color: inherit; padding: 0; margin: 0 0 30px; align-items: center;}
+.db-members .card .card-body {padding: 0;}
+.db-members .card .list-group-item {background-color: #fff; border: 1px solid #e2e8f0; margin: 0 0 15px; border-radius: 5px; padding: 10px 15px;}
+.db-members .card .list-group-item .col-auto:first-child {padding-right: 0;}
+.billing-card .list-group-item {padding: 0;}
+.db-notifications {max-width: 700px;}
+.db-notifications .card-body {padding: 0;}
+.db-notifications .list-group-item div:first-child {max-width: 60%;}
+.db-notifications .list-group-item div div {max-width: 40%;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/

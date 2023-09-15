@@ -972,6 +972,8 @@ class QuestionsAttemptController extends Controller
             'attempt_type'   => $QuizzesResult->quiz_result_type,
         ]);
 
+        $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+
 
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {

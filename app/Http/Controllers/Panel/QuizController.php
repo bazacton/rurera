@@ -598,7 +598,7 @@ class QuizController extends Controller
         $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
         $data = [
-            'pageTitle' => trans('quiz.quiz_start'),
+            'pageTitle' => 'Answers',
 
 
             'quiz'                   => $quiz,
