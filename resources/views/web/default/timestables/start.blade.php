@@ -246,7 +246,7 @@ $rand_id = rand(99,9999);
                 }
             });
 
-            //window.location.href = '/timestables/summary';
+            window.location.href = '/timestables/summary';
 
 
 
@@ -272,7 +272,7 @@ $rand_id = rand(99,9999);
             });
             response_layout = '';
 
-            //$(".question-area-block").html(response_layout);
+            $(".question-area-block").html(response_layout);
         }
 
     });

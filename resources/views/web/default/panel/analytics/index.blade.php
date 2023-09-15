@@ -43,6 +43,9 @@
                                 @if( $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment')
                                     <span style="float:right;font-size: 15px;"><a href="/panel/quizzes/{{$result_id}}/check_answers">More Details</a></span>
                                 @endif
+                                @if( $parent_type == 'timestables')
+                                    <span style="float:right;font-size: 15px;"><a href="/panel/results/{{$result_id}}/timetables">More Details</a></span>
+                                @endif
                             </h2>
                         </div>
                         <div class="col-12 card-footer" id="headingOnes" style="margin-bottom:10px;">

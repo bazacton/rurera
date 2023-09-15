@@ -389,6 +389,10 @@ Route::group([
         Route::get('/', 'AnalyticsController@index');
     });
 
+    Route::group(['prefix' => 'results'], function () {
+        Route::get('/{id}/{type}', 'ResultsController@results');
+    });
+
     Route::group([
         'prefix'    => 'store',
         'namespace' => 'Store'
