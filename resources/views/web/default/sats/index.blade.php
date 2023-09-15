@@ -180,14 +180,11 @@
                                     <div class="attempt-progress">
                                         <span class="progress-number">0%</span>
                                         <span class="progress-holder">
-                                                                                        <span class="progressbar"
-                                                                                              style="width: 0%;"></span>
-                                                                                    </span>
+                                            <span class="progressbar"
+                                                  style="width: 0%;"></span>
+                                        </span>
                                     </div>
-                                    {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)
-                                    }}
-
-
+                                   {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                 </td>
                             </tr>
                             @endforeach

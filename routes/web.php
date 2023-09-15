@@ -76,7 +76,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     // set Locale
     Route::post('/set-currency' , 'SetCurrencyController@setCurrency');
 
-    Route::get('/' , 'HomeController@index');
+    Route::get('/' , 'HomeController@index')->name('homepage');
 
     Route::get('/getDefaultAvatar' , 'DefaultAvatarController@make');
 

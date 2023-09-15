@@ -19,4 +19,9 @@ class BooksPagesInfoLinks extends Model
         return $this->hasOne('App\Models\BooksPages', 'id', 'page_id');
     }
 
+    public function BooksInfoLinkBookData()
+        {
+            return $this->hasOne('App\Models\Books', 'id', 'book_id');
+        }
+
 }

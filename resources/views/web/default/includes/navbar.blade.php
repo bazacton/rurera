@@ -213,6 +213,8 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </ul>
             </div>
 
+            @include('web.default.includes.notification-dropdown')
+
             @if(isset( $authUser ) && $authUser->isUser())
                 <div class="coin-counts">
                     <strong>
@@ -222,8 +224,10 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </div>
             @endif
 
+
+
             <div class="nav-icons-or-start-live navbar-order">
-                <div class="xs-w-100 d-flex align-items-center justify-content-between ">
+                <div class="xs-w-100 d-flex align-items-center justify-content-between">
                     @if(!empty($authUser))
                     <div class="d-flex">
                         <div class="border-left mx-5 mx-lg-15"></div>
@@ -234,7 +238,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
 
 
                     <div class="dropdown">
-                        <a href="#!" class="navbar-user d-flex align-items-center ml-50 dropdown-toggle" type="button"
+                        <a href="#!" class="navbar-user d-flex align-items-center dropdown-toggle" type="button"
                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             <img src="{{ $authUser->getAvatar() }}" class="rounded-circle"
@@ -243,34 +247,34 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                         </a>
 
                         <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-item user-nav-detail">
+                                <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                                 alt="rounded circle" loading="eager" title="rounded circle">
+                                <span class="font-14 text-dark-blue user-name">{{ $authUser->full_name }}</span>
+                                <span class="font-14 text-dark-blue user-email">{{ $authUser->email }}</span>
+                                <a href="/panel" class="font-14 text-dark-blue user-manage-btn">Manage Account</a>
+                            </div>
                             <div class="d-md-none border-bottom mb-20 pb-10 text-right">
                                 <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
                             </div>
 
-                            <a class="dropdown-item" href="{{ $authUser->isAdmin() ? '/admin' : '/panel' }}">
-                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto"
-                                     itemprop="image" alt="nav-icon" title="nav-icon" loading="eager">
-                                <span class="font-14 text-dark-blue">{{ trans('public.my_panel') }}</span>
-                            </a>
-                            @if($authUser->isTeacher() or $authUser->isOrganization())
-                            <a class="dropdown-item" href="{{ $authUser->getProfileUrl() }}">
-                                <img src="/assets/default/img/icons/profile.svg" width="25" height="auto"
-                                     itemprop="image" alt="nav-icon" title="nav-icon" loading="eager">
-                                <span class="font-14 text-dark-blue">{{ trans('public.my_profile') }}</span>
-                            </a>
-                            @endif
 
                             @if( !empty( $profile_navs ) )
+                            <div class="user-nav-list">
                             @foreach( $profile_navs as $profile_nav)
-                            <a class="dropdown-item" href="/panel/switch_user/{{$profile_nav['id']}}">
-                                <img src="/assets/default/img/icons/sidebar/dashboard.svg" width="25" height="auto"
-                                     itemprop="image" alt="nav-icon" title="nav-icon" loading="eager">
-                                <span class="font-14 text-dark-blue">{{ $profile_nav['full_name'] }}</span>
+
+                            <a class="dropdown-item " href="/panel/switch_user/{{$profile_nav['id']}}">
+                                <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
+                                 alt="rounded circle" loading="eager" title="rounded circle">
+                                <span class="font-14 text-dark-blue user-list-name">{{ $profile_nav['full_name'] }}</span>
+                                <span class="font-14 text-dark-blue user-list-email">{{ $profile_nav['email'] }}</span>
                             </a>
+
                             @endforeach
+                            </div>
                             @endif
 
-                            <a class="dropdown-item" href="/logout">
+                            <a class="dropdown-item nav-logout" href="/logout">
                                 <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image"
                                      width="25" alt="nav-icon" title="nav-icon" loading="eager">
                                 <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>

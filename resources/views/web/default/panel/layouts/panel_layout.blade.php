@@ -65,6 +65,7 @@
         </div>
     </div>
 
+    @include('web.default.includes.footer')
     @include('web.default.includes.advertise_modal.index')
 </div>
 <!-- Template JS File -->

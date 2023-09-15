@@ -2,9 +2,11 @@
 
 use App\Mixins\Financial\MultiCurrency;
 use Illuminate\Support\Facades\Cookie;
+use App\Models\Quiz;
 use App\Models\QuizAttemptLogs;
 use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
+use App\Models\BooksPagesInfoLinks;
 
 function getTemplate()
 {
@@ -7284,6 +7286,9 @@ function array_neighbor($arr, $key)
  * Assign topic to user
  */
 function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_assigned_list){
+    if (!auth()->user()->isParent()) {
+        return;
+    }
     ?>
     <div class="dropdown user-assign-topics" data-topic_type="<?php echo $topic_type; ?>" data-topic_id="<?php echo $topic_id; ?>">
         <button class="dropdown-toggle" type="button" id="checkbox"
@@ -7307,4 +7312,44 @@ function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_ass
         </div>
     </div>
     <?php
+}
+
+/*
+ * Topic Title by ID
+ */
+function getTopicTitle($topic_id, $topic_type){
+
+    $topic_title = '';
+    if( !empty( $topic_type)){
+        switch( $topic_type ){
+
+            case "sats":
+                $QuizObj = Quiz::find($topic_id);
+                $topic_title = $QuizObj->getTitleAttribute();
+            break;
+
+            case "11plus":
+                $QuizObj = Quiz::find($topic_id);
+                $topic_title = $QuizObj->getTitleAttribute();
+            break;
+            
+            case "timestables":
+                $topic_title = 'Times Tables';
+            break;
+            
+            case "book_page":
+                $bookData = BooksPagesInfoLinks::where('id', $topic_id)->with([
+                                    'BooksInfoLinkPage',
+                                    'BooksInfoLinkBookData'
+                                ])->first();
+                $book_title = $bookData->BooksInfoLinkBookData->book_title;
+                $page_no = $bookData->BooksInfoLinkPage->page_no;
+
+                $topic_title = $book_title .' Page# '. $page_no;
+            break;
+
+
+        }
+    }
+    return $topic_title;
 }

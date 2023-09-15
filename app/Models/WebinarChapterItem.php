@@ -79,6 +79,11 @@ class WebinarChapterItem extends Model
         return $this->belongsTo('App\Models\Quiz', 'item_id', 'id');
     }
 
+    public function quizData()
+    {
+        return $this->belongsTo('App\Models\Quiz', 'item_id', 'id');
+    }
+
     public function sub_chapter()
     {
         return $this->belongsTo('App\Models\SubChapters', 'item_id', 'id');

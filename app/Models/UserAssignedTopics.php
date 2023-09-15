@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Quiz;
 
 class UserAssignedTopics extends Model
 {
@@ -18,5 +19,23 @@ class UserAssignedTopics extends Model
         'status',
         'created_at'
     ];
+
+    public function quizData()
+    {
+        //return $this->hasOne('App\Models\Quiz', 'id', 'topic_id');
+        return $this->belongsTo('App\Models\Quiz', 'topic_id', 'id');
+    }
+
+    public function practiceData_bk()
+    {
+        //return $this->hasOne('App\Models\Quiz', 'id', 'topic_id');
+        return $this->belongsTo('App\Models\WebinarChapterItem', 'topic_id', 'parent_id')->where('type', 'quiz');
+    }
+
+
+    public function practiceData()
+    {
+        return $this->belongsTo('App\Models\SubChapters', 'topic_id', 'id');
+    }
 
 }

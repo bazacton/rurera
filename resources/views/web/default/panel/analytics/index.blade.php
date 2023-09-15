@@ -1,0 +1,86 @@
+@extends('web.default.panel.layouts.panel_layout')
+
+
+@section('content')
+<section>
+    <h2 class="section-title">Analytics</h2>
+
+    <div class="activities-container mt-25 p-20 p-lg-35">
+
+        <div class="accordion" id="analyticsAccordion">
+
+            @if( !empty( $analytics_data) )
+            @foreach( $analytics_data as $date_str => $analyticDataArray)
+            @php $report_date = strtotime(str_replace('_', '-', $date_str)); @endphp
+            <div class="card">
+                <div class="card-header collapsed mb-0" id="headingOne" type="button" data-toggle="collapse"
+                                           data-target="#report_{{$date_str}}" aria-expanded="true" aria-controls="report_{{$date_str}}">
+                    <span>{{ dateTimeFormat($report_date,'d F Y') }}</span> |
+                    <span>{{isset( $analyticDataArray['practice_time'] )? $analyticDataArray['practice_time'] : 0}} min</span>
+                    <span style="float:right">
+                        {{isset( $analyticDataArray['data'] )? count($analyticDataArray['data']) : 0}} Skills practiced: {{isset( $analyticDataArray['question_answered'] )? $analyticDataArray['question_answered'] : 0}} questions
+                    </span>
+                </div>
+
+                <div id="report_{{$date_str}}" class="collapse" aria-labelledby="headingOne"
+                     data-parent="#analyticsAccordion">
+                    <div class="card-body">
+
+                        @if( !empty( $analyticDataArray['data'] ) )
+                        @foreach( $analyticDataArray['data'] as $analyticData)
+                        @php $parent_type_id = isset( $analyticData['parent_type_id'] )? $analyticData['parent_type_id'] : '';
+                        $parent_type = isset( $analyticData['parent_type'] )? $analyticData['parent_type'] : '';
+
+                        @endphp
+                        <div class="card-header" id="headingOnes">
+                            <h2 class="mb-0">
+                                <a href="javascript:;" class="text-left">
+                                    {{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}
+                                </a>
+                                @if( $parent_type == 'sats' || $parent_type == '11plus')
+                                    <span style="float:right;font-size: 15px;"><a href="/{{$parent_type}}/{{$parent_type_id}}/start">More Details</a></span>
+                                @endif
+                            </h2>
+                        </div>
+                        <div class="col-12 card-footer" id="headingOnes" style="margin-bottom:10px;">
+                            <div class="row">
+                                <span class="col-3">Active practice: {{isset( $analyticData['practice_time'] )? $analyticData['practice_time'] : 0}} min</span>
+                                <span class="col-3">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
+                                <span class="col-3">Questions missed: {{isset( $analyticData['question_missed'] )? $analyticData['question_missed'] : 0}}</span>
+                                <span class="col-3">Level: {{isset( $analyticData['score_level'] )? $analyticData['score_level'] : ''}}</span>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+
+
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            @endif
+
+        </div>
+
+
+    </div>
+</section>
+@endsection
+
+@push('scripts_bottom')
+<script>
+    var exchangeSuccessAlertTitleLang = '{{ trans('
+    update.exchange_success_alert_title
+    ') }}';
+    var exchangeSuccessAlertDescLang = '{{ trans('
+    update.exchange_success_alert_desc
+    ') }}';
+    var exchangeErrorAlertTitleLang = '{{ trans('
+    update.exchange_error_alert_title
+    ') }}';
+    var exchangeErrorAlertDescLang = '{{ trans('
+    update.exchange_error_alert_desc
+    ') }}';
+</script>
+@endpush

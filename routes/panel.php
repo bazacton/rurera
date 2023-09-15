@@ -8,7 +8,17 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['check_mobile_app', 'impersonate', 'panel', 'share', 'check_maintenance']], function () {
+Route::group([
+    'namespace'  => 'Panel',
+    'prefix'     => 'panel',
+    'middleware' => [
+        'check_mobile_app',
+        'impersonate',
+        'panel',
+        'share',
+        'check_maintenance'
+    ]
+], function () {
 
     Route::get('/', 'DashboardController@dashboard')->name('panel_dashboard');
 
@@ -98,7 +108,7 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
             Route::post('/{id}/order-items', 'QuizController@orderItems');
         });
         Route::get('/{id}/start', 'QuizController@start');
-        Route::get('/{result_id}/check_answers' , 'QuizController@check_answers');
+        Route::get('/{result_id}/check_answers', 'QuizController@check_answers');
         Route::post('/{id}/store-result', 'QuizController@quizzesStoreResult');
         Route::get('/{quizResultId}/status', 'QuizController@status')->name('quiz_status');
 
@@ -119,7 +129,7 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
 
     });
 
-	Route::group(['prefix' => 'questions'], function () {
+    Route::group(['prefix' => 'questions'], function () {
         Route::group(['middleware' => 'user.not.access'], function () {
 
             Route::get('/', 'QuizController@index');
@@ -134,8 +144,8 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         Route::get('/{id}/fail', 'QuestionsBankController@fail');
 
     });
-	
-	Route::group(['prefix' => 'ajax'], function () {
+
+    Route::group(['prefix' => 'ajax'], function () {
         Route::post('helper', 'AjaxController@helper');
         Route::post('quiz_attempts', 'AjaxController@quiz_attempts');
 
@@ -323,7 +333,10 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         });
     });
 
-    Route::group(['prefix' => 'marketing', 'middleware' => 'user.not.access'], function () {
+    Route::group([
+        'prefix'     => 'marketing',
+        'middleware' => 'user.not.access'
+    ], function () {
         Route::get('/special_offers', 'SpecialOfferController@index')->name('special_offer_index');
         Route::post('/special_offers/store', 'SpecialOfferController@store');
         Route::get('/special_offers/{id}/disable', 'SpecialOfferController@disable');
@@ -372,7 +385,14 @@ Route::group(['namespace' => 'Panel', 'prefix' => 'panel', 'middleware' => ['che
         Route::post('/exchange', 'RewardController@exchange');
     });
 
-    Route::group(['prefix' => 'store', 'namespace' => 'Store'], function () {
+    Route::group(['prefix' => 'analytics'], function () {
+        Route::get('/', 'AnalyticsController@index');
+    });
+
+    Route::group([
+        'prefix'    => 'store',
+        'namespace' => 'Store'
+    ], function () {
         Route::group(['middleware' => 'user.not.access'], function () {
 
             Route::group(['prefix' => 'products'], function () {

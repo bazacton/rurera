@@ -11,6 +11,7 @@ use App\Models\Meeting;
 use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\Support;
+use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
 use App\Models\ParentsOrders;
 use App\User;
@@ -31,6 +32,8 @@ class DashboardController extends Controller
         ];
 
         if (!$user->isUser()) {
+
+
             $meetingIds = Meeting::where('creator_id', $user->id)->pluck('id')->toArray();
             $pendingAppointments = ReserveMeeting::whereIn('meeting_id', $meetingIds)
                 ->whereHas('sale')
@@ -63,6 +66,20 @@ class DashboardController extends Controller
             $data['monthlySalesCount'] = count($monthlySales) ? $monthlySales->sum('total_amount') : 0;
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
         } else {
+
+            $assignmentsArray = UserAssignedTopics::where('assigned_to_id', $user->id)
+            ->where('status', 'active')
+            ->whereIn('topic_type', array('11plus', 'assessment','sats','practice'))
+            ->with([
+                'quizData',
+                'practiceData'
+            ])
+            ->get();
+
+
+            //pre($assignmentsArray);
+
+
             $webinarsIds = $user->getPurchasedCoursesIds();
 
             $webinars = Webinar::whereIn('id', $webinarsIds)
@@ -91,6 +108,7 @@ class DashboardController extends Controller
             $data['commentsCount'] = count($comments);
             $data['reserveMeetingsCount'] = count($reserveMeetings);
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
+            $data['assignmentsArray'] = $assignmentsArray;
         }
 
         $data['giftModal'] = $this->showGiftModal($user);
