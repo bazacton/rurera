@@ -16,15 +16,35 @@
                     <form>
                         <div class="form-inner">
                             <div class="form-select-field">
-                                <select>
+                                <select class="key_stage_id category-id-field" data-subject_id="0">
                                     <option>Key Stage</option>
+                                    @if(!empty( $categories ))
+                                    @foreach($categories as $category)
+                                    @if(!empty($category->subCategories) and count($category->subCategories))
+                                    <optgroup label="{{  $category->title }}">
+                                        @foreach($category->subCategories as $subCategory)
+                                        <option value="{{ $subCategory->id }}" @if(!empty($nationalCurriculum) and
+                                                $nationalCurriculum->
+                                            key_stage == $subCategory->id) selected="selected" @endif>{{
+                                            $subCategory->title }}
+                                        </option>
+                                        @endforeach
+                                    </optgroup>
+                                    @else
+                                    <option value="{{ $category->id }}" class="font-weight-bold"
+                                            @if(!empty($nationalCurriculum)
+                                            and $nationalCurriculum->key_stage == $category->id) selected="selected"
+                                        @endif>{{
+                                        $category->title }}
+                                    </option>
+                                    @endif
+                                    @endforeach
+                                    @endif
                                 </select>
                             </div>
-                            <div class="form-select-field">
-                                <select>
-                                    <option>Maths</option>
-                                </select>
-                            </div>
+                                <div class="category_subjects_list">
+
+                                </div>
                         </div>
                     </form>
                 </div>
@@ -56,64 +76,7 @@
         </div>
     </div>
 </section>
-<section class="lms-curriculums-section">
-    <div class="container">
-        <div class="row">
-
-            @if(isset( $nationalCurriculum->NationalCurriculumItems) && !empty(
-            $nationalCurriculum->NationalCurriculumItems ) )
-            @foreach( $nationalCurriculum->NationalCurriculumItems as $CurriculumItemsData)
-            <div class="col-12 col-md-12 col-lg-12">
-                <div id="lms-numbers" class="lms-curriculums">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="element-title">
-                                <h2>{{$CurriculumItemsData->title}}</h2>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="curriculums-card">
-                                <div class="curriculums-head">
-                                    <h4>{{$CurriculumItemsData->sub_title}}</h4>
-                                </div>
-                            </div>
-                            @if(isset( $CurriculumItemsData->NationalCurriculumChapters) && !empty(
-                            $CurriculumItemsData->NationalCurriculumChapters ) )
-                            @foreach( $CurriculumItemsData->NationalCurriculumChapters as
-                            $CurriculumChapterData)
-                            <div class="curriculums-card">
-                                <div class="curriculums-list">
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-5 col-sm-12">
-                                            <div class="list-description">
-                                                <p> {{$CurriculumChapterData->title}} </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7 col-md-7 col-sm-12">
-                                            <ul>
-                                                @if(isset( $CurriculumChapterData->NationalCurriculumTopics) && !empty(
-                                                $CurriculumChapterData->NationalCurriculumTopics ) )
-                                                @foreach( $CurriculumChapterData->NationalCurriculumTopics as
-                                                $CurriculumTopicData)
-                                                <li><a href="javascript:;">{{$CurriculumTopicData->NationalCurriculumTopicData->sub_chapter_title}}</a></li>
-                                                @endforeach
-                                                @endif
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            @endif
-        </div>
-    </div>
-</section>
+@include('web.default.national_curriculum.single_curriculum',['nationalCurriculum'=> $nationalCurriculum])
 <a href="#" class="scroll-btn">
     <div class="round">
         <div id="cta"><span class="arrow primera next "></span> <span class="arrow segunda next "></span></div>
@@ -124,4 +87,47 @@
 
 @push('scripts_bottom')
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('body').on('change', '.category-id-field', function (e) {
+            var category_id = $(this).val();
+            var subject_id = $(this).attr('data-subject_id');
+            $.ajax({
+                type: "GET",
+                url: '/admin/national_curriculum/subjects_by_category',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {'category_id': category_id, 'subject_id': subject_id, 'only_field': 'yes'},
+                success: function (response) {
+                    $(".category_subjects_list").html(response);
+                }
+            });
+
+        });
+
+        $('body').on('change', '.choose-curriculum-subject', function (e) {
+            var thisObj = $(this);
+            rurera_loader(thisObj, 'page');
+            var subject_id = $(this).val();
+            var category_id = $('.category-id-field').val();
+            $.ajax({
+                type: "GET",
+                url: '/national-curriculum/curriculum_by_subject',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {'category_id': category_id, 'subject_id': subject_id},
+                success: function (response) {
+                    rurera_remove_loader(thisObj, 'page');
+                    $(".lms-curriculums-section").html(response);
+                }
+            });
+
+        });
+
+
+    });
+
+</script>
 @endpush

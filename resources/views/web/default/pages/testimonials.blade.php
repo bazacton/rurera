@@ -29,11 +29,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/main-testimonial1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/bri-client2.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
             <h2 itemprop="title" class="post-title">Cristian Miller</h2>
+            <span itemprop="sub title" class="sub-title">Teacher</span>
             <p itemprop="description">Rurera is an advance emerging learning platform. Love it!</p>
           </div>
         </div>
@@ -42,11 +43,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/main-testimonial2.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/bri-client1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
             <h2 itemprop="title" class="post-title">Peter J.</h2>
+            <span itemprop="sub title" class="sub-title">Student</span>
             <p itemprop="description">
               My first choice is Rurera when it comes to pro level learning.
             </p>
@@ -57,11 +59,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/main-testimonial3.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/bri-client3.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
             <h2 itemprop="title" class="post-title">Fiona Thompson</h2>
+            <span itemprop="sub title" class="sub-title">Parent</span>
             <p itemprop="description">Rurera has recognized itself a great platform. Recommmended</p>
           </div>
         </div>
@@ -70,11 +73,12 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/main-testimonial4.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/bri-client6.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
             <h2 itemprop="title" class="post-title">Kyle Matt</h2>
+            <span itemprop="sub title" class="sub-title">Teacher</span>
             <p itemprop="description">As a teacher i would encourage to follow Rurera for sure.</p>
           </div>
         </div>

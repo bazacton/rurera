@@ -22193,7 +22193,7 @@ Lms Masonry Style End
  Lms Testimoial Simple Style Start
 *************************************/
 .testimonial-card .testimonial-img figure {position: relative; height: 250px;}
-.testimonial-card .testimonial-img img {position: absolute;left: 50%;top: 0;height: 100%;-o-object-fit: contain;object-fit: contain;width: auto;transform: translateX(-50%);}
+.testimonial-card .testimonial-img img {position: absolute;left: 50%;top: 0; -o-object-fit: contain;object-fit: contain;width: auto;transform: translateX(-50%);}
 .testimonial-card.simple .testimonial-img img{position: static;width: 100%;}
 .testimonial-card.simple .testimonial-img figure{height: 100px;width: 100px;}
 .testimonial-card.simple {margin-bottom: 30px;background: #fafbfc;padding: 20px;display: flex;align-items: flex-start;}
@@ -22203,7 +22203,8 @@ Lms Masonry Style End
 .testimonial-card.simple {margin-bottom: 30px;background: #fff;padding: 20px;display: flex;align-items: flex-start;border-radius: 8px;box-shadow: 0 0px 7px 0px rgba(29, 140, 242, .16);}
 /* Lms Testimoial Fancy Style Start */
 .testimonial-card.fancy .testimonial-body{margin-bottom: 0;}
-.testimonial-card.fancy .post-title {font-size: 1.3rem;margin-bottom: 15px;}
+.testimonial-card.fancy .post-title {font-size: 1.3rem;margin-bottom: 10px;}
+.testimonial-card.fancy .sub-title {display: block; line-height: normal; padding: 0 0 10px; font-size: 14px; color: #999;}
 .testimonial-card.fancy p {margin-bottom: 0;}
 .lms-testimonials.testimonials-fancy {padding: 30px 0 50px 0;margin: 50px 0 0 0;}
 .testimonial-card.fancy .testimonial-img{margin-bottom: 20px;}
@@ -22353,7 +22354,7 @@ body{overflow-x: hidden;}
 .lms-client-list .lms-client-logo figure { width: 150px;height: 150px; position: relative;}
 .lms-client-list .lms-client-logo figure img {position: absolute;left: 0;top: 0;width: 100%;height: 100%;object-fit: contain;}
 .lms-client-list .lms-client-logo:after{content: "";position: absolute;right: 0;top: 0;height: 100%;border-right: 2px solid;border-image: linear-gradient(to top, #3e4197, rgba(255, 255, 255, 05)) 1;}
-.lms-client-list .lms-client-logo:nth-child(2) {border-image: linear-gradient(to right, #3e4197, rgba(255, 255, 255, 05)) 1;border-bottom: 2px solid;}
+.lms-client-list .lms-client-logo:nth-child(2) {border-image: linear-gradient(to right, #3e4197, #3e4197) 1;border-bottom: 2px solid;}
 .lms-client-list .lms-client-logo:nth-child(3):after,
 .lms-client-list .lms-client-logo:nth-child(6):after {visibility:hidden}
 .lms-client-list .lms-client-logo:nth-child(4),
