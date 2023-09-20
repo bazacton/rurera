@@ -41,48 +41,7 @@ $rand_id = rand(99,9999);
 
     <section class="lms-quiz-section">
 
-        @if( $quiz->quiz_pdf != '')
-        <div class="read-quiz-info quiz-show"></div>
-        <script>
 
-            $(".read-quiz-info").flipBook({
-                pdfUrl: '{{$quiz->quiz_pdf}}',
-                btnZoomIn: {enabled: true},
-                btnZoomOut: {enabled: true},
-                btnToc: {enabled: false},
-                btnShare: {enabled: false},
-                btnDownloadPages: {enabled: false},
-                btnDownloadPdf: {enabled: false},
-                btnSound: {enabled: false},
-                btnAutoplay: {enabled: false},
-                btnSelect: {enabled: false},
-                btnBookmark: {enabled: false},
-                btnThumbs: {enabled: false},
-                btnPrint: {enabled: false},
-                currentPage: {enabled: false},
-                viewMode: "swipe",
-                singlePageMode: true,
-                skin: 'dark',
-                menuMargin: 10,
-                menuBackground: 'none',
-                menuShadow: 'none',
-                menuAlignHorizontal: 'right',
-                menuOverBook: true,
-                btnRadius: 40,
-                btnMargin: 4,
-                btnSize: 14,
-                btnPaddingV: 16,
-                btnPaddingH: 16,
-                btnBorder: '2px solid rgba(255,255,255,.7)',
-                btnBackground: "rgba(0,0,0,.3)",
-                btnColor: 'rgb(255,120,60)',
-                sideBtnRadius: 60,
-                sideBtnSize: 60,
-                sideBtnBackground: "rgba(0,0,0,.7)",
-                sideBtnColor: 'rgb(255,120,60)',
-            });
-        </script>
-        @endif
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="10">
@@ -98,10 +57,6 @@ $rand_id = rand(99,9999);
                                 <div class="topbar-right">
                                     <div class="quiz-pagination">
 
-                                    </div>
-                                    <div class="quiz-timer">
-                                        <span class="timer-number">4<em>m</em></span> <span
-                                            class="timer-number">50<em>s</em></span>
                                     </div>
                                 </div>
                             </div>

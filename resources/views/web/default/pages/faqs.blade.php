@@ -673,21 +673,11 @@
                         Need Help?<br />
                         We're Here for You.
                     </h2>
-                    <p itemprop="text" class="mt-15">
+                    <p itemprop="text" class="mt-15 mb-25">
                         Our highly trained support geeks<br />
                         are always ready to help you.
                     </p>
-                    <ul class="lms-img-list">
-                        <li itemprop="image">
-                        <img src="../assets/default/img/bran-img-1.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
-                        </li>
-                        <li itemprop="image">
-                        <img src="../assets/default/img/support.png" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
-                        </li>
-                        <li itemprop="image">
-                        <img src="../assets/default/img/bran-img-3.jpg" alt="bran image" title="bran image" width="100%" height="auto" itemprop="image" loading="eager" />
-                        </li>
-                    </ul>
+                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/contact-us" class="lms-btn btn-primary rounded-pill text-white border-0 btn font-16">Ask a question ?</a>
                     </b>
                 </b>
                 </div>
@@ -706,7 +696,7 @@
 
             <div class="scroll-btn" style="display: block;">
                 <div class="round">
-                    <div id="cta"><span class="arrow primera next"></span><span class="arrow segunda next"></span>
+                    <div id="cta"><span class="arrow primera next"></span><span class="arrow segunda next"></span></div>
                 </div>
             </div>
 

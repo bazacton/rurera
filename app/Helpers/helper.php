@@ -7337,7 +7337,7 @@ function getTopicTitle($topic_id, $topic_type){
             
             case "timestables":
                 $topic_title = 'Times Tables';
-            break;//912
+            break;
             
             case "book_page":
                $bookData = BooksPagesInfoLinks::where('id', $topic_id)->with([

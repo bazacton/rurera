@@ -63,7 +63,7 @@
                     <div class="col-12 col-lg-5 col-md-7">
                     <h2 class="mb-15 text-white font-40">Ready to start learning <br /> using Rurera</h2>
                     <p class="mb-0 text-white">Determine what skills or knowledge you want to acquire or improve upon selecting the appropriate learning platform.</p>
-                    <div class="lms-btn-group mt-30 "><a href="https://rurera.chimpstudio.co.uk/pages/contact_us" class="lms-btn rounded-pill text-white border-white">Signup</a></div>
+                    <div class="lms-btn-group mt-30 "><a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Signup</a></div>
                     </div>
                     <div class="col-12 col-lg-7 col-md-7">
                         <div class="svg-holder">

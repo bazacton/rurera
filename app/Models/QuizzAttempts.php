@@ -36,5 +36,4 @@ class QuizzAttempts extends Model
         return $this->hasOne('App\Models\QuizAttemptLogs', 'attempt_id', 'id');
     }
 
-
 }

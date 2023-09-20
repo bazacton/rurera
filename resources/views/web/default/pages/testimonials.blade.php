@@ -13,8 +13,8 @@
         <h1 itemprop="title" class="font-50 font-weight-bold">Hear It from Our <span class="text-scribble ml-10">Clients</span></h1>
         <p itemprop="description" class="font-19">
           Welcome to our testimonial page! Here, you will find a collection of
-          heartfelt testimonials and feedback from our valued customers who have
-          experienced our products or services. These testimonials serve as a
+          heartfelt testimonials and feedback from our student, teachers and parents who have
+          experienced Rurera services. These testimonials serve as a
           testament to the quality of our offerings and the satisfaction of
           those who have chosen to trust us.
         </p>
@@ -29,7 +29,7 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/main-testimonial1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
@@ -42,7 +42,7 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-2.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/main-testimonial2.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
@@ -57,7 +57,7 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-3.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/main-testimonial3.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
@@ -70,7 +70,7 @@
         <div class="testimonial-card fancy">
           <div class="testimonial-img text-center">
             <figure>
-              <img src="../assets/default/img/bran-img-1.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
+              <img src="../assets/default/img/main-testimonial4.jpg" alt="bran images" title="bran images" width="100%" height="auto" itemprop="image" loading="eager" />
             </figure>
           </div>
           <div class="testimonial-body">
@@ -92,7 +92,7 @@
                 Find all you need to set learners up for success Journey!
               </p>
               <div class="lms-btn-group mt-30">
-                <a href="/contact-us" class="lms-btn rounded-pill"
+                <a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill"
                   >Get Started<span class="svg-icon"
                     ><svg
                       width="10"
@@ -226,9 +226,9 @@
                             </span>Expand your knowledge and grow your learning experience</h3>
                         <p itemprop="description" class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
                     </div>
-                    <div class="lms-btn-group justify-content-center"><a
-                            href="https://rurera.chimpstudio.co.uk/pages/contact_us" class="lms-btn rounded-pill">Get
-                            Started</a></div>
+                    <div class="lms-btn-group justify-content-center">
+                      <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="lms-btn rounded-pill">Explore More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -293,4 +293,31 @@
 @push('scripts_bottom')
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script>
+  // Play Video Function
+  $(document).ready(function () {
+    var video = document.getElementById("video");
+    var circlePlayButton = document.getElementById("play-vidio");
+    var posterImg = document.getElementById("poster-img");
+
+    function togglePlay() {
+      if (video.paused || video.ended) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    circlePlayButton.addEventListener("click", togglePlay);
+    video.addEventListener("playing", function () {
+      circlePlayButton.style.opacity = 0;
+      posterImg.style.opacity = 0
+    });
+
+    video.addEventListener("pause", function () {
+      circlePlayButton.style.opacity = 1;
+      posterImg.style.opacity = 0
+    });
+  });
+</script>
 @endpush

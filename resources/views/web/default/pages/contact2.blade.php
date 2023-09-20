@@ -9,11 +9,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-5 col-lg-5">
-                        <div class="text-holder has-bg text-white"><strong class="sub-title" itemprop="sub title">24/7 customer support</strong>
-                            <h1 itemprop="title" class="mt-20 font-36 font-weight-light">Need Help ?<br>We're Here for You.<br>Contact us</h1>
+                        <div class="text-holder has-bg text-white">
+                            <strong class="sub-title font-20" itemprop="sub title">contact us</strong>
+                            <h1 itemprop="title" class="mt-15 font-36 font-weight-light">Need Support ?<br>Get the help you need.</h1>
                             <p itemprop="description" class="mt-20">Whether you have a question, feedback, or any other inquiry, we are here to assist
                                 you. We have a contact form on our website that you can fill out.</p>
-                                <a itemprop="url" href="https://rurera.chimpstudio.co.uk/pages/contact_us" class="rounded-pill mt-30">Register Now</a>
+                                <a itemprop="url" href="#jobsform-section" class="rounded-pill mt-30">Send Inquiry</a>
                         </div>
                     </div>
                 </div>
@@ -27,8 +28,8 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/support.jpg" alt="support" title="support"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">24/7 Support</h2>
-                                    <p itemprop="description">Experience Uninterrupted 24/7 Support.</p>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="https://rurera.chimpstudio.co.uk/support-page">24/7 Support</a></h2>
+                                    <p itemprop="description">Experience Uninterrupted 24/7 Support in whole UK</p>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +39,7 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge" title="knowledge"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Knowledge Base</h2>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="https://rurera.chimpstudio.co.uk/knowledge-base">Knowledge Base</a></h2>
                                     <p itemprop="description">your key resource for resolving doubts and getting instant guidance.</p>
                                 </div>
                             </div>
@@ -49,8 +50,8 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/technical.jpg" alt="technical" title="technical"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal">Technical Assistance</h2>
-                                    <p itemprop="description">Unlocking solutions for your challenges.</p>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="#jobsform-section">Feedback / Suggestions</a></h2>
+                                    <p itemprop="description">Help us to improve rurera with your valuable suggestions</p>
                                 </div>
                             </div>
                         </div>
@@ -58,99 +59,149 @@
                 </div>
             </div>
         </section>
-        <section class="lms-column-section lms-text-section mx-w-100 mt-50 mb-0 pt-10 pb-40 pr-30 pl-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="lms-text-holder d-flex justify-content-center flex-column align-items-center pt-50 pb-50 has-box-shadow">
-                            <h2 itemprop="title"  class="mb-10 font-24 text-dark-charcoal">Talk To Us</h2>
-                            <p itemprop="description" class="font-16 mt-0 mb-20">Our Support team supports customers in whole over Uk and would love to
-                                answer your queries.</p>
-                            <div class="lms-btn-group mb-10">
-                                <a itemprop="url" href="https://rurera.chimpstudio.co.uk/pages/contact_us"
-                                    class="lms-btn rounded-pill">Send Enquiry</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="lms-jobsform-section lms-contact-form-section mt-50 pt-70 pb-70" style="background-color:#f8f8f8">
+        <section id="jobsform-section" class="lms-jobsform-section lms-contact-form-section mt-50 pt-70 pb-70" style="background-color:#f8f8f8">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="section-title text-center mb-50 mt-20">
                             <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Get In Touch</h2>
-                            <p itemprop="description">Explore and locate us to find the right course for you.</p>
+                            <p itemprop="description">Explore and locate us to find the right resource for you.</p>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-20">
-                        <div class="lms-jobs-form lms-contact-form">
-                            <div class="lms-jobs-form-body pb-10">
-                                <div class="row">
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-element-title text-left pr-0 pl-0">
-                                            <h2 itemprop="title" class="font-40 mb-5 text-dark-charcoal">Contact form</h2>
-                                            <p itemprop="description">Let's explore how Rurera works for you?</p>
+                        <div class="lms-contact-form-tabs">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="inquires-tab" data-toggle="tab" href="#inquires" role="tab" aria-controls="inquires" aria-selected="true">Inquires</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="feedback-tab" data-toggle="tab" href="#feedback" role="tab" aria-controls="feedback" aria-selected="false">Feedback</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="inquires" role="tabpanel" aria-labelledby="inquires-tab">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="lms-jobs-form lms-contact-form">
+                                                <div class="lms-jobs-form-body pb-10">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-element-title text-left pr-0 pl-0">
+                                                                <p itemprop="description">Whether you have a question, need assistance, or want to share your thoughts, we're here to listen and help.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">First name</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Last name</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">E-mail*</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Mobile</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">What type of query you are having ?</label>
+                                                                <div class="input-field select-arrow w-100">
+                                                                    <select class="lms-jobs-select">
+                                                                        <option value="" selected="selected">About Courses</option>
+                                                                        <option value="">About Courses</option>
+                                                                        <option value="">About Online Tests(SAT, 11 plus)</option>
+                                                                        <option value="">About membership</option>
+                                                                        <option value="">About Books</option>
+                                                                        <option value="">About Features</option>
+                                                                        <option value="">About payments</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Message</label>
+                                                                <div class="input-field w-100"><textarea class="field-textarea"
+                                                                        placeholder="Detail here"></textarea></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group">
+                                                                <div class="input-field w-100 pt-0"><input type="submit" value="Send Message"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">First name</label>
-                                            <div class="input-field w-100"><input type="text" placeholder=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">Last name</label>
-                                            <div class="input-field w-100"><input type="text" placeholder=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">E-mail*</label>
-                                            <div class="input-field w-100"><input type="text" placeholder=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">Mobile</label>
-                                            <div class="input-field w-100"><input type="text" placeholder=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">Which course:</label>
-                                            <div class="input-field select-arrow w-100"><select class="lms-jobs-select">
-                                                    <option value="" selected="selected">Maths</option>
-                                                    <option value="">Design And Technology</option>
-                                                    <option value="">Science</option>
-                                                    <option value="">English</option>
-                                                    <option value="">Computing</option>
-                                                    <option value="">English Reading For Pleasure</option>
-                                                </select></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">How Can We Help
-                                                You?</label>
-                                            <div class="input-field select-arrow w-100"><select class="lms-jobs-select">
-                                                    <option value="" selected="selected">Content Creator/Instructional Designer
-                                                    </option>
-                                                    <option value="">Online Instructor/Educator</option>
-                                                    <option value="">Curriculum Developer</option>
-                                                    <option value="">Learning Experience Designer</option>
-                                                    <option value="">Administrator</option>
-                                                    <option value="">Quality Assurance Specialist</option>
-                                                    <option value="">Marketing and Enrollment Manager</option>
-                                                    <option value="">Technical Support Specialist</option>
-                                                    <option value="">Data Analyst</option>
-                                                </select></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group"><label class="input-label w-100 pt-0">Message</label>
-                                            <div class="input-field w-100"><textarea class="field-textarea"
-                                                    placeholder="Detail here"></textarea></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group">
-                                            <div class="input-field w-100 pt-0"><input type="submit" value="Send Message"></div>
+                                </div>
+                                <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="lms-jobs-form lms-contact-form">
+                                                <div class="lms-jobs-form-body pb-10">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-element-title text-left pr-0 pl-0">
+                                                                <p itemprop="description">Help us to improve rurera with your valuable suggestions. we will appreciate it.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">First name</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Last name</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">E-mail*</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Mobile</label>
+                                                                <div class="input-field w-100"><input type="text" placeholder=""></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">What type of feedback/suggestion you are having ?</label>
+                                                                <div class="input-field select-arrow w-100">
+                                                                    <select class="lms-jobs-select">
+                                                                        <option value="" selected="selected">About Courses</option>
+                                                                        <option value="">About Courses</option>
+                                                                        <option value="">About Online Tests(SAT, 11 plus)</option>
+                                                                        <option value="">About membership</option>
+                                                                        <option value="">About Books</option>
+                                                                        <option value="">About Features</option>
+                                                                        <option value="">About payments</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group"><label class="input-label w-100 pt-0">Message</label>
+                                                                <div class="input-field w-100"><textarea class="field-textarea"
+                                                                        placeholder="Detail here"></textarea></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group">
+                                                                <div class="input-field w-100 pt-0"><input type="submit" value="Send Feedback"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -158,9 +209,8 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-20">
-                        <div class="lms-map-holder h-100"><iframe class="gmap_iframe w-100 h-100" frameborder="0" scrolling="no"
-                                marginheight="0" marginwidth="0"
-                                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=University of Oxford&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                        <div class="lms-map-holder h-100">
+                            <iframe class="gmap_iframe w-100 h-100" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=University of Oxford&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                         </div>
                     </div>
                 </div>
@@ -171,7 +221,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section-title text-center mb-50">
-                            <h2 itemprop="title" class="mt-0 mb-10 text-dark-charcoal" style="font-size: 40px;">Explore our customers’ success stories</h2>
+                            <h2 itemprop="title" class="mt-0 mb-10 text-dark-charcoal" style="font-size: 40px;">Explore our success stories</h2>
                         </div>
                     </div>
                     <div class="col-12">
@@ -182,59 +232,19 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img src="/store/1/default_images/testimonials/profile_picture (50).jpg"
-                                                            alt="testimonials" title="testimonials"  width="100%" height="auto" itemprop="image"  loading="eager"></a>
-                                                </figure>
-                                            </div>
-                                            <div class="text-holder">
-                                                <div class="testimonial-top">
-                                                    <h3 itemprop="title" class="testimonial-title">
-                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Thriving as a Content Creator with an Exceptional
-                                                            Team.</a>
-                                                    </h3>
-                                                    <strong itemprop="Forever">
-                                                        A Life-Changing Discovery I'm Forever Grateful
-                                                        For</strong>
-                                                </div>
-                                                <p itemprop="description">
-                                                    "As a content creator, it is pleasure of working with
-                                                    the team , I can confidently say that it has been an
-                                                    amazing experience. Working as a content writer for this
-                                                    platform, I have been able to generate a good income
-                                                    while collaborating with a fantastic team of
-                                                    professionals"
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="testimonial-card">
-                                        <div class="testimonial-body">
-                                            <div class="img-holder">
-                                                <figure>
                                                     <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
-                                                            src="/store/1/default_images/testimonials/profile_picture (28).jpg"
+                                                            src="/store/1/default_images/testimonials/teacher-testimonial.jpg"
                                                             alt="profile" title="profile" width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
                                                     <h3 itemprop="title" class="testimonial-title">
-                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Unleashing the Power of Collaboration in Content
-                                                            Creation".</a>
+                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Rurera's Extraordinary Team: A Teacher's Story</a>
                                                     </h3>
-                                                    <strong itemprop="Exceeding">Exceeding Expectations with User-Friendly Interface
-                                                        and Seamless Navigation</strong>
+                                                    <strong itemprop="Exceeding">A Game-Changer to diagnose and monitor performance</strong>
                                                 </div>
-                                                <p itemprop="description">
-                                                    "As a content writer, I have had the pleasure of
-                                                    collaborating with a talented and dedicated team that
-                                                    truly understands the value of quality content. Their
-                                                    guidance and support have been instrumental in helping
-                                                    me refine my skills and explore new horizons in the
-                                                    world of content creation."
-                                                </p>
+                                                <p itemprop="description">Rurera's core alignment makes it easier for me to assign work. I also like the immediate feedback and large bank of questions. My students' skill levels have increased dramatically over the past three years; they see it, and so do their parents. This is an outstanding program. I love Rurera. I'm so grateful that our school continues to find the resources to keep us online. It is worth it!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -244,28 +254,18 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
-                                                            src="/store/1/default_images/testimonials/profile_picture (30).jpg"
-                                                            alt="picture" title="picture" width="100%" height="auto" itemprop="image"  loading="eager"></a>
+                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img src="/store/1/default_images/testimonials/parent-testimonial.jpg"
+                                                            alt="testimonials" title="testimonials"  width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
                                                     <h3 itemprop="title" class="testimonial-title">
-                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Collaborating with an Exceptional Team of Talented
-                                                            Professionals as a Content Creator</a>
+                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Collaborating with an Exceptional Team of Rurera as a Parent</a>
                                                     </h3>
-                                                    <strong itemprop="Journey">
-                                                        A Game-Changer in my Educational Journey for Busy
-                                                        Professionals</strong>
+                                                    <strong itemprop="Forever">A Game-Changer for Busy Parents to engage with Child studies.</strong>
                                                 </div>
-                                                <p itemprop="description">
-                                                    "Working with this exceptional team of talented
-                                                    professionals as a content creator has been an absolute
-                                                    pleasure. From the moment I joined, I've enjoyed
-                                                    collaborating with them and have gained invaluable
-                                                    insights and knowledge along the way."
-                                                </p>
+                                                <p itemprop="description">As a parent, I want to share my incredible experience that has made a significant impact on my child's education. Rurera has truly transformed the way my child learns and engages with educational content. Recommended!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -275,63 +275,94 @@
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination swiper-pagination-bullets"><span
+                        <div class="swiper-pagination swiper-pagination-bullets">
+                            <span
                                 class="swiper-pagination-bullet"></span><span
                                 class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
-                                class="swiper-pagination-bullet"></span></div>
+                                class="swiper-pagination-bullet"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="lms-services lms-contact-info mx-w-100 mt-30 mb-60 pt-50">
+        <section class="my-50 lms-blog lms-blog-grid mx-w-100 mt-30 mb-60 pt-50">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="section-title text-center mb-50">
                             <h2 itemprop="title" class="font-40 mb-10 text-dark-charcoal">Resources </h2>
-                            <p itemprop="description">Get to know more about Rurera</p>
+                            <p itemprop="description">Get to know more about latest news, resources and much more.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="services-card has-shadow text-center mb-30 pb-30">
-                            <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-1.jpg" alt="info box image" title="info box image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                                <div class="services-text mt-20 pr-30 pl-30">
-                                    <p itemprop="description">Cooperative and associated relationship between parents and teachers</p>
-                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Mutual Collaboration</h3>
+                    <div class="col-12 col-lg-12">
+                        <div class="row">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="mb-40">
+                                    <div class="blog-grid-card pb-0">
+                                        <div class="blog-grid-detail pr-0">
+                                            <div class="blog-grid-image">
+                                                <img
+                                                    src="../assets/default/img/blog-img1.jpg"
+                                                    width="100%"
+                                                    height="auto"
+                                                    class="img-cover"
+                                                    loading="eager"
+                                                    alt="Empathy and Education: Cultivating Emotional Intelligence in KS1 and KS2"
+                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
+                                                />
+                                            </div>
+                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
+                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Access to a Wide Range of Resources:</h3>
+                                            </a>
+                                            <div itemprop="description" class="mt-15 blog-grid-desc">Resources are available anytime and anywhere, allowing learners to study at their own pace and revisit materials as needed.</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="services-card has-shadow text-center mb-30 pb-30">
-                            <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-2.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
-                                <div class="services-text mt-20 pr-30 pl-30">
-                                    <p itemprop="description">Promoting socialization and fostering a sense of community</p>
-                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Social Activities</h3>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="mb-40">
+                                    <div class="blog-grid-card pb-0">
+                                        <div class="blog-grid-detail pr-0">
+                                            <div class="blog-grid-image">
+                                                <img
+                                                    src="../assets/default/img/blog-img2.jpg"
+                                                    width="100%"
+                                                    height="auto"
+                                                    loading="eager"
+                                                    class="img-cover"
+                                                    alt="Transformative Technologies: Enhancing Teaching and Learning in KS1 and KS2"
+                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
+                                                />
+                                            </div>
+                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
+                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Personalized Learning Experience</h3>
+                                            </a>
+                                            <div itemprop="description" class="mt-15 blog-grid-desc">Through assessments and data analysis, rurera can identify areas of strength and weakness, and provide customized content.</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="services-card has-shadow text-center mb-30 pb-30">
-                            <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-3.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
-                                <div class="services-text mt-20 pr-30 pl-30">
-                                    <p itemprop="description">Leverages digital tools, platforms, and interactive resources for learning</p>
-                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Smart Learning</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="services-card has-shadow text-center mb-30 pb-30">
-                            <div class="services-card-body">
-                                <figure class="w-100"><img src="../assets/default/img/info-box-4.jpg" alt="info box image"  title="info box image" width="100%" height="auto" itemprop="image"  loading="eager"></figure>
-                                <div class="services-text mt-20 pr-30 pl-30">
-                                    <p itemprop="description">Vast repository of information, data, and resources that</p>
-                                    <h3 itemprop="title" class="font-16 mt-15 mb-0 text-primary">Global Knowledge base</h3>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class="mb-40">
+                                    <div class="blog-grid-card pb-0">
+                                        <div class="blog-grid-detail pr-0">
+                                            <div class="blog-grid-image">
+                                                <img
+                                                    src="../assets/default/img/blog-img3.jpg"
+                                                    width="100%"
+                                                    height="auto"
+                                                    loading="eager"
+                                                    class="img-cover"
+                                                    alt="Preparing for Success: Online Courses for Year 5 Students"
+                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
+                                                />
+                                            </div>
+                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
+                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Mentoring and support with all courses</h3>
+                                            </a>
+                                            <div itemprop="description" class="mt-15 blog-grid-desc">Learners can expect training and support from instructor, who may provide live lectures, answer questions, facilitate discussions.</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -339,21 +370,22 @@
                 </div>
             </div>
         </section>
-        <section class="lms-newsletter py-70">
+
+        <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(assets/default/svgs/bank-note-white-thin.svg) var(--primary);">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="newsletter-inner">
-                            <div class="row">
-                                <div class="col-12 col-lg-6 col-md-6 mb-20">
-                                    <h2 itemprop="title" class="mb-10 text-white font-40">Subscribe our
-                                        newsletter</h2>
-                                    <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses
-                                        delivered through Rurera, and gear up your people for success at work</p>
+                        <div class="lms-text-holder">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-lg-8 col-md-8">
+                                    <h2 itemprop="title" class="mb-20 text-white font-40">Ready to start learning?</h2>
+                                    <p itemprop="description" class="mb-0 text-white">Discover a growing collection of resources
+                                        delivered through Rurera.</p>
                                 </div>
-                                <div class="col-12 col-lg-6 col-md-6"><label class="mb-10 text-white">Your E-mail Address</label>
-                                    <div class="form-field position-relative"><input type="text"
-                                            placeholder="Enter Your E-mail"><button type="submit">Subscribe</button></div>
+                                <div class="col-12 col-lg-4 col-md-4">
+                                    <div class="lms-btn-group">
+                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

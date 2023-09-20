@@ -53,7 +53,7 @@ class BooksController extends Controller
             'bookPages.PageInfoLinks',
             'bookPages.BooksPageUserReadings' => function ($query) use ($user) {
                 $query->where('user_id', $user->id)->where('status', 'active');
-            } ,
+            },
         ])->first();
 
         $page_content = array();
@@ -125,11 +125,16 @@ class BooksController extends Controller
 
         $bookPageInfoLinks = $bookObj->bookPageInfoLinks;
 
+
         $bookUserActivities = $bookObj->bookUserActivities;
+
+        $book_opened = isset($bookObj->BooksUserReadings->first()->created_at) ? $bookObj->BooksUserReadings->first()->created_at : 0;
 
         $bookUserActivities = $bookUserActivities->groupBy(function ($bookUserActivitiesQuery) {
             return date('d F Y', $bookUserActivitiesQuery->created_at);
         });
+
+
 
         $bookPageInfoLinks = $bookPageInfoLinks->groupBy(function ($bookPageInfoLinks) {
             return $bookPageInfoLinks->BooksInfoLinkPage->page_no;
@@ -145,6 +150,7 @@ class BooksController extends Controller
                 'book'               => $bookObj,
                 'bookUserActivities' => $bookUserActivities,
                 'bookPageInfoLinks'  => $bookPageInfoLinks,
+                'book_opened'        => $book_opened,
             ];
             return view('web.default.books.activity', $data);
         }

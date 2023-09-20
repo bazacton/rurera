@@ -14,7 +14,7 @@
                         <div class="col-12 col-lg-2 col-md-3">
                             <div class="img-holder">
                                 <figure>
-                                    <a href="#"><img src="../../assets/default/img/book-list6.png" alt=""/></a>
+                                    <a href="#"><img src="{{$book->cover_image}}" alt=""/></a>
                                 </figure>
                             </div>
                         </div>
@@ -22,10 +22,10 @@
                             <div class="text-holder">
                                 <h3><a href="https://chimpstudio.co.uk/flipbook/">{{$book->book_title}}</a></h3>
                                 <ul>
-                                    <li><span>Book Opened :</span>25 Feb 2023</li>
+                                    <li><span>Book Opened :</span>{{ ($book_opened > 0)? dateTimeFormat($book_opened,'d F Y') : '' }}</li>
                                     <li><span>Time Read :</span>{{round($book->BooksUserReadings->sum('read_time') / 60, 2)}} mints</li>
-                                    <li><span>Quiz :</span>27 Feb 2023</li>
-                                    <li><span>Points :</span>200/ 250 <img src="../../assets/default/svgs/coin-earn.svg"
+                                    <li><span>Quiz :</span>27 Feb 2023 ----</li>
+                                    <li><span>Points :</span>200/ 250 --- <img src="../../assets/default/svgs/coin-earn.svg"
                                                                            alt=""/></li>
                                 </ul>
                             </div>
@@ -55,58 +55,6 @@
                             </li>
                         @endforeach
                     @endif
-                    <li class="lms-performace-des">
-                        <div class="sr-no"><span>#1</span></div>
-                        <div class="score-des">
-                            <span><a href="#">Chapter #1:</a></span>
-                        </div>
-                        <div class="badge-btn text-right" style="width: 52%;">
-                            <span style="background-color: #dc3545;">PW</span><span style="background-color: #ffc107;">TT</span><span
-                                    style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                            <span style="background-color: #ffc107;">TT</span><span style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                        </div>
-                    </li>
-                    <li class="lms-performace-des">
-                        <div class="sr-no"><span>#2</span></div>
-                        <div class="score-des">
-                            <span> <a href="#">Chapter #2:</a></span>
-                        </div>
-                        <div class="badge-btn text-right" style="width: 52%;">
-                            <span style="background-color: #dc3545;">PW</span><span style="background-color: #ffc107;">TT</span><span
-                                    style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                            <span style="background-color: #ffc107;">TT</span><span style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                        </div>
-                    </li>
-                    <li class="lms-performace-des">
-                        <div class="sr-no"><span>#3</span></div>
-                        <div class="score-des">
-                            <span><a href="#">Chapter #3:</a></span>
-                        </div>
-                        <div class="badge-btn text-right" style="width: 52%;">
-                            <span style="background-color: #dc3545;">PW</span><span style="background-color: #ffc107;">TT</span><span
-                                    style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                            <span style="background-color: #ffc107;">TT</span><span style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                        </div>
-                    </li>
-                    <li class="lms-performace-des">
-                        <div class="sr-no"><span>#4</span></div>
-                        <div class="score-des">
-                            <span><a href="#">Chapter #4:</a></span>
-                        </div>
-                        <div class="badge-btn text-right" style="width: 52%;">
-                            <span style="background-color: #dc3545;">PW</span><span style="background-color: #ffc107;">TT</span><span
-                                    style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                            <span style="background-color: #ffc107;">TT</span><span style="background-color: #1b83fc;">CC</span><span
-                                    style="background-color: #1b83fc;">RI</span>
-                        </div>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -122,12 +70,14 @@
 
                 @if( !empty( $bookUserActivities ) )
                 @foreach( $bookUserActivities as $activityDate => $activitiesData)
+                @php $time_read = $activitiesData->sum('read_time');
+                $time_read = ($time_read > 0) ? round($time_read / 60, 2) : 0;
+                @endphp
                 <div class="element-title">
                     <h2><span>{{ $activityDate }}</span></h2>
                 </div>
                 <div class="timeline-card">
                     <div class="text-holder">
-                        <span class="activity-time"><strong>Time read:</strong>16 mints</span>
                         <ul class="timeline-list">
                             @if( !empty($activitiesData))
                             @foreach( $activitiesData as $activityObj)

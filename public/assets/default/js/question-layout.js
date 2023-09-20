@@ -35,7 +35,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     }
 
     clearInterval(Questioninterval);
-    //rurera_loader($(this), 'div');
+    rurera_loader($(this), 'div');
 
 
     var quiz_type = $(".question-area-block").attr('data-type');

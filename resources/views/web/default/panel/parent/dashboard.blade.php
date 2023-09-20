@@ -296,7 +296,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="list-group list-group-custom list-group-flush mb-0 totalChilds"
+                                    <div class="list-group list-group-custom list-group-flush mb-0 totalChilds column-2"
                                          data-childs="{{$childs->count()}}">
 
                                         @if( !empty( $childs ) )

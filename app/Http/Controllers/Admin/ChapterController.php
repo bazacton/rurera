@@ -12,6 +12,7 @@ use App\Models\Webinar;
 use App\Models\WebinarAssignment;
 use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
+use App\Models\SubChapters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -44,6 +45,23 @@ class ChapterController extends Controller
         }
 
         abort(403);
+    }
+
+    public function search(Request $request)
+    {
+        $term = $request->get('term');
+        $topicIds = SubChapters::where('sub_chapter_title', 'like', '%'.$term.'%')->get();
+        $topics_array = array();
+        if( !empty( $topicIds ) ){
+            foreach( $topicIds as $topicObj){
+
+                $topics_array[$topicObj->id]  = array(
+                    'id' => $topicObj->id,
+                    'title' => $topicObj->sub_chapter_title,
+                );
+            }
+        }
+       return response()->json($topics_array , 200);
     }
 
     public function getAllByWebinarId($webinar_id)

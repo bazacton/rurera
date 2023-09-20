@@ -413,6 +413,21 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
             Route::post('/store_question_glossary' , 'GlossaryController@store_question_glossary');
         });
 
+        /*
+         * National Curriculum
+         */
+        Route::group(['prefix' => 'national_curriculum'] , function () {
+            Route::get('/' , 'NationalCurriculumController@index');
+            Route::get('/create' , 'NationalCurriculumController@create');
+            Route::get('/subjects_by_category' , 'NationalCurriculumController@subjects_by_category');
+            Route::get('/curriculum_set_layout' , 'NationalCurriculumController@curriculum_set_layout');
+            Route::get('/curriculum_item_layout' , 'NationalCurriculumController@curriculum_item_layout');
+            Route::get('/curriculum_item_chapter_layout' , 'NationalCurriculumController@curriculum_item_chapter_layout');
+            Route::post('/store' , 'NationalCurriculumController@store');
+            Route::post('/{id}/store' , 'NationalCurriculumController@store');
+            Route::get('/{id}/edit' , 'NationalCurriculumController@edit')->name('adminEditNationalCurriculum');
+        });
+
 
         Route::group(['prefix' => 'filters'] , function () {
             Route::get('/get-by-category-id/{categoryId}' , 'FilterController@getByCategoryId');
@@ -432,6 +447,7 @@ Route::group(['prefix' => $prefix , 'namespace' => 'Admin' , 'middleware' => 'we
             Route::post('/{id}/edit' , 'ChapterController@edit');
             Route::post('/{id}/update' , 'ChapterController@update');
             Route::get('/{id}/delete' , 'ChapterController@destroy');
+            Route::post('/search' , 'ChapterController@search');
             Route::post('/change' , 'ChapterController@change');
         });
 

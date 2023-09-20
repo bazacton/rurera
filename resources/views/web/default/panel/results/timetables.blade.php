@@ -35,6 +35,11 @@ $rand_id = rand(99,9999);
         padding: 10px;
         border-radius: 10px;
         color: #fff !important;
+        display:inline-block !important;
+    }
+
+    .correct_answer{
+        display:inline-block !important;
     }
     .correct{
         background: #58bd5b;
@@ -95,6 +100,10 @@ $rand_id = rand(99,9999);
                             @php $is_correct = isset( $rowObj->is_correct )? $rowObj->is_correct : 'false';
                             $check_class = ($is_correct == 'true')? 'correct' : 'incorrect';
                             $check_label = ($is_correct == 'true')? 'Correct' : 'Wrong';
+                            $time_consumed = isset( $rowObj->time_consumed )? $rowObj->time_consumed : 0;
+                            if( $time_consumed > 0){
+                                $time_consumed = ($time_consumed / 10);
+                            }
                             @endphp
 
                             <div class="questions-block active">
@@ -106,8 +115,12 @@ $rand_id = rand(99,9999);
                                         <input type="text" readonly disabled data-from="5" data-type="x"
                                                data-table_no="5" data-to="10"
                                                class="editor-fields" id="editor-fields-0" value="{{$rowObj->answer}}">
+
                                         <div class="questions-controls">
-                                            <span class="{{$check_class}}">{{$check_label}}</span>
+                                            <span class="{{$check_class}}">{{$check_label}} {{$time_consumed}}s</span>
+                                            @if( $check_class == 'incorrect')
+                                                <span class="correct correct_answer">{{$rowObj->correct_answer}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </form>

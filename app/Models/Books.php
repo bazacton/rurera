@@ -98,7 +98,7 @@ class Books extends Model
 
     public function bookPageInfoLinks()
     {
-        return $this->hasMany('App\Models\BooksPagesInfoLinks', 'book_id', 'id');
+        return $this->hasMany('App\Models\BooksPagesInfoLinks', 'book_id', 'id')->orderBy('page_id');
     }
 
     public function bookUserActivities()

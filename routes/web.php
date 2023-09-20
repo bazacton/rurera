@@ -410,6 +410,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     });
 
+    Route::group(['prefix' => 'national-curriculum'] , function () {
+        Route::get('/' , 'NationalCurriculumController@index');
+    });
+
     Route::group(['prefix' => 'timestables'] , function () {
         Route::get('/' , 'TimestablesController@index');
         Route::get('/landing' , 'TimestablesController@landing');
