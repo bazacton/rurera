@@ -19353,7 +19353,7 @@ Lms FAQS Style Start
     position: relative;
     text-align: right;
 }
-.pages-sub-header.about-sub-header{min-height: 400px;}
+.pages-sub-header.about-sub-header{min-height: 400px; max-height: inherit;}
 .pages-sub-header .lms-wave-shape::before{display: none;}
 .about-sub-header{position: relative;}
 .about-sub-header .svg-container{
@@ -22186,6 +22186,8 @@ Lms Masonry Style End
 .fade-in-image {-webkit-animation: fadeIn 3s;animation: fadeIn 3s;}
 @-webkit-keyframes fadeIn {0% { opacity: 0; }100% { opacity: 1; }}
 @keyframes fadeIn {0% { opacity: 0; }100% { opacity: 1; }}
+.about-sub-header .choose-sats {display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.about-sub-header .choose-sats .sats-box {width: 11.666%;}
 /************************************
  Lms Feature page Style End
 *************************************/
@@ -22216,8 +22218,12 @@ Lms Masonry Style End
 .testimonials-fancy-bg .lms-text-holder b,.testimonials-fancy-bg .lms-text-holder small{font-size:1.8rem;color:#fff;line-height:40px;}
 .testimonials-fancy-bg .lms-text-holder b {margin-left: 7px;}
 .testimonials-fancy-bg .lms-text-holder p{color:#fff;font-size:1.125rem;line-height:32px;}
-.testimonials-fancy-bg .lms-text-holder .lms-btn-group .lms-btn{color:var(--primary);border:0;background:#fff;}
-.testimonials-fancy-bg .lms-text-holder .lms-btn-group .lms-btn .svg-icon svg{fill:var(--primary);font-size:20px;width:15px;height:15px;display:flex;margin-left:10px;}
+.testimonials-fancy-bg .lms-text-holder .lms-btn-group .lms-btn,
+.about-sub-header .lms-btn-group .lms-btn {color:var(--primary);border:0;background:#fff;}
+.testimonials-fancy-bg .lms-text-holder .lms-btn-group .lms-btn .svg-icon svg,
+.about-sub-header .lms-btn-group .lms-btn .svg-icon svg {fill:var(--primary);font-size:20px;width:15px;height:15px;display:flex;margin-left:10px;}
+.about-sub-header .lms-btn-group .lms-btn .svg-icon svg {fill: #fff;}
+.about-sub-header .lms-btn-group .lms-btn:hover {background-color: var(--primary) !important; color: #fff !important;}
 .testimonials-fancy-bg .lms-btn-group{justify-content: center;}
 body{overflow-x: hidden;}
 /************************************
@@ -22707,7 +22713,7 @@ div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #49505
 /*************************************
 Lms Responsive Style End
 *************************************/
-.text-scribble {display: inline-block; padding: 0.125rem; z-index: 1; position: relative;}
+.text-scribble {display: inline-block; padding: 0.125rem; z-index: 1; position: relative; line-height: normal;}
 .text-scribble:before {background-image: url(../../default/svgs/scribble.svg); background-repeat: no-repeat; background-size: contain; bottom: -55%; content: ""; display: block; height: 100%; left: 0; position: absolute; right: 0; width: 100%; z-index: -1;}
 
 /*************************************

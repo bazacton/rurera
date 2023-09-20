@@ -28,8 +28,11 @@ class NationalCurriculumController extends Controller
                         ->with('subCategories')
                         ->get();
 
-        $nationalCurriculum = NationalCurriculum::with('NationalCurriculumKeyStage', 'NationalCurriculumKeySubject')->paginate(50);
+        $nationalCurriculum = NationalCurriculum::with('NationalCurriculumKeyStage', 'NationalCurriculumKeySubject');
 
+        $nationalCurriculum = $this->filters($nationalCurriculum, $request);
+
+        $nationalCurriculum = $nationalCurriculum->paginate(50);
         $data = [
             'pageTitle' => 'National Curriculum',
             'categories' => $categories,
@@ -87,22 +90,16 @@ class NationalCurriculumController extends Controller
 
     private function filters($query, $request)
     {
-        $title = $request->get('title', null);
-        $status = $request->get('status', null);
-        $category_id = $request->get('category_id', '');
+        $key_stage = $request->get('key_stage', null);
+        $subject_id = $request->get('subject_id', null);
 
 
-        if (!empty($title)) {
-            $query->where('glossary.title', 'LIKE', "%{$title}%");
+        if (!empty($key_stage) && $key_stage > 0) {
+            $query->where('key_stage',$key_stage);
         }
 
-        if ($category_id != '') {
-            $query->where('glossary.category_id', $category_id);
-        }
-
-
-        if (!empty($status) and $status !== 'all') {
-            $query->where('glossary.status', strtolower($status));
+        if (!empty($subject_id) && $subject_id > 0) {
+            $query->where('subject_id',$subject_id);
         }
 
 
@@ -143,6 +140,7 @@ class NationalCurriculumController extends Controller
         }
 
         $national_curriculum_data = array();
+        $saved_items_ids = $saved_chapters_ids = $saved_topics_ids = array();
 
         if( !empty( $national_curriculum_title_array )){
             foreach( $national_curriculum_title_array as $title_key => $national_curriculum_title){
@@ -170,6 +168,7 @@ class NationalCurriculumController extends Controller
                                 'created_at'             => time(),
                             ]);
                         }
+                        $saved_items_ids[] = $nationalCurriculumItem->id;
 
                         if( !empty( $chapters_array ) ){
                             $chapter_sort_key = 0;
@@ -194,6 +193,7 @@ class NationalCurriculumController extends Controller
                                        'created_at' => time(),
                                    ]);
                                }
+                                $saved_chapters_ids[] = $nationalCurriculumChapter->id;
 
 
                                 if( !empty( $topics_array) ){
@@ -220,6 +220,7 @@ class NationalCurriculumController extends Controller
                                                    'created_at' => time(),
                                                ]);
                                            }
+                                           $saved_topics_ids[] = $nationalCurriculumTopic->id;
                                     }
                                 }
                                 $chapter_sort_key++;
@@ -229,6 +230,11 @@ class NationalCurriculumController extends Controller
                     }
                 }
             }
+        }
+        if ($id != '' && $id > 0) {
+            NationalCurriculumItems::where('national_curriculum_id', $id)->whereNotIn('id', $saved_items_ids)->delete();
+            NationalCurriculumChapters::where('national_curriculum_id', $id)->whereNotIn('id', $saved_chapters_ids)->delete();
+            NationalCurriculumTopics::where('national_curriculum_id', $id)->whereNotIn('id', $saved_topics_ids)->delete();
         }
 
         return redirect()->route('adminEditNationalCurriculum', ['id' => $nationalCurriculum->id]);
@@ -328,8 +334,8 @@ class NationalCurriculumController extends Controller
                                 </svg>
                             </button>
 
-                            <a href="/admin/chapters/<?php echo $data_id; ?>/delete"
-                               class="delete-action btn btn-sm btn-transparent text-gray">
+                            <a href="javascript:;"
+                               class="delete-parent-li btn btn-sm btn-transparent text-gray">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                      stroke-width="2" stroke-linecap="round"
@@ -432,6 +438,20 @@ class NationalCurriculumController extends Controller
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                     </button>
+                    
+                    <a href="javascript:;"
+                       class="delete-parent-li btn btn-sm btn-transparent text-gray">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="feather feather-trash-2 mr-10 cursor-pointer">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                    </a>
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24" height="20" viewBox="0 0 24 24"
@@ -520,6 +540,20 @@ class NationalCurriculumController extends Controller
 
                 <div class="d-flex align-items-center">
 
+                    <a href="javascript:;"
+                        class="delete-parent-li btn btn-sm btn-transparent text-gray">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="feather feather-trash-2 mr-10 cursor-pointer">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                    </a>
+
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="24" height="20" viewBox="0 0 24 24"
                          fill="none" stroke="currentColor"
@@ -572,76 +606,6 @@ class NationalCurriculumController extends Controller
                                         <select name="national_curriculum_chapter_topics[<?php echo $data_id; ?>][<?php echo $item_id; ?>][<?php echo $chapter_id; ?>][topics][]" id="topic_ids<?php echo $chapter_id; ?>" multiple="multiple" data-search-option="topic_ids"
                                                 class="form-control search-topics-select2" data-placeholder="Search Topic"></select>
                                     </div>
-
-
-                                    <ul style="display:none;" class="draggable-content-lists curriculum-topics-ul" data-order-table="webinar_chapter_items">
-
-                                    	<li class="accordion-row bg-white rounded-sm border border-gray300 mt-20 py-15 py-lg-30 px-10 px-lg-20">
-
-                                    		<div class="d-flex align-items-center justify-content-between " role="tab" id="quiz_38110">
-                                    			<div class="d-flex align-items-center">
-                                    				<span class="font-weight-bold text-dark-blue d-block cursor-pointer">Place value names up to millions</span>
-                                    			</div>
-
-                                    			<div class="d-flex align-items-center">
-
-                                    				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-move move-icon mr-10 cursor-pointer ui-sortable-handle">
-                                    					<polyline points="5 9 2 12 5 15"></polyline>
-                                    					<polyline points="9 5 12 2 15 5"></polyline>
-                                    					<polyline points="15 19 12 22 9 19"></polyline>
-                                    					<polyline points="19 9 22 12 19 15"></polyline>
-                                    					<line x1="2" y1="12" x2="22" y2="12"></line>
-                                    					<line x1="12" y1="2" x2="12" y2="22"></line>
-                                    				</svg>
-                                    			</div>
-                                    		</div>
-                                    	</li>
-                                        
-                                        <li class="accordion-row bg-white rounded-sm border border-gray300 mt-20 py-15 py-lg-30 px-10 px-lg-20">
-                                        
-                                            <div class="d-flex align-items-center justify-content-between " role="tab" id="quiz_38110">
-                                                <div class="d-flex align-items-center">
-
-                                                    <span class="font-weight-bold text-dark-blue d-block cursor-pointer">Value of a digit</span>
-                                                </div>
-
-                                                <div class="d-flex align-items-center">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-move move-icon mr-10 cursor-pointer ui-sortable-handle">
-                                                        <polyline points="5 9 2 12 5 15"></polyline>
-                                                        <polyline points="9 5 12 2 15 5"></polyline>
-                                                        <polyline points="15 19 12 22 9 19"></polyline>
-                                                        <polyline points="19 9 22 12 19 15"></polyline>
-                                                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                                                        <line x1="12" y1="2" x2="12" y2="22"></line>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                        <li class="accordion-row bg-white rounded-sm border border-gray300 mt-20 py-15 py-lg-30 px-10 px-lg-20">
-
-                                            <div class="d-flex align-items-center justify-content-between " role="tab" id="quiz_38110">
-                                                <div class="d-flex align-items-center">
-
-                                                    <span class="font-weight-bold text-dark-blue d-block cursor-pointer">Convert between place values</span>
-                                                </div>
-
-                                                <div class="d-flex align-items-center">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-move move-icon mr-10 cursor-pointer ui-sortable-handle">
-                                                        <polyline points="5 9 2 12 5 15"></polyline>
-                                                        <polyline points="9 5 12 2 15 5"></polyline>
-                                                        <polyline points="15 19 12 22 9 19"></polyline>
-                                                        <polyline points="19 9 22 12 19 15"></polyline>
-                                                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                                                        <line x1="12" y1="2" x2="12" y2="22"></line>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </li>
-
-                                    </ul>
 
                                 </div>
                             </div>

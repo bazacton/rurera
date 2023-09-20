@@ -18,6 +18,50 @@
 
     <div class="section-body">
 
+        <section class="card">
+            <div class="card-body">
+                <form action="/admin/national_curriculum" method="get" class="row mb-0">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="input-label">Year</label>
+                            <select name="key_stage" data-plugin-selectTwo
+                                    class="category-id-field form-control populate ajax-category-courses">
+                                <option value="">{{trans('admin/main.all_categories')}}</option>
+                                @foreach($categories as $category)
+                                @if(!empty($category->subCategories) and count($category->subCategories))
+                                <optgroup label="{{  $category->title }}">
+                                    @foreach($category->subCategories as $subCategory)
+                                    <option value="{{ $subCategory->id }}" @if(request()->get('key_stage') ==
+                                        $subCategory->id) selected="selected" @endif>{{ $subCategory->title }}
+                                    </option>
+                                    @endforeach
+                                </optgroup>
+                                @else
+                                <option value="{{ $category->id }}" @if(request()->get('key_stage') == $category->id)
+                                    selected="selected" @endif>{{ $category->title }}
+                                </option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category_subjects_list">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-end">
+                        <button type="submit" class="btn btn-primary w-100">{{ trans('admin/main.show_results') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
 
         <div class="row">
             <div class="col-12 col-md-12">
@@ -44,15 +88,25 @@
                                     <td>
                                         <span>{{ $nationalCurriculumData->id }}</span>
                                     </td>
-                                    <td class="text-left">{{ $nationalCurriculumData->NationalCurriculumKeyStage->getTitleAttribute() }}</td>
-                                    <td class="text-left">{{ $nationalCurriculumData->NationalCurriculumKeySubject->getTitleAttribute() }}</td>
-                                    <td class="text-left">{{ dateTimeFormat($nationalCurriculumData->created_at, 'j M y | H:i') }}</td>
+                                    <td class="text-left">{{
+                                        $nationalCurriculumData->NationalCurriculumKeyStage->getTitleAttribute() }}
+                                    </td>
+                                    <td class="text-left">{{
+                                        $nationalCurriculumData->NationalCurriculumKeySubject->getTitleAttribute() }}
+                                    </td>
+                                    <td class="text-left">{{ dateTimeFormat($nationalCurriculumData->created_at, 'j M y
+                                        | H:i') }}
+                                    </td>
                                     <td>
-                                        <a href="/admin/national_curriculum/{{ $nationalCurriculumData->id }}/edit" class="btn-transparent btn-sm text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">
+                                        <a href="/admin/national_curriculum/{{ $nationalCurriculumData->id }}/edit"
+                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
+                                           data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        @include('admin.includes.delete_button',['url' => '/admin/national_curriculum/'.$nationalCurriculumData->id.'/delete' , 'btnClass' => 'btn-sm'])
+                                        @include('admin.includes.delete_button',['url' =>
+                                        '/admin/national_curriculum/'.$nationalCurriculumData->id.'/delete' , 'btnClass'
+                                        => 'btn-sm'])
                                     </td>
 
                                 </tr>
@@ -73,5 +127,22 @@
 @endsection
 
 @push('scripts_bottom')
+<script type="text/javascript">
+    $('body').on('change', '.category-id-field', function (e) {
+        var category_id = $(this).val();
+        var subject_id = $(this).attr('data-subject_id');
+        $.ajax({
+            type: "GET",
+            url: '/admin/national_curriculum/subjects_by_category',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {'category_id': category_id, 'subject_id': subject_id},
+            success: function (response) {
+                $(".category_subjects_list").html(response);
+            }
+        });
 
+    });
+</script>
 @endpush

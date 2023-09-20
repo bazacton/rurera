@@ -175,8 +175,16 @@
                 </li>
             @endcan()
 
-            @can('admin_bundles')
+            @can('admin_questions_bank')
+                <li class="{{ (request()->is('admin/national_curriculum')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/national_curriculum') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>National Curriculum</span>
+                    </a>
+                </li>
+            @endcan()
 
+            @can('admin_bundles')
                 <li class="{{ (request()->is('admin/questions_bank/create_sections_auto')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank/create_sections_auto') }}" class="nav-link">
                         <i class="fas fa-pen"></i>
