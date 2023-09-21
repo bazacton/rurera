@@ -285,7 +285,7 @@
                 </div>
             </div>
         </section>
-        <section class="my-50 lms-blog lms-blog-grid mx-w-100 mt-30 mb-60 pt-50">
+        <section class="my-50 lms-blog mx-w-100 mt-30 mb-60 pt-50">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -296,72 +296,86 @@
                     </div>
                     <div class="col-12 col-lg-12">
                         <div class="row">
-                            <div class="col-12 col-md-4 col-lg-4">
-                                <div class="mb-40">
-                                    <div class="blog-grid-card pb-0">
-                                        <div class="blog-grid-detail pr-0">
-                                            <div class="blog-grid-image">
-                                                <img
-                                                    src="../assets/default/img/blog-img1.jpg"
-                                                    width="100%"
-                                                    height="auto"
-                                                    class="img-cover"
-                                                    loading="eager"
-                                                    alt="Empathy and Education: Cultivating Emotional Intelligence in KS1 and KS2"
-                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
-                                                />
-                                            </div>
-                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
-                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Access to a Wide Range of Resources:</h3>
-                                            </a>
-                                            <div itemprop="description" class="mt-15 blog-grid-desc">Resources are available anytime and anywhere, allowing learners to study at their own pace and revisit materials as needed.</div>
-                                        </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
+                                    <div class="blog-grid-detail">
+                                        <span class="badge created-at d-flex align-items-center">
+                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
+                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
+                                        </span>
+                                        <h2 class="blog-grid-title mt-10" itemprop="title">
+                                            <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">How Online Courses Benefit KS1 and KS2 Students</a>
+                                        </h2>
+                                        <div class="mt-10 blog-grid-desc" itemprop="description">In today's digital era, offering unique benefits and...</div>
+                                        <ul class="blog-tags">
+                                            <li itemprop="name">Learning</li>
+                                            <li itemprop="name">Online learning</li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog-grid-image">
+                                        <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="auto" itemprop="image" loading="eager">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 col-lg-4">
-                                <div class="mb-40">
-                                    <div class="blog-grid-card pb-0">
-                                        <div class="blog-grid-detail pr-0">
-                                            <div class="blog-grid-image">
-                                                <img
-                                                    src="../assets/default/img/blog-img2.jpg"
-                                                    width="100%"
-                                                    height="auto"
-                                                    loading="eager"
-                                                    class="img-cover"
-                                                    alt="Transformative Technologies: Enhancing Teaching and Learning in KS1 and KS2"
-                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
-                                                />
-                                            </div>
-                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
-                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Personalized Learning Experience</h3>
-                                            </a>
-                                            <div itemprop="description" class="mt-15 blog-grid-desc">Through assessments and data analysis, rurera can identify areas of strength and weakness, and provide customized content.</div>
-                                        </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
+                                    <div class="blog-grid-detail">
+                                        <span class="badge created-at d-flex align-items-center">
+                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
+                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
+                                        </span>
+                                        <h2 class="blog-grid-title mt-10" itemprop="title">
+                                            <a itemprop="url" href="/blog/Preparing-for-Success-Online-Courses-for-Year-5-Students">Online Courses for Year 5 Students</a>
+                                        </h2>
+                                        <div class="mt-10 blog-grid-desc" itemprop="description">Online courses are becoming increasingly. students have had...</div>
+                                        <ul class="blog-tags">
+                                            <li itemprop="name">Preparing for Success</li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog-grid-image">
+                                        <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="auto" itemprop="image" loading="eager">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 col-lg-4">
-                                <div class="mb-40">
-                                    <div class="blog-grid-card pb-0">
-                                        <div class="blog-grid-detail pr-0">
-                                            <div class="blog-grid-image">
-                                                <img
-                                                    src="../assets/default/img/blog-img3.jpg"
-                                                    width="100%"
-                                                    height="auto"
-                                                    loading="eager"
-                                                    class="img-cover"
-                                                    alt="Preparing for Success: Online Courses for Year 5 Students"
-                                                    title="Cultivating Emotional Intelligence in KS1 and KS2"
-                                                />
-                                            </div>
-                                            <a itemprop="url" href="/blog/Empathy-and-Education-Cultivating-Emotional-Intelligence-in-KS1-and-KS2">
-                                                <h3 itemprop="title" class="blog-grid-title mt-20 text-dark-charcoal">Mentoring and support with all courses</h3>
-                                            </a>
-                                            <div itemprop="description" class="mt-15 blog-grid-desc">Learners can expect training and support from instructor, who may provide live lectures, answer questions, facilitate discussions.</div>
-                                        </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
+                                    <div class="blog-grid-detail">
+                                        <span class="badge created-at d-flex align-items-center">
+                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
+                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">13 Jun 2023</span>
+                                        </span>
+                                        <h2 class="blog-grid-title mt-10" itemprop="title">
+                                            <a itemprop="url" href="/blog/Engaging-Students-through-Interactive-Technologies">Engaging Students through Interactive Technologies</a>
+                                        </h2>
+                                        <div class="mt-10 blog-grid-desc" itemprop="description">In recent years, the field of education has witnessed a significant transformation...</div>
+                                        <ul class="blog-tags">
+                                            <li itemprop="name">Engaging</li>
+                                            <li itemprop="name">Interactive</li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog-grid-image">
+                                        <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="auto" itemprop="image" loading="eager">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="blog-grid-card rurera-grid" itemscope="" itemtype="https://schema.org/NewsArticle">
+                                    <div class="blog-grid-detail">
+                                        <span class="badge created-at d-flex align-items-center">
+                                        <i data-feather="calendar" width="20" height="20" class="mr-5"></i>
+                                        <span itemprop="datePublished" content="2023-04-05T08:00:00+08:00">28 Apr 2023</span>
+                                        </span>
+                                        <h2 class="blog-grid-title mt-10" itemprop="title">
+                                            <a itemprop="url" href="/blog/INTERACTIVE-LEARNING-MADE-FUN-ENGAGING-QUIZ-FORMATS-FOR-KS1-AND-KS2">Engaging Quiz Formats For Ks1 And Ks2</a>
+                                        </h2>
+                                        <div class="mt-10 blog-grid-desc" itemprop="description">Learning doesn't have to be boring. In fact, it should be fun and engaging...</div>
+                                        <ul class="blog-tags">
+                                            <li itemprop="name">Student</li>
+                                            <li itemprop="name">Lifelong Learning</li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog-grid-image">
+                                        <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" title="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" width="100%" height="auto" itemprop="image" loading="eager">
                                     </div>
                                 </div>
                             </div>

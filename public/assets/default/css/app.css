@@ -14765,7 +14765,7 @@ p {
 .stats-container .stats-item:hover .stat-desc,
 .stats-container .stats-item:hover .stat-number,
 .stats-container .stats-item:hover .stat-title {color: #fff; transition: all .5s ease}
-.stats-container .stats-item.green:hover{background-color: #13ad68;}
+.stats-container .stats-item.green:hover{background-color: #f6b801;}
 .stats-container .stats-item.simple .stat-icon-box {background-image: none; padding: 0; margin-bottom: 6px;}
 .stats-container .stats-item.simple .stat-icon-box img {height: 70px;width: 60px; filter: invert(26%) sepia(90%) saturate(1600%) hue-rotate(181deg) brightness(96%) contrast(98%);}
 .stats-container .stats-item.simple:hover .stat-icon-box img {filter: invert(100%) sepia(0%) saturate(2%) hue-rotate(283deg) brightness(107%) contrast(100%);}
@@ -19115,6 +19115,10 @@ Lms Blog Grid Card Style Start
 .blog-newsletter .svg-holder path#Fill-64 {fill: none; stroke: none;}
 .blog-newsletter.svg-holder svg {width: 580px;height: 380px;}
 .blog-newsletter .svg-holder {text-align: right; margin-top: -14px;}
+.blog-grid-card.rurera-grid {flex-direction: column-reverse; border: 0; padding: 0;}
+.blog-grid-card.rurera-grid .blog-grid-detail~.blog-grid-image {width: 100%;}
+.blog-grid-card.rurera-grid .blog-grid-detail {padding: 20px 0 0 0;}
+.blog-grid-card.rurera-grid .blog-tags {margin-top: 8px;}
 /*********************************************
 Lms Search Top Banner Style Start
 **********************************************/
@@ -19795,12 +19799,12 @@ Lms Setup Progress Style Start
 .lms-subscription-step .step-name {color: #fff;}
 .lms-setup-progress .step-name {margin-left: 12px; font-size: 19px;}
 .lms-setup-progress .separator {flex: 1 0 28px; margin-left: 12px; margin-right: 12px; height: 1px; background-color: #ddd;}
-.lms-account-setup .step-number {border: 2px solid #fff; color: #fdb532;}
+.lms-account-setup .step-number {border: 1px solid #fff; color: #fdb532;}
 .lms-confirmation-step .step-number {border: 2px solid #1eb7bd; color: #1eb7bd;}
 .lms-account-setup .step-name {color: #fff;}
 .lms-confirmation-step .step-name {color: #fff;}
 @media (min-width: 975px) {
-    .lms-setup-progress {margin-left: auto; margin-right: auto; width: 780px;}
+    .lms-setup-progress {margin-left: auto; margin-right: auto; width: 810px;}
 }
 /**********************************
 Lms Setup Progress Style End
@@ -21674,12 +21678,12 @@ Lms Performace Table Style Start
 .leaderboard-tab .nav-tabs {border-bottom: 0;justify-content: end;}
 .lms-performace-head.leaderboard-title h2, .lms-performace-head.leaderboard-title h5{color: #878787; font-weight: 500;}
 .leaderboard-tab .nav-tabs .nav-link{border:0;border-radius: 0;background: transparent;border-bottom: 2px solid transparent;padding:0; font-size: 14px;color: #878787;}
-.leaderboard-tab .nav-tabs .nav-link.active {background: transparent;border-color: #13ad68;color:#13ad68;}
+.leaderboard-tab .nav-tabs .nav-link.active {background: transparent;border-color: var(--primary);color:var(--primary);}
 .leaderboard-tab .nav-tabs .nav-item{margin:0 0 10px 20px;}
-.leaderboard-tab .nav-tabs .nav-link:hover {color:#13ad68;}
-.leaderboard-sub-header .btn-primary{ background-color: #13ad68;border-color: #13ad68;}
-.leaderboard-sub-header .btn-outline-primary {color: #13ad68;border-color:#13ad68;}
-.leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: #13ad68;}
+.leaderboard-tab .nav-tabs .nav-link:hover {color:var(--primary);}
+.leaderboard-sub-header .btn-primary{ background-color: var(--primary);border-color: var(--primary); box-shadow: none;}
+.leaderboard-sub-header .btn-outline-primary {color: var(--primary);border-color:var(--primary);}
+.leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: var(--primary);}
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -22222,8 +22226,6 @@ Lms Masonry Style End
 .about-sub-header .lms-btn-group .lms-btn {color:var(--primary);border:0;background:#fff;}
 .testimonials-fancy-bg .lms-text-holder .lms-btn-group .lms-btn .svg-icon svg,
 .about-sub-header .lms-btn-group .lms-btn .svg-icon svg {fill:var(--primary);font-size:20px;width:15px;height:15px;display:flex;margin-left:10px;}
-.about-sub-header .lms-btn-group .lms-btn .svg-icon svg {fill: #fff;}
-.about-sub-header .lms-btn-group .lms-btn:hover {background-color: var(--primary) !important; color: #fff !important;}
 .testimonials-fancy-bg .lms-btn-group{justify-content: center;}
 body{overflow-x: hidden;}
 /************************************

@@ -58,7 +58,7 @@ Access to the rewards with 3 simple steps</p>
                         <li itemprop="member" class="separator"></li>
                         <li itemprop="member" class="lms-confirmation-step d-flex align-items-center">
                             <span itemprop="number" class="step-number d-flex align-items-center">3</span>
-                            <span itemprop="welcome" class="step-name">Exchange Coins to buy toys</span>
+                            <span itemprop="welcome" class="step-name">Exchange Coin Points to buy toys</span>
                         </li>
                     </ul>
                     </div>
@@ -193,20 +193,21 @@ Access to the rewards with 3 simple steps</p>
 
         </section>
     </div>
-    <section class="lms-newsletter py-70 mt-80" style="background:url(assets/default/svgs/bank-note-white.svg) #f6b801;">
+    <section class="lms-column-section lms-text-section py-70 mx-w-100 mt-80" style="background:url(assets/default/svgs/bank-note-white.svg) #f6b801;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="newsletter-inner">
-                        <div class="row">
-                            <div class="col-12 col-lg-6 col-md-6 mb-20">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Subscribe our
-                                    newsletter</h2>
-                                <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses
-                                    delivered through Rurera, and gear up your people for success at work</p>
+                    <div class="lms-text-holder">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-8 col-md-8">
+                                <h2 itemprop="title" class="mb-20 text-white font-40">Ready to start learning?</h2>
+                                <p itemprop="description" class="mb-0 text-white">Discover a growing collection of resources
+                                    delivered through Rurera.</p>
                             </div>
-                            <div class="col-12 col-lg-6 col-md-6"><label class="mb-10 text-white">Your E-mail Address</label>
-                                <div class="form-field position-relative"><input type="text" placeholder="Enter Your E-mail"><button type="submit">Subscribe</button></div>
+                            <div class="col-12 col-lg-4 col-md-4">
+                                <div class="lms-btn-group">
+                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
+                                </div>
                             </div>
                         </div>
                     </div>

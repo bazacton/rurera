@@ -37,8 +37,19 @@ class ChapterController extends Controller
                 }
             }
 
+            $challenge_quiz = isset( $chapter->challenge_quiz )? json_decode($chapter->challenge_quiz) : array();
+
+            $challenge_quiz_layout = '';
+            if( !empty( $challenge_quiz ) ){
+                foreach( $challenge_quiz as $quiz_id){
+                    $quizObj = Quiz::find($quiz_id);
+                    $challenge_quiz_layout .= '<option value="'.$quiz_id.'" selected="selected">'.$quizObj->getTitleAttribute().'</option>';
+                }
+            }
+
             $data = [
-                'chapter' => $chapter
+                'chapter' => $chapter,
+                'challenge_quiz_layout' => $challenge_quiz_layout
             ];
 
             return response()->json($data, 200);
@@ -210,6 +221,11 @@ class ChapterController extends Controller
                 $chapter->update([
                     'check_all_contents_pass' => (!empty($data['check_all_contents_pass']) and $data['check_all_contents_pass'] == 'on'),
                     'status' => $status,
+                    'challenge_title' => isset( $data['challenge_title'] )? $data['challenge_title'] : '',
+                    'challenge_quiz' => isset( $data['challenge_quiz'] )? json_encode($data['challenge_quiz']) : '',
+                    'challenge_image' => isset( $data['challenge_image'] )? $data['challenge_image'] : '',
+                    'challenge_background_color' => isset( $data['challenge_background_color'] )? $data['challenge_background_color'] : '',
+                    'challenge_border_color' => isset( $data['challenge_border_color'] )? $data['challenge_border_color'] : '',
                 ]);
 
                 if (!empty($chapter)) {

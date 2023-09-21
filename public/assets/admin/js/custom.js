@@ -280,6 +280,7 @@
         }
     };
 
+
     window.handleTopicsMultiSelect2 = function (className, path, itemColumn, select_data) {
             const $el = $('.' + className);
 
@@ -314,6 +315,41 @@
                 });
             }
         };
+
+    window.handleQuizMultiSelect2 = function (className, path, itemColumn, select_data) {
+        const $el = $('.' + className);
+
+        if ($el.length) {
+            $el.select2({
+                placeholder: $el.attr('data-placeholder'),
+                minimumInputLength: 3,
+                //allowClear: true,
+                data: select_data,
+                ajax: {
+                    url: path,
+                    dataType: 'json',
+                    type: "POST",
+                    quietMillis: 50,
+                    data: function (params) {
+                        return {
+                            term: params.term,
+                            option: $el.attr('data-search-option'),
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {
+                                    text: item['name'],
+                                    id: item.quiz_id
+                                };
+                            })
+                        };
+                    }
+                }
+            });
+        }
+    };
 
     function questions_list_populate(data) {
         var html_response = '';

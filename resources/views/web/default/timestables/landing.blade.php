@@ -38,8 +38,8 @@
                             <div class="icon-box">
                                 <span class="icon-holder" style="background-color: #f35b05;"> <img src="../assets/default/svgs/student-user-white.svg" alt="" /> </span>
                                 <div class="text-holder">
-                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">Interactive Online Games</strong>
-                                    <p class="text-white">Offering interactive games specifically designed for learning times tables and division.</p>
+                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">Interactive Challenges</strong>
+                                    <p class="text-white">Offering interactive challenges specifically designed for earning bonus points.</p>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,9 @@
                                 <span class="icon-svg mr-15 mt-5"> <img src="../assets/default/svgs/bulb-white.svg" alt="#" /> </span> Boost Your Child's Multiplication and Division Skills with a Splash of Fun!
                             </h4>
                         </div>
-                        <div class="lms-btn-group justify-content-center"><a href="https://rurera.chimpstudio.co.uk/national-curriculum" class="lms-btn rounded-pill text-white border-white">Find more</a></div>
+                        <div class="lms-btn-group justify-content-center">
+                            <a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Find more</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -175,19 +177,20 @@
             </div>
         </div>
     </section>
-    <section class="lms-newsletter py-70 mt-15 mb-50" style="background: url(assets/default/svgs/bank-note.svg) #f27530;">
+    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(../assets/default/svgs/bank-note-white-thin.svg) #f18700;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="newsletter-inner">
-                        <div class="row">
-                            <div class="col-12 col-lg-6 col-md-6 mb-20">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Subscribe our newsletter</h2>
-                                <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses delivered through Rurera, and gear up your people for success at work</p>
+                    <div class="lms-text-holder">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-8 col-md-8">
+                                <h2 itemprop="title" class="mb-20 text-white font-40">Get Started</h2>
+                                <p itemprop="description" class="mb-0 text-white">Want to practice your TimesTables now ?</p>
                             </div>
-                            <div class="col-12 col-lg-6 col-md-6">
-                                <label class="mb-10 text-white">Your E-mail Address</label>
-                                <div class="form-field position-relative"><input type="text" placeholder="Enter Your E-mail" /><button type="submit">Subscribe</button></div>
+                            <div class="col-12 col-lg-4 col-md-4">
+                                <div class="lms-btn-group">
+                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera today</a>
+                                </div>
                             </div>
                         </div>
                     </div>

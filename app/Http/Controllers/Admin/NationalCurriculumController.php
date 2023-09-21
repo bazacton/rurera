@@ -316,7 +316,7 @@ class NationalCurriculumController extends Controller
                                 </span>
                             <div class="">
                                 <span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input name="national_curriculum_title[<?php echo $data_id; ?>]" type="text"
-                                                                                                            value="Numbers"
+                                                                                                            value="Title"
                                                                                                             class="no-border"></span>
                             </div>
                         </div>
@@ -422,7 +422,7 @@ class NationalCurriculumController extends Controller
                      aria-expanded="true">
 
                     <span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input name="national_curriculum_item_title[<?php echo $data_id; ?>][items][<?php echo $item_id; ?>]" type="text" size="100"
-                                                                                                value="Number And Place Value"
+                                                                                                value="Subtitle"
                                                                                                 class="no-border"></span>
                 </div>
 
@@ -535,7 +535,7 @@ class NationalCurriculumController extends Controller
                      role="button" data-toggle="collapse"
                      aria-expanded="true">
 
-                    <span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input name="national_curriculum_chapter_title[<?php echo $data_id; ?>][<?php echo $item_id; ?>][chapters][<?php echo $chapter_id; ?>]" type="text" size="150" value="Read, Write, order and compare numbers to at least 1 000 000 and determine the value of each digit" class="no-border"></span>
+                    <span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input name="national_curriculum_chapter_title[<?php echo $data_id; ?>][<?php echo $item_id; ?>][chapters][<?php echo $chapter_id; ?>]" type="text" size="150" value="Details" class="no-border"></span>
                 </div>
 
                 <div class="d-flex align-items-center">

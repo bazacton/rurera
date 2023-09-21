@@ -184,6 +184,15 @@
                 </li>
             @endcan()
 
+            @can('admin_questions_bank')
+                <li class="{{ (request()->is('admin/weekly_planner')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/weekly_planner') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Weekly Planner</span>
+                    </a>
+                </li>
+            @endcan()
+
             @can('admin_bundles')
                 <li class="{{ (request()->is('admin/questions_bank/create_sections_auto')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank/create_sections_auto') }}" class="nav-link">

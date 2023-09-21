@@ -34,6 +34,70 @@
                 <span class="invalid-feedback"></span>
             </div>
 
+            <div class="form-group">
+               <label class="input-label">Challenge Title</label>
+               <input type="text" name="ajax[chapter][challenge_title]" class="form-control js-ajax-challenge_title" value=""/>
+               <span class="invalid-feedback"></span>
+           </div>
+
+            <div class="form-group">
+               <label class="input-label">Challenge Quiz</label>
+
+                <select name="ajax[chapter][challenge_quiz]"
+                        multiple="multiple"
+                        data-search-option="name"
+                        class="form-control search-quiz-field-select2 js-ajax-challenge_quiz"
+                        data-placeholder="Search Quiz">
+                </select>
+
+               <span class="invalid-feedback"></span>
+           </div>
+
+
+            <div class="form-group">
+                <label class="input-label">Challenge Image</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="button" class="input-group-text admin-file-manager" data-input="challenge_image_record"
+                                data-preview="holder">
+                            <i class="fa fa-upload"></i>
+                        </button>
+                    </div>
+                    <input type="text" name="ajax[chapter][challenge_image]"
+                           id="challenge_image_record"
+                           class="form-control js-ajax-challenge_image"/>
+                    <div class="input-group-append">
+                        <button type="button" class="input-group-text admin-file-view" data-input="challenge_image_record">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Challenge Background Color</label>
+                <div class="input-group colorpickerinput">
+                    <input type="text" name="ajax[chapter][challenge_background_color]" class="form-control js-ajax-challenge_background_color">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Challenge border Color</label>
+                <div class="input-group colorpickerinput">
+                    <input type="text" name="ajax[chapter][challenge_border_color]" class="form-control js-ajax-challenge_border_color">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group mt-2 d-flex align-items-center justify-content-between js-switch-parent">
                 <label class="js-switch cursor-pointer" for="chapterStatus_record">{{ trans('public.active') }}</label>
 

@@ -20,21 +20,21 @@
                                 <div class="sats-box justify-content: center">
                                     <span class="mb-10" style="color: #3d358b;">Practice papers</span>
                                     <p>Available for ks1, ks2, sats, 11 plus and much more.</p>
-                                    <a href="#">Learn more</a>
+                                    <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
                                     <span class="mb-10" style="color: #f18700;">Interactive questions</span>
                                     <p>Over 5000+ questions are there to test and pass exam.</p>
-                                    <a href="#">Learn more</a>
+                                    <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
                                     <span class="mb-10" style="color: #7679ee;">Strong Foundation</span>
                                     <p>Fostering a strong impact in every aspect of your Child's life.</p>
-                                    <a href="#">Learn more</a>
+                                    <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
                                 </div>
                             </div>
                         </div>
@@ -92,135 +92,135 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20" class="mb-20">
-                            <a href="#"><img src="../assets/default/img/ks1-year1-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/ks1-year1-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS1 (Year 1)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS1 (Year 1)</a></h4>
                         <p>Students can take quiz to test their knowledge of Geography, science, history, religious and art.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/ks1-year2-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/ks1-year2-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS1 (Year 2)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS1 (Year 2)</a></h4>
                         <p>Find out everything required to test science, history, religious education and art subjects.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/ks1-year3-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/ks1-year3-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 3)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS2 (Year 3)</a></h4>
                         <p>Explore our wide range of resources for Maths, english, science, history, religious and art.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/ks1-year4-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/ks1-year4-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 4)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS2 (Year 4)</a></h4>
                         <p>Get an awesome chance to test science, history, religious education and art subjects via quizzes.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/export-x5.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/export-x5.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 5)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS2 (Year 5)</a></h4>
                         <p>Explore our wide range of resources for Computing, maths, english, science, history, religious and art.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/ks1-year6-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/ks1-year6-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">KS2 (Year 6)</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">KS2 (Year 6)</a></h4>
                         <p>Find out wide range of resources for to Maths, science, history, religious education and art quizzes.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/sats-home-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/sats-home-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">SATs</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">SATs</a></h4>
                         <p>It provide opportunity to practice online as per past curriculum exams from past papers.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/11-plus-home-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/11-plus-home-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">11+ Exam</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">11+ Exam</a></h4>
                         <p>Rurera provide opportunity to practice 11+ exams online as per defined criteria set.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/book-shelf-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/book-shelf-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Advanced ebook shelf</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Advanced ebook shelf</a></h4>
                         <p>It offers reading progress, like percentage of the book read or estimated time remaining.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/timetables-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/timetables-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Timestables Revision </a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Timestables Revision </a></h4>
                         <p>Offering interactive games specifically designed for learning times tables and division.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/national-curriculum.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/national-curriculum.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">National Curriculum</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">National Curriculum</a></h4>
                         <p>It offer national curriculum and a wide range of resources, including books and assessments.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/leader-board-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/leader-board-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Leaderboard</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Leaderboard</a></h4>
                         <p>Recognizing Outstanding Performance and Achievement where Success Takes Center Stage.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/performance-mintering-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/performance-mintering-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Performance Monitoring</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Performance Monitoring</a></h4>
                         <p>It provides an easy overview of performance trends who may need additional support or recognition.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/rewards-features.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/rewards-features.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Rewards</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Rewards</a></h4>
                         <p>Start practicing quizes , SATs, 11+ and read books to earn coins and later redeem to toys.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="#"><img src="../assets/default/img/membership-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest"><img src="../assets/default/img/membership-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="#" class="text-dark-charcoal">Memberships</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="text-dark-charcoal">Memberships</a></h4>
                         <p>It offers flexible and easy to use packages options for students, parents and teachers.</p>
                     </div>
                 </div>
@@ -279,9 +279,12 @@
             </div>
             <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
                 <div>
-                    <h2 class="font-36 font-weight-bold text-dark">Win Coins Points</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">Win Coin Points</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
-                    <div class="mt-35 d-flex align-items-center"> <a href="https://rurera.chimpstudio.co.uk/rewards" class="btn btn-primary">Rewards</a> <a href="https://rurera.chimpstudio.co.uk/products" class="btn btn-outline-primary ml-15">Points Club</a> </div>
+                    <div class="mt-35 d-flex align-items-center"> 
+                        <a href="https://rurera.chimpstudio.co.uk/rewards" class="btn btn-primary">Rewards</a> 
+                        <a href="https://rurera.chimpstudio.co.uk/products" class="btn btn-outline-primary ml-15">Rewards Store</a> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -346,7 +349,7 @@
                                 <p itemprop="description" class="mb-0 text-white"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">
-                                <div class="form-field position-relative text-right"> <button class="rounded bg-white"> <a href="https://rurera.chimpstudio.co.uk/sats" style="color:var(--gray-dark);">Signup</a> </button> </div>
+                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="https://rurera.chimpstudio.co.uk/sats" style="color:var(--gray-dark);">Signup</a> </button> </div>
                             </div>
                         </div>
                     </div>

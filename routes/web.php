@@ -415,6 +415,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/curriculum_by_subject' , 'NationalCurriculumController@curriculum_by_subject');
     });
 
+    Route::group(['prefix' => 'weekly-planner'] , function () {
+        Route::get('/' , 'WeeklyPlannerController@index');
+        Route::get('/weekly_planner_by_subject' , 'WeeklyPlannerController@weekly_planner_by_subject');
+    });
+
     Route::group(['prefix' => 'timestables'] , function () {
         Route::get('/' , 'TimestablesController@index');
         Route::get('/landing' , 'TimestablesController@landing');

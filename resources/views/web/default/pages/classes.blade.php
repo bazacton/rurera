@@ -17,8 +17,8 @@
                 that will surely help you grow and capture innovative ideas.
                 </p>
                 <div class="d-flex align-items-center">
-                    <a href="#" class="btn-primary rounded-pill">View all courses</a>
-                    <a href="#" class="btn-primary rounded-pill ml-15">Take course</a>
+                    <a href="https://rurera.chimpstudio.co.uk/register" class="btn-primary rounded-pill">View all courses</a>
+                    <a href="https://rurera.chimpstudio.co.uk/register" class="btn-primary rounded-pill ml-15">Take course</a>
                 </div>
                 <ul class="pt-30">
                     <li class="mb-10 font-19"><img src="../assets/default/svgs/check-simple.svg" class="img-sm mr-10" alt="#" />KS1 & KS2 courses available</li>
@@ -45,9 +45,9 @@
                     <ul class="d-flex align-items-center">
                         <li itemprop="member" class="lms-subscription-step d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center">1</span><span itemprop="become" class="step-name">Register / signup</span></li>
                         <li itemprop="member" class="separator"></li>
-                        <li class="lms-account-setup d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center" style="border-color:#7679ee; color: #7679ee;">2</span><span itemprop="account" class="step-name">Choose desired key stage course</span></li>
+                        <li class="lms-account-setup d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center" style="border-color:#fff; color: #fff;border-width: 1px;">2</span><span itemprop="account" class="step-name">Choose desired key stage course</span></li>
                         <li itemprop="member" class="separator"></li>
-                        <li itemprop="member" class="lms-confirmation-step d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center" style="border-color:#3d358b; color: #3d358b;">3</span><span itemprop="welcome" class="step-name">Take & Subscribe course</span></li>
+                        <li itemprop="member" class="lms-confirmation-step d-flex align-items-center"><span itemprop="number" class="step-number d-flex align-items-center" style="border-color:#fff; color: #fff;border-width: 1px;">3</span><span itemprop="welcome" class="step-name">Take & Subscribe course</span></li>
                     </ul>
                 </div>
             </div>
@@ -179,22 +179,24 @@
         </div>
     </div>
 </section>
-<section class="lms-newsletter py-70 mt-70 mb-50" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
+<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #f18700;">
     <div class="container">
        <div class="row">
           <div class="col-12">
-             <div class="newsletter-inner">
-                <div class="row">
-                   <div class="col-12 col-lg-6 col-md-6 mb-20">
-                      <h2 itemprop="title" class="mb-10 text-white font-40">Take your next Step to subscribe!</h2>
-                      <p itemprop="description" class="mb-0 text-white">Discover a growing collection of ready-made training courses delivered through Rurera, and gear up your people for success at work</p>
-                   </div>
-                   <div class="col-12 col-lg-6 col-md-6">
-                      <label class="mb-10 text-white">Your E-mail Address</label> 
-                      <div class="form-field position-relative"><input type="text" placeholder="Enter Your E-mail"><button type="submit">Subscribe</button></div>
-                   </div>
+            <div class="lms-text-holder">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-8 col-md-8">
+                        <h2 itemprop="title" class="mb-20 text-white font-40">Ready to start learning?</h2>
+                        <p itemprop="description" class="mb-0 text-white">Discover a growing collection of resources
+                            delivered through Rurera.</p>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-4">
+                        <div class="lms-btn-group">
+                            <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
+                        </div>
+                    </div>
                 </div>
-             </div>
+            </div>
           </div>
        </div>
     </div>

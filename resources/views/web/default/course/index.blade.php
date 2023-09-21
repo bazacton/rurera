@@ -1,5 +1,6 @@
 @extends(getTemplate().'.layouts.app')
 
+
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/css/css-stars.css">
     <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
@@ -162,26 +163,44 @@
                                         @endforeach
                                         </ul>
                                         <span class="show-more-btn ml-30 mb-40">Show More</span>
-                                        <div class="lms-chapter-footer lms-chapter-bg-blue">
+                                        @if( $chapter->challenge_title != '')
+                                        @php $challenge_image = isset( $chapter->challenge_image )? $chapter->challenge_image : '';
+                                        $challenge_border_color = isset( $chapter->challenge_border_color )? $chapter->challenge_border_color : '#146ebe';
+                                        $challenge_background_color = isset( $chapter->challenge_background_color )? $chapter->challenge_background_color : '#74c0fc';
+                                        @endphp
+                                        <style>
+                                            .lms-chapter-footer.lms-chapter-bg-blue:before {
+                                                background: {{$challenge_background_color}};
+                                            }
+                                        </style>
+                                        <div class="lms-chapter-footer lms-chapter-bg-blue" style="background:{{$challenge_border_color}}">
+                                            @if($challenge_image != '')
                                             <span class="lms-chapter-icon">
                                                 <figure>
-                                                    <img src="../assets/default/img/lms-chapter-img2.png" alt="#" />
+                                                    <img src="{{$challenge_image}}" alt="#" />
                                                 </figure>
                                             </span>
+                                            @endif
                                             <div class="lms-chapter-widget">
                                                 <h5 class="lms-widget-title">
-                                                    Learn and Earn With Fun
+                                                    {{$chapter->challenge_title}}
                                                 </h5>
-                                                <ul class="row">
-                                                    <li class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                        Challege Quiz # 1(150 Coins)
-                                                    </li>
-                                                    <li class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                        Challege Quiz # 2(200 Coins)
-                                                    </li>
-                                                </ul>
+                                                @php $challenge_quiz = isset( $chapter->challenge_quiz )? json_decode($chapter->challenge_quiz) : array(); $counter = 1;  @endphp
+
+                                                @if( !empty( $challenge_quiz ))
+                                                    <ul class="row">
+                                                    @foreach( $challenge_quiz as $quiz_id)
+                                                        @php $quizObj = App\Models\Quiz::find($quiz_id); @endphp
+                                                        <li class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                            {{$quizObj->getTitleAttribute()}} # {{$counter}} ({{$quizObj->mastery_points}} Coins)
+                                                        </li>
+                                                        @php $counter++; @endphp
+                                                    @endforeach
+                                                    </ul>
+                                                @endif
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                     @endif
 

@@ -169,6 +169,7 @@ class WebinarController extends Controller
             ->first();
 
 
+
         $quizzes_ids = array();
         $quiz_sub_chapter = array();
         if (!empty($course->webinar_sub_chapters)) {
