@@ -21471,15 +21471,19 @@ Custom Pagination Style End
 .curriculums-head {position: relative; padding: 0 0 12px; margin: 0 0 20px;}
 .curriculums-head:before {content: ""; height: 7px; width: 500px; background-color: #e7604b; position: absolute; bottom: -2px; left: 0; border-radius: 50px;}
 .curriculums-head:after {-webkit-animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; background-color: #fff; content: ""; inset: 0; position: absolute; bottom: 0; left: 0; height: 7px; width: 500px; margin: 36px 0 0 0; border-radius: 50px;}
-.lms-planner-sidebar h5 {margin: 0 0 6px; color: #BF392B; font-size: 15px;}
+.lms-planner-sidebar h5 {margin: 0 0 10px; color: #BF392B; font-size: 15px;}
 .lms-course-select ul {margin: 0; padding: 0;}
-.lms-course-select li {margin: 0 0 4px; line-height: normal; cursor: pointer;}
-.lms-course-select li input[type=radio] {margin-right: 4px; vertical-align: middle;}
-.lms-course-select li label {color: #888; line-height: normal; font-size: 14px; margin: 0;}
+.lms-course-select li {margin: 0 0 8px; line-height: normal; cursor: pointer; position: relative;}
+.lms-course-select li:last-child {margin-bottom: 0;}
+.lms-course-select li input[type=radio] {margin-right: 4px; vertical-align: middle; position: absolute; height: 0; width: 0; opacity: 0;}
+.lms-course-select li label {color: #888; line-height: normal; font-size: 14px; margin: 0; position: relative; padding: 0 0 0 25px; cursor: pointer;}
+.lms-course-select li label:before {position: absolute; left: 0; top: 50%; height: 18px; width: 18px; border: 1px solid #e7e7e7; content: ""; border-radius: 50%; margin-top: -9px;}
+.lms-course-select li input[type=radio]:checked ~ label:before {box-shadow: 0 0 0 6px #BF392B inset, 0 0 0 1px #BF392B; border-color: transparent;}
 .lms-planner-sidebar .lms-course-select {margin-bottom: 0;}
 .lms-planner-sidebar .form-field,
 .lms-planner-sidebar .category_subjects_list{border-bottom: 1px solid #e7e7e7; padding: 0 0 15px;}
 .lms-planner-sidebar .lms-element-nav li a {font-size: 14px; font-weight: 400; border: 1px solid #e7e7e7; padding: 6px 15px; border-radius: 3px; color: #888;}
+.lms-planner-sidebar .lms-element-nav li a:hover {color: #BF392B;}
 .lms-planner-sidebar .lms-element-nav ul {margin: 0 -3px;}
 .lms-planner-sidebar .lms-element-nav li {padding: 0 3px 6px;}
 .lms-planner-sidebar .lms-element-nav li:before {display: none;}
