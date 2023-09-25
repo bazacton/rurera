@@ -92,9 +92,10 @@
         $('body').on('change', '.category-id-field', function (e) {
             var category_id = $(this).val();
             var subject_id = $(this).attr('data-subject_id');
+			subject_id = (subject_id > 0)? subject_id : 2065;
             $.ajax({
                 type: "GET",
-                url: '/admin/national_curriculum/subjects_by_category',
+                url: '/national-curriculum/subjects_by_category',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -105,6 +106,7 @@
             });
 
         });
+		$(".category-id-field").change();
 
         $('body').on('change', '.choose-curriculum-subject', function (e) {
             var thisObj = $(this);

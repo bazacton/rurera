@@ -90,6 +90,18 @@
                </div>
            </div>
         </section>
+        <section class="lms-column-section lms-text-section w-100 pt-50 pb-50" style="background: url(assets/default/svgs/bank-note.svg) #f27530;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="lms-text-holder d-flex flex-column justify-content-center text-center">
+                            <h2 itemprop="title" class="mb-20 text-white">Get Started</h2> <strong itemprop="description" class="text-white">Want to find out more or arrange a free trial ?</strong>
+                            <div class="lms-btn-group mt-30 justify-content-center"><a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
 </section>

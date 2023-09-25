@@ -162,7 +162,6 @@
                                         @endif
                                         @endforeach
                                         </ul>
-                                        <span class="show-more-btn ml-30 mb-40">Show More</span>
                                         @if( $chapter->challenge_title != '')
                                         @php $challenge_image = isset( $chapter->challenge_image )? $chapter->challenge_image : '';
                                         $challenge_border_color = isset( $chapter->challenge_border_color )? $chapter->challenge_border_color : '#146ebe';

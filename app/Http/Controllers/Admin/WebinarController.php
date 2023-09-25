@@ -665,6 +665,7 @@ class WebinarController extends Controller
             'updated_at'           => time() ,
             'background_color'     => isset($data['background_color']) ? $data['background_color'] : '' ,
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
+            'webinar_type'            => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
         ]);
 
         if ($webinar) {
@@ -966,6 +967,7 @@ class WebinarController extends Controller
             'updated_at'           => time() ,
             'background_color'     => isset($data['background_color']) ? $data['background_color'] : '' ,
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
+            'webinar_type'         => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
 
         ]);
 

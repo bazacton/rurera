@@ -126,13 +126,15 @@ class Share
         $navData = array();
         $navData['navbarPages'] = getNavbarLinks();
         $navData['profile_navs'] = array();
-
+		$navData['is_parent'] = false;
         if (auth()->check()) {
             if( $user->is_from_parent > 0){
                 $parent = User::where('id', $user->parent_id)->get();
                 $navData['profile_navs'] = $parent;
+				$navData['is_parent'] = true;
             }
             if (auth()->user()->isParent()) {
+				$navData['is_parent'] = false;
                 $childs = User::where('role_id', 1)
                     ->where('parent_type', 'parent')
                     ->where('parent_id', $user->id)
@@ -150,6 +152,8 @@ class Share
 
             }
         }
+		
+		//pre($navData);
 
 
         view()->share('navData', $navData);

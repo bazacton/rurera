@@ -426,7 +426,7 @@ Route::group([
         Route::group(['prefix' => 'national_curriculum'], function () {
             Route::get('/', 'NationalCurriculumController@index');
             Route::get('/create', 'NationalCurriculumController@create');
-            Route::get('/subjects_by_category', 'NationalCurriculumController@subjects_by_category');
+            
             Route::get('/curriculum_set_layout', 'NationalCurriculumController@curriculum_set_layout');
             Route::get('/curriculum_item_layout', 'NationalCurriculumController@curriculum_item_layout');
             Route::get('/curriculum_item_chapter_layout', 'NationalCurriculumController@curriculum_item_chapter_layout');

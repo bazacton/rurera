@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\NationalCurriculum;
+use App\Models\Webinar;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -44,6 +45,36 @@ class NationalCurriculumController extends Controller
         $response_layout = view('web.default.national_curriculum.single_curriculum', ['nationalCurriculum'  => $nationalCurriculum])->render();
         echo $response_layout;exit;
 
+    }
+	
+	public function subjects_by_category(Request $request){
+        $category_id = $request->get('category_id');
+        $subject_id = $request->get('subject_id');
+        $only_field = $request->get('only_field');
+        $webinars = Webinar::where('category_id' , $category_id)
+                    ->get();
+        if( $only_field != 'yes'){
+        ?>
+        <div class="form-group">
+
+                    <label>Subject</label>
+        <?php } ?>
+                    <select class="form-control choose-curriculum-subject"
+                            name="subject_id">
+                        <option value="" class="font-weight-bold">Select Subject</option>
+                        <?php if( !empty( $webinars ) ){
+                            foreach( $webinars as $webinarsObj){
+                                $selected = ($subject_id == $webinarsObj->id)? 'selected' : '';
+                                echo '<option value="'.$webinarsObj->id.'" class="font-weight-bold" '.$selected.'>'. $webinarsObj->getTitleAttribute().'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+        <?php if( $only_field != 'yes'){ ?>
+                </div>
+            <?php
+            }
+        exit;
     }
 
 

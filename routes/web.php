@@ -413,6 +413,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'national-curriculum'] , function () {
         Route::get('/' , 'NationalCurriculumController@index');
         Route::get('/curriculum_by_subject' , 'NationalCurriculumController@curriculum_by_subject');
+		Route::get('/subjects_by_category', 'NationalCurriculumController@subjects_by_category');
     });
 
     Route::group(['prefix' => 'weekly-planner'] , function () {

@@ -228,7 +228,7 @@ class QuestionsBankController extends Controller
                         'created_at' => time()
                     ]);
 
-                    $quizObj = Quiz::create([
+                    /*$quizObj = Quiz::create([
                         'webinar_id'     => $webinar_id ,
                         'creator_id'     => 929 ,
                         'chapter_id'     => $chapter_id ,
@@ -251,7 +251,7 @@ class QuestionsBankController extends Controller
                         'locale'  => 'en' ,
                     ] , [
                         'title' => $quiz_title ,
-                    ]);
+                    ]);*/
                 }
             }
         }

@@ -139,7 +139,7 @@ Access to the rewards with 3 simple steps</p>
                     <li class="col-12 col-sm-6 col-md-4 col-lg-2">
                         <div class="categories-box mb-30">
                             <div class="img-holder">
-                                <figure><img src="../assets/default/img/ebook.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
+                                <figure><img src="../assets/default/img/book.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
                             </div>
                             <div class="text-holder">
                                 <h3 itemprop="title" class="post-title text-white"><a href="#.">Books</a></h3>

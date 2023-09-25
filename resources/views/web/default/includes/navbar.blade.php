@@ -264,9 +264,10 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                             @foreach( $profile_navs as $profile_nav)
 
                             <a class="dropdown-item " href="/panel/switch_user/{{$profile_nav['id']}}">
-                                <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
+                                <img src="{{ $profile_nav->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
-                                <span class="font-14 text-dark-blue user-list-name">{{ $profile_nav['full_name'] }}</span>
+								@php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent' :  $profile_nav['full_name']; @endphp
+                                <span class="font-14 text-dark-blue user-list-name">{{ $full_name }}</span>
                                 <span class="font-14 text-dark-blue user-list-email">{{ $profile_nav['email'] }}</span>
                             </a>
 

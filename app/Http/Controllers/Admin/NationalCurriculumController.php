@@ -240,35 +240,7 @@ class NationalCurriculumController extends Controller
         return redirect()->route('adminEditNationalCurriculum', ['id' => $nationalCurriculum->id]);
     }
 
-    public function subjects_by_category(Request $request){
-        $category_id = $request->get('category_id');
-        $subject_id = $request->get('subject_id');
-        $only_field = $request->get('only_field');
-        $webinars = Webinar::where('category_id' , $category_id)
-                    ->get();
-        if( $only_field != 'yes'){
-        ?>
-        <div class="form-group">
-
-                    <label>Subject</label>
-        <?php } ?>
-                    <select class="form-control choose-curriculum-subject"
-                            name="subject_id">
-                        <option value="" class="font-weight-bold">Select Subject</option>
-                        <?php if( !empty( $webinars ) ){
-                            foreach( $webinars as $webinarsObj){
-                                $selected = ($subject_id == $webinarsObj->id)? 'selected' : '';
-                                echo '<option value="'.$webinarsObj->id.'" class="font-weight-bold" '.$selected.'>'. $webinarsObj->getTitleAttribute().'</option>';
-                            }
-                        }
-                        ?>
-                    </select>
-        <?php if( $only_field != 'yes'){ ?>
-                </div>
-            <?php
-            }
-        exit;
-    }
+    
 
 
     public function curriculum_set_layout(Request $request, $data_id  = 0)

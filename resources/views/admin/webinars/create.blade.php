@@ -66,8 +66,9 @@
                                             @else
                                                 <input type="hidden" name="locale" value="{{ getDefaultLocale() }}">
                                             @endif
-
-                                            <div class="form-group mt-15 ">
+											
+											
+											<div class="form-group mt-15 ">
                                                 <label class="input-label d-block">{{ trans('panel.course_type') }}</label>
 
                                                 <select name="type" class="custom-select @error('type')  is-invalid @enderror">
@@ -76,6 +77,18 @@
                                                     <option>{{ trans('product.text_course') }} (Paid plugin)</option>
                                                 </select>
 
+                                                @error('type')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mt-15">
+                                                <label class="input-label d-block">Type</label>
+                                                <select name="webinar_type" class="custom-select @error('type')  is-invalid @enderror">
+                                                    <option value="Course" @if( !empty($webinar) and $webinar->webinar_type == 'Course') selected @endif>Course</option>
+                                                    <option value="Vocabulary" @if( !empty($webinar) and $webinar->webinar_type == 'Vocabulary') selected @endif>Vocabulary</option>
+                                                </select>
                                                 @error('type')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

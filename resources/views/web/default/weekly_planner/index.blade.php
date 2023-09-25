@@ -23,8 +23,8 @@
                                     @if(!empty($category->subCategories) and count($category->subCategories))
                                     <optgroup label="{{  $category->title }}">
                                         @foreach($category->subCategories as $subCategory)
-                                        <option value="{{ $subCategory->id }}" @if(!empty($nationalCurriculum) and
-                                                $nationalCurriculum->
+                                        <option value="{{ $subCategory->id }}" @if(!empty($weeklyPlanner) and
+                                                $weeklyPlanner->
                                             key_stage == $subCategory->id) selected="selected" @endif>{{
                                             $subCategory->title }}
                                         </option>
@@ -32,8 +32,8 @@
                                     </optgroup>
                                     @else
                                     <option value="{{ $category->id }}" class="font-weight-bold"
-                                            @if(!empty($nationalCurriculum)
-                                            and $nationalCurriculum->key_stage == $category->id) selected="selected"
+                                            @if(!empty($weeklyPlanner)
+                                            and $weeklyPlanner->key_stage == $category->id) selected="selected"
                                         @endif>{{
                                         $category->title }}
                                     </option>
@@ -92,9 +92,10 @@
         $('body').on('change', '.category-id-field', function (e) {
             var category_id = $(this).val();
             var subject_id = $(this).attr('data-subject_id');
+			subject_id = (subject_id > 0)? subject_id : 2065;
             $.ajax({
                 type: "GET",
-                url: '/admin/national_curriculum/subjects_by_category',
+                url: '/national-curriculum/subjects_by_category',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -105,6 +106,7 @@
             });
 
         });
+		$(".category-id-field").change();
 
         $('body').on('change', '.choose-curriculum-subject', function (e) {
             var thisObj = $(this);

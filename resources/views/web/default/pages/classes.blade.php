@@ -179,7 +179,7 @@
         </div>
     </div>
 </section>
-<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #f18700;">
+<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
     <div class="container">
        <div class="row">
           <div class="col-12">

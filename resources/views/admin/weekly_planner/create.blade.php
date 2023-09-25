@@ -270,7 +270,7 @@
             var subject_id = $(this).attr('data-subject_id');
             $.ajax({
                 type: "GET",
-                url: '/admin/national_curriculum/subjects_by_category',
+                url: '/national-curriculum/subjects_by_category',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

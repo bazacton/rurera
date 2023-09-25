@@ -177,19 +177,17 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(../assets/default/svgs/bank-note-white-thin.svg) #f18700;">
+    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(../assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="lms-text-holder">
+                    <div class="lms-text-holder d-flex flex-column justify-content-center text-center">
                         <div class="row align-items-center">
-                            <div class="col-12 col-lg-8 col-md-8">
+                            <div class="col-12 col-lg-12 col-md-12">
                                 <h2 itemprop="title" class="mb-20 text-white font-40">Get Started</h2>
-                                <p itemprop="description" class="mb-0 text-white">Want to practice your TimesTables now ?</p>
-                            </div>
-                            <div class="col-12 col-lg-4 col-md-4">
-                                <div class="lms-btn-group">
-                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera today</a>
+                                <p itemprop="description" class="mb-0 text-white" style="font-size: 26px;">Want to practice your TimesTables now ?</p>
+                                <div class="lms-btn-group mt-30 justify-content-center">
+                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a>
                                 </div>
                             </div>
                         </div>
