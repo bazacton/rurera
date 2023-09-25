@@ -20,7 +20,7 @@
 
         <section class="card">
             <div class="card-body">
-                <form action="/admin/national_curriculum" method="get" class="row mb-0">
+                <form action="/admin/weekly_planner" method="get" class="row mb-0">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -68,7 +68,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="text-right">
-                            <a href="/admin/national_curriculum/create" class="btn btn-primary">New Curriculum</a>
+                            <a href="/admin/weekly_planner/create" class="btn btn-primary">New Weekly Planner</a>
                         </div>
                     </div>
 

@@ -44,7 +44,7 @@
                 <div class="lms-course-select">
                     <form>
                         <div class="form-inner flex-column mx-0">
-                            <div class="form-field mb-20">
+                            <div class="form-field mb-15">
                                 <h5>Key Stages</h5>
                                 <ul>
                                     <li>
@@ -65,7 +65,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="category_subjects_list mb-20"> 
+                            <div class="category_subjects_list mb-15"> 
                                 <h5>Select Subject</h5>
                                 <ul>
                                     <li>
@@ -98,6 +98,7 @@
                     </form>
                 </div>
                 <div class="lms-element-nav">
+                    <h5>Sections Nav Links</h5>
                     <ul>
                         <li>
                             <a href="#lms-numbers">Numbers</a>

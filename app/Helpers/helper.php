@@ -7332,7 +7332,7 @@ function getTopicTitle($topic_id, $topic_type){
 
             case "11plus":
                 $QuizObj = Quiz::find($topic_id);
-                $topic_title = $QuizObj->getTitleAttribute();
+                $topic_title = isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
             break;
             
             case "timestables":
