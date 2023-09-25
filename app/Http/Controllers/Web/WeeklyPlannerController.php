@@ -42,6 +42,9 @@ class WeeklyPlannerController extends Controller
             ->with('WeeklyPlannerItems.WeeklyPlannerTopics.WeeklyPlannerTopicData')
                     ->first();
 
+        //pre($category_id, false);
+        //pre($subject_id);
+
         $response_layout = view('web.default.weekly_planner.single_weekly_planner',['weeklyPlanner'=> $weeklyPlanner])->render();
         echo $response_layout;exit;
 
