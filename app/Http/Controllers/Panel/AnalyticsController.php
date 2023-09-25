@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\QuizzesResult;
 use App\Models\QuizzAttempts;
 use App\Models\BooksUserReading;
@@ -14,6 +15,24 @@ class AnalyticsController extends Controller
     {
         $user = auth()->user();
 
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data('11plus');
+
+
+
+        $graphs_array = array();
+        $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
+        $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
+        $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
+        $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
+        $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
+
+
+        //$yearly_graph = $QuestionsAttemptController->user_graph_data('11plus', 'yearly');
+        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'daily');
+        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'hourly');
+        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'monthly');
 
         $BooksUserReading = BooksUserReading::where('user_id', $user->id)->where('status', 'active')->with([
             'BooksPages.BookData',
@@ -32,10 +51,10 @@ class AnalyticsController extends Controller
                         return $readingDataQuery->book_id;
                     });
                     foreach ($readingData as $readingArray) {
-                        if( !empty( $readingArray )){
+                        if (!empty($readingArray)) {
                             $total_read_time = $readingArray->sum('read_time');
                             $pages_list = array();
-                            foreach( $readingArray as $readingObj){
+                            foreach ($readingArray as $readingObj) {
                                 $pages_list[] = $readingObj->BooksPages->page_no;
                                 $reading_analytics_data[$date_str][$readingObj->BooksPages->BookData->id]['book_title'] = $readingObj->BooksPages->BookData->book_title;
                                 $reading_analytics_data[$date_str][$readingObj->BooksPages->BookData->id]['pages_read'][] = $readingObj->BooksPages->page_no;
@@ -83,20 +102,20 @@ class AnalyticsController extends Controller
 
 
                     $read_time_data = 0;
-                    $reading_analyticsArray = isset( $reading_analytics_data[$date_str] ) ? $reading_analytics_data[$date_str] : array();
-                    if( !empty( $reading_analyticsArray ) ) {
+                    $reading_analyticsArray = isset($reading_analytics_data[$date_str]) ? $reading_analytics_data[$date_str] : array();
+                    if (!empty($reading_analyticsArray)) {
                         foreach ($reading_analyticsArray as $book_id => $reading_analyticsObj) {
-                            $analytics_data[$date_str]['data'][$book_id]['topic_title'] = isset( $reading_analyticsObj['book_title'] )? $reading_analyticsObj['book_title'].' (Reading)' : '';
-                            $read_time = isset( $reading_analyticsObj['read_time'] )? $reading_analyticsObj['read_time'] : 0;
+                            $analytics_data[$date_str]['data'][$book_id]['topic_title'] = isset($reading_analyticsObj['book_title']) ? $reading_analyticsObj['book_title'] . ' (Reading)' : '';
+                            $read_time = isset($reading_analyticsObj['read_time']) ? $reading_analyticsObj['read_time'] : 0;
                             $read_time = ($read_time > 0) ? round($read_time / 60, 2) : 0;
                             $analytics_data[$date_str]['data'][$book_id]['type'] = 'book_read';
 
                             $analytics_data[$date_str]['data'][$book_id]['read_time'] = $read_time;
                             $read_time_data = $read_time;
-                            $analytics_data[$date_str]['data'][$book_id]['pages_read'] = isset( $reading_analyticsObj['pages_read'] )? implode(', ', $reading_analyticsObj['pages_read']) : '';
+                            $analytics_data[$date_str]['data'][$book_id]['pages_read'] = isset($reading_analyticsObj['pages_read']) ? implode(', ', $reading_analyticsObj['pages_read']) : '';
 
                             $analytics_data[$date_str]['data'][$book_id]['parent_type'] = 'book_read';
-                            $analytics_data[$date_str]['data'][$book_id]['book_slug'] = isset( $reading_analyticsObj['book_slug'] )? $reading_analyticsObj['book_slug'] : '';
+                            $analytics_data[$date_str]['data'][$book_id]['book_slug'] = isset($reading_analyticsObj['book_slug']) ? $reading_analyticsObj['book_slug'] : '';
 
 
                         }
@@ -115,7 +134,7 @@ class AnalyticsController extends Controller
                         $practice_time = ($practice_time > 0) ? round($practice_time / 60, 2) : 0;
                         $question_missed = (count($questions_list) - $question_answered);
                         $analytics_data[$date_str]['practice_time'] += $practice_time;
-                        $analytics_data[$date_str]['practice_time'] += isset( $read_time_data )? $read_time_data : 0;
+                        $analytics_data[$date_str]['practice_time'] += isset($read_time_data) ? $read_time_data : 0;
                         $read_time_data = 0;
                         $analytics_data[$date_str]['question_answered'] += $question_answered;
 
@@ -161,6 +180,9 @@ class AnalyticsController extends Controller
 
         $data['pageTitle'] = 'Analytics';
         $data['analytics_data'] = $analytics_data;
+        //$data['user_graph_data'] = $user_graph_data;
+        //$data['QuizzResultQuestionsObj']   => $QuizzResultQuestionsObj;
+        $data['graphs_array']  = $graphs_array;
         return view('web.default.panel.analytics.index', $data);
     }
 }

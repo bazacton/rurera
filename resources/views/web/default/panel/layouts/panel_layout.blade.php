@@ -208,11 +208,11 @@
                     }
                 }
             }
-            var ctx = document.getElementById('chartBarHorizontal2').getContext('2d');
-            new Chart(ctx, options);
+            //var ctx = document.getElementById('chartBarHorizontal2').getContext('2d');
+            //new Chart(ctx, options);
         </script>
         <script>    
-            var ctxPie = document.getElementById('pieChart');
+            /*var ctxPie = document.getElementById('pieChart');
             var pieChart = new Chart(ctxPie, {
                 type: 'pie',
                 data: {
@@ -236,7 +236,7 @@
                     }]
                 },
                 options: {}
-            });
+            });*/
         </script>
 </script>
 </body>

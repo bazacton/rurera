@@ -41,6 +41,7 @@ class WeeklyPlannerController extends Controller
         $weeklyPlanner = WeeklyPlanner::where('key_stage', $category_id)->where('subject_id', $subject_id)
             ->with('WeeklyPlannerItems.WeeklyPlannerTopics.WeeklyPlannerTopicData')
                     ->first();
+
         $response_layout = view('web.default.weekly_planner.single_weekly_planner',['weeklyPlanner'=> $weeklyPlanner])->render();
         echo $response_layout;exit;
 

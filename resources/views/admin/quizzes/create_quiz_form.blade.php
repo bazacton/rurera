@@ -82,6 +82,9 @@
                         <option value="11plus" {{ (!empty($quiz) and $quiz->quiz_type == '11plus') ? 'selected' : ''
                             }}>11 Plus
                         </option>
+                        <option value="challenge" {{ (!empty($quiz) and $quiz->quiz_type == 'challenge') ? 'selected' : ''
+                            }}>Challenge
+                        </option>
                     </select>
                 </div>
 

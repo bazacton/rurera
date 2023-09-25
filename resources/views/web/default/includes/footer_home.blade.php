@@ -12,101 +12,74 @@
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="widget widget-aboutus">
                     <ul>
-                        <li itemprop="school"><a itemprop="url" href="#">i' m a school <span>&#8250;</span></a></li>
-                        <li itemprop="teacher"><a itemprop="url"  href="#">i' m a teacher<span>&#8250;</span></a></li>
-                        <li itemprop="parent"><a itemprop="url" href="#">i' m a parent<span>&#8250;</span></a></li>
+                        <li itemprop="school"><a itemprop="url" href="/features-3">i'm a school <span>&#8250;</span></a></li>
+                        <li itemprop="teacher"><a itemprop="url"  href="/features-3">i'm a teacher<span>&#8250;</span></a></li>
+                        <li itemprop="parent"><a itemprop="url" href="/features-3">i'm a parent<span>&#8250;</span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-9">
                 <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="widget widget-links">
                             <div class="widget-title">
                                 <h2 itemprop="title">Company</h2>
                             </div>
                             <ul>
-                                <li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
                                 <li itemprop="about"><a itemprop="url" href="/about-us">About Us</a></li>
-                                <li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
-                                <li itemprop="features"><a itemprop="url" href="/features-3">Features</a></li>
+                                <li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
                                 <li itemprop="careers"><a itemprop="url" href="/careers">Careers <span class="hiring-label">Hiring!</span></a></li>
+                                <li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-location">
+                            <div class="widget-title">
+                                <h2 itemprop="title">What We Offer</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="Courses"><a itemprop="url" href="/classes?sort=newest">KS1, KS2 Courses</a></li>
+                                <li itemprop="Sats Preparation"><a itemprop="url" href="/sats/sats_landing">Sats Preparation</a></li>
+                                <li itemprop="11+ Exams"><a itemprop="url" href="/11-plus">11+ Exams</a></li>
+                                <li itemprop="TimeTables"><a itemprop="url" href="/timestables/landing">TimeTables</a></li>
+                                <li itemprop="Books Reading"><a itemprop="url" href="/book-shelf">Books Reading</a></li>
+                                <li itemprop="Spells/Vocabulary"><a itemprop="url" href="/classes?sort=newest">Spells/Vocabulary</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="widget widget-links">
+                            <div class="widget-title">
+                                <h2 itemprop="title">Portal</h2>
+                            </div>
+                            <ul>
+                                <li itemprop="Register"><a itemprop="url" href="/register">Register</a></li>
+                                <li itemprop="Dashboard"><a itemprop="url" href="/register">Dashboard</a></li>
                                 <li itemprop="membership"><a itemprop="url" href="/membership-2">Membership</a></li>
-                                <li itemprop="paper"><a itemprop="url" href="/sat-paper-feature">Sat Paper Feature</a></li>
-                                <li itemprop="quiz"><a itemprop="url" href="/quiz-page">Quiz Questions</a></li>
                                 <li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
                             </ul>
-                        </div>
-                    </div>
-                    <!-- <div class="col-6 col-md-4 col-lg-3">
-                        <div class="widget widget-location">
-                            <div class="widget-title">
-                                <h2 itemprop="title">Years</h2>
-                            </div>
-                            <ul>
-                                <li itemprop="Year 1"><a itemprop="url" href="/classes?sort=newest">KS- 1 Year 1</a></li>
-                                <li itemprop="Year 2"><a itemprop="url" href="/classes?sort=newest">KS- 1 Year 2</a></li>
-                                <li itemprop="Year 3"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 3</a></li>
-                                <li itemprop="Year 4"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 4</a></li>
-                                <li itemprop="Year 5"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 5</a></li>
-                                <li itemprop="Year 6"><a itemprop="url" href="/classes?sort=newest">KS- 2 Year 6</a></li>
-                            </ul>
                             <div class="widget-title mt-20">
-                                <h2 itemprop="title">Choose location</h2>
+                                <h2 itemprop="title">Contact</h2>
                             </div>
                             <ul>
-                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/us-img.jpg" alt="countries image" title="countries image" width="100%" height="auto" loading="eager">United kingdom</a></li>
-                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/aus-img.jpg" alt="countries image" title="countries image" width="100%" height="auto"  loading="eager">Australia</a></li>
-                                <li itemprop="images"><a itemprop="url" href="/contact-us"><img src="/store/1/default_images/countries/soa-img.jpg" alt="countries image" title="countries image" width="100%" height="auto"  loading="eager">South Africa</a></li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <div class="widget widget-location">
-                            <div class="widget-title">
-                                <h2 itemprop="title">Courses</h2>
-                            </div>
-                            <ul>
-                                <li itemprop="curriculum"><a itemprop="url" href="/national-curriculum">National Curriculum</a></li>
-                                <!-- <li itemprop="maths"><a itemprop="url" href="/course/maths">Maths</a></li>
-                                <li itemprop="english"><a itemprop="url" href="/course/english-year5">English</a></li>
-                                <li itemprop="science"><a itemprop="url" href="/course/science-year5">Science</a></li>
-                                <li itemprop="geography"><a itemprop="url" href="/course/geography-year1">Geography</a></li>
-                                <li itemprop="computing"><a itemprop="url" href="/course/computing-year5">Computing</a></li>
-                                <li itemprop="history"><a itemprop="url" href="/course/history-year-5">History</a></li>
-                                <li itemprop="religious"><a itemprop="url" href="/course/re-year-5">Religious</a></li>
-                                <li itemprop="art"><a itemprop="url" href="/course/art-year-5">Art</a></li> -->
-                            </ul>
-                            <div class="widget-title mt-20">
-                                <h2 itemprop="title">Help Support</h2>
-                            </div>
-                            <ul>
-                                <li itemprop="support"><a itemprop="url" href="/support-page">Support Page</a></li>
-                                <li itemprop="faqs"><a itemprop="url" href="/contact-us">Contact us</a></li>
-                                <li itemprop="guides"><a itemprop="url" href="/user-guides">Help Center</a></li>
+                                <li itemprop="contact-us"><a itemprop="url" href="/contact-us">Contact us</a></li>
+                                <li itemprop="Support Desk"><a itemprop="url" href="/register">24/7 Support Desk</a></li>
+                                <li itemprop="Login"><a itemprop="url" href="/register">Login</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3">
                         <div class="widget widget-location">
                             <div class="widget-title">
-                                <h2 itemprop="title">Book Shelf</h2>
+                                <h2 itemprop="title">Legal Help</h2>
                             </div>
                             <ul>
-                                <li itemprop="shelf"><a itemprop="url" href="/books-shelf">Book Shelf</a></li>
-                                <li itemprop="book"><a itemprop="url" href="/mybooks">My books</a></li>
-                                <li itemprop="new"><a itemprop="url" href="/new">New</a></li>
-                                <li itemprop="reading"><a itemprop="url" href="/activity2">Reading Progress</a></li>
-                                <li itemprop="flip"><a itemprop="url" href="/flipbook/">Flip Book</a></li>
-                            </ul>
-                            <div class="widget-title mt-20">
-                                <h2 itemprop="title">Rewards</h2>
-                            </div>
-                            <ul>
-                                <li itemprop="rewards"><a itemprop="url" href="/products?category_id=3">Rewards Categories</a></li>
-                                <li itemprop="type"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical">Rewards  Type</a></li>
-                                <li itemprop="options"><a itemprop="url" href="/products?sort=&category_id=3&type%5B%5D=physical&options%5B%5D=only_available">Rewards Options</a></li>
-                                <li itemprop="sitemap"><a href="/site-map">Site map</a></li>
+                                <li itemprop="Privacy Policy"><a itemprop="url" href="/privacy-policy">Privacy Policy</a></li>
+                                <li itemprop="Children's Privacy"><a itemprop="url" href="https://rurera.chimpstudio.co.uk/privacy">Children's Privacy</a></li>
+                                <li itemprop="Legal"><a itemprop="url" href="/terms-and-conditions">Legal</a></li>
+                                <li itemprop="Terms &amp; conditions"><a itemprop="url" href="/terms-and-conditions">Terms &amp; conditions</a></li>
+                                <li itemprop="Cookie Policy"><a itemprop="url" href="/cookies">Cookie Policy</a></li>
                             </ul>
                         </div>
                     </div>

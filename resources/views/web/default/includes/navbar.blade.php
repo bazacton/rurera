@@ -213,8 +213,9 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </ul>
             </div>
 
-            @include('web.default.includes.notification-dropdown')
-
+            @if(isset( $authUser ))
+                @include('web.default.includes.notification-dropdown')
+            @endif
             @if(isset( $authUser ) && $authUser->isUser())
                 <div class="coin-counts">
                     <strong>

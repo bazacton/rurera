@@ -11,6 +11,8 @@ use App\Models\QuizzResultQuestions;
 use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Translation\QuizzesQuestionTranslation;
 
@@ -411,7 +413,8 @@ class QuestionsAttemptController extends Controller
             'status'               => $question_answer_status,
             'user_answer'          => json_encode($user_input_array),
             'time_consumed'        => ($time_consumed > 0) ? $time_consumed : 0,
-            'user_question_layout' => $user_question_layout
+            'user_question_layout' => $user_question_layout,
+            'attempted_at'         => time(),
         ]);
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
 
@@ -575,10 +578,10 @@ class QuestionsAttemptController extends Controller
         $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_id', $parent_id)->where('parent_type', $parent_type)->first();
         $score = isset($RewardAccountingObj->score) ? json_decode($RewardAccountingObj->score) : 0;
         $score += $question_score;
-        $full_data = isset($RewardAccountingObj->full_data) ? (array) json_decode($RewardAccountingObj->full_data) : array();
+        $full_data = isset($RewardAccountingObj->full_data) ? (array)json_decode($RewardAccountingObj->full_data) : array();
 
-        $is_exists = (isset( $full_data['$question_id'] ) && $full_data['$question_id'] != '')? true : false;
-        if( $is_exists == true){
+        $is_exists = (isset($full_data['$question_id']) && $full_data['$question_id'] != '') ? true : false;
+        if ($is_exists == true) {
             return;
         }
         $full_data[$question_id] = $question_score;
@@ -587,8 +590,8 @@ class QuestionsAttemptController extends Controller
         if (isset($RewardAccountingObj->id)) {
 
             $RewardAccountingObj->update([
-                'score'       => $score,
-                'full_data'   => $full_data,
+                'score'      => $score,
+                'full_data'  => $full_data,
                 'updated_at' => time(),
             ]);
 
@@ -603,7 +606,7 @@ class QuestionsAttemptController extends Controller
                 'parent_id'   => $parent_id,
                 'parent_type' => $parent_type,
                 'full_data'   => $full_data,
-                'updated_at' => time(),
+                'updated_at'  => time(),
             ]);
         }
 
@@ -706,8 +709,8 @@ class QuestionsAttemptController extends Controller
         if (!isset($user->id)) {
             return array();
         }
-        $column_name = ( $parent_type == 'id' )? 'parent_type_id' : '';
-        $column_name = ( $parent_type == 'type' )? 'quiz_result_type' : $column_name;
+        $column_name = ($parent_type == 'id') ? 'parent_type_id' : '';
+        $column_name = ($parent_type == 'type') ? 'quiz_result_type' : $column_name;
 
         $userQuizDone = QuizzesResult::where($column_name, $parent_id)->with([
             'attempts' => function ($query) {
@@ -1353,6 +1356,201 @@ class QuestionsAttemptController extends Controller
         }
 
         return (object)$response_data;
+    }
+
+    /*
+     * Graph Data
+     */
+
+    public function prepare_graph_data($result_type){
+        $user = auth()->user();
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('user_id', $user->id)->where('status', '!=', 'waiting')->get();
+        return $QuizzResultQuestions;
+    }
+    public function user_graph_data($QuizzResultQuestions, $return_type)
+    {
+
+        $user = auth()->user();
+
+        /*$year = 2023;
+        $QuizzResultQuestions = $QuizzResultQuestions->filter(function ($QuizzResultQuestions) use ($year) {
+            $createdAt = Carbon::parse($QuizzResultQuestions->attempted_at);
+            return $createdAt->year == $year;
+        });*/
+
+        if( $return_type == 'weekly'){
+
+            $start_date = strtotime('monday this week');
+            $end_date = strtotime('sunday this week');
+            $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
+            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
+                return date('l', $QuizzResultQuestionsQuery->attempted_at);
+            });
+        }
+        if( $return_type == 'monthly'){
+            $start_date = strtotime('january this year');
+            $end_date = strtotime('december this week');
+            $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
+            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
+                return date('F', $QuizzResultQuestionsQuery->attempted_at);
+            });
+        }
+        if( $return_type == 'yearly'){
+            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
+                return date('Y', $QuizzResultQuestionsQuery->attempted_at);
+            });
+
+        } if( $return_type == 'hourly'){
+            $date = date('Y-m-d');
+            $start_date = strtotime(date('Y-m-d', strtotime($date .' -1 day')));
+            $end_date = strtotime(date('Y-m-d', strtotime($date .' +1 day')));
+
+            $QuizzResultQuestions = $QuizzResultQuestions->where('attempted_at', '>', $start_date)->where('attempted_at', '<', $end_date);
+            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
+                return date('h', $QuizzResultQuestionsQuery->attempted_at);
+            });
+
+        } if( $return_type == 'daily'){
+            $date = strtotime(date('Y-m-d'));
+            $start_date = strtotime(date('Y-m-01 00:00:00', $date));
+            $end_date  = strtotime(date('Y-m-t 12:59:59', $date));
+            $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
+            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
+                return date('d', $QuizzResultQuestionsQuery->attempted_at);
+            });
+
+        }
+
+        $QuizzResultQuestionsResults = $QuizzResultQuestions;
+
+        $prepare_result = $keys_array = array();
+        if( !empty( $QuizzResultQuestionsResults ) ){
+            foreach( $QuizzResultQuestionsResults as $data_key => $QuizzResultQuestionsObj){
+                $questions_attempted = $QuizzResultQuestionsObj->count();
+                $coins_earned = $QuizzResultQuestionsObj->where('status', 'correct')->sum('quiz_grade');
+                $keys_array[] = $data_key;
+                $prepare_result[$data_key] = array(
+                    'questions_attempted' => $questions_attempted,
+                    'coins_earned' => $coins_earned,
+                );
+            }
+        }
+        //pre($prepare_result);
+        if( $return_type == 'weekly') {
+            $keys_array = array(
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday',
+                'Sunday'
+            );
+        }
+
+        if( $return_type == 'monthly') {
+            $keys_array = array(
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            );
+        }
+
+        if( $return_type == 'hourly') {
+            $keys_array = array(
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+            );
+        }
+        
+        if( $return_type == 'daily') {
+            $keys_array = array(
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+            );
+        }
+
+        $options_array = $questions_attempted_array = $coins_earned_array = array();
+        if( !empty( $keys_array )){
+            foreach( $keys_array as $key_index){
+                $final_results[$key_index]   = isset( $prepare_result[$key_index] )? $prepare_result[$key_index] : array('questions_attempted' => 0,'coins_earned' => 0);
+                $options_array[] = $key_index;
+                $questions_attempted_array[] = $final_results[$key_index]['questions_attempted'];
+                $coins_earned_array[] = $final_results[$key_index]['coins_earned'];
+
+            }
+        }
+
+        //pre($final_results);
+
+        //pre($options_array);
+        $options_values = json_encode($options_array);
+        $questions_attempted_values = json_encode($questions_attempted_array);
+        $coins_earned_values = json_encode($coins_earned_array);
+        return (object)array(
+            'options_values' => $options_values,
+            'questions_attempted_values' => $questions_attempted_values,
+            'coins_earned_values' => $coins_earned_values,
+        );
     }
 
 

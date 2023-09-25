@@ -19032,7 +19032,8 @@ Lms Footer Style Start
 .footer .widget ul li {line-height: normal; list-style: none; display: inline-block; vertical-align: middle; margin-bottom: 0;}
 .footer .widget ul li a {text-decoration: none; color: #171347 !important; font-weight: 500; line-height: 1.2em; text-transform: capitalize; padding: 0 5px; margin: 0 5px;}
 .hiring-label {display: inline-block; vertical-align: middle; background-color: #fae095; padding: 2px 8px; border-radius: 20px; font-size: 12px; box-shadow: 0 0 0 1px #ce9e19 inset; line-height: normal; margin-left: 2px; font-weight: 500;}
-.footer .widget.widget-aboutus ul li a {font-weight: bold; font-size: 1.7em; display: block; margin-bottom: 15px;}
+.footer .widget.widget-aboutus ul li a,
+.footer.footer-home .widget.widget-aboutus ul li a {font-weight: bold; font-size: 1.7em; display: block; margin-bottom: 15px;}
 .footer .widget.widget-aboutus ul li a span {font-weight: 300; font-size: 1.5em; margin: 10px;}
 .footer .widget.widget-location li a img {margin-right: 10px; max-width: 15px;}
 .footer .widget.widget-location li {display: flex; align-items: center;}
@@ -19045,7 +19046,7 @@ Lms Footer Style Start
 /* Footer Home Style Start */
 footer.footer-home {padding-top: 70px;}
 .footer.footer-home .widget ul li {width: 100%; text-align: left; margin-bottom: 12px;}
-.footer.footer-home .widget ul li a {padding: 0; margin: 0;}
+.footer.footer-home .widget ul li a {padding: 0; margin: 0; font-size: 16px; font-weight: 400;}
 .footer.footer-home .footer-copyright .row {align-items: center;}
 .footer.footer-home .footer-privacy-links {margin-right: 0;}
 .footer.footer-home .footer-social a {margin-right: 10px; height: 20px; width: 20px;}
@@ -21470,6 +21471,15 @@ Custom Pagination Style End
 .curriculums-head {position: relative; padding: 0 0 12px; margin: 0 0 20px;}
 .curriculums-head:before {content: ""; height: 7px; width: 500px; background-color: #e7604b; position: absolute; bottom: -2px; left: 0; border-radius: 50px;}
 .curriculums-head:after {-webkit-animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; background-color: #fff; content: ""; inset: 0; position: absolute; bottom: 0; left: 0; height: 7px; width: 500px; margin: 36px 0 0 0; border-radius: 50px;}
+.lms-course-select h5 {margin: 0 0 6px; color: #BF392B; font-size: 15px;}
+.lms-course-select ul {margin: 0; padding: 0;}
+.lms-course-select li {margin: 0 0 4px; line-height: normal; cursor: pointer;}
+.lms-course-select li input[type=radio] {margin-right: 4px; vertical-align: middle;}
+.lms-course-select li label {color: #888; line-height: normal; font-size: 14px; margin: 0;}
+.lms-planner-sidebar .lms-course-select {margin-bottom: 0;}
+.lms-planner-sidebar .form-field,
+.lms-planner-sidebar .category_subjects_list{border-bottom: 1px solid #e7e7e7; padding: 0 0 10px;}
+.lms-planner-sidebar .category_subjects_list {padding-bottom: 20px;}
 @-webkit-keyframes progress-increase {
     0% {left: -5%; width: 5%}
     to {left: 125%; width: 100%}
@@ -21488,19 +21498,27 @@ Custom Pagination Style End
 }
 .curriculums-head h4 {color: #183152; margin: 0; font-size: 22px; font-weight: 500; position: relative;}
 .curriculums-head h4:before {content: ""; height: 7px; width: 100%; background-color: #eeeeee; position: absolute; bottom: -14px; border-radius: 50px; z-index: -1;}
-.list-description p {padding: 0; font-size: 18px; color: #aaaaaa; line-height: 22px;}
-.curriculums-card {border-bottom: 2px solid #eeeeee; padding: 0 0 30px; margin: 0 0 30px;}
-.curriculums-card:last-child {border-bottom: 0;}
+.list-description p {padding: 0; font-size: 18px; color: #333; line-height: 22px; font-weight: 500;}
+.curriculums-card {padding: 0; margin: 0;}
+.curriculums-card:last-child:before {border-bottom: 0;}
 .curriculums-list h5 {color: #183152; margin: 0 0 8px; font-weight: 600;}
 .curriculums-list ul {margin: 0 0 20px;}
 .curriculums-list [class*="col-"] ul:last-child {margin-bottom: 0;}
-.curriculums-list ul li {margin: 0 0 8px;}
+.curriculums-list ul li {border-bottom: 1px dashed #e7e7e7; padding: 15px 0 15px 30px;}
 .curriculums-list ul li:last-child {margin: 0;}
-.curriculums-list li a {padding: 0; font-size: 16px; font-weight: 400; line-height: 24px; color: #4574b9;}
+.curriculums-list ul li:hover {background-color: rgba(0,0,0,0.02);}
+.curriculums-list li a {padding: 0; font-size: 16px; font-weight: 400; line-height: 24px; color: #333;}
 .curriculums-list li span {color: #000;}
+.list-description span {display: block; font-weight: 400; color: #aaa; font-size: 15px; padding-top: 5px;}
+.curriculums-list ul {position: relative; border-left: 0; padding: 0;}
+.curriculums-list ul:before {position: absolute; left: 0; top: 0; height: 101%; width: 3px; border-left: 3px solid #BF392B; content: ""; z-index: 1;}
+.curriculums-card:last-child .curriculums-list ul li:last-child {border-bottom: 0;}
+.curriculums-card:before {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; content: ""; border-bottom: 1px solid #e7e7e7;}
+.curriculums-card:last-child:before {border-bottom: 0;}
+.list-description {padding-top: 15px;}
 .lms-curriculums .element-title {margin: 0 0 30px;}
 .lms-curriculums .element-title h2 {color: #146ebe;margin: 0;font-size: 30px;}
-.lms-curriculums {margin: 0 -15px;overflow: hidden;}
+.lms-curriculums {margin: 0;overflow: hidden;}
 .lms-course-banner figure {text-align: right;}
 .lms-course-banner figure img {border: 1px solid #e9e9e9;}
 .round {position: absolute; border: 2px solid rgba(0, 0, 0, 0.2); width: 40px; height: 40px; border-radius: 100%; background-color: var(--primary); cursor: pointer;}

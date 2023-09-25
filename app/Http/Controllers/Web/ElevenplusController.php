@@ -19,6 +19,9 @@ class ElevenplusController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+        $QuestionsAttemptController = new QuestionsAttemptController();
+
+
 
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
@@ -53,7 +56,7 @@ class ElevenplusController extends Controller
 
         $elevenPlus = $query->paginate(100);
 
-        $QuestionsAttemptController = new QuestionsAttemptController();
+
         $childs = array();
         if (auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
