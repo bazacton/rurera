@@ -1,3 +1,6 @@
+<style>
+    .hide{display:none !important;}
+</style>
 <section class="lms-curriculums-section">
     <div class="container">
         <div class="row">
@@ -5,13 +8,14 @@
             @if(isset( $nationalCurriculum->NationalCurriculumItems) && !empty(
             $nationalCurriculum->NationalCurriculumItems ) )
             @foreach( $nationalCurriculum->NationalCurriculumItems as $CurriculumItemsData)
-            <div class="col-12 col-md-12 col-lg-12">
+            <div class="col-12 col-md-12 col-lg-12" id="nationcurriculum-{{$CurriculumItemsData->id}}">
                 <div id="lms-numbers" class="lms-curriculums">
                     <div class="row">
                         <div class="col-12">
                             <div class="element-title">
                                 <h2>{{$CurriculumItemsData->title}}</h2>
                             </div>
+                            <li class="hide lms-element-nav-li"><a href="#nationcurriculum-{{$CurriculumItemsData->id}}">{{$CurriculumItemsData->title}}</a></li>
                         </div>
                         <div class="col-12">
                             <div class="curriculums-card">
@@ -57,3 +61,11 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".lms-element-nav-li").each(function(){
+            $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
+        });
+    });
+
+</script>

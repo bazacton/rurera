@@ -19037,7 +19037,7 @@ Lms Footer Style Start
 .footer .widget.widget-aboutus ul li a span {font-weight: 300; font-size: 1.5em; margin: 10px;}
 .footer .widget.widget-location li a img {margin-right: 10px; max-width: 15px;}
 .footer .widget.widget-location li {display: flex; align-items: center;}
-.footer .widget .widget-title {margin-bottom: 20px;}
+.footer .widget .widget-title {margin-bottom: 15px;}
 .footer .widget .widget-title h5,
 .footer .widget .widget-title h3 {text-transform: capitalize; font-size: 1rem;}
 .footer-copyright {display: flex; align-items: center; padding-bottom: 30px; justify-content: center; padding-top: 20px;}
@@ -19046,6 +19046,7 @@ Lms Footer Style Start
 /* Footer Home Style Start */
 footer.footer-home {padding-top: 70px;}
 .footer.footer-home .widget ul li {width: 100%; text-align: left; margin-bottom: 12px;}
+.footer.footer-home .widget ul li:last-child {margin-bottom: 0;}
 .footer.footer-home .widget ul li a {padding: 0; margin: 0; font-size: 16px; font-weight: 400;}
 .footer.footer-home .footer-copyright .row {align-items: center;}
 .footer.footer-home .footer-privacy-links {margin-right: 0;}
@@ -19055,7 +19056,7 @@ footer.footer-home {padding-top: 70px;}
 .footer.footer-home .footer-social a svg path {fill: #171347;}
 .footer.footer-home .footer-social a svg.icon-tabler path {fill: none;}
 .footer.footer-home .footer-logo {width: 150px;}
-.footer.footer-home .footer-copyright {border-top: 1px solid #f1f1f1; padding-bottom: 20px; margin-top: 20px;}
+.footer.footer-home .footer-copyright {border-top: 1px solid #f1f1f1; padding-bottom: 20px; margin-top: 30px;}
 /* Footer Home Style End */
 /*********************************
 Lms Footer Style End
@@ -21462,28 +21463,26 @@ Custom Pagination Style End
 .form-select-field:after {content: ""; position: absolute; right: 25px; border: 4px solid #495057; transform: rotate(45deg); border-top-color: transparent; border-left-color: transparent; top: 50%; margin-top: -6px; pointer-events: none;}
 .lms-course-select {margin: 0 0 30px;}
 .lms-course-select select {font-weight: 700; font-size: 16px; border: 2px solid #f0f1f3; border-radius: 6px; -webkit-appearance: none; -moz-appearance: none; appearance: none; padding-right: 50px;}
-.lms-element-nav {overflow: hidden;}
-.lms-element-nav ul {margin: 0 -22px; padding: 0; display: flex; align-items: center; flex-wrap: wrap;}
-.lms-element-nav li {padding: 0 22px; position: relative;}
-.lms-element-nav li:before {content: ""; height: 2px; width: 6px; position: absolute; left: 0; background-color: #4d7aff; top: 50%; margin-top: -1px;}
-.lms-element-nav li:first-child:before {display: none;}
-.lms-element-nav li a {font-weight: 500; color: #4d7aff; display: block; border-bottom: 1px solid #4d7aff; font-size: 18px;}
+.lms-element-nav > ul, .lms-element-nav > ul ul {display: flex; align-items: center; flex-wrap: wrap; }
+.lms-element-nav > ul > li, .lms-element-nav > ul > ul > li {position: relative; margin: 0 5px 10px; }
+.lms-element-nav > ul > li h3 {margin-right: 10px;}
+.lms-element-nav > ul > li > a, .lms-element-nav > ul > li > ul > li > a {color: #333; display: block; background-color: #ededed; padding: 5px 28px; border-radius: 50px; font-size: 15px;}
 .curriculums-head {position: relative; padding: 0 0 12px; margin: 0 0 20px;}
 .curriculums-head:before {content: ""; height: 7px; width: 500px; background-color: #e7604b; position: absolute; bottom: -2px; left: 0; border-radius: 50px;}
 .curriculums-head:after {-webkit-animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; animation: progress-active 2s cubic-bezier(.55, .2, .3, .67) infinite; background-color: #fff; content: ""; inset: 0; position: absolute; bottom: 0; left: 0; height: 7px; width: 500px; margin: 36px 0 0 0; border-radius: 50px;}
-.lms-planner-sidebar h5 {margin: 0 0 10px; color: #BF392B; font-size: 15px;}
+.lms-planner-sidebar h5 {margin: 0 0 10px; color: var(--primary); font-size: 15px;}
 .lms-course-select ul {margin: 0; padding: 0;}
 .lms-course-select li {margin: 0 0 8px; line-height: normal; cursor: pointer; position: relative;}
 .lms-course-select li:last-child {margin-bottom: 0;}
 .lms-course-select li input[type=radio] {margin-right: 4px; vertical-align: middle; position: absolute; height: 0; width: 0; opacity: 0;}
 .lms-course-select li label {color: #888; line-height: normal; font-size: 14px; margin: 0; position: relative; padding: 0 0 0 25px; cursor: pointer;}
 .lms-course-select li label:before {position: absolute; left: 0; top: 50%; height: 18px; width: 18px; border: 1px solid #e7e7e7; content: ""; border-radius: 50%; margin-top: -9px;}
-.lms-course-select li input[type=radio]:checked ~ label:before {box-shadow: 0 0 0 6px #BF392B inset, 0 0 0 1px #BF392B; border-color: transparent;}
+.lms-course-select li input[type=radio]:checked ~ label:before {box-shadow: 0 0 0 6px var(--primary) inset, 0 0 0 1px var(--primary); border-color: transparent;}
 .lms-planner-sidebar .lms-course-select {margin-bottom: 0;}
 .lms-planner-sidebar .form-field,
 .lms-planner-sidebar .category_subjects_list{border-bottom: 1px solid #e7e7e7; padding: 0 0 15px;}
 .lms-planner-sidebar .lms-element-nav li a {font-size: 14px; font-weight: 400; border: 1px solid #e7e7e7; padding: 6px 15px; border-radius: 3px; color: #888;}
-.lms-planner-sidebar .lms-element-nav li a:hover {color: #BF392B;}
+.lms-planner-sidebar .lms-element-nav li a:hover {color: var(--primary);}
 .lms-planner-sidebar .lms-element-nav ul {margin: 0 -3px;}
 .lms-planner-sidebar .lms-element-nav li {padding: 0 3px 6px;}
 .lms-planner-sidebar .lms-element-nav li:before {display: none;}
@@ -21505,24 +21504,29 @@ Custom Pagination Style End
 }
 .curriculums-head h4 {color: #183152; margin: 0; font-size: 22px; font-weight: 500; position: relative;}
 .curriculums-head h4:before {content: ""; height: 7px; width: 100%; background-color: #eeeeee; position: absolute; bottom: -14px; border-radius: 50px; z-index: -1;}
-.list-description p {padding: 0; font-size: 18px; color: #333; line-height: 22px; font-weight: 500;}
-.curriculums-card {padding: 0; margin: 0;}
-.curriculums-card:last-child:before {border-bottom: 0;}
+.list-description p {padding: 0; font-size: 18px; color: #aaaaaa; line-height: 22px;}
+.curriculums-card {margin: 0 0 15px;}
+.curriculums-card:last-child {border-bottom: 0;}
 .curriculums-list h5 {color: #183152; margin: 0 0 8px; font-weight: 600;}
 .curriculums-list ul {margin: 0 0 20px;}
-.curriculums-list [class*="col-"] ul:last-child {margin-bottom: 0;}
-.curriculums-list ul li {border-bottom: 1px dashed #e7e7e7; padding: 15px 0 15px 30px;}
+.curriculums-list ul li {margin: 0 0 8px;}
 .curriculums-list ul li:last-child {margin: 0;}
-.curriculums-list ul li:hover {background-color: rgba(0,0,0,0.02);}
-.curriculums-list li a {padding: 0; font-size: 16px; font-weight: 400; line-height: 24px; color: #333;}
-.curriculums-list li span {color: #000;}
-.list-description span {display: block; font-weight: 400; color: #aaa; font-size: 15px; padding-top: 5px;}
-.curriculums-list ul {position: relative; border-left: 0; padding: 0;}
-.curriculums-list ul:before {position: absolute; left: 0; top: 0; height: 101%; width: 3px; border-left: 3px solid #BF392B; content: ""; z-index: 1;}
-.curriculums-card:last-child .curriculums-list ul li:last-child {border-bottom: 0;}
-.curriculums-card:before {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; content: ""; border-bottom: 1px solid #e7e7e7;}
-.curriculums-card:last-child:before {border-bottom: 0;}
-.list-description {padding-top: 15px;}
+.curriculums-list li a {padding: 0; font-size: 16px; font-weight: 400; line-height: 24px; color: #4574b9;}
+.lms-planner-section .curriculums-list [class*="col-"] ul:last-child {margin-bottom: 0;}
+.lms-planner-section .curriculums-list ul li {border-bottom: 1px dashed #e7e7e7; padding: 15px 0 15px 30px; margin: 0;}
+.lms-planner-section .curriculums-list ul li:last-child {margin: 0;}
+.lms-planner-section .curriculums-list ul li:hover {background-color: rgba(0,0,0,0.02);}
+.lms-planner-section .curriculums-list li a {color: #333;}
+.lms-planner-section .curriculums-list li span {color: #000;}
+.lms-planner-section .curriculums-card {margin: 0;}
+.lms-planner-section .list-description p {color: #333; font-weight: 500;}
+.lms-planner-section .list-description span {display: block; font-weight: 400; color: #aaa; font-size: 15px; padding-top: 5px;}
+.lms-planner-section .curriculums-list ul {position: relative; border-left: 0; padding: 0;}
+.lms-planner-section .curriculums-list ul:before {position: absolute; left: 0; top: 0; height: 101%; width: 3px; border-left: 3px solid var(--primary); content: ""; z-index: 1;}
+.lms-planner-section .curriculums-card:last-child .curriculums-list ul li:last-child {border-bottom: 0;}
+.lms-planner-section .curriculums-card:before {position: absolute; bottom: 0; left: 0; width: 98.666%; height: 1px; content: ""; border-bottom: 1px solid #e7e7e7;}
+.lms-planner-section .curriculums-card:last-child:before {border-bottom: 0;}
+.lms-planner-section .list-description {padding-top: 15px;}
 .lms-curriculums .element-title {margin: 0 0 30px;}
 .lms-curriculums .element-title h2 {color: #146ebe;margin: 0;font-size: 30px;}
 .lms-curriculums {margin: 0;overflow: hidden;}
@@ -22887,7 +22891,7 @@ Main Home style End
 ***************************/
 
 .rurera-loader-holder { width: fit-content;}
-.rurera-button-loader {position: fixed; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);}
+.rurera-button-loader {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);}
 .rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; top: 50%; left: 50%; margin-top: -12px; z-index: 1;}
 .rurera-button-loader .double-bounce1, 
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
@@ -23304,6 +23308,9 @@ Product Tabs Slider Style Start
     overflow: hidden;
     border: 1px solid #e2e8f0;
 }
+.chart-summary-fields .sats-summary {
+    margin-bottom: 30px;
+}
 .sats-summary label {
     display: block;
     margin: 0 0 8px;
@@ -23341,6 +23348,151 @@ Product Tabs Slider Style Start
 }
 .sats-summary .summary-text {
     width: calc(100% - 35px);
+}
+.chart-summary-fields .sats-summary [class*="col-"] {
+    background-color: #f5f5f5;
+    align-items: center;
+}
+
+.chart-summary-fields .sats-summary .sats-summary-icon {
+    margin-right: 8px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.chart-summary-fields .sats-summary .sats-summary-icon img {
+    width: 35px;
+    height: 35px;
+}
+.chart-summary-fields .sats-summary .sats-summary-icon svg {
+    width: 20px;
+    height: 20px;
+}
+.chart-summary-fields .sats-summary .summary-text {
+    width: calc(100% - 45px);
+}
+.sats-summary label {
+    display: block;
+    margin: 0 0 6px;
+}
+.chart-summary-fields .sats-summary [class*="col-"].bitcoin-box {
+    background-color: initial;
+}
+.chart-summary-fields .sats-summary .score {
+    color: #0d173b;
+    font-size: 16px;
+}
+.chart-summary-fields .sats-summary [class*="col-"].bg-none {
+    background-color: inherit;
+    padding: 20px 0;
+}
+.chart-filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ededed;
+    margin: 0 0 30px;
+    background-color: #fff;
+}
+.chart-filters ul {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: -2px;
+}
+.chart-filters li a {
+    font-size: 15px;
+    color: #66667e;
+    display: block;
+    line-height: normal;
+    padding: 0 0 16px;
+}
+.chart-filters li a.active {
+    border-bottom: 2px solid #3e97fb;
+    margin-bottom: -4px;
+}
+.chart-filters h3 {
+    color: #0f1338;
+    padding: 0 0 18px;
+}
+.chart-wraper .sats-summary {
+    border-radius: 0;
+    border: 0;
+    margin: 0 0 25px;
+    padding: 0 0 25px;
+    border-bottom: 1px solid #ededed;
+}
+.chart-wraper .chart-holder {
+    background-color: #fff;
+    padding: 0;
+}
+.chart-summary-fields {
+    background-color: #fff;
+    padding: 30px;
+}
+.lms-element-nav .planner-sub-links {
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary);
+    padding: 5px 10px;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 1;
+    min-width: 90px;
+    transition: all .5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+.lms-element-nav .planner-sub-links ul {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+.planner-sub-links a {
+    color: #fff;
+}
+.selected-number-box {
+    position: absolute;
+    left: 0;
+    top: 150%;
+    display: flex;
+    gap: 5px;
+    min-width: 150px;
+    background-color: var(--primary);
+    padding: 4px 5px;
+    justify-content: center;
+    border-radius: 50px;
+    color: #fff;
+    z-index: 1;
+    transition: all .5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+.selected-number-box a {
+    background-color: #ccc;
+    padding: 2px 8px 0;
+    border-radius: 20px;
+}
+.selected-number-box .selected-number {
+    height: 25px;
+    width: 25px;
+    background-color: green;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 14px;
+}
+.lms-element-nav > ul > li:hover .planner-sub-links {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 10px;
 }
 
 /*************************************

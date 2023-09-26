@@ -17,22 +17,22 @@ class AnalyticsController extends Controller
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data('11plus');
-
-
+        $summary_type = 'timestables';
+        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
 
         $graphs_array = array();
+
+        $start_date = strtotime('2023-09-20');
+        $end_date = strtotime('2023-09-26');
+
+        $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
+
         $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
         $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
         $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
         $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
-
-        //$yearly_graph = $QuestionsAttemptController->user_graph_data('11plus', 'yearly');
-        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'daily');
-        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'hourly');
-        //$user_graph_data = $QuestionsAttemptController->user_graph_data('11plus', 'monthly');
 
         $BooksUserReading = BooksUserReading::where('user_id', $user->id)->where('status', 'active')->with([
             'BooksPages.BookData',
@@ -183,6 +183,34 @@ class AnalyticsController extends Controller
         //$data['user_graph_data'] = $user_graph_data;
         //$data['QuizzResultQuestionsObj']   => $QuizzResultQuestionsObj;
         $data['graphs_array']  = $graphs_array;
+        $data['summary_type']  = $summary_type;
+        $data['QuestionsAttemptController']    = $QuestionsAttemptController;
         return view('web.default.panel.analytics.index', $data);
+    }
+
+
+    public function graph_data(Request $request){
+        $summary_type = $request->get('graph_type', null);
+        $user = auth()->user();
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data(array($summary_type));
+
+        $graphs_array = array();
+
+        $start_date = strtotime('2023-09-20');
+        $end_date = strtotime('2023-09-26');
+
+        $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
+
+        $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
+        $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
+        $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
+        $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
+        $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
+
+        $graph_data_layout = view('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])->render();
+        echo $graph_data_layout;exit;
+
     }
 }

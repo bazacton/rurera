@@ -96,19 +96,9 @@
 
 
 
+                        <input type="hidden" id="productAvailabilityCount" value="{{ $product->getAvailability() }}">
+                        <input type="hidden" name="quantity" value="1" {{ ($product->getAvailability() < 1) ? 'disabled' : '' }}>
                         <div class="product-show-cart-actions d-flex align-items-center flex-wrap ">
-                            <div class="cart-quantity d-flex align-items-center mt-20 mr-15">
-                                <input type="hidden" id="productAvailabilityCount" value="{{ $product->getAvailability() }}">
-                                <button type="button" class="minus d-flex align-items-center justify-content-center" {{ ($product->getAvailability() < 1) ? 'disabled' : '' }}>
-                                    <i data-feather="minus" class="" width="20" height="20"></i>
-                                </button>
-
-                                <input type="number" name="quantity" value="1" {{ ($product->getAvailability() < 1) ? 'disabled' : '' }}>
-
-                                <button type="button" class="plus d-flex align-items-center justify-content-center" {{ ($product->getAvailability() < 1) ? 'disabled' : '' }}>
-                                    <i data-feather="plus" class="" width="20" height="20"></i>
-                                </button>
-                            </div>
 
                             <div class="d-flex flex-column flex-md-row align-itemsmd-center w-100 mt-20">
 
@@ -227,6 +217,7 @@
 
 @push('scripts_bottom')
     <script>
+        feather.replace();
         var replyLang = '{{ trans('panel.reply') }}';
         var closeLang = '{{ trans('public.close') }}';
         var saveLang = '{{ trans('public.save') }}';

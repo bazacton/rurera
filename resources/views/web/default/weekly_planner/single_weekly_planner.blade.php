@@ -11,21 +11,23 @@ $weeklyPlanner->WeeklyPlannerItems ) )
             </div>
             <div class="col-12">
 
-                <div class="curriculums-list">
+                <div class="curriculums-list" id="weeklyplanner-{{$WeeklyPlannerItemsData->week_no}}">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="list-description">
-                                <p> {{$WeeklyPlannerItemsData->title}} </p>
+                                <p> Week: {{$WeeklyPlannerItemsData->week_no}} </p>
                             </div>
                         </div>
-                        <li class="hide lms-element-nav-li"><a href="#">{{$WeeklyPlannerItemsData->title}}</a></li>
+                        <li class="hide lms-element-nav-li"><a href="#weeklyplanner-{{$WeeklyPlannerItemsData->week_no}}">{{$WeeklyPlannerItemsData->week_no}}</a></li>
                         <div class="col-lg-9 col-md-9 col-sm-12">
+
                             <ul>
+                                <li><h3> {{$WeeklyPlannerItemsData->title}} </h3></li>
                                 @if(isset( $WeeklyPlannerItemsData->WeeklyPlannerTopics) && !empty(
                                 $WeeklyPlannerItemsData->WeeklyPlannerTopics ) )
                                 @foreach( $WeeklyPlannerItemsData->WeeklyPlannerTopics as
                                 $WeeklyPlannerTopicData)
-                                <li><a href="javascript:;">{{$WeeklyPlannerTopicData->WeeklyPlannerTopicData->sub_chapter_title}}</a>
+                                <li><a href="">{{$WeeklyPlannerTopicData->WeeklyPlannerTopicData->sub_chapter_title}}</a>
                                 </li>
                                 @endforeach
                                 @endif
@@ -39,3 +41,11 @@ $weeklyPlanner->WeeklyPlannerItems ) )
 </div>
 @endforeach
 @endif
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*$(".lms-element-nav-li").each(function(){
+            $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
+        });*/
+    });
+
+</script>

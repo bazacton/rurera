@@ -30,6 +30,8 @@
                                 <li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
                                 <li itemprop="careers"><a itemprop="url" href="/careers">Careers <span class="hiring-label">Hiring!</span></a></li>
                                 <li itemprop="testimonials"><a itemprop="url" href="/testimonials">Testimonials</a></li>
+                                <li itemprop="site-map"><a itemprop="url" href="/site-map">Site Map</a></li>
+                                <li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
                             </ul>
                         </div>
                     </div>
@@ -39,7 +41,8 @@
                                 <h2 itemprop="title">What We Offer</h2>
                             </div>
                             <ul>
-                                <li itemprop="Courses"><a itemprop="url" href="/classes?sort=newest">KS1, KS2 Courses</a></li>
+                                <li itemprop="Courses"><a itemprop="url" href="/keystage1">KS1 Courses</a></li>
+                                <li itemprop="Courses"><a itemprop="url" href="/keystage2">KS2 Courses</a></li>
                                 <li itemprop="Sats Preparation"><a itemprop="url" href="/sats/sats_landing">Sats Preparation</a></li>
                                 <li itemprop="11+ Exams"><a itemprop="url" href="/11-plus">11+ Exams</a></li>
                                 <li itemprop="TimeTables"><a itemprop="url" href="/timestables/landing">TimeTables</a></li>
@@ -54,12 +57,11 @@
                                 <h2 itemprop="title">Portal</h2>
                             </div>
                             <ul>
-                                <li itemprop="Register"><a itemprop="url" href="/register">Register</a></li>
-                                <li itemprop="Dashboard"><a itemprop="url" href="/register">Dashboard</a></li>
+                                <li itemprop="Register"><a itemprop="url" href="/register">Register / Signup</a></li>
+                                <li itemprop="Dashboard"><a itemprop="url" href="/register">Sign in / Login</a></li>
                                 <li itemprop="membership"><a itemprop="url" href="/membership-2">Membership</a></li>
-                                <li itemprop="faq"><a itemprop="url" href="/faqs">Faqs</a></li>
                             </ul>
-                            <div class="widget-title mt-20">
+                            <div class="widget-title mt-15">
                                 <h2 itemprop="title">Contact</h2>
                             </div>
                             <ul>

@@ -1002,7 +1002,8 @@ class QuestionsAttemptController extends Controller
                     'created_at'       => time(),
                     'parent_type_id'   => $table_no,
                     'quiz_result_type' => $QuizzAttempts->attempt_type,
-                    'review_required'  => 0
+                    'review_required'  => 0,
+                    'attempted_at'       => time(),
                 ]);
 
 
@@ -1367,7 +1368,7 @@ class QuestionsAttemptController extends Controller
         $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('user_id', $user->id)->where('status', '!=', 'waiting')->get();
         return $QuizzResultQuestions;
     }
-    public function user_graph_data($QuizzResultQuestions, $return_type)
+    public function user_graph_data($QuizzResultQuestions, $return_type, $start_date = '', $end_date = '')
     {
 
         $user = auth()->user();
@@ -1379,26 +1380,19 @@ class QuestionsAttemptController extends Controller
         });*/
 
         if( $return_type == 'weekly'){
-
             $start_date = strtotime('monday this week');
             $end_date = strtotime('sunday this week');
             $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
-            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
-                return date('l', $QuizzResultQuestionsQuery->attempted_at);
-            });
+            $group_by_string = 'l';
         }
         if( $return_type == 'monthly'){
             $start_date = strtotime('january this year');
             $end_date = strtotime('december this week');
             $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
-            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
-                return date('F', $QuizzResultQuestionsQuery->attempted_at);
-            });
+            $group_by_string = 'F';
         }
         if( $return_type == 'yearly'){
-            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
-                return date('Y', $QuizzResultQuestionsQuery->attempted_at);
-            });
+            $group_by_string = 'Y';
 
         } if( $return_type == 'hourly'){
             $date = date('Y-m-d');
@@ -1406,20 +1400,37 @@ class QuestionsAttemptController extends Controller
             $end_date = strtotime(date('Y-m-d', strtotime($date .' +1 day')));
 
             $QuizzResultQuestions = $QuizzResultQuestions->where('attempted_at', '>', $start_date)->where('attempted_at', '<', $end_date);
-            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
-                return date('h', $QuizzResultQuestionsQuery->attempted_at);
-            });
+            $group_by_string = 'h';
 
         } if( $return_type == 'daily'){
             $date = strtotime(date('Y-m-d'));
             $start_date = strtotime(date('Y-m-01 00:00:00', $date));
             $end_date  = strtotime(date('Y-m-t 12:59:59', $date));
             $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
-            $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) {
-                return date('d', $QuizzResultQuestionsQuery->attempted_at);
-            });
-
+            $group_by_string = 'd';
         }
+
+        if( $return_type == 'custom'){
+            $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
+            $dates_difference = $this->dates_difference($start_date, $end_date);
+            if( $dates_difference->years > 0){
+                $group_by_string = 'Y';
+                $return_type = 'yearly';
+            }
+            if( $dates_difference->years == 0 && $dates_difference->months > 0){
+                $group_by_string = 'F';
+                $return_type = 'monthly';
+            }
+            if( $dates_difference->years == 0 && $dates_difference->months == 0 && $dates_difference->days > 0){
+                $group_by_string = 'd';
+                $return_type = 'daily';
+            }
+        }
+
+        $QuizzResultQuestions = $QuizzResultQuestions->groupBy(function ($QuizzResultQuestionsQuery) use($group_by_string) {
+            return date($group_by_string, $QuizzResultQuestionsQuery->attempted_at);
+        });
+
 
         $QuizzResultQuestionsResults = $QuizzResultQuestions;
 
@@ -1540,8 +1551,6 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-        //pre($final_results);
-
         //pre($options_array);
         $options_values = json_encode($options_array);
         $questions_attempted_values = json_encode($questions_attempted_array);
@@ -1550,6 +1559,21 @@ class QuestionsAttemptController extends Controller
             'options_values' => $options_values,
             'questions_attempted_values' => $questions_attempted_values,
             'coins_earned_values' => $coins_earned_values,
+        );
+    }
+
+
+    public function dates_difference($date1, $date2){
+
+        $diff = abs($date2 - $date1);
+
+        $years = floor($diff / (365*60*60*24));
+        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+        return (object)array(
+            'years' => $years,
+            'months' => $months,
+            'days' => $days,
         );
     }
 

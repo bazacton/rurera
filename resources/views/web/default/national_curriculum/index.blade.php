@@ -2,7 +2,6 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
-<script src="/assets/default/vendors/charts/chart.js"></script>
 @endpush
 
 @section('content')
@@ -10,55 +9,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-9 col-lg-9">
-
-
-
-                <div class="chart"><canvas id="chartRadar2"></canvas></div>
-
-                <script>
-                        $(document).ready(function () {
-                            var options = {
-                                type: "bar",
-                                data: {
-                                    labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                                    datasets: [
-                                        { label: "Questions Attempt", data: [75, 68, 80, 50, 90, 65, 40], borderWidth: 0, backgroundColor: "#417290", borderColor: "#417290" },
-                                        { label: "Coins Earned", data: [175, 168, 180, 150, 190, 165, 140], borderWidth: 0, backgroundColor: "#fd1656", borderColor: "#417290" },
-                                    ],
-                                },
-                                options: {
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                },
-                            };
-                            var ctx11 = document.getElementById("chartRadar").getContext("2d");
-                            new Chart(ctx11, options);
-                        });
-                    </script>
-
-
-                <script>
-                    $(document).ready(function () {
-                        var options = {
-                            type: "bar",
-                            data: {
-                                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                                datasets: [
-                                    { label: "Questions Attempt", data: [75, 68, 80, 50, 90, 65, 40, 78, 68, 85, 75, 67], borderWidth: 0, backgroundColor: "#417290", borderColor: "#417290" },
-                                    { label: "Coins Earned", data: [175, 168, 180, 150, 190, 165, 140, 178, 168, 185, 175, 167], borderWidth: 0, backgroundColor: "#fd1656", borderColor: "#417290" },
-                                ],
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                //scales: { x: { grid: { display: false }, border: { display: false } }, y: { grid: { display: false }, border: { display: false } } },
-                            },
-                        };
-                        var ctx11 = document.getElementById("chartRadar2").getContext("2d");
-                        new Chart(ctx11, options);
-                    });
-                </script>
-
                 <p class="lms-subtitle">Programme of study</p>
                 <h1 class="font-30 font-weight-bold">National Curriculum</h1>
                 <p>Skills available for England key stage 2, Year 5 maths objectives</p>
@@ -108,18 +58,7 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="lms-element-nav">
                     <ul>
-                        <li>
-                            <a href="#lms-numbers">Numbers</a>
-                        </li>
-                        <li>
-                            <a href="#lms-measurement">Measurement</a>
-                        </li>
-                        <li>
-                            <a href="#">Geometry</a>
-                        </li>
-                        <li>
-                            <a href="#">Statistics</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -173,6 +112,9 @@
                 success: function (response) {
                     rurera_remove_loader(thisObj, 'page');
                     $(".lms-curriculums-section").html(response);
+                    $(".lms-element-nav-li").each(function(){
+                        $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
+                    });
                 }
             });
 

@@ -2,6 +2,11 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<style>
+    .is_child {
+        display: none;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -12,6 +17,42 @@
                 <p class="lms-subtitle">Programme of study</p>
                 <h1 class="font-30 font-weight-bold">Weekly Planner</h1>
                 <p>Skills available for England key stage 2, Year 5 maths objectives</p>
+                <div class="lms-course-select">
+                    <form>
+                        <div class="form-inner">
+                            <div class="form-select-field">
+                                <select class="key_stage_id category-id-field" data-subject_id="0">
+                                    <option>Key Stage</option>
+                                    @if(!empty( $categories ))
+                                    @foreach($categories as $category)
+                                    @if(!empty($category->subCategories) and count($category->subCategories))
+                                    <optgroup label="{{  $category->title }}">
+                                        @foreach($category->subCategories as $subCategory)
+                                        <option value="{{ $subCategory->id }}" @if(!empty($weeklyPlanner) and
+                                                $weeklyPlanner->
+                                            key_stage == $subCategory->id) selected="selected" @endif>{{
+                                            $subCategory->title }}
+                                        </option>
+                                        @endforeach
+                                    </optgroup>
+                                    @else
+                                    <option value="{{ $category->id }}" class="font-weight-bold"
+                                            @if(!empty($weeklyPlanner)
+                                            and $weeklyPlanner->key_stage == $category->id) selected="selected"
+                                        @endif>{{
+                                        $category->title }}
+                                    </option>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                                <div class="category_subjects_list">
+
+                                </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-12 col-md-3 col-lg-3 sub-header-img">
                 <figure>
@@ -19,6 +60,57 @@
                 </figure>
 
             </div>
+            <div class="col-12 col-md-12 col-lg-12">
+
+                <div class="lms-element-nav">
+                    <ul>
+                        <li class="has-child element-nav-slide-li" style="display: inherit;" data-id="1_4"><a href="javascript:;">1 - 4</a>
+                        <ul>
+                            <li class="is_child child_1_4"><a href="#1">1</a></li>
+                            <li class="is_child child_1_4"><a href="#2">2</a></li>
+                            <li class="is_child child_1_4"><a href="#3">3</a></li>
+                            <li class="is_child child_1_4"><a href="#4">4</a></li>
+                        </ul>
+                        </li>
+
+
+                        <li class="has-child element-nav-slide-li" style="display: inherit;" data-id="5_8"><a href="javascript:;">5 - 8</a>
+                            <ul>
+                                <li class="is_child child_5_8"><a href="#1">5</a></li>
+                                <li class="is_child child_5_8"><a href="#2">6</a></li>
+                                <li class="is_child child_5_8"><a href="#3">7</a></li>
+                                <li class="is_child child_5_8"><a href="#4">8</a></li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+                <div class="lms-element-nav">
+                    <ul>
+                        <li class="has-child">
+                            <a href="javascript:;" class="element-nav-slide-li">1 - 4</a>
+                            <div class="planner-sub-links">
+                                <ul>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">5</a></li>
+                                </ul>
+                            </div>
+                            <div class="selected-number-box">
+                                <a href="#"><span>1</span> - <span>2</span></a>
+                                <a href="#"><span>3</span> - <span>4</span></a>
+                                <span class="selected-number">5</span>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -27,44 +119,9 @@
 <section class="lms-planner-section">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-9 col-lg-9 lms-planner-section-fetch">
+            <div class="col-12 col-md-12 col-lg-12 lms-planner-section-fetch">
 
                 @include('web.default.weekly_planner.single_weekly_planner',['weeklyPlanner'=> $weeklyPlanner])
-            </div>
-            <div class="col-lg-3 col-md-3 col-12 lms-planner-sidebar">
-                <div class="lms-course-select">
-                    <form>
-                        <div class="form-inner flex-column mx-0">
-                            <div class="form-field mb-15">
-                                <h5>Key Stages</h5>
-                                <ul class="key_stage_id category-id-field">
-
-                                    @if(!empty( $categories ))
-                                    @foreach($categories as $category)
-                                    @if(!empty($category->subCategories) and count($category->subCategories))
-                                        @foreach($category->subCategories as $subCategory)
-                                        @php $checked = ($weeklyPlanner->key_stage == $subCategory->id)? 'checked' : ''; @endphp
-                                        <li>
-                                            <input type="radio" value="{{ $subCategory->id }}" name="key-stage" id="{{ $subCategory->id }}" {{$checked}}>
-                                            <label for="{{ $subCategory->id }}">{{$subCategory->title }}</label>
-                                        </li>
-                                        @endforeach
-                                    @endif
-                                    @endforeach
-                                    @endif
-                                </ul>
-                            </div>
-                            <div class="category_subjects_list mb-15">
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="lms-element-nav">
-                    <ul>
-
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -84,14 +141,30 @@
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('body').on('change', '.category-id-field li input[type=radio]', function (e) {
+
+        $('body').on('mouseover', '.element-nav-slide-li', function (e) {
+            var thisObj = $(this);
+            var data_id = thisObj.attr('data-id');
+            console.log(data_id);
+            $(".child_"+data_id).show( "slow" );
+            //thisObj.closest('.has-child').find('.planner-sub-links ul').animate({left: '250px'});
+        });
+        $('body').on('mouseleave', '.element-nav-slide-li', function (e) {
+            var thisObj = $(this);
+            var data_id = thisObj.attr('data-id');
+            console.log(data_id);
+            $(".child_"+data_id).hide( "slow" );
+            //thisObj.closest('.has-child').find('.planner-sub-links ul').animate({left: '250px'});
+        });
+
+        $('body').on('change', '.category-id-field', function (e) {
             var category_id = $(this).val();
             console.log(category_id);
             var subject_id = $(this).attr('data-subject_id');
-			subject_id = (subject_id > 0)? subject_id : 2065;
+			subject_id = (subject_id > 0)? subject_id : 2010;
             $.ajax({
                 type: "GET",
-                url: '/national-curriculum/subjects_by_category_frontend',
+                url: '/national-curriculum/subjects_by_category',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -102,13 +175,13 @@
             });
 
         });
-        $('.category-id-field li input[type=radio]:checked').change();
+        $(".category-id-field").change();
 
-        $('body').on('change', '.choose-curriculum-subject li input[type=radio]', function (e) {
+        $('body').on('change', '.choose-curriculum-subject', function (e) {
             var thisObj = $(this);
             rurera_loader(thisObj, 'page');
             var subject_id = $(this).val();
-            var category_id = $('.category-id-field li input[type=radio]:checked').val();
+            var category_id = $('.category-id-field').val();
             $.ajax({
                 type: "GET",
                 url: '/weekly-planner/weekly_planner_by_subject',
@@ -120,11 +193,10 @@
                     rurera_remove_loader(thisObj, 'page');
                     $(".lms-planner-section-fetch").html(response);
 
-                    $('.lms-element-nav ul').html('');
-                    console.log($(".lms-element-nav-li").length);
-                    $(".lms-element-nav-li").each(function(){
+                    //$('.lms-element-nav ul').html('<li><h3>Week</h3></li>');
+                    /*$(".lms-element-nav-li").each(function(){
                         $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
-                    });
+                    });*/
 
 
                 }
