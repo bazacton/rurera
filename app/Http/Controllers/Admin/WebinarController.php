@@ -57,6 +57,25 @@ class WebinarController extends Controller
         $query = Webinar::where('webinars.type' , $type);
 
         /*Slug Starts*/
+        /*$quiz_list = Quiz::get();
+
+
+        if( !empty( $quiz_list) ){
+
+            foreach( $quiz_list as $quizObj){
+                $quizRow = Quiz::find($quizObj->id);
+                $quiz_slug = Quiz::makeSlug($quizObj->getTitleAttribute());
+                pre($quiz_slug, false);
+                $quizRow->update(['quiz_slug' => strtolower($quiz_slug)]);
+            }
+
+        }
+        pre('done');*/
+        //WebinarChapter::makeSlug($data['title']);
+
+        /*Slug Ends*/
+
+        /*Slug Starts*/
         /*$sub_chapters_list = SubChapters::where('sub_chapter_slug', null)->get();
 
 

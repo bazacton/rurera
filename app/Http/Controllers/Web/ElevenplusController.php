@@ -20,6 +20,21 @@ class ElevenplusController extends Controller
         }
         $user = auth()->user();
         $QuestionsAttemptController = new QuestionsAttemptController();
+        $summary_type = '11plus';
+        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
+
+        $graphs_array = array();
+
+        $start_date = strtotime('2023-09-20');
+        $end_date = strtotime('2023-09-26');
+
+        $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
+
+        $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
+        $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
+        $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
+        $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
+        $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
 
 
@@ -73,6 +88,8 @@ class ElevenplusController extends Controller
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,
                 'parent_assigned_list'       => $parent_assigned_list,
+                'graphs_array'  => $graphs_array,
+                'summary_type'  => $summary_type,
             ];
             return view('web.default.11plus.index', $data);
         }

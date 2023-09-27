@@ -149,3 +149,5 @@
         </div>
     </div>
 </footer>
+<script src="/assets/default/vendors/feather-icons/dist/feather.min.js"></script>
+<script>feather.replace();</script>

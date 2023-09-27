@@ -2,21 +2,7 @@
 <div class="chart-summary-fields">
 
         <div class="chart-filters">
-            <h3>Market Graph</h3>
-
-            <div class="form-group">
-                    <select class="form-control analytics_graph_type">
-                        @php $is_selected = ($summary_type == '11plus')? 'selected' : ''; @endphp
-                        <option value="11plus" {{$is_selected}}>11 Plus</option>
-                        @php $is_selected = ($summary_type == 'sats')? 'selected' : ''; @endphp
-                        <option value="sats" {{$is_selected}}>SATs</option>
-                        @php $is_selected = ($summary_type == 'book_page')? 'selected' : ''; @endphp
-                        <option value="book_page" {{$is_selected}}>Book</option>
-                        @php $is_selected = ($summary_type == 'timestables')? 'selected' : ''; @endphp
-                        <option value="timestables" {{$is_selected}}>Times Tables</option>
-                    </select>
-                </div>
-
+            <h3>{{$summary_type}} Graph</h3>
             <ul class="graph-data-ul">
                 @if( !empty( $graphs_array ) )
                 @foreach( $graphs_array as $graph_key => $graphsData)

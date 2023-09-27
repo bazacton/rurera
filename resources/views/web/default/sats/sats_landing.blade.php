@@ -565,7 +565,7 @@
                 <div class="position-relative">
                     <img src="/store/1/default_images/home_sections_banners/learning-practice.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
-                    <img src="/assets/default/img/home/dot.png" width="" height="" class="find-instructor-section-dots" alt="dots"/>
+                    <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
             </div>
         </div>
@@ -576,7 +576,7 @@
                 <div class="position-relative">
                     <img src="/store/1/default_images/home_sections_banners/quiz-sats.jpg" class="find-instructor-section-hero" width="" height="" alt="Track Student Progress"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
-                    <img src="/assets/default/img/home/dot.png" width="" height="" class="find-instructor-section-dots" alt="dots"/>
+                    <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -625,7 +625,7 @@
                 <div class="position-relative">
                     <img src="/store/1/default_images/home_sections_banners/activity-tracking.jpg" width="" height="" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
-                    <img src="/assets/default/img/home/dot.png" width="" height="" class="find-instructor-section-dots" alt="dots"/>
+                    <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
@@ -662,7 +662,7 @@
                 <div class="position-relative">
                     <img src="/store/1/default_images/home_sections_banners/lesson-topics.jpg" width="" height="" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
-                    <img src="/assets/default/img/home/dot.png" width="" height="" class="find-instructor-section-dots" alt="dots"/>
+                    <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
             </div>
         </div>
