@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class BooksController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
 
         $books_data = Books::get();
@@ -29,6 +29,10 @@ class BooksController extends Controller
                 }
             }
         }
+
+
+        putSitemap($request);
+
         if (!empty($books)) {
             $data = [
                 'pageTitle' => 'Books',

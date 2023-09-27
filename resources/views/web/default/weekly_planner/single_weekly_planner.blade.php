@@ -43,9 +43,9 @@ $weeklyPlanner->WeeklyPlannerItems ) )
 @endif
 <script type="text/javascript">
     $(document).ready(function () {
-        /*$(".lms-element-nav-li").each(function(){
+        $(".lms-element-nav-li").each(function(){
             $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
-        });*/
+        });
     });
 
 </script>

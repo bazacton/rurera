@@ -218,9 +218,9 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40">
                         <figure class="mb-20">
-                            <a href="https://rurera.chimpstudio.co.uk/membership-2"><img src="../assets/default/img/membership-feature.jpg" alt="feature image"></a>
+                            <a href="https://rurera.chimpstudio.co.uk/membership"><img src="../assets/default/img/membership-feature.jpg" alt="feature image"></a>
                         </figure>
-                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/membership-2" class="text-dark-charcoal">Memberships</a></h4>
+                        <h4 class="mb-5 font-19 font-weight-500"><a target="_blank" href="https://rurera.chimpstudio.co.uk/membership" class="text-dark-charcoal">Memberships</a></h4>
                         <p>It offers flexible and easy to use packages options for students, parents and teachers.</p>
                     </div>
                 </div>

@@ -251,7 +251,7 @@
                                 <td>
 
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
-                                    <h4><a href="/sats/{{$satObj->id}}/start">{{$satObj->getTitleAttribute()}}-<br>reading</a>
+                                    <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}-<br>reading</a>
                                     </h4>
                                 </td>
                                 <td>54</td>

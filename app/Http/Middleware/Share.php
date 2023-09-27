@@ -118,6 +118,8 @@ class Share
 
         //pre($course_navigation);
 
+        //pre($course_navigation);
+
 
         //$courses_list = Webinar::where('category_id', $course->category->id)->get();
 

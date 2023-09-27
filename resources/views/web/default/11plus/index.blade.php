@@ -318,7 +318,7 @@
                                         <tr class="odd">
                                             <td>
 
-                                                <a href="/11plus/{{$dataObj->id}}/start">{{$dataObj->getTitleAttribute()}}</a>
+                                                <a href="/11plus/{{$dataObj->quiz_slug}}">{{$dataObj->getTitleAttribute()}}</a>
                                             </td>
                                             <td>
                                                 @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')

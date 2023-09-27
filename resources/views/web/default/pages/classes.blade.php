@@ -139,23 +139,19 @@
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingonsix">
-                            <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What is the difference between KS1 and KS2?</button></h5>
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What is the difference between KS1 and KS2?</button>
                         </div>
                         <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion"><div class="card-body">KS1 stands for Key Stage 1 and covers the first two years of primary school education for children aged 5 to 7 (Year 1 and Year 2). KS2 stands for Key Stage 2 and covers the next four years of primary education for children aged 7 to 11 (Year 3 to Year 6).</div></div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What subjects are typically covered in KS1 and KS2 courses?</button>
-                            </h5>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">What subjects are typically covered in KS1 and KS2 courses?</button>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"><div class="card-body">In both KS1 and KS2 courses, the core subjects include English, mathematics, and science.</div></div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingseven">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">How are KS1 and KS2 courses taught?</button>
-                            </h5>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">How are KS1 and KS2 courses taught?</button>
                         </div>
                         <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                             <div class="card-body">Rurera provides an inclusive and stimulating learning environment that promotes active participation, critical thinking, and independent learning skills.</div>
@@ -163,13 +159,13 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="heading8">
-                            <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How long do KS1 and KS2 courses last?</button></h5>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How long do KS1 and KS2 courses last?</button>
                         </div>
                         <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion"><div class="card-body">KS1 courses cover two school years (Year 1 and Year 2), and KS2 courses cover four school years (Year 3 to Year 6).</div></div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="heading9">
-                            <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Can parents support KS1 and KS2 learning at home?</button></h5>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Can parents support KS1 and KS2 learning at home?</button>
                         </div>
                         <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion"><div class="card-body">Yes, parents can support their child's KS1 and KS2 learning at home. They can reinforce concepts taught at school by providing additional practice activities, helping with homework, engaging in discussions, and encouraging reading.</div></div>
                     </div>

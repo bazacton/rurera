@@ -17,7 +17,7 @@ class AnalyticsController extends Controller
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $summary_type = 'timestables';
+        $summary_type = '11plus';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
 
         $graphs_array = array();

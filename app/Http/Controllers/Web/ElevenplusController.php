@@ -83,7 +83,7 @@ class ElevenplusController extends Controller
     /*
      * Start SAT Quiz
      */
-    public function start(Request $request, $id)
+    public function start(Request $request, $quiz_slug)
     {
         if (!auth()->check()) {
             return redirect('/login');
@@ -92,7 +92,9 @@ class ElevenplusController extends Controller
         if (!auth()->subscription('11plus')) {
             return view('web.default.quizzes.not_subscribed');
         }
-        $quiz = Quiz::find($id);
+        $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
+        $id = $quiz->id;
+        //$quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);

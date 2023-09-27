@@ -62,7 +62,7 @@
             </div>
             <div class="col-12 col-md-12 col-lg-12">
 
-                <div class="lms-element-nav">
+                <div class="lms-element-nav1" style="display:none">
                     <ul>
                         <li class="has-child element-nav-slide-li" style="display: inherit;" data-id="1_4"><a href="javascript:;">1 - 4</a>
                         <ul>
@@ -90,22 +90,6 @@
 
                 <div class="lms-element-nav">
                     <ul>
-                        <li class="has-child">
-                            <a href="javascript:;" class="element-nav-slide-li">1 - 4</a>
-                            <div class="planner-sub-links">
-                                <ul>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">5</a></li>
-                                </ul>
-                            </div>
-                            <div class="selected-number-box">
-                                <a href="#"><span>1</span> - <span>2</span></a>
-                                <a href="#"><span>3</span> - <span>4</span></a>
-                                <span class="selected-number">5</span>
-                            </div>
-                        </li>
 
                     </ul>
                 </div>
@@ -142,14 +126,14 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('body').on('mouseover', '.element-nav-slide-li', function (e) {
+        $('body').on('mouseover', '.element-nav-slide-li1', function (e) {
             var thisObj = $(this);
             var data_id = thisObj.attr('data-id');
             console.log(data_id);
             $(".child_"+data_id).show( "slow" );
             //thisObj.closest('.has-child').find('.planner-sub-links ul').animate({left: '250px'});
         });
-        $('body').on('mouseleave', '.element-nav-slide-li', function (e) {
+        $('body').on('mouseleave', '.element-nav-slide-li1', function (e) {
             var thisObj = $(this);
             var data_id = thisObj.attr('data-id');
             console.log(data_id);
@@ -193,10 +177,10 @@
                     rurera_remove_loader(thisObj, 'page');
                     $(".lms-planner-section-fetch").html(response);
 
-                    //$('.lms-element-nav ul').html('<li><h3>Week</h3></li>');
-                    /*$(".lms-element-nav-li").each(function(){
+                    $('.lms-element-nav ul').html('<li><h3>Week</h3></li>');
+                    $(".lms-element-nav-li").each(function(){
                         $('.lms-element-nav ul').append('<li>'+$(this).html()+'</li>');
-                    });*/
+                    });
 
 
                 }

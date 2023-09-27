@@ -279,7 +279,8 @@ class WebinarController extends Controller
                 $sub_chapters[$sub_chapter_item->chapter_id][] = array(
                     'id'         => $sub_chapter_item->id,
                     'title'      => $sub_chapter_item->sub_chapter_title,
-                    'chapter_id' => $sub_chapter_item->chapter_id
+                    'chapter_id' => $sub_chapter_item->chapter_id,
+                    'sub_chapter_slug' => $sub_chapter_item->sub_chapter_slug
                 );
             }
         }
@@ -944,15 +945,19 @@ class WebinarController extends Controller
     /*
      * Start Course Quiz
      */
-    public function start(Request $request, $sub_chapter_id)
+    public function start(Request $request, $subject_slug, $sub_chapter_slug)
     {
 
         if (!auth()->subscription('courses')) {
             return view('web.default.quizzes.not_subscribed');
         }
 
+        $SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
+                    ->first();
+
+
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
-            ->where('parent_id', $sub_chapter_id)
+            ->where('parent_id', $SubChapters->id)
             ->first();
 
         $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;

@@ -27,7 +27,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
         <div class="d-flex align-items-center justify-content-between w-100">
 
             <a class="navbar-brand navbar-order d-flex align-items-center justify-content-center mr-0 {{ (empty($navBtnUrl) and empty($navBtnText)) ? 'ml-auto' : '' }}"
-               href="/">
+               href="https://rurera.chimpstudio.co.uk/">
                 @if(!empty($generalSettings['logo']))
                 <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo"
                      width="100%" height="auto" itemprop="image" loading="eager">
@@ -148,7 +148,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                                             @endif
                                                             <div class="menu-colum-text">
                                                                 <a
-                                                                        href="/course/{{$chapter_data['chapter_slug']}}"><strong>{{isset(
+                                                                        href="/{{$navigation_slug}}/{{$chapter_data['chapter_slug']}}"><strong>{{isset(
                                                                         $chapter_data['chapter_title'] )?
                                                                         $chapter_data['chapter_title'] :
                                                                         ''}}</strong></a>
@@ -219,7 +219,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
             @if(isset( $authUser ) && $authUser->isUser())
                 <div class="coin-counts">
                     <strong>
-                        <img src="assets/default/img/coin-img.png" alt="">
+                        <img src="/assets/default/img/coin-img.png" alt="">
                         {{$authUser->getRewardPoints()}}
                     </strong>
                 </div>

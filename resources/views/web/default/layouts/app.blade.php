@@ -61,11 +61,7 @@
     @yield('content')
 
     @if(!isset($appFooter))
-        @if( Route::currentRouteName() == 'homepage')
-            @include('web.default.includes.footer_home')
-        @else
-            @include('web.default.includes.footer')
-        @endif
+        @include('web.default.includes.footer_home')
     @endif
 
     @include('web.default.includes.advertise_modal.index')

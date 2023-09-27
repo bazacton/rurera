@@ -1,11 +1,11 @@
-<a href="#" class="scroll-btn">
+<div class="scroll-btn">
     <div class="round">
         <div id="cta">
             <span class="arrow primera next"></span>
             <span class="arrow segunda next"></span>
         </div>
     </div>
-</a>
+</div>
 <footer class="footer  position-relative user-select-none">
     <div class="container">
         <div class="row">
@@ -16,7 +16,7 @@
                             <ul>
                                 <li itemprop="about"><a itemprop="url" href="/about-us">About Us</a></li>
                                 
-                                <li itemprop="features"><a itemprop="url" href="/features-3">Features</a></li>
+                                <li itemprop="features"><a itemprop="url" href="/features">Features</a></li>
 
                                 <li itemprop="blog"><a itemprop="url" href="/blog">Blog</a></li>
 
@@ -46,7 +46,7 @@
                 <div class="col-12 text-center">
                     <div class="copyright-inner">
                         <div class="footer-logo">
-                            <a itemprop="url"  href="/">
+                            <a itemprop="url"  href="https://rurera.chimpstudio.co.uk/">
                                 <img src="/store/1/logo.png" class="img-cover" alt="footer logo" title="footer logo"  width="100%" height="auto" loading="eager">
                             </a>
                         </div>

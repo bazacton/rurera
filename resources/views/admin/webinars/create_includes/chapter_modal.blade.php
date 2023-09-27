@@ -35,6 +35,12 @@
             </div>
 
             <div class="form-group">
+               <label class="input-label">Challenge Slug</label>
+               <input type="text" name="ajax[chapter][chapter_slug]" class="form-control js-ajax-chapter_slug" value=""/>
+               <span class="invalid-feedback"></span>
+           </div>
+
+            <div class="form-group">
                <label class="input-label">Challenge Title</label>
                <input type="text" name="ajax[chapter][challenge_title]" class="form-control js-ajax-challenge_title" value=""/>
                <span class="invalid-feedback"></span>
@@ -43,7 +49,7 @@
             <div class="form-group">
                <label class="input-label">Challenge Quiz</label>
 
-                <select name="ajax[chapter][challenge_quiz]"
+                <select name="ajax[chapter][challenge_quiz][]"
                         multiple="multiple"
                         data-search-option="name"
                         class="form-control search-quiz-field-select2 js-ajax-challenge_quiz"

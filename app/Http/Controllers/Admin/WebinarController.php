@@ -56,6 +56,44 @@ class WebinarController extends Controller
         $type = $request->get('type' , 'webinar');
         $query = Webinar::where('webinars.type' , $type);
 
+        /*Slug Starts*/
+        /*$sub_chapters_list = SubChapters::where('sub_chapter_slug', null)->get();
+
+
+        if( !empty( $sub_chapters_list) ){
+
+            foreach( $sub_chapters_list as $chapterObj){
+                $chapterRow = SubChapters::find($chapterObj->id);
+                $chapter_slug = SubChapters::makeSlug($chapterObj->sub_chapter_title);
+                pre($chapter_slug, false);
+                $chapterRow->update(['chapter_slug' => strtolower($chapter_slug)]);
+            }
+
+        }
+        pre($chapters_list);*/
+        //WebinarChapter::makeSlug($data['title']);
+
+        /*Slug Ends*/
+
+
+        /*Slug Starts*/
+        /*$chapters_list = WebinarChapter::where('chapter_slug', null)->get();
+
+        if( !empty( $chapters_list) ){
+
+            foreach( $chapters_list as $chapterObj){
+                $chapterRow = WebinarChapter::find($chapterObj->id);
+                $chapter_slug = WebinarChapter::makeSlug($chapterObj->getTitleAttribute());
+                pre($chapter_slug, false);
+                $chapterRow->update(['chapter_slug' => strtolower($chapter_slug)]);
+            }
+
+        }
+        pre($chapters_list);*/
+        //WebinarChapter::makeSlug($data['title']);
+
+        /*Slug Ends*/
+
         $totalWebinars = $query->count();
         $totalPendingWebinars = deepClone($query)->where('webinars.status' , 'pending')->count();
         $totalDurations = deepClone($query)->sum('duration');
@@ -447,6 +485,8 @@ class WebinarController extends Controller
                 )
             );
 
+            $sub_chapter_slug = (isset($data['sub_chapter_slug']) && $data['sub_chapter_slug'] != '') ? $data['sub_chapter_slug'] : SubChapters::makeSlug($data['title']);
+
             $sub_chapter = SubChapters::create([
                 'webinar_id'        => $webinar->id ,
                 'chapter_id'        => !empty($chapter) ? $chapter->id : null ,
@@ -455,6 +495,7 @@ class WebinarController extends Controller
                 'chapter_settings'  => json_encode($chapter_settings) ,
                 'status'            => 'active' ,
                 'created_at'        => time() ,
+                'sub_chapter_slug'        => $sub_chapter_slug,
             ]);
 
 
@@ -548,6 +589,8 @@ class WebinarController extends Controller
                 )
             );
 
+            $sub_chapter_slug = (isset($data['sub_chapter_slug']) && $data['sub_chapter_slug'] != '') ? $data['sub_chapter_slug'] : SubChapters::makeSlug($data['title']);
+
 
             $sub_chapter = $subChapter->update([
                 'webinar_id'        => $webinar->id ,
@@ -556,6 +599,7 @@ class WebinarController extends Controller
                 'quiz_type'         => isset($data['quiz_type']) ? $data['quiz_type'] : '' ,
                 'chapter_settings'  => json_encode($chapter_settings) ,
                 'status'            => 'active' ,
+                'sub_chapter_slug' => $sub_chapter_slug,
                 //'created_at' => time(),
             ]);
 

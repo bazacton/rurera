@@ -133,6 +133,7 @@ class ChapterController extends Controller
 
         if (!empty($data['webinar_id'])) {
             $webinar = Webinar::where('id', $data['webinar_id'])->first();
+            $chapter_slug = (isset($data['chapter_slug']) && $data['chapter_slug'] != '') ? $data['chapter_slug'] : WebinarChapter::makeSlug($data['title']);
 
             if (!empty($webinar)) {
                 $teacher = $webinar->creator;
@@ -146,6 +147,7 @@ class ChapterController extends Controller
                     'status' => $status,
                     'check_all_contents_pass' => (!empty($data['check_all_contents_pass']) and $data['check_all_contents_pass'] == 'on'),
                     'created_at' => time(),
+                    'chapter_slug' => $chapter_slug,
                 ]);
 
                 if (!empty($chapter)) {
@@ -212,6 +214,8 @@ class ChapterController extends Controller
 
         $chapter = WebinarChapter::where('id', $id)->first();
 
+        $chapter_slug = (isset($data['chapter_slug']) && $data['chapter_slug'] != '') ? $data['chapter_slug'] : WebinarChapter::makeSlug($data['title']);
+
         if (!empty($chapter)) {
             $webinar = Webinar::where('id', $data['webinar_id'])->first();
 
@@ -226,6 +230,7 @@ class ChapterController extends Controller
                     'challenge_image' => isset( $data['challenge_image'] )? $data['challenge_image'] : '',
                     'challenge_background_color' => isset( $data['challenge_background_color'] )? $data['challenge_background_color'] : '',
                     'challenge_border_color' => isset( $data['challenge_border_color'] )? $data['challenge_border_color'] : '',
+                    'chapter_slug' => $chapter_slug,
                 ]);
 
                 if (!empty($chapter)) {

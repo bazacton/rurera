@@ -8,6 +8,15 @@
         <lastmod>{{$params['lastmod']}}</lastmod>
         <changefreq>{{$params['changefreq']}}</changefreq>
         <priority>{{$params['priority']}}</priority>
+        @if( isset( $params['images'] ) && !empty( $params['images'] ) )
+            @foreach( $params['images'] as $imageData)
+                <image:image>
+                    <image:loc>{{isset( $imageData['loc'] )? $imageData['loc'] : ''}}</image:loc>
+                    <image:title>{{isset( $imageData['title'] )? $imageData['title'] : ''}}</image:title>
+                    <image:caption>{{isset( $imageData['caption'] )? $imageData['caption'] : ''}}</image:caption>
+                </image:image>
+            @endforeach
+        @endif
     </url>
     @endforeach
 </urlset>

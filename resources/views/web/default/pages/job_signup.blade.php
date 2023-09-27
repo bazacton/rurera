@@ -163,7 +163,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box teacher">
-                            <img src="../assets/default/svgs/healthcare.svg" alt="Healthcare">
+                            <img src="../assets/default/svgs/healthcare.svg" width="60" height="70" itemprop="svg image" alt="Healthcare">
                         </div>
                         <h2 itemprop="title" class="stat-title">Healthcare benefits</h2>
                         <p itemprop="description" class="stat-desc mt-10">100% medical facility, maternity, and vision</p>
@@ -172,7 +172,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box student">
-                            <img src="../assets/default/svgs/flextime.svg" alt="Healthcare">
+                            <img src="../assets/default/svgs/flextime.svg" title="default staff image" width="60" height="70" itemprop="svg image" alt="Healthcare">
                         </div>
                         <h2 itemprop="title" class="stat-title">Flextime</h2>
                         <p itemprop="description" class="stat-desc mt-10">Full time remote and online work opportunity</p>
@@ -181,7 +181,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box video">
-                            <img src="../assets/default/svgs/vacations.svg" alt="Vacations">    
+                            <img src="../assets/default/svgs/vacations.svg" width="60" height="70" itemprop="svg image" alt="Vacations">    
                         </div>
                         <h2 itemprop="title" class="stat-title">Vacations</h2>
                         <p itemprop="description" class="stat-desc mt-10">Predetermined amount of days each year.</p>
@@ -190,7 +190,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box course">
-                            <img src="../assets/default/svgs/competitive.svg" alt="Competitive salaries">
+                            <img src="../assets/default/svgs/competitive.svg" width="60" height="70" itemprop="svg image" alt="Competitive salaries">
                         </div>
                         <h2 itemprop="title" class="stat-title">Competitive salaries </h2>
                         <p itemprop="description" class="stat-desc mt-10">It help and retain valuable employees</p>
@@ -199,7 +199,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box teacher">
-                            <img src="../assets/default/svgs/free-meals.svg" alt="Free meals">
+                            <img src="../assets/default/svgs/free-meals.svg" width="60" height="70" itemprop="svg image" alt="Free meals">
                         </div>
                         <h2 itemprop="title" class="stat-title">Free meals</h2>
                         <p itemprop="description" class="stat-desc mt-10">Offering healthy meal for employees</p>
@@ -208,7 +208,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box student">
-                            <img src="../assets/default/svgs/mental-health.svg" alt="Mental health">
+                            <img src="../assets/default/svgs/mental-health.svg" width="60" height="70" itemprop="svg image" alt="Mental health">
                         </div>
                         <h2 itemprop="title" class="stat-title">Mental health support</h2>
                         <p itemprop="description" class="stat-desc mt-10">Provides counseling services with big changes</p>
@@ -217,7 +217,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box video">
-                            <img src="../assets/default/svgs/continuing-edu.svg" alt="Continuing education">
+                            <img src="../assets/default/svgs/continuing-edu.svg" width="60" height="70" itemprop="svg image" alt="Continuing education">
                         </div>
                         <h2 itemprop="title" class="stat-title">Continuing education</h2>
                         <p itemprop="description" class="stat-desc mt-10">Provide opportunities to complete studies</p>
@@ -226,7 +226,7 @@
                 <div class="col-sm-6 col-lg-3 mb-30">
                     <div class="stats-item simple d-flex flex-column align-items-center text-center py-30 px-15 w-100">
                         <div class="stat-icon-box course">
-                            <img src="../assets/default/svgs/travel-fund.svg" alt="Travel Fund">
+                            <img src="../assets/default/svgs/travel-fund.svg" width="60" height="70" itemprop="svg image" alt="Travel Fund">
                         </div>
                         <h2 itemprop="title" class="stat-title">Freedom fund to travel</h2>
                         <p itemprop="description" class="stat-desc mt-10">Chance to travel and enjoy hotel free credits</p>

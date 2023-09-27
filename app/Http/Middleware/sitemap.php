@@ -29,8 +29,11 @@ class sitemap {
      */
     public function handle($request, Closure $next)
     {
-        if ( !$request->is("sitemap") && $request->fullUrl() != '' && $this->auth->guest() )
+        $is_active = false;
+        if ( !$request->is("sitemap") && $request->fullUrl() != '' && $is_active == true )
         {
+
+
             $aSiteMap = \Cache::get('sitemap', []);
             $changefreq = 'always';
             if ( !empty( $aSiteMap[$request->fullUrl()]['added'] ) ) {

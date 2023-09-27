@@ -1,20 +1,20 @@
-<a href="#" class="scroll-btn">
+<div class="scroll-btn">
     <div class="round">
         <div id="cta">
             <span class="arrow primera next"></span>
             <span class="arrow segunda next"></span>
         </div>
     </div>
-</a>
+</div>
 <footer class="footer  position-relative user-select-none footer-home">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="widget widget-aboutus">
                     <ul>
-                        <li itemprop="school"><a itemprop="url" href="/features-3">i'm a school <span>&#8250;</span></a></li>
-                        <li itemprop="teacher"><a itemprop="url"  href="/features-3">i'm a teacher<span>&#8250;</span></a></li>
-                        <li itemprop="parent"><a itemprop="url" href="/features-3">i'm a parent<span>&#8250;</span></a></li>
+                        <li itemprop="school"><a itemprop="url" href="/features">i'm a school <span>&#8250;</span></a></li>
+                        <li itemprop="teacher"><a itemprop="url"  href="/features">i'm a teacher<span>&#8250;</span></a></li>
+                        <li itemprop="parent"><a itemprop="url" href="/features">i'm a parent<span>&#8250;</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                             <ul>
                                 <li itemprop="Register"><a itemprop="url" href="/register">Register / Signup</a></li>
                                 <li itemprop="Dashboard"><a itemprop="url" href="/register">Sign in / Login</a></li>
-                                <li itemprop="membership"><a itemprop="url" href="/membership-2">Membership</a></li>
+                                <li itemprop="membership"><a itemprop="url" href="/membership">Membership</a></li>
                             </ul>
                             <div class="widget-title mt-15">
                                 <h2 itemprop="title">Contact</h2>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-6 col-md-4">
                     <div class="footer-logo">
-                        <a itemprop="url"  href="/">
+                        <a itemprop="url"  href="https://rurera.chimpstudio.co.uk/">
                             @if(!empty($generalSettings['logo']))
                             <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo"
                                  width="100%" height="auto" itemprop="image" loading="eager">

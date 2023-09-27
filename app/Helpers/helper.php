@@ -1,6 +1,7 @@
 <?php
 
 use App\Mixins\Financial\MultiCurrency;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Quiz;
 use App\Models\QuizAttemptLogs;
@@ -58,7 +59,7 @@ function dateTimeFormat($timestamp, $format = 'H:i', $useAdminSetting = true, $a
         $timezone = "UTC";
     }
 
-    $carbon = (new Carbon\Carbon())
+    $carbon = (new Carbon())
         ->setTimezone($timezone)
         ->setTimestamp($timestamp);
 
@@ -75,7 +76,7 @@ function dateTimeFormatForHumans($timestamp, $applyTimezone = true, $timezone = 
         $timezone = "UTC";
     }
 
-    $carbon = (new Carbon\Carbon())
+    $carbon = (new Carbon())
         ->setTimezone($timezone)
         ->setTimestamp($timestamp);
 
@@ -7361,3 +7362,44 @@ function getTopicTitle($topic_id, $topic_type){
     }
     return $topic_title;
 }
+
+/*
+ * Add Link to Sitemap
+ */
+    function putSitemap($request, $images = array()){
+
+        $aSiteMap = \Cache::get('sitemap', []);
+        $changefreq = 'always';
+        if ( !empty( $aSiteMap[$request->fullUrl()]['added'] ) ) {
+            $aDateDiff = Carbon::createFromTimestamp( $aSiteMap[$request->fullUrl()]['added'] )->diff( Carbon::now() );
+            if ( $aDateDiff->y > 0 ) {
+                $changefreq = 'yearly';
+            } else if ( $aDateDiff->m > 0) {
+                $changefreq = 'monthly';
+            } else if ( $aDateDiff->d > 6 ) {
+                $changefreq = 'weekly';
+            } else if ( $aDateDiff->d > 0 && $aDateDiff->d < 7 ) {
+                $changefreq = 'daily';
+            } else if ( $aDateDiff->h > 0 ) {
+                $changefreq = 'hourly';
+            } else {
+                $changefreq = 'always';
+            }
+        }
+        $aSiteMap[$request->fullUrl()] = [
+            'added' => time(),
+            'lastmod' => Carbon::now()->toIso8601String(),
+            'priority' => 1 - substr_count($request->getPathInfo(), '/') / 10,
+            'changefreq' => $changefreq,
+            'images' => $images,
+            'images' => [
+                    [
+                        'loc' => 'https://uk.ixl.com/screenshot/c56a199157dcc9f282cfd4577548b6b1911ff70f.png',
+                        'title' => 'Word pattern analogies',
+                        'caption' => 'caption',
+                    ]
+            ],
+        ];
+        \Cache::put('sitemap', $aSiteMap, 2880);
+
+    }

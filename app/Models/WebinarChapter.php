@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use App\Models\Traits\SequenceContent;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class WebinarChapter extends Model implements TranslatableContract
 {
     use Translatable;
     use SequenceContent;
+    use Sluggable;
 
     protected $table = 'webinar_chapters';
     public $timestamps = false;
@@ -33,6 +36,25 @@ class WebinarChapter extends Model implements TranslatableContract
     public function getTitleAttribute()
     {
         return getTranslateAttributeValue($this, 'title');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'chapter_slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public static function makeSlug($title)
+    {
+        return strtolower(SlugService::createSlug(self::class, 'chapter_slug', $title));
     }
 
 

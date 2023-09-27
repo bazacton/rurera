@@ -57,6 +57,11 @@
                     </div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <label class="input-label">Sub Chapter Slug</label>
+                    <input type="text" value="{{ !empty($subChapter) ? $subChapter->sub_chapter_slug : old('sub_chapter_slug') }}" name="ajax[sub_chapter_slug]" class="form-control" placeholder=""/>
+                </div>
                 
 				@php
 				$chapter_settings = array();

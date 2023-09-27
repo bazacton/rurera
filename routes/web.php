@@ -93,6 +93,57 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::post('/question_attempt/timestables_submit' , 'QuestionsAttemptController@timestables_submit');
 
 
+    $years = ['year-5', 'year-6'];
+
+
+    if( !empty( $years)){
+        foreach( $years as $year_slug){
+            Route::group(['prefix' => $year_slug] , function () {
+                    Route::get('/{slug}' , 'WebinarController@course');
+                    Route::get('/{slug}/file/{file_id}/download' , 'WebinarController@downloadFile');
+                    Route::get('/{slug}/file/{file_id}/showHtml' , 'WebinarController@showHtmlFile');
+                    Route::get('/{slug}/lessons/{lesson_id}/read' , 'WebinarController@getLesson');
+                    Route::post('/getFilePath' , 'WebinarController@getFilePath');
+                    Route::get('/{slug}/file/{file_id}/play' , 'WebinarController@playFile');
+                    Route::get('/{slug}/free' , 'WebinarController@free');
+                    Route::get('/{slug}/points/apply' , 'WebinarController@buyWithPoint');
+                    Route::post('/{id}/report' , 'WebinarController@reportWebinar');
+                    Route::post('/{id}/learningStatus' , 'WebinarController@learningStatus');
+
+                    Route::group(['middleware' => 'web.auth'] , function () {
+                        Route::get('/{slug}/installments' , 'WebinarController@getInstallmentsByCourse');
+
+                        Route::post('/learning/itemInfo' , 'LearningPageController@getItemInfo');
+                        Route::get('/learning/{slug}' , 'LearningPageController@index');
+                        Route::get('/learning/{slug}/noticeboards' , 'LearningPageController@noticeboards');
+                        Route::get('/assignment/{assignmentId}/download/{id}/attach' , 'LearningPageController@downloadAssignment');
+                        Route::post('/assignment/{assignmentId}/history/{historyId}/message' , 'AssignmentHistoryController@storeMessage');
+                        Route::post('/assignment/{assignmentId}/history/{historyId}/setGrade' , 'AssignmentHistoryController@setGrade');
+                        Route::get('/assignment/{assignmentId}/history/{historyId}/message/{messageId}/downloadAttach' , 'AssignmentHistoryController@downloadAttach');
+
+                        Route::group(['prefix' => '/learning/{slug}/forum'] , function () { // LearningPageForumTrait
+                            Route::get('/' , 'LearningPageController@forum');
+                            Route::post('/store' , 'LearningPageController@forumStoreNewQuestion');
+                            Route::get('/{forumId}/edit' , 'LearningPageController@getForumForEdit');
+                            Route::post('/{forumId}/update' , 'LearningPageController@updateForum');
+                            Route::post('/{forumId}/pinToggle' , 'LearningPageController@forumPinToggle');
+                            Route::get('/{forumId}/downloadAttach' , 'LearningPageController@forumDownloadAttach');
+
+                            Route::group(['prefix' => '/{forumId}/answers'] , function () {
+                                Route::get('/' , 'LearningPageController@getForumAnswers');
+                                Route::post('/' , 'LearningPageController@storeForumAnswers');
+                                Route::get('/{answerId}/edit' , 'LearningPageController@answerEdit');
+                                Route::post('/{answerId}/update' , 'LearningPageController@answerUpdate');
+                                Route::post('/{answerId}/{togglePinOrResolved}' , 'LearningPageController@answerTogglePinOrResolved');
+                            });
+                        });
+                        Route::post('/direct-payment' , 'WebinarController@directPayment');
+                    });
+                    Route::get('/{slug}/{sub_chapter_slug}' , 'WebinarController@start');
+                });
+        }
+    }
+
 
     Route::group(['prefix' => 'course'] , function () {
         Route::get('/{slug}' , 'WebinarController@course');
@@ -133,12 +184,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                     Route::post('/{answerId}/{togglePinOrResolved}' , 'LearningPageController@answerTogglePinOrResolved');
                 });
             });
-
-
-
             Route::post('/direct-payment' , 'WebinarController@directPayment');
         });
-
         Route::get('/{quiz_id}/start' , 'WebinarController@start');
     });
 
@@ -400,13 +447,15 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'sats'] , function () {
         Route::get('/' , 'SatsController@index');
         Route::get('/sats_landing' , 'SatsController@sats_landing');
-        Route::get('/{sat_id}/start' , 'SatsController@start');
+        //Route::get('/{sat_id}/start' , 'SatsController@start');
+        Route::get('/{quiz_slug}' , 'SatsController@start');
     });
 
 
     Route::group(['prefix' => '11plus'] , function () {
         Route::get('/' , 'ElevenplusController@index');
-        Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
+        Route::get('/{quiz_slug}' , 'ElevenplusController@start');
+        //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 
     });
 
