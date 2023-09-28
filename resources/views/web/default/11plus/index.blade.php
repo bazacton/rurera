@@ -3,6 +3,7 @@
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
+<link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
 <script src="/assets/default/vendors/charts/chart.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
@@ -18,7 +19,18 @@
     <section class="pt-80" style="background-color: var(--panel-bg);">
         <div class="container">
             <section class="page-section analytics-graph-data">
-            @include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fa fa-caret-down"></i>
+                </div>
+
+
+
+               <div class="daterange-box">
+                    <span>Date:</span>
+                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+                </div>
+                @include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
             </section>
             <div class="row pt-80">
 
@@ -248,6 +260,7 @@
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
+<script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -291,6 +304,9 @@
             });
 
         });
+
+
+
 
     });
 

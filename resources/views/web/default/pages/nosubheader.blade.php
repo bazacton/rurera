@@ -14,6 +14,7 @@
 
     @endif
 @if($page->id == 121)
+<link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
                         <script src="/assets/default/vendors/charts/chart.js"></script>
                     @endif
 @endpush
@@ -47,5 +48,9 @@
 @if($page->id == 16)
                         <script src="/assets/default/js/parts/counter.js"></script>
                     @endif
+
+@if($page->id == 121)
+    <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
+@endif
 
 @endpush

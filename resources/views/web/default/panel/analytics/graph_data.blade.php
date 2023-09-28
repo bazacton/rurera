@@ -1,109 +1,110 @@
 @php $random_id = rand(0,9999); @endphp
 <div class="chart-summary-fields">
 
-        <div class="chart-filters">
-            <h3>{{$summary_type}} Graph</h3>
-            <ul class="graph-data-ul">
-                @if( !empty( $graphs_array ) )
-                @foreach( $graphs_array as $graph_key => $graphsData)
-                @php $activeClass = ($graph_key == 'Week')? 'active' : ''; @endphp
-                <li><a href="javascript:;" class="{{$activeClass}}" data-graph_id="graph_id_{{$graph_key}}">{{$graph_key}}</a>
-                </li>
-                @endforeach
-                @endif
-                <li><a href="#">Custom</a></li>
-            </ul>
-        </div>
-        @if($summary_type == '11plus' || $summary_type == 'sats')
-        <div class="sats-summary">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-3 bitcoin-box">
-                    <div class="sats-summary-icon">
-                        <img src="../assets/default/svgs/bitcoin.svg" alt="">
-                    </div>
-                    <div class="summary-text">
-                        <label>{{$summary_type}} Assessments</label>
-                        <div class="score">{{$authUser->getConductedAssessments($summary_type)}} / 11</div>
-                    </div>
+    <div class="chart-filters">
+        <h3>{{$summary_type}} Graph</h3>
+        <ul class="graph-data-ul">
+            @if( !empty( $graphs_array ) )
+            @foreach( $graphs_array as $graph_key => $graphsData)
+            @php $activeClass = ($graph_key == 'Week')? 'active' : ''; @endphp
+            <li><a href="javascript:;" class="{{$activeClass}} graph_{{$graph_key}}"
+                   data-graph_id="graph_id_{{$graph_key}}">{{$graph_key}}</a>
+            </li>
+            @endforeach
+            @endif
+            <li><a href="javascript:;">Custom</a></li>
+        </ul>
+    </div>
+    @if($summary_type == '11plus' || $summary_type == 'sats')
+    <div class="sats-summary">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3 bitcoin-box">
+                <div class="sats-summary-icon">
+                    <img src="../assets/default/svgs/bitcoin.svg" alt="">
                 </div>
-                <div class="col-12 col-md-4 col-lg-3">
-                    <div class="sats-summary-icon" style="background-color: #8cc811;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             viewBox="0 0 24 24" style="fill: #fff;">
-                            <g id="Group_1264" transform="translate(-188.102 -869.102)">
-                                <g id="Group_1262">
-                                    <g id="speedometer" transform="translate(188.102 869.102)">
-                                        <path id="Path_1547"
-                                              d="M20.484 3.515a12 12 0 0 0-16.97 16.97 12 12 0 0 0 16.97-16.97zM12 22.593A10.594 10.594 0 1 1 22.593 12 10.606 10.606 0 0 1 12 22.593zm0 0"
-                                              class="cls-1"></path>
-                                        <path id="Path_1548"
-                                              d="M118.647 321.206a.7.7 0 0 0-.5-.206h-8.094a.7.7 0 0 0-.5.206l-2.228 2.228a.7.7 0 0 0-.012.982 9.357 9.357 0 0 0 13.569 0 .7.7 0 0 0-.012-.982zm-4.544 4.716a7.882 7.882 0 0 1-5.273-2l1.517-1.517h7.512l1.517 1.517a7.882 7.882 0 0 1-5.273 2zm0 0"
-                                              class="cls-1"
-                                              transform="translate(-102.104 -305.954)"></path>
-                                        <path id="Path_1549"
-                                              d="M216.719 120.194a.7.7 0 0 0-.919.38l-1.606 3.876h-.091a2.063 2.063 0 1 0 1.39.541l1.606-3.877a.7.7 0 0 0-.38-.919zm-2.616 6.969a.654.654 0 1 1 .654-.654.655.655 0 0 1-.657.654zm0 0"
-                                              class="cls-1"
-                                              transform="translate(-202.104 -114.509)"></path>
-                                        <path id="Path_1550"
-                                              d="M65.375 56A9.385 9.385 0 0 0 56 65.375a.7.7 0 0 0 .7.7h1.25a.7.7 0 1 0 0-1.406h-.516a7.933 7.933 0 0 1 1.83-4.409l.362.362a.7.7 0 1 0 .994-.994l-.362-.362a7.934 7.934 0 0 1 4.41-1.83v.516a.7.7 0 1 0 1.406 0v-.516a7.934 7.934 0 0 1 4.41 1.83l-.362.362a.7.7 0 0 0 .994.994l.362-.362a7.932 7.932 0 0 1 1.83 4.409H72.8a.7.7 0 0 0 0 1.406h1.25a.7.7 0 0 0 .7-.7A9.385 9.385 0 0 0 65.375 56zm0 0"
-                                              class="cls-1"
-                                              transform="translate(-53.376 -53.375)"></path>
-                                    </g>
+                <div class="summary-text">
+                    <label>{{$summary_type}} Assessments</label>
+                    <div class="score">{{$authUser->getConductedAssessments($summary_type)}} / 11</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="sats-summary-icon" style="background-color: #8cc811;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         viewBox="0 0 24 24" style="fill: #fff;">
+                        <g id="Group_1264" transform="translate(-188.102 -869.102)">
+                            <g id="Group_1262">
+                                <g id="speedometer" transform="translate(188.102 869.102)">
+                                    <path id="Path_1547"
+                                          d="M20.484 3.515a12 12 0 0 0-16.97 16.97 12 12 0 0 0 16.97-16.97zM12 22.593A10.594 10.594 0 1 1 22.593 12 10.606 10.606 0 0 1 12 22.593zm0 0"
+                                          class="cls-1"></path>
+                                    <path id="Path_1548"
+                                          d="M118.647 321.206a.7.7 0 0 0-.5-.206h-8.094a.7.7 0 0 0-.5.206l-2.228 2.228a.7.7 0 0 0-.012.982 9.357 9.357 0 0 0 13.569 0 .7.7 0 0 0-.012-.982zm-4.544 4.716a7.882 7.882 0 0 1-5.273-2l1.517-1.517h7.512l1.517 1.517a7.882 7.882 0 0 1-5.273 2zm0 0"
+                                          class="cls-1"
+                                          transform="translate(-102.104 -305.954)"></path>
+                                    <path id="Path_1549"
+                                          d="M216.719 120.194a.7.7 0 0 0-.919.38l-1.606 3.876h-.091a2.063 2.063 0 1 0 1.39.541l1.606-3.877a.7.7 0 0 0-.38-.919zm-2.616 6.969a.654.654 0 1 1 .654-.654.655.655 0 0 1-.657.654zm0 0"
+                                          class="cls-1"
+                                          transform="translate(-202.104 -114.509)"></path>
+                                    <path id="Path_1550"
+                                          d="M65.375 56A9.385 9.385 0 0 0 56 65.375a.7.7 0 0 0 .7.7h1.25a.7.7 0 1 0 0-1.406h-.516a7.933 7.933 0 0 1 1.83-4.409l.362.362a.7.7 0 1 0 .994-.994l-.362-.362a7.934 7.934 0 0 1 4.41-1.83v.516a.7.7 0 1 0 1.406 0v-.516a7.934 7.934 0 0 1 4.41 1.83l-.362.362a.7.7 0 0 0 .994.994l.362-.362a7.932 7.932 0 0 1 1.83 4.409H72.8a.7.7 0 0 0 0 1.406h1.25a.7.7 0 0 0 .7-.7A9.385 9.385 0 0 0 65.375 56zm0 0"
+                                          class="cls-1"
+                                          transform="translate(-53.376 -53.375)"></path>
                                 </g>
                             </g>
-                        </svg>
-                    </div>
-                    <div class="summary-text">
-                        <label>Average Score</label>
-                        @php $resultData = $QuestionsAttemptController->get_result_data($summary_type, 0, 'type');
-                        $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
-                        $total_attempts = $total_questions_attempt = $correct_questions = 0;
-                        @endphp
-
-                        @if( !empty( $resultData ) )
-                        @foreach( $resultData as $resultObj)
-                        @php
-                        $total_questions_attempt += $resultObj->attempted;
-                        $correct_questions += $resultObj->correct;
-                        @endphp
-
-                        @endforeach
-                        @endif
-                        @php
-                        $total_percentage = 0;
-                        if( $total_questions_attempt > 0 && $correct_questions > 0){
-                        $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
-                        }
-                        @endphp
-                        <div class="score">{{round($total_percentage, 2)}}%</div>
-                    </div>
+                        </g>
+                    </svg>
                 </div>
+                <div class="summary-text">
+                    <label>Average Score</label>
+                    @php $resultData = $QuestionsAttemptController->get_result_data($summary_type, 0, 'type');
+                    $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                    $total_attempts = $total_questions_attempt = $correct_questions = 0;
+                    @endphp
 
-                <div class="col-12 col-md-4 col-lg-3">
-                    <div class="sats-summary-icon" style="background-color: #e67035;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"
-                             viewBox="0 0 24 24" fill="none" style="color:#fff">
-                            <path style="fill: #fff;" fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M5.01112 11.5747L6.29288 10.2929C6.68341 9.90236 7.31657 9.90236 7.7071 10.2929C8.09762 10.6834 8.09762 11.3166 7.7071 11.7071L4.7071 14.7071C4.51956 14.8946 4.26521 15 3.99999 15C3.73477 15 3.48042 14.8946 3.29288 14.7071L0.292884 11.7071C-0.0976406 11.3166 -0.0976406 10.6834 0.292884 10.2929C0.683408 9.90236 1.31657 9.90236 1.7071 10.2929L3.0081 11.5939C3.22117 6.25933 7.61317 2 13 2C18.5229 2 23 6.47715 23 12C23 17.5228 18.5229 22 13 22C9.85817 22 7.05429 20.5499 5.22263 18.2864C4.87522 17.8571 4.94163 17.2274 5.37096 16.88C5.80028 16.5326 6.42996 16.599 6.77737 17.0283C8.24562 18.8427 10.4873 20 13 20C17.4183 20 21 16.4183 21 12C21 7.58172 17.4183 4 13 4C8.72441 4 5.23221 7.35412 5.01112 11.5747ZM13 5C13.5523 5 14 5.44772 14 6V11.5858L16.7071 14.2929C17.0976 14.6834 17.0976 15.3166 16.7071 15.7071C16.3166 16.0976 15.6834 16.0976 15.2929 15.7071L12.2929 12.7071C12.1054 12.5196 12 12.2652 12 12V6C12 5.44772 12.4477 5 13 5Z"
-                                  fill="#000000"></path>
-                        </svg>
-                    </div>
-                    <div class="summary-text">
-                        <label>Average time</label>
-                        @php $assessmentTime = $authUser->assesstmentTotalTimeAllowed($summary_type);
-                        $average_time = isset( $assessmentTime['average_time'] )? $assessmentTime['average_time'] : 0;
-                        $time_consumed = isset( $assessmentTime['time_consumed'] )? $assessmentTime['time_consumed'] :
-                        0;
-                        @endphp
-                        <div class="score">{{$time_consumed}}m / {{$average_time}}m</div>
-                    </div>
+                    @if( !empty( $resultData ) )
+                    @foreach( $resultData as $resultObj)
+                    @php
+                    $total_questions_attempt += $resultObj->attempted;
+                    $correct_questions += $resultObj->correct;
+                    @endphp
+
+                    @endforeach
+                    @endif
+                    @php
+                    $total_percentage = 0;
+                    if( $total_questions_attempt > 0 && $correct_questions > 0){
+                    $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
+                    }
+                    @endphp
+                    <div class="score">{{round($total_percentage, 2)}}%</div>
                 </div>
-                <div class="col-12 col-md-4 col-lg-3">
-                    <div class="sats-summary-icon" style="background-color: #0272b6;">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" version="1.1"
-                             id="Capa_1" width="800px" height="800px" viewBox="0 0 185.872 185.871"
-                             xml:space="preserve">
+            </div>
+
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="sats-summary-icon" style="background-color: #e67035;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"
+                         viewBox="0 0 24 24" fill="none" style="color:#fff">
+                        <path style="fill: #fff;" fill-rule="evenodd" clip-rule="evenodd"
+                              d="M5.01112 11.5747L6.29288 10.2929C6.68341 9.90236 7.31657 9.90236 7.7071 10.2929C8.09762 10.6834 8.09762 11.3166 7.7071 11.7071L4.7071 14.7071C4.51956 14.8946 4.26521 15 3.99999 15C3.73477 15 3.48042 14.8946 3.29288 14.7071L0.292884 11.7071C-0.0976406 11.3166 -0.0976406 10.6834 0.292884 10.2929C0.683408 9.90236 1.31657 9.90236 1.7071 10.2929L3.0081 11.5939C3.22117 6.25933 7.61317 2 13 2C18.5229 2 23 6.47715 23 12C23 17.5228 18.5229 22 13 22C9.85817 22 7.05429 20.5499 5.22263 18.2864C4.87522 17.8571 4.94163 17.2274 5.37096 16.88C5.80028 16.5326 6.42996 16.599 6.77737 17.0283C8.24562 18.8427 10.4873 20 13 20C17.4183 20 21 16.4183 21 12C21 7.58172 17.4183 4 13 4C8.72441 4 5.23221 7.35412 5.01112 11.5747ZM13 5C13.5523 5 14 5.44772 14 6V11.5858L16.7071 14.2929C17.0976 14.6834 17.0976 15.3166 16.7071 15.7071C16.3166 16.0976 15.6834 16.0976 15.2929 15.7071L12.2929 12.7071C12.1054 12.5196 12 12.2652 12 12V6C12 5.44772 12.4477 5 13 5Z"
+                              fill="#000000"></path>
+                    </svg>
+                </div>
+                <div class="summary-text">
+                    <label>Average time</label>
+                    @php $assessmentTime = $authUser->assesstmentTotalTimeAllowed($summary_type);
+                    $average_time = isset( $assessmentTime['average_time'] )? $assessmentTime['average_time'] : 0;
+                    $time_consumed = isset( $assessmentTime['time_consumed'] )? $assessmentTime['time_consumed'] :
+                    0;
+                    @endphp
+                    <div class="score">{{$time_consumed}}m / {{$average_time}}m</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="sats-summary-icon" style="background-color: #0272b6;">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff" version="1.1"
+                         id="Capa_1" width="800px" height="800px" viewBox="0 0 185.872 185.871"
+                         xml:space="preserve">
                                                                         <g>
                                                                             <g>
                                                                                 <g>
@@ -137,30 +138,29 @@
                                                                             </g>
                                                                         </g>
                                                                     </svg>
-                    </div>
-                    <div class="summary-text">
-                        <label>Coins earned</label>
-                        <div class="score">{{$authUser->getRewardPointsByType($summary_type)}}</div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    @endif
-        <div class="chart-holder">
-            <div class="chart">
-                <div class="chart">
-                    @if( !empty( $graphs_array ) )
-                    @foreach( $graphs_array as $graph_key => $graphsData)
-                    @php $hideClass = ($graph_key == 'Week')? '' : 'hide'; @endphp
-                    <canvas id="graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}" class="graph_div graph_id_{{$graph_key}} {{$hideClass}}"></canvas>
-                    @endforeach
-                    @endif
+                <div class="summary-text">
+                    <label>Coins earned</label>
+                    <div class="score">{{$authUser->getRewardPointsByType($summary_type)}}</div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    @endif
+    <div class="chart-holder">
+        <div class="chart">
+            <div class="chart">
+                @if( !empty( $graphs_array ) )
+                @foreach( $graphs_array as $graph_key => $graphsData)
+                @php $hideClass = ($graph_key == 'Week')? '' : 'hide'; @endphp
+                <canvas id="graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}"
+                        class="graph_div graph_id_{{$graph_key}} {{$hideClass}}"></canvas>
+                @endforeach
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @if( !empty( $graphs_array ) )
@@ -182,7 +182,8 @@
     },
         {
             label: "Coins Earned",
-                data:{!!$graphsData->coins_earned_values!!},
+                data:{!!$graphsData->coins_earned_values!!}
+        ,
             borderWidth: 0,
                 backgroundColor:"#fd1656",
                 borderColor:"#417290",
@@ -192,8 +193,7 @@
     },
         options: {
             responsive: true,
-                scales:
-            {
+                scales:{
                 y: {
                     min: 0,
                     suggestedMax:50,
@@ -204,10 +204,55 @@
     }
         ;
         console.log('{{$summary_type}}');
-        if( $("#graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}").length > 0) {
+        if ($("#graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}").length > 0) {
             var graph_val = document.getElementById("graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}").getContext("2d");
             new Chart(graph_val, options);
         }
+
+
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+
+        function cb(start, end) {
+            $('.graph_Custom').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+
+        $('.graph_Custom').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+
+        $('.graph_Custom').on('apply.daterangepicker', function (ev, picker) {
+            var start_date = picker.startDate.format('YYYY-MM-DD');
+            var end_date = picker.endDate.format('YYYY-MM-DD');
+            var thisObj = $('.chart-summary-fields');
+            rurera_loader(thisObj, 'div');
+            var graph_type = $(this).val();
+            jQuery.ajax({
+                type: "GET",
+                url: '/panel/analytics/graph_data',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"graph_type": '11plus', "start_date": start_date, "end_date": end_date},
+                success: function (return_data) {
+                    rurera_remove_loader(thisObj, 'div');
+                    if (return_data != '') {
+                        $(".analytics-graph-data").html(return_data);
+                    }
+                }
+            });
+        });
 
     });
 </script>

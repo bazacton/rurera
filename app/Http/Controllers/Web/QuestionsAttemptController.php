@@ -1378,6 +1378,7 @@ class QuestionsAttemptController extends Controller
             $createdAt = Carbon::parse($QuizzResultQuestions->attempted_at);
             return $createdAt->year == $year;
         });*/
+        $group_by_string = '';
 
         if( $return_type == 'weekly'){
             $start_date = strtotime('monday this week');
@@ -1424,6 +1425,10 @@ class QuestionsAttemptController extends Controller
             if( $dates_difference->years == 0 && $dates_difference->months == 0 && $dates_difference->days > 0){
                 $group_by_string = 'd';
                 $return_type = 'daily';
+            }
+            if( $dates_difference->years == 0 && $dates_difference->months == 0 && $dates_difference->days == 0){
+                $group_by_string = 'h';
+                $return_type = 'hourly';
             }
         }
 

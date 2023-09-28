@@ -15,7 +15,7 @@ class WeeklyPlannerController extends Controller
     {
         $user = auth()->user();
 
-        $weeklyPlanner = WeeklyPlanner::where('id', 1)
+        $weeklyPlanner = WeeklyPlanner::where('id', 2)
             ->with('WeeklyPlannerItems.WeeklyPlannerTopics.WeeklyPlannerTopicData')
             ->first();
 

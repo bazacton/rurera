@@ -23561,6 +23561,11 @@ Lms Responsive Style Start
     .svg-shapes-bottom,.svg-shapes-top,
     .process-card.process-one:before {display: none;}
 }
+@media screen and (max-width: 1024px) {
+    .lms-mega-menu {
+        width: 100%;
+    }
+}
 @media (min-width:991px) {
     .lms-performace-table>li.lms-performace-head div {white-space: nowrap;}
 }

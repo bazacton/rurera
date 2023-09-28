@@ -82,6 +82,9 @@
                         <option value="11plus" {{ (!empty($quiz) and $quiz->quiz_type == '11plus') ? 'selected' : ''
                             }}>11 Plus
                         </option>
+                        <option value="independent_exams" {{ (!empty($quiz) and $quiz->quiz_type == 'independent_exams') ? 'selected' : ''}}>Independent Exams</option>
+                        <option value="iseb" {{ (!empty($quiz) and $quiz->quiz_type == 'iseb') ? 'selected' : ''}}>ISEB</option>
+                        <option value="cat4" {{ (!empty($quiz) and $quiz->quiz_type == 'cat4') ? 'selected' : ''}}>CAT 4</option>
                         <option value="challenge" {{ (!empty($quiz) and $quiz->quiz_type == 'challenge') ? 'selected' : ''
                             }}>Challenge
                         </option>
@@ -184,7 +187,7 @@
                     </div>
                 </div>
 
-                <div class="conditional-fields 11plus-fields {{$eleven_plus_hide_class}}">
+                <div class="conditional-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields {{$eleven_plus_hide_class}}">
 
 
                     <div class="form-group mt-15 ">

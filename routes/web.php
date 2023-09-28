@@ -93,7 +93,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::post('/question_attempt/timestables_submit' , 'QuestionsAttemptController@timestables_submit');
 
 
-    $years = ['year-5', 'year-6'];
+    $years = ['year-1', 'year-2', 'year-3', 'year-4', 'year-5', 'year-6'];
 
 
     if( !empty( $years)){
