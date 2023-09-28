@@ -10,6 +10,7 @@ use Jorenvh\Share\ShareFacade;
 use Spatie\CalendarLinks\Link;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use App\Scopes\CountryLocationScope;
 
 class Webinar extends Model implements TranslatableContract
 {
@@ -37,6 +38,13 @@ class Webinar extends Model implements TranslatableContract
     static $videoDemoSource = ['upload', 'youtube', 'vimeo', 'external_link'];
 
     public $translatedAttributes = ['title', 'description', 'seo_description'];
+
+    protected static function boot()
+    {
+        parent::boot();
+        // Apply the CountryLocationScope to the model
+        static::addGlobalScope(new CountryLocationScope());
+    }
 
     public function getTitleAttribute()
     {

@@ -22017,7 +22017,8 @@ lms Key Stage Style Start
 .choose-sats .sats-box.border-solid {border-style: solid; min-width: 230px;}
 .choose-sats .sats-box.border-transparent {border-color: rgba(0,0,0,0.1);}
 .choose-sats .sats-box img {max-width: 50px; max-height: 50px; display: inline-block; line-height: normal; margin: 0 0 10px;}
-.choose-sats .sats-box span {font-size: 14px; display: block; line-height: normal; text-align: center; font-weight: 600;}
+.choose-sats .sats-box span,
+.choose-sats .sats-box h3 {font-size: 14px; display: block; line-height: normal; text-align: center; font-weight: 600;}
 .choose-sats .row .row [class*="col-"] {padding: 0 5px 10px;}
 .choose-sats .row .row {margin: 0 -5px;}
 /*****************************
@@ -22877,8 +22878,9 @@ Main Home style Start
 .home-banner .choose-sats .sats-box span {font-size: 22px; font-weight: 500;}
 .home-banner .sats-box p {font-size: 14px;}
 .home-banner .sats-box a {font-size: 14px; font-weight: 500; text-decoration: underline; display: block; padding-top: 8px;}
-.feature-grid figure {display: inline-block; box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1); border-radius: 5px; padding: 5px;}
-.feature-grid figure img {max-width: 100%;}
+.feature-grid figure {display: inline-block; box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1); border-radius: 5px; padding: 5px; overflow: hidden;}
+.feature-grid figure img {max-width: 100%; transition: all 0.3s ease-in-out;}
+.feature-grid:hover figure img {transform: scale(0.977);}
 /***************************
 Main Home style End
 ***************************/

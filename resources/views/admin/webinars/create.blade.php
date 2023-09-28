@@ -49,6 +49,7 @@
                                     <div class="row">
                                         <div class="col-12 col-md-5">
 
+
                                             @if(!empty(getGeneralSettings('content_translate')))
                                                 <div class="form-group">
                                                     <label class="input-label">{{ trans('auth.language') }}</label>
@@ -66,6 +67,23 @@
                                             @else
                                                 <input type="hidden" name="locale" value="{{ getDefaultLocale() }}">
                                             @endif
+
+                                            @if( !empty(auth()->user()::$country_location) )
+                                                <div class="form-group">
+                                                    <label class="input-label">Country</label>
+                                                    <select name="country_location[]" class="form-control authors_select {{ !empty($webinar) ? 'js-edit-content-locale' : '' }}" multiple="multiple">
+                                                        @foreach(auth()->user()::$country_location as $country_code => $country_name)
+                                                            @php $selected = (in_array($country_code, json_decode($webinar->country_location)))? 'selected' : ''; @endphp
+                                                            <option value="{{ $country_code }}" {{$selected}}>{{ $country_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('locale')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                @endif
 											
 											
 											<div class="form-group mt-15 ">

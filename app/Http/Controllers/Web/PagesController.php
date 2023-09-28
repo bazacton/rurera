@@ -21,10 +21,10 @@ class PagesController extends Controller
             $link = '/' . $link;
         }
 
-        DB::enableQueryLog();
+        //DB::enableQueryLog();
         $page = Page::where('link', $link)->where('status', 'publish')->first();
 
-        $query = DB::getQueryLog();
+        //$query = DB::getQueryLog();
         //pre($query);
 
         if (!empty($page)) {

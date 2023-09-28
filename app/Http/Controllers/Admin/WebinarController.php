@@ -654,7 +654,8 @@ class WebinarController extends Controller
         $this->validate($request , [
             'type'        => 'required|in:webinar,course,text_lesson' ,
             'title'       => 'required|max:255' ,
-            'slug'        => 'max:255|unique:webinars,slug' ,
+            //'slug'        => 'max:255|unique:webinars,slug' ,
+            'slug'        => 'max:255',
             'thumbnail'   => 'required' ,
             'image_cover' => 'required' ,
             'description' => 'required' ,
@@ -729,6 +730,7 @@ class WebinarController extends Controller
             'background_color'     => isset($data['background_color']) ? $data['background_color'] : '' ,
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
             'webinar_type'            => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
+            'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : 'uk' ,
         ]);
 
         if ($webinar) {
@@ -873,7 +875,8 @@ class WebinarController extends Controller
         $rules = [
             'type'        => 'required|in:webinar,course,text_lesson' ,
             'title'       => 'required|max:255' ,
-            'slug'        => 'max:255|unique:webinars,slug,' . $webinar->id ,
+            //'slug'        => 'max:255|unique:webinars,slug,' . $webinar->id ,
+            'slug'        => 'max:255',
             'thumbnail'   => 'required' ,
             'image_cover' => 'required' ,
             'description' => 'required' ,
@@ -1031,6 +1034,7 @@ class WebinarController extends Controller
             'background_color'     => isset($data['background_color']) ? $data['background_color'] : '' ,
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
             'webinar_type'         => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
+            'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : 'uk' ,
 
         ]);
 
