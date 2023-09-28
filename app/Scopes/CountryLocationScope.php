@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Scopes;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+
+class CountryLocationScope implements Scope
+{
+    public function apply(Builder $builder, Model $model)
+    {
+        if (auth()->check() and auth()->user()->isAdmin()) {
+            return;
+        }
+        //$countryCode = config('app.country_code');
+        $countryCode = 'uk';
+        //$countryCode = 'us';
+        $builder->whereJsonContains('country_location', $countryCode)->orwhereJsonContains('country_location', 'all');
+    }
+}

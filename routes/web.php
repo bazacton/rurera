@@ -458,6 +458,21 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 
     });
+    Route::group(['prefix' => 'iseb'] , function () {
+        Route::get('/' , 'IsebController@index');
+        Route::get('/{quiz_slug}' , 'IsebController@start');
+
+    });
+
+    Route::group(['prefix' => 'cat4'] , function () {
+        Route::get('/' , 'CatFourController@index');
+        Route::get('/{quiz_slug}' , 'CatFourController@start');
+    });
+
+    Route::group(['prefix' => 'independent-exams'] , function () {
+        Route::get('/' , 'IndependentExamsController@index');
+        Route::get('/{quiz_slug}' , 'IndependentExamsController@start');
+    });
 
     Route::group(['prefix' => 'national-curriculum'] , function () {
         Route::get('/' , 'NationalCurriculumController@index');

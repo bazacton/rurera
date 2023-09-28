@@ -9,7 +9,7 @@
 <footer class="footer  position-relative user-select-none footer-home">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="widget widget-aboutus">
                     <ul>
                         <li itemprop="school"><a itemprop="url" href="/features">i'm a school <span>&#8250;</span></a></li>
@@ -18,7 +18,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-9">
+            <div class="col-12 col-md-8 col-lg-9">
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="widget widget-links">
@@ -35,7 +35,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="widget widget-location">
                             <div class="widget-title">
                                 <h2 itemprop="title">What We Offer</h2>
@@ -51,7 +51,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="widget widget-links">
                             <div class="widget-title">
                                 <h2 itemprop="title">Portal</h2>
@@ -71,7 +71,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-3">
                         <div class="widget widget-location">
                             <div class="widget-title">
                                 <h2 itemprop="title">Legal Help</h2>
@@ -95,7 +95,7 @@
                 <div class="col-6 col-md-4">
                     <p itemprop="learning">@ 2023 learning portal</p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-md-3">
                     <div class="footer-logo">
                         <a itemprop="url"  href="https://rurera.chimpstudio.co.uk/">
                             @if(!empty($generalSettings['logo']))
@@ -105,8 +105,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-md-4">
-                    <div class="d-flex justify-content-between align-items-center">
+                <div class="col-6 col-md-5">
+                    <div class="d-flex justify-content-end align-items-center">
                         <ul class="footer-privacy-links d-flex">
                         <li itemprop="Terms"><a itemprop="url" href="/terms-and-conditions"class="text-dark-charcoal">Terms & Conditions</a></li>
                         <li itemprop="Terms"><a itemprop="url" href="/privacy" class="text-dark-charcoal">Privacy Policy</a></li>

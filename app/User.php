@@ -3406,6 +3406,11 @@ class User extends Authenticatable
         ]
     );
 
+    static $country_location = [
+        'uk' => 'UK',
+        'us' => 'US',
+    ];
+
 
     protected $dateFormat = 'U';
     public $timestamps = false;

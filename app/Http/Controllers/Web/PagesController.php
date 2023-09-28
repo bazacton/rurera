@@ -10,6 +10,7 @@ use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class PagesController extends Controller
 {
@@ -20,7 +21,11 @@ class PagesController extends Controller
             $link = '/' . $link;
         }
 
+        DB::enableQueryLog();
         $page = Page::where('link', $link)->where('status', 'publish')->first();
+
+        $query = DB::getQueryLog();
+        //pre($query);
 
         if (!empty($page)) {
             $data = [

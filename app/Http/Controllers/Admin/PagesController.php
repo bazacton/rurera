@@ -43,7 +43,8 @@ class PagesController extends Controller
         $this->validate($request, [
             'locale' => 'required',
             'name' => 'required',
-            'link' => 'required|unique:pages,link',
+            //'link' => 'required|unique:pages,link',
+            'link' => 'required',
             'title' => 'required',
             'seo_description' => 'nullable|string|max:255',
             'content' => 'required',
@@ -87,6 +88,7 @@ class PagesController extends Controller
 
         $page = Page::findOrFail($id);
 
+
         storeContentLocale($locale, $page->getTable(), $page->id);
 
         $data = [
@@ -106,7 +108,8 @@ class PagesController extends Controller
         $this->validate($request, [
             'locale' => 'required',
             'name' => 'required',
-            'link' => 'required|unique:pages,link,' . $page->id,
+            //'link' => 'required|unique:pages,link,' . $page->id,
+            'link' => 'required',
             'title' => 'required',
             'seo_description' => 'nullable|string|max:255',
             'content' => 'required',
@@ -128,6 +131,7 @@ class PagesController extends Controller
             'status' => $data['status'],
             'created_at' => time(),
             'subheader'    => $subheader,
+            'country_location'  => json_encode($data['country_location']),
         ]);
 
         PageTranslation::updateOrCreate([

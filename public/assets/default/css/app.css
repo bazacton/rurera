@@ -13896,16 +13896,9 @@ p {
 }
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {
-        position: fixed !important;
-        top: 110% !important;
-        right: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100%;
-        z-index: 501;
-        display: block !important;
-        transition: top .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear;
-        border-radius: 0
+        height: 462px;
+        overflow: hidden !important;
+        overflow-y: auto !important;
     }
     .top-navbar .dropdown .dropdown-menu.show {
         top: 0 !important;
@@ -19049,7 +19042,7 @@ footer.footer-home {padding-top: 70px;}
 .footer.footer-home .widget ul li:last-child {margin-bottom: 0;}
 .footer.footer-home .widget ul li a {padding: 0; margin: 0; font-size: 16px; font-weight: 400;}
 .footer.footer-home .footer-copyright .row {align-items: center;}
-.footer.footer-home .footer-privacy-links {margin-right: 0;}
+.footer.footer-home .footer-privacy-links {margin-right: 30px;}
 .footer.footer-home .footer-social a {margin-right: 10px; height: 20px; width: 20px;}
 .footer.footer-home .footer-social a:nth-child(3) {margin-right: 5px;}
 .footer.footer-home .footer-social a svg {color: #171347;}
@@ -21554,7 +21547,7 @@ Custom Pagination Style End
 .arrow.primera.bounceAlpha {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
 .round:hover .arrow {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
 .round:hover .arrow.primera {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
-.scroll-btn {position: fixed;right: 30px;bottom: 30px;height: 40px;width: 40px;display: none;z-index: 1;}
+.scroll-btn {position: fixed;right: 30px;bottom: 15px;height: 40px;width: 40px;display: none;z-index: 1;}
 @media (max-width: 767px) {
     .lms-curriculums {margin: 0;}
     .list-description {margin: 0 0 15px;}
@@ -23560,11 +23553,7 @@ Lms Responsive Style Start
     .process-card.process-card.process-one:after,
     .svg-shapes-bottom,.svg-shapes-top,
     .process-card.process-one:before {display: none;}
-}
-@media screen and (max-width: 1024px) {
-    .lms-mega-menu {
-        width: 100%;
-    }
+    .user-profile-dropdown .d-md-none {display: none;}
 }
 @media (min-width:991px) {
     .lms-performace-table>li.lms-performace-head div {white-space: nowrap;}
@@ -23572,6 +23561,19 @@ Lms Responsive Style Start
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
     .lms-contact-form-section .message-box{right: 0;}
+    .lms-mega-menu {width: 100%;}
+    .navbar1 .nav-item .nav-link, 
+    .navbar .nav-item .nav-link {font-size: 14px; padding: 10px 9px;}
+    .top-navbar .navbar-brand {max-width: 140px;}
+    .top-navbar .navbar-brand .img-cover {object-fit: contain;}
+    .top-navbar #navbarContent {margin-left: 10px !important; margin-right: 10px !important;}
+    .mega-menu-nav a {font-size: 18px; padding: 20px;}
+    .mega-menu-body.tab-content>.tab-pane>.row>.col-lg-3 {flex: 0 0 40%; max-width: 40%;}
+    .mega-menu-body.tab-content>.tab-pane>.row>.col-lg-9 {flex: 0 0 60%; max-width: 60%;}
+    .mega-menu-body.tab-content>.tab-pane>.row>.col-lg-9 .row [class*="col-"] {flex: 0 0 50%; max-width: 50%;}
+    .mega-menu-body.tab-content {height: 350px; overflow: hidden; overflow-y: auto;}
+    .home-banner .choose-sats .sats-box span {font-size: 20px;}
+    .choose-sats .sats-box {padding: 20px;}
 }
 @media screen and (max-width: 992px) {
     .lms-contact-us {max-width: inherit; padding: 0 15px; width: 100%;}
@@ -23605,11 +23607,16 @@ Lms Responsive Style Start
     .navbar-nav .has-mega-menu .lms-mega-menu a {padding: 0 20px 15px;}
     .lms-mega-menu .mega-menu-head {padding-top: 20px; padding-bottom: 5px;}
     .navbar-nav .has-mega-menu .lms-mega-menu .view-btn {padding: 17px 30px;}
-    .lms-mega-menu .mega-menu-body {max-height: 365px; overflow: hidden; overflow-y: auto;}
+    .lms-mega-menu .mega-menu-body {max-height: 310px; overflow: hidden; overflow-y: auto;}
     .mega-menu-body .menu-colum-text {padding-left: 25px; padding-top: 25px;}
+    .mega-menu-body .menu-colum-text > a {line-height: normal; display: block;}
     .mega-menu-body .pl-30 .menu-colum-text {padding-left: 0;}
     .mega-menu-nav a:after {display: none;}
     .lms-wave-shape-top::before {top: -1px;}
+    .widget.widget-location {margin-bottom: 20px;}
+    .scroll-btn {bottom: 100px;}
+    .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
+    .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -23762,6 +23769,9 @@ Lms Responsive Style Start
     .lms-client-list .lms-client-logo {padding: 10px 15px;}
     .footer [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .sats-listing-card {text-align: center;}
+    .footer.footer-home .footer-copyright {text-align: center;}
+    .footer .footer-copyright [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
+    .footer.footer-home .footer-logo {margin: 15px auto;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

@@ -1414,6 +1414,7 @@ class QuestionsAttemptController extends Controller
         if( $return_type == 'custom'){
             $QuizzResultQuestions = $QuizzResultQuestions->whereBetween('attempted_at', [$start_date, $end_date]);
             $dates_difference = $this->dates_difference($start_date, $end_date);
+            //pre($dates_difference);
             if( $dates_difference->years > 0){
                 $group_by_string = 'Y';
                 $return_type = 'yearly';

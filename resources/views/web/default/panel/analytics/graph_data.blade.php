@@ -12,10 +12,9 @@
             </li>
             @endforeach
             @endif
-            <li><a href="javascript:;">Custom</a></li>
         </ul>
     </div>
-    @if($summary_type == '11plus' || $summary_type == 'sats')
+    @if($summary_type == '11plus' || $summary_type == 'sats' || $summary_type == 'iseb' || $summary_type == 'cat4' || $summary_type == 'independent_exams')
     <div class="sats-summary">
         <div class="row">
             <div class="col-12 col-md-4 col-lg-3 bitcoin-box">
@@ -24,7 +23,7 @@
                 </div>
                 <div class="summary-text">
                     <label>{{$summary_type}} Assessments</label>
-                    <div class="score">{{$authUser->getConductedAssessments($summary_type)}} / 11</div>
+                    <div class="score">{{$authUser->getConductedAssessments($summary_type)}} / --</div>
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
@@ -237,18 +236,20 @@
             var end_date = picker.endDate.format('YYYY-MM-DD');
             var thisObj = $('.chart-summary-fields');
             rurera_loader(thisObj, 'div');
-            var graph_type = $(this).val();
+            var graph_type = '{{$summary_type}}';
+            console.log(graph_type);
             jQuery.ajax({
                 type: "GET",
                 url: '/panel/analytics/graph_data',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {"graph_type": '11plus', "start_date": start_date, "end_date": end_date},
+                data: {"graph_type": graph_type, "start_date": start_date, "end_date": end_date},
                 success: function (return_data) {
                     rurera_remove_loader(thisObj, 'div');
                     if (return_data != '') {
                         $(".analytics-graph-data").html(return_data);
+                        $(".graph_Custom").click();
                     }
                 }
             });

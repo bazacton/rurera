@@ -25,7 +25,7 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
-                        <h2 class="mt-0 mb-10 testing222">11Plus Online 10-Minutes test practices</h2>
+                        <h2 class="mt-0 mb-10 testing222">CAT 4 Online 10-Minutes test practices</h2>
                         <p> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
@@ -200,7 +200,7 @@
                                         <tr class="odd">
                                             <td>
 
-                                                <a href="/11plus/{{$dataObj->quiz_slug}}">{{$dataObj->getTitleAttribute()}}</a>
+                                                <a href="/cat4/{{$dataObj->quiz_slug}}">{{$dataObj->getTitleAttribute()}}</a>
                                             </td>
                                             <td>
                                                 @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
@@ -217,7 +217,7 @@
                                                         style="width: {{$total_percentage}}%;"></span>
                                               </span>
                                                 </div>
-                                                {{ user_assign_topic_template($dataObj->id, '11plus', $childs, $parent_assigned_list) }}
+                                                {{ user_assign_topic_template($dataObj->id, 'cat4', $childs, $parent_assigned_list) }}
                                             </td>
                                         </tr>
                                         @endforeach
