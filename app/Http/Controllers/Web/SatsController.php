@@ -39,6 +39,11 @@ class SatsController extends Controller
         $start_date = strtotime('2023-09-20');
         $end_date = strtotime('2023-09-26');
 
+        $custom_dates = array(
+            'start' => $start_date,
+            'end' => $end_date,
+        );
+
         $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
 
         $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
@@ -80,6 +85,7 @@ class SatsController extends Controller
                 'parent_assigned_list'       => $parent_assigned_list,
                 'graphs_array'  => $graphs_array,
                 'summary_type'  => $summary_type,
+                'custom_dates' => $custom_dates,
             ];
             return view('web.default.sats.index', $data);
         }

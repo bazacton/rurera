@@ -12,6 +12,18 @@
             </li>
             @endforeach
             @endif
+            @if( isset( $show_types ) && $show_types == true)
+            <li class="has-child">
+                <a href="javascript:;" class="graph_Hour" data-graph_id="graph_id_Hour">Type</a>
+                <ul class="sub-dropdown">
+                    <li><a href="javascript:;" data-graph_type="11plus">11+</a></li>
+                    <li><a href="javascript:;" data-graph_type="sats">Sats</a></li>
+                    <li><a href="javascript:;" data-graph_type="iseb">ISEB</a></li>
+                    <li><a href="javascript:;" data-graph_type="independent_exams">Independent Exams</a></li>
+
+               </ul>
+            </li>
+            @endif
         </ul>
     </div>
     @if($summary_type == '11plus' || $summary_type == 'sats' || $summary_type == 'iseb' || $summary_type == 'cat4' || $summary_type == 'independent_exams')
@@ -171,38 +183,33 @@
             type: "bar",
             data: {
                 labels: {!!$graphsData->options_values!!},
-        datasets: [
-            {
-                label: "Questions Attempt",
-                data: {!!$graphsData->questions_attempted_values!!},
-        borderWidth: 0,
-            backgroundColor:"#417290",
-            borderColor:"#417290",
-    },
-        {
-            label: "Coins Earned",
-                data:{!!$graphsData->coins_earned_values!!}
-        ,
-            borderWidth: 0,
-                backgroundColor:"#fd1656",
-                borderColor:"#417290",
-        }
-    ,
-    ],
-    },
-        options: {
-            responsive: true,
-                scales:{
-                y: {
-                    min: 0,
-                    suggestedMax:50,
-                }
-            }
-        }
-    ,
-    }
-        ;
-        console.log('{{$summary_type}}');
+                datasets: [
+                    {
+                        label: "Questions Attempt",
+                        data: {!!$graphsData->questions_attempted_values!!},
+                        borderWidth: 0,
+                        backgroundColor:"#417290",
+                        borderColor:"#417290",
+                    },
+                    {
+                        label: "Coins Earned",
+                        data:{!!$graphsData->coins_earned_values!!},
+                        borderWidth: 0,
+                        backgroundColor:"#fd1656",
+                        borderColor:"#417290",
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                    scales:{
+                        y: {
+                            min: 0,
+                            suggestedMax:50,
+                        }
+                    }
+                },
+        };
         if ($("#graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}").length > 0) {
             var graph_val = document.getElementById("graph_{{$summary_type}}_{{$graph_key}}_{{$random_id}}").getContext("2d");
             new Chart(graph_val, options);
@@ -229,7 +236,9 @@
                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                //'This Year': [moment().startOf('year'), moment().endOf('year')],
+                //'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
             }
         }, cb);
 
@@ -241,6 +250,7 @@
             var thisObj = $('.chart-summary-fields');
             rurera_loader(thisObj, 'div');
             var graph_type = '{{$summary_type}}';
+            var show_types = '{{isset( $show_types) ? $show_types : false}}';
             console.log(graph_type);
             jQuery.ajax({
                 type: "GET",
@@ -248,7 +258,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {"graph_type": graph_type, "start_date": start_date, "end_date": end_date},
+                data: {"show_types" : show_types, "graph_type": graph_type, "start_date": start_date, "end_date": end_date},
                 success: function (return_data) {
                     rurera_remove_loader(thisObj, 'div');
                     if (return_data != '') {

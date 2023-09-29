@@ -23410,36 +23410,47 @@ Product Tabs Slider Style Start
     border-bottom: 2px solid #3e97fb;
     margin-bottom: -4px;
 }
-.graph-data-ul li {
+.graph-data-ul li,
+.analytics-data-ul li {
     position: relative;
 }
-.graph-data-ul li .sub-dropdown {
+.graph-data-ul li .sub-dropdown,
+.analytics-data-ul li .sub-dropdown {
     flex-direction: column;
     position: absolute;
     top: 100%;
     right: 0;
     z-index: 1;
     background-color: #fff;
-    min-width: 160px;
-    max-width: 160px;
+    min-width: 170px;
     align-items: flex-end;
-    margin-top: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    padding: 25px 25px 10px;
+    margin-top: -15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px 15px 5px;
     gap: 0;
     border-radius: 0 0 5px 5px;
+    transition: all .5s ease;
+    visibility: hidden;
+    opacity: 0;
+    text-align: right;
 }
-.graph-data-ul li .sub-dropdown a {
+.graph-data-ul li.has-child:hover .sub-dropdown,
+.analytics-data-ul li.has-child:hover .sub-dropdown {
+    visibility: visible;
+    opacity: 1;
+    margin-top: 5px;
+}
+.graph-data-ul li .sub-dropdown a,
+.analytics-data-ul li .sub-dropdown a {
     padding-bottom: 15px;
 }
-.graph-data-ul li .sub-dropdown a {
-    padding-bottom: 15px;
-}
-.graph-data-ul li.has-child > a {
+.graph-data-ul li.has-child > a,
+.analytics-data-ul li.has-child > a {
     position: relative;
     padding-right: 14px;
 }
-.graph-data-ul li.has-child > a:after {
+.graph-data-ul li.has-child > a:after,
+.analytics-data-ul li.has-child > a:after {
     content: "";
     height: 7px;
     width: 7px;

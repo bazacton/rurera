@@ -19,7 +19,7 @@
     <section class="pt-80" style="background-color: var(--panel-bg);">
         <div class="container">
             <section class="page-section analytics-graph-data">
-                @include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
+                @include('web.default.panel.analytics.graph_data',['custom_dates' => $custom_dates, 'graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
             </section>
             <div class="row pt-80">
 

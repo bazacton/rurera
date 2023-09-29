@@ -12,14 +12,35 @@
 
 @section('content')
 <section class="page-section analytics-graph-data">
-@include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
+    @include('web.default.panel.analytics.graph_data',['show_types'=> true, 'graphs_array' => $graphs_array,
+    'summary_type' => $summary_type,
+    'QuestionsAttemptController'=> $QuestionsAttemptController])
 </section>
 <section>
 
 
     <div class="activities-container mt-25 p-20 p-lg-35">
+        <div class="chart-filters">
+            <h3>Analytics</h3>
+            <ul class="analytics-data-ul">
+                <li><a href="javascript:;" class=" graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
+                        September 26, 2023</a>
+                </li>
+                <li class="has-child">
+                    <a href="javascript:;" class="graph_Hour" data-graph_id="graph_id_Hour">Type</a>
+                    <ul class="sub-dropdown">
+                        <li><a href="javascript:;" data-graph_type="11plus">11+</a></li>
+                        <li><a href="javascript:;" data-graph_type="sats">Sats</a></li>
+                        <li><a href="javascript:;" data-graph_type="iseb">ISEB</a></li>
+                        <li><a href="javascript:;" data-graph_type="independent_exams">Independent Exams</a></li>
+                        <li><a href="javascript:;" data-graph_type="timetables">Timestables</a></li>
+                        <li><a href="javascript:;" data-graph_type="books">Books</a></li>
 
-        <h2 class="section-title">Analytics</h2><br>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
         <div class="accordion" id="analyticsAccordion">
 
             @if( !empty( $analytics_data) )
@@ -114,44 +135,31 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('body').on('click', '.graph-data-ul li a', function (e) {
-            $('.graph-data-ul li a').removeClass('active');
-            $(this).addClass('active');
-            var graph_id = $(this).attr('data-graph_id');
-            $('.graph_div').addClass('hide');
-            $('.' + graph_id).removeClass('hide');
-        });
-    });
-
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('body').on('click', '.graph-data-ul li a', function (e) {
-            $('.graph-data-ul li a').removeClass('active');
-            $(this).addClass('active');
-            var graph_id = $(this).attr('data-graph_id');
-            $('.graph_div').addClass('hide');
-            $('.' + graph_id).removeClass('hide');
-        });
-
-        $('body').on('change', '.analytics_graph_type', function (e) {
             var thisObj = $('.chart-summary-fields');
-            rurera_loader(thisObj, 'div');
-            var graph_type = $(this).val();
-            jQuery.ajax({
-                type: "GET",
-                url: '/panel/analytics/graph_data',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {"graph_type": graph_type},
-                success: function (return_data) {
-                    rurera_remove_loader(thisObj, 'div');
-                    if (return_data != '') {
-                        $(".analytics-graph-data").html(return_data);
+            var graph_type = $(this).attr('data-graph_type');
+            if (!FieldIsEmpty(graph_type)) {
+                rurera_loader(thisObj, 'div');
+                jQuery.ajax({
+                    type: "GET",
+                    url: '/panel/analytics/graph_data',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"graph_type": graph_type, "show_types": true},
+                    success: function (return_data) {
+                        rurera_remove_loader(thisObj, 'div');
+                        if (return_data != '') {
+                            $(".analytics-graph-data").html(return_data);
+                        }
                     }
-                }
-            });
-
+                });
+            } else {
+                $('.graph-data-ul li a').removeClass('active');
+                $(this).addClass('active');
+                var graph_id = $(this).attr('data-graph_id');
+                $('.graph_div').addClass('hide');
+                $('.' + graph_id).removeClass('hide');
+            }
         });
 
     });
