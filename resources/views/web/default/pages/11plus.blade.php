@@ -947,7 +947,7 @@
                             <div class="col-12 col-lg-4 col-md-4">
                                 <div class="form-field position-relative text-right">
                                     <button class="rounded rounded-pill bg-white">
-                                        <a href="https://rurera.chimpstudio.co.uk/membership-2"
+                                        <a href="https://rurera.chimpstudio.co.uk/membership"
                                            style="color:var(--gray-dark);">View our plans</a>
                                     </button>
                                 </div>
