@@ -939,7 +939,10 @@ class QuestionsAttemptController extends Controller
             }
         }
 
+
         $new_array = array_merge($get_last_results, $results);
+
+
 
         $new_result_data = array();
         if (!empty($new_array)) {
@@ -950,8 +953,6 @@ class QuestionsAttemptController extends Controller
                         $new_result_data[$arrayDataObj['from']][] = $arrayDataObj;
                     }
                 }
-
-
             }
         }
 
@@ -986,6 +987,8 @@ class QuestionsAttemptController extends Controller
                 $table_no = isset($tableData['table_no']) ? $tableData['table_no'] : '';
                 $is_correct = isset($tableData['is_correct']) ? $tableData['is_correct'] : '';
 
+
+
                 $newQuestionResult = QuizzResultQuestions::create([
                     'question_id'      => 0,
                     'quiz_result_id'   => $QuizzesResult->id,
@@ -1005,6 +1008,7 @@ class QuestionsAttemptController extends Controller
                     'review_required'  => 0,
                     'attempted_at'       => time(),
                 ]);
+                $this->update_reward_points($newQuestionResult, $is_correct);
 
 
             }

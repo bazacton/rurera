@@ -2,12 +2,21 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<style>
+    .gallery-sub-header {
+        min-height:780px; 
+        background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
+        background-size: 100% 12px, 12px 100%;
+    }
+    .lms-newsletter {
+        background: url(assets/default/svgs/bank-note.svg) #f18700;
+    }
+</style>
 @endpush
 
 @section('content')
 <section class="content-section">
-    <section class="position-relative job-singup-sub-header gallery-sub-header pb-90 pt-80 mb-70" style="min-height:780px; background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
-    background-size: 100% 12px, 12px 100%;">
+    <section class="position-relative job-singup-sub-header gallery-sub-header pb-90 pt-80 mb-70">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
@@ -16,13 +25,19 @@
                     <p class="font-19">Assessing a student's academic ability and determining their eligibility for admission to selective
                     secondary schools or grammar schools.</p>
                     <ul class="mb-30 p-0">
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/mobile.svg" alt="mobile" title="mobile" width="100%" height="auto" itemprop="image" loading="eager">Learning practice
+                        <li class="mb-10 font-19">
+                            <img src="../assets/default/svgs/mobile.svg" alt="mobile" title="mobile" width="25" height="25" itemprop="image" loading="eager">Learning practice
                         </li>
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/preparation.svg" alt="preparation" title="preparation" width="100%" height="auto" itemprop="image" loading="eager">Test preparation
+                        <li class="mb-10 font-19">
+                            <img src="../assets/default/svgs/preparation.svg" alt="preparation" title="preparation" width="25" height="25" itemprop="image" loading="eager">Test preparation
                         </li>
-                        <li class="mb-10 font-19"><img src="../assets/default/svgs/graphic-design.svg" alt="graphic-design" title="graphic-design" width="100%" height="auto" itemprop="image" loading="eager">Score
-                            guarantee</li>
-                        <li class="font-19"><img src="../assets/default/svgs/book-opend.svg" alt="book-opend" title="book-opend" width="100%" height="auto" itemprop="image" loading="eager">100% results</li>
+                        <li class="mb-10 font-19">
+                            <img src="../assets/default/svgs/graphic-design.svg" alt="graphic-design" title="graphic-design" width="25" height="25" itemprop="image" loading="eager">
+                            Score guarantee
+                        </li>
+                        <li class="font-19">
+                            <img src="../assets/default/svgs/book-opend.svg" alt="book-opend" title="book-opend" width="25" height="25" itemprop="image" loading="eager">
+                            100% results</li>
                     </ul>
                     <div class="d-flex align-items-center">
                         <a href="https://rurera.chimpstudio.co.uk/11plus" class="btn-primary rounded-pill">11 plus exams</a>
@@ -38,7 +53,8 @@
                         <div class="img-holder">
                             <figure><a href="https://rurera.chimpstudio.co.uk/11plus">
                                 <img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
-                                        class="rounded has-shadow-x"></a></figure>
+                                        class="rounded has-shadow-x"></a>
+                            </figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
@@ -811,7 +827,9 @@
                                     11+ practices
                                 </p>
                             </div>
-                            <div class="svg-shapes-top"><span class="icon-svg"><svg width="64px" height="64px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.415.189a1 1 0 011.1-.046l15 9a1 1 0 010 1.714l-15 9a1 1 0 01-1.491-1.074L4.754 11H10a1 1 0 100-2H4.753l-1.73-7.783A1 1 0 013.416.189z" fill="#5C5F62"></path></g></svg></span></div>
+                            <div class="svg-shapes-top">
+                                <span class="icon-svg"><svg width="64px" height="64px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.415.189a1 1 0 011.1-.046l15 9a1 1 0 010 1.714l-15 9a1 1 0 01-1.491-1.074L4.754 11H10a1 1 0 100-2H4.753l-1.73-7.783A1 1 0 013.416.189z" fill="#5C5F62"></path></g></svg></span>
+                            </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-30">
                             <div class="lms-counter-card counter-yellow-bg text-white">
@@ -847,8 +865,9 @@
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header" id="headingonsix">
-                                    <h3 class="mb-0"><button class="btn btn-link" data-toggle="collapse"
-                                            data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What is the 11 Plus exam?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">What is the 11 Plus exam?</button>
+                                    </h3>
                                 </div>
                                 <div id="collapsesix" class="collapse show" aria-labelledby="headingsix"
                                     data-parent="#accordion">
@@ -871,12 +890,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingseven">
-                                    <h3 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseseven" aria-expanded="false"
-                                            aria-controls="collapseseven">How do I prepare my child for the 11 Plus exam?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">How do I prepare my child for the 11 Plus exam?</button>
+                                    </h3>
                                 </div>
-                                <div id="collapseseven" class="collapse" aria-labelledby="headingseven"
-                                    data-parent="#accordion">
+                                <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                     <div class="card-body"><p>Preparation for the 11 Plus exam usually involves a combination of practice materials, and
                                     familiarization with the exam format. Solving past papers, improving time management skills, and
                                     receiving targeted coaching are common preparation methods</p></div>
@@ -884,8 +902,9 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading8">
-                                    <h3 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">When should my child start preparing for the 11 Plus exam?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">When should my child start preparing for the 11 Plus exam?</button>
+                                    </h3>
                                 </div>
                                 <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                     <div class="card-body"><p>The ideal preparation time for the 11 Plus exam varies depending on the child and their academic
@@ -894,8 +913,9 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading9">
-                                    <h3 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Are there different types of 11 Plus exams?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Are there different types of 11 Plus exams?</button>
+                                    </h3>
                                 </div>
                                 <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                     <div class="card-body"><p>Yes, there are different types of 11 Plus exams conducted by various exam boards or organizations. The
@@ -905,8 +925,9 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading10">
-                                    <h3 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Can my child retake the 11 Plus exam if they don't pass?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Can my child retake the 11 Plus exam if they don't pass?</button>
+                                    </h3>
                                 </div>
                                 <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                     <div class="card-body"><p>The policies regarding retaking the 11 Plus exam vary depending on the region and school. Some schools
@@ -916,8 +937,9 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading11">
-                                    <h3 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">What happens if my child passes the 11 Plus exam?</button></h3>
+                                    <h3 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">What happens if my child passes the 11 Plus exam?</button>
+                                    </h3>
                                 </div>
                                 <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                     <div class="card-body"><p>If your child passes the 11 Plus exam, they may be eligible for admission to selective secondary schools
@@ -931,7 +953,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-newsletter mt-60 py-70" style="background: url(assets/default/svgs/bank-note.svg) #f18700;">
+    <section class="lms-newsletter mt-60 py-70">
         <div class="container">
             <div class="row">
                 <div class="col-12">

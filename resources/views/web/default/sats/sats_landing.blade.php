@@ -2,13 +2,32 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<style>
+    .gallery-sub-header {
+        min-height: 480px;
+        background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
+        background-size: 100% 12px, 12px 100%;
+    }
+    .lms-search-services {
+        background: url(../assets/default/svgs/bank-note.svg) #f27530;
+    }
+    .lms-column-section {
+        background: url(../assets/default/svgs/diagonal-lines.svg) #7679ee;
+    }
+    .choose-sats-section {
+        background-color:#3d358b;background-image: radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0), radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0);
+        background-size: 20px 20px; 
+        background-position: 0 0, 10px 10px;
+    }
+    .lms-newsletter {
+        background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801;
+    }
+</style>
 @endpush
 
 @section('content')
 <section class="content-section">
-    <section class="position-relative job-singup-sub-header gallery-sub-header pb-80 pt-80 mb-0"
-             style="min-height: 480px;background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
-    background-size: 100% 12px, 12px 100%;">
+    <section class="position-relative job-singup-sub-header gallery-sub-header pb-80 pt-80 mb-0">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
@@ -248,8 +267,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-search-services mb-0 mt-0 pt-80 pb-60"
-             style="background: url(../assets/default/svgs/bank-note.svg) #f27530;">
+    <section class="lms-search-services mb-0 mt-0 pt-80 pb-60">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -363,13 +381,15 @@
                             </div>
                             <div class="lms-key-stage">
                                 <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#"/>
+                                    <div class="lms-img">
+                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="lms-key-stage">
                                 <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#"/>
+                                    <div class="lms-img">
+                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#"/>
                                     </div>
                                 </div>
                             </div>
@@ -435,7 +455,8 @@
                             </div>
                             <div class="lms-key-stage">
                                 <div class="lms-img-holder">
-                                    <div class="lms-img"><img src="../assets/default/img/reading-img8.webp" alt="#"/>
+                                    <div class="lms-img">
+                                        <img src="../assets/default/img/reading-img8.webp" width="65" height="92" alt="#"/>
                                     </div>
                                 </div>
                             </div>
@@ -511,8 +532,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section mx-w-100 mt-80 mb-80 pt-70 pb-70 pr-30 pl-30"
-             style="background: url(../assets/default/svgs/diagonal-lines.svg) #7679ee;">
+    <section class="lms-column-section lms-text-section mx-w-100 mt-80 mb-80 pt-70 pb-70 pr-30 pl-30">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -520,7 +540,7 @@
                         <div class="d-flex flex-column">
                             <h4 class="mb-10 font-30 align-items-center d-flex text-white">
                                 <span class="icon-svg mr-15">
-                                    <img src="../assets/default/svgs/bulb-white.svg" alt="#">
+                                    <img src="../assets/default/svgs/bulb-white.svg" height="35" width="35" alt="#">
                                 </span>
                                 Exploring the National Curriculum in the UK?
                             </h4>
@@ -528,8 +548,7 @@
                                 comprehensive<br> learning experience for your students.</p>
                         </div>
                         <div class="lms-btn-group justify-content-center">
-                            <a href="https://rurera.chimpstudio.co.uk/national-curriculum"
-                               class="lms-btn rounded-pill text-white border-white">Find more</a>
+                            <a href="https://rurera.chimpstudio.co.uk/national-curriculum" class="lms-btn rounded-pill text-white border-white">Find more</a>
                         </div>
                     </div>
                 </div>
@@ -574,7 +593,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
                 <div class="position-relative">
-                    <img src="/store/1/default_images/home_sections_banners/quiz-sats.jpg" class="find-instructor-section-hero" width="" height="" alt="Track Student Progress"/>
+                    <img src="/store/1/default_images/home_sections_banners/quiz-sats.jpg" class="find-instructor-section-hero" width="400" height="460" alt="Track Student Progress"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
@@ -612,7 +631,7 @@
             </div>
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
                 <div class="position-relative">
-                    <img src="/store/1/default_images/home_sections_banners/individual-performance.jpg" width="" height="" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
+                    <img src="/store/1/default_images/home_sections_banners/individual-performance.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
@@ -623,7 +642,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
                 <div class="position-relative">
-                    <img src="/store/1/default_images/home_sections_banners/activity-tracking.jpg" width="" height="" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
+                    <img src="/store/1/default_images/home_sections_banners/activity-tracking.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
@@ -660,17 +679,14 @@
             </div>
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
                 <div class="position-relative">
-                    <img src="/store/1/default_images/home_sections_banners/lesson-topics.jpg" width="" height="" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
+                    <img src="/store/1/default_images/home_sections_banners/lesson-topics.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
                 </div>
             </div>
         </div>
     </section>
-    <section class="choose-sats py-80 mt-90" style="background-color:#3d358b;background-image: radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0), radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-}">
+    <section class="choose-sats choose-sats-section py-80 mt-90">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
@@ -687,49 +703,49 @@
                     <div class="row">
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/exam-multiple-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/exam-multiple-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">100+ Sats Pratices</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/lessons-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/lessons-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Lesson Topics</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/impact-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/impact-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Impactful</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/sav-time-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/sav-time-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Time saving</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/study-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/study-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Study Resources</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/flexibility-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/flexibility-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Flexibility</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/logic-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/logic-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Logic</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
-                                <img src="../assets/default/svgs/support-white.svg" width="" height="" alt="#"/>
+                                <img src="../assets/default/svgs/support-white.svg" width="50" height="50" alt="#"/>
                                 <span class="text-white">Friendly support</span>
                             </div>
                         </div>
@@ -765,12 +781,9 @@
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header" id="headingonsix">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix"
-                                                aria-expanded="true" aria-controls="collapsesix">What are SATs in the
-                                            UK?
-                                        </button>
-                                    </h5>
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix"
+                                            aria-expanded="true" aria-controls="collapsesix">What are SATs in the UK?
+                                    </button>
                                 </div>
                                 <div id="collapsesix" class="collapse show" aria-labelledby="headingsix"
                                      data-parent="#accordion">
@@ -784,16 +797,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse"
-                                                data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                            What are SATs for?
-                                        </button>
-                                    </h5>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        What are SATs for?
+                                    </button>
                                 </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                     data-parent="#accordion">
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body">
                                         SATs provide a standardized measure of students' academic abilities and track
                                         their progress over time. They help assess how well students are meeting the
@@ -803,10 +811,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingseven">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseseven" aria-expanded="false"
-                                            aria-controls="collapseseven">What subjects are assessed in SATs?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">What subjects are assessed in SATs?</button>
                                 </div>
                                 <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                     <div class="card-body">
@@ -818,10 +823,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading8">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse8" aria-expanded="false"
-                                            aria-controls="collapse8">How are SATs administered?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How are SATs administered?</button>
                                 </div>
                                 <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                     <div class="card-body">
@@ -833,10 +835,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading9">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse9" aria-expanded="false"
-                                            aria-controls="collapse9">Do SATs have pass or fail grades?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Do SATs have pass or fail grades?</button>
                                 </div>
                                 <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                     <div class="card-body">
@@ -848,10 +847,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading10">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse10" aria-expanded="false"
-                                            aria-controls="collapse10">Are SATs compulsory?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Are SATs compulsory?</button>
                                 </div>
                                 <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                     <div class="card-body">
@@ -863,10 +859,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading11">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse11" aria-expanded="false"
-                                            aria-controls="collapse11">When do SATs take place?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">When do SATs take place?</button>
                                 </div>
                                 <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                     <div class="card-body">
@@ -878,11 +871,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading12">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapse12" aria-expanded="false"
-                                            aria-controls="collapse12">How can parents support their children during
-                                        SATs?
-                                    </button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">How can parents support their children during SATs?</button>
                                 </div>
                                 <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
                                     <div class="card-body">
@@ -898,7 +887,7 @@
                 </div>
             </div>
     </section>
-    <section class="lms-newsletter mt-60 py-70" style="background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801">
+    <section class="lms-newsletter mt-60 py-70">
         <div class="container">
             <div class="row">
                 <div class="col-12">

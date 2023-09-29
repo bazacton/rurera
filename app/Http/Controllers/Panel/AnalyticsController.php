@@ -24,6 +24,10 @@ class AnalyticsController extends Controller
 
         $start_date = strtotime('2023-09-20');
         $end_date = strtotime('2023-09-26');
+        $custom_dates = array(
+            'start' => $start_date,
+            'end' => $end_date,
+        );
 
         $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
 
@@ -183,6 +187,7 @@ class AnalyticsController extends Controller
         //$data['user_graph_data'] = $user_graph_data;
         //$data['QuizzResultQuestionsObj']   => $QuizzResultQuestionsObj;
         $data['graphs_array']  = $graphs_array;
+        $data['custom_dates'] = $custom_dates;
         $data['summary_type']  = $summary_type;
         $data['QuestionsAttemptController']    = $QuestionsAttemptController;
         return view('web.default.panel.analytics.index', $data);
@@ -202,6 +207,10 @@ class AnalyticsController extends Controller
 
         $start_date = strtotime($start_date);
         $end_date = strtotime($end_date);
+        $custom_dates = array(
+            'start' => $start_date,
+            'end' => $end_date,
+        );
 
         $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
 
@@ -211,7 +220,7 @@ class AnalyticsController extends Controller
         $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
-        $graph_data_layout = view('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])->render();
+        $graph_data_layout = view('web.default.panel.analytics.graph_data',['custom_dates' => $custom_dates, 'graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])->render();
         echo $graph_data_layout;exit;
 
     }
@@ -229,6 +238,10 @@ class AnalyticsController extends Controller
 
            $start_date = strtotime($start_date);
            $end_date = strtotime($end_date);
+           $custom_dates = array(
+                'start' => $start_date,
+                'end' => $end_date,
+           );
 
            $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
 
@@ -238,7 +251,7 @@ class AnalyticsController extends Controller
            $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
            $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
-           $graph_data_layout = view('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])->render();
+           $graph_data_layout = view('web.default.panel.analytics.graph_data',['custom_dates' => $custom_dates, 'graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])->render();
            echo $graph_data_layout;exit;
 
        }
