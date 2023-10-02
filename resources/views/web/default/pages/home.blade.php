@@ -420,8 +420,8 @@
     @if($homeSection->name == \App\Models\HomeSection::$blog and !empty($blog) and !$blog->isEmpty())
            <section class="home-sections container">
                <div class="d-flex justify-content-between">
-                   <div>
-                       <h2 class="section-title">{{ trans('home.blog') }}</h2>
+                   <div class="section-title">
+                       <h2 class="mt-0 mb-10">{{ trans('home.blog') }}</h2>
                        <p class="section-hint">{{ trans('home.blog_hint') }}</p>
                    </div>
                    <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>

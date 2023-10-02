@@ -9,7 +9,7 @@ class Role extends Model
     public $timestamps = false;
     static $admin = 'admin';
     static $user = 'user';
-    static $teacher = 'teacher';
+    static $teacher = 'teachers';
     static $author = 'author';
     static $reviewer = 'reviewer';
     static $parent = 'parent';

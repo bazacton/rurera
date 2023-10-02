@@ -20,7 +20,7 @@
                         <div class="col-12">
                             <div class="curriculums-card">
                                 <div class="curriculums-head">
-                                    <h4>{{$CurriculumItemsData->sub_title}}</h4>
+                                    <h3>{{$CurriculumItemsData->sub_title}}</h3>
                                 </div>
                             </div>
                             @if(isset( $CurriculumItemsData->NationalCurriculumChapters) && !empty(

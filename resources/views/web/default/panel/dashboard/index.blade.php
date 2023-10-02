@@ -144,6 +144,7 @@
                                             }else{
                                                 $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
                                                 $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
+                                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
                                             }
                                         @endphp
                                         <li>

@@ -2,11 +2,23 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<style>
+    .time-tables-sub-header {
+        background-color: #333399; 
+        background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); 
+        background-size: 100% 12px, 12px 100%;
+    }
+    .lms-column-section {
+        background: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), #7679ee; 
+        background-position: 0 0, 20px 20px; 
+        background-size: 40px 40px;
+    }
+</style>
 @endpush
 
 @section('content')
 <section class="content-section">
-    <section class="time-tables-sub-header pt-70 pb-80 text-center" style="background-color: #333399; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+    <section class="time-tables-sub-header pt-70 pb-80 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-10 mx-auto">
@@ -18,7 +30,9 @@
                     <div class="row">
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #f6b801;"> <img src="../assets/default/svgs/student-user-white.svg" alt="" /> </span>
+                                <span class="icon-holder" style="background-color: #f6b801;"> 
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                </span>
                                 <div class="text-holder">
                                     <strong class="text-white font-18 font-weight-bold mb-10 d-block">Times Tables Treasure Hunt</strong>
                                     <p class="text-white">Transform the process of memorizing times tables into an adventurous treasure hunt.</p>
@@ -27,7 +41,9 @@
                         </div>
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #7679ee;"> <img src="../assets/default/svgs/student-user-white.svg" alt="" /> </span>
+                                <span class="icon-holder" style="background-color: #7679ee;"> 
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                </span>
                                 <div class="text-holder">
                                     <strong class="text-white font-18 font-weight-bold mb-10 d-block">Division Story Problems</strong>
                                     <p class="text-white">Bring division and multiplication magic to life by turning it into a storytelling experience.</p>
@@ -36,7 +52,9 @@
                         </div>
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #f35b05;"> <img src="../assets/default/svgs/student-user-white.svg" alt="" /> </span>
+                                <span class="icon-holder" style="background-color: #f35b05;"> 
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                </span>
                                 <div class="text-holder">
                                     <strong class="text-white font-18 font-weight-bold mb-10 d-block">Interactive Challenges</strong>
                                     <p class="text-white">Offering interactive challenges specifically designed for earning bonus points.</p>
@@ -53,9 +71,9 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-md-6">
                     <div class="position-relative">
-                        <img src="../assets/default/img/time-tables/times-tables.png" alt="#" />
-                        <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" width="100%" height="auto" style="top: -50px; right: 25%;" />
-                        <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" width="100%" height="auto" style="left: 0; bottom: 0;" />
+                        <img src="../assets/default/img/time-tables/times-tables.png" height="350" width="329" alt="#" />
+                        <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" width="170" height="170" style="top: -50px; right: 25%;" />
+                        <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" width="70" height="110" style="left: 0; bottom: 0;" />
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6 text-center">
@@ -72,15 +90,17 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section mx-w-100 py-50 pr-30 pl-30" style="background: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), #7679ee; background-position: 0 0, 20px 20px; background-size: 40px 40px;">
+    <section class="lms-column-section lms-text-section mx-w-100 py-50 pr-30 pl-30">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="lms-text-holder d-flex justify-content-between">
                         <div class="d-flex flex-column">
-                            <h4 class="mb-10 font-30 d-flex text-white">
-                                <span class="icon-svg mr-15 mt-5"> <img src="../assets/default/svgs/bulb-white.svg" alt="#" /> </span> Boost Your Child's Multiplication and Division Skills with a Splash of Fun!
-                            </h4>
+                            <h3 class="mb-10 font-30 d-flex text-white">
+                                <span class="icon-svg mr-15 mt-5"> 
+                                    <img src="../assets/default/svgs/bulb-white.svg" alt="#" height="35" width="35" /> 
+                                </span> Boost Your Child's Multiplication and Division Skills with a Splash of Fun!
+                            </h3>
                         </div>
                         <div class="lms-btn-group justify-content-center">
                             <a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Find more</a>
@@ -98,25 +118,25 @@
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
-                        <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="#" /> <span class="font-18">Register / login</span>
+                        <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="#" height="50" width="50" /> <span class="font-18">Register / login</span>
                         <p class="pt-10">Register today via the website and access to learn timestables.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
-                        <img class="mb-15" src="../assets/default/svgs/lessons.svg" alt="#" /> <span class="font-18">Create Accounts</span>
+                        <img class="mb-15" src="../assets/default/svgs/lessons.svg" alt="#" height="50" width="50" /> <span class="font-18">Create Accounts</span>
                         <p class="pt-10">Easily setup accounts for parents, students and teachers to get benefit from.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
-                        <img class="mb-15" src="../assets/default/svgs/impact.svg" alt="#" /> <span class="font-18">Learn &amp; Play</span>
+                        <img class="mb-15" src="../assets/default/svgs/impact.svg" alt="#" height="50" width="50" /> <span class="font-18">Learn &amp; Play</span>
                         <p class="pt-10">Student will have access to both single and multi player games interfaces.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
-                        <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="#" /> <span class="font-18">Progress Tracking</span>
+                        <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="#" height="50" width="50" /> <span class="font-18">Progress Tracking</span>
                         <p class="pt-10">Use the stats to keep track of your child's progress and celebrate their success.</p>
                     </div>
                 </div>
@@ -136,23 +156,23 @@
                             <div id="accordion">
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
-                                        <h5 class="mb-0"><button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">Is there a free version of Rurera?</button></h5>
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">Is there a free version of Rurera?</button>
                                     </div>
-                                    <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion"><div class="card-body">Yes, Free and paid both versions are available.</div></div>
+                                    <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion">
+                                        <div class="card-body">Yes, Free and paid both versions are available.</div>
+                                    </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How much does membership for student cost ?</button>
-                                        </h5>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How much does membership for student cost ?</button>
                                     </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"><div class="card-body">It starts from 100$ per month and extended as per choice.</div></div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body">It starts from 100$ per month and extended as per choice.</div>
+                                    </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingseven">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">Which pricing plan is right for me?</button>
-                                        </h5>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">Which pricing plan is right for me?</button>
                                     </div>
                                     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                         <div class="card-body">You can discuss with support and can have learning suggestions based on your skill set.</div>
@@ -160,15 +180,19 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
-                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Can i change my membership plan ?</button></h5>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Can i change my membership plan ?</button>
                                     </div>
-                                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion"><div class="card-body">You can make changes to your plan at any time by changing your plan type.</div></div>
+                                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+                                        <div class="card-body">You can make changes to your plan at any time by changing your plan type.</div>
+                                    </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading9">
-                                        <h5 class="mb-0"><button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">What payment methods do you accept?</button></h5>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">What payment methods do you accept?</button>
                                     </div>
-                                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion"><div class="card-body">You can use paypal, skrill and bank transfer method.</div></div>
+                                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
+                                        <div class="card-body">You can use paypal, skrill and bank transfer method.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

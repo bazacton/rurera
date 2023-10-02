@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12 col-md-9 col-lg-9">
                 <p class="lms-subtitle">Programme of study</p>
-                <h1 class="font-30 font-weight-bold">National Curriculum</h1>
+                <h1 class="font-30 font-weight-bold">National Curriculum Overview</h1>
                 <p>Skills available for England key stage 2, Year 5 maths objectives</p>
                 <div class="lms-course-select">
                     <form>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-12 col-md-3 col-lg-3 sub-header-img">
                 <figure>
-                    <img src="../assets/default/img/ukflag-img.png">
+                    <img src="../assets/default/img/ukflag-img.png" height="185" width="275" alt="#">
                 </figure>
 
             </div>
@@ -66,11 +66,6 @@
     </div>
 </section>
 @include('web.default.national_curriculum.single_curriculum',['nationalCurriculum'=> $nationalCurriculum])
-<a href="#" class="scroll-btn">
-    <div class="round">
-        <div id="cta"><span class="arrow primera next "></span> <span class="arrow segunda next "></span></div>
-    </div>
-</a>
 
 @endsection
 

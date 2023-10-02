@@ -19112,6 +19112,7 @@ Lms Blog Grid Card Style Start
 .blog-newsletter .svg-holder {text-align: right; margin-top: -14px;}
 .blog-grid-card.rurera-grid {flex-direction: column-reverse; border: 0; padding: 0;}
 .blog-grid-card.rurera-grid .blog-grid-detail~.blog-grid-image {width: 100%;}
+.blog-grid-card.rurera-grid .blog-grid-image {max-height: 250px;}
 .blog-grid-card.rurera-grid .blog-grid-detail {padding: 20px 0 0 0;}
 .blog-grid-card.rurera-grid .blog-tags {margin-top: 8px;}
 /*********************************************
@@ -19555,6 +19556,7 @@ Lms FAQS Style Start
 }
 .lms-faqs .card-body {
     padding-left: 38px;
+    padding-bottom: 0;
 }
 .lms-faqs .card-body p {
     margin: 0 0 20px;
@@ -21495,8 +21497,10 @@ Custom Pagination Style End
     0% {opacity: .3; transform: translateX(-100%)}
     to {opacity: .3; transform: translateX(0)}
 }
-.curriculums-head h4 {color: #183152; margin: 0; font-size: 22px; font-weight: 500; position: relative;}
-.curriculums-head h4:before {content: ""; height: 7px; width: 100%; background-color: #eeeeee; position: absolute; bottom: -14px; border-radius: 50px; z-index: -1;}
+.curriculums-head h4,
+.curriculums-head h3 {color: #183152; margin: 0; font-size: 22px; font-weight: 500; position: relative;}
+.curriculums-head h4:before,
+.curriculums-head h3:before {content: ""; height: 7px; width: 100%; background-color: #eeeeee; position: absolute; bottom: -14px; border-radius: 50px; z-index: -1;}
 .list-description p {padding: 0; font-size: 18px; color: #aaaaaa; line-height: 22px;}
 .curriculums-card {margin: 0 0 15px;}
 .curriculums-card:last-child {border-bottom: 0;}
@@ -21863,7 +21867,8 @@ Lms Books Library Style Start
 .progress-btn .icon-svg {display: flex; margin-right: 5px; margin-left: -10px;}
 .progress-btn:hover .icon-svg svg{fill:var(--primary);}
 .progress-btn .icon-svg svg{fill:#fff;}
-.progress-card .text-holder h4 {/* color: var(--primary); */ text-transform: uppercase; margin: 0 0 10px; font-weight: 700; font-size: 18px;}
+.progress-card .text-holder h2,
+.progress-card .text-holder h4 {text-transform: uppercase; margin: 0 0 10px; font-weight: 700; font-size: 18px;}
 .lms-books-reading h3 {color: var(--primary);}
 .lms-books-reading h3,
 .lms-books-listing h2 {text-transform: capitalize; margin: 0 0 30px;}
@@ -21895,13 +21900,15 @@ Lms Books Library Style Start
 .search-books a {color: #fff; font-size: 18px; text-transform: capitalize; }
 .search-books ul li {padding: 0 15px;}
 .lms-books-listing {padding: 70px 0 35px;}
-.lms-books-listing h3 a {font-size: 24px; text-transform: capitalize;}
+.lms-books-listing h3 a,
+.lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;}
 .lms-books-listing .listing-card {margin-bottom: 35px;}
 .lms-books-listing .listing-card figure {position: relative; overflow:hidden; border-radius: 14px; text-align: center;}
 .lms-books-listing .listing-card .img-holder img {border-radius: 14px; box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); max-width: 100%;}
 .lms-books-listing .listing-card .text-holder li img {width: 20px; display: inline-block; vertical-align: bottom;}
 .lms-books-listing .listing-card .text-holder {position: relative;}
-.lms-books-listing .listing-card .text-holder h3 {margin: 0 0 10px;}
+.lms-books-listing .listing-card .text-holder h3,
+.lms-books-listing .listing-card .text-holder h1 {margin: 0 0 10px;}
 .lms-books-listing .listing-card .text-holder ul { margin: 0; padding: 0;}
 .lms-books-listing .listing-card .text-holder li {margin: 0 0 10px; color: #777777; font-weight: 500; font-size: 18px;}
 .lms-books-listing .listing-card .text-holder li span {color: var(--primary); margin-right: 5px;}

@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <script src="/assets/default/vendors/charts/chart.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
 <style>
     .hide {
         display: none !important;
@@ -305,6 +306,7 @@
 <script src="/assets/default/js/helpers.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('body').on('click', '.graph-data-ul li a', function (e) {

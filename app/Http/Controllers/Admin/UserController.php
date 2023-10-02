@@ -110,9 +110,14 @@ class UserController extends Controller
 
     public function students(Request $request, $is_export_excel = false)
     {
+        $userObj = auth()->user();
         $this->authorize('admin_users_list');
 
         $query = User::where('role_name', Role::$user);
+
+        if(auth()->user()->isTeacher()){
+            $query = $query->where('parent_type', 'teacher')->where('parent_id', $userObj->id);
+        }
 
         $totalStudents = deepClone($query)->count();
         $inactiveStudents = deepClone($query)->where('status', 'inactive')
@@ -487,8 +492,14 @@ class UserController extends Controller
             if (!empty($role)) {
                 $referralSettings = getReferralSettings();
                 $usersAffiliateStatus = (!empty($referralSettings) and !empty($referralSettings['users_affiliate_status']));
+                $parent_type = '';
+                $parent_id = 0;
+                $userObj = auth()->user();
 
-
+                if(auth()->user()->isTeacher()){
+                    $parent_type = 'teacher';
+                    $parent_id = $userObj->id;
+                }
                 $user = User::create([
                     'full_name' => $data['full_name'],
                     'role_name' => $role->name,
@@ -499,6 +510,8 @@ class UserController extends Controller
                     'affiliate' => $usersAffiliateStatus,
                     'verified' => true,
                     'created_at' => time(),
+                    'parent_type' => $parent_type,
+                    'parent_id' => $parent_id,
                 ]);
 
                 if (!empty($data['group_id'])) {

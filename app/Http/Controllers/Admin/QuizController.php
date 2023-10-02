@@ -31,6 +31,9 @@ class QuizController extends Controller
 
         $query = Quiz::query();
 
+        if(auth()->user()->isTeacher()){
+            $query = $query->where('creator_id', auth()->user()->id);
+        }
         $totalQuizzes = deepClone($query)->count();
         $totalActiveQuizzes = deepClone($query)->where('status', 'active')->count();
         $totalStudents = QuizzesResult::groupBy('user_id')->count();

@@ -60,6 +60,9 @@ class QuestionsBankController extends Controller
         removeContentLocale();
 
         $query = QuizzesQuestion::query();
+        if(auth()->user()->isTeacher()){
+            $query = $query->where('creator_id', auth()->user()->id);
+        }
 
 
         $query->where('quizzes_questions.question_status' , '!=' , 'Deleted');

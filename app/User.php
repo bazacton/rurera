@@ -19,6 +19,7 @@ use App\Models\QuizzResultQuestions;
 use App\Models\Region;
 use App\Models\ReserveMeeting;
 use App\Models\RewardAccounting;
+use App\Models\UserAssignedTopics;
 use App\Models\UserSubscriptions;
 use App\Models\Role;
 use App\Models\Follow;
@@ -3771,6 +3772,17 @@ class User extends Authenticatable
 
         $is_subscribed = ($is_subscribed > 0) ? true : false;
         return $is_subscribed;
+
+    }
+
+    public function assignment($topic_type, $topic_id)
+    {
+        $is_assigned = UserAssignedTopics::where('assigned_to_id', $this->id)
+            ->where('status', 'active')
+            ->where('topic_type', $topic_type)
+            ->where('topic_id', $topic_id)->count();
+        $is_assigned = ($is_assigned > 0) ? true : false;
+        return $is_assigned;
 
     }
 

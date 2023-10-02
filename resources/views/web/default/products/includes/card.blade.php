@@ -16,7 +16,7 @@
                     <span class="badge badge-warning">{{ trans('update.free_shipping') }}</span>
                 @endif
 
-                <img src="{{ $product->thumbnail }}" class="img-cover" alt="{{ $product->title }}">
+                <img src="{{ $product->thumbnail }}" class="img-cover" width="160" height="160" alt="{{ $product->title }}">
             </a>
         </div>
 

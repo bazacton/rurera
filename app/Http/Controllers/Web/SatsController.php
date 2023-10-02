@@ -16,7 +16,9 @@ class SatsController extends Controller
     public function sats_landing()
     {
         $data = [
-            'pageTitle'                  => 'SATs',
+            'pageTitle'       => 'SATs',
+            'pageDescription' => 'Prepare for SATs exams today. Get professional guidance and resources to pass your SATs exam and have a chance to win rewards.',
+            'pageRobot'       => 'noindex',
         ];
         return view('web.default.sats.sats_landing', $data);
 
@@ -55,13 +57,15 @@ class SatsController extends Controller
         $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
         $sats = $query->paginate(100);
 
-        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
+        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
         $parent_assigned_list = array();
         if (!empty($parent_assignedArray)) {
             foreach ($parent_assignedArray as $parent_assignedObj) {
                 $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
                 $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
+                $deadline_date = isset($parent_assignedObj['deadline_date']) ? $parent_assignedObj['deadline_date'] : 0;
                 $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
+                $parent_assigned_list[$topic_id]['deadline_date'] = $deadline_date;
             }
         }
 
@@ -69,6 +73,13 @@ class SatsController extends Controller
         if (auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
+                ->where('parent_id', $user->id)
+                ->where('status', 'active')
+                ->get();
+        }
+        if (auth()->user()->isTeacher()) {
+            $childs = User::where('role_id', 1)
+                ->where('parent_type', 'teacher')
                 ->where('parent_id', $user->id)
                 ->where('status', 'active')
                 ->get();
@@ -101,12 +112,13 @@ class SatsController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
-        if (!auth()->subscription('sats')) {
-            return view('web.default.quizzes.not_subscribed');
-        }
+
         //$quiz = Quiz::find($id);
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;
+        if (!auth()->subscription('sats') && !auth()->assginment('sats', $id)) {
+            return view('web.default.quizzes.not_subscribed');
+        }
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);

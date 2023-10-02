@@ -73,6 +73,12 @@
                                             </div>
                                         </div>
 
+
+                                        @if(auth()->user()->isTeacher())
+
+                                        <input type="hidden" id="roleId" name="role_id" value="1">
+
+                                        @else
                                         <div class="form-group">
                                             <label>{{ trans('/admin/main.role_name') }}</label>
                                             <select class="form-control select2 @error('role_id') is-invalid @enderror" id="roleId" name="role_id">
@@ -99,6 +105,8 @@
                                             </select>
                                             <div class="invalid-feedback">@error('group_id') {{ $message }} @enderror</div>
                                         </div>
+
+                                        @endif
 
                                         <div class="form-group">
                                             <label>{{ trans('/admin/main.status') }}</label>

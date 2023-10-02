@@ -73,6 +73,8 @@
                                                 </label>
                                             </div>
                                             <div class="text-muted text-small mt-1">{{ trans('admin/main.new_role_admin_access_hint') }}</div>
+                                        @else
+                                        <input id="isAdmin" type="hidden" name="is_admin" value="1">
                                         @endif
                                     </div>
                                 </div>

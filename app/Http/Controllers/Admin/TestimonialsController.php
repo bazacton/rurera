@@ -18,7 +18,7 @@ class TestimonialsController extends Controller
         $int= mt_rand(1672531200,1685577600);
         $testimonials = Testimonial::where('status', 'active')->orderBy('testimonial_date', 'asc')->get();
         
-        foreach( $testimonials as $testimonialObj){
+        /*foreach( $testimonials as $testimonialObj){
             $testimonial_date = mt_rand(1672531200,1685577600);
             
             $testimonialObj->update([
@@ -29,8 +29,7 @@ class TestimonialsController extends Controller
             ] , [
                 'testimonial_date'  => $testimonial_date ,
             ]);
-        }
-        pre('done');
+        }*/
 
 
         //$import = new TestimonialsImportController('assets/testimonials.csv');

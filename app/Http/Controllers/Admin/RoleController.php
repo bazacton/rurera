@@ -81,6 +81,7 @@ class RoleController extends Controller
             ->with('children')
             ->get();
 
+
         $data = [
             'pageTitle' => trans('/admin/main.edit'),
             'role' => $role,
@@ -104,9 +105,12 @@ class RoleController extends Controller
 
         $data = $request->all();
 
+
         $role->update([
             'caption' => $data['caption'],
-            'is_admin' => ((!empty($data['is_admin']) and $data['is_admin'] == 'on') or $role->name == Role::$admin),
+            //'is_admin' => ((!empty($data['is_admin']) and $data['is_admin'] == 'on') or $role->name == Role::$admin),
+            'is_admin' => isset( $data['is_admin'] )? $data['is_admin'] : 0,
+
         ]);
 
         Permission::where('role_id', '=', $role->id)->delete();

@@ -7289,9 +7289,11 @@ function array_neighbor($arr, $key)
  * Assign topic to user
  */
 function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_assigned_list){
-    if (!auth()->user()->isParent()) {
+    if (!auth()->user()->isParent() && !auth()->user()->isTeacher()) {
         return;
     }
+    $deadline_date = isset( $parent_assigned_list[$topic_id]['deadline_date'])? date("Y-m-d", $parent_assigned_list[$topic_id]['deadline_date']) : date('Y-m-d');$deadline_date = isset( $parent_assigned_list[$topic_id]['deadline_date'])? date("Y-m-d", $parent_assigned_list[$topic_id]['deadline_date']) : date('Y-m-d');
+
     ?>
     <div class="dropdown user-assign-topics" data-topic_type="<?php echo $topic_type; ?>" data-topic_id="<?php echo $topic_id; ?>">
         <button class="dropdown-toggle" type="button" id="checkbox"
@@ -7308,12 +7310,34 @@ function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_ass
                 <label for="child_<?php echo $topic_id.'_'.$childObj->id; ?>"><?php echo $childObj->full_name; ?></label>
             </div>
             <?php } } ?>
+
+            
+            <div class="form-group">
+                <span class="input-label">Deadline Date</span>
+                    <input type="text" name="deadline" id="singledatepicker_<?php echo $topic_id; ?>" class="deadline singledatepicker form-control mt-10">
+            </div>
+
+
+
             <div class="checkbox-btn">
                 <button type="button" class="assign-topic-btn btn btn-primary btn-sm">Assign
                 </button>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#singledatepicker_<?php echo $topic_id; ?>').daterangepicker({
+                locale: {
+                      format: 'YYYY-MM-DD',
+                },
+                singleDatePicker: true,
+                showDropdowns: false,
+                autoApply: true,
+                startDate: '<?php echo $deadline_date; ?>',
+            });
+        });
+    </script>
     <?php
 }
 

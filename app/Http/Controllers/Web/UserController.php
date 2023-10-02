@@ -638,12 +638,14 @@ class UserController extends Controller
         $child_ids = $request->post('child_ids');
         $topic_id = $request->post('topic_id');
         $topic_type = $request->post('topic_type');
+        $deadline_date = $request->post('deadline_date');
 
         $UserAssignedTopicsArray = UserAssignedTopics::where('topic_id', $topic_id)->where('topic_type', $topic_type)->where('parent_id', $user->id)->where('status', 'active')->pluck('assigned_to_id')->toArray();
 
         $unselected_childs = array_diff($UserAssignedTopicsArray, $child_ids);
         UserAssignedTopics::where('topic_id', $topic_id)->whereIn('assigned_to_id', $unselected_childs)->where('topic_type', $topic_type)->where('parent_id', $user->id)->where('status', 'active')->update([
             'status'    => 'inactive',
+            'deadline_date'    => strtotime($deadline_date),
         ]);
 
         if (!empty($child_ids)) {
@@ -657,6 +659,7 @@ class UserController extends Controller
                         'topic_type'     => $topic_type,
                         'status'         => 'active',
                         'created_at'     => time(),
+                        'deadline_date'     => strtotime($deadline_date),
                     ]);
                 }
 

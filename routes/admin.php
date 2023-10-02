@@ -421,6 +421,18 @@ Route::group([
         });
 
         /*
+         * Classes
+         */
+        Route::group(['prefix' => 'classes'], function () {
+            Route::get('/', 'ClassesController@index');
+            Route::get('/create', 'ClassesController@create');
+            Route::get('/{id}/edit', 'ClassesController@edit')->name('adminEditClass');
+            Route::get('/{id}/delete', 'ClassesController@destroy');
+            Route::post('/store', 'ClassesController@store');
+            Route::post('/{id}/store', 'ClassesController@store');
+        });
+
+        /*
          * National Curriculum
          */
         Route::group(['prefix' => 'national_curriculum'], function () {

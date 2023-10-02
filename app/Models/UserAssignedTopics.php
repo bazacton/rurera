@@ -17,7 +17,8 @@ class UserAssignedTopics extends Model
         'topic_id',
         'topic_type',
         'status',
-        'created_at'
+        'created_at',
+        'deadline_date'
     ];
 
     public function quizData()

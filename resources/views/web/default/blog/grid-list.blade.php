@@ -1,4 +1,4 @@
-<div class="blog-grid-card"  itemscope itemtype="https://schema.org/NewsArticle">
+<div class="blog-grid-card rurera-grid"  itemscope itemtype="https://schema.org/NewsArticle">
     <div class="blog-grid-detail">
         <span class="badge created-at d-flex align-items-center">
             <i data-feather="calendar" width="20" height="20" class="mr-5"></i>

@@ -49,14 +49,15 @@ class IndependentExamsController extends Controller
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'independent_exams');
 
 
-        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
-
+        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
         $parent_assigned_list = array();
         if (!empty($parent_assignedArray)) {
             foreach ($parent_assignedArray as $parent_assignedObj) {
                 $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
                 $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
+                $deadline_date = isset($parent_assignedObj['deadline_date']) ? $parent_assignedObj['deadline_date'] : 0;
                 $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
+                $parent_assigned_list[$topic_id]['deadline_date'] = $deadline_date;
             }
         }
 
@@ -80,6 +81,14 @@ class IndependentExamsController extends Controller
         if (auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
+                ->where('parent_id', $user->id)
+                ->where('status', 'active')
+                ->get();
+        }
+
+        if (auth()->user()->isTeacher()) {
+            $childs = User::where('role_id', 1)
+                ->where('parent_type', 'teacher')
                 ->where('parent_id', $user->id)
                 ->where('status', 'active')
                 ->get();

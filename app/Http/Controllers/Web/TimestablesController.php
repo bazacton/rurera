@@ -24,7 +24,9 @@ class TimestablesController extends Controller
     public function landing()
     {
         $data = [
-            'pageTitle' => 'Times Tables',
+            'pageTitle'       => 'Times Tables',
+            'pageDescription' => 'Rurera provide interactive ways for students to learn and memorize timetables starting from 15GBP while having fun.',
+            'pageRobot'       => 'noindex',
         ];
         return view('web.default.timestables.landing', $data);
     }
