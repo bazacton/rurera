@@ -4127,3 +4127,23 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
         opacity: 0.0;
     }
 }
+
+.rurera-hide{display:none;}
+
+.rurera-loader-holder { width: fit-content;}
+.rurera-button-loader {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);}
+.rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; top: 50%; left: 50%; margin-top: -12px; z-index: 1;}
+.rurera-button-loader .double-bounce1,
+.rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
+.rurera-processing { pointer-events: none; position:relative;}
+.rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
+@-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
+}
+@-moz-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
+}
+@keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0); -moz-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); -moz-transform: scale(1); transform: scale(1); }
+}
+.circle-icon-list img {width: 35px; height: 35px; background-color: #fff; border-radius: 100%;position: absolute;left: 0;top: 0;}

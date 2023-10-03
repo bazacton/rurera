@@ -27,7 +27,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
         <div class="d-flex align-items-center justify-content-between w-100">
 
             <a class="navbar-brand navbar-order d-flex align-items-center justify-content-center mr-0 {{ (empty($navBtnUrl) and empty($navBtnText)) ? 'ml-auto' : '' }}"
-               href="https://rurera.chimpstudio.co.uk/">
+               href="https://rurera.chimpstudio.co.uk/" itemprop="url">
                 @if(!empty($generalSettings['logo']))
                 <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo"
                      width="100%" height="auto" itemprop="image" loading="eager">

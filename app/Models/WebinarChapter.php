@@ -27,9 +27,16 @@ class WebinarChapter extends Model implements TranslatableContract
     static $chapterActive = 'active';
     static $chapterInactive = 'inactive';
 
-    static $chapterTypes = ['file', 'session', 'text_lesson'];
+    static $chapterTypes = [
+        'file',
+        'session',
+        'text_lesson'
+    ];
 
-    static $chapterStatus = ['active', 'inactive'];
+    static $chapterStatus = [
+        'active',
+        'inactive'
+    ];
 
     public $translatedAttributes = ['title'];
 
@@ -83,6 +90,11 @@ class WebinarChapter extends Model implements TranslatableContract
         return $this->hasMany('App\Models\Quiz', 'chapter_id', 'id');
     }
 
+    public function subChapters()
+    {
+        return $this->hasMany('App\Models\SubChapters', 'chapter_id', 'id');
+    }
+
     public function chapterItems()
     {
         return $this->hasMany('App\Models\WebinarChapterItem', 'chapter_id', 'id');
@@ -117,7 +129,6 @@ class WebinarChapter extends Model implements TranslatableContract
         if ($withQuiz) {
             $count += $this->quizzes->where('status', 'active')->count();
         }
-
 
 
         return $count;

@@ -333,6 +333,30 @@ Route::group([
             Route::post('/search_quiz', 'QuizController@search_quiz');
         });
 
+
+        /*
+         * Assignments Routing
+         */
+        Route::group(['prefix' => 'assignments'], function () {
+            Route::get('/', 'AssignmentsController@index');
+            Route::get('/create', 'AssignmentsController@create');
+            Route::get('/subjects_by_year', 'AssignmentsController@subjects_by_year');
+            Route::get('/topics_subtopics_by_subject', 'AssignmentsController@topics_subtopics_by_subject');
+            Route::get('/questions_by_subchapter', 'AssignmentsController@questions_by_subchapter');
+            Route::get('/questions_by_keyword', 'AssignmentsController@questions_by_keyword');
+            //Route::post('/store_quiz', 'QuizController@store_quiz');
+            //Route::post('/store', 'QuizController@store');
+            //Route::get('/{id}/edit', 'QuizController@edit')->name('adminEditQuiz');
+            //Route::post('/{id}/update', 'QuizController@update');
+            //Route::get('/{id}/delete', 'QuizController@delete');
+            //Route::get('/{id}/results', 'QuizController@results');
+            //Route::get('/{id}/results/excel', 'QuizController@resultsExportExcel');
+            //Route::get('/result/{result_id}/delete', 'QuizController@resultDelete');
+            //Route::get('/excel', 'QuizController@exportExcel');
+            //Route::post('/{id}/order-items', 'QuizController@orderItems');
+            //Route::post('/search_quiz', 'QuizController@search_quiz');
+        });
+
         Route::group(['prefix' => 'quizzes-questions'], function () {
             Route::post('/store', 'QuizQuestionController@store');
             Route::get('/{id}/edit', 'QuizQuestionController@edit');
@@ -505,7 +529,7 @@ Route::group([
             Route::get('/{id}/delete', 'TextLessonsController@destroy');
         });
 
-        Route::group(['prefix' => 'assignments'], function () {
+        Route::group(['prefix' => 'assignments_bk'], function () {
             Route::get('/', 'AssignmentController@index');
             Route::get('/{id}/students', 'AssignmentController@students');
             Route::get('/{assignmentId}/history/{historyId}/conversations', 'AssignmentController@conversations');

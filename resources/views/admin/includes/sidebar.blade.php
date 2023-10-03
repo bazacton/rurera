@@ -260,6 +260,15 @@
                 </li>
             @endif
 
+            @can('admin_assignments')
+                <li class="{{ (request()->is('admin/assignments')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/assignments') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Assignments</span>
+                    </a>
+                </li>
+            @endif
+
             @can('admin_certificate')
                 <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/certificates*', false))) ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">

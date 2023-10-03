@@ -1,11 +1,11 @@
 <div id="topFilters" class="topFilters">
     <div class="row align-items-center">
 
-        <div class="col-lg-9 d-block d-md-flex align-items-center justify-content-start my-25 my-lg-0">
+        <div class="col-lg-9 d-block d-md-flex align-items-center justify-content-start my-25 my-lg-0" itemprop="products numbers">
             {{ $productsCount }} products showing
         </div>
 
-        <div class="col-lg-3 d-flex align-items-center">
+        <div class="col-lg-3 d-flex align-items-center" itemprop="products filter">
             <label>{{ trans('public.sort_by') }}:</label>
             <select name="sort" class="form-control font-14">
                 <option value="">{{ trans('public.all') }}</option>

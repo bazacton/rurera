@@ -108,6 +108,27 @@
 
                                         @endif
 
+                                        @if(!empty( $classes ) )
+                                        <div class="form-group">
+                                            <label>Student Class</label>
+                                            <select class="form-control select2 @error('student_class') is-invalid @enderror" id="student_class" name="student_class">
+                                                <option disabled selected>Class</option>
+                                                @foreach ($classes as $classObj)
+                                                    <option value="{{ $classObj->id }}" {{ old('student_class') === $classObj->id ? 'selected' :''}}>{{ $classObj->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('student_class')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="class-sections">
+
+                                        </div>
+                                        @endif
+
                                         <div class="form-group">
                                             <label>{{ trans('/admin/main.status') }}</label>
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">

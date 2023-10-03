@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesResult;
@@ -20,25 +21,21 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Translation\QuizzesQuestionTranslation;
 
-class QuizController extends Controller
+class AssignmentsController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('admin_quizzes_list');
+        $this->authorize('admin_assignments');
 
         removeContentLocale();
         //DB::enableQueryLog();
 
-        $query = Quiz::query();
+        $query = Quiz::query()->where('quiz_type', 'assignment');
 
-        if(auth()->user()->isTeacher()){
+        if (auth()->user()->isTeacher()) {
             //$query = $query->where('creator_id', auth()->user()->id);
         }
-        $totalQuizzes = deepClone($query)->count();
-        $totalActiveQuizzes = deepClone($query)->where('status', 'active')->count();
-        $totalStudents = QuizzesResult::groupBy('user_id')->count();
-        $totalPassedStudents = QuizzesResult::where('status', 'passed')->groupBy('user_id')->count();
-
+        $totalAssignments = deepClone($query)->count();
 
         $query = $this->filters($query, $request);
 
@@ -61,12 +58,9 @@ class QuizController extends Controller
         //DB::disableQueryLog();
 
         $data = [
-            'pageTitle'           => trans('admin/pages/quiz.admin_quizzes_list'),
-            'quizzes'             => $quizzes,
-            'totalQuizzes'        => $totalQuizzes,
-            'totalActiveQuizzes'  => $totalActiveQuizzes,
-            'totalStudents'       => $totalStudents,
-            'totalPassedStudents' => $totalPassedStudents,
+            'pageTitle'        => 'Assignments',
+            'quizzes'          => $quizzes,
+            'totalAssignments' => $totalAssignments,
         ];
 
         $teacher_ids = $request->get('teacher_ids');
@@ -82,7 +76,7 @@ class QuizController extends Controller
                 ->whereIn('id', $webinar_ids)->get();
         }
 
-        return view('admin.quizzes.lists', $data);
+        return view('admin.assignments.lists', $data);
     }
 
     private function filters($query, $request)
@@ -193,35 +187,18 @@ class QuizController extends Controller
 
     public function create()
     {
-        $this->authorize('admin_quizzes_create');
+        $this->authorize('admin_assignments_create');
 
-        $data = [
-            'pageTitle' => trans('quiz.new_quiz'),
-        ];
-
-        $query = Webinar::query();
-
-        $webinars = DB::table('webinars')
-            ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
-            ->join('webinar_chapters', 'webinar_chapters.webinar_id', '=', 'webinars.id')
-            ->join('webinar_chapter_translations', 'webinar_chapter_translations.webinar_chapter_id', '=', 'webinar_chapters.id')
-            ->select('webinars.id', 'webinar_translations.title', 'webinar_chapters.id as chapter_id', 'webinar_chapter_translations.title as chapter_title')
+        $categories = Category::where('parent_id', null)
+            ->with('subCategories')->orderBy('order', 'asc')
             ->get();
 
-        $chapters_list = array();
-        if (!empty($webinars)) {
-            foreach ($webinars as $webinarData) {
-                $webinar_id = isset($webinarData->id) ? $webinarData->id : '';
-                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
-                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
-                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
-                $chapters_list[$webinar_id]['title'] = $webinar_title;
-                $chapters_list[$webinar_id]['chapters'][$chapter_id] = $chapter_title;
-            }
-        }
-        $data['chapters'] = $chapters_list;
+        $data = [
+            'pageTitle'  => 'Create Assignment',
+            'categories' => $categories,
+        ];
 
-        return view('admin.quizzes.create', $data);
+        return view('admin.assignments.create', $data);
     }
 
     public function store(Request $request)
@@ -489,8 +466,6 @@ class QuizController extends Controller
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
 
 
-
-
         if ($validate->fails()) {
             return response()->json([
                 'code'   => 422,
@@ -581,7 +556,6 @@ class QuizController extends Controller
         if (!empty($quiz)) {
 
 
-
             $quiz_question_ids = array();
             if (!empty($question_list_ids)) {
                 foreach ($question_list_ids as $sort_order => $question_id) {
@@ -649,133 +623,141 @@ class QuizController extends Controller
         return redirect()->back();
     }
 
-    public function results($id)
+
+    public function subjects_by_year(Request $request)
     {
-        $this->authorize('admin_quizzes_results');
-
-        $quizzesResults = QuizzesResult::where('quiz_id', $id)
-            ->with([
-                'quiz' => function ($query) {
-                    $query->with(['teacher']);
-                },
-                'user'
-            ])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-
-        $data = [
-            'pageTitle'      => trans('admin/pages/quizResults.quiz_result_list_page_title'),
-            'quizzesResults' => $quizzesResults,
-            'quiz_id'        => $id
-        ];
-
-        return view('admin.quizzes.results', $data);
-    }
-
-    public function search_quiz(Request $request)
-    {
-        $term = $request->get('term');
-        //$option = $request->get('option');
-
-        $quizzes = DB::table('quiz_translations')
-            ->select('quiz_id', 'title as name')
-            ->where('title', 'like', '%' . $term . '%');
-
-        return response()->json($quizzes->get(), 200);
-    }
-
-    public function resultsExportExcel($id)
-    {
-        $this->authorize('admin_quiz_result_export_excel');
-
-        $quizzesResults = QuizzesResult::where('quiz_id', $id)
-            ->with([
-                'quiz' => function ($query) {
-                    $query->with(['teacher']);
-                },
-                'user'
-            ])
-            ->orderBy('created_at', 'desc')
+        $year_id = $request->get('year_id', null);
+        $webinars = Webinar::where('category_id', $year_id)
             ->get();
 
-        $export = new QuizResultsExport($quizzesResults);
 
-        return Excel::download($export, 'quiz_result.xlsx');
-    }
+        if (!empty($webinars)) {
+            echo '<div class="col-lg-12 col-md-12 col-sm-6 col-12 subjects-group populated-data">
+                <button type="button" class="rurera-back-btn btn btn-primary mb-20">Back</button>
+            <div class="row">';
+            foreach ($webinars as $webinarObj) {
+                ?>
 
-    public function resultDelete($result_id)
-    {
-        $this->authorize('admin_quizzes_results_delete');
-
-        $quizzesResults = QuizzesResult::where('id', $result_id)->first();
-
-        if (!empty($quizzesResults)) {
-            $quizzesResults->delete();
-        }
-
-        return redirect()->back();
-    }
-
-    public function exportExcel(Request $request)
-    {
-        $this->authorize('admin_quizzes_lists_excel');
-
-        $query = Quiz::query();
-
-        $query = $this->filters($query, $request);
-
-        $quizzes = $query->with([
-            'webinar',
-            'teacher',
-            'quizQuestions',
-            'quizResults',
-        ])->get();
-
-        return Excel::download(new QuizzesAdminExport($quizzes), trans('quiz.quizzes') . '.xlsx');
-    }
-
-    public function orderItems(Request $request, $quizId)
-    {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
-            'items' => 'required',
-            'table' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response([
-                'code'   => 422,
-                'errors' => $validator->errors(),
-            ], 422);
-        }
-
-        $quiz = Quiz::query()->where('id', $quizId)->first();
-
-        if (!empty($quiz)) {
-            $tableName = $data['table'];
-            $itemIds = explode(',', $data['items']);
-
-            if (!is_array($itemIds) and !empty($itemIds)) {
-                $itemIds = [$itemIds];
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 subject-group-select"
+                     data-subject_id=" <?php echo $webinarObj->id; ?>">
+                    <div class="card card-medium-icons">
+                        <div class="card-icon bg-primary text-white p-30 text-center">
+                            <?php echo $webinarObj->getTitleAttribute(); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php
             }
+            echo '</div></div>';
+        }
+        exit;
+    }
 
-            if (!empty($itemIds) and is_array($itemIds) and count($itemIds)) {
-                switch ($tableName) {
-                    case 'quizzes_questions':
-                        foreach ($itemIds as $order => $id) {
-                            QuizzesQuestion::where('id', $id)
-                                ->where('quiz_id', $quiz->id)
-                                ->update(['order' => ($order + 1)]);
-                        }
-                        break;
+    public function topics_subtopics_by_subject(Request $request)
+    {
+        $subject_id = $request->get('subject_id', null);
+        $WebinarChapter = WebinarChapter::where('webinar_id', $subject_id)->with('subChapters')->get();
+        //pre($WebinarChapter);
+
+        echo '<div class="col-lg-12 col-md-12 col-sm-12 col-12 populated-data">
+        <button type="button" class="rurera-back-btn btn btn-primary mb-20">Back</button>
+        <div class="row">';
+        if (!empty($WebinarChapter)) {
+            echo '<div class="col-lg-6 col-md-6 col-sm-6 col-12 card chapters-group accordion" id="chaptersAccordion">';
+            foreach ($WebinarChapter as $WebinarChapter) {
+                ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 card">
+                    <div class="card-header collapsed mb-0" id="headingOne" type="button"
+                         data-toggle="collapse"
+                         data-target="#chapter_<?php echo $WebinarChapter->id; ?>" aria-expanded="true"
+                         aria-controls="chapter_<?php echo $WebinarChapter->id; ?>">
+                        <span><?php echo $WebinarChapter->getTitleAttribute(); ?></span>
+                    </div>
+                    <?php if (!empty($WebinarChapter->subChapters)) { ?>
+                        <div id="chapter_<?php echo $WebinarChapter->id; ?>" class="collapse"
+                             aria-labelledby="headingOne"
+                             data-parent="#chaptersAccordion">
+                            <div class="card-body">
+                                <ul class="subchapter-group-select">
+                                    <?php foreach ($WebinarChapter->subChapters as $subChapterObj) {
+
+                                        echo '<li data-subchapter_id="' . $subChapterObj->id . '">' . $subChapterObj->sub_chapter_title . '</li>';
+
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+                <?php
+
+            }
+            echo '</div>';
+        }
+
+        echo '<div class="col-lg-6 col-md-6 col-sm-4 col-12 card questions-group populated-data">';
+        echo '<div class="search-field-box search-field-box"><div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-4 col-12">
+                      <input type="text" id="search-questions" class="form-control search-questions mt-10">
+                    </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                      <label>Custom Questions</label><div class="custom-control custom-switch">
+            
+                          <input type="checkbox" name="search_question_bank" class="search_question_bank custom-control-input" id="search_question_bank">
+                          <label class="custom-control-label" for="search_question_bank"></label>
+                      </div>
+                </div>
+                    </div>
+                    </div><div class="questions-populate-area"></div>';
+        echo '</div>';
+
+        echo '</div></div>';
+        exit;
+    }
+
+    public function questions_by_subchapter(Request $request)
+    {
+        $subchapter_id = $request->get('subchapter_id', null);
+
+        $WebinarChapterItem = WebinarChapterItem::where('parent_id', $subchapter_id)->where('type', 'quiz')->first();
+        $quiz_id = isset($WebinarChapterItem->item_id) ? $WebinarChapterItem->item_id : 0;
+        $QuizObj = (object)array();
+        if ($quiz_id > 0) {
+            $QuizObj = Quiz::with(['quizQuestionsList.SingleQuestionData'])->where('status', 'active')->where('id', $quiz_id)->first();
+        }
+
+        if (isset($QuizObj->quizQuestionsList)) {
+            echo '<ul class="questions-group-select" id="questions-group-select">';
+            foreach ($QuizObj->quizQuestionsList as $questionObj) {
+                if (isset($questionObj->SingleQuestionData->id)) {
+                    echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '"><a href="javascript:;">'. $questionObj->SingleQuestionData->id .' | ' . $questionObj->SingleQuestionData->question_title . ' | '. $questionObj->SingleQuestionData->question_difficulty_level .'</a></li>';
                 }
             }
+            echo '</ul>';
         }
+        exit;
 
-        return response()->json([
-            'title' => trans('public.request_success'),
-            'msg'   => trans('update.items_sorted_successful')
-        ]);
     }
+
+    public function questions_by_keyword(Request $request)
+    {
+        $user = auth()->user();
+        $keyword = $request->get('keyword', null);
+
+        $questionIds = QuizzesQuestion::where(function ($query) use($keyword) {
+                    $query->where('question_title', 'like', '%' . $keyword . '%')->orWhere('search_tags', 'like', '%' . $keyword . '%')->orWhere('question_difficulty_level', 'like', '%' . $keyword . '%');
+        })->where('creator_id', $user->id)->get();
+
+        $questions_array = array();
+        if (!empty($questionIds)) {
+            foreach ($questionIds as $questionObj) {
+                echo '<li data-question_id="' . $questionObj->id . '"><a href="javascript:;">'. $questionObj->id .' | ' . $questionObj->question_title . ' | '. $questionObj->question_difficulty_level .'</a></li>';
+            }
+        }
+        exit;
+
+    }
+
+
 }

@@ -15323,7 +15323,6 @@ p {
 }
 .find-instructor-section .find-instructor-section-hero {
     max-width: 400px;
-    /*max-height: 460px;*/
     border-radius: 40px 4px 40px 4px;
     box-shadow: 0 30px 60px 0 rgba(1, 11, 60, .14)
 }
@@ -15497,6 +15496,10 @@ p {
 @media (max-width:767px) {
     .find-instructor-section .find-instructor-section-hero {
         max-width: 100%;
+        object-fit: contain;
+    }
+    .footer .widget.widget-links {
+        margin-bottom: 25px;
     }
     .find-instructor-section .example-instructor-card {
         right: -5px;
@@ -22881,7 +22884,9 @@ Heatmap Table style End
 /***************************
 Main Home style Start
 ***************************/
-.home-banner .choose-sats .sats-box {background-color: rgba(255,255,255,0.98); border-color: rgba(0,0,0,0.4); min-height: 135px; padding: 20px 12px;}
+.home-banner .choose-sats .sats-box {background-color: rgba(255,255,255,0.9); border-color: rgba(0,0,0,0.4); min-height: 135px; padding: 40px 12px 20px; position: relative; transition: all .5s ease;}
+.home-banner .choose-sats .sats-box img {margin-top: -110px; max-width: 100px; max-height: 100px; transition: all .5s ease; position: absolute;}
+.home-banner .choose-sats .sats-box:hover img {margin-top: -100px;}
 .home-banner .choose-sats .sats-box span {font-size: 22px; font-weight: 500;}
 .home-banner .sats-box p {font-size: 14px;}
 .home-banner .sats-box a {font-size: 14px; font-weight: 500; text-decoration: underline; display: block; padding-top: 8px;}
@@ -23676,7 +23681,7 @@ Lms Responsive Style Start
     .mega-menu-nav a:after {display: none;}
     .lms-wave-shape-top::before {top: -1px;}
     .widget.widget-location {margin-bottom: 20px;}
-    .scroll-btn {bottom: 100px;}
+    .scroll-btn {bottom: 100px; z-index: 8;}
     .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
 }
@@ -23706,7 +23711,8 @@ Lms Responsive Style Start
     .search-books ul {flex-wrap: wrap;}
     .search-books ul li {width: 50%; text-align: center; margin-top: 10px;}
     .find-instructor-testimonial .left {text-align: center; padding-left: 0;}
-    .find-instructor-testimonial .find-instructor-circle {left: 50%; transform: translateX(-50%);}
+    .find-instructor-testimonial .find-instructor-circle {left: 50%; transform: translateX(-50%); width: 150px; height: 150px;}
+    .find-instructor-circle + p {padding-top: 100px;}
     .find-instructor-testimonial .float-right {float: none !important; text-align: center;}
     .find-instructor-testimonial .position-relative {text-align: center;}
     .find-instructor-testimonial .right {padding-right: 0; padding-top: 70px;}
@@ -23730,7 +23736,7 @@ Lms Responsive Style Start
     .lms-quiz-section .img-holder img {max-width: 100%;}
     .lms-quiz-section .read-quiz-info {max-width: 95%;min-width: 95%;left: -395px;padding-top: 0 !important;z-index: 1;}
     .lms-quiz-section .quiz-toggle-btn {top: 80%;}
-    .process-section .process-card .text-holder {text-align: center;margin-bottom: 0;max-width: 500px;}
+    .process-section .process-card .text-holder {text-align: center;max-width: 500px; margin: 0 0 30px !important;}
     .process-section .process-card .process-card-body {flex-direction: column;}
     .process-card.process-one:before,
     .process-card.process-one:after,
@@ -23750,7 +23756,7 @@ Lms Responsive Style Start
     .newsletter-inner .form-field { text-align: center !important; margin-top: 30px; }
     .lms-text-section blockquote p { padding: 0; }
     .testimonials-container .swiper-container {padding: 0 !important;}
-    .find-instructor-section figure img { max-width: 100%; }
+    .find-instructor-section figure img { max-width: 100%; object-fit: contain; }
     .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
     .find-instructor-section figure img.find-instructor-section-circle { right: 10% !important; }
     .find-instructor-section [class*="col-"] > .pl-50,
@@ -23763,7 +23769,11 @@ Lms Responsive Style Start
     .products-top-header form {width: 100% !important;}
     .gallery-sub-header .book-btn {font-size: 15px; min-width: 165px; padding: 15px 15px;}
     .reward-section:after {bottom: -1px;}
-    .process-holder {padding-bottom: 0;}
+    .process-holder {padding-bottom: 0; overflow: visible;}
+    .lms-text-section .lms-img-holder figure img {width: 100% !important; object-fit: contain;}
+    .pages-sub-header {max-height: inherit;}
+    .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
+    .home-banner .choose-sats [class*="col-"]:last-child .sats-box {margin-bottom: 0;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -23803,19 +23813,54 @@ Lms Responsive Style Start
     .job-singup-sub-header .btn-primary {padding-left: 25px; padding-right: 25px;}
     .lms-counter-card.counter-purple-bg,
     .lms-counter-card.counter-yellow-bg {margin-bottom: 30px;}
-    .lms-counter-card.counter-yellow-bg:after,
+    /* .lms-counter-card.counter-yellow-bg:after,
     .lms-counter-card.counter-purple-bg:before,
-    .counter-holder .svg-shapes-top, .counter-holder .svg-shapes-bottom {display: none;}
+    .counter-holder .svg-shapes-top, .counter-holder .svg-shapes-bottom {display: none;} */
     .counter-holder.mt-100 {margin-top: 0 !important;}
     .exame-listing .exame-holder .exame-list {width: 100%;}
     .exame-listing .exame-holder .exame-list:nth-child(3) {border-bottom: 1px solid #edecef;}
-    .gallery-sub-header .masonry-grid figure img {width: auto;}
-    .gallery-sub-header .masonry-grid .grid-item {text-align: center;}
+    .gallery-sub-header .masonry-grid figure img {width: 100%; object-fit: cover; height: 100%;}
+    .gallery-sub-header .masonry-grid .grid-item {text-align: center; width: 33.333%;}
     .gallery-sub-header .masonry-grid-gallery {height: auto; margin-bottom: 0; padding-bottom: 0; margin-top: 20px;}
     .gallery-sub-header .masonry-grid .grid-item:last-child .img-holder figure {margin-bottom: 0;}
     .reward-box {flex-direction: column;}
     .reward-box .img-holder {margin-bottom: 15px;}
     .reward-box .img-holder ~ .text-holder {margin-left: 0; text-align: center;}
+    .job-singup-sub-header.gallery-sub-header {padding-bottom: 30px !important; margin-bottom: 30px;}
+    .lms-feature-card {padding-right: 0;}
+    .exame-listing .exame-holder .exame-list .img-holder~.text-holder {margin-left: 12px;}
+    .process-holder .section-title.text-left {text-align: center !important;}
+    .process-holder .row > [class*="col-"] > .row > [class*="col-"]:nth-child(2) .process-card-body,
+    .process-holder .row > [class*="col-"] > .row > [class*="col-"]:nth-child(4) .process-card-body{flex-direction: column-reverse;}
+    .process-holder .row > [class*="col-"] > .row > [class*="col-"]:nth-child(2) .process-card-body .img-holder {margin-bottom: 25px;}
+    .process-holder .row > [class*="col-"] > .row > [class*="col-"]:nth-child(4) .process-card-body .img-holder {margin-bottom: 0;}
+    .process-holder .row > [class*="col-"] > .row > [class*="col-"]:nth-child(3) .process-card {padding-top: 0;}
+    .lms-counter-card.counter-purple-bg:before {
+        content: "";
+        position: absolute;
+        left: 35px;
+        top: 100%;
+        border-top: 3px dashed #cac8cc;
+        width: 80px;
+        transform: rotate(90deg);
+        margin-top: 45px;
+    }
+    .lms-counter-card.counter-yellow-bg:after {
+        right: 172px;
+        bottom: -29px;
+        border-bottom: 3px dashed #cac8cc;
+        transform: rotate(-40deg);
+        border-radius: 0;
+        width: 70px;
+    }
+    .counter-holder .svg-shapes-top {
+        position: absolute;
+        right: 162px;
+        top: 100%;
+        transform: rotate(90deg);
+        margin-top: -75px;
+    }
+ 
 }
 @media screen and (max-width: 575px) {
     .lms-service-section {margin-top: 80px !important;}
@@ -23834,6 +23879,12 @@ Lms Responsive Style Start
     .footer.footer-home .footer-copyright {text-align: center;}
     .footer .footer-copyright [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .footer.footer-home .footer-logo {margin: 15px auto;}
+    .rurera-home-categories>.row>[class*="col-"] {flex: 0 0 50%; max-width: 50%;}
+    .blog-grid-card.rurera-grid {margin-bottom: 25px;}
+    .blog-sub-header.lms-call-to-action input[type="text"], 
+    .sub-header.lms-call-to-action input[type="text"] {width: 100%;}
+    .cell-card form.w-75 {width: 100% !important;}
+    .find-instructor-section .find-instructor-section-circle {top: 0;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -23843,4 +23894,5 @@ Lms Responsive Style Start
     .lms-call-to-action input[type="text"] {border-radius: 8px; width: 100%;}
     .lms-call-to-action button {border-radius: 8px; margin-top: 15px;}
     .lms-call-to-action .field-holder {flex-direction: column; align-items: center;}
+    .gallery-sub-header .book-btn {font-size: 14px; min-width: 150px; padding: 15px 8px;}
 }

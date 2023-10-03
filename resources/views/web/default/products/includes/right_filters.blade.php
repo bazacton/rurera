@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header" id="headingOne">
             <div class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" itemprop="Collapse Button">
                     Categories
                     <span class="arrow"></span>
                 </button>
@@ -31,7 +31,7 @@
 
                     <div class="pl-10">
                         @foreach($productCategory->subCategories as $subCategory)
-                        <a href="{{ $subCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}">
+                        <a href="{{ $subCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-normal mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $subCategory->id) ? 'text-primary' : '' }}" itemprop="url">
                             @if(!empty($selectedCategory) and $selectedCategory->id == $subCategory->id)
                             <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                             @endif
@@ -41,7 +41,7 @@
                         @endforeach
                     </div>
                     @else
-                    <a href="{{ $productCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $productCategory->id) ? 'text-primary' : '' }}">
+                    <a href="{{ $productCategory->getUrl() }}" class="d-flex align-items-center font-14 font-weight-bold mt-20 {{ (!empty($selectedCategory) and $selectedCategory->id == $productCategory->id) ? 'text-primary' : '' }}" itemprop="url">
                         @if(!empty($selectedCategory) and $selectedCategory->id == $productCategory->id)
                         <i data-feather="chevron-right" width="20" height="20" class="mr-5"></i>
                         @endif
@@ -60,7 +60,7 @@
     <div class="card">
         <div class="card-header" id="headingTwo">
             <div class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" itemprop="Collapse Button">
                     Type
                     <span class="arrow"></span>
                 </button>
@@ -87,7 +87,7 @@
     <div class="card">
         <div class="card-header" id="headingThree">
             <div class="mb-0">
-                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" itemprop="Collapse Button">
                     Options
                     <span class="arrow"></span>
                 </button>

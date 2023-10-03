@@ -27,6 +27,7 @@ use App\Models\UserRegistrationPackage;
 use App\Models\UserSelectedBank;
 use App\Models\UserSelectedBankSpecification;
 use App\Models\Webinar;
+use App\Models\Classes;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -441,15 +442,18 @@ class UserController extends Controller
 
     public function create()
     {
+        $user = auth()->user();
         $this->authorize('admin_users_create');
 
         $roles = Role::orderBy('created_at', 'desc')->get();
         $userGroups = Group::orderBy('created_at', 'desc')->where('status', 'active')->get();
+        $classes = Classes::where('created_by', $user->id)->where('status', 'active')->where('parent_id', 0)->get();
 
         $data = [
             'pageTitle' => trans('admin/main.user_new_page_title'),
             'roles' => $roles,
             'userGroups' => $userGroups,
+            'classes' => $classes,
         ];
 
 

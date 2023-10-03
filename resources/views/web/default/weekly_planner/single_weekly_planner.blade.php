@@ -22,7 +22,7 @@ $weeklyPlanner->WeeklyPlannerItems ) )
                         <div class="col-lg-9 col-md-9 col-sm-12">
 
                             <ul>
-                                <li><h3> {{$WeeklyPlannerItemsData->title}} </h3></li>
+                                <li><h2 class="font-19 font-weight-bold"> {{$WeeklyPlannerItemsData->title}} </h2></li>
                                 @if(isset( $WeeklyPlannerItemsData->WeeklyPlannerTopics) && !empty(
                                 $WeeklyPlannerItemsData->WeeklyPlannerTopics ) )
                                 @foreach( $WeeklyPlannerItemsData->WeeklyPlannerTopics as

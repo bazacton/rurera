@@ -22,19 +22,19 @@
                 </div>
                 <ul class="pt-30" itemprop="courses list">
                     <li class="mb-10 font-19" itemprop="course short info">
-                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check icon" class="img-sm mr-10" alt="#" height="18" width="18" />
+                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check image" class="img-sm mr-10" alt="#" height="18" width="18" />
                         KS1 & KS2 courses available
                     </li>
                     <li class="mb-10 font-19" itemprop="course short info">
-                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check icon" class="img-sm mr-10" alt="#" height="18" width="18" />
+                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check image" class="img-sm mr-10" alt="#" height="18" width="18" />
                         Get detailed performance Reports
                     </li>
                     <li class="mb-10 font-19" itemprop="course short info">
-                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check icon" class="img-sm mr-10" alt="#" height="18" width="18" />
+                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check image" class="img-sm mr-10" alt="#" height="18" width="18" />
                         Engage and captivate student attention
                     </li>
                     <li class="mb-10 font-19" itemprop="course short info">
-                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check icon" class="img-sm mr-10" alt="#" height="18" width="18" />
+                        <img src="../assets/default/svgs/check-simple.svg" itemprop="check image" class="img-sm mr-10" alt="#" height="18" width="18" />
                         Breakthrough insights
                     </li>
                 </ul>
@@ -42,8 +42,8 @@
             <div class="col-12 col-md-5 col-lg-5">
                 <figure class="position-relative mt-30" style="z-index: 1;">
                     <img src="../assets/default/img/courses-banner-image.png" alt="courses banner image" title="courses" width="470" height="459" itemprop="image" loading="eager">
-                    <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" title="courses" itemprop="image" height="170" width="170">
-                    <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" style="bottom: 25px; left: 20px;" itemprop="image" height="110" width="70">
+                    <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" title="courses" itemprop="circle image" height="170" width="170">
+                    <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" style="bottom: 25px; left: 20px;" itemprop="dots image" height="110" width="70">
                 </figure>
             </div>
         </div>

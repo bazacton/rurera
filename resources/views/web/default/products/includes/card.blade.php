@@ -1,7 +1,7 @@
 <div class="product-card">
     <figure>
         <div class="image-box">
-            <a href="{{ $product->getUrl() }}" class="image-box__a">
+            <a href="{{ $product->getUrl() }}" class="image-box__a" itemprop="url">
                 @php
                     $hasDiscount = $product->getActiveDiscount();
                 @endphp
@@ -16,20 +16,20 @@
                     <span class="badge badge-warning">{{ trans('update.free_shipping') }}</span>
                 @endif
 
-                <img src="{{ $product->thumbnail }}" class="img-cover" width="160" height="160" alt="{{ $product->title }}">
+                <img src="{{ $product->thumbnail }}" class="img-cover" width="160" height="160" alt="{{ $product->title }}" itemprop="image">
             </a>
         </div>
 
         <figcaption class="product-card-body">
             
-            <a href="{{ $product->getUrl() }}">
-                <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">{{ $product->title,'title' }}</h3>
+            <a href="{{ $product->getUrl() }}" itemprop="url">
+                <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue" itemprop="title">{{ $product->title,'title' }}</h3>
             </a>
 
             <div class="product-price-box mt-25">
-                <span class="real font-14"><i data-feather="zap" width="20" height="20" class=""></i> {{ $product->point }} Coins</span>
+                <span class="real font-14" itemprop="price"><i data-feather="zap" width="20" height="20" class=""></i> {{ $product->point }} Coins</span>
             </div>
         </figcaption>
-        <button type="button" class="cart-button"><a  class="bt-button" href="{{ $product->getUrl() }}">BUY</a></button>
+        <button type="button" class="cart-button" itemprop="Cart Button"><a  class="bt-button" href="{{ $product->getUrl() }}" itemprop="url">BUY</a></button>
     </figure>
 </div>

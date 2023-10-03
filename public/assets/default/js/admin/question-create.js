@@ -8857,8 +8857,12 @@ function pasteHtmlAtCaret(html) {
 
 $(document).on('click', '.quiz-stage-generate', function () {
 
-    var question_status = $(this).attr('data-status');
-    leform_save(this, question_status);
+    if($(".ajax-category-courses").val() == '' || $(".ajax-courses-dropdown").val() == ''){
+        alert('Please Select Category and Subject.');
+    }else {
+        var question_status = $(this).attr('data-status');
+        leform_save(this, question_status);
+    }
 
 });
 

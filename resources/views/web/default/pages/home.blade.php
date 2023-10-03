@@ -23,10 +23,11 @@
                 <div class="col-12 col-md-12 col-lg-10 text-center mx-auto"> 
                     <h1 class="font-50 font-weight-bold text-dark-charcoal">Learn, Practice & Win with <br> <span class="text-scribble">Rurera</span></h1>
                     <p class="font-19 pt-15">Rurera is a game changer subscription based education learning platform. It provides 10000+ practices<br> for Key stage 1 courses, Key stage 2 courses, TimeTables, Books, SATs and 11 plus exams.</p>
-                    <div class="choose-sats mt-50">
+                    <div class="choose-sats mt-90">
                         <div class="row">
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
+                                    <img src="/store/1/default_images/home_sections_banners/dialogue.png">
                                     <span class="mb-10" style="color: #3d358b;">Practice papers</span>
                                     <p>Available for ks1, ks2, sats, 11 plus and much more.</p>
                                     <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
@@ -34,6 +35,7 @@
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
+                                    <img src="/store/1/default_images/home_sections_banners/cactus.png">
                                     <span class="mb-10" style="color: #f18700;">Interactive questions</span>
                                     <p>Over 5000+ questions are there to test and pass exam.</p>
                                     <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
@@ -41,6 +43,7 @@
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="sats-box justify-content: center">
+                                    <img src="/store/1/default_images/home_sections_banners/rocket-ship.png">
                                     <span class="mb-10" style="color: #7679ee;">Strong Foundation</span>
                                     <p>Fostering a strong impact in every aspect of your Child's life.</p>
                                     <a href="https://rurera.chimpstudio.co.uk/register">Learn more</a>
@@ -429,7 +432,7 @@
                <div class="row mt-35">
                    @foreach($blog as $post)
                        <div class="col-12 col-md-4 col-lg-4 mt-20 mt-lg-0">
-                           @include('web.default.blog.grid-list',['post' =>$post])
+                           @include('web.default.blog.rurera-grid-list',['post' =>$post])
                        </div>
                    @endforeach
 

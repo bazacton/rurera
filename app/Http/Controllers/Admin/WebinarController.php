@@ -1188,7 +1188,7 @@ class WebinarController extends Controller
 
     }
 
-    public function chapters_by_course(Request $request)
+    public function chapters_by_course_bk(Request $request)
     {
         $course_id = $request->get('course_id');
         $selected_chapter_id = $request->get('chapter_id');
@@ -1218,6 +1218,28 @@ class WebinarController extends Controller
         exit;
 
     }
+
+    public function chapters_by_course(Request $request)
+        {
+            $course_id = $request->get('course_id');
+            $selected_chapter_id = $request->get('chapter_id');
+
+            $chapters_list = get_chapters_list(false , $course_id);
+            $WebinarChapter = WebinarChapter::where('webinar_id', $course_id)->with('subChapters')->get();
+            //pre($chapters_list);
+
+            $response = '<option value="">Select Chapter</option>';
+            if (!empty($WebinarChapter)) {
+                foreach ($WebinarChapter as $WebinarChapter) {
+                        $selected = ($selected_chapter_id == $WebinarChapter->id)? 'selected' : '';
+                        $response .= '<option value="' . $WebinarChapter->id . '">' . $WebinarChapter->getTitleAttribute() . '</option>';
+                }
+            }
+
+            echo $response;
+            exit;
+
+        }
 
 
     public function exportExcel(Request $request)

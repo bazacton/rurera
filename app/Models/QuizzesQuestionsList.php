@@ -23,6 +23,11 @@ class QuizzesQuestionsList extends Model
         return $this->hasMany('App\Models\QuizzesQuestion', 'id', 'question_id');
     }
 
+    public function SingleQuestionData()
+    {
+        return $this->hasOne('App\Models\QuizzesQuestion', 'id', 'question_id');
+    }
+
     public function teacher_review_questions()
     {
         return $this->hasMany('App\Models\QuizzesQuestion', 'id', 'question_id')->where('review_required', 1);

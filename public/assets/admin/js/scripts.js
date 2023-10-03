@@ -139,7 +139,7 @@ $(function () {
         minHeight: $(window).outerHeight() - 108
     })
 
-    $(".nav-collapse-toggle").on('click',function () {
+    $(".nav-collapse-toggle").on('click', function () {
         $(this).parent().find('.navbar-nav').toggleClass('show');
         return false;
     });
@@ -186,7 +186,7 @@ $(function () {
         }
     }
 
-    $("[data-toggle='sidebar']").on('click',function () {
+    $("[data-toggle='sidebar']").on('click', function () {
 
         var body = $("body"),
             w = $(window);
@@ -305,7 +305,7 @@ $(function () {
         toggleLayout();
     });
 
-    $("[data-toggle='search']").on('click',function () {
+    $("[data-toggle='search']").on('click', function () {
         var body = $("body");
 
         if (body.hasClass('search-gone')) {
@@ -398,7 +398,7 @@ $(function () {
             follow_text = 'Follow',
             unfollow_text = 'Following';
 
-        me.on('click',function () {
+        me.on('click', function () {
             if (me.hasClass('following-btn')) {
                 me.removeClass('btn-danger');
                 me.removeClass('following-btn');
@@ -423,7 +423,7 @@ $(function () {
         var me = $(this),
             target = me.data('dismiss');
 
-        me.on('click',function () {
+        me.on('click', function () {
             $(target).fadeOut(function () {
                 $(target).remove();
             });
@@ -436,7 +436,7 @@ $(function () {
         var me = $(this),
             target = me.data('collapse');
 
-        me.on('click',function () {
+        me.on('click', function () {
             $(target).collapse('toggle');
             $(target).on('shown.bs.collapse', function (e) {
                 e.stopPropagation();
@@ -487,7 +487,7 @@ $(function () {
     $("[data-tab]").each(function () {
         var me = $(this);
 
-        me.on('click',function () {
+        me.on('click', function () {
             if (!me.hasClass('active')) {
                 var tab_group = $('[data-tab-group="' + me.data('tab') + '"]'),
                     tab_group_active = $('[data-tab-group="' + me.data('tab') + '"].active'),
@@ -504,7 +504,7 @@ $(function () {
     });
 
     // Bootstrap 4 Validation
-    $(".needs-validation").on('submit',function () {
+    $(".needs-validation").on('submit', function () {
         var form = $(this);
         if (form[0].checkValidity() === false) {
             event.preventDefault();
@@ -517,7 +517,7 @@ $(function () {
     $(".alert-dismissible").each(function () {
         var me = $(this);
 
-        me.find('.close').on('click',function () {
+        me.find('.close').on('click', function () {
             me.alert('close');
         });
     });
@@ -535,7 +535,7 @@ $(function () {
     });
 
     // Slide Toggle
-    $('[data-toggle-slide]').on('click',function () {
+    $('[data-toggle-slide]').on('click', function () {
         let target = $(this).data('toggle-slide');
 
         $(target).slideToggle();
@@ -543,7 +543,7 @@ $(function () {
     });
 
     // Dismiss modal
-    $("[data-dismiss=modal]").on('click',function () {
+    $("[data-dismiss=modal]").on('click', function () {
         $(this).closest('.modal').modal('hide');
 
         return false;
@@ -664,3 +664,55 @@ $(function () {
         });
     }
 })(jQuery)
+
+function rurera_loader(thisObj, loader_type) {
+
+    switch (loader_type) {
+        case "div":
+            thisObj.addClass('rurera-processing');
+            thisObj.append('<div class="rurera-button-loader" style="display: block;">\n\
+                       <div class="spinner">\n\
+                           <div class="double-bounce1"></div>\n\
+                           <div class="double-bounce2"></div>\n\
+                       </div>\n\
+                   </div>');
+
+            break;
+
+        case "button":
+            thisObj.wrap('<div class="rurera-loader-holder"></div>');
+            thisObj.closest('.rurera-loader-holder').addClass('rurera-processing');
+            thisObj.closest('.rurera-loader-holder').append('<div class="rurera-button-loader" style="display: block;">\n\
+                        <div class="spinner">\n\
+                            <div class="double-bounce1"></div>\n\
+                            <div class="double-bounce2"></div>\n\
+                        </div>\n\
+                    </div>');
+
+            break;
+
+        case "page":
+            $('body').addClass('rurera-processing');
+            $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
+                                    <div class="spinner">\n\
+                                        <div class="double-bounce1"></div>\n\
+                                        <div class="double-bounce2"></div>\n\
+                                    </div>\n\
+                                </div>');
+
+            break;
+    }
+}
+
+function rurera_remove_loader(thisObj, loader_type) {
+    switch (loader_type) {
+        case "button":
+            thisObj.removeClass('rurera-processing');
+            thisObj.find('.rurera-button-loader').remove();
+            break;
+        case "page":
+            $('body').removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
+            break;
+    }
+}
