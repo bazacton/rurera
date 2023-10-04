@@ -2133,12 +2133,11 @@
 }
 /* Context Menu end */
 
-
 .leform-admin {
 	font-family: arial;
-	/* margin: 10px 20px 20px 0px; */
 	margin: 0 0 20px 0;
 	position: relative;
+	font-size: 17px;
 }
 .leform-admin>h2, .leform-admin>h1 {
 	font-size: 23px;
@@ -4221,6 +4220,7 @@ STYLE
 }
 .leform-form-editor input[type="text"] {
     margin-bottom: 5px;
+	outline: none;
 }
 .leform-form-editor p {
     margin-bottom: 0;

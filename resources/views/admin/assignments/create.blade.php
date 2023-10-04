@@ -42,7 +42,7 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/store' : 'store' }}"
+                        <form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
                              method="Post">
                             {{ csrf_field() }}
 
@@ -64,6 +64,8 @@
                                                    placeholder=""/>
                                             <div class="invalid-feedback"></div>
                                         </div>
+                                        <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_id]" class="year_id_field" value="{{ !empty($assignment) ? $assignment->year_id : old('year_id') }}">
+                                        <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][subject_id]" class="subject_id_field" value="{{ !empty($assignment) ? $assignment->subject_id : old('subject_id') }}">
 
                                         <div class="row">
                                             @foreach( $categories as $categoryObj)
@@ -91,12 +93,33 @@
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-12 card selected-questions-group">
                                     <ul class="questions-list">
 
+                                        @if( !empty( $assignment->quizQuestionsList))
+                                            @foreach( $assignment->quizQuestionsList as $questionObj)
+                                                @if( !empty( $questionObj->QuestionData))
+                                                    @foreach( $questionObj->QuestionData as $questionDataObj)
+                                                    <li data-id="{{$questionDataObj->id}}">{{$questionDataObj->getTitleAttribute()}} <input
+                                                                type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new'
+                                                                                       }}][question_list_ids][]"
+                                                                value="{{$questionDataObj->id}}">
+                                                        <a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a>
+                                                    </li>
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
-                            </div>
+                                <div class="mt-20 mb-20">
+                                        <button type="submit" class="js-submit-quiz-form btn btn-sm btn-primary">{{ !empty($assignment) ?
+                                            trans('public.save_change') : trans('public.create') }}
+                                        </button>
 
-                            </form>
-                        </div>
+                                        @if(empty($assignment) and !empty($inWebinarPage))
+                                        <button type="button" class="btn btn-sm btn-danger ml-10 cancel-accordion">{{ trans('public.close') }}</button>
+                                        @endif
+                                    </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -114,6 +137,7 @@
         $('body').on('click', '.year-group-select', function (e) {
             var thisObj = $('.populated-content-area');
             var year_id = $(this).attr('data-year_id');
+            $(".year_id_field").val(year_id);
             rurera_loader(thisObj, 'div');
             jQuery.ajax({
                 type: "GET",
@@ -137,6 +161,7 @@
             $('body').on('click', '.subject-group-select', function (e) {
                 var thisObj = $('.populated-content-area');
                 var subject_id = $(this).attr('data-subject_id');
+                $(".subject_id_field").val(subject_id);
                 rurera_loader(thisObj, 'div');
                 jQuery.ajax({
                     type: "GET",
@@ -170,9 +195,10 @@
                     },
                     data: {"subchapter_id": subchapter_id},
                     success: function (return_data) {
-                        //$(".populated-data").addClass('rurera-hide');
+                        $(".populated-data").addClass('rurera-hide');
                         rurera_remove_loader(thisObj, 'button');
-                        $(".questions-populate-area").html(return_data);
+                        //$(".questions-populate-area").html(return_data);
+                        $(".populated-content-area").append(return_data);
                         questions_select_callback();
 
                     }
@@ -186,7 +212,7 @@
                 var question_id = $(this).attr('data-question_id');
                 var question_title = $(this).find('a').html();
                 $('.questions-list li[data-question_id="' + question_id + '"]').remove();
-                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="question_list_ids[]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a></li>');
+                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a></li>');
             });
 
 
@@ -214,6 +240,8 @@
                 } else {
                     var input = $(this).val();
                     var thisObj = $('.questions-populate-area');
+                    var year_id = $(".year_id_field").val();
+                    var subject_id = $(".subject_id_field").val();
                     rurera_loader(thisObj, 'div');
 
                     currentRequest = jQuery.ajax({
@@ -227,7 +255,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data: {"keyword": input},
+                        data: {"keyword": input, "year_id": year_id, "subject_id": subject_id},
                         success: function (return_data) {
                             rurera_remove_loader(thisObj, 'button');
                             $(".questions-group-select").html(return_data);
@@ -240,15 +268,7 @@
         question_search();
 
 
-        $('.singleDatePicker').daterangepicker({
-            locale: {
-                format: 'YYYY-MM-DD',
-            },
-            singleDatePicker: true,
-            showDropdowns: false,
-            autoApply: true,
-            startDate: moment(),
-        });
+
         $(".questions-list").sortable();
 
 
@@ -257,6 +277,10 @@
         $('body').on('click', '.rurera-back-btn', function (e) {
             $(this).closest('.populated-data').prev('.populated-data').removeClass('rurera-hide');
             $(this).closest('.populated-data').addClass('rurera-hide');
+            $(this).closest('.populated-data').remove();
+            if($(this).hasClass('questions-list-btn')){
+                console.log('questions-btn');
+            }
         });
     });
 

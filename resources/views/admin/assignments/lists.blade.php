@@ -163,7 +163,8 @@
                     <div class="card-header">
                         @can('admin_assignments_create')
                         <div class="text-right">
-                            <a href="{{ getAdminPanelUrl() }}/assignments/create" class="btn btn-primary ml-2">Create Assignment</a>
+                            <a href="{{ getAdminPanelUrl() }}/assignments/create" class="btn btn-primary ml-2">Create
+                                Assignment</a>
                         </div>
                         @endcan
                     </div>
@@ -175,9 +176,6 @@
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
                                     <th class="text-left">Created By</th>
                                     <th class="text-center">{{ trans('admin/main.question_count') }}</th>
-                                    <th class="text-center">Teacher Review</th>
-                                    <th class="text-center">Developer Review</th>
-                                    <th class="text-center">{{ trans('admin/main.certificate') }}</th>
                                     <th class="text-center">{{ trans('admin/main.status') }}</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
                                 </tr>
@@ -199,23 +197,6 @@
                                     </td>
 
                                     <td class="text-center">
-                                        {{ $quiz->quizQuestionsList->where('teacher_review_questions_count', 1)->count() }}
-                                    </td>
-
-                                    <td class="text-center">
-                                        {{ $quiz->quizQuestionsList->where('development_review_questions_count', 1)->count() }}
-                                    </td>
-
-
-                                    <td class="text-center">
-                                        @if($quiz->certificate)
-                                        <a class="text-success fas fa-check"></a>
-                                        @else
-                                        <a class="text-danger fas fa-times"></a>
-                                        @endif
-                                    </td>
-
-                                    <td class="text-center">
                                         @if($quiz->status === \App\Models\Quiz::ACTIVE)
                                         <span class="text-success">{{ trans('admin/main.active') }}</span>
                                         @else
@@ -232,15 +213,20 @@
                                         </a>
                                         @endcan
 
-                                        @can('admin_quizzes_edit')
-                                        <a href="{{ getAdminPanelUrl() }}/quizzes/{{ $quiz->id }}/edit"
+                                        @can('admin_assignments_edit')
+                                        <a href="{{ getAdminPanelUrl() }}/assignments/{{ $quiz->id }}/assign"
+                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
+                                           data-placement="top" title="Assign">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a href="{{ getAdminPanelUrl() }}/assignments/{{ $quiz->id }}/edit"
                                            class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         @endcan
 
-                                        @can('admin_quizzes_delete')
+                                        @can('admin_assignments_delete')
                                         @include('admin.includes.delete_button',['url' =>
                                         getAdminPanelUrl().'/quizzes/'.$quiz->id.'/delete' , 'btnClass' => 'btn-sm'])
                                         @endcan

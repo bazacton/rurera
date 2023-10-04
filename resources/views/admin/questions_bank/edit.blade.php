@@ -59,13 +59,12 @@ $rand_id = rand(999,99999);
 
                         <ul class="nav nav-pills" id="myTab3" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="question_design-tab" data-toggle="tab" href="#question_design" role="tab"
-                                   aria-controls="question_design" aria-selected="true">Question Design</a>
-                            </li>
-
+                               <a class="nav-link active" id="question_properties-tab" data-toggle="tab" href="#question_properties" role="tab"
+                                  aria-controls="question_properties" aria-selected="false">Question Properties</a>
+                           </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="question_properties-tab" data-toggle="tab" href="#question_properties" role="tab"
-                                   aria-controls="question_properties" aria-selected="false">Question Properties</a>
+                                <a class="nav-link" id="question_design-tab" data-toggle="tab" href="#question_design" role="tab"
+                                   aria-controls="question_design" aria-selected="true">Question Design</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="activities-tab" data-toggle="tab" href="#activities" role="tab"
@@ -76,7 +75,7 @@ $rand_id = rand(999,99999);
                         </ul>
 
                         <div class="tab-content" id="myTabContent2">
-                            <div class="tab-pane mt-3 fade active show" id="question_design" role="tabpanel"
+                            <div class="tab-pane mt-3 fade" id="question_design" role="tabpanel"
                                  aria-labelledby="question_design-tab">
                                 <div class="row">
                                     <div class="col-7 col-md-7">
@@ -461,7 +460,7 @@ $rand_id = rand(999,99999);
 
                             </div>
 
-                            <div class="tab-pane mt-3 fade" id="question_properties" role="tabpanel"
+                            <div class="tab-pane mt-3 fade active show" id="question_properties" role="tabpanel"
                                  aria-labelledby="question_properties-tab">
 
 
@@ -472,7 +471,7 @@ $rand_id = rand(999,99999);
                                                  style="background: #efefef;padding: 10px;">
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="input-label">Year</label>
+                                                        <label class="input-label">Year / Grade *</label>
                                                         <select name="category_id"
                                                                 data-course_id="{{$questionObj->course_id}}"
                                                                 data-plugin-selectTwo
@@ -505,21 +504,23 @@ $rand_id = rand(999,99999);
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="input-label">Subject</label>
+                                                        <label class="input-label">Subject *</label>
                                                         <select data-chapter_id="{{$questionObj->chapter_id}}"
                                                                 name="course_id"
                                                                 data-plugin-selectTwo
                                                                 class="form-control populate ajax-courses-dropdown">
+                                                            <option value="">Please select year</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="input-label">Chapter</label>
+                                                        <label class="input-label">Topic</label>
                                                         <select id="chapter_id"
                                                                 class="form-control populate ajax-chapter-dropdown"
                                                                 name="chapter_id">
+                                                            <option value="">Please select year, subject</option>
                                                         </select>
 
                                                     </div>
@@ -527,7 +528,7 @@ $rand_id = rand(999,99999);
 
                                                 <div class="col-12">
                                                     <div class="form-group">
-                                                        <label class="input-label">Search Keywords / Tags</label>
+                                                        <label class="input-label">Search Keywords / Tags (Enter Search terms which will be use when looking for your questions)</label>
                                                         @php
                                                         $search_tags = explode(' | ', $questionObj->search_tags);
                                                         $search_tags = implode(',', $search_tags);
@@ -536,12 +537,13 @@ $rand_id = rand(999,99999);
                                                                data-role="tagsinput"
                                                                name="search_tags"
                                                                class="form-control @error('search_tags')  is-invalid @enderror"
-                                                               placeholder=""/>
+                                                               placeholder="List of comma-Separated Search keywords (i.e. Subject-title, topic)"/>
                                                         @error('search_tags')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
                                                         </div>
                                                         @enderror
+                                                        <span>5 tags maximum, user letters  and numbers only</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1071,7 +1073,7 @@ $rand_id = rand(999,99999);
             data: {'category_id': category_id, 'course_id': course_id},
             success: function (return_data) {
                 $(".ajax-courses-dropdown").html(return_data);
-                $(".ajax-chapter-dropdown").html('');
+                $(".ajax-chapter-dropdown").html('<option value="">Please select year, subject</option>');
                 $('.ajax-courses-dropdown').change();
             }
         });

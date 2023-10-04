@@ -449,11 +449,16 @@ class UserController extends Controller
         $userGroups = Group::orderBy('created_at', 'desc')->where('status', 'active')->get();
         $classes = Classes::where('created_by', $user->id)->where('status', 'active')->where('parent_id', 0)->get();
 
+        $categories = Category::where('parent_id', null)
+                    ->with('subCategories')->orderBy('order', 'asc')
+                    ->get();
+
         $data = [
             'pageTitle' => trans('admin/main.user_new_page_title'),
             'roles' => $roles,
             'userGroups' => $userGroups,
             'classes' => $classes,
+            'categories' => $categories,
         ];
 
 
@@ -516,6 +521,9 @@ class UserController extends Controller
                     'created_at' => time(),
                     'parent_type' => $parent_type,
                     'parent_id' => $parent_id,
+                    'year_id' => isset( $data['year_id'] ) ? $data['year_id'] : 0,
+                    'class_id' => isset( $data['class_id'] ) ? $data['class_id'] : 0,
+                    'section_id' => isset( $data['section_id'] ) ? $data['section_id'] : 0,
                 ]);
 
                 if (!empty($data['group_id'])) {
@@ -895,6 +903,9 @@ class UserController extends Controller
         $user->status = !empty($data['status']) ? $data['status'] : null;
         $user->language = !empty($data['language']) ? $data['language'] : null;
 
+        $user->year_id = !empty($data['year_id']) ? $data['year_id'] : 0;
+        $user->class_id = !empty($data['class_id']) ? $data['class_id'] : 0;
+        $user->section_id = !empty($data['section_id']) ? $data['section_id'] : 0;
 
         if (!empty($data['password'])) {
             $user->password = User::generatePassword($data['password']);

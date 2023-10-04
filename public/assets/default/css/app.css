@@ -21871,6 +21871,7 @@ Lms Books Library Style Start
 .progress-btn:hover .icon-svg svg{fill:var(--primary);}
 .progress-btn .icon-svg svg{fill:#fff;}
 .progress-card .text-holder h2,
+.progress-card .text-holder h3,
 .progress-card .text-holder h4 {text-transform: uppercase; margin: 0 0 10px; font-weight: 700; font-size: 18px;}
 .lms-books-reading h3 {color: var(--primary);}
 .lms-books-reading h3,
@@ -22899,11 +22900,12 @@ Main Home style End
 
 .rurera-loader-holder { width: fit-content;}
 .rurera-button-loader {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);}
-.rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; top: 50%; left: 50%; margin-top: -12px; z-index: 1;}
+.rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; top: 50%; left: 50%; margin-top: -12px; z-index: 1; transform: translateX(-50%);}
 .rurera-button-loader .double-bounce1, 
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
+.quiz-start-btn .rurera-button-loader {background-color: inherit;}
 @-webkit-keyframes sk-bounce { 
     0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
 }

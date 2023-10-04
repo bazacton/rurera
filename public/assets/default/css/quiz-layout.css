@@ -19,6 +19,9 @@ Lms Sorting Fields Style
     align-items: center;
     width: 100%;
 }
+.option-row-1.option-small .lms-sorting-fields {
+    gap: 10px;
+}
 .lms-sorting-fields span {
     line-height: normal;
     display: block;
@@ -52,7 +55,8 @@ Lms Sorting Fields Style
     display: inline-block;
     vertical-align: middle;
 }
-.sort-icon span {
+.sort-icon span,
+.lms-quiz-section .sort-icon span {
     height: 3px;
     background-color: #000;
     margin-bottom: 4px;
@@ -892,7 +896,6 @@ Lms Question List Style
     margin: -9px 0 15px !important;
     padding-left: 100px;
     color: #adabab;
-    font-size: 14px;
 }
 .question-layout-block form.question-fields .questions-nav-controls {
     margin-top: auto;
@@ -902,7 +905,7 @@ Lms Question List Style
 }
 .question-layout,
 .question-textarea p {
-    font-size: 20px;
+    font-size: 17px;
     color: #000;
     font-weight: 500;
 }
@@ -952,19 +955,21 @@ Lms Question List Style
     margin-top: -2px;
 }
 .question-textarea input[type="text"],
-.question-layout input[type="text"] {
+.question-layout input[type="text"],
+.input-holder input.input-simple {
     border: 3px solid #000;
     height: 32px;
     min-height: 50px;
     color: #000;
-    font-size: 18px;
+    font-size: 17px;
     text-align: center;
     font-weight: 500;
     border-radius: 0;
     display: inline-block;
     padding: 0 10px;
 }
-.input-holder input[type="text"] {
+.input-holder input[type="text"],
+.input-holder input.input-simple {
     border: 0;
 }
 /**********************************
@@ -1592,11 +1597,12 @@ Lms Quiz Wf Style Start
 .lms-quiz-section .question-label span {
     display: block;
     margin: 0;
-    background-color: #c8d2ec;
     padding: 8px 15px;
-    border-radius: 8px;
+    border-radius: 6px;
     line-height: normal;
     text-align: left;
+    font-size: 17px;
+    border: 1px solid #ddd;
 }
 .divide-numbers .divider, .lms-quiz-section .divider {
     height: 2px;
@@ -1676,7 +1682,7 @@ Lms Quiz Wf Style Start
     margin: 0;
 }
 .lms-quiz-section span {
-    font-size: 20px;
+    font-size: 17px;
     color: #000;
     display: block;
     font-weight: 500;
@@ -1792,16 +1798,6 @@ span~.input-holder {
 }
 .input-holder:empty {
     display: none;
-}
-.input-holder input.input-simple {
-    font-size: 18px;
-    font-weight: 500;
-    border: 0;
-    margin: 0;
-    padding: 0 10px;
-    text-align: left;
-    max-width: 100%;
-    min-height: 50px;
 }
 .input-holder input.input-simple::-moz-placeholder,
 .leform-element input.input-simple::-moz-placeholder {
@@ -2663,7 +2659,6 @@ Lms Table Style
     padding: 0;
     height: 50px;
     border-color: #000;
-    font-size: 20px;
 }
 .leform-element table.table td:first-child,
 .leform-element table.table th:first-child {
@@ -2686,7 +2681,6 @@ Lms Table Style
     background-color: #c8d2ec;
     border-color: #000;
     border-top: 1px solid !important;
-    font-size: 20px;
 }
 .leform-element table.table th b {
     font-weight: 500;

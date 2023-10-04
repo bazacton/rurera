@@ -344,8 +344,12 @@ Route::group([
             Route::get('/topics_subtopics_by_subject', 'AssignmentsController@topics_subtopics_by_subject');
             Route::get('/questions_by_subchapter', 'AssignmentsController@questions_by_subchapter');
             Route::get('/questions_by_keyword', 'AssignmentsController@questions_by_keyword');
+            Route::post('/store', 'AssignmentsController@store');
+            Route::get('/{id}/edit', 'AssignmentsController@edit')->name('adminEditAssignment');
+            Route::post('/{id}/update', 'AssignmentsController@update');
+            Route::post('/{id}/update', 'AssignmentsController@update');
+            Route::get('/{id}/assign', 'AssignmentsController@assign')->name('adminAssignAssignment');
             //Route::post('/store_quiz', 'QuizController@store_quiz');
-            //Route::post('/store', 'QuizController@store');
             //Route::get('/{id}/edit', 'QuizController@edit')->name('adminEditQuiz');
             //Route::post('/{id}/update', 'QuizController@update');
             //Route::get('/{id}/delete', 'QuizController@delete');
@@ -355,6 +359,17 @@ Route::group([
             //Route::get('/excel', 'QuizController@exportExcel');
             //Route::post('/{id}/order-items', 'QuizController@orderItems');
             //Route::post('/search_quiz', 'QuizController@search_quiz');
+        });
+
+        /*
+         * Common Functionalities
+         */
+        Route::group(['prefix' => 'common'], function () {
+            Route::get('/classes_by_year', 'CommonController@classes_by_year');
+            Route::get('/sections_by_class', 'CommonController@sections_by_class');
+            Route::get('/users_by_class', 'CommonController@users_by_class');
+            Route::get('/users_by_section', 'CommonController@users_by_section');
+
         });
 
         Route::group(['prefix' => 'quizzes-questions'], function () {

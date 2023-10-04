@@ -716,3 +716,118 @@ function rurera_remove_loader(thisObj, loader_type) {
             break;
     }
 }
+
+
+$(document).ready(function () {
+
+    if ($(".singleDatePicker").length) {
+        $('.singleDatePicker').daterangepicker({
+            locale: {
+                format: 'YYYY-MM-DD',
+            },
+            singleDatePicker: true,
+            showDropdowns: false,
+            autoApply: true,
+            startDate: moment(),
+        });
+    }
+
+    var year_class_ajax_select = function () {
+        $('body').on('change', '.year_class_ajax_select', function (e) {
+            var year_id = $(this).val();
+            var class_id = $('.class_section_ajax_select').attr('data-default_id');
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/classes_by_year',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"year_id": year_id, "class_id": class_id},
+                success: function (return_data) {
+                    $(".class_section_ajax_select").html(return_data);
+                    $(".class_section_ajax_select").change();
+                }
+            });
+        });
+        $(".year_class_ajax_select").change();
+    }
+    var class_section_ajax_select = function () {
+        $('body').on('change', '.class_section_ajax_select', function (e) {
+            var class_id = $(this).val();
+            var section_id = $('.section_ajax_select').attr('data-default_id');
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/sections_by_class',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"class_id": class_id, "section_id": section_id},
+                success: function (return_data) {
+                    $(".section_ajax_select").html(return_data);
+                }
+            });
+        });
+
+    }
+
+    var class_users_ajax_select = function () {
+        $('body').on('change', '.class_users_ajax_select', function (e) {
+            rurera_loader($(".users_ajax_select"), 'div');
+            var class_id = $(this).val();
+            var user_id = $('.users_ajax_select').attr('data-default_id');
+            var return_type = $(this).attr('data-return_type');
+
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/users_by_class',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"class_id": class_id, "user_id": user_id, "return_type": return_type},
+                success: function (return_data) {
+                    rurera_remove_loader($(".users_ajax_select"), 'button');
+                    $(".users_ajax_select").html(return_data);
+                }
+            });
+        });
+    }
+
+    var section_users_ajax_select = function () {
+        $('body').on('change', '.section_users_ajax_select', function (e) {
+            rurera_loader($(".users_ajax_select"), 'div');
+            var section_id = $(this).val();
+            var user_id = $('.users_ajax_select').attr('data-default_id');
+            var return_type = $(this).attr('data-return_type');
+
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/users_by_section',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"section_id": section_id, "user_id": user_id, "return_type": return_type},
+                success: function (return_data) {
+                    rurera_remove_loader($(".users_ajax_select"), 'button');
+                    $(".users_ajax_select").html(return_data);
+                }
+            });
+        });
+    }
+
+
+    $('body').on('click', '.selectable-lis li', function (e) {
+        var target_url = $(this).closest('ul').attr('data-target_ul');
+        console.log(target_url);
+        var user_id = $(this).attr('data-user_id');
+        var user_name = $(this).find('a').html();
+        $('.' + target_url + ' li[data-user_id="' + user_id + '"]').remove();
+        $('.' + target_url).append('<li data-user_id="' + user_id + '"><input type="hidden" name="user_ids[]" value="' + user_id + '">' + user_name + '<a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a></li>');
+
+    });
+
+
+    year_class_ajax_select();
+    class_section_ajax_select();
+    class_users_ajax_select();
+    section_users_ajax_select();
+});
