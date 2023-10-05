@@ -21,11 +21,11 @@
     <section class="time-tables-sub-header pt-70 pb-80 text-center">
         <div class="container">
             <div class="row">
-                <div class="col-10 mx-auto">
-                    <h1 class="font-50 font-weight-bold text-white mb-15">Fun techniques to master <span class="text-scribble">Timestables</span></h1>
+                <div class="col-11 mx-auto">
+                    <h1 class="font-50 font-weight-bold text-white mb-25">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">Timestables</span></h1>
                     <p class="text-white mb-20">
-                        A brilliant way to learn times tables and division. With these strategies, learning time’s tables and <br />
-                        division will be an enjoyable journey filled with excitement and success.
+                        A brilliant way to learn TimesTables multiplication and division. With these smart practices, recalling TimesTables <br />
+                        will be an enjoyable journey filled with excitement and rewards.
                     </p>
                     <div class="row">
                         <div class="col-12 col-lg-4 col-md-4">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6 text-center">
-                    <h2 class="font-weight-bold d-block font-36 mb-10">More practice, Better Outcomes</h2>
+                    <h2 class="font-weight-bold d-block font-36 mb-10">Outstanding Maths learning platform</h2>
                     <p class="font-16 font-weight-normal text-gray mb-30">
                         Rurera provide awesome and interactive ways for students to learn and memorize timetables while having fun. Immediate feedback helps students identify and correct any mistakes they make while practicing their times
                         tables.
@@ -114,7 +114,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-title text-center mb-50"><h2 class="mt-0 mb-10">How it works</h2></div>
+                    <div class="section-title text-center mb-50"><h2 class="mt-0 mb-10">How TimesTables work</h2></div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">

@@ -345,6 +345,7 @@ Route::group([
             Route::get('/questions_by_subchapter', 'AssignmentsController@questions_by_subchapter');
             Route::get('/questions_by_keyword', 'AssignmentsController@questions_by_keyword');
             Route::get('/assignment_preview', 'AssignmentsController@assignment_preview');
+            Route::get('/single_question_preview', 'AssignmentsController@single_question_preview');
             Route::post('/store', 'AssignmentsController@store');
             Route::get('/{id}/edit', 'AssignmentsController@edit')->name('adminEditAssignment');
             Route::post('/{id}/update', 'AssignmentsController@update');

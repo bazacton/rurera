@@ -28,15 +28,20 @@
         border-bottom: 2px solid #efefef;
         margin-bottom: 30px;
     }
+    .left-content.has-bg {
+        width: inherit;
+    }
 </style>
 @endpush
 
 
 @section('content')
-
+<form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
+      method="Post">
+    {{ csrf_field() }}
     <section class="section">
         <div class="section-header">
-            <h1>{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new') }} Assignment</h1>
+            <h1>{{$assignment->title}}</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="/admin/">{{ trans('admin/main.dashboard') }}</a>
                 </div>
@@ -51,99 +56,92 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
+
+                        <ul class="admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="topics-tab" data-toggle="tab" href="#topics" role="tab"
+                                   aria-controls="basic" aria-selected="true">
+                                    <span class="tab-title">Topic</span>
+                                    <span class="tab-detail">Choose Year / Subject Topic</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab"
+                                   aria-controls="socials" aria-selected="false"><span
+                                            class="tab-title">Choose Questions</span>
+                                    <span class="tab-detail">Choose Questions from topics</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab"
+                                   aria-controls="features" aria-selected="false"><span
+                                            class="tab-title">Test preview</span>
+                                    <span class="tab-detail">Previw assignment</span></a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
-                                      method="Post">
-                                    {{ csrf_field() }}
 
-                                <div class="row col-lg-12 col-md-12 col-sm-4 col-12">
-                                    <div class="populated-content-area col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="tab-content" id="myTabContent2">
+                                    <div class="tab-pane mt-3 fade active show" id="topics" role="tabpanel"
+                                         aria-labelledby="topics-tab">
+                                        <div class="row col-lg-12 col-md-12 col-sm-4 col-12">
+                                            <div class="populated-content-area col-lg-12 col-md-12 col-sm-12 col-12">
 
+                                                <div class="topics-subtopics-content-area">
 
-                                        @if( !empty($categories ))
+                                                    {!! $topics_subtopics_layout !!}
 
-                                        <div class="years-group populated-data">
-
-                                            <div class="form-group">
-                                                <label class="input-label">Assignment Title</label>
-                                                <input type="text"
-                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
-                                                       value="{{ !empty($assignment) ? $assignment->title : old('title') }}"
-                                                       class="js-ajax-title form-control "
-                                                       placeholder=""/>
-                                                <div class="invalid-feedback"></div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label>Year</label>
-                                                <select data-default_id="{{isset( $user->id)? $user->year_id : 0}}"
-                                                        class="form-control year_subject_ajax_select select2 @error('year_id') is-invalid @enderror"
-                                                        name="year_id">
-                                                    <option {{ !empty($trend) ?
-                                                    '' : 'selected' }} disabled>Select Year</option>
-
-                                                    @foreach($categories as $category)
-                                                    @if(!empty($category->subCategories) and
-                                                    count($category->subCategories))
-                                                    <optgroup label="{{  $category->title }}">
-                                                        @foreach($category->subCategories as $subCategory)
-                                                        <option value="{{ $subCategory->id }}" @if(!empty($user)
-                                                                and
-                                                                $user->
-                                                            year_id
-                                                            ==
-                                                            $subCategory->id) selected="selected" @endif>{{
-                                                            $subCategory->title
-                                                            }}
-                                                        </option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                    @else
-                                                    <option value="{{ $category->id }}"
-                                                            class="font-weight-bold">{{
-                                                        $category->title }}
-                                                    </option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                                @error('year_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
                                                 </div>
-                                                @enderror
+
+
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Subjects</label>
-                                                <select data-return_type="option"
-                                                        data-default_id="{{isset( $user->id)? $user->class_id : 0}}"
-                                                        class="subject_ajax_select year_subjects form-control select2 @error('class_id') is-invalid @enderror"
-                                                        id="class_id" name="class_id">
-                                                    <option disabled selected>Subject</option>
-                                                </select>
-                                                @error('class_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
-                                            </div>
-
-
-                                            <input type="hidden"
-                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_id]"
-                                                   class="year_id_field"
-                                                   value="{{ !empty($assignment) ? $assignment->year_id : old('year_id') }}">
-                                            <input type="hidden"
-                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][subject_id]"
-                                                   class="subject_id_field"
-                                                   value="{{ !empty($assignment) ? $assignment->subject_id : old('subject_id') }}">
 
                                         </div>
-                                        @endif
+                                    </div>
 
+                                    <div class="tab-pane mt-3 fade" id="questions" role="tabpanel"
+                                         aria-labelledby="questions-tab">
+                                        <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-6 card selected-questions-group">
+                                            <ul class="questions-list">
+
+                                                @if( !empty( $assignment->quizQuestionsList))
+                                                @foreach( $assignment->quizQuestionsList as $questionObj)
+                                                @if( !empty( $questionObj->QuestionData))
+                                                @foreach( $questionObj->QuestionData as $questionDataObj)
+                                                <li data-id="{{$questionDataObj->id}}">
+                                                    {{$questionDataObj->getTitleAttribute()}} <input
+                                                            type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new'
+                                                                                                                                                                                                                           }}][question_list_ids][]"
+                                                            value="{{$questionDataObj->id}}">
+                                                    <a href="javascript:;" class="parent-li-remove"><span
+                                                                class="fas fa-trash"></span></a>
+                                                </li>
+                                                @endforeach
+                                                @endif
+                                                @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-6 card single-question-preview">
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane mt-3 fade assignment-preview" id="preview" role="tabpanel"
+                                         aria-labelledby="preview-tab">
+                                        preview
                                     </div>
 
 
@@ -165,13 +163,13 @@
                                 </div>
 
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 </form>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
 @endsection
 
 @push('scripts_bottom')
@@ -204,60 +202,6 @@
             });
         });
 
-        var subjects_callback_bk = function () {
-            $('body').on('click', '.subject-group-selects', function (e) {
-                var thisObj = $('.populated-content-area');
-                var subject_id = $(this).attr('data-subject_id');
-                $(".subject_id_field").val(subject_id);
-                rurera_loader(thisObj, 'div');
-                jQuery.ajax({
-                    type: "GET",
-                    url: '/admin/assignments/topics_subtopics_by_subject',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {"subject_id": subject_id},
-                    success: function (return_data) {
-                        $(".populated-data").addClass('rurera-hide');
-                        rurera_remove_loader(thisObj, 'button');
-                        if (return_data != '') {
-                            //$(".populated-content-area").append(return_data);
-                            $(".topics-subtopics-content-area").append(return_data);
-                            questions_callback();
-                        }
-                    }
-                });
-            });
-        }
-
-        var subjects_callback = function () {
-            $('body').on('change', '.subject_ajax_select', function (e) {
-                var thisObj = $('.populated-content-area');
-                var subject_id = $(this).val();
-                $(".subject_id_field").val(subject_id);
-                rurera_loader(thisObj, 'div');
-                jQuery.ajax({
-                    type: "GET",
-                    url: '/admin/assignments/topics_subtopics_by_subject',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {"subject_id": subject_id},
-                    success: function (return_data) {
-                        //$(".populated-data").addClass('rurera-hide');
-                        rurera_remove_loader(thisObj, 'button');
-                        if (return_data != '') {
-                            //$(".populated-content-area").append(return_data);
-                            $(".topics-subtopics-content-area").append(return_data);
-                            $("#questions-tab").click();
-                            questions_callback();
-                        }
-                    }
-                });
-            });
-        }
-        subjects_callback();
-
 
         var questions_callback = function () {
             $('body').on('click', '.subchapter-group-select li', function (e) {
@@ -276,6 +220,7 @@
                         rurera_remove_loader(thisObj, 'button');
                         //$(".questions-populate-area").html(return_data);
                         $(".selected-questions-group").append(return_data);
+                        $("#questions-tab").click();
                         questions_select_callback();
 
                     }
@@ -283,13 +228,49 @@
             });
         }
 
+
+        questions_callback();
+
         var questions_select_callback = function () {
-            $('body').on('click', '.questions-group-select li', function (e) {
+            $('body').on('click', '.questions-group-select_bk li', function (e) {
                 var thisObj = $('.populated-content-area');
                 var question_id = $(this).attr('data-question_id');
                 var question_title = $(this).find('a').html();
                 $('.questions-list li[data-question_id="' + question_id + '"]').remove();
                 $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a></li>');
+            });
+
+            $('body').on('click', '.questions-group-select li .add-to-list-btn', function (e) {
+                var thisObj = $('.single-question-preview');
+                var question_id = $(this).closest('li').attr('data-question_id');
+
+            });
+
+            var currentRequest3 = null;
+            $('body').on('click', '.questions-group-select li .question-preview', function (e) {
+                var thisObj = $('.single-question-preview');
+                var question_id = $(this).closest('li').attr('data-question_id');
+                if (question_id > 0) {
+                    rurera_loader(thisObj, 'div');
+                    currentRequest3 = jQuery.ajax({
+                        type: "GET",
+                        url: '/admin/assignments/single_question_preview',
+                        beforeSend: function () {
+                            if (currentRequest3 != null) {
+                                currentRequest3.abort();
+                            }
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {"question_id": question_id},
+                        success: function (return_data) {
+                            rurera_remove_loader(thisObj, 'button');
+                            $(".single-question-preview").html(return_data);
+                        }
+                    });
+                }
+
             });
 
 
@@ -306,7 +287,7 @@
                     ul = document.getElementById("questions-group-select");
                     li = ul.getElementsByTagName("li");
                     for (i = 0; i < li.length; i++) {
-                        a = li[i].getElementsByTagName("a")[0];
+                        a = li[i].getElementsByTagName("div")[0];
                         txtValue = a.textContent || a.innerText;
                         if (txtValue.toUpperCase().indexOf(filter) > -1 || li[i].className.indexOf("alwaysshow") > -1) {
                             li[i].style.display = "";

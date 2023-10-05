@@ -369,16 +369,20 @@ class AssignmentsController extends Controller
             ->get();
 
 
+        $topics_subtopics_layout = $this->topics_subtopics_by_subject($request, $quiz->subject_id, false);
+
+
         $data = [
-            'pageTitle'     => trans('public.edit') . ' ' . $quiz->title,
-            'webinars'      => $webinars,
-            'assignment'    => $quiz,
-            'quizQuestions' => $quiz->quizQuestions,
-            'creator'       => $creator,
-            'chapters'      => $chapters,
-            'categories'    => $categories,
-            'locale'        => mb_strtolower($locale),
-            'defaultLocale' => getDefaultLocale(),
+            'pageTitle'               => trans('public.edit') . ' ' . $quiz->title,
+            'webinars'                => $webinars,
+            'assignment'              => $quiz,
+            'quizQuestions'           => $quiz->quizQuestions,
+            'creator'                 => $creator,
+            'chapters'                => $chapters,
+            'categories'              => $categories,
+            'topics_subtopics_layout' => $topics_subtopics_layout,
+            'locale'                  => mb_strtolower($locale),
+            'defaultLocale'           => getDefaultLocale(),
         ];
 
         $query = Webinar::query();
@@ -403,7 +407,7 @@ class AssignmentsController extends Controller
         }
         $data['chapters'] = $chapters_list;
 
-        return view('admin.assignments.create', $data);
+        return view('admin.assignments.edit', $data);
     }
 
     public function update(Request $request, $id)
@@ -570,47 +574,46 @@ class AssignmentsController extends Controller
         exit;
     }
 
-    public function topics_subtopics_by_subject(Request $request)
+    public function topics_subtopics_by_subject(Request $request, $subject_id = 0, $is_exit = true)
     {
-        $subject_id = $request->get('subject_id', null);
+        if ($subject_id == 0) {
+            $subject_id = $request->get('subject_id', null);
+        }
         $WebinarChapter = WebinarChapter::where('webinar_id', $subject_id)->with('subChapters')->get();
         //pre($WebinarChapter);
 
 
+        $response = '';
         if (!empty($WebinarChapter) && count($WebinarChapter) > 0) {
-            echo '<div class="col-lg-12 col-md-12 col-sm-12 col-12 populated-data">';
-            echo '<div class="col-lg-12 col-md-12 col-sm-6 col-12 card chapters-group accordion" id="chaptersAccordion"><div class="row">';
+            $response .= '<div class="col-lg-12 col-md-12 col-sm-12 col-12 populated-data">';
+            $response .= '<div class="col-lg-12 col-md-12 col-sm-6 col-12 card chapters-group accordion" id="chaptersAccordion"><div class="row">';
             foreach ($WebinarChapter as $WebinarChapter) {
-                ?>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12 card">
+                $response .= '<div class="col-lg-12 col-md-12 col-sm-12 col-12 card">
                     <div class="card-header collapsed mb-0" id="headingOne" type="button"
                          data-toggle="collapse"
-                         data-target="#chapter_<?php echo $WebinarChapter->id; ?>" aria-expanded="true"
-                         aria-controls="chapter_<?php echo $WebinarChapter->id; ?>">
-                        <span><?php echo $WebinarChapter->getTitleAttribute(); ?></span>
-                    </div>
-                    <?php if (!empty($WebinarChapter->subChapters)) { ?>
-                        <div id="chapter_<?php echo $WebinarChapter->id; ?>" class="collapse"
+                         data-target="#chapter_' . $WebinarChapter->id . '" aria-expanded="true"
+                         aria-controls="chapter_' . $WebinarChapter->id . '">
+                        <span>' . $WebinarChapter->getTitleAttribute() . '</span>
+                    </div>';
+                if (!empty($WebinarChapter->subChapters)) {
+                    $response .= '<div id="chapter_' . $WebinarChapter->id . '" class="collapse"
                              aria-labelledby="headingOne"
                              data-parent="#chaptersAccordion">
                             <div class="card-body">
-                                <ul class="subchapter-group-select">
-                                    <?php foreach ($WebinarChapter->subChapters as $subChapterObj) {
+                                <ul class="subchapter-group-select">';
+                    foreach ($WebinarChapter->subChapters as $subChapterObj) {
 
-                                        echo '<li data-subchapter_id="' . $subChapterObj->id . '">' . $subChapterObj->sub_chapter_title . '</li>';
+                        $response .= '<li data-subchapter_id="' . $subChapterObj->id . '">' . $subChapterObj->sub_chapter_title . '</li>';
 
-                                    }
-                                    ?>
-                                </ul>
+                    }
+                    $response .= '</ul>
                             </div>
-                        </div>
-                    <?php } ?>
-                </div>
-                <?php
-
+                        </div>';
+                }
+                $response .= '</div>';
             }
-            echo '</div></div>';
-            echo '</div>';
+            $response .= '</div></div>';
+            $response .= '</div>';
         }
 
         /*echo '<div class="col-lg-6 col-md-6 col-sm-4 col-12 card questions-group populated-data">';
@@ -629,7 +632,12 @@ class AssignmentsController extends Controller
                     </div><div class="questions-populate-area"></div>';
         echo '</div>';*/
 
-        exit;
+        if ($is_exit == true) {
+            echo $response;
+            exit;
+        } else {
+            return $response;
+        }
     }
 
     public function questions_by_subchapter(Request $request)
@@ -668,11 +676,12 @@ class AssignmentsController extends Controller
             foreach ($QuizObj->quizQuestionsList as $questionObj) {
                 if (isset($questionObj->SingleQuestionData->id)) {
 
-                    /*echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '">
+                    echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '">
                         <input type="hidden" name="ajax[new][question_list_ids][]" value="1457">
-                        <span class="question-title">'.$questionObj->SingleQuestionData->question_title.'</span>
-                        <span class="topic-title">'. $chapter_title .'</span>
-                        <span class="difficulty-level">'.$questionObj->SingleQuestionData->question_difficulty_level.'</span>
+                        <div class="question-list-item" id="question-list-item">
+                        <span class="question-title">' . $questionObj->SingleQuestionData->question_title . '</span>
+                        <span class="topic-title">' . $chapter_title . '</span>
+                        <span class="difficulty-level">' . $questionObj->SingleQuestionData->question_difficulty_level . '</span>
                         <span class="question-id">ID:# ' . $questionObj->SingleQuestionData->id . '</span>
                         <span class="question-marks">Marks: ' . $questionObj->SingleQuestionData->question_score . '</span>
                         <span class="list-buttons">
@@ -680,11 +689,11 @@ class AssignmentsController extends Controller
                             <a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a>
                             <a href="javascript:;" class="question-preview"><span class="fas fa-eye"></span></a>
                         </span>
+                        </div>
                     </li>';
-                    */
 
 
-                    echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '"><a href="javascript:;">' . $questionObj->SingleQuestionData->id . ' | ' . $questionObj->SingleQuestionData->question_title . ' | ' . $questionObj->SingleQuestionData->question_difficulty_level . '</a></li>';
+                    //echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '"><a href="javascript:;">' . $questionObj->SingleQuestionData->id . ' | ' . $questionObj->SingleQuestionData->question_title . ' | ' . $questionObj->SingleQuestionData->question_difficulty_level . '</a></li>';
                 }
             }
             echo '</ul>';
@@ -738,6 +747,29 @@ class AssignmentsController extends Controller
                 'class'          => 'disable-div',
             ])->render();
         }
+
+        echo $question_response_layout;
+        exit;
+
+    }
+
+    public function single_question_preview(Request $request)
+    {
+        $user = auth()->user();
+        $question_id = $request->get('question_id', null);
+
+        $question_response_layout = '';
+        $questionObj = QuizzesQuestion::find($question_id);
+        $question_response_layout .= view('admin.questions_bank.preview', [
+            'question'       => $questionObj,
+            'prev_question'  => 0,
+            'next_question'  => 0,
+            'disable_submit' => 'true',
+            'disable_finish' => 'true',
+            'disable_prev'   => 'true',
+            'disable_next'   => 'true',
+            'class'          => 'disable-div',
+        ])->render();
 
         echo $question_response_layout;
         exit;
