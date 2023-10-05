@@ -31,7 +31,7 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <h1 class="font-50 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Preparation</h1>
+                    <h1 class="font-50 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Exam Practice</h1>
                     <h2 class="mb-15 font-30">Maximize Your Performance: Excel on SATs Test Day</h2>
                     <p class="font-19">
                         Don't leave your SATs performance to chance. Join us and unlock your full potential for success
@@ -337,13 +337,11 @@
                 <div class="col-12">
                     <div class="section-title text-left mb-40">
                         <h2 class="mb-15">
-                            So Many Tests, <br/>
+                            So Many SATs Resources, <br/>
                             So Many Ways to Practice..
                         </h2>
                         <p>
-                            With consistent effort and effective study strategies, you can improve your performance on
-                            the SAT exam. <br/>
-                            Checkout the best practices samples here :
+                            With consistent effort and effective study strategies, you can improve <br/> your performance on the SATs exam day.
                         </p>
                     </div>
                 </div>

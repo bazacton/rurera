@@ -337,6 +337,7 @@ class AssignmentsController extends Controller
             ->first();
 
 
+
         if (empty($quiz)) {
             abort(404);
         }
@@ -369,7 +370,7 @@ class AssignmentsController extends Controller
             ->get();
 
 
-        $topics_subtopics_layout = $this->topics_subtopics_by_subject($request, $quiz->subject_id, false);
+        $topics_subtopics_layout = $this->topics_subtopics_by_subject($request, $quiz->subject_id, false, $quiz->topic_id, $quiz->subtopic_id);
 
 
         $data = [
@@ -410,6 +411,48 @@ class AssignmentsController extends Controller
         return view('admin.assignments.edit', $data);
     }
 
+
+    public function update_question(Request $request)
+    {
+        $user = auth()->user();
+        $question_ids = $request->get('questions_ids', null);
+        $assignment_id = $request->get('assignment_id', null);
+        $action = $request->get('action', null);
+
+
+        $assignmentObj = Quiz::query()->findOrFail($assignment_id);
+
+        $quizQuestionsListArray = $assignmentObj->quizQuestionsList->pluck('question_id')->toArray();
+
+        $quiz_question_ids = array();
+        //if( $action == 'add') {
+        if (!empty($question_ids)) {
+            $sort_order = 0;
+            foreach ($question_ids as $question_id) {
+                $quiz_question_ids[]    = $question_id;
+                if (in_array($question_id, $quizQuestionsListArray)) {
+                    $questionListObj = QuizzesQuestionsList::query()->where('quiz_id', $assignment_id)->where('question_id',
+                        $question_id)->update([
+                        'sort_order' => $sort_order,
+                    ]);
+                } else {
+                    QuizzesQuestionsList::create([
+                        'quiz_id'     => $assignment_id,
+                        'question_id' => $question_id,
+                        'status'      => 'active',
+                        'sort_order'  => $sort_order,
+                        'created_by'  => $user->id,
+                        'created_at'  => time()
+                    ]);
+                }
+                $sort_order++;
+            }
+        }
+        QuizzesQuestionsList::where('quiz_id', $assignment_id)->whereNotIn('question_id', $quiz_question_ids)->delete();
+        //}
+        pre('Done');
+    }
+
     public function update(Request $request, $id)
     {
         $quiz = Quiz::query()->findOrFail($id);
@@ -423,6 +466,8 @@ class AssignmentsController extends Controller
 
 
         $data = $request->get('ajax')[$id];
+
+        pre($data);
         $locale = $data['locale'] ?? getDefaultLocale();
 
 
@@ -574,7 +619,7 @@ class AssignmentsController extends Controller
         exit;
     }
 
-    public function topics_subtopics_by_subject(Request $request, $subject_id = 0, $is_exit = true)
+    public function topics_subtopics_by_subject(Request $request, $subject_id = 0, $is_exit = true, $default_chapter = 0, $default_subchapter = 0)
     {
         if ($subject_id == 0) {
             $subject_id = $request->get('subject_id', null);
@@ -603,7 +648,8 @@ class AssignmentsController extends Controller
                                 <ul class="subchapter-group-select">';
                     foreach ($WebinarChapter->subChapters as $subChapterObj) {
 
-                        $response .= '<li data-subchapter_id="' . $subChapterObj->id . '">' . $subChapterObj->sub_chapter_title . '</li>';
+                        $selected = ($subChapterObj->id == $default_subchapter) ? 'default-active' : '';
+                        $response .= '<li class="' . $selected . '" data-chapter_id="' . $WebinarChapter->id . '" data-subchapter_id="' . $subChapterObj->id . '">' . $subChapterObj->sub_chapter_title . '</li>';
 
                     }
                     $response .= '</ul>
@@ -643,6 +689,17 @@ class AssignmentsController extends Controller
     public function questions_by_subchapter(Request $request)
     {
         $subchapter_id = $request->get('subchapter_id', null);
+        $chapter_id = $request->get('chapter_id', null);
+        $assignment_id = $request->get('assignment_id', null);
+
+        $assignmentObj = Quiz::query()->find($assignment_id);
+
+        $quizQuestionsListArray = $assignmentObj->quizQuestionsList->pluck('question_id')->toArray();
+
+        $assignmentObj->update([
+            'topic_id'    => $chapter_id,
+            'subtopic_id' => $subchapter_id,
+        ]);
 
         $subChapter = SubChapters::find($subchapter_id);
         $chapter_title = $subChapter->chapter->getTitleAttribute();
@@ -676,17 +733,19 @@ class AssignmentsController extends Controller
             foreach ($QuizObj->quizQuestionsList as $questionObj) {
                 if (isset($questionObj->SingleQuestionData->id)) {
 
+                    $already_added_btn = in_array($questionObj->SingleQuestionData->id, $quizQuestionsListArray)? '<a href="javascript:;" class="questions-rm-list">Remove</a>' : '<a href="javascript:;" class="add-to-list-btn">Add</a>';
+                    $review_required_title = ($questionObj->SingleQuestionData->review_required > 0)? '<span class="topic-title review-required">Review Required</span>' : '';
+
                     echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '">
-                        <input type="hidden" name="ajax[new][question_list_ids][]" value="1457">
                         <div class="question-list-item" id="question-list-item">
                         <span class="question-title">' . $questionObj->SingleQuestionData->question_title . '</span>
                         <span class="topic-title">' . $chapter_title . '</span>
+                        '.$review_required_title.'
                         <span class="difficulty-level">' . $questionObj->SingleQuestionData->question_difficulty_level . '</span>
                         <span class="question-id">ID:# ' . $questionObj->SingleQuestionData->id . '</span>
                         <span class="question-marks">Marks: ' . $questionObj->SingleQuestionData->question_score . '</span>
                         <span class="list-buttons">
-                            <a href="javascript:;" class="add-to-list-btn">Add</a>
-                            <a href="javascript:;" class="question-preview"><span class="fas fa-eye"></span></a>
+                            '.$already_added_btn.'
                         </span>
                         </div>
                     </li>';
@@ -779,6 +838,10 @@ class AssignmentsController extends Controller
                 'disable_prev'   => 'false',
                 'disable_next'   => 'false',
                 'class'          => 'disable-div',
+                'question_count' => $question_count,
+                'total_questions' => count($questions_ids),
+                'submit_class' => 'disable-click',
+                'rev_btn_class' => 'disable-click',
             ])->render();
             $question_response_layout .= '</div>';
             $question_count++;
@@ -837,6 +900,12 @@ class AssignmentsController extends Controller
             'disable_prev'   => 'false',
             'disable_next'   => 'false',
             'class'          => 'disable-div',
+            'question_count' => $question_count,
+            'total_questions' => 1,
+            'prev_btn_class' => 'disable-click',
+            'next_btn_class' => 'disable-click',
+            'submit_class' => 'disable-click',
+            'rev_btn_class' => 'disable-click',
         ])->render();
         $question_response_layout .= '</div>';
 

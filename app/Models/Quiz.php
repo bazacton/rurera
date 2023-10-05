@@ -47,7 +47,7 @@ class Quiz extends Model implements TranslatableContract
 
     public function quizQuestionsList()
     {
-        return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id')->orderBy('sort_order', 'ASC');
+        return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id')->where('status', 'active')->orderBy('sort_order', 'ASC');
     }
 
     public function quizQuestions()
@@ -83,6 +83,11 @@ class Quiz extends Model implements TranslatableContract
     public function chapter()
     {
         return $this->belongsTo('App\Models\WebinarChapter' , 'chapter_id' , 'id');
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo('App\Models\WebinarChapter' , 'topic_id' , 'id');
     }
 
 

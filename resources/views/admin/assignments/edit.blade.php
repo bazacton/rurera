@@ -7,21 +7,21 @@
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css">
 <style>
+    .main-content{
+        padding-top: 0px;
+    }
+    .navbar-bg {
+        display: none;
+    }
+    nav.navbar.navbar-expand-lg.main-navbar {
+        display: none;
+    }
     .year-group-select, .subject-group-select, .subchapter-group-select li {
         cursor: pointer;
     }
 
-
-    .questions-list li {
-        background: #efefef;
-        margin-bottom: 10px;
-        padding: 5px 10px;
-    }
-
-    .questions-list li a.questions-parent-li-remove {
-        float: right;
-        margin: 8px 0 0 0;
-        color: #ff0000;
+    .questions-list li{
+        cursor:move;
     }
 
     .question-area {
@@ -33,6 +33,9 @@
         pointer-events: none;
         opacity: 0.4;
     }
+    .disable-click{
+        pointer-events: none;
+    }
 </style>
 @endpush
 
@@ -42,45 +45,39 @@
       method="Post">
     {{ csrf_field() }}
     <section class="section">
-        <div class="section-header">
-            <h1>{{$assignment->title}}</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="/admin/">{{ trans('admin/main.dashboard') }}</a>
-                </div>
-                <div class="breadcrumb-item active"><a href="/admin/assignments">Assignment</a>
-                </div>
-                <div class="breadcrumb-item">{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new')
-                    }}
-                </div>
-            </div>
-        </div>
-        <div class="section-body">
+        <div class="section-body" style="margin-top: 50px;">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
 
                     <ul class="admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                        @php $tab_active_class = ($assignment->subtopic_id > 0)? '' : 'active'; @endphp
                         <li class="nav-item">
-                            <a class="nav-link active" id="topics-tab" data-toggle="tab" href="#topics" role="tab"
+                            <a class="nav-link {{$tab_active_class}}" id="topics-tab" data-toggle="tab" href="#topics" role="tab"
                                aria-controls="basic" aria-selected="true">
                                 <span class="tab-title">Topic</span>
-                                <span class="tab-detail">Choose Year / Subject Topic</span>
+                                <span class="tab-detail">Choose Subject Topic</span>
                             </a>
                         </li>
 
-                        <li class="nav-item disabled">
-                            <a class="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab"
+                        @php $tab_active_class = ($assignment->subtopic_id > 0)? 'active' : ''; @endphp
+                        <li class="nav-item {{($tab_active_class == 'active')? '' : 'disabled'}}">
+                            <a class="nav-link {{$tab_active_class}}" id="questions-tab" data-toggle="tab" href="#questions" role="tab"
                                aria-controls="socials" aria-selected="false"><span
                                         class="tab-title">Choose Questions</span>
                                 <span class="tab-detail">Choose Questions from topics</span></a>
                         </li>
 
-                        <li class="nav-item disabled">
+                        @php  $is_disable_preview = (!empty($assignment->quizQuestionsList) && count($assignment->quizQuestionsList) > 0)? '' : 'disabled'; @endphp
+
+                        <li class="nav-item {{$is_disable_preview}}">
                             <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview"
                                role="tab"
                                aria-controls="features" aria-selected="false"><span
                                         class="tab-title">Test preview</span>
-                                <span class="tab-detail">Previw assignment</span></a>
+                                <span class="tab-detail">Preview assignment</span></a>
                         </li>
+
+
 
 
                     </ul>
@@ -93,7 +90,8 @@
 
 
                             <div class="tab-content" id="myTabContent2">
-                                <div class="tab-pane mt-3 fade active show" id="topics" role="tabpanel"
+                                @php $show_class = ($assignment->subtopic_id > 0)? '' : 'active show'; @endphp
+                                <div class="tab-pane mt-3 fade {{$show_class}}" id="topics" role="tabpanel"
                                      aria-labelledby="topics-tab">
                                     <div class="row col-lg-12 col-md-12 col-sm-4 col-12">
                                         <div class="populated-content-area col-lg-12 col-md-12 col-sm-12 col-12">
@@ -103,15 +101,16 @@
                                                 {!! $topics_subtopics_layout !!}
 
                                             </div>
-
-
                                         </div>
 
-
                                     </div>
+                                    <input class="topic_id_value" type="hidden" name="ajax[{{$assignment->id}}][topic_id]" value="{{$assignment->topic_id}}">
+                                    <input class="subtopic_id_value" type="hidden" name="ajax[{{$assignment->id}}][subtopic_id]" value="{{$assignment->subtopic_id}}">
                                 </div>
 
-                                <div class="tab-pane mt-3 fade" id="questions" role="tabpanel"
+
+                                @php $show_class = ($assignment->subtopic_id > 0)? 'active show' : ''; @endphp
+                                <div class="tab-pane mt-3 fade {{$show_class}}" id="questions" role="tabpanel"
                                      aria-labelledby="questions-tab">
                                     <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-4 selected-questions-group">
@@ -135,13 +134,21 @@
                                                 @foreach( $assignment->quizQuestionsList as $questionObj)
                                                 @if( !empty( $questionObj->QuestionData))
                                                 @foreach( $questionObj->QuestionData as $questionDataObj)
-                                                <li data-id="{{$questionDataObj->id}}">
-                                                    {{$questionDataObj->getTitleAttribute()}} <input
-                                                            type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new'
-                                                                                                                                                                                                                                                                                                                  }}][question_list_ids][]"
-                                                            value="{{$questionDataObj->id}}">
-                                                    <a href="javascript:;" class="parent-li-remove"><span
-                                                                class="fas fa-trash"></span></a>
+                                                @php $review_required_title = ($questionDataObj->review_required > 0)? '<span class="topic-title review-required">Review Required</span>' : ''; @endphp
+
+                                                <li data-question_id="{{$questionDataObj->id}}">
+                                                    <input type="hidden" name="ajax[{{$assignment->id}}][question_list_ids][]" value="{{$questionDataObj->id}}">
+                                                    <div class="question-list-item" id="question-list-item">
+                                                    <span class="question-title">{{$questionDataObj->question_title}}</span>
+                                                    <span class="topic-title">{{$assignment->topic->getTitleAttribute()}}</span>
+                                                        {!! $review_required_title !!}
+                                                    <span class="difficulty-level">{{$questionDataObj->question_difficulty_level}}</span>
+                                                    <span class="question-id">ID:# {{$questionDataObj->id}}</span>
+                                                    <span class="question-marks">Marks: {{$questionDataObj->question_score}}</span>
+                                                    <span class="list-buttons">
+                                                        <a href="javascript:;" class="questions-parent-li-remove">Remove</a>
+                                                    </span>
+                                                    </div>
                                                 </li>
                                                 @endforeach
                                                 @endif
@@ -151,10 +158,6 @@
 
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-8">
-                                            <button type="button"
-                                                    class="btn btn-sm btn-primary update-assignment-preview">Update
-                                                Preview
-                                            </button>
                                             <div class="assignment-questions-preview">
                                             </div>
                                         </div>
@@ -164,21 +167,6 @@
                                 </div>
 
 
-                            </div>
-
-                            <div class="mt-20 mb-20">
-                                <button type="submit"
-                                        class="js-submit-quiz-form btn btn-sm btn-primary">{{
-                                    !empty($assignment) ?
-                                    trans('public.save_change') : trans('public.create') }}
-                                </button>
-
-                                @if(empty($assignment) and !empty($inWebinarPage))
-                                <button type="button"
-                                        class="btn btn-sm btn-danger ml-10 cancel-accordion">{{
-                                    trans('public.close') }}
-                                </button>
-                                @endif
                             </div>
 
 
@@ -225,6 +213,9 @@
             $('body').on('click', '.subchapter-group-select li', function (e) {
                 var thisObj = $('.populated-content-area');
                 var subchapter_id = $(this).attr('data-subchapter_id');
+                var chapter_id = $(this).attr('data-chapter_id');
+                $(".topic_id_value").val(chapter_id);
+                $(".subtopic_id_value").val(subchapter_id);
                 rurera_loader(thisObj, 'div');
                 jQuery.ajax({
                     type: "GET",
@@ -232,12 +223,13 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data: {"subchapter_id": subchapter_id},
+                    data: {"subchapter_id": subchapter_id, "chapter_id": chapter_id, "assignment_id": '{{$assignment->id}}'},
                     success: function (return_data) {
                         //$(".populated-data").addClass('rurera-hide');
                         rurera_remove_loader(thisObj, 'button');
+                        rurera_remove_loader($(".selected-questions-group"), 'button');
                         //$(".questions-populate-area").html(return_data);
-                        $(".selected-questions-group").append(return_data);
+                        $(".selected-questions-group").html(return_data);
                         $("#questions-tab").closest('li').removeClass('disabled');
                         $("#questions-tab").click();
                         questions_select_callback();
@@ -246,19 +238,55 @@
                 });
             });
         }
+        
 
 
         questions_callback();
 
+        var currentRequest5 = null;
+        var update_questions_list = function () {
+            var questions_ids = [];
+           $("ul.questions-list li").each(function () {
+               var question_id = $(this).attr('data-question_id');
+               questions_ids.push(question_id);
+           });
+            currentRequest5 = jQuery.ajax({
+                type: "POST",
+                url: '/admin/assignments/update_question',
+                beforeSend: function () {
+                    if (currentRequest5 != null) {
+                        currentRequest5.abort();
+                    }
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"action": 'add',"questions_ids": questions_ids, "assignment_id": '{{$assignment->id}}'},
+                success: function (return_data) {
+                    console.log(return_data);
+                }
+           });
+        }
+
         var questions_select_callback = function () {
 
             $('body').on('click', '.questions-group-select li .add-to-list-btn', function (e) {
+
                 var thisObj = $('.assignment-preview');
                 var question_id = $(this).closest('li').attr('data-question_id');
-                var question_title = $(this).closest('li').find('.question-title').html();
+                var cloned_li = $(this).closest('li').clone();
+
+                $(this).closest('li').find('.list-buttons').html('<a href="javascript:;" class="questions-rm-list">Remove</a>');
+
+                cloned_li.find('.list-buttons').html('<a href="javascript:;" class="questions-parent-li-remove">Remove</a>');
+                cloned_li = cloned_li.html();
+                var li_value = '<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[{{$assignment->id}}][question_list_ids][]" value="' + question_id + '">';
+                li_value += cloned_li;
+                li_value += '</li>';
                 $('.questions-list li[data-question_id="' + question_id + '"]').remove();
-                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="questions-parent-li-remove"><span class="fas fa-trash"></span></a></li>');
+                $(".questions-list").append(li_value);
                 $("#preview-tab").closest('li').removeClass('disabled');
+                update_questions_list();
             });
 
             var currentRequest3 = null;
@@ -342,7 +370,9 @@
         question_search();
 
 
-        $(".questions-list").sortable();
+        $(".questions-list").sortable({
+            update: function( event, ui ) {update_questions_list(); $("#preview-tab").click();}
+        });
 
 
         $('body').on('click', '.rurera-back-btn', function (e) {
@@ -389,11 +419,22 @@
 
         $(document).on('click', '.questions-parent-li-remove', function (e) {
             $(this).closest('li').remove();
+            var question_id = $(this).closest('li').attr('data-question_id');
             if ($(".assignment-preview .questions-list li").length == 0) {
                 $("#questions-tab").click();
                 $("#preview-tab").closest('li').addClass('disabled');
             }
+            $('.questions-group-select li[data-question_id="'+question_id+'"]').find('.list-buttons').html('<a href="javascript:;" class="add-to-list-btn">Add</a>');
+            update_questions_list();
+            $("#preview-tab").click();
         });
+        $(document).on('click', '.questions-rm-list', function (e) {
+            var question_id = $(this).closest('li').attr('data-question_id');
+            $(this).closest('li').find('.list-buttons').html('<a href="javascript:;" class="add-to-list-btn">Add</a>');
+            $('.questions-list li[data-question_id="'+question_id+'"]').find('.questions-parent-li-remove').click();
+            //update_questions_list();
+        });
+
 
         $(document).on('click', '.question-block .next-btn', function (e) {
             var question_id = $(this).closest('.question-block').next('.question-block').attr('data-question_id');
@@ -422,6 +463,12 @@
             $('.question-block[data-question_id="'+question_id+'"]').removeClass('rurera-hide');
 
         });
+
+
+        if( $(".subchapter-group-select li.default-active").length > 0){
+            rurera_loader($(".selected-questions-group"), 'div');
+            $(".subchapter-group-select li.default-active").click();
+        }
 
 
     });

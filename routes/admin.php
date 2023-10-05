@@ -351,6 +351,8 @@ Route::group([
             Route::post('/{id}/update', 'AssignmentsController@update');
             Route::post('/{id}/update', 'AssignmentsController@update');
             Route::get('/{id}/assign', 'AssignmentsController@assign')->name('adminAssignAssignment');
+            Route::post('/update_question', 'AssignmentsController@update_question');
+
             //Route::post('/store_quiz', 'QuizController@store_quiz');
             //Route::get('/{id}/edit', 'QuizController@edit')->name('adminEditQuiz');
             //Route::post('/{id}/update', 'QuizController@update');
