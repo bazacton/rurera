@@ -569,7 +569,6 @@ class AssignmentsController extends Controller
 
         if (!empty($webinars)) {
             echo '<div class="col-lg-12 col-md-12 col-sm-6 col-12 subjects-group populated-data">
-                <button type="button" class="rurera-back-btn btn btn-primary mb-20">Back</button>
             <div class="row">';
             foreach ($webinars as $webinarObj) {
                 ?>
@@ -595,9 +594,9 @@ class AssignmentsController extends Controller
         $WebinarChapter = WebinarChapter::where('webinar_id', $subject_id)->with('subChapters')->get();
         //pre($WebinarChapter);
 
-        echo '<div class="col-lg-12 col-md-12 col-sm-12 col-12 populated-data">
-        <button type="button" class="rurera-back-btn btn btn-primary mb-20">Back</button>';
-        if (!empty($WebinarChapter)) {
+
+        if (!empty($WebinarChapter) && count($WebinarChapter) > 0) {
+            echo '<div class="col-lg-12 col-md-12 col-sm-12 col-12 populated-data">';
             echo '<div class="col-lg-12 col-md-12 col-sm-6 col-12 card chapters-group accordion" id="chaptersAccordion"><div class="row">';
             foreach ($WebinarChapter as $WebinarChapter) {
                 ?>
@@ -629,6 +628,7 @@ class AssignmentsController extends Controller
 
             }
             echo '</div></div>';
+            echo '</div>';
         }
 
         /*echo '<div class="col-lg-6 col-md-6 col-sm-4 col-12 card questions-group populated-data">';
@@ -647,7 +647,6 @@ class AssignmentsController extends Controller
                     </div><div class="questions-populate-area"></div>';
         echo '</div>';*/
 
-        echo '</div>';
         exit;
     }
 
@@ -664,7 +663,6 @@ class AssignmentsController extends Controller
 
 
         echo '<div class="col-lg-12 col-md-12 col-sm-4 col-12 questions-group populated-data">
-        <button type="button" class="rurera-back-btn questions-list-btn btn btn-primary mb-20">Back</button>
         ';
         echo '<div class="search-field-box search-field-box"><div class="row">
                        <div class="col-lg-8 col-md-8 col-sm-4 col-12">

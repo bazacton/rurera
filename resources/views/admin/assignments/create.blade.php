@@ -44,6 +44,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
+                    <ul class="admin-rurera-tabs">
+                        <li class="active"><span class="number">1</span><span class="tab-title">Topic</span>
+                            <span class="tab-detail">Choose Year / Subject Topic</span>
+                        </li>
+                        <li><span class="number">2</span><span class="tab-title">Choose Questions</span>
+                            <span class="tab-detail">Choose Questions from topics</span>
+                        </li>
+                        <li><span class="number">3</span><span class="tab-title">Test preview</span>
+                            <span class="tab-detail">Previw assignment</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
@@ -73,7 +88,7 @@
                                             <div class="form-group">
                                                 <label>Year</label>
                                                 <select data-default_id="{{isset( $user->id)? $user->year_id : 0}}"
-                                                        class="form-control year_class_ajax_select @error('year_id') is-invalid @enderror"
+                                                        class="form-control year_subject_ajax_select @error('year_id') is-invalid @enderror"
                                                         name="year_id">
                                                     <option {{ !empty($trend) ?
                                                     '' : 'selected' }} disabled>Select Year</option>
@@ -108,12 +123,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Student Class</label>
-                                                <select data-return_type="list"
+                                                <label>Subjects</label>
+                                                <select data-return_type="option"
                                                         data-default_id="{{isset( $user->id)? $user->class_id : 0}}"
-                                                        class="class_users_ajax_select class_section_ajax_select student_section form-control select2 @error('class_id') is-invalid @enderror"
+                                                        class="subject_ajax_select year_subjects form-control select2 @error('class_id') is-invalid @enderror"
                                                         id="class_id" name="class_id">
-                                                    <option disabled selected>Class</option>
+                                                    <option disabled selected>Subject</option>
                                                 </select>
                                                 @error('class_id')
                                                 <div class="invalid-feedback">
@@ -122,19 +137,8 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Class Section</label>
-                                                <select data-return_type="list"
-                                                        data-default_id="{{isset( $user->id)? $user->section_id : 0}}"
-                                                        class="section_users_ajax_select section_ajax_select student_section form-control select2 @error('section_id') is-invalid @enderror"
-                                                        id="section_id" name="section_id">
-                                                    <option disabled selected>Section</option>
-                                                </select>
-                                                @error('section_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                                @enderror
+                                            <div class="topics-subtopics-content-area">
+
                                             </div>
 
 
@@ -147,25 +151,6 @@
                                                    class="subject_id_field"
                                                    value="{{ !empty($assignment) ? $assignment->subject_id : old('subject_id') }}">
 
-                                            <div class="row">
-                                                @foreach( $categories as $categoryObj)
-
-                                                @if(!empty($categoryObj->subCategories))
-                                                @foreach( $categoryObj->subCategories as $subCategoryObj)
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-12 year-group-select"
-                                                     data-year_id="{{$subCategoryObj->id}}">
-                                                    <div class="card card-medium-icons">
-                                                        <div class="card-icon bg-primary text-white p-30 text-center">
-                                                            {{$subCategoryObj->getTitleAttribute()}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                                @endif
-
-                                                @endforeach
-
-                                            </div>
                                         </div>
                                         @endif
 
@@ -244,8 +229,8 @@
             });
         });
 
-        var subjects_callback = function () {
-            $('body').on('click', '.subject-group-select', function (e) {
+        var subjects_callback_bk = function () {
+            $('body').on('click', '.subject-group-selects', function (e) {
                 var thisObj = $('.populated-content-area');
                 var subject_id = $(this).attr('data-subject_id');
                 $(".subject_id_field").val(subject_id);
@@ -261,13 +246,42 @@
                         $(".populated-data").addClass('rurera-hide');
                         rurera_remove_loader(thisObj, 'button');
                         if (return_data != '') {
-                            $(".populated-content-area").append(return_data);
+                            //$(".populated-content-area").append(return_data);
+                            $(".topics-subtopics-content-area").append(return_data);
                             questions_callback();
                         }
                     }
                 });
             });
         }
+
+        var subjects_callback = function () {
+            $('body').on('change', '.subject_ajax_select', function (e) {
+                var thisObj = $('.populated-content-area');
+                var subject_id = $(this).val();
+                $(".subject_id_field").val(subject_id);
+                rurera_loader(thisObj, 'div');
+                jQuery.ajax({
+                    type: "GET",
+                    url: '/admin/assignments/topics_subtopics_by_subject',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"subject_id": subject_id},
+                    success: function (return_data) {
+                        //$(".populated-data").addClass('rurera-hide');
+                        rurera_remove_loader(thisObj, 'button');
+                        if (return_data != '') {
+                            //$(".populated-content-area").append(return_data);
+                            $(".topics-subtopics-content-area").append(return_data);
+                            questions_callback();
+                        }
+                    }
+                });
+            });
+        }
+        subjects_callback();
+
 
         var questions_callback = function () {
             $('body').on('click', '.subchapter-group-select li', function (e) {

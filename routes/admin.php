@@ -381,6 +381,7 @@ Route::group([
             Route::get('/sections_by_class', 'CommonController@sections_by_class');
             Route::get('/users_by_class', 'CommonController@users_by_class');
             Route::get('/users_by_section', 'CommonController@users_by_section');
+            Route::get('/subjects_by_year', 'CommonController@subjects_by_year');
 
         });
 

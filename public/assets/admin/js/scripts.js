@@ -814,6 +814,26 @@ $(document).ready(function () {
         });
     }
 
+    var year_subject_ajax_select = function () {
+       $('body').on('change', '.year_subject_ajax_select', function (e) {
+           var year_id = $(this).val();
+           var subject_id = $('.subject_ajax_select').attr('data-default_id');
+           jQuery.ajax({
+               type: "GET",
+               url: '/admin/common/subjects_by_year',
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data: {"year_id": year_id, "subject_id": subject_id},
+               success: function (return_data) {
+                   $(".subject_ajax_select").html(return_data);
+                   $(".subject_ajax_select").change();
+               }
+           });
+       });
+       $(".year_class_ajax_select").change();
+   }
+
 
     $('body').on('click', '.selectable-lis li', function (e) {
         var target_url = $(this).closest('ul').attr('data-target_ul');
@@ -830,4 +850,6 @@ $(document).ready(function () {
     class_section_ajax_select();
     class_users_ajax_select();
     section_users_ajax_select();
+
+    year_subject_ajax_select();
 });

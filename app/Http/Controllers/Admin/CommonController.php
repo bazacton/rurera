@@ -186,5 +186,31 @@ class CommonController extends Controller
         exit;
     }
 
+    /*
+    * Get Users added by Sections
+    * @incase of Teacher it will be restricted to teacher added classes only
+    */
+    public function subjects_by_year(Request $request)
+    {
+        $user = auth()->user();
+        $year_id = $request->get('year_id', null);
+        $subject_id = $request->get('subject_id', null);
+        $subjects_query = Webinar::where('category_id', $year_id)->where('type', 'course')->where('status', 'active');
+
+        $subjects = $subjects_query->get();
+
+        $response = '<option value="">Select Subject</option>';
+        if (!empty($subjects)) {
+            foreach ($subjects as $subjectObj) {
+                $selected = ($subject_id == $subjectObj->id) ? 'selected' : '';
+                $response .= '<option value="' . $subjectObj->id . '" ' . $selected . '>' . $subjectObj->getTitleAttribute() . '</option>';
+            }
+        }
+
+        echo $response;
+
+        exit;
+    }
+
 
 }
