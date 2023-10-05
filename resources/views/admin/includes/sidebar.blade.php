@@ -268,6 +268,15 @@
                     </a>
                 </li>
             @endif
+            
+            @can('admin_assigned_assignments')
+                <li class="{{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/assigned_assignments') }}" class="nav-link">
+                        <i class="fas fa-pen"></i>
+                        <span>Assigned Assignments</span>
+                    </a>
+                </li>
+            @endif
 
             @can('admin_certificate')
                 <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/certificates*', false))) ? 'active' : '' }}">

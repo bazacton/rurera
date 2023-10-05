@@ -2671,12 +2671,12 @@ Lms Table Style
     width: 100%;
     border-width: 0;
 }
-.leform-element table.table td .input-holder input.input-simple {
+/* .leform-element table.table td .input-holder input.input-simple {
     width: 100%;
     text-align: left;
     font-weight: 400;
     font-size: 20px;
-}
+} */
 .leform-element table.table th {
     background-color: #c8d2ec;
     border-color: #000;

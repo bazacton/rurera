@@ -37,7 +37,7 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update_assign' : 'store_assign' }}"
+                        <form action="/admin/assigned_assignments/store"
                               method="Post">
                             {{ csrf_field() }}
 
@@ -52,6 +52,7 @@
                                                placeholder=""/>
                                         <div class="invalid-feedback"></div>
                                     </div>
+                                    <input type="hidden" name="assignment_id" value="{{isset( $assignment->id )? $assignment->id : 0}}">
                                     <div class="form-group">
                                         <label>Year</label>
                                         <select data-default_id="{{isset( $user->id)? $user->year_id : 0}}"

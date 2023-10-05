@@ -360,6 +360,18 @@ Route::group([
             //Route::post('/{id}/order-items', 'QuizController@orderItems');
             //Route::post('/search_quiz', 'QuizController@search_quiz');
         });
+        
+        /*
+         * Assigned Assignments Routing
+         */
+        Route::group(['prefix' => 'assigned_assignments'], function () {
+            Route::get('/', 'AssignedAssignmentsController@index')->name('adminListAssignedAssignment');
+            Route::post('/store', 'AssignedAssignmentsController@store');
+            Route::get('/{id}/edit', 'AssignedAssignmentsController@edit')->name('adminEditAssignedAssignment');
+            //Route::post('/{id}/update', 'AssignmentsController@update');
+            //Route::post('/{id}/update', 'AssignmentsController@update');
+            //Route::get('/{id}/assign', 'AssignmentsController@assign')->name('adminAssignAssignment');
+        });
 
         /*
          * Common Functionalities
