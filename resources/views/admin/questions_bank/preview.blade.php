@@ -13,7 +13,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
         <div class="question-layout-block" style="width: 100%;">
 
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
-                <div class="left-content has-bg" style="width:inherit;">
+                <div class="left-content has-bg" >
 
                     @if( $question->review_required == 1 || $is_development == true)
                     <div class="question-review-required">

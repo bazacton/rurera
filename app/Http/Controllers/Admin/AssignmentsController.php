@@ -14,6 +14,7 @@ use App\Models\QuizzesQuestionsList;
 use App\Models\Translation\QuizTranslation;
 use App\Models\Webinar;
 use App\Models\WebinarChapter;
+use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -214,28 +215,9 @@ class AssignmentsController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-
-        $question_ids = [1492,1485];
-        $question_response_layout = '';
-        foreach( $question_ids as $question_id) {
-            $questionObj = QuizzesQuestion::find($question_id);
-            $question_response_layout .= view('admin.questions_bank.preview', [
-                'question'       => $questionObj,
-                'prev_question'  => 0,
-                'next_question'  => 0,
-                'disable_submit' => 'true',
-                'disable_finish' => 'true',
-                'disable_prev'   => 'true',
-                'disable_next'   => 'true',
-                'class'          => 'disable-div',
-            ])->render();
-        }
-
-
         $data = [
             'pageTitle'  => 'Create Assignment',
             'categories' => $categories,
-            'question_response_layout' => $question_response_layout,
         ];
 
         return view('admin.assignments.create', $data);
@@ -654,6 +636,9 @@ class AssignmentsController extends Controller
     {
         $subchapter_id = $request->get('subchapter_id', null);
 
+        $subChapter = SubChapters::find($subchapter_id);
+        $chapter_title = $subChapter->chapter->getTitleAttribute();
+
         $WebinarChapterItem = WebinarChapterItem::where('parent_id', $subchapter_id)->where('type', 'quiz')->first();
         $quiz_id = isset($WebinarChapterItem->item_id) ? $WebinarChapterItem->item_id : 0;
         $QuizObj = (object)array();
@@ -682,6 +667,23 @@ class AssignmentsController extends Controller
             echo '<ul class="questions-group-select" id="questions-group-select">';
             foreach ($QuizObj->quizQuestionsList as $questionObj) {
                 if (isset($questionObj->SingleQuestionData->id)) {
+
+                    /*echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '">
+                        <input type="hidden" name="ajax[new][question_list_ids][]" value="1457">
+                        <span class="question-title">'.$questionObj->SingleQuestionData->question_title.'</span>
+                        <span class="topic-title">'. $chapter_title .'</span>
+                        <span class="difficulty-level">'.$questionObj->SingleQuestionData->question_difficulty_level.'</span>
+                        <span class="question-id">ID:# ' . $questionObj->SingleQuestionData->id . '</span>
+                        <span class="question-marks">Marks: ' . $questionObj->SingleQuestionData->question_score . '</span>
+                        <span class="list-buttons">
+                            <a href="javascript:;" class="add-to-list-btn">Add</a>
+                            <a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a>
+                            <a href="javascript:;" class="question-preview"><span class="fas fa-eye"></span></a>
+                        </span>
+                    </li>';
+                    */
+
+
                     echo '<li data-question_id="' . $questionObj->SingleQuestionData->id . '"><a href="javascript:;">' . $questionObj->SingleQuestionData->id . ' | ' . $questionObj->SingleQuestionData->question_title . ' | ' . $questionObj->SingleQuestionData->question_difficulty_level . '</a></li>';
                 }
             }
@@ -713,6 +715,31 @@ class AssignmentsController extends Controller
                 echo '<li data-question_id="' . $questionObj->id . '"><a href="javascript:;">' . $questionObj->id . ' | ' . $questionObj->question_title . ' | ' . $questionObj->question_difficulty_level . '</a></li>';
             }
         }
+        exit;
+
+    }
+
+    public function assignment_preview(Request $request)
+    {
+        $user = auth()->user();
+        $questions_ids = $request->get('questions_ids', null);
+
+        $question_response_layout = '';
+        foreach ($questions_ids as $question_id) {
+            $questionObj = QuizzesQuestion::find($question_id);
+            $question_response_layout .= view('admin.questions_bank.preview', [
+                'question'       => $questionObj,
+                'prev_question'  => 0,
+                'next_question'  => 0,
+                'disable_submit' => 'true',
+                'disable_finish' => 'true',
+                'disable_prev'   => 'true',
+                'disable_next'   => 'true',
+                'class'          => 'disable-div',
+            ])->render();
+        }
+
+        echo $question_response_layout;
         exit;
 
     }

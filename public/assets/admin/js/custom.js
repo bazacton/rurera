@@ -668,4 +668,8 @@ $(document).ready(function () {
     $(document).on('click', '.parent-remove', function (e) {
         $(this).parent().remove();
     });
+
+    $(document).on('click', '.parent-li-remove', function (e) {
+       $(this).closest('li').remove();
+   });
 });

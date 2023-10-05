@@ -18,10 +18,14 @@
         padding: 5px 10px;
     }
 
-    .questions-list li a.parent-remove {
+    .questions-list li a.parent-li-remove {
         float: right;
         margin: 8px 0 0 0;
         color: #ff0000;
+    }
+    .question-area {
+        border-bottom: 2px solid #efefef;
+        margin-bottom: 30px;
     }
 </style>
 @endpush
@@ -194,7 +198,7 @@
                                                                 type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new'
                                                                                                                                                                            }}][question_list_ids][]"
                                                                 value="{{$questionDataObj->id}}">
-                                                        <a href="javascript:;" class="parent-remove"><span
+                                                        <a href="javascript:;" class="parent-li-remove"><span
                                                                     class="fas fa-trash"></span></a>
                                                     </li>
                                                     @endforeach
@@ -207,7 +211,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane mt-3 fade" id="preview" role="tabpanel"
+                                    <div class="tab-pane mt-3 fade assignment-preview" id="preview" role="tabpanel"
                                          aria-labelledby="preview-tab">
                                         preview
                                     </div>
@@ -338,7 +342,7 @@
                     },
                     data: {"subchapter_id": subchapter_id},
                     success: function (return_data) {
-                        $(".populated-data").addClass('rurera-hide');
+                        //$(".populated-data").addClass('rurera-hide');
                         rurera_remove_loader(thisObj, 'button');
                         //$(".questions-populate-area").html(return_data);
                         $(".selected-questions-group").append(return_data);
@@ -355,7 +359,7 @@
                 var question_id = $(this).attr('data-question_id');
                 var question_title = $(this).find('a').html();
                 $('.questions-list li[data-question_id="' + question_id + '"]').remove();
-                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-remove"><span class="fas fa-trash"></span></a></li>');
+                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a></li>');
             });
 
 
@@ -422,6 +426,40 @@
                 console.log('questions-btn');
             }
         });
+
+
+        var currentRequest2 = null;
+        $('body').on('click', '#preview-tab', function (e) {
+            var thisObj = $(".assignment-preview");
+
+            var questions_ids = [];
+            $("ul.questions-list li").each(function () {
+                var question_id = $(this).attr('data-question_id');
+                questions_ids.push(question_id);
+            });
+            if( questions_ids.length > 0) {
+                rurera_loader(thisObj, 'div');
+                currentRequest2 = jQuery.ajax({
+                    type: "GET",
+                    url: '/admin/assignments/assignment_preview',
+                    beforeSend: function () {
+                        if (currentRequest2 != null) {
+                            currentRequest2.abort();
+                        }
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"questions_ids": questions_ids},
+                    success: function (return_data) {
+                        rurera_remove_loader(thisObj, 'button');
+                        $(".assignment-preview").html(return_data);
+                    }
+                });
+            }
+
+        });
+
     });
 
 </script>
