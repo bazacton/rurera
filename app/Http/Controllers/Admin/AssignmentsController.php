@@ -686,7 +686,6 @@ class AssignmentsController extends Controller
                         <span class="question-marks">Marks: ' . $questionObj->SingleQuestionData->question_score . '</span>
                         <span class="list-buttons">
                             <a href="javascript:;" class="add-to-list-btn">Add</a>
-                            <a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a>
                             <a href="javascript:;" class="question-preview"><span class="fas fa-eye"></span></a>
                         </span>
                         </div>
@@ -732,20 +731,57 @@ class AssignmentsController extends Controller
     {
         $user = auth()->user();
         $questions_ids = $request->get('questions_ids', null);
+        $assignment_title = $request->get('assignment_title', null);
 
-        $question_response_layout = '';
+
+        $question_response_layout = '<section class="quiz-topbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-12">
+                        <div class="quiz-top-info"><p>' . $assignment_title . '</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                        <div class="topbar-right">
+                            <div class="quiz-pagination">
+                                <div class="swiper-container">
+                                    <ul class="swiper-wrapper">';
+
+        $question_count = 1;
+        foreach ($questions_ids as $question_id) {
+            $active_class = ($question_count == 1) ? 'active' : '';
+            $question_response_layout .= '<li data-question_id="' . $question_id . '" class="swiper-slide waiting ' . $active_class . '"><a href="javascript:;">' . $question_count . '</a></li>';
+            $question_count++;
+        }
+        $question_response_layout .= '</ul>
+                                </div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>';
+
+        $question_count = 1;
+
         foreach ($questions_ids as $question_id) {
             $questionObj = QuizzesQuestion::find($question_id);
+            $question_class = ($question_count == 1) ? '' : 'rurera-hide';
+            $question_response_layout .= '<div data-question_id="' . $question_id . '" class="question-block ' . $question_class . '">';
             $question_response_layout .= view('admin.questions_bank.preview', [
                 'question'       => $questionObj,
                 'prev_question'  => 0,
                 'next_question'  => 0,
-                'disable_submit' => 'true',
-                'disable_finish' => 'true',
-                'disable_prev'   => 'true',
-                'disable_next'   => 'true',
+                'disable_submit' => 'false',
+                'disable_finish' => 'false',
+                'disable_prev'   => 'false',
+                'disable_next'   => 'false',
                 'class'          => 'disable-div',
             ])->render();
+            $question_response_layout .= '</div>';
+            $question_count++;
         }
 
         echo $question_response_layout;
@@ -758,18 +794,51 @@ class AssignmentsController extends Controller
         $user = auth()->user();
         $question_id = $request->get('question_id', null);
 
-        $question_response_layout = '';
+        $assignment_title = $request->get('assignment_title', null);
+
+
+        $question_response_layout = '<section class="quiz-topbar">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="quiz-top-info"><p>' . $assignment_title . '</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                                <div class="topbar-right">
+                                    <div class="quiz-pagination">
+                                        <div class="swiper-container">
+                                            <ul class="swiper-wrapper">';
+
+        $question_count = 1;
+        $question_response_layout .= '<li data-question_id="' . $question_id . '" class="swiper-slide waiting active"><a href="javascript:;">' . $question_count . '</a></li>';
+        $question_response_layout .= '</ul>
+                                        </div>
+                                        <div class="swiper-button-prev"></div>
+                                        <div class="swiper-button-next"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>';
+
+        $question_count = 1;
+
         $questionObj = QuizzesQuestion::find($question_id);
+        $question_class = ($question_count == 1) ? '' : 'rurera-hide';
+        $question_response_layout .= '<div data-question_id="' . $question_id . '" class="question-block ' . $question_class . '">';
         $question_response_layout .= view('admin.questions_bank.preview', [
             'question'       => $questionObj,
             'prev_question'  => 0,
             'next_question'  => 0,
-            'disable_submit' => 'true',
-            'disable_finish' => 'true',
-            'disable_prev'   => 'true',
-            'disable_next'   => 'true',
+            'disable_submit' => 'false',
+            'disable_finish' => 'false',
+            'disable_prev'   => 'false',
+            'disable_next'   => 'false',
             'class'          => 'disable-div',
         ])->render();
+        $question_response_layout .= '</div>';
 
         echo $question_response_layout;
         exit;

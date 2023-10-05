@@ -13,7 +13,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
         <div class="question-layout-block" style="width: 100%;">
 
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
-                <div class="left-content has-bg" >
+                <div class="left-content has-bg">
 
                     @if( $question->review_required == 1 || $is_development == true)
                     <div class="question-review-required">
@@ -54,9 +54,10 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                             </svg>
                         </a>
                         @endif
-                        @php $prev_class = (isset( $prev_question ) && $prev_question > 0)? '' : 'disable-btn'; @endphp
+                        @php $prev_class = (isset( $prev_question ) && $prev_question > 0)? '' : ''; @endphp
                         @if( !isset( $disable_prev ) || $disable_prev == 'false')
-                        <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn" data-question_id="{{$prev_question}}">
+                        <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn"
+                           data-question_id="{{$prev_question}}">
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
                                  viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
@@ -68,9 +69,10 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                             </svg>
                         </a>
                         @endif
-                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn'; @endphp
+                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : ''; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
-                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}">
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn"
+                           data-question_id="{{$next_question}}">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
@@ -101,9 +103,6 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                         @endif
                     </div>
                 </div>
-
-
-
 
 
             </form>

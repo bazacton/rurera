@@ -18,7 +18,7 @@
         padding: 5px 10px;
     }
 
-    .questions-list li a.parent-li-remove {
+    .questions-list li a.questions-parent-li-remove {
         float: right;
         margin: 8px 0 0 0;
         color: #ff0000;
@@ -28,8 +28,10 @@
         border-bottom: 2px solid #efefef;
         margin-bottom: 30px;
     }
-    .left-content.has-bg {
-        width: inherit;
+
+    .admin-rurera-tabs li.nav-item.disabled {
+        pointer-events: none;
+        opacity: 0.4;
     }
 </style>
 @endpush
@@ -53,66 +55,80 @@
             </div>
         </div>
         <div class="section-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
 
-                        <ul class="admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="topics-tab" data-toggle="tab" href="#topics" role="tab"
-                                   aria-controls="basic" aria-selected="true">
-                                    <span class="tab-title">Topic</span>
-                                    <span class="tab-detail">Choose Year / Subject Topic</span>
-                                </a>
-                            </li>
+                    <ul class="admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="topics-tab" data-toggle="tab" href="#topics" role="tab"
+                               aria-controls="basic" aria-selected="true">
+                                <span class="tab-title">Topic</span>
+                                <span class="tab-detail">Choose Year / Subject Topic</span>
+                            </a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab"
-                                   aria-controls="socials" aria-selected="false"><span
-                                            class="tab-title">Choose Questions</span>
-                                    <span class="tab-detail">Choose Questions from topics</span></a>
-                            </li>
+                        <li class="nav-item disabled">
+                            <a class="nav-link" id="questions-tab" data-toggle="tab" href="#questions" role="tab"
+                               aria-controls="socials" aria-selected="false"><span
+                                        class="tab-title">Choose Questions</span>
+                                <span class="tab-detail">Choose Questions from topics</span></a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab"
-                                   aria-controls="features" aria-selected="false"><span
-                                            class="tab-title">Test preview</span>
-                                    <span class="tab-detail">Previw assignment</span></a>
-                            </li>
+                        <li class="nav-item disabled">
+                            <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview"
+                               role="tab"
+                               aria-controls="features" aria-selected="false"><span
+                                        class="tab-title">Test preview</span>
+                                <span class="tab-detail">Previw assignment</span></a>
+                        </li>
 
 
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
 
 
-                                <div class="tab-content" id="myTabContent2">
-                                    <div class="tab-pane mt-3 fade active show" id="topics" role="tabpanel"
-                                         aria-labelledby="topics-tab">
-                                        <div class="row col-lg-12 col-md-12 col-sm-4 col-12">
-                                            <div class="populated-content-area col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="tab-content" id="myTabContent2">
+                                <div class="tab-pane mt-3 fade active show" id="topics" role="tabpanel"
+                                     aria-labelledby="topics-tab">
+                                    <div class="row col-lg-12 col-md-12 col-sm-4 col-12">
+                                        <div class="populated-content-area col-lg-12 col-md-12 col-sm-12 col-12">
 
-                                                <div class="topics-subtopics-content-area">
+                                            <div class="topics-subtopics-content-area">
 
-                                                    {!! $topics_subtopics_layout !!}
-
-                                                </div>
-
+                                                {!! $topics_subtopics_layout !!}
 
                                             </div>
 
 
                                         </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane mt-3 fade" id="questions" role="tabpanel"
+                                     aria-labelledby="questions-tab">
+                                    <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-4 selected-questions-group">
+
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-8 single-question-preview">
+                                        </div>
                                     </div>
 
-                                    <div class="tab-pane mt-3 fade" id="questions" role="tabpanel"
-                                         aria-labelledby="questions-tab">
-                                        <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-6 card selected-questions-group">
+                                </div>
+
+                                <div class="tab-pane mt-3 fade assignment-preview" id="preview" role="tabpanel"
+                                     aria-labelledby="preview-tab">
+
+
+                                    <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-4">
                                             <ul class="questions-list">
 
                                                 @if( !empty( $assignment->quizQuestionsList))
@@ -122,7 +138,7 @@
                                                 <li data-id="{{$questionDataObj->id}}">
                                                     {{$questionDataObj->getTitleAttribute()}} <input
                                                             type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new'
-                                                                                                                                                                                                                           }}][question_list_ids][]"
+                                                                                                                                                                                                                                                                                                                  }}][question_list_ids][]"
                                                             value="{{$questionDataObj->id}}">
                                                     <a href="javascript:;" class="parent-li-remove"><span
                                                                 class="fas fa-trash"></span></a>
@@ -132,38 +148,40 @@
                                                 @endforeach
                                                 @endif
                                             </ul>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-6 card single-question-preview">
-                                        </div>
-                                        </div>
 
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-8">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-primary update-assignment-preview">Update
+                                                Preview
+                                            </button>
+                                            <div class="assignment-questions-preview">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="tab-pane mt-3 fade assignment-preview" id="preview" role="tabpanel"
-                                         aria-labelledby="preview-tab">
-                                        preview
-                                    </div>
 
-
-                                </div>
-
-                                <div class="mt-20 mb-20">
-                                    <button type="submit"
-                                            class="js-submit-quiz-form btn btn-sm btn-primary">{{
-                                        !empty($assignment) ?
-                                        trans('public.save_change') : trans('public.create') }}
-                                    </button>
-
-                                    @if(empty($assignment) and !empty($inWebinarPage))
-                                    <button type="button"
-                                            class="btn btn-sm btn-danger ml-10 cancel-accordion">{{
-                                        trans('public.close') }}
-                                    </button>
-                                    @endif
                                 </div>
 
 
                             </div>
+
+                            <div class="mt-20 mb-20">
+                                <button type="submit"
+                                        class="js-submit-quiz-form btn btn-sm btn-primary">{{
+                                    !empty($assignment) ?
+                                    trans('public.save_change') : trans('public.create') }}
+                                </button>
+
+                                @if(empty($assignment) and !empty($inWebinarPage))
+                                <button type="button"
+                                        class="btn btn-sm btn-danger ml-10 cancel-accordion">{{
+                                    trans('public.close') }}
+                                </button>
+                                @endif
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -220,6 +238,7 @@
                         rurera_remove_loader(thisObj, 'button');
                         //$(".questions-populate-area").html(return_data);
                         $(".selected-questions-group").append(return_data);
+                        $("#questions-tab").closest('li').removeClass('disabled');
                         $("#questions-tab").click();
                         questions_select_callback();
 
@@ -232,24 +251,21 @@
         questions_callback();
 
         var questions_select_callback = function () {
-            $('body').on('click', '.questions-group-select_bk li', function (e) {
-                var thisObj = $('.populated-content-area');
-                var question_id = $(this).attr('data-question_id');
-                var question_title = $(this).find('a').html();
-                $('.questions-list li[data-question_id="' + question_id + '"]').remove();
-                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="parent-li-remove"><span class="fas fa-trash"></span></a></li>');
-            });
 
             $('body').on('click', '.questions-group-select li .add-to-list-btn', function (e) {
-                var thisObj = $('.single-question-preview');
+                var thisObj = $('.assignment-preview');
                 var question_id = $(this).closest('li').attr('data-question_id');
-
+                var question_title = $(this).closest('li').find('.question-title').html();
+                $('.questions-list li[data-question_id="' + question_id + '"]').remove();
+                $(".questions-list").append('<li data-question_id="' + question_id + '"><input type="hidden" name="ajax[new][question_list_ids][]" value="' + question_id + '">' + question_title + '<a href="javascript:;" class="questions-parent-li-remove"><span class="fas fa-trash"></span></a></li>');
+                $("#preview-tab").closest('li').removeClass('disabled');
             });
 
             var currentRequest3 = null;
-            $('body').on('click', '.questions-group-select li .question-preview', function (e) {
+            $('body').on('click', '.questions-group-select li', function (e) {
                 var thisObj = $('.single-question-preview');
-                var question_id = $(this).closest('li').attr('data-question_id');
+                //var question_id = $(this).closest('li').attr('data-question_id');
+                var question_id = $(this).attr('data-question_id');
                 if (question_id > 0) {
                     rurera_loader(thisObj, 'div');
                     currentRequest3 = jQuery.ajax({
@@ -263,7 +279,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        data: {"question_id": question_id},
+                        data: {"question_id": question_id, "assignment_title": '{{$assignment->title}}'},
                         success: function (return_data) {
                             rurera_remove_loader(thisObj, 'button');
                             $(".single-question-preview").html(return_data);
@@ -340,8 +356,8 @@
 
 
         var currentRequest2 = null;
-        $('body').on('click', '#preview-tab', function (e) {
-            var thisObj = $(".assignment-preview");
+        $('body').on('click', '#preview-tab, .update-assignment-preview', function (e) {
+            var thisObj = $(".assignment-questions-preview");
 
             var questions_ids = [];
             $("ul.questions-list li").each(function () {
@@ -361,15 +377,52 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data: {"questions_ids": questions_ids},
+                    data: {"questions_ids": questions_ids, "assignment_title": '{{$assignment->title}}'},
                     success: function (return_data) {
                         rurera_remove_loader(thisObj, 'button');
-                        $(".assignment-preview").html(return_data);
+                        $(".assignment-questions-preview").html(return_data);
                     }
                 });
             }
 
         });
+
+        $(document).on('click', '.questions-parent-li-remove', function (e) {
+            $(this).closest('li').remove();
+            if ($(".assignment-preview .questions-list li").length == 0) {
+                $("#questions-tab").click();
+                $("#preview-tab").closest('li').addClass('disabled');
+            }
+        });
+
+        $(document).on('click', '.question-block .next-btn', function (e) {
+            var question_id = $(this).closest('.question-block').next('.question-block').attr('data-question_id');
+            if( question_id > 0) {
+                $(".quiz-pagination ul li").removeClass('active');
+                $('.quiz-pagination ul li[data-question_id="' + question_id + '"]').addClass('active');
+
+                $(this).closest('.question-block').addClass('rurera-hide');
+                $(this).closest('.question-block').next('.question-block').removeClass('rurera-hide');
+            }
+        });
+        $(document).on('click', '.question-block .prev-btn', function (e) {
+            var question_id = $(this).closest('.question-block').prev('.question-block').attr('data-question_id');
+            if( question_id > 0) {
+                $(".quiz-pagination ul li").removeClass('active');
+                $('.quiz-pagination ul li[data-question_id="' + question_id + '"]').addClass('active');
+                $(this).closest('.question-block').addClass('rurera-hide');
+                $(this).closest('.question-block').prev('.question-block').removeClass('rurera-hide');
+            }
+        });
+        $(document).on('click', '.quiz-pagination ul li', function (e) {
+            $(".quiz-pagination ul li").removeClass('active');
+            $(this).addClass('active');
+            var question_id = $(this).attr('data-question_id');
+            $('.question-block').addClass('rurera-hide');
+            $('.question-block[data-question_id="'+question_id+'"]').removeClass('rurera-hide');
+
+        });
+
 
     });
 

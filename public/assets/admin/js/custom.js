@@ -669,7 +669,5 @@ $(document).ready(function () {
         $(this).parent().remove();
     });
 
-    $(document).on('click', '.parent-li-remove', function (e) {
-       $(this).closest('li').remove();
-   });
+
 });
