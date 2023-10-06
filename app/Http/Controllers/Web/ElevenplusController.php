@@ -97,7 +97,7 @@ class ElevenplusController extends Controller
 
         if (!empty($elevenPlus)) {
             $data = [
-                'pageTitle'                  => '11 Plus',
+                'pageTitle'                  => 'Online 11 plus (11+) Enterance Exams Papers, Resources , assessments, practices | Rurera',
                 'data'                       => $elevenPlus,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,

@@ -25,7 +25,7 @@ class NationalCurriculumController extends Controller
             ->with('subCategories')
             ->get();
         $data = [
-            'pageTitle'          => 'National Curriculum',
+            'pageTitle'          => 'National Curriculum : Skill plans, Courses Topics, Test preparation, exam preparation',
             'nationalCurriculum' => $nationalCurriculum,
             'categories'         => $categories,
         ];

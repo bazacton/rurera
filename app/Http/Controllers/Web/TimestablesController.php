@@ -16,7 +16,7 @@ class TimestablesController extends Controller
     public function index()
     {
         $data = [
-            'pageTitle' => 'Times Tables',
+            'pageTitle' => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
         ];
         return view('web.default.timestables.index', $data);
     }
@@ -24,7 +24,7 @@ class TimestablesController extends Controller
     public function landing()
     {
         $data = [
-            'pageTitle'       => 'Times Tables',
+            'pageTitle'       => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
             'pageDescription' => 'Rurera provide interactive ways for students to learn and memorize timetables starting from 15GBP while having fun.',
             'pageRobot'       => 'noindex',
         ];

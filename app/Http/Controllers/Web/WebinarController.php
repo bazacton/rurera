@@ -314,7 +314,7 @@ class WebinarController extends Controller
         }
 
         $data = [
-            'pageTitle'                 => $course->title,
+            'pageTitle'                 => 'KS1, KS2 Courses: Key Stage 1 Resources, Key Stage 2 Resources , practices, assessments, Tests | Rurera',
             'pageDescription'           => $course->seo_description,
             'pageRobot'                 => $pageRobot,
             'course'                    => $course,

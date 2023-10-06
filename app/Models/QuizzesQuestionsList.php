@@ -15,7 +15,8 @@ class QuizzesQuestionsList extends Model
         'question_id',
         'status',
         'created_by',
-        'created_at'
+        'created_at',
+        'reference_question_id',
     ];
 
     public function QuestionData()
@@ -26,6 +27,11 @@ class QuizzesQuestionsList extends Model
     public function SingleQuestionData()
     {
         return $this->hasOne('App\Models\QuizzesQuestion', 'id', 'question_id');
+    }
+
+    public function SingleAssignmentQuestionData()
+    {
+        return $this->hasOne('App\Models\AssignmentsQuestions', 'id', 'question_id');
     }
 
     public function teacher_review_questions()

@@ -4128,10 +4128,27 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     }
 }
 
+.rurera-btn-grn {
+    border: 1px solid #8fc963;
+    background-color: #8fc963;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #f5ffec;
+    text-transform: uppercase;
+    text-align: center;
+    height: fit-content;
+    padding: 10px 0px;
+}
+
+.rurera-btn-grn:hover{
+    color:#fff;
+    text-decoration: none;
+}
+
 .rurera-hide{display:none;}
 
 .rurera-loader-holder { width: fit-content;}
-.rurera-button-loader {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);}
+.rurera-button-loader {position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; display: none; background-color: rgba(255,255,255,0.9);z-index: 9999999999;}
 .rurera-button-loader .spinner { width: 25px; height: 25px; position: absolute; top: 50%; left: 50%; margin-top: -12px; z-index: 1;}
 .rurera-button-loader .double-bounce1,
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }

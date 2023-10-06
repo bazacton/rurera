@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
+use App\Models\AssignmentsQuestions;
 use App\Models\QuizzesResult;
 use App\Models\QuizzesQuestionsList;
 use App\Models\Translation\QuizTranslation;
@@ -266,7 +267,7 @@ class AssignmentsController extends Controller
             'pass_mark'                   => 1,
             'time'                        => 100,
             'display_number_of_questions' => 0,
-            'status'                      => Quiz::ACTIVE,
+            'status'                      => 'draft',
             'certificate'                 => 1,
             'created_at'                  => time(),
             'quiz_settings'               => json_encode(array()),
@@ -291,9 +292,14 @@ class AssignmentsController extends Controller
 
         if (!empty($question_list_ids)) {
             foreach ($question_list_ids as $sort_order => $question_id) {
+                $QuizzesQuestion = QuizzesQuestion::findOrFail($question_id);
+                $questionObj = $QuizzesQuestion->replicate();
+                $questionObj->reference_question_id = $question_id;
+                $AassignmentQuestion = AssignmentsQuestions::firstOrCreate($questionObj);
+
                 QuizzesQuestionsList::create([
                     'quiz_id'     => $quiz->id,
-                    'question_id' => $question_id,
+                    'question_id' => $AassignmentQuestion,
                     'status'      => 'active',
                     'sort_order'  => $sort_order,
                     'created_by'  => $user->id,
@@ -336,6 +342,14 @@ class AssignmentsController extends Controller
             ])
             ->first();
 
+        if( $quiz->status == 'active'){
+            $toastData = [
+                'title' => 'Request not completed',
+                'msg' => 'You dont have permissions to perform this action.',
+                'status' => 'error'
+            ];
+            return redirect()->back()->with(['toast' => $toastData]);
+        }
 
 
         if (empty($quiz)) {
@@ -436,20 +450,45 @@ class AssignmentsController extends Controller
                         'sort_order' => $sort_order,
                     ]);
                 } else {
+
+                    $QuizzesQuestion = QuizzesQuestion::findOrFail($question_id);
+                    $questionObj = $QuizzesQuestion->replicate();
+                    $questionObj->reference_question_id = $question_id;
+                    $questionObj->created_at = time();
+                    $questionObj->quiz_id = $assignment_id;
+                    $questionObj = $questionObj->toArray();
+                    unset($questionObj['title']);
+                    unset($questionObj['correct']);
+                    unset($questionObj['translations']);
+                    $AassignmentQuestion = AssignmentsQuestions::firstOrCreate($questionObj);
                     QuizzesQuestionsList::create([
                         'quiz_id'     => $assignment_id,
                         'question_id' => $question_id,
                         'status'      => 'active',
                         'sort_order'  => $sort_order,
                         'created_by'  => $user->id,
-                        'created_at'  => time()
+                        'created_at'  => time(),
+                        'reference_question_id' => $AassignmentQuestion->id,
                     ]);
                 }
                 $sort_order++;
             }
         }
         QuizzesQuestionsList::where('quiz_id', $assignment_id)->whereNotIn('question_id', $quiz_question_ids)->delete();
+        AssignmentsQuestions::where('quiz_id', $assignment_id)->whereNotIn('reference_question_id', $quiz_question_ids)->delete();
         //}
+        pre('Done');
+    }
+    
+    public function publish_assignment(Request $request)
+    {
+        $user = auth()->user();
+        $assignment_id = $request->get('assignment_id', null);
+        $assignmentObj = Quiz::query()->findOrFail($assignment_id);
+        $assignmentObj->update([
+            'status'    => 'active',
+            'updated_at' => time(),
+        ]);
         pre('Done');
     }
 

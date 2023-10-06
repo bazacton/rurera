@@ -64,7 +64,7 @@ class PagesController extends Controller
                 $sats = $query->paginate(30);
                 $QuestionsAttemptController = new QuestionsAttemptController();
                 $data = [
-                    'pageTitle'                  => '11+',
+                    'pageTitle'                  => $page->title,
                     'pageDescription'            => $page->seo_description,
                     'sats'                       => $sats,
                     'QuestionsAttemptController' => $QuestionsAttemptController

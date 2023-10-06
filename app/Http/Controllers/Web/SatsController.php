@@ -16,7 +16,7 @@ class SatsController extends Controller
     public function sats_landing()
     {
         $data = [
-            'pageTitle'       => 'SATs',
+            'pageTitle'       => 'Online KS1, KS2 SATs Exams Papers, Resources , assessments, Tests | Rurera',
             'pageDescription' => 'Prepare for SATs exams today. Get professional guidance and resources to pass your SATs exam and have a chance to win rewards.',
             'pageRobot'       => 'noindex',
         ];
