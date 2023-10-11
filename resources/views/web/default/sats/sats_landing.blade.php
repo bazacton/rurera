@@ -597,7 +597,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">SATs Quizzes and Assessments</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">SATs Quizzes & SATs Assessments</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
                         Students can take SATs quizzes and SATs assessments to test their knowledge. The SATs tests evaluate your child’s
                         knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
