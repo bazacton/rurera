@@ -35,7 +35,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     }
 
     clearInterval(Questioninterval);
-    //rurera_loader($(this), 'div');
+    rurera_loader($(this), 'div');
 
 
     var quiz_type = $(".question-area-block").attr('data-type');
@@ -761,6 +761,85 @@ function init_question_functions() {
     });
 
 
+    const startRecordButton = $('#startRecord');
+    const stopRecordButton = $('#stopRecord');
+    const saveRecordButton = $('#saveRecord');
+    const audioPlayer = $('#audioPlayer')[0];
+    const timer = $('#timer');
+    const timeLeftElement = $('#timeLeft');
+
+    let mediaRecorder;
+    let timerInterval;
+    let audioChunks = [];
+    let timeLimit = 60; // Set the time limit in seconds
+
+    startRecordButton.on('click', async () => {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = event => {
+            if (event.data.size > 0) {
+                audioChunks.push(event.data);
+            }
+        };
+
+        mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            audioPlayer.src = audioUrl;
+        };
+
+        timerInterval = setInterval(function () {
+            timeLimit--;
+            console.log(timeLimit);
+            timeLeftElement.text(timeLimit);
+            if (timeLimit <= 0) {
+                clearInterval(timerInterval);
+                stopRecording();
+            }
+        }, 1000);
+
+        mediaRecorder.start();
+        startRecordButton.prop('disabled', true);
+        stopRecordButton.prop('disabled', false);
+        saveRecordButton.prop('disabled', true);
+    });
+
+    function stopRecording() {
+        mediaRecorder.stop();
+        console.log(timerInterval);
+        clearInterval(timerInterval);
+        startRecordButton.prop('disabled', false);
+        stopRecordButton.prop('disabled', true);
+        saveRecordButton.prop('disabled', false);
+        timeLeftElement.text('0');
+    }
+
+    stopRecordButton.on('click', stopRecording);
+
+    saveRecordButton.on('click', () => {
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+
+        // Send the audio blob to a PHP script for MP3 conversion and saving.
+        const formData = new FormData();
+        formData.append('audio', audioBlob);
+
+        $.ajax({
+            type: 'POST',
+            url: 'convert.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Handle the response from the server if needed.
+            }
+        });
+
+        audioChunks = [];
+        saveRecordButton.prop('disabled', true);
+    });
+
+
 
 
 }
@@ -1251,3 +1330,7 @@ function rurera_check_field_type(thisObj, alert_messages, has_empty) {
     }
     return has_empty;
 }
+
+$(document).ready(function () {
+
+});

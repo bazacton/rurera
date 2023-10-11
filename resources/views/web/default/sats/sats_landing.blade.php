@@ -34,23 +34,23 @@
                     <h1 class="font-50 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Exam Practice</h1>
                     <h2 class="mb-15 font-30">Maximize Your Performance: Excel on SATs Test Day</h2>
                     <p class="font-19">
-                        Don't leave your SATs performance to chance. Join us and unlock your full potential for success
-                        on the SATs!
+                        Don't leave your SATs Exam performance to chance. Join us and unlock your full potential for success
+                        on the SATs tests!
                     </p>
                     <ul class="mb-30 p-0">
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/mobile.svg" width="25" height="25" alt="#">Learning practice
+                            <img src="../assets/default/svgs/mobile.svg" width="25" height="25" alt="#">SATs Quizzes & Assessments
                         </li>
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/preparation.svg" width="25" height="25" alt="#">Test
+                            <img src="../assets/default/svgs/preparation.svg" width="25" height="25" alt="#">SATs Tests
                             preparation
                         </li>
                         <li class="mb-10 font-19">
-                            <img src="../assets/default/svgs/graphic-design.svg" width="25" height="25" alt="#">Score
+                            <img src="../assets/default/svgs/graphic-design.svg" width="25" height="25" alt="#">SATs Exam Score
                             guarantee
                         </li>
                         <li class="font-19">
-                            <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">100% results
+                            <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">SATs Resources - 100% results
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -272,11 +272,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white">SATs practice steps to Success with Rurera</h2>
+                        <h2 class="mt-0 mb-10 text-white">SATs Exam Practice steps to Success with Rurera</h2>
                         <p class="text-white">
-                            Work through a variety of practice questions to improve your skills
+                            Work through a variety of SATs practice and SATs quizzes questions to improve your skills
                             and become familiar with the <br/>
-                            types of questions you'll encounter on the SATs.
+                            types of questions you'll encounter on the SATs exam.
                         </p>
                     </div>
                 </div>
@@ -295,7 +295,7 @@
                             <div class="text-holder">
                                 <h3 class="post-title text-white">Learn &amp; Understand</h3>
                                 <p class="mt-15 text-white">
-                                    Build knowledge through quizzes, inspirations and faq’s with
+                                    Build knowledge through SATs quizzes, SATs tests and SATs assessments with
                                     immediate feedback.
                                 </p>
                             </div>
@@ -306,10 +306,10 @@
                     <div class="process-card mt-40 mb-30 text-center">
                         <div class="process-card-body">
                             <div class="text-holder">
-                                <h3 class="post-title text-white">Take Practice Tests :</h3>
+                                <h3 class="post-title text-white">Take SATs Practice Tests</h3>
                                 <p class="mt-15 text-white">
-                                    Improve exam skills and target weak areas for success and
-                                    improve your performance.
+                                    Improve SATs exam skills and target weak areas for success and
+                                    improve your SATs tests.
                                 </p>
                             </div>
                         </div>
@@ -321,8 +321,7 @@
                             <div class="text-holder">
                                 <h3 class="post-title text-white">Track progress</h3>
                                 <p class="mt-15 text-white">
-                                    Monitor your progress, identify areas of improvement, and adjust
-                                    your study plan.
+                                    Monitor SATs practice and SATs assessments progress and identify areas of improvement.
                                 </p>
                             </div>
                         </div>
@@ -338,10 +337,10 @@
                     <div class="section-title text-left mb-40">
                         <h2 class="mb-15">
                             So Many SATs Resources, <br/>
-                            So Many Ways to Practice..
+                            So Many Ways for SATs Exam Practices..
                         </h2>
                         <p>
-                            With consistent effort and effective study strategies, you can improve <br/> your performance on the SATs exam day.
+                            With consistent effort and effective SATs resources and SATs papers, you can improve <br/> your performance on the SATs exam day.
                         </p>
                     </div>
                 </div>
@@ -557,7 +556,7 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="section-title text-left mb-50">
-                    <h2 class="mt-0 mb-10">Challenging the SATs with Confidence</h2>
+                    <h2 class="mt-0 mb-10">Challenging the SATs Exam with Confidence</h2>
                     <p class="font-19">
                         Rurera offer the capability to track their onscreen and practiced time activity well remaining
                         on system and <br/>
@@ -567,13 +566,13 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">KS1, KS2 SATs Learning practice</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">KS1, KS2 SATs practice</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
-                        Rurera provide opportunity to practice online as per past curriculum exams and avoid wasting
-                        time creating your own tests, choose from one of the given test assignment from past papers.
+                        Rurera provide opportunity to practice KS1, KS2 SATs online as per past curriculum exams and avoid wasting
+                        time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Start Practicing</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Start SATs Practice</a>
                         <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
@@ -598,14 +597,14 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">SATs Quiz and Assessments</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">SATs Quizzes and Assessments</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
-                        Students can take quizzes to test their knowledge of each topic. The tests evaluate your child’s
+                        Students can take SATs quizzes and SATs assessments to test their knowledge. The SATs tests evaluate your child’s
                         knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
-                        technology.
+                        technology as a result of SATs exam practice.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a Quiz</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a SATs Quiz</a>
                         <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
                     </div>
                 </div>
@@ -618,7 +617,7 @@
                 <div class="">
                     <h2 class="font-36 font-weight-bold text-dark">Individual Performance Analysis</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
-                        Performance Analysis is essential for creating an effective learning environment. Rurera offers
+                        Performance Analysis is essential for SATs exam practice. Rurera offers
                         a user-friendly platform where teachers can analyze individual and group performance trends.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
@@ -649,8 +648,8 @@
                 <div>
                     <h2 class="font-36 font-weight-bold text-dark">Activity Tracking</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">Rurera offer the capability to track their
-                        onscreen and practiced time activity well remaining on system and can analyze the performance
-                        against each topic.</p>
+                        SATs exam practice time activity log while  remaining on system and can analyze the performance
+                        against each SATs tests.</p>
                     <div class="mt-35 d-flex align-items-center">
                         <a href="{{url('/')}}/membership" class="btn btn-primary">Track performance</a>
                         <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
@@ -665,8 +664,8 @@
                 <div class="">
                     <h2 class="font-36 font-weight-bold text-dark">SATs Papers</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
-                        Discover techniques to improve your learning process and explore the fundamental concepts of
-                        maths, science, english, and reading, laying a strong foundation for advanced problem-solving.
+                        Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of
+                        SATs exam practice for advanced problem-solving.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
                         <a href="{{url('/')}}/membership" class="btn btn-primary">Take a Quiz</a>
@@ -689,11 +688,10 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white">About SATs</h2>
+                        <h2 class="mt-0 mb-10 text-white">About SATs Exam</h2>
                         <p class="font-19 text-white">
-                            With engaging learning experiences, proven strategies, and ample
-                            practice, you'll be <br/>well-prepared to achieve your best scores
-                            on the SATs.
+                            With engaging learning experiences, proven SATs resources, and SATs practice, you'll be <br/>well-prepared to achieve your best scores
+                            on the SATs exam.
                         </p>
                     </div>
                 </div>
@@ -702,43 +700,43 @@
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/exam-multiple-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">100+ Sats Pratices</span>
+                                <h3 class="text-white">100+ SATs practices</h3>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/lessons-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Lesson Topics</span>
+                                <span class="text-white">SATs Resources</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/impact-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Impactful</span>
+                                <span class="text-white">SATs Assesments</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/sav-time-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Time saving</span>
+                                <span class="text-white">SATs Quizzes</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/study-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Study Resources</span>
+                                <span class="text-white">SATs Tests</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/flexibility-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Flexibility</span>
+                                <span class="text-white">SATs papers</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
                             <div class="sats-box border-white has-bg">
                                 <img src="../assets/default/svgs/logic-white.svg" width="50" height="50" alt="#"/>
-                                <span class="text-white">Logic</span>
+                                <span class="text-white">SATs exam</span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 col-md-6">
@@ -752,12 +750,12 @@
                 <div class="col-12 col-lg-6 col-md-6">
                     <div>
                         <h2 class="font-36 font-weight-bold text-white">
-                            Ignite Your Path to Success with 100+ SATs
+                            Ignite Your Path to Success with 100+ SATs practices
                         </h2>
                         <p class="font-19 font-weight-normal mb-0 mt-10 text-white">
-                            Work through a variety of practice questions to improve your skills
+                            Work through a variety of SATs exam practice questions to improve your skills
                             and become familiar with the types of questions you'll encounter on
-                            the SATs.
+                            the SATs exam.
                         </p>
                     </div>
                 </div>
@@ -780,14 +778,14 @@
                             <div class="card">
                                 <div class="card-header" id="headingonsix">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix"
-                                            aria-expanded="true" aria-controls="collapsesix">What are SATs in the UK?
+                                            aria-expanded="true" aria-controls="collapsesix"><h3>What are SATs exam in the UK?</h3>
                                     </button>
                                 </div>
                                 <div id="collapsesix" class="collapse show" aria-labelledby="headingsix"
                                      data-parent="#accordion">
                                     <div class="card-body">
-                                        SATs (Standard Assessment Tests) refer to a set of national assessments
-                                        conducted in primary schools. These tests are typically administered to students
+                                        SATs exam (Standard Assessment Tests) refer to a set of national SATs exam practices and SATs assessments
+                                        conducted in primary schools. These SATs tests are typically administered to students
                                         at the end of Key Stage 1 (KS1) and Key Stage 2 (KS2) of their education, which
                                         correspond roughly to ages 7-11.
                                     </div>
@@ -796,12 +794,12 @@
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        What are SATs for?
+                                        <h3>What are SATs exam for?</h3>
                                     </button>
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body">
-                                        SATs provide a standardized measure of students' academic abilities and track
+                                        SATs exam provide a standardized measure of students' academic abilities and track
                                         their progress over time. They help assess how well students are meeting the
                                         expected learning outcomes for their age group.
                                     </div>
@@ -809,11 +807,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingseven">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">What subjects are assessed in SATs?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What subjects are assessed in SATs exam?</h3></button>
                                 </div>
                                 <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                     <div class="card-body">
-                                        The core subjects assessed in SATs are English (including reading, writing,
+                                        The core subjects assessed in SATs exam are English (including reading, writing,
                                         spelling, and grammar), mathematics, and, in some cases, science for Key Stage
                                         2.
                                     </div>
@@ -821,19 +819,17 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading8">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">How are SATs administered?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are SATs resources and how they help for KS1 , KS2 SATs?</h3></button>
                                 </div>
                                 <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                     <div class="card-body">
-                                        SATs are conducted through written tests that students complete under formal
-                                        examination conditions. The tests are typically taken in school and are
-                                        externally marked.
+                                        SATs resources refer to the SATs exam practices, SATs quizzes designed to help students prepare for their KS1 SATs and KS2 SATs
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading9">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">Do SATs have pass or fail grades?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>Do SATs exam have pass or fail grades?</h3></button>
                                 </div>
                                 <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                     <div class="card-body">
@@ -845,7 +841,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading10">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">Are SATs compulsory?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10"><h3>Are SATs compulsory?</h3></button>
                                 </div>
                                 <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                     <div class="card-body">
@@ -857,26 +853,21 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading11">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">When do SATs take place?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11"><h3>Are SATs quizzes helpful for preparing for the exams?</h3></button>
                                 </div>
                                 <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                     <div class="card-body">
-                                        SATs are typically administered at the end of Key Stage 1 (Year 2) and Key Stage
-                                        2 (Year 6) in primary schools. The exact timing may vary from school to school,
-                                        but they are generally conducted in May.
+                                        Yes, SATs quizzes can be helpful for preparing for KS1 and KS2 SATs. They offer interactive SATs practice quizzes and help students become familiar with the format of the SATs exams. 
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading12">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">How can parents support their children during SATs?</button>
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12"><h3>Can parents help their children prepare for KS1 and KS2 SATs?</h3></button>
                                 </div>
                                 <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
                                     <div class="card-body">
-                                        Parents can support their children by providing a calm and supportive
-                                        environment, encouraging regular study routines, and helping with revision and
-                                        practice. It's important to maintain a balanced approach and emphasize that SATs
-                                        are just one aspect of their education.
+                                        Yes, parents can support their children in preparing for SATs by using SATs resources, helping with homework, and providing a supportive study environment.
                                     </div>
                                 </div>
                             </div>

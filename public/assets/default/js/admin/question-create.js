@@ -1006,6 +1006,24 @@ function _leform_properties_prepare(_object) {
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
                     break;
 
+                case 'file':
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'>" +
+                        "<div class=\"input-group\">\n" +
+                        "                        <div class=\"input-group-prepend\">\n" +
+                        "                            <button type=\"button\" class=\"input-group-text admin-file-manager\" data-input=\"leform-" + key + "\" data-preview=\"holder\">\n" +
+                        "                                <i class=\"fa fa-chevron-up\"></i>\n" +
+                        "                            </button>\n" +
+                        "                        </div>\n" +
+                        "                        <input type=\"text\" name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' class=\"form-control\"/>\n" +
+                        "                        <div class=\"input-group-append\">\n" +
+                        "                            <button type=\"button\" class=\"input-group-text admin-file-view\" data-input=\"leform-" + key + "\">\n" +
+                        "                                <i class=\"fa fa-eye\"></i>\n" +
+                        "                            </button>\n" +
+                        "                        </div>\n" +
+                        "                    </div>" +
+                        "</div></div>";
+                    break;
+
                 case 'number':
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='number' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
                     break;
@@ -5605,7 +5623,30 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                 case "question_label":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
                     break;
+                    
+                case "audio_file":
+                   html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><audio controls>\n" +
+                       "  <source src=\""+leform_form_elements[i]["content"]+"\" type=\"audio/ogg\">\n" +
+                       "  <source src=\""+leform_form_elements[i]["content"]+"\" type=\"audio/mpeg\">\n" +
+                       "Your browser does not support the audio element.\n" +
+                       "</audio></div>";
+                   break;
 
+                case "audio_recording":
+                   html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div id='button-container'>\n" +
+                       " <button id='startRecord' class='btn-icon'>\n" +
+                       " <i class='fas fa-play'></i>\n" +
+                       "  </button>\n" +
+                       " <button id='stopRecord' class='btn-icon' disabled>\n" +
+                       " <i class='fas fa-stop'></i>\n" +
+                       " </button>\n" +
+                       " <button id='saveRecord' class='btn-icon' disabled>\n" +
+                       " <i class='fas fa-save'></i>\n" +
+                       " </button>\n" +
+                       "<span id='timer' class='time-left'>Time remaining: <span id='timeLeft'>"+leform_form_elements[i]["content"]+"</span> seconds</span>\n" +
+                       " <audio id='audioPlayer' controls class='audio-control rurera-hide'></audio>\n" +
+                       "</div></div>";
+                   break;
 
                 case "seperator":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "</div>";
@@ -8479,16 +8520,16 @@ $(document).on('click', '.editor-add-field', function () {
 
 
         field_data = '<div class="form-group mt-15">\n' +
-            '                    <label class="input-label">Cover Image</label>\n' +
+            '                    <label class="input-label">Attachment</label>\n' +
             '                    <div class="input-group">\n' +
             '                        <div class="input-group-prepend">\n' +
-            '                            <button type="button" class="input-group-text admin-file-manager" data-input="cover_img" data-preview="holder">\n' +
+            '                            <button type="button" class="input-group-text admin-file-manager" data-input="field-' + random_id + '" data-preview="holder">\n' +
             '                                <i class="fa fa-chevron-up"></i>\n' +
             '                            </button>\n' +
             '                        </div>\n' +
-            '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="cover_img" id="cover_img" value="test" class="form-control"/>\n' +
+            '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="field-' + random_id + '" value="" class="form-control"/>\n' +
             '                        <div class="input-group-append">\n' +
-            '                            <button type="button" class="input-group-text admin-file-view" data-input="cover_img">\n' +
+            '                            <button type="button" class="input-group-text admin-file-view" data-input="field-' + random_id + '">\n' +
             '                                <i class="fa fa-eye"></i>\n' +
             '                            </button>\n' +
             '                        </div>\n' +

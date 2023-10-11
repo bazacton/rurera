@@ -7,23 +7,25 @@
 (function ($) {
     "use strict";
 
-    var datefilter = $('.datefilter');
-    datefilter.daterangepicker({
-        singleDatePicker: true,
-        timePicker: false,
-        autoUpdateInput: false,
-        locale: {
-            cancelLabel: 'Clear'
-        }
-    });
+    if( $('.datefilter').length > 0) {
+        var datefilter = $('.datefilter');
+        datefilter.daterangepicker({
+            singleDatePicker: true,
+            timePicker: false,
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
 
-    datefilter.on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('YYYY-MM-DD'));
-    });
+        datefilter.on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD'));
+        });
 
-    datefilter.on('cancel.daterangepicker', function (ev, picker) {
-        $(this).val('');
-    });
+        datefilter.on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    }
 
 
     $('body').on('click', '.admin-file-manager', function (e) {
@@ -387,23 +389,25 @@
         handleSearchableSelect2('search-blog-select2', '/admin/blog/search', 'title');
 
 
-        var datefilter = $('.datefilter');
-        datefilter.daterangepicker({
-            singleDatePicker: true,
-            timePicker: false,
-            autoUpdateInput: false,
-            locale: {
-                cancelLabel: 'Clear'
-            }
-        });
+        if( $('.datefilter').length > 0) {
+            var datefilter = $('.datefilter');
+            datefilter.daterangepicker({
+                singleDatePicker: true,
+                timePicker: false,
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
 
-        datefilter.on('apply.daterangepicker', function (ev, picker) {
-            $(this).val(picker.startDate.format('YYYY-MM-DD'));
-        });
+            datefilter.on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD'));
+            });
 
-        datefilter.on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val('');
-        });
+            datefilter.on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        }
 
         const sidebar_nicescroll = $(".main-sidebar").getNiceScroll();
         if (typeof sidebar_nicescroll !== "undefined" && sidebar_nicescroll.length) {

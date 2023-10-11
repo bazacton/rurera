@@ -19533,6 +19533,11 @@ Lms FAQS Style Start
     color: #2d3d4d;
     transition: none;
 }
+.lms-faqs .card .card-header .btn-link h3 {
+    font-weight: normal;
+    color: inherit;
+    font-size: inherit;
+}
 .lms-faqs .card .card-header .btn-link:before,
 .lms-faqs .card .card-header .btn-link:after {
     background: var(--primary);

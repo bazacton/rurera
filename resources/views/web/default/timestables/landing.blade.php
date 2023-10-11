@@ -34,7 +34,7 @@
                                     <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
-                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">times tables Treasure Hunt</strong>
+                                    <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Times tables Treasure Hunt</h2>
                                     <p class="text-white">Transform the process of memorizing times tables into an adventurous treasure hunt.</p>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                     <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
-                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">Division Story Problems</strong>
+                                    <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Division Tables Problems</h2>
                                     <p class="text-white">Bring division and multiplication magic to life by turning it into a storytelling experience.</p>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
-                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">Interactive Challenges</strong>
+                                    <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Multiplication tables challenges</h2>
                                     <p class="text-white">Offering interactive challenges specifically designed for earning bonus points.</p>
                                 </div>
                             </div>
@@ -185,39 +185,39 @@
                             <div id="accordion">
                                 <div class="card">
                                     <div class="card-header" id="headingonsix">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">Is there a free version of Rurera?</button>
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix"><h3>How Rurera help as Math learning platform?</h3></button>
                                     </div>
                                     <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion">
-                                        <div class="card-body">Yes, Free and paid both versions are available.</div>
+                                        <div class="card-body">Rurera offer multiplication and division times tables practices online that help students as well as maths teachers.</div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">How much does membership for student cost ?</button>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><h3>Why are times tables important for children?</h3></button>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">It starts from 100$ per month and extended as per choice.</div>
+                                        <div class="card-body">Times tables are fundamental for building strong math skills. They help children to improve math, and provide a foundation for more complex math problems.</div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="headingseven">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">Which pricing plan is right for me?</button>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What are division tables, and how are they related to multiplication tables?</h3></button>
                                     </div>
                                     <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
-                                        <div class="card-body">You can discuss with support and can have learning suggestions based on your skill set.</div>
+                                        <div class="card-body">Division tables are similar to multiplication tables but focus on division. They show the division facts for numbers up to 12, helping children understand the relationship between multiplication and division.</div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading8">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">Can i change my membership plan ?</button>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are some strategies for helping a child who is struggling with multiplication and division tables?</h3></button>
                                     </div>
                                     <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
-                                        <div class="card-body">You can make changes to your plan at any time by changing your plan type.</div>
+                                        <div class="card-body">Encouraging your child to practice multiplication and division tables in an enjoyable and supportive manner and rurera is offering numerous options for practicing for it.</div>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header" id="heading9">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">What payment methods do you accept?</button>
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>What payment methods do you accept?</h3></button>
                                     </div>
                                     <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                         <div class="card-body">You can use paypal, skrill and bank transfer method.</div>

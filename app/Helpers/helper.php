@@ -2393,6 +2393,17 @@ function toolbar_tools()
             'icon'  => 'fas fa-arrows-alt-h',
             'type'  => 'input'
         ),
+        'audio_file'     => array(
+            'title' => esc_html__('Audio', 'leform'),
+            'icon'  => 'fas fa-volume-up',
+            'type'  => 'other'
+        ),
+        'audio_recording'     => array(
+            'title' => esc_html__('Audio Recording', 'leform'),
+            'icon'  => 'fas fa-microphone',
+            'type'  => 'other'
+        ),
+
 
 
         /*'spreadsheet_area' => array(
@@ -6840,6 +6851,44 @@ function element_properties_meta($chapters)
                 'type'    => 'elements_data'
             ),
         ),
+        'audio_file' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value' => esc_html__('#', 'leform'),
+                'label' => esc_html__('Audio File Upload', 'leform'),
+                'type'  => 'file'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+        'audio_recording' => array(
+                'basic'         => array(
+                    'type'  => 'tab',
+                    'value' => 'basic',
+                    'label' => esc_html__('Basic', 'leform')
+                ),
+                'content'       => array(
+                    'value' => esc_html__('30', 'leform'),
+                    'label' => esc_html__('Time Limit (seconds)', 'leform'),
+                    'type'  => 'number'
+                ),
+                'elements_data' => array(
+                    'value'   => '',
+                    'label'   => '',
+                    'tooltip' => '',
+                    'type'    => 'elements_data'
+                ),
+            ),
+
+
 
         'seperator'   => array(
             'elements_data' => array(

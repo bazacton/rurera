@@ -116,6 +116,8 @@ $rand_no = rand(99,9999);
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_no}}"></script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script src="/assets/admin/js/custom.js?ver={{$rand_no}}"></script>
 
 <script>
     @if(session()->has('registration_package_limited'))
