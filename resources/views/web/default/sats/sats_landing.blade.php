@@ -566,7 +566,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">KS1, KS2 SATs practice</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">KS1 SATs, KS2 SATs practice</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
                         Rurera provide opportunity to practice KS1, KS2 SATs online as per past curriculum exams and avoid wasting
                         time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.

@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-md-6">
                     <div class="position-relative">
-                        <img src="../assets/default/img/time-tables/times-tables.png" height="350" width="329" alt="#" />
+                        <img src="../assets/default/img/time-tables/times-tables.png" height="350" width="390" alt="#" />
                         <img src="/assets/default/img/home/circle-4.png" class="find-instructor-section-circle" alt="circle" width="170" height="170" style="top: -50px; right: 25%;" />
                         <img src="/assets/default/img/home/dot.png" class="find-instructor-section-dots" alt="dots" width="70" height="110" style="left: 0; bottom: 0;" />
                     </div>
