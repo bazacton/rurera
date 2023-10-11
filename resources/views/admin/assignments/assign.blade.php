@@ -43,6 +43,16 @@
 
                             <div class="row">
                                 <div class="col-6 col-md-6 col-lg-6">
+
+                                    <div class="form-group">
+                                        <label class="input-label">No of Attempts</label>
+                                        <input type="number"
+                                               name="no_of_attempts"
+                                               value="1"
+                                               class="js-ajax-no_of_attempts form-control "
+                                               placeholder=""/>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="input-label">Assignment Deadline</label>
                                         <input type="text"

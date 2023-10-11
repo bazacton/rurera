@@ -568,21 +568,24 @@ Lms Form Fields Style
 .inline-fields.lms-checkbox-img {
     align-items: inherit;
 }
-.option-row-1 {
+.option-row-1,
+.option-row-1 .lms-sorting-fields {
     display: grid;
     grid-auto-rows: 1fr;
     gap: 14px;
     align-items: inherit;
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
 }
-.option-row-2 {
+.option-row-2,
+.option-row-2 .lms-sorting-fields {
     display: grid;
     grid-auto-rows: 1fr;
     gap: 14px;
     align-items: inherit;
     grid-template-columns: repeat(auto-fill, minmax(48.888%, 1fr));
 }
-.option-row-3 {
+.option-row-3,
+.option-row-3 .lms-sorting-fields {
     display: grid;
     grid-auto-rows: 1fr;
     gap: 14px;
@@ -2854,4 +2857,16 @@ Lms Table Style
 .frontend-field-error, .field-holder:has(.frontend-field-error), 
 .form-field:has(.frontend-field-error), .input-holder:has(.frontend-field-error) {
     border: 1px solid #dd4343;
+}
+.question-review-required {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    font-size: 12px;
+    background-color: #fff0f0;
+    line-height: normal;
+    color: crimson;
+    box-shadow: 0 0 0 1px rgba(240,38,38,0.2) inset;
+    padding: 6px 15px;
+    border-radius: 3px;
 }

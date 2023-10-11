@@ -7298,7 +7298,7 @@ function array_neighbor($arr, $key)
  * Assign topic to user
  */
 function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_assigned_list){
-    if (!auth()->user()->isParent() && !auth()->user()->isTeacher()) {
+    if (auth()->check() && !auth()->user()->isParent() && !auth()->user()->isTeacher()) {
         return;
     }
     $deadline_date = isset( $parent_assigned_list[$topic_id]['deadline_date'])? date("Y-m-d", $parent_assigned_list[$topic_id]['deadline_date']) : date('Y-m-d');$deadline_date = isset( $parent_assigned_list[$topic_id]['deadline_date'])? date("Y-m-d", $parent_assigned_list[$topic_id]['deadline_date']) : date('Y-m-d');

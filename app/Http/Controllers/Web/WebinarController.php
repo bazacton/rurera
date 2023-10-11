@@ -293,19 +293,21 @@ class WebinarController extends Controller
         $courses_list = Webinar::where('category_id', $course->category->id)->get();
 
 
-        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
-
         $parent_assigned_list = array();
-        if (!empty($parent_assignedArray)) {
-            foreach ($parent_assignedArray as $parent_assignedObj) {
-                $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
-                $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
-                $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
+        if( isset( $user->id ) ) {
+            $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
+
+            if (!empty($parent_assignedArray)) {
+                foreach ($parent_assignedArray as $parent_assignedObj) {
+                    $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
+                    $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
+                    $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
+                }
             }
         }
 
         $childs = array();
-        if (auth()->user()->isParent()) {
+        if (isset( $user->id ) && auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', $user->id)
@@ -968,9 +970,15 @@ class WebinarController extends Controller
         $started_already = $QuestionsAttemptController->started_already($id);
 
         //$started_already = false;
+        //pre($started_already);
         if ($started_already == true) {
-            $QuizController = new QuizController();
-            return $QuizController->start($request, $id);
+            $data = [
+                'pageTitle'  => 'Start',
+                'quiz'       => $quiz,
+            ];
+            return view('web.default.quizzes.auto_load', $data);
+            //$QuizController = new QuizController();
+            //return $QuizController->start($request, $id);
         } else {
             $resultData = $QuestionsAttemptController->get_result_data($id);
             $resultData = $QuestionsAttemptController->prepare_result_array($resultData);

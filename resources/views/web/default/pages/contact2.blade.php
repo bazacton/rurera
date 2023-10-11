@@ -28,7 +28,7 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/support.jpg" alt="support" title="support"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="https://rurera.chimpstudio.co.uk/support-page">24/7 Support</a></h2>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/support-page">24/7 Support</a></h2>
                                     <p itemprop="description">Experience Uninterrupted 24/7 Support in whole UK</p>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                             <div class="services-card-body">
                                 <figure><img src="../assets/default/img/knowledge.jpg" alt="knowledge" title="knowledge"  width="100%" height="auto" itemprop="image"  loading="eager"></figure>
                                 <div class="services-text mt-0">
-                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="https://rurera.chimpstudio.co.uk/knowledge-base">Knowledge Base</a></h2>
+                                    <h2 itemprop="title" class="font-20 mb-15 text-dark-charcoal"><a href="{{url('/')}}/support-page">Knowledge Base</a></h2>
                                     <p itemprop="description">your key resource for resolving doubts and getting instant guidance.</p>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img
+                                                    <a itemprop="url" href="{{url('/')}}"><img
                                                             src="/store/1/default_images/testimonials/teacher-testimonial.jpg"
                                                             alt="profile" title="profile" width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
@@ -240,7 +240,7 @@
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
                                                     <h3 itemprop="title" class="testimonial-title">
-                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Rurera's Extraordinary Team: A Teacher's Story</a>
+                                                        <a itemprop="url" href="{{url('/')}}">Rurera's Extraordinary Team: A Teacher's Story</a>
                                                     </h3>
                                                     <strong itemprop="Exceeding">A Game-Changer to diagnose and monitor performance</strong>
                                                 </div>
@@ -254,14 +254,14 @@
                                         <div class="testimonial-body">
                                             <div class="img-holder">
                                                 <figure>
-                                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk"><img src="/store/1/default_images/testimonials/parent-testimonial.jpg"
+                                                    <a itemprop="url" href="{{url('/')}}"><img src="/store/1/default_images/testimonials/parent-testimonial.jpg"
                                                             alt="testimonials" title="testimonials"  width="100%" height="auto" itemprop="image"  loading="eager"></a>
                                                 </figure>
                                             </div>
                                             <div class="text-holder">
                                                 <div class="testimonial-top">
                                                     <h3 itemprop="title" class="testimonial-title">
-                                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk">Collaborating with an Exceptional Team of Rurera as a Parent</a>
+                                                        <a itemprop="url" href="{{url('/')}}">Collaborating with an Exceptional Team of Rurera as a Parent</a>
                                                     </h3>
                                                     <strong itemprop="Forever">A Game-Changer for Busy Parents to engage with Child studies.</strong>
                                                 </div>
@@ -398,7 +398,7 @@
                                 </div>
                                 <div class="col-12 col-lg-4 col-md-4">
                                     <div class="lms-btn-group">
-                                        <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
+                                        <a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
                                     </div>
                                 </div>
                             </div>

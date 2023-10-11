@@ -54,8 +54,8 @@
                         </li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/register" class="btn-primary rounded-pill">KS1-year2 SATs</a>
-                        <a href="https://rurera.chimpstudio.co.uk/register" class="btn-primary rounded-pill ml-15">KS2-year6 SATs</a>
+                        <a href="{{url('/')}}/register" class="btn-primary rounded-pill">KS1-year2 SATs</a>
+                        <a href="{{url('/')}}/register" class="btn-primary rounded-pill ml-15">KS2-year6 SATs</a>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-16.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -76,7 +76,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-16.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -86,7 +86,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-17.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -96,7 +96,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-17.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -106,7 +106,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-18.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -116,7 +116,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-19.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -126,7 +126,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-18.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -136,7 +136,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-19.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -146,7 +146,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-22.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -156,7 +156,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-22.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -166,7 +166,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-22.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -176,7 +176,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-16.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -186,7 +186,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-18.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -196,7 +196,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-18.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -206,7 +206,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-22.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -216,7 +216,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-19.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -226,7 +226,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-17.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -236,7 +236,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/key-19.png" width="140" height="59" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -246,7 +246,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-18.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -256,7 +256,7 @@
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
                             <figure>
-                                <a href="https://rurera.chimpstudio.co.uk/register">
+                                <a href="{{url('/')}}/register">
                                     <img src="/store/1/default_images/sats-header/ks1-22.png" width="140" height="45" alt="#" class="rounded">
                                 </a>
                             </figure>
@@ -546,7 +546,7 @@
                                 comprehensive<br> learning experience for your students.</p>
                         </div>
                         <div class="lms-btn-group justify-content-center">
-                            <a href="https://rurera.chimpstudio.co.uk/national-curriculum" class="lms-btn rounded-pill text-white border-white">Find more</a>
+                            <a href="{{url('/')}}/national-curriculum" class="lms-btn rounded-pill text-white border-white">Find more</a>
                         </div>
                     </div>
                 </div>
@@ -567,14 +567,14 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">Learning Practice</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">KS1, KS2 SATs Learning practice</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
                         Rurera provide opportunity to practice online as per past curriculum exams and avoid wasting
                         time creating your own tests, choose from one of the given test assignment from past papers.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-primary">Start Practicing</a>
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Start Practicing</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -598,15 +598,15 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">Quick Assessment / Quiz</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">SATs Quiz and Assessments</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
                         Students can take quizzes to test their knowledge of each topic. The tests evaluate your child’s
                         knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
                         technology.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-primary">Take a Quiz</a>
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a Quiz</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
                     </div>
                 </div>
             </div>
@@ -622,8 +622,8 @@
                         a user-friendly platform where teachers can analyze individual and group performance trends.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-primary">Track performance</a>
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Track performance</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -652,8 +652,8 @@
                         onscreen and practiced time activity well remaining on system and can analyze the performance
                         against each topic.</p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-primary">Track performance</a>
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Track performance</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -663,14 +663,14 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">Lesson Topics</h2>
+                    <h2 class="font-36 font-weight-bold text-dark">SATs Papers</h2>
                     <p class="font-16 font-weight-normal text-gray mt-10">
                         Discover techniques to improve your learning process and explore the fundamental concepts of
                         maths, science, english, and reading, laying a strong foundation for advanced problem-solving.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-primary">Take a Quiz</a>
-                        <a href="https://rurera.chimpstudio.co.uk/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a Quiz</a>
+                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
                     </div>
                     <div class="flex-grow-1 ml-15"></div>
                 </div>
@@ -892,8 +892,7 @@
                     <div class="newsletter-inner">
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your SATs Prep
-                                    today</h2>
+                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your SATs Exam Prep today</h2>
                                 <p itemprop="description" class="mb-0 text-white">
                                     Let us help you achieve the score you deserve and unlock <br/>
                                     doors to your future academic success.
@@ -902,7 +901,7 @@
                             <div class="col-12 col-lg-4 col-md-4">
                                 <div class="form-field position-relative text-right">
                                     <button class="rounded rounded-pill bg-white">
-                                        <a href="https://rurera.chimpstudio.co.uk/membership" style="color:var(--gray-dark);">View our plans</a>
+                                        <a href="{{url('/')}}/membership" style="color:var(--gray-dark);">View our plans</a>
                                     </button>
                                 </div>
                             </div>

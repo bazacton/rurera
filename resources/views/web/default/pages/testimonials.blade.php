@@ -96,7 +96,7 @@
                 Find all you need to set learners up for success Journey!
               </p>
               <div class="lms-btn-group mt-30">
-                <a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill"
+                <a href="{{url('/')}}/register" class="lms-btn rounded-pill"
                   >Get Started<span class="svg-icon"
                     ><svg
                       width="10"
@@ -231,7 +231,7 @@
                         <p itemprop="description" class="font-16">Find the resources you need to enhance and learn to accomplish success.</p>
                     </div>
                     <div class="lms-btn-group justify-content-center">
-                      <a href="https://rurera.chimpstudio.co.uk/classes?sort=newest" class="lms-btn rounded-pill">Explore More</a>
+                      <a href="{{url('/')}}/classes?sort=newest" class="lms-btn rounded-pill">Explore More</a>
                     </div>
                 </div>
             </div>

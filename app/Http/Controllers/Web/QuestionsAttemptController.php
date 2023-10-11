@@ -8,6 +8,7 @@ use App\Models\QuizzesResult;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use App\Models\QuizzResultQuestions;
+use App\Models\AssignmentsQuestions;
 use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
 use Illuminate\Http\Request;
@@ -124,7 +125,12 @@ class QuestionsAttemptController extends Controller
                             $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id', $quizAttempt->parent_type_id)->where('quiz_result_type', $quizAttempt->attempt_type)->where('user_id', $user->id)->where('question_id', $question_id)->where('quiz_result_id', $quizAttempt->quiz_result_id)->where('status', '!=', 'waiting')->count();
                             $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult, $QuizzResultQuestionsCount);
 
-                            $questionObj = QuizzesQuestion::find($question_id);
+                            if( $quizAttempt->attempt_type == 'assignment'){
+                                $questionObj = AssignmentsQuestions::find($question_id);
+                            }else{
+                                $questionObj = QuizzesQuestion::find($question_id);
+                            }
+
                             if ($questionAttemptAllowed == true) {
                                 $correct_answers = $this->get_question_correct_answers($questionObj);
                                 $prevNewQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', 'waiting')->first();
@@ -253,6 +259,13 @@ class QuestionsAttemptController extends Controller
                     $is_attempt_allowed = true;
                 }
                 break;
+
+            case "assignment":
+
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
         }
 
         return $is_attempt_allowed;
@@ -321,10 +334,15 @@ class QuestionsAttemptController extends Controller
         $user_question_layout = $request->get('user_question_layout');
 
 
-        $questionObj = QuizzesQuestion::find($question_id);
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $QuizzesResult = QuizzesResult::find($QuizzResultQuestions->quiz_result_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
+
+        if( $quizAttempt->attempt_type == 'assignment') {
+            $questionObj = AssignmentsQuestions::find($question_id);
+        }else {
+            $questionObj = QuizzesQuestion::find($question_id);
+        }
 
         $review_required = $questionObj->review_required;
         $review_required = ($review_required == 1) ? true : false;
@@ -638,14 +656,14 @@ class QuestionsAttemptController extends Controller
         if (!empty($incorrect_questions)) {
             $question_layout .= '<h2>Wrong Answer</h2>';
             foreach ($incorrect_questions as $question_id => $questionData) {
-                $question_layout .= $this->get_question_complete_layout($question_id, $questionData);
+                $question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
             }
         }
 
         if (!empty($correct_questions)) {
             $question_layout .= '<br><br><h2>Correct Answer</h2>';
             foreach ($correct_questions as $question_id => $questionData) {
-                $question_layout .= $this->get_question_complete_layout($question_id, $questionData);
+                $question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
             }
         }
 
@@ -654,10 +672,14 @@ class QuestionsAttemptController extends Controller
         exit;
     }
 
-    public function get_question_complete_layout($question_id, $questionData)
+    public function get_question_complete_layout($question_id, $questionData, $quizAttempt = array())
     {
         $questionData = isset($questionData[0]) ? $questionData[0] : $questionData;
-        $questionObj = QuizzesQuestion::find($question_id);
+        if( isset( $quizAttempt->attempt_type ) && $quizAttempt->attempt_type == 'assignment' ){
+            $questionObj = AssignmentsQuestions::find($question_id);
+        }else {
+            $questionObj = QuizzesQuestion::find($question_id);
+        }
         $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
         $question_layout = '';
         $question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($questionObj->question_layout)))));

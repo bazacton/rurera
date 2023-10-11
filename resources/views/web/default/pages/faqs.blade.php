@@ -677,7 +677,7 @@
                         Our highly trained support geeks<br />
                         are always ready to help you.
                     </p>
-                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/contact-us" class="lms-btn btn-primary rounded-pill text-white border-0 btn font-16">Ask a question ?</a>
+                    <a itemprop="url" href="{{url('/')}}/contact-us" class="lms-btn btn-primary rounded-pill text-white border-0 btn font-16">Ask a question ?</a>
                     </b>
                 </b>
                 </div>

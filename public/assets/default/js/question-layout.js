@@ -35,7 +35,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     }
 
     clearInterval(Questioninterval);
-    rurera_loader($(this), 'div');
+    //rurera_loader($(this), 'div');
 
 
     var quiz_type = $(".question-area-block").attr('data-type');
@@ -135,6 +135,32 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             console.log(return_data);
             if( return_data.is_complete == true) {
                 $(".question-area-block").html('Thank you for attempting!');
+
+
+                thisObj.closest('.questions-data-block').find('.right-content').addClass('hide');
+                $(".quiz-complete").show(2000);
+
+                quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
+                //quiz_user_data = JSON.stringify(quiz_user_data);
+                jQuery.ajax({
+                    type: "POST",
+                    url: '/question_attempt/test_complete',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"attempt_id": qattempt_id, "quiz_user_data": quiz_user_data},
+                    success: function (return_data) {
+                        console.log(return_data);
+                        $(".quiz-complete").css({display: "block"}).show(10).animate({opacity: 1});
+                        $(".quiz-complete").find(".question-layout").html(return_data);
+                        $(".quiz-complete").children().unbind('click');
+                    }
+                });
+
+
+
+
+
 
             } else {
             if (return_data.incorrect_flag == true && return_data.show_fail_message == true) {
@@ -404,24 +430,15 @@ $(document).on('click', '.lms-quest-btn', function (e) {
 
 
 function sort_init() {
-
-
     makeDropText($("p.given span.w"));
-
-    jQuery('.question-layout').find(".lms-sorting-fields").each(function () {
-        var this_id = $(this).attr('id');
-        new Sortable(this_id, {
-            animation: 150
-        });
-    });
 
 }
 
 
 function init_question_functions() {
 
-    console.log('init_question_functions');
 
+    sort_init();
 
     $(document).on('click', '.match-question .stems li', function (e) {
         stem = $(this);
@@ -633,6 +650,12 @@ function init_question_functions() {
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
 
+        if($(".lms-sorting-fields").length > 0) {
+            $('.lms-sorting-fields').sortable({
+                animation: 150
+            });
+        }
+
         currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
@@ -736,6 +759,8 @@ function init_question_functions() {
             }
         });
     });
+
+
 
 
 }

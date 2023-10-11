@@ -1056,6 +1056,8 @@ function _leform_properties_prepare(_object) {
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='textarea' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Attachment' class='editor-add-field lms-tools-item' data-field_type='file' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     </ul>\n\
                     </div>\n\
                     <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
@@ -2268,13 +2270,15 @@ function leform_properties_save() {
     if (properties.hasOwnProperty("options")) {
         properties["options"] = new Array();
         jQuery(".leform-properties-options-container .leform-properties-options-item").each(function () {
+            var option_value = jQuery(this).find(".leform-properties-options-value").val();
+            option_value = (option_value != '')? option_value : jQuery(this).find(".leform-properties-options-label").val();
             var selected = "off";
             if (jQuery(this).hasClass("leform-properties-options-item-default"))
                 selected = "on";
             (properties["options"]).push({
                 "default": selected,
                 "label": jQuery(this).find(".leform-properties-options-label").val(),
-                "value": jQuery(this).find(".leform-properties-options-label").val(),
+                "value": option_value,
                 "image": jQuery(this).find(".leform-properties-options-image").val()
             });
         });
@@ -4564,6 +4568,7 @@ function leform_bulk_category_add(_object) {
     if (!category)
         return false;
     var value = jQuery(".leform-bulk-editor textarea").val();
+
     if (category == "existing") {
         if (leform_bulk_options_object) {
             jQuery(leform_bulk_options_object).find(".leform-properties-options-item").each(function () {
@@ -5215,7 +5220,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 				</span>\n\
 					" + option + "</div>";
                     }
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box lms-sorting-fields " + template_style + " " + image_class + "' id='lmssort" + sort_id + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "matrix_quiz":
@@ -8470,12 +8475,38 @@ $(document).on('click', '.editor-add-field', function () {
         field_data = '<span class="input-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><div class="field-group"><span class="divide-numbers"><span contentEditable="true">X</span><em class="divider"></em><span contentEditable="true">X</span></span></div></span>&nbsp;';
     }
 
+    if (field_type == 'file') {
+
+
+        field_data = '<div class="form-group mt-15">\n' +
+            '                    <label class="input-label">Cover Image</label>\n' +
+            '                    <div class="input-group">\n' +
+            '                        <div class="input-group-prepend">\n' +
+            '                            <button type="button" class="input-group-text admin-file-manager" data-input="cover_img" data-preview="holder">\n' +
+            '                                <i class="fa fa-chevron-up"></i>\n' +
+            '                            </button>\n' +
+            '                        </div>\n' +
+            '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="cover_img" id="cover_img" value="test" class="form-control"/>\n' +
+            '                        <div class="input-group-append">\n' +
+            '                            <button type="button" class="input-group-text admin-file-view" data-input="cover_img">\n' +
+            '                                <i class="fa fa-eye"></i>\n' +
+            '                            </button>\n' +
+            '                        </div>\n' +
+            '                    </div>\n' +
+            '                </div>';
+        //field_data = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><input type="file"  data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"> </span>';
+    }
+
     if (field_type == 'sq_root') {
         field_data = '<span class="block-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contentEditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span>&nbsp;';
     }
 
     if (field_type == 'cube_root') {
         field_data = '<span class="block-holder" data-id="' + random_id + '" data-field_type="select" id="field-' + random_id + '"><span class="lms-root-block"><sup class="lms-nthroot lms-non-leaf"><span contentEditable="true">X</span></sup><span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contentEditable="true">X</span></span></span></span></span>&nbsp;';
+    }
+
+    if (field_type == 'textarea') {
+        field_data = '<span class="input-holder"><span class="input-label" contenteditable="false"></span><textarea data-field_type="textarea" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"></textarea></span>';
     }
 
     if (field_type == 'image') {
@@ -8884,6 +8915,7 @@ function render_matrix_columns_options() {
         var options_html = '';
         jQuery(".matrix-columns-options .leform-properties-options-item input").each(function () {
             var option_label = $(this).val();
+            console.log(render_matrix_columns_options);
             var is_selected = (selected_value == option_label) ? 'selected' : '';
             options_html += '<option value="' + option_label + '" ' + is_selected + '>' + option_label + '</option>';
         });

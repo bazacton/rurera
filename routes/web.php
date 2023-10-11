@@ -450,6 +450,13 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         //Route::get('/{sat_id}/start' , 'SatsController@start');
         Route::get('/{quiz_slug}' , 'SatsController@start');
     });
+    Route::group(['prefix' => 'sats-preparation'] , function () {
+        Route::get('/' , 'SatsController@sats_landing');
+    });
+
+    Route::group(['prefix' => 'assignment'] , function () {
+        Route::get('/{quiz_slug}' , 'AssignmentController@start');
+    });
 
 
     Route::group(['prefix' => '11plus'] , function () {
@@ -487,11 +494,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'timestables'] , function () {
-        Route::get('/' , 'TimestablesController@index');
+        Route::get('/' , 'TimestablesController@landing');
         Route::get('/landing' , 'TimestablesController@landing');
         Route::post('/generate' , 'TimestablesController@genearte');
         Route::get('/summary' , 'TimestablesController@summary');
+    });
 
+    Route::group(['prefix' => 'timestables-practice'] , function () {
+        Route::get('/' , 'TimestablesController@index');
     });
 
     Route::get('/sitemap' , function () {

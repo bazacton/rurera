@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\QuestionsAttemptController;
+use App\Models\AssignmentsQuestions;
 use App\Models\Quiz;
 use App\Models\Reward;
 use App\Models\RewardAccounting;
@@ -12,6 +13,7 @@ use App\Models\Translation\QuizTranslation;
 use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
 use App\Models\QuizzResultQuestions;
+use App\Models\AssignedAssignments;
 use App\User;
 use App\Models\Webinar;
 use App\Models\QuizzesResult;
@@ -381,12 +383,31 @@ class QuizController extends Controller
             },
         ])->first();
 
+        if($quiz->quiz_type == 'assignment'){
+
+            $AssignedAssignments = AssignedAssignments::where('assignment_id', $quiz->id)->whereJsonContains('user_ids',["$user->id"])->where('status', 'active')->first();
+            $total_attempted = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
+            if( $total_attempted >= $AssignedAssignments->no_of_attempts){
+                $toastData = [
+                    'title' => '',
+                    'msg' => 'You are not authorized to attempt this assignment',
+                    'status' => 'error'
+                ];
+                return back()->with(['toast' => $toastData]);
+            }
+
+        }
+
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
+
+
+
 
         $questions_list = array();
         if (!empty($quiz->quizQuestionsList)) {
             foreach ($quiz->quizQuestionsList as $questionlistData) {
-                $questions_list[] = $questionlistData->question_id;
+                $question_id = ($quiz->quiz_type == 'assignment')? $questionlistData->reference_question_id : $questionlistData->question_id;
+                $questions_list[] = $question_id;
             }
         }
 
@@ -570,7 +591,11 @@ class QuizController extends Controller
                     $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
 
-                $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
+                if( $QuizzesResult->quiz_result_type == 'assignment'){
+                    $questionObj = AssignmentsQuestions::find($QuizzResultQuestionObj->question_id);
+                }else{
+                    $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
+                }
 
                 $question_response_layout = view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,

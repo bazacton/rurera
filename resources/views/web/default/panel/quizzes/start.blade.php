@@ -10,6 +10,7 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
 
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
@@ -219,14 +220,13 @@ $rand_id = rand(99,9999);
 @endsection
 @push('scripts_bottom')
 
-
 <script src="/assets/default/vendors/video/video.min.js"></script>
 <script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
 <script src="/assets/default/js/parts/quiz-start.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
-
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 
 <script>
@@ -236,6 +236,10 @@ $rand_id = rand(99,9999);
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
 
+
+    $(document).ready(function () {
+
+    });
 
 </script>
 @endpush

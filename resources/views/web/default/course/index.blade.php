@@ -16,7 +16,7 @@
                 <h1 class="font-50 font-weight-bold mb-15">{{ $course->category->title }}</h1>
                 {!!$course->description!!}
                 <div class="d-flex align-items-center mt-30">
-                    <a href="https://rurera.chimpstudio.co.uk/membership-2" class="btn btn-primary rounded-pill">Subscribe Now</a>
+                    <a href="{{url('/')}}/membership" class="btn btn-primary rounded-pill">Subscribe Now</a>
                 </div>
             </div>
             <div class="col-12 col-md-4 col-lg-4 sub-header-img">

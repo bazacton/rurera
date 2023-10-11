@@ -59,4 +59,5 @@ $content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>

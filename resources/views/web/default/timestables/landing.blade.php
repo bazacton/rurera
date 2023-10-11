@@ -22,27 +22,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-11 mx-auto">
-                    <h1 class="font-50 font-weight-bold text-white mb-25">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">Timestables</span></h1>
+                    <h1 class="font-50 font-weight-bold text-white mb-25">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">times tables</span></h1>
                     <p class="text-white mb-20">
-                        A brilliant way to learn TimesTables multiplication and division. With these smart practices, recalling TimesTables <br />
+                        A brilliant way to learn times tables multiplication and division. With these smart practices, recalling times tables <br />
                         will be an enjoyable journey filled with excitement and rewards.
                     </p>
                     <div class="row">
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #f6b801;"> 
-                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                <span class="icon-holder" style="background-color: #f6b801;">
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
-                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">Times Tables Treasure Hunt</strong>
+                                    <strong class="text-white font-18 font-weight-bold mb-10 d-block">times tables Treasure Hunt</strong>
                                     <p class="text-white">Transform the process of memorizing times tables into an adventurous treasure hunt.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #7679ee;"> 
-                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                <span class="icon-holder" style="background-color: #7679ee;">
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
                                     <strong class="text-white font-18 font-weight-bold mb-10 d-block">Division Story Problems</strong>
@@ -52,8 +52,8 @@
                         </div>
                         <div class="col-12 col-lg-4 col-md-4">
                             <div class="icon-box">
-                                <span class="icon-holder" style="background-color: #f35b05;"> 
-                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" /> 
+                                <span class="icon-holder" style="background-color: #f35b05;">
+                                    <img src="../assets/default/svgs/student-user-white.svg" alt="#" height="30" width="30" />
                                 </span>
                                 <div class="text-holder">
                                     <strong class="text-white font-18 font-weight-bold mb-10 d-block">Interactive Challenges</strong>
@@ -79,10 +79,10 @@
                 <div class="col-12 col-lg-6 col-md-6 text-center">
                     <h2 class="font-weight-bold d-block font-36 mb-10">Outstanding Maths learning platform</h2>
                     <p class="font-16 font-weight-normal text-gray mb-30">
-                        Rurera provide awesome and interactive ways for students to learn and memorize timetables while having fun. Immediate feedback helps students identify and correct any mistakes they make while practicing their times
+                        Rurera provide awesome and interactive ways for students to learn and memorize times tables while having fun. Immediate feedback helps students identify and correct any mistakes they make while practicing their times
                         tables.
                     </p>
-                    <strong class="font-16 font-weight-normal text-gray mb-20 d-block">Memorize Times Tables, Multiply with Ease!</strong>
+                    <strong class="font-16 font-weight-normal text-gray mb-20 d-block">Memorize times tables, Multiply with Ease!</strong>
                     <p class="font-16 font-weight-normal text-gray">
                         Personalized approach allows students to focus on specific times tables they find challenging and spend more time practicing those particular facts until they are confidently memorized.
                     </p>
@@ -97,13 +97,13 @@
                     <div class="lms-text-holder d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <h3 class="mb-10 font-30 d-flex text-white">
-                                <span class="icon-svg mr-15 mt-5"> 
-                                    <img src="../assets/default/svgs/bulb-white.svg" alt="#" height="35" width="35" /> 
+                                <span class="icon-svg mr-15 mt-5">
+                                    <img src="../assets/default/svgs/bulb-white.svg" alt="#" height="35" width="35" />
                                 </span> Boost Your Child's Multiplication and Division Skills with a Splash of Fun!
                             </h3>
                         </div>
                         <div class="lms-btn-group justify-content-center">
-                            <a href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Find more</a>
+                            <a href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white">Find more</a>
                         </div>
                     </div>
                 </div>
@@ -114,12 +114,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-title text-center mb-50"><h2 class="mt-0 mb-10">How TimesTables work</h2></div>
+                    <div class="section-title text-center mb-50"><h2 class="mt-0 mb-10">How times tables work</h2></div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
                         <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="#" height="50" width="50" /> <span class="font-18">Register / login</span>
-                        <p class="pt-10">Register today via the website and access to learn timestables.</p>
+                        <p class="pt-10">Register today via the website and access to learn times tables.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
@@ -143,6 +143,35 @@
             </div>
         </div>
     </section>
+    <section class="choose-sats pt-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-6 col-md-6">
+                        <div class="sats-box d-inline-flex border-solid border-transparent " style="background: #f6b801;color: #fff;">
+                            <h2 class="mt-0 mb-10">Essential tool for Maths teachers</h2>
+                            <p class="pt-10" style="text-align: left;">Multiplication practices and challenges mean students will be excited to re-call their times tables helping teachers in a various ways :</p><br>
+
+                            <ul style="text-align: left;">
+                                <li>- Progress can be monitored on heatmap while student is practicing their times tables.</li>
+                                <li>- Track statistics to identify gaps in their knowledge.</li>
+                                <li>- It helps to provide targeted support and resources.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 col-md-6">
+                        <div class="sats-box d-inline-flex border-solid border-transparent" style="background: #f35b05;color: #fff;">
+                            <h2 class="mt-0 mb-10">Engaging, trusted and easy to use</h2>
+                            <p class="pt-10" style="text-align: left;">It's a good idea to ensure if multiplication and division practices align with your learning goals and values.</p><br>
+                                <ul style="text-align: left;">
+                                <li>- Questions and quizzes are easily adapted to each child’s unique learning needs.</li>
+                                <li>- Give your child daily practice and get the results.</li>
+                                <li>- More practicing give more chances to win rewards and toys.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     <section class="mb-60 pt-80">
         <div class="container">
             <div class="row justify-content-center">
@@ -208,10 +237,10 @@
                     <div class="lms-text-holder d-flex flex-column justify-content-center text-center">
                         <div class="row align-items-center">
                             <div class="col-12 col-lg-12 col-md-12">
-                                <h2 itemprop="title" class="mb-20 text-white font-40">Get Started</h2>
-                                <p itemprop="description" class="mb-0 text-white" style="font-size: 26px;">Want to practice your TimesTables now ?</p>
+                                <h2 itemprop="title" class="mb-20 text-white font-40">Looking to discover Magic of Multiplication tables?</h2>
+                                <p itemprop="description" class="mb-0 text-white" style="font-size: 26px;">Practice your times tables now.</p>
                                 <div class="lms-btn-group mt-30 justify-content-center">
-                                    <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a>
+                                    <a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a>
                                 </div>
                             </div>
                         </div>

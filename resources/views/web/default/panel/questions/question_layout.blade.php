@@ -150,6 +150,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 
 </div>
 
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script>
     var Questioninterval = setInterval(function () {
         var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');

@@ -62,6 +62,7 @@ $rand_no = rand(99,9999);
 <script src="/assets/default/vendors/moment.min.js"></script>
 <script src="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="/assets/default/vendors/toast/jquery.toast.min.js"></script>
+
 <script type="text/javascript" src="/assets/default/vendors/simplebar/simplebar.min.js"></script>
 
 
@@ -81,6 +82,10 @@ $rand_no = rand(99,9999);
     var deleteAlertSuccessHint = '{{ trans('public.deleteAlertSuccessHint') }}';
     var forbiddenRequestToastTitleLang = '{{ trans('public.forbidden_request_toast_lang') }}';
     var forbiddenRequestToastMsgLang = '{{ trans('public.forbidden_request_toast_msg_lang') }}';
+
+
+
+
 </script>
 
 @if(session()->has('toast'))
@@ -109,7 +114,7 @@ $rand_no = rand(99,9999);
 <script src="/assets/default/vendors/data-table/dataTables.min.js"></script>
 <script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
-
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_no}}"></script>
 
 <script>

@@ -175,6 +175,8 @@ class AssignedAssignmentsController extends Controller
         $assignment_deadline = $request->get('assignment_deadline', date('Y-m-d'));
         $assignment_deadline = strtotime($assignment_deadline);
         $assignment_id = $request->get('assignment_id', null);
+        $no_of_attempts = $request->get('no_of_attempts', 1);
+
         $user_ids = $request->get('user_ids', array());
 
 
@@ -194,6 +196,7 @@ class AssignedAssignmentsController extends Controller
             'status'              => 'active',
             'created_by'          => $user->id,
             'created_at'          => time(),
+            'no_of_attempts'          => $no_of_attempts,
         ]);
 
         //return redirect()->route('adminEditAssignedAssignment', ['id' => $AssignedAssignment->id]);

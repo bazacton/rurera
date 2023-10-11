@@ -1,8 +1,11 @@
 <div class="fields-layout-options">
     <div class='text-field-options'>
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0" placeholder="Score" data-field_id="field_dynamic_id"></div>
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="placeholder" placeholder="Placeholder" data-field_id="field_dynamic_id"></div>
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="label" placeholder="Label" data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0"
+                                              placeholder="Score" data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="placeholder"
+                                              placeholder="Placeholder" data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="label"
+                                              placeholder="Label" data-field_id="field_dynamic_id"></div>
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="label_position" data-field_id="field_dynamic_id">
                 <option value="left" selected="selected">Left</option>
@@ -10,7 +13,8 @@
             </select>
         </div>
 
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="size" value="1" placeholder="Size" data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="size" value="1"
+                                              placeholder="Size" data-field_id="field_dynamic_id"></div>
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="style_field" data-field_id="field_dynamic_id">
                 <option value="input_box" selected="selected">box</option>
@@ -36,6 +40,35 @@
                                               data-field_type="correct_answere"
                                               placeholder="Correct Answer"
                                               data-field_id="field_dynamic_id"></div>
+    </div>
+
+    <div class='textarea-field-options'>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0"
+                                              placeholder="Score" data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="placeholder"
+                                              placeholder="Placeholder" data-field_id="field_dynamic_id"></div>
+
+        <div class='quiz-form-control'><input type='number' class="element-field" data-field_type="rows" value="5"
+                                              placeholder="Rows" data-field_id="field_dynamic_id"></div>
+
+        <div class='quiz-form-control'>
+            <select class="element-field" data-field_type="field_size" data-field_id="field_dynamic_id">
+                <option value="extra-small">Extra Small</option>
+                <option value="small" selected="selected">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+        </div>
+
+        <div class='quiz-form-control'><input type='text' class="element-field"
+                                              data-field_type="correct_answere"
+                                              placeholder="Correct Answer"
+                                              data-field_id="field_dynamic_id"></div>
+    </div>
+
+
+    <div class='file-field-options'>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0" placeholder="Score" data-field_id="field_dynamic_id"></div>
     </div>
 
 

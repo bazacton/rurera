@@ -18,7 +18,7 @@ class SatsController extends Controller
         $data = [
             'pageTitle'       => 'Online KS1, KS2 SATs Exams Papers, Resources , assessments, Tests | Rurera',
             'pageDescription' => 'Prepare for SATs exams today. Get professional guidance and resources to pass your SATs exam and have a chance to win rewards.',
-            'pageRobot'       => 'noindex',
+            'pageRobot'       => 'index',
         ];
         return view('web.default.sats.sats_landing', $data);
 
@@ -123,10 +123,15 @@ class SatsController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);
 
-        $started_already = false;
+        //$started_already = false;
         if ($started_already == true) {
-            $QuizController = new QuizController();
-            return $QuizController->start($request, $id);
+            $data = [
+                'pageTitle'  => 'Start',
+                'quiz'       => $quiz,
+            ];
+            return view('web.default.quizzes.auto_load', $data);
+            //$QuizController = new QuizController();
+            //return $QuizController->start($request, $id);
         } else {
             $resultData = $QuestionsAttemptController->get_result_data($id);
             $resultData = $QuestionsAttemptController->prepare_result_array($resultData);

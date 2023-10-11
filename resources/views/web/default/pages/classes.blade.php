@@ -17,8 +17,8 @@
                 that will surely help you grow and capture innovative ideas.
                 </p>
                 <div class="d-flex align-items-center">
-                    <a href="https://rurera.chimpstudio.co.uk/register" itemprop="url" class="btn-primary rounded-pill">View all courses</a>
-                    <a href="https://rurera.chimpstudio.co.uk/register" itemprop="url" class="btn-primary rounded-pill ml-15">Take course</a>
+                    <a href="{{url('/')}}/register" itemprop="url" class="btn-primary rounded-pill">View all courses</a>
+                    <a href="{{url('/')}}/register" itemprop="url" class="btn-primary rounded-pill ml-15">Take course</a>
                 </div>
                 <ul class="pt-30" itemprop="courses list">
                     <li class="mb-10 font-19" itemprop="course short info">
@@ -220,7 +220,7 @@
                     </div>
                     <div class="col-12 col-lg-4 col-md-4">
                         <div class="lms-btn-group">
-                            <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
+                            <a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white ml-auto">Join Rurera Today</a>
                         </div>
                     </div>
                 </div>

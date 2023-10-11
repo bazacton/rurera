@@ -121,10 +121,15 @@ class CatFourController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);
 
-        $started_already = false;
+        //$started_already = false;
         if ($started_already == true) {
-            $QuizController = new QuizController();
-            return $QuizController->start($request, $id);
+            $data = [
+                'pageTitle'  => 'Start',
+                'quiz'       => $quiz,
+            ];
+            return view('web.default.quizzes.auto_load', $data);
+            //$QuizController = new QuizController();
+            //return $QuizController->start($request, $id);
         } else {
             $resultData = $QuestionsAttemptController->get_result_data($id);
             $resultData = $QuestionsAttemptController->prepare_result_array($resultData);

@@ -58,8 +58,8 @@
                             100% results</li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="https://rurera.chimpstudio.co.uk/11plus" class="btn-primary rounded-pill">11 plus exams</a>
-                        <a href="https://rurera.chimpstudio.co.uk/11plus" class="btn-primary rounded-pill ml-15">More practices</a>
+                        <a href="{{url('/')}}/11plus" class="btn-primary rounded-pill">11 plus exams</a>
+                        <a href="{{url('/')}}/11plus" class="btn-primary rounded-pill ml-15">More practices</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus">
+                            <figure><a href="{{url('/')}}/11plus">
                                 <img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a>
                             </figure>
@@ -77,116 +77,116 @@
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus">
+                            <figure><a href="{{url('/')}}/11plus">
                                 <img src="../assets/default/img/11-plus/paper2.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper2.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper2.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper2.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper2.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper4.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper5.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper6.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper3.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
                     <div class="grid-item col-lg-3 col-md-4 col-sm-4">
                         <div class="img-holder">
-                            <figure><a href="https://rurera.chimpstudio.co.uk/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
+                            <figure><a href="{{url('/')}}/11plus"><img src="../assets/default/img/11-plus/paper1.png" alt="sats-header" title="sats-header" width="100%" height="auto" itemprop="image" loading="eager"
                                         class="rounded has-shadow-x"></a></figure>
                         </div>
                     </div>
@@ -301,7 +301,7 @@
                     <div class="exame-listing">
                         <ul class="exame-holder">
                             <li class="exame-list border-right">
-                                <a href="https://rurera.chimpstudio.co.uk/11plus" class="d-flex align-items-center">
+                                <a href="{{url('/')}}/11plus" class="d-flex align-items-center">
                                     <div class="img-holder">
                                         <figure>
                                             <span class="icon-savg">
@@ -771,7 +771,7 @@
                                 </a>
                             </li>
                             <li class="exame-list">
-                                <a href="https://rurera.chimpstudio.co.uk/11plus" class="d-flex align-items-center">
+                                <a href="{{url('/')}}/11plus" class="d-flex align-items-center">
                                     <div class="img-holder">
                                         <figure>
                                             <span class="icon-savg">
@@ -788,7 +788,7 @@
                                 </a>
                             </li>
                             <li class="exame-list border-right">
-                                <a href="https://rurera.chimpstudio.co.uk/11plus" class="d-flex align-items-center">
+                                <a href="{{url('/')}}/11plus" class="d-flex align-items-center">
                                     <div class="img-holder">
                                         <figure>
                                             <span class="icon-savg">
@@ -805,7 +805,7 @@
                                 </a>
                             </li>
                             <li class="exame-list">
-                               <a href="https://rurera.chimpstudio.co.uk/11plus" class="d-flex align-items-center">
+                               <a href="{{url('/')}}/11plus" class="d-flex align-items-center">
                                     <div class="img-holder">
                                         <figure>
                                             <span class="icon-savg">
@@ -987,7 +987,7 @@
                             <div class="col-12 col-lg-4 col-md-4">
                                 <div class="form-field position-relative text-right">
                                     <button class="rounded rounded-pill bg-white">
-                                        <a href="https://rurera.chimpstudio.co.uk/membership"
+                                        <a href="{{url('/')}}/membership"
                                            style="color:var(--gray-dark);">View our plans</a>
                                     </button>
                                 </div>

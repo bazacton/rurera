@@ -51,12 +51,12 @@
                         <span class="badge badge-circle-gray300 text-secondary d-inline-flex align-items-center justify-content-center">{{ trans('auth.or') }}</span>
                     </div>
 
-                    <a href="/google" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center">
+                    <a href="https://google.com/" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center">
                         <img src="/assets/default/img/auth/google.svg" class="mr-auto" alt=" google svg"/>
                         <span class="flex-grow-1">{{ trans('auth.google_login') }}</span>
                     </a>
 
-                    <a href="{{url('/facebook/redirect')}}" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center ">
+                    <a href="https://www.facebook.com/" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center ">
                         <img src="/assets/default/img/auth/facebook.svg" class="mr-auto" alt="facebook svg"/>
                         <span class="flex-grow-1">{{ trans('auth.facebook_login') }}</span>
                     </a>

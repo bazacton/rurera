@@ -469,7 +469,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck"
+                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck"
                                                                    class="image-box__a">
 
 
@@ -480,7 +480,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck">
+                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         VTech Ride - Go Recycling Truck</h3>
                                                                 </a>
@@ -499,7 +499,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck">BUY</a>
+                                                                        href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -508,7 +508,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1"
+                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1"
                                                                    class="image-box__a">
 
 
@@ -520,7 +520,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">
+                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Magformers Amazing Police And Rescue 26 Piece
                                                                         Set</h3>
@@ -540,7 +540,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">BUY</a>
+                                                                        href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -549,7 +549,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano"
+                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano"
                                                                    class="image-box__a">
 
 
@@ -561,7 +561,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">
+                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Hape Baby Einstein Magic Touch Wooden Piano</h3>
                                                                 </a>
@@ -580,7 +580,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">BUY</a>
+                                                                        href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -589,7 +589,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum"
+                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum"
                                                                    class="image-box__a">
 
 
@@ -601,7 +601,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum">
+                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Little Tikes Tap A Tune Drum</h3>
                                                                 </a>
@@ -620,7 +620,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum">BUY</a>
+                                                                        href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -629,7 +629,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
                                                                    class="image-box__a">
 
 
@@ -641,7 +641,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Learning Resources GeoSafari Junior
                                                                         Kidnoculars</h3>
@@ -661,7 +661,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
+                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -670,7 +670,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
                                                                    class="image-box__a">
 
 
@@ -682,7 +682,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Learning Resources GeoSafari Junior
                                                                         Kidnoculars</h3>
@@ -702,7 +702,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
+                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -721,7 +721,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck"
+                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck"
                                                                    class="image-box__a">
 
 
@@ -732,7 +732,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck">
+                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         VTech Ride - Go Recycling Truck</h3>
                                                                 </a>
@@ -751,7 +751,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/VTech-Ride-Go-Recycling-Truck">BUY</a>
+                                                                        href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -760,7 +760,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1"
+                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1"
                                                                    class="image-box__a">
 
 
@@ -772,7 +772,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">
+                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Magformers Amazing Police And Rescue 26 Piece
                                                                         Set</h3>
@@ -792,7 +792,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">BUY</a>
+                                                                        href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -801,7 +801,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano"
+                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano"
                                                                    class="image-box__a">
 
 
@@ -813,7 +813,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">
+                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Hape Baby Einstein Magic Touch Wooden Piano</h3>
                                                                 </a>
@@ -832,7 +832,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">BUY</a>
+                                                                        href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -841,7 +841,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum"
+                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum"
                                                                    class="image-box__a">
 
 
@@ -853,7 +853,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum">
+                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Little Tikes Tap A Tune Drum</h3>
                                                                 </a>
@@ -872,7 +872,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Little-Tikes-Tap-A-Tune-Drum">BUY</a>
+                                                                        href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -881,7 +881,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
                                                                    class="image-box__a">
 
 
@@ -893,7 +893,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Learning Resources GeoSafari Junior
                                                                         Kidnoculars</h3>
@@ -913,7 +913,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
+                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>
@@ -922,7 +922,7 @@
                                                     <div class="product-card">
                                                         <figure>
                                                             <div class="image-box">
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
                                                                    class="image-box__a">
 
 
@@ -934,7 +934,7 @@
 
                                                             <figcaption class="product-card-body">
 
-                                                                <a href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
+                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
                                                                     <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
                                                                         Learning Resources GeoSafari Junior
                                                                         Kidnoculars</h3>
@@ -954,7 +954,7 @@
                                                             </figcaption>
                                                             <button type="button" class="cart-button"><a
                                                                         class="bt-button"
-                                                                        href="https://rurera.chimpstudio.co.uk/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
+                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
                                                             </button>
                                                         </figure>
                                                     </div>

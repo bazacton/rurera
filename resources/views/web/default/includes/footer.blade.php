@@ -46,7 +46,7 @@
                 <div class="col-12 text-center">
                     <div class="copyright-inner">
                         <div class="footer-logo">
-                            <a itemprop="url"  href="https://rurera.chimpstudio.co.uk/">
+                            <a itemprop="url"  href="{{url('/')}}/">
                                 <img src="/store/1/logo.png" class="img-cover" alt="footer logo" title="footer logo"  width="100%" height="auto" loading="eager">
                             </a>
                         </div>
