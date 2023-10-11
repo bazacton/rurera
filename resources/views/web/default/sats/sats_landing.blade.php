@@ -556,7 +556,7 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="section-title text-left mb-50">
-                    <h2 class="mt-0 mb-10">Challenging the SATs Exam with Confidence</h2>
+                    <h2 class="mt-0 mb-10">Challenging the SATs with Confidence</h2>
                     <p class="font-19">
                         Rurera offer the capability to track their onscreen and practiced time activity well remaining
                         on system and <br/>
