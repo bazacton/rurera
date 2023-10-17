@@ -107,7 +107,8 @@ class Share
                             if (!empty($webinarObj->chapters)) {
                                 foreach ($webinarObj->chapters as $chapterObj) {
                                     $topic_title = $chapterObj->getTitleAttribute();
-                                    $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id] = $topic_title;
+                                    $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['title'] = $topic_title;
+                                    $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['custom_link'] = $chapterObj->custom_link;
                                 }
                             }
                         }

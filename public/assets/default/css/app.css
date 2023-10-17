@@ -14121,7 +14121,7 @@ p {
     height: auto;
     background-color: #fff;
 }
-.navbar1 .navbar-nav{position: relative;}
+.navbar1 .navbar-nav{position: relative; width: 100%;}
 .navbar1.sticky {
     position: fixed;
     top: 0;

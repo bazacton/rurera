@@ -157,10 +157,16 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                                                 <ul class="topic-list">
                                                                     @php $topics_count = 1; @endphp
                                                                     @foreach($chapter_data['topics'] as $topic_id =>
-                                                                    $topic_title)
+                                                                    $topicData)
+                                                                    @php
+                                                                    $topic_title = isset( $topicData['title'] )? $topicData['title'] : '';
+                                                                    $topic_custom_link = isset( $topicData['custom_link'] )? $topicData['custom_link'] : '';
+                                                                    $chapter_link = '/course/'.$chapter_data['chapter_slug'].'#subject_'.$topic_id;
+                                                                    $chapter_link = ($topic_custom_link != '')? $topic_custom_link : $chapter_link;
+                                                                    @endphp
                                                                     @if( $topics_count <= 8)
                                                                     <li>
-                                                                        <a href="/course/{{$chapter_data['chapter_slug']}}#subject_{{$topic_id}}">{{$topic_title}}</a>
+                                                                        <a href="{{$chapter_link}}">{{$topic_title}}</a>
                                                                     </li>
                                                                     @else
                                                                     <li style="display:none;"><a

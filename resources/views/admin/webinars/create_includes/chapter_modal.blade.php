@@ -104,6 +104,12 @@
                 </div>
             </div>
 
+            <div class="form-group">
+               <label class="input-label">Custom Link</label>
+               <input type="text" name="ajax[chapter][custom_link]" class="form-control js-ajax-custom_link" value=""/>
+               <span class="invalid-feedback"></span>
+           </div>
+
             <div class="form-group mt-2 d-flex align-items-center justify-content-between js-switch-parent">
                 <label class="js-switch cursor-pointer" for="chapterStatus_record">{{ trans('public.active') }}</label>
 

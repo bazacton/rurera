@@ -231,6 +231,7 @@ class ChapterController extends Controller
                     'challenge_background_color' => isset( $data['challenge_background_color'] )? $data['challenge_background_color'] : '',
                     'challenge_border_color' => isset( $data['challenge_border_color'] )? $data['challenge_border_color'] : '',
                     'chapter_slug' => $chapter_slug,
+                    'custom_link' => isset( $data['custom_link'] )? $data['custom_link'] : '',
                 ]);
 
                 if (!empty($chapter)) {
