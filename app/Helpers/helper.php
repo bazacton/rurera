@@ -6934,7 +6934,8 @@ function element_properties_meta($chapters)
                 'options' =>
                     array(
                         '-' => esc_html__('hyphen', 'leform'),
-                        ',' => esc_html__('Comma', 'leform'),
+                        '-' => esc_html__('hyphen', 'leform'),
+                        'both' => esc_html__('Both', 'leform'),
                     )
             ),
             'insert_into_type'  => array(
@@ -6986,6 +6987,7 @@ function element_properties_meta($chapters)
                     array(
                         '-' => esc_html__('hyphen', 'leform'),
                         ',' => esc_html__('Comma', 'leform'),
+                        'both' => esc_html__('Both', 'leform'),
                     )
             ),
             'insert_into_type' => array(

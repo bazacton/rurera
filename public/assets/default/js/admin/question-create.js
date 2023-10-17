@@ -1066,7 +1066,7 @@ function _leform_properties_prepare(_object) {
                 case 'html':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                     \n\
-                    <div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div>\n\
+                    <div class='leform-properties-tooltip'></div>\n\
                     <div class='lms-tools-bar'>\n\
                     <ul class='leform-toolbar-list'>\n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/square-root.png' title='Square root' class='editor-add-field lms-tools-item' data-field_type='sq_root' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
@@ -1074,8 +1074,9 @@ function _leform_properties_prepare(_object) {
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='textarea' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Attachment' class='editor-add-field lms-tools-item' data-field_type='file' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/textarea.png' title='Textarea' class='editor-add-field lms-tools-item' data-field_type='textarea' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/file.png' title='Attachment' class='editor-add-field lms-tools-item' data-field_type='file' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/seperator_line.png' title='Seperator' class='editor-add-field lms-tools-item' data-field_type='seperator_line' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     </ul>\n\
                     </div>\n\
                     <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
@@ -1383,7 +1384,8 @@ function _leform_properties_prepare(_object) {
                             selected = true;
                         options += leform_properties_options_item_get(properties[key][j]["label"], properties[key][j]["value"], selected);
                     }
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
+                    //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this));'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
                     break;
 
                 case 'image-options':
@@ -1424,9 +1426,9 @@ function _leform_properties_prepare(_object) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = " leform-properties-options-item-default";
-                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='leform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='leform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
                     }
-                    html += "<div class='leform-properties-item matrix-columns-" + key + "' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    html += "<div class='leform-properties-item matrix-columns-" + key + "' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this));'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
                 case 'matrix-columns-labels':
@@ -1437,9 +1439,9 @@ function _leform_properties_prepare(_object) {
                         selected = "";
                         if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
                             selected = " leform-properties-options-item-default";
-                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='leform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><select class='leform-properties-options-value' data-selected='" + selected_value + "'></option></select></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='leform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div><select class='leform-properties-options-value' data-selected='" + selected_value + "'></option></select></div><div><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
                     }
-                    html += "<div class='leform-properties-item matrix-columns-labels-" + key + "' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div>Correct Answere</div><div></div></div><div class='leform-properties-options-box1'><div class='leform-properties-options-container-lebel' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    html += "<div class='leform-properties-item matrix-columns-labels-" + key + "' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div>Correct Answere</div><div></div></div><div class='leform-properties-options-box1'><div class='leform-properties-options-container-lebel' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this));'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
                 case 'logic-rules':
@@ -2724,7 +2726,7 @@ function leform_properties_options_default(_object) {
     return false;
 }
 
-function leform_properties_options_new(_object) {
+function leform_properties_options_new(_object, thisObj = null) {
     var option;
     if (_object != null) {
         option = jQuery(_object).closest(".leform-properties-options-item").clone();
@@ -2736,7 +2738,17 @@ function leform_properties_options_new(_object) {
         //jQuery(option).removeClass("leform-properties-options-item-default");
         //jQuery(option).find("input").val("");
         option = leform_properties_options_item_get("", "", false);
-        jQuery(".leform-properties-options-container").append(option);
+        if( thisObj != null){
+            if( thisObj.closest('.leform-properties-content').find('.leform-properties-options-container').length > 0) {
+                thisObj.closest('.leform-properties-content').find('.leform-properties-options-container').append(option);
+            }
+            if( thisObj.closest('.leform-properties-content').find('.leform-properties-options-container-lebel').length > 0) {
+                thisObj.closest('.leform-properties-content').find('.leform-properties-options-container-lebel').append(option);
+            }
+            console.log('testing');
+        }else {
+            jQuery(".leform-properties-options-container").append(option);
+        }
     }
     jQuery(option).find(".leform-image-url span").on("click", function (e) {
         e.preventDefault();
@@ -5631,8 +5643,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                        "Your browser does not support the audio element.\n" +
                        "</audio></div>";
                    break;
-
                 case "audio_recording":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div id='button-container'>\n" +
                        " <button id='startRecord' class='btn-icon'>\n" +
                        " <i class='fas fa-play'></i>\n" +
@@ -5640,11 +5652,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                        " <button id='stopRecord' class='btn-icon' disabled>\n" +
                        " <i class='fas fa-stop'></i>\n" +
                        " </button>\n" +
-                       " <button id='saveRecord' class='btn-icon' disabled>\n" +
-                       " <i class='fas fa-save'></i>\n" +
-                       " </button>\n" +
                        "<span id='timer' class='time-left'>Time remaining: <span id='timeLeft'>"+leform_form_elements[i]["content"]+"</span> seconds</span>\n" +
-                       " <audio id='audioPlayer' controls class='audio-control rurera-hide'></audio>\n" +
+                       " <audio id='audioPlayer' data-id='" + random_id + "' type='audio_record' data-field_type='audio_record' id='field-" + random_id + "' controls class='audio-control rurera-hide editor-field'></audio>\n" +
                        "</div></div>";
                    break;
 
@@ -5660,9 +5669,12 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                     var insert_into_type = leform_form_elements[i]["insert_into_type"];
                     var insert_symbols = leform_form_elements[i]["insert_symbols"];
+                    insert_symbols = (insert_symbols == 'both')? '<span class="given">-</span><span class="given">,</span>' :
+                        '<span class="given">' + insert_symbols + '</span>';
+
 
                     var insert_symbols_html = '';
-                    insert_symbols_html = '<div class="insert-options"><span class="given">' + insert_symbols + '</span></div>';
+                    insert_symbols_html = '<div class="insert-options">' + insert_symbols + '</div>';
 
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><span class='insert-into-sentense-holder' data-into_type='" + insert_into_type + "'>" + insert_symbols_html + leform_form_elements[i]["content"] + "</span></div>";
                     break;
@@ -8558,6 +8570,11 @@ $(document).on('click', '.editor-add-field', function () {
         field_data = '<span class="block-holder editor-field" data-id="' + random_id + '" data-field_type="paragraph" id="field-' + random_id + '">Test Paragraph</span>&nbsp;';
     }
 
+    if (field_type == 'seperator_line') {
+        field_data = '<span class="block-holder editor-field" data-id="' + random_id + '" data-field_type="seperator_line" id="field-' + random_id + '"><span class="seperator_line"></span></span></span>&nbsp;';
+    }
+
+
 
     pasteHtmlAtCaret(field_data);
     //$(".note-editable").focus();
@@ -8768,6 +8785,18 @@ $(document).on('keyup change focus blur paste checked unchecked', '.element-fiel
         if ($(this).val() != '' && $(this).val() != 'null' && $(this).val() != null) {
             $(".note-editable #field-" + field_id).wrapAll("<" + $(this).val() + " />");
         }
+
+    } else if (field_type == 'style_width') {
+
+        $(".note-editable #field-" + field_id+' span').css('width', $(this).val()+'px');
+
+    } else if (field_type == 'style_height') {
+    
+        $(".note-editable #field-" + field_id+' span').css('border', $(this).val()+'px solid');
+    
+    } else if (field_type == 'style_bg_color') {
+
+        $(".note-editable #field-" + field_id+' span').css('border-color', $(this).val());
 
     } else if (field_type == 'font_size') {
 

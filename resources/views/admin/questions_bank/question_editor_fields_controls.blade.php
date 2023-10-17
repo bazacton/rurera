@@ -71,6 +71,18 @@
         <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0" placeholder="Score" data-field_id="field_dynamic_id"></div>
     </div>
 
+    <div class='seperator_line-field-options'>
+        <div class='quiz-form-control'><input type='number' class="element-field"
+                                                      data-field_type="style_width" placeholder="Width"
+                                                      data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='number' class="element-field"
+                                                              data-field_type="style_height" placeholder="Height"
+                                                              data-field_id="field_dynamic_id"></div>
+        <div class='quiz-form-control'><input type='text' class="element-field"
+                                                                      data-field_type="style_bg_color" placeholder="Color"
+                                                                      data-field_id="field_dynamic_id"></div>
+    </div>
+
 
     <div class='insert_into_sentense-field-options'>
         <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score"

@@ -143,6 +143,19 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
+                            <a href="{{url('/')}}/analytics" itemprop="url">
+                                <img src="../assets/default/img/analytics-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/panel/analytics" itemprop="url" class="text-dark-charcoal">Analytics</a>
+                        </h3>
+                        <p itemprop="description">It provides complete insights and data analysis of Total scores, Total attempts, Earned Scores and Earned Coins.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
                             <a href="{{url('/')}}/register" itemprop="url">
                                 <img src="../assets/default/img/quick-assesments.jpg" alt="feature image" height="143" width="276">
                             </a>
@@ -244,6 +257,60 @@
                         <p itemprop="description">Rurera offers a user-friendly platform where teachers can analyze individual and group performance trends.</p>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/weekly-planner" itemprop="url">
+                                <img src="../assets/default/img/skill-plans-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/weekly-planner" itemprop="url" class="text-dark-charcoal">Skills Plan</a>
+                        </h3>
+                        <p itemprop="description">This involves setting goals, identifying the skills you want to acquire or improve, and planning to achieve those goals weekly or monthly.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/classes?sort=newest" itemprop="url">
+                                <img src="../assets/default/img/advance-learning-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/classes?sort=newest" itemprop="url" class="text-dark-charcoal">Advance Learning</a>
+                        </h3>
+                        <p itemprop="description">Rurera empowers students through courses, interactive books, exams practices and rewarding experiences.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/features" itemprop="url">
+                                <img src="../assets/default/img/teacher-empowerment-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/features" itemprop="url" class="text-dark-charcoal">Teacher Empowerment Tools</a>
+                        </h3>
+                        <p itemprop="description">Immediate feedback and assessment tools allow teachers to monitor student progress and identify areas that require improvement.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/contact-us" itemprop="url">
+                                <img src="../assets/default/img/protection-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/contact-us" itemprop="url" class="text-dark-charcoal">Security and Privacy</a>
+                        </h3>
+                        <p itemprop="description">Rurera protect student data, maintain trust and comply with data protection and privacy regulations.</p>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="feature-grid text-center mb-40" itemprop="feature learning course">
                         <figure class="mb-20">
@@ -255,6 +322,19 @@
                             <a target="_blank" href="{{url('/')}}/register" itemprop="url" class="text-dark-charcoal">Win Rewards</a>
                         </h3>
                         <p itemprop="description">Avail an awesome opportunity to Earn Rewards, Coin points, Win and later redeem to toys.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                    <div class="feature-grid text-center mb-40" itemprop="feature learning course">
+                        <figure class="mb-20">
+                            <a href="{{url('/')}}/products" itemprop="url">
+                                <img src="../assets/default/img/rewards-store-feature.jpg" alt="feature image" height="143" width="276">
+                            </a>
+                        </figure>
+                        <h3 class="mb-5 font-19 font-weight-500" itemprop="title">
+                            <a target="_blank" href="{{url('/')}}/products" itemprop="url" class="text-dark-charcoal">Rewards Store</a>
+                        </h3>
+                        <p itemprop="description">Students can redeem coin points and exchange trending toys with every practice via Rurera toy store.</p>
                     </div>
                 </div>
             </div>

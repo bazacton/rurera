@@ -2870,3 +2870,11 @@ Lms Table Style
     padding: 6px 15px;
     border-radius: 3px;
 }
+
+
+span.seperator_line {
+    border:3px solid;
+    border-color:#000;
+    width: 50px;
+    display: grid;
+}

@@ -16,7 +16,17 @@ function chimp_utf8encode(string) {
     }
     return output;
 }
+const startRecordButton = $('#startRecord');
+const stopRecordButton = $('#stopRecord');
+const saveRecordButton = $('#saveRecord');
+const audioPlayer = $('#audioPlayer')[0];
+const timer = $('#timer');
+const timeLeftElement = $('#timeLeft');
 
+let mediaRecorder;
+let timerInterval;
+let audioChunks = [];
+let timeLimit = 60; // Set the time limit in seconds
 
 var quiz_user_data = [];
 quiz_user_data[0] = {};
@@ -31,11 +41,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     if (returnType == false) {
         jQuery.noConflict();
         $("#validation_error").modal('show');
-        return false;
+        //return false;
     }
+    console.log('test');
 
     clearInterval(Questioninterval);
-    rurera_loader($(this), 'div');
+    //rurera_loader($(this), 'div');
 
 
     var quiz_type = $(".question-area-block").attr('data-type');
@@ -73,6 +84,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         var field_identifier = field_id;
         var field_identifier = field_identifier.replace(/field-/g, '');
         var field_type = $(this).attr('type');
+        console.log(field_type);
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        console.log(audioBlob);
         var field_value = $(this).val();
 
 
@@ -98,6 +112,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         }
 
     });
+
+
+    return false;
 
     /*$(this).closest('form').find('.insert-into-sentense-holder').each(function() {
             var user_input = $(this).find('p').html();
@@ -761,17 +778,7 @@ function init_question_functions() {
     });
 
 
-    const startRecordButton = $('#startRecord');
-    const stopRecordButton = $('#stopRecord');
-    const saveRecordButton = $('#saveRecord');
-    const audioPlayer = $('#audioPlayer')[0];
-    const timer = $('#timer');
-    const timeLeftElement = $('#timeLeft');
 
-    let mediaRecorder;
-    let timerInterval;
-    let audioChunks = [];
-    let timeLimit = 60; // Set the time limit in seconds
 
     startRecordButton.on('click', async () => {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

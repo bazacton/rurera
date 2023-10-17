@@ -78,7 +78,7 @@
                             </div>
                             <ul>
                                 <li itemprop="Privacy Policy"><a itemprop="url" href="/privacy-policy">Privacy Policy</a></li>
-                                <li itemprop="Children's Privacy"><a itemprop="url" href="https://rurera.chimpstudio.co.uk/privacy">Children's Privacy</a></li>
+                                <li itemprop="Children's Privacy"><a itemprop="url" href="{{url('/')}}/privacy">Children's Privacy</a></li>
                                 <li itemprop="Legal"><a itemprop="url" href="/terms-and-conditions">Legal</a></li>
                                 <li itemprop="Terms &amp; conditions"><a itemprop="url" href="/terms-and-conditions">Terms &amp; conditions</a></li>
                                 <li itemprop="Cookie Policy"><a itemprop="url" href="/cookies">Cookie Policy</a></li>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="footer-logo">
-                        <a itemprop="url"  href="https://rurera.chimpstudio.co.uk/">
+                        <a itemprop="url"  href="{{url('/')}}/">
                             @if(!empty($generalSettings['logo']))
                             <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo"
                                  width="100%" height="auto" itemprop="image" loading="eager">
