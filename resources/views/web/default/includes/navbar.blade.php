@@ -291,9 +291,8 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     </div>
                     @else
                     <div class="d-flex align-items-center ml-md-50">
-                        <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">{{
-                            trans('auth.login') }}</a>
-                        <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Get Started</a>
+                        <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">Log in</a>
+                        <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Try for free</a>
                     </div>
                     @endif
                 </div>

@@ -92,9 +92,128 @@
             </div>
         </div>
     </section>
+    <section class="pt-80 home-courses-block">
+            <div class="container">
+                <div class="row">
+    
+    
+                    <div class="col-12">
+                                                <div class="mega-menu-head">
+                                                    <ul class="mega-menu-nav d-flex nav">
+                                                        @php $count = 1; @endphp
+                                                        @foreach($course_navigation as $navigation_slug => $nagivation_data)
+                                                        @if($count == 1)
+                                                        <style>
+                                                            :root {
+                                                                --category-color: #2c72af;
+                                                            }
+                                                        </style>
+                                                        @endif
+    
+    
+                                                        <li>
+                                                            <a href="#" data-category_color="{{$nagivation_data['color']}}"
+                                                               class="{{ ($count == 1)? 'active' : ''}}" id="home-{{$navigation_slug}}-tab"
+                                                               data-toggle="tab"
+                                                               data-target="#home-{{$navigation_slug}}"
+                                                               role="tab"
+                                                               aria-controls="home-{{$navigation_slug}}" aria-selected="true">{{$nagivation_data['title']}}</a>
+                                                        </li>
+                                                        @php $count++; @endphp
+                                                        @endforeach
+    
+                                                    </ul>
+                                                </div>
+                                                <div class="mega-menu-body tab-content">
+                                                    @php $count = 1; @endphp
+                                                    @foreach($course_navigation as $navigation_slug => $nagivation_data)
+    
+    
+                                                    <div class="tab-pane fade {{ ($count == 1)? 'show active' : ''}}"
+                                                         id="home-{{$navigation_slug}}" role="tabpanel"
+                                                         aria-labelledby="home-{{$navigation_slug}}-tab">
+                                                        <div class="row">
+    
+                                                            @if( (isset( $nagivation_data['menu_data'] ) && $nagivation_data['menu_data'] !=
+                                                            ''))
+                                                            <div class="col-12 col-lg-3 col-md-4">
+                                                                {!! $nagivation_data['menu_data'] !!}
+                                                            </div>
+                                                            @endif
+                                                            @if( isset( $nagivation_data['chapters'] ) && !empty(
+                                                            $nagivation_data['chapters']))
+                                                            @if( (isset( $nagivation_data['menu_data'] ) && $nagivation_data['menu_data'] !=
+                                                            ''))
+                                                            <div class="col-12 col-lg-9 col-md-8">
+                                                                @else
+                                                                <div class="col-12 col-lg-12 col-md-12 pl-30">
+                                                                    @endif
+                                                                    <div class="row">
+                                                                        @foreach($nagivation_data['chapters'] as $chapter_id =>
+                                                                        $chapter_data)
+                                                                        @if( (isset( $nagivation_data['menu_data'] ) &&
+                                                                        $nagivation_data['menu_data'] != ''))
+                                                                        <div class="col-12 col-lg-4 col-md-6">
+                                                                            @else
+                                                                            <div class="col-12 col-lg-3 col-md-6">
+                                                                                @endif
+                                                                                <div class="menu-colum-text">
+                                                                                    <a
+                                                                                            href="/{{$navigation_slug}}/{{$chapter_data['chapter_slug']}}"><strong>{{isset(
+                                                                                            $chapter_data['chapter_title'] )?
+                                                                                            $chapter_data['chapter_title'] :
+                                                                                            ''}}</strong></a>
+                                                                                    @if( isset( $chapter_data['topics']) && !empty(
+                                                                                    $chapter_data['topics'] ) )
+                                                                                    <ul class="topic-list">
+                                                                                        @php $topics_count = 1; @endphp
+                                                                                        @foreach($chapter_data['topics'] as $topic_id =>
+                                                                                        $topicData)
+                                                                                        @php
+                                                                                        $topic_title = isset( $topicData['title'] )? $topicData['title'] : '';
+                                                                                        $topic_custom_link = isset( $topicData['custom_link'] )? $topicData['custom_link'] : '';
+                                                                                        $chapter_link = '/course/'.$chapter_data['chapter_slug'].'#subject_'.$topic_id;
+                                                                                        $chapter_link = ($topic_custom_link != '')? $topic_custom_link : $chapter_link;
+                                                                                        @endphp
+                                                                                        @if( $topics_count <= 8)
+                                                                                        <li>
+                                                                                            <a href="{{$chapter_link}}">{{$topic_title}}</a>
+                                                                                        </li>
+                                                                                        @else
+                                                                                        <li style="display:none;"><a
+                                                                                                    href="/course/{{$chapter_data['chapter_slug']}}#subject_{{$topic_id}}">{{$topic_title}}</a>
+                                                                                        </li>
+                                                                                        @endif
+                                                                                        @php $topics_count++; @endphp
+                                                                                        @endforeach
+                                                                                        @if( count($chapter_data['topics']) > 8)
+                                                                                        <li class="load-more"><a
+                                                                                                    href="/course/{{$chapter_data['chapter_slug']}}">...</a>
+                                                                                        </li>
+                                                                                        @endif
+                                                                                    </ul>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            @php $count++; @endphp
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                    </div>
+                </div>
+            </div>
+    </section>
     <section class="pt-80">
         <div class="container">
             <div class="row">
+
                 <div class="col-12">
                     <div class="section-title mb-50 text-center">
                         <h2 class="mb-10">Redefining Personalized learning</h2>

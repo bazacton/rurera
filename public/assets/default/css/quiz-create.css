@@ -3998,7 +3998,7 @@ select.leform-block-form-value {
 	display: none;
 }
 .leform-toolbars {
-	position: absolute;
+	position: absolute !important;
 	left: 0;
 	right: 0;
 	width: 100% !important;

@@ -2401,6 +2401,41 @@ Lms Quiz Wf Style End
     background-size: contain;
     margin-left: 3px;
 }
+.assignment-questions-preview .quiz-pagination .swiper-container ul {
+    flex-wrap: wrap;
+}
+.assignment-questions-preview .quiz-pagination .swiper-container li {
+    margin: 6px 6px 0 0;
+    width: 25px;
+    max-width: 25px;
+}
+.assignment-questions-preview .leform-elements,
+.single-question-preview .leform-elements {
+    padding-left: 100px;
+}
+.assignment-questions-preview .leform-element[data-type="question_label"], .assignment-questions-preview .leform-element[data-type="checkbox"], 
+.assignment-questions-preview .leform-element[data-type="radio"], .assignment-questions-preview .leform-element[data-type="sortable_quiz"], 
+.assignment-questions-preview .leform-element[data-type="html"], .assignment-questions-preview .leform-element[data-type="match_quiz"],
+.single-question-preview .leform-element[data-type="question_label"], .single-question-preview .leform-element[data-type="checkbox"], 
+.single-question-preview .leform-element[data-type="radio"], .single-question-preview .leform-element[data-type="sortable_quiz"], 
+.single-question-preview .leform-element[data-type="html"], .single-question-preview .leform-element[data-type="match_quiz"] {
+    padding-left: 0;
+}
+.block-holder .lms-root-block {
+    overflow: visible;
+}
+.match-question .stems ol {
+    padding: 0 0 0 15px;
+    margin: 0;
+}
+.assignment-questions-preview .table:not(.table-sm):not(.table-md):not(.dataTable) th,
+.single-question-preview .table:not(.table-sm):not(.table-md):not(.dataTable) th {
+    padding: 10px;
+}
+.assignment-questions-preview .form-box,
+.single-question-preview .form-box {
+    width: 100%;
+}
 @media (max-width: 1600px) {
     .topbar-right {
         justify-content: flex-start;

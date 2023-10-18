@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sincere-office-402407",
+  "private_key_id": "d68af2a428749ffa7949973614a865dbe46282f0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDRTRWJGeXaP/MQ\nF87oJQCZQVHpqYQ7IfJ3wa3D/ZgdADl5rrVZW1jQD7xEPVOadZAc4WJ5ZeoM4iyq\nOoqWf8+Ha8JYtrtpH4tUjUcBcX8TEnoYKTcOm88oHNUAqVL65Tsngud/cGJJFRA8\nffu6sMd424/rUfuLQWxDdh29FQEdA69uBlHHMdh9tHrmPxd94fQRNdu/95lhbjh/\nJGSWZ+Klos/yxR82BImLhWnzeaJp47Pe/muC7PyuVHTN2jUhex0QzSiN/Me9rKsq\nH8uw9wtwGIrvQusm0q/DwZtCKgPbW+MbcxvNViHNc7Hh6RViXRdnweOe4RvBs31n\n3fPQodvPAgMBAAECggEAZl0pdbLNWGcjZREH2EDUoJ+yRLHsIpGRSSHX7v2VykVE\nVu9r8WZ8MtInVUabH3V1BLL0mwQNqrxpdN4Jzt52rLg2xnWkhh7v4WvxONL9/+Fv\nBmcN7t6kO+2R/W9SzrOTMVlUCF96Kl0bYkKJfb6c6E6V/lTLzkkyfnIDzGi78Shs\nRx8yydkIIxnHBiDeOV7/44H7neB9SDSfw7oKz9pROvqE14JPVDoWL0Ovalw1mfzt\nhaUuz1mtmjSGSJAu0qT1z26WFk3oAUlRY43artZwYKEjOUm7K+ke4p5MZNEK7w8O\nAIhlvX8YvZMdZGb0VetVb6KFGsr5iVse2zsfiIHpbQKBgQDswYFoieCqsFYhorfc\nkJWz8B9cdXz/zDF695rwBa+BJN6c0nquLOETbKezJkshtblqljkedUtgQObbMQKp\nCzcDBdtFNX9ZvEOro4Elz8TYFI45rguekjlGLLnKtkCu/kFoiVKsFKMJIz4aP0hO\nQ/HaCs6V1dKqPqkvbEcE5Myx/QKBgQDiUEpqcG5BXXTzWxEFc+g/nTF75MTYSFQE\ntbkDU/Nua2AhG4Nu71JRNt0eG45akp+8zFRIY32TFW51b3DUIlgMozpVQ34R94sz\nXKFzEMTh2tC8LAPhPEYaT2P9xoD7Dubd8nMREMzkYqHGbSYlJUQtTDXRGnprbFgf\njVi7tEa4uwKBgQC3HPL556ncWoZDfZa3ARzIDvAykqwbK9MZSGiNO9iCCgIjSKea\nDxwF6gPKi9OQPv0pcwa6h/3EdG4ZGc7077ecnur4nGfi/7lXBx7cH9YfSca21eYm\nvvGNVQpdvphIwF3WfF90uIFgj+F4a3mBDwv/mFwvhzFoew5fn19OaafoAQKBgDg9\nN6Dnu55muQ9YjAxM12Qnjgp5uSj+IFLjTcyz6gSAjmzrx2ej9VLVTXGT63Y6hZOH\nO1KZ1rTcWIy6WtF8j2DklzRlB0kzuNXUqRJNEoAFvmVkkrpAHjOfkvuXfqnk9B4n\nh8yv3hrLH+SNbzM/5YdULvN9nvpe/C8rEufiTsjNAoGBALZePEU68WkulC1coA1Q\nZ137/STG6rA/zuymvv4AJRTedrYsylEDRN+kFharjc4qAsvGeFg5eej8/cr5fmWS\nVlYs/qix+j/uvbJ+g4Q59f2+YFBj7QbNBmILrYqh/T5XaujrZnCB3YZgJWLot8UM\nzfkLpjTHX2+DPX0QZK7a4Ijn\n-----END PRIVATE KEY-----\n",
+  "client_email": "rurera-txt@sincere-office-402407.iam.gserviceaccount.com",
+  "client_id": "117242124577096213418",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rurera-txt%40sincere-office-402407.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -2434,6 +2434,18 @@ a.badge-gray200:focus {
     }
 }
 @media (min-width:992px) {
+    
+}
+@media (max-width:1199.98px) {
+    .navbar-expand-xl>.container,
+    .navbar-expand-xl>.container-fluid,
+    .navbar-expand-xl>.container-lg,
+    .navbar-expand-xl>.container-md,
+    .navbar-expand-xl>.container-sm,
+    .navbar-expand-xl>.container-xl {
+        padding-right: 0;
+        padding-left: 0
+    }
     .navbar-expand-lg {
         flex-flow: row nowrap;
         justify-content: flex-start
@@ -2462,17 +2474,6 @@ a.badge-gray200:focus {
     }
     .navbar-expand-lg .navbar-toggler {
         display: none
-    }
-}
-@media (max-width:1199.98px) {
-    .navbar-expand-xl>.container,
-    .navbar-expand-xl>.container-fluid,
-    .navbar-expand-xl>.container-lg,
-    .navbar-expand-xl>.container-md,
-    .navbar-expand-xl>.container-sm,
-    .navbar-expand-xl>.container-xl {
-        padding-right: 0;
-        padding-left: 0
     }
 }
 @media (min-width:1200px) {
@@ -14120,6 +14121,7 @@ p {
     position: relative;
     height: auto;
     background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
 }
 .navbar1 .navbar-nav{position: relative; width: 100%;}
 .navbar1.sticky {
@@ -14223,15 +14225,17 @@ p {
 .mega-menu-nav a.active {color: #fff;}
 .courses-detail {background-color: #e7eef3; padding: 30px 25px;}
 .mega-menu-body .tab-pane>.row>[class*="col-"] .courses-detail {height: 100%;}
-.lms-mega-menu strong {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color); display: block;}
+.mega-menu-body strong {font-size: 22px; margin: 0 0 10px; line-height: normal; color: var(--category-color); display: block;}
 .courses-detail .detail-text img {margin: 0 0 15px;}
-.lms-mega-menu p {color: #000; margin: 0 0 20px;}
+.mega-menu-body .courses-detail p {color: #000; margin: 0 0 30px;}
 .menu-colum-text {padding-top: 40px;}
 .view-btn {display: inline-block; line-height: normal; background-color: var(--category-color); color: #fff; padding: 17px 30px; border-radius: 5px; margin: 0; font-weight: 500; font-size: 16px;}
 .view-btn:hover {color: #fff;}
 .mega-menu-body [class*="col-"]:last-child .menu-colum-text {padding-right: 15px;}
-.lms-mega-menu .detail-text .icon-img svg {width: 83px; height: 89px;}
-.lms-mega-menu .detail-text .icon-img {margin: 0 0 15px; display: block;}
+.lms-mega-menu .detail-text .icon-img svg,
+.courses-detail .icon-img svg {width: 83px; height: 89px;}
+.lms-mega-menu .detail-text .icon-img,
+.courses-detail .icon-img {margin: 0 0 15px; display: block;}
 .detail-icons .icon-img {display: block; margin: 0 0 30px;}
 .detail-icons {display: inline-block; text-align: center; width: auto; margin-top: 30px;}
 .lms-mega-menu .detail-inner {position: relative;}
@@ -14251,6 +14255,25 @@ p {
 .navbar-nav .has-mega-menu:hover .nav-link:after {visibility:visible; opacity:1; bottom:-14px;}
 .mega-menu-nav a:after {border-top: 12px solid var(--category-color); border-bottom: 0; bottom: -12px;}
 .mega-menu-nav a.active:after {opacity: 1; visibility: visible; z-index: 1;}
+.home-courses-block { background-color: #fcfcfc; padding-bottom: 80px; }
+.home-courses-block .mega-menu-body.tab-content {
+    border: 1px solid #eaeaea;
+    background-color: #fff;
+    border-radius: 0 0 3px 3px;
+    padding: 0;
+}
+.home-courses-block .mega-menu-body [class*="col-"]:last-child .menu-colum-text {
+    padding-left: 15px;
+}
+.home-courses-block .menu-colum-text {
+    margin-bottom: 30px;
+}
+.home-courses-block .topic-list li {
+    margin-bottom: 8px;
+}
+.home-courses-block .topic-list li a {
+    font-weight: 500;
+}
 /*Mega Menu style End*/
 
 .navbar-brand {
@@ -21032,6 +21055,23 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item .nav-link:hover {color: #171347;}
 .navbar-nav .nav-item .sidenav-dropdown li a:before {content: ""; position: absolute; left: -1px; top: 10px; width: 4px; height: 2px; background: #171347;}
 .navbar-nav .nav-item.book_shelf:hover .nav-link {background: #f3ce03; font-weight: bold; box-shadow: 0 -2px 2px 1px rgba(0, 0, 0, .1);}
+.navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
+.top-navbar .navbar-toggle-content {
+    margin-right: 20px !important;
+}
+.top-navbar .login-btn {
+    border: 1px solid var(--primary);
+    padding: 4px 15px !important;
+    border-radius: 3px;
+    font-weight: 500;
+    color: var(--primary);
+}
+.top-navbar .navbar-order .ml-md-50 {
+    margin-left: 0 !important;
+}
+.navbar-nav .educator-menu .nav-link {
+    padding: 2px 20px;
+}
 /*****************************
 Header Navbar Dropdown Style End
 ******************************/

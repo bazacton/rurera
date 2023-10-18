@@ -15,6 +15,16 @@ class SatsController extends Controller
 
     public function sats_landing()
     {
+
+        if( isset( $_GET['tts'] ) ) {
+            $text = $_GET['tts'];
+            $TextToSpeechController = new TextToSpeechController();
+            $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($text);
+            pre(url('/speech-audio/' . $text_audio_path));
+            pre($text_audio_path);
+        }
+
+
         $data = [
             'pageTitle'       => 'Online KS1, KS2 SATs Exams Papers, Resources , assessments, Tests | Rurera',
             'pageDescription' => 'Prepare for SATs exams today. Get professional guidance and resources to pass your SATs exam and have a chance to win rewards.',

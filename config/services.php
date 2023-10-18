@@ -40,6 +40,10 @@ return [
         'client_secret' => env('FACEBOOK_APP_SECRET'),
         'redirect' => env('FACEBOOK_REDIRECT'),
     ],
+    'texttospeech' => [
+        'keyFile' => env('GOOGLE_APPLICATION_CREDENTIALS'),
+        'scopes' => ['https://www.googleapis.com/auth/cloud-platform'],
+    ],
 
     'bank_callback_token' => env('BANK_CALLBACK_TOKEN'),
 
