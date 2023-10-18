@@ -450,13 +450,14 @@
 }
 .lms-quiz-create .leform-admin-popup-content {
 	height: 496px;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-x: auto;
+	overflow-y: auto;
 	background: #ffffff;
 	position: relative;
 }
 .lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar {
 	width: 5px;
+	height: 5px;
 }
 .lms-quiz-create .leform-admin-popup-content::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
@@ -513,11 +514,13 @@
 
 .lms-quiz-create .leform-properties-label {
 	display: table-cell;
-	font-size: 15px;
-	width: 200px;
-	min-width: 200px;
-	vertical-align: top;
-	padding: 0 1em 0 2em;
+    font-size: 15px;
+    vertical-align: top;
+    padding: 0 1em 0 0;
+    min-width: 70px;
+}
+.lms-quiz-create #leform-tab-style .leform-properties-label {
+    min-width: 170px;
 }
 .lms-quiz-create .leform-properties-label label {
 	font-weight: 400;

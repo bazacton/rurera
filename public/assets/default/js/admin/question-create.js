@@ -9029,3 +9029,24 @@ $(document).on('click', '.question_glossary_submit_btn', function () {
         }
     });
 });
+
+/* Element Properties Sticky Function Start */
+var stickitLeft = $('.lms-element-properties').offset.left;
+var stickitWidth = $('.lms-element-properties').width() + 'px';
+var stickitHeight = $('.lms-element-properties').height() + 'px';
+var stickySidebarToTop = $('.lms-element-properties').offset().top;
+$(window).scroll(function() {
+  var windowToTop = $(window).scrollTop();
+  if (windowToTop + 10 > stickySidebarToTop) {
+    $('.lms-element-properties').css({
+      'position': 'fixed',
+      'top': '10px',
+      'left': stickitLeft,
+      'width': stickitWidth,
+      'height': stickitHeight
+    })
+  } else {
+    $('.lms-element-properties').removeAttr('style');
+  }
+})
+/* Element Properties Sticky Function End */
