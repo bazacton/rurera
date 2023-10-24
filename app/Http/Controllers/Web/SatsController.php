@@ -20,14 +20,20 @@ class SatsController extends Controller
             $text = $_GET['tts'];
             $TextToSpeechController = new TextToSpeechController();
             $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($text);
+
+            echo '<audio controls>
+              <source src="'.url('/speech-audio/' . $text_audio_path).'" type="audio/mpeg">
+            </audio>';
+            exit;
+
             pre(url('/speech-audio/' . $text_audio_path));
             pre($text_audio_path);
         }
 
 
         $data = [
-            'pageTitle'       => 'Online KS1, KS2 SATs Exams Papers, Resources , assessments, Tests | Rurera',
-            'pageDescription' => 'Prepare for SATs exams today. Get professional guidance and resources to pass your SATs exam and have a chance to win rewards.',
+            'pageTitle'       => 'KS1, KS2 SATs practice papers, assessments & Tests | Rurera',
+            'pageDescription' => 'Prepare for your SATs exam with comprehensive SATs practice resources, assessments, tests, and quizzes. Get ready to excel on your SATs  and got  a chance to win rewards.',
             'pageRobot'       => 'index',
         ];
         return view('web.default.sats.sats_landing', $data);

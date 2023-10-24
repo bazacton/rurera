@@ -61,7 +61,7 @@ class QuestionsBankController extends Controller
 
         $query = QuizzesQuestion::query();
         if(auth()->user()->isTeacher()){
-            $query = $query->where('creator_id', auth()->user()->id);
+            //$query = $query->where('creator_id', auth()->user()->id);
         }
 
 
@@ -73,7 +73,7 @@ class QuestionsBankController extends Controller
         }
 
         if (auth()->user()->isAuthor()) {
-            $query->where('quizzes_questions.creator_id' , $user->id);
+            //$query->where('quizzes_questions.creator_id' , $user->id);
         }
 
 

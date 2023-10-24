@@ -15,6 +15,7 @@ $rand_id = rand(999,99999);
 <link href="/assets/default/css/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <script src="/assets/default/js/admin/jquery.min.js"></script>
+<script src="/assets/default/js/admin/sticky-sidebar.js?ver={{$rand_id}}"></script>
 <script src="/assets/default/js/admin/question-create.js?ver={{$rand_id}}"></script>
 <link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
 <style>
@@ -43,6 +44,12 @@ $rand_id = rand(999,99999);
     .question-layout-data .leform-element{
         outline: none !important;
     }
+    .navbar-bg {
+                display: none;
+            }
+            nav.navbar.navbar-expand-lg.main-navbar {
+                display: none;
+            }
 
 </style>
 @endpush
@@ -50,17 +57,34 @@ $rand_id = rand(999,99999);
 @section('content')
 
 <section class="section form-class" data-question_save_type="store_question">
-    <div class="section-header">
-        <h1>{{ $pageTitle }}</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="/admin/">{{trans('admin/main.dashboard')}}</a>
-            </div>
-            <div class="breadcrumb-item">{{ $pageTitle }}</div>
-        </div>
-
-    </div>
 
     <div class="section-body lms-quiz-create">
+        
+        <div class="row col-12 col-md-12 col-lg-12">
+        
+                        <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                            <li class="nav-item">
+                               <a class="nav-link active" id="question_properties-tab" data-toggle="tab" href="#question_properties" role="tab"
+                                  aria-controls="question_properties" aria-selected="false"><span class="tab-title">Question Properties</span></a>
+                           </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="question_design-tab" data-toggle="tab" href="#question_design" role="tab"
+                                   aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Design</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="glossary_solution-tab" data-toggle="tab"
+                                   href="#glossary_solution" role="tab"
+                                   aria-controls="glossary_solution" aria-selected="true"><span class="tab-title">Glossary & Solution</span></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="question_preview-tab" data-toggle="tab"
+                                   href="#question_preview" role="tab"
+                                   aria-controls="question_design" aria-selected="true"><span class="tab-title">Question Preview</span></a>
+                            </li>
+                           
+                        </ul>
+                    </div>
 
 
         <div class="row">
@@ -72,28 +96,6 @@ $rand_id = rand(999,99999);
                 <div class="card">
                     <div class="card-body">
 
-                        <ul class="nav nav-pills" id="myTab3" role="tablist">
-
-
-                            <li class="nav-item">
-                                <a class="nav-link active" id="question_properties-tab" data-toggle="tab"
-                                   href="#question_properties" role="tab"
-                                   aria-controls="question_properties" aria-selected="false">Question Properties</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" id="question_design-tab" data-toggle="tab"
-                                   href="#question_design" role="tab"
-                                   aria-controls="question_design" aria-selected="true">Question Design</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="question_preview-tab" data-toggle="tab"
-                                   href="#question_preview" role="tab"
-                                   aria-controls="question_design" aria-selected="true">Question Preview</a>
-                            </li>
-
-
-                        </ul>
 
                         <div class="tab-content" id="myTabContent2">
                             <div class="tab-pane mt-3 fade" id="question_design" role="tabpanel"
@@ -145,6 +147,8 @@ $rand_id = rand(999,99999);
                                                                                     foreach ($value['options'] as
                                                                                     $option_key =>
                                                                                     $option_value) {
+
+
                                                                                     echo '
                                                                                     <li data-type="' . esc_html($key) . '"
                                                                                         data-option="' . esc_html($option_key) . '"
@@ -159,8 +163,9 @@ $rand_id = rand(999,99999);
                                                                             </li>
                                                                             ';
                                                                             } else {
+                                                                            $classes = isset( $value['classes'] )? $value['classes'] : '';
                                                                             echo '
-                                                                            <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
+                                                                            <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
                                                                                 data-type="' . esc_html($key) . '"><a
                                                                                         href="#"
                                                                                         title="' . esc_html($value['title']) . '"><i
@@ -460,7 +465,7 @@ $rand_id = rand(999,99999);
                                                         <a href="#" title="Close"
                                                            onclick="return leform_properties_close();"><i
                                                                     class="fas fa-times"></i></a>
-                                                        <h3><i class="fas fa-cog"></i> Element Properties</h3>
+                                                        <h3><i class="fas fa-cog element-properties-label"></i> Element Properties</h3>
                                                     </div>
                                                     <div class="leform-admin-popup-content">
                                                         <div class="leform-admin-popup-content-form">
@@ -648,38 +653,8 @@ $rand_id = rand(999,99999);
 
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="input-label">Glossary</label>
-                                                    <select name="glossary_ids[]" id="glossary_ids" class="glossary-items"
-                                                            multiple>
-                                                        @if(!empty($glossary))
-                                                        @foreach($glossary as $glossaryData)
-                                                        <option value="{{ $glossaryData->id }}">{{ $glossaryData->title }}
-                                                        </option>
-                                                        @endforeach
-                                                        @endif
-                                                    </select>
-                                                    <a href="javascript:;" class="add-glossary-modal">Add New Glossary</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="input-label">Question Example</label>
-                                                    <textarea class="note-codable summernote" id="question_example"
-                                                              name="question_example"
-                                                              aria-multiline="true"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="input-label">Solution</label>
-                                                    <textarea class="note-codable summernote" id="question_solve"
-                                                              name="question_solve"
-                                                              aria-multiline="true"></textarea>
-                                                </div>
-                                            </div>
-                                            @if(auth()->user()->isAuthor())
+
+                                            @if(auth()->user()->isTeacher())
                                             <div class="col-12 col-md-12">
                                                 <div class="form-group">
                                                     <label class="input-label">Comments for Reviewer</label>
@@ -691,6 +666,47 @@ $rand_id = rand(999,99999);
                                         </div>
                                     </div>
                                 </div>
+
+                            <div class="tab-pane mt-3 fade" id="glossary_solution" role="tabpanel"
+                                                         aria-labelledby="glossary_solution-tab">
+
+
+                                <div class="col-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="input-label">Glossary</label>
+                                                <select name="glossary_ids[]" id="glossary_ids" class="glossary-items"
+                                                        multiple>
+                                                    @if(!empty($glossary))
+                                                    @foreach($glossary as $glossaryData)
+                                                    <option value="{{ $glossaryData->id }}">{{ $glossaryData->title }}
+                                                    </option>
+                                                    @endforeach
+                                                    @endif
+                                                </select>
+                                                <a href="javascript:;" class="add-glossary-modal">Add New Glossary</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="input-label">Question Example</label>
+                                                <textarea class="note-codable summernote" id="question_example"
+                                                          name="question_example"
+                                                          aria-multiline="true"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="input-label">Solution</label>
+                                                <textarea class="note-codable summernote" id="question_solve"
+                                                          name="question_solve"
+                                                          aria-multiline="true"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="tab-pane mt-3 fade" id="question_preview" role="tabpanel"
                                  aria-labelledby="question_preview-tab">

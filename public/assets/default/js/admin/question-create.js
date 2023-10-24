@@ -1006,6 +1006,13 @@ function _leform_properties_prepare(_object) {
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
                     break;
 
+                case 'image':
+                    var imageObj = $.parseHTML(leform_escape_html(properties[key]));
+                    var image_src = imageObj.find('img').attr('src');
+                    console.log(image_src);
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
+                    break;
+
                 case 'file':
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'>" +
                         "<div class=\"input-group\">\n" +
@@ -1063,7 +1070,7 @@ function _leform_properties_prepare(_object) {
                     </div>\n\
                     </div></div>";
 
-                case 'html':
+                case 'html_toolbar':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                     \n\
                     <div class='leform-properties-tooltip'></div>\n\
@@ -1074,11 +1081,21 @@ function _leform_properties_prepare(_object) {
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/percentage.png' title='Fraction' class='editor-add-field lms-tools-item' data-field_type='fraction' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>                    \n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/input.png' title='Blank' class='editor-add-field lms-tools-item' data-field_type='blank' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/select-field.png' title='Select' class='editor-add-field lms-tools-item' data-field_type='select' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/textarea.png' title='Textarea' class='editor-add-field lms-tools-item' data-field_type='textarea' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
-                    <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/file.png' title='Attachment' class='editor-add-field lms-tools-item' data-field_type='file' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/seperator_line.png' title='Seperator' class='editor-add-field lms-tools-item' data-field_type='seperator_line' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
                     </ul>\n\
                     </div>\n\
+                    <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
+                    <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
+                    <div class='field-options field-options-" + key + "'>\n\
+                    </div>\n\
+                    </div></div>";
+
+                    break;
+
+                case 'html':
+                    html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
+                    \n\
+                    <div class='leform-properties-tooltip'></div>\n\
                     <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
                     <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
                     <div class='field-options field-options-" + key + "'>\n\
@@ -1404,9 +1421,10 @@ function _leform_properties_prepare(_object) {
                         if (j == 0 && is_selected == '') {
                             selected = " leform-properties-options-item-default";
                         }
-                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div class='leform-image-url'><input class='leform-properties-options-image' type='text' value='" + leform_escape_html(properties[key][j]["image"]) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='lms-hide'><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+                        var image_url = !DataIsEmpty(properties[key][j]["image"])? properties[key][j]["image"] : '';
+                        options += "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(properties[key][j]["label"]) + "' placeholder='Label'></div><div class='leform-image-url'><div class='input-group-prepend'><button type='button' class='input-group-text admin-file-manager' data-input='image-" + key + "-" + j + "' data-preview='holder'><i class='fa fa-upload'></i></button></div><input class='leform-properties-options-image' type='text' id='image-" + key + "-" + j + "' value='" + leform_escape_html(image_url) + "' placeholder='URL'><span><i class='far fa-image'></i></span></div><div class='lms-hide'><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(properties[key][j]["value"]) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as correct value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
                     }
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Image</div><div>Label</div><div class='lms-hide'>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content leform-properties-image-options-table'><div class='leform-properties-options-table-header'><div>Label</div><div>Image</div><div class='lms-hide'>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + (properties.type == "radio" ? "off" : "on") + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
 
                 case 'sortable-options':
@@ -1634,13 +1652,14 @@ function _leform_properties_prepare(_object) {
             blockquoteBreakingLevel: 2,
             toolbar: [
                 ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['fontname', ['fontname']],
+                ['font', ['bold', 'underline']],
+                //['fontname', ['fontname']],
                 ['color', ['color']],
-                ['para', ['paragraph']],
+                ['para', ['paragraph', 'ul', 'ol']],
                 ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']],
+                //['insert', ['link', 'picture', 'video']],
+                ['insert', ['link']],
+              //['view', ['fullscreen', 'codeview']],
             ],
             popover: {
                 table: [
@@ -1953,11 +1972,22 @@ function leform_properties_open(_object) {
     leform_element_properties_active = _object;
     leform_element_properties_data_changed = false;
     jQuery("#leform-element-properties .leform-admin-popup-loading").show();
+    console.log(_object);
+
+    /*var sidebar = new StickySidebar('.lms-element-properties', {
+        containerSelector: false,
+        innerWrapperSelector: '.leform-admin-popup',
+        topSpacing: 0,
+        bottomSpacing: 0
+    });*/
 
     setTimeout(function () {
         _leform_properties_prepare(_object);
         jQuery("#leform-element-properties .leform-admin-popup-loading").hide();
     }, 500);
+
+
+
     return false;
 }
 
@@ -4525,8 +4555,9 @@ function leform_shortcode_selector_list_html(_class) {
         if (leform_form_elements[j] == null)
             continue;
         if (leform_toolbar_tools.hasOwnProperty(leform_form_elements[j]['type']) && leform_toolbar_tools[leform_form_elements[j]['type']]['type'] == 'input') {
-            label = leform_form_elements[j]['name'].replace(new RegExp("}", 'g'), ")");
-            label = label.replace(new RegExp("{", 'g'), "(");
+            //label = leform_form_elements[j]['name'].replace(new RegExp("}", 'g'), ")");
+            //label = label.replace(new RegExp("{", 'g'), "(");
+            label = '';
             temp += "<li class='leform-shortcode-selector-list-item leform-shortcode-selector-list-item-field' data-code='{{" + leform_form_elements[j]['id'] + "|" + leform_escape_html(label) + "}}'>" + leform_form_elements[j]['id'] + " | " + leform_escape_html(leform_form_elements[j]['name']) + "</li>";
         }
     }
@@ -5126,13 +5157,15 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     break;
 
                 case "checkbox":
+                case "multiresponse_template":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     leform_form_elements[i]['field_id'] = random_id;
+                    var image_size = leform_form_elements[i]['image_size'];
                     var template_style = leform_form_elements[i]['template_style'];
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style +' '+image_size;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['checkbox-size'] = leform_form_options['checkbox-radio-style-size'];
                     if (leform_form_elements[i]['checkbox-style-position'] == "")
@@ -5154,7 +5187,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                         var image_url = leform_form_elements[i]["options"][j]["image"];
 
                         var label_data = '';
-                        if (image_url != '') {
+                        if (!DataIsEmpty(image_url)) {
                             label_data += '<img src="' + leform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
                             var is_image = true;
                         }
@@ -5163,18 +5196,22 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                         options += "<div class='form-field leform-cr-container-" + properties["checkbox-size"] + " leform-cr-container-" + properties["checkbox-position"] + "'>\n\
 					" + option + "</div>";
                     }
+                    console.log('checkbox-fields');
                     var image_class = (is_image == true) ? "lms-checkbox-img" : "";
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "radio":
+                case "multichoice_template":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     leform_form_elements[i]['field_id'] = random_id;
+                    console.log('radio-fields');
                     var template_style = leform_form_elements[i]['template_style'];
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+                    var image_size = leform_form_elements[i]['image_size'];
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+' '+image_size;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['radio-size'] = leform_form_options['checkbox-radio-style-size'];
                     if (leform_form_elements[i]['radio-style-position'] == "")
@@ -5215,7 +5252,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                   template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+                    var image_size = leform_form_elements[i]['image_size'];
+                   template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style +' '+image_size;
 
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['checkbox-size'] = leform_form_options['checkbox-radio-style-size'];
@@ -5261,7 +5299,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+                    var image_size = leform_form_elements[i]['image_size'];
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+' '+image_size;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['checkbox-size'] = leform_form_options['checkbox-radio-style-size'];
                     if (leform_form_elements[i]['checkbox-style-position'] == "")
@@ -5328,7 +5367,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                   template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+                    var image_size = leform_form_elements[i]['image_size'];
+                   template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style +' '+image_size;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['checkbox-size'] = leform_form_options['checkbox-radio-style-size'];
                     if (leform_form_elements[i]['checkbox-style-position'] == "")
@@ -5401,7 +5441,9 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var template_size = leform_form_elements[i]['template_size'];
                     var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style;
+
+                    var image_size = leform_form_elements[i]['image_size'];
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+ ' '+image_size;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
 
                     properties['image-size'] = leform_form_elements[i]['image-style-size'];
@@ -5573,8 +5615,37 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                 case "question_templates":
                     var next_i = parseInt(i) + 1;
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
                     console.log(leform_form_elements);
-                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+
+                    var template_no = leform_form_elements[i]['template_no'];
+                    console.log(template_no);
+                    console.log(leform_form_elements[i]);
+                    var template_content = '';
+
+                    switch( template_no ){
+                        case 1:
+                            break;
+                        case 2:
+                            template_content = '222 + 222&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'" correct_answere="4"></span>';
+                            break;
+                        case 3:
+                            template_content = '333 + 333&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'" correct_answere="4"></span>';
+                            break;
+                        case 4:
+
+                            template_content = '444 + 444&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =&nbsp;<span class="input-holder"><input type="text" data-field_type="text" size="3" readonly="readonly" class="editor-field field_small" data-id="'+random_id+'" id="field-'+random_id+'" correct_answere="4"></span>';
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            break;
+                        case 7:
+                            break;
+                    }
+
+
+                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + template_content + "<div class='leform-element-cover'></div></div>";
 
                     options = "<div class='leform-col leform-col-12'><div class='leform-elements' _data-parent='" + i + "' _data-parent-col='" + i + "'>" + html_data + "</div></div>";
                     //html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-row leform-element' data-type='columns'>" + options + "</div>";
@@ -5608,7 +5679,9 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                 case "image_quiz":
                     console.log('image-quiz');
-                    var imageObj = $(leform_form_elements[i]["content"]);
+
+                    var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
+                    console.log(imageObj);
                     var image_field_id = imageObj.find('img').attr('data-id');
                     var image_field_id = "leform-element-" + i;
                     var imageStyle = !DataIsEmpty(image_styles[image_field_id]) ? image_styles[image_field_id] : '';
@@ -5622,8 +5695,75 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='image-field-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_content + "<div class='leform-element-cover'></div></div>";
                     break;
 
+                case "heading_quiz":
+                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+                    html += html_data;
+
+                    break;
+
                 case "paragraph_quiz":
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + leform_form_elements[i]["content"] + "<div class='leform-element-cover'></div></div>";
+                    html += html_data;
+
+                    break;
+
+                case "textareafield_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var classes = '';
+                    classes += ' '+leform_form_elements[i]["style_format"];
+                    classes += ' '+leform_form_elements[i]["field_size"];
+                    var attributes_data = '';
+                   if( leform_form_elements[i]["maxlength"] != '') {
+                       attributes_data += 'maxlenghth="' + leform_form_elements[i]["maxlength"] + '"';
+                   }
+
+                    var field_data = '<span class="input-holder '+classes+'"><span class="input-label" contenteditable="false"></span><textarea data-field_type="textarea" data-score="' + leform_form_elements[i]["score"] + '" data-correct="' + leform_form_elements[i]["correct_answer"] + '" placeholder="' + leform_form_elements[i]["placeholder"] + '" rows="' + leform_form_elements[i]["rows"] + '" '+attributes_data+' class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"></textarea></span>';
+                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
+                    html += html_data;
+
+                    break;
+
+                case "textfield_quiz":
+                   var random_id = Math.floor((Math.random() * 99999) + 1);
+                   var left_data = '';
+                    var right_data = '';
+                   if( leform_form_elements[i]["label_before"] != ''){
+                       left_data += '<span class="input-label" contenteditable="false">'+leform_form_elements[i]["label_before"]+'</span>';
+                   }
+                   if( leform_form_elements[i]["label_after"] != ''){
+                       right_data += '<span class="input-label" contenteditable="false">'+leform_form_elements[i]["label_after"]+'</span>';
+                   }
+                   var attributes_data = '';
+                   if( leform_form_elements[i]["maxlength"] != '') {
+                       attributes_data += 'maxlenghth="' + leform_form_elements[i]["maxlength"] + '"';
+                   }
+                   var classes = '';
+                    classes += ' '+leform_form_elements[i]["style_format"];
+                   var field_data = '<span class="input-holder '+leform_form_elements[i]["style_format"]+'">'+left_data+'<input type="'+leform_form_elements[i]["text_format"]+'" data-field_type="text" '+attributes_data+' data-score="' + leform_form_elements[i]["score"] + '" data-correct="' + leform_form_elements[i]["correct_answer"] + '" placeholder="' + leform_form_elements[i]["placeholder"] + '" class="editor-field input-simple '+classes+'" data-id="' + random_id + '" id="field-' + random_id + '">'+right_data+'</span>';
+                   var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
+                   html += html_data;
+
+                   break;
+
+                case "attachment_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var field_data = '<div class="form-group mt-15">\n' +
+                                '                    <label class="input-label">' + leform_form_elements[i]["content"] + '</label>\n' +
+                                '                    <div class="input-group">\n' +
+                                '                        <div class="input-group-prepend">\n' +
+                                '                            <button type="button" class="input-group-text admin-file-manager" data-input="field-' + random_id + '" data-preview="holder">\n' +
+                                '                                <i class="fa fa-chevron-up"></i>\n' +
+                                '                            </button>\n' +
+                                '                        </div>\n' +
+                                '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="field-' + random_id + '" value="" class="form-control"/>\n' +
+                                '                        <div class="input-group-append">\n' +
+                                '                            <button type="button" class="input-group-text admin-file-view" data-input="field-' + random_id + '">\n' +
+                                '                                <i class="fa fa-eye"></i>\n' +
+                                '                            </button>\n' +
+                                '                        </div>\n' +
+                                '                    </div>\n' +
+                                '                </div>';
+                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
                     html += html_data;
 
                     break;
@@ -6413,7 +6553,7 @@ function leform_form_resize() {
     var toolbars_height = jQuery(".leform-toolbars").height();
     jQuery(".leform-builder").css({
         "min-height": builder_height + "px",
-        "padding-top": parseInt(toolbars_height + 20, 10) + "px"
+        "padding-top": parseInt(toolbars_height + 40, 10) + "px"
     });
     jQuery(".leform-form").css({"min-height": "500px"});
     var builder_width = jQuery(".leform-builder").outerWidth();
@@ -6553,9 +6693,11 @@ function leform_form_ready() {
         });
 
         var type = jQuery(this).parent().attr("data-type");
+
         if (typeof type == undefined || type == "")
             return false;
         var columns = 2;
+        var template_name = '';
         if (leform_meta.hasOwnProperty(type)) {
             leform_form_last_id++;
             var element = {
@@ -6572,6 +6714,13 @@ function leform_form_ready() {
                 if (columns != 1 && columns != 2 && columns != 3 && columns != 4 && columns != 6)
                     columns = 2;
                 element['_cols'] = columns;
+            }
+            if (type == "question_templates") {
+                template_name = jQuery(this).parent().attr("data-option");
+                jQuery('.leform-toolbar-tool-other[data-type="'+template_name+'"] a').click();
+                return false;
+
+                element['template_no'] = template_no;
             }
             for (var key in leform_meta[type]) {
                 if (leform_meta[type].hasOwnProperty(key)) {
@@ -9029,24 +9178,3 @@ $(document).on('click', '.question_glossary_submit_btn', function () {
         }
     });
 });
-
-/* Element Properties Sticky Function Start */
-var stickitLeft = $('.lms-element-properties').offset.left;
-var stickitWidth = $('.lms-element-properties').width() + 'px';
-var stickitHeight = $('.lms-element-properties').height() + 'px';
-var stickySidebarToTop = $('.lms-element-properties').offset().top;
-$(window).scroll(function() {
-  var windowToTop = $(window).scrollTop();
-  if (windowToTop + 10 > stickySidebarToTop) {
-    $('.lms-element-properties').css({
-      'position': 'fixed',
-      'top': '10px',
-      'left': stickitLeft,
-      'width': stickitWidth,
-      'height': stickitHeight
-    })
-  } else {
-    $('.lms-element-properties').removeAttr('style');
-  }
-})
-/* Element Properties Sticky Function End */

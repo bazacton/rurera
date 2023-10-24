@@ -15,7 +15,7 @@ class PagesController extends Controller
 
         $this->authorize('admin_pages_list');
 
-        $pages = Page::orderBy('created_at', 'desc')->paginate(10);
+        $pages = Page::orderBy('created_at', 'desc')->paginate(100);
 
         $data = [
             'pageTitle' => trans('admin/pages/setting.pages'),

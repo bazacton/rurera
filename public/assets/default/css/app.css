@@ -1,5 +1,6 @@
 html {
     /* overflow: auto !important; */
+    scroll-behavior: smooth;
 }
 .btn-text-primary {
     color: #27325e !important
@@ -14124,6 +14125,12 @@ p {
     border-bottom: 1px solid #eaeaea;
 }
 .navbar1 .navbar-nav{position: relative; width: 100%;}
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row
+    }
+}
 .navbar1.sticky {
     position: fixed;
     top: 0;
@@ -14937,7 +14944,7 @@ p {
     margin-top: 80px
 }
 .home-sections.home-sections-swiper {
-    margin-top: 120px
+    margin-top: 80px
 }
 @media (max-width:991px) {
     .home-sections.home-sections-swiper {
@@ -21590,7 +21597,7 @@ Lms Choose Membership Model Style End
 .exame-listing .exame-holder .exame-list:after {content: "\203A";position: absolute;right: 25px;font-size: 40px;color: #3f5d6b;bottom: 50%;transform: translateY(45%);cursor: pointer;}
 .exame-listing .exame-holder .exame-list:nth-child(3),
 .exame-listing .exame-holder .exame-list:nth-child(4){border-bottom: 0;}
-.bg-exames {background-color: #f6b801; background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, .4) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220, 220, 200, .4) 12px, transparent 12px);
+.bg-exames {background-color: #f6b801; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, .3) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, .3) 12px, transparent 12px);
     background-size: 100% 12px, 12px 100%;}
 /*************************************
   Exame Listing Style End
@@ -22202,6 +22209,31 @@ Product Tabs Slider Style Start
 .general-info li {font-size: 13px; position: relative; line-height: normal; color: #71706b;}
 .general-info li:before {position: absolute; left: -10px; top: 50%; height: 4px; width: 4px; margin-top: -2px; background-color: #736c64; border-radius: 100%; content: "";}
 .general-info li:first-child:before {display: none;}
+
+/* Lms Font End Display Style */
+.lms-quiz-section .questions-data-block {
+    max-width: 1170px;
+    margin: 50px auto 0;
+    border: 1px solid #eee;
+}
+.lms-quiz-section .quiz-topbar {
+    background-color: inherit;
+    border-bottom: 1px solid #eee;
+}
+.lms-quiz-section .quiz-topbar .quiz-pagination li a,
+.lms-quiz-section .quiz-topbar .timer-number,
+.timer-number, .lms-quiz-section .quiz-topbar p{
+    color: #333;
+}
+.question-layout-block form.question-fields .questions-nav-controls {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    padding-left: 0;
+}
+.question-layout-block form.question-fields .questions-nav-controls .review-btn {
+    left: 0;
+}
+/* Lms Font End Display End */
 
 /*************************************
 Lms Responsive Style Start

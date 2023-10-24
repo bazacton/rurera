@@ -73,7 +73,7 @@ class Share
         $categoryQuery = Category::query();
         $course_navigation_data = $categoryQuery->with([
             'webinars' => function ($query) {
-                $query->with('chapters');
+                $query->with('chapters.subChapters');
             }
         ])->where('parent_id', '>', 0)->orderBy('order', 'ASC')->get();
 
@@ -109,6 +109,19 @@ class Share
                                     $topic_title = $chapterObj->getTitleAttribute();
                                     $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['title'] = $topic_title;
                                     $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['custom_link'] = $chapterObj->custom_link;
+
+
+                                    $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['sub_chapters'] = array();
+                                    if( isset( $chapterObj->subChapters ) && !empty($chapterObj->subChapters)){
+                                        foreach( $chapterObj->subChapters as $subChapterObj){
+                                            $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['topics'][$chapterObj->id]['sub_chapters'][] = array(
+                                                'sub_chapter_title' => $subChapterObj->sub_chapter_title,
+                                                'sub_chapter_slug' => $subChapterObj->sub_chapter_slug,
+                                                'sub_chapter_image' => $subChapterObj->sub_chapter_image,
+                                            );
+
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -116,8 +129,52 @@ class Share
                 }
             }
         }
+        //pre('test');
 
         //pre($course_navigation);
+
+        if( isset( $_GET['sitemap'] ) && $_GET['sitemap'] = 'generate'){
+            foreach( $course_navigation as $navigation_slug => $courseObj){
+                if( !empty( $courseObj['chapters'] ) ){
+                    foreach( $courseObj['chapters'] as $courseSUbjectObj){
+                        $requestData = array(
+                            'getPathInfo' => '/'.$navigation_slug.'/'.$courseSUbjectObj['chapter_slug'],
+                            'fullUrl' => url('/').'/'.$navigation_slug.'/'.$courseSUbjectObj['chapter_slug'],
+                        );
+                        //putSitemap($requestData);
+                        $chapters = isset( $courseSUbjectObj['topics'] )? $courseSUbjectObj['topics'] : array();
+                        if( !empty( $chapters)){
+                            foreach( $chapters as $chapter_slug => $chapterObj){
+                                $sub_chapters = isset( $chapterObj['sub_chapters'] )? $chapterObj['sub_chapters'] : array();
+                                if( !empty( $sub_chapters )){
+                                    foreach( $sub_chapters as $subChapterObj){
+                                        $requestData = array(
+                                            'getPathInfo' => '/'.$navigation_slug.'/'.$courseSUbjectObj['chapter_slug'].'/'.$subChapterObj['sub_chapter_slug'],
+                                            'fullUrl' => url('/').'/'.$navigation_slug.'/'.$courseSUbjectObj['chapter_slug'].'/'.$subChapterObj['sub_chapter_slug'],
+                                        );
+                                        $requestImages = [];
+                                        if( isset( $subChapterObj['sub_chapter_image']) && $subChapterObj['sub_chapter_image'] != ''){
+                                            $requestImages = [
+                                                [
+                                                    'loc' => $subChapterObj['sub_chapter_image'],
+                                                    'title' => $subChapterObj['sub_chapter_title'].' ('.$courseObj['title'].' '.$courseSUbjectObj['chapter_title'].' practice)',
+                                                    'caption' => "Fun maths practice! Improve your skills with free problems in '".$subChapterObj['sub_chapter_title']."' and thousands of other practice lessons.",
+                                                ]
+                                            ];
+                                            //pre($requestImages);
+                                        }
+                                        putSitemap($requestData, $requestImages);
+                                        //pre($requestData, false);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //pre($courseObj);
+            }
+            pre('test');
+        }
 
         //pre($course_navigation);
 
@@ -157,6 +214,7 @@ class Share
         }
 		
 		//pre($navData);
+        //pre($course_navigation);
 
 
         view()->share('navData', $navData);

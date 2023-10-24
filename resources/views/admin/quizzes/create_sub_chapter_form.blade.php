@@ -58,6 +58,27 @@
                     @enderror
                 </div>
 
+                @php $random_id = rand(99,9999); @endphp
+                <div class="form-group">
+                    <label class="input-label">Sub Chapter Image</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="input-group-text admin-file-manager" data-input="sub_chapter_image_{{$random_id}}_record"
+                                    data-preview="holder">
+                                <i class="fa fa-upload"></i>
+                            </button>
+                        </div>
+                        <input type="text" value="{{ !empty($subChapter) ? $subChapter->sub_chapter_image : old('sub_chapter_image') }}" name="ajax[sub_chapter_image]"
+                               id="sub_chapter_image_{{$random_id}}_record"
+                               class="form-control js-ajax-sub_chapter_image_{{$random_id}}"/>
+                        <div class="input-group-append">
+                            <button type="button" class="input-group-text admin-file-view" data-input="sub_chapter_image_{{$random_id}}_record">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="input-label">Sub Chapter Slug</label>
                     <input type="text" value="{{ !empty($subChapter) ? $subChapter->sub_chapter_slug : old('sub_chapter_slug') }}" name="ajax[sub_chapter_slug]" class="form-control" placeholder=""/>

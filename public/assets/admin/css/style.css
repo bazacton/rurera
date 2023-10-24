@@ -4401,6 +4401,8 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 .assignment-questions-preview form .marks, .assignment-questions-preview .marks,
 .single-question-preview form .marks, .single-question-preview .marks {
     right: 0;
+    top: 0;
+    margin-top: -30px;
 }
 .assignment-questions-preview .prev-next-controls .review-btn,
 .single-question-preview .prev-next-controls .review-btn {
@@ -4416,4 +4418,10 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     max-width: 1400px;
     margin: 0 auto 0 400px;
     padding-left: 0;
+}
+#glossary_solution .select2-container {
+    z-index: auto !important;
+}
+.lms-quiz-create ol li {
+    list-style: auto;
 }

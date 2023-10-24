@@ -19,7 +19,6 @@ class BooksController extends Controller
     {
 
         $books_data = Books::get();
-
         $books = array();
 
         if (!empty($books_data)) {
@@ -29,7 +28,6 @@ class BooksController extends Controller
                 }
             }
         }
-
 
         putSitemap($request);
 

@@ -342,7 +342,7 @@ class AssignmentsController extends Controller
             ])
             ->first();
 
-        if( $quiz->status == 'active'){
+        if( $quiz->status == 'actives'){
             $toastData = [
                 'title' => 'Request not completed',
                 'msg' => 'You dont have permissions to perform this action.',
@@ -835,28 +835,27 @@ class AssignmentsController extends Controller
         $question_response_layout = '<section class="quiz-topbar">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-5 col-md-6 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="quiz-top-info"><p>' . $assignment_title . '</p>
                         </div>
-                    </div>
-                    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                         <div class="topbar-right">
-                            <div class="quiz-pagination">
-                                <div class="swiper-container">
-                                    <ul class="swiper-wrapper">';
+                                <div class="quiz-pagination">
+                                    <div class="swiper-container">
+                                        <ul class="swiper-wrapper">';
 
-        $question_count = 1;
-        foreach ($questions_ids as $question_id) {
-            $active_class = ($question_count == 1) ? 'active' : '';
-            $question_response_layout .= '<li data-question_id="' . $question_id . '" class="swiper-slide waiting ' . $active_class . '"><a href="javascript:;">' . $question_count . '</a></li>';
-            $question_count++;
-        }
-        $question_response_layout .= '</ul>
+            $question_count = 1;
+            foreach ($questions_ids as $question_id) {
+                $active_class = ($question_count == 1) ? 'active' : '';
+                $question_response_layout .= '<li data-question_id="' . $question_id . '" class="swiper-slide waiting ' . $active_class . '"><a href="javascript:;">' . $question_count . '</a></li>';
+                $question_count++;
+            }
+            $question_response_layout .= '</ul>
+                                    </div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
                                 </div>
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

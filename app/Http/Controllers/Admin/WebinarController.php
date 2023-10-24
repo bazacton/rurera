@@ -515,6 +515,7 @@ class WebinarController extends Controller
                 'status'            => 'active' ,
                 'created_at'        => time() ,
                 'sub_chapter_slug'        => $sub_chapter_slug,
+                'sub_chapter_image'         => isset($data['sub_chapter_image']) ? $data['sub_chapter_image'] : '' ,
             ]);
 
 
@@ -619,6 +620,7 @@ class WebinarController extends Controller
                 'chapter_settings'  => json_encode($chapter_settings) ,
                 'status'            => 'active' ,
                 'sub_chapter_slug' => $sub_chapter_slug,
+                'sub_chapter_image'         => isset($data['sub_chapter_image']) ? $data['sub_chapter_image'] : '' ,
                 //'created_at' => time(),
             ]);
 

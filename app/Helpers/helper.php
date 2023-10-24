@@ -2303,8 +2303,8 @@ function toolbar_tools()
             'title'   => esc_html__('Questions Templates', 'leform'),
             'icon'    => 'fas fa-layer-group',
             'options' => array(
-                '1' => esc_html__('<img src="/store/1/tool-images/d1.png" alt=""> Multiple Choice', 'leform'),
-                '2' => esc_html__('<img src="/store/1/tool-images/d2.png" alt=""> Multiple Response', 'leform'),
+                'multichoice_template' => esc_html__('<img src="/store/1/tool-images/d1.png" alt=""> Multiple Choice', 'leform'),
+                'multiresponse_template' => esc_html__('<img src="/store/1/tool-images/d2.png" alt=""> Multiple Response', 'leform'),
                 '3' => esc_html__('<img src="/store/1/tool-images/d3.png" alt=""> True/False', 'leform'),
                 '4' => esc_html__('<img src="/store/1/tool-images/d4.png" alt=""> Short Answer', 'leform'),
                 '5' => esc_html__('<img src="/store/1/tool-images/d5.png" alt=""> Numeric', 'leform'),
@@ -2325,6 +2325,18 @@ function toolbar_tools()
             'icon'  => 'fas fa-code',
             'type'  => 'other'
         ),
+        'multichoice_template'  => array(
+            'title' => esc_html__('SUM Q', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
+        'multiresponse_template'  => array(
+            'title' => esc_html__('SUM Q', 'leform'),
+            'icon'  => 'fa fa-plus',
+            'classes' => 'rurera-hide',
+            'type'  => 'other'
+        ),
         'sum_quiz'           => array(
             'title' => esc_html__('SUM Q', 'leform'),
             'icon'  => 'fa fa-plus',
@@ -2340,9 +2352,29 @@ function toolbar_tools()
             'icon'  => 'fas fa-image',
             'type'  => 'other'
         ),
-        'paragraph_quiz'     => array(
+        'heading_quiz'     => array(
             'title' => esc_html__('Text', 'leform'),
             'icon'  => 'fas fa-heading',
+            'type'  => 'other'
+        ),
+        'paragraph_quiz'     => array(
+            'title' => esc_html__('Text', 'leform'),
+            'icon'  => 'fas fa-paragraph',
+            'type'  => 'other'
+        ),
+        'textareafield_quiz'     => array(
+            'title' => esc_html__('Textarea Field', 'leform'),
+            'icon'  => 'fas fa-edit',
+            'type'  => 'other'
+        ),
+        'textfield_quiz'     => array(
+            'title' => esc_html__('Text Input Field', 'leform'),
+            'icon'  => 'fas fa-i-cursor',
+            'type'  => 'other'
+        ),
+        'attachment_quiz'     => array(
+            'title' => esc_html__('Attachment', 'leform'),
+            'icon'  => 'fas fa-paperclip',
             'type'  => 'other'
         ),
         'checkbox'           => array(
@@ -4822,6 +4854,16 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
                 'type'    => 'text'
             ),
+            'score'              => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'           => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
+            ),
             'label'              => array(
                 'value'   => esc_html__('Mark one answer', 'leform'),
                 'label'   => esc_html__('Label', 'leform'),
@@ -4864,6 +4906,7 @@ function element_properties_meta($chapters)
                 'label'        => esc_html__('Options', 'leform'),
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
                 'type'         => 'image-options'
+
             ),
             'description'        => array(
                 'value'   => '',
@@ -4876,110 +4919,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
-                    )
-            ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
-            ),
-            'list_style'         => array(
-                'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
-                    )
-            ),
-            'list_style'         => array(
-                'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
-                    )
-            ),
-            'label-style'        => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'image-style'        => array(
-                'value'   => array(
-                    'width'  => "120",
-                    'height' => "160",
-                    'size'   => 'contain'
-                ),
-                'caption' => array(
-                    'width'  => esc_html__('Width', 'leform'),
-                    'height' => esc_html__('Height', 'leform'),
-                    'size'   => esc_html__('Size', 'leform')
-                ),
-                'label'   => esc_html__('Image style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display images.', 'leform'),
-                'type'    => 'local-imageselect-style'
-            ),
-            'label-enable'       => array(
-                'value'   => 'off',
-                'label'   => esc_html__('Enable label', 'leform'),
-                'tooltip' => esc_html__('If enabled, the label will be displayed below the image.', 'leform'),
-                'caption' => esc_html__('Label enabled', 'leform'),
-                'type'    => 'checkbox'
-            ),
-            'label-height'       => array(
-                'value'   => '60',
-                'label'   => esc_html__('Label height', 'leform'),
-                'tooltip' => esc_html__('Set the height of label area.', 'leform'),
-                'unit'    => 'px',
-                'type'    => 'units',
-                'visible' => array('label-enable' => array('on'))
             ),
             'description-style'  => array(
                 'value'   => array(
@@ -4994,50 +4966,14 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'                => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
+
             'elements_data'      => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings'      => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'              => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-            'field_id'           => array(
-                'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
-                'type'  => 'hidden'
-            ),
+
 
         ),
         'tile'        => array(
@@ -5167,29 +5103,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
+
             'data'              => array(
                 'type'  => 'tab',
                 'value' => 'data',
@@ -5271,12 +5185,6 @@ function element_properties_meta($chapters)
                 'type'  => 'tab',
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
-            ),
-            'name'              => array(
-                'value'   => esc_html__('Multiselect', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
             ),
             'label'             => array(
                 'value'   => esc_html__('Options', 'leform'),
@@ -5375,29 +5283,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
+
             'data'              => array(
                 'type'  => 'tab',
                 'value' => 'data',
@@ -5487,11 +5373,15 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'    => array(
-                'value'   => esc_html__('Checkbox', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
             ),
             'label'   => array(
                 'value'   => esc_html__('Mark one answer', 'leform'),
@@ -5534,40 +5424,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
-                    )
-            ),
+
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -5583,36 +5472,7 @@ function element_properties_meta($chapters)
                     )
             ),
 
-            'label-style'       => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'checkbox-style'    => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => '',
-                    'layout'   => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
-                ),
-                'label'   => esc_html__('Checkbox style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
-                'type'    => 'local-checkbox-style'
-            ),
+
             'description-style' => array(
                 'value'   => array(
                     'position' => '',
@@ -5626,29 +5486,6 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
 
             'elements_data' => array(
                 'value'   => '',
@@ -5656,21 +5493,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-            'field_id'      => array(
-                'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
-                'type'  => 'hidden'
-            ),
+            
 
         ),
         'radio'    => array(
@@ -5679,11 +5502,11 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'               => array(
-                'value'   => esc_html__('Radio button', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
+           
+            'score'              => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
             ),
             'label'              => array(
                 'value'   => esc_html__('Mark one answer', 'leform'),
@@ -5725,40 +5548,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
-                    )
-            ),
+
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -5773,36 +5595,7 @@ function element_properties_meta($chapters)
                         'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-            'label-style'        => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'radio-style'        => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => '',
-                    'layout'   => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
-                ),
-                'label'   => esc_html__('Radio button style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
-                'type'    => 'local-checkbox-style'
-            ),
+
             'description-style'  => array(
                 'value'   => array(
                     'position' => '',
@@ -5816,45 +5609,15 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'                => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
+
             'elements_data'      => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings'      => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'              => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
+            
+            
 
         ),
 
@@ -5864,11 +5627,16 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'    => array(
-                'value'   => esc_html__('Sortable', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
+           
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
             ),
             'label'   => array(
                 'value'   => esc_html__('Arrange', 'leform'),
@@ -5911,40 +5679,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
-                    )
-            ),
+
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -6003,51 +5770,13 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
-
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-            'field_id'      => array(
-                'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
-                'type'  => 'hidden'
-            ),
+            
 
         ),
 
@@ -6057,11 +5786,16 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'     => array(
-                'value'   => esc_html__('Matrix Quizz', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
+            
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
             ),
             'label'    => array(
                 'value'   => esc_html__('Arrange', 'leform'),
@@ -6127,40 +5861,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
-                    )
-            ),
+
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -6175,37 +5908,6 @@ function element_properties_meta($chapters)
                         'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-
-            'label-style'       => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'checkbox-style'    => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => '',
-                    'layout'   => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
-                ),
-                'label'   => esc_html__('Checkbox style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
-                'type'    => 'local-checkbox-style'
-            ),
             'description-style' => array(
                 'value'   => array(
                     'position' => '',
@@ -6219,29 +5921,6 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
 
             'elements_data' => array(
                 'value'   => '',
@@ -6249,21 +5928,8 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-            'field_id'      => array(
-                'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
-                'type'  => 'hidden'
-            ),
+
+            
 
         ),
 
@@ -6273,11 +5939,16 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'     => array(
-                'value'   => esc_html__('Match Quizz', 'leform'),
-                'label'   => esc_html__('Name', 'leform'),
-                'tooltip' => esc_html__('The name will be shown in place of the label throughout the plugin, in the notification email and when viewing submitted form entries.', 'leform'),
-                'type'    => 'text'
+            
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
             ),
             'label'    => array(
                 'value'   => esc_html__('Match', 'leform'),
@@ -6343,40 +6014,39 @@ function element_properties_meta($chapters)
                 'value' => 'style',
                 'label' => esc_html__('Style', 'leform')
             ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
             'template_style'     => array(
-                'value'   => 'option-row-1',
+                'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'option-row-1' => esc_html__('1 In Row', 'leform'),
-                        'option-row-2' => esc_html__('2 In Row', 'leform'),
-                        'option-row-3' => esc_html__('3 In Row', 'leform'),
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
                     )
             ),
-            'template_size'      => array(
-                'value'   => 'option-small',
-                'label'   => esc_html__('Template Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'option-small'  => esc_html__('Small', 'leform'),
-                        'option-medium' => esc_html__('Medium', 'leform'),
-                        'option-large'  => esc_html__('Large', 'leform'),
-                    )
-            ),
+
             'template_alignment' => array(
-                'value'   => 'image-left',
-                'label'   => esc_html__('Template Alignment', 'leform'),
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
                 '',
                 'type'    => 'select',
                 'options' =>
                     array(
-                        'image-left'  => esc_html__('Left', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                         'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -6392,36 +6062,7 @@ function element_properties_meta($chapters)
                     )
             ),
 
-            'label-style'       => array(
-                'value'   => array(
-                    'position' => '',
-                    'width'    => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'width'    => esc_html__('Width', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform')
-                ),
-                'label'   => esc_html__('Label style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the label relative to the field and its alignment.', 'leform'),
-                'type'    => 'label-style'
-            ),
-            'checkbox-style'    => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => '',
-                    'layout'   => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Alignment', 'leform'),
-                    'layout'   => esc_html__('Layout', 'leform')
-                ),
-                'label'   => esc_html__('Checkbox style', 'leform'),
-                'tooltip' => esc_html__('Choose how to display checkbox fields and their captions.', 'leform'),
-                'type'    => 'local-checkbox-style'
-            ),
+
             'description-style' => array(
                 'value'   => array(
                     'position' => '',
@@ -6435,50 +6076,12 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            'css'               => array(
-                'type'      => 'css',
-                'values'    => array(),
-                'label'     => esc_html__('CSS styles', 'leform'),
-                'tooltip'   => esc_html__('Once you have added a style, enter the CSS styles.', 'leform'),
-                'selectors' => array(
-                    'wrapper'     => array(
-                        'label'       => esc_html__('Wrapper', 'leform'),
-                        'admin-class' => '.leform-element-{element-id}',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id}'
-                    ),
-                    'label'       => array(
-                        'label'       => esc_html__('Label', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-label .leform-label',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-label .leform-label'
-                    ),
-                    'description' => array(
-                        'label'       => esc_html__('Description', 'leform'),
-                        'admin-class' => '.leform-element-{element-id} .leform-column-input .leform-description',
-                        'front-class' => '.leform-form-{form-id} .leform-element-{element-id} .leform-column-input .leform-description'
-                    )
-                )
-            ),
-
+            
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
-            ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-            'field_id'      => array(
-                'value' => '',
-                'label' => esc_html__('Field_id', 'leform'),
-                'type'  => 'hidden'
             ),
 
         ),
@@ -6672,16 +6275,16 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'          => array(
-                'value' => esc_html__('HTML Content', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'text'
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
             ),
             'content'       => array(
                 'value'   => esc_html__('Default HTML Content.', 'leform') . '',
                 'label'   => esc_html__('HTML', 'leform'),
                 'tooltip' => esc_html__('This is the content of HTML.', 'leform'),
-                'type'    => 'html'
+                'type'    => 'html_toolbar'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -6689,16 +6292,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
+
 
         ),
         'spreadsheet_area'   => array(
@@ -6707,11 +6301,11 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'          => array(
-                'value' => esc_html__('HTML Content', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'text'
-            ),
+            'score'         => array(
+               'value' => '',
+               'label' => esc_html__('Score', 'leform'),
+               'type'  => 'number'
+           ),
             'content'       => array(
                 'value'   => esc_html__('', 'leform') . '',
                 'label'
@@ -6726,17 +6320,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
-
+           
         ),
         'sum_quiz'           => array(
             'basic'         => array(
@@ -6758,6 +6342,234 @@ function element_properties_meta($chapters)
             ),
 
         ),
+        'multichoice_template'           => array(
+            'basic'              => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+
+            'score'              => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'label'              => array(
+                'value'   => esc_html__('Mark one answer', 'leform'),
+                'label'   => esc_html__('Label', 'leform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'options'            => array(
+                'multi-select' => 'off',
+                'values'       => array(
+                    array(
+                        'value' => 'Option 1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 2',
+                        'label' => 'Option 2',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 3',
+                        'label' => 'Option 3',
+                        'image' => ''
+                    )
+                ),
+                'label'        => esc_html__('Options', 'leform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'type'         => 'image-options'
+            ),
+            'description'        => array(
+                'value'   => '',
+                'label'   => esc_html__('Description', 'leform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'style'              => array(
+                'type'  => 'tab',
+                'value' => 'style',
+                'label' => esc_html__('Style', 'leform')
+            ),
+            'template_style'     => array(
+                'value'   => 'rurera-in-row',
+                'label'   => esc_html__('Template Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                    )
+            ),
+
+            'template_alignment' => array(
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                    )
+            ),
+            'list_style'         => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''                    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                    )
+            ),
+
+            'description-style'  => array(
+                'value'   => array(
+                    'position' => '',
+                    'align'    => ''
+                ),
+                'caption' => array(
+                    'position' => esc_html__('Position', 'leform'),
+                    'align'    => esc_html__('Align', 'leform')
+                ),
+                'label'   => esc_html__('Description style', 'leform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'type'    => 'description-style'
+            ),
+
+            'elements_data'      => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+
+        'multiresponse_template'           => array(
+            'basic'   => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
+            ),
+            'label'   => array(
+                'value'   => esc_html__('Mark one answer', 'leform'),
+                'label'   => esc_html__('Label', 'leform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'options' => array(
+                'multi-select' => 'on',
+                'values'       => array(
+                    array(
+                        'value' => 'Option 1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 2',
+                        'label' => 'Option 2',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Option 3',
+                        'label' => 'Option 3',
+                        'image' => ''
+                    )
+                ),
+                'label'        => esc_html__('Options', 'leform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'type'         => 'image-options'
+            ),
+
+            'description'        => array(
+                'value'   => '',
+                'label'   => esc_html__('Description', 'leform'),
+                'tooltip' => esc_html__('This description appears below the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'style'              => array(
+                'type'  => 'tab',
+                'value' => 'style',
+                'label' => esc_html__('Style', 'leform')
+            ),
+            'template_style'     => array(
+                'value'   => 'rurera-in-row',
+                'label'   => esc_html__('Template Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                    )
+            ),
+
+            'template_alignment' => array(
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                    )
+            ),
+            'list_style'         => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''                    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                    )
+            ),
+
+
+            'description-style' => array(
+                'value'   => array(
+                    'position' => '',
+                    'align'    => ''
+                ),
+                'caption' => array(
+                    'position' => esc_html__('Position', 'leform'),
+                    'align'    => esc_html__('Align', 'leform')
+                ),
+                'label'   => esc_html__('Description style', 'leform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'type'    => 'description-style'
+            ),
+
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+        
 
         'image_quiz'     => array(
             'basic'         => array(
@@ -6765,8 +6577,33 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'content'       => array(
+            /*'content'       => array(
                 'value'   => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html'
+            ),*/
+            'content'       => array(
+                'value' => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
+                'label' => esc_html__('Image', 'leform'),
+                'type'  => 'image'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+        'heading_quiz' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'       => array(
+                'value'   => '<h2>Example Heading</h2>',
                 'label'   => esc_html__('Content', 'leform'),
                 'tooltip' => '',
                 'type'    => 'html'
@@ -6786,7 +6623,11 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Basic', 'leform')
             ),
             'content'       => array(
-                'value'   => '<span class="block-holder editor-field" data-id="50191" data-field_type="paragraph" id="field-50191">Test Paragraph</span>',
+                'value'   => "<p><b>Lorem Ipsum</b> is simply <u>dummy text</u> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the <font color='#ffff00''' style='background-color: rgb(156, 156, 148);'''>1500s</font>, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <ol><li>List item # 1</li>
+                <li>List item # 2</li>
+                <li>List item # 3</li>
+                <li>List item # 4</li></ol><p>It was popularised in the <a href='https://rurera.com' target='_blank'>1960s</a> with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
                 'label'   => esc_html__('Content', 'leform'),
                 'tooltip' => '',
                 'type'    => 'html'
@@ -6799,16 +6640,171 @@ function element_properties_meta($chapters)
             ),
 
         ),
+        'textareafield_quiz' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'leform'),
+               'type'  => 'text'
+           ),
+           'field_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Field Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'field_small' => esc_html__('Small', 'leform'),
+                        'field_medium' => esc_html__('Medium', 'leform'),
+                        'field_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'textarea_plain' => esc_html__('plain', 'leform'),
+                        'textarea_lines' => esc_html__('Lines', 'leform'),
+                        'textarea_clouds' => esc_html__('Clouds', 'leform'),
+                    )
+            ),
+            'maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'leform'),
+               'type'  => 'number'
+           ),
+            'rows'   => array(
+               'value' => '3',
+               'label' => esc_html__('Rows', 'leform'),
+               'type'  => 'number'
+           ),
+            'correct_answer'    => array(
+               'value' => '',
+               'label' => esc_html__('Correct Answer', 'leform'),
+               'type'  => 'text'
+           ),
+            'score'         => array(
+               'value' => '',
+               'label' => esc_html__('Score', 'leform'),
+               'type'  => 'number'
+           ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+        'textfield_quiz' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'placeholder'   => array(
+               'value' => '',
+               'label' => esc_html__('Placeholder', 'leform'),
+               'type'  => 'text'
+           ),
+            'label_before'   => array(
+               'value' => '',
+               'label' => esc_html__('Label Before', 'leform'),
+               'type'  => 'text'
+           ),
+           'label_after'   => array(
+               'value' => '',
+               'label' => esc_html__('Label After', 'leform'),
+               'type'  => 'text'
+           ),
+            'style_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Style Format', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'input_box' => esc_html__('Box', 'leform'),
+                        'input_line' => esc_html__('Underline', 'leform'),
+                    )
+            ),
+            'text_format'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Text Format', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'text' => esc_html__('Alpha Numeric', 'leform'),
+                        'numbers' => esc_html__('Numbers', 'leform'),
+                    )
+            ),
+            'maxlength'         => array(
+               'value' => '',
+               'label' => esc_html__('Maximum Length', 'leform'),
+               'type'  => 'number'
+           ),
+            'correct_answer'    => array(
+               'value' => '',
+               'label' => esc_html__('Correct Answer', 'leform'),
+               'type'  => 'text'
+           ),
+
+            'score'         => array(
+               'value' => '',
+               'label' => esc_html__('Score', 'leform'),
+               'type'  => 'number'
+           ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+
+
+        'attachment_quiz' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'content'         => array(
+               'value' => 'Attachment',
+               'label' => esc_html__('Label', 'leform'),
+               'type'  => 'text'
+           ),
+            'score'         => array(
+               'value' => '',
+               'label' => esc_html__('Score', 'leform'),
+               'type'  => 'number'
+           ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+
         'sqroot_quiz'    => array(
             'basic'         => array(
                 'type'  => 'tab',
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            'name'          => array(
-                'value' => esc_html__('Square root Quiz', 'leform'),
-                'label' => esc_html__('Name', 'leform'),
-                'type'  => 'text'
+
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
             ),
             'content'       => array(
                 'value'   => '<span class="block-holder" data-id="87714" data-field_type="select" id="field-87714"><span class="lms-root-block">&nbsp;<span class="lms-scaled"><span class="lms-sqrt-prefix lms-scaled" contenteditable="false">&radic;</span><span class="lms-sqrt-stem lms-non-leaf lms-empty" contenteditable="true">X</span></span></span></span>&nbsp;',
@@ -6822,16 +6818,8 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            'quiz-settings' => array(
-                'type'  => 'tab',
-                'value' => 'settings',
-                'label' => esc_html__('Settings', 'leform')
-            ),
-            'score'         => array(
-                'value' => '',
-                'label' => esc_html__('Score', 'leform'),
-                'type'  => 'number'
-            ),
+           
+            
         ),
         'question_label' => array(
             'basic'         => array(
@@ -6842,7 +6830,7 @@ function element_properties_meta($chapters)
             'content'       => array(
                 'value' => esc_html__('Question Label', 'leform'),
                 'label' => esc_html__('Name', 'leform'),
-                'type'  => 'text'
+                'type'  => 'html'
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -7451,6 +7439,47 @@ function getTopicTitle($topic_id, $topic_type){
  * Add Link to Sitemap
  */
     function putSitemap($request, $images = array()){
+        //Cache::forget('sitemap');
+        //pre('test');
+
+        $aSiteMap = \Cache::get('sitemap', []);
+        $changefreq = 'always';
+        if ( !empty( $aSiteMap[$request['fullUrl']]['added'] ) ) {
+            $aDateDiff = Carbon::createFromTimestamp( $aSiteMap[$request['fullUrl']]['added'] )->diff( Carbon::now() );
+            if ( $aDateDiff->y > 0 ) {
+                $changefreq = 'yearly';
+            } else if ( $aDateDiff->m > 0) {
+                $changefreq = 'monthly';
+            } else if ( $aDateDiff->d > 6 ) {
+                $changefreq = 'weekly';
+            } else if ( $aDateDiff->d > 0 && $aDateDiff->d < 7 ) {
+                $changefreq = 'daily';
+            } else if ( $aDateDiff->h > 0 ) {
+                $changefreq = 'hourly';
+            } else {
+                $changefreq = 'always';
+            }
+        }
+        $aSiteMap[$request['fullUrl']] = [
+            'added' => time(),
+            'lastmod' => Carbon::now()->toIso8601String(),
+            'priority' => 1 - substr_count($request['getPathInfo'], '/') / 10,
+            'changefreq' => $changefreq,
+            'images' => $images,
+            /*'images' => [
+                    [
+                        'loc' => 'https://uk.ixl.com/screenshot/c56a199157dcc9f282cfd4577548b6b1911ff70f.png',
+                        'title' => 'Word pattern analogies',
+                        'caption' => 'caption',
+                    ]
+            ],*/
+        ];
+        \Cache::put('sitemap', $aSiteMap, 2880);
+
+    }
+
+    function putSitemap_bk($request, $images = array()){
+        //Cache::forget('sitemap');
 
         $aSiteMap = \Cache::get('sitemap', []);
         $changefreq = 'always';
@@ -7476,13 +7505,13 @@ function getTopicTitle($topic_id, $topic_type){
             'priority' => 1 - substr_count($request->getPathInfo(), '/') / 10,
             'changefreq' => $changefreq,
             'images' => $images,
-            'images' => [
+            /*'images' => [
                     [
                         'loc' => 'https://uk.ixl.com/screenshot/c56a199157dcc9f282cfd4577548b6b1911ff70f.png',
                         'title' => 'Word pattern analogies',
                         'caption' => 'caption',
                     ]
-            ],
+            ],*/
         ];
         \Cache::put('sitemap', $aSiteMap, 2880);
 

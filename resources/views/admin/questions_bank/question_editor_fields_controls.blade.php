@@ -13,7 +13,7 @@
             </select>
         </div>
 
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="size" value="1"
+        <div class='quiz-form-control'><input type='number' class="element-field" max="10" data-field_type="size" value="1"
                                               placeholder="Size" data-field_id="field_dynamic_id"></div>
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="style_field" data-field_id="field_dynamic_id">
@@ -163,48 +163,6 @@
                        placeholder="Select Option" data-field_id="field_dynamic_id"
                        data-field_option_id="correct-field_dynamic_id-option_dynamic_id"><i
                         class="fas fa-trash-alt remove-repeater-field"></i></div>
-        </div>
-    </div>
-
-
-    <div class='paragraph-field-options'>
-        <div class='quiz-form-control'>
-            <select class="element-field" data-field_type="font_heading"
-                    data-field_id="field_dynamic_id">
-                <option value="" selected="selected">Heading</option>
-                <option value="h1">H1</option>
-                <option value="h2">H2</option>
-                <option value="h3">H3</option>
-                <option value="h4">H4</option>
-                <option value="h5">H5</option>
-                <option value="h6">H6</option>
-            </select>
-        </div>
-        <div class='quiz-form-control'><input type='text' class="element-field"
-                                              data-field_type="font_size" placeholder="Font Size"
-                                              data-field_id="field_dynamic_id"></div>
-        <div class='quiz-form-control'><input type='text' class="element-field"
-                                              data-field_type="font_color" placeholder="Color"
-                                              data-field_id="field_dynamic_id"></div>
-        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="link"
-                                              placeholder="Link" data-field_id="field_dynamic_id"></div>
-        <div class='quiz-form-control'><select class="element-field" data-field_type="font_align"
-                                               data-field_id="field_dynamic_id">
-                <option value="left">Left</option>
-                <option value="center">Center</option>
-                <option value="right">Right</option>
-            </select>
-        </div>
-
-        <div class='quiz-form-control'>
-            Bold <input type="checkbox" data-value="bold" class="element-field"
-                        data-field_type="font_styles" data-field_id="field_dynamic_id">&nbsp;&nbsp;&nbsp;
-            Italic <input type="checkbox" data-value="italic" class="element-field"
-                          data-field_type="font_styles" data-field_id="field_dynamic_id">&nbsp;&nbsp;&nbsp;
-            Underline <input type="checkbox" data-value="underline" class="element-field"
-                             data-field_type="font_styles" data-field_id="field_dynamic_id">&nbsp;&nbsp;&nbsp;
-            Line through<input type="checkbox" data-value="line-through" class="element-field"
-                               data-field_type="font_styles" data-field_id="field_dynamic_id">
         </div>
     </div>
 

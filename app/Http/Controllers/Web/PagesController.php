@@ -14,7 +14,7 @@ use DB;
 
 class PagesController extends Controller
 {
-    public function index($link)
+    public function index(Request $request, $link)
     {
         $firstCharacter = substr($link, 0, 1);
         if ($firstCharacter !== '/') {
@@ -23,6 +23,24 @@ class PagesController extends Controller
 
         //DB::enableQueryLog();
         $page = Page::where('link', $link)->where('status', 'publish')->first();
+        if( isset( $_GET['sitemap'] ) && $_GET['sitemap'] = 'generate'){
+            $all_pages = Page::where('status', 'publish')->get();
+            if( !empty( $all_pages )){
+                foreach( $all_pages as $pageData){
+
+                    $requestData = array(
+                        'getPathInfo' => $pageData->link,
+                        'fullUrl' => url('/').$pageData->link,
+                    );
+                    putSitemap($requestData);
+                }
+            }
+            pre('Done');
+        }
+
+        //pre($request->fullUrl());
+        //putSitemap($request);
+
 
         //$query = DB::getQueryLog();
         //pre($query);
@@ -49,6 +67,16 @@ class PagesController extends Controller
                 return view('web.default.pages.faqs', $data);
             } elseif ($page->id == 77) {
                 return view('web.default.pages.contact2', $data);
+            }elseif ($page->id == 131) {
+
+
+                $all_pages = Page::where('status', 'publish')->get();
+
+                //$all_links = [];
+                //$all_links = $this->crawl_page("https://rurera.chimpstudio.co.uk",2, false, $all_links);
+
+                $data['all_pages'] = $all_pages;
+                return view('web.default.pages.meta_detail', $data);
             } elseif ($page->id == 44) {
                 return view('web.default.pages.quizpage', $data);
             } elseif ($page->id == 119) {
@@ -84,5 +112,65 @@ class PagesController extends Controller
         }
 
         abort(404);
+    }
+
+    public function crawl_page($url, $depth = 5, $is_child = false, $all_links){
+    $seen = array();
+    if(($depth == 0) or (in_array($url, $seen))){
+        return;
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    $result = curl_exec ($ch);
+    curl_close ($ch);
+    if( $result ){
+        $stripped_file = strip_tags($result, "<a>");
+
+        preg_match_all("/<a[\s]+[^>]*?href[\s]?=[\s\"\']+"."(.*?)[\"\']+.*?>"."([^<]+|.*?)?<\/a>/", $stripped_file, $matches, PREG_SET_ORDER );
+        foreach($matches as $match){
+            $href = '';
+            $href = $match[1];
+
+                if (0 == strpos($href, 'http')) {
+                    $path = '';
+                    if ($is_child == true) {
+                        $path .= '---';
+                    }
+                    $path .= ltrim($href, '/');
+                    if ($is_child == true) {
+                        $all_links[$url][] = $path;
+                    }else{
+                        $all_links[$url] = $path;
+                    }
+
+
+                    pre($path, false);
+                    /*if (extension_loaded('http')) {
+                        $href = http_build_url($href , array('path' => $path));
+                    } else {
+                        $parts = parse_url($href);
+                        //$href = 'https://';
+                        if (isset($parts['user']) && isset($parts['pass'])) {
+                            $href .= $parts['user'] . ':' . $parts['pass'] . '@';
+                        }
+                        //pre($parts);
+                        //$href .= 'rurera.chimpstudio.co.uk';
+                        if (isset($parts['port'])) {
+                            $href .= ':' . $parts['port'];
+                        }
+                        $href .= $path;
+                        pre($href);
+                        //pre($href);
+                    }*/
+                }
+                $this->crawl_page($href, $depth - 1, true, $all_links);
+
+            }
+    }
+
+    return $all_links;
+    //echo "Crawled {$href}";
     }
 }

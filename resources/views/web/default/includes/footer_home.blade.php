@@ -12,9 +12,15 @@
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="widget widget-aboutus">
                     <ul>
-                        <li itemprop="school"><a itemprop="url" href="/features">i'm a school <span>&#8250;</span></a></li>
-                        <li itemprop="teacher"><a itemprop="url"  href="/features">i'm a teacher<span>&#8250;</span></a></li>
-                        <li itemprop="parent"><a itemprop="url" href="/features">i'm a parent<span>&#8250;</span></a></li>
+                        <li itemprop="school">
+                            <a itemprop="url" href="/features">i'm a school <span>&#8250;</span></a>
+                        </li>
+                        <li itemprop="teacher">
+                            <a itemprop="url"  href="/features">i'm a teacher<span>&#8250;</span></a>
+                        </li>
+                        <li itemprop="parent">
+                            <a itemprop="url" href="/features">i'm a parent<span>&#8250;</span></a>
+                        </li>
                     </ul>
                 </div>
             </div>

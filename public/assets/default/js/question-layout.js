@@ -638,6 +638,7 @@ function init_question_functions() {
             return;
         }
 
+
         if (!$(this).hasClass('swiper-slide')) {
             rurera_loader($(this), 'div');
         }
@@ -666,6 +667,13 @@ function init_question_functions() {
         var question_layout = leform_decode64(questions_layout[question_id]);
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
+        console.log('pagination-clicked2');
+        $("p.given").html(chunkWords($("p.given").text()));
+        $("span.given").draggable({
+            helper: "clone",
+            revert: "invalid"
+        });
+        makeDropText($("p.given span.w"));
 
         if($(".lms-sorting-fields").length > 0) {
             $('.lms-sorting-fields').sortable({
