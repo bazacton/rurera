@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\NationalCurriculum;
+use App\Models\Page;
 use App\Models\Webinar;
 use App\User;
 use Illuminate\Http\Request;
@@ -19,13 +20,16 @@ class NationalCurriculumController extends Controller
         $nationalCurriculum = NationalCurriculum::where('id', 6)
             ->with('NationalCurriculumItems.NationalCurriculumChapters.NationalCurriculumTopics.NationalCurriculumTopicData')
             ->first();
+        $page = Page::where('link', '/national-curriculum')->where('status', 'publish')->first();
 
         //pre($nationalCurriculum);
         $categories = Category::where('parent_id', null)
             ->with('subCategories')
             ->get();
         $data = [
-            'pageTitle'          => 'National Curriculum : Skill plans, Courses Topics, Test preparation, exam preparation',
+            'pageTitle'       => $page->title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             'nationalCurriculum' => $nationalCurriculum,
             'categories'         => $categories,
         ];
