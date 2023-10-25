@@ -45,11 +45,11 @@ $rand_id = rand(999,99999);
         outline: none !important;
     }
     .navbar-bg {
-                display: none;
-            }
-            nav.navbar.navbar-expand-lg.main-navbar {
-                display: none;
-            }
+        display: none;
+    }
+    nav.navbar.navbar-expand-lg.main-navbar {
+        display: none;
+    }
 
 </style>
 @endpush

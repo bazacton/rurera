@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
+use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\UserAssignedTopics;
 use App\User;
@@ -30,11 +31,15 @@ class SatsController extends Controller
             pre($text_audio_path);
         }
 
+        $page = Page::where('link', '/sats-preparation')->where('status', 'publish')->first();
 
         $data = [
-            'pageTitle'       => 'KS1, KS2 SATs practice papers, assessments & Tests | Rurera',
-            'pageDescription' => 'Prepare for your SATs exam with comprehensive SATs practice resources, assessments, tests, and quizzes. Get ready to excel on your SATs  and got  a chance to win rewards.',
-            'pageRobot'       => 'index',
+            'pageTitle'       => $page->title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+            //'pageTitle'       => 'KS1, KS2 SATs practice papers, assessments & Tests | Rurera',
+            //'pageDescription' => 'Prepare for your SATs exam with comprehensive SATs practice resources, assessments, tests, and quizzes. Get ready to excel on your SATs  and got  a chance to win rewards.',
+            //'pageRobot'       => 'index',
         ];
         return view('web.default.sats.sats_landing', $data);
 

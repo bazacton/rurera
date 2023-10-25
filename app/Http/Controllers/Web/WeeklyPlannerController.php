@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\WeeklyPlanner;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,13 +19,16 @@ class WeeklyPlannerController extends Controller
         $weeklyPlanner = WeeklyPlanner::where('id', 2)
             ->with('WeeklyPlannerItems.WeeklyPlannerTopics.WeeklyPlannerTopicData')
             ->first();
+        $page = Page::where('link', '/weekly-planner')->where('status', 'publish')->first();
 
         //pre($nationalCurriculum);
         $categories = Category::where('parent_id', null)
             ->with('subCategories')
             ->get();
         $data = [
-            'pageTitle'          => 'Weekly Planner',
+            'pageTitle'       => $page->title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             'weeklyPlanner' => $weeklyPlanner,
             'categories'         => $categories,
         ];

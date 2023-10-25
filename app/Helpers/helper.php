@@ -10,6 +10,7 @@ use App\Models\QuizzesResult;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
+use Illuminate\Support\Facades\File;
 
 function getTemplate()
 {
@@ -7442,7 +7443,8 @@ function getTopicTitle($topic_id, $topic_type){
         //Cache::forget('sitemap');
         //pre('test');
 
-        $aSiteMap = \Cache::get('sitemap', []);
+        //$aSiteMap = \Cache::get('sitemap', []);
+        $aSiteMap = File::get(storage_path('sitemap.html')); $aSiteMap = (array) json_decode($aSiteMap);
         $changefreq = 'always';
         if ( !empty( $aSiteMap[$request['fullUrl']]['added'] ) ) {
             $aDateDiff = Carbon::createFromTimestamp( $aSiteMap[$request['fullUrl']]['added'] )->diff( Carbon::now() );
@@ -7474,7 +7476,9 @@ function getTopicTitle($topic_id, $topic_type){
                     ]
             ],*/
         ];
-        \Cache::put('sitemap', $aSiteMap, 2880);
+        $filePath = storage_path('sitemap.html');
+        File::put($filePath, json_encode($aSiteMap));
+        //\Cache::put('sitemap', $aSiteMap);
 
     }
 
@@ -7482,6 +7486,7 @@ function getTopicTitle($topic_id, $topic_type){
         //Cache::forget('sitemap');
 
         $aSiteMap = \Cache::get('sitemap', []);
+
         $changefreq = 'always';
         if ( !empty( $aSiteMap[$request->fullUrl()]['added'] ) ) {
             $aDateDiff = Carbon::createFromTimestamp( $aSiteMap[$request->fullUrl()]['added'] )->diff( Carbon::now() );

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name='robots' content="index, follow, all">
+<meta name='robots' content="{{(isset($pageRobot) && !empty( $pageRobot ) )? $pageRobot : 'index, follow, all'}}">
 
 @if (isset($pageDescription) and !empty($pageDescription))
     <meta name="description" content="{{ $pageDescription }}">

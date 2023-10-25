@@ -151,17 +151,18 @@ $rand_id = rand(999,99999);
                                                                             </li>
                                                                             ';
                                                                             } else {
-                                                                            echo '
-                                                                            <li class="leform-toolbar-tool-' . esc_html($value['type']) . '"
-                                                                                data-type="' . esc_html($key) . '"><a
-                                                                                        href="#"
-                                                                                        title="' . esc_html($value['title']) . '"><i
-                                                                                            class="' . esc_html($value['icon']) . '"></i></a>
-                                                                            </li>
-                                                                            ';
-                                                                            }
-                                                                            }
-                                                                            @endphp
+                                                                                $classes = isset( $value['classes'] )? $value['classes'] : '';
+                                                                                echo '
+                                                                                <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
+                                                                                    data-type="' . esc_html($key) . '"><a
+                                                                                            href="#"
+                                                                                            title="' . esc_html($value['title']) . '"><i
+                                                                                                class="' . esc_html($value['icon']) . '"></i></a>
+                                                                                </li>
+                                                                                ';
+                                                                                }
+                                                                                }
+                                                                                @endphp
 
                                                                         </ul>
                                                                     </div>

@@ -133,7 +133,7 @@ class Share
 
         //pre($course_navigation);
 
-        if( isset( $_GET['sitemap'] ) && $_GET['sitemap'] = 'generate'){
+        if( isset( $_GET['course_sitemap'] ) && $_GET['course_sitemap'] = 'generate'){
             foreach( $course_navigation as $navigation_slug => $courseObj){
                 if( !empty( $courseObj['chapters'] ) ){
                     foreach( $courseObj['chapters'] as $courseSUbjectObj){

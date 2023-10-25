@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Mixins\Installment\InstallmentPlans;
 use App\Models\Page;
+use App\Models\Product;
+use App\Models\Blog;
 use App\Models\Quiz;
 use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use DB;
 
 class PagesController extends Controller
@@ -33,6 +36,66 @@ class PagesController extends Controller
                         'fullUrl' => url('/').$pageData->link,
                     );
                     putSitemap($requestData);
+                }
+            }
+            pre('Done');
+        }
+
+
+        if( isset( $_GET['sitemap_products'] ) && $_GET['sitemap_products'] = 'generate'){
+            $requestData = array(
+                'getPathInfo' => '/products',
+                'fullUrl' => url('/').'/products',
+            );
+            putSitemap($requestData);
+            $all_products = Product::where('products.status', Product::$active)->get();
+            if( !empty( $all_products )){
+                foreach( $all_products as $productData){
+
+                    $requestData = array(
+                        'getPathInfo' => '/products/'.$productData->slug,
+                        'fullUrl' => url('/').'/products/'.$productData->slug,
+                    );
+                    $requestImages = [];
+
+                    if( !empty( $productData->getThumbnailAttribute() ) ){
+                        $requestImages[]  = [
+                            'loc' => $productData->getThumbnailAttribute(),
+                            'title' => $productData->getTitleAttribute(),
+                            'caption' => "Redeem your reward points to claim the '".$productData->getTitleAttribute()."', an eco-friendly and educational toy for children.",
+                        ];
+                    }
+                    putSitemap($requestData, $requestImages);
+                }
+            }
+            pre('Done');
+        }
+
+        if( isset( $_GET['sitemap_blog'] ) && $_GET['sitemap_blog'] = 'generate'){
+
+            $requestData = array(
+                'getPathInfo' => '/blog',
+                'fullUrl' => url('/').'/blog',
+            );
+            putSitemap($requestData);
+            $all_posts = Blog::where('status', 'publish')->get();
+            if( !empty( $all_posts )){
+                foreach( $all_posts as $postData){
+
+                    $requestData = array(
+                        'getPathInfo' => '/blog/'.$postData->slug,
+                        'fullUrl' => url('/').'/blog/'.$postData->slug,
+                    );
+                    $requestImages = [];
+
+                    if( isset( $postData->image) &&  !empty( $postData->image ) ){
+                        $requestImages[]  = [
+                            'loc' => $postData->image,
+                            'title' => $postData->getTitleAttribute(),
+                            'caption' => $postData->getTitleAttribute(),
+                        ];
+                    }
+                    putSitemap($requestData, $requestImages);
                 }
             }
             pre('Done');
@@ -67,7 +130,7 @@ class PagesController extends Controller
                 return view('web.default.pages.faqs', $data);
             } elseif ($page->id == 77) {
                 return view('web.default.pages.contact2', $data);
-            }elseif ($page->id == 131) {
+            }elseif ($page->id == 133) {
 
 
                 $all_pages = Page::where('status', 'publish')->get();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
+use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
@@ -15,18 +16,26 @@ class TimestablesController extends Controller
 
     public function index()
     {
+        $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $data = [
-            'pageTitle' => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
+            'pageTitle'       => $page->title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+            //'pageTitle' => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
         ];
         return view('web.default.timestables.index', $data);
     }
 
     public function landing()
     {
+        $page = Page::where('link', '/timestables')->where('status', 'publish')->first();
         $data = [
-            'pageTitle'       => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
-            'pageDescription' => 'Rurera provide interactive ways for students to learn and memorize timetables starting from 15GBP while having fun.',
-            'pageRobot'       => 'noindex',
+            'pageTitle'       => $page->title,
+            'pageDescription' => $page->seo_description,
+            'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+            //'pageTitle'       => 'Multiplication Practices and challenges to Master TimesTables and win rewards | Rurera',
+            //'pageDescription' => 'Rurera provide interactive ways for students to learn and memorize timetables starting from 15GBP while having fun.',
+            //'pageRobot'       => 'noindex',
         ];
         return view('web.default.timestables.landing', $data);
     }
