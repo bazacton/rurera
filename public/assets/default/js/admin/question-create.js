@@ -2599,7 +2599,8 @@ function leform_properties_save() {
         leform_form_elements[i] = properties;
     }
     leform_form_changed = true;
-    _leform_properties_close();
+    jQuery(".generate-question-code .fa-spinner").remove();
+    //_leform_properties_close();
     leform_build();
     return false;
 }
@@ -5773,7 +5774,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     break;
 
                 case "question_label":
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><img src='/assets/default/img/quiz/question_label.png' class='question-label-img' alt=''><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
                     break;
                     
                 case "audio_file":
@@ -6755,6 +6756,8 @@ function leform_form_ready() {
                 leform_gettingstarted("element-properties", 0);
         }
     });
+
+
 
 
     jQuery("body").append('<div class="leform-context-menu"><ul><li><a href="#" onclick="return leform_properties_open(leform_context_menu_object);"><i class="fas fa-pencil-alt"></i>Properties</a></li><li class="leform-context-menu-last"><a href="#" onclick="return leform_element_duplicate(leform_context_menu_object);"><i class="far fa-copy"></i>Duplicate</a></li><li class="leform-context-menu-line"></li><li><a href="#" onclick="return leform_element_delete(leform_context_menu_object);"><i class="fas fa-trash-alt"></i>Delete</a></li></ul></div>');
@@ -9177,4 +9180,7 @@ $(document).on('click', '.question_glossary_submit_btn', function () {
             }
         }
     });
+});
+$(document).on('click', '.quiz-group', function () {
+    leform_properties_open($(this));
 });

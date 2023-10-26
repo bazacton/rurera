@@ -6,7 +6,7 @@
 
     @section('content')
 
-<section class="container mt-0 mt-md-0 pt-30">
+<section class="mt-0 mt-md-0 pt-30">
         <div class="row">
             <div class="col-12">
                 <table class="table text-center custom-table table-striped">

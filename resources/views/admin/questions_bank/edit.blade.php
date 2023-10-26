@@ -140,7 +140,7 @@ $rand_id = rand(999,99999);
                                                                                     echo '
                                                                                     <li data-type="' . esc_html($key) . '"
                                                                                         data-option="' . esc_html($option_key) . '"
-                                                                                        title=""><a href="#"
+                                                                                        ><a href="#"
                                                                                                     title="' . esc_html($value['title']) . '">'
                                                                                             . esc_html($option_value) .
                                                                                             '</a></li>
@@ -153,12 +153,12 @@ $rand_id = rand(999,99999);
                                                                             } else {
                                                                                 $classes = isset( $value['classes'] )? $value['classes'] : '';
                                                                                 echo '
-                                                                                <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
-                                                                                    data-type="' . esc_html($key) . '"><a
-                                                                                            href="#"
-                                                                                            title="' . esc_html($value['title']) . '"><i
-                                                                                                class="' . esc_html($value['icon']) . '"></i></a>
-                                                                                </li>
+                                                                                    <li class="leform-toolbar-tool-' . esc_html($value['type']) . ' '.$classes.'"
+                                                                                        title="' . esc_html($value['title']) . '" data-type="' . esc_html($key) . '"><a
+                                                                                                href="#"
+                                                                                                title="' . esc_html($value['title']) . '"><is
+                                                                                                    class="' . esc_html($value['icon']) . '"></is></a>
+                                                                                    </li>
                                                                                 ';
                                                                                 }
                                                                                 }
@@ -461,8 +461,7 @@ $rand_id = rand(999,99999);
                                                     </div>
                                                     <div class="leform-admin-popup-buttons">
                                                         <a class="leform-admin-button generate-question-code"
-                                                           href="#"><i class="fas fa-check"></i><label>Save
-                                                                Details</label></a>
+                                                           href="#"><label>Preview</label></a>
                                                     </div>
                                                     <div class="leform-admin-popup-loading"><i
                                                                 class="fas fa-spinner fa-spin"></i></div>

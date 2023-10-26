@@ -110,7 +110,7 @@ $tabs_options    = tabs_options();
                                                 </div>
                                             </div>
                                             <div class="leform-admin-popup-buttons">
-                                                <a class="leform-admin-button generate-question-code" href="#"><i class="fas fa-check"></i><label>Save Details</label></a>
+                                                <a class="leform-admin-button generate-question-code" href="#"><label>Preview</label></a>
                                             </div>
                                             <div class="leform-admin-popup-loading"><i class="fas fa-spinner fa-spin"></i></div>
                                         </div>
