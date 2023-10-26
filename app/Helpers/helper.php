@@ -7445,6 +7445,9 @@ function getTopicTitle($topic_id, $topic_type){
 
         //$aSiteMap = \Cache::get('sitemap', []);
         $aSiteMap = File::get(storage_path('sitemap.html')); $aSiteMap = (array) json_decode($aSiteMap);
+        $aSiteMap = array_map(function ($element) {
+            return (array)$element;
+        }, $aSiteMap);
         $changefreq = 'always';
         if ( !empty( $aSiteMap[$request['fullUrl']]['added'] ) ) {
             $aDateDiff = Carbon::createFromTimestamp( $aSiteMap[$request['fullUrl']]['added'] )->diff( Carbon::now() );

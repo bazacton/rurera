@@ -139,6 +139,20 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group">
+                                    <label>SEO Title</label>
+                                    <input type="text" name="seo_title"
+                                           class="form-control  @error('seo_title') is-invalid @enderror"
+                                           value="{{ !empty($post) ? $post->seo_title : old('seo_title') }}"
+                                           placeholder="SEO Title"/>
+                                    @error('seo_title')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
+
                                 <div class="form-group mt-15">
                                     <label class="input-label">{{ trans('admin/pages/blog.meta_description') }}</label>
                                     <textarea name="meta_description" rows="5" class="form-control @error('meta_description')  is-invalid @enderror" placeholder="{{ trans('admin/pages/blog.meta_description_placeholder') }}">{!! !empty($post) ? $post->meta_description : old('meta_description')  !!}</textarea>
@@ -148,6 +162,28 @@
                                     </div>
                                     @enderror
                                 </div>
+
+                                <div class="form-group custom-switches-stacked">
+                                    <label class="input-label">{{ trans('admin/main.robot') }}:</label>
+                                    <label class="custom-switch pl-0">
+                                        <label class="custom-switch-description mb-0 mr-2">{{ trans('admin/main.no_follow') }}</label>
+                                        <input type="hidden" name="seo_robot_access" value="0">
+                                        <input type="checkbox" name="seo_robot_access" id="seo_robot_access" value="1" {{ (!empty($post) and $post->seo_robot_access) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                        <span class="custom-switch-indicator"></span>
+                                        <label class="custom-switch-description mb-0 cursor-pointer" for="seo_robot_access">{{ trans('admin/main.follow') }}</label>
+                                    </label>
+                                </div>
+
+                                <div class="form-group custom-switches-stacked">
+                                       <label class="input-label">Include In XML:</label>
+                                       <label class="custom-switch pl-0">
+                                           <label class="custom-switch-description mb-0 mr-2">Not Include</label>
+                                           <input type="hidden" name="include_xml" value="0">
+                                           <input type="checkbox" name="include_xml" id="include_xml" value="1" {{ (!empty($post) and $post->include_xml) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                           <span class="custom-switch-indicator"></span>
+                                           <label class="custom-switch-description mb-0 cursor-pointer" for="include_xml">Include</label>
+                                       </label>
+                                   </div>
 
                                 <div class="form-group mt-30  d-flex align-items-center cursor-pointer">
                                     <div class="custom-control custom-switch align-items-start">

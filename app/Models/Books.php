@@ -32,7 +32,11 @@ class Books extends Model
         'reading_points',
         'book_category',
         'created_by',
-        'created_at'
+        'created_at',
+        'seo_title',
+        'seo_description',
+        'seo_robot_access',
+        'include_xml',
     ];
 
     static $book_categories = array(

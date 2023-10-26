@@ -504,7 +504,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/' , 'TimestablesController@index');
     });
 
-    Route::get('/sitemap' , function () {
+    Route::get('/sitemap.xml' , function () {
         return Response::view('sitemap')->header('Content-Type' , 'application/xml');
     });
 

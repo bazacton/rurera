@@ -158,6 +158,17 @@
                                     </label>
                                 </div>
 
+                                <div class="form-group custom-switches-stacked">
+                                       <label class="input-label">Include In XML:</label>
+                                       <label class="custom-switch pl-0">
+                                           <label class="custom-switch-description mb-0 mr-2">Not Include</label>
+                                           <input type="hidden" name="include_xml" value="0">
+                                           <input type="checkbox" name="include_xml" id="include_xml" value="1" {{ (!empty($page) and $page->include_xml) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                           <span class="custom-switch-indicator"></span>
+                                           <label class="custom-switch-description mb-0 cursor-pointer" for="include_xml">Include</label>
+                                       </label>
+                                   </div>
+
                                 <div class=" mt-4">
                                     <button class="btn btn-primary">{{ trans('admin/main.submit') }}</button>
                                 </div>

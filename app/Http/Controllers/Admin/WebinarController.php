@@ -733,6 +733,10 @@ class WebinarController extends Controller
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
             'webinar_type'            => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
             'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : 'uk' ,
+            'seo_title'         => isset($data['seo_title']) ? $data['seo_title'] : '' ,
+            'seo_robot_access'         => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0 ,
+            'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
+
         ]);
 
         if ($webinar) {
@@ -1037,6 +1041,9 @@ class WebinarController extends Controller
             'icon_code'            => isset($data['icon_code']) ? $data['icon_code'] : '' ,
             'webinar_type'         => isset($data['webinar_type']) ? $data['webinar_type'] : 'Course' ,
             'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : 'uk' ,
+            'seo_title'         => isset($data['seo_title']) ? $data['seo_title'] : '' ,
+            'seo_robot_access'         => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0 ,
+            'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
 
         ]);
 

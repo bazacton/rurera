@@ -115,6 +115,16 @@
             </div>
 
             <div class="form-group">
+                <label class="input-label">SEO Title</label>
+                <input type="text" name="seo_title" value="{{ (!empty($product)) ? $product->seo_title : old('seo_title') }}" class="form-control @error('seo_title')  is-invalid @enderror " placeholder="SEO Title"/>
+                @error('seo_title')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label class="input-label">{{ trans('public.seo_description') }}</label>
                 <input type="text" name="seo_description" value="{{ (!empty($product) and !empty($product->translate($locale))) ? $product->translate($locale)->seo_description : old('seo_description') }}" class="form-control @error('seo_description')  is-invalid @enderror " placeholder="{{ trans('forms.50_160_characters_preferred') }}"/>
                 @error('seo_description')
@@ -123,6 +133,28 @@
                 </div>
                 @enderror
             </div>
+
+            <div class="form-group custom-switches-stacked">
+                <label class="input-label">{{ trans('admin/main.robot') }}:</label>
+                <label class="custom-switch pl-0">
+                    <label class="custom-switch-description mb-0 mr-2">{{ trans('admin/main.no_follow') }}</label>
+                    <input type="hidden" name="seo_robot_access" value="0">
+                    <input type="checkbox" name="seo_robot_access" id="seo_robot_access" value="1" {{ (!empty($product) and $product->seo_robot_access) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                    <span class="custom-switch-indicator"></span>
+                    <label class="custom-switch-description mb-0 cursor-pointer" for="seo_robot_access">{{ trans('admin/main.follow') }}</label>
+                </label>
+            </div>
+
+            <div class="form-group custom-switches-stacked">
+               <label class="input-label">Include In XML:</label>
+               <label class="custom-switch pl-0">
+                   <label class="custom-switch-description mb-0 mr-2">Not Include</label>
+                   <input type="hidden" name="include_xml" value="0">
+                   <input type="checkbox" name="include_xml" id="include_xml" value="1" {{ (!empty($product) and $product->include_xml) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                   <span class="custom-switch-indicator"></span>
+                   <label class="custom-switch-description mb-0 cursor-pointer" for="include_xml">Include</label>
+               </label>
+           </div>
 
             <div class="form-group">
                 <label class="input-label">{{ trans('public.summary') }}</label>

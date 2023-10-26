@@ -279,7 +279,7 @@ class ProductController extends Controller
         $data = [
             'pageTitle' => $product->title,
             'pageDescription' => $product->seo_description,
-            'pageRobot' => $pageRobot,
+            'pageRobot' => $product->seo_robot_access ? 'index, follow, all' : 'NOODP, nofollow, noindex',
             'product' => $product,
             'user' => $user,
             'selectableSpecifications' => $selectableSpecifications,

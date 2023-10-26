@@ -850,6 +850,9 @@ span~.input-holder {
     color: #999;  
 }
 /* Textarea Style with lines */
+.leform-admin-editor .input-holder.textarea_lines {
+    padding: 0;
+}
 .textarea_lines textarea {
     background-attachment: local;
     background-image:
@@ -857,7 +860,8 @@ span~.input-holder {
         linear-gradient(to left, white 10px, transparent 10px),
         repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
     line-height: 31px;
-    padding: 0 0 25px;
+    padding: 0 0 25px 10px;
+    outline: none;
     width: 100%;
 }
 /* draggable-handle style */
@@ -1420,6 +1424,14 @@ Lms Quiz Wf Style End
     font-size: 15px;
     font-weight: 700;
     color: #fff;
+}
+.lms-quiz-section .quiz-pagination .swiper-button-next, 
+.lms-quiz-section .quiz-pagination .swiper-button-prev {
+    margin-top: -10px;
+}
+.lms-quiz-section .quiz-pagination .swiper-button-next:after, 
+.lms-quiz-section .quiz-pagination .swiper-button-prev:after {
+    color: #333;
 }
 .quiz-pagination .swiper-container ul {
     margin: 0;

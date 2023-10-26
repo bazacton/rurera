@@ -111,6 +111,9 @@ class BlogController extends Controller
             'status' => (!empty($data['status']) and $data['status'] == 'on') ? 'publish' : 'pending',
             'created_at' => time(),
             'updated_at' => time(),
+            'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
+            'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
         ]);
 
         if ($blog) {
@@ -177,6 +180,9 @@ class BlogController extends Controller
             'enable_comment' => (!empty($data['enable_comment']) and $data['enable_comment'] == 'on'),
             'status' => (!empty($data['status']) and $data['status'] == 'on') ? 'publish' : 'pending',
             'updated_at' => time(),
+            'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
+            'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
         ]);
 
 

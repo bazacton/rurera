@@ -32,6 +32,57 @@
                             <div class="row">
                                 <div class="col-6 col-md-6 col-lg-6">
                                     <div class="form-group">
+                                        <label>Book SEO Title</label>
+                                        <input type="text" name="seo_title"
+                                               class="form-control  @error('seo_title') is-invalid @enderror"
+                                               value="{{ !empty($book) ? $book->seo_title : old('seo_title') }}"
+                                               placeholder="SEO Title"/>
+
+                                        @error('seo_title')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label>Book SEO Description</label>
+                                        <textarea name="seo_description" class="form-control  @error('seo_description') is-invalid @enderror" placeholder="SEO Description">{{ !empty($book) ? $book->seo_description : old('seo_description') }}</textarea>
+                                        @error('seo_description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group custom-switches-stacked">
+                                       <label class="input-label">{{ trans('admin/main.robot') }}:</label>
+                                       <label class="custom-switch pl-0">
+                                           <label class="custom-switch-description mb-0 mr-2">{{ trans('admin/main.no_follow') }}</label>
+                                           <input type="hidden" name="seo_robot_access" value="0">
+                                           <input type="checkbox" name="seo_robot_access" id="seo_robot_access" value="1" {{ (!empty($book) and $book->seo_robot_access) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                           <span class="custom-switch-indicator"></span>
+                                           <label class="custom-switch-description mb-0 cursor-pointer" for="seo_robot_access">{{ trans('admin/main.follow') }}</label>
+                                       </label>
+                                   </div>
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group custom-switches-stacked">
+                                       <label class="input-label">Include In XML:</label>
+                                       <label class="custom-switch pl-0">
+                                           <label class="custom-switch-description mb-0 mr-2">Not Include</label>
+                                           <input type="hidden" name="include_xml" value="0">
+                                           <input type="checkbox" name="include_xml" id="include_xml" value="1" {{ (!empty($book) and $book->include_xml) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                                           <span class="custom-switch-indicator"></span>
+                                           <label class="custom-switch-description mb-0 cursor-pointer" for="include_xml">Include</label>
+                                       </label>
+                                   </div>
+                                </div>
+
+                                <div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
                                         <label>Book Title</label>
                                         <input type="text" name="book_title"
                                                class="form-control  @error('book_title') is-invalid @enderror"

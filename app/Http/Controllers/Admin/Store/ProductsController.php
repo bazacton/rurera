@@ -363,6 +363,10 @@ class ProductsController extends Controller
             'status' => Product::$pending,
             'updated_at' => time(),
             'created_at' => time(),
+            'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
+            'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
+
         ]);
 
         if ($product) {
@@ -529,6 +533,9 @@ class ProductsController extends Controller
             'commission' => $data['commission'] ?? null,
             'status' => $data['status'],
             'updated_at' => time(),
+            'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
+            'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
         ]);
 
         ProductTranslation::updateOrCreate([

@@ -66,6 +66,8 @@ class PagesController extends Controller
             'status' => $data['status'],
             'created_at' => time(),
             'subheader'    => $subheader,
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
+
         ]);
 
         PageTranslation::updateOrCreate([
@@ -132,6 +134,7 @@ class PagesController extends Controller
             'created_at' => time(),
             'subheader'    => $subheader,
             'country_location'  => json_encode($data['country_location']),
+            'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
         ]);
 
         PageTranslation::updateOrCreate([

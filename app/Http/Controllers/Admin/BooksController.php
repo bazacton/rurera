@@ -213,6 +213,10 @@ class BooksController extends Controller
                 'no_of_pages'      => isset($data['no_of_pages']) ? $data['no_of_pages'] : 0,
                 'reading_points'   => isset($data['reading_points']) ? $data['reading_points'] : 0,
                 'book_category'    => isset($data['book_category']) ? $data['book_category'] : '',
+                'seo_title'    => isset($data['seo_title']) ? $data['seo_title'] : '',
+                'seo_description'    => isset($data['seo_description']) ? $data['seo_description'] : '',
+                'seo_robot_access'    => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0,
+                'include_xml'    => isset($data['include_xml']) ? $data['include_xml'] : 0,
             ]);
 
 
@@ -279,6 +283,10 @@ class BooksController extends Controller
                     'book_category'    => isset($data['book_category']) ? $data['book_category'] : '',
                     'created_by'       => $user->id,
                     'created_at'       => time(),
+                    'seo_title'    => isset($data['seo_title']) ? $data['seo_title'] : '',
+                    'seo_description'    => isset($data['seo_description']) ? $data['seo_description'] : '',
+                    'seo_robot_access'    => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0,
+                    'include_xml'    => isset($data['include_xml']) ? $data['include_xml'] : 0,
                 ]);
 
                 File::isDirectory('store/1/books/' . $book->id . '/') or File::makeDirectory('store/1/books/' . $book->id . '/', 0777, true, true);

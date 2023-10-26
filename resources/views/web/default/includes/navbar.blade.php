@@ -29,7 +29,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
             <a class="navbar-brand navbar-order d-flex align-items-center justify-content-center mr-0 {{ (empty($navBtnUrl) and empty($navBtnText)) ? 'ml-auto' : '' }}"
                href="{{url('/')}}/" itemprop="url">
                 @if(!empty($generalSettings['logo']))
-                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="site logo" title="site logo"
+                <img src="{{ $generalSettings['logo'] }}" class="img-cover" alt="Rurera Logo" title="Rurera Logo"
                      width="100%" height="auto" itemprop="image" loading="eager">
                 @endif
             </a>

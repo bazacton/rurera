@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Mixins\Installment\InstallmentPlans;
+use App\Models\Books;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Blog;
 use App\Models\Quiz;
 use App\Models\Subscribe;
+use App\Models\Webinar;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
@@ -135,10 +137,22 @@ class PagesController extends Controller
 
                 $all_pages = Page::where('status', 'publish')->get();
 
+                $all_courses = Webinar::where('status', 'active')->get();
+
+
+                $all_books = Books::get();
+                $all_products = Product::where('products.status', Product::$active)->get();
+                $all_blog_posts = Blog::where('status', 'publish')->get();
+
+
                 //$all_links = [];
                 //$all_links = $this->crawl_page("https://rurera.chimpstudio.co.uk",2, false, $all_links);
 
                 $data['all_pages'] = $all_pages;
+                $data['all_courses'] = $all_courses;
+                $data['all_books'] = $all_books;
+                $data['all_products'] = $all_products;
+                $data['all_blog_posts'] = $all_blog_posts;
                 return view('web.default.pages.meta_detail', $data);
             } elseif ($page->id == 44) {
                 return view('web.default.pages.quizpage', $data);
