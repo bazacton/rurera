@@ -5,7 +5,7 @@
                 @if(!empty($generalSettings['site_name']))
                     {{ strtoupper($generalSettings['site_name']) }}
                 @else
-                    Platform Title
+                    Rurera
                 @endif
             </a>
         </div>

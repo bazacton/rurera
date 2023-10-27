@@ -29,7 +29,7 @@
 
                                 <div class="form-group">
                                     <label>{{ trans('/admin/main.category') }}</label>
-                                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                                    <select class="form-control @error('category_id') is-invalid @enderror year_subject_ajax_select" name="category_id">
                                         <option {{ !empty($trend) ? '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
 
                                         @foreach($categories as $category)
@@ -45,6 +45,21 @@
                                         @endforeach
                                     </select>
                                     @error('category_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Subjects</label>
+                                    <select data-return_type="option"
+                                            data-default_id="{{isset( $glossary->subject_id)? $glossary->subject_id : 0}}"
+                                            class="subject_ajax_select year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
+                                            id="subject_id" name="subject_id">
+                                        <option disabled selected>Subject</option>
+                                    </select>
+                                    @error('subject_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -87,4 +102,11 @@
     <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
     <script src="/assets/default/js/admin/filters.min.js"></script>
     <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".year_subject_ajax_select").change();
+    });
+</script>
 @endpush

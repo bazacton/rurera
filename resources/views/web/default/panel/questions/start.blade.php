@@ -23,6 +23,18 @@ $rand_id = rand(99,9999);
     .image-field-box{
         position:absolute !important;
     }
+    .draggable-items{
+        display:table-row;
+        clear:both;
+
+    }
+    .draggable-items li{
+        display:block;
+        float: left;
+    }
+    .rurera-droppable{
+            width:100; border:1px solid #efefef; height:50px; display:inline-block;
+        }
 </style>
 @section('content')
 
@@ -63,6 +75,20 @@ $rand_id = rand(99,9999);
                         <div id="leform-form-1" class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable" _data-parent="1" _data-parent-col="0" style="display: block;">
                             <div class="question-layout">
                                 <span class="marks" data-marks="0">[{{$question->question_score}}]</span>
+
+
+                                <ul class="draggable-items">
+                                    <li><span class="draggable-option">Option 1</span></li>
+                                    <li><span class="draggable-option">Option 2</span></li>
+                                    <li><span class="draggable-option">Option 3</span></li>
+                                    <li><span class="draggable-option">Option 4</span></li>
+                                </ul>
+
+
+                                Test <span class="rurera-droppable"></span>   test 2 <span class="rurera-droppable"></span>
+
+
+
                                 {!! $question_layout !!}
 
                             </div>
@@ -97,27 +123,25 @@ $rand_id = rand(99,9999);
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
-const range = document.getElementById('range')
-        range.addEventListener('input', (e) = > {
-        const value = + e.target.value
-                const label = e.target.nextElementSibling
 
-                const range_width = getComputedStyle(e.target).getPropertyValue('width')
-                const label_width = getComputedStyle(label).getPropertyValue('width')
 
-                const num_width = + range_width.substring(0, range_width.length - 2)
-                const num_label_width = + label_width.substring(0, label_width.length - 2)
+$(document).ready(function () {
+    $(".droppable_area").droppable({
+        drop: function(event, ui) {
+            // Clone the dropped element
+            var clone = ui.helper.clone();
+            if( $(this).html() == '') {
+                $(this).append($(clone).html());
+                $(".droppable_area .draggable-option").on("dblclick", function () {
+                    $(this).remove();
+                });
+            }
+        }
+    });
+    $(".draggable-items li").draggable({revert: "invalid", helper: "clone"});
 
-                const max = + e.target.max
-                const min = + e.target.min
 
-                const left = value * (num_width / max) - num_label_width / 2 + scale(value, min, max, 10, - 10)
-                label.style.left = `${left}px`
 
-                label.innerHTML = value
-        })
-        const scale = (num, in_min, in_max, out_min, out_max) = > {
-return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
+});
 </script>
 @endpush

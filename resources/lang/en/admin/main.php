@@ -267,7 +267,7 @@ return [
 'clear_all_cache' => 'Clear Cache',
 'daily_sales_type_statistics' => 'Course Type Daily Sales',
 'today_sales' => 'Today Sales',
-'income_statistics' => 'Platform Income',
+'income_statistics' => 'Rurera',
 'today' => 'Today',
 'this_month' => 'Month',
 'this_year' => 'Year',

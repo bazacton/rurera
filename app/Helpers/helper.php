@@ -2414,6 +2414,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-table',
             'type'  => 'input'
         ),
+        'draggable_quiz' => array(
+            'title' => esc_html__('Draggable Quiz', 'leform'),
+            'icon'  => 'fas fa-microphone',
+            'type'  => 'input'
+        ),
 
         'insert_into_sentense' => array(
             'title' => esc_html__('Insert into Sentense', 'leform'),
@@ -5931,6 +5936,136 @@ function element_properties_meta($chapters)
             ),
 
             
+
+        ),
+
+        'draggable_quiz' => array(
+            'basic'    => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
+            ),
+            'label'    => array(
+                'value'   => esc_html__('Arrange', 'leform'),
+                'label'   => esc_html__('Label', 'leform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'options'  => array(
+                'multi-select' => 'on',
+                'values'       => array(
+                    array(
+                        'value' => '1',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => '2',
+                        'label' => 'Option 2',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => '3',
+                        'label' => 'Option 3',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => esc_html__('Columns', 'leform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'type'         => 'options_label'
+            ),
+            'content'       => array(
+                'value'   => '',
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html_toolbar_draggable'
+            ),
+            
+            'style'              => array(
+                'type'  => 'tab',
+                'value' => 'style',
+                'label' => esc_html__('Style', 'leform')
+            ),
+            'image_size'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image_small' => esc_html__('Small', 'leform'),
+                        'image_medium' => esc_html__('Medium', 'leform'),
+                        'image_large' => esc_html__('Large', 'leform'),
+                    )
+            ),
+            'template_style'     => array(
+                'value'   => 'rurera-in-row',
+                'label'   => esc_html__('Template Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'rurera-in-row' => esc_html__('Row', 'leform'),
+                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
+                    )
+            ),
+
+            'template_alignment' => array(
+                'value'   => 'image-right',
+                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-right' => esc_html__('Right', 'leform'),
+                        'image-top'   => esc_html__('Top', 'leform'),
+                    )
+            ),
+            'list_style'         => array(
+                'value'   => 'none',
+                'label'   => esc_html__('Bullet list Style', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        ''                    => esc_html__('None', 'leform'),
+                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
+                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
+                    )
+            ),
+            'description-style' => array(
+                'value'   => array(
+                    'position' => '',
+                    'align'    => ''
+                ),
+                'caption' => array(
+                    'position' => esc_html__('Position', 'leform'),
+                    'align'    => esc_html__('Align', 'leform')
+                ),
+                'label'   => esc_html__('Description style', 'leform'),
+                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
+                'type'    => 'description-style'
+            ),
+
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+
 
         ),
 

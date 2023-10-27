@@ -409,14 +409,14 @@
             });
         }
 
-        const sidebar_nicescroll = $(".main-sidebar").getNiceScroll();
+        /*const sidebar_nicescroll = $(".main-sidebar").getNiceScroll();
         if (typeof sidebar_nicescroll !== "undefined" && sidebar_nicescroll.length) {
             const $active = $('.nav-item.active');
 
             if ($active && $active.length) {
                 sidebar_nicescroll.doScrollPos(0, ($active.position().top - 100));
             }
-        }
+        }*/
     });
 
     var lfm = function (options, cb) {

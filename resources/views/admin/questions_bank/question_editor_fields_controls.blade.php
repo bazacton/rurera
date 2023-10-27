@@ -71,6 +71,18 @@
         <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0" placeholder="Score" data-field_id="field_dynamic_id"></div>
     </div>
 
+    <div class='droppable_area-field-options'>
+        <div class='quiz-form-control'>
+            <label>Correct Answere</label>
+            <select class="element-field droppable-area-select" data-field_type="correct_answere" data-field_id="field_dynamic_id">
+
+            </select>
+        </div>
+        <div class='quiz-form-control'><input type='text' class="element-field" data-field_type="score" value="0"
+                                                      placeholder="Score" data-field_id="field_dynamic_id"></div>
+    </div>
+
+
     <div class='seperator_line-field-options'>
         <div class='quiz-form-control'><input type='number' class="element-field"
                                                       data-field_type="style_width" placeholder="Width"

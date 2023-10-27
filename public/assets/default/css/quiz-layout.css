@@ -25,6 +25,7 @@ Lms Sorting Fields Style
 .lms-sortable-img .lms-sorting-fields .field-holder img {max-width: 60px; max-height: 60px;}
 .lms-sorting-fields .match-question {position: initial !important; display: inline-block; width: 100% !important; height: auto !important;}
 .lms-sorting-fields .match-question.ui-sortable-placeholder {position: absolute !important;}
+.lms-sorting-fields .field-holder .sort-icon ~ label {padding-right: 40px;}
 /**********************************
 Lms Signs Style 
 **********************************/
@@ -35,7 +36,7 @@ Lms Signs Style
     flex-direction: column;
 } */
 .form-box.inline-fields .lms-radio-select {margin-bottom: 0;}
-.lms-radio-select label {margin: 0; border: 1px solid #ddd; min-height: 54px; display: inline-flex; align-items: center; border-radius: 2px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
+.lms-radio-select label {margin: 0; border: 1px solid #ddd; min-height: 50px; display: inline-flex; align-items: center; border-radius: 2px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;}
 .lms-radio-select input[type=radio]:checked~label:before {box-shadow: 0 0 0 6px #70c17c inset; border-color: transparent; }
@@ -114,6 +115,8 @@ Rurera Row Style
 .rurera-in-row .field-holder,
 .rurera-in-row .form-field {width: auto;}
 .lms-radio-select input[type=radio] ~ label {padding-right: 50px;}
+.leform-element .leform-col .leform-element {padding: 0;}
+.quiz-group .leform-column-label {margin-bottom: 15px;}
 /**********************************
 Rurera Col Style 
 **********************************/
@@ -130,7 +133,7 @@ Lms Form Fields Style
 .form-box { width: calc(100% - 120px); position: relative;}
 .leform-form-editor .form-box {width: 100%;}
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
-.form-field label {background-color: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 2px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
+.form-field label {background-color: #fff; border: 1px solid #ddd; border-radius: 2px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
 .lms-checkbox-img .form-field label {height: 100%;}
 .form-field input[type="checkbox"] ~ label {min-height: 52px; padding-right: 60px;}
 .form-field label:before {content: ""; height: 30px; width: 30px; position: absolute; right: 15px; top: 50%; margin-top: -15px; border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;}
@@ -274,10 +277,10 @@ Lms Question List Style
 .question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 10px; margin-top: -2px;}
 .question-textarea input[type="text"],
 .question-layout input[type="text"],
-.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 17px; text-align: center; font-weight: 500; border-radius: 8px; display: inline-block; padding: 0 10px;}
+.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 17px; text-align: left; font-weight: 500; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0;}
-.input-holder input.input_line {border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left;}
+.input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 1px solid #000;}
 .question-layout .input-group-prepend ~ input[type="text"] {border-radius: 0; border-color: #eee; border-width: 1px; text-align: left;}
 .question-layout .input-group .admin-file-manager,
 .question-layout .input-group .admin-file-view {background-color: #fff !important; border: 1px solid #eee !important;}
@@ -630,9 +633,22 @@ Lms Quiz Wf Style Start
 .solve-quiz.question-textarea {
     line-height: normal;
 }
+.question-label {
+    position: relative;
+}
+.question-label:before {
+    background: url(/assets/default/img/quiz/question_label.png) no-repeat;
+    background-size: contain;
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: inline-block;
+    margin-right: 15px;
+    vertical-align: middle;
+}
 .question-label span,
 .lms-quiz-section .question-label span {
-    display: block;
     margin: 0;
     padding: 8px 15px;
     border-radius: 6px;
@@ -640,6 +656,9 @@ Lms Quiz Wf Style Start
     text-align: left;
     font-size: 17px;
     border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 70px);
 }
 .divide-numbers .divider, .lms-quiz-section .divider {
     height: 2px;
@@ -836,6 +855,8 @@ span~.input-holder {
     border-radius: 8px;
     font-size: 17px;
     color: #999;
+    outline: none;
+    width: 100%;
 }
 .input-holder textarea::-webkit-input-placeholder {
     color: #999;
@@ -849,21 +870,20 @@ span~.input-holder {
 .input-holder textarea:-ms-input-placeholder {
     color: #999;  
 }
-.question-label .question-label-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    display: inline-block;
-    margin-right: 20px;
-    vertical-align: middle;
-    object-fit: contain;
-}
-.question-label .question-label-img ~ span {
-    width: calc(100% - 130px);
-    display: inline-block;
-    vertical-align: middle;
-}
 /* Textarea Style with lines */
+.leform-element[data-type="textareafield_quiz"] .input-holder {
+    width: 100% !important;
+    padding: 0;
+}
+.leform-element[data-type="textareafield_quiz"] .input-holder.field_medium {
+    width: 75% !important;
+}
+.leform-element[data-type="textareafield_quiz"] .input-holder.field_small {
+    width: 50% !important;
+}
+.leform-element label.leform-label {
+    margin-bottom: 0;
+}
 .leform-admin-editor .input-holder.textarea_lines {
     padding: 0;
 }
@@ -931,11 +951,19 @@ span~.input-holder {
     border-radius: 0;
 }
 .input-holder .input-label.right {
-    right: 10px;
+    right: 25px;
     left: auto;
+}
+.note-editable .input-holder input[type="number"],
+.input-holder .input-label ~ input[type="number"] {
+    text-align: right;
 }
 .input-holder .input-label ~ input.input-simple {
     padding: 0 25px;
+}
+.input-holder .input-label ~ input[type="number"].input-simple  {
+    padding: 0 10px;
+    text-align: left;
 }
 .input-holder .wf-input-label {
     position: absolute;
@@ -961,6 +989,7 @@ span~.input-holder {
 }
 .leform-admin-editor .input-holder input.editor-field {
     text-align: left;
+    outline: none;
 }
 .question-textarea .input-simple.full-width {
     max-width: 100%;
@@ -1380,6 +1409,16 @@ span~.input-holder {
 }
 .leform-form-editor .table tr td p {
     text-align: center;
+}
+.leform-form-editor .input-group-prepend ~ input[type="text"] {
+    margin-bottom: 0;
+    border: 1px solid #ccc;
+    height: 42px;
+    padding: 0 10px;
+}
+.leform-form-editor .input-group-append .input-group-text,
+.leform-form-editor .input-group-prepend .input-group-text{
+    border-color: #ccc;
 }
 /***************************** 
 Lms Quiz Wf Style End 
@@ -1832,7 +1871,7 @@ Lms Table Style
     line-height: normal;
     text-align: center;
     vertical-align: middle;
-    padding: 0;
+    padding: 5px;
     height: 50px;
     border-color: #000;
 }
@@ -1858,8 +1897,8 @@ Lms Table Style
 } */
 .leform-element table.table th {
     background-color: #c8d2ec;
-    border-color: #000;
     border-top: 1px solid !important;
+    border-color: #000;
 }
 .leform-element table.table th b {
     font-weight: 500;
@@ -1950,7 +1989,7 @@ Lms Table Style
 .match-question .stems li,
 .match-question .options li {
     list-style: none;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
     margin: 0 0 1rem;
 }
 .match-question .stems,
@@ -2062,4 +2101,15 @@ span.seperator_line {
 }
 #question_preview .prev-next-controls .review-btn {
     left: 0;
+}
+.draggable-items{
+    display:table-row;
+    clear:both;
+}
+.draggable-items li{
+    display:block;
+    float: left;
+}
+.droppable_area{
+    width:100; border:1px solid #efefef; height:50px; display:inline-block;
 }

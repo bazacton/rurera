@@ -498,7 +498,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	height: 52px;
+	height: auto;
 	line-height: 48px;
 	padding-right: 8px;
 	text-align: right;
@@ -1130,7 +1130,8 @@
 .lms-quiz-create .leform-properties-options-table>div.leform-image-url input[type='text'] {
 	padding-right: 35px;
 }
-.lms-element-properties .leform-properties-options-box .admin-file-manager {
+.lms-element-properties .leform-properties-options-box .admin-file-manager,
+.leform-image-url .admin-file-manager {
     position: absolute;
     right: 10px;
     top: 0;
@@ -4075,12 +4076,19 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
     width: 100%;
     float: left;
 }
-
+.lms-quiz-create .leform-properties-item .field-options {
+    padding: 0;
+}
+.lms-quiz-create .leform-properties-item .field-options .text-field-options {
+    padding: 10px;
+}
+.lms-quiz-create .leform-properties-item .quiz-form-control {
+    margin-bottom: 10px;
+}
 .leform-properties-content.leform-wysiwyg {
     display: block;
     clear:both;
 }
-
 .editor-add-field {
     cursor: pointer;
 }
@@ -4089,43 +4097,35 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
     float: left;
     position: relative;
 }
-
 .field-options-all{display:none;}
 .repeater-class {
     float: right;
     cursor: pointer;
     padding: 5px 10px 0 10px;
 }
-
 .remove-repeater-field {
     top: 12px;
     position: absolute;
     right: 16px;
 }
-
 .fields-layout-options{display:none;}
-
 .content-data{
     height: 150px;
     border: 1px solid #ccc;
     overflow: auto;
     padding: 10px !important;
 }
-
-
 .content-data input[type="text"],.content-data input[type="email"],.content-data input[type="password"].content-data, select,.content-data textarea{
     height: 30px;
     padding: 0px;
     cursor: pointer;
 }
-
 .content-data .field-group{
     display: inline-block !important;
     text-align: center;
     vertical-align: -1em;
     padding: 0 0.2em;
 }
-
 .content-data *[contenteditable="true"] {
   background-color: rgba(217, 245, 255,0.5);
 }
@@ -4142,10 +4142,10 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
     width: 15px !important;
 }
 .field_small{
-    width: 30% !important;
+    width: 40% !important;
 }
 .field_medium {
-    width: 50% !important;
+    width: 75% !important;
 }
 .field_large {
     width: 100% !important;
@@ -4248,4 +4248,9 @@ STYLE
 }
 .leform-form-editor p {
     margin-bottom: 0;
+}
+.leform-builder .leform-element-html h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0;
 }

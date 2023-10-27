@@ -19,6 +19,12 @@ $rand_id = rand(999,99999);
 <script src="/assets/default/js/admin/question-create.js?ver={{$rand_id}}"></script>
 <link rel="stylesheet" href="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
 <style>
+    .droppable_area {
+        width: 150px;
+        height: 50px;
+        border: 1px solid #efefef;
+        display: inline-block;
+    }
     .image-field, .image-field-box {
         width: fit-content;
     }
@@ -472,6 +478,10 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
                                                     <div class="leform-admin-popup-buttons">
+                                                        <a class="leform-admin-button duplicate-element"
+                                                           href="#"><label>Duplicate</label></a>
+                                                        <a class="leform-admin-button remove-element"
+                                                                                                                   href="#"><label>Remove</label></a>
                                                         <a class="leform-admin-button generate-question-code"
                                                            href="#"><label>Preview</label></a>
                                                     </div>
@@ -861,7 +871,7 @@ $rand_id = rand(999,99999);
                 <form name="question_status_action_form" id="question_status_action_form">
                     <div class="form-group">
                         <label>{{ trans('/admin/main.category') }}</label>
-                        <select class="form-control @error('category_id') is-invalid @enderror"
+                        <select class="form-control @error('category_id') is-invalid @enderror year_subject_ajax_select"
                                 name="ajax[category_id]">
                             <option {{ !empty($trend) ?
                             '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
@@ -882,6 +892,21 @@ $rand_id = rand(999,99999);
                         </div>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                            <label>Subjects</label>
+                            <select data-return_type="option"
+                                    data-default_id="0"
+                                    class="subject_ajax_select year_subjects form-control select2 @error('subject_id') is-invalid @enderror"
+                                    id="subject_id" name="ajax[subject_id]">
+                                <option disabled selected>Subject</option>
+                            </select>
+                            @error('subject_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
 
 
                     <div class="form-group">

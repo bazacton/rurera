@@ -513,7 +513,7 @@
       @if(!empty($generalSettings['site_name']))
     <title>{{ $generalSettings['site_name'] }}</title>
    @else
-   <title>Platform Title</title>
+   <title>Rurera</title>
    @endif
 </head>
 <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">

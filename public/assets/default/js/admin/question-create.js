@@ -137,7 +137,7 @@ function leform_settings_save(_button) {
         url: leform_ajax_handler,
         data: jQuery(".leform-settings-form").serialize(),
         success: function (return_data) {
-            jQuery(button_object).find("i").attr("class", "fas fa-check");
+            //jQuery(button_object).find("i").attr("class", "fas fa-check");
             jQuery(button_object).removeClass("leform-button-disabled");
             var data;
             try {
@@ -158,7 +158,7 @@ function leform_settings_save(_button) {
             leform_sending = false;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            jQuery(button_object).find("i").attr("class", "fas fa-check");
+            //jQuery(button_object).find("i").attr("class", "fas fa-check");
             jQuery(button_object).removeClass("leform-button-disabled");
             leform_global_message_show("danger", leform_esc_html__("Something went wrong. We got unexpected server response."));
             leform_sending = false;
@@ -1092,6 +1092,23 @@ function _leform_properties_prepare(_object) {
 
                     break;
 
+                case 'html_toolbar_draggable':
+                   html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
+                   \n\
+                   <div class='leform-properties-tooltip'></div>\n\
+                   <div class='lms-tools-bar'>\n\
+                   <ul class='leform-toolbar-list'>\n\
+                   <li><a href='javascript:;'><img src='/assets/default/img/quiz/symbols/seperator_line.png' title='Seperator' class='editor-add-field lms-tools-item' data-field_type='droppable_area' data-id='" + key + "' onclick='document.getElementById(\"leform-content\").focus();' /></a></li>\n\
+                   </ul>\n\
+                   </div>\n\
+                   <div class='leform-properties-content leform-wysiwyg'><textarea name='leform-" + key + "' id='leform-" + key + "' class='summernote-editor content-data'>" + properties[key] + "</textarea>\n\
+                   <textarea class='content-area hide' name='1leform-" + key + "' id='leform-" + key + "'>" + properties[key] + "</textarea>\n\
+                   <div class='field-options field-options-" + key + "'>\n\
+                   </div>\n\
+                   </div></div>";
+
+                   break;
+
                 case 'html':
                     html += "<div class='leform-properties-item' data-id='" + key + "'>\n\
                     \n\
@@ -1404,6 +1421,19 @@ function _leform_properties_prepare(_object) {
                     //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this));'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
                     break;
+
+                case 'options_label':
+                    options = "";
+                    for (var j = 0; j < properties[key].length; j++) {
+                        selected = false;
+                        if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                            selected = true;
+                        options += leform_properties_options_label_item_get(properties[key][j]["label"], selected);
+                    }
+                    //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    break;
+
 
                 case 'image-options':
                     options = "";
@@ -1961,6 +1991,7 @@ function _leform_properties_prepare(_object) {
 
 function leform_properties_open(_object) {
     jQuery("#leform-element-properties .leform-admin-popup-content-form").html("");
+    var element_id = _object.attr('id');
     var window_height = 500;//2 * parseInt((jQuery(window).height() - 100) / 2, 10);
     var window_width = Math.min(Math.max(2 * parseInt((jQuery(window).width() - 300) / 2, 10), 880), 1080);
     //jQuery("#leform-element-properties").height(window_height);
@@ -1972,6 +2003,7 @@ function leform_properties_open(_object) {
     leform_element_properties_active = _object;
     leform_element_properties_data_changed = false;
     jQuery("#leform-element-properties .leform-admin-popup-loading").show();
+    jQuery("#leform-element-properties").attr('data-element_id', element_id);
     console.log(_object);
 
     /*var sidebar = new StickySidebar('.lms-element-properties', {
@@ -2757,7 +2789,7 @@ function leform_properties_options_default(_object) {
     return false;
 }
 
-function leform_properties_options_new(_object, thisObj = null) {
+function leform_properties_options_new(_object, thisObj = null, options_type = 'all') {
     var option;
     if (_object != null) {
         option = jQuery(_object).closest(".leform-properties-options-item").clone();
@@ -2768,7 +2800,11 @@ function leform_properties_options_new(_object, thisObj = null) {
         //option = jQuery(".leform-properties-options-container .leform-properties-options-item").first().clone();
         //jQuery(option).removeClass("leform-properties-options-item-default");
         //jQuery(option).find("input").val("");
-        option = leform_properties_options_item_get("", "", false);
+        if( options_type == 'only_label'){
+            option = leform_properties_options_label_item_get("", "", false);
+        }else {
+            option = leform_properties_options_item_get("", "", false);
+        }
         if( thisObj != null){
             if( thisObj.closest('.leform-properties-content').find('.leform-properties-options-container').length > 0) {
                 thisObj.closest('.leform-properties-content').find('.leform-properties-options-container').append(option);
@@ -2806,6 +2842,13 @@ function leform_properties_options_item_get(_label, _value, _selected) {
     if (_selected)
         selected = " leform-properties-options-item-default";
     html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(_value) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+    return html;
+}
+function leform_properties_options_label_item_get(_label, _selected) {
+    var html, selected = "";
+    if (_selected)
+        selected = " leform-properties-options-item-default";
+    html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
 
@@ -3201,13 +3244,13 @@ function leform_integrations_ajax_inline_html(_object) {
             else
                 deps[deps_array[i]] = jQuery(item).find("input[name='" + deps_array[i] + "'], select[name='" + deps_array[i] + "']").val();
         }
-    }
+    }spinner
 
     var post_data = {
         action: "leform-" + provider + "-" + inline_action,
         deps: leform_encode64(JSON.stringify(deps))
     };
-    jQuery(_object).find("i").attr("class", "fas fa-spinner fa-spin");
+    jQuery(_object).find("i").attr("class", "fas fa- fa-spin");
     jQuery(_object).addClass("leform-button-disabled");
     jQuery(_object).parent().find(".leform-integrations-ajax-inline").slideUp(300);
 
@@ -5199,7 +5242,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     }
                     console.log('checkbox-fields');
                     var image_class = (is_image == true) ? "lms-checkbox-img" : "";
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "radio":
@@ -5242,7 +5285,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                         options += "<div class='field-holder leform-cr-container-" + properties["radio-size"] + " leform-cr-container-" + properties["radio-position"] + "'>" + option + "</div>";
                     }
                     var image_class = (is_image == true) ? "lms-radio-img" : "";
-                    html += "<div id='leform-element-" + i + "' class='draggable3 leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-radio-select " + template_style + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group draggable3 leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-radio-select " + template_style + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "sortable_quiz":
@@ -5289,7 +5332,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 				</span>\n\
 					" + option + "</div>";
                     }
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box lms-sorting-fields " + template_style + " " + image_class + "' id='lmssort" + sort_id + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box lms-sorting-fields " + template_style + " " + image_class + "' id='lmssort" + sort_id + "'>" + options + "</div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
                 case "matrix_quiz":
@@ -5357,8 +5400,40 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                           </tbody>\n\
                         </table>";
 
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
+
+                case "draggable_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var sort_id = Math.floor((Math.random() * 99999) + 1);
+                    leform_form_elements[i]['field_id'] = random_id;
+                    var template_style = leform_form_elements[i]['template_style'];
+                    var template_size = leform_form_elements[i]['template_size'];
+                    var template_alignment = leform_form_elements[i]['template_alignment'];
+                    var list_style = leform_form_elements[i]['list_style'];
+                    var image_size = leform_form_elements[i]['image_size'];
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+' '+image_size;
+                    style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
+
+                    extra_class = "";
+                    var draggable_options = '';
+                    var label_values = '';
+
+
+                    for (var j = 0; j < leform_form_elements[i]["options"].length; j++) {
+                        selected = "";
+                        var label_data = leform_form_elements[i]["options"][j]["label"];
+                        draggable_options += '<li><span class="draggable-option">' + label_data + '</span></li>';
+                    }
+
+                    var draggable_options = '<ul class="draggable-items">'+draggable_options+'</ul>';
+
+                    var content = leform_form_elements[i]["content"];
+
+
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div>"+draggable_options+content+"<div class='leform-element-cover'></div></div>";
+                    break;
+                    
 
                 case "match_quiz":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
@@ -5431,7 +5506,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                           </div>\n\
                         </div>";
 
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + "><div class='form-box " + template_style + " " + image_class + "'><div class='lms-sorting-fields' id='lmssort" + sort_id + "'>" + options + "</div></div></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
 
@@ -5774,7 +5849,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     break;
 
                 case "question_label":
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><img src='/assets/default/img/quiz/question_label.png' class='question-label-img' alt=''><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
                     break;
                     
                 case "audio_file":
@@ -6476,7 +6551,7 @@ function leform_build(image_styles = []) {
     leform_build_progress();
     if (typeof jQuery.fn.ionRangeSlider != typeof undefined && jQuery.fn.ionRangeSlider)
         jQuery("input.leform-rangeslider").ionRangeSlider();
-    jQuery(".leform-element, .leform-hidden-element").on("mouseover", function (e) {
+    jQuery(".leform-element, .leform-hidden-element").on("mouseover1", function (e) {
         e.preventDefault();
         jQuery(".leform-context-menu").hide();
         leform_context_menu_object = this;
@@ -7728,12 +7803,12 @@ function leform_field_analytics_load(_object) {
             } catch (error) {
                 leform_global_message_show("danger", leform_esc_html__("Something went wrong. We got unexpected server response."));
             }
-            jQuery(_object).find("i").attr("class", "fas fa-check");
+            //jQuery(_object).find("i").attr("class", "fas fa-check");
             jQuery(_object).removeClass("leform-stats-button-disabled");
             leform_sending = false;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            jQuery(_object).find("i").attr("class", "fas fa-check");
+            //jQuery(_object).find("i").attr("class", "fas fa-check");
             jQuery(_object).removeClass("leform-stats-button-disabled");
             leform_global_message_show("danger", leform_esc_html__("Something went wrong. We got unexpected server response."));
             leform_sending = false;
@@ -7930,12 +8005,12 @@ function leform_stats_load(_object) {
             } catch (error) {
                 leform_global_message_show("danger", leform_esc_html__("Something went wrong. We got unexpected server response."));
             }
-            jQuery(_object).find("i").attr("class", "fas fa-check");
+            //jQuery(_object).find("i").attr("class", "fas fa-check");
             jQuery(_object).removeClass("leform-stats-button-disabled");
             leform_sending = false;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            jQuery(_object).find("i").attr("class", "fas fa-check");
+            //jQuery(_object).find("i").attr("class", "fas fa-check");
             jQuery(_object).removeClass("leform-stats-button-disabled");
             leform_global_message_show("danger", leform_esc_html__("Something went wrong. We got unexpected server response."));
             leform_sending = false;
@@ -8726,6 +8801,11 @@ $(document).on('click', '.editor-add-field', function () {
         field_data = '<span class="block-holder editor-field" data-id="' + random_id + '" data-field_type="seperator_line" id="field-' + random_id + '"><span class="seperator_line"></span></span></span>&nbsp;';
     }
 
+    if (field_type == 'droppable_area') {
+        field_data = '<span class="droppable_area block-holder editor-field" data-id="' + random_id + '" data-field_type="droppable_area" id="field-' + random_id + '"></span></span>&nbsp;';
+    }
+
+
 
 
     pasteHtmlAtCaret(field_data);
@@ -8738,6 +8818,7 @@ $(document).on('click', '.editor-add-field', function () {
 $(document).on('click', '.editor-field', function () {
     var thisObj = $(this);
     var field_id = $(this).attr('data-id');
+    var correct_answere = $(this).attr('data-correct_answere')
     var field_type = $(this).attr('data-field_type');
     var option_id_unique = Math.floor((Math.random() * 99999) + 1);
     //var current_value = $(this).attr('data-'+field_type, $(this).val());
@@ -8802,8 +8883,22 @@ $(document).on('click', '.editor-field', function () {
                 var current_value = thisObj.attr('data-' + element_field_type);
                 $(this).val(current_value);
             });
+
         }
 
+    }
+    if( field_type == 'droppable_area'){
+        $(this).closest('.leform-admin-popup-content').find('.leform-properties-options-container').find('.leform-properties-options-item input').each(function () {
+            var option_label = $(this).val();
+            var selected_value = correct_answere;
+            var is_selected = (selected_value == option_label) ? 'selected' : '';
+            if( option_label != '') {
+                options_html += '<option value="' + option_label + '" ' + is_selected + '>' + option_label + '</option>';
+            }
+        });
+        console.log('droppable_area field');
+
+        $('.field-options-content #field-options-' + field_id).find('.droppable-area-select').html(options_html);
     }
     $('.field-options-content #field-options-' + field_id).slideDown();
 });
@@ -9183,4 +9278,13 @@ $(document).on('click', '.question_glossary_submit_btn', function () {
 });
 $(document).on('click', '.quiz-group', function () {
     leform_properties_open($(this));
+});
+$(document).on('click', '.duplicate-element', function () {
+    var element_id = $(this).closest('#leform-element-properties').attr('data-element_id');
+    leform_element_duplicate($('#'+element_id));
+});
+$(document).on('click', '.remove-element', function () {
+    var element_id = $(this).closest('#leform-element-properties').attr('data-element_id');
+    leform_properties_close();
+    leform_element_delete($('#'+element_id));
 });

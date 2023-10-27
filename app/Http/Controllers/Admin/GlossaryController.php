@@ -90,14 +90,14 @@ class GlossaryController extends Controller {
 
         $glossary = Glossary::findOrFail($id);
 
-        if( $glossary->created_by != $user->id || $glossary->status != 'draft'){
+        /*if( $glossary->created_by != $user->id || $glossary->status != 'draft'){
             $toastData = [
                 'title' => 'Request not completed',
                 'msg' => 'You dont have permissions to perform this action.',
                 'status' => 'error'
             ];
             return redirect()->back()->with(['toast' => $toastData]);
-        }
+        }*/
 
         $categories = Category::where('parent_id', null)
                 ->with('subCategories')
@@ -168,6 +168,7 @@ class GlossaryController extends Controller {
                 'title' => isset($data['title']) ? $data['title'] : '',
                 'description' => isset($data['description']) ? $data['description'] : '',
                 'created_at' => time(),
+                'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
             ]);
         } else {
             $this->authorize('admin_glossary_create');
@@ -179,6 +180,7 @@ class GlossaryController extends Controller {
                 'status' => 'active',
                 'created_at' => time(),
                 'created_by' => $user->id,
+                'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
             ]);
         }
 
@@ -228,6 +230,7 @@ class GlossaryController extends Controller {
             'status' => 'draft',
             'created_at' => time(),
             'created_by' => $user->id,
+            'subject_id' => isset($data['subject_id']) ? $data['subject_id'] : 0,
         ]);
 
         if ($request->ajax()) {
