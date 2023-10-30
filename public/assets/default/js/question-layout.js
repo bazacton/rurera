@@ -41,12 +41,11 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     if (returnType == false) {
         jQuery.noConflict();
         $("#validation_error").modal('show');
-        //return false;
+        return false;
     }
-    console.log('test');
 
     clearInterval(Questioninterval);
-    //rurera_loader($(this), 'div');
+    rurera_loader($(this), 'div');
 
 
     var quiz_type = $(".question-area-block").attr('data-type');
@@ -112,9 +111,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         }
 
     });
-
-
-    return false;
 
     /*$(this).closest('form').find('.insert-into-sentense-holder').each(function() {
             var user_input = $(this).find('p').html();
@@ -650,6 +646,12 @@ function init_question_functions() {
         }
     });
 
+    $(document).on('click', '.marking-quiz-data .Selectable', function (e) {
+        $(this).addClass('marking-selected');
+    });
+    $(document).on('dblclick', '.marking-quiz-data .Selectable', function (e) {
+        $(this).removeClass('marking-selected');
+    });
 
     var currentRequest = null;
     $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {

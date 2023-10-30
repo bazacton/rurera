@@ -1003,7 +1003,9 @@ function _leform_properties_prepare(_object) {
                     break;
 
                 case 'text':
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
+                    var after_html = EditorIsEmpty(leform_meta[type][key].after)? '' : leform_meta[type][key].after;
+                    console.log(after_html);
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />"+after_html+"</div></div>";
                     break;
 
                 case 'image':
@@ -1022,11 +1024,6 @@ function _leform_properties_prepare(_object) {
                         "                            </button>\n" +
                         "                        </div>\n" +
                         "                        <input type=\"text\" name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' class=\"form-control\"/>\n" +
-                        "                        <div class=\"input-group-append\">\n" +
-                        "                            <button type=\"button\" class=\"input-group-text admin-file-view\" data-input=\"leform-" + key + "\">\n" +
-                        "                                <i class=\"fa fa-eye\"></i>\n" +
-                        "                            </button>\n" +
-                        "                        </div>\n" +
                         "                    </div>" +
                         "</div></div>";
                     break;
@@ -1433,6 +1430,18 @@ function _leform_properties_prepare(_object) {
                     //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
                     break;
+
+                case 'options_marking':
+                       options = "";
+                       for (var j = 0; j < properties[key].length; j++) {
+                           selected = false;
+                           if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                               selected = true;
+                           options += leform_properties_options_markings_item_get(properties[key][j]["label"], properties[key][j]["value"], selected);
+                       }
+                       //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
+                       html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                       break;
 
 
                 case 'image-options':
@@ -2380,6 +2389,20 @@ function leform_properties_save() {
             });
         });
     }
+    if (properties.hasOwnProperty("markings_options")) {
+        properties["markings_options"] = new Array();
+        jQuery(".leform-properties-options-container .leform-properties-options-item").each(function () {
+            var selected = "off";
+            if (jQuery(this).hasClass("leform-properties-options-item-default"))
+                selected = "on";
+            (properties["markings_options"]).push({
+                "default": selected,
+                "label": jQuery(this).find(".leform-properties-options-label").val(),
+                "value": jQuery(this).find(".leform-properties-options-value").val(),
+                "image": jQuery(this).find(".leform-properties-options-image").val()
+            });
+        });
+    }
     if (properties.hasOwnProperty("confirmations")) {
         properties["confirmations"] = new Array();
         jQuery(".leform-properties-content-confirmations .leform-properties-sub-item").each(function () {
@@ -2802,7 +2825,9 @@ function leform_properties_options_new(_object, thisObj = null, options_type = '
         //jQuery(option).find("input").val("");
         if( options_type == 'only_label'){
             option = leform_properties_options_label_item_get("", "", false);
-        }else {
+        }else if(options_type == 'markings'){
+            option = leform_properties_options_markings_item_get("", "", false);
+        } else {
             option = leform_properties_options_item_get("", "", false);
         }
         if( thisObj != null){
@@ -2844,6 +2869,27 @@ function leform_properties_options_item_get(_label, _value, _selected) {
     html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><input class='leform-properties-options-value' type='text' value='" + leform_escape_html(_value) + "' placeholder='Value'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
     return html;
 }
+function leform_properties_options_markings_item_get(_label, _value, _selected) {
+    var html, selected = "";
+    if (_selected)
+        selected = " leform-properties-options-item-default";
+
+    var option1 = "<textarea class='leform-properties-options-label' placeholder='Label'>" + leform_escape_html(_label) + "</textarea>";
+
+
+    var option2 = "<select class='leform-properties-options-value'>";
+    var is_selected = (leform_escape_html(_value) == 'Simple')? 'selected' : '';
+    option2 += "<option value='Simple' "+is_selected+">Simple</option>";
+    var is_selected = (leform_escape_html(_value) == 'Selectable')? 'selected' : '';
+    option2 += "<option value='Selectable' "+is_selected+">Selectable</option>";
+    var is_selected = (leform_escape_html(_value) == 'Correct')? 'selected' : '';
+    option2 += "<option value='Correct' "+is_selected+">Correct Answere</option>";
+    option2 += "</select>";
+
+    html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div>"+option1+"</div><div>"+option2+"</div><div><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+    return html;
+}
+
 function leform_properties_options_label_item_get(_label, _selected) {
     var html, selected = "";
     if (_selected)
@@ -5138,7 +5184,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                 case "email":
                 case "text":
                     if (leform_form_elements[i]['input-style-size'] != "")
-                        extra_class += " leform-input-" + leform_form_elements[i]['input-style-size'];
+                    extra_class += " leform-input-" + leform_form_elements[i]['input-style-size'];
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div><div class='leform-column-input" + column_input_class + "'><div class='leform-input" + extra_class + "'" + properties["tooltip-input"] + ">" + icon + "<input type='text' class='" + (leform_form_elements[i]['input-style-align'] != "" ? "leform-ta-" + leform_form_elements[i]['input-style-align'] + " " : "") + leform_form_elements[i]["css-class"] + "' placeholder='" + leform_escape_html(leform_form_elements[i]["placeholder"]) + "' value='" + leform_escape_html(leform_form_elements[i]["default"]) + "' /></div><label class='leform-description" + (leform_form_elements[i]['description-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['description-style-align'] : "") + "'>" + properties["required-description-left"] + leform_escape_html(leform_form_elements[i]["description"]) + properties["required-description-right"] + properties["tooltip-description"] + "</label></div><div class='leform-element-cover'></div></div>";
                     break;
 
@@ -5432,6 +5478,45 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
 
                     html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div>"+draggable_options+content+"<div class='leform-element-cover'></div></div>";
+                    break;
+
+                case "marking_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    var sort_id = Math.floor((Math.random() * 99999) + 1);
+                    leform_form_elements[i]['field_id'] = random_id;
+                    var template_style = leform_form_elements[i]['template_style'];
+                    var template_size = leform_form_elements[i]['template_size'];
+                    var template_alignment = leform_form_elements[i]['template_alignment'];
+                    var list_style = leform_form_elements[i]['list_style'];
+                    var image_size = leform_form_elements[i]['image_size'];
+                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+' '+image_size;
+                    style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
+
+                    extra_class = "";
+                    var content_data = '';
+                    var label_values = '';
+                    var correct_statement = '';
+
+
+                    console.log(leform_form_elements[i]);
+                    for (var j = 0; j < leform_form_elements[i]["markings_options"].length; j++) {
+                        selected = "";
+                        var option_label = leform_form_elements[i]["markings_options"][j]["label"];
+                        var option_value = leform_form_elements[i]["markings_options"][j]["value"];
+                        option_value = (option_value != '')? option_value : 'Simple';
+                        correct_statement = (option_value == 'Correct')? option_label : correct_statement;
+                        option_value = (option_value == 'Correct')? 'Selectable' : option_value;
+
+
+                        content_data += '<span class="'+option_value+'">' + option_label + '</span>';
+                    }
+
+
+                    var content_data = '<div class="marking-quiz-data editor-field" data-id="'+random_id+'" id="field-'+random_id+'" data-correct="'+correct_statement+'">'+content_data+'</div>';
+
+
+
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div>"+content_data+"<div class='leform-element-cover'></div></div>";
                     break;
                     
 
@@ -5828,7 +5913,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                                 '                    <div class="input-group">\n' +
                                 '                        <div class="input-group-prepend">\n' +
                                 '                            <button type="button" class="input-group-text admin-file-manager" data-input="field-' + random_id + '" data-preview="holder">\n' +
-                                '                                <i class="fa fa-chevron-up"></i>\n' +
+                                '                                <i class="fa fa-upload"></i>\n' +
                                 '                            </button>\n' +
                                 '                        </div>\n' +
                                 '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="field-' + random_id + '" value="" class="form-control"/>\n' +
@@ -5850,6 +5935,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                 case "question_label":
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
+                    console.log(html);
                     break;
                     
                 case "audio_file":
@@ -8763,7 +8849,7 @@ $(document).on('click', '.editor-add-field', function () {
             '                    <div class="input-group">\n' +
             '                        <div class="input-group-prepend">\n' +
             '                            <button type="button" class="input-group-text admin-file-manager" data-input="field-' + random_id + '" data-preview="holder">\n' +
-            '                                <i class="fa fa-chevron-up"></i>\n' +
+            '                                <i class="fa fa-upload"></i>\n' +
             '                            </button>\n' +
             '                        </div>\n' +
             '                        <input type="text" data-field_type="file" class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '" name="field-' + random_id + '" value="" class="form-control"/>\n' +
@@ -9252,7 +9338,7 @@ $(document).on('change', '.matrix-columns-labels-options2 select', function () {
 });
 
 function EditorIsEmpty(dataValue) {
-    is_empty = true;
+    var is_empty = true;
     if (dataValue != '' && dataValue != 'undefined' && dataValue != undefined) {
         is_empty = false;
     }
@@ -9287,4 +9373,20 @@ $(document).on('click', '.remove-element', function () {
     var element_id = $(this).closest('#leform-element-properties').attr('data-element_id');
     leform_properties_close();
     leform_element_delete($('#'+element_id));
+});
+
+$(document).on('click', '.rurera-generate-audio', function () {
+    var audio_text = $(this).closest('.leform-properties-content').find('input').val();
+    var parentObj = $(this).closest('.leform-tab-content');
+    jQuery.ajax({
+        type: "GET",
+        url: '/admin/common/generate_audio',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {"audio_text": audio_text},
+        success: function (return_data) {
+            parentObj.find('#leform-content').val(return_data);
+        }
+    });
 });

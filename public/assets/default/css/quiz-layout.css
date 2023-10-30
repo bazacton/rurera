@@ -277,7 +277,7 @@ Lms Question List Style
 .question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 10px; margin-top: -2px;}
 .question-textarea input[type="text"],
 .question-layout input[type="text"],
-.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 17px; text-align: left; font-weight: 500; border-radius: 8px; display: inline-block; padding: 0 10px;}
+.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 500; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0;}
 .input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 1px solid #000;}
@@ -1880,7 +1880,7 @@ Lms Table Style
 }
 .leform-element table.table td:first-child,
 .leform-element table.table th:first-child {
-    width: 200px;
+    width: 220px;
 }
 .question-layout table.table td p {
     margin: 0;
@@ -1888,6 +1888,10 @@ Lms Table Style
 .leform-element table.table td .input-holder {
     width: 100%;
     border-width: 0;
+}
+.leform-element table.table td .input_line {
+    width: 100% !important;
+    margin: 0;
 }
 /* .leform-element table.table td .input-holder input.input-simple {
     width: 100%;
@@ -2102,14 +2106,44 @@ span.seperator_line {
 #question_preview .prev-next-controls .review-btn {
     left: 0;
 }
-.draggable-items{
-    display:table-row;
-    clear:both;
+.draggable-items {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
 }
-.draggable-items li{
-    display:block;
-    float: left;
+.ui-draggable.ui-draggable-handle {
+    background-color: var(--primary);
+    background-image: none;
+    color: #fff;
+    padding: 12px 25px;
+    height: auto;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+    margin: 0 10px 0 0;
 }
-.droppable_area{
-    width:100; border:1px solid #efefef; height:50px; display:inline-block;
+.ui-draggable.ui-draggable-handle span {
+    color: #fff;
+}
+.droppable_area, .lms-quiz-section .droppable_area {
+    display:inline-block;
+    height: auto;
+    padding: 10px 20px;
+    margin: 0 0 10px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+    min-width: 80px;
+    text-align: center;
+    min-height: 45px; 
+}
+
+span.Selectable.marking-selected {
+    background: #fff716;
+}
+.marking-quiz-data span {
+    display: inline;
+}
+span.Selectable:hover {
+    text-decoration: underline;
 }

@@ -275,7 +275,6 @@
 	line-height: 38px;
 	vertical-align: top;
 }
-
 /* Dialog Popup - end */
 
 
@@ -353,7 +352,6 @@
 	width: 100%;
 	text-align: center;
 }
-
 .lms-quiz-create .leform-admin-popup {
 	box-sizing: border-box;
 	z-index: 99981;
@@ -490,8 +488,6 @@
 	margin-top: -12px;
 	margin-left: -12px;
 }
-.lms-quiz-create .leform-admin-popup-content-form {
-}
 .lms-quiz-create .leform-admin-popup-buttons {
 	box-sizing: border-box;
 	position: relative;
@@ -515,7 +511,6 @@
 	margin: 20px 0;
 	width: 100%;
 }
-
 .lms-quiz-create .leform-properties-label {
 	display: inline-block;
     font-size: 15px;
@@ -650,6 +645,10 @@
 	height: 30px !important;
 	font-size: 15px !important;
 }
+.lms-quiz-create .leform-properties-content .leform-properties-options-item select {
+    height: 40px !important;
+    line-height: normal;
+}
 .lms-quiz-create .leform-properties-content textarea {
 	height: 10em !important;
 	line-height: 1.4;
@@ -677,6 +676,31 @@
 .lms-quiz-create .leform-properties-content input:-ms-input-placeholder, .leform-properties-content textare::-ms-input-placeholder {
    opacity: 0.3;
    color: inherit !important;
+}
+.leform-properties-content .input-group-prepend button,
+.leform-properties-content .input-group-append button{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    height: 100%;
+    background-color:#fff;
+    border-radius: 0;
+    border-color: #ddd;
+    z-index: 4;
+}
+.leform-properties-content .input-group-append button {
+    right: 0;
+    left: auto;
+}
+.leform-properties-content .input-group-prepend ~ input[type="text"] {
+    height: 42px;
+    background-color: #fff;
+    outline: none;
+    padding: 0 50px;
+}
+.leform-properties-content .input-group-prepend ~ input[type="text"]:focus {
+    border-color: #ddd;
 }
 .lms-quiz-create .leform-properties-content .leform-input-units {
 	position: relative;
@@ -756,7 +780,6 @@
 .lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i.fa-code {
 	font-size: 16px;
 }
-
 .lms-quiz-create .leform-properties-content .leform-media-id span:hover,
 .lms-quiz-create .leform-properties-content .leform-image-url span:hover,
 .lms-quiz-create .leform-properties-content .leform-date>span:hover,
@@ -764,8 +787,6 @@
 .lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span:hover {
 	color: #169F85;
 }
-
-
 .lms-quiz-create .leform-properties-content .wp-picker-container {
 	position: relative;
 	white-space: nowrap;
@@ -1131,9 +1152,10 @@
 	padding-right: 35px;
 }
 .lms-element-properties .leform-properties-options-box .admin-file-manager,
-.leform-image-url .admin-file-manager {
+.leform-properties-content .leform-image-url .admin-file-manager {
     position: absolute;
     right: 10px;
+	left: auto;
     top: 0;
     height: 100%;
     border: 0;
@@ -1382,7 +1404,8 @@
 .leform-properties-content .wp-editor-tabs * {
 	box-sizing: content-box;
 }
-.leform-properties-content .mce-btn.mce-active button, .leform-properties-content .mce-btn.mce-active:hover button, .leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {
+.leform-properties-content .mce-btn.mce-active button, .leform-properties-content .mce-btn.mce-active:hover button, 
+.leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {
 	color: #444;
 }
 .leform-properties-content .wp-core-ui {
@@ -2177,7 +2200,6 @@
 #uap-body .wp-picker-container+em {
 	display: block;
 }
-
 .leform-admin-editor * {
 	box-sizing: border-box;
 }
@@ -2291,7 +2313,7 @@
 .leform-toolbar-list>li {
 	position: relative;
 	height: 38px;
-	width: 35px;
+	width: 34px;
 	line-height: 38px;
 	margin: 0;
 	padding: 0;
@@ -2300,7 +2322,7 @@
 .leform-toolbar-list>li>a {
 	text-align: center;
 	height: 38px;
-	width: 35px;
+	width: 34px;
 	line-height: 38px;
 	cursor: pointer;
 	font-size: 15px;
@@ -2319,6 +2341,9 @@
 	justify-content: center;
 	align-items: center;
 }
+.leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .ion, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fas, 
+.leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .far, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fal, 
+.leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {margin-left: 0;}
 .leform-toolbar-list>li>a:hover {
 	color: #169F85;
 	background: #f8f8f8;
@@ -2381,7 +2406,6 @@
 /*	text-transform: uppercase;*/
 	z-index: 99999 !important;
 }
-
 .leform-pages-bar {
 	height: auto;
 	line-height: 48px;
@@ -2677,7 +2701,8 @@ div.leform-element-checkbox-container div.leform-element-cover {
 	outline: none !important;
 	padding: 0 1em;
 }
-.leform-filter-form input[type="text"], .leform-filter-form select, .leform_records input[type="text"], .leform input[type="text"], .leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {
+.leform-filter-form input[type="text"], .leform-filter-form select, .leform_records input[type="text"], 
+.leform input[type="text"], .leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {
 	font-size: 14px;
 	font-weight: normal;
 	border-radius: 2px;
@@ -3055,9 +3080,6 @@ div.leform-element-checkbox-container div.leform-element-cover {
 .leform-settings table em {
 	font-size: 13px;
 	color: #A0A0A0;
-}
-.leform-settings table tr {
-
 }
 .leform-settings table td,
 .leform-settings table th {
@@ -3876,8 +3898,6 @@ select.leform-block-form-value {
 	text-align: center;
 	margin-top: 60px;
 }
-.leform-field-analytics-columns {
-}
 .leform-field-analytics-columns>div {
 	float: left;
 	box-sizing: border-box;
@@ -3986,13 +4006,11 @@ select.leform-block-form-value {
 .leform-admin .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .leform-admin .ui-slider-horizontal .ui-slider-range-min { left: 0; }
 .leform-admin .ui-slider-horizontal .ui-slider-range-max { right: 0; }
-
 .leform-admin .ui-slider-vertical { width: .8em; height: 100px; }
 .leform-admin .ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
 .leform-admin .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
 .leform-admin .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
 .leform-admin .ui-slider-vertical .ui-slider-range-max { top: 0; }
-
 .leform-number-icon:before {
 	content: "42";
 	font-size: 100%;
@@ -4129,14 +4147,11 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
 .content-data *[contenteditable="true"] {
   background-color: rgba(217, 245, 255,0.5);
 }
-
 .content-data *[contenteditable="true"]:empty {
     content: "c";
     padding: 0 5px;
 }
-
 .hide{display:none}
-
 .field_extra_small{
     height:15px !important;
     width: 15px !important;
@@ -4150,9 +4165,6 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
 .field_large {
     width: 100% !important;
 }
-
-
-
 /****************************
 STYLE
 ****************************/
@@ -4253,4 +4265,129 @@ STYLE
     font-weight: 700;
     font-size: 2rem;
     margin: 0;
+}
+
+
+.patterns-modal .modal {
+    padding-right: 0 !important;
+}
+.patterns-modal .modal-dialog {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.patterns-modal .modal-content {
+	border-radius: 0;
+}
+.patterns-modal .modal-header {
+	background-color: #f2f3f5;
+    align-items: center;
+    padding: 10px 0 0;
+}
+.patterns-modal .modal-header h3 {
+    margin: 0;
+    padding: 15px 30px;
+    color: #333;
+}
+.patterns-modal .modal-header span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    padding-top: 5px;
+}
+.patterns-modal .modal-header button.close {
+    padding: 20px 22px;
+    margin: 0;
+    opacity: 1;
+	outline: none;
+}
+.patterns-modal .modal-header button.close span {
+    color: #333;
+    font-size: 30px;
+}
+.patterns-modal .modal-body {
+    padding: 30px 30px 0;
+    background-color: #f2f3f5;
+}
+.patterns-modal .media-holder {
+    background-color: #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    padding: 30px;
+    margin: 0 0 30px;
+    text-align: center;
+    border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+}
+.patterns-modal .media-holder:before{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(36, 134, 34, 0.05);
+    content: "";
+    display:flex;
+    color: var(--primary);
+    align-items: center;
+    justify-content: center;
+	transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 1;
+	pointer-events: none;
+}
+.patterns-modal .media-holder:after {
+    content: "+";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #fff;
+    height: 80px;
+    width: 80px;
+    background-color: rgba(36, 134, 34, 0.6);
+    border-radius: 100%;
+    margin: -60px 0 0 -40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .8s;
+    -webkit-transition: all .8s;
+    -o-transition: all .8s;
+}
+.patterns-modal .media-holder:hover:before,
+.patterns-modal .media-holder:hover:after {
+	opacity: 1;
+	visibility: visible;
+}
+.patterns-modal .media-holder:hover:after {
+	margin-top: -40px;
+}
+.patterns-modal .media-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    margin: 30px 0 0;
+    padding:25px 30px 0;
+}
+.patterns-modal .media-title h4 {
+    margin: 0;
+	font-size: 1.25rem;
+}
+.patterns-modal .media-holder h4 a {font-weight: 600;color: #333;}
+.patterns-modal .media-holder figure {
+    margin: 0;
+	padding: 0;
+	position: relative;
+}
+.patterns-modal .media-holder figure img {
+    max-width: 100%;
+	object-fit: contain;
 }

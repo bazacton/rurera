@@ -2420,6 +2420,12 @@ function toolbar_tools()
             'type'  => 'input'
         ),
 
+        'marking_quiz' => array(
+            'title' => esc_html__('Marking Quiz', 'leform'),
+            'icon'  => 'fas fa-microphone',
+            'type'  => 'input'
+        ),
+
         'insert_into_sentense' => array(
             'title' => esc_html__('Insert into Sentense', 'leform'),
             'icon'  => 'fas fa-question-circle',
@@ -5991,73 +5997,64 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'html_toolbar_draggable'
             ),
-            
-            'style'              => array(
-                'type'  => 'tab',
-                'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
-            ),
-            'image_size'    => array(
+
+            'elements_data' => array(
                 'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
-                    )
-            ),
-            'template_style'     => array(
-                'value'   => 'rurera-in-row',
-                'label'   => esc_html__('Template Style', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'rurera-in-row' => esc_html__('Row', 'leform'),
-                        'rurera-in-cols' => esc_html__('Columns', 'leform'),
-                    )
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
             ),
 
-            'template_alignment' => array(
-                'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
-                    )
-            ),
-            'list_style'         => array(
-                'value'   => 'none',
-                'label'   => esc_html__('Bullet list Style', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        ''                    => esc_html__('None', 'leform'),
-                        'alphabet-list-style' => esc_html__('English Alphabet', 'leform'),
-                        'numeric-list-style'  => esc_html__('Numbers', 'leform'),
-                    )
-            ),
-            'description-style' => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
-                ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
-                'type'    => 'description-style'
+
+
+        ),
+
+        'marking_quiz' => array(
+            'basic'    => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
             ),
 
+            'score'         => array(
+                'value' => '',
+                'label' => esc_html__('Score', 'leform'),
+                'type'  => 'number'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
+            ),
+            'label'    => array(
+                'value'   => esc_html__('Arrange', 'leform'),
+                'label'   => esc_html__('Label', 'leform'),
+                'tooltip' => esc_html__('This is the label of the field.', 'leform'),
+                'type'    => 'text'
+            ),
+            'markings_options'  => array(
+                'multi-select' => 'on',
+                'values'       => array(
+                    array(
+                        'value' => 'Simple',
+                        'label' => 'Option 1',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Selectable',
+                        'label' => 'Option 2',
+                        'image' => ''
+                    ),
+                    array(
+                        'value' => 'Simple',
+                        'label' => 'Option 3',
+                        'image' => ''
+                    ),
+                ),
+                'label'        => esc_html__('Columns', 'leform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'type'         => 'options_marking'
+            ),
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
@@ -6981,8 +6978,14 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
+            'audio_text'       => array(
+                'value' => esc_html__('', 'leform'),
+                'label' => esc_html__('Audio Text', 'leform'),
+                'after' => '<a href="javascript:;" class="rurera-generate-audio">Generate</a>',
+                'type'  => 'text'
+            ),
             'content'       => array(
-                'value' => esc_html__('#', 'leform'),
+                'value' => esc_html__('', 'leform'),
                 'label' => esc_html__('Audio File Upload', 'leform'),
                 'type'  => 'file'
             ),

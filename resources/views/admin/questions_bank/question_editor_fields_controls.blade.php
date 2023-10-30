@@ -51,15 +51,6 @@
         <div class='quiz-form-control'><input type='number' class="element-field" data-field_type="rows" value="5"
                                               placeholder="Rows" data-field_id="field_dynamic_id"></div>
 
-        <div class='quiz-form-control'>
-            <select class="element-field" data-field_type="field_size" data-field_id="field_dynamic_id">
-                <option value="extra-small">Extra Small</option>
-                <option value="small" selected="selected">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-            </select>
-        </div>
-
         <div class='quiz-form-control'><input type='text' class="element-field"
                                               data-field_type="correct_answere"
                                               placeholder="Correct Answer"

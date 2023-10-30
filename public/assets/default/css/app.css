@@ -22235,6 +22235,136 @@ Product Tabs Slider Style Start
 }
 /* Lms Font End Display End */
 
+/*Plphabet List Style Start*/
+.alphabet-list-holder {
+    background-color: #fff;
+    border: 1px solid #eee;
+    margin: 0 0 30px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.alphabet-search {
+    border-bottom: 1px solid #eee;
+    padding: 53px 30px;
+    min-height: 154px;
+    width: 40%;
+}
+.alphabet-list {
+    border-left: 1px solid #eee;
+    width: 60%;
+}
+.alphabet-search form {
+    margin: 0;
+}
+.alphabet-search .form-field {
+    position: relative;
+}
+.alphabet-search input[type="text"] {
+    width: 100%;
+    height: 46px;
+    border-radius: 50px;
+    border: 1px solid #eee;
+    padding: 0 50px 0 20px;
+    outline: none;
+    font-size: 16px;
+}
+.alphabet-search button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border: 0;
+    background-color: inherit;
+    padding: 0 20px;
+}
+.alphabet-search button i {
+    font-size: 18px;
+    color: #ccc;
+}
+.alphabet-list-card {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #eee;
+}
+.alphabet-list-child {
+    border-left: 1px solid #eee;
+    width: 100%;
+}
+.alphabet-list-card > span {
+    padding: 25px 30px 15px;
+    font-size: 20px;
+    color: #333;
+    min-width: 80px;
+    text-align: center;
+}
+.alphabet-list-child li {
+    border-bottom: 1px solid #eee;
+    padding: 20px 30px 20px 30px;
+    line-height: normal;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.alphabet-list-child li:last-child {
+    border-bottom: 0;
+}
+.alphabet-list .add-btn.collapsed {
+    text-indent: 0px;
+}
+.alphabet-list .add-btn {
+    border: 1px solid #ddd;
+    color: #ddd;
+    height: 36px;
+    width: 36px;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 28px;
+    line-height: 32px;
+    position: absolute;
+    top: 13px;
+    right: 25px;
+    text-indent: -999999px;
+}
+.alphabet-list .add-btn.collapsed:before {
+    width: 0;
+}
+.alphabet-list .add-btn:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 1px;
+    width: 24px;
+    border-bottom: 1px solid #ddd;
+    margin: 0 0 0 -12px;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+}
+.spells .dataTable thead {
+    background-color: inherit;
+    border-bottom: 1px solid #ececec;
+}
+.spells .dataTable thead tr th {
+    color: #333;
+    padding-left: 0;
+}
+.spells .dataTable td a {
+    font-weight: 600;
+    font-size: 18px;
+}
+.spells .table-bordered {
+    border: 0;
+}
+.spells.elevenplus-block .table tbody {
+    border-width: 0;
+}
+.spells .table tbody tr:nth-child(even) {background: #CCC}
+.spells .table tbody tr:nth-child(odd) {background: #FFF}
+
+/*Plphabet List Style End*/
+
 /*************************************
 Lms Responsive Style Start
 *************************************/

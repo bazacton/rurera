@@ -104,6 +104,192 @@ $rand_id = rand(999,99999);
 
 
                         <div class="tab-content" id="myTabContent2">
+
+                            <div class="patterns-modal">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Button</button>
+                              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h3>
+                                        All Question Types
+                                        <span>We have a great range of question types to choose from.</span>
+                                      </h3>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <a href="#">
+                                              <figure>
+                                                <img src="/assets/default/img/multiple-choice.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                            </a>
+                                            <div class="media-title">
+                                              <h4><a href="#">Multiple Choice</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <figure>
+                                              <img src="/assets/default/img/multiple-answers.png" alt="feature image" height="275" width="530">
+                                            </figure>
+                                            <div class="media-title">
+                                              <h4><a href="#">Multiple Answers</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                          <div class="media-holder">
+                                            <figure>
+                                              <img src="/assets/default/img/true-or-false.png" alt="feature image" height="275" width="530">
+                                            </figure>
+                                            <div class="media-title">
+                                              <h4><a href="#">True or False</a></h4>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/fill-in-the-blank.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Fill in the blanks</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/easy-type.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Essay Type</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/matching.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Matching</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/hotspot.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Hotspot</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/drop-down.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Drop-down</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/type-in.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Type-In</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/order-list.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Order List</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/note.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Note</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/document.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Document</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/audio-response.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Upload Audio/Video</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/video-response.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Record Audio/Video</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/upload.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Upload</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="media-holder">
+                                              <figure>
+                                                <img src="/assets/default/img/comprehension.png" alt="feature image" height="275" width="530">
+                                              </figure>
+                                              <div class="media-title">
+                                                <h4><a href="#">Comprehension</a></h4>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="tab-pane mt-3 fade" id="question_design" role="tabpanel"
                                  aria-labelledby="question_design-tab">
                                 <div class="row">

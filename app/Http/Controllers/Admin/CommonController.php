@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\TextToSpeechController;
 use App\Models\Category;
 use App\Models\Classes;
 use App\Models\Quiz;
@@ -211,6 +212,22 @@ class CommonController extends Controller
 
         exit;
     }
+
+    /*
+    * Generate Audio File by Text
+    */
+    public function generate_audio(Request $request)
+    {
+        $user = auth()->user();
+        $audio_text = $request->get('audio_text', null);
+
+        $TextToSpeechController = new TextToSpeechController();
+        $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
+        echo '/speech-audio/' . $text_audio_path;
+
+        exit;
+    }
+
 
 
 }
