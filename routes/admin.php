@@ -406,6 +406,7 @@ Route::group([
          */
         Route::group(['prefix' => 'questions_bank'], function () {
             Route::get('/', 'QuestionsBankController@index');
+            Route::get('/import_spells', 'QuestionsBankController@import_spells');
             Route::get('/create', 'QuestionsBankController@create');
             Route::post('/search', 'QuestionsBankController@search');
             Route::get('/get_questions_by_ids', 'QuestionsBankController@get_questions_by_ids');

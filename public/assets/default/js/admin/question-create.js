@@ -5877,6 +5877,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                    if( leform_form_elements[i]["maxlength"] != '') {
                        attributes_data += 'maxlenghth="' + leform_form_elements[i]["maxlength"] + '"';
                    }
+                    leform_form_elements[i]['field_id'] = random_id;
 
                     var field_data = '<span class="input-holder '+classes+'"><span class="input-label" contenteditable="false"></span><textarea data-field_type="textarea" data-score="' + leform_form_elements[i]["score"] + '" data-correct="' + leform_form_elements[i]["correct_answer"] + '" placeholder="' + leform_form_elements[i]["placeholder"] + '" rows="' + leform_form_elements[i]["rows"] + '" '+attributes_data+' class="editor-field input-simple" data-id="' + random_id + '" id="field-' + random_id + '"></textarea></span>';
                     var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
@@ -5900,7 +5901,8 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                    }
                    var classes = '';
                     classes += ' '+leform_form_elements[i]["style_format"];
-                   var field_data = '<span class="input-holder '+leform_form_elements[i]["style_format"]+'">'+left_data+'<input type="'+leform_form_elements[i]["text_format"]+'" data-field_type="text" '+attributes_data+' data-score="' + leform_form_elements[i]["score"] + '" data-correct="' + leform_form_elements[i]["correct_answer"] + '" placeholder="' + leform_form_elements[i]["placeholder"] + '" class="editor-field input-simple '+classes+'" data-id="' + random_id + '" id="field-' + random_id + '">'+right_data+'</span>';
+                    leform_form_elements[i]['field_id'] = random_id;
+                   var field_data = '<span class="input-holder '+leform_form_elements[i]["style_format"]+'">'+left_data+'<input type="'+leform_form_elements[i]["text_format"]+'" data-field_type="text" '+attributes_data+' data-score="' + leform_form_elements[i]["score"] + '" data-correct="' + leform_form_elements[i]["correct_answer"] + '" placeholder="' + leform_form_elements[i]["placeholder"] + '" class="editor-field input-simple '+classes+'" data-field_id="' + random_id + '" data-id="' + random_id + '" id="field-' + random_id + '">'+right_data+'</span>';
                    var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
                    html += html_data;
 
@@ -9376,7 +9378,8 @@ $(document).on('click', '.remove-element', function () {
 });
 
 $(document).on('click', '.rurera-generate-audio', function () {
-    var audio_text = $(this).closest('.leform-properties-content').find('input').val();
+    var audio_text = $(this).closest('.leform-tab-content').find('input[name="leform-audio_text"]').val();
+    var audio_sentense = $(this).closest('.leform-tab-content').find('input[name="leform-audio_sentense"]').val();
     var parentObj = $(this).closest('.leform-tab-content');
     jQuery.ajax({
         type: "GET",
@@ -9384,9 +9387,10 @@ $(document).on('click', '.rurera-generate-audio', function () {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {"audio_text": audio_text},
+        data: {"audio_text": audio_text, "audio_sentense": audio_sentense},
         success: function (return_data) {
             parentObj.find('#leform-content').val(return_data);
         }
     });
 });
+

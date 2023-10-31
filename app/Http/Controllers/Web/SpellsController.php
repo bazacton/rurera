@@ -75,7 +75,7 @@ class SpellsController extends Controller
             $query->where('examp_board', $examp_board);
         }
 
-        $elevenPlus = $query->paginate(100);
+        $spellsData = $query->paginate(100);
 
 
         $childs = array();
@@ -95,10 +95,10 @@ class SpellsController extends Controller
                 ->get();
         }
 
-        if (!empty($elevenPlus)) {
+        if (!empty($spellsData)) {
             $data = [
                 'pageTitle'                  => 'Online 11 plus (11+) Enterance Exams Papers, Resources , assessments, practices | Rurera',
-                'data'                       => $elevenPlus,
+                'data'                       => $spellsData,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,
                 'parent_assigned_list'       => $parent_assigned_list,
@@ -111,6 +111,69 @@ class SpellsController extends Controller
 
         abort(404);
     }
+
+    /*
+    * Words List by Quiz ID
+    */
+   public function words_list(Request $request)
+   {
+       $quiz_id = $request->get('quiz_id', null);
+       $words_list = array();
+       $words_response = '';
+       $spellQuiz = Quiz::find($quiz_id);
+       if( !empty( $spellQuiz->quizQuestionsList ) ){
+           foreach( $spellQuiz->quizQuestionsList as $questionsListData){
+               $SingleQuestionData = $questionsListData->SingleQuestionData;
+               $layout_elements = isset( $SingleQuestionData->layout_elements )? json_decode($SingleQuestionData->layout_elements) : array();
+               $correct_answer = $audio_file = $audio_text = $audio_sentense = '';
+               if( !empty( $layout_elements ) ){
+                   foreach( $layout_elements as $elementData){
+                       $element_type = isset( $elementData->type )? $elementData->type : '';
+                       $content = isset( $elementData->content )? $elementData->content : '';
+                       $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
+                       $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
+                       $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                       if( $element_type == 'audio_file'){
+                           $audio_file = $content;
+                           $audio_text = $audio_text;
+                           $audio_sentense = $audio_sentense;
+                       }
+                       if( $element_type == 'textfield_quiz'){
+                           $correct_answer = $correct_answer;
+                       }
+                   }
+               }
+               /*pre('Correct Answere: '.$correct_answer, false);
+               pre('Audio File: '.$audio_file, false);
+               pre('Aaudio Text: '.$audio_text, false);
+               pre('Aaudio Sentense: '.$audio_sentense, false);
+               pre('<br><br><br>', false);*/
+               $words_list[] = array(
+                   'audio_text' => $audio_text,
+                   'audio_sentense' => $audio_sentense,
+                   'audio_file' => $audio_file,
+               );
+
+               $words_response .= '<tr>
+                   <td>
+                   <a href="javascript:;" class="play-btn" data-id="player-'.$SingleQuestionData->id.'">
+                       <img class="play-icon" src="../assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                       <img class="pause-icon" src="../assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                   <div class="player-box">
+                   <audio class="player-box-audio" id="player-'.$SingleQuestionData->id.'" src="'.$audio_file.'"> </audio>
+                   </div>
+                   </a>
+                   </td>
+                   <td>'.$audio_text.'</td>
+                   <td>
+                   <p>'.$audio_sentense.'</p>
+                   </td>
+               </tr>';
+           }
+       }
+
+       echo $words_response;exit;
+   }
 
     /*
      * Start SAT Quiz

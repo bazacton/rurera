@@ -133,6 +133,7 @@ class QuestionsAttemptController extends Controller
 
                             if ($questionAttemptAllowed == true) {
                                 $correct_answers = $this->get_question_correct_answers($questionObj);
+
                                 $prevNewQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', 'waiting')->first();
 
                                 $newQuestionResult = QuizzResultQuestions::create([
@@ -266,6 +267,14 @@ class QuestionsAttemptController extends Controller
                     $is_attempt_allowed = true;
                 }
                 break;
+
+            case "vocabulary":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
+
+
         }
 
         return $is_attempt_allowed;
@@ -280,9 +289,11 @@ class QuestionsAttemptController extends Controller
         $correct_answers = array();
         if (!empty($elements_data)) {
             foreach ($elements_data as $field_key => $elementData) {
+                $question_type = isset($elementData->type) ? $elementData->type : '';
                 if ($field_key > 0) {
-                    $question_type = isset($elementData->type) ? $elementData->type : '';
                     $question_correct = isset($elementData->correct_answere) ? $elementData->correct_answere : '';
+                    $question_correct2 = isset($elementData->correct_answer) ? $elementData->correct_answer : '';
+                    $question_correct = ( $question_correct == '')? $question_correct2 : $question_correct;
                     $data_correct = isset($elementData->{'data-correct'}) ? json_decode($elementData->{'data-correct'}) : '';
                     $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                     $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
@@ -385,6 +396,8 @@ class QuestionsAttemptController extends Controller
                 $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
                 $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
                 $question_correct = isset($current_question_obj->correct_answere) ? $current_question_obj->correct_answere : '';
+                $question_correct2 = isset($current_question_obj->correct_answer) ? $current_question_obj->correct_answer : '';
+                $question_correct = ( $question_correct == '')? $question_correct2 : $question_correct;
                 $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
                 $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
@@ -690,6 +703,8 @@ class QuestionsAttemptController extends Controller
                 $current_question_obj = isset($elements_data->$user_input_key) ? $elements_data->$user_input_key : array();
                 $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
                 $question_correct = isset($current_question_obj->correct_answere) ? $current_question_obj->correct_answere : '';
+                $question_correct2 = isset($current_question_obj->correct_answer) ? $current_question_obj->correct_answer : '';
+                $question_correct = ( $question_correct == '')? $question_correct2 : $question_correct;
                 $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
                 $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);

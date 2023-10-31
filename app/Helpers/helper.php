@@ -6834,6 +6834,11 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
+            ),
         ),
         'textfield_quiz' => array(
             'basic'         => array(
@@ -6899,6 +6904,11 @@ function element_properties_meta($chapters)
                 'label'   => '',
                 'tooltip' => '',
                 'type'    => 'elements_data'
+            ),
+            'field_id'      => array(
+                'value' => '',
+                'label' => esc_html__('Field_id', 'leform'),
+                'type'  => 'hidden'
             ),
         ),
 
@@ -6980,8 +6990,13 @@ function element_properties_meta($chapters)
             ),
             'audio_text'       => array(
                 'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Audio Text', 'leform'),
+                'label' => esc_html__('Word', 'leform'),
                 'after' => '<a href="javascript:;" class="rurera-generate-audio">Generate</a>',
+                'type'  => 'text'
+            ),
+            'audio_sentense'       => array(
+                'value' => esc_html__('', 'leform'),
+                'label' => esc_html__('Sentence', 'leform'),
                 'type'  => 'text'
             ),
             'content'       => array(
@@ -7567,6 +7582,11 @@ function getTopicTitle($topic_id, $topic_type){
                 $SubChaptersData = SubChapters::where('id', $checkChapterItem->parent_id)->first();
                 $topic_title = $SubChaptersData->sub_chapter_title;
                break;
+
+            case "vocabulary":
+               $QuizObj = Quiz::find($topic_id);
+               $topic_title = isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
+           break;
 
 
         }
