@@ -1,5 +1,8 @@
 @php $rand_id = rand(999,99999); @endphp
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<style>
+    .rurera-hide{display:none;}
+</style>
 
 
 <div class="question-step quiz-complete" style="display:none">
@@ -34,7 +37,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                 <div class="spells-quiz-info">
                     <ul>
                         <li>
-                            <span>4</span> Of 10
+                            <span>{{$question_no}}</span> Of 10
                         </li>
                         <li>
                             <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">:{{$question->question_average_time}}</span> Seconds
@@ -52,15 +55,17 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-                        <strong>Spell It:</strong>
-                        <input type="text" class="editor-field" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
+                        <input type="text" class="editor-field" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}" style="width: 10.5ch;
+                            background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat;
+                            font: 1.2rem 'Ubuntu Mono', monospace;
+                            letter-spacing: 0.5ch;">
                     </div>
                     <div class="form-btn-field">
-                        <button type="submit">Submit</button>
+                        <button type="submit" class="question-submit-btn">Submit</button>
                     </div>
                 </div>
 
-                    <div class="prev-next-controls text-center mb-50 questions-nav-controls">
+                    <div class="prev-next-controls text-center mb-50 questions-nav-controls  rurera-hide">
                                             @if( !isset( $disable_finish ) || $disable_finish == 'false')
                                             <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
                                                 Finish

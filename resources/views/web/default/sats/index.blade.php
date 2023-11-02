@@ -17,10 +17,7 @@
 
     <section class="pt-80">
         <div class="container">
-            <section class="page-section analytics-graph-data">
-                @include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
-            </section>
-            <div class="row pt-80">
+            <div class="row">
 
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
@@ -124,6 +121,7 @@
                             @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
                             $counter++;
                             $lock_image = ($counter > 2)? 'lock.svg' : 'unlock.svg';
+                            $lock_unlock_class = ($counter > 2)? 'rurera-lock-item' : 'rurera-unlock-item';
 
                             $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
                             $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
@@ -133,12 +131,12 @@
 
                             @endphp
                             <tr>
-                                <td class="rurera-lock-item">
+                                <td class="{{$lock_unlock_class}}">
                                     <img src="/assets/default/img/{{$lock_image}}">
                                 </td>
                                 <td>
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
-                                    <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}-<br>reading</a>
+                                    <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}</a>
                                         {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                     </h4>
                                 </td>

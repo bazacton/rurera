@@ -948,6 +948,81 @@ class QuestionsAttemptController extends Controller
 
         //$AttemptAllowed = false;
 
+        if( $QuizzesResult->quiz_result_type == 'vocabulary') {
+
+            $layout_elements = isset( $questionObj->layout_elements )? json_decode($questionObj->layout_elements) : array();
+
+            $correct_answer = $audio_file = $audio_text = $audio_sentense = $field_id = '';
+               if( !empty( $layout_elements ) ){
+                   foreach( $layout_elements as $elementData){
+                       $element_type = isset( $elementData->type )? $elementData->type : '';
+                       $content = isset( $elementData->content )? $elementData->content : '';
+                       $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
+                       $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
+                       $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                       if( $element_type == 'audio_file'){
+                           $audio_file = $content;
+                           $audio_text = $audio_text;
+                           $audio_sentense = $audio_sentense;
+                       }
+                       if( $element_type == 'textfield_quiz'){
+                           $correct_answer = $correct_answer;
+                           $field_id = isset( $elementData->field_id )? $elementData->field_id : '';
+                       }
+                   }
+               }
+            $word_data = array(
+                   'audio_text' => $audio_text,
+                   'audio_sentense' => $audio_sentense,
+                   'audio_file' => $audio_file,
+                   'field_id' => $field_id,
+               );
+
+            if ($AttemptAllowed == true) {
+
+                $question_layout = view('web.default.panel.questions.spell_question_layout', [
+                    'question'          => $questionObj,
+                    'prev_question'     => $prev_question,
+                    'next_question'     => $next_question,
+                    'quizAttempt'       => $attemptLogObj,
+                    'questionsData'     => rurera_encode($questionObj),
+                    'newQuestionResult' => $newQuestionResult,
+                    'question_no'       => $question_no,
+                    'quizResultObj'     => $QuizzesResult,
+                    'word_data'         => $word_data,
+                    'field_id'          => $field_id,
+                    'correct_answer'    => $correct_answer,
+                ])->render();
+
+            }else {
+
+                $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $attemptLogObj->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
+                $user_answers = ($newQuestionResult->user_answer != '') ? (array) json_decode($newQuestionResult->user_answer) : array();
+
+                $user_answer = isset( $user_answers[$field_id][0])? $user_answers[$field_id][0] : '';
+
+                $question_layout = view('web.default.panel.questions.spell_question_result_layout', [
+                    'question'          => $questionObj,
+                    'prev_question'     => $prev_question,
+                    'next_question'     => $next_question,
+                    'quizAttempt'       => $attemptLogObj,
+                    'questionsData'     => rurera_encode($questionObj),
+                    'newQuestionResult' => $newQuestionResult,
+                    'question_no'       => $question_no,
+                    'quizResultObj'     => $QuizzesResult,
+                    'word_data'         => $word_data,
+                    'field_id'          => $field_id,
+                    'correct_answer'    => $correct_answer,
+                    'user_answer'       => $user_answer,
+                ])->render();
+            }
+
+            $response = array('question_response_layout' => $question_layout);
+            echo json_encode($response);
+            exit;
+        }
+
+
         if ($AttemptAllowed == true) {
             $question_response_layout = view('web.default.panel.questions.question_layout', [
                 'question'          => $questionObj,
@@ -1147,7 +1222,6 @@ class QuestionsAttemptController extends Controller
         $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
         $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
 
-
         $question_answers_array = array();
         if (!empty($elements_data)) {
             foreach ($elements_data as $field_key => $elementData) {
@@ -1266,146 +1340,6 @@ class QuestionsAttemptController extends Controller
             					<span class="list-title">You answered:</span>
             					<ul class="lms-radio-btn-group lms-user-answer-block">' . $user_input_response . '</ul>
             			</div><hr>';
-
-
-        $question_layout .= '</div></div>';
-        return $question_layout;
-    }
-
-
-    public function get_question_result_layout_bk($result_question_id)
-    {
-
-        $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
-        if ($resultQuestionObj->status == 'waiting') {
-            return;
-        }
-        $questionObj = QuizzesQuestion::find($resultQuestionObj->question_id);
-        $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
-
-        $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
-        $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
-
-
-        $question_answers_array = array();
-        if (!empty($elements_data)) {
-            foreach ($elements_data as $field_key => $elementData) {
-                $value = isset($correct_answers->$field_key) ? $correct_answers->$field_key : array();
-                $value = is_array($value) ? $value : array($value);
-                $user_value = isset($user_answers->$field_key) ? $user_answers->$field_key : array();
-                $user_value = is_array($user_value) ? $user_value : array($user_value);
-                $question_answers_array[$field_key]['type'] = isset($elementData->type) ? $elementData->type : '';
-                $question_answers_array[$field_key]['correct_value'] = $value;
-                $question_answers_array[$field_key]['user_value'] = $user_value;
-            }
-        }
-
-
-        $script = '';
-        if (!empty($question_answers_array)) {
-            foreach ($question_answers_array as $field_key => $question_answer_data) {
-                $field_type = isset($question_answer_data['type']) ? $question_answer_data['type'] : '';
-                $user_values = isset($question_answer_data['user_value']) ? $question_answer_data['user_value'] : array();
-                $correct_values = isset($question_answer_data['correct_value']) ? $question_answer_data['correct_value'] : array();
-
-                switch ($field_type) {
-
-                    case "radio":
-
-                        if (!empty($user_values)) {
-                            foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'          => $field_type,
-                                    'field_key'           => $field_key,
-                                    'user_selected_key'   => $user_selected_key,
-                                    'user_selected_value' => $user_selected_value,
-                                    'correct_value'       => $correct_value,
-                                ])->render();
-                            }
-                        }
-
-
-                        break;
-
-                    case "checkbox":
-                        if (!empty($user_values)) {
-                            foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'          => $field_type,
-                                    'field_key'           => $field_key,
-                                    'user_selected_key'   => $user_selected_key,
-                                    'user_selected_value' => $user_selected_value,
-                                    'correct_value'       => $correct_value,
-                                ])->render();
-                            }
-                        }
-                        break;
-
-                    case "text":
-
-                        if (!empty($user_values)) {
-                            foreach ($user_values as $user_selected_key => $user_selected_value) {
-                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
-                                $script .= view('web.default.panel.questions.question_script', [
-                                    'field_type'          => $field_type,
-                                    'field_key'           => $field_key,
-                                    'user_selected_key'   => $user_selected_key,
-                                    'user_selected_value' => $user_selected_value,
-                                    'correct_value'       => $correct_value,
-                                ])->render();
-                            }
-                        }
-
-
-                        break;
-                }
-            }
-        }
-
-
-        $question_layout = '<div class="question-area"><div class="question-step question-step-' . $resultQuestionObj->question_id . '" data-elapsed="0" data-qattempt="' . $resultQuestionObj->quiz_attempt_id . '"
-                 data-start_time="0" data-qresult="' . $resultQuestionObj->id . '"
-                 data-quiz_result_id="' . $resultQuestionObj->quiz_result_id . '">';
-
-        $question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($questionObj->question_layout)))));
-        //$question_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($resultQuestionObj->user_question_layout)))));
-
-
-        $question_layout .= $script;
-
-        $user_input_response = '';
-        $correct_answer_response = '';
-        $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
-
-
-        if (!empty($correct_answers)) {
-            foreach ($correct_answers as $field_id => $correct_answer_array) {
-                if (!empty($correct_answer_array)) {
-                    foreach ($correct_answer_array as $correct_answer) {
-                        $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';
-                    }
-                }
-            }
-        }
-
-        if (!empty($user_answers)) {
-            foreach ($user_answers as $field_id => $user_input_data_array) {
-                if (!empty($user_input_data_array)) {
-                    foreach ($user_input_data_array as $user_input_data) {
-                        $user_input_response .= '<li><label class="lms-question-label ' . $label_class . '" for="radio2"><span>' . $user_input_data . '</span></label></li>';
-                    }
-                }
-            }
-        }
-
-        $question_layout .= '<div class="lms-radio-lists">
-        					<span class="list-title">Correct answer:</span>
-        					<ul class="lms-radio-btn-group lms-user-answer-block">' . $correct_answer_response . '</ul>
-        					<span class="list-title">You answered:</span>
-        					<ul class="lms-radio-btn-group lms-user-answer-block">' . $user_input_response . '</ul>
-        			</div><hr>';
 
 
         $question_layout .= '</div></div>';

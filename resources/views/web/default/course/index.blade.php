@@ -8,7 +8,7 @@
 
 
 @section('content')
-<section class="cart-banner position-relative text-center pages-sub-header" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+<section class="cart-banner position-relative text-center pages-sub-header">
     <div class="container h-100">
         <div class="row h-100 align-items-center text-left">
             <div class="col-12 col-md-8 col-lg-8 font-19 pl-0">
@@ -126,8 +126,8 @@
             <div class="col-12 lms-chapter-area">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="sidebar-nav mb-70">
-                            <h3 class="sidebar-title font-36 mb-40 text-dark-charcoal">Course topics</h3>
+                        <div class="sidebar-nav mb-30">
+                            <h3 class="sidebar-title font-36 mb-20 text-dark-charcoal">Course topics</h3>
                             <ul>
                                 @foreach($course->chapters as $chapter)
                                     @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
@@ -146,7 +146,7 @@
                                 @foreach($course->chapters as $chapter)
 
                                 @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
-                                <li id="subject_{{$chapter->id}}"><div class="element-title mb-40"><h2 class="font-36 text-dark-charcoal">{{ $chapter->title }}</h2></div>
+                                <li id="subject_{{$chapter->id}}"><div class="element-title mb-20"><h2 class="mb-0 font-24 text-dark-charcoal">{{ $chapter->title }}</h2></div>
 
                                     @if(!empty($sub_chapters[$chapter->id]) and count($sub_chapters[$chapter->id]))
                                     <div class="lms-chapter-ul-outer"><ul>
@@ -156,7 +156,6 @@
 
 
                                                 <a href="/{{$course->category->slug}}/{{$course->slug}}/{{$sub_chapter['sub_chapter_slug']}}">{{ $sub_chapter['title'] }}</a>
-                                            <br>
                                                 {{ user_assign_topic_template($sub_chapter['id'], 'practice', $childs, $parent_assigned_list) }}
                                             </li>
                                         @endif

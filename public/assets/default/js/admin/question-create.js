@@ -9383,13 +9383,15 @@ $(document).on('click', '.rurera-generate-audio', function () {
     var parentObj = $(this).closest('.leform-tab-content');
     jQuery.ajax({
         type: "GET",
+        dataType: "json",
         url: '/admin/common/generate_audio',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {"audio_text": audio_text, "audio_sentense": audio_sentense},
         success: function (return_data) {
-            parentObj.find('#leform-content').val(return_data);
+            parentObj.find('#leform-content').val(return_data.audio_file);
+            parentObj.find('#leform-word_audio').val(return_data.word_audio_file);
         }
     });
 });

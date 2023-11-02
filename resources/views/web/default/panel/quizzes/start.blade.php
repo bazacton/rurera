@@ -32,6 +32,9 @@ $rand_id = rand(99,9999);
         background: #ff4a4a;
         color: #fff;
     }
+    .rurera-hide{
+        display:none;
+    }
 
 </style>
 @endpush
@@ -91,8 +94,9 @@ $rand_id = rand(99,9999);
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
 
-            <section class="quiz-topbar">
+            <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
@@ -100,9 +104,6 @@ $rand_id = rand(99,9999);
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
-                            @if( $quiz->quiz_type != 'vocabulary')
-
-                            @endif
                             <div class="topbar-right">
                                 <div class="quiz-pagination">
                                     <div class="swiper-container">

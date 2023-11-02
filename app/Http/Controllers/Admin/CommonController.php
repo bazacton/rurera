@@ -220,6 +220,8 @@ class CommonController extends Controller
     {
         $user = auth()->user();
         $audio_text = $request->get('audio_text', null);
+        $word_audio = $audio_text;
+        $word_audio = '<speak>'.$word_audio.'</speak>';
         $audio_sentense = $request->get('audio_sentense', null);
         $audio_text = '<speak>'.$audio_text.' [P-1] as in '. $audio_sentense .' </speak>';
         $audio_text = str_replace('[P-', '<break time="', $audio_text);
@@ -228,7 +230,12 @@ class CommonController extends Controller
         $TextToSpeechController = new TextToSpeechController();
         $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
 
-        echo '/speech-audio/' . $text_audio_path;
+        $text_word_audio_path = $TextToSpeechController->getSpeechAudioFilePath($word_audio);
+
+        return array(
+            'audio_file' => '/speech-audio/' . $text_audio_path,
+            'word_audio_file' => '/speech-audio/' . $text_word_audio_path,
+        );
 
         exit;
     }

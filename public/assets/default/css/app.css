@@ -18714,9 +18714,9 @@ Lms Describe Sentences Style
 /*********************************
 Lms Chapter Style Start
 **********************************/
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {border: 2px solid var(--primary); border-radius: 10px; padding: 15px 15px 15px 15px; margin-bottom: 40px;}
+.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {border: 2px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 25px;}
 .lms-chapter-area .lms-chapter-ul .element-title h2 {margin: 0 0 20px;}
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 10px 30px 20px 30px;}
+.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 0;}
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid;}
 .show-more-btn {color: var(--primary); font-weight: 500; display: inline-block; position: relative; padding-right: 15px; font-size: 15px; cursor: pointer;}
 .show-more-btn:after {content: ""; position: absolute; right: 0; border: 2px solid; height: 8px; width: 8px; border-top: 0; border-left: 0; transform: rotate(45deg); top: 50%; margin-top: -4px; }
@@ -21754,7 +21754,7 @@ Sats Listing Style End
 .dataTables_wrapper .dataTables_length select {display: inline-block; width: 100%; height: 31px; padding: 0.130rem 1.75rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; vertical-align: middle; background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px; border: 1px solid #ced4da; border-radius: 0.25rem; -webkit-appearance: none; -moz-appearance: none; appearance: none; margin: 0 5px;}
 div.dataTables_wrapper div.dataTables_filter label {margin: 0;}
 div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; height: 31px;}
-.dataTable td a {text-decoration: underline;}
+.dataTable td a {text-decoration: underline; font-weight: 600;}
 .dataTables_wrapper .paginate_button.previous {border-radius: 5px 0 0 5px;}
 .dataTables_wrapper .paginate_button.next {border-radius: 0 5px 5px 0;}
 /*************************************
@@ -22097,23 +22097,29 @@ Dashboard Form-Tabs Style Start
 Dashboard Form-Tabs Style End
 *************************************/
 .user-assign-topics {display: inline-block; vertical-align: middle; position: relative;}
-.user-assign-topics button.dropdown-toggle {margin-left: -8px; transition: all .4s ease; border: 0; background-color: inherit; position: absolute; left: 0; top: 50%; transform: translateY(-50%); opacity: 0; visibility: hidden;}
+.user-assign-topics button.dropdown-toggle {margin-left: -8px; transition: all .4s ease;
+    opacity: 0; visibility: hidden; border: 0; background-color: inherit; position: absolute; left: 0; top: 50%; padding: 10px 15px; margin-top: 0;}
 .user-assign-topics button.dropdown-toggle:after{content: ""; border: 0; height: 2px; width: 14px; position: absolute; left: 0; top: 0; background-color: #666;}
 .user-assign-topics button.dropdown-toggle:before {content: ""; height: 14px; width: 2px; position: absolute; left: 6px; top: -6px; background-color: #666;}
-.sats-listing-card tbody tr:hover button.dropdown-toggle {
+.sats-listing-card tbody tr:hover button.dropdown-toggle,
+.lms-chapter-area .lms-chapter-ul >li ul li:hover button.dropdown-toggle {
     opacity: 1;
     visibility: visible;
     margin-left: 4px;
 }
-.sats-listing-card tbody tr .rurera-lock-item img {
-    margin-right: 0;
-    /* filter: invert(98%) sepia(2%) saturate(682%) hue-rotate(219deg) brightness(106%) contrast(73%); */
-    filter: invert(94%) sepia(0%) saturate(423%) hue-rotate(185deg) brightness(93%) contrast(80%);
-    width: 30px;
-}
-.sats-listing-card tbody tr td.rurera-lock-item {
+.sats-listing-card tbody tr td.rurera-lock-item,
+.sats-listing-card tbody tr td.rurera-unlock-item {
     width: 30px;
     padding-right: 0;
+}
+.sats-listing-card tbody tr .rurera-lock-item img ,
+.sats-listing-card tbody tr td.rurera-unlock-item img{
+    margin-right: 0;
+    filter: invert(98%) sepia(2%) saturate(682%) hue-rotate(219deg) brightness(106%) contrast(73%);
+    width: 30px;
+}
+.sats-listing-card tbody tr td.rurera-unlock-item img {
+    filter: invert(61%) sepia(35%) saturate(4%) hue-rotate(2deg) brightness(93%) contrast(96%);
 }
 .sats-listing-card tbody tr td:nth-child(2) {
     min-width: 500px;
@@ -22589,12 +22595,20 @@ Product Tabs Slider Style Start
 .spells-quiz-from .form-field {
     margin: 0 0 40px;
 }
-.spells-quiz-from input[type="text"] {
+.spells-quiz-from input[type="text"],
+.question-layout.spells-quiz-from input[type="text"] {
     border: 0;
     width: 10.5ch;
-    background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.5ch) 0 100%/ 7ch 2px no-repeat;
+    background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat;
     font: 1.2rem 'Ubuntu Mono', monospace;
     letter-spacing: 0.5ch;
+    height: auto;
+    min-height: auto;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 28px;
 }
 .spells-quiz-from button {
     min-width: 230px;
@@ -22823,6 +22837,11 @@ Lms Responsive Style Start
     .pages-sub-header {max-height: inherit;}
     .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
     .home-banner .choose-sats [class*="col-"]:last-child .sats-box {margin-bottom: 0;}
+    .user-assign-topics .dropdown-menu {right: 0; left: auto;}
+    .sats-listing-card.medium, .lms-data-table {overflow: hidden; overflow-x: auto;}
+    .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
+    .chart-filters,
+    .chart-filters ul {flex-wrap: wrap;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -22908,6 +22927,8 @@ Lms Responsive Style Start
     .sub-header.lms-call-to-action input[type="text"] {width: 100%;}
     .cell-card form.w-75 {width: 100% !important;}
     .find-instructor-section .find-instructor-section-circle {top: 0;}
+    section.lms-chapter-section {overflow: hidden;}
+    .lms-chapter-area {padding-left: 40px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

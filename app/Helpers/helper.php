@@ -7004,9 +7004,14 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Defination', 'leform'),
                 'type'  => 'text'
             ),
+            'word_audio'       => array(
+                'value' => esc_html__('', 'leform'),
+                'label' => esc_html__('Audio File Word Upload', 'leform'),
+                'type'  => 'file'
+            ),
             'content'       => array(
                 'value' => esc_html__('', 'leform'),
-                'label' => esc_html__('Audio File Upload', 'leform'),
+                'label' => esc_html__('Audio File with Sentense Upload', 'leform'),
                 'type'  => 'file'
             ),
             'elements_data' => array(
