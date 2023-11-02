@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<section class="products-top-header lms-call-to-action search-top-banner position-relative pb-0 flex-column pt-70 pb-50" style="background-color: #333399; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+<section class="products-top-header lms-call-to-action search-top-banner position-relative pb-0 flex-column pt-70 pb-50" style="background-color: #333399;">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-10 col-lg-10 mx-0 text-left">

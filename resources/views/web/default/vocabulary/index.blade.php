@@ -37,6 +37,38 @@
                 @if( !empty( $data))
 
                 <div class="col-12">
+                    <section class="pb-70">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="master-list">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="master-card master">
+                                                    <strong>Mastered Words</strong> <span>{{count($user_mastered_words)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="master-card non-master">
+                                                    <strong>Non-Mastered Words</strong> <span>{{count($user_non_mastered_words)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="master-card master">
+                                                    <strong>In-progress Words</strong> <span>{{count($user_in_progress_words)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="master-card non-use">
+                                                    <strong>Not Used Words</strong> <span class="rurera-processing"><div class="rurera-button-loader" style="display: block;"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <section class="lms-data-table my-30 spells elevenplus-block">
                         <div class="container">
                             <div class="row">
@@ -55,20 +87,30 @@
                                                 Words
                                             </th>
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">Attempts
+                                                aria-label="Date: activate to sort column descending">Mastered Words
                                             </th>
-
-                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Percent: activate to sort column ascending">Average Score %
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Date: activate to sort column descending">Non-Mastered Words
+                                            </th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Date: activate to sort column descending">In-progress Words
+                                            </th>
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Date: activate to sort column descending">Not Used Words
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
+                                        @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
+                                        $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
+                                        @endphp
 
                                         @foreach( $data as $dataObj)
                                         @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
                                         $total_attempts = $total_questions_attempt = $correct_questions =
                                         $incorrect_questions = 0;
+                                        $mastered_words = $non_mastered_words = $in_progress_words = 0;
                                         $total_questions = isset( $dataObj->quizQuestionsList )? count(
                                         $dataObj->quizQuestionsList) : 0;
 
@@ -89,19 +131,19 @@
 
                                         @php $attempt_count = 1; @endphp
                                         @foreach( $resultData as $resultObj)
+                                            @php
 
+                                            $mastered_words += $resultObj->mastered_words;
+                                            $non_mastered_words += $resultObj->non_mastered_words;
+                                            $in_progress_words += $resultObj->in_progress_words;
+                                            $total_questions_attempt += $resultObj->attempted;
+                                            $total_questions_attempt += $resultObj->attempted;
+                                            $correct_questions += $resultObj->correct;
+                                            $incorrect_questions += $resultObj->incorrect;
+                                            $total_attempts++;
+                                            @endphp
 
-                                        @php
-                                        $total_questions_attempt += $resultObj->attempted;
-                                        $correct_questions += $resultObj->correct;
-                                        $incorrect_questions += $resultObj->incorrect;
-                                        $total_attempts++;
-
-
-                                        @endphp
-
-
-                                        @php $attempt_count++; @endphp
+                                            @php $attempt_count++; @endphp
                                         @endforeach
 
                                         @endif
@@ -113,10 +155,20 @@
                                         }
                                         @endphp
 
+                                        @php $total_questions_all += $total_questions;
+                                        $total_questions_attempt_all += $total_questions_attempt;
+                                        $correct_questions_all += $correct_questions;
+                                        $incorrect_questions_all += $incorrect_questions;
+                                        $pending_questions_all += ($total_questions - $total_questions_attempt);
+                                        $not_used_words_all += ($total_questions - $mastered_words - $non_mastered_words - $in_progress_words);
+
+
+                                        @endphp
+
                                         <tr class="odd">
                                             <td>
 
-                                                <a href="#" class="vocabulary-words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" data-toggle="modal" data-target=".bd-example-modal-lg">{{$dataObj->getTitleAttribute()}}</a>
+                                                <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}}</a>
                                             </td>
                                             <td>
                                                 @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
@@ -124,17 +176,11 @@
                                                 @endif
                                             </td>
                                             <td>{{$total_questions}}</td>
-                                            <td>{{$total_attempts}}</td>
-                                            <td>
-                                                <div class="attempt-progress">
-                                                    <span class="progress-number">{{round($total_percentage, 2)}}%</span>
-                                                    <span class="progress-holder">
-                                                  <span class="progressbar"
-                                                        style="width: {{$total_percentage}}%;"></span>
-                                              </span>
-                                                </div>
-                                                {{ user_assign_topic_template($dataObj->id, '11plus', $childs, $parent_assigned_list) }}
-                                            </td>
+                                            <td>{{$mastered_words}}</td>
+                                            <td>{{$non_mastered_words}}</td>
+                                            <td>{{$in_progress_words}}</td>
+                                            <td>{{($total_questions - $mastered_words - $non_mastered_words - $in_progress_words)}}</td>
+
                                         </tr>
                                         @endforeach
 
@@ -151,6 +197,8 @@
         </div>
     </section>
 
+
+
     <a href="#" class="scroll-btn" style="display: block;">
         <div class="round">
             <div id="cta"><span class="arrow primera next"></span> <span class="arrow segunda next"></span></div>
@@ -158,80 +206,6 @@
     </a>
 
 </section>
-
-<div class="spells-modal">
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            <section class="lms-data-table spells p-50 elevenplus-block">
-            <div class="spells-topbar">
-                <p>This is a preview. View this spelling list in EdShed, with full data available to subscribers.</p>
-                <a href="#" class="view-btn">Start Test</a>
-            </div>
-            <table class="table table-striped table-bordered dataTable">
-                <thead>
-                <tr>
-                    <th class="sorting sorting_asc"></th>
-                    <th class="sorting">Word</th>
-                    <th class="sorting">Sentences</th>
-                </tr>
-                </thead>
-                <tbody class="vocabulary-block">
-                <tr>
-                    <td id="accordion2">
-                    <a href="#" class="play-btn collapsed" data-toggle="collapse" data-target="#player" aria-expanded="true" aria-controls="player">
-                        <img src="../assets/default/svgs/play-circle.svg" alt="">
-                    </a>
-                    <div id="player" class="player-box collapse" aria-labelledby="player" data-parent="#accordion2">
-                        <audio preload="metadata" id="play" controls>
-                        <source src="http://stash.rachelnabors.com/music/byakkoya_single.mp3" type="audio/ogg">
-                        Your browser does not support the audio element.
-                        </audio>
-                    </div>
-                    </td>
-                    <td>54 <span>Word(s)</span> </td>
-                    <td>
-                    <p>His <strong>treachery</strong> in cheating his own sister saddened their family</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <a href="#" class="play-btn"><img src="../assets/default/svgs/play-circle.svg" alt=""></a>
-                    </td>
-                    <td>54 <span>Word(s)</span> </td>
-                    <td>
-                    <p>His <strong>treachery</strong> in cheating his own sister saddened their family</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <a href="#" class="play-btn"><img src="../assets/default/svgs/play-circle.svg" alt=""></a>
-                    </td>
-                    <td>54 <span>Word(s)</span> </td>
-                    <td>
-                    <p>His <strong>treachery</strong> in cheating his own sister saddened their family</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <a href="#" class="play-btn"><img src="../assets/default/svgs/play-circle.svg" alt=""></a>
-                    </td>
-                    <td>54 <span>Word(s)</span> </td>
-                    <td>
-                    <p>His <strong>treachery</strong> in cheating his own sister saddened their family</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            </section>
-        </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @push('scripts_bottom')
@@ -285,37 +259,9 @@
         });
 
 
-        $('body').on('click', '.vocabulary-words-list', function (e) {
-            var thisObj = $('.vocabulary-block');
-            rurera_remove_loader(thisObj, 'div');
-            rurera_loader(thisObj, 'div');
-            var quiz_id = $(this).attr('data-id');
-            var quiz_slug = $(this).attr('data-slug');
-
-            $(".view-btn").attr('href', '/spells/'+quiz_slug);
-            jQuery.ajax({
-                type: "GET",
-                url: '/spells/words_list',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {"quiz_id": quiz_id},
-                success: function (return_data) {
-                    rurera_remove_loader(thisObj, 'button');
-                    if (return_data != '') {
-                        $('.vocabulary-block').html(return_data);
-                        var audioElements = $(".player-box-audio");
-                            audioElements.each(function() {
-                            var audio = this;
-                            audio.addEventListener('ended', function() {
-                                $(this).closest('.play-btn').toggleClass("pause");
-                            });
-                          });
-                    }
-                }
-            });
-
-        });
+        //$(".master-card.master span").html('{{$correct_questions_all}}');
+        //$(".master-card.non-master span").html('{{$incorrect_questions_all}}');
+        $(".master-card.non-use span").html('{{$not_used_words_all}}');
 
     });
     $(document).on('click', '.play-btn', function (e) {

@@ -11,6 +11,7 @@ use App\Models\QuizzResultQuestions;
 use App\Models\AssignmentsQuestions;
 use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
+use App\Models\UserVocabulary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -405,6 +406,7 @@ class QuestionsAttemptController extends Controller
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
 
                 $this->update_reward_points($QuizzResultQuestions, $is_question_correct);
+                $this->update_vocabulary_list($QuizzResultQuestions, $is_question_correct);
                 $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : true;
                 $user_input = is_array($user_input) ? $user_input : array($user_input);
                 if ($is_question_correct == false) {
@@ -611,7 +613,7 @@ class QuestionsAttemptController extends Controller
         $score += $question_score;
         $full_data = isset($RewardAccountingObj->full_data) ? (array)json_decode($RewardAccountingObj->full_data) : array();
 
-        $is_exists = (isset($full_data['$question_id']) && $full_data['$question_id'] != '') ? true : false;
+        $is_exists = (isset($full_data[$question_id]) && $full_data[$question_id] != '') ? true : false;
         if ($is_exists == true) {
             return;
         }
@@ -637,6 +639,81 @@ class QuestionsAttemptController extends Controller
                 'parent_id'   => $parent_id,
                 'parent_type' => $parent_type,
                 'full_data'   => $full_data,
+                'updated_at'  => time(),
+            ]);
+        }
+
+    }
+
+    /*
+     * Update Vocabulary List of User based on the answere
+     */
+    public function update_vocabulary_list($QuizzResultQuestions, $is_question_correct)
+    {
+        $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
+        if ($parent_type != 'vocabulary') {
+            return;
+        }
+        $dataArray = array(
+            'question_result_id' => $QuizzResultQuestions->id,
+            'question_id' => $QuizzResultQuestions->question_id,
+            'is_correct' => $is_question_correct,
+        );
+        $user = auth()->user();
+        $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
+        $mastered_words = isset( $UserVocabulary->mastered_words )? (array) json_decode($UserVocabulary->mastered_words) : array();
+        $in_progress_words = isset( $UserVocabulary->in_progress_words )? (array) json_decode($UserVocabulary->in_progress_words) : array();
+        $non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
+
+        $is_mastered = false;
+        if( isset( $mastered_words[$QuizzResultQuestions->question_id])){
+            $is_mastered = true;
+            if( $is_question_correct == false){
+                unset($mastered_words[$QuizzResultQuestions->question_id]);
+            }
+        }
+        if( $is_mastered == false && $is_question_correct == true) {
+            $is_progress_data = isset( $in_progress_words[$QuizzResultQuestions->question_id] )? $in_progress_words[$QuizzResultQuestions->question_id] : array();
+
+            if(empty( $is_progress_data ) ){
+                $in_progress_words[$QuizzResultQuestions->question_id] = $dataArray;
+
+            }else{
+                unset($in_progress_words[$QuizzResultQuestions->question_id]);
+                $mastered_words[$QuizzResultQuestions->question_id] = $dataArray;
+            }
+        }
+        if( $is_question_correct == false){
+            $non_mastered_words[$QuizzResultQuestions->question_id] = $dataArray;
+        }else{
+            if( isset( $non_mastered_words[$QuizzResultQuestions->question_id] ) ){
+                unset( $non_mastered_words[$QuizzResultQuestions->question_id] );
+            }
+        }
+
+        $in_progress_words = json_encode($in_progress_words);
+        $mastered_words = json_encode($mastered_words);
+        $non_mastered_words = json_encode($non_mastered_words);
+
+
+        if (isset($UserVocabulary->id)) {
+
+            $UserVocabulary->update([
+                'mastered_words'      => $mastered_words,
+                'in_progress_words'  => $in_progress_words,
+                'non_mastered_words' => $non_mastered_words,
+                'updated_at' => time(),
+            ]);
+
+        } else {
+            UserVocabulary::create([
+                'user_id'     => $user->id,
+                'mastered_words'      => $mastered_words,
+                'in_progress_words'  => $in_progress_words,
+                'non_mastered_words' => $non_mastered_words,
+                'status'   => 'active',
+                'created_by'     => $user->id,
+                'created_at'  => time(),
                 'updated_at'  => time(),
             ]);
         }
@@ -1347,9 +1424,15 @@ class QuestionsAttemptController extends Controller
 
     public function prepare_result_array($resultData)
     {
+        $user = auth()->user();
         $resultsData = isset($resultData->resultsData) ? $resultData->resultsData : array();
         $response_data = array();
         if (!empty($resultsData)) {
+
+            $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
+            $user_mastered_words = isset( $UserVocabulary->mastered_words )? (array) json_decode($UserVocabulary->mastered_words) : array();
+            $user_in_progress_words = isset( $UserVocabulary->in_progress_words )? (array) json_decode($UserVocabulary->in_progress_words) : array();
+            $user_non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
 
             foreach ($resultsData as $q_result_id => $resultsObj) {
                 $resultObjData = isset($resultsObj['resultObjData']) ? $resultsObj['resultObjData'] : (object)array();
@@ -1361,6 +1444,9 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['in_review'] = 0;
                 $response_data[$q_result_id]['time_consumed'] = 0;
                 $response_data[$q_result_id]['average_time'] = 0;
+                $response_data[$q_result_id]['mastered_words'] = 0;
+                $response_data[$q_result_id]['in_progress_words'] = 0;
+                $response_data[$q_result_id]['non_mastered_words'] = 0;
                 $response_data[$q_result_id]['result_id'] = $resultObjData->id;
                 $response_data[$q_result_id]['status'] = $resultObjData->status;
                 $response_data[$q_result_id]['created_at'] = $resultObjData->created_at;
@@ -1376,6 +1462,15 @@ class QuestionsAttemptController extends Controller
                                 $response_data[$q_result_id]['in_review'] += ($resultQuestionObj->status == 'in_review') ? 1 : 0;
                                 $response_data[$q_result_id]['time_consumed'] += $resultQuestionObj->time_consumed;
                                 $response_data[$q_result_id]['average_time'] += $resultQuestionObj->average_time;
+                                if( isset($user_mastered_words[$resultQuestionObj->question_id])){
+                                    $response_data[$q_result_id]['mastered_words'] += 1;
+                                }
+                                if( isset($user_in_progress_words[$resultQuestionObj->question_id])){
+                                    $response_data[$q_result_id]['in_progress_words'] += 1;
+                                }
+                                if( isset($user_non_mastered_words[$resultQuestionObj->question_id])){
+                                    $response_data[$q_result_id]['non_mastered_words'] += 1;
+                                }
                             }
                         }
                     }

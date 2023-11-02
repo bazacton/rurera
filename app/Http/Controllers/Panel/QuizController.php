@@ -494,6 +494,8 @@ class QuizController extends Controller
             $questions_layout = array();
             $active_question_id = 0;
 
+            
+
 
             if (!empty($questions_list)) {
                 foreach ($questions_list as $question_no_index => $question_id) {
@@ -519,22 +521,70 @@ class QuizController extends Controller
                         if ($question_no_index == 0) {
                             $first_question_id = $questionObj->id;
                         }
+                        //pre($quiz->quiz_type);
+
                         $question_response_layout = '';
-                        $question_response_layout = view('web.default.panel.questions.question_layout', [
-                            'question'          => $questionObj,
-                            'prev_question'     => $prev_question,
-                            'next_question'     => $next_question,
-                            'quizAttempt'       => $attemptLogObj,
-                            'questionsData'     => rurera_encode($question),
-                            'newQuestionResult' => $newQuestionResult,
-                            'question_no'       => $question_no,
-                            'quizResultObj'     => $QuizzesResult
-                        ])->render();
+
+                        if( $quiz->quiz_type == 'vocabulary'){
+
+                            $layout_elements = isset( $questionObj->layout_elements )? json_decode($questionObj->layout_elements) : array();
+
+                            $correct_answer = $audio_file = $audio_text = $audio_sentense = $field_id = '';
+                               if( !empty( $layout_elements ) ){
+                                   foreach( $layout_elements as $elementData){
+                                       $element_type = isset( $elementData->type )? $elementData->type : '';
+                                       $content = isset( $elementData->content )? $elementData->content : '';
+                                       $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
+                                       $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
+                                       $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                                       if( $element_type == 'audio_file'){
+                                           $audio_file = $content;
+                                           $audio_text = $audio_text;
+                                           $audio_sentense = $audio_sentense;
+                                       }
+                                       if( $element_type == 'textfield_quiz'){
+                                           $correct_answer = $correct_answer;
+                                           $field_id = isset( $elementData->field_id )? $elementData->field_id : '';
+                                       }
+                                   }
+                               }
+                            $word_data = array(
+                                   'audio_text' => $audio_text,
+                                   'audio_sentense' => $audio_sentense,
+                                   'audio_file' => $audio_file,
+                                   'field_id' => $field_id,
+                               );
+
+                            $question_response_layout = view('web.default.panel.questions.spell_question_layout', [
+                                'question'          => $questionObj,
+                                'prev_question'     => $prev_question,
+                                'next_question'     => $next_question,
+                                'quizAttempt'       => $attemptLogObj,
+                                'questionsData'     => rurera_encode($question),
+                                'newQuestionResult' => $newQuestionResult,
+                                'question_no'       => $question_no,
+                                'quizResultObj'     => $QuizzesResult,
+                                'word_data'         => $word_data,
+                                'field_id' => $field_id,
+                            ])->render();
+                        }else {
+                            $question_response_layout = view('web.default.panel.questions.question_layout', [
+                                'question'          => $questionObj,
+                                'prev_question'     => $prev_question,
+                                'next_question'     => $next_question,
+                                'quizAttempt'       => $attemptLogObj,
+                                'questionsData'     => rurera_encode($question),
+                                'newQuestionResult' => $newQuestionResult,
+                                'question_no'       => $question_no,
+                                'quizResultObj'     => $QuizzesResult
+                            ])->render();
+                        }
                         $questions_layout[$questionObj->id] = rurera_encode(stripslashes($question_response_layout));
                     }
 
                 }
             }
+
             $question = $questions_array;
 
 

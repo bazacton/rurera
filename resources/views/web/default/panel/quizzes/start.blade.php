@@ -100,6 +100,9 @@ $rand_id = rand(99,9999);
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                            @if( $quiz->quiz_type != 'vocabulary')
+
+                            @endif
                             <div class="topbar-right">
                                 <div class="quiz-pagination">
                                     <div class="swiper-container">

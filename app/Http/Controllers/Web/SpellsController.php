@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Quiz;
 use App\Models\UserAssignedTopics;
+use App\Models\UserVocabulary;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -22,6 +23,13 @@ class SpellsController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
         $summary_type = 'vocabulary';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
+
+
+        $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
+        $mastered_words = isset( $UserVocabulary->mastered_words )? (array) json_decode($UserVocabulary->mastered_words) : array();
+        $in_progress_words = isset( $UserVocabulary->in_progress_words )? (array) json_decode($UserVocabulary->in_progress_words) : array();
+        $non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
+
 
         $graphs_array = array();
 
@@ -105,8 +113,82 @@ class SpellsController extends Controller
                 'graphs_array'  => $graphs_array,
                 'summary_type'  => $summary_type,
                 'custom_dates' => $custom_dates,
+                'user_mastered_words' => $mastered_words,
+                'user_in_progress_words' => $in_progress_words,
+                'user_non_mastered_words' => $non_mastered_words,
             ];
             return view('web.default.vocabulary.index', $data);
+        }
+
+        abort(404);
+    }
+
+    public function words_list(Request $request, $quiz_slug)
+    {
+
+        $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->first();
+        $words_response = '';
+        if( !empty( $spellQuiz->quizQuestionsList ) ){
+           foreach( $spellQuiz->quizQuestionsList as $questionsListData){
+               $SingleQuestionData = $questionsListData->SingleQuestionData;
+               $layout_elements = isset( $SingleQuestionData->layout_elements )? json_decode($SingleQuestionData->layout_elements) : array();
+               $correct_answer = $audio_file = $audio_text = $audio_sentense = '';
+               if( !empty( $layout_elements ) ){
+                   foreach( $layout_elements as $elementData){
+                       $element_type = isset( $elementData->type )? $elementData->type : '';
+                       $content = isset( $elementData->content )? $elementData->content : '';
+                       $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
+                       $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
+                       $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                       if( $element_type == 'audio_file'){
+                           $audio_file = $content;
+                           $audio_text = $audio_text;
+                           $audio_sentense = $audio_sentense;
+                       }
+                       if( $element_type == 'textfield_quiz'){
+                           $correct_answer = $correct_answer;
+                       }
+                   }
+               }
+               /*pre('Correct Answere: '.$correct_answer, false);
+               pre('Audio File: '.$audio_file, false);
+               pre('Aaudio Text: '.$audio_text, false);
+               pre('Aaudio Sentense: '.$audio_sentense, false);
+               pre('<br><br><br>', false);*/
+              $audio_sentense = str_replace($audio_text, '<strong>'.$audio_text.'</strong>', $audio_sentense);
+              $audio_sentense = str_replace(strtolower($audio_text), '<strong>'.strtolower($audio_text).'</strong>', $audio_sentense);
+               $words_list[] = array(
+                   'audio_text' => $audio_text,
+                   'audio_sentense' => $audio_sentense,
+                   'audio_file' => $audio_file,
+               );
+
+               $words_response .= '<tr>
+                   <td>
+                   <a href="javascript:;" class="play-btn" data-id="player-'.$SingleQuestionData->id.'">
+                       <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                       <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                   <div class="player-box">
+                   <audio class="player-box-audio" id="player-'.$SingleQuestionData->id.'" src="'.$audio_file.'"> </audio>
+                   </div>
+                   </a>
+                   </td>
+                   <td>'.$audio_text.'</td>
+                   <td>
+                   <p>'.$audio_sentense.'</p>
+                   </td>
+               </tr>';
+           }
+       }
+
+        if (!empty($spellQuiz)) {
+            $data = [
+                'pageTitle'                  => 'Words List',
+                'spellQuiz'                       => $spellQuiz,
+                'words_response'             => $words_response,
+
+            ];
+            return view('web.default.vocabulary.words_list', $data);
         }
 
         abort(404);
@@ -115,7 +197,7 @@ class SpellsController extends Controller
     /*
     * Words List by Quiz ID
     */
-   public function words_list(Request $request)
+   public function words_list_bk(Request $request)
    {
        $quiz_id = $request->get('quiz_id', null);
        $words_list = array();
@@ -143,11 +225,11 @@ class SpellsController extends Controller
                        }
                    }
                }
-               /*pre('Correct Answere: '.$correct_answer, false);
-               pre('Audio File: '.$audio_file, false);
-               pre('Aaudio Text: '.$audio_text, false);
-               pre('Aaudio Sentense: '.$audio_sentense, false);
-               pre('<br><br><br>', false);*/
+
+
+
+               $audio_sentense = str_replace($audio_text, '<strong>'.$audio_text.'</strong>', $audio_sentense);
+               $audio_sentense = str_replace(strtolower($audio_text), '<strong>'.strtolower($audio_text).'</strong>', $audio_sentense);
                $words_list[] = array(
                    'audio_text' => $audio_text,
                    'audio_sentense' => $audio_sentense,
@@ -184,14 +266,15 @@ class SpellsController extends Controller
             return redirect('/login');
         }
 
-        if (!auth()->subscription('vocabulary')) {
+        /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
-        }
+        }*/
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;
         //$quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+
         $started_already = $QuestionsAttemptController->started_already($id);
 
         //$started_already = false;

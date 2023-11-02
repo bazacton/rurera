@@ -460,7 +460,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'spells'] , function () {
        Route::get('/' , 'SpellsController@index');
-        Route::get('/words_list' , 'SpellsController@words_list');
+       Route::get('/{quiz_slug}/words-list' , 'SpellsController@words_list');
+       Route::get('/words_list' , 'SpellsController@words_list');
        Route::get('/{quiz_slug}' , 'SpellsController@start');
        //Route::get('/{quiz_id}/start' , 'ElevenplusController@start');
 

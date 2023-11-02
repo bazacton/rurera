@@ -74,18 +74,18 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var thisForm = $(this).closest('form');
     var question_id = $(this).closest('form').data('question_id');
     var user_question_layout = thisForm.find('.question-layout').html();
+    console.log(user_question_layout);
     var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
     $(this).closest('form').find('.editor-field').each(function () {
         $(this).removeClass('validate-error');
+        console.log('field goes hereer');
         var field_name = $(this).attr('name');
         var field_id = $(this).attr('id');
         var field_identifier = field_id;
         var field_identifier = field_identifier.replace(/field-/g, '');
         var field_type = $(this).attr('type');
-        console.log(field_type);
         const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-        console.log(audioBlob);
         var field_value = $(this).val();
 
 

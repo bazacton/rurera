@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<section class="position-relative job-singup-sub-header gallery-sub-header find-instructor-section pt-80 pb-50 mb-0" style="background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+<section class="position-relative job-singup-sub-header gallery-sub-header find-instructor-section pt-80 pb-50 mb-0">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-12 col-md-7 col-lg-7">
