@@ -41,6 +41,7 @@
                             <tr>
                                 <th class="sorting sorting_asc"></th>
                                 <th class="sorting">Word</th>
+                                <th class="sorting">Defination</th>
                                 <th class="sorting">Sentences</th>
                             </tr>
                             </thead>

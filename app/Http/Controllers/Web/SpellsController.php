@@ -132,7 +132,7 @@ class SpellsController extends Controller
            foreach( $spellQuiz->quizQuestionsList as $questionsListData){
                $SingleQuestionData = $questionsListData->SingleQuestionData;
                $layout_elements = isset( $SingleQuestionData->layout_elements )? json_decode($SingleQuestionData->layout_elements) : array();
-               $correct_answer = $audio_file = $audio_text = $audio_sentense = '';
+               $correct_answer = $audio_file = $audio_text = $audio_sentense = $audio_defination = '';
                if( !empty( $layout_elements ) ){
                    foreach( $layout_elements as $elementData){
                        $element_type = isset( $elementData->type )? $elementData->type : '';
@@ -140,10 +140,12 @@ class SpellsController extends Controller
                        $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
                        $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
                        $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                       $audio_defination = isset( $elementData->audio_defination )? $elementData->audio_defination : $audio_defination;
                        if( $element_type == 'audio_file'){
                            $audio_file = $content;
                            $audio_text = $audio_text;
                            $audio_sentense = $audio_sentense;
+                           $audio_defination = $audio_defination;
                        }
                        if( $element_type == 'textfield_quiz'){
                            $correct_answer = $correct_answer;
@@ -174,6 +176,9 @@ class SpellsController extends Controller
                    </a>
                    </td>
                    <td>'.$audio_text.'</td>
+                   <td>
+                  <p>'.$audio_defination.'</p>
+                  </td>
                    <td>
                    <p>'.$audio_sentense.'</p>
                    </td>

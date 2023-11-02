@@ -6999,6 +6999,11 @@ function element_properties_meta($chapters)
                 'label' => esc_html__('Sentence', 'leform'),
                 'type'  => 'text'
             ),
+            'audio_defination'       => array(
+                'value' => esc_html__('', 'leform'),
+                'label' => esc_html__('Defination', 'leform'),
+                'type'  => 'text'
+            ),
             'content'       => array(
                 'value' => esc_html__('', 'leform'),
                 'label' => esc_html__('Audio File Upload', 'leform'),

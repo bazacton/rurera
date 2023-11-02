@@ -684,6 +684,9 @@ class QuestionsAttemptController extends Controller
             }
         }
         if( $is_question_correct == false){
+            if( isset( $in_progress_words[$QuizzResultQuestions->question_id] ) ){
+                unset( $in_progress_words[$QuizzResultQuestions->question_id] );
+            }
             $non_mastered_words[$QuizzResultQuestions->question_id] = $dataArray;
         }else{
             if( isset( $non_mastered_words[$QuizzResultQuestions->question_id] ) ){
@@ -1434,6 +1437,7 @@ class QuestionsAttemptController extends Controller
             $user_in_progress_words = isset( $UserVocabulary->in_progress_words )? (array) json_decode($UserVocabulary->in_progress_words) : array();
             $user_non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
 
+            $questions_ids = array();
             foreach ($resultsData as $q_result_id => $resultsObj) {
                 $resultObjData = isset($resultsObj['resultObjData']) ? $resultsObj['resultObjData'] : (object)array();
                 $questions_list = isset($resultObjData->questions_list) ? json_decode($resultObjData->questions_list) : array();
@@ -1463,13 +1467,22 @@ class QuestionsAttemptController extends Controller
                                 $response_data[$q_result_id]['time_consumed'] += $resultQuestionObj->time_consumed;
                                 $response_data[$q_result_id]['average_time'] += $resultQuestionObj->average_time;
                                 if( isset($user_mastered_words[$resultQuestionObj->question_id])){
-                                    $response_data[$q_result_id]['mastered_words'] += 1;
+                                    if( !isset( $questions_ids[$resultQuestionObj->question_id] ) ) {
+                                        $response_data[$q_result_id]['mastered_words'] += 1;
+                                        $questions_ids[$resultQuestionObj->question_id] = $resultQuestionObj->question_id;
+                                    }
                                 }
                                 if( isset($user_in_progress_words[$resultQuestionObj->question_id])){
-                                    $response_data[$q_result_id]['in_progress_words'] += 1;
+                                    if( !isset( $questions_ids[$resultQuestionObj->question_id] ) ) {
+                                        $response_data[$q_result_id]['in_progress_words'] += 1;
+                                        $questions_ids[$resultQuestionObj->question_id] = $resultQuestionObj->question_id;
+                                    }
                                 }
                                 if( isset($user_non_mastered_words[$resultQuestionObj->question_id])){
-                                    $response_data[$q_result_id]['non_mastered_words'] += 1;
+                                    if( !isset( $questions_ids[$resultQuestionObj->question_id] ) ) {
+                                        $response_data[$q_result_id]['non_mastered_words'] += 1;
+                                        $questions_ids[$resultQuestionObj->question_id] = $resultQuestionObj->question_id;
+                                    }
                                 }
                             }
                         }

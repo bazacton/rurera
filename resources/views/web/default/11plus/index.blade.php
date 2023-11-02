@@ -16,7 +16,7 @@
 @section('content')
 
 <section class="content-section">
-    <section class="pt-80" style="background-color: var(--panel-bg);">
+    <section class="pt-80">
         <div class="container">
             <section class="page-section analytics-graph-data">
                 @include('web.default.panel.analytics.graph_data',['custom_dates' => $custom_dates, 'graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
@@ -115,7 +115,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <table class="table table-striped table-bordered dataTable" style="width: 100%;"
+                                    <table class="table table-striped table-bordered dataTable simple-table" style="width: 100%;"
                                            aria-describedby="example_info">
                                         <thead>
                                         <tr>

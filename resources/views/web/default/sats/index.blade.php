@@ -15,7 +15,7 @@
 @section('content')
 <section class="content-section">
 
-    <section class="pt-80" style="background-color: var(--panel-bg);">
+    <section class="pt-80">
         <div class="container">
             <section class="page-section analytics-graph-data">
                 @include('web.default.panel.analytics.graph_data',['graphs_array' => $graphs_array, 'summary_type' => $summary_type, 'QuestionsAttemptController'=> $QuestionsAttemptController])
@@ -104,11 +104,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-12">
                     <div class="sats-listing-card medium">
-                        <table>
+                        <table class="simple-table">
                             <thead>
                             <tr>
+                                <th>&nbsp;</th>
                                 <th>Title</th>
                                 <th>Questions</th>
                                 <th>Attempts</th>
@@ -118,8 +119,11 @@
                             </thead>
                             <tbody>
                             @if( !empty( $sats))
+                            @php $counter = 0; @endphp
                             @foreach( $sats as $satObj)
                             @php $resultData = $QuestionsAttemptController->get_result_data($satObj->id);
+                            $counter++;
+                            $lock_image = ($counter > 2)? 'lock.svg' : 'unlock.svg';
 
                             $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
                             $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
@@ -129,10 +133,13 @@
 
                             @endphp
                             <tr>
+                                <td class="rurera-lock-item">
+                                    <img src="/assets/default/img/{{$lock_image}}">
+                                </td>
                                 <td>
-
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
                                     <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}-<br>reading</a>
+                                        {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                     </h4>
                                 </td>
                                 <td>54</td>
@@ -146,7 +153,6 @@
                                                   style="width: 0%;"></span>
                                         </span>
                                     </div>
-                                   {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                 </td>
                             </tr>
                             @endforeach
@@ -156,132 +162,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
-                    <div class="filters-container">
-                        <div class="accordion lms-list-accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <div class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button"
-                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne"> Year Group <span class="arrow"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="Categories-list pb-15">
-                                            <h6 class="font-19 mt-20">KS1</h6>
-                                            <a href="/products?category_id=1"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>English</span>
-                                            </a>
-                                            <a href="/products?category_id=2"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Math</span>
-                                            </a>
-                                            <h6 class="font-19 mt-15">KS2</h6>
-                                            <a href="/products?category_id=3"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Math airthmatic </span>
-                                            </a>
-                                            <a href="/products?category_id=4"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Math Reasoning </span>
-                                            </a>
-                                            <a href="/products?category_id=5"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>English reading</span>
-                                            </a>
-                                            <a href="/products?category_id=6"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>English SPag</span>
-                                            </a>
-                                            <h6 class="font-19 mt-15">Assesment Type</h6>
-                                            <a href="/products?category_id=7"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>Past Yearly asseement</span>
-                                            </a>
-                                            <a href="/products?category_id=8"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>Practice asseement</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <div class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button"
-                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo"> School Year <span class="arrow"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                                     data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="Categories-list pb-15">
-                                            <h6 class="font-19 mt-20">School Year</h6>
-                                            <a href="/products?category_id=1"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>Year 6</span>
-                                            </a>
-                                            <a href="/products?category_id=2"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Year 5</span>
-                                            </a>
-                                            <a href="/products?category_id=3"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Year 4</span>
-                                            </a>
-                                            <a href="/products?category_id=4"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Year 3</span>
-                                            </a>
-                                            <a href="/products?category_id=5"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Year 2</span>
-                                            </a>
-                                            <h6 class="font-19 mt-15">Subject</h6>
-                                            <a href="/products?category_id=6"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Maths</span>
-                                            </a>
-                                            <a href="/products?category_id=7"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>English </span>
-                                            </a>
-                                            <a href="/products?category_id=8"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Verbal Reasoning</span>
-                                            </a>
-                                            <a href="/products?category_id=9"
-                                               class="d-flex align-items-center font-14 mt-15">
-                                                <span>Non-Verbal Reasoning</span>
-                                            </a>
-                                            <h6 class="font-19 mt-15">Exam Board</h6>
-                                            <a href="/products?category_id=10"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>GL</span>
-                                            </a>
-                                            <a href="/products?category_id=10"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>CEM</span>
-                                            </a>
-                                            <a href="/products?category_id=10"
-                                               class="d-flex align-items-center font-14 mt-10">
-                                                <span>All Boards</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="col-12">
                     <div class="mt-60">
