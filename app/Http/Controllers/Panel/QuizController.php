@@ -555,6 +555,8 @@ class QuizController extends Controller
                                    'field_id' => $field_id,
                                );
 
+                            $total_questions_count = is_array( json_decode($attemptLogObj->questions_list) )? json_decode($attemptLogObj->questions_list) : array();
+                            $total_questions_count = count($total_questions_count);
                             $question_response_layout = view('web.default.panel.questions.spell_question_layout', [
                                 'question'          => $questionObj,
                                 'prev_question'     => $prev_question,
@@ -565,7 +567,9 @@ class QuizController extends Controller
                                 'question_no'       => $question_no,
                                 'quizResultObj'     => $QuizzesResult,
                                 'word_data'         => $word_data,
+                                'total_questions_count'         => $total_questions_count,
                                 'field_id' => $field_id,
+                                'correct_answer'    => $correct_answer,
                             ])->render();
                         }else {
                             $question_response_layout = view('web.default.panel.questions.question_layout', [

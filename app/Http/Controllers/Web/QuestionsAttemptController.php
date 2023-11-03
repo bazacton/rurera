@@ -449,6 +449,7 @@ class QuestionsAttemptController extends Controller
             'user_question_layout' => $user_question_layout,
             'attempted_at'         => time(),
         ]);
+
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
 
         $questions_list = json_decode($quizAttempt->questions_list);
@@ -516,20 +517,35 @@ class QuestionsAttemptController extends Controller
 
                 $question_response_layout = '';
                 if (isset($newQuestionResult->quiz_result_id)) {
-                    $question_response_layout = view('web.default.panel.questions.question_layout', [
-                        'question'          => $questionObj,
-                        'prev_question'     => $prev_question,
-                        'next_question'     => $next_question,
-                        'quizAttempt'       => $quizAttempt,
-                        'newQuestionResult' => $newQuestionResult,
-                        'question_no'       => $question_no,
-                        'quizResultObj'     => $QuizzesResult
-                    ])->render();
+                        $question_response_layout = view('web.default.panel.questions.question_layout', [
+                            'question'          => $questionObj,
+                            'prev_question'     => $prev_question,
+                            'next_question'     => $next_question,
+                            'quizAttempt'       => $quizAttempt,
+                            'newQuestionResult' => $newQuestionResult,
+                            'question_no'       => $question_no,
+                            'quizResultObj'     => $QuizzesResult
+                        ])->render();
                 }
 
             }
         }
         $question = $questionObj;
+
+        $question_correct_answere = '';
+        if ($quizAttempt->attempt_type == 'vocabulary') {
+
+            $correct_answeres = json_decode($QuizzResultQuestions->correct_answer);
+            if( !empty( $correct_answeres ) ){
+                foreach( $correct_answeres as $correct_answer_array){
+                    foreach( $correct_answer_array as $correct_answer){
+                        $question_correct_answere .= $correct_answer;
+                    }
+                }
+            }
+        }
+
+
 
 
         $response = array(
@@ -538,9 +554,11 @@ class QuestionsAttemptController extends Controller
             'incorrect_array'          => $incorrect_array,
             'correct_array'            => $correct_array,
             'incorrect_flag'           => $incorrect_flag,
+            'question_correct_answere' => $question_correct_answere,
             'question'                 => $question,
             'question_response_layout' => $question_response_layout,
             'newQuestionResult'        => $newQuestionResult,
+            'quiz_type'                => $quizAttempt->attempt_type,
             'question_result_id'       => isset($newQuestionResult->id) ? $newQuestionResult->id : '',
         );
         echo json_encode($response);

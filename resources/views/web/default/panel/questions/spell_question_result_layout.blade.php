@@ -52,7 +52,6 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-                        <strong>Spell It:</strong>
                         <input type="text" class="editor-field" disabled value="{{$user_answer}}" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
 
                     </div>

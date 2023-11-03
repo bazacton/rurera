@@ -74,7 +74,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var thisForm = $(this).closest('form');
     var question_id = $(this).closest('form').data('question_id');
     var user_question_layout = thisForm.find('.question-layout').html();
-    console.log(user_question_layout);
     var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
     $(this).closest('form').find('.editor-field').each(function () {
@@ -143,6 +142,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         },
         success: function (return_data) {
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+            var quiz_type = return_data.quiz_type;
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
             console.log(quiz_type);
             console.log(return_data);
@@ -227,6 +227,19 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         $(".question-area-block").html(question_response_layout);
                     }
                 } else {
+                    console.log('incorrect-data-herer');
+                    //$(".question-layout-block").html(return_data.question_response_layout);
+                    console.log(quiz_type);
+                    if( quiz_type == 'vocabulary') {
+                        if (rurera_is_field(return_data.question_correct_answere)) {
+                            if (return_data.question_correct_answere != '') {
+                                $(".question-correct-answere").html(return_data.question_correct_answere);
+                                $(".editor-field").addClass(question_status_class);
+                                //$(".nub-of-sec").html('');
+                                clearInterval(Questioninterval);
+                            }
+                        }
+                    }
                     thisForm.find('.question-submit-btn').remove();
                     thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
                     const interval = setInterval(() => {
@@ -718,7 +731,8 @@ function init_question_functions() {
             $(".draggable-items li").draggable({revert: "invalid", helper: "clone"});
         }
 
-        currentRequest = jQuery.ajax({
+        //Temporary Commented
+        /*currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
@@ -735,7 +749,7 @@ function init_question_functions() {
             success: function (return_data) {
                 console.log(return_data);
             }
-        });
+        });*/
 
     });
 

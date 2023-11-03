@@ -22676,6 +22676,108 @@ Product Tabs Slider Style Start
 }
 /*Plphabet List Style End*/
 
+/* Vertical Keyboard Style Start */
+.question-fields .spells-quiz-from {
+    margin: 0 0 50px;
+}
+.rurera-virtual-keyboard {
+    margin: 0 auto 30px;
+    border: 1px solid #eee;
+    padding: 30px 0;
+    border-radius: 5px;
+    max-width: 715px;
+}
+.virtual-keyboard {
+    padding: 60px 20px 0;
+}
+.virtual-keyboard .keyboard-controls {
+    text-align: center;
+    margin: 0 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+}
+.virtual-keyboard .keyboard-controls.spacebar input {
+    padding: 10px 150px;
+}
+.virtual-keyboard input[type=button] {
+    color: #fff;
+    text-transform: uppercase;
+    transform: rotate(-45deg);
+    width: 100%;
+    background: none;
+    border: 0;
+    padding: 6px 10px 0 0px;
+    font-size: 22px;
+}
+.virtual-keyboard input[type=button].shift-activated {
+    color: red;
+}
+.virtual-keyboard input[type=button].delete, .virtual-keyboard input[type=button].shift {
+    text-transform: none;
+}
+.output {
+    margin: 0 0 30px;
+}
+.output input {
+    color: #333;
+    background: none;
+    text-align: center;
+    font-size: 1.5em;
+    width: 100%;
+    border: 0;
+    height: 60px;
+    border-radius: 0;
+    border-bottom: 1px solid #eee;
+}
+.output input:focus {
+    outline: none;
+}
+.output ::-webkit-input-placeholder {
+    color: #333;
+    text-align: center;
+    font-size: 1em;
+}
+.keyboard-controls .control-nub {
+    display: none;
+}
+.virtual-keyboard input[type=button].delete {
+    padding: 10px 150px;
+}
+.keyboard-cell {
+    width: 70px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.keyboard-cell span {
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 3px solid #202C2B;
+    background: var(--primary);
+    color: #fff;
+    text-transform: uppercase;
+    height: 70px;
+    transform: rotate(45deg);
+    margin-bottom: 20px;
+    width: 100%;
+}
+.keyboard-cell:nth-child(even) {
+    margin-top: -45px;
+}
+.keyboard-cell:nth-child(odd) {}
+.keyboard-delete input.delete,
+.spacebar input[type="button"]{
+    padding: 18px 150px;
+    border-radius: 10px;
+    border: 3px solid #202C2B;
+    background: var(--primary);
+    color: #fff;
+    text-transform: uppercase;
+}
+/* Vertical Keyboard Style End */
+ 
 /*************************************
 Lms Responsive Style Start
 *************************************/

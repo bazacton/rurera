@@ -172,15 +172,50 @@ class QuestionsBankController extends Controller
     {
         $user = auth()->user();
 
-        $excel = 'Grade-05.xlsx';
+        //$excel = 'grade-5-uk-vocabulary/word-tious-and-ious.xlsx';
+        //$other_slug = 'word-tious-and-ious';
+
+        //$excel = 'grade-5-uk-vocabulary/words-silent-first-letters.xlsx';
+        //$other_slug = 'words-silent-first-letters';
+
+        //$excel = 'grade-5-uk-vocabulary/words-ough-makes-an-or-sound.xlsx';
+        //$other_slug = 'words-ough-makes-an-or-sound';
+
+        //$excel = 'grade-5-uk-vocabulary/words-near-homophones.xlsx';
+        //$other_slug = 'words-near-homophones';
+
+        //$file_name = 'words-ie-after-c';
+        //$file_name = 'words-ei-can-make-an-ee-sound';
+        //$file_name = 'words-cious';
+        //$file_name = 'words-cial-tial';
+        //$file_name = 'words-ant';
+        //$file_name = 'words-ance-and-ancy';
+        //$file_name = 'words-able-where-the-e';
+        //$file_name = 'words-able-and-ible';
+        //$file_name = 'word-homophones';
+        //$file_name = 'word–ent-and-ence';
+        //$file_name = 'word-ablyand-ibly';
+        //$other_slug = $file_name;
+
+        $file_name = 'Grade-05';
+
+
+
+
+        $excel = 'vocabulary/'.$file_name.'.xlsx';
+        $other_slug = 'vocabulary';
+
+
+
         $grade = 'Year 5';
         $spells_type = 'Spellbee';
+
         $rows = Excel::toArray(null, $excel);
         if( !empty( $rows )){
             foreach( $rows as $rowArray){
                 if( !empty( $rowArray )){
                     foreach( $rowArray as $key => $rowData){
-                        if( $key == 0 || $key > 10){
+                        if( $key == 0){
                             continue;
                         }
                         $new_word = isset( $rowData[0] )? $rowData[0] : '';
@@ -197,7 +232,7 @@ class QuestionsBankController extends Controller
                         $audio_text = str_replace(']', 's"/>', $audio_text);
                         $first_character = substr($new_word, 0, 1);
                         $new_tag = 'letter '.$first_character;
-                        $new_title = $new_tag.'-'.$new_word.'-'.$spells_type.'-'.$grade.'-Audio Question';
+                        $new_title = $new_tag.'-'.$new_word.'-'.$other_slug.'-'.$spells_type.'-'.$grade.'-Audio Question';
 
                         $TextToSpeechController = new TextToSpeechController();
                         $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
@@ -247,7 +282,7 @@ class QuestionsBankController extends Controller
                             'created_at'                => time() ,
                             'question_status'           => 'Submit for review',
                             'comments_for_reviewer'     => '',
-                            'search_tags'              => $new_tag.' | '.$new_word.' | '.$grade.' | '.$spells_type,
+                            'search_tags'              => $new_tag.' | '.$new_word.' | '.$grade.' | '.$spells_type.' | '. $other_slug,
                             'review_required'              => 0,
                             'question_example'            => '<p>test</p>',
                         ]);
@@ -1338,8 +1373,18 @@ class QuestionsBankController extends Controller
     {
         $term = $request->get('term');
 
+        $term_array = explode(',', $term);
+
         //DB::enableQueryLog();
-        $questionIds = QuizzesQuestion::where('question_title', 'like', '%'.$term.'%')->orWhere('search_tags', 'like', '%'.$term.'%')->get();
+        $questionIds = QuizzesQuestion::where('question_status', '!=', '');
+        if( !empty( $term_array ) ){
+            foreach( $term_array as $term_data){
+                $questionIds->where('question_title', 'like', '%'.$term_data.'%');
+            }
+        }
+        $questionIds    = $questionIds->get();
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
         $questions_array = array();
         if( !empty( $questionIds ) ){
             foreach( $questionIds as $questionObj){
@@ -1362,8 +1407,7 @@ class QuestionsBankController extends Controller
             }
         }
 
-        //pre(DB::getQueryLog());
-        //DB::disableQueryLog();
+
        return response()->json($questions_array , 200);
     }
 
