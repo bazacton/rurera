@@ -22547,15 +22547,37 @@ Product Tabs Slider Style Start
     padding-left: 15px;
     text-align: left;
 }
+.spell-question-area .left-content {
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.spell-question-area .left-content:before {
+    content: "🕪";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 940px;
+    opacity: 0.01;
+    transform: translate(-50%, -50%) scale(-1);
+    pointer-events: none;
+    margin-top: 50px;
+}
+.spells-quiz-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 .spells-quiz-info ul {
     border: 1px solid #bac3ca;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: space-between;
-}
-.spells-quiz-info {
-    margin: 0 0 30px;
 }
 .spells-quiz-info ul li {
     border-left: 1px solid #bac3ca;
@@ -22576,6 +22598,11 @@ Product Tabs Slider Style Start
 .spells-quiz-info ul li .nub-of-sec {
     color: #7caf40;
 }
+.question-layout-block form.question-fields {
+    background-color: #f8f8f8;
+    border: 1px solid #bac3ca;
+    margin: 0 0 50px;
+}
 .spells-quiz-sound {
     text-align: center;
     margin: 0 0 30px;
@@ -22585,6 +22612,15 @@ Product Tabs Slider Style Start
     color: #747474;
     font-size: 36px;
     font-weight: 400;
+}
+.spells-quiz-from .play-btn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.spells-quiz-from .play-btn img {
+    margin-top: -12px;
+    width: 24px;
 }
 .spells-quiz-from strong {
     margin-right: 5px;
@@ -22609,29 +22645,36 @@ Product Tabs Slider Style Start
     padding: 0;
     text-transform: uppercase;
     font-size: 28px;
+    font-weight: 600 !important;
 }
 .spells-quiz-from button {
     min-width: 230px;
-    background-color: #e7f0f5;
+    background-color: #46484a;
     border: 0;
     padding: 18px 50px;
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;
     border-radius: 5px;
-    color: #747474;
+    color: #fff;
 }
-.spells-quiz-sound strong .sound-icon {
+.spells-quiz-from button:hover {
+    background-color: #46484a;
+    color: #fff;
+}
+.spells-quiz-sound strong .sound-icon,
+.question-status-modal .modal-title h3 .sound-icon {
     display: inline-block;
     vertical-align: middle;
     color: #9c0e28;
     transform: scale(-1);
-    font-size: 16px;
-    height: 25px;
-    width: 25px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    line-height: 25px;
+    font-size: 22px;
+    height: 40px;
+    width: 40px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+    line-height: 40px;
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .master-list {
@@ -22775,6 +22818,72 @@ Product Tabs Slider Style Start
     background: var(--primary);
     color: #fff;
     text-transform: uppercase;
+}
+
+.question-status-modal .modal-dialog {
+    max-width: 465px;
+}
+.question-status-modal .modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid var(--primary);
+    border-radius: 8px;
+    box-shadow: 0 0 2px 1px rgba(0,0,0,0.5) inset;
+    padding: 25px 35px;
+    text-align: center;
+}
+.question-status-modal .modal-body {
+    padding: 0;
+}
+.question-status-modal .modal-content {
+    background-color: var(--primary);
+}
+.question-status-modal .modal-title h3 {
+    font-size: 34px;
+    color: #fff;
+}
+.question-status-modal .modal-title span {
+    font-size: 28px;
+    color: #333;
+    display: block;
+    line-height: normal;
+}
+.question-status-modal .modal-title {
+    margin: 0 0 20px;
+}
+.question-status-modal p {
+    color: #fff;
+    line-height: normal;
+    margin: 0 0 20px;
+}
+.question-status-modal strong {
+    color: #fff;
+    font-size: 18px;
+    display: block;
+    margin: 0 0 25px;
+}
+.confirm-btn {
+    padding: 12px 30px;
+    display: inline-block;
+    min-width: 150px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #333;
+}
+.confirm-btn:hover {
+    color: #fff;
+}
+.question-status-modal p span {
+    background-color: #fff;
+    color: #333;
+    line-height: normal;
+    display: inline-block;
+    padding: 0 5px 2px;
+    border-radius: 3px;
 }
 /* Vertical Keyboard Style End */
  

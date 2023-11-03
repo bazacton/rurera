@@ -36,7 +36,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
          data-quiz_result_id="{{isset( $quizAttempt->quiz_result_id )? $quizAttempt->quiz_result_id : 0}}">
         <div class="question-layout-block">
 
-            <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
+            <form class="question-fields" action="javascript:;" data-defination="{{isset($word_data['audio_defination'])? $word_data['audio_defination'] : ''}}" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
                 <div class="spells-quiz-info">
                     <ul>
@@ -47,7 +47,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                             <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span> Seconds
                         </li>
                         <li>
-                            <span>0</span> Points  - {{$correct_answer}} - {{$no_of_words}}
+                            <span>0</span> Points
                         </li>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                     <strong>Hear It: <span class="sound-icon" id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}">&#128362</span></strong>
                 </div>
                 <div class="player-box">
-                   <audio class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
+                   <audio autoplay class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
@@ -70,7 +70,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                     <div class="question-correct-answere">
 
                     </div>
-                    <div class="rurera-virtual-keyboard">
+                    <div class="rurera-virtual-keyboard rurera-hide">
                         <div class="keyboard-delete">
                             <input type="button" value="delete" class="delete">
                         </div>
@@ -143,13 +143,14 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
 
 
                     <div class="form-btn-field">
+                        <button type="button" class="question-review-btn" data-id="{{ $question->id }}">Finish</button>
                         <button type="submit" class="question-submit-btn">Submit</button>
                     </div>
                 </div>
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls  rurera-hide">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
-                        <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
+                        <a href="javascript:;" id="review-btn_{{ $question->id }}" data-toggle="modal" class="review-btn" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
@@ -242,17 +243,22 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                 }
             }, 1000);
 
-            var Questioninterval = setInterval(function () {
-                var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');
-                seconds_count = parseInt(seconds_count) + parseInt(1);
-                $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count);
+            var Questionintervals = setInterval(function () {
+                var seconds_count_done = $(".question-step-{{ $question->id }}").attr('data-elapsed');
+                seconds_count_done = parseInt(seconds_count_done) + parseInt(1);
+                $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count_done);
             }, 1000);
 
         }
 
 </script>
 <script type="text/javascript">
+    window.onload = function() {
+      var context = new AudioContext();
+    }
     $(document).on('click', '#sound-icon-{{ $question->id }}', function (e) {
+        var context = new AudioContext();
+        $('#field-{{$field_id}}').focus();
         console.log(currentFunctionStart);
         if( currentFunctionStart == null) {
             SpellQuestionintervalCountDownFunc();
@@ -275,6 +281,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
 
     jQuery(document).ready(function() {
         $('#field-{{$field_id}}').focus();
+        $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),
           $key_delete = $('.delete'),

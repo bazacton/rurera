@@ -33,6 +33,7 @@ quiz_user_data[0] = {};
 quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
+var QuestionSubmitRequest = null;
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
@@ -43,6 +44,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         $("#validation_error").modal('show');
         return false;
     }
+
 
     clearInterval(Questioninterval);
     rurera_loader($(this), 'div');
@@ -73,6 +75,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var total_questions = thisObj.closest('.questions-data-block').attr('data-total_questions');
     var thisForm = $(this).closest('form');
     var question_id = $(this).closest('form').data('question_id');
+    var defination_text = $(this).closest('form').data('defination');
     var user_question_layout = thisForm.find('.question-layout').html();
     var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
@@ -125,10 +128,15 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var qresult_id = thisObj.closest('.question-step').attr('data-qresult');
     var qattempt_id = thisObj.closest('.question-step').attr('data-qattempt');
 
-    jQuery.ajax({
+    QuestionSubmitRequest = jQuery.ajax({
         type: "POST",
         url: '/question_attempt/validation',
         dataType: 'json',
+        beforeSend: function () {
+            if (QuestionSubmitRequest != null) {
+                QuestionSubmitRequest.abort();
+            }
+        },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -230,22 +238,28 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     console.log('incorrect-data-herer');
                     //$(".question-layout-block").html(return_data.question_response_layout);
                     console.log(quiz_type);
-                    if( quiz_type == 'vocabulary') {
+                    if (quiz_type == 'vocabulary') {
                         if (rurera_is_field(return_data.question_correct_answere)) {
                             if (return_data.question_correct_answere != '') {
                                 $(".question-correct-answere").html(return_data.question_correct_answere);
                                 $(".editor-field").addClass(question_status_class);
                                 //$(".nub-of-sec").html('');
                                 clearInterval(Questioninterval);
+                                jQuery.noConflict();
+                                $(".question-status-modal .modal-box .modal-title span").html(return_data.question_correct_answere);
+                                $(".question-status-modal .modal-box p").html(defination_text);
+                                $("#question_status_modal").modal('show');
                             }
                         }
+                    } else{
+                        thisForm.find('.question-submit-btn').remove();
+                        thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                        const interval = setInterval(() => {
+                            console.log('interval-test');
+                            $('#next-btn')[0].click();
+                            clearInterval(interval);
+                        }, 3000);
                     }
-                    thisForm.find('.question-submit-btn').remove();
-                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
-                    const interval = setInterval(() => {
-                        $('#next-btn')[0].click();
-                        clearInterval(interval);
-                    }, 3000);
                 }
             } else {
 
@@ -646,6 +660,10 @@ function init_question_functions() {
             }
         });
     });
+    $(document).on('click', '.confirm-btn', function (e) {
+        $('#next-btn')[0].click();
+    });
+
 
     $(document).on('keyup', 'body', function (evt) {
         if (evt.key === 'ArrowLeft') {
@@ -671,6 +689,7 @@ function init_question_functions() {
         if ($(this).hasClass('disable-btn')) {
             return;
         }
+        console.log('pagination-test-click-auto');
 
 
         if (!$(this).hasClass('swiper-slide')) {
@@ -787,6 +806,9 @@ function init_question_functions() {
         }
     }
 
+
+
+
     $(document).on('click', '.questions-nav-controls .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
 
@@ -815,6 +837,19 @@ function init_question_functions() {
                 }
             }
         });*/
+    });
+
+    $(document).on('click', '.question-review-btn', function (e) {
+        var question_id = $(this).attr('data-id');
+        var element = document.getElementById('review-btn_'+question_id);
+        if (element) {
+            var event = new MouseEvent("click", {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            element.dispatchEvent(event);
+        }
     });
 
     $(document).on('click', '.submit_quiz_final', function (e) {

@@ -537,6 +537,7 @@ class QuizController extends Controller
                                        $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
                                        $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
                                        $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                                       $audio_defination = isset( $elementData->audio_defination )? $elementData->audio_defination : $audio_defination;
                                        if( $element_type == 'audio_file'){
                                            $audio_file = $content;
                                            $audio_text = $audio_text;
@@ -551,6 +552,7 @@ class QuizController extends Controller
                             $word_data = array(
                                    'audio_text' => $audio_text,
                                    'audio_sentense' => $audio_sentense,
+                                   'audio_defination' => $audio_defination,
                                    'audio_file' => $audio_file,
                                    'field_id' => $field_id,
                                );

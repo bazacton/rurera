@@ -199,6 +199,30 @@ $rand_id = rand(99,9999);
 
 </div>
 
+@if($quiz->quiz_type == 'vocabulary')
+<div class="question-status-modal">
+  <div class="modal fade question_status_modal" id="question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Incorrect!</h3>
+              <span>are</span>
+            </div>
+            <p>
+              <span>verb</span> when more than one person is being something
+            </p>
+            <strong>2 points</strong>
+            <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
+
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog">
        <div class="modal-content">
