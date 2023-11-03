@@ -533,6 +533,7 @@ class QuestionsAttemptController extends Controller
         $question = $questionObj;
 
         $question_correct_answere = '';
+        $total_points = '';
         if ($quizAttempt->attempt_type == 'vocabulary') {
 
             $correct_answeres = json_decode($QuizzResultQuestions->correct_answer);
@@ -543,6 +544,8 @@ class QuestionsAttemptController extends Controller
                     }
                 }
             }
+            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $quizAttempt->attempt_type)->first();
+            $total_points = $RewardAccountingObj->score;
         }
 
 
@@ -560,6 +563,7 @@ class QuestionsAttemptController extends Controller
             'newQuestionResult'        => $newQuestionResult,
             'quiz_type'                => $quizAttempt->attempt_type,
             'question_result_id'       => isset($newQuestionResult->id) ? $newQuestionResult->id : '',
+            'total_points'              => $total_points,
         );
         echo json_encode($response);
         exit;
@@ -626,12 +630,24 @@ class QuestionsAttemptController extends Controller
         $question_id = isset($QuizzResultQuestions->question_id) ? $QuizzResultQuestions->question_id : 0;
         $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
 
+        if( $parent_type == 'vocabulary'){
+            $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
+            $mastered_words = isset( $UserVocabulary->mastered_words )? (array) json_decode($UserVocabulary->mastered_words) : array();
+            $in_progress_words = isset( $UserVocabulary->in_progress_words )? (array) json_decode($UserVocabulary->in_progress_words) : array();
+            $non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
+            $question_score = 5;
+            if( !isset( $in_progress_words[$question_id] ) ){
+                return;
+            }
+        }
+
         $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_id', $parent_id)->where('parent_type', $parent_type)->first();
         $score = isset($RewardAccountingObj->score) ? json_decode($RewardAccountingObj->score) : 0;
         $score += $question_score;
         $full_data = isset($RewardAccountingObj->full_data) ? (array)json_decode($RewardAccountingObj->full_data) : array();
 
         $is_exists = (isset($full_data[$question_id]) && $full_data[$question_id] != '') ? true : false;
+        $is_exists = ($is_exists == true && $is_exists == 0)? false : $is_exists;
         if ($is_exists == true) {
             return;
         }
@@ -998,6 +1014,8 @@ class QuestionsAttemptController extends Controller
 
             if ($AttemptAllowed == true) {
 
+                $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $QuizzesResult->quiz_result_type)->first();
+
                 $question_layout = view('web.default.panel.questions.spell_question_layout', [
                     'question'          => $questionObj,
                     'prev_question'     => $prev_question,
@@ -1010,7 +1028,9 @@ class QuestionsAttemptController extends Controller
                     'word_data'         => $word_data,
                     'field_id'          => $field_id,
                     'correct_answer'    => $correct_answer,
+                    'total_points'    => $RewardAccountingObj->score,
                 ])->render();
+                $question_layout = '';
 
             }else {
 

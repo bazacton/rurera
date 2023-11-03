@@ -25,6 +25,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 
 $no_of_words = strlen($correct_answer);
 $field_width = ($no_of_words * 1.5);
+$question->question_average_time = 0.35;
 $total_time = gmdate("i:s", $question->question_average_time*60);
 
 @endphp
@@ -46,13 +47,16 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                         <li>
                             <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span> Seconds
                         </li>
-                        <li>
-                            <span>0</span> Points
+                        <li class="total-points">
+                            <span>{{isset( $total_points )? $total_points : 0}} </span> Points
                         </li>
                     </ul>
                 </div>
                 <div class="spells-quiz-sound">
-                    <strong>Hear It: <span class="sound-icon" id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}">&#128362</span></strong>
+                    <strong>Hear It: <a href="javascript:;"  id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}" class="play-btn sound-icon">
+                      <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                      <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                    </a></strong>
                 </div>
                 <div class="player-box">
                    <audio autoplay class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
@@ -217,7 +221,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
 
 </div>
 
-<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+
 <script>
     var currentFunctionStart = null;
     var Questioninterval = null;
@@ -265,9 +269,9 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
         }
         //SpellQuestionintervalFunc();
         var player_id = $(this).attr('data-id');
-        document.getElementById(player_id).play();
+        
 
-        /*$(this).toggleClass("pause");
+        $(this).toggleClass("pause");
         if ($(this).hasClass('pause')) {
             console.log('play');
             console.log(player_id);
@@ -276,7 +280,12 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
             console.log('pause');
             console.log(player_id);
             document.getElementById(player_id).pause();
-        }*/
+        }
+    });
+    var audio = document.getElementById("audio_file_{{ $question->id }}");
+
+    audio.addEventListener('ended', function () {
+        $('#sound-icon-{{ $question->id }}').toggleClass("pause");
     });
 
     jQuery(document).ready(function() {

@@ -213,7 +213,6 @@ $rand_id = rand(99,9999);
             <p>
               <span>verb</span> when more than one person is being something
             </p>
-            <strong>2 points</strong>
             <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
           </div>
         </div>

@@ -559,6 +559,7 @@ class QuizController extends Controller
 
                             $total_questions_count = is_array( json_decode($attemptLogObj->questions_list) )? json_decode($attemptLogObj->questions_list) : array();
                             $total_questions_count = count($total_questions_count);
+                            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $QuizzesResult->quiz_result_type)->first();
                             $question_response_layout = view('web.default.panel.questions.spell_question_layout', [
                                 'question'          => $questionObj,
                                 'prev_question'     => $prev_question,
@@ -572,6 +573,7 @@ class QuizController extends Controller
                                 'total_questions_count'         => $total_questions_count,
                                 'field_id' => $field_id,
                                 'correct_answer'    => $correct_answer,
+                                'total_points'    => $RewardAccountingObj->score,
                             ])->render();
                         }else {
                             $question_response_layout = view('web.default.panel.questions.question_layout', [

@@ -22558,7 +22558,7 @@ Product Tabs Slider Style Start
     top: 50%;
     left: 50%;
     font-size: 940px;
-    opacity: 0.01;
+    opacity: 0.005;
     transform: translate(-50%, -50%) scale(-1);
     pointer-events: none;
     margin-top: 50px;
@@ -22583,7 +22583,7 @@ Product Tabs Slider Style Start
     border-left: 1px solid #bac3ca;
     text-align: center;
     width: 32%;
-    padding: 12px 0;
+    padding: 15px 0;
     font-size: 20px;
     text-transform: uppercase;
 }
@@ -22602,6 +22602,24 @@ Product Tabs Slider Style Start
     background-color: #f8f8f8;
     border: 1px solid #bac3ca;
     margin: 0 0 50px;
+    border-radius: 5px;
+    background-color: rgba(248,248,248,0.6);
+}
+.timebar {
+    display: inline-block;
+    position: relative;
+    height: 3px;
+    width: 100%;
+}
+.timebar .bar-inner {
+    height: 100%;
+    background-color: green;
+    transition: all .4s ease;
+}
+.spell-question-area .timebar {
+    position: absolute;
+    top: 56px;
+    left: 0;
 }
 .spells-quiz-sound {
     text-align: center;
@@ -22613,14 +22631,18 @@ Product Tabs Slider Style Start
     font-size: 36px;
     font-weight: 400;
 }
-.spells-quiz-from .play-btn {
+.spells-quiz-sound .play-btn {
     position: relative;
     display: inline-block;
     vertical-align: middle;
 }
-.spells-quiz-from .play-btn img {
+.spells-quiz-sound .play-btn img {
     margin-top: -12px;
+    margin-left: -12px;
+    left: 50%;
     width: 24px;
+    height: 24px;
+    transform: none;
 }
 .spells-quiz-from strong {
     margin-right: 5px;
@@ -22664,10 +22686,10 @@ Product Tabs Slider Style Start
 }
 .spells-quiz-sound strong .sound-icon,
 .question-status-modal .modal-title h3 .sound-icon {
+    background-color: #fff;
     display: inline-block;
     vertical-align: middle;
     color: #9c0e28;
-    transform: scale(-1);
     font-size: 22px;
     height: 40px;
     width: 40px;
@@ -22675,6 +22697,36 @@ Product Tabs Slider Style Start
     line-height: 40px;
     border-radius: 100%;
     cursor: pointer;
+}
+.learning-page .learning-page-content:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url(/assets/default/img/mountain.jpg) no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    z-index: 0;
+}
+.lms-quiz-section .questions-data-block {
+    border: 0;
+}
+.spells-quiz-from .form-field:has(.frontend-field-error) {
+    width: auto;
+    display: inline-block;
+    position: relative;
+    border: 0;
+}
+.spells-quiz-from .form-field:has(.frontend-field-error):before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 96%;
+    height: 3px;
+    border-bottom: 3px solid #dd4343;
 }
 
 .master-list {
@@ -22828,10 +22880,10 @@ Product Tabs Slider Style Start
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 5px solid var(--primary);
+    border: 8px solid var(--primary);
     border-radius: 8px;
-    box-shadow: 0 0 2px 1px rgba(0,0,0,0.5) inset;
-    padding: 25px 35px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.2) inset;
+    padding: 25px 35px 30px;
     text-align: center;
 }
 .question-status-modal .modal-body {
@@ -22856,7 +22908,7 @@ Product Tabs Slider Style Start
 .question-status-modal p {
     color: #fff;
     line-height: normal;
-    margin: 0 0 20px;
+    margin: 0 0 30px;
 }
 .question-status-modal strong {
     color: #fff;
@@ -23053,6 +23105,14 @@ Lms Responsive Style Start
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .chart-filters,
     .chart-filters ul {flex-wrap: wrap;}
+    .spells-quiz-info ul {
+        flex-direction: column;
+    }
+    .spells-quiz-info ul li {
+        border-left: 0;
+        border-bottom: 1px solid #bac3ca;
+        width: 100%;
+    }
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}

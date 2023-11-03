@@ -34,21 +34,30 @@ quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
 var QuestionSubmitRequest = null;
+var question_submit_process = false;
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+    if( question_submit_process == true){
+        return false;
+    }
+    question_submit_process = true;
     console.log('question-submit');
     returnType = rurera_validation_process($(this).closest('form'));
     if (returnType == false) {
         jQuery.noConflict();
-        $("#validation_error").modal('show');
+        //$("#validation_error").modal('show');
+        var error_message = $.growl.error({
+           message: 'Please fill all the required fields before submitting.',
+           duration: 10000,
+        });
+
+        question_submit_process = false;
         return false;
     }
 
-
     clearInterval(Questioninterval);
     rurera_loader($(this), 'div');
-
 
     var quiz_type = $(".question-area-block").attr('data-type');
     if (!rurera_is_field(quiz_type)) {
@@ -149,11 +158,14 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             "time_consumed": time_consumed
         },
         success: function (return_data) {
+            question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+            console.log(return_data.total_points);
+            if (rurera_is_field(return_data.total_points)) {
+                $(".lms-quiz-section").attr('data-total_points', return_data.total_points);
+            }
             var quiz_type = return_data.quiz_type;
             $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
-            console.log(quiz_type);
-            console.log(return_data);
             if( return_data.is_complete == true) {
                 $(".question-area-block").html('Thank you for attempting!');
 
@@ -241,7 +253,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     if (quiz_type == 'vocabulary') {
                         if (rurera_is_field(return_data.question_correct_answere)) {
                             if (return_data.question_correct_answere != '') {
-                                $(".question-correct-answere").html(return_data.question_correct_answere);
+                                //$(".question-correct-answere").html(return_data.question_correct_answere);
                                 $(".editor-field").addClass(question_status_class);
                                 //$(".nub-of-sec").html('');
                                 clearInterval(Questioninterval);
@@ -249,6 +261,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                                 $(".question-status-modal .modal-box .modal-title span").html(return_data.question_correct_answere);
                                 $(".question-status-modal .modal-box p").html(defination_text);
                                 $("#question_status_modal").modal('show');
+                                $(".confirm-btn").focus();
                             }
                         }
                     } else{
@@ -720,6 +733,12 @@ function init_question_functions() {
         var question_layout = leform_decode64(questions_layout[question_id]);
         var question_layout = JSON.parse(question_layout);
         $(".question-area-block").html(question_layout);
+
+        var total_points = $(".lms-quiz-section").attr('data-total_points');
+        if( rurera_is_field(total_points) == true && total_points != ''){
+            $(".spells-quiz-info .total-points span").html(total_points+' ');
+        }
+
         console.log('pagination-clicked2');
         $("p.given").html(chunkWords($("p.given").text()));
         $("span.given").draggable({
