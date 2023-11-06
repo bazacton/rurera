@@ -1677,6 +1677,10 @@ Lms Quiz Wf Style End
     background: url(/assets/default/img/mountain.jpg) no-repeat;
     background-size: cover;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .read-text-controls {
     padding: 20px 20px 20px 0;

@@ -1157,7 +1157,7 @@ class QuestionsAttemptController extends Controller
 
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
 
-        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('id', '!=', $QuizzAttempts->quiz_result_id)->where('quiz_result_type', 'timestables')->orderBy('id', 'DESC')->first();
+        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('id', '!=', $QuizzAttempts->quiz_result_id)->where('quiz_result_type', 'timestables')->where('status' ,'!=', 'waiting')->orderBy('id', 'DESC')->first();
         $get_last_results = isset($last_time_table_data->other_data) ? $last_time_table_data->other_data : '';
 
         $get_last_results = (array)json_decode($get_last_results);
@@ -1197,7 +1197,7 @@ class QuestionsAttemptController extends Controller
             'user_id'          => $user->id,
             'results'          => json_encode($results),
             'user_grade'       => 0,
-            'status'           => 'waiting',
+            'status'           => 'passed',
             'quiz_result_type' => 'timestables',
             'no_of_attempts'   => 100,
             'other_data'       => json_encode($new_result_data),

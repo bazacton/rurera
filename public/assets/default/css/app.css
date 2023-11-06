@@ -21881,6 +21881,7 @@ Questions Select, Questions Block style End
 Heatmap Table style Start
 ***************************/
 .heatmap-section {position: relative; background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; padding-top: 70px; padding-bottom: 70px;}
+.heatmap-section-inner {background-color: rgba(248,248,248,0.6); padding: 30px; border: 1px solid rgb(186, 195, 202); border-radius: 8px;}
 .heatmap-heading span {display: block; font-size: 14px; padding-top: 0; line-height: normal;}
 .heatmap-heading {position: relative;}
 .heatmap-heading:before {background-color: #6d6d6d; content: ""; height: 1px; position: absolute; left: 0; top: 50%; width: 9px;}
@@ -21892,12 +21893,12 @@ Heatmap Table style Start
 .box-body {display: flex; width: 100%;}
 .box-body strong {flex-basis: 100%; text-align: center; font-size: 24px; font-weight: 400; color: #000;}
 .heatmap-table-boxes li:last-child {flex: 1 1 0;}
-.heatmap-select-option {border-bottom: 1px solid #dedede; padding-bottom: 10px; display: flex; align-items: center;}
+.heatmap-select-option {border-bottom: 1px solid rgb(186, 195, 202); padding-bottom: 10px; display: flex; align-items: center;}
 .heatmap-select-option .heatmap-download-btn {margin-left: auto;}
 .heatmap-select-option input[type=radio] {position: absolute; width: 0; height: 0; opacity: 0;}
-.heatmap-select-option label {margin: 0 -1px 0 -1px; border-right: 1px solid #dedede; padding: 5px 12px; cursor: pointer;}
+.heatmap-select-option label {margin: 0 -1px 0 -1px; border-right: 1px solid rgb(186, 195, 202); padding: 5px 12px; cursor: pointer;}
 .heatmap-select-option input[type=radio]:checked + label {background-color: var(--primary); color: #fff;}
-.heatmap-select-option .select-field {margin-right: 10px; display: inline-flex; padding-left: 1px; border: 1px solid #dedede; border-radius: 5px; overflow: hidden;}
+.heatmap-select-option .select-field {margin-right: 10px; display: inline-flex; padding-left: 1px; border: 1px solid rgb(186, 195, 202); border-radius: 5px; overflow: hidden;}
 .heatmap-select-option strong {font-size: 18px; font-weight: 500; color: #333;}
 .heatmap-table {width: 100%;}
 .heatmap-table th, .heatmap-table td {text-align: center; vertical-align: middle; padding: 10px 15px;}
@@ -23029,6 +23030,7 @@ Lms Responsive Style Start
         flex-wrap: wrap;
         width: 100%;
     }
+    .lms-quiz-section {height: 100%;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -23139,6 +23141,7 @@ Lms Responsive Style Start
     .lms-quiz-section .questions-data-block {max-width: 100%;}
     .quiz-pagination .swiper-container ul {flex-wrap: wrap;}
     body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 50px;}
+    .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}

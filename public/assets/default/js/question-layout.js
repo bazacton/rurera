@@ -266,7 +266,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                             }
                         }
                     } else{
-                        thisForm.find('.question-submit-btn').remove();
+                        //thisForm.find('.question-submit-btn').remove();
                         thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
                         const interval = setInterval(() => {
                             console.log('interval-test');

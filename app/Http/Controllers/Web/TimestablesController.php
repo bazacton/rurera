@@ -67,7 +67,9 @@ class TimestablesController extends Controller
         $marks = 5;
 
 
-        $questions_list = array();
+        $questions_list = $already_exists = array();
+
+        $total_questions = 20;
 
         $questions_count = 1;
         if ($total_questions > 0) {
@@ -75,12 +77,15 @@ class TimestablesController extends Controller
                 $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
                 $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
                 $from_value = $table_no;
-                $limit = 12;
+                $limit = 20;
                 $min = 2;
                 $min = ($type == '÷') ? 1 : $min;
                 $limit = ($type == '÷') ? $from_value : $limit;
-                $to_value = rand($min, $limit);
-                $questions_list[] = (object)array(
+                //$to_value = rand($min, $limit);
+                $to_value = $questions_count;
+
+
+                $questions_array_list[] = (object)array(
                     'from'     => $from_value,
                     'to'       => $to_value,
                     'type'     => $type,
@@ -89,6 +94,23 @@ class TimestablesController extends Controller
                 );
                 $questions_count++;
             }
+
+            shuffle($questions_array_list);
+
+            $question_show_count = 0;
+
+            while ($question_show_count < $no_of_questions) {
+                if( $question_show_count < 20) {
+                    $questions_list[] = (object)isset($questions_array_list[$question_show_count]) ? $questions_array_list[$question_show_count] : array();
+                }else{
+                    $question_counter = rand(2, 19);
+                    $questions_list[] = (object)isset($questions_array_list[$question_counter]) ? $questions_array_list[$question_counter] : array();
+                }
+                $question_show_count++;
+
+            }
+
+
             $QuizzesResult = QuizzesResult::create([
                 'user_id'          => $user->id,
                 'results'          => json_encode($questions_list),

@@ -344,6 +344,8 @@ class QuizController extends Controller
             'subject'                     => isset($data['subject']) ? $data['subject'] : '',
             'examp_board'                 => isset($data['examp_board']) ? $data['examp_board'] : '',
             'year_id'                 => isset($data['year_id']) ? $data['year_id'] : 0,
+            'quiz_category'                 => isset($data['quiz_category']) ? $data['quiz_category'] : '',
+
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -588,7 +590,8 @@ class QuizController extends Controller
             'year_group'         => isset($data['year_group']) ? $data['year_group'] : '',
             'subject'            => isset($data['subject']) ? $data['subject'] : '',
             'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
-            'year_id'                 => isset($data['year_id']) ? $data['year_id'] : 0,
+            'year_id'            => isset($data['year_id']) ? $data['year_id'] : 0,
+            'quiz_category'      => isset($data['quiz_category']) ? $data['quiz_category'] : '',
         ]);
 
         if (!empty($quiz)) {

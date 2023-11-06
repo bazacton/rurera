@@ -130,6 +130,9 @@ class AnalyticsController extends Controller
 
 
                     foreach ($dateObj as $QuizzesAttemptObj) {
+                        if( $QuizzesAttemptObj->quizzes_results->status == 'waiting'){
+                            continue;
+                        }
                         $topic_title = getTopicTitle($QuizzesAttemptObj->parent_type_id, $QuizzesAttemptObj->attempt_type);
                         $questions_list = isset($QuizzesAttemptObj->questions_list) ? json_decode($QuizzesAttemptObj->questions_list) : array();
                         $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');

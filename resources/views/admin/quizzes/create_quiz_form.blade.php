@@ -143,6 +143,22 @@
                     </div>
                     @enderror
                 </div>
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Vocabulary Category</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_category]"
+                                class="form-control" data-placeholder="Select Year Group">
+                            <option value="Word Lists" {{ (!empty($quiz) and ($quiz->quiz_category == 'Word Lists' || $quiz->quiz_category == ''))
+                                ? 'selected'
+                                : ''
+                                }}>Word Lists
+                            </option>
+                            <option value="Spelling Bee" {{ (!empty($quiz) and $quiz->quiz_category == 'Spelling Bee') ?
+                                'selected'
+                                : '' }}>Spelling Bee
+                            </option>
+
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
