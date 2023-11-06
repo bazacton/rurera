@@ -110,6 +110,41 @@
                     <div class="invalid-feedback"></div>
                 </div>
 
+                <div class="conditional-fields vocabulary-fields">
+                <div class="form-group">
+                    <label>Year</label>
+                    <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
+                            class="form-control year_subject_ajax_select select2 @error('year_id') is-invalid @enderror"
+                            name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
+                        <option {{ !empty($trend) ?
+                        '' : 'selected' }} disabled>Select Year</option>
+
+                        @foreach($categories as $category)
+                        @if(!empty($category->subCategories) and
+                        count($category->subCategories))
+                        <optgroup label="{{  $category->title }}">
+                            @foreach($category->subCategories as $subCategory)
+                            <option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
+                                {{$subCategory->title}}
+                            </option>
+                            @endforeach
+                        </optgroup>
+                        @else
+                        <option value="{{ $category->id }}"
+                                class="font-weight-bold">{{
+                            $category->title }}
+                        </option>
+                        @endif
+                        @endforeach
+                    </select>
+                    @error('year_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                </div>
+
                 <div class="form-group">
                     <label class="input-label">Quiz Instructions</label>
                     <textarea rows="7" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_instructions]"

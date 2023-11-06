@@ -21848,7 +21848,7 @@ Questions Select, Questions Block style Start
 .questions-submit-btn:after {content: ""; position: absolute; display: block; width: 100%; height: 105%; top: -1px; left: -1px; z-index: -1; pointer-events: none; background: var(--primary); transform-origin: top left; -ms-transform: skew(-30deg, 0deg); -webkit-transform: skew(-30deg, 0deg); transform: skew(-30deg, 0deg);}
 .questions-submit-btn:after {left: auto; right: -1px; transform-origin: top right; -ms-transform: skew(30deg, 0deg); -webkit-transform: skew(30deg, 0deg); transform: skew(30deg, 0deg);}
 /*Question Block Style*/
-.questions-block {background-color: #fff; border: 0; border-bottom-width: 5px; border-radius: 0; padding: 20px 0 0; box-shadow: 0 0 3px rgba(0,0,0,0.1);}
+.questions-block {background-color: rgba(248, 248, 248, 0.6); border: 0; border-bottom-width: 5px; border-radius: 0; padding: 20px 0 0; box-shadow: 0 0 3px rgba(0,0,0,0.1);}
 .questions-status span {background-color: #000; height: 15px; flex-basis: 10%; margin: 0 2px; border-radius: 2px;}
 .questions-status {margin: 0 -3px; padding: 0 20px;}
 .questions-status .successful {background-color: #3ebc3f;}
@@ -21856,7 +21856,8 @@ Questions Select, Questions Block style Start
 .questions-arithmetic-box {box-sizing: border-box; position: relative; min-height: 100px;}
 .questions-arithmetic-box:before {content: ""; position: absolute; left: 50%; top: 0; width: 115%;height: 100%; transform: translateX(-50%); pointer-events: none;  background-color: var(--primary); box-shadow: 0 0 8px rgba(0,0,0,0.2);}
 .questions-arithmetic-box input[type="text"] {border: 0; font-size: 35px; color: #fff; font-weight: 700; width: calc(100% - 300px); background-color: inherit; margin-left: 8px;     position: relative; z-index: 1;}
-.questions-arithmetic-box span {font-size: 35px; color: #fff; font-weight: 700; position: relative; z-index: 1;}
+.questions-arithmetic-box span,
+.lms-quiz-section .questions-arithmetic-box span {font-size: 35px; color: #fff; font-weight: 700; position: relative; z-index: 1;}
 .questions-arithmetic-box span span {font-weight: 400;}
 .questions-block-numbers {overflow: hidden;}
 .questions-block-numbers ul {border-right: 1px solid #f1f0f5; border-bottom: 1px solid #f1f0f5; margin: 0 -2px;}
@@ -21865,7 +21866,7 @@ Questions Select, Questions Block style Start
 .questions-block-numbers .delete a {color: #fe0000;}
 .questions-block-numbers .enter a {    color: #008001;}
 .questions-block-numbers a:active {background-color: var(--primary); color: #fff;}
-.questions-controls {position: relative; z-index: 1;}
+.questions-controls {position: relative; z-index: 1; margin-left: auto;}
 .questions-controls svg path {transition: all .5s;}
 .questions-controls a:hover svg path {fill: #fff;}
 .questions-controls a:hover svg path {fill: #000;}
@@ -21879,6 +21880,7 @@ Questions Select, Questions Block style End
 /***************************
 Heatmap Table style Start
 ***************************/
+.heatmap-section {position: relative; background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; padding-top: 70px; padding-bottom: 70px;}
 .heatmap-heading span {display: block; font-size: 14px; padding-top: 0; line-height: normal;}
 .heatmap-heading {position: relative;}
 .heatmap-heading:before {background-color: #6d6d6d; content: ""; height: 1px; position: absolute; left: 0; top: 50%; width: 9px;}
@@ -21941,6 +21943,7 @@ Main Home style End
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
+.quiz-start-btn {z-index: 999;}
 .quiz-start-btn .rurera-button-loader {background-color: inherit;}
 @-webkit-keyframes sk-bounce { 
     0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
@@ -22245,7 +22248,7 @@ Product Tabs Slider Style Start
 /* Lms Font End Display Style */
 .lms-quiz-section .questions-data-block {
     max-width: 1170px;
-    margin: 50px auto 0;
+    margin: 0 auto 0;
     border: 1px solid #eee;
 }
 .lms-quiz-section .quiz-topbar {
@@ -22604,6 +22607,10 @@ Product Tabs Slider Style Start
     margin: 0 0 50px;
     border-radius: 5px;
     background-color: rgba(248,248,248,0.6);
+    padding: 30px 30px 0
+}
+.spell-question-area .question-layout-block form.question-fields {
+    padding: 0;
 }
 .timebar {
     display: inline-block;
@@ -22769,7 +22776,7 @@ Product Tabs Slider Style Start
 .non-use span {
     color: #787b84;
 }
-/*Plphabet List Style End*/
+/*Alphabet List Style End*/
 
 /* Vertical Keyboard Style Start */
 .question-fields .spells-quiz-from {
@@ -22938,6 +22945,14 @@ Product Tabs Slider Style Start
     border-radius: 3px;
 }
 /* Vertical Keyboard Style End */
+body .learning-page .learning-content .learning-content-box {
+    position: relative;
+    z-index: 1;
+    border-color: #ccc;
+}
+body .learning-page .learning-title {
+    border-color: #ccc;
+}
  
 /*************************************
 Lms Responsive Style Start
@@ -23010,6 +23025,10 @@ Lms Responsive Style Start
     .scroll-btn {bottom: 100px; z-index: 8;}
     .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
+    .topbar-right {
+        flex-wrap: wrap;
+        width: 100%;
+    }
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -23105,14 +23124,21 @@ Lms Responsive Style Start
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .chart-filters,
     .chart-filters ul {flex-wrap: wrap;}
-    .spells-quiz-info ul {
-        flex-direction: column;
-    }
-    .spells-quiz-info ul li {
-        border-left: 0;
-        border-bottom: 1px solid #bac3ca;
-        width: 100%;
-    }
+    .spell-question-area .left-content {justify-content: flex-start;}
+    .spells-quiz-info {position: relative; margin-bottom: 30px;}
+    .spells-quiz-info ul {flex-direction: column;}
+    .spells-quiz-info ul li {border-left: 0; border-bottom: 1px solid #bac3ca; width: 100%; }
+    .spells-quiz-from button {margin-top: 10px;}
+    .learning-page .learning-content {padding: 0 15px;}
+    .spells .dataTable td a,
+    .spells .dataTable thead tr th {font-size: 14px;}
+    .spells .table tbody td:first-child {min-width: 150px;}
+    .spells-topbar .view-btn {min-width: 150px; text-align: center;}
+    .read-quiz-content > .row > [class*="col-"] {max-width: 100%;}
+    body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 48%;flex: 0 0 48%;}
+    .lms-quiz-section .questions-data-block {max-width: 100%;}
+    .quiz-pagination .swiper-container ul {flex-wrap: wrap;}
+    body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 50px;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -23200,6 +23226,7 @@ Lms Responsive Style Start
     .find-instructor-section .find-instructor-section-circle {top: 0;}
     section.lms-chapter-section {overflow: hidden;}
     .lms-chapter-area {padding-left: 40px;}
+    .spells-topbar {padding: 20px 25px; flex-direction: column; gap: 15px;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -23210,4 +23237,5 @@ Lms Responsive Style Start
     .lms-call-to-action button {border-radius: 8px; margin-top: 15px;}
     .lms-call-to-action .field-holder {flex-direction: column; align-items: center;}
     .gallery-sub-header .book-btn {font-size: 14px; min-width: 150px; padding: 15px 8px;}
+    body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 100%; flex: 0 0 100%;}
 }

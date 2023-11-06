@@ -675,3 +675,17 @@ $(document).ready(function () {
 
 
 });
+
+$(document).ready(function () {
+    // $('table.dataTable').DataTable( {
+    //     responsive: true,
+    //     paging: false,
+    // searching: false
+    // } );
+
+    var table = $('table.dataTable').DataTable();
+ 
+    new $.fn.dataTable.Responsive( table, {
+        details: false
+    } );
+});

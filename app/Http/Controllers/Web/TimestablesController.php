@@ -133,6 +133,7 @@ class TimestablesController extends Controller
 
         $times_tables_data = $this->user_times_tables_data($user->id, 'x');
         $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
+        $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
         $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
 
         $data = [
@@ -140,6 +141,7 @@ class TimestablesController extends Controller
             'times_tables_data' => $times_tables_data,
             'average_time'      => $average_time,
             'authUser'          => $user,
+            'first_date'          => $first_date,
         ];
         return view('web.default.timestables.summary', $data);
     }
@@ -155,8 +157,12 @@ class TimestablesController extends Controller
         });
 
         $tables_array = $average_time = array();
+        $first_date = '';
         if (!empty($times_tables_data)) {
             foreach ($times_tables_data as $date => $times_tables_array) {
+                if( $first_date == ''){
+                    $first_date = date("d F Y", strtotime($date));
+                }
                 $date = strtotime($date);
                 if (!empty($times_tables_array)) {
                     foreach ($times_tables_array as $times_tablesObj) {
@@ -164,10 +170,12 @@ class TimestablesController extends Controller
 
                         if (!empty($results)) {
                             foreach ($results as $table_no => $table_rows) {
-
                                 $time_consumed = 0;
                                 if (!empty($table_rows)) {
                                     foreach ($table_rows as $tableRowObj) {
+                                        if( !isset( $tableRowObj->type ) ){
+                                            continue;
+                                        }
                                         if ($data_type == '' || $tableRowObj->type == $data_type) {
                                             $time_consumed += ($tableRowObj->time_consumed / 10);
 
@@ -182,8 +190,9 @@ class TimestablesController extends Controller
                                     }
                                 }
                                 $average_time[$table_no]['time_consumed'] = $time_consumed;
-                                $average_time[$table_no]['total_records'] = count($table_rows);
-                                $average_time[$table_no]['average_time'] = round($time_consumed / count($table_rows), 2);
+                                $table_rows_count  = is_array( $table_rows) ? count($table_rows) : 0;
+                                $average_time[$table_no]['total_records'] = $table_rows_count;
+                                $average_time[$table_no]['average_time'] = ( $table_rows_count > 0)? round($time_consumed / $table_rows_count, 2) : 0;
 
                             }
                         }
@@ -194,7 +203,8 @@ class TimestablesController extends Controller
 
         return array(
             'average_time' => $average_time,
-            'tables_array' => $tables_array
+            'tables_array' => $tables_array,
+            'first_date' => $first_date,
         );
     }
 

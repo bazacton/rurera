@@ -91,7 +91,7 @@
 	.leform-inline.leform-container {margin-left: 100px !important; margin-right: 30px !important; max-width: 100% !important;}
 }
 @media screen and (max-width: 992px) {
-	body {padding-left: 10px; padding-right: 10px;}
+	/* body {padding-left: 10px; padding-right: 10px;} */
 	.leform-pages-bar {position: fixed; left: 10px; top: 5px; border: 0; width: 100%;}
 	.leform-pages-bar-items {width: 100%; display: flex;}
 	.leform-pages-bar-items>li:first-child {border-top: 0; margin-top: 0;}

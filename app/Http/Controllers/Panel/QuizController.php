@@ -573,7 +573,7 @@ class QuizController extends Controller
                                 'total_questions_count'         => $total_questions_count,
                                 'field_id' => $field_id,
                                 'correct_answer'    => $correct_answer,
-                                'total_points'    => $RewardAccountingObj->score,
+                                'total_points'    => isset( $RewardAccountingObj->score)? $RewardAccountingObj->score : 0,
                             ])->render();
                         }else {
                             $question_response_layout = view('web.default.panel.questions.question_layout', [
@@ -655,7 +655,8 @@ class QuizController extends Controller
                     $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 }
 
-                $question_response_layout = view('web.default.panel.questions.question_layout', [
+$question_response_layout = '';
+                /*$question_response_layout = view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
                         'prev_question'     => 0,
                         'next_question'     => 0,
@@ -668,7 +669,7 @@ class QuizController extends Controller
                         'disable_prev'    => 'true',
                         'disable_next'    => 'true',
                         'class'             => 'disable-div',
-                    ])->render();
+                    ])->render();*/
 
 
                 $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);

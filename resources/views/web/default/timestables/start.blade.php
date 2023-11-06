@@ -42,18 +42,6 @@ $rand_id = rand(99,9999);
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="30">
 
-            <section class="quiz-topbar">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6 col-sm-12">
-                            <div class="quiz-top-info"><p>Test</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
                     <div class="question-step quiz-complete" style="display:none">
@@ -89,20 +77,14 @@ $rand_id = rand(99,9999);
                                                                   data-id="{{$questionIndex}}">
                                 <div class="questions-status d-flex mb-15">
                                 </div>
-                                <div class="questions-arithmetic-box d-flex align-items-center justify-content-center">
+                                <div class="questions-arithmetic-box d-flex align-items-center">
                             		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}">
                                    <div class="questions-controls">
-                                       <a href="#" class="setting-btn mr-5">
-                                        <img src="../assets/default/svgs/setting.svg" alt="mute svg">
-                                       </a>
                                        <a href="#">
                                         <img src="../assets/default/svgs/vol-mute.svg" alt="mute svg">
-                                       </a>
-                                       <a href="#">
-                                           <img src="../assets/default/svgs/spr-mute.svg" alt="mute svg">
                                        </a>
                                    </div>
                                 </div>

@@ -51,7 +51,7 @@ $rand_id = rand(99,9999);
                         <div class="row">
                             <div class="col-12">
                                 <h3>Summary of your previous attempts</h3>
-                                <table class="table table-striped table-bordered dataTable" style="width: 100%;"
+                                <table class="table table-striped table-bordered dataTable display responsive" style="width: 100%;"
                                        aria-describedby="example_info">
                                     <thead>
                                     <tr>

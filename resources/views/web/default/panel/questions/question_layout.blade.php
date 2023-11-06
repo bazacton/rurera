@@ -52,7 +52,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                     <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{count(json_decode($quizAttempt->questions_list))}} Questions ) Question ID: {{ $question->id }}</span>
                     <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
                         <span class="question-icon flag-question {{$flag_class}}"
-                              data-qresult_id="{{$newQuestionResult->quiz_result_id}}"
+                              data-qresult_id="{{isset( $newQuestionResult->quiz_result_id )? $newQuestionResult->quiz_result_id : 0}}"
                               data-question_id="{{$question->id }}">
                             <svg style="width: 42px;height: 42px;"
                                  xmlns="http://www.w3.org/2000/svg"

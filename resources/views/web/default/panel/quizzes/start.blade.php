@@ -208,7 +208,8 @@ $rand_id = rand(99,9999);
           <div class="modal-box">
             <div class="modal-title">
               <h3>Incorrect!</h3>
-              <span>are</span>
+              <span class="inc" style="text-decoration: line-through;">are</span>
+              <span class="cor">are</span>
             </div>
             <p>
               <span>verb</span> when more than one person is being something

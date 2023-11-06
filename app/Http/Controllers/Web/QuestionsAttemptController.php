@@ -382,6 +382,7 @@ class QuestionsAttemptController extends Controller
         }
 
         $incorrect_array = $correct_array = $user_input_array = array();
+        $question_user_input = '';
 
         if (!empty($questions_data)) {
             foreach ($questions_data as $q_id => $user_input) {
@@ -402,6 +403,7 @@ class QuestionsAttemptController extends Controller
                 $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
                 $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
                 $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
+                $question_user_input = $user_input;
                 $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
 
@@ -545,12 +547,8 @@ class QuestionsAttemptController extends Controller
                 }
             }
             $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $quizAttempt->attempt_type)->first();
-            $total_points = $RewardAccountingObj->score;
+            $total_points = isset( $RewardAccountingObj->score )? $RewardAccountingObj->score : 0;
         }
-
-
-
-
         $response = array(
             'show_fail_message'        => $show_fail_message,
             'is_complete'              => ($question_response_layout == '') ? true : $is_complete,
@@ -558,6 +556,7 @@ class QuestionsAttemptController extends Controller
             'correct_array'            => $correct_array,
             'incorrect_flag'           => $incorrect_flag,
             'question_correct_answere' => $question_correct_answere,
+            'question_user_input'       => $question_user_input,
             'question'                 => $question,
             'question_response_layout' => $question_response_layout,
             'newQuestionResult'        => $newQuestionResult,
@@ -572,6 +571,8 @@ class QuestionsAttemptController extends Controller
     function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index = 0)
     {
         $is_question_correct = true;
+        $user_input = strtolower($user_input);
+        $user_input = ucfirst($user_input);
 
         if ($question_type == 'checkbox' || $question_type == 'radio') {
             $question_correct = array();

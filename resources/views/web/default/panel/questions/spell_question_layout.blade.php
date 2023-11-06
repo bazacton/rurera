@@ -25,7 +25,7 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 
 $no_of_words = strlen($correct_answer);
 $field_width = ($no_of_words * 1.5);
-$question->question_average_time = 0.35;
+$question->question_average_time = 0.70;
 $total_time = gmdate("i:s", $question->question_average_time*60);
 
 @endphp
@@ -68,6 +68,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                             font: 1.2rem 'Ubuntu Mono', monospace;
                             letter-spacing: 0.5ch;">
                     </div>
+                    <span style="color:#fff;">{{$correct_answer}}</span>
 
 
 

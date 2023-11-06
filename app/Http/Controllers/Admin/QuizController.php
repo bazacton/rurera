@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesResult;
@@ -219,7 +220,12 @@ class QuizController extends Controller
                 $chapters_list[$webinar_id]['chapters'][$chapter_id] = $chapter_title;
             }
         }
+
+        $categories = Category::where('parent_id', null)
+                    ->with('subCategories')->orderBy('order', 'asc')
+                    ->get();
         $data['chapters'] = $chapters_list;
+        $data['categories'] = $categories;
 
         return view('admin.quizzes.create', $data);
     }
@@ -337,6 +343,7 @@ class QuizController extends Controller
             'year_group'                  => isset($data['year_group']) ? $data['year_group'] : '',
             'subject'                     => isset($data['subject']) ? $data['subject'] : '',
             'examp_board'                 => isset($data['examp_board']) ? $data['examp_board'] : '',
+            'year_id'                 => isset($data['year_id']) ? $data['year_id'] : 0,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -426,6 +433,10 @@ class QuizController extends Controller
             $chapters = $quiz->webinar->chapters;
         }
 
+        $categories = Category::where('parent_id', null)
+                            ->with('subCategories')->orderBy('order', 'asc')
+                            ->get();
+
         $data = [
             'pageTitle'     => trans('public.edit') . ' ' . $quiz->title,
             'webinars'      => $webinars,
@@ -434,6 +445,7 @@ class QuizController extends Controller
             'creator'       => $creator,
             'chapters'      => $chapters,
             'locale'        => mb_strtolower($locale),
+            'categories'        => $categories,
             'defaultLocale' => getDefaultLocale(),
         ];
 
@@ -576,6 +588,7 @@ class QuizController extends Controller
             'year_group'         => isset($data['year_group']) ? $data['year_group'] : '',
             'subject'            => isset($data['subject']) ? $data['subject'] : '',
             'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
+            'year_id'                 => isset($data['year_id']) ? $data['year_id'] : 0,
         ]);
 
         if (!empty($quiz)) {

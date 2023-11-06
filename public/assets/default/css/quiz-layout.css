@@ -262,7 +262,7 @@ Lms Question List Style
 .question-textarea.quiz-group {padding-top: 2px; margin-left: 0;}
 .question-layout-block form.question-fields,
 .question-fields .left-content {min-height: 700px; display: flex; flex-direction: column;}
-.question-layout-block form.question-fields .questions-total-holder {margin: -9px 0 15px !important; padding-left: 100px; color: #adabab; }
+.question-layout-block form.question-fields .questions-total-holder {margin: -9px 0 15px !important; padding-left: 80px; color: #adabab; }
 .question-layout-block form.question-fields .questions-nav-controls {margin-top: auto;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
@@ -556,7 +556,7 @@ Lms Quiz Wf Style Start
 }
 .question-number-holder ~ .leform-elements {
     margin-top: -15px;
-    padding-left: 90px;
+    padding-left: 70px;
 }
 /*.question-layout br {
     display: none;
@@ -711,15 +711,14 @@ Lms Quiz Wf Style Start
 }
 .lms-quiz-section .marks,
 .marks {
-    position: absolute;
-    right: -65px;
-    bottom: 15px;
-    margin: 0;
     color: #000;
     font-weight: 500;
     font-size: 14px;
     border-top: 2px solid #8a8a88;
     line-height: 14px;
+    top: 0;
+    right: 0;
+    margin-top: -28px;
 }
 .solve-quiz .divider~input.editor-field {
     margin: 5px 0 0;
@@ -1675,6 +1674,9 @@ Lms Quiz Wf Style End
 }
 .lms-quiz-section {
     position: relative;
+    background: url(/assets/default/img/mountain.jpg) no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 .read-text-controls {
     padding: 20px 20px 20px 0;
@@ -2146,4 +2148,30 @@ span.Selectable.marking-selected {
 }
 span.Selectable:hover {
     text-decoration: underline;
+}
+
+.review_submit .modal-dialog {
+    max-width: 350px;
+}
+.review_submit .modal-content {
+    text-align: center;
+    min-height: 250px;
+    align-items: center;
+    justify-content: center;
+}
+.review_submit .modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+.review_submit .modal-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.review_submit .submit_quiz_final {
+    padding: 15px 50px;
+    font-weight: 500;
 }

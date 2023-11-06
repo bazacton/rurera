@@ -258,7 +258,8 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                                 //$(".nub-of-sec").html('');
                                 clearInterval(Questioninterval);
                                 jQuery.noConflict();
-                                $(".question-status-modal .modal-box .modal-title span").html(return_data.question_correct_answere);
+                                $(".question-status-modal .modal-box .modal-title span.inc").html(return_data.question_user_input);
+                                $(".question-status-modal .modal-box .modal-title span.cor").html(return_data.question_correct_answere);
                                 $(".question-status-modal .modal-box p").html(defination_text);
                                 $("#question_status_modal").modal('show');
                                 $(".confirm-btn").focus();
@@ -770,10 +771,11 @@ function init_question_functions() {
         }
 
         //Temporary Commented
-        /*currentRequest = jQuery.ajax({
+        currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
+            async: true,
             beforeSend: function () {
                 console.log(currentRequest);
                 if (currentRequest != null) {
@@ -787,7 +789,7 @@ function init_question_functions() {
             success: function (return_data) {
                 console.log(return_data);
             }
-        });*/
+        });
 
     });
 
