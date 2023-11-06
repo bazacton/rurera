@@ -184,33 +184,38 @@ class QuestionsBankController extends Controller
         //$excel = 'grade-5-uk-vocabulary/words-near-homophones.xlsx';
         //$other_slug = 'words-near-homophones';
 
-        //$file_name = 'words-ie-after-c';
-        //$file_name = 'words-ei-can-make-an-ee-sound';
-        //$file_name = 'words-cious';
-        //$file_name = 'words-cial-tial';
-        //$file_name = 'words-ant';
-        //$file_name = 'words-ance-and-ancy';
-        //$file_name = 'words-able-where-the-e';
-        //$file_name = 'words-able-and-ible';
-        //$file_name = 'word-homophones';
-        //$file_name = 'word–ent-and-ence';
-        //$file_name = 'word-ablyand-ibly';
-        //$other_slug = $file_name;
-
-        $file_name = 'Grade-05';
-
-
-
-
-        $excel = 'vocabulary/'.$file_name.'.xlsx';
-        $other_slug = 'vocabulary';
-
+        $file_name = 'adverbs-synonymous-ending-in-ly';
+        //$file_name = 'adverbs-synonymous-ending-in-ly';
+        //$file_name = 'words-ending-in-er-or-and-ar';
+        //$file_name = 'words-with-a-soft-c-spelled-ce';
+        //$file_name = 'words-with-cial-shul-after-vowel';
+        //$file_name = 'words-with-long-vowel';
+        //$file_name = 'words-with-prefixes-dis-un-over-and-im';
+        //$file_name = 'words-with-short-vowel';
+        //$file_name = 'words-with-suffix-ably';
+        //$file_name = 'words-with-suffixes-ent-and-ence';
+        //$file_name = 'words-with-suffix-ful';
+        //$file_name = 'words-with-suffix-ible';
+        //$file_name = 'words-with-suffix-ibly';
+        //$file_name = 'Words-with-the-f-sound-spelled-ph';
+        //$file_name = 'words-with-the-prefix-over';
+        //$file_name = 'words-with-tial-shul';
+        //$file_name = 'words-with-unstressed-vowel-sounds';
+        //$file_name = 'words-with-unstressed-vowel-sounds';
+        $other_slug = $file_name;
 
 
-        $grade = 'Year 5';
+
+
+        $excel = 'year6-spellbee/'.$file_name.'.xlsx';
+
+
+
+        $grade = 'Year 6';
         $spells_type = 'Spellbee';
 
         $rows = Excel::toArray(null, $excel);
+        $words_array = array();
         if( !empty( $rows )){
             foreach( $rows as $rowArray){
                 if( !empty( $rowArray )){
@@ -219,6 +224,10 @@ class QuestionsBankController extends Controller
                             continue;
                         }
                         $new_word = isset( $rowData[0] )? $rowData[0] : '';
+                        if( isset( $words_array[$new_word])){
+                            continue;
+                        }
+                        $words_array[$new_word] = $new_word;
                         $sentence = isset( $rowData[2] )? $rowData[2] : '';
                         $defination = isset( $rowData[1] )? $rowData[1] : '';
                         if( $new_word == '' || $sentence == ''){
@@ -275,7 +284,7 @@ class QuestionsBankController extends Controller
                             'glossary_ids'              => '["1"]',
                             'elements_data'             => $element_data,
                             'layout_elements'           => $layout_elements ,
-                            'category_id'               => 612,
+                            'category_id'               => 615,
                             'course_id'                 => 2066,
                             'sub_chapter_id'            => 0 ,
                             'type'                      => 'descriptive' ,

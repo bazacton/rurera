@@ -675,3 +675,21 @@ $(document).ready(function () {
 
 
 });
+
+
+//    $(document).ready(function () {
+
+//     $('.lms-data-table table.table').dataTable({
+//         "bDestroy": true
+//     }).fnDestroy();
+
+//     $('.lms-data-table table.table').dataTable({
+//         "aoColumnDefs": [{
+//             "bSortable": false,
+//             "aTargets": ["sorting_disabled"]
+//         }],
+//         "bDestroy": true
+//     }).fnDestroy();
+
+// });
+  

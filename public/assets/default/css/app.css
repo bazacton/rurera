@@ -21917,6 +21917,16 @@ Heatmap Table style Start
 .heatmap-range-slider .range-value {background-color: rgba(0,0,0,0.1); display: inline-flex; padding: 10px 12px; border-radius: 5px; flex-basis: 130px; width: 130px;}
 .range-value input {width: calc(100% - 82px); border: 0; background-color: initial; font-weight: 700;}
 .range-value span {max-width: 80px; font-size: 16px; font-weight: 700; color: #000;}
+.heatmap-table td span {
+    display: inline-flex;
+}
+.heatmap-table-holder {
+    overflow: hidden;
+    overflow-x: auto;
+}
+.heatmap-table-holder table.heatmap-table {
+    overflow: hidden;
+}
 /***************************
 Heatmap Table style End
 ***************************/
@@ -23203,6 +23213,11 @@ Lms Responsive Style Start
     .lms-counter-card.counter-purple-bg:before {content: ""; position: absolute; left: 35px; top: 100%; border-top: 3px dashed #cac8cc; width: 80px; transform: rotate(90deg); margin-top: 45px;}
     .lms-counter-card.counter-yellow-bg:after {right: 172px; bottom: -29px; border-bottom: 3px dashed #cac8cc; transform: rotate(-40deg); border-radius: 0; width: 70px;}
     .counter-holder .svg-shapes-top {position: absolute; right: 162px; top: 100%; transform: rotate(90deg); margin-top: -75px;}
+    .lms-data-table table.table thead th {
+        display: block;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
 }
 @media screen and (max-width: 575px) {
     .lms-service-section {margin-top: 80px !important;}

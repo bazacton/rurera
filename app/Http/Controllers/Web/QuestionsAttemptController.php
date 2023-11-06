@@ -630,6 +630,9 @@ class QuestionsAttemptController extends Controller
         $parent_id = isset($QuizzResultQuestions->parent_type_id) ? $QuizzResultQuestions->parent_type_id : 0;
         $question_id = isset($QuizzResultQuestions->question_id) ? $QuizzResultQuestions->question_id : 0;
         $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
+        if( $parent_type == 'timestables'){
+            $question_id = $QuizzResultQuestions->id;
+        }
 
         if( $parent_type == 'vocabulary'){
             $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
@@ -652,8 +655,8 @@ class QuestionsAttemptController extends Controller
         if ($is_exists == true) {
             return;
         }
-        $full_data[$question_id] = $question_score;
-        $full_data = json_encode($full_data);
+        $full_data[$question_id]['question_score'] = $question_score;
+        $full_data = json_encode($full_data);;
 
         if (isset($RewardAccountingObj->id)) {
 
@@ -1239,7 +1242,7 @@ class QuestionsAttemptController extends Controller
                     'review_required'  => 0,
                     'attempted_at'       => time(),
                 ]);
-                $this->update_reward_points($newQuestionResult, $is_correct);
+                $this->update_reward_points($newQuestionResult, ($is_correct == 'true')? true : false);
 
 
             }
