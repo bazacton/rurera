@@ -80,6 +80,7 @@ class AnalyticsController extends Controller
             'sats',
             '11plus',
             'timestables',
+            'vocabulary',
         );
         /*$types_array = array(
             '11plus',

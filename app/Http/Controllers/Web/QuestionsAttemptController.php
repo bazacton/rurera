@@ -641,7 +641,7 @@ class QuestionsAttemptController extends Controller
             $non_mastered_words = isset( $UserVocabulary->non_mastered_words )? (array) json_decode($UserVocabulary->non_mastered_words) : array();
             $question_score = 5;
             if( !isset( $in_progress_words[$question_id] ) ){
-                return;
+                //return;
             }
         }
 
@@ -711,7 +711,8 @@ class QuestionsAttemptController extends Controller
             }
         }
         if( $is_mastered == false && $is_question_correct == true) {
-            $is_progress_data = isset( $in_progress_words[$QuizzResultQuestions->question_id] )? $in_progress_words[$QuizzResultQuestions->question_id] : array();
+
+            /*$is_progress_data = isset( $in_progress_words[$QuizzResultQuestions->question_id] )? $in_progress_words[$QuizzResultQuestions->question_id] : array();
 
             if(empty( $is_progress_data ) ){
                 $in_progress_words[$QuizzResultQuestions->question_id] = $dataArray;
@@ -719,7 +720,8 @@ class QuestionsAttemptController extends Controller
             }else{
                 unset($in_progress_words[$QuizzResultQuestions->question_id]);
                 $mastered_words[$QuizzResultQuestions->question_id] = $dataArray;
-            }
+            }*/
+            $mastered_words[$QuizzResultQuestions->question_id] = $dataArray;
         }
         if( $is_question_correct == false){
             if( isset( $in_progress_words[$QuizzResultQuestions->question_id] ) ){

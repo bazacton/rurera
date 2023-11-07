@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
+use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\UserAssignedTopics;
 use App\Models\UserVocabulary;
@@ -54,8 +55,12 @@ class SpellsController extends Controller
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
         $examp_board = $request->get('examp_board', null);
+        $year_id = $request->get('year', '');
 
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
+        if( $year_id != ''){
+            $query->where('year_id', $year_id);
+        }
 
 
         $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
@@ -102,6 +107,9 @@ class SpellsController extends Controller
                 ->where('status', 'active')
                 ->get();
         }
+        $categories = Category::where('parent_id', null)
+                            ->with('subCategories')->orderBy('order', 'asc')
+                            ->get();
 
         if (!empty($spellsData)) {
             $data = [
@@ -116,6 +124,7 @@ class SpellsController extends Controller
                 'user_mastered_words' => $mastered_words,
                 'user_in_progress_words' => $in_progress_words,
                 'user_non_mastered_words' => $non_mastered_words,
+                'categories' => $categories,
             ];
             return view('web.default.vocabulary.index', $data);
         }

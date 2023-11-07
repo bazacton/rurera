@@ -205,105 +205,132 @@ class QuestionsBankController extends Controller
         $other_slug = $file_name;
 
 
+        $files_array = array(
+            'words-containing-phon-and-sign',
+            'words-containing-sol-and-real',
+            'words-ending-in-cian',
+            'words-ending-in-ious-and-eous',
+            'words-ending-in-lly',
+            'words-ending-in-ous',
+            'words-ending-in-ous-ge',
+            'words-ending-in-sion',
+            'words-ending-in-ssion',
+            'words-ending-in-tion',
+            'words-that-plurals-possessive-apostrophes',
+            'words-where-au-makes-an-or-sound',
+            'words-where-ch-makes-a-sh-sound',
+            'words-where-suffix-words-ending-in-y',
+            'words-with-c-before-i-and-e',
+            'words-with-prefix-bi-meaning-two',
+            'words-with-prefixes-il-im-and-ir',
+            'words-with-prefixes-super-anti-and-auto',
+            'words-with-prefix-in-meaning-not',
+            'words-with-prefix-inter-among',
+            'words-with-prefix-sub-meaning-below-or',
+            'words-with-suffix-ation',
+            'words-with-suffix-ly',
+        );
 
-
-        $excel = 'year6-spellbee/'.$file_name.'.xlsx';
-
-
-
-        $grade = 'Year 6';
+        $grade = 'Year 4';
         $spells_type = 'Spellbee';
 
-        $rows = Excel::toArray(null, $excel);
-        $words_array = array();
-        if( !empty( $rows )){
-            foreach( $rows as $rowArray){
-                if( !empty( $rowArray )){
-                    foreach( $rowArray as $key => $rowData){
-                        if( $key == 0){
-                            continue;
+        foreach( $files_array as $file_name){
+            $excel = 'year4-spellbee/' . $file_name . '.xlsx';
+            echo '<hr><br><br>';
+            echo $file_name.'<br>';
+
+            $rows = Excel::toArray(null, $excel);
+            $words_array = array();
+            if (!empty($rows)) {
+                foreach ($rows as $rowArray) {
+                    if (!empty($rowArray)) {
+                        foreach ($rowArray as $key => $rowData) {
+                            if ($key == 0) {
+                                continue;
+                            }
+                            $new_word = isset($rowData[0]) ? $rowData[0] : '';
+                            if (isset($words_array[$new_word])) {
+                                continue;
+                            }
+                            $words_array[$new_word] = $new_word;
+                            $sentence = isset($rowData[2]) ? $rowData[2] : '';
+                            $defination = isset($rowData[1]) ? $rowData[1] : '';
+                            if ($new_word == '' || $sentence == '') {
+                                continue;
+                            }
+                            $random_id = rand(1111, 9999);
+                            $word_to_voice = $new_word . ' [P-1] as in [P-0.5] ' . $sentence;
+                            //$audio_text = '<speak>'.$new_word.'<break time="1s"/> as in <prosody pitch="x-high">'.$sentence.'</prosody></speak>';
+                            $audio_text = '<speak>' . $word_to_voice . '</speak>';
+                            $audio_text = str_replace('[P-', '<break time="', $audio_text);
+                            $audio_text = str_replace(']', 's"/>', $audio_text);
+                            $first_character = substr($new_word, 0, 1);
+                            $new_tag = 'letter ' . $first_character;
+                            $new_title = $new_tag . '-' . $new_word . '-' . $other_slug . '-' . $spells_type . '-' . $grade . '-Audio Question';
+
+                            $TextToSpeechController = new TextToSpeechController();
+                            $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
+                            $word_audio = '<speak>' . $new_word . '</speak>';
+                            $audio_word_path = $TextToSpeechController->getSpeechAudioFilePath($word_audio);
+                            $audio_path = $text_audio_path;
+                            $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0xXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0xIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+TGlzdGVuIHRvIHRoZSBhdWRpbyBhbmQgd3JpdGUgdGhlIGNvcnJlY3Qgc3BlbGxpbmdzLjwvc3Bhbj48L2Rpdj48L2Rpdj48ZGl2IGlkPVwibGVmb3JtLWVsZW1lbnQtMFwiIGNsYXNzPVwibGVmb3JtLWVsZW1lbnQtMCBsZWZvcm0tZWxlbWVudCBxdWl6LWdyb3VwIGxlZm9ybS1lbGVtZW50LWh0bWxcIiBkYXRhLXR5cGU9XCJhdWRpb19maWxlXCI+PGF1ZGlvIGNvbnRyb2xzPVwiXCI+XG4gIDxzb3VyY2Ugc3JjPVwiL3NwZWVjaC1hdWRpby9wcm9wZXJ0aWVzLm1wM1wiIHR5cGU9XCJhdWRpby9vZ2dcIj5cbiAgPHNvdXJjZSBzcmM9XCIvc3BlZWNoLWF1ZGlvL3Byb3BlcnRpZXMubXAzXCIgdHlwZT1cImF1ZGlvL21wZWdcIj5cbllvdXIgYnJvd3NlciBkb2VzIG5vdCBzdXBwb3J0IHRoZSBhdWRpbyBlbGVtZW50LlxuPC9hdWRpbz48L2Rpdj48ZGl2IGlkPVwibGVmb3JtLWVsZW1lbnQtMlwiIGNsYXNzPVwibGVmb3JtLWVsZW1lbnQtMiBsZWZvcm0tZWxlbWVudCBxdWl6LWdyb3VwIGxlZm9ybS1lbGVtZW50LWh0bWxcIiBkYXRhLXR5cGU9XCJ0ZXh0ZmllbGRfcXVpelwiPjxzcGFuIGNsYXNzPVwiaW5wdXQtaG9sZGVyIGlucHV0X2JveFwiPjxpbnB1dCB0eXBlPVwidGV4dFwiIHBsYWNlaG9sZGVyPVwiXCIgY2xhc3M9XCJlZGl0b3ItZmllbGQgaW5wdXQtc2ltcGxlICBpbnB1dF9ib3hcIiBpZD1cImZpZWxkLTY2OTc0XCI+PC9zcGFuPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
+                            $element_data = '{"":{"basic":"basic","content":"Listen to the audio and write the correct spellings.","elements_data":"W3t9XQ==","type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":3},"66974":{"basic":"basic","placeholder":"","label_before":"","label_after":"","style_format":"input_box","text_format":"text","maxlength":"","correct_answer":"Properties","score":"5","elements_data":"W3t9XQ==","field_id":66974,"type":"textfield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6}}';
+                            $layout_elements = '[{"basic":"basic","audio_text":"Properties","audio_sentense":"Sentense goes here","audio_defination":"defination goes here","word_audio":"\/speech-audio\/properties_word.mp3","content":"\/speech-audio\/properties.mp3","elements_data":"W3t9XQ==","type":"audio_file","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":2},{"basic":"basic","content":"Listen to the audio and write the correct spellings.","elements_data":"W3t9XQ==","type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":3},{"basic":"basic","placeholder":"","label_before":"","label_after":"","style_format":"input_box","text_format":"text","maxlength":"","correct_answer":"Properties","score":"5","elements_data":"W3t9XQ==","field_id":66974,"type":"textfield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6}]';
+
+                            $element_data = str_replace('66974', $random_id, $element_data);
+                            $element_data = str_replace('"correct_answer":"Properties"', '"correct_answer":"' . $new_word . '"', $element_data);
+
+                            $layout_elements = str_replace('"correct_answer":"Properties"', '"correct_answer":"' . $new_word . '"', $layout_elements);
+                            $layout_elements = str_replace('Properties', $new_word, $layout_elements);
+                            $layout_elements = str_replace('properties.mp3', $audio_path, $layout_elements);
+                            $layout_elements = str_replace('properties_word.mp3', $audio_word_path, $layout_elements);
+                            $layout_elements = str_replace('66974', $random_id, $layout_elements);
+                            $layout_elements = str_replace('Sentense goes here', $sentence, $layout_elements);
+                            $layout_elements = str_replace('defination goes here', $defination, $layout_elements);
+
+
+                            $question_layout = str_replace('66974', $random_id, $question_layout);
+                            $question_layout = str_replace('properties.mp3', $audio_path, $question_layout);
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                            $quizQuestion = QuizzesQuestion::create([
+                                'quiz_id'                   => 0,
+                                'creator_id'                => $user->id,
+                                'grade'                     => '',
+                                'question_year'             => 0,
+                                'question_score'            => 5,
+                                'question_average_time'     => 2,
+                                'question_difficulty_level' => 'Below',
+                                'question_template_type'    => 'sum_quiz',
+                                //isset( $questionData['type'] )? $questionData['type'] : '',
+                                'chapter_id'                => (isset($questionData['chapter_id']) && $questionData['chapter_id'] != '') ? $questionData['chapter_id'] : 0,
+                                'question_title'            => $new_title,
+                                'question_layout'           => $question_layout,
+                                'question_solve'            => '<p>test</p>',
+                                'glossary_ids'              => '["1"]',
+                                'elements_data'             => $element_data,
+                                'layout_elements'           => $layout_elements,
+                                'category_id'               => 614,
+                                'course_id'                 => 2066,
+                                'sub_chapter_id'            => 0,
+                                'type'                      => 'descriptive',
+                                'created_at'                => time(),
+                                'question_status'           => 'Submit for review',
+                                'comments_for_reviewer'     => '',
+                                'search_tags'               => $new_tag . ' | ' . $new_word . ' | ' . $grade . ' | ' . $spells_type . ' | ' . $other_slug,
+                                'review_required'           => 0,
+                                'question_example'          => '<p>test</p>',
+                            ]);
+
+                            QuizzesQuestionTranslation::updateOrCreate([
+                                'quizzes_question_id' => $quizQuestion->id,
+                                'locale'              => 'en',
+                            ], [
+                                'title'   => $new_title,
+                                'correct' => '',
+                            ]);
+                            pre($quizQuestion->id, false);
                         }
-                        $new_word = isset( $rowData[0] )? $rowData[0] : '';
-                        if( isset( $words_array[$new_word])){
-                            continue;
-                        }
-                        $words_array[$new_word] = $new_word;
-                        $sentence = isset( $rowData[2] )? $rowData[2] : '';
-                        $defination = isset( $rowData[1] )? $rowData[1] : '';
-                        if( $new_word == '' || $sentence == ''){
-                            continue;
-                        }
-                        $random_id = rand(1111, 9999);
-                        $word_to_voice = $new_word.' [P-1] as in [P-0.5] '.$sentence;
-                        //$audio_text = '<speak>'.$new_word.'<break time="1s"/> as in <prosody pitch="x-high">'.$sentence.'</prosody></speak>';
-                        $audio_text = '<speak>'.$word_to_voice.'</speak>';
-                        $audio_text = str_replace('[P-', '<break time="', $audio_text);
-                        $audio_text = str_replace(']', 's"/>', $audio_text);
-                        $first_character = substr($new_word, 0, 1);
-                        $new_tag = 'letter '.$first_character;
-                        $new_title = $new_tag.'-'.$new_word.'-'.$other_slug.'-'.$spells_type.'-'.$grade.'-Audio Question';
-
-                        $TextToSpeechController = new TextToSpeechController();
-                        $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
-                        $word_audio = '<speak>'.$new_word.'</speak>';
-                        $audio_word_path = $TextToSpeechController->getSpeechAudioFilePath($word_audio);
-                        $audio_path =  $text_audio_path;
-                        $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0xXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0xIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+TGlzdGVuIHRvIHRoZSBhdWRpbyBhbmQgd3JpdGUgdGhlIGNvcnJlY3Qgc3BlbGxpbmdzLjwvc3Bhbj48L2Rpdj48L2Rpdj48ZGl2IGlkPVwibGVmb3JtLWVsZW1lbnQtMFwiIGNsYXNzPVwibGVmb3JtLWVsZW1lbnQtMCBsZWZvcm0tZWxlbWVudCBxdWl6LWdyb3VwIGxlZm9ybS1lbGVtZW50LWh0bWxcIiBkYXRhLXR5cGU9XCJhdWRpb19maWxlXCI+PGF1ZGlvIGNvbnRyb2xzPVwiXCI+XG4gIDxzb3VyY2Ugc3JjPVwiL3NwZWVjaC1hdWRpby9wcm9wZXJ0aWVzLm1wM1wiIHR5cGU9XCJhdWRpby9vZ2dcIj5cbiAgPHNvdXJjZSBzcmM9XCIvc3BlZWNoLWF1ZGlvL3Byb3BlcnRpZXMubXAzXCIgdHlwZT1cImF1ZGlvL21wZWdcIj5cbllvdXIgYnJvd3NlciBkb2VzIG5vdCBzdXBwb3J0IHRoZSBhdWRpbyBlbGVtZW50LlxuPC9hdWRpbz48L2Rpdj48ZGl2IGlkPVwibGVmb3JtLWVsZW1lbnQtMlwiIGNsYXNzPVwibGVmb3JtLWVsZW1lbnQtMiBsZWZvcm0tZWxlbWVudCBxdWl6LWdyb3VwIGxlZm9ybS1lbGVtZW50LWh0bWxcIiBkYXRhLXR5cGU9XCJ0ZXh0ZmllbGRfcXVpelwiPjxzcGFuIGNsYXNzPVwiaW5wdXQtaG9sZGVyIGlucHV0X2JveFwiPjxpbnB1dCB0eXBlPVwidGV4dFwiIHBsYWNlaG9sZGVyPVwiXCIgY2xhc3M9XCJlZGl0b3ItZmllbGQgaW5wdXQtc2ltcGxlICBpbnB1dF9ib3hcIiBpZD1cImZpZWxkLTY2OTc0XCI+PC9zcGFuPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
-                        $element_data = '{"":{"basic":"basic","content":"Listen to the audio and write the correct spellings.","elements_data":"W3t9XQ==","type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":3},"66974":{"basic":"basic","placeholder":"","label_before":"","label_after":"","style_format":"input_box","text_format":"text","maxlength":"","correct_answer":"Properties","score":"5","elements_data":"W3t9XQ==","field_id":66974,"type":"textfield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6}}';
-                        $layout_elements = '[{"basic":"basic","audio_text":"Properties","audio_sentense":"Sentense goes here","audio_defination":"defination goes here","word_audio":"\/speech-audio\/properties_word.mp3","content":"\/speech-audio\/properties.mp3","elements_data":"W3t9XQ==","type":"audio_file","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":2},{"basic":"basic","content":"Listen to the audio and write the correct spellings.","elements_data":"W3t9XQ==","type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":3},{"basic":"basic","placeholder":"","label_before":"","label_after":"","style_format":"input_box","text_format":"text","maxlength":"","correct_answer":"Properties","score":"5","elements_data":"W3t9XQ==","field_id":66974,"type":"textfield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6}]';
-
-                        $element_data = str_replace('66974', $random_id, $element_data);
-                        $element_data = str_replace('"correct_answer":"Properties"', '"correct_answer":"'.$new_word.'"', $element_data);
-
-                        $layout_elements = str_replace('"correct_answer":"Properties"', '"correct_answer":"'.$new_word.'"', $layout_elements);
-                        $layout_elements = str_replace('Properties', $new_word, $layout_elements);
-                        $layout_elements = str_replace('properties.mp3', $audio_path, $layout_elements);
-                        $layout_elements = str_replace('properties_word.mp3', $audio_word_path, $layout_elements);
-                        $layout_elements = str_replace('66974', $random_id, $layout_elements);
-                        $layout_elements = str_replace('Sentense goes here', $sentence, $layout_elements);
-                        $layout_elements = str_replace('defination goes here', $defination, $layout_elements);
-
-
-                        $question_layout = str_replace('66974', $random_id, $question_layout);
-                        $question_layout = str_replace('properties.mp3', $audio_path, $question_layout);
-                        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
-
-                        $quizQuestion = QuizzesQuestion::create([
-                            'quiz_id'                   => 0 ,
-                            'creator_id'                => $user->id ,
-                            'grade'                     => '' ,
-                            'question_year'             => 0 ,
-                            'question_score'            => 0,
-                            'question_average_time'     => 2,
-                            'question_difficulty_level' => 'Below',
-                            'question_template_type'    => 'sum_quiz' , //isset( $questionData['type'] )? $questionData['type'] : '',
-                            'chapter_id'                => (isset($questionData['chapter_id']) && $questionData['chapter_id'] != '') ? $questionData['chapter_id'] : 0 ,
-                            'question_title'            => $new_title,
-                            'question_layout'           => $question_layout,
-                            'question_solve'            => '<p>test</p>',
-                            'glossary_ids'              => '["1"]',
-                            'elements_data'             => $element_data,
-                            'layout_elements'           => $layout_elements ,
-                            'category_id'               => 615,
-                            'course_id'                 => 2066,
-                            'sub_chapter_id'            => 0 ,
-                            'type'                      => 'descriptive' ,
-                            'created_at'                => time() ,
-                            'question_status'           => 'Submit for review',
-                            'comments_for_reviewer'     => '',
-                            'search_tags'              => $new_tag.' | '.$new_word.' | '.$grade.' | '.$spells_type.' | '. $other_slug,
-                            'review_required'              => 0,
-                            'question_example'            => '<p>test</p>',
-                        ]);
-
-                        QuizzesQuestionTranslation::updateOrCreate([
-                            'quizzes_question_id' => $quizQuestion->id ,
-                            'locale'              => 'en' ,
-                        ] , [
-                            'title'   => $new_title ,
-                            'correct' => '' ,
-                        ]);
-                        pre($quizQuestion->id, false);
                     }
                 }
             }

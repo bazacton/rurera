@@ -7595,7 +7595,8 @@ function getTopicTitle($topic_id, $topic_type){
 
             case "vocabulary":
                $QuizObj = Quiz::find($topic_id);
-               $topic_title = isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
+               $topic_title = 'Spells: ';
+               $topic_title .= isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
            break;
 
 

@@ -46,7 +46,7 @@
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="master-card non-master">
-                                                    <strong>Non-Mastered Words</strong> <span>{{count($user_non_mastered_words)}}</span>
+                                                    <strong>Troubled Words</strong> <span>{{count($user_non_mastered_words)}}</span>
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -69,119 +69,172 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <table class="table table-striped table-bordered dataTable" style="width: 100%;"
-                                           aria-describedby="example_info">
-                                        <thead>
-                                        <tr>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">List
-                                            </th>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">&nbsp;
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Percent: activate to sort column ascending">
-                                                Words
-                                            </th>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">Mastered Words
-                                            </th>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">Non-Mastered Words
-                                            </th>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">In-progress Words
-                                            </th>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                aria-label="Date: activate to sort column descending">Not Used Words
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                        <div class="listing-search lms-jobs-form mb-20">
+                                            <form>
+                                                <div class="row align-items-center">
+                                                    <div class="col-12 col-lg-9 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Year Group</label>
+                                                            <div class="input-field select-arrow">
+                                                                <select
+                                                                        class="lms-jobs-select"
+                                                                        name="year">
+                                                                    <option {{ !empty($trend) ?
+                                                                    '' : 'selected' }} disabled>Select Year</option>
 
-                                        @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
-                                        $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
-                                        @endphp
-
-                                        @foreach( $data as $dataObj)
-                                        @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
-                                        $total_attempts = $total_questions_attempt = $correct_questions =
-                                        $incorrect_questions = 0;
-                                        $mastered_words = $non_mastered_words = $in_progress_words = 0;
-                                        $total_questions = isset( $dataObj->quizQuestionsList )? count(
-                                        $dataObj->quizQuestionsList) : 0;
-
-                                        $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
-                                        $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
-                                        $in_progress = isset( $resultData->in_progress )? $resultData->in_progress :
-                                        false;
-                                        $current_status = isset( $resultData->current_status )?
-                                        $resultData->current_status
-                                        : '';
-                                        $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
-                                        $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
-
-                                        @endphp
+                                                                    @foreach($categories as $category)
+                                                                    @if(!empty($category->subCategories) and
+                                                                    count($category->subCategories))
+                                                                    <optgroup label="{{  $category->title }}">
+                                                                        @foreach($category->subCategories as $subCategory)
+                                                                        <option value="{{ $subCategory->id }}" @if(request()->get('year') == $subCategory->id) selected="selected" @endif>
+                                                                            {{$subCategory->title}}
+                                                                        </option>
+                                                                        @endforeach
+                                                                    </optgroup>
+                                                                    @else
+                                                                    <option value="{{ $category->id }}"
+                                                                            class="font-weight-bold">{{
+                                                                        $category->title }}
+                                                                    </option>
+                                                                    @endif
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
-                                        @if( !empty( $resultData ) )
+                                                    <div class="col-12 col-lg-3 col-md-6">
+                                                        <div class="form-group mb-0">
+                                                            <button type="submit"
+                                                                    class="btn-primary px-20 border-0 rounded-pill text-white text-uppercase">
+                                                                Filter
+                                                            </button>
+                                                            <a href="/spells" class="clear-btn ml-10 text-uppercase text-primary">Clear
+                                                                Filters</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <div class="col-12">
+                                    <div class="spells-table-inner">
+                                        <table class="table table-striped table-bordered dataTable" style="width: 100%;"
+                                            aria-describedby="example_info">
+                                            <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">List
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">&nbsp;
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Percent: activate to sort column ascending">
+                                                    Words
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">Mastered Words
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">Troubled Words
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">In-progress Words
+                                                </th>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
+                                                    aria-label="Date: activate to sort column descending">Not Used Words
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
 
-                                        @php $attempt_count = 1; @endphp
-                                        @foreach( $resultData as $resultObj)
-                                            @php
-
-                                            $mastered_words += $resultObj->mastered_words;
-                                            $non_mastered_words += $resultObj->non_mastered_words;
-                                            $in_progress_words += $resultObj->in_progress_words;
-                                            $total_questions_attempt += $resultObj->attempted;
-                                            $total_questions_attempt += $resultObj->attempted;
-                                            $correct_questions += $resultObj->correct;
-                                            $incorrect_questions += $resultObj->incorrect;
-                                            $total_attempts++;
+                                            @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
+                                            $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
                                             @endphp
 
-                                            @php $attempt_count++; @endphp
-                                        @endforeach
+                                            @foreach( $data as $dataObj)
+                                            @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
+                                            $total_attempts = $total_questions_attempt = $correct_questions =
+                                            $incorrect_questions = 0;
+                                            $mastered_words = $non_mastered_words = $in_progress_words = 0;
+                                            $total_questions = isset( $dataObj->quizQuestionsList )? count(
+                                            $dataObj->quizQuestionsList) : 0;
 
-                                        @endif
+                                            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                                            $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
+                                            $in_progress = isset( $resultData->in_progress )? $resultData->in_progress :
+                                            false;
+                                            $current_status = isset( $resultData->current_status )?
+                                            $resultData->current_status
+                                            : '';
+                                            $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
+                                            $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
 
-                                        @php
-                                        $total_percentage = 0;
-                                        if( $total_questions_attempt > 0 && $correct_questions > 0){
-                                        $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
-                                        }
-                                        @endphp
-
-                                        @php $total_questions_all += $total_questions;
-                                        $total_questions_attempt_all += $total_questions_attempt;
-                                        $correct_questions_all += $correct_questions;
-                                        $incorrect_questions_all += $incorrect_questions;
-                                        $pending_questions_all += ($total_questions - $total_questions_attempt);
-                                        $not_used_words_all += ($total_questions - $mastered_words - $non_mastered_words - $in_progress_words);
+                                            @endphp
 
 
-                                        @endphp
+                                            @if( !empty( $resultData ) )
 
-                                        <tr class="odd">
-                                            <td>
+                                            @php $attempt_count = 1; @endphp
+                                            @foreach( $resultData as $resultObj)
+                                                @php
 
-                                                <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}}</a>
-                                            </td>
-                                            <td>
-                                                @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
-                                                <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
-                                                @endif
-                                            </td>
-                                            <td>{{$total_questions}}</td>
-                                            <td>{{$mastered_words}}</td>
-                                            <td>{{$non_mastered_words}}</td>
-                                            <td>{{$in_progress_words}}</td>
-                                            <td>{{($total_questions - $mastered_words - $non_mastered_words - $in_progress_words)}}</td>
+                                                $mastered_words += $resultObj->mastered_words;
+                                                $non_mastered_words += $resultObj->non_mastered_words;
+                                                $in_progress_words += $resultObj->in_progress_words;
+                                                $total_questions_attempt += $resultObj->attempted;
+                                                $total_questions_attempt += $resultObj->attempted;
+                                                $correct_questions += $resultObj->correct;
+                                                $incorrect_questions += $resultObj->incorrect;
+                                                $total_attempts++;
+                                                @endphp
 
-                                        </tr>
-                                        @endforeach
+                                                @php $attempt_count++; @endphp
+                                            @endforeach
 
-                                        </tbody>
-                                    </table>
+                                            @endif
+
+                                            @php
+                                            $total_percentage = 0;
+                                            if( $total_questions_attempt > 0 && $correct_questions > 0){
+                                            $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
+                                            }
+                                            @endphp
+
+                                            @php $total_questions_all += $total_questions;
+                                            $total_questions_attempt_all += $total_questions_attempt;
+                                            $correct_questions_all += $correct_questions;
+                                            $incorrect_questions_all += $incorrect_questions;
+                                            $pending_questions_all += ($total_questions - $total_questions_attempt);
+                                            $not_used_words_all += ($total_questions - $mastered_words - $non_mastered_words - $in_progress_words);
+
+
+                                            @endphp
+
+                                            <tr class="odd">
+                                                <td>
+
+                                                    <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}}</a>
+                                                </td>
+                                                <td>
+                                                    @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
+                                                    <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
+                                                    @endif
+                                                </td>
+                                                <td>{{$total_questions}}</td>
+                                                <td>{{$mastered_words}}</td>
+                                                <td>{{$non_mastered_words}}</td>
+                                                <td>{{$in_progress_words}}</td>
+                                                <td>{{($total_questions - $mastered_words - $non_mastered_words - $in_progress_words)}}</td>
+
+                                            </tr>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
