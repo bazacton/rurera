@@ -56,10 +56,14 @@ class SpellsController extends Controller
         $subject = $request->get('subject', null);
         $examp_board = $request->get('examp_board', null);
         $year_id = $request->get('year', '');
+        $quiz_category = $request->get('quiz_category', '');
 
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
         if( $year_id != ''){
             $query->where('year_id', $year_id);
+        }
+        if( $quiz_category != '' && $quiz_category != 'All'){
+            $query->where('quiz_category', $quiz_category);
         }
 
 

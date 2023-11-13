@@ -205,39 +205,100 @@ class QuestionsBankController extends Controller
         $other_slug = $file_name;
 
 
+        //Year 4
         $files_array = array(
-            'words-containing-phon-and-sign',
-            'words-containing-sol-and-real',
-            'words-ending-in-cian',
-            'words-ending-in-ious-and-eous',
-            'words-ending-in-lly',
-            'words-ending-in-ous',
-            'words-ending-in-ous-ge',
-            'words-ending-in-sion',
-            'words-ending-in-ssion',
-            'words-ending-in-tion',
-            'words-that-plurals-possessive-apostrophes',
-            'words-where-au-makes-an-or-sound',
-            'words-where-ch-makes-a-sh-sound',
-            'words-where-suffix-words-ending-in-y',
-            'words-with-c-before-i-and-e',
-            'words-with-prefix-bi-meaning-two',
-            'words-with-prefixes-il-im-and-ir',
-            'words-with-prefixes-super-anti-and-auto',
-            'words-with-prefix-in-meaning-not',
-            'words-with-prefix-inter-among',
-            'words-with-prefix-sub-meaning-below-or',
-            'words-with-suffix-ation',
+            //'words-containing-phon-and-sign',
+            //'words-containing-sol-and-real',
+            //'words-ending-in-cian',
+            //'words-ending-in-ious-and-eous',
+            //'words-ending-in-lly',
+            //'words-ending-in-ous',
+            //'words-ending-in-ous-ge',
+            //'words-ending-in-sion',
+            //'words-ending-in-ssion',
+            //'words-ending-in-tion',
+            //'words-that-plurals-possessive-apostrophes',
+            //'words-where-au-makes-an-or-sound',
+            //'words-where-ch-makes-a-sh-sound',
+            //'words-where-suffix-words-ending-in-y',
+            //'words-with-c-before-i-and-e',
+            //'words-with-prefix-bi-meaning-two',
+            //'words-with-prefixes-il-im-and-ir',
+            //'words-with-prefixes-super-anti-and-auto',
+            //'words-with-prefix-in-meaning-not',
+            //'words-with-prefix-inter-among',
+            //'words-with-prefix-sub-meaning-below-or',
+            //'words-with-suffix-ation',
             'words-with-suffix-ly',
         );
 
-        $grade = 'Year 4';
+        //Year 3
+        $files_array = array(
+           //'words-ending-in-al',
+           //'words-ending-in-gue-and-que',
+           //'words-ending-in-le',
+           //'words-ending-in-ly-exceptions',
+           //'words-ending-in-sion',
+           //'words-ending-in-ture',
+           //'words-ending-ly-base-word-ends-in-ic',
+           //'words-ending-ly-base-word-ends-le',
+           //'words-ending-sure',
+           //'words-ending-with-suffix-er',
+           //'words-that-are-homophones',
+           //'words-where-digraph-ey-makes-an-ai-sound',
+           //'words-where-digraph-ou-makes-ow-sound',
+           //'words-where-digraph-sc-makes-s-sound',
+           //'words-where-ing-er-ed-added-multisyllabic-words',
+           //'words-where-the-digraph-ch-makes-a-k-sound',
+           //'words-where-y-makes-i-sound',
+           //'words-with-digraph-ei-and-tetragraph-eigh',
+           'words-with-the-prefix-dis',
+           'words-with-the-prefix-mis',
+           'words-with-the-prefix-re',
+           'words-with-the-suffix-ly',
+       );
+
+        //Year 2
+        $files_array = array(
+           //'words-ending-in-al',
+           //'words-ending-in-el',
+           //'words-ending-in-ful-and-less',
+           //'words-ending-in-il',
+           //'words-ending-in-le',
+           //'words-ending-in-ment-and-ness',
+           //'words-ending-in-tion',
+           //'words-that-are-homophones',
+           //'words-that-are-near-homophones',
+           //'words-where-a-makes-an-or-sound',
+           //'words-where-c-makes-s-sound',
+           //'words-where-dge-makes-j-sound',
+           //'words-where-ed-added-to-single-syllable',
+           //'words-where-ed-added-to-words-ending-y',
+           //'words-where-er-and-est-are-added-words-ending-y',
+           //'words-where-er-est-and-ed-words-ending-e',
+           //'words-where-es-added-to-words-ending-y',
+           //'words-where-ge-makes-j-sound',
+           //'words-where-g-makes-j-sound',
+           //'words-where-ing-added-single-syllable-words',
+           //'words-where-ing-added-words-ending-e',
+           //'words-where-kn-and-gn-make-n',
+           //'words-where-o-makes-an-u-sound',
+           //'words-where-si-and-s-make-zh-sound',
+           //'words-where-the-er-and-or-sounds',
+           //'words-where-wr-makes-r-sound',
+           //'words-where-y-makes-igh-sound',
+           'words-with-apostrophes-for-contraction',
+           'words-with-apostrophes-for-possession',
+        );
+
+        $grade = 'Year 2';
         $spells_type = 'Spellbee';
 
         foreach( $files_array as $file_name){
-            $excel = 'year4-spellbee/' . $file_name . '.xlsx';
+            $excel = 'year2-spellbee/' . $file_name . '.xlsx';
             echo '<hr><br><br>';
             echo $file_name.'<br>';
+            $other_slug = $file_name;
 
             $rows = Excel::toArray(null, $excel);
             $words_array = array();
@@ -310,7 +371,7 @@ class QuestionsBankController extends Controller
                                 'glossary_ids'              => '["1"]',
                                 'elements_data'             => $element_data,
                                 'layout_elements'           => $layout_elements,
-                                'category_id'               => 614,
+                                'category_id'               => 607,
                                 'course_id'                 => 2066,
                                 'sub_chapter_id'            => 0,
                                 'type'                      => 'descriptive',

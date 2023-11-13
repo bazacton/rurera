@@ -10,6 +10,8 @@ use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Mail;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class SatsController extends Controller
 {
@@ -17,6 +19,144 @@ class SatsController extends Controller
     public function sats_landing()
     {
 
+        if( isset( $_GET['image_to_text'] ) ) {
+            $imagePath = 'assets/13.jpg';
+
+            $image_text = (new TesseractOCR($imagePath))->hocr()
+                ->run();
+            $text = (new TesseractOCR($imagePath))->run();
+            //pre($image_text);
+
+            //preg_match_all('/title="bbox (\d+) (\d+) (\d+) (\d+)"/', $image_text, $matches, PREG_SET_ORDER|PREG_OFFSET_CAPTURE);
+
+
+            echo '<img src="'.$imagePath.'">';
+            //pre($image_text);
+
+
+
+
+
+
+
+            //preg_match_all('/<span class="ocrx_word" id="word_([^"]+)" title="bbox (\d+) (\d+) (\d+) (\d+)">([^<]+)<\/span>/', $image_text, $matches, PREG_SET_ORDER);
+
+            //pre($image_text);
+            //preg_match_all('/<span class="ocrx_word" id="word_(\d+_\d+)" title="bbox (\d+) (\d+) (\d+) (\d+);[^"]*">([^<]+)<\/span>/', $image_text, $matches, PREG_SET_ORDER);
+            //preg_match_all('/<span class="ocrx_word" id="word_(\d+_\d+)" title="bbox (\d+) (\d+) (\d+) (\d+)[^"]*">([^<]+)<\/span>/', $image_text, $matches, PREG_SET_ORDER);
+            //preg_match_all('/<span class="ocrx_word" id="word_\d+_\d+" title="bbox \d+ \d+ \d+ \d+;[^"]*">[^<]+<\/span>/', $image_text, $matches);
+
+            $span_explode = explode('<span', $image_text);
+            $boxes = [];
+            if( !empty( $span_explode ) ){
+                $count = 0;
+                foreach( $span_explode as $explodeData){
+                    $count++;
+                    if ($count == 1) {
+                        continue;
+                    }
+                    if(!str_contains($explodeData, 'ocrx_word')){
+                        continue;
+                    }
+                    $explodeData = explode('ocrx_word', $explodeData);
+                    $explodeData = isset( $explodeData[1])? $explodeData[1] : '';
+                    $explodeData = explode("title='bbox ", $explodeData);
+                    $positionsString = explode(";", $explodeData[1]);
+                    $positionsString = isset( $positionsString[0] )? $positionsString[0] : '';
+                    $explodeDataText = explode(">", $explodeData[1]);
+                    $explodeDataText = explode("<", $explodeDataText[1]);
+                    $text_string = isset( $explodeDataText[0])? $explodeDataText[0] : '';
+                    $positionsArray = explode(' ', $positionsString);
+
+                    $x1 = isset( $positionsArray[0] )? preg_replace('/[^A-Za-z0-9\-]/', '', $positionsArray[0]) : 0;
+                    $y1 = isset( $positionsArray[1] )? preg_replace('/[^A-Za-z0-9\-]/', '', $positionsArray[1]) : 0;
+                    $x2 = isset( $positionsArray[2] )? preg_replace('/[^A-Za-z0-9\-]/', '', $positionsArray[2]) : 0;
+                    $y2 = isset( $positionsArray[3] )? preg_replace('/[^A-Za-z0-9\-]/', '', $positionsArray[3]) : 0;
+
+                    $boxes[] = [
+                        'text' => preg_replace('/[^A-Za-z0-9\-]/', '', $text_string),
+                        'position' => [
+                            'x1' => $x1+8,
+                            'y1' => $y1,
+                            'x2' => $x2,
+                            'y2' => $y2,
+                        ],
+                    ];
+                }
+            }
+
+            if( !empty( $boxes ) ){
+                foreach( $boxes as $boxData){
+                    $textCount = strlen($boxData['text']);
+
+                    echo '<span style="position: absolute;
+                        z-index: 9999;
+                        left: '.$boxData['position']['x1'].'px;
+                        top: '.$boxData['position']['y1'].'px;
+                        font-size: 33px;
+                        background: #f5ff58;
+                        opacity: 0.5;
+                        color: transparent;
+                        font-family: cursive;">'.$boxData['text'].'</span>';
+                }
+            }
+            pre('done');
+
+
+
+
+
+
+
+            pre($matches);
+            $boxes = [];
+            foreach ($matches as $match) {
+                pre($match, false);
+                // Coordinates from hOCR
+                $x1 = intval($match[1]);
+                $y1 = intval($match[2]);
+                $x2 = intval($match[3]);
+                $y2 = intval($match[4]);
+
+                // Convert coordinates to absolute positions
+                $x1_abs = $x1;
+                $y1_abs = $y1;
+                $x2_abs = $x2;
+                $y2_abs = $y2;
+
+                $boxes[] = [
+                    'text' => $text,
+                    'position' => [
+                        'x1' => $x1_abs,
+                        'y1' => $y1_abs,
+                        'x2' => $x2_abs,
+                        'y2' => $y2_abs,
+                    ],
+                ];
+            }
+            pre('test');
+
+
+            $tesseract = new TesseractOCR();
+            $tesseract->setImage('image.jpg');
+            $text = $tesseract->getText();
+            pre($text);
+            $image_text = (new TesseractOCR($imagePath))->run();
+            pre($image_text);
+
+        }
+        if( isset( $_GET['email_test'] ) ) {
+                $email = 'baz.chimpstudio@gmail.com';
+                $message = 'Testing Email Message';
+                Mail::send(getTemplate().'.emails.test', [
+                    'name' => 'Baz Acton',
+                    'email' => 'info@rurera.com',
+                ], function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('Welcome to Laravel!');
+                });
+                pre('test');
+        }
         if( isset( $_GET['tts'] ) ) {
             $text = $_GET['tts'];
             $TextToSpeechController = new TextToSpeechController();
@@ -44,6 +184,14 @@ class SatsController extends Controller
         return view('web.default.sats.sats_landing', $data);
 
         abort(404);
+    }
+
+    public function printTextNTimes($text, $times) {
+        $response = '';
+        for ($i = 0; $i < $times; $i++) {
+            $response .= $text;
+        }
+        return $response;
     }
 
     public function index()

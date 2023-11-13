@@ -128,9 +128,9 @@ class IsebController extends Controller
         //$quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $started_already = $QuestionsAttemptController->started_already($id);
+        //$started_already = $QuestionsAttemptController->started_already($id);
 
-        //$started_already = false;
+        $started_already = false;
         if ($started_already == true) {
             $data = [
                 'pageTitle'  => 'Start',

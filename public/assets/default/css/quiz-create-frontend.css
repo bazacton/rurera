@@ -269,9 +269,7 @@
 	line-height: 38px;
 	vertical-align: top;
 }
-
 /* Dialog Popup - end */
-
 
 /* Properies Popup begin */
 .lms-quiz-create .leform-admin-popup-overlay {
@@ -626,7 +624,8 @@
 	cursor: default;
 }
 .lms-quiz-create .leform-style-save-row input[type="text"], .leform-style-save-row input[type="number"], .leform-style-save-row select,
-.lms-quiz-create .leform-properties-content input[type="text"],.leform-properties-content input[type="number"], .leform-properties-content select, .leform-properties-content input[type="email"], .leform-properties-content input[type="password"], .leform-properties-content textarea, .leform-bulk-editor textarea {
+.lms-quiz-create .leform-properties-content input[type="text"],.leform-properties-content input[type="number"], .leform-properties-content select, 
+.leform-properties-content input[type="email"], .leform-properties-content input[type="password"], .leform-properties-content textarea, .leform-bulk-editor textarea {
 	font-size: 15px;
 	font-weight: normal;
 	border-radius: 3px;
@@ -657,7 +656,8 @@
 .lms-quiz-create .leform-properties-content textarea.leform-tinymce {
 	height: 16em !important;
 }
-.lms-quiz-create .leform-properties-content input[type="text"]:focus, .leform-properties-content select:focus, .leform-properties-content textarea:focus, .leform-bulk-editor textarea:focus {
+.lms-quiz-create .leform-properties-content input[type="text"]:focus, .leform-properties-content select:focus, 
+.leform-properties-content textarea:focus, .leform-bulk-editor textarea:focus {
 	border-color: #169F85;
 	box-shadow: 0 0 16px -10px #169F85;
 }
@@ -755,7 +755,6 @@
 .lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span i.fa-code {
 	font-size: 16px;
 }
-
 .lms-quiz-create .leform-properties-content .leform-media-id span:hover,
 .lms-quiz-create .leform-properties-content .leform-image-url span:hover,
 .lms-quiz-create .leform-properties-content .leform-date>span:hover,
@@ -763,8 +762,6 @@
 .lms-quiz-create .leform-properties-content .leform-input-shortcode-selector span:hover {
 	color: #169F85;
 }
-
-
 .lms-quiz-create .leform-properties-content .wp-picker-container {
 	position: relative;
 	white-space: nowrap;
@@ -1364,7 +1361,8 @@
 .leform-properties-content .wp-editor-tabs * {
 	box-sizing: content-box;
 }
-.leform-properties-content .mce-btn.mce-active button, .leform-properties-content .mce-btn.mce-active:hover button, .leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {
+.leform-properties-content .mce-btn.mce-active button, .leform-properties-content .mce-btn.mce-active:hover button, 
+.leform-properties-content .mce-btn.mce-active i, .leform-properties-content .mce-btn.mce-active:hover i {
 	color: #444;
 }
 .leform-properties-content .wp-core-ui {
@@ -1655,7 +1653,8 @@
 	background: #ffffff;
 	color: #555;
 }
-.leform-tabs-main .leform-tab-active, .leform-tabs-main .leform-tab-active:focus, .leform-tabs-main .leform-tab-active:focus:active, .leform-tabs-main .leform-tab-active:hover {
+.leform-tabs-main .leform-tab-active, .leform-tabs-main .leform-tab-active:focus, 
+.leform-tabs-main .leform-tab-active:focus:active, .leform-tabs-main .leform-tab-active:hover {
 	border-bottom: 1px solid #f1f1f1;
 	background: #f1f1f1;
 	color: #555;
@@ -1709,7 +1708,8 @@
 	box-shadow: none;
 	margin-right: 10px;
 }
-.leform-sections a.leform-section-active, .leform-sections a.leform-section-active:hover, .leform-sections a.leform-section-active:active, .leform-sections a.leform-section-active:focus {
+.leform-sections a.leform-section-active, .leform-sections a.leform-section-active:hover, 
+.leform-sections a.leform-section-active:active, .leform-sections a.leform-section-active:focus {
 	color: #fff;
 	background: #169F85;
 	border-color: #169F85;
@@ -1960,7 +1960,6 @@
 .leform-fa-selector-content::-webkit-scrollbar-thumb {
 	background-color: #26B99A;
 }
-
 .leform-fa-selector-content span {
 	float: left;
 	width: 40px;
@@ -2138,8 +2137,6 @@
 	overflow: hidden;
 }
 /* Context Menu end */
-
-
 .leform-admin {
 	font-family: arial;
 	margin: 10px 20px 20px 0px;
@@ -2160,7 +2157,6 @@
 #uap-body .wp-picker-container+em {
 	display: block;
 }
-
 .leform-admin-editor * {
 	box-sizing: border-box;
 }
@@ -2359,7 +2355,6 @@
 /*	text-transform: uppercase;*/
 	z-index: 99999 !important;
 }
-
 .leform-pages-bar {
 	height: auto;
 	line-height: 48px;
@@ -2513,7 +2508,6 @@
 	visibility: visible !important;
 	opacity: 1 !important;
 }
-
 .leform-element::before {
 	display: table;
 	content: ' ';
@@ -2602,7 +2596,6 @@ div.leform-element-checkbox-container div.leform-element-cover {
 .leform-col-12 {
 	width: 100%;
 }
-
 #leform-global-message {
 	position: fixed;
 	top: 50px;
@@ -2652,7 +2645,8 @@ div.leform-element-checkbox-container div.leform-element-cover {
 	outline: none !important;
 	padding: 0 1em;
 }
-.leform-filter-form input[type="text"], .leform-filter-form select, .leform_records input[type="text"], .leform input[type="text"], .leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {
+.leform-filter-form input[type="text"], .leform-filter-form select, .leform_records input[type="text"], .leform input[type="text"], 
+.leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {
 	font-size: 14px;
 	font-weight: normal;
 	border-radius: 2px;
@@ -2928,7 +2922,6 @@ div.leform-element-checkbox-container div.leform-element-cover {
 	line-height: 34px;
 	vertical-align: top;
 }
-
 .leform-using-details {
 	/*padding: 10px 20px;*/
 }
@@ -3376,7 +3369,6 @@ a.leform-integrations-custom-remove:active {
 .leform-integrations-content .leform-properties-pure input+label+label {
 	margin-left: 0.7em;
 }
-
 .leform-widget-label {
 	clear: right;
 	min-width: 40%;
@@ -3804,7 +3796,6 @@ a.leform-integrations-custom-remove:active {
 	animation-iteration-count: 100;
 	animation-timing-function: ease-out;
 }
-
 /* Gutenberg Blocks - begin */
 .editor-block-list-item-leform-form .block-editor-block-icon {
 	background: url(images/icon.png) 0 0 no-repeat;
@@ -3961,13 +3952,11 @@ select.leform-block-form-value {
 .leform-admin .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .leform-admin .ui-slider-horizontal .ui-slider-range-min { left: 0; }
 .leform-admin .ui-slider-horizontal .ui-slider-range-max { right: 0; }
-
 .leform-admin .ui-slider-vertical { width: .8em; height: 100px; }
 .leform-admin .ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
 .leform-admin .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
 .leform-admin .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
 .leform-admin .ui-slider-vertical .ui-slider-range-max { top: 0; }
-
 .leform-number-icon:before {
 	content: "42";
 	font-size: 100%;
@@ -4039,7 +4028,6 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
 		margin-top: 0px;
 	}
 }
-
 .jqte{
     margin-bottom:0px;
 }
@@ -4049,12 +4037,10 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
     width: 100%;
     float: left;
 }
-
 .leform-properties-content.leform-wysiwyg {
     display: block;
     clear:both;
 }
-
 .editor-add-field {
     cursor: pointer;
 }
@@ -4063,52 +4049,42 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
     float: left;
     position: relative;
 }
-
 .field-options-all{display:none;}
 .repeater-class {
     float: right;
     cursor: pointer;
     padding: 5px 10px 0 10px;
 }
-
 .remove-repeater-field {
     top: 12px;
     position: absolute;
     right: 16px;
 }
-
 .fields-layout-options{display:none;}
-
 .content-data{
     height: 150px;
     border: 1px solid #ccc;
     overflow: auto;
     padding: 10px !important;
 }
-
-
 .content-data input[type="text"],.content-data input[type="email"],.content-data input[type="password"].content-data, select,.content-data textarea{
     height: 30px;
     padding: 0px;
     cursor: pointer;
 }
-
 .content-data .field-group{
     display: inline-block !important;
     text-align: center;
     vertical-align: -1em;
     padding: 0 0.2em;
 }
-
 .content-data *[contenteditable="true"] {
   background-color: rgba(217, 245, 255,0.5);
 }
-
 .content-data *[contenteditable="true"]:empty {
     content: "c";
     padding: 0 5px;
 }
-
 .hide{display:none}
 
 .field_extra_small{
@@ -4124,9 +4100,6 @@ html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
 .field_large {
     width: 100% !important;
 }
-
-
-
 /****************************
 STYLE
 ****************************/
@@ -4157,7 +4130,6 @@ STYLE
   display: -moz-inline-box;
   display: inline-block;
 }
-
 .lms-root-block * {
   font-size: inherit;
   line-height: inherit;
@@ -4200,6 +4172,9 @@ STYLE
 .question-number-holder ~ .leform-form .question-textarea {
     min-height: auto;
     clear: inherit;
+	line-height: 24px;
+	overflow: hidden;
+	overflow-x: auto;
 }
 .question-number-holder ~ .leform-form .question-textarea p {
     margin-top: 0;
@@ -4223,7 +4198,6 @@ STYLE
     border:1px dotted #333;
     -webkit-animation:1s animateOpacity;
 }
-
 @-webkit-keyframes animateOpacity {
     from {opacity: 0;}
     5% {opacity: 0.6;}
@@ -4231,7 +4205,6 @@ STYLE
     95% {opacity: 0.6;}
     to {opacity: 0;}
 }
-
 .correct-appriciate{
 	font-size: 30px;
     width: fit-content;
@@ -4247,7 +4220,6 @@ STYLE
     border: 1px solid orange;
 	color: orange;
 }
-
 .correct-appriciate.blue{
     border: 1px solid blue;
 	color: blue;
@@ -4256,11 +4228,9 @@ STYLE
     border: 1px solid green;
 	color: green;
 }
-
 .question-step.quiz-complete1{
 	pointer-events:none;
 }
-
 label.lms-question-label.correct {
     background: #70c17c !important;
 	border:none !important;
@@ -4269,7 +4239,6 @@ label.lms-question-label.wrong {
     background: #ff4f4f !important;
 	border:none !important;
 }
-
 label.lms-question-label.correct span, label.lms-question-label.wrong span {
     color: #fff !important;
 }

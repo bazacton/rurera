@@ -108,7 +108,6 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>Title</th>
-                                <th>Questions</th>
                                 <th>Attempts</th>
                                 <th>Last attempt</th>
                                 <th>Accuracy</th>
@@ -137,10 +136,10 @@
                                 <td>
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
                                     <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}</a>
+                                        <br> <span class="sub_label">54 Question(s)</span>
                                         {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                     </h4>
                                 </td>
-                                <td>54</td>
                                 <td>0</td>
                                 <td>12</td>
                                 <td>

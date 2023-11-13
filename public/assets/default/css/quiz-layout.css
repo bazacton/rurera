@@ -3,10 +3,10 @@ Lms Sorting Fields Style
 **********************************/
 .lms-sub-heading {margin: 0 0 20px; color: #000; font-weight: 500; font-size: 15px;}
 .lms-sub-heading .lms-numbers {display: block; padding-top: 10px; margin-left: 20px; font-weight: 700; letter-spacing: 1px;}
-.lms-sorting-fields {display: inline-block; width: 100%;}
+.lms-sorting-fields {display: inline-block; width: 100%; overflow: hidden; overflow-x: auto;}
 .option-row-1.option-small .lms-sorting-fields {gap: 10px;}
 .lms-sorting-fields span {line-height: normal; display: block; font-size: 15px;}
-.lms-sorting-fields .field-holder {border: 1px solid #ccc; border-radius: 2px; padding: 10px; cursor: all-scroll; position: relative; height: auto;}
+.lms-sorting-fields .field-holder {border: 1px solid #ccc; border-radius: 2px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px;}
 .lms-sorting-fields.multi-lines {flex-direction: column; align-items: flex-start; margin-left: 0; margin-right: 0;}
 .lms-sorting-fields.multi-lines .field-holder {margin: 0 0 10px; width: 100%; visibility: visible !important;}
 .lms-sorting-fields.multi-lines .field-holder:last-child {margin-bottom: 0;}
@@ -26,6 +26,8 @@ Lms Sorting Fields Style
 .lms-sorting-fields .match-question {position: initial !important; display: inline-block; width: 100% !important; height: auto !important;}
 .lms-sorting-fields .match-question.ui-sortable-placeholder {position: absolute !important;}
 .lms-sorting-fields .field-holder .sort-icon ~ label {padding-right: 40px;}
+.lms-sorting-fields {display: inline-block; width: 100%; overflow: hidden; overflow-x: auto;}
+.question-textarea .table {overflow: hidden;}
 /**********************************
 Lms Signs Style 
 **********************************/
@@ -262,7 +264,7 @@ Lms Question List Style
 .question-textarea.quiz-group {padding-top: 2px; margin-left: 0;}
 .question-layout-block form.question-fields,
 .question-fields .left-content {min-height: 700px; display: flex; flex-direction: column;}
-.question-layout-block form.question-fields .questions-total-holder {margin: -9px 0 15px !important; padding-left: 80px; color: #adabab; }
+.question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 80px; color: #adabab; }
 .question-layout-block form.question-fields .questions-nav-controls {margin-top: auto;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
@@ -558,6 +560,10 @@ Lms Quiz Wf Style Start
     margin-top: -15px;
     padding-left: 70px;
 }
+.question-number-holder ~ .show-notifications {
+    padding-left: 80px;
+    margin-bottom: 30px;
+}
 /*.question-layout br {
     display: none;
 }*/
@@ -739,7 +745,6 @@ Lms Quiz Wf Style Start
 .lms-quiz-section span {
     font-size: 17px;
     color: #000;
-    display: block;
     font-weight: 500;
 }
 .lms-quiz-section span span {
@@ -748,9 +753,9 @@ Lms Quiz Wf Style Start
 .flag-question.flaged svg g {
     fill: #4c5387;
 }
-span~.input-holder {
+/* span~.input-holder {
     margin: 0 20px;
-}
+} */
 .lms-quiz-section .textboard-holder {
     width: 100%;
 }
@@ -839,7 +844,8 @@ span~.input-holder {
 .question-textarea .column-3 .input-holder {
     width: 33.333%;
 }
-.input-holder {
+.input-holder,
+.lms-quiz-section .input-holder {
     border: 1px solid #ddd;
     display: inline-block;
     line-height: normal;
@@ -847,10 +853,11 @@ span~.input-holder {
     width: fit-content !important;
     display: inline-grid !important;
     border-radius: 8px;
+    vertical-align: middle;
 }
 @supports (selector(html:has(.input-holder))) {
     *:has(.divide-numbers) {
-      border: 0;
+      border: 0 !important;
     }
 }
 .input-holder textarea {
@@ -955,8 +962,19 @@ span~.input-holder {
     border-radius: 0;
 }
 .input-holder .input-label.right {
-    right: 25px;
+    right: 30px;
     left: auto;
+}
+.input-holder input[type=number]::-webkit-inner-spin-button, 
+.input-holder input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+table.table td .input-holder input[type=number]::-webkit-inner-spin-button, 
+table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
+
+.input-holder input.input_line[type=number]::-webkit-inner-spin-button, 
+.input-holder input.input_line[type=number]::-webkit-outer-spin-button{  
+   opacity: 0;
 }
 .note-editable .input-holder input[type="number"],
 .input-holder .input-label ~ input[type="number"] {
@@ -968,6 +986,9 @@ span~.input-holder {
 .input-holder .input-label ~ input[type="number"].input-simple  {
     padding: 0 10px;
     text-align: left;
+}
+.input-holder .input-label.left ~ input[type="number"].input-simple {
+    text-align: right;
 }
 .input-holder .wf-input-label {
     position: absolute;
@@ -1669,14 +1690,17 @@ Lms Quiz Wf Style End
     transition: all 0.2s ease-in-out;
     /* margin-left: 3px; */
     width: 33.333%;
+    z-index: 1;
 }
 .read-quiz-info ~ .read-quiz-content {
     max-width: inherit;
-    padding-left: 33.333%;
+    padding-left: 33.555%;
     padding-right: 0;
     width: 100%;
     margin: 0;
     border: 0;
+    position: absolute;
+    top: 0;
 }
 .lms-quiz-section {
     position: relative;
@@ -1687,6 +1711,7 @@ Lms Quiz Wf Style End
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 970px;
 }
 .read-text-controls {
     padding: 20px 20px 20px 0;
@@ -1878,6 +1903,7 @@ Lms Table Style
 .leform-element table.table {
     margin: 0;
     border-color: #000;
+    overflow: hidden;
 }
 .leform-element table.table td {
     line-height: normal;
@@ -1900,6 +1926,10 @@ Lms Table Style
 .leform-element table.table td .input-holder {
     width: 100%;
     border-width: 0;
+}
+.leform-element table.table td .input-holder input {
+    text-align: center;
+    background-color: initial;
 }
 .leform-element table.table td .input_line {
     width: 100% !important;
@@ -2018,7 +2048,7 @@ Lms Table Style
 .match-question .options li {
   background: transparent;
   cursor: pointer;
-  border: 1px solid #ddd;
+  border: 1px solid #999;
   border-radius: 4px;
   &.selected,
   &.selected:hover {
@@ -2124,18 +2154,20 @@ span.seperator_line {
     flex-wrap: wrap;
     gap: 10px;
 }
-.ui-draggable.ui-draggable-handle {
+.draggable-items .ui-draggable {
     background-color: var(--primary);
     background-image: none;
     color: #fff;
-    padding: 12px 25px;
+    padding: 6px 25px 12px;
     height: auto;
     border: 0;
+    margin: 0;
     border-radius: 8px;
     box-shadow: 0 5px 0 rgba(0,0,0,0.1);
 }
-.ui-draggable.ui-draggable-handle span {
+.draggable-items .ui-draggable span {
     color: #fff;
+    vertical-align: middle;
 }
 .droppable_area, .lms-quiz-section .droppable_area {
     display:inline-block;

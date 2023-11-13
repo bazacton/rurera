@@ -879,3 +879,22 @@ $(document).ready(function () {
         });
     }
 });
+
+$(document).ready(function() {
+    $('body').on('keyup', '.search-dashboard', function (e) {
+        $(".sidebar-menu li.nav-item").addClass('rurera-hide');
+        var search_text = $(this).val();
+
+        //var $foundDiv = $(".sidebar-menu li:contains('" + search_text + "')");
+
+        var $foundDiv = $(".sidebar-menu li").filter(function() {
+            return $(this).text().toLowerCase().includes(search_text.toLowerCase());
+          });
+
+        //$foundDiv.show().find(":contains('" + search_text + "')").show();
+        //if($foundDiv.hasClass('nav-item')) {
+            $foundDiv.removeClass('rurera-hide');
+        //}
+    });
+
+});

@@ -17,15 +17,7 @@
 
         @endphp
 
-        @if( !empty( $meta_description ))
-        <ul class="blog-tags">
-            @foreach( $meta_description as $meta_title)
-                @if(trim($meta_title) != '')
-                    <li itemprop="name">{{trim($meta_title)}}</li>
-                @endif
-            @endforeach
-        </ul>
-        @endif
+
     </div>
     <div class="blog-grid-image">
         <img src="{{ $post->image }}" class="img-cover" alt="{{ $post->title }}" title="{{ $post->title }}" width="100%" height="auto" itemprop="image" loading="eager">

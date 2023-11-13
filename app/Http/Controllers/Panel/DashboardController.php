@@ -17,6 +17,7 @@ use App\Models\ParentsOrders;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {

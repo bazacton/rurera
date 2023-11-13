@@ -1,3 +1,8 @@
+<style>
+    .rurera-hide{
+        display:none !important;
+    }
+</style>
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -8,6 +13,9 @@
                     Rurera
                 @endif
             </a>
+        </div>
+        <div class="sidebar-brand">
+            <input class="search-dashboard form-control">
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="/">
@@ -36,7 +44,7 @@
             @endif
 
             @can('admin_marketing_dashboard')
-                <li class="{{ (request()->is(getAdminPanelUrl('/marketing', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/marketing', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/marketing') }}" class="nav-link">
                         <i class="fas fa-chart-pie"></i>
                         <span>{{ trans('admin/main.marketing_dashboard') }}</span>
@@ -170,7 +178,7 @@
 
             @can('admin_questions_bank')
 
-                <li class="{{ (request()->is('admin/questions_bank')) ? 'active' : '' }}">
+                <li class="nav-item{{ (request()->is('admin/questions_bank')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank') }}" class="nav-link">
                         <i class="fas fa-question"></i>
                         <span>{{ trans('admin/main.questions_bank') }}</span>
@@ -179,7 +187,7 @@
             @endcan()
 
             @can('admin_glossary')
-               <li class="{{ (request()->is('admin/glossary')) ? 'active' : '' }}">
+               <li class="nav-item {{ (request()->is('admin/glossary')) ? 'active' : '' }}">
                    <a href="{{ getAdminPanelUrl('/glossary') }}" class="nav-link">
                        <i class="fas fa-file"></i>
                        <span>Glossary</span>
@@ -190,7 +198,7 @@
             <li class="menu-header">PLANNER</li>
 
             @can('admin_questions_bank')
-                <li class="{{ (request()->is('admin/national_curriculum')) ? 'active' : '' }}">
+                <li class="nav-item{{ (request()->is('admin/national_curriculum')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/national_curriculum') }}" class="nav-link">
                         <i class="fas fa-graduation-cap"></i>
                         <span>National Curriculum</span>
@@ -199,7 +207,7 @@
             @endcan()
 
             @can('admin_questions_bank')
-                <li class="{{ (request()->is('admin/weekly_planner')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/weekly_planner')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/weekly_planner') }}" class="nav-link">
                         <i class="fas fa-calendar-week"></i>
                         <span>Weekly Planner</span>
@@ -208,7 +216,7 @@
             @endcan()
 
             @can('admin_assignments')
-                <li class="{{ (request()->is('admin/assignments')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/assignments')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/assignments') }}" class="nav-link">
                         <i class="fas fa-tasks"></i>
                         <span>Assignments</span>
@@ -217,7 +225,7 @@
             @endif
 
             @can('admin_assigned_assignments')
-                <li class="{{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/assigned_assignments') }}" class="nav-link">
                         <i class="fas fa-tasks"></i>
                         <span>Assigned Assignments</span>
@@ -226,13 +234,13 @@
             @endif
 
             @can('admin_bundles')
-                <li class="{{ (request()->is('admin/questions_bank/create_sections_auto')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/questions_bank/create_sections_auto')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank/create_sections_auto') }}" class="nav-link">
                         <i class="fas fa-pen"></i>
                         <span>Create Sections</span>
                     </a>
                 </li>
-                <li class="{{ (request()->is('admin/questions_bank/create_sub_chapters_auto')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/questions_bank/create_sub_chapters_auto')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/questions_bank/create_sub_chapters_auto') }}" class="nav-link">
                         <i class="fas fa-pen"></i>
                         <span>Create Sub Chapters</span>
@@ -241,7 +249,7 @@
             @endcan()
 
             @can('admin_books')
-                <li class="{{ (request()->is('admin/books')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/books')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/books') }}" class="nav-link">
                         <i class="fas fa-book"></i>
                         <span>Books</span>
@@ -250,13 +258,13 @@
             @endcan()
 
             @if($authUser->role_name == 'reviewer')
-                    <li class="{{ (request()->is('admin/author_permissions')) ? 'active' : '' }}">
+                    <li class="nav-item {{ (request()->is('admin/author_permissions')) ? 'active' : '' }}">
                         <a href="{{ getAdminPanelUrl('/author_permissions') }}" class="nav-link">
                             <i class="fas fa-pen"></i>
                             <span>Author Permissions</span>
                         </a>
                     </li>
-                    <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
+                    <li class="nav-item {{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
                         <a href="{{ getAdminPanelUrl('/author_permissions/authors') }}" class="nav-link">
                             <i class="fas fa-pen"></i>
                             <span>Authors</span>
@@ -310,7 +318,7 @@
             @endcan
 
             @can('admin_webinar_assignments')
-                <li class="{{ (request()->is(getAdminPanelUrl('/assignments', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/assignments', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl() }}/assignments" class="nav-link">
                         <i class="fas fa-pen"></i>
                         <span>{{ trans('update.assignments') }}</span>
@@ -319,7 +327,7 @@
             @endcan
 
             @can('admin_course_question_forum_list')
-                <li class="{{ (request()->is(getAdminPanelUrl('/webinars/course_forums', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/webinars/course_forums', false))) ? 'active' : '' }}">
                     <a class="nav-link " href="{{ getAdminPanelUrl() }}/webinars/course_forums">
                         <i class="fas fa-comment-alt"></i>
                         <span>{{ trans('update.course_forum') }}</span>
@@ -372,7 +380,7 @@
             @endcan
 
             @can('admin_waitlists_lists')
-                <li class="{{ (request()->is(getAdminPanelUrl('/waitlists', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/waitlists', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl("/waitlists") }}" class="nav-link">
                         <i class="fas fa-user-graduate"></i>
                         <span>{{ trans('update.waitlists') }}</span>
@@ -428,7 +436,7 @@
             @endcan()
 
             @can('admin_reviews_lists')
-                <li class="{{ (request()->is(getAdminPanelUrl('/reviews', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/reviews', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl() }}/reviews" class="nav-link @if(!empty($sidebarBeeps['reviews']) and $sidebarBeeps['reviews']) beep beep-sidebar @endif">
                         <i class="fas fa-star"></i>
                         <span>{{ trans('admin/main.reviews') }}</span>
@@ -448,7 +456,7 @@
             @endif
 
             @can('admin_consultants_lists')
-                <li class="{{ (request()->is(getAdminPanelUrl('/consultants', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/consultants', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl() }}/consultants" class="nav-link">
                         <i class="fas fa-id-card"></i>
                         <span>{{ trans('admin/main.consultants') }}</span>
@@ -457,7 +465,7 @@
             @endcan
 
             @can('admin_appointments_lists')
-                <li class="{{ (request()->is(getAdminPanelUrl('/appointments', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/appointments', false))) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ getAdminPanelUrl() }}/appointments">
                         <i class="fas fa-address-book"></i>
                         <span>{{ trans('admin/main.appointments') }}</span>
@@ -477,7 +485,7 @@
             @endif
 
             @can('admin_classes')
-                <li class="{{ (request()->is('admin/classes')) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is('admin/classes')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/classes') }}" class="nav-link">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span>Classes</span>
@@ -528,7 +536,7 @@
 
 
             @can('admin_users_not_access_content_lists')
-                <li class="{{ (request()->is(getAdminPanelUrl('/users/not-access-to-content', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/users/not-access-to-content', false))) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ getAdminPanelUrl() }}/users/not-access-to-content">
                         <i class="fas fa-user-lock"></i> <span>{{ trans('update.not_access_to_content') }}</span>
                     </a>
@@ -586,7 +594,7 @@
             @endcan
 
             @can('admin_users_badges')
-                <li class="{{ (request()->is(getAdminPanelUrl('/users/badges', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/users/badges', false))) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ getAdminPanelUrl() }}/users/badges">
                         <i class="fas fa-trophy"></i>
                         <span>{{ trans('admin/main.badges') }}</span>
@@ -727,7 +735,7 @@
                 </li>
 
                 @can('admin_support_course_conversations')
-                    <li class="{{ (request()->is(getAdminPanelUrl('/supports*', false)) and request()->get('type') == 'course_conversations') ? 'active' : '' }}">
+                    <li class="nav-item {{ (request()->is(getAdminPanelUrl('/supports*', false)) and request()->get('type') == 'course_conversations') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ getAdminPanelUrl() }}/supports?type=course_conversations">
                             <i class="fas fa-envelope-square"></i>
                             <span>{{ trans('admin/main.classes_conversations') }}</span>
@@ -806,7 +814,7 @@
             @endcan
 
             @can('admin_contacts')
-                <li class="{{ (request()->is(getAdminPanelUrl('/contacts*', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/contacts*', false))) ? 'active' : '' }}">
                     <a class="nav-link" href="{{ getAdminPanelUrl() }}/contacts">
                         <i class="fas fa-phone-square"></i>
                         <span>{{ trans('admin/main.contacts') }}</span>
@@ -1064,7 +1072,7 @@
             @endcan
 
             @can('admin_tags')
-                <li class="{{ (request()->is(getAdminPanelUrl('/tags', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/tags', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl() }}/tags" class="nav-link">
                         <i class="fas fa-tags"></i>
                         <span>{{ trans('admin/main.tags') }}</span>
@@ -1141,7 +1149,7 @@
             @endcan
 
             @can('admin_sales_list')
-                <li class="{{ (request()->is(getAdminPanelUrl('/financial/sales*', false))) ? 'active' : '' }}">
+                <li class="nav-item {{ (request()->is(getAdminPanelUrl('/financial/sales*', false))) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl() }}/financial/sales" class="nav-link">
                         <i class="fas fa-list-ul"></i>
                         <span>{{ trans('admin/main.sales_list') }}</span>
@@ -1663,7 +1671,7 @@
 
 
             @if(auth()->user()->isTeacher())
-                            <li class="{{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
+                            <li class="nav-item {{ (request()->is('admin/author_permissions/authors')) ? 'active' : '' }}">
                                 <a href="{{ getAdminPanelUrl('/author_points') }}/{{$authUser->id}}" class="nav-link">
                                     <i class="fas fa-pen"></i>
                                     <span>Points Breakdown</span>

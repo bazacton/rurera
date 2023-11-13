@@ -105,11 +105,13 @@ class RoleController extends Controller
 
         $data = $request->all();
 
+        $is_admin = isset( $data['is_admin'] )? $data['is_admin'] : 0;
+        $is_admin = ($is_admin == 'on')? 1 : 0;
 
         $role->update([
             'caption' => $data['caption'],
             //'is_admin' => ((!empty($data['is_admin']) and $data['is_admin'] == 'on') or $role->name == Role::$admin),
-            'is_admin' => isset( $data['is_admin'] )? $data['is_admin'] : 0,
+            'is_admin' => $is_admin,
 
         ]);
 

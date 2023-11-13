@@ -118,6 +118,7 @@ class QuestionsAttemptController extends Controller
 
                         $check_question_passed = QuizzResultQuestions::where('parent_type_id', $quizAttempt->parent_type_id)->where('quiz_result_type', $quizAttempt->attempt_type)->where('user_id', $user->id)->where('question_id', $question_id)->where('quiz_result_id', $quizAttempt->quiz_result_id)->where('status', '=', 'correct')->count();
 
+
                         $prev_question = isset($questions_list[$question_count - 2]) ? $questions_list[$question_count - 2] : 0;
                         $next_question = isset($questions_list[$question_count]) ? $questions_list[$question_count] : 0;
                         $question_no = $question_count;
@@ -244,6 +245,23 @@ class QuestionsAttemptController extends Controller
                 break;
 
             case "sats":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
+
+            case "iseb":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
+
+            case "cat4":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                break;
+            case "independent_exams":
                 if ($QuizzResultQuestionsCount == 0) {
                     $is_attempt_allowed = true;
                 }
@@ -571,8 +589,8 @@ class QuestionsAttemptController extends Controller
     function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index = 0)
     {
         $is_question_correct = true;
-        $user_input = strtolower($user_input);
-        $user_input = ucfirst($user_input);
+        $user_input = is_array($user_input)? $user_input : strtolower($user_input);
+        $user_input = is_array($user_input)? $user_input : ucfirst($user_input);
 
         if ($question_type == 'checkbox' || $question_type == 'radio') {
             $question_correct = array();

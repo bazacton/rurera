@@ -2095,6 +2095,7 @@ function handlePriceFormat($price, $decimals = 0, $decimal_separator = '.', $tho
         return str_replace($str, "", $format);
     }
 
+    $price = is_null($price)? 0 : $price;
     return $price;
 }
 

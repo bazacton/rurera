@@ -655,8 +655,9 @@ class QuizController extends Controller
                     $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 }
 
-$question_response_layout = '';
-                /*$question_response_layout = view('web.default.panel.questions.question_layout', [
+                $question_response_layout = '';
+                if( $QuizzesResult->quiz_result_type != 'vocabulary') {
+                    $question_response_layout = view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
                         'prev_question'     => 0,
                         'next_question'     => 0,
@@ -666,10 +667,11 @@ $question_response_layout = '';
                         'quizResultObj'     => $QuizzesResult,
                         'disable_submit'    => 'true',
                         'disable_finish'    => 'true',
-                        'disable_prev'    => 'true',
-                        'disable_next'    => 'true',
+                        'disable_prev'      => 'true',
+                        'disable_next'      => 'true',
                         'class'             => 'disable-div',
-                    ])->render();*/
+                    ])->render();
+                }
 
 
                 $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);

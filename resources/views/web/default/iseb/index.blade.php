@@ -112,11 +112,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <table class="table table-striped table-bordered dataTable" style="width: 100%;"
+                                    <table class="table table-striped simple-table table-bordered dataTable" style="width: 100%;"
                                            aria-describedby="example_info">
                                         <thead>
                                         <tr>
 
+                                            <th>&nbsp;</th>
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
                                                 rowspan="1"
                                                 colspan="1" aria-sort="ascending"
@@ -126,10 +127,6 @@
                                                 rowspan="1"
                                                 colspan="1" aria-sort="ascending"
                                                 aria-label="Date: activate to sort column descending">&nbsp;
-                                            </th>
-                                            <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
-                                                colspan="1" aria-label="Percent: activate to sort column ascending">
-                                                Questions
                                             </th>
                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="example"
                                                 rowspan="1"
@@ -145,9 +142,12 @@
                                         </thead>
                                         <tbody>
 
-
+                                        @php $counter = 0; @endphp
                                         @foreach( $data as $dataObj)
                                         @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
+                                        $counter++;
+                                        $lock_image = ($counter > 2)? 'lock.svg' : 'unlock.svg';
+                                        $lock_unlock_class = ($counter > 2)? 'rurera-lock-item' : 'rurera-unlock-item';
                                         $total_attempts = $total_questions_attempt = $correct_questions =
                                         $incorrect_questions = 0;
                                         $total_questions = isset( $dataObj->quizQuestionsList )? count(
@@ -195,16 +195,20 @@
                                         @endphp
 
                                         <tr class="odd">
+                                            <td class="{{$lock_unlock_class}}">
+                                                <img src="/assets/default/img/{{$lock_image}}">
+                                            </td>
                                             <td>
 
                                                 <a href="/iseb/{{$dataObj->quiz_slug}}">{{$dataObj->getTitleAttribute()}}</a>
+                                                <br> <span class="sub_label">{{$total_questions}} Question(s)</span>
+                                                {{ user_assign_topic_template($dataObj->id, 'iseb', $childs, $parent_assigned_list)}}
                                             </td>
                                             <td>
                                                 @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
                                                 <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
                                                 @endif
                                             </td>
-                                            <td>{{$total_questions}}</td>
                                             <td>{{$total_attempts}}</td>
                                             <td>
                                                 <div class="attempt-progress">

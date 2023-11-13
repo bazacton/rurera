@@ -80,7 +80,7 @@
                                     @endif
                                 </a>
                                 @if( $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment'
-                                || $parent_type == 'book_page')
+                                || $parent_type == 'book_page' || $parent_type == 'vocabulary')
                                 <span style="float:right;font-size: 15px;"><a
                                             href="/panel/quizzes/{{$result_id}}/check_answers">More Details</a></span>
                                 @endif

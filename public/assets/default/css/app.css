@@ -289,7 +289,7 @@ body {
     line-height: 1.3;
     color: #343434;
     text-align: left;
-    background-color: #fff
+    background-color: #fff;
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important
@@ -18520,17 +18520,22 @@ p {
     flex-wrap: wrap;
     width: 100%;
 }
+.show-notifications span {
+    display: inline-block;
+    line-height: normal;
+}
 span.question-status-correct {
     margin-top: 10px;
     border: 3px solid #44b13d;
     padding: 10px;
     color: #44b13d;
 }
-span.question-status-wrong {
+span.question-status-wrong,
+.lms-quiz-section .question-status-wrong {
     margin-top: 10px;
-    border: 3px solid #ff2929;
-    padding: 10px;
-    color: #ff2929;
+    border: 2px solid #ef9797;
+    padding: 10px 15px;
+    color: #f08c8c;
 }
 /* User Question Holder Style End */
 @media (max-width: 575px) {
@@ -18907,7 +18912,7 @@ Lms Blog Grid Card Style Start
 .blog-grid-card .blog-grid-detail .blog-grid-footer {font-size: 16px; font-weight: 500; line-height: 1.19; color: #6c6c6c; pointer-events: none;}
 .blog-grid-card .blog-tags {padding: 0; margin: 15px 0 0 0; display: flex; flex-wrap: wrap; }
 .blog-grid-card .blog-tags li,
-.list-tags li {border-radius: 3.75rem; padding: 0 12px 0 0; font-weight: 400; color: #8c8b8b; display: block; margin: .25rem .70rem 0 0; font-size: .875rem; text-align: center; position: relative; font-style: italic;}
+.list-tags li {border-radius: 3.75rem; padding: 0 10px 0 0; font-weight: 400; color: #8c8b8b; display: block; margin: .25rem .70rem 0 0; font-size: .875rem; position: relative; font-style: italic;}
 .blog-grid-card .blog-tags li:before {position: absolute; right: -2px; top: 0; width: 1px; height: 90%; background-color: #8c8b8b; content: "";}
 .blog-grid-card .blog-tags li:last-child:before {visibility: hidden;}
 .blog-grid-card .blog-grid-detail~.blog-grid-image {width: calc(100% - 83%);}
@@ -21754,9 +21759,11 @@ Sats Listing Style End
 .dataTables_wrapper .dataTables_length select {display: inline-block; width: 100%; height: 31px; padding: 0.130rem 1.75rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; vertical-align: middle; background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px; border: 1px solid #ced4da; border-radius: 0.25rem; -webkit-appearance: none; -moz-appearance: none; appearance: none; margin: 0 5px;}
 div.dataTables_wrapper div.dataTables_filter label {margin: 0;}
 div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; height: 31px;}
-.dataTable td a {text-decoration: underline; font-weight: 600;}
+.dataTable td a {font-weight: 600; font-size: 16px; margin-right: 10px;}
 .dataTables_wrapper .paginate_button.previous {border-radius: 5px 0 0 5px;}
 .dataTables_wrapper .paginate_button.next {border-radius: 0 5px 5px 0;}
+.table tbody td .sub_label,
+.simple-table .sub_label {color: #999; font-size: 14px; font-weight: 400;}
 /*************************************
   Processs Section Style Start
 *************************************/
@@ -21807,6 +21814,11 @@ Time Table Style End
 .elevenplus-block .table tbody td {border: 0; border-bottom: 1px solid #ececec; padding: 20px 15px;}
 .elevenplus-block .table thead th:first-child,
 .elevenplus-block .table tbody td:first-child{text-align: left;}
+.elevenplus-block .table tbody td:nth-child(2),
+.elevenplus-block .simple-table thead tr th:nth-child(2) {
+    text-align: left;
+    padding-left: 0;
+}
 /*************************************
 Attempt Progress Style Start
 *************************************/
@@ -22123,21 +22135,26 @@ Dashboard Form-Tabs Style End
 }
 .sats-listing-card tbody tr td.rurera-lock-item,
 .sats-listing-card tbody tr td.rurera-unlock-item {
-    width: 30px;
     padding-right: 0;
 }
-.sats-listing-card tbody tr .rurera-lock-item img ,
-.sats-listing-card tbody tr td.rurera-unlock-item img{
-    margin-right: 0;
+.simple-table.table tbody .rurera-unlock-item {
+    width: 30px;
+}
+.rurera-lock-item img,
+.rurera-unlock-item img{
     filter: invert(98%) sepia(2%) saturate(682%) hue-rotate(219deg) brightness(106%) contrast(73%);
     width: 30px;
 }
-.sats-listing-card tbody tr td.rurera-unlock-item img {
+.rurera-unlock-item img {
     filter: invert(61%) sepia(35%) saturate(4%) hue-rotate(2deg) brightness(93%) contrast(96%);
 }
 .sats-listing-card tbody tr td:nth-child(2) {
     min-width: 500px;
     padding-left: 10px;
+}
+.sats-listing-card .rurera-unlock-item img,
+.sats-listing-card .rurera-lock-item img {
+    margin-right: 0;
 }
 /* .sats-listing-card table h4 a br {
     display: none;
@@ -22702,6 +22719,9 @@ Product Tabs Slider Style Start
     background-color: #46484a;
     color: #fff;
 }
+.spells-quiz-from .form-btn-field {
+    padding-top: 30px;
+}
 .spells-quiz-sound strong .sound-icon,
 .question-status-modal .modal-title h3 .sound-icon {
     background-color: #fff;
@@ -22969,8 +22989,7 @@ body .learning-page .learning-title {
     font-size: 20px;
 }
 .field_extra_small{
-    height:15px !important;
-    width: 15px !important;
+    width: 22% !important;
 }
 .field_small{
     width: 40% !important;
@@ -22986,7 +23005,7 @@ body .learning-page .learning-title {
 Lms Responsive Style Start
 *************************************/
 @media(max-width:1200px) {
-    .process-card.process-card.process-one:after,
+    .process-card.process-card.process-one:after,.field_extra_small
     .svg-shapes-bottom,.svg-shapes-top,
     .process-card.process-one:before {display: none;}
     .user-profile-dropdown .d-md-none {display: none;}
@@ -23058,6 +23077,10 @@ Lms Responsive Style Start
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
     .topbar-right {flex-wrap: wrap; width: 100%;}
     body .lms-quiz-section {height: auto;}
+    .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
+    .sats-listing-card.medium {overflow: hidden; overflow-x: auto;}
+    .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
+    .sats-listing-card tbody tr td:nth-child(2) {text-align: left;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -23150,8 +23173,6 @@ Lms Responsive Style Start
     .home-banner .choose-sats .sats-box {margin-bottom: 80px;}
     .home-banner .choose-sats [class*="col-"]:last-child .sats-box {margin-bottom: 0;}
     .user-assign-topics .dropdown-menu {right: 0; left: auto;}
-    .sats-listing-card.medium {overflow: hidden; overflow-x: auto;}
-    .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .chart-filters,
     .chart-filters ul {flex-wrap: wrap;}
     .spell-question-area .left-content {justify-content: flex-start;}
@@ -23168,7 +23189,6 @@ Lms Responsive Style Start
     .lms-quiz-section .questions-data-block {max-width: 100%;}
     .quiz-pagination .swiper-container ul {flex-wrap: wrap; transform: none !important;}
     body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 60px;}
-    .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
     .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
     body .prev-next-controls .review-btn,
     body .prev-next-controls .question-submit-btn {position: relative;}
@@ -23179,6 +23199,15 @@ Lms Responsive Style Start
     body .prev-next-controls .question-submit-btn {flex: 0 0 100%;margin-top: 10px;}
     body .question-review-required {top: -40px;}
     .lms-sorting-fields {overflow: hidden; overflow-x: auto;}
+    body .match-question .stems li,
+    body .match-question .options li {font-size: 14px;}
+    body .form-box.row .match-question {padding: 0 0 0 15px;}
+    body .match-question .stems, 
+    body .match-question .options {
+        width: 48%;
+        margin-right: 2%;
+    }
+    body .match-question .options {margin-right: 0; margin-left: 2%;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -23241,7 +23270,7 @@ Lms Responsive Style Start
     .lms-counter-card.counter-yellow-bg:after {right: 172px; bottom: -29px; border-bottom: 3px dashed #cac8cc; transform: rotate(-40deg); border-radius: 0; width: 70px;}
     .counter-holder .svg-shapes-top {position: absolute; right: 162px; top: 100%; transform: rotate(90deg); margin-top: -75px;}
     .spells-table-inner {overflow: hidden; overflow-x: auto;}
-    .lms-data-table table.table thead th {display: block; width: 100% !important; box-sizing: border-box;}
+    /* .lms-data-table table.table thead th {display: block; width: 100% !important; box-sizing: border-box;} */
     .lms-data-table.spells table.table thead th {display: table-cell; width: auto !important;}
     .learning-page .learning-page-content {overflow: hidden;}
     .question-layout-block form.question-fields {padding: 20px 15px 0;}

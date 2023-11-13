@@ -318,7 +318,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 var next_question_no = parseInt(question_no) + 1;
 
                 if (quiz_type != 'book') {
-                    thisForm.find('.question-submit-btn').remove();
+                    //thisForm.find('.question-submit-btn').remove();
                 }
                 if (return_data.incorrect_flag == true) {
 
@@ -680,6 +680,9 @@ function init_question_functions() {
 
 
     $(document).on('keyup', 'body', function (evt) {
+        if( $(".question-area").hasClass('spell-question-area')){
+            return;
+        }
         if (evt.key === 'ArrowLeft') {
             $('#prev-btn')[0].click();
         }

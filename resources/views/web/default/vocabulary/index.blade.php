@@ -39,22 +39,17 @@
                                 <div class="col-12">
                                     <div class="master-list">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="master-card master">
                                                     <strong>Mastered Words</strong> <span>{{count($user_mastered_words)}}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="master-card non-master">
                                                     <strong>Troubled Words</strong> <span>{{count($user_non_mastered_words)}}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="master-card master">
-                                                    <strong>In-progress Words</strong> <span>{{count($user_in_progress_words)}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="master-card non-use">
                                                     <strong>Not Used Words</strong> <span class="rurera-processing"><div class="rurera-button-loader" style="display: block;"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div></span>
                                                 </div>
@@ -72,7 +67,7 @@
                                         <div class="listing-search lms-jobs-form mb-20">
                                             <form>
                                                 <div class="row align-items-center">
-                                                    <div class="col-12 col-lg-9 col-md-6">
+                                                    <div class="col-12 col-lg-6 col-md-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Year Group</label>
                                                             <div class="input-field select-arrow">
@@ -103,7 +98,22 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-12 col-lg-3 col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Category</label>
+                                                            <div class="input-field select-arrow">
+                                                                <select name="quiz_category" class="lms-jobs-select">
+                                                                    <option value="All">All</option>
+                                                                    <option value="Word Lists" @if(request()->get('quiz_category') == 'Word Lists') selected
+                                                                        @endif>Word Lists
+                                                                    </option>
+                                                                    <option value="Spelling Bee" @if(request()->get('quiz_category') ==
+                                                                        'Spelling Bee') selected @endif>Spelling Bee
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="col-12 col-lg-3 col-md-6">
                                                         <div class="form-group mb-0">
@@ -131,18 +141,13 @@
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
                                                     aria-label="Date: activate to sort column descending">&nbsp;
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Percent: activate to sort column ascending">
-                                                    Words
-                                                </th>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
                                                     aria-label="Date: activate to sort column descending">Mastered Words
                                                 </th>
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
                                                     aria-label="Date: activate to sort column descending">Troubled Words
                                                 </th>
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">In-progress Words
-                                                </th>
+
                                                 <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
                                                     aria-label="Date: activate to sort column descending">Not Used Words
                                                 </th>
@@ -216,17 +221,16 @@
                                             <tr class="odd">
                                                 <td>
 
-                                                    <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}}</a>
+                                                    <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}} <span class="spell_category">{{$dataObj->quiz_category}}</span></a>
+                                                    <br> <span class="sub_label">{{$total_questions}} Word(s)</span>
                                                 </td>
                                                 <td>
                                                     @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
                                                     <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
                                                     @endif
                                                 </td>
-                                                <td>{{$total_questions}}</td>
                                                 <td>{{$mastered_words}}</td>
                                                 <td>{{$non_mastered_words}}</td>
-                                                <td>{{$in_progress_words}}</td>
                                                 <td>{{($total_questions - $mastered_words - $non_mastered_words - $in_progress_words)}}</td>
 
                                             </tr>
