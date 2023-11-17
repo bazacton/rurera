@@ -222,6 +222,12 @@
                         <span>Assignments</span>
                     </a>
                 </li>
+                <li class="nav-item {{ (request()->is('admin/timestables_assignments')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/timestables_assignments') }}" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Timestables Assignments</span>
+                    </a>
+                </li>
             @endif
 
             @can('admin_assigned_assignments')

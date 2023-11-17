@@ -567,9 +567,10 @@ class QuestionsAttemptController extends Controller
             $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $quizAttempt->attempt_type)->first();
             $total_points = isset( $RewardAccountingObj->score )? $RewardAccountingObj->score : 0;
         }
+        $is_complete = isset($newQuestionResult->quiz_result_id)? false : true;
         $response = array(
             'show_fail_message'        => $show_fail_message,
-            'is_complete'              => ($question_response_layout == '') ? true : $is_complete,
+            'is_complete'              => $is_complete,//($question_response_layout == '') ? true : $is_complete,
             'incorrect_array'          => $incorrect_array,
             'correct_array'            => $correct_array,
             'incorrect_flag'           => $incorrect_flag,
@@ -800,21 +801,21 @@ class QuestionsAttemptController extends Controller
         $question_layout = '';
         if (!empty($attempted_questions)) {
             foreach ($attempted_questions as $question_id => $questionData) {
-                //$question_layout .= $this->get_question_complete_layout($question_id, $questionData);
+                $question_layout .= $this->get_question_complete_layout($question_id, $questionData);
             }
         }
 
         if (!empty($incorrect_questions)) {
             $question_layout .= '<h2>Wrong Answer</h2>';
             foreach ($incorrect_questions as $question_id => $questionData) {
-                $question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
+                //$question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
             }
         }
 
         if (!empty($correct_questions)) {
             $question_layout .= '<br><br><h2>Correct Answer</h2>';
             foreach ($correct_questions as $question_id => $questionData) {
-                $question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
+                //$question_layout .= $this->get_question_complete_layout($question_id, $questionData, $quizAttempt);
             }
         }
 
@@ -1251,7 +1252,7 @@ class QuestionsAttemptController extends Controller
                     'correct_answer'   => $correct_answers,
                     'user_answer'      => $user_answer,
                     'quiz_layout'      => json_encode($tableData),
-                    'quiz_grade'       => 5,
+                    'quiz_grade'       => 1,
                     'average_time'     => 0,
                     'time_consumed'    => $time_consumed,
                     'difficulty_level' => 'Expected',
@@ -1273,6 +1274,7 @@ class QuestionsAttemptController extends Controller
 
     public function get_question_result_layout($result_question_id)
     {
+
 
         $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
         if ($resultQuestionObj->status == 'waiting') {
@@ -1375,7 +1377,7 @@ class QuestionsAttemptController extends Controller
         $correct_answer_response = '';
         $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
 
-
+        $user = auth()->user();
         if (!empty($correct_answers)) {
             foreach ($correct_answers as $field_id => $correct_answer_array) {
                 if (!empty($correct_answer_array)) {
@@ -1390,6 +1392,7 @@ class QuestionsAttemptController extends Controller
             foreach ($user_answers as $field_id => $user_input_data_array) {
                 if (!empty($user_input_data_array)) {
                     foreach ($user_input_data_array as $user_input_data) {
+                        $user_input_data = is_array($user_input_data)? $user_input_data[0] : $user_input_data;
                         $user_input_response .= '<li><label class="lms-question-label ' . $label_class . '" for="radio2"><span>' . $user_input_data . '</span></label></li>';
                     }
                 }
@@ -1399,7 +1402,7 @@ class QuestionsAttemptController extends Controller
         $question_layout .= '<div class="lms-radio-lists">
             					<span class="list-title">Correct answer:</span>
             					<ul class="lms-radio-btn-group lms-user-answer-block">' . $correct_answer_response . '</ul>
-            					<span class="list-title">You answered:</span>
+            					<span class="list-title">'.$user->full_name.' answered:</span>
             					<ul class="lms-radio-btn-group lms-user-answer-block">' . $user_input_response . '</ul>
             			</div><hr>';
 

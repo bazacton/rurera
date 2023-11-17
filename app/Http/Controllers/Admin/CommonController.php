@@ -39,7 +39,7 @@ class CommonController extends Controller
         $classes_query = Classes::where('category_id', $year_id)->where('status', 'active')->where('parent_id', 0);
 
         if (auth()->user()->isTeacher()) {
-            $classes_query = $classes_query->where('created_by', $user->id);
+            //$classes_query = $classes_query->where('created_by', $user->id);
         }
 
         $classes = $classes_query->get();
@@ -69,7 +69,7 @@ class CommonController extends Controller
         $sections_query = Classes::where('parent_id', $class_id)->where('status', 'active');
 
         if (auth()->user()->isTeacher()) {
-            $sections_query = $sections_query->where('created_by', $user->id);
+            //$sections_query = $sections_query->where('created_by', $user->id);
         }
 
         $sections = $sections_query->get();

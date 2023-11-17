@@ -11,6 +11,102 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <div class="section-title mb-50 text-center"><h2>Create Assignment </h2></div>
+            </div>
+            <div class="col-12 col-lg-8 mx-auto mb-50">
+                <form action="/timestables/assignment_create" method="post">
+                    {{ csrf_field() }}
+                    <div class="questions-select-option">
+                        <ul class="mb-20 d-flex align-items-center">
+                            <li>
+                                <input checked type="radio" id="two-minutes" value="2" name="time_interval" />
+                                <label for="two-minutes" class="d-inline-flex flex-column justify-content-center">
+                                    <strong>2 Minutes</strong>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="five-minutes" value="5" name="time_interval" />
+                                <label for="five-minutes" class="d-inline-flex flex-column justify-content-center">
+                                    <strong>5 Minutes</strong>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="ten-minutes" value="10" name="time_interval" />
+                                <label for="ten-minutes" class="d-inline-flex flex-column justify-content-center">
+                                    <strong>10 Minutes</strong>
+                                </label>
+                            </li>
+                        </ul>
+                        <ul class="mb-20 d-flex align-items-center">
+                            <li>
+                                <input checked type="radio" id="ten-questions" value="10" name="no_of_questions" />
+                                <label for="ten-questions" class="d-inline-flex flex-column justify-content-center">
+                                <strong>10 questions</strong>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="twenty-questions" value="20" name="no_of_questions" />
+                                <label for="twenty-questions" class="d-inline-flex flex-column justify-content-center">
+                                <strong>20 questions</strong>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" id="thirty-questions" value="30" name="no_of_questions" />
+                                <label for="thirty-questions" class="d-inline-flex flex-column justify-content-center">
+                                <strong>30 questions</strong>
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <div class="form-group">
+                                <label class="input-label">Childs</label>
+                                <div class="input-field select-arrow">
+                                    @if(!empty($childs))
+                                    <select name="users[]" multiple="multiple">
+                                        <option value="all">All</option>
+                                        @foreach( $childs as $childObj)
+                                            <option value="{{$childObj->id}}">{{$childObj->full_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="questions-select-number">
+                        <ul class="d-flex justify-content-center flex-wrap mb-30">
+                        <li><input type="checkbox" value="10" name="question_tables[]" id="tables_ten" /> <label for="tables_ten" >10</label></li>
+                        <li><input type="checkbox" value="2" name="question_tables[]" id="tables_two" /> <label for="tables_two">2</label></li>
+                        <li><input type="checkbox" value="5" name="question_tables[]" id="tables_five" /> <label for="tables_five" >5</label></li>
+                        <li><input type="checkbox" value="3" name="question_tables[]" checked id="tables_three" /> <label for="tables_three">3</label></li>
+                        <li><input type="checkbox" value="4" name="question_tables[]" checked id="tables_four" /> <label for="tables_four">4</label></li>
+                        <li><input type="checkbox" value="8" name="question_tables[]" id="tables_eight" /> <label for="tables_eight">8</label></li>
+                        <li><input type="checkbox" value="6" name="question_tables[]" id="tables_six" /> <label for="tables_six">6</label></li>
+                        <li><input type="checkbox" value="7" name="question_tables[]" id="tables_seven" /> <label for="tables_seven">7</label></li>
+                        <li><input type="checkbox" value="9" name="question_tables[]" id="tables_nine" /> <label for="tables_nine">9</label></li>
+                        <li><input type="checkbox" value="11" name="question_tables[]" id="tables_eleven" /> <label for="tables_eleven">11</label></li>
+                        <li><input type="checkbox" value="12" name="question_tables[]" id="tables_twelve" /> <label for="tables_twelve" >12</label></li>
+                        <li><input type="checkbox" value="13" name="question_tables[]" id="tables_thirteen" /> <label for="tables_thirteen" >13</label></li>
+                        <li><input type="checkbox" value="14" name="question_tables[]" id="tables_fourteen" /> <label for="tables_fourteen" >14</label></li>
+                        <li><input type="checkbox" value="15" name="question_tables[]" id="tables_fifteen" /> <label for="tables_fifteen" >15</label></li>
+                        <li><input type="checkbox" value="16" name="question_tables[]" id="tables_sixteen" /> <label for="tables_sixteen" >16</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-btn">
+                        <button type="submit" class="questions-submit-btn btn"><span>Play</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-80 pb-30" style="background-color: #f8f8f8;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
                 <div class="section-title mb-50 text-center"><h2>Select Arithmetic Operations </h2></div>
             </div>
             <div class="col-12 col-lg-8 mx-auto mb-50">

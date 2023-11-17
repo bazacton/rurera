@@ -16,7 +16,7 @@
 @section('content')
 
 <section class="content-section">
-    <section class="pt-80" style="background-color: var(--panel-bg);">
+    <section class="pt-80" style="background-color: #fff;">
         <div class="container">
             <div class="row pt-80">
 

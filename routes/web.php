@@ -443,6 +443,9 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{info_id}/info_detail' , 'BooksController@info_detail');
         Route::post('/update_reading' , 'BooksController@update_reading');
     });
+    Route::group(['prefix' => 'book-shelf'] , function () {
+        Route::get('/' , 'BooksController@index');
+    });
 
     Route::group(['prefix' => 'sats'] , function () {
         Route::get('/' , 'SatsController@index');
@@ -507,6 +510,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         //Route::get('/landing' , 'TimestablesController@landing');
         Route::post('/generate' , 'TimestablesController@genearte');
         Route::get('/summary' , 'TimestablesController@summary');
+        Route::post('/assignment_create' , 'TimestablesController@assignment_create');
     });
 
     Route::group(['prefix' => 'timestables-practice'] , function () {

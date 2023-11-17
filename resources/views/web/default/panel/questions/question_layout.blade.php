@@ -1,6 +1,6 @@
-@php $rand_id = rand(999,99999); @endphp
-<meta name="csrf-token" content="{{ csrf_token() }}">
+@php $rand_id = rand(999,99999); $layout_type = isset( $layout_type )? $layout_type : ''; @endphp
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="question-step quiz-complete" style="display:none">
     <div class="question-layout-block">
@@ -20,9 +20,16 @@
 </div>
 
 @php
+
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
 $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
+if( $quizResultObj->quiz_result_type == 'practice'){
+$total_questions = countSubItems(json_decode($quizAttempt->questions_list));
+}else{
+    $total_questions = count(json_decode($quizAttempt->questions_list));
+}
+
 @endphp
 
 <div class="question-area">
@@ -49,7 +56,8 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                         @endif
                     </div>
                     @endif
-                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{count(json_decode($quizAttempt->questions_list))}} Questions ) Question ID: {{ $question->id }}</span>
+                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{$total_questions}} Questions ) @if($layout_type != 'results') Question ID: {{ $question->id }} @endif</span>
+                    @if($layout_type != 'results')
                     <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
                         <span class="question-icon flag-question {{$flag_class}}"
                               data-qresult_id="{{isset( $newQuestionResult->quiz_result_id )? $newQuestionResult->quiz_result_id : 0}}"
@@ -63,13 +71,16 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
                                         stroke="none"> <path
                                             d="M1620 4674 c-46 -20 -77 -50 -103 -99 l-22 -40 -3 -1842 -2 -1843 -134 0 c-120 0 -137 -2 -177 -23 -24 -13 -57 -43 -74 -66 -27 -39 -30 -50 -30 -120 0 -66 4 -83 25 -114 14 -21 43 -50 64 -65 l39 -27 503 0 502 0 44 30 c138 97 118 306 -34 370 -27 11 -73 15 -168 15 l-130 0 0 750 0 750 1318 2 1319 3 40 28 c83 57 118 184 75 267 -10 19 -140 198 -290 398 -170 225 -270 367 -265 375 4 7 128 174 276 372 149 197 276 374 283 392 19 45 17 120 -5 168 -23 51 -79 101 -128 114 -26 7 -459 11 -1330 11 l-1293 0 0 20 c0 58 -56 137 -122 171 -45 23 -128 25 -178 3z"></path> </g> </svg> </span>
                     </span>
+                    @endif
                     @php $classes = isset( $class )? $class : ''; @endphp
                     <div id="leform-form-1"
                          class="{{$classes}} leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
                          _data-parent="1"
                          _data-parent-col="0" style="display: block;">
                         <div class="question-layout">
+                            @if($layout_type != 'results')
                             <span class="marks" data-marks="{{$question->question_score}}">{{$question->question_score}} marks</span>
+                            @endif
                             {!! $question_layout !!}
                         </div>
 

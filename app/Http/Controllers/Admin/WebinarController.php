@@ -1241,7 +1241,7 @@ class WebinarController extends Controller
             if (!empty($WebinarChapter)) {
                 foreach ($WebinarChapter as $WebinarChapter) {
                         $selected = ($selected_chapter_id == $WebinarChapter->id)? 'selected' : '';
-                        $response .= '<option value="' . $WebinarChapter->id . '">' . $WebinarChapter->getTitleAttribute() . '</option>';
+                        $response .= '<option value="' . $WebinarChapter->id . '" '.$selected.'>' . $WebinarChapter->getTitleAttribute() . '</option>';
                 }
             }
 

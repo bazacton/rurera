@@ -335,6 +335,16 @@ Route::group([
 
 
         /*
+         * Timestables Assignments Routing
+         */
+        Route::group(['prefix' => 'timestables_assignments'], function () {
+            Route::get('/', 'TimestablesAssignmentsController@index');
+            Route::get('/create', 'TimestablesAssignmentsController@create');
+            Route::post('/store', 'TimestablesAssignmentsController@store');
+            Route::get('/{id}/edit', 'TimestablesAssignmentsController@edit')->name('adminEditTimesTablesAssignment');
+        });
+
+        /*
          * Assignments Routing
          */
         Route::group(['prefix' => 'assignments'], function () {
@@ -407,6 +417,15 @@ Route::group([
         Route::group(['prefix' => 'questions_bank'], function () {
             Route::get('/', 'QuestionsBankController@index');
             Route::get('/import_spells', 'QuestionsBankController@import_spells');
+            Route::get('/import_true_false_spells', 'QuestionsBankController@import_true_false_spells');
+            Route::get('/import_true_false_spells_correct', 'QuestionsBankController@import_true_false_spells_correct');
+            Route::get('/import_mcqs_questions_correct', 'QuestionsBankController@import_mcqs_questions_correct');
+            Route::get('/import_short_questions', 'QuestionsBankController@import_short_questions');
+
+
+
+            Route::get('/import_mcqs_questions', 'QuestionsBankController@import_mcqs_questions');
+            Route::get('/import_dropdown_questions', 'QuestionsBankController@import_dropdown_questions');
             Route::get('/create', 'QuestionsBankController@create');
             Route::post('/search', 'QuestionsBankController@search');
             Route::get('/get_questions_by_ids', 'QuestionsBankController@get_questions_by_ids');

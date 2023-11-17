@@ -17,6 +17,33 @@
 
     <section class="pt-80">
         <div class="container">
+
+            <div class="categories">
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                        <div class="category-box">
+                            <strong>Assignments <em>2</em></strong>
+                            <span>Games set for you.</span>
+                            <a href="#" class="view-btn">View</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                        <div class="category-box">
+                            <strong>Challenges</strong>
+                            <span>Challenge others to play.</span>
+                            <a href="#" class="view-btn">View</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                        <div class="category-box">
+                            <strong>Leagues</strong>
+                            <span>Player and class leagues.</span>
+                            <a href="#" class="view-btn">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-12">

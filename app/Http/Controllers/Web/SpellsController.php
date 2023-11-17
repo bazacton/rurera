@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\UserAssignedTopics;
 use App\Models\UserVocabulary;
@@ -24,6 +25,7 @@ class SpellsController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
         $summary_type = 'vocabulary';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
+        $page = Page::where('link', '/spells')->where('status', 'publish')->first();
 
 
         $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
@@ -117,7 +119,9 @@ class SpellsController extends Controller
 
         if (!empty($spellsData)) {
             $data = [
-                'pageTitle'                  => 'Online 11 plus (11+) Enterance Exams Papers, Resources , assessments, practices | Rurera',
+                'pageTitle'       => $page->title,
+                'pageDescription' => $page->seo_description,
+                'pageRobot'       => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
                 'data'                       => $spellsData,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,

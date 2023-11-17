@@ -5908,6 +5908,31 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                    break;
 
+                case "truefalse_quiz":
+                   var random_id = Math.floor((Math.random() * 99999) + 1);
+                   var left_data = '';
+                    var right_data = '';
+                   var attributes_data = '';
+                   var classes = '';
+                    leform_form_elements[i]['field_id'] = random_id;
+                   var field_data = '<span class="truefalse_quiz leform-input leform-cr-layout-undefined leform-cr-layout-undefined">\n' +
+                       '<div class="form-box rurera-in-row undefined image-right none">\n' +
+                       '<div class="lms-radio-select rurera-in-row undefined image-right none">\n' +
+                       '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined">\n' +
+                       '<input class="editor-field" type="radio" data-field_id="' + random_id + '" name="field-' + random_id + '" id="field-' + random_id + '-0" value="True">\n' +
+                       '<label for="field-' + random_id + '-0">True</label>\n' +
+                       '</div>\n' +
+                       '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined">\n' +
+                       '<input class="editor-field" type="radio" data-field_id="' + random_id + '" name="field-' + random_id + '" id="field-' + random_id + '-1" value="False">\n' +
+                       '<label for="field-' + random_id + '-1">False</label>\n' +
+                       '</div>\n' +
+                       '</div>\n' +
+                       '</div></span>';
+                   var html_data = "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + field_data + "<div class='leform-element-cover'></div></div>";
+                   html += html_data;
+
+                   break;
+
                 case "attachment_quiz":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     var field_data = '<div class="form-group mt-15">\n' +

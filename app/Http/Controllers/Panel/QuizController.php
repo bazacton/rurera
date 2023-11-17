@@ -498,6 +498,7 @@ class QuizController extends Controller
 
 
             if (!empty($questions_list)) {
+                $questions_counter = 0;
                 foreach ($questions_list as $question_no_index => $question_id) {
                     //if ($question_no_index > 0) {
                         $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $QuizzesResult);
@@ -516,6 +517,9 @@ class QuizController extends Controller
                     if (isset($questionObj->id)) {
                         $questions_array[] = $questionObj;
                         $exclude_array[] = $questionObj->id;
+                        if($QuizzesResult->quiz_result_type == 'practice'){
+                            $question_no_index = $questions_counter;
+                        }
 
                         $question_no = $question_no_index + 1;
                         if ($question_no_index == 0) {
@@ -589,6 +593,7 @@ class QuizController extends Controller
                         }
                         $questions_layout[$questionObj->id] = rurera_encode(stripslashes($question_response_layout));
                     }
+                    $questions_counter++;
 
                 }
             }
@@ -621,7 +626,12 @@ class QuizController extends Controller
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $active_question_id,
             ];
-            return view(getTemplate() . '.panel.quizzes.start', $data);
+
+            if($QuizzesResult->quiz_result_type == 'practice'){
+                return view(getTemplate() . '.panel.quizzes.practice_start', $data);
+            }else {
+                return view(getTemplate() . '.panel.quizzes.start', $data);
+            }
         }
         abort(404);
     }
@@ -655,9 +665,17 @@ class QuizController extends Controller
                     $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 }
 
+
                 $question_response_layout = '';
+                $question_response_layout = '<div class="question-result-layout question-status-'.$QuizzResultQuestionObj->status.'">';
+                if( $QuizzResultQuestionObj->status == 'correct') {
+                    $question_response_layout .= '<div class="earn-coins-icon">
+                        <img src="/assets/default/img/reward.png" alt="">
+                    </div>';
+                }
                 if( $QuizzesResult->quiz_result_type != 'vocabulary') {
-                    $question_response_layout = view('web.default.panel.questions.question_layout', [
+
+                    $question_response_layout .= view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
                         'prev_question'     => 0,
                         'next_question'     => 0,
@@ -670,11 +688,14 @@ class QuizController extends Controller
                         'disable_prev'      => 'true',
                         'disable_next'      => 'true',
                         'class'             => 'disable-div',
+                        'layout_type'             => 'results',
                     ])->render();
                 }
 
 
                 $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+
+                $question_response_layout .= '</div>';
                 //$questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
                 $questions_layout[$QuizzResultQuestionObj->question_id] = $question_response_layout;
                 $questions_list[] = $QuizzResultQuestionObj->question_id;

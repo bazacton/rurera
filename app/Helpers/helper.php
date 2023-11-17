@@ -2374,6 +2374,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-i-cursor',
             'type'  => 'other'
         ),
+        'truefalse_quiz'     => array(
+            'title' => esc_html__('True/False Field', 'leform'),
+            'icon'  => 'fas fa-i-cursor',
+            'type'  => 'other'
+        ),
         'attachment_quiz'     => array(
             'title' => esc_html__('Attachment', 'leform'),
             'icon'  => 'fas fa-paperclip',
@@ -6912,7 +6917,41 @@ function element_properties_meta($chapters)
                 'type'  => 'hidden'
             ),
         ),
+        'truefalse_quiz' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+        'correct_answer'    => array(
+            'value'   => '',
+            'label'   => esc_html__('Correct Answer', 'leform'),
+            '',
+            'type'    => 'select',
+            'options' =>
+                array(
+                    'True' => esc_html__('True', 'leform'),
+                    'False' => esc_html__('False', 'leform'),
+                )
+        ),
 
+        'score'         => array(
+           'value' => '',
+           'label' => esc_html__('Score', 'leform'),
+           'type'  => 'number'
+       ),
+        'elements_data' => array(
+            'value'   => '',
+            'label'   => '',
+            'tooltip' => '',
+            'type'    => 'elements_data'
+        ),
+        'field_id'      => array(
+            'value' => '',
+            'label' => esc_html__('Field_id', 'leform'),
+            'type'  => 'hidden'
+        ),
+        ),
 
         'attachment_quiz' => array(
             'basic'         => array(
@@ -7694,3 +7733,39 @@ function getTopicTitle($topic_id, $topic_type){
         \Cache::put('sitemap', $aSiteMap, 2880);
 
     }
+
+function countSubItems($array) {
+    $count = 0;
+
+    foreach ($array as $item) {
+        if (is_array($item)) {
+            $count += countSubItems($item);
+        }
+    }
+
+    return $count;
+}
+
+function countSubItemsOnly($array) {
+    $count = 0;
+    foreach ($array as $item) {
+        if (is_array($item)) {
+            $count += count($item);
+        }
+    }
+
+    return $count;
+}
+
+function dates_difference($date1, $date2){
+    $diff = abs($date2 - $date1);
+
+    $years = floor($diff / (365*60*60*24));
+    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+    return (object)array(
+        'years' => $years,
+        'months' => $months,
+        'days' => $days,
+    );
+}

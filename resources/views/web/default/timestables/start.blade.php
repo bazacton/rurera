@@ -8,19 +8,9 @@ $rand_id = rand(99,9999);
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
-<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-
-
-<link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
-<link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
-<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
-<script src="/assets/vendors/flipbook/js/flipbook.min.js"></script>
-<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
@@ -61,7 +51,7 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
+                    <div class="question-area-block" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
                         <div class="col-12 col-lg-8 mx-auto">
 
                             @if( is_array( $questions_list ))
@@ -128,12 +118,8 @@ $rand_id = rand(99,9999);
 
 @push('scripts_bottom')
 
-<script src="/assets/default/vendors/video/video.min.js"></script>
-<script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
 <script src="/assets/default/js/parts/quiz-start.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
-<script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 <script>
     //init_question_functions();
 
@@ -171,6 +157,8 @@ $rand_id = rand(99,9999);
 
         var total_questions = $(".question-area-block").attr('data-total_questions');
         var attempt_id = $(".question-area-block").attr('data-attempt_id');
+        var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
+
 
 
         clearInterval(Questionintervals);
@@ -228,7 +216,8 @@ $rand_id = rand(99,9999);
                 }
             });
 
-            window.location.href = '/timestables/summary';
+            //window.location.href = '/timestables/summary';
+            window.location = '/panel/results/'+quiz_result_id+'/timetables';
 
 
 

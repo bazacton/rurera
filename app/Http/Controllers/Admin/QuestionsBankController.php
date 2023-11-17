@@ -402,6 +402,661 @@ class QuestionsBankController extends Controller
         pre('Completed!!!!');
     }
 
+    public function import_true_false_spells_correct(){
+        $query = QuizzesQuestion::query();
+        $term_data = 'TRUEFALSE';
+        $query->where('search_tags', 'like', '%'.$term_data.'%');
+
+        $questions = $query->get();
+        if( !empty( $questions ) ){
+            foreach( $questions as $questionObj){
+
+                $elements_data = json_decode($questionObj->elements_data);
+                $keys = array_keys((array) $elements_data);
+                $dynamic_id = $keys[0];
+                $new_label = $elements_data->{'1'}->content;
+                $question_layout = $questionObj->question_layout;
+                $question_layout = $questionObj->question_layout;
+
+                $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0xXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0xIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+VHJ1ZS9GYWxzZVE8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdiBpZD1cImxlZm9ybS1lbGVtZW50LTBcIiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LTAgbGVmb3JtLWVsZW1lbnQgcXVpei1ncm91cCBsZWZvcm0tZWxlbWVudC1odG1sXCIgZGF0YS10eXBlPVwidHJ1ZWZhbHNlX3F1aXpcIj48c3BhbiBjbGFzcz1cInRydWVmYWxzZV9xdWl6IGxlZm9ybS1pbnB1dCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZFwiPlxuPGRpdiBjbGFzcz1cImZvcm0tYm94IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJsbXMtcmFkaW8tc2VsZWN0IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJmaWVsZC1ob2xkZXIgbGVmb3JtLWNyLWNvbnRhaW5lci1tZWRpdW0gbGVmb3JtLWNyLWNvbnRhaW5lci11bmRlZmluZWRcIj5cbjxpbnB1dCBjbGFzcz1cImVkaXRvci1maWVsZFwiIHR5cGU9XCJyYWRpb1wiIG5hbWU9XCJmaWVsZC0zNzM4MlwiIGlkPVwiZmllbGQtMzczODItMFwiIHZhbHVlPVwiVHJ1ZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTBcIj5UcnVlPC9sYWJlbD5cbjwvZGl2PlxuPGRpdiBjbGFzcz1cImZpZWxkLWhvbGRlciBsZWZvcm0tY3ItY29udGFpbmVyLW1lZGl1bSBsZWZvcm0tY3ItY29udGFpbmVyLXVuZGVmaW5lZFwiPlxuPGlucHV0IGNsYXNzPVwiZWRpdG9yLWZpZWxkXCIgdHlwZT1cInJhZGlvXCIgbmFtZT1cImZpZWxkLTM3MzgyXCIgaWQ9XCJmaWVsZC0zNzM4Mi0xXCIgdmFsdWU9XCJGYWxzZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTFcIj5GYWxzZTwvbGFiZWw+XG48L2Rpdj5cbjwvZGl2PlxuPC9kaXY+PC9zcGFuPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
+                $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+
+                $question_layout = '<div id="leform-element-1" class="leform-element-1 leform-element quiz-group leform-element-html" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
+                $question_layout .= '<div id="leform-element-0" class="leform-element-0 leform-element quiz-group leform-element-html" data-type="truefalse_quiz"><span class="truefalse_quiz leform-input leform-cr-layout-undefined leform-cr-layout-undefined">
+                <div class="form-box rurera-in-row undefined image-right none">
+                <div class="lms-radio-select rurera-in-row undefined image-right none">
+                <div class="field-holder leform-cr-container-medium leform-cr-container-undefined">
+                <input class="editor-field" type="radio" name="field-37382" id="field-37382-0" value="True">
+                <label for="field-37382-0">True</label>
+                </div>
+                <div class="field-holder leform-cr-container-medium leform-cr-container-undefined">
+                <input class="editor-field" type="radio" name="field-37382" id="field-37382-1" value="False">
+                <label for="field-37382-1">False</label>
+                </div>
+                </div>
+                </div></span><div class="leform-element-cover"></div></div>';
+
+                $question_layout = str_replace('37382', $dynamic_id, $question_layout);
+
+                $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+                $questionObj->update([
+                    'question_layout' => $question_layout,
+                ]);
+                pre($questionObj->id, false);
+            }
+        }
+        pre('Done');
+    }
+
+    /*
+     * Import TRUE / FALSE Questions
+     */
+    public function import_true_false_spells()
+    {
+        $user = auth()->user();
+
+
+        //Year 4
+        $files_array = array(
+            'true-false-part01',
+            'true-false-part02',
+            'true-false-part03',
+            'true-false-part04',
+            'true-false-part05',
+        );
+        $grade = 'Year 7';
+
+        foreach( $files_array as $file_name){
+            $excel = 'grade-7-truefalse/'.$file_name.'.xlsx';
+            echo '<hr><br><br>';
+            echo $file_name.'<br>';
+            $other_slug = $file_name;
+
+            $rows = Excel::toArray(null, $excel);
+            if (!empty($rows)) {
+                foreach ($rows as $rowArray) {
+                    if (!empty($rowArray)) {
+                        foreach ($rowArray as $key => $rowData) {
+                            if ($key == 0) {
+                                continue;
+                            }
+                            $random_id = rand(1111, 9999);
+                            $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0xXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0xIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+VHJ1ZS9GYWxzZVE8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdiBpZD1cImxlZm9ybS1lbGVtZW50LTBcIiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LTAgbGVmb3JtLWVsZW1lbnQgcXVpei1ncm91cCBsZWZvcm0tZWxlbWVudC1odG1sXCIgZGF0YS10eXBlPVwidHJ1ZWZhbHNlX3F1aXpcIj48c3BhbiBjbGFzcz1cInRydWVmYWxzZV9xdWl6IGxlZm9ybS1pbnB1dCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZFwiPlxuPGRpdiBjbGFzcz1cImZvcm0tYm94IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJsbXMtcmFkaW8tc2VsZWN0IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJmaWVsZC1ob2xkZXIgbGVmb3JtLWNyLWNvbnRhaW5lci1tZWRpdW0gbGVmb3JtLWNyLWNvbnRhaW5lci11bmRlZmluZWRcIj5cbjxpbnB1dCBjbGFzcz1cImVkaXRvci1maWVsZFwiIHR5cGU9XCJyYWRpb1wiIG5hbWU9XCJmaWVsZC0zNzM4MlwiIGlkPVwiZmllbGQtMzczODItMFwiIHZhbHVlPVwiVHJ1ZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTBcIj5UcnVlPC9sYWJlbD5cbjwvZGl2PlxuPGRpdiBjbGFzcz1cImZpZWxkLWhvbGRlciBsZWZvcm0tY3ItY29udGFpbmVyLW1lZGl1bSBsZWZvcm0tY3ItY29udGFpbmVyLXVuZGVmaW5lZFwiPlxuPGlucHV0IGNsYXNzPVwiZWRpdG9yLWZpZWxkXCIgdHlwZT1cInJhZGlvXCIgbmFtZT1cImZpZWxkLTM3MzgyXCIgaWQ9XCJmaWVsZC0zNzM4Mi0xXCIgdmFsdWU9XCJGYWxzZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTFcIj5GYWxzZTwvbGFiZWw+XG48L2Rpdj5cbjwvZGl2PlxuPC9kaXY+PC9zcGFuPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
+
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                            $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+
+                            pre($question_layout);
+
+                            $element_data = '
+                            {"37382":{"basic":"basic","correct_answer":"False","score":"5","elements_data":"W3t9XQ==","field_id":37382,"type":"truefalse_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3},
+                            "0":{"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
+                            "1":{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"TrueFalseQ","elements_data":"W3t9XQ=="}}';
+                            $layout_elements = '[{"basic":"basic","correct_answer":"False","score":"5","elements_data":"W3t9XQ==","field_id":37382,"type":"truefalse_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3},
+                            {"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
+                            {"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"TrueFalseQ","elements_data":"W3t9XQ=="}]';
+
+                            $correct_answer = isset( $rowData[3] )? $rowData[3] : '';
+                            $correct_answer = ($correct_answer == 1)? 'True' : 'False';
+                            $questionLabel = isset( $rowData[1] )? $rowData[1] : '';
+                            $questionLabel = 'Select One Correct Answer';
+                            $new_title = isset( $rowData[2] )? $rowData[2] : '';
+                            $new_tags = str_replace(',', ' | ', $rowData[0]);
+                            $question_solve = isset( $rowData[4] )? ucfirst($rowData[4]) : '';
+                            $element_data = str_replace('37382', $random_id, $element_data);
+                            $element_data = str_replace('TrueFalseQ', $questionLabel, $element_data);
+                            $element_data = str_replace('"correct_answer":"False"', '"correct_answer":"' . $correct_answer . '"', $element_data);
+                            $element_data = str_replace('question details', $new_title, $element_data);
+
+
+                            $layout_elements = str_replace('"correct_answer":"False"', '"correct_answer":"' . $correct_answer . '"', $layout_elements);
+                            $layout_elements = str_replace('TrueFalseQ', $questionLabel, $layout_elements);
+                            $layout_elements = str_replace('37382', $random_id, $layout_elements);
+                            $layout_elements = str_replace('question details', $new_title, $layout_elements);
+
+
+                            $question_layout = str_replace('37382', $random_id, $question_layout);
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                            $quizQuestion = QuizzesQuestion::create([
+                                'quiz_id'                   => 0,
+                                'creator_id'                => $user->id,
+                                'grade'                     => '',
+                                'question_year'             => 0,
+                                'question_score'            => 1,
+                                'question_average_time'     => 2,
+                                'question_difficulty_level' => 'Below',
+                                'question_template_type'    => 'sum_quiz',
+                                //isset( $questionData['type'] )? $questionData['type'] : '',
+                                'chapter_id'                => 195,
+                                'question_title'            => $new_title,
+                                'question_layout'           => $question_layout,
+                                'question_solve'            => $question_solve,
+                                'glossary_ids'              => '["1"]',
+                                'elements_data'             => $element_data,
+                                'layout_elements'           => $layout_elements,
+                                'category_id'               => 616,
+                                'course_id'                 => 2082,
+                                'sub_chapter_id'            => 0,
+                                'type'                      => 'descriptive',
+                                'created_at'                => time(),
+                                'question_status'           => 'Submit for review',
+                                'comments_for_reviewer'     => '',
+                                'search_tags'               => $new_tags.' | '.$grade.' | TRUEFALSE',
+                                'review_required'           => 0,
+                                'question_example'          => '<p>test</p>',
+                            ]);
+
+                            QuizzesQuestionTranslation::updateOrCreate([
+                                'quizzes_question_id' => $quizQuestion->id,
+                                'locale'              => 'en',
+                            ], [
+                                'title'   => $new_title,
+                                'correct' => '',
+                            ]);
+                            //pre($quizQuestion->id);
+                            pre($quizQuestion->id, false);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        pre('Completed!!!!');
+    }
+
+    public function import_mcqs_questions_correct(){
+        $query = QuizzesQuestion::query();
+        $term_data = 'MCQs';
+        $query->where('search_tags', 'like', '%'.$term_data.'%');
+
+        $questions = $query->get();
+        if( !empty( $questions ) ){
+            foreach( $questions as $questionObj){
+
+                $elements_data = json_decode($questionObj->elements_data);
+                $keys = array_keys((array) $elements_data);
+                $dynamic_id = $keys[0];
+                $new_question_text = $elements_data->{'0'}->content;
+                $new_label = $elements_data->{'1'}->content;
+                $question_layout = $questionObj->question_layout;
+                $question_layout = $questionObj->question_layout;
+                $options_array = $elements_data->$dynamic_id->options;
+
+                $options_text = '';
+                $option_count = 0;
+                if( !empty( $options_array ) ){
+                    foreach( $options_array as $optionObj){
+                        $options_text .= '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-75400" id="field-75400-'.$option_count.'" value="'.$optionObj->value.'"><label for="field-75400-'.$option_count.'">'.$optionObj->value.'</label></div>';
+                        $option_count++;
+                    }
+                }
+
+                $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+
+
+
+               $question_layout = '<div id="leform-element-1" class="leform-element-1 leform-element quiz-group leform-element-html ui-sortable-handle" data-type="paragraph_quiz">'.$new_question_text.'<div class="leform-element-cover"></div></div>';
+               $question_layout .= '<div id="leform-element-2" class="leform-element-2 leform-element quiz-group leform-element-html ui-sortable-handle" data-type="question_label"><div class="question-label"><span>'.$new_label.'</span></div></div>';
+               $question_layout .= '<div id="leform-element-0" class="quiz-group draggable3 leform-element-0 leform-element leform-element-label-undefined ui-sortable-handle" data-type="radio"><div class="leform-column-label"><label class="leform-label leform-ta-undefined"></label></div><div class="leform-column-input"><div class="leform-input leform-cr-layout-undefined leform-cr-layout-undefined"><div class="form-box rurera-in-row undefined image-right  image_small "><div class="lms-radio-select rurera-in-row undefined image-right  image_small">'.$options_text.'</div></div></div><label class="leform-description"></label></div><div class="leform-element-cover"></div></div>';
+
+                $question_layout = str_replace('75400', $dynamic_id, $question_layout);
+
+                $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+                $questionObj->update([
+                    'question_layout' => $question_layout,
+                ]);
+                pre($questionObj->id, false);
+            }
+        }
+        pre('Done');
+    }
+
+    /*
+     * Import MCQs Questions
+     */
+    public function import_mcqs_questions()
+    {
+        $user = auth()->user();
+
+
+        //Year 7
+        $files_array = array(
+            'mcq-qiestions-unit 01',
+            'mcq-qiestions-unit 01-part2',
+            'mcq-qiestions-unit 01-part3',
+            'mcq-qiestions-unit 01-part4',
+            'mcq-qiestions-unit 01-part5',
+        );
+        $grade = 'Year 7';
+
+        foreach( $files_array as $file_name){
+            $excel = 'grade-7-mcqs/'.$file_name.'.xlsx';
+            echo '<hr><br><br>';
+            echo $file_name.'<br>';
+            $other_slug = $file_name;
+
+            $rows = Excel::toArray(null, $excel);
+            if (!empty($rows)) {
+                foreach ($rows as $rowArray) {
+                    if (!empty($rowArray)) {
+                        foreach ($rowArray as $key => $rowData) {
+                            if ($key == 0) {
+                                continue;
+                            }
+                            $random_id = rand(1111, 9999);
+                            $question_layout = 'IjxzdHlsZT4jbGVmb3JtLWVsZW1lbnQtMCBkaXYubGVmb3JtLWlucHV0e2hlaWdodDphdXRvO2xpbmUtaGVpZ2h0OjE7fTwvc3R5bGU+PGRpdiBpZD1cImxlZm9ybS1lbGVtZW50LTFcIiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LTEgbGVmb3JtLWVsZW1lbnQgcXVpei1ncm91cCBsZWZvcm0tZWxlbWVudC1odG1sXCIgZGF0YS10eXBlPVwicXVlc3Rpb25fbGFiZWxcIj48ZGl2IGNsYXNzPVwicXVlc3Rpb24tbGFiZWxcIj48c3Bhbj5NQ1FTIExhYmVsPC9zcGFuPjwvZGl2PjwvZGl2PjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0wXCIgY2xhc3M9XCJxdWl6LWdyb3VwIGRyYWdnYWJsZTMgbGVmb3JtLWVsZW1lbnQtMCBsZWZvcm0tZWxlbWVudCBsZWZvcm0tZWxlbWVudC1sYWJlbC11bmRlZmluZWRcIiBkYXRhLXR5cGU9XCJyYWRpb1wiPjxkaXYgY2xhc3M9XCJsZWZvcm0tY29sdW1uLWxhYmVsXCI+PGxhYmVsIGNsYXNzPVwibGVmb3JtLWxhYmVsIGxlZm9ybS10YS11bmRlZmluZWRcIj48L2xhYmVsPjwvZGl2PjxkaXYgY2xhc3M9XCJsZWZvcm0tY29sdW1uLWlucHV0XCI+PGRpdiBjbGFzcz1cImxlZm9ybS1pbnB1dCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZFwiPjxkaXYgY2xhc3M9XCJmb3JtLWJveCBydXJlcmEtaW4tcm93IHVuZGVmaW5lZCBpbWFnZS1yaWdodCAgaW1hZ2Vfc21hbGwgXCI+PGRpdiBjbGFzcz1cImxtcy1yYWRpby1zZWxlY3QgcnVyZXJhLWluLXJvdyB1bmRlZmluZWQgaW1hZ2UtcmlnaHQgIGltYWdlX3NtYWxsXCI+PGRpdiBjbGFzcz1cImZpZWxkLWhvbGRlciBsZWZvcm0tY3ItY29udGFpbmVyLW1lZGl1bSBsZWZvcm0tY3ItY29udGFpbmVyLXVuZGVmaW5lZFwiPjxpbnB1dCBjbGFzcz1cImVkaXRvci1maWVsZFwiIHR5cGU9XCJyYWRpb1wiIG5hbWU9XCJmaWVsZC01NTIwNVwiIGlkPVwiZmllbGQtNTUyMDUtMFwiIHZhbHVlPVwiT3B0aW9uIDFcIj48bGFiZWwgZm9yPVwiZmllbGQtNTUyMDUtMFwiPk9wdGlvbiAxPC9sYWJlbD48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48bGFiZWwgY2xhc3M9XCJsZWZvcm0tZGVzY3JpcHRpb25cIj48L2xhYmVsPjwvZGl2PjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
+                            $element_data = '{"55205":{"type":"radio","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3,"basic":"basic","score":"","label":"","options":[{"default":"on","label":"Option 1","value":"Option 1","image":""}],"description":"","style":"style","image_size":"image_small","template_style":"rurera-in-row","template_alignment":"image-right","list_style":"","description-style-position":"","description-style-align":"","elements_data":"W3t9XQ==","field_id":55205},
+                            "0":{"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
+                            "1":{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"MCQS Label","elements_data":"W3t9XQ=="}}';
+                            $layout_elements = '[
+                            {"type":"radio","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3,"basic":"basic","score":"","label":"","options":[{"default":"on","label":"Option 1","value":"Option 1","image":""}],"description":"","style":"style","image_size":"image_small","template_style":"rurera-in-row","template_alignment":"image-right","list_style":"","description-style-position":"","description-style-align":"","elements_data":"W3t9XQ==","field_id":55205},
+                            {"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
+                            {"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"MCQS Label","elements_data":"W3t9XQ=="}]';
+
+
+                            $mcqs_options = isset( $rowData[3] )? $rowData[3] : '';
+                            $mcqs_options = explode('*', $mcqs_options);
+                            $questionLabel = isset( $rowData[1] )? $rowData[1] : '';
+                            $questionLabel = 'Select One Correct Answer';
+                            $new_title = isset( $rowData[2] )? $rowData[2] : '';
+                            $new_tags = str_replace(',', ' | ', $rowData[0]);
+                            $question_solve = isset( $rowData[5] )? $rowData[5] : '';
+
+                            $correct_answer = isset( $rowData[4] )? $rowData[4] : 1;
+                            $element_data = str_replace('55205', $random_id, $element_data);
+                            $layout_elements = str_replace('55205', $random_id, $layout_elements);
+
+                            $element_data = json_decode($element_data);
+                            $layout_elements = json_decode($layout_elements);
+                            $layout_count = 0;
+                            $element_data->$random_id->options = array();
+                            $layout_elements[0]->options = array();
+                            $option_count = 1;
+                            if( !empty( $mcqs_options )){
+                                foreach( $mcqs_options as $option_value){
+                                    if( $option_value == ''){
+                                        continue;
+                                    }
+                                    $element_data->$random_id->options[] = (object) array(
+                                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                                        'label' => $option_value,
+                                        'value' => $option_value,
+                                        'image' => '',
+                                    );
+                                    $layout_elements[0]->options[] = (object) array(
+                                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                                        'label' => $option_value,
+                                        'value' => $option_value,
+                                        'image' => '',
+                                    );
+                                    $option_count++;
+                                }
+                            }
+                            $element_data = json_encode($element_data);
+                            $layout_elements = json_encode($layout_elements);
+
+
+                            $element_data = str_replace('MCQS Label', $questionLabel, $element_data);
+                            $element_data = str_replace('question details', $new_title, $element_data);
+                            $layout_elements = str_replace('MCQS Label', $questionLabel, $layout_elements);
+                            $layout_elements = str_replace('question details', $new_title, $layout_elements);
+
+
+                            $question_layout = str_replace('55205', $random_id, $question_layout);
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                            $quizQuestion = QuizzesQuestion::create([
+                                'quiz_id'                   => 0,
+                                'creator_id'                => $user->id,
+                                'grade'                     => '',
+                                'question_year'             => 0,
+                                'question_score'            => 1,
+                                'question_average_time'     => 2,
+                                'question_difficulty_level' => 'Below',
+                                'question_template_type'    => 'sum_quiz',
+                                //isset( $questionData['type'] )? $questionData['type'] : '',
+                                'chapter_id'                => 195,
+                                'question_title'            => $new_title,
+                                'question_layout'           => $question_layout,
+                                'question_solve'            => $question_solve,
+                                'glossary_ids'              => '["1"]',
+                                'elements_data'             => $element_data,
+                                'layout_elements'           => $layout_elements,
+                                'category_id'               => 616,
+                                'course_id'                 => 2082,
+                                'sub_chapter_id'            => 0,
+                                'type'                      => 'descriptive',
+                                'created_at'                => time(),
+                                'question_status'           => 'Submit for review',
+                                'comments_for_reviewer'     => '',
+                                'search_tags'               => $new_tags.' | '.$grade.' | MCQs',
+                                'review_required'           => 0,
+                                'question_example'          => '<p>test</p>',
+                            ]);
+
+                            QuizzesQuestionTranslation::updateOrCreate([
+                                'quizzes_question_id' => $quizQuestion->id,
+                                'locale'              => 'en',
+                            ], [
+                                'title'   => $new_title,
+                                'correct' => '',
+                            ]);
+                            //pre($quizQuestion->id);
+                            pre($quizQuestion->id, false);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        pre('Completed!!!!');
+    }
+
+    /*
+     * Import dropdown Questions
+     */
+    public function import_dropdown_questions()
+    {
+        $user = auth()->user();
+
+
+        //Year 7
+        $files_array = array(
+            'unit1-dropdown-list-1',
+            'unit1-dropdown-list-2',
+            'unit1-dropdown-list-3',
+            'unit1-dropdown-list-4',
+            'unit1-dropdown-list-5',
+        );
+        $grade = 'Year 7';
+
+        foreach( $files_array as $file_name){
+            $excel = 'grade-7-dropdown/'.$file_name.'.xlsx';
+            echo '<hr><br><br>';
+            echo $file_name.'<br>';
+            $other_slug = $file_name;
+
+            $rows = Excel::toArray(null, $excel);
+            //pre($rows);
+            if (!empty($rows)) {
+                foreach ($rows as $rowArray) {
+                    if (!empty($rowArray)) {
+                        foreach ($rowArray as $key => $rowData) {
+                            if ($key == 0) {
+                                continue;
+                            }
+                            $random_id = rand(1111, 9999);
+                            $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0wXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0wIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+RHJvcGRvd24gTGFiZWw8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdiBpZD1cImxlZm9ybS1lbGVtZW50LTFcIiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LTEgbGVmb3JtLWVsZW1lbnQgcXVlc3Rpb24tdGV4dGFyZWEgcXVpei1ncm91cCBsZWZvcm0tZWxlbWVudC1odG1sXCIgZGF0YS10eXBlPVwiaHRtbFwiPmRyb3Bkb3duIGhlcmUmbmJzcDs8c3BhbiBjbGFzcz1cInNlbGVjdC1ib3ggcXVpei1pbnB1dC1ncm91cFwiPlxuICAgICAgICA8c2VsZWN0IGNsYXNzPVwiZWRpdG9yLWZpZWxkIG1lZGl1bVwiIGlkPVwiZmllbGQtNzg0NjJcIiBzY29yZT1cIjFcIj48b3B0aW9uIHZhbHVlPVwiT3B0aW9uIDFcIj5PcHRpb24gMTwvb3B0aW9uPjxvcHRpb24gdmFsdWU9XCJPcHRpb24gMlwiPk9wdGlvbiAyPC9vcHRpb24+PC9zZWxlY3Q+XG48L3NwYW4+PGRpdiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LWNvdmVyXCI+PC9kaXY+PC9kaXY+Ig==';
+                            $element_data = '{"0":{"type":"html","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":3,"basic":"basic","score":"","content":"dropdown here&nbsp;<span class=\"select-box quiz-input-group\">\n        <select class=\"editor-field medium\" data-id=\"78462\" data-options=\"WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0=\" data-field_type=\"select\" id=\"field-78462\" data-correct=\"[&quot;Option 1&quot;,&quot;Option 2&quot;]\" data-field_size=\"medium\" data-score=\"1\" score=\"1\" data-select_option=\"Option 2\"><option value=\"Option 1\">Option 1<\/option><option value=\"Option 2\">Option 2<\/option><\/select>\n<\/span>","elements_data":"W3siNzg0NjIiOnsiZmllbGRfdHlwZSI6InNlbGVjdCIsImxlZnQiOiJzZWxlY3QiLCJ0b3AiOiJzZWxlY3QiLCJzY29yZSI6IjEiLCJmaWVsZF9zaXplIjoibWVkaXVtIiwic2VsZWN0X29wdGlvbiI6WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0sImNvcnJlY3RfYW5zd2VyIjoiT3B0aW9uIDIifX1d"},"78462":{"class":"editor-field medium","data-id":"78462","data-options":"WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0=","data-field_type":"select","id":"field-78462","data-correct":"[\"Option 1\",\"Option 2\"]","data-field_size":"medium","data-score":"1","score":"1","data-select_option":"Option 2"}}';
+                            $layout_elements = '[{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":2,"basic":"basic","content":"Dropdown Label","elements_data":"W3t9XQ=="},{"type":"html","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":3,"basic":"basic","score":"","content":"dropdown here&nbsp;<span class=\"select-box quiz-input-group\">\n        <select class=\"editor-field medium\" data-id=\"78462\" data-options=\"WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0=\" data-field_type=\"select\" id=\"field-78462\" data-correct=\'[\"Option 1\"]\' data-field_size=\"medium\" data-score=\"1\" score=\"1\" data-select_option=\"Option 2\"><option value=\"Option 1\">Option 1<\/option><\/select>\n<\/span>","elements_data":"W3siNzg0NjIiOnsiZmllbGRfdHlwZSI6InNlbGVjdCIsImxlZnQiOiJzZWxlY3QiLCJ0b3AiOiJzZWxlY3QiLCJzY29yZSI6IjEiLCJmaWVsZF9zaXplIjoibWVkaXVtIiwic2VsZWN0X29wdGlvbiI6WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0sImNvcnJlY3RfYW5zd2VyIjoiT3B0aW9uIDIifX1d"}]';
+
+
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                            $questionLabel = isset( $rowData[1] )? $rowData[1] : '';
+                            $questionLabel = 'Select One Correct Answer';
+                            $new_title = isset( $rowData[2] )? $rowData[2] : '';
+                            $new_tags = str_replace(',', ' | ', $rowData[0]);
+                            $question_solve = isset( $rowData[5] )? $rowData[5] : '';
+
+                            $correct_answer = isset( $rowData[3] )? $rowData[3] : 1;
+                            $element_data = str_replace('78462', $random_id, $element_data);
+                            $layout_elements = str_replace('78462', $random_id, $layout_elements);
+
+                            $element_data = json_decode($element_data);
+                            $layout_elements = json_decode($layout_elements);
+                            $content_data = isset( $layout_elements[1] )? $layout_elements[1] : '';
+                            $content_data = isset( $content_data->content )? $content_data->content : '';
+                            $reference_start = explode('[', $new_title);
+                            $new_title_before = isset( $reference_start[0] )? $reference_start[0] : '';
+                            $reference_end = explode(']', $reference_start[1]);
+                            $new_title_end = explode(']', $new_title);
+                            $new_title_after = isset( $new_title_end[1] )? $new_title_end[1] : '';
+
+                            $options_string = isset( $reference_end[0] )? $reference_end[0] : '';
+                            $options_array = explode('/', $options_string);
+
+                            $question_reference = $new_title_before.' DROPDOWN '. $new_title_after;
+
+
+
+                            $content_data = str_replace('<span class="select-box', $new_title_before.' <span class="select-box', $content_data);
+                            $content_data = str_replace('</span>', '</span> '.$new_title_after, $content_data);
+                            $content_data = str_replace('</span>', '</span> '.$new_title_after, $content_data);
+
+
+
+
+
+
+                            $options_data = '<option value="">Select</option>';
+                            $options_new_array = array();
+
+
+                            $correct_count = $correct_answer;
+                            $option_count = 1;
+                            if( !empty( $options_array )){
+                                foreach( $options_array as $option_value){
+                                    if( $option_value == ''){
+                                        continue;
+                                    }
+                                    $options_data .= '<option value="'.$option_value.'">'.$option_value.'</option>';
+                                    $options_new_array[] = $option_value;
+                                    //$correct_answer = ($option_count == $correct_count)? $option_value : $correct_answer;
+                                    $option_count++;
+                                }
+                            }
+                            $content_data = str_replace('["Option 1"]', '["'.$correct_answer.'"]', $content_data);
+
+
+                            $content_data = str_replace('dropdown here', '', $content_data);
+                            $content_data = str_replace('<option value="Option 1">Option 1</option>', htmlspecialchars_decode($options_data), $content_data);
+                            $layout_count = 0;
+                            //pre($content_data);
+                            $layout_elements[1]->content  = $content_data;
+                            $element_data->$layout_count->content  = $content_data;
+                            $element_data->$random_id->{'data-correct'} = json_encode($options_new_array);
+                            $element_data->$random_id->{'data-select_option'} = $correct_answer;
+                            //pre($layout_elements);
+                            //pre($element_data);
+
+                            $element_data = json_encode($element_data);
+                            $layout_elements = json_encode($layout_elements);
+                            //pre($layout_elements);
+
+                            $content_data = str_replace('. .', '.', $content_data);
+                            $question_layout = '';
+                            $question_layout .= '<div id="leform-element-0" class="leform-element-0 leform-element quiz-group leform-element-html" data-type="question_label"><div class="question-label"><span>'.$questionLabel.'</span></div></div>';
+                            $question_layout .= '<div id="leform-element-1" class="leform-element-1 leform-element question-textarea quiz-group leform-element-html" data-type="html">'.$content_data.'<div class="leform-element-cover"></div></div>';
+
+
+                            $element_data = str_replace('Dropdown Label', $questionLabel, $element_data);
+                            $element_data = str_replace('WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0=', base64_encode(json_encode($options_new_array)), $element_data);
+                            $element_data = str_replace('. .', '.', $element_data);
+                            $layout_elements = str_replace('Dropdown Label', $questionLabel, $layout_elements);
+                            $layout_elements = str_replace('WyJPcHRpb24gMSIsIk9wdGlvbiAyIl0=', base64_encode(json_encode($options_new_array)), $layout_elements);
+                            $layout_elements = str_replace('. .', '.', $layout_elements);
+
+
+                            $question_layout = str_replace('78462', $random_id, $question_layout);
+                            $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+                            $quizQuestion = QuizzesQuestion::create([
+                                'quiz_id'                   => 0,
+                                'creator_id'                => $user->id,
+                                'grade'                     => '',
+                                'question_year'             => 0,
+                                'question_score'            => 1,
+                                'question_average_time'     => 2,
+                                'question_difficulty_level' => 'Below',
+                                'question_template_type'    => 'sum_quiz',
+                                //isset( $questionData['type'] )? $questionData['type'] : '',
+                                'chapter_id'                => 195,
+                                'question_title'            => $question_reference,
+                                'question_layout'           => $question_layout,
+                                'question_solve'            => $question_solve,
+                                'glossary_ids'              => '["1"]',
+                                'elements_data'             => $element_data,
+                                'layout_elements'           => $layout_elements,
+                                'category_id'               => 616,
+                                'course_id'                 => 2082,
+                                'sub_chapter_id'            => 0,
+                                'type'                      => 'descriptive',
+                                'created_at'                => time(),
+                                'question_status'           => 'Submit for review',
+                                'comments_for_reviewer'     => '',
+                                'search_tags'               => $new_tags.' | '.$grade.' | Dropdown',
+                                'review_required'           => 0,
+                                'question_example'          => '<p>test</p>',
+                            ]);
+
+                            QuizzesQuestionTranslation::updateOrCreate([
+                                'quizzes_question_id' => $quizQuestion->id,
+                                'locale'              => 'en',
+                            ], [
+                                'title'   => $question_reference,
+                                'correct' => '',
+                            ]);
+                            //pre($quizQuestion->id);
+                            pre($quizQuestion->id, false);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        pre('Completed!!!!');
+    }
+
+    /*
+     * Import dropdown Questions
+     */
+    public function import_short_questions()
+    {
+        $user = auth()->user();
+
+
+        //Year 7
+        $files_array = array(
+            'short-answer-p1',
+            'short-answer-p2',
+            'short-answer-p3',
+            'short-answer-p4',
+        );
+        $grade = 'Year 7';
+
+        foreach( $files_array as $file_name){
+            $excel = 'grade-7-short/'.$file_name.'.xlsx';
+            echo '<hr><br><br>';
+            echo $file_name.'<br>';
+            $other_slug = $file_name;
+
+            $rows = Excel::toArray(null, $excel);
+            //pre($rows);
+            if (!empty($rows)) {
+                foreach ($rows as $rowArray) {
+                    if (!empty($rowArray)) {
+                        foreach ($rowArray as $key => $rowData) {
+                            if ($key == 0) {
+                                continue;
+                            }
+                            $random_id = rand(1111, 9999);
+                            $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0zXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0zIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+Z2l2ZSBhIHNob3J0IGFuc3dlciBmb3IgZm9sbG93aW5nIHF1ZXN0aW9uPC9zcGFuPjwvZGl2PjwvZGl2PjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0yXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0yIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInBhcmFncmFwaF9xdWl6XCI+PHA+UXVlc3Rpb24gVGV4dCBoZXJlPC9wPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC00XCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC00IGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInRleHRhcmVhZmllbGRfcXVpelwiPjxzcGFuIGNsYXNzPVwiaW5wdXQtaG9sZGVyICB0ZXh0YXJlYV9wbGFpbiBmaWVsZF9sYXJnZVwiPjxzcGFuIGNsYXNzPVwiaW5wdXQtbGFiZWxcIiBjb250ZW50ZWRpdGFibGU9XCJmYWxzZVwiPjwvc3Bhbj48dGV4dGFyZWEgcGxhY2Vob2xkZXI9XCJcIiByb3dzPVwiNFwiIG1heGxlbmdodGg9XCIyNTVcIiBjbGFzcz1cImVkaXRvci1maWVsZCBpbnB1dC1zaW1wbGVcIiBpZD1cImZpZWxkLTY3OTcwXCI+PC90ZXh0YXJlYT48L3NwYW4+PGRpdiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LWNvdmVyXCI+PC9kaXY+PC9kaXY+Ig==';
+                            $element_data = '{"0":{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":5,"basic":"basic","content":"give a short answer for following question","elements_data":"W3t9XQ=="},"67970":{"type":"textareafield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6,"basic":"basic","placeholder":"","field_size":"field_large","style_format":"textarea_plain","maxlength":"255","rows":"4","correct_answer":"this is correct answer","score":"1","elements_data":"W3t9XQ==","field_id":67970}}';
+                            $layout_elements = '[{"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":4,"basic":"basic","content":"Question Text here","elements_data":"W3t9XQ=="},{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":0,"id":5,"basic":"basic","content":"give a short answer for following question","elements_data":"W3t9XQ=="},{"type":"textareafield_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":6,"basic":"basic","placeholder":"","field_size":"field_large","style_format":"textarea_plain","maxlength":"255","rows":"4","correct_answer":"this is correct answer","score":"1","elements_data":"W3t9XQ==","field_id":67970}]';
+
+
+                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+
+                            $questionLabel = 'Select One Correct Answer';
+                            $questionText = isset( $rowData[1] )? $rowData[1] : '';
+                            $question_reference = $questionText;
+                            $new_tags = str_replace(',', ' | ', $rowData[0]);
+                            $question_solve = '';
+
+                            $correct_answer = isset( $rowData[2] )? $rowData[2] : '';
+                            $element_data = str_replace('67970', $random_id, $element_data);
+                            $layout_elements = str_replace('67970', $random_id, $layout_elements);
+
+                            $element_data = str_replace('this is correct answer', $correct_answer, $element_data);
+                            $layout_elements = str_replace('this is correct answer', $correct_answer, $layout_elements);
+                            $layout_elements = str_replace('Question Text here', $questionText, $layout_elements);
+
+
+                            $element_data = json_decode($element_data);
+                            $layout_elements = json_decode($layout_elements);
+
+                            $element_data = json_encode($element_data);
+                            $layout_elements = json_encode($layout_elements);
+                            $question_layout = str_replace('Question Text here', $questionText, $question_layout);
+
+                            $question_layout = str_replace('67970', $random_id, $question_layout);
+
+                            $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+                            $quizQuestion = QuizzesQuestion::create([
+                                'quiz_id'                   => 0,
+                                'creator_id'                => $user->id,
+                                'grade'                     => '',
+                                'question_year'             => 0,
+                                'question_score'            => 1,
+                                'question_average_time'     => 2,
+                                'question_difficulty_level' => 'Below',
+                                'question_template_type'    => 'sum_quiz',
+                                //isset( $questionData['type'] )? $questionData['type'] : '',
+                                'chapter_id'                => 195,
+                                'question_title'            => $question_reference,
+                                'question_layout'           => $question_layout,
+                                'question_solve'            => $question_solve,
+                                'glossary_ids'              => '["1"]',
+                                'elements_data'             => $element_data,
+                                'layout_elements'           => $layout_elements,
+                                'category_id'               => 616,
+                                'course_id'                 => 2082,
+                                'sub_chapter_id'            => 0,
+                                'type'                      => 'descriptive',
+                                'created_at'                => time(),
+                                'question_status'           => 'Submit for review',
+                                'comments_for_reviewer'     => '',
+                                'search_tags'               => $new_tags.' | '.$grade.' | SA',
+                                'review_required'           => 1,
+                                'question_example'          => '<p>test</p>',
+                            ]);
+
+                            QuizzesQuestionTranslation::updateOrCreate([
+                                'quizzes_question_id' => $quizQuestion->id,
+                                'locale'              => 'en',
+                            ], [
+                                'title'   => $question_reference,
+                                'correct' => '',
+                            ]);
+                            //pre($quizQuestion->id);
+                            pre($quizQuestion->id, false);
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        pre('Completed!!!!');
+    }
+
     public function create_sub_chapters_auto(Request $request , $success = '')
     {
         $this->authorize('admin_questions_bank_create');
@@ -1476,7 +2131,8 @@ class QuestionsBankController extends Controller
         $questionIds = QuizzesQuestion::where('question_status', '!=', '');
         if( !empty( $term_array ) ){
             foreach( $term_array as $term_data){
-                $questionIds->where('question_title', 'like', '%'.$term_data.'%');
+                //$questionIds->where('question_title', 'like', '%'.$term_data.'%')->orWhere('search_tags', 'like', '%'.$term_data.'%');
+                $questionIds->where('search_tags', 'like', '%'.$term_data.'%');
             }
         }
         $questionIds    = $questionIds->get();

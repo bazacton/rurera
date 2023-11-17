@@ -41,7 +41,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                 <div class="left-content has-bg">
                 <div class="spells-quiz-info">
                     <ul>
-                        <li>
+                        <li class="show-correct-answer">
                             <span>{{$question_no}}</span> Of {{$total_questions_count}}
                         </li>
                         <li>
@@ -68,12 +68,11 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
                             font: 1.2rem 'Ubuntu Mono', monospace;
                             letter-spacing: 0.5ch;">
                     </div>
-                    <span style="color:#fff;">{{$correct_answer}}</span>
 
 
 
-                    <div class="question-correct-answere">
-
+                    <div class="question-correct-answere rurera-hide">
+                        {{$correct_answer}}
                     </div>
                     <div class="rurera-virtual-keyboard rurera-hide">
                         <div class="keyboard-delete">
@@ -261,6 +260,11 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
     window.onload = function() {
       var context = new AudioContext();
     }
+
+    $(document).on('click', '.show-correct-answer', function (e) {
+        $(this).closest('.spell-question-area').find('.question-correct-answere').removeClass('rurera-hide');
+
+    });
     $(document).on('click', '#sound-icon-{{ $question->id }}', function (e) {
         var context = new AudioContext();
         $('#field-{{$field_id}}').focus();

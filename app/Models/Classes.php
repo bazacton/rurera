@@ -32,4 +32,9 @@ class Classes extends Model
     {
         return $this->hasMany('App\Models\Classes', 'parent_id', 'id');
     }
+
+    public function users()
+    {
+        return $this->hasMany('App\User', 'section_id', 'id');
+    }
 }

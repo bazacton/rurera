@@ -49,8 +49,7 @@
             <div class="card">
                 <div class="card-header collapsed mb-0" id="headingOne" type="button" data-toggle="collapse"
                      data-target="#report_{{$date_str}}" aria-expanded="true" aria-controls="report_{{$date_str}}">
-                    <span>{{ dateTimeFormat($report_date,'d F Y') }}</span> |
-                    <span>{{isset( $analyticDataArray['practice_time'] )? $analyticDataArray['practice_time'] : 0}} min</span>
+                    <span>{{ dateTimeFormat($report_date,'d F Y') }}</span>
                     <span style="float:right">
                         {{isset( $analyticDataArray['data'] )? count($analyticDataArray['data']) : 0}} Skills practiced: {{isset( $analyticDataArray['question_answered'] )? $analyticDataArray['question_answered'] : 0}} questions
                     </span>
