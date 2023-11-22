@@ -115,30 +115,34 @@
                                                 <label class="input-label">Time Interval (Minutes)</label>
                                                 <input type="number"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][time_interval]"
-                                                       value="{{ !empty($assignment) ? $assignment->time_interval : old('time_interval') }}"
+                                                       value="{{ !empty($assignment) ? ($assignment->time_interval / 60) : old('time_interval') }}"
                                                        class="js-ajax-title form-control "
                                                        placeholder=""/>
                                                 <div class="invalid-feedback"></div>
                                             </div>
 
+                                            @php
+                                            $tables_no = isset( $assignment->tables_no )? json_decode($assignment->tables_no) : array();
+                                            @endphp
+
                                             <div class="form-group">
                                                 <div class="questions-select-number">
                                                     <ul class="d-flex justify-content-center flex-wrap mb-30">
-                                                    <li><input type="checkbox" value="10" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_ten" /> <label for="tables_ten" >10</label></li>
-                                                    <li><input type="checkbox" value="2" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_two" /> <label for="tables_two">2</label></li>
-                                                    <li><input type="checkbox" value="5" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_five" /> <label for="tables_five" >5</label></li>
-                                                    <li><input type="checkbox" value="3" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" checked id="tables_three" /> <label for="tables_three">3</label></li>
-                                                    <li><input type="checkbox" value="4" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" checked id="tables_four" /> <label for="tables_four">4</label></li>
-                                                    <li><input type="checkbox" value="8" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_eight" /> <label for="tables_eight">8</label></li>
-                                                    <li><input type="checkbox" value="6" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_six" /> <label for="tables_six">6</label></li>
-                                                    <li><input type="checkbox" value="7" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_seven" /> <label for="tables_seven">7</label></li>
-                                                    <li><input type="checkbox" value="9" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_nine" /> <label for="tables_nine">9</label></li>
-                                                    <li><input type="checkbox" value="11" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_eleven" /> <label for="tables_eleven">11</label></li>
-                                                    <li><input type="checkbox" value="12" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_twelve" /> <label for="tables_twelve" >12</label></li>
-                                                    <li><input type="checkbox" value="13" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_thirteen" /> <label for="tables_thirteen" >13</label></li>
-                                                    <li><input type="checkbox" value="14" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_fourteen" /> <label for="tables_fourteen" >14</label></li>
-                                                    <li><input type="checkbox" value="15" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_fifteen" /> <label for="tables_fifteen" >15</label></li>
-                                                    <li><input type="checkbox" value="16" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" id="tables_sixteen" /> <label for="tables_sixteen" >16</label></li>
+                                                    <li><input type="checkbox" value="10" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(10,$tables_no)? 'checked' : ''}} id="tables_ten" /> <label for="tables_ten" >10</label></li>
+                                                    <li><input type="checkbox" value="2" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(2,$tables_no)? 'checked' : ''}} id="tables_two" /> <label for="tables_two">2</label></li>
+                                                    <li><input type="checkbox" value="5" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(5,$tables_no)? 'checked' : ''}} id="tables_five" /> <label for="tables_five" >5</label></li>
+                                                    <li><input type="checkbox" value="3" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(3,$tables_no)? 'checked' : ''}} id="tables_three" /> <label for="tables_three">3</label></li>
+                                                    <li><input type="checkbox" value="4" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(4,$tables_no)? 'checked' : ''}} id="tables_four" /> <label for="tables_four">4</label></li>
+                                                    <li><input type="checkbox" value="8" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(8,$tables_no)? 'checked' : ''}} id="tables_eight" /> <label for="tables_eight">8</label></li>
+                                                    <li><input type="checkbox" value="6" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(6,$tables_no)? 'checked' : ''}} id="tables_six" /> <label for="tables_six">6</label></li>
+                                                    <li><input type="checkbox" value="7" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(7,$tables_no)? 'checked' : ''}} id="tables_seven" /> <label for="tables_seven">7</label></li>
+                                                    <li><input type="checkbox" value="9" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(9,$tables_no)? 'checked' : ''}} id="tables_nine" /> <label for="tables_nine">9</label></li>
+                                                    <li><input type="checkbox" value="11" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(11,$tables_no)? 'checked' : ''}} id="tables_eleven" /> <label for="tables_eleven">11</label></li>
+                                                    <li><input type="checkbox" value="12" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(12,$tables_no)? 'checked' : ''}} id="tables_twelve" /> <label for="tables_twelve" >12</label></li>
+                                                    <li><input type="checkbox" value="13" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(13,$tables_no)? 'checked' : ''}} id="tables_thirteen" /> <label for="tables_thirteen" >13</label></li>
+                                                    <li><input type="checkbox" value="14" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(14,$tables_no)? 'checked' : ''}} id="tables_fourteen" /> <label for="tables_fourteen" >14</label></li>
+                                                    <li><input type="checkbox" value="15" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(15,$tables_no)? 'checked' : ''}} id="tables_fifteen" /> <label for="tables_fifteen" >15</label></li>
+                                                    <li><input type="checkbox" value="16" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(16,$tables_no)? 'checked' : ''}} id="tables_sixteen" /> <label for="tables_sixteen" >16</label></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -147,10 +151,10 @@
                                             <div class="form-group">
                                                 <label class="input-label">Start Date</label>
                                                 <div class="input-group">
-                                                    <input type="date"
+                                                    <input type="text"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
-                                                           value="{{ !empty($assignment) ? $assignment->assignment_start_date : old('assignment_start_date') }}"
-                                                           class="form-control "
+                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d H:i', false) : old('assignment_start_date') }}"
+                                                           class="form-control datetimepicker"
                                                            placeholder=""/>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -158,10 +162,10 @@
                                             <div class="form-group">
                                                 <label class="input-label">End Date</label>
                                                 <div class="input-group">
-                                                    <input type="date"
+                                                    <input type="text"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
-                                                           value="{{ !empty($assignment) ? $assignment->assignment_end_date : old('assignment_end_date') }}"
-                                                           class="form-control "
+                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d H:i', false) : old('assignment_end_date') }}"
+                                                           class="form-control datetimepicker"
                                                            placeholder=""/>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -172,13 +176,13 @@
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]" class="form-control select2">
                                                         <option value="">Select</option>
-                                                        <option value="Daily" @if(!empty($assignment) && $assignment->recurring_type) == 'Daily') selected @endif>
+                                                        <option value="Daily" @if(!empty($assignment) && $assignment->recurring_type == 'Daily') selected @endif>
                                                             Daily
                                                         </option>
-                                                        <option value="Weekly" @if(!empty($assignment) && $assignment->recurring_type) == 'Weekly') == 'active') selected @endif>
+                                                        <option value="Weekly" @if(!empty($assignment) && $assignment->recurring_type == 'Weekly') selected @endif>
                                                             Weekly
                                                         </option>
-                                                        <option value="Monthly" @if(!empty($assignment) && $assignment->recurring_type) == 'Monthly') == 'active') selected @endif>
+                                                        <option value="Monthly" @if(!empty($assignment) && $assignment->recurring_type == 'Monthly') selected @endif>
                                                             Monthly
                                                         </option>
                                                     </select>
@@ -191,10 +195,10 @@
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_type]" class="form-control select2">
                                                         <option value="">Select</option>
-                                                        <option value="Individual" @if(!empty($assignment) && $assignment->assignment_type) == 'Individual') selected @endif>
+                                                        <option value="Individual" @if(!empty($assignment) && $assignment->assignment_type == 'Individual') selected @endif>
                                                             Individual
                                                         </option>
-                                                        <option value="Class" @if(!empty($assignment) && $assignment->assignment_type) == 'Class') == 'active') selected @endif>
+                                                        <option value="Class" @if(!empty($assignment) && $assignment->assignment_type == 'Class') selected @endif>
                                                             Class
                                                         </option>
                                                     </select>

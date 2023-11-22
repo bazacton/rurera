@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="/assets/default/css/quiz-layout.css">
 
     @endif
-@if($page->id == 121)
+@if($page->id == 121 || $page->id == 145)
 <link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
                         <script src="/assets/default/vendors/charts/chart.js"></script>
                     @endif

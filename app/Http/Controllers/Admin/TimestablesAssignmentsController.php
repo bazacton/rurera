@@ -37,27 +37,17 @@ class TimestablesAssignmentsController extends Controller
         removeContentLocale();
         //DB::enableQueryLog();
 
-        $query = Quiz::query()->where('quiz_type', 'assignment');
+        $query = TimestablesAssignments::query()->where('status', '!=', 'inactive');
 
         if (auth()->user()->isTeacher()) {
-            //$query = $query->where('creator_id', auth()->user()->id);
+            $query = $query->where('created_by', auth()->user()->id);
         }
         $totalAssignments = deepClone($query)->count();
 
         $query = $this->filters($query, $request);
 
 
-        $quizzes = $query->with([
-            'webinar',
-            'teacher',
-            'quizQuestionsList' => function ($query) {
-                $query->withCount([
-                    'teacher_review_questions',
-                    'development_review_questions',
-                ]);
-            },
-            'quizResults',
-        ])->paginate(100);
+        $assignments = $query->paginate(100);
 
         //pre($quizzes);
 
@@ -66,7 +56,7 @@ class TimestablesAssignmentsController extends Controller
 
         $data = [
             'pageTitle'        => 'Assignments',
-            'quizzes'          => $quizzes,
+            'assignments'      => $assignments,
             'totalAssignments' => $totalAssignments,
         ];
 
@@ -284,8 +274,6 @@ class TimestablesAssignmentsController extends Controller
                 break;
         }
 
-        
-
 
         $TimestablesAssignment = TimestablesAssignments::create([
             'title'                 => isset($data['title']) ? $data['title'] : '',
@@ -301,7 +289,8 @@ class TimestablesAssignmentsController extends Controller
             'created_by'            => $user->id,
             'created_at'            => time(),
         ]);
-        
+
+        $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
         if (!empty($assignment_events_dates)) {
             foreach ($assignment_events_dates as $eventDate) {
                 $TimestablesEvents = TimestablesEvents::create([
@@ -315,28 +304,30 @@ class TimestablesAssignmentsController extends Controller
                     'updated_at'  => time(),
                 ]);
 
+
+                if (!empty($users_array)) {
+                    foreach ($users_array as $user_id) {
+                        $UserAssignedTimestables = UserAssignedTimestables::create([
+                            'assignment_id'       => $TimestablesAssignment->id,
+                            'assignment_event_id' => $TimestablesEvents->id,
+                            'user_id'             => $user_id,
+                            'status'              => 'active',
+                            'created_at'          => time(),
+                            'updated_at'          => time(),
+                        ]);
+                    }
+                }
+
             }
         }
 
 
-        $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
-        if (!empty($users_array)) {
-            foreach ($users_array as $user_id) {
-                $UserAssignedTimestables = UserAssignedTimestables::create([
-                    'assignment_id' => $TimestablesAssignment->id,
-                    'user_id'       => $user_id,
-                    'status'        => 'active',
-                    'created_at'    => time(),
-                    'updated_at'    => time(),
-                ]);
-            }
-        }
         if ($request->ajax()) {
 
             $redirectUrl = '';
 
             if (empty($data['is_webinar_page'])) {
-                $redirectUrl = getAdminPanelUrl('/quizzes/' . $TimestablesAssignment->id . '/edit');
+                $redirectUrl = getAdminPanelUrl('/timestables_assignments');
             }
 
             return response()->json([
@@ -344,7 +335,7 @@ class TimestablesAssignmentsController extends Controller
                 'redirect_url' => $redirectUrl
             ]);
         } else {
-            return redirect()->route('adminEditTimesTablesAssignment', ['id' => $TimestablesAssignment->id]);
+            return redirect()->route('adminListTimesTablesAssignment', []);
         }
     }
 
@@ -352,55 +343,11 @@ class TimestablesAssignmentsController extends Controller
     {
         $this->authorize('admin_quizzes_edit');
 
-        $quiz = Quiz::query()->where('id', $id)
-            ->with([
-                'quizQuestions'     => function ($query) {
-                    $query->orderBy('order', 'asc');
-                    $query->with('quizzesQuestionsAnswers');
-                },
-                'quizQuestionsList' => function ($query) {
-                    $query->where('status', 'active');
-                    $query->orderBy('sort_order', 'asc');
-                    $query->with('QuestionData');
-                },
-            ])
-            ->first();
 
-        if ($quiz->status == 'actives') {
-            $toastData = [
-                'title'  => 'Request not completed',
-                'msg'    => 'You dont have permissions to perform this action.',
-                'status' => 'error'
-            ];
-            return redirect()->back()->with(['toast' => $toastData]);
-        }
+        $assignmentObj = TimestablesAssignments::query()->where('id', $id)->where('status', '!=', 'inactive')->first();
 
-
-        if (empty($quiz)) {
+        if (empty($assignmentObj)) {
             abort(404);
-        }
-
-        $creator = $quiz->creator;
-
-        $webinars = Webinar::where('status', 'active')
-            ->where(function ($query) use ($creator) {
-                $query->where('teacher_id', $creator->id)
-                    ->orWhere('creator_id', $creator->id);
-            })->get();
-
-        $locale = $request->get('locale', app()->getLocale());
-        if (empty($locale)) {
-            $locale = app()->getLocale();
-        }
-        storeContentLocale($locale, $quiz->getTable(), $quiz->id);
-
-        $quiz->title = $quiz->getTitleAttribute();
-        $quiz->locale = mb_strtoupper($locale);
-
-        $chapters = collect();
-
-        if (!empty($quiz->webinar)) {
-            $chapters = $quiz->webinar->chapters;
         }
 
         $categories = Category::where('parent_id', null)
@@ -408,45 +355,20 @@ class TimestablesAssignmentsController extends Controller
             ->get();
 
 
-        $topics_subtopics_layout = $this->topics_subtopics_by_subject($request, $quiz->subject_id, false, $quiz->topic_id, $quiz->subtopic_id);
+        $sections_query = Classes::where('parent_id', '>', 0)->where('status', 'active')->with([
+            'users'
+        ]);
 
+        $sections = $sections_query->get();
 
         $data = [
-            'pageTitle'               => trans('public.edit') . ' ' . $quiz->title,
-            'webinars'                => $webinars,
-            'assignment'              => $quiz,
-            'quizQuestions'           => $quiz->quizQuestions,
-            'creator'                 => $creator,
-            'chapters'                => $chapters,
-            'categories'              => $categories,
-            'topics_subtopics_layout' => $topics_subtopics_layout,
-            'locale'                  => mb_strtolower($locale),
-            'defaultLocale'           => getDefaultLocale(),
+            'pageTitle'  => trans('public.edit') . ' ' . $assignmentObj->title,
+            'assignment' => $assignmentObj,
+            'categories' => $categories,
+            'sections'   => $sections,
         ];
 
-        $query = Webinar::query();
-
-        $webinars = DB::table('webinars')
-            ->join('webinar_translations', 'webinar_translations.webinar_id', '=', 'webinars.id')
-            ->join('webinar_chapters', 'webinar_chapters.webinar_id', '=', 'webinars.id')
-            ->join('webinar_chapter_translations', 'webinar_chapter_translations.webinar_chapter_id', '=', 'webinar_chapters.id')
-            ->select('webinars.id', 'webinar_translations.title', 'webinar_chapters.id as chapter_id', 'webinar_chapter_translations.title as chapter_title')
-            ->get();
-
-        $chapters_list = array();
-        if (!empty($webinars)) {
-            foreach ($webinars as $webinarData) {
-                $webinar_id = isset($webinarData->id) ? $webinarData->id : '';
-                $webinar_title = isset($webinarData->title) ? $webinarData->title : '';
-                $chapter_id = isset($webinarData->chapter_id) ? $webinarData->chapter_id : '';
-                $chapter_title = isset($webinarData->chapter_title) ? $webinarData->chapter_title : '';
-                $chapters_list[$webinar_id]['title'] = $webinar_title;
-                $chapters_list[$webinar_id]['chapters'][$chapter_id] = $chapter_title;
-            }
-        }
-        $data['chapters'] = $chapters_list;
-
-        return view('admin.assignments.edit', $data);
+        return view('admin.timestables_assignments.create', $data);
     }
 
 

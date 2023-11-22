@@ -24,6 +24,11 @@ class QuizzesResult extends Model
         return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id');
     }
 
+    public function quizz_result_reward_points()
+    {
+        return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id')->where('status', '=', 'correct');
+    }
+
     public function attempts()
     {
         return $this->hasMany('App\Models\QuizzAttempts', 'quiz_result_id', 'id');

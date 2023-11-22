@@ -7639,6 +7639,10 @@ function getTopicTitle($topic_id, $topic_type){
                $topic_title .= isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
            break;
 
+            case "timestables_assignment":
+                $topic_title = 'Times Tables';
+            break;
+
 
         }
     }

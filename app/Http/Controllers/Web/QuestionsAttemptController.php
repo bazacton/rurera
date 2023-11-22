@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserAssignedTimestables;
 use App\User;
 use App\Models\QuizzesResult;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use App\Models\QuizzResultQuestions;
 use App\Models\AssignmentsQuestions;
+use App\Models\TimestablesEvents;
 use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
 use App\Models\UserVocabulary;
@@ -649,7 +651,7 @@ class QuestionsAttemptController extends Controller
         $parent_id = isset($QuizzResultQuestions->parent_type_id) ? $QuizzResultQuestions->parent_type_id : 0;
         $question_id = isset($QuizzResultQuestions->question_id) ? $QuizzResultQuestions->question_id : 0;
         $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
-        if( $parent_type == 'timestables'){
+        if( $parent_type == 'timestables' || $parent_type == 'timestables_assignment'){
             $question_id = $QuizzResultQuestions->id;
         }
 
@@ -1177,11 +1179,12 @@ class QuestionsAttemptController extends Controller
         $timestables_data = $request->get('timestables_data');
         $attempt_id = $request->get('attempt_id');
 
+
         $user = auth()->user();
 
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
 
-        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('id', '!=', $QuizzAttempts->quiz_result_id)->where('quiz_result_type', 'timestables')->where('status' ,'!=', 'waiting')->orderBy('id', 'DESC')->first();
+        $last_time_table_data = QuizzesResult::where('user_id', $user->id)->where('id', '!=', $QuizzAttempts->quiz_result_id)->whereIN('quiz_result_type', array('timestables', 'timestables_assignment'))->where('status' ,'!=', 'waiting')->orderBy('id', 'DESC')->first();
         $get_last_results = isset($last_time_table_data->other_data) ? $last_time_table_data->other_data : '';
 
         $get_last_results = (array)json_decode($get_last_results);
@@ -1193,6 +1196,7 @@ class QuestionsAttemptController extends Controller
                 $results[$tableData['table_no']][] = $tableData;
             }
         }
+
 
 
         $new_array = array_merge($get_last_results, $results);
@@ -1217,12 +1221,30 @@ class QuestionsAttemptController extends Controller
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
         $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
 
+        if( $QuizzesResult->quiz_result_type == 'timestables_assignment'){
+            $UserAssignedTimestables = UserAssignedTimestables::find($QuizzesResult->parent_type_id);
+            $UserAssignedTimestables->update([
+                'status'           => 'completed',
+                'updated_at'       => time(),
+            ]);
+
+            $pendingEventCounts = UserAssignedTimestables::where('assignment_event_id', $UserAssignedTimestables->assignment_event_id)->where('status', 'active')->count();
+
+            if( $pendingEventCounts == 0){
+                $TimestablesEvents = TimestablesEvents::find($UserAssignedTimestables->assignment_event_id);
+                $TimestablesEvents->update([
+                    'status'           => 'completed',
+                    'updated_at'       => time(),
+                ]);
+            }
+        }
+
         $QuizzesResult->update([
             'user_id'          => $user->id,
             'results'          => json_encode($results),
             'user_grade'       => 0,
             'status'           => 'passed',
-            'quiz_result_type' => 'timestables',
+            //'quiz_result_type' => 'timestables',
             'no_of_attempts'   => 100,
             'other_data'       => json_encode($new_result_data),
         ]);
@@ -1658,7 +1680,7 @@ class QuestionsAttemptController extends Controller
                 '24',
             );
         }
-        
+
         if( $return_type == 'daily') {
             $keys_array = array(
                 '01',

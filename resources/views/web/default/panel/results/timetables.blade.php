@@ -204,7 +204,7 @@ $rand_id = rand(99,9999);
                                 <div class="question-area">
                                     <div class="question-step question-step-5834" data-elapsed="0" data-qattempt="860" data-start_time="0" data-qresult="18333" data-quiz_result_id="249">
                                         <div class="lms-radio-lists">
-                                            <span class="questions-total-holder d-block mb-30">( {{$counter}}/{{count($tableData)}} Questions ) </span>
+                                            <span class="questions-total-holder d-block mb-30">( {{$counter}}/{{countSubItemsOnly((array) $results)}} Questions ) </span>
                                             <div class="selected-text-field">
                                                 <span>{{$rowObj->from}} <span>x</span> {{$rowObj->to}} <span>=</span></span>
                                                 <span class="user_answer">{{$rowObj->answer}}</span>
@@ -216,7 +216,7 @@ $rand_id = rand(99,9999);
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label" for="radio2"><span>{{$rowObj->correct_answer}}</span></label></li>
                                             </ul>
-                                            <span class="list-title">Sophia Clark answered:</span>
+                                            <span class="list-title">{{auth()->user()->full_name}} answered:</span>
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label correct" for="radio2"><span>{{$rowObj->answer}}</span></label></li>
                                             </ul>

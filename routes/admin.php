@@ -338,7 +338,7 @@ Route::group([
          * Timestables Assignments Routing
          */
         Route::group(['prefix' => 'timestables_assignments'], function () {
-            Route::get('/', 'TimestablesAssignmentsController@index');
+            Route::get('/', 'TimestablesAssignmentsController@index')->name('adminListTimesTablesAssignment');
             Route::get('/create', 'TimestablesAssignmentsController@create');
             Route::post('/store', 'TimestablesAssignmentsController@store');
             Route::get('/{id}/edit', 'TimestablesAssignmentsController@edit')->name('adminEditTimesTablesAssignment');

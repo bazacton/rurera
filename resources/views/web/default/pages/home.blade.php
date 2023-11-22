@@ -499,26 +499,32 @@
             </div>
         </div>
     </section>
-    <section class="home-sections home-sections-swiper container reward-program-section position-relative mt-90">
-        <div class="row align-items-center">
-            <div class="col-12 col-lg-6">
-                <div class="position-relative reward-program-section-hero-card"> 
-                    <img src="/store/1/default_images/home_sections_banners/club_points_banner.png" class="reward-program-section-hero" alt="Win Club Points" height="390" width="570">
-                    <div class="example-reward-card bg-white rounded-sm shadow-lg p-5 p-md-15 d-flex align-items-center">
-                        <div class="example-reward-card-medal"> 
-                            <img src="/assets/default/img/rewards/medal.png" height="56" width="56" class="img-cover rounded-circle" alt="medal"> 
+    <section class="home-sections home-sections-swiper container position-relative mt-90">
+        <div class="row">
+            <div class="col-12">
+                <div class="reward-program-section">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="position-relative reward-program-section-hero-card"> 
+                                <img src="/store/1/default_images/home_sections_banners/club_points_banner.png" class="reward-program-section-hero" alt="Win Club Points" height="390" width="570">
+                                <div class="example-reward-card bg-white rounded-sm shadow-lg p-5 p-md-15 d-flex align-items-center">
+                                    <div class="example-reward-card-medal"> 
+                                        <img src="/assets/default/img/rewards/medal.png" height="56" width="56" class="img-cover rounded-circle" alt="medal"> 
+                                    </div>
+                                    <div class="flex-grow-1 ml-15"> <span class="font-14 font-weight-bold text-secondary d-block">You earned 50 points!</span> <span class="text-gray font-12 font-weight-500">for completing the course...</span> </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex-grow-1 ml-15"> <span class="font-14 font-weight-bold text-secondary d-block">You earned 50 points!</span> <span class="text-gray font-12 font-weight-500">for completing the course...</span> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
-                <div>
-                    <h2 class="font-36 font-weight-bold text-dark">Win Coin Points</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
-                    <div class="mt-35 d-flex align-items-center"> 
-                        <a href="{{url('/')}}/rewards" class="btn btn-primary">Rewards</a> 
-                        <a href="{{url('/')}}/products" class="btn btn-outline-primary ml-15">Rewards Store</a> 
+                        <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
+                            <div class="column-text">
+                                <h2 class="font-36 font-weight-bold text-dark">Win Coin Points</h2>
+                                <p class="font-16 font-weight-normal text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
+                                <div class="mt-35 d-flex align-items-center"> 
+                                    <a href="{{url('/')}}/rewards" class="btn btn-primary">Rewards</a> 
+                                    <a href="{{url('/')}}/products" class="btn btn-outline-primary ml-15">Rewards Store</a> 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

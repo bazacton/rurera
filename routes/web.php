@@ -508,9 +508,17 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'timestables'] , function () {
         Route::get('/' , 'TimestablesController@landing');
         //Route::get('/landing' , 'TimestablesController@landing');
+        Route::get('/assignment/{assignment_id}' , 'TimestablesController@assignment');
         Route::post('/generate' , 'TimestablesController@genearte');
         Route::get('/summary' , 'TimestablesController@summary');
         Route::post('/assignment_create' , 'TimestablesController@assignment_create');
+
+        Route::get('/assignment_chase' , 'TimestablesController@assignment_chase');
+        Route::get('/past_assignments' , 'TimestablesController@past_assignments');
+
+        Route::get('/global_arena' , 'TimestablesController@global_arena');
+        Route::post('/update_tournament_event' , 'TimestablesController@update_tournament_event');
+
     });
 
     Route::group(['prefix' => 'timestables-practice'] , function () {
@@ -528,6 +536,14 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::post('switch_user', 'UserController@switch_user');
 
     Route::post('assign_user_topic', 'UserController@assign_user_topic');
+
+
+    /*
+     * Cron Functions
+     */
+    Route::group(['prefix' => 'cron'] , function () {
+        Route::get('/create_tournaments_events' , 'CronJobsController@create_tournaments_events');
+    });
 
 
 

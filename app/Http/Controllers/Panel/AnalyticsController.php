@@ -81,6 +81,7 @@ class AnalyticsController extends Controller
             '11plus',
             'timestables',
             'vocabulary',
+            'timestables_assignment',
         );
         /*$types_array = array(
             '11plus',
@@ -161,7 +162,7 @@ class AnalyticsController extends Controller
                         }
 
 
-                        $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables') ? round(($practice_time / 10), 2) : $practice_time;
+                        $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
 
 
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['parent_type'] = $QuizzesAttemptObj->attempt_type;
