@@ -9,9 +9,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-9 col-lg-9">
-                <p class="lms-subtitle">Programme of study</p>
-                <h1 class="font-30 font-weight-bold">National Curriculum Overview</h1>
-                <p>Skills available for England key stage 2, Year 5 maths objectives</p>
+                <p class="lms-subtitle font-16 mb-10">Programme of study</p>
+                <h1 class="font-50 font-weight-bold mb-15">National Curriculum Overview</h1>
+                <p class="font-19 mb-30">Skills available for England key stage 2, Year 5 maths objectives</p>
                 <div class="lms-course-select">
                     <form>
                         <div class="form-inner">

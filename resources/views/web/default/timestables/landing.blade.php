@@ -9,9 +9,10 @@
         background-size: 100% 12px, 12px 100%; */
     }
     .lms-column-section {
-        background: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), #7679ee; 
+        /* background: radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), radial-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 3px), #7679ee; 
         background-position: 0 0, 20px 20px; 
-        background-size: 40px 40px;
+        background-size: 40px 40px; */
+        background-color: #7679ee;
     }
 </style>
 @endpush
@@ -22,8 +23,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-11 mx-auto">
-                    <h1 class="font-50 font-weight-bold text-white mb-25">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">times tables</span></h1>
-                    <p class="text-white mb-20">
+                    <h1 class="font-50 font-weight-bold text-white mb-30">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">times tables</span></h1>
+                    <p class="text-white font-19 mb-20">
                         A brilliant way to learn times tables multiplication and division. With these smart practices, recalling times tables <br />
                         will be an enjoyable journey filled with excitement and rewards.
                     </p>
@@ -35,7 +36,7 @@
                                 </span>
                                 <div class="text-holder">
                                     <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Times tables Treasure Hunt</h2>
-                                    <p class="text-white">Transform the process of memorizing times tables into an adventurous treasure hunt.</p>
+                                    <p class="text-white font-16">Transform the process of memorizing times tables into an adventurous treasure hunt.</p>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +47,7 @@
                                 </span>
                                 <div class="text-holder">
                                     <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Division Tables Problems</h2>
-                                    <p class="text-white">Bring division and multiplication magic to life by turning it into a storytelling experience.</p>
+                                    <p class="text-white font-16">Bring division and multiplication magic to life by turning it into a storytelling experience.</p>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +58,7 @@
                                 </span>
                                 <div class="text-holder">
                                     <h2 class="text-white font-18 font-weight-bold mb-10 d-block">Multiplication tables challenges</h2>
-                                    <p class="text-white">Offering interactive challenges specifically designed for earning bonus points.</p>
+                                    <p class="text-white font-16">Offering interactive challenges specifically designed for earning bonus points.</p>
                                 </div>
                             </div>
                         </div>
@@ -77,13 +78,13 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6 text-center">
-                    <h2 class="font-weight-bold d-block font-36 mb-10">Outstanding Maths learning platform</h2>
-                    <p class="font-16 font-weight-normal text-gray mb-30">
+                    <h2 class="d-block font-40 mb-10">Outstanding Maths learning platform</h2>
+                    <p class="font-16 text-gray mb-30">
                         Rurera provide awesome and interactive ways for students to learn and memorize times tables while having fun. Immediate feedback helps students identify and correct any mistakes they make while practicing their times
                         tables.
                     </p>
-                    <strong class="font-16 font-weight-normal text-gray mb-20 d-block">Memorize times tables, Multiply with Ease!</strong>
-                    <p class="font-16 font-weight-normal text-gray">
+                    <strong class="font-16 text-gray mb-20 d-block">Memorize times tables, Multiply with Ease!</strong>
+                    <p class="font-16 text-gray">
                         Personalized approach allows students to focus on specific times tables they find challenging and spend more time practicing those particular facts until they are confidently memorized.
                     </p>
                 </div>
@@ -114,30 +115,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-title text-center mb-50"><h2 class="mt-0 mb-10">How times tables work</h2></div>
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mt-0 mb-10 font-40">How times tables work</h2>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
                         <img class="mb-15" src="../assets/default/svgs/exam-multiple.svg" alt="#" height="50" width="50" /> <span class="font-18">Register / login</span>
-                        <p class="pt-10">Register today via the website and access to learn times tables.</p>
+                        <p class="pt-10 font-16 text-dark">Register today via the website and access to learn times tables.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
                         <img class="mb-15" src="../assets/default/svgs/lessons.svg" alt="#" height="50" width="50" /> <span class="font-18">Create Accounts</span>
-                        <p class="pt-10">Easily setup accounts for parents, students and teachers to get benefit from.</p>
+                        <p class="pt-10 font-16 text-dark">Easily setup accounts for parents, students and teachers to get benefit from.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
                         <img class="mb-15" src="../assets/default/svgs/impact.svg" alt="#" height="50" width="50" /> <span class="font-18">Learn &amp; Play</span>
-                        <p class="pt-10">Student will have access to both single and multi player games interfaces.</p>
+                        <p class="pt-10 font-16 text-dark">Student will have access to both single and multi player games interfaces.</p>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-md-6">
                     <div class="sats-box d-inline-flex border-solid border-transparent">
                         <img class="mb-15" src="../assets/default/svgs/sav-time.svg" alt="#" height="50" width="50" /> <span class="font-18">Progress Tracking</span>
-                        <p class="pt-10">Use the stats to keep track of your child's progress and celebrate their success.</p>
+                        <p class="pt-10 font-16 text-dark">Use the stats to keep track of your child's progress and celebrate their success.</p>
                     </div>
                 </div>
             </div>
@@ -148,8 +151,8 @@
                 <div class="row">
                     <div class="col-12 col-lg-6 col-md-6">
                         <div class="sats-box d-inline-flex border-solid border-transparent " style="background: #f6b801;color: #fff;">
-                            <h2 class="mt-0 mb-10">Essential tool for Maths teachers</h2>
-                            <p class="pt-10" style="text-align: left;">Multiplication practices and challenges mean students will be excited to re-call their times tables helping teachers in a various ways :</p><br>
+                            <h2 class="mt-0 mb-10 font-24">Essential tool for Maths teachers</h2>
+                            <p class="pt-0 font-16" style="text-align: left;">Multiplication practices and challenges mean students will be excited to re-call their times tables helping teachers in a various ways :</p><br>
 
                             <ul style="text-align: left;">
                                 <li>- Progress can be monitored on heatmap while student is practicing their times tables.</li>
@@ -160,8 +163,8 @@
                     </div>
                     <div class="col-12 col-lg-6 col-md-6">
                         <div class="sats-box d-inline-flex border-solid border-transparent" style="background: #f35b05;color: #fff;">
-                            <h2 class="mt-0 mb-10">Engaging, trusted and easy to use</h2>
-                            <p class="pt-10" style="text-align: left;">It's a good idea to ensure if multiplication and division practices align with your learning goals and values.</p><br>
+                            <h2 class="mt-0 mb-10 font-24">Engaging, trusted and easy to use</h2>
+                            <p class="pt-0 font-16" style="text-align: left;">It's a good idea to ensure if multiplication and division practices align with your learning goals and values.</p><br>
                                 <ul style="text-align: left;">
                                 <li>- Questions and quizzes are easily adapted to each child’s unique learning needs.</li>
                                 <li>- Give your child daily practice and get the results.</li>
@@ -177,8 +180,8 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8 col-md-8">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10">Frequently asked questions</h2>
-                        <p class="font-19">Asking the right questions is indeed a skill that requires careful consideration.</p>
+                        <h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
+                        <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>
                     </div>
                     <div class="mt-0">
                         <div class="lms-faqs mx-w-100 mt-0">
@@ -230,7 +233,7 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(../assets/default/svgs/bank-note-white-thin.svg) #f27530;">
+    <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background-color: #f27530;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -238,7 +241,7 @@
                         <div class="row align-items-center">
                             <div class="col-12 col-lg-12 col-md-12">
                                 <h2 itemprop="title" class="mb-20 text-white font-40">Looking to discover Magic of Multiplication tables?</h2>
-                                <p itemprop="description" class="mb-0 text-white" style="font-size: 26px;">Practice your times tables now.</p>
+                                <p itemprop="description" class="mb-0 text-white font-weight-normal font-24">Practice your times tables now.</p>
                                 <div class="lms-btn-group mt-30 justify-content-center">
                                     <a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a>
                                 </div>

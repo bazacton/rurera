@@ -9,7 +9,7 @@
         background-size: 100% 12px, 12px 100%; */
     }
     .lms-newsletter {
-        background: url(assets/default/svgs/bank-note.svg) #f18700;
+        background-color: #f18700;
     }
     .bg-deepskyblue {
         background-color: #46b7e9;
@@ -197,8 +197,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="element-title">
-                        <h2 itemprop="title" class="mb-5">What Our 11 Plus (11+) Entrance Exam Practices Covers</h2>
-                        <p itemprop="description">Tailored Curriculum, 11+ resources and Preparation for 11+ exam Success and elevate the excellence.
+                        <h2 itemprop="title" class="mb-5 font-40">What Our 11 Plus (11+) Entrance Exam Practices Covers</h2>
+                        <p itemprop="description" class="font-19 text-gray">Tailored Curriculum, 11+ resources and Preparation for 11+ exam Success and elevate the excellence.
                         </p>
                     </div>
                 </div>
@@ -208,8 +208,8 @@
                         <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C7 6.34315 8.34315 5 10 5C11.6569 5 13 6.34315 13 8C13 9.65685 11.6569 11 10 11C8.34315 11 7 9.65685 7 8ZM13.506 11.5648C14.4282 10.6577 15 9.39565 15 8C15 5.23858 12.7614 3 10 3C7.23858 3 5 5.23858 5 8C5 9.39827 5.57396 10.6625 6.49914 11.5699C3.74942 12.5366 2 14.6259 2 17C2 17.5523 2.44772 18 3 18C3.55228 18 4 17.5523 4 17C4 15.2701 5.93073 13 10 13C11.9542 13 13.4554 13.5451 14.4579 14.2992C14.8992 14.6311 15.5262 14.5425 15.8581 14.1011C16.1901 13.6598 16.1015 13.0328 15.6601 12.7008C15.0431 12.2368 14.3206 11.851 13.506 11.5648ZM19 14.5C19.5523 14.5 20 14.9477 20 15.5V18H22.5C23.0523 18 23.5 18.4477 23.5 19C23.5 19.5523 23.0523 20 22.5 20H20V22.5C20 23.0523 19.5523 23.5 19 23.5C18.4477 23.5 18 23.0523 18 22.5V20H15.5C14.9477 20 14.5 19.5523 14.5 19C14.5 18.4477 14.9477 18 15.5 18H18V15.5C18 14.9477 18.4477 14.5 19 14.5Z" fill="#fff"></path> </g></svg>
                     </i></figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">11 plus (11+) mock exams</h3>
-                            <p itemprop="description">By providing resources, learning
+                            <h3 itemprop="title" class="post-title font-30 mb-15">11 plus (11+) mock exams</h3>
+                            <p itemprop="description" class="font-18 text-dark">By providing resources, learning
                                 materials, and success stories, we encourages pupils to adopt a growth mindset and believe
                                 in their potential for growth and improvement.</p>
                         </div>
@@ -221,8 +221,8 @@
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 204.692 204.692" xml:space="preserve" width="64px" height="64px" fill="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path style="fill:#fff;" d="M167.998,49.589l8.274-8.274l3.661,3.661l4.649-4.645l-12.376-12.376l-4.649,4.649l4.066,4.062 l-8.36,8.36c-16.194-14.48-37.535-23.309-60.912-23.309c-50.455,0-91.49,41.042-91.49,91.486c0,50.447,41.035,91.49,91.49,91.49 c50.433,0,91.479-41.046,91.479-91.49C193.831,88.505,183.967,66.066,167.998,49.589z M106.102,198.029v-16.201h-7.516v16.201 c-43.995-1.918-79.393-37.471-81.082-81.526h13.303v-6.578H17.504c1.696-44.213,37.342-79.855,81.562-81.551v14.14h6.567v-14.14 c44.21,1.696,79.855,37.338,81.548,81.551h-12.354v6.578h12.354C185.485,160.558,150.097,196.11,106.102,198.029z"></path> </g> <g> <path style="fill:#fff;" d="M106.102,102.538V52.695c0-2.133-1.374-3.851-3.071-3.851c-1.707,0-3.078,1.714-3.078,3.851 v49.413c-5.125,1.102-8.976,5.655-8.976,11.098c0,5.458,3.851,10.01,8.976,11.109v4.95c0,2.137,1.374,3.858,3.078,3.858 c1.696,0,3.071-1.721,3.071-3.858v-5.379c4.413-1.56,7.598-5.73,7.598-10.679C113.7,108.257,110.515,104.087,106.102,102.538z"></path> </g> <g> <rect x="99.066" y="0" style="fill:#fff;" width="6.567" height="17.501"></rect> </g> </g> </g> </g></svg>
                     </i></figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">11+ Time constrained practices</h3>
-                            <p itemprop="description">Rurera team
+                            <h3 itemprop="title" class="post-title font-30 mb-15">11+ Time constrained practices</h3>
+                            <p itemprop="description" class="font-18 text-dark">Rurera team
                                 emphasizes its importance through motivational content, practical tools, and techniques, it
                                 encourages pupils to dedicate themselves to their goals.</p>
                         </div>
@@ -234,8 +234,8 @@
                         <svg fill="#fff" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 503.607 503.607" xml:space="preserve" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g transform="translate(1 1)"> <g> <g> <path d="M250.803-1C112.311-1-1,111.472-1,250.803s113.311,251.803,251.803,251.803s251.803-113.311,251.803-251.803 S389.295-1,250.803-1z M250.803,485.82c-129.259,0-235.016-105.757-235.016-235.016S121.544,15.787,250.803,15.787 S485.82,121.544,485.82,250.803S380.062,485.82,250.803,485.82z"></path> <path d="M250.803,32.574c-120.026,0-218.229,98.203-218.229,218.229c0,120.866,98.203,218.23,218.229,218.23 s218.23-97.364,218.23-218.23C469.033,130.777,370.829,32.574,250.803,32.574z M452.057,242.41h-66.119v-57.915 c0-37.771-31.056-67.987-67.987-67.987h-58.754V49.55C363.351,53.875,447.731,138.255,452.057,242.41z M334.738,259.197h34.413 v58.754c0,28.538-23.502,51.2-51.2,51.2h-58.754v-34.413c0-5.036-3.357-8.393-8.393-8.393s-8.393,3.357-8.393,8.393v34.413 h-57.915c-28.538,0-51.2-23.502-51.2-51.2v-58.754h33.574c5.036,0,8.393-3.357,8.393-8.393s-3.357-8.393-8.393-8.393h-33.574 v-57.915c0-28.538,23.502-51.2,51.2-51.2h57.915v33.574c0,5.036,3.357,8.393,8.393,8.393s8.393-3.357,8.393-8.393v-33.574h58.754 c28.538,0,51.2,23.502,51.2,51.2v57.915h-34.413c-5.036,0-8.393,3.357-8.393,8.393S329.702,259.197,334.738,259.197z M242.41,49.55v66.958h-57.915c-37.771,0-67.987,31.056-67.987,67.987v57.915H49.55C53.875,138.255,138.255,53.875,242.41,49.55z M49.55,259.197h66.958v58.754c0,36.931,30.216,67.148,67.987,67.148h57.915v66.958 C138.255,447.731,53.875,363.351,49.55,259.197z M259.197,452.057v-66.958h57.915c37.77,0,67.987-30.216,68.826-67.148v-58.754 h66.119C447.731,363.351,363.351,447.731,259.197,452.057z"></path> <path d="M284.377,242.41h-25.18v-25.18c0-5.036-3.357-8.393-8.393-8.393s-8.393,3.357-8.393,8.393v25.18h-25.18 c-5.036,0-8.393,3.357-8.393,8.393s3.357,8.393,8.393,8.393h25.18v25.18c0,5.036,3.357,8.393,8.393,8.393 s8.393-3.357,8.393-8.393v-25.18h25.18c5.036,0,8.393-3.357,8.393-8.393S289.413,242.41,284.377,242.41z"></path> </g> </g> </g> </g></svg>
                     </i></figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">Target based identification</h3>
-                            <p itemprop="description">By sharing stories of
+                            <h3 itemprop="title" class="post-title font-30 mb-15">Target based identification</h3>
+                            <p itemprop="description" class="font-18 text-dark">By sharing stories of
                                 successful individuals who have overcome failures, we inspires pupils to persevere and
                                 maintain a positive self-identity.</p>
                         </div>
@@ -247,8 +247,8 @@
                             <svg fill="#fff" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 484.39 484.39" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <path d="M284.198,0h-64.24c-41.966,0-81.715,16.851-111.924,47.448C78.595,77.266,61.711,117.65,61.711,158.247v58.309 l-19.572,97.859c-0.588,2.938,0.173,5.984,2.072,8.301c1.899,2.317,4.737,3.66,7.733,3.66h36.179 c5.012,4.478,5.149,10.266,4.278,22.371c-1.208,16.801-3.034,42.192,35.191,56.092c1.095,0.398,2.252,0.602,3.417,0.602h108.597 v78.948h20v-88.948c0-5.523-4.477-10-10-10H132.82c-22.386-8.631-21.617-19.299-20.469-35.26 c0.924-12.85,2.189-30.448-15.327-42.126c-1.643-1.095-3.572-1.68-5.547-1.68H64.143l17.374-86.87 c0.129-0.646,0.194-1.302,0.194-1.961v-59.299C81.711,83.309,145.02,20,219.958,20h64.24c76.23,0,138.247,62.017,138.247,138.247 V484.39h20V158.247C442.445,70.989,371.456,0,284.198,0z"></path> <path d="M378.087,247.078h-64.123v-78.831h64.123v-20h-64.123V84.123h-20v64.123h-78.831V84.123h-20v64.123H131.01v20h64.123 v78.831H131.01v20h64.123v64.124h20v-64.124h78.831v64.124h20v-64.124h64.123V247.078z M293.964,247.078h-78.831v-78.831h78.831 V247.078z"></path> <path d="M155.717,138.597c16.413,0,29.767-13.353,29.767-29.766s-13.354-29.766-29.767-29.766 c-16.413,0-29.766,13.353-29.766,29.766C125.952,125.244,139.304,138.597,155.717,138.597z M155.717,99.065 c5.386,0,9.767,4.381,9.767,9.766s-4.381,9.766-9.767,9.766c-5.385,0-9.766-4.381-9.766-9.766 C145.952,103.446,150.333,99.065,155.717,99.065z"></path> <path d="M254.549,237.429c16.413,0,29.766-13.353,29.766-29.766c0-16.414-13.353-29.767-29.766-29.767 s-29.767,13.353-29.767,29.767C224.782,224.076,238.136,237.429,254.549,237.429z M254.549,197.895 c5.385,0,9.766,4.381,9.766,9.767c0,5.385-4.381,9.766-9.766,9.766c-5.386,0-9.767-4.381-9.767-9.766 S249.163,197.895,254.549,197.895z"></path> <path d="M353.38,276.727c-16.413,0-29.767,13.353-29.767,29.767c0,16.413,13.354,29.766,29.767,29.766 c16.413,0,29.766-13.353,29.766-29.766C383.146,290.08,369.793,276.727,353.38,276.727z M353.38,316.26 c-5.386,0-9.767-4.381-9.767-9.766c0-5.385,4.381-9.767,9.767-9.767c5.385,0,9.766,4.381,9.766,9.767 C363.146,311.879,358.765,316.26,353.38,316.26z"></path> <polygon points="362.321,179.638 348.438,193.52 334.556,179.638 320.414,193.78 334.296,207.662 320.414,221.544 334.556,235.687 348.439,221.805 362.321,235.687 376.463,221.544 362.582,207.663 376.463,193.78 "></polygon> <polygon points="241.854,142.984 255.736,129.102 269.618,142.984 283.76,128.842 269.878,114.96 283.76,101.078 269.618,86.935 255.736,100.817 241.854,86.935 227.711,101.078 241.593,114.96 227.711,128.842 "></polygon> <polygon points="175.728,274.714 161.846,288.597 147.964,274.714 133.822,288.857 147.704,302.739 133.822,316.622 147.964,330.763 161.846,316.881 175.728,330.763 189.871,316.622 175.989,302.739 189.871,288.857 "></polygon> </g> </g> </g> </g></svg>
                     </i></figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">11 plus (11+) exam practice resources</h3>
-                            <p itemprop="description">Self-assessment
+                            <h3 itemprop="title" class="post-title font-30 mb-15">11 plus (11+) exam practice resources</h3>
+                            <p itemprop="description" class="font-18 text-dark">Self-assessment
                                 tools, and a supportive community help pupils address their flaws constructively and develop
                                 a growth-oriented mindset.</p>
                         </div>
@@ -262,8 +262,8 @@
                             </i>
                         </figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">Progress reports</h3>
-                            <p itemprop="description">By providing
+                            <h3 itemprop="title" class="post-title font-30 mb-15">Progress reports</h3>
+                            <p itemprop="description" class="font-18 text-dark">By providing
                                 resources, guidance, and gamified learning experiences, it helps pupils develop strategies
                                 to effectively overcome challenges, fostering a mindset that embraces growth through
                                 tackling difficult tasks.</p>
@@ -276,8 +276,8 @@
                             <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 64.734 64.734" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M59.583,49.727c-0.447-1.121-1.344-1.346-2.463-1.793c-5.152-2.016-9.408-2.688-14.336-4.479 c-0.449-0.225-1.793-1.121-1.793-3.586c0-1.119-0.225-1.566-1.344-1.566c-0.447,0-0.226,0-0.447-0.672 c-0.449-2.24-0.225-3.584-0.225-3.809s0.446-0.672,0.446-0.896c1.793-2.24,2.24-5.152,2.24-6.719c0,0,0.226,0.224,0.672-0.673 c0.447-1.119,0.447-1.345,0.896-2.688c0.447-0.896,0.447-2.912-0.672-2.912c-0.672,0.225-0.449,0-0.449-0.896 c0-2.688,0-3.809,0-6.496c-0.223-2.239-1.567-3.584-2.688-4.48c-1.568-1.12-2.018-1.344-2.689-2.016 c-0.672-0.448-0.446-1.12,0-2.017c0.447-0.447,0.896-0.672,1.119-0.896c0,0-0.223,0-0.447,0c4.257,2.24,7.169,6.72,7.169,11.647 v3.584c-0.673,0.448-1.119,2.017-1.119,3.36c0,1.119,0.226,2.016,0.446,2.688l-0.895,4.703c-0.447,0.225-0.674,0.673-0.674,1.12 c0,0.672,0.449,1.345,1.346,1.345c0.672,0,1.344-0.448,1.344-1.345c0-0.447-0.225-0.672-0.446-0.896l0.896-4.031 c1.119-0.225,2.016-1.793,2.016-3.584c0-1.345-0.448-2.688-1.12-3.36V14.78C46.366,6.495,39.647,0,31.582,0 c-8.063,0-14.783,6.72-14.783,14.783v3.584c-0.673,0.448-1.12,2.017-1.12,3.36c0,2.016,0.896,3.584,2.016,3.584 c1.12,0,2.016-1.568,2.016-3.584c0-1.345-0.447-2.688-1.119-3.36v-3.584c0-7.392,6.048-13.216,13.216-13.216 c2.016,0,4.032,0.448,5.825,1.344c-0.448,0-4.033,0.448-5.376,0.896c-2.688,0.672-5.601,1.568-7.841,3.584 c-1.567,1.12-2.912,2.688-3.136,4.928c0,1.119,0,4.703,0,6.496c0,0.447,0,0.896-0.448,0.672c-1.567,0-0.672,2.464-0.447,2.688 c0.447,1.567,0.672,1.792,0.896,2.688c0.224,0.896,0.448,0.673,0.448,0.673c0.448,1.792,1.12,4.929,2.464,6.721 c0.224,0.225,0.448,0.448,0.448,0.896c-0.225,1.119-0.225,2.688-0.448,3.81c0,0.224-0.224,0.672-0.448,0.672 c-1.12,0-1.344,0.673-1.12,1.566c0,1.793-1.12,3.137-1.792,3.584c-2.464,1.12-11.199,3.584-13.888,4.479 c-2.016,0.447-2.464,1.119-2.688,2.016l-2.465,6.271c10.977,0,16.576,6.721,28,8.736c0,0,1.568,0.447,2.688,0.447 s2.688-0.447,2.688-0.447c11.647-2.018,19.713-8.736,27.774-8.736L59.583,49.727z"></path> </g> </g> </g></svg>
                         </i></figure>
                         <div class="lms-text-holder">
-                            <h3 itemprop="title" class="post-title">Professional support</h3>
-                            <p itemprop="description">By actively seeking
+                            <h3 itemprop="title" class="post-title font-30 mb-15">Professional support</h3>
+                            <p itemprop="description" class="font-18 text-dark">By actively seeking
                                 feedback and providing guidance on receiving it positively, pupils can view feedback as an
                                 opportunity for growth rather than personal criticism. It also incorporates features for
                                 pupils to give feedback, ensuring continuous improvement and user satisfaction.</p>
@@ -292,7 +292,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="title" class="text-white">Explore 11 Plus and Entrance Exam Resources</h2>
+                        <h2 itemprop="title" class="text-white font-40">Explore 11 Plus and Entrance Exam Resources</h2>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -761,10 +761,10 @@
                                         </figure>
                                     </div>
                                     <div class="text-holder">
-                                        <h3 itemprop="title" class="post-title">
+                                        <h3 itemprop="title" class="post-title font-19 font-weight-bold">
                                             English
                                         </h3>
-                                        <p itemprop="description" class="">Patterns, sequencing and geometry</p>
+                                        <p itemprop="description" class="font-16 text-gray">Patterns, sequencing and geometry</p>
                                     </div>
                                 </a>
                             </li>
@@ -778,10 +778,10 @@
                                         </figure>
                                     </div>
                                     <div class="text-holder">
-                                        <h3 itemprop="title" class="post-title">
+                                        <h3 itemprop="title" class="post-title font-19 font-weight-bold">
                                             Maths
                                         </h3>
-                                        <p itemprop="description" class="">Patterns, sequencing and geometry</p>
+                                        <p itemprop="description" class="font-16 text-gray">Patterns, sequencing and geometry</p>
                                     </div>
                                 </a>
                             </li>
@@ -795,10 +795,10 @@
                                         </figure>
                                     </div>
                                     <div class="text-holder">
-                                        <h3 itemprop="title" class="post-title">
+                                        <h3 itemprop="title" class="post-title font-19 font-weight-bold">
                                             Computing
                                         </h3>
-                                        <p itemprop="description" class="">Patterns, sequencing and geometry</p>
+                                        <p itemprop="description" class="font-16 text-gray">Patterns, sequencing and geometry</p>
                                     </div>
                                 </a>
                             </li>
@@ -812,10 +812,10 @@
                                         </figure>
                                     </div>
                                     <div class="text-holder">
-                                        <h3 itemprop="title" class="post-title">
+                                        <h3 itemprop="title" class="post-title font-19 font-weight-bold">
                                             Science
                                         </h3>
-                                        <p itemprop="description" class="">Patterns, sequencing and geometry</p>
+                                        <p itemprop="description" class="font-16 text-gray">Patterns, sequencing and geometry</p>
                                     </div>
                                 </a>
                             </li>
@@ -830,8 +830,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="section title" class="mb-10">Real practice, Proven Results</h2>
-                        <p itemprop="description">It’s hugely trusted by parents, recommended by teachers and loved by students</p>
+                        <h2 itemprop="section title" class="mb-10 font-40">Real practice, Proven Results</h2>
+                        <p itemprop="description" class="font-19 text-gray">It’s hugely trusted by parents, recommended by teachers and loved by students</p>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -839,7 +839,7 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-30 position-relative">
                             <div class="lms-counter-card counter-purple-bg text-white">
                                 <strong itemprop="size" class="custom-counter">100</strong><span itemprop="plus" class="plus-icons">+</span>
-                                <p itemprop="description" class="font-16 font-weight-normal text-white">
+                                <p itemprop="description" class="font-16 text-white">
                                     11+ practices
                                 </p>
                             </div>
@@ -850,14 +850,14 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-30">
                             <div class="lms-counter-card counter-yellow-bg text-white">
                             <strong itemprop="size" class="custom-counter">5000</strong><span itemprop="plus" class="plus-icons">+</span>
-                            <p itemprop="description"  class="font-16 font-weight-normal text-white" >Questions</p>
+                            <p itemprop="description"  class="font-16 text-white" >Questions</p>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-30 position-relative">
                             <div class="svg-shapes-bottom"><span class="icon-svg"><svg width="64px" height="64px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.415.189a1 1 0 011.1-.046l15 9a1 1 0 010 1.714l-15 9a1 1 0 01-1.491-1.074L4.754 11H10a1 1 0 100-2H4.753l-1.73-7.783A1 1 0 013.416.189z" fill="#5C5F62"></path></g></svg></span></div>
                             <div class="lms-counter-card counter-orange-bg text-white">
                                 <strong itemprop="size" class="custom-counter">60</strong><span itemprop="plus" class="plus-icons">+</span>
-                                <p itemprop="description" class="font-16 font-weight-normal text-white">
+                                <p itemprop="description" class="font-16 text-white">
                                     Cities
                                 </p>
                             </div>
@@ -871,8 +871,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10">11 plus Faq’s</h2>
-                    <p class="">Asking the right questions is indeed a skill that requires careful consideration.</p>
+                    <h2 class="mt-0 mb-10 font-40">11 plus Faq’s</h2>
+                    <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>
                 </div>
             </div>
             <div class="col-12 col-lg-8 col-md-12 mx-auto">
@@ -977,7 +977,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
                                 <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your 11 plus exam Prep today</h2>
-                                <p itemprop="description" class="mb-0 text-white">
+                                <p itemprop="description" class="mb-0 text-white font-16">
                                     Let us help you achieve the score you deserve and unlock <br/>
                                     doors to your future academic success.
                                 </p>
@@ -996,11 +996,6 @@
             </div>
         </div>
     </section>
-    <div class="scroll-btn" style="display: block;">
-        <div class="round">
-            <div id="cta"><span class="arrow primera next"></span> <span class="arrow segunda next"></span></div>
-        </div>
-    </div>
 
 </section>
 @endsection

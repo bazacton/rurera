@@ -39,6 +39,11 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
             </button>
 
             <div class="mx-lg-30 d-none d-lg-flex flex-grow-1 navbar-toggle-content " id="navbarContent">
+                <a class="mobile-logo"
+                       href="{{url('/')}}/" itemprop="url">
+                    <img src="{{ $generalSettings['logo'] }}" alt="Rurera Logo" title="Rurera Logo"
+                                                 width="100%" height="auto" itemprop="image" loading="eager">
+                    </a>
                 <div class="navbar-toggle-header text-right d-lg-none">
                     <button class="btn-transparent" id="navbarClose">
                         <i data-feather="x" width="32" height="32"></i>
@@ -101,7 +106,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
 
 
                                     <li>
-                                        <a href="#" data-category_color="{{$nagivation_data['color']}}"
+                                        <a href="#{{$navigation_slug}}" data-category_color="{{$nagivation_data['color']}}"
                                            class="{{ ($count == 1)? 'active' : ''}}" id="{{$navigation_slug}}-tab"
                                            data-toggle="tab"
                                            data-target="#{{$navigation_slug}}"
@@ -216,7 +221,13 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     @if(!empty($authUser))
                         <li class="nav-item "><a class="nav-link" href="/panel/analytics">Analytics</a></li>
                     @endif
+
+
                 </ul>
+                <div class="mobile-login-reg-buttons">
+                    <a class="mobile-login-btn" href="/login">Log in</a>
+                    <a class="mobile-register-btn" href="/register">Try for free</a>
+                </div>
             </div>
 
             @if(isset( $authUser ))

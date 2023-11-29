@@ -561,7 +561,12 @@ class TimestablesController extends Controller
         }
         $user = auth()->user();
         //DB::enableQueryLog();
-        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->orderBy('time_remaining', 'asc')->get();
+        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+
+        pre($TournamentsPendingEvents);
+
+        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        pre($TimestablesTournamentsEvents);
         //pre(DB::getQueryLog());
         //DB::disableQueryLog();
 

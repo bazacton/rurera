@@ -90,8 +90,8 @@ Access to the rewards with 3 simple steps</p>
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                    <h2 itemprop="title">Explore Categories</h2>
-                    <p itemprop="description" class="mt-10">It implies through continuous learning and improvement, students can increase<br>their chances of winning playful toys.</p>
+                    <h2 itemprop="title" class="font-40">Explore Categories</h2>
+                    <p itemprop="description" class="mt-10 font-19">It implies through continuous learning and improvement, students can increase<br>their chances of winning playful toys.</p>
                     </div>
                 </div>
                 <div class="col-12">

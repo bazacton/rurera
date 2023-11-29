@@ -22,8 +22,8 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
-                        <h2 class="mt-0 mb-10 testing222">11Plus Online 10-Minutes test practices</h2>
-                        <p> Work through a variety of practice questions to improve your skills and become familiar with
+                        <h2 class="mt-0 mb-10 font-40">11Plus Online 10-Minutes test practices</h2>
+                        <p class="font-19"> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>

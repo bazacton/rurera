@@ -5,22 +5,15 @@
 <style>
     .gallery-sub-header {
         min-height: 480px;
-        /* background-image: linear-gradient(transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(220,220,200,.8) 12px, transparent 12px);
-        background-size: 100% 12px, 12px 100%; */
     }
     .lms-search-services {
-        background: url(../assets/default/svgs/bank-note.svg) #f27530;
+        background-color: #f27530;
     }
     .lms-column-section {
-        background: url(../assets/default/svgs/diagonal-lines.svg) #7679ee;
+        background-color: #7679ee;
     }
     .choose-sats-section {
-        background-color:#3d358b;background-image: radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0), radial-gradient(rgba(0,0,0,0.2) 10%, transparent 0);
-        background-size: 20px 20px; 
-        background-position: 0 0, 10px 10px;
-    }
-    .lms-newsletter {
-        background: url(../assets/default/svgs/diagonal-lines.svg) #f6b801;
+        background-color:#3d358b;
     }
 </style>
 @endpush
@@ -272,8 +265,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white">SATs Exam Practice steps to Success with Rurera</h2>
-                        <p class="text-white">
+                        <h2 class="mt-0 mb-10 text-white font-40">SATs Exam Practice steps to Success with Rurera</h2>
+                        <p class="text-white font-19">
                             Work through a variety of SATs practice and SATs quizzes questions to improve your skills
                             and become familiar with the <br/>
                             types of questions you'll encounter on the SATs exam.
@@ -335,11 +328,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-left mb-40">
-                        <h2 class="mb-15">
+                        <h2 class="mb-15 font-40">
                             So Many SATs Resources, <br/>
                             So Many Ways for SATs Exam Practices..
                         </h2>
-                        <p>
+                        <p class="font-19 text-gray">
                             With consistent effort and effective SATs resources and SATs papers, you can improve <br/> your performance on the SATs exam day.
                         </p>
                     </div>
@@ -556,8 +549,8 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="section-title text-left mb-50">
-                    <h2 class="mt-0 mb-10">Challenging the SATs with Confidence</h2>
-                    <p class="font-19">
+                    <h2 class="mt-0 mb-10 font-40">Challenging the SATs with Confidence</h2>
+                    <p class="font-19 text-gray">
                         Rurera offer the capability to track their onscreen and practiced time activity well remaining
                         on system and <br/>
                         can analyze the performance against each topic.
@@ -566,8 +559,8 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">KS1 SATs, KS2 SATs practice</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">
+                    <h2 class="font-40 text-dark">KS1 SATs, KS2 SATs practice</h2>
+                    <p class="font-16 text-gray mt-10">
                         Rurera provide opportunity to practice KS1, KS2 SATs online as per past curriculum exams and avoid wasting
                         time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.
                     </p>
@@ -597,8 +590,8 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">SATs Quizzes & SATs Assessments</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">
+                    <h2 class="font-40 text-dark">SATs Quizzes & SATs Assessments</h2>
+                    <p class="font-16 text-gray mt-10">
                         Students can take SATs quizzes and SATs assessments to test their knowledge. The SATs tests evaluate your child’s
                         knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
                         technology as a result of SATs exam practice.
@@ -615,8 +608,8 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">Individual Performance Analysis</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">
+                    <h2 class="font-40 text-dark">Individual Performance Analysis</h2>
+                    <p class="font-16 text-gray mt-10">
                         Performance Analysis is essential for SATs exam practice. Rurera offers
                         a user-friendly platform where teachers can analyze individual and group performance trends.
                     </p>
@@ -646,8 +639,8 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div>
-                    <h2 class="font-36 font-weight-bold text-dark">Activity Tracking</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">Rurera offer the capability to track their
+                    <h2 class="font-40 text-dark">Activity Tracking</h2>
+                    <p class="font-16 text-gray mt-10">Rurera offer the capability to track their
                         SATs exam practice time activity log while  remaining on system and can analyze the performance
                         against each SATs tests.</p>
                     <div class="mt-35 d-flex align-items-center">
@@ -662,8 +655,8 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-36 font-weight-bold text-dark">SATs Papers</h2>
-                    <p class="font-16 font-weight-normal text-gray mt-10">
+                    <h2 class="font-40 text-dark">SATs Papers</h2>
+                    <p class="font-16 text-gray mt-10">
                         Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of
                         SATs exam practice for advanced problem-solving.
                     </p>
@@ -688,7 +681,7 @@
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white">About SATs Exam</h2>
+                        <h2 class="mt-0 mb-10 text-white font-40">About SATs Exam</h2>
                         <p class="font-19 text-white">
                             With engaging learning experiences, proven SATs resources, and SATs practice, you'll be <br/>well-prepared to achieve your best scores
                             on the SATs exam.
@@ -749,10 +742,10 @@
                 </div>
                 <div class="col-12 col-lg-6 col-md-6">
                     <div>
-                        <h2 class="font-36 font-weight-bold text-white">
+                        <h2 class="font-36 text-white">
                             Ignite Your Path to Success with 100+ SATs practices
                         </h2>
-                        <p class="font-19 font-weight-normal mb-0 mt-10 text-white">
+                        <p class="font-19 mb-0 mt-10 text-white">
                             Work through a variety of SATs exam practice questions to improve your skills
                             and become familiar with the types of questions you'll encounter on
                             the SATs exam.
@@ -766,8 +759,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10">Frequently asked questions</h2>
-                    <p class="font-19">Asking the right questions is indeed a skill that requires careful
+                    <h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
+                    <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful
                         consideration.</p>
                 </div>
             </div>
@@ -884,7 +877,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
                                 <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your SATs Exam Prep today</h2>
-                                <p itemprop="description" class="mb-0 text-white">
+                                <p itemprop="description" class="mb-0 text-white font-16">
                                     Let us help you achieve the score you deserve and unlock <br/>
                                     doors to your future academic success.
                                 </p>
