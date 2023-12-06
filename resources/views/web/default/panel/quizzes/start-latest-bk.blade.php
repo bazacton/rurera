@@ -1,5 +1,5 @@
 @php namespace App\Http\Controllers\Web; @endphp
-
+@extends(getTemplate().'.layouts.appstart')
 @php
 $i = 0; $j = 1;
 $rand_id = rand(99,9999);
@@ -7,6 +7,22 @@ $rand_id = rand(99,9999);
 @endphp
 
 @push('styles_top')
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
+
+<link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
+
+<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
@@ -22,6 +38,7 @@ $rand_id = rand(99,9999);
 
 </style>
 @endpush
+@section('content')
 <div class="content-section">
 
     <section class="lms-quiz-section">
@@ -87,7 +104,41 @@ $rand_id = rand(99,9999);
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
-
+                            <div class="topbar-right">
+                                <div class="quiz-pagination">
+                                    <div class="swiper-container">
+                                        <ul class="swiper-wrapper">
+                                            @if( !empty( $questions_list ) )
+                                            @php $question_count = 1; @endphp
+                                                @foreach( $questions_list as $question_id)
+                                                @php $is_flagged = false;
+                                                $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                                ($newQuizStart->flagged_questions) : array();
+                                                @endphp
+                                                @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                                    $flagged_questions))
+                                                    @php $is_flagged = true;
+                                                    @endphp
+                                                @endif
+                                                @php $question_status_class = isset( $questions_status_array[$question_id]
+                                                )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                                <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                        'has-flag' : ''}} {{$question_status_class}}"><a
+                                                            href="javascript:;">
+                                                        {{$question_count}}</a></li>
+                                                @php $question_count++; @endphp
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                                <div class="quiz-timer">
+                                    <span class="timer-number">4<em>m</em></span> <span
+                                            class="timer-number">50<em>s</em></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -113,7 +164,7 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-quiz_type="practice" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -194,9 +245,17 @@ $rand_id = rand(99,9999);
    </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
-
+@endsection
 @push('scripts_bottom')
 
+<script src="/assets/default/vendors/video/video.min.js"></script>
+<script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
+<script src="/assets/default/js/parts/quiz-start.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+<script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 
 <script>
     //init_question_functions();

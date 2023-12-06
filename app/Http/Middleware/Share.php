@@ -101,6 +101,9 @@ class Share
                     }
                     if (!empty($categoryObj->webinars)) {
                         foreach ($categoryObj->webinars as $webinarObj) {
+                            if( $webinarObj->status != 'active'){
+                                continue;
+                            }
                             $chapter_title = $webinarObj->getTitleAttribute();
                             $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_title'] = $chapter_title;
                             $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_slug'] = $webinarObj->slug;
@@ -176,7 +179,6 @@ class Share
             pre('test');
         }
 
-        //pre($course_navigation);
 
 
         //$courses_list = Webinar::where('category_id', $course->category->id)->get();

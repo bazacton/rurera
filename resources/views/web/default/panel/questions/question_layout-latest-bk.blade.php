@@ -160,6 +160,8 @@ $total_questions = countSubItems(json_decode($quizAttempt->questions_list));
     </div>
 
 </div>
+
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script>
     var Questioninterval = setInterval(function () {
         var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');

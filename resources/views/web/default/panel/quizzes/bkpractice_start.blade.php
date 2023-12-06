@@ -1,5 +1,5 @@
 @php namespace App\Http\Controllers\Web; @endphp
-
+@extends(getTemplate().'.layouts.appstart')
 @php
 $i = 0; $j = 1;
 $rand_id = rand(99,9999);
@@ -7,6 +7,22 @@ $rand_id = rand(99,9999);
 @endphp
 
 @push('styles_top')
+<link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<link href="/assets/default/vendors/sortable/jquery-ui.min.css"/>
+
+<link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css?var={{$rand_id}}">
+<link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/flipbook.style.css">
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
+
+<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
@@ -22,6 +38,7 @@ $rand_id = rand(99,9999);
 
 </style>
 @endpush
+@section('content')
 <div class="content-section">
 
     <section class="lms-quiz-section">
@@ -194,9 +211,17 @@ $rand_id = rand(99,9999);
    </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
-
+@endsection
 @push('scripts_bottom')
 
+<script src="/assets/default/vendors/video/video.min.js"></script>
+<script src="/assets/default/vendors/jquery.simple.timer/jquery.simple.timer.js"></script>
+<script src="/assets/default/js/parts/quiz-start.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+<script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 
 <script>
     //init_question_functions();

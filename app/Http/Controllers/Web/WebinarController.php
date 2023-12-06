@@ -290,7 +290,7 @@ class WebinarController extends Controller
         $canSale = ($course->canSale() and !$hasBought);
 
 
-        $courses_list = Webinar::where('category_id', $course->category->id)->get();
+        $courses_list = Webinar::where('category_id', $course->category->id)->where('status', 'active')->get();
 
 
         $parent_assigned_list = array();
@@ -337,6 +337,7 @@ class WebinarController extends Controller
             'textLessonsWithoutChapter' => $textLessonsWithoutChapter,
             'quizzes'                   => $quizzes,
             'childs'                    => $childs,
+            'course'                    => $course,
             'parent_assigned_list'      => $parent_assigned_list,
         ];
 

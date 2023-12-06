@@ -35,6 +35,10 @@ class TextToSpeechController extends Controller
                 ->setLanguageCode('en-US')  // Language code (e.g., 'en-US' for English)
                 ->setName('en-GB-News-I'); // Specify the name of the voice you want to use
 
+        /*$voice = (new VoiceSelectionParams())
+                        ->setLanguageCode('de-DE')  // Language code (e.g., 'en-US' for English)
+                        ->setName('de-DE-Wavenet-B'); // Specify the name of the voice you want to use
+        */
 
         $audioConfig = new AudioConfig();
         $audioConfig->setAudioEncoding(AudioEncoding::LINEAR16);

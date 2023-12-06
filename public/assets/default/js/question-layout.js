@@ -161,6 +161,14 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             console.log(return_data.total_points);
+
+
+            if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
+                var updated_questions_layout = return_data.updated_questions_layout;
+
+                $(".question-area-block").attr('data-questions_layout', updated_questions_layout);
+            }
+
             if (rurera_is_field(return_data.total_points)) {
                 $(".lms-quiz-section").attr('data-total_points', return_data.total_points);
             }
@@ -734,8 +742,13 @@ function init_question_functions() {
             questions_layout[index] = value;
         });
 
+
+
+
         var question_layout = leform_decode64(questions_layout[question_id]);
         var question_layout = JSON.parse(question_layout);
+
+
         $(".question-area-block").html(question_layout);
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
@@ -774,7 +787,7 @@ function init_question_functions() {
         }
 
         //Temporary Commented
-        currentRequest = jQuery.ajax({
+        /*currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
@@ -792,7 +805,7 @@ function init_question_functions() {
             success: function (return_data) {
                 console.log(return_data);
             }
-        });
+        });*/
 
     });
 

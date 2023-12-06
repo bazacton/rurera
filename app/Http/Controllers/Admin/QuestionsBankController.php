@@ -172,6 +172,11 @@ class QuestionsBankController extends Controller
     {
         $user = auth()->user();
 
+        $audio_text = 'Translate texts & full document files instantly. Accurate translations for individuals and Teams. Millions translate with DeepL every day';
+        $TextToSpeechController = new TextToSpeechController();
+            $text_audio_path = $TextToSpeechController->getSpeechAudioFilePath($audio_text);
+            pre($text_audio_path);
+
         //$excel = 'grade-5-uk-vocabulary/word-tious-and-ious.xlsx';
         //$other_slug = 'word-tious-and-ious';
 
@@ -1647,6 +1652,8 @@ class QuestionsBankController extends Controller
         }
 
 
+
+
         $webinar = Webinar::where('id' , $data['webinar_id'])
             ->first();
 
@@ -2131,8 +2138,8 @@ class QuestionsBankController extends Controller
         $questionIds = QuizzesQuestion::where('question_status', '!=', '');
         if( !empty( $term_array ) ){
             foreach( $term_array as $term_data){
-                //$questionIds->where('question_title', 'like', '%'.$term_data.'%')->orWhere('search_tags', 'like', '%'.$term_data.'%');
-                $questionIds->where('search_tags', 'like', '%'.$term_data.'%');
+                $questionIds->where('question_title', 'like', '%'.$term_data.'%')->orWhere('search_tags', 'like', '%'.$term_data.'%');
+                //$questionIds->where('search_tags', 'like', '%'.$term_data.'%');
             }
         }
         $questionIds    = $questionIds->get();
@@ -2155,6 +2162,7 @@ class QuestionsBankController extends Controller
                     'id' => $questionObj->id,
                     'title' => $questionObj->question_title,
                     'question_difficulty_level' => $questionObj->question_difficulty_level,
+                    'question_type' => $questionObj->question_type,
                     'search_tags' => $search_keywords,
                 );
             }

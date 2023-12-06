@@ -618,16 +618,12 @@ $rand_id = rand(999,99999);
                                             <div class="form-group">
                                                 <label class="input-label">Difficulty Level</label>
                                                 <select name="difficulty_level" class="custom-select ">
-                                                    <option value="Below" {{ ($question_difficulty_level==
-                                                    'Below') ? 'selected' : '' }}>Below</option>
                                                     <option value="Emerging" {{ ($question_difficulty_level==
                                                     'Emerging') ? 'selected' : '' }}>Emerging</option>
                                                     <option value="Expected" {{ ($question_difficulty_level==
                                                     'Expected') ? 'selected' : '' }}>Expected</option>
                                                     <option value="Exceeding" {{ ($question_difficulty_level==
                                                     'Exceeding') ? 'selected' : '' }}>Exceeding</option>
-                                                    <option value="Challenge" {{ ($question_difficulty_level==
-                                                    'Challenge') ? 'selected' : '' }}>Challenge</option>
                                                 </select>
                                             </div>
                                         </div>

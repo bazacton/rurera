@@ -7612,6 +7612,11 @@ function getTopicTitle($topic_id, $topic_type){
                 $topic_title = isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
             break;
             
+            case "practice":
+                $QuizObj = Quiz::find($topic_id);
+                $topic_title = $QuizObj->getTitleAttribute();
+            break;
+            
             case "timestables":
                 $topic_title = 'Times Tables';
             break;
@@ -7772,4 +7777,20 @@ function dates_difference($date1, $date2){
         'months' => $months,
         'days' => $days,
     );
+}
+
+function sumNestedArrayValues($array) {
+    $sum = 0;
+
+    foreach ($array as $value) {
+        if (is_array($value)) {
+            // If the element is an array, recursively call the function
+            $sum += sumNestedArrayValues($value);
+        } else {
+            // If the element is not an array, add its value to the sum
+            $sum += $value;
+        }
+    }
+
+    return $sum;
 }

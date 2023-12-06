@@ -82,81 +82,81 @@
 </section>
 <div class="lms-job-search">
 <section class="lms-search-services mb-0 pt-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center mb-50">
-                        <h2 itemprop="title" class="mt-0 mb-10">Hiring<span class="text-scribble ml-10">Process</span></h2>
-                        <p itemprop="description">Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title text-center mb-50">
+                    <h2 itemprop="title" class="mt-0 mb-10 font-40">Hiring<span class="text-scribble ml-10">Process</span></h2>
+                    <p itemprop="description">Interested candidates can submit their applications and can apply jobs. The hiring team will review the received <br> resumes and shortlist candidates based on their qualifications, relevant experience, and skills.</p>
                 </div>
-                <div class="col-12">
-                    <div class="process-holder">
-                        <ul itemprop="process"  class="process-list d-flex justify-content-center">
-                            <li itemprop="item" class="process-item">
-                                <a href="#.">step 1</a>
-                            </li>
-                            <li itemprop="item" class="process-item">
-                                <a href="#.">step 2</a>
-                            </li>
-                            <li itemprop="item" class="process-item">
-                                <a href="#.">step 3</a>
-                            </li>
-                            <li itemprop="item" class="process-item">
-                                <a href="#.">step 4</a>
-                            </li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-12">
+                <div class="process-holder">
+                    <ul itemprop="process"  class="process-list d-flex justify-content-center">
+                        <li itemprop="item" class="process-item">
+                            <a href="#.">step 1</a>
+                        </li>
+                        <li itemprop="item" class="process-item">
+                            <a href="#.">step 2</a>
+                        </li>
+                        <li itemprop="item" class="process-item">
+                            <a href="#.">step 3</a>
+                        </li>
+                        <li itemprop="item" class="process-item">
+                            <a href="#.">step 4</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h2 itemprop="title" class="post-title">Fill Application</h2>
-                                <p itemprop="description" class="mt-15">thoroughly with personal info, work experience, and qualifications.</p>
-                            </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="process-card mt-40 mb-30 text-center">
+                    <div class="process-card-body">
+                        <div class="text-holder">
+                            <h2 itemprop="title" class="post-title">Fill Application</h2>
+                            <p itemprop="description" class="mt-15">thoroughly with personal info, work experience, and qualifications.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h2 itemprop="title" class="post-title">Get Shortlisted</h2>
-                                <p itemprop="description" class="mt-15">if you meet requirements, stay informed about next steps.</p>
-                            </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="process-card mt-40 mb-30 text-center">
+                    <div class="process-card-body">
+                        <div class="text-holder">
+                            <h2 itemprop="title" class="post-title">Get Shortlisted</h2>
+                            <p itemprop="description" class="mt-15">if you meet requirements, stay informed about next steps.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h2 itemprop="title" class="post-title">Prepare For Interview</h2>
-                                <p itemprop="description" class="mt-15">research company, practice common questions, show enthusiasm.</p>
-                            </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="process-card mt-40 mb-30 text-center">
+                    <div class="process-card-body">
+                        <div class="text-holder">
+                            <h2 itemprop="title" class="post-title">Prepare For Interview</h2>
+                            <p itemprop="description" class="mt-15">research company, practice common questions, show enthusiasm.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h2 itemprop="title" class="post-title">Get Hired</h2>
-                                <p itemprop="description" class="mt-15">await official offer letter, join our team. Congratulations!</p>
-                            </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="process-card mt-40 mb-30 text-center">
+                    <div class="process-card-body">
+                        <div class="text-holder">
+                            <h2 itemprop="title" class="post-title">Get Hired</h2>
+                            <p itemprop="description" class="mt-15">await official offer letter, join our team. Congratulations!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </section>
     <div class="stats-container mb-50 pb-10 pt-20">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 itemprop="title" class="mt-0 mb-10">Job perks</h2>
+                        <h2 itemprop="title" class="mt-0 mb-10 font-40">Job perks</h2>
                         <p itemprop="description">Joining a company dedicated to reshaping the teaching and learning process means <br> you have the opportunity to make a meaningful impact on education.</p>
                     </div>
                 </div>
@@ -240,7 +240,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                     <div class="section-title text-center mb-50">
-                        <h2 itemprop="title" class="mb-10">Open Positions</h2>
+                        <h2 itemprop="title" class="mb-10 font-40">Open Positions</h2>
                         <p itemprop="description">We are always seeking talented individuals to join our team and contribute <br /> to our success. Explore some new positions:</p>
                     </div>
                     <div class="lms-accordion-job accordion" id="accordionExample">
@@ -753,7 +753,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 itemprop="title" class="mt-0 mb-10">Explore our success storiess</h2>
+                        <h2 itemprop="title" class="mt-0 mb-10 font-40">Explore our success storiess</h2>
                     </div>
                 </div>
                 <div class="col-12">
@@ -816,7 +816,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title text-center mb-40">
-                        <h2 itemprop="title" class="mt-0 mb-10">Our impact</h2>
+                        <h2 itemprop="title" class="mt-0 mb-10 font-40">Our impact</h2>
                         <p itemprop="description">We truly Understand the challenges and limitations faced by educators and learners <br> in the current system.</p>
                     </div>
                 </div>
@@ -852,7 +852,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="section-title text-center mb-40">
-                        <h2 itemprop="title" class="mt-0">Application Form</h2>
+                        <h2 itemprop="title" class="mt-0 font-40">Application Form</h2>
                     </div>
                     <div class="lms-jobs-form">
                         <div class="lms-jobs-form-body">

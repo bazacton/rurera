@@ -357,7 +357,7 @@
         var html_response = '';
         $.map(data, function (item) {
             if (DataIsEmpty($('.questions-list ul li[data-id="' + item.id + '"]').attr('data-id'))) {
-                html_response += '<li data-id="' + item.id + '">\n' +
+                html_response += '<li data-id="' + item.id + '" data-question_type="' + item.question_type + '">\n' +
                     '<div class="question-title">' + item.title + '</div>\n' +
                     '<div class="question-keywords">\n' +
                     '<ul>' + item.search_tags + '</ul>\n' +

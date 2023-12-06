@@ -54,10 +54,12 @@
                         @foreach( $courses_list as $courseObj)
                             <div class="col-12 col-sm-6 col-md-4 col-lg-2">
                                 <div class="categories-card">
+                                    <a href="/{{$course->category->slug}}/{{$courseObj->slug}}">
                                     <div class="categories-icon" style="background:{{$courseObj->background_color}}">
                                         {!! $courseObj->icon_code !!}
                                     </div>
                                     <h4 class="categories-title">{{$courseObj->getTitleAttribute()}}</h4>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach

@@ -32,7 +32,7 @@ class QuizController extends Controller
 
         $query = Quiz::query();
 
-        if(auth()->user()->isTeacher()){
+        if (auth()->user()->isTeacher()) {
             //$query = $query->where('creator_id', auth()->user()->id);
         }
         $totalQuizzes = deepClone($query)->count();
@@ -222,8 +222,8 @@ class QuizController extends Controller
         }
 
         $categories = Category::where('parent_id', null)
-                    ->with('subCategories')->orderBy('order', 'asc')
-                    ->get();
+            ->with('subCategories')->orderBy('order', 'asc')
+            ->get();
         $data['chapters'] = $chapters_list;
         $data['categories'] = $categories;
 
@@ -278,44 +278,26 @@ class QuizController extends Controller
         $mastery_points = isset($data['mastery_points']) ? $data['mastery_points'] : 0;
 
 
-        $Below_points = isset($data['Below_points']) ? $data['Below_points'] : 0;
-        $Emerging_points = isset($data['Emerging_points']) ? $data['Emerging_points'] : 0;
-        $Expected_points = isset($data['Expected_points']) ? $data['Expected_points'] : 0;
-        $Exceeding_points = isset($data['Exceeding_points']) ? $data['Exceeding_points'] : 0;
-        $Challenge_points = isset($data['Challenge_points']) ? $data['Challenge_points'] : 0;
-
-        $Below_questions = isset($data['Below']) ? $data['Below'] : 0;
-        $Emerging_questions = isset($data['Emerging']) ? $data['Emerging'] : 0;
-        $Expected_questions = isset($data['Expected']) ? $data['Expected'] : 0;
-        $Exceeding_questions = isset($data['Exceeding']) ? $data['Exceeding'] : 0;
-        $Challenge_questions = isset($data['Challenge']) ? $data['Challenge'] : 0;
+        $Emerging_questions = isset($data['Emerging']) ? $data['Emerging'] : array();
+        $Expected_questions = isset($data['Expected']) ? $data['Expected'] : array();
+        $Exceeding_questions = isset($data['Exceeding']) ? $data['Exceeding'] : array();
 
         $quiz_settings = array(
-            'Below'     => array(
-                'questions'         => isset($data['Below']) ? $data['Below'] : '',
-                'points_percentage' => isset($data['Below_points']) ? $data['Below_points'] : '',
-                'points'            => (round(($Below_points * $mastery_points) / 100) / $Below_questions),
-            ),
             'Emerging'  => array(
-                'questions'         => isset($data['Emerging']) ? $data['Emerging'] : '',
-                'points_percentage' => isset($data['Emerging_points']) ? $data['Emerging_points'] : '',
-                'points'            => (round(($Emerging_points * $mastery_points) / 100) / $Emerging_questions),
+                'questions' => isset($data['Emerging']) ? sumNestedArrayValues($data['Emerging']) : '',
+                'breakdown' => isset($data['Emerging']) ? $data['Emerging'] : '',
             ),
             'Expected'  => array(
-                'questions'         => isset($data['Expected']) ? $data['Expected'] : '',
-                'points_percentage' => isset($data['Expected_points']) ? $data['Expected_points'] : '',
-                'points'            => (round(($Expected_points * $mastery_points) / 100) / $Expected_questions),
+                'questions' => isset($data['Expected']) ? sumNestedArrayValues($data['Expected']) : '',
+                'breakdown' => isset($data['Expected']) ? $data['Expected'] : '',
             ),
             'Exceeding' => array(
-                'questions'         => isset($data['Exceeding']) ? $data['Exceeding'] : '',
-                'points_percentage' => isset($data['Exceeding_points']) ? $data['Exceeding_points'] : '',
-                'points'            => (round(($Exceeding_points * $mastery_points) / 100) / $Exceeding_questions),
+                'questions' => isset($data['Exceeding']) ? sumNestedArrayValues($data['Exceeding']) : '',
+                'breakdown' => isset($data['Exceeding']) ? $data['Exceeding'] : '',
+                'incorrect_attempts' => isset($data['incorrect_attempts']) ? $data['incorrect_attempts'] : 0,
+                'excess_time_taken' => isset($data['excess_time_taken']) ? $data['excess_time_taken'] : 0,
             ),
-            'Challenge' => array(
-                'questions'         => isset($data['Challenge']) ? $data['Challenge'] : '',
-                'points_percentage' => isset($data['Challenge_points']) ? $data['Challenge_points'] : '',
-                'points'            => (round(($Challenge_points * $mastery_points) / 100) / $Challenge_questions),
-            )
+
         );
 
         $quiz = Quiz::create([
@@ -325,7 +307,7 @@ class QuizController extends Controller
             'creator_id'                  => isset($webinar->creator_id) ? $webinar->creator_id : $user->id,
             'webinar_title'               => isset($webinar->title) ? $webinar->title : '',
             'attempt'                     => (isset($data['attempt']) && $data['attempt'] > 0) ? $data['attempt'] : 100,
-            'quiz_type'                   => isset($data['quiz_type']) ? $data['quiz_type'] : '',
+            'quiz_type'                   => 'practice',//isset($data['quiz_type']) ? $data['quiz_type'] : '',
             'sub_chapter_id'              => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
             'pass_mark'                   => 1,
             'time'                        => (isset($data['time']) && $data['time'] > 0) ? $data['time'] : 100,
@@ -343,8 +325,8 @@ class QuizController extends Controller
             'year_group'                  => isset($data['year_group']) ? $data['year_group'] : '',
             'subject'                     => isset($data['subject']) ? $data['subject'] : '',
             'examp_board'                 => isset($data['examp_board']) ? $data['examp_board'] : '',
-            'year_id'                 => isset($data['year_id']) ? $data['year_id'] : 0,
-            'quiz_category'                 => isset($data['quiz_category']) ? $data['quiz_category'] : '',
+            'year_id'                     => isset($data['year_id']) ? $data['year_id'] : 0,
+            'quiz_category'               => isset($data['quiz_category']) ? $data['quiz_category'] : '',
 
         ]);
 
@@ -436,8 +418,8 @@ class QuizController extends Controller
         }
 
         $categories = Category::where('parent_id', null)
-                            ->with('subCategories')->orderBy('order', 'asc')
-                            ->get();
+            ->with('subCategories')->orderBy('order', 'asc')
+            ->get();
 
         $data = [
             'pageTitle'     => trans('public.edit') . ' ' . $quiz->title,
@@ -447,7 +429,7 @@ class QuizController extends Controller
             'creator'       => $creator,
             'chapters'      => $chapters,
             'locale'        => mb_strtolower($locale),
-            'categories'        => $categories,
+            'categories'    => $categories,
             'defaultLocale' => getDefaultLocale(),
         ];
 
@@ -501,8 +483,6 @@ class QuizController extends Controller
         $validate = Validator::make($data, $rules);
 
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
-
-
 
 
         if ($validate->fails()) {
@@ -595,7 +575,6 @@ class QuizController extends Controller
         ]);
 
         if (!empty($quiz)) {
-
 
 
             $quiz_question_ids = array();

@@ -89,8 +89,8 @@
                             }}>Challenge
                         </option>
                         <option value="vocabulary" {{ (!empty($quiz) and $quiz->quiz_type == 'vocabulary') ? 'selected' : ''
-                                                    }}>Vocabulary
-                                                </option>
+                            }}>Vocabulary
+                        </option>
                     </select>
                 </div>
 
@@ -111,38 +111,38 @@
                 </div>
 
                 <div class="conditional-fields vocabulary-fields">
-                <div class="form-group">
-                    <label>Year</label>
-                    <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
-                            class="form-control year_subject_ajax_select select2 @error('year_id') is-invalid @enderror"
-                            name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
-                        <option {{ !empty($trend) ?
-                        '' : 'selected' }} disabled>Select Year</option>
+                    <div class="form-group">
+                        <label>Year</label>
+                        <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
+                                class="form-control year_subject_ajax_select select2 @error('year_id') is-invalid @enderror"
+                                name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
+                            <option {{ !empty($trend) ?
+                            '' : 'selected' }} disabled>Select Year</option>
 
-                        @foreach($categories as $category)
-                        @if(!empty($category->subCategories) and
-                        count($category->subCategories))
-                        <optgroup label="{{  $category->title }}">
-                            @foreach($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
-                                {{$subCategory->title}}
+                            @foreach($categories as $category)
+                            @if(!empty($category->subCategories) and
+                            count($category->subCategories))
+                            <optgroup label="{{  $category->title }}">
+                                @foreach($category->subCategories as $subCategory)
+                                <option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
+                                    {{$subCategory->title}}
+                                </option>
+                                @endforeach
+                            </optgroup>
+                            @else
+                            <option value="{{ $category->id }}"
+                                    class="font-weight-bold">{{
+                                $category->title }}
                             </option>
+                            @endif
                             @endforeach
-                        </optgroup>
-                        @else
-                        <option value="{{ $category->id }}"
-                                class="font-weight-bold">{{
-                            $category->title }}
-                        </option>
-                        @endif
-                        @endforeach
-                    </select>
-                    @error('year_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                        </select>
+                        @error('year_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                    @enderror
-                </div>
                     <div class="form-group mt-15 ">
                         <label class="input-label d-block">Vocabulary Category</label>
                         <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_category]"
@@ -285,9 +285,9 @@
                                 }}>All
                             </option>
                             <option value="English" {{ (!empty($quiz) and $quiz->subject == 'English') ?
-                                                            'selected'
-                                                            : '' }}>English
-                                                        </option>
+                                'selected'
+                                : '' }}>English
+                            </option>
                             <option value="Math" {{ (!empty($quiz) and $quiz->subject == 'Math') ?
                                 'selected'
                                 : '' }}>Math
@@ -358,6 +358,26 @@
                 </div>
 
                 <div class="conditional-fields practice-fields {{$practice_hide_class}}">
+
+                    <div class="form-group mt-15 ">
+                            <label class="input-label d-block">Topic Size</label>
+                            <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][quiz_type]"
+                                    class="form-control" data-placeholder="Select Topic Size">
+                                <option value="Large" {{ (!empty($quiz) and $quiz->quiz_type == 'Large') ? 'selected' : ''
+                                    }}>Large
+                                </option>
+                                <option value="Medium" {{ (!empty($quiz) and $quiz->quiz_type == 'Medium') ? 'selected'
+                                    : '' }}>Medium
+                                </option>
+                                <option value="Small" {{ (!empty($quiz) and $quiz->quiz_type == 'Small') ? 'selected' : ''
+                                    }}>Small
+                                </option>
+                                <option value="X-Small" {{ (!empty($quiz) and $quiz->quiz_type == 'X-Small') ? 'selected' : ''
+                                    }}>X-Small
+                                </option>
+                            </select>
+                        </div>
+
                     @php
                     $quiz_settings = array();
                     if( isset( $quiz->quiz_settings ) ){
@@ -368,111 +388,255 @@
                     @endphp
 
                     <div class="row">
-                        <div class="col-6 col-md-6">
+                        <div class="col-12 col-md-12">
+                            <h4>Emerging</h4>
+                        </div>
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Below</label>
+                                <label class="input-label">Question Type</label><br>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <label class="input-label">Total Questions</label><br>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <label class="input-label">Exam Questions</label>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Dropdown</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="dropdown">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
                                 <input type="number"
                                        value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Below]"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][dropdown]"
                                        class="form-control" placeholder=""/>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Points %</label>
+                                <h6 class="input-label">True / False</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="true_false">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->points_percentage : '25' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Below_points]"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][true_false]"
+                                       class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Matching</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="matching">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <input type="number"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][matching]"
                                        class="form-control" placeholder=""/>
                             </div>
                         </div>
                     </div>
 
+
                     <div class="row">
-                        <div class="col-6 col-md-6">
+                        <div class="col-12 col-md-12">
+                            <h4>Expected</h4>
+                        </div>
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Emerging</label>
+                                <label class="input-label">Question Type</label><br>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <label class="input-label">Total Questions</label><br>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <label class="input-label">Exam Questions</label>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Sorting</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="sorting">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '15' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging]"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][sorting]"
                                        class="form-control" placeholder=""/>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
-                            <div class="form-group">
-                                <label class="input-label">Points %</label>
-                                <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->points_percentage : '20' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging_points]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-6 col-md-6">
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Expected</label>
-                                <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->questions : '20' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <div class="form-group">
-                                <label class="input-label">Points %</label>
-                                <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->points_percentage : '30' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected_points]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
-                            </div>
-                        </div>
-                    </div>
+                                <h6 class="input-label">Single Select</h6>
 
-                    <div class="row">
-                        <div class="col-6 col-md-6">
-                            <div class="form-group">
-                                <label class="input-label">Exceeding</label>
-                                <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->questions : '15' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Points %</label>
+                                <h6 class="input-label total-questions-block" data-question_type="single_select">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->points_percentage : '15' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding_points]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][single_select]"
+                                       class="form-control" placeholder=""/>
                             </div>
                         </div>
                     </div>
 
 
                     <div class="row">
-                        <div class="col-6 col-md-6">
+                        <div class="col-12 col-md-12">
+                            <h4>Exceeding</h4>
+                        </div>
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Challenge</label>
-                                <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Challenge']->questions : '10' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Challenge]"
-                                       class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
+                                <label class="input-label">Question Type</label><br>
+
                             </div>
                         </div>
-                        <div class="col-6 col-md-6">
+                        <div class="col-4 col-md-4">
                             <div class="form-group">
-                                <label class="input-label">Points %</label>
+                                <label class="input-label">Total Questions</label><br>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <label class="input-label">Exam Questions</label>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Text Field</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="text_field">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Challenge']->points_percentage : '10' }}"
-                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Challenge_points]"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][text_field]"
+                                       class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Multi Select</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="multi_select">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <input type="number"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][multi_select]"
+                                       class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label">Short Answer</h6>
+
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <h6 class="input-label total-questions-block" data-question_type="short_answer">20</h6>
+                            </div>
+                        </div>
+                        <div class="col-4 col-md-4">
+                            <div class="form-group">
+                                <input type="number"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][short_answer]"
+                                       class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label class="input-label">Incorrect Attempts</label>
+                                <input type="number"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '0' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][incorrect_attempts]"
+                                       class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label class="input-label">Excess Time Taken</label>
+                                <input type="number"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->points_percentage : '0' }}"
+                                       name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][excess_time_taken]"
                                        class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    
 
                 <div class="form-group mt-15 ">
                     <label class="input-label d-block">Questions</label>
@@ -553,7 +717,6 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
     $(document).ready(function () {
 
 
-
         handleQuestionsMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
         $(document).on('change', '.quiz-type', function (e) {
@@ -578,17 +741,45 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 
         $(document).on('click', '.questions-block ul li .question-select', function (e) {
             var field_value = $(this).closest('li').attr('data-id');
+            var question_type = $(this).closest('li').attr('data-question_type');
             var field_label = $(this).closest('li').find('.question-title').html();
-            $(".questions-list ul").append('<li data-id="' + field_value + '">' + field_label + '  <input type="hidden" name="ajax[{{ $quiz_add_edit }}][question_list_ids][]" ' +
+            $(".questions-list ul").append('<li data-id="' + field_value + '" data-question_type="' + question_type + '">' + field_label + '  <input type="hidden" name="ajax[{{ $quiz_add_edit }}][question_list_ids][]" ' +
                 'value="' + field_value + '"><a href="javascript:;"' +
                 ' ' +
                 'class="parent-remove"><span class="fas ' +
                 'fa-trash"></span></a></li>');
             $(this).closest('li').remove();
             $(".questions-list ul").sortable();
+            update_total_questions();
         });
 
         $(".questions-list ul").sortable();
+        update_total_questions();
+
+        function update_total_questions() {
+            var dropdown_count = $('.questions-list ul li[data-question_type="dropdown"]').length
+            var true_false_count = $('.questions-list ul li[data-question_type="true_false"]').length
+            var matching_count = $('.questions-list ul li[data-question_type="matching"]').length
+
+            var sorting_count = $('.questions-list ul li[data-question_type="sorting"]').length
+            var single_select_count = $('.questions-list ul li[data-question_type="single_select"]').length
+
+            var text_field_count = $('.questions-list ul li[data-question_type="text_field"]').length
+            var multi_select_count = $('.questions-list ul li[data-question_type="multi_select"]').length
+            var short_answer_count = $('.questions-list ul li[data-question_type="short_answer"]').length
+
+            $('.total-questions-block[data-question_type="dropdown"]').html(dropdown_count);
+            $('.total-questions-block[data-question_type="true_false"]').html(true_false_count);
+            $('.total-questions-block[data-question_type="matching"]').html(matching_count);
+
+            $('.total-questions-block[data-question_type="sorting"]').html(sorting_count);
+            $('.total-questions-block[data-question_type="single_select"]').html(single_select_count);
+
+            $('.total-questions-block[data-question_type="text_field"]').html(text_field_count);
+            $('.total-questions-block[data-question_type="multi_select"]').html(multi_select_count);
+            $('.total-questions-block[data-question_type="short_answer"]').html(short_answer_count);
+
+        }
     });
 </script>
 @endpush

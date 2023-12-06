@@ -415,26 +415,34 @@ class QuizController extends Controller
             $quiz_settings = json_decode($quiz->quiz_settings);
 
             $questions_limit = array();
-            $questions_limit['below'] = isset($quiz_settings->Below->questions) ? $quiz_settings->Below->questions : 0;
             $questions_limit['emerging'] = isset($quiz_settings->Emerging->questions) ? $quiz_settings->Emerging->questions : 0;
             $questions_limit['expected'] = isset($quiz_settings->Expected->questions) ? $quiz_settings->Expected->questions : 0;
             $questions_limit['exceeding'] = isset($quiz_settings->Exceeding->questions) ? $quiz_settings->Exceeding->questions : 0;
-            $questions_limit['challenge'] = isset($quiz_settings->Challenge->questions) ? $quiz_settings->Challenge->questions : 0;
 
 
             $difficulty_level_array = [
-                'below'     => 'Below',
                 'emerging'  => 'Emerging',
                 'expected'  => 'Expected',
                 'exceeding' => 'Exceeding',
-                'challenge' => 'Challenge'
             ];
             if ($quiz->quiz_type == 'practice') {
                 $questions_list_ids = $questions_list;
                 $questions_list = array();
                 if (!empty($difficulty_level_array)) {
                     foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
-                        $questions_list[$difficulty_level_key] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_limit[$difficulty_level_key])->pluck('id')->toArray();
+                        $breakdown_array = (array) $quiz_settings->{$difficulty_level_label}->breakdown;
+
+                        if( !empty( $breakdown_array ) ){
+                            foreach( $breakdown_array as $question_type => $questions_count){
+                                //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                                 $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                                 if( !empty( $questions_array)){
+                                     foreach( $questions_array as $questionID){
+                                         $questions_list[]  = $questionID;
+                                     }
+                                 }
+                            }
+                        }
                     }
                 }
             }
@@ -446,6 +454,7 @@ class QuizController extends Controller
                     ->pluck('question_id')->toArray();
             }
         }
+
 
 
 
@@ -465,8 +474,8 @@ class QuizController extends Controller
 
             $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
             //$attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
-
             $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, array(), 0, false, $questions_list);
+
             $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
             $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
             $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
@@ -482,7 +491,7 @@ class QuizController extends Controller
             if ($quiz->quiz_type == 'practice') {
                 $quiz_settings = json_decode($quiz->quiz_settings);
                 $difficulty_level = isset($question->question_difficulty_level) ? $question->question_difficulty_level : '';
-                $question_points = isset($quiz_settings->$difficulty_level->points) ? $quiz_settings->$difficulty_level->points : 0;
+                //$question_points = isset($quiz_settings->$difficulty_level->points) ? $quiz_settings->$difficulty_level->points : 0;
             }
 
 
@@ -493,8 +502,6 @@ class QuizController extends Controller
             //$questions_array[] = $questionObj;
             $questions_layout = array();
             $active_question_id = 0;
-
-            
 
 
             if (!empty($questions_list)) {
@@ -606,7 +613,6 @@ class QuizController extends Controller
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
-
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
                 'questions_list'         => $questions_list,
@@ -664,7 +670,6 @@ class QuizController extends Controller
                 }else{
                     $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 }
-
 
                 $question_response_layout = '';
                 $question_response_layout = '<div class="question-result-layout question-status-'.$QuizzResultQuestionObj->status.'">';

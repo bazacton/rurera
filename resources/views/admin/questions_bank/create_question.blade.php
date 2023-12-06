@@ -822,11 +822,9 @@ $rand_id = rand(999,99999);
                                                         <div class="form-group">
                                                             <label class="input-label">Difficulty Level</label>
                                                             <select name="difficulty_level" class="custom-select ">
-                                                                <option value="Below">Below</option>
                                                                 <option value="Emerging">Emerging</option>
                                                                 <option value="Expected">Expected</option>
                                                                 <option value="Exceeding">Exceeding</option>
-                                                                <option value="Challenge">Challenge</option>
                                                             </select>
                                                         </div>
                                                     </div>
