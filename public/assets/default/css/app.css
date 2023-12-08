@@ -16317,16 +16317,19 @@ Custom Pagination Style End
 }
 /* Count Number Boxes Style End */
 /* Panel Sidebar And Panel Content Style Start */
-.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-dropdown {position: absolute; left: 0; top: 50px; width: 200px; background: #fff; padding: 5px 0 15px; box-shadow: 0 5px 5px 1px rgba(0, 0, 0, .1); border-radius: 4px; transition: all 0.6s cubic-bezier(0.68, -0.90, 0.265, 2.90) 0s; z-index: 99; opacity: 0; visibility: hidden;}
-.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item:hover .sidenav-dropdown {opacity: 1; visibility: visible; top: 40px; }
-.panel-page-section .panel-sidebar {border-top: 1px solid rgba(0,0,0,0.1); width: 100%; position: relative; display: flex; align-items: center; padding-bottom: 15px; z-index: 2; box-shadow: none;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-dropdown {position: absolute; left: 0; top: 100%; width: 200px; background: #fff; padding: 5px 0 15px; box-shadow: 0 5px 5px 1px rgba(0, 0, 0, .1); border-radius: 4px; transition: all 0.6s cubic-bezier(0.68, -0.90, 0.265, 2.90) 0s; z-index: 99; opacity: 0; visibility: hidden; margin-top: 30px;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item:hover .sidenav-dropdown {opacity: 1; visibility: visible; margin-top: 14px; }
+.panel-page-section .panel-sidebar {background-color: var(--primary); border-top: 0; width: 100%; position: relative; display: flex; align-items: center; padding-bottom: 15px; z-index: 2; box-shadow: none;}
 .panel-page-section .panel-sidebar .user-info .img-cover {-o-object-fit: contain; object-fit: contain; height: auto; }
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse {padding: 0;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse:before,
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:before {display: none;}
-.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item {padding: 0 12px; display: inline-flex; align-items: center; position: relative;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item {border-left: 1px solid rgba(255,255,255,0.4); flex-direction: column; justify-content: center; line-height: normal; align-items: center; display: inline-flex; position: relative; padding: 0 30px;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item:first-child {border: 0;}
 .panel-page-section .panel-sidebar .sidebar-menu {width: 100%; height: auto; overflow: auto; padding-bottom: 0; padding-top: 0; display: flex; justify-content: start; align-items: center; margin-left: -12px; margin-right: -12px;}
-.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item {padding: 0 12px; }
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item a {display: inline-flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item span {font-size: 16px !important; font-weight: 400 !important;color: #fff; margin-right: 0 !important; display: inline-block;}
+.panel-page-section .panel-sidebar .sidebar-menu .sidenav-item-active span {color: #fff !important;}
 .panel-page-section .panel-sidebar .simplebar-content-wrapper,
 .panel-page-section .panel-sidebar .simplebar-mask,
 .panel-page-section .panel-sidebar .simplebar-wrapper,
@@ -18807,6 +18810,7 @@ Lms Responsive Style Start
     .question-layout-block .question-fields .leform-element {padding-left: 0; padding-right: 0;}
     body .question-layout-block form.question-fields .questions-total-holder {padding-left: 60px; margin-top: -5px !important; font-size: 16px;}
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
+    .lms-contact-form-section {padding-bottom: 0 !important;} 
 }
 @media screen and (max-width: 575px) {
     .lms-service-section {margin-top: 80px !important;}
@@ -18843,7 +18847,8 @@ Lms Responsive Style Start
     body .question-layout .input-group-prepend button,
     body .question-layout .input-group-append button {border-radius: 0;}
     .status-in-words {gap: 15px; flex-wrap: wrap;}
-    .about-sub-header .choose-sats .sats-box {width: 100%;}
+    .about-sub-header p {padding-top: 15px;}
+    .about-sub-header .choose-sats .sats-box {width: 48%;}
 
 }
 @media screen and (max-width: 480px) {

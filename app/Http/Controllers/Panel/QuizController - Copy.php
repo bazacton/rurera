@@ -383,14 +383,14 @@ class QuizController extends Controller
             },
         ])->first();
 
-        if ($quiz->quiz_type == 'assignment') {
+        if($quiz->quiz_type == 'assignment'){
 
-            $AssignedAssignments = AssignedAssignments::where('assignment_id', $quiz->id)->whereJsonContains('user_ids', ["$user->id"])->where('status', 'active')->first();
+            $AssignedAssignments = AssignedAssignments::where('assignment_id', $quiz->id)->whereJsonContains('user_ids',["$user->id"])->where('status', 'active')->first();
             $total_attempted = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
-            if ($total_attempted >= $AssignedAssignments->no_of_attempts) {
+            if( $total_attempted >= $AssignedAssignments->no_of_attempts){
                 $toastData = [
-                    'title'  => '',
-                    'msg'    => 'You are not authorized to attempt this assignment',
+                    'title' => '',
+                    'msg' => 'You are not authorized to attempt this assignment',
                     'status' => 'error'
                 ];
                 return back()->with(['toast' => $toastData]);
@@ -401,10 +401,12 @@ class QuizController extends Controller
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
 
 
+
+
         $questions_list = array();
         if (!empty($quiz->quizQuestionsList)) {
             foreach ($quiz->quizQuestionsList as $questionlistData) {
-                $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
+                $question_id = ($quiz->quiz_type == 'assignment')? $questionlistData->reference_question_id : $questionlistData->question_id;
                 $questions_list[] = $question_id;
             }
         }
@@ -428,17 +430,17 @@ class QuizController extends Controller
                 $questions_list = array();
                 if (!empty($difficulty_level_array)) {
                     foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
-                        $breakdown_array = (array)$quiz_settings->{$difficulty_level_label}->breakdown;
+                        $breakdown_array = (array) $quiz_settings->{$difficulty_level_label}->breakdown;
 
-                        if (!empty($breakdown_array)) {
-                            foreach ($breakdown_array as $question_type => $questions_count) {
+                        if( !empty( $breakdown_array ) ){
+                            foreach( $breakdown_array as $question_type => $questions_count){
                                 //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
-                                $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
-                                if (!empty($questions_array)) {
-                                    foreach ($questions_array as $questionID) {
-                                        $questions_list[] = $questionID;
-                                    }
-                                }
+                                 $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                                 if( !empty( $questions_array)){
+                                     foreach( $questions_array as $questionID){
+                                         $questions_list[]  = $questionID;
+                                     }
+                                 }
                             }
                         }
                     }
@@ -454,6 +456,8 @@ class QuizController extends Controller
         }
 
 
+
+
         if ($quiz) {
 
             $show_all_questions = $quiz->show_all_questions;
@@ -467,18 +471,21 @@ class QuizController extends Controller
                 'no_of_attempts'   => $quiz->attempt
             ]);
 
-            $prev_active_question_id = isset( $resultLogObj->active_question_id )? $resultLogObj->active_question_id : 0;
-
-            if( $prev_active_question_id > 0){
-                $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
-                $prev_active_question_id = isset( $prevActiveQuestionObj->question_id )? $prevActiveQuestionObj->question_id : 0;
-            }
-
 
             $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
             //$attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
+            $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, array(), 0, false, $questions_list);
+
+            $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
+            $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
+            $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
+            $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
+            $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+            $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
+            $first_question_id = $questionObj->id;
 
             $question_points = isset($question->question_score) ? $question->question_score : 0;
+
 
 
             if ($quiz->quiz_type == 'practice') {
@@ -488,146 +495,115 @@ class QuizController extends Controller
             }
 
 
+            $question = $questionObj;
+
             $questions_array = $exclude_array = array();
             //$exclude_array[] = $questionObj->id;
             //$questions_array[] = $questionObj;
-            $questions_layout = $results_questions_array = array();
-            $active_question_id = $first_question_id = 0;
+            $questions_layout = array();
+            $active_question_id = 0;
 
 
             if (!empty($questions_list)) {
                 $questions_counter = 0;
                 foreach ($questions_list as $question_no_index => $question_id) {
-                    $question_no = $question_no_index;
-                    $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
-                    $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
+                    //if ($question_no_index > 0) {
+                        $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $QuizzesResult);
 
-                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
-
-                    $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
-
-                    $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
-
-                    if( $question_id == $prev_active_question_id){
-                        $active_question_id = $newQuestionResult->id;
+                        $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
+                        $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
+                        $prev_question = isset($nextQuestionArray['prev_question']) ? $nextQuestionArray['prev_question'] : 0;
+                        $next_question = isset($nextQuestionArray['next_question']) ? $nextQuestionArray['next_question'] : 0;
+                        $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+                        $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
+                    //}
+                    if( isset( $newQuestionResult->is_active ) && $newQuestionResult->is_active == 1){
+                        $active_question_id = $newQuestionResult->question_id;
                     }
 
                     if (isset($questionObj->id)) {
-                        $questions_array[] = $newQuestionResult;
-                        $exclude_array[] = $newQuestionResult->id;
-                        if ($resultLogObj->quiz_result_type == 'practice') {
+                        $questions_array[] = $questionObj;
+                        $exclude_array[] = $questionObj->id;
+                        if($QuizzesResult->quiz_result_type == 'practice'){
                             $question_no_index = $questions_counter;
                         }
 
                         $question_no = $question_no_index + 1;
                         if ($question_no_index == 0) {
-                            $first_question_id = $newQuestionResult->id;
+                            $first_question_id = $questionObj->id;
                         }
                         //pre($quiz->quiz_type);
 
                         $question_response_layout = '';
 
-                        if ($quiz->quiz_type == 'vocabulary') {
+                        if( $quiz->quiz_type == 'vocabulary'){
 
-                            $layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
+                            $layout_elements = isset( $questionObj->layout_elements )? json_decode($questionObj->layout_elements) : array();
 
                             $correct_answer = $audio_file = $audio_text = $audio_sentense = $field_id = '';
-                            if (!empty($layout_elements)) {
-                                foreach ($layout_elements as $elementData) {
-                                    $element_type = isset($elementData->type) ? $elementData->type : '';
-                                    $content = isset($elementData->content) ? $elementData->content : '';
-                                    $correct_answer = isset($elementData->correct_answer) ? $elementData->correct_answer : $correct_answer;
-                                    $audio_text = isset($elementData->audio_text) ? $elementData->audio_text : $audio_text;
-                                    $audio_sentense = isset($elementData->audio_sentense) ? $elementData->audio_sentense : $audio_sentense;
-                                    $audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
-                                    if ($element_type == 'audio_file') {
-                                        $audio_file = $content;
-                                        $audio_text = $audio_text;
-                                        $audio_sentense = $audio_sentense;
-                                    }
-                                    if ($element_type == 'textfield_quiz') {
-                                        $correct_answer = $correct_answer;
-                                        $field_id = isset($elementData->field_id) ? $elementData->field_id : '';
-                                    }
-                                }
-                            }
+                               if( !empty( $layout_elements ) ){
+                                   foreach( $layout_elements as $elementData){
+                                       $element_type = isset( $elementData->type )? $elementData->type : '';
+                                       $content = isset( $elementData->content )? $elementData->content : '';
+                                       $correct_answer = isset( $elementData->correct_answer )? $elementData->correct_answer : $correct_answer;
+                                       $audio_text = isset( $elementData->audio_text )? $elementData->audio_text : $audio_text;
+                                       $audio_sentense = isset( $elementData->audio_sentense )? $elementData->audio_sentense : $audio_sentense;
+                                       $audio_defination = isset( $elementData->audio_defination )? $elementData->audio_defination : $audio_defination;
+                                       if( $element_type == 'audio_file'){
+                                           $audio_file = $content;
+                                           $audio_text = $audio_text;
+                                           $audio_sentense = $audio_sentense;
+                                       }
+                                       if( $element_type == 'textfield_quiz'){
+                                           $correct_answer = $correct_answer;
+                                           $field_id = isset( $elementData->field_id )? $elementData->field_id : '';
+                                       }
+                                   }
+                               }
                             $word_data = array(
-                                'audio_text'       => $audio_text,
-                                'audio_sentense'   => $audio_sentense,
-                                'audio_defination' => $audio_defination,
-                                'audio_file'       => $audio_file,
-                                'field_id'         => $field_id,
-                            );
+                                   'audio_text' => $audio_text,
+                                   'audio_sentense' => $audio_sentense,
+                                   'audio_defination' => $audio_defination,
+                                   'audio_file' => $audio_file,
+                                   'field_id' => $field_id,
+                               );
 
-                            $total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
+                            $total_questions_count = is_array( json_decode($attemptLogObj->questions_list) )? json_decode($attemptLogObj->questions_list) : array();
                             $total_questions_count = count($total_questions_count);
-                            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $resultLogObj->quiz_result_type)->first();
-
-                            $results_questions_array[$newQuestionResult->id] = [
-                                'question'              => $questionObj,
-                                'prev_question'         => $prev_question,
-                                'next_question'         => $next_question,
-                                'quizAttempt'           => $attemptLogObj,
-                                'questionsData'         => rurera_encode($questionObj),
-                                'newQuestionResult'     => $newQuestionResult,
-                                'question_no'           => $question_no,
-                                'quizResultObj'         => $resultLogObj,
-                                'word_data'             => $word_data,
-                                'total_questions_count' => $total_questions_count,
-                                'field_id'              => $field_id,
-                                'correct_answer'        => $correct_answer,
-                                'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
-                            ];
-                        } else {
-                            $results_questions_array[$newQuestionResult->id] = [
+                            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $QuizzesResult->quiz_result_type)->first();
+                            $question_response_layout = view('web.default.panel.questions.spell_question_layout', [
                                 'question'          => $questionObj,
                                 'prev_question'     => $prev_question,
                                 'next_question'     => $next_question,
                                 'quizAttempt'       => $attemptLogObj,
-                                'questionsData'     => rurera_encode($questionObj),
+                                'questionsData'     => rurera_encode($question),
                                 'newQuestionResult' => $newQuestionResult,
                                 'question_no'       => $question_no,
-                                'quizResultObj'     => $resultLogObj
-                            ];
+                                'quizResultObj'     => $QuizzesResult,
+                                'word_data'         => $word_data,
+                                'total_questions_count'         => $total_questions_count,
+                                'field_id' => $field_id,
+                                'correct_answer'    => $correct_answer,
+                                'total_points'    => isset( $RewardAccountingObj->score)? $RewardAccountingObj->score : 0,
+                            ])->render();
+                        }else {
+                            $question_response_layout = view('web.default.panel.questions.question_layout', [
+                                'question'          => $questionObj,
+                                'prev_question'     => $prev_question,
+                                'next_question'     => $next_question,
+                                'quizAttempt'       => $attemptLogObj,
+                                'questionsData'     => rurera_encode($question),
+                                'newQuestionResult' => $newQuestionResult,
+                                'question_no'       => $question_no,
+                                'quizResultObj'     => $QuizzesResult
+                            ])->render();
                         }
-
-
+                        $questions_layout[$questionObj->id] = rurera_encode(stripslashes($question_response_layout));
                     }
                     $questions_counter++;
 
                 }
             }
-
-            if (!empty($results_questions_array)) {
-                $questions_list = array_keys($results_questions_array);
-                $resultLogObj->update([
-                    'questions_list' => json_encode($questions_list),
-                ]);
-                $attemptLogObj->update([
-                    'questions_list' => json_encode($questions_list),
-                ]);
-                foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
-
-                    $resultsQuestionsData['prev_question'] = 0;
-                    $resultsQuestionsData['next_question'] = 0;
-                    $currentIndex = array_search($resultQuestionID, $questions_list);
-
-
-                    if ($currentIndex !== false) {
-                        // Get the previous index
-                        $previousIndex = ($currentIndex > 0) ? $questions_list[$currentIndex - 1] : 0;
-                        // Get the next index
-                        $nextIndex = ($currentIndex < count($questions_list) - 1) ? $questions_list[$currentIndex + 1] : 0;
-                        $resultsQuestionsData['prev_question'] = $previousIndex;
-                        $resultsQuestionsData['next_question'] = $nextIndex;
-
-                    }
-
-                    $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
-                    $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
-                }
-            }
-
 
             $question = $questions_array;
 
@@ -635,7 +611,7 @@ class QuizController extends Controller
             $question = rurera_encode($question);
 
 
-            $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
+            $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
@@ -657,9 +633,9 @@ class QuizController extends Controller
                 'active_question_id'     => $active_question_id,
             ];
 
-            if ($resultLogObj->quiz_result_type == 'practice') {
+            if($QuizzesResult->quiz_result_type == 'practice'){
                 return view(getTemplate() . '.panel.quizzes.practice_start', $data);
-            } else {
+            }else {
                 return view(getTemplate() . '.panel.quizzes.start', $data);
             }
         }
@@ -689,20 +665,20 @@ class QuizController extends Controller
                     $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
 
-                if ($QuizzesResult->quiz_result_type == 'assignment') {
+                if( $QuizzesResult->quiz_result_type == 'assignment'){
                     $questionObj = AssignmentsQuestions::find($QuizzResultQuestionObj->question_id);
-                } else {
+                }else{
                     $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 }
 
                 $question_response_layout = '';
-                $question_response_layout = '<div class="question-result-layout question-status-' . $QuizzResultQuestionObj->status . '">';
-                if ($QuizzResultQuestionObj->status == 'correct') {
+                $question_response_layout = '<div class="question-result-layout question-status-'.$QuizzResultQuestionObj->status.'">';
+                if( $QuizzResultQuestionObj->status == 'correct') {
                     $question_response_layout .= '<div class="earn-coins-icon">
                         <img src="/assets/default/img/reward.png" alt="">
                     </div>';
                 }
-                if ($QuizzesResult->quiz_result_type != 'vocabulary') {
+                if( $QuizzesResult->quiz_result_type != 'vocabulary') {
 
                     $question_response_layout .= view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
@@ -717,7 +693,7 @@ class QuizController extends Controller
                         'disable_prev'      => 'true',
                         'disable_next'      => 'true',
                         'class'             => 'disable-div',
-                        'layout_type'       => 'results',
+                        'layout_type'             => 'results',
                     ])->render();
                 }
 
@@ -726,8 +702,8 @@ class QuizController extends Controller
 
                 $question_response_layout .= '</div>';
                 //$questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
-                $questions_layout[$QuizzResultQuestionObj->id] = $question_response_layout;
-                $questions_list[] = $QuizzResultQuestionObj->id;
+                $questions_layout[$QuizzResultQuestionObj->question_id] = $question_response_layout;
+                $questions_list[] = $QuizzResultQuestionObj->question_id;
                 $count++;
             }
         }

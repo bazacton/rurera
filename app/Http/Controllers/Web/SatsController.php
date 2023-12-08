@@ -223,7 +223,7 @@ class SatsController extends Controller
         $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
-        $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats');
+        $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'sats')->with('quizQuestionsList');
         $sats = $query->paginate(100);
 
         $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();

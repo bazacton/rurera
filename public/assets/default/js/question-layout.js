@@ -90,7 +90,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     $('.question-all-good').remove();
     $(this).closest('form').find('.editor-field').each(function () {
         $(this).removeClass('validate-error');
-        console.log('field goes hereer');
         var field_name = $(this).attr('name');
         var field_id = $(this).attr('id');
         var field_identifier = field_id;
@@ -160,7 +159,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         success: function (return_data) {
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
-            console.log(return_data.total_points);
 
 
             if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
@@ -168,6 +166,11 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
                 $(".question-area-block").attr('data-questions_layout', updated_questions_layout);
             }
+            if (rurera_is_field(return_data.next_question_id) && return_data.next_question_id != 0) {
+               var next_question_id = return_data.next_question_id;
+               console.log(next_question_id);
+                $('.next-btn').attr('data-question_id', next_question_id);
+           }
 
             if (rurera_is_field(return_data.total_points)) {
                 $(".lms-quiz-section").attr('data-total_points', return_data.total_points);
@@ -181,25 +184,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 thisObj.closest('.questions-data-block').find('.right-content').addClass('hide');
                 $(".quiz-complete").show(2000);
 
+
                 quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
-                //quiz_user_data = JSON.stringify(quiz_user_data);
-                jQuery.ajax({
-                    type: "POST",
-                    url: '/question_attempt/test_complete',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {"attempt_id": qattempt_id, "quiz_user_data": quiz_user_data},
-                    success: function (return_data) {
-                        console.log(return_data);
-                        $(".quiz-complete").css({display: "block"}).show(10).animate({opacity: 1});
-                        $(".quiz-complete").find(".question-layout").html(return_data);
-                        $(".quiz-complete").children().unbind('click');
-                    }
-                });
-
-
-
+                window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
 
 
 
@@ -255,9 +242,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         $(".question-area-block").html(question_response_layout);
                     }
                 } else {
-                    console.log('incorrect-data-herer');
                     //$(".question-layout-block").html(return_data.question_response_layout);
-                    console.log(quiz_type);
                     if (quiz_type == 'vocabulary') {
                         if (rurera_is_field(return_data.question_correct_answere)) {
                             if (return_data.question_correct_answere != '') {
@@ -722,7 +707,7 @@ function init_question_functions() {
         }
 
         var question_id = $(this).attr('data-question_id');
-        console.log(question_id);
+        var actual_question_id = $(this).attr('data-actual_question_id');
         var li_obj = $('.quiz-pagination ul li[data-question_id="' + question_id + '"]');
         if ($(this).hasClass('correct') || $(this).hasClass('incorrect')) {
             return;
@@ -746,6 +731,7 @@ function init_question_functions() {
 
 
         var question_layout = leform_decode64(questions_layout[question_id]);
+
         var question_layout = JSON.parse(question_layout);
 
 
@@ -756,7 +742,6 @@ function init_question_functions() {
             $(".spells-quiz-info .total-points span").html(total_points+' ');
         }
 
-        console.log('pagination-clicked2');
         $("p.given").html(chunkWords($("p.given").text()));
         $("span.given").draggable({
             helper: "clone",
@@ -787,7 +772,7 @@ function init_question_functions() {
         }
 
         //Temporary Commented
-        /*currentRequest = jQuery.ajax({
+        currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
             url: '/question_attempt/mark_as_active',
@@ -801,11 +786,11 @@ function init_question_functions() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {"question_id": question_id, "qattempt_id": qattempt_id},
+            data: {"question_id": question_id, "qattempt_id": qattempt_id, "actual_question_id": actual_question_id},
             success: function (return_data) {
                 console.log(return_data);
             }
-        });*/
+        });
 
     });
 

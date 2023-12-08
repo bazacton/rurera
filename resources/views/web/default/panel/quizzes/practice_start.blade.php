@@ -6,7 +6,6 @@ $rand_id = rand(99,9999);
 
 @endphp
 
-@push('styles_top')
 <style>
     .ui-state-highlight {
         margin: 0px 10px;
@@ -21,7 +20,6 @@ $rand_id = rand(99,9999);
     }
 
 </style>
-@endpush
 <div class="content-section">
 
     <section class="lms-quiz-section">
@@ -86,9 +84,63 @@ $rand_id = rand(99,9999);
                             <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
-                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
 
-                        </div>
+
+
+
+
+
+                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="topbar-right rurera-hide">
+                                                        <div class="quiz-pagination">
+                                                            <div class="swiper-container">
+                                                                <ul class="swiper-wrapper">
+                                                                    @if( !empty( $questions_list ) )
+                                                                    @php $question_count = 1; @endphp
+                                                                        @foreach( $questions_list as $question_id)
+                                                                        @php $is_flagged = false;
+                                                                        $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                                                        ($newQuizStart->flagged_questions) : array();
+                                                                        @endphp
+                                                                        @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                                                            $flagged_questions))
+                                                                            @php $is_flagged = true;
+                                                                            @endphp
+                                                                        @endif
+                                                                        @php $question_status_class = isset( $questions_status_array[$question_id]
+                                                                        )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                                                        <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                                                'has-flag' : ''}} {{$question_status_class}}"><a
+                                                                                    href="javascript:;">
+                                                                                {{$question_count}}</a></li>
+                                                                        @php $question_count++; @endphp
+                                                                        @endforeach
+                                                                    @endif
+                                                                </ul>
+                                                            </div>
+                                                            <div class="swiper-button-prev"></div>
+                                                            <div class="swiper-button-next"></div>
+                                                        </div>
+                                                        <div class="quiz-timer">
+                                                            <span class="timer-number">4<em>m</em></span> <span
+                                                                    class="timer-number">50<em>s</em></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </section>

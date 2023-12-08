@@ -247,8 +247,19 @@ class TimestablesAssignmentsController extends Controller
         $total_days = isset($dates_difference->days) ? $dates_difference->days : 0;
         $assignment_events_dates = array();
         switch ($recurring_type) {
-            case "Daily":
+            case "Once":
+            $total_days = 1;
+            if ($total_days > 0) {
+                $counter = 1;
+                $last_event_date = date('Y-m-d H:i:s', $assignment_start_date);
+                $assignment_events_dates[] = array(
+                    'start' => strtotime($last_event_date),
+                    'end'   => strtotime($last_event_date),
+                );
+            }
 
+            break;
+            case "Daily":
 
                 if ($total_days > 0) {
                     $counter = 1;
@@ -268,6 +279,7 @@ class TimestablesAssignmentsController extends Controller
                 }
 
                 break;
+
             case "Weekly":
                 break;
             case "Monthly":

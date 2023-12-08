@@ -24,11 +24,7 @@
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
 $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
-if( $quizResultObj->quiz_result_type == 'practice'){
-$total_questions = countSubItems(json_decode($quizAttempt->questions_list));
-}else{
-    $total_questions = count(json_decode($quizAttempt->questions_list));
-}
+$total_questions = count(json_decode($quizAttempt->questions_list));
 
 @endphp
 
@@ -118,7 +114,7 @@ $total_questions = countSubItems(json_decode($quizAttempt->questions_list));
                         @endif
                         @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
-                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}">
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}" data-actual_question_id="{{$next_question}}">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"

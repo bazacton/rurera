@@ -530,12 +530,12 @@ class TimestablesController extends Controller
                                 ' . dateTimeFormat($assignmentObj->conducted_results->created_at, 'd/m/Y') . ' <br/>
                                 <span class="time">' . dateTimeFormat($assignmentObj->conducted_results->created_at, 'h:s') . '</span>
                             </td>
-                            <td>' . $assignmentObj->conducted_results->quizz_result_questions->count() . '</td>
+                            <td>' . $assignmentObj->conducted_results->quizz_result_questions_list->count() . '</td>
                             <td>
                                 <span class="table-icon">
                                     <img src="/assets/default/svgs/coin-earn.svg" height="15" width="15" alt="#">
                                 </span>
-                                <span class="coin-nub">' . $assignmentObj->conducted_results->quizz_result_questions->where('status', 'correct')->sum('quiz_grade') . '</span>
+                                <span class="coin-nub">' . $assignmentObj->conducted_results->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade') . '</span>
                             </td>
                             <td>
                                 <a href="panel/results/' . $assignmentObj->conducted_results->id . '/timetables" class="play-btn">Results</a>

@@ -163,7 +163,7 @@
                                 <td>
                                     <img src="../assets/default/img/sats-list-img1.png" alt="">
                                     <h4><a href="/sats/{{$satObj->quiz_slug}}">{{$satObj->getTitleAttribute()}}</a>
-                                        <br> <span class="sub_label">54 Question(s)</span>
+                                        <br> <span class="sub_label">{{count($satObj->quizQuestionsList)}} Question(s)</span>
                                         {{ user_assign_topic_template($satObj->id, 'sats', $childs, $parent_assigned_list)}}
                                     </h4>
                                 </td>
