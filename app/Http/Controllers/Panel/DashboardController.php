@@ -67,16 +67,23 @@ class DashboardController extends Controller
             $data['monthlySalesCount'] = count($monthlySales) ? $monthlySales->sum('total_amount') : 0;
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
         } else {
-
             $assignmentsArray = UserAssignedTopics::where('assigned_to_id', $user->id)
-            ->where('status', 'active')
-            ->whereIn('topic_type', array('11plus', 'assessment','sats','practice'))
-            ->with([
-                'quizData',
-                'practiceData'
-            ])
-            ->get();
-
+                ->where('status', 'active')
+                ->where('start_at', '<=', time())
+                ->where('deadline_date', '>=', time())
+                ->whereIn('topic_type', array(
+                    '11plus',
+                    'assessment',
+                    'sats',
+                    'practice',
+                    'timestables'
+                ))
+                ->with([
+                    'quizData',
+                    'practiceData',
+                    'TimesTablesEventData'
+                ])
+                ->get();
 
 
             //pre($assignmentsArray);
@@ -130,7 +137,11 @@ class DashboardController extends Controller
                 ])
                 ->get();
 
-            $Sales = Sale::where('buyer_id', $user->id)->whereIn('type',array('subscribe', 'plan_expiry_update','plan_update'))->get();
+            $Sales = Sale::where('buyer_id', $user->id)->whereIn('type', array(
+                'subscribe',
+                'plan_expiry_update',
+                'plan_update'
+            ))->get();
 
 
             $ParentsOrders = ParentsOrders::where('user_id', $user->id)
@@ -157,7 +168,6 @@ class DashboardController extends Controller
             $data['frequency_discounts'] = $frequency_discounts;
 
 
-
             $subscribes = Subscribe::all();
             $data['subscribes'] = $subscribes ?? [];
 
@@ -166,6 +176,82 @@ class DashboardController extends Controller
         } else {
             return view(getTemplate() . '.panel.dashboard.index', $data);
         }
+    }
+
+    public function get_user_assignments(Request $request)
+    {
+        $user = auth()->user();
+        $fetch_type = $request->get('fetch_type');
+
+
+        $assignmentsQuery = UserAssignedTopics::where('assigned_to_id', $user->id);
+        $assignmentsQuery->where('status', 'active');
+        if ($fetch_type == 'upcoming') {
+            $assignmentsQuery->where('start_at', '>', strtotime(date('Y-m-d')));
+            $assignmentsQuery->where('deadline_date', '>', time());
+        }
+        if ($fetch_type == 'current') {
+            $assignmentsQuery->where('start_at', '<=', time());
+            $assignmentsQuery->where('deadline_date', '>=', time());
+        }
+        if ($fetch_type == 'previous') {
+            $assignmentsQuery->where('start_at', '<', strtotime(date('Y-m-d')));
+            $assignmentsQuery->where('deadline_date', '>=', time());
+        }
+
+        $assignmentsQuery->whereIn('topic_type', array(
+            '11plus',
+            'assessment',
+            'sats',
+            'practice',
+            'timestables'
+        ))
+            ->with([
+                'quizData',
+                'practiceData',
+                'TimesTablesEventData'
+            ]);
+        $assignmentsResults = $assignmentsQuery->get();
+
+        $response = '';
+        if (!empty($assignmentsResults)) {
+            foreach ($assignmentsResults as $assignmentObj) {
+                if( $assignmentObj->topic_type == 'practice'){
+                    $assignmentTitle = $assignmentObj->practiceData->sub_chapter_title;
+                    $assignmentLink = '';
+
+                }else{
+                    $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
+                    $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
+                    $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
+                }
+
+                if( $assignmentObj->topic_type == 'timestables'){
+                    $assignmentTitle = isset( $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title )? $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title : '';
+                    $assignmentLink = '/timestables/assignment/'.$assignmentObj->topic_id;
+
+                }
+                $assignmentTitle .= '<span>'.dateTimeFormat($assignmentObj->deadline_date, 'd F Y').'</span>';
+                $response .= '<li>
+                                <div class="checkbox-field">
+                                    <input type="checkbox" id="book">
+                                    <label for="book">
+                                        <a href="'.$assignmentLink.'">'.$assignmentTitle.'</a>
+                                        <span>'. $assignmentObj->topic_type .'</span>
+                                    </label>
+                                </div>
+                                <div class="assignment-controls">
+                                    <span class="status-label success">Pending</span>
+                                    <div class="controls-holder">
+                                        
+                                    </div>
+                                </div>
+                            </li>';
+            }
+        }
+
+        echo $response;
+        exit;
     }
 
     private function showGiftModal($user)

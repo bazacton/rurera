@@ -21,5 +21,10 @@ class TimestablesEvents extends Model
         'updated_at',
     ];
 
+    public function TimesTablesAssignmentData()
+    {
+        return $this->belongsTo('App\Models\TimestablesAssignments', 'parent_id', 'id');
+    }
+
 
 }

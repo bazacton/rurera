@@ -52,7 +52,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
 
                 <ul class="navbar-nav mr-auto d-flex align-items-center">
                     @if(!empty($authUser))
-                    <li class="nav-item "><a class="nav-link" href="/panel">Dashboard</a></li>
                     @endif
 
                     @if(!empty($navbarPages) and count($navbarPages))
@@ -217,9 +216,6 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                 @endif
                     </li>
                     @endforeach
-                    @endif
-                    @if(!empty($authUser))
-                        <li class="nav-item "><a class="nav-link" href="/panel/analytics">Analytics</a></li>
                     @endif
 
 

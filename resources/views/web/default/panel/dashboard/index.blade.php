@@ -117,15 +117,15 @@
             <div class="assignments-table">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="homeworks-tab" data-toggle="tab" href="#homeworks" role="tab"
+                        <a class="nav-link active user-assignments-tab" data-type="current" data-content_id="homeworks" id="homeworks-tab" data-toggle="tab" href="#homeworks" role="tab"
                            aria-controls="homeworks" aria-selected="true">Today Homeworks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
+                        <a class="nav-link user-assignments-tab" data-type="previous" data-content_id="recent" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
                            aria-controls="recent" aria-selected="false">Recent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="future-tab" data-toggle="tab" href="#future" role="tab"
+                        <a class="nav-link user-assignments-tab" data-type="upcoming" data-content_id="future" id="future-tab" data-toggle="tab" href="#future" role="tab"
                            aria-controls="future" aria-selected="false">Future</a>
                     </li>
                 </ul>
@@ -135,39 +135,42 @@
                         <div class="assignments-list">
                             <ul>
                                 @if( !empty( $assignmentsArray ) )
-                                    @foreach( $assignmentsArray as $assignmentObj)
-                                        @php
-                                            if( $assignmentObj->topic_type == 'practice'){
-                                                $assignmentTitle = $assignmentObj->practiceData->sub_chapter_title;
-                                                $assignmentLink = '';
+                                @foreach( $assignmentsArray as $assignmentObj)
+                                @php
+                                if( $assignmentObj->topic_type == 'practice'){
+                                $assignmentTitle = $assignmentObj->practiceData->sub_chapter_title;
+                                $assignmentLink = '';
 
-                                            }else{
-                                                $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
-                                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
-                                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
-                                            }
-                                        @endphp
-                                        <li>
-                                            <div class="checkbox-field">
-                                                <input type="checkbox" id="book">
-                                                <label for="book">
-                                                    <a href="{{$assignmentLink}}">{{$assignmentTitle}}</a>
-                                                    <span>{{$assignmentObj->topic_type}}</span>
-                                                </label>
-                                            </div>
-                                            <div class="assignment-controls">
-                                                <span class="status-label success">Done</span>
-                                                <div class="controls-holder">
-                                                    <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                                     alt=""></a>
-                                                    <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                                     alt=""></a>
-                                                    <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                                     alt=""></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endforeach
+                                }else{
+                                $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
+                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
+                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
+                                }
+
+                                if( $assignmentObj->topic_type == 'timestables'){
+                                $assignmentTitle = isset( $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title )?
+                                $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title : '';
+                                $assignmentLink = '/timestables/assignment/'.$assignmentObj->topic_id;
+
+                                }
+                                $assignmentTitle .= '<span>'.dateTimeFormat($assignmentObj->deadline_date, 'd F Y').'</span>';
+                                @endphp
+                                <li>
+                                    <div class="checkbox-field">
+                                        <input type="checkbox" id="book">
+                                        <label for="book">
+                                            <a href="{{$assignmentLink}}">{!! $assignmentTitle !!}</a>
+                                            <span>{{$assignmentObj->topic_type}}</span>
+                                        </label>
+                                    </div>
+                                    <div class="assignment-controls">
+                                        <span class="status-label success">Pending</span>
+                                        <div class="controls-holder">
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                                @endforeach
                                 @endif
                             </ul>
                         </div>
@@ -179,12 +182,12 @@
                                     <div class="checkbox-field">
                                         <input type="checkbox" id="book2">
                                         <label for="book2">
-                                            Book p. 77-85, read & complete tasks 1-6 on p. 85
-                                            <span>Physics</span>
+                                            xxxxxxxxxxxxxxxxxxxxxxxx
+                                            <span>xxxxxx</span>
                                         </label>
                                     </div>
                                     <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
+                                        <span class="status-label success">xxxxx</span>
                                         <div class="controls-holder">
                                             <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
                                                              alt=""></a>
@@ -197,82 +200,21 @@
                                 </li>
                                 <li>
                                     <div class="checkbox-field">
-                                        <input type="checkbox" id="workbook2">
-                                        <label for="workbook2">
-                                            Workbook p. 17, tasks 1-6
-                                            <span>Mathematics</span>
+                                        <input type="checkbox" id="book2">
+                                        <label for="book2">
+                                            xxxxxxxxxxxxxxxxxxxxxxxx
+                                            <span>xxxxxx</span>
                                         </label>
                                     </div>
                                     <div class="assignment-controls">
-                                        <span class="status-label in-process">In Process</span>
+                                        <span class="status-label success">xxxxx</span>
                                         <div class="controls-holder">
                                             <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
+                                                             alt=""></a>
                                             <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
+                                                             alt=""></a>
                                             <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="paragraph2">
-                                        <label for="paragraph2">
-                                            Learn Paragraph p. 99, Exercise 1,2,3scoping & Estimations
-                                            <span>Chemistty</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="essay2">
-                                        <label for="essay2">
-                                            Write Essay 1000 words "WW2 results"
-                                            <span>History</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="poems2">
-                                        <label for="poems2">
-                                            Internal conflict in philip Larkin poems, read p 380-515
-                                            <span>English Language</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
+                                                             alt=""></a>
                                         </div>
                                     </div>
                                 </li>
@@ -284,14 +226,14 @@
                             <ul>
                                 <li>
                                     <div class="checkbox-field">
-                                        <input type="checkbox" id="book3">
-                                        <label for="book3">
-                                            Book p. 77-85, read & complete tasks 1-6 on p. 85
-                                            <span>Physics</span>
+                                        <input type="checkbox" id="book2">
+                                        <label for="book2">
+                                            xxxxxxxxxxxxxxxxxxxxxxxx
+                                            <span>xxxxxx</span>
                                         </label>
                                     </div>
                                     <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
+                                        <span class="status-label success">xxxxx</span>
                                         <div class="controls-holder">
                                             <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
                                                              alt=""></a>
@@ -304,82 +246,21 @@
                                 </li>
                                 <li>
                                     <div class="checkbox-field">
-                                        <input type="checkbox" id="workbook3">
-                                        <label for="workbook3">
-                                            Workbook p. 17, tasks 1-6
-                                            <span>Mathematics</span>
+                                        <input type="checkbox" id="book2">
+                                        <label for="book2">
+                                            xxxxxxxxxxxxxxxxxxxxxxxx
+                                            <span>xxxxxx</span>
                                         </label>
                                     </div>
                                     <div class="assignment-controls">
-                                        <span class="status-label in-process">In Process</span>
+                                        <span class="status-label success">xxxxx</span>
                                         <div class="controls-holder">
                                             <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
+                                                             alt=""></a>
                                             <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
+                                                             alt=""></a>
                                             <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="paragraph3">
-                                        <label for="paragraph3">
-                                            Learn Paragraph p. 99, Exercise 1,2,3scoping & Estimations
-                                            <span>Chemistty</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="essay3">
-                                        <label for="essay3">
-                                            Write Essay 1000 words "WW2 results"
-                                            <span>History</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="poems3">
-                                        <label for="poems3">
-                                            Internal conflict in philip Larkin poems, read p 380-515
-                                            <span>English Language</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">Done</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt="printer"></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt="mail"></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt="link"></a>
+                                                             alt=""></a>
                                         </div>
                                     </div>
                                 </li>
@@ -432,11 +313,12 @@
                         <div>
                             <button type="button" data-id="10" class="js-noticeboard-info btn btn-sm btn-border-white">More info
                             </button>
-                            <input type="hidden" class="js-noticeboard-message" value="<p>You can find top summer courses on the platform homepage and get all of them with 50% discount by using &quot;mysummer&quot; discount coupon.</p>">
+                            <input type="hidden" class="js-noticeboard-message"
+                                   value="<p>You can find top summer courses on the platform homepage and get all of them with 50% discount by using &quot;mysummer&quot; discount coupon.</p>">
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -980,8 +862,11 @@
                                      aria-orientation="vertical">
                                     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                                       <div class="count-number-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2" style="color:#8cc811"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                        <div class="count-number-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                 stroke-linejoin="round" class="feather feather-edit-2" style="color:#8cc811">
+                                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                            </svg>
                                         </div>
                                         <div class="count-number-body">
                                             <span>Assessments</span>
@@ -991,8 +876,12 @@
                                     </a>
                                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                                       <div class="count-number-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock" style="color:#00aeef"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <div class="count-number-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                 stroke-linejoin="round" class="feather feather-clock" style="color:#00aeef">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg>
                                         </div>
                                         <div class="count-number-body">
                                             <span>Q. Attempt</span>
@@ -1002,8 +891,13 @@
                                     </a>
                                     <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
                                        href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                                       <div class="count-number-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart" style="color:#e67035"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                                        <div class="count-number-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                 stroke-linejoin="round" class="feather feather-bar-chart" style="color:#e67035">
+                                                <line x1="12" y1="20" x2="12" y2="10"></line>
+                                                <line x1="18" y1="20" x2="18" y2="4"></line>
+                                                <line x1="6" y1="20" x2="6" y2="16"></line>
+                                            </svg>
                                         </div>
                                         <div class="count-number-body">
                                             <span>Coins</span>
@@ -1013,8 +907,13 @@
                                     </a>
                                     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
                                        href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                                       <div class="count-number-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart" style="color:#e67035"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                                        <div class="count-number-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                 stroke-linejoin="round" class="feather feather-bar-chart" style="color:#e67035">
+                                                <line x1="12" y1="20" x2="12" y2="10"></line>
+                                                <line x1="18" y1="20" x2="18" y2="4"></line>
+                                                <line x1="6" y1="20" x2="6" y2="16"></line>
+                                            </svg>
                                         </div>
                                         <div class="count-number-body">
                                             <span>Assessments</span>

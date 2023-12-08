@@ -18,6 +18,7 @@ class UserAssignedTopics extends Model
         'topic_type',
         'status',
         'created_at',
+        'start_at',
         'deadline_date'
     ];
 
@@ -37,6 +38,11 @@ class UserAssignedTopics extends Model
     public function practiceData()
     {
         return $this->belongsTo('App\Models\SubChapters', 'topic_id', 'id');
+    }
+
+    public function TimesTablesEventData()
+    {
+        return $this->belongsTo('App\Models\TimestablesEvents', 'topic_id', 'id');
     }
 
 }

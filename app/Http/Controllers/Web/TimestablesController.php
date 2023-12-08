@@ -454,7 +454,7 @@ class TimestablesController extends Controller
         $TimestablesAssignment = TimestablesAssignments::create([
             'tables_no'       => json_encode($question_tables),
             'no_of_questions' => $no_of_questions,
-            'time_interval'   => ($time_interval * 60),
+            'time_interval'   => $time_interval,
             'assignment_date' => time(),
             'status'          => 'active',
             'created_by'      => $user->id,

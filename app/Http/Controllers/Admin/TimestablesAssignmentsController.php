@@ -17,6 +17,7 @@ use App\Models\TimestablesAssignments;
 use App\Models\Translation\QuizTranslation;
 use App\Models\UserAssignedTimestables;
 use App\Models\TimestablesEvents;
+use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
 use App\Models\WebinarChapter;
 use App\Models\SubChapters;
@@ -245,16 +246,22 @@ class TimestablesAssignmentsController extends Controller
 
         $dates_difference = dates_difference($assignment_end_date, $assignment_start_date);
         $total_days = isset($dates_difference->days) ? $dates_difference->days : 0;
+        $total_days += 1;
         $assignment_events_dates = array();
         switch ($recurring_type) {
             case "Once":
             $total_days = 1;
             if ($total_days > 0) {
                 $counter = 1;
-                $last_event_date = date('Y-m-d H:i:s', $assignment_start_date);
+                $last_event_date = date('Y-m-d', $assignment_start_date);
+                $last_event_date = $last_event_date.' 00:00:00';
+
+                $last_event_date_end = date('Y-m-d', $assignment_start_date);
+                $last_event_date_end = $last_event_date_end.' 23:59:59';
+
                 $assignment_events_dates[] = array(
                     'start' => strtotime($last_event_date),
-                    'end'   => strtotime($last_event_date),
+                    'end'   => strtotime($last_event_date_end),
                 );
             }
 
@@ -263,16 +270,23 @@ class TimestablesAssignmentsController extends Controller
 
                 if ($total_days > 0) {
                     $counter = 1;
-                    $last_event_date = date('Y-m-d H:i:s', $assignment_start_date);
+                    $last_event_date = date('Y-m-d', $assignment_start_date);
+                    $last_event_date = $last_event_date.' 00:00:00';
+
+                    $last_event_date_end = date('Y-m-d', $assignment_start_date);
+                    $last_event_date_end = $last_event_date_end.' 23:59:59';
                     $assignment_events_dates[] = array(
                         'start' => strtotime($last_event_date),
-                        'end'   => strtotime($last_event_date),
+                        'end'   => strtotime($last_event_date_end),
                     );
                     while ($counter < $total_days) {
-                        $current_date = date('Y-m-d H:i:s', strtotime($last_event_date . ' + 1 day'));
+                        $current_date = date('Y-m-d', strtotime($last_event_date . ' + 1 day'));
+                        $current_date = $current_date.' 00:00:00';
+                        $end_date = date('Y-m-d', strtotime($last_event_date . ' + 1 day'));
+                        $end_date = $end_date.' 23:59:59';
                         $assignment_events_dates[] = array(
                             'start' => strtotime($current_date),
-                            'end'   => strtotime($current_date),
+                            'end'   => strtotime($end_date),
                         );
                         $counter++;
                     }
@@ -327,6 +341,17 @@ class TimestablesAssignmentsController extends Controller
                             'created_at'          => time(),
                             'updated_at'          => time(),
                         ]);
+
+                        $UserAssignedTimestables = UserAssignedTopics::create([
+                           'assigned_to_id' => $user_id,
+                           'parent_id'      => $user->id,
+                           'topic_id'       => $UserAssignedTimestables->id,
+                           'topic_type'     => 'timestables',
+                           'status'         => 'active',
+                           'created_at'     => time(),
+                           'start_at'     => $eventDate['start'],
+                           'deadline_date'     => $eventDate['end'],
+                       ]);
                     }
                 }
 

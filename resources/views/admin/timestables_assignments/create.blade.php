@@ -225,7 +225,7 @@
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="input-label">Time Interval (Minutes)</label>
+                                                <label class="input-label">Questions Time Interval (Seconds)</label>
                                                 <input type="number"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][time_interval]"
                                                        value="{{ !empty($assignment) ? ($assignment->time_interval / 60) : old('time_interval') }}"
@@ -281,8 +281,8 @@
                                                 <div class="input-group">
                                                     <input type="text"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
-                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d H:i', false) : old('assignment_start_date') }}"
-                                                           class="form-control datetimepicker"
+                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
+                                                           class="form-control datepicker"
                                                            placeholder=""/>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -292,8 +292,8 @@
                                                 <div class="input-group">
                                                     <input type="text"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
-                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d H:i', false) : old('assignment_end_date') }}"
-                                                           class="form-control datetimepicker"
+                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
+                                                           class="form-control datepicker"
                                                            placeholder=""/>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -304,7 +304,7 @@
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]" class="form-control select2">
                                                         <option value="">Select</option>
-                                                        <option value="Once" @if(!empty($assignment) && $assignment->recurring_type == 'Once') selected @endif>
+                                                        <option value="Once" @if(empty($assignment)) selected @endif @if(!empty($assignment) && $assignment->recurring_type == 'Once') selected @endif>
                                                             Once
                                                         </option>
                                                         <option value="Daily" @if(!empty($assignment) && $assignment->recurring_type == 'Daily') selected @endif>
@@ -329,7 +329,7 @@
                                                         <option value="Individual" @if(!empty($assignment) && $assignment->assignment_type == 'Individual') selected @endif>
                                                             Individual
                                                         </option>
-                                                        <option value="Class" @if(!empty($assignment) && $assignment->assignment_type == 'Class') selected @endif>
+                                                        <option value="Class" @if(empty($assignment)) selected @endif @if(!empty($assignment) && $assignment->assignment_type == 'Class') selected @endif>
                                                             Class
                                                         </option>
                                                     </select>

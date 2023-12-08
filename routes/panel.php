@@ -363,6 +363,7 @@ Route::group([
 
     Route::get('/switch_user/{id}', 'ParentController@switchUser');
     Route::post('/cancel_subscription', 'ParentController@CancelSubscription');
+    Route::get('/get_user_assignments', 'DashboardController@get_user_assignments');
 
     Route::group(['prefix' => 'notifications'], function () {
         Route::get('/', 'NotificationsController@index');

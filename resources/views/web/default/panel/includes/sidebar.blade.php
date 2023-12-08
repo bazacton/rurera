@@ -62,6 +62,16 @@
             </a>
         </li>
 
+        <li class="sidenav-item {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'sidenav-item-active' : '' }}">
+            <a class="d-flex align-items-center">
+                <span class="sidenav-item-icon mr-10">
+                    @include('web.default.panel.includes.sidebar_icons.dashboard')
+                </span>
+                <span class="font-14 text-dark-blue font-weight-500"><a href="/panel/analytics">Analytics</a></span>
+            </a>
+
+        </li>
+
 
         <li class="sidenav-item {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'sidenav-item-active' : '' }}">
             <a class="d-flex align-items-center">
