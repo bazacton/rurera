@@ -2,6 +2,10 @@
     <h2 class="section-title after-line">{{ trans('financial.account') }}</h2>
 
     <div class="row mt-20">
+        <div class="col-12 col-lg-12">
+            <div id="svgAvatars"></div>
+        </div>
+
         <div class="col-12 col-lg-4">
 
            <div class="form-group">

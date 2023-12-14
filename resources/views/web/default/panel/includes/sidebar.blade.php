@@ -62,7 +62,7 @@
             </a>
         </li>
 
-        <li class="sidenav-item {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'sidenav-item-active' : '' }}">
+        <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
             <a class="d-flex align-items-center">
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.dashboard')
@@ -73,7 +73,7 @@
         </li>
 
 
-        <li class="sidenav-item {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'sidenav-item-active' : '' }}">
+        <!--<li class=" sidenav-item {{ (request()->is('panel/certificates') or request()->is('panel/certificates/*')) ? 'sidenav-item-active' : '' }}">
             <a class="d-flex align-items-center">
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.certificate')
@@ -81,7 +81,7 @@
                 <span class="font-14 text-dark-blue font-weight-500"><a href="/panel/certificates/achievements">{{ trans('panel.certificates') }}</a></span>
             </a>
 
-        </li>
+        </li>-->
 
             <li class="sidenav-item {{ (request()->is('panel/store') or request()->is('panel/store/*')) ? 'sidenav-item-active' : '' }}">
                 <a class="d-flex align-items-center">
@@ -92,7 +92,7 @@
                 </a>
             </li>
 
-        <li class="sidenav-item {{ (request()->is('panel/support') or request()->is('panel/support/*')) ? 'sidenav-item-active' : '' }}">
+       <li class="rurera-hide sidenav-item {{ (request()->is('panel/support') or request()->is('panel/support/*')) ? 'sidenav-item-active' : '' }}">
             <a class="d-flex align-items-center">
                 <span class="sidenav-item-icon assign-fill mr-10">
                     @include('web.default.panel.includes.sidebar_icons.support')
@@ -250,14 +250,14 @@
             </li>
         @endif
 
-        <li class="sidenav-item {{ (request()->is('panel/notifications')) ? 'sidenav-item-active' : '' }}">
+        <!--<li class="rurera-hide sidenav-item {{ (request()->is('panel/notifications')) ? 'sidenav-item-active' : '' }}">
             <a href="/panel/notifications" class="d-flex align-items-center">
             <span class="sidenav-notification-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.notifications')
                 </span>
                 <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.notifications') }}</span>
             </a>
-        </li>
+        </li>-->
 
         <li class="sidenav-item {{ (request()->is('panel/setting')) ? 'sidenav-item-active' : '' }}">
             <a href="/panel/setting" class="d-flex align-items-center">
@@ -279,14 +279,14 @@
             </li>
         @endif
 
-        <li class="sidenav-item">
+        <!--<li class="sidenav-item rurera-hide">
             <a href="/logout" class="d-flex align-items-center">
                 <span class="sidenav-logout-icon sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.logout')
                 </span>
                 <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.log_out') }}</span>
             </a>
-        </li>
+        </li>-->
     </ul>
 </div>
 </div>

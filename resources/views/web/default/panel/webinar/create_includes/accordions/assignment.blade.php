@@ -23,7 +23,7 @@
             <i data-feather="move" class="move-icon mr-10 cursor-pointer" height="20"></i>
 
             @if(!empty($assignment))
-                <a href="/panel/assignments/{{ $assignment->id }}/delete" class="delete-action btn btn-sm btn-transparent text-gray">
+                <a href="/panel/custom_quiz/{{ $assignment->id }}/delete" class="delete-action btn btn-sm btn-transparent text-gray">
                     <i data-feather="trash-2" class="mr-10 cursor-pointer" height="20"></i>
                 </a>
             @endif
@@ -34,7 +34,7 @@
 
     <div id="collapseFile{{ !empty($assignment) ? $assignment->id :'record' }}" aria-labelledby="file_{{ !empty($assignment) ? $assignment->id :'record' }}" class=" collapse @if(empty($assignment)) show @endif" role="tabpanel">
         <div class="panel-collapse text-gray">
-            <div class="js-content-form assignment-form" data-action="/panel/assignments/{{ !empty($assignment) ? $assignment->id . '/update' : 'store' }}">
+            <div class="js-content-form assignment-form" data-action="/panel/custom_quiz/{{ !empty($assignment) ? $assignment->id . '/update' : 'store' }}">
                 <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][webinar_id]" value="{{ !empty($webinar) ? $webinar->id :'' }}">
                 <input type="hidden" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][chapter_id]" value="{{ !empty($chapter) ? $chapter->id :'' }}" class="chapter-input">
 

@@ -24,6 +24,14 @@ $rand_id = rand(99,9999);
 </style>
 @endpush
 @section('content')
+@php $timer_counter = 0;
+if( $duration_type == 'per_question'){
+    $timer_counter = $time_interval;
+}
+if( $duration_type == 'total_practice'){
+    $timer_counter = $practice_time;
+}
+@endphp
 <div class="content-section">
 
     <section class="lms-quiz-section">
@@ -51,7 +59,30 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
+                    <div class="learning-content start-btn-container" id="learningPageContent">
+                        <div class="learning-title">
+                            <h3 class="mb-5"></h3>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center w-100">
+
+
+                            <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                                <div class="learning-content-box-icon">
+                                    <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
+                                </div>
+
+                                <p>Press Start button when you are ready!</p>
+
+                                <a href="javascript:;" class="btn btn-primary btn-sm mt-15 start-timestables-quiz">Start</a>
+                                <div class="learning-content-quiz"></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
+                        <div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
                         <div class="col-12 col-lg-8 mx-auto">
 
                             @if( is_array( $questions_list ))
@@ -73,8 +104,9 @@ $rand_id = rand(99,9999);
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}">
                                    <div class="questions-controls">
+                                       <span class="time-count-seconds">0</span>
                                        <a href="#">
-                                        <img src="../assets/default/svgs/vol-mute.svg" alt="mute svg">
+                                        <img src="/assets/default/svgs/vol-mute.svg" alt="mute svg">
                                        </a>
                                    </div>
                                 </div>
@@ -124,17 +156,66 @@ $rand_id = rand(99,9999);
     //init_question_functions();
 
     var user_data = [];
+    var Quizintervals = null;
 
-    var Questionintervals = setInterval(function () {
-        if ($('.questions-block[data-id="0"]').hasClass('active')) {
-            var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
-            seconds_count = parseInt(seconds_count) + parseInt(1);
-            $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
-            //$('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
-        } else {
-            clearInterval(Questionintervals);
+    var duration_type = $(".question-area-block").attr('data-duration_type');
+    var time_interval = $(".question-area-block").attr('data-time_interval');
+    var practice_time = $(".question-area-block").attr('data-practice_time');
+
+    $(document).on('click', '.start-timestables-quiz', function (e) {
+        $(".quiz-first-question").show();
+        $(".start-btn-container").hide();
+        $(".editor-fields").focus();
+        var Questionintervals = setInterval(function () {
+            if ($('.questions-block[data-id="0"]').hasClass('active')) {
+                var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
+                seconds_count = parseInt(seconds_count) + parseInt(1);
+                $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
+                $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+            } else {
+                clearInterval(Questionintervals);
+            }
+        }, 100);
+
+        Quizintervals = setInterval(function () {
+            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+            quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+            if( duration_type == 'per_question'){
+                if( parseInt(quiz_timer_counter) == 0){
+                    clearInterval(Quizintervals);
+                    $(".questions-block.active .question-form").submit();
+                }
+            }
+            if( duration_type == 'total_practice'){
+                if( parseInt(quiz_timer_counter) == 0){
+                    clearInterval(Quizintervals);
+                    $(".question-form").submit();
+                }
+            }
+
+        }, 1000);
+
+    });
+
+    function getTime(secondsString) {
+        var h = Math.floor(secondsString / 3600); //Get whole hours
+        secondsString -= h * 3600;
+        var m = Math.floor(secondsString / 60); //Get remaining minutes
+        secondsString -= m * 60;
+
+        var return_string = '';
+        if( h > 0) {
+            var return_string = return_string + h + ":";
         }
-    }, 100);
+        if( m > 0) {
+            var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
+        }
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+
+        return return_string;
+    }
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
         var current_value = $(this).attr('data-value');
@@ -197,8 +278,31 @@ $rand_id = rand(99,9999);
                 var seconds_count = $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed');
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed', seconds_count);
-                //$('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+                $('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             }, 100);
+
+            if( duration_type == 'per_question') {
+                console.log('clear interval');
+                clearInterval(Quizintervals);
+                $('.quiz-timer-counter').html(time_interval);
+                $('.quiz-timer-counter').attr('data-time_counter', time_interval);
+                Quizintervals = setInterval(function () {
+                    var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                    $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+
+                    if (duration_type == 'per_question') {
+                        if (parseInt(quiz_timer_counter) == 0) {
+                            clearInterval(Quizintervals);
+                            $(".questions-block.active .question-form").submit();
+                        }
+                    }
+
+                }, 1000);
+            }
+
+
         } else {
             var response_layout = '';
 
@@ -267,7 +371,7 @@ $rand_id = rand(99,9999);
         $(".prevm").removeClass('active');
         $(".nextm").addClass('active');
     });
-    $(".editor-fields").focus();
+
 
 
     $('body').addClass('quiz-show');

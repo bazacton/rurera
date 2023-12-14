@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TimestablesAssignments extends Model
 {
 
-    protected $table = 'timestables_assignments';
+    protected $table = 'assignments';
     public $timestamps = false;
 
     protected $fillable = [
@@ -15,6 +15,8 @@ class TimestablesAssignments extends Model
         'assignment_type',
         'tables_no',
         'no_of_questions',
+        'duration_type',
+        'practice_time',
         'time_interval',
         'assignment_start_date',
         'assignment_end_date',

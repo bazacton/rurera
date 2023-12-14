@@ -178,6 +178,31 @@ class UserController extends Controller
         abort(404);
     }
 
+    public function update_avatar(Request $request)
+    {
+        $user = auth()->user();
+
+        $file = svgAvatars_validate_filename( $_POST['filename'] );
+        $data =  svgAvatars_validate_imagedata( $_POST['imgdata'], $file['type'] );
+
+        if ( $file['type'] === 'png' ) {
+            $data = base64_decode( $data );
+            $file_name = $file['name'] . '.png';
+        } elseif ( $file['type'] === 'svg' ) {
+            $data = stripcslashes( $data );
+            $file_name = $file['name'] . '.svg';
+        }
+
+        pre($user);
+
+        //file_put_contents( $uploads_dir . $file_name, $data );
+
+        pre($file);
+        pre('test1');
+
+    }
+
+
     private function handleNewsletter($email, $user_id, $joinNewsletter)
     {
         $check = Newsletter::where('email', $email)->first();

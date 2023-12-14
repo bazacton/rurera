@@ -37,13 +37,13 @@
                                             @foreach( $user_active_assignments as $assignmentObj)
                                                 <tr>
                                                     <td>
-                                                        <strong>{{$assignmentObj->timestables_assignments->title}}</strong>
+                                                        <strong>{{$assignmentObj->assignments->title}}</strong>
                                                     </td>
                                                     <td>
                                                         {{ dateTimeFormat($assignmentObj->timestables_events->expired_at, 'd/m/Y') }} <br/>
                                                         <span class="time">{{ dateTimeFormat($assignmentObj->timestables_events->expired_at, 'h:s') }}</span>
                                                     </td>
-                                                    <td>{{$assignmentObj->timestables_assignments->no_of_questions}}</td>
+                                                    <td>{{$assignmentObj->assignments->no_of_questions}}</td>
                                                     <td>
                                                         <span class="icon-img">
                                                             <span class="img-box">

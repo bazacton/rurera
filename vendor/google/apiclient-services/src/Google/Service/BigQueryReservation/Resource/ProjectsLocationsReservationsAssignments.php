@@ -71,7 +71,7 @@ class Google_Service_BigQueryReservation_Resource_ProjectsLocationsReservationsA
    * demand mode. (assignments.delete)
    *
    * @param string $name Required. Name of the resource, e.g.
-   * `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+   * `projects/myproject/locations/US/reservations/team1-prod/custom_quiz/123`
    * @param array $optParams Optional parameters.
    * @return Google_Service_BigQueryReservation_BigqueryreservationEmpty
    */
@@ -116,7 +116,7 @@ class Google_Service_BigQueryReservation_Resource_ProjectsLocationsReservationsA
    * (assignments.move)
    *
    * @param string $name Required. The resource name of the assignment, e.g.
-   * `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+   * `projects/myproject/locations/US/reservations/team1-prod/custom_quiz/123`
    * @param Google_Service_BigQueryReservation_MoveAssignmentRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_BigQueryReservation_Assignment

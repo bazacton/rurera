@@ -59,7 +59,7 @@ class ZipStream
 {
     /**
      * This number corresponds to the ZIP version/OS used (2 bytes)
-     * From: https://www.iana.org/assignments/media-types/application/zip
+     * From: https://www.iana.org/custom_quiz/media-types/application/zip
      * The upper byte (leftmost one) indicates the host system (OS) for the
      * file.  Software can use this information to determine
      * the line record format for text files etc.  The current

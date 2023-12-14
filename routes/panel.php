@@ -27,6 +27,7 @@ Route::group([
         Route::post('/contact-info', 'UserController@contactInfo');
         Route::post('/offlineToggle', 'UserController@offlineToggle');
         Route::get('/{id}/getInfo', 'UserController@getUserInfo');
+        Route::post('/update_avatar', 'UserController@update_avatar');
     });
 
     Route::group(['prefix' => 'webinars'], function () {
@@ -379,6 +380,8 @@ Route::group([
         Route::get('/{user_type}/{user_id}/edit', 'UserController@editUser');
         Route::get('/{user_type}/{user_id}/edit/step/{step?}', 'UserController@editUser');
         Route::get('/{user_type}/{user_id}/delete', 'UserController@deleteUser');
+
+
     });
 
     Route::group(['prefix' => 'rewards'], function () {

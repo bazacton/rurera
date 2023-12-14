@@ -13,11 +13,17 @@
                 <div class="d-md-none border-bottom mb-20 pb-10 text-right">
                     <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
                 </div>
-
+                <div class="notifications-top">
+                    <span class="ntn-label">Notifications</span>
+                    <a href="#">View All Notifications</a>
+                </div>
                 @if(!empty($unReadNotifications) and count($unReadNotifications))
 
                     @foreach($unReadNotifications as $unReadNotification)
                         <a href="/panel/notifications?notification={{ $unReadNotification->id }}">
+                            <span class="icon-box">
+                                <img src="../assets/default/svgs/user-alt-2-svgrepo-com.svg" alt="">
+                            </span>
                             <div class="navbar-notification-item border-bottom">
                                 <h4 class="font-14 font-weight-bold text-secondary">{{ $unReadNotification->title }}</h4>
                                 <span class="notify-at d-block mt-5">{{ dateTimeFormat($unReadNotification->created_at,'j M Y | H:i') }}</span>

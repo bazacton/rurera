@@ -42,7 +42,7 @@
 
 
 @section('content')
-<form action="/admin/assignments/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
+<form action="/admin/custom_quiz/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}"
       method="Post">
     {{ csrf_field() }}
     <section class="section">
@@ -189,7 +189,7 @@
             rurera_loader(thisObj, 'div');
             jQuery.ajax({
                 type: "GET",
-                url: '/admin/assignments/subjects_by_year',
+                url: '/admin/custom_quiz/subjects_by_year',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -216,7 +216,7 @@
                 rurera_loader(thisObj, 'div');
                 jQuery.ajax({
                     type: "GET",
-                    url: '/admin/assignments/questions_by_subchapter',
+                    url: '/admin/custom_quiz/questions_by_subchapter',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -249,7 +249,7 @@
            });
             currentRequest5 = jQuery.ajax({
                 type: "POST",
-                url: '/admin/assignments/update_question',
+                url: '/admin/custom_quiz/update_question',
                 beforeSend: function () {
                     if (currentRequest5 != null) {
                         currentRequest5.abort();
@@ -295,7 +295,7 @@
                     rurera_loader(thisObj, 'div');
                     currentRequest3 = jQuery.ajax({
                         type: "GET",
-                        url: '/admin/assignments/single_question_preview',
+                        url: '/admin/custom_quiz/single_question_preview',
                         beforeSend: function () {
                             if (currentRequest3 != null) {
                                 currentRequest3.abort();
@@ -345,7 +345,7 @@
 
                     currentRequest = jQuery.ajax({
                         type: "GET",
-                        url: '/admin/assignments/questions_by_keyword',
+                        url: '/admin/custom_quiz/questions_by_keyword',
                         beforeSend: function () {
                             if (currentRequest != null) {
                                 currentRequest.abort();
@@ -395,7 +395,7 @@
                 rurera_loader(thisObj, 'div');
                 currentRequest2 = jQuery.ajax({
                     type: "GET",
-                    url: '/admin/assignments/assignment_preview',
+                    url: '/admin/custom_quiz/assignment_preview',
                     beforeSend: function () {
                         if (currentRequest2 != null) {
                             currentRequest2.abort();
@@ -471,7 +471,7 @@
         rurera_loader($(".main-content"), 'div');
         jQuery.ajax({
             type: "POST",
-            url: '/admin/assignments/publish_assignment',
+            url: '/admin/custom_quiz/publish_assignment',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

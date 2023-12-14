@@ -71,20 +71,10 @@ class DashboardController extends Controller
                 ->where('status', 'active')
                 ->where('start_at', '<=', time())
                 ->where('deadline_date', '>=', time())
-                ->whereIn('topic_type', array(
-                    '11plus',
-                    'assessment',
-                    'sats',
-                    'practice',
-                    'timestables'
-                ))
                 ->with([
-                    'quizData',
-                    'practiceData',
-                    'TimesTablesEventData'
+                    'StudentAssignmentData',
                 ])
                 ->get();
-
 
             //pre($assignmentsArray);
 
@@ -183,7 +173,6 @@ class DashboardController extends Controller
         $user = auth()->user();
         $fetch_type = $request->get('fetch_type');
 
-
         $assignmentsQuery = UserAssignedTopics::where('assigned_to_id', $user->id);
         $assignmentsQuery->where('status', 'active');
         if ($fetch_type == 'upcoming') {
@@ -196,41 +185,19 @@ class DashboardController extends Controller
         }
         if ($fetch_type == 'previous') {
             $assignmentsQuery->where('start_at', '<', strtotime(date('Y-m-d')));
-            $assignmentsQuery->where('deadline_date', '>=', time());
+            //$assignmentsQuery->where('deadline_date', '>=', time());
         }
 
-        $assignmentsQuery->whereIn('topic_type', array(
-            '11plus',
-            'assessment',
-            'sats',
-            'practice',
-            'timestables'
-        ))
-            ->with([
-                'quizData',
-                'practiceData',
-                'TimesTablesEventData'
+        $assignmentsQuery->with([
+                'StudentAssignmentData',
             ]);
         $assignmentsResults = $assignmentsQuery->get();
 
         $response = '';
         if (!empty($assignmentsResults)) {
             foreach ($assignmentsResults as $assignmentObj) {
-                if( $assignmentObj->topic_type == 'practice'){
-                    $assignmentTitle = $assignmentObj->practiceData->sub_chapter_title;
-                    $assignmentLink = '';
-
-                }else{
-                    $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
-                    $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
-                    $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
-                }
-
-                if( $assignmentObj->topic_type == 'timestables'){
-                    $assignmentTitle = isset( $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title )? $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title : '';
-                    $assignmentLink = '/timestables/assignment/'.$assignmentObj->topic_id;
-
-                }
+                $assignmentTitle = $assignmentObj->StudentAssignmentData->title;
+                $assignmentLink = '/assignment/'.$assignmentObj->id;
                 $assignmentTitle .= '<span>'.dateTimeFormat($assignmentObj->deadline_date, 'd F Y').'</span>';
                 $response .= '<li>
                                 <div class="checkbox-field">
@@ -241,7 +208,7 @@ class DashboardController extends Controller
                                     </label>
                                 </div>
                                 <div class="assignment-controls">
-                                    <span class="status-label success">Pending</span>
+                                    <span class="status-label success">'. $assignmentObj->status .'</span>
                                     <div class="controls-holder">
                                         
                                     </div>

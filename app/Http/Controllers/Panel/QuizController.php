@@ -689,12 +689,7 @@ class QuizController extends Controller
                     $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
 
-                if ($QuizzesResult->quiz_result_type == 'assignment') {
-                    $questionObj = AssignmentsQuestions::find($QuizzResultQuestionObj->question_id);
-                } else {
-                    $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
-                }
-
+                $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 $question_response_layout = '';
                 $question_response_layout = '<div class="question-result-layout question-status-' . $QuizzResultQuestionObj->status . '">';
                 if ($QuizzResultQuestionObj->status == 'correct') {

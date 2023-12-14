@@ -337,32 +337,32 @@ Route::group([
         /*
          * Timestables Assignments Routing
          */
-        Route::group(['prefix' => 'timestables_assignments'], function () {
-            Route::get('/', 'TimestablesAssignmentsController@index')->name('adminListTimesTablesAssignment');
-            Route::get('/create', 'TimestablesAssignmentsController@create');
-            Route::post('/store', 'TimestablesAssignmentsController@store');
-            Route::get('/{id}/edit', 'TimestablesAssignmentsController@edit')->name('adminEditTimesTablesAssignment');
+        Route::group(['prefix' => 'assignments'], function () {
+            Route::get('/', 'AssignmentsController@index')->name('adminListAssignment');
+            Route::get('/create', 'AssignmentsController@create');
+            Route::post('/store', 'AssignmentsController@store');
+            Route::get('/{id}/edit', 'AssignmentsController@edit')->name('adminEditAssignment');
         });
 
         /*
          * Assignments Routing
          */
-        Route::group(['prefix' => 'assignments'], function () {
-            Route::get('/', 'AssignmentsController@index');
-            Route::get('/create', 'AssignmentsController@create');
-            Route::get('/subjects_by_year', 'AssignmentsController@subjects_by_year');
-            Route::get('/topics_subtopics_by_subject', 'AssignmentsController@topics_subtopics_by_subject');
-            Route::get('/questions_by_subchapter', 'AssignmentsController@questions_by_subchapter');
-            Route::get('/questions_by_keyword', 'AssignmentsController@questions_by_keyword');
-            Route::get('/assignment_preview', 'AssignmentsController@assignment_preview');
-            Route::get('/single_question_preview', 'AssignmentsController@single_question_preview');
-            Route::post('/publish_assignment', 'AssignmentsController@publish_assignment');
-            Route::post('/store', 'AssignmentsController@store');
-            Route::get('/{id}/edit', 'AssignmentsController@edit')->name('adminEditAssignment');
-            Route::post('/{id}/update', 'AssignmentsController@update');
-            Route::post('/{id}/update', 'AssignmentsController@update');
-            Route::get('/{id}/assign', 'AssignmentsController@assign')->name('adminAssignAssignment');
-            Route::post('/update_question', 'AssignmentsController@update_question');
+        Route::group(['prefix' => 'custom_quiz'], function () {
+            Route::get('/', 'CustomQuizController@index');
+            Route::get('/create', 'CustomQuizController@create');
+            Route::get('/subjects_by_year', 'CustomQuizController@subjects_by_year');
+            Route::get('/topics_subtopics_by_subject', 'CustomQuizController@topics_subtopics_by_subject');
+            Route::get('/questions_by_subchapter', 'CustomQuizController@questions_by_subchapter');
+            Route::get('/questions_by_keyword', 'CustomQuizController@questions_by_keyword');
+            Route::get('/assignment_preview', 'CustomQuizController@assignment_preview');
+            Route::get('/single_question_preview', 'CustomQuizController@single_question_preview');
+            Route::post('/publish_assignment', 'CustomQuizController@publish_assignment');
+            Route::post('/store', 'CustomQuizController@store');
+            Route::get('/{id}/edit', 'CustomQuizController@edit')->name('adminEditAssignment');
+            Route::post('/{id}/update', 'CustomQuizController@update');
+            Route::post('/{id}/update', 'CustomQuizController@update');
+            Route::get('/{id}/assign', 'CustomQuizController@assign')->name('adminAssignAssignment');
+            Route::post('/update_question', 'CustomQuizController@update_question');
 
             //Route::post('/store_quiz', 'QuizController@store_quiz');
             //Route::get('/{id}/edit', 'QuizController@edit')->name('adminEditQuiz');
@@ -383,9 +383,9 @@ Route::group([
             Route::get('/', 'AssignedAssignmentsController@index')->name('adminListAssignedAssignment');
             Route::post('/store', 'AssignedAssignmentsController@store');
             Route::get('/{id}/edit', 'AssignedAssignmentsController@edit')->name('adminEditAssignedAssignment');
-            //Route::post('/{id}/update', 'AssignmentsController@update');
-            //Route::post('/{id}/update', 'AssignmentsController@update');
-            //Route::get('/{id}/assign', 'AssignmentsController@assign')->name('adminAssignAssignment');
+            //Route::post('/{id}/update', 'CustomQuizController@update');
+            //Route::post('/{id}/update', 'CustomQuizController@update');
+            //Route::get('/{id}/assign', 'CustomQuizController@assign')->name('adminAssignAssignment');
         });
 
         /*
@@ -398,6 +398,7 @@ Route::group([
             Route::get('/users_by_section', 'CommonController@users_by_section');
             Route::get('/subjects_by_year', 'CommonController@subjects_by_year');
             Route::get('/generate_audio', 'CommonController@generate_audio');
+            Route::get('/vocabulary_quiz_by_year', 'CommonController@vocabulary_quiz_by_year');
 
         });
 

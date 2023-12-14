@@ -572,7 +572,6 @@ class UserController extends Controller
         ];
         return back()->with(['toast' => $toastData]);
     }
-
     public function sendMessage(Request $request, $id)
     {
         if (!empty($id)) {

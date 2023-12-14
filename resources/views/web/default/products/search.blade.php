@@ -85,85 +85,8 @@ Access to the rewards with 3 simple steps</p>
             </div>
         </div>
     </section>
-    <section class="categories-section pt-80 pb-40">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center mb-50">
-                    <h2 itemprop="title" class="font-40">Explore Categories</h2>
-                    <p itemprop="description" class="mt-10 font-19">It implies through continuous learning and improvement, students can increase<br>their chances of winning playful toys.</p>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <ul class="categories-list row">
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/design-tool-1.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">Design Tools</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/science-tool.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">Science Tools</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/ebook.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">e-book</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/music.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">Musical Instruments</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/book.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">Books</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="categories-box mb-30">
-                            <div class="img-holder">
-                                <figure><img src="../assets/default/img/toddler.png" alt="category image" title="category image" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                            </div>
-                            <div class="text-holder">
-                                <h3 itemprop="title" class="post-title text-white"><a href="#.">Baby and Toddler</a></h3>
-                            </div>
-                        </div>
-                    </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <div class="container">
-        <section class="pt-lg-20 pt-md-40">
+        <section class="pt-lg-50 pt-md-40">
             <form action="{{ (!empty($isRewardProducts) and $isRewardProducts) ? '/reward-products' : '/products' }}" method="get" id="filtersForm">
 
                 @include('web.default.products.includes.top_filters')

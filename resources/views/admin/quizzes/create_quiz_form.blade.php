@@ -422,7 +422,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '6' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][dropdown]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -442,7 +442,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '6' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][true_false]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -462,7 +462,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Emerging']->questions : '6' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][matching]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -505,7 +505,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->questions : '6' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][sorting]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -525,7 +525,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '6' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Expected']->questions : '6' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][single_select]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -568,7 +568,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->questions : '0' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][text_field]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -588,7 +588,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->questions : '0' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][multi_select]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -608,7 +608,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Below']->questions : '0' }}"
+                                       value="{{ !empty($quiz_settings) ? $quiz_settings['Exceeding']->questions : '0' }}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][short_answer]"
                                        class="form-control" placeholder=""/>
                             </div>

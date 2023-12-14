@@ -105,7 +105,9 @@ class Share
                                 continue;
                             }
                             $chapter_title = $webinarObj->getTitleAttribute();
+                            $icon_code = $webinarObj->icon_code;
                             $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_title'] = $chapter_title;
+                            $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_icon_code'] = $icon_code;
                             $course_navigation[$categoryObj->slug]['chapters'][$webinarObj->id]['chapter_slug'] = $webinarObj->slug;
                             if (!empty($webinarObj->chapters)) {
                                 foreach ($webinarObj->chapters as $chapterObj) {

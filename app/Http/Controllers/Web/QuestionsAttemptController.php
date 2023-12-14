@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\StudentAssignments;
 use App\Models\UserAssignedTimestables;
+use App\Models\UserAssignedTopics;
 use App\User;
 use App\Models\Quiz;
 use App\Models\QuizzesResult;
@@ -112,11 +114,7 @@ class QuestionsAttemptController extends Controller
             $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id', $quizAttempt->parent_type_id)->where('quiz_result_type', $quizAttempt->attempt_type)->where('user_id', $user->id)->where('question_id', $question_id)->where('quiz_result_id', $quizAttempt->quiz_result_id)->where('status', '!=', 'waiting')->count();
             $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult, $QuizzResultQuestionsCount);
 
-            if ($quizAttempt->attempt_type == 'assignment') {
-                $questionObj = AssignmentsQuestions::find($question_id);
-            } else {
-                $questionObj = QuizzesQuestion::find($question_id);
-            }
+            $questionObj = QuizzesQuestion::find($question_id);
 
             if ($questionAttemptAllowed == true) {
                 $correct_answers = $this->get_question_correct_answers($questionObj);
@@ -359,6 +357,7 @@ class QuestionsAttemptController extends Controller
                 if ($QuizzResultQuestionsCount == 0) {
                     $is_attempt_allowed = true;
                 }
+                $is_attempt_allowed = true;
                 break;
 
             case "vocabulary":
@@ -450,11 +449,7 @@ class QuestionsAttemptController extends Controller
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
-        if ($quizAttempt->attempt_type == 'assignment') {
-            $questionObj = AssignmentsQuestions::find($question_id);
-        } else {
-            $questionObj = QuizzesQuestion::find($question_id);
-        }
+        $questionObj = QuizzesQuestion::find($question_id);
 
         $review_required = $questionObj->review_required;
         $review_required = ($review_required == 1) ? true : false;
@@ -573,18 +568,23 @@ class QuestionsAttemptController extends Controller
 
         $question_correct_answere = '';
         $total_points = '';
-        if ($quizAttempt->attempt_type == 'vocabulary') {
+        if ($quizAttempt->attempt_type == 'assignment') {
 
-            $correct_answeres = json_decode($QuizzResultQuestions->correct_answer);
-            if (!empty($correct_answeres)) {
-                foreach ($correct_answeres as $correct_answer_array) {
-                    foreach ($correct_answer_array as $correct_answer) {
-                        $question_correct_answere .= $correct_answer;
+            $parent_type_id = $resultLogObj->parent_type_id;
+            $UserAssignedTopicsObj = UserAssignedTopics::find($parent_type_id);
+            $assignment_type = $UserAssignedTopicsObj->StudentAssignmentData->assignment_type;
+            if ($assignment_type == 'vocabulary') {
+                $correct_answeres = json_decode($QuizzResultQuestions->correct_answer);
+                if (!empty($correct_answeres)) {
+                    foreach ($correct_answeres as $correct_answer_array) {
+                        foreach ($correct_answer_array as $correct_answer) {
+                            $question_correct_answere .= $correct_answer;
+                        }
                     }
                 }
+                $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $quizAttempt->attempt_type)->first();
+                $total_points = isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0;
             }
-            $RewardAccountingObj = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('parent_type', $quizAttempt->attempt_type)->first();
-            $total_points = isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0;
         }
 
 
@@ -1363,6 +1363,7 @@ class QuestionsAttemptController extends Controller
         $timestables_data = $request->get('timestables_data');
         $attempt_id = $request->get('attempt_id');
 
+        pre($timestables_data);
 
         $user = auth()->user();
 
@@ -1407,17 +1408,22 @@ class QuestionsAttemptController extends Controller
         $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
 
         if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {
-            $UserAssignedTimestables = UserAssignedTimestables::find($QuizzesResult->parent_type_id);
-            $UserAssignedTimestables->update([
+            $UserAssignedTopics = UserAssignedTopics::find($QuizzesResult->parent_type_id);
+            $UserAssignedTopics->update([
                 'status'     => 'completed',
                 'updated_at' => time(),
             ]);
 
-            $pendingEventCounts = UserAssignedTimestables::where('assignment_event_id', $UserAssignedTimestables->assignment_event_id)->where('status', 'active')->count();
+            $pendingEventCounts = UserAssignedTopics::where('topic_id', $UserAssignedTopics->topic_id)->where('status', 'active')->count();
 
             if ($pendingEventCounts == 0) {
-                $TimestablesEvents = TimestablesEvents::find($UserAssignedTimestables->assignment_event_id);
+                $TimestablesEvents = TimestablesEvents::find($UserAssignedTopics->topic_id);
                 $TimestablesEvents->update([
+                    'status'     => 'completed',
+                    'updated_at' => time(),
+                ]);
+                $StudentAssignments = StudentAssignments::find($UserAssignedTopics->student_assignment_id);
+                $StudentAssignments->update([
                     'status'     => 'completed',
                     'updated_at' => time(),
                 ]);

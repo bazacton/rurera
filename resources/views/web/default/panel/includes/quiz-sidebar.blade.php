@@ -143,7 +143,7 @@
         @endif
 
         @if(getFeaturesSettings('webinar_assignment_status'))
-            <li class="sidenav-item {{ (request()->is('panel/assignments') or request()->is('panel/assignments/*')) ? 'sidenav-item-active' : '' }}">
+            <li class="sidenav-item {{ (request()->is('panel/assignments') or request()->is('panel/custom_quiz/*')) ? 'sidenav-item-active' : '' }}">
                 <a class="d-flex align-items-center" data-toggle="collapse" href="#assignmentCollapse" role="button" aria-expanded="false" aria-controls="assignmentCollapse">
                 <span class="sidenav-item-icon mr-10">
                     @include('web.default.panel.includes.sidebar_icons.assignments')
@@ -151,16 +151,16 @@
                     <span class="font-14 text-dark-blue font-weight-500">{{ trans('update.assignments') }}</span>
                 </a>
 
-                <div class="collapse {{ (request()->is('panel/assignments') or request()->is('panel/assignments/*')) ? 'show' : '' }}" id="assignmentCollapse">
+                <div class="collapse {{ (request()->is('panel/assignments') or request()->is('panel/custom_quiz/*')) ? 'show' : '' }}" id="assignmentCollapse">
                     <ul class="sidenav-item-collapse">
 
-                        <li class="mt-5 {{ (request()->is('panel/assignments/my-assignments')) ? 'active' : '' }}">
-                            <a href="/panel/assignments/my-assignments">{{ trans('update.my_assignments') }}</a>
+                        <li class="mt-5 {{ (request()->is('panel/custom_quiz/my-assignments')) ? 'active' : '' }}">
+                            <a href="/panel/custom_quiz/my-assignments">{{ trans('update.my_assignments') }}</a>
                         </li>
 
                         @if($authUser->isOrganization() || $authUser->isTeacher())
-                            <li class="mt-5 {{ (request()->is('panel/assignments/my-courses-assignments')) ? 'active' : '' }}">
-                                <a href="/panel/assignments/my-courses-assignments">{{ trans('update.students_assignments') }}</a>
+                            <li class="mt-5 {{ (request()->is('panel/custom_quiz/my-courses-assignments')) ? 'active' : '' }}">
+                                <a href="/panel/custom_quiz/my-courses-assignments">{{ trans('update.students_assignments') }}</a>
                             </li>
                         @endif
                     </ul>

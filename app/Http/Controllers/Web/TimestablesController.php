@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
+use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -192,11 +193,11 @@ class TimestablesController extends Controller
         if ($UserAssignmentObj->status != 'active') {
             return view('web.default.quizzes.unauthorized');
         }
-        $timestables_assignments = $UserAssignmentObj->timestables_assignments;
+        $assignments = $UserAssignmentObj->assignments;
         $user = auth()->user();
         $question_type = 'multiplication';
-        $no_of_questions = $timestables_assignments->no_of_questions;
-        $tables_numbers = json_decode($timestables_assignments->tables_no);
+        $no_of_questions = $assignments->no_of_questions;
+        $tables_numbers = json_decode($assignments->tables_no);
         $tables_types = [];
 
         if ($question_type == 'multiplication' || $question_type == 'multiplication_division') {
@@ -462,14 +463,19 @@ class TimestablesController extends Controller
         ]);
 
         if (!empty($users_array)) {
-            foreach ($users_array as $user_id) {
-                $UserAssignedTimestables = UserAssignedTimestables::create([
-                    'assignment_id' => $TimestablesAssignment->id,
-                    'user_id'       => $user_id,
-                    'status'        => 'active',
-                    'created_at'    => time(),
-                    'updated_at'    => time(),
-                ]);
+            /*foreach ($users_array as $user_id) {
+
+                $UserAssignedTimestables = UserAssignedTopics::create([
+                   'assigned_to_id' => $user_id,
+                   'parent_id'      => $user->id,
+                   'topic_id'       => $TimestablesEvents->id,
+                   'topic_type'     => 'timestables',
+                   'status'         => 'active',
+                   'created_at'     => time(),
+                   'start_at'     => $eventDate['start'],
+                   'deadline_date'     => $eventDate['end'],
+               ]);*/
+
             }
         }
         return view('web.default.timestables.start', $data);
@@ -524,7 +530,7 @@ class TimestablesController extends Controller
             foreach ($userPastAssignments as $assignmentObj) {
                 $respose .= '<tr>
                             <td>
-                                <strong>' . $assignmentObj->timestables_assignments->title . '</strong>
+                                <strong>' . $assignmentObj->assignments->title . '</strong>
                             </td>
                             <td>
                                 ' . dateTimeFormat($assignmentObj->conducted_results->created_at, 'd/m/Y') . ' <br/>

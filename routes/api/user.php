@@ -247,7 +247,7 @@ Route::group([], function () {
     Route::get('/sessions/{session}', ['uses' => 'SessionController@show'])->name('session.show');;
     Route::get('/text-lessons/{lesson}', ['uses' => 'TextLessonController@show'])->name('text_lesson.show');
     Route::get('/text-lessons/{lesson}/navigation', ['uses' => 'WebinarTextLessonController@index']);
-    Route::get('/assignments/{assignment}', ['uses' => 'WebinarAssignmentController@show'])->name('assignment.show');
+    Route::get('/custom_quiz/{assignment}', ['uses' => 'WebinarAssignmentController@show'])->name('assignment.show');
     Route::get('/quizzes/{quiz}', ['uses' => 'QuizzesController@show'])->name('quiz.show');
 
 });

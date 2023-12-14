@@ -19,7 +19,7 @@ class UserAssignedTimestables extends Model
         'updated_at',
     ];
 
-    public function timestables_assignments()
+    public function assignments()
     {
         return $this->belongsTo('App\Models\TimestablesAssignments', 'assignment_id', 'id');
     }

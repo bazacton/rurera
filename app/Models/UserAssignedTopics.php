@@ -13,13 +13,14 @@ class UserAssignedTopics extends Model
 
     protected $fillable = [
         'assigned_to_id',
-        'parent_id',
+        'assigned_by_id',
+        'student_assignment_id',
         'topic_id',
-        'topic_type',
         'status',
         'created_at',
         'start_at',
-        'deadline_date'
+        'deadline_date',
+        'updated_at'
     ];
 
     public function quizData()
@@ -28,16 +29,14 @@ class UserAssignedTopics extends Model
         return $this->belongsTo('App\Models\Quiz', 'topic_id', 'id');
     }
 
-    public function practiceData_bk()
-    {
-        //return $this->hasOne('App\Models\Quiz', 'id', 'topic_id');
-        return $this->belongsTo('App\Models\WebinarChapterItem', 'topic_id', 'parent_id')->where('type', 'quiz');
-    }
-
-
     public function practiceData()
     {
         return $this->belongsTo('App\Models\SubChapters', 'topic_id', 'id');
+    }
+
+    public function StudentAssignmentData()
+    {
+        return $this->belongsTo('App\Models\StudentAssignments', 'student_assignment_id', 'id');
     }
 
     public function TimesTablesEventData()

@@ -1,3 +1,16 @@
+<div class="chart-filters">
+    <ul>
+        <li><a href="#" class="active"><span class="filter-icon"><img src="../assets/default/img/filter-icon.png" alt=""></span> Courses</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon2.png" alt=""></span>SATs</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon3.png" alt=""></span>Times Tables</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon4.png" alt=""></span>Words List</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon.png" alt=""></span>Book Shelf</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon2.png" alt=""></span>11+</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon3.png" alt=""></span>Independent Exams</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon4.png" alt=""></span>ISEB</a></li>
+        <li><a href="#"><span class="filter-icon"><img src="../assets/default/img/filter-icon2.png" alt=""></span>CAT 4</a></li>
+    </ul>
+</div>
 @php $random_id = rand(0,9999); @endphp
 <div class="chart-summary-fields">
 

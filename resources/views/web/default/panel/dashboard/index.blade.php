@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <section class="assignments-table count-number-wrapp mt-30">
+    <!-- <section class="assignments-table count-number-wrapp mt-30">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-12">
@@ -106,7 +106,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
 
 </section>
@@ -118,16 +118,13 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active user-assignments-tab" data-type="current" data-content_id="homeworks" id="homeworks-tab" data-toggle="tab" href="#homeworks" role="tab"
-                           aria-controls="homeworks" aria-selected="true">Today Homeworks</a>
+                           aria-controls="homeworks" aria-selected="true">My Assignments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link user-assignments-tab" data-type="previous" data-content_id="recent" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
                            aria-controls="recent" aria-selected="false">Recent</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link user-assignments-tab" data-type="upcoming" data-content_id="future" id="future-tab" data-toggle="tab" href="#future" role="tab"
-                           aria-controls="future" aria-selected="false">Future</a>
-                    </li>
+
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="homeworks" role="tabpanel"
@@ -137,22 +134,8 @@
                                 @if( !empty( $assignmentsArray ) )
                                 @foreach( $assignmentsArray as $assignmentObj)
                                 @php
-                                if( $assignmentObj->topic_type == 'practice'){
-                                $assignmentTitle = $assignmentObj->practiceData->sub_chapter_title;
-                                $assignmentLink = '';
-
-                                }else{
-                                $assignmentTitle = $assignmentObj->quizData->getTitleAttribute();
-                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->topic_id.'/start';
-                                $assignmentLink = '/'.$assignmentObj->topic_type.'/'.$assignmentObj->quizData->quiz_slug;
-                                }
-
-                                if( $assignmentObj->topic_type == 'timestables'){
-                                $assignmentTitle = isset( $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title )?
-                                $assignmentObj->TimesTablesEventData->TimesTablesAssignmentData->title : '';
-                                $assignmentLink = '/timestables/assignment/'.$assignmentObj->topic_id;
-
-                                }
+                                $assignmentTitle = $assignmentObj->StudentAssignmentData->title;
+                                $assignmentLink = '/assignment/'.$assignmentObj->id;
                                 $assignmentTitle .= '<span>'.dateTimeFormat($assignmentObj->deadline_date, 'd F Y').'</span>';
                                 @endphp
                                 <li>
@@ -164,9 +147,9 @@
                                         </label>
                                     </div>
                                     <div class="assignment-controls">
-                                        <span class="status-label success">Pending</span>
+                                        <span class="status-label success">{{$assignmentObj->status}}</span>
                                         <div class="controls-holder">
-                                            
+
                                         </div>
                                     </div>
                                 </li>
@@ -178,92 +161,7 @@
                     <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
                         <div class="assignments-list">
                             <ul>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="book2">
-                                        <label for="book2">
-                                            xxxxxxxxxxxxxxxxxxxxxxxx
-                                            <span>xxxxxx</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">xxxxx</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt=""></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="book2">
-                                        <label for="book2">
-                                            xxxxxxxxxxxxxxxxxxxxxxxx
-                                            <span>xxxxxx</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">xxxxx</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt=""></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="future" role="tabpanel" aria-labelledby="future-tab">
-                        <div class="assignments-list">
-                            <ul>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="book2">
-                                        <label for="book2">
-                                            xxxxxxxxxxxxxxxxxxxxxxxx
-                                            <span>xxxxxx</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">xxxxx</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt=""></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="book2">
-                                        <label for="book2">
-                                            xxxxxxxxxxxxxxxxxxxxxxxx
-                                            <span>xxxxxx</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">xxxxx</span>
-                                        <div class="controls-holder">
-                                            <a href="#"><img src="../assets/default/svgs/printer-2-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/mail-alt-1-svgrepo-com.svg"
-                                                             alt=""></a>
-                                            <a href="#"><img src="../assets/default/svgs/link-svgrepo-com.svg"
-                                                             alt=""></a>
-                                        </div>
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -853,7 +751,7 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <!--<section>
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -955,7 +853,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>-->
         </div>
     </div>
 
@@ -1050,7 +948,7 @@
         </div>
     </div> -->
     </section>
-    <section style="padding: 0 0 60px;">
+    <!--<section style="padding: 0 0 60px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9 col-md-8 mt-35">
@@ -1127,7 +1025,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
 
     <div class="d-none" id="iNotAvailableModal">

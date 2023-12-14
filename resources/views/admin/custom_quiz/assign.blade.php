@@ -169,7 +169,7 @@
             rurera_loader(thisObj, 'div');
             jQuery.ajax({
                 type: "GET",
-                url: '/admin/assignments/subjects_by_year',
+                url: '/admin/custom_quiz/subjects_by_year',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

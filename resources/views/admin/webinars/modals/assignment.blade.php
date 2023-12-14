@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="d-none" id="webinarAssignmentModal">
     <h3 class="section-title after-line font-20 text-dark-blue mb-25">{{ trans('update.add_new_assignments') }}</h3>
-    <form action="{{ getAdminPanelUrl() }}/assignments/store" method="post">
+    <form action="{{ getAdminPanelUrl() }}/custom_quiz/store" method="post">
         <input type="hidden" name="webinar_id" value="{{  !empty($webinar) ? $webinar->id :''  }}">
 
         @if(!empty(getGeneralSettings('content_translate')))

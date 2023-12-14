@@ -8,11 +8,11 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Timestables Assignments</h1>
+        <h1>Assignments</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ getAdminPanelUrl() }}">{{trans('admin/main.dashboard')}}</a>
             </div>
-            <div class="breadcrumb-item">Timestables Assignments</div>
+            <div class="breadcrumb-item">Assignments</div>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
 
     <div class="section-body">
 
-        <section class="card rurera-hide">
+        <section class="card">
             <div class="card-body">
                 <form action="{{ getAdminPanelUrl() }}/quizzes" method="get" class="row mb-0">
                     <div class="col-md-3">
@@ -163,7 +163,7 @@
                     <div class="card-header">
                         @can('admin_assignments_create')
                         <div class="text-right">
-                            <a href="{{ getAdminPanelUrl() }}/timestables_assignments/create" class="btn btn-primary ml-2">Create
+                            <a href="{{ getAdminPanelUrl() }}/custom_quiz/create" class="btn btn-primary ml-2">Create
                                 Assignment</a>
                         </div>
                         @endcan
@@ -174,42 +174,30 @@
                             <table class="table table-striped font-14">
                                 <tr>
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
-                                    <th class="text-center">Type</th>
-                                    <th class="text-center">Tables</th>
-                                    <th class="text-center">Total Questions</th>
-                                    <th class="text-left">Start Date</th>
-                                    <th class="text-left">End Date</th>
-                                    <th class="text-left">Recurring</th>
+                                    <th class="text-left">Created By</th>
+                                    <th class="text-center">{{ trans('admin/main.question_count') }}</th>
                                     <th class="text-center">{{ trans('admin/main.status') }}</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
                                 </tr>
 
-                                @foreach($assignments as $assignmentObj)
+                                @foreach($quizzes as $quiz)
                                 <tr>
                                     <td>
-                                        <span>{{ $assignmentObj->title }}</span>
+                                        <span>{{ $quiz->title }}</span>
+                                        @if(!empty($quiz->webinar))
+                                        <small class="d-block text-left text-primary">{{ $quiz->webinar->title
+                                            }}</small>
+                                        @endif
                                     </td>
-                                    <td>
-                                        <span>{{ $assignmentObj->assignment_type }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ implode(', ', json_decode($assignmentObj->tables_no)) }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ $assignmentObj->no_of_questions }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ dateTimeFormat($assignmentObj->assignment_start_date, 'j M Y H:i') }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ dateTimeFormat($assignmentObj->assignment_end_date, 'j M Y H:i') }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ $assignmentObj->recurring_type }}</span>
+
+                                    <td class="text-left">{{ $quiz->creator->full_name }}</td>
+
+                                    <td class="text-center">
+                                        {{ $quiz->quizQuestionsList->count() }}
                                     </td>
 
                                     <td class="text-center">
-                                        @if($assignmentObj->status != 'inactive')
+                                        @if($quiz->status === \App\Models\Quiz::ACTIVE)
                                         <span class="text-success">{{ trans('admin/main.active') }}</span>
                                         @else
                                         <span class="text-warning">{{ trans('admin/main.inactive') }}</span>
@@ -217,18 +205,30 @@
                                     </td>
 
                                     <td>
+                                        @can('admin_quizzes_results')
+                                        <a href="{{ getAdminPanelUrl() }}/quizzes/{{ $quiz->id }}/results"
+                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
+                                           title="{{ trans('admin/main.quiz_results') }}">
+                                            <i class="fa fa-poll fa-1x"></i>
+                                        </a>
+                                        @endcan
 
                                         @can('admin_assignments_edit')
-                                        <a href="{{ getAdminPanelUrl() }}/timestables_assignments/{{ $assignmentObj->id }}/edit"
+                                        <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $quiz->id }}/assign"
+                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
+                                           data-placement="top" title="Assign">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $quiz->id }}/edit"
                                            class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         @endcan
 
-                                        @can('admin_assignments_deletesss')
+                                        @can('admin_assignments_delete')
                                         @include('admin.includes.delete_button',['url' =>
-                                        getAdminPanelUrl().'/quizzes/'.$assignmentObj->id.'/delete' , 'btnClass' => 'btn-sm'])
+                                        getAdminPanelUrl().'/quizzes/'.$quiz->id.'/delete' , 'btnClass' => 'btn-sm'])
                                         @endcan
                                     </td>
                                 </tr>
@@ -239,7 +239,7 @@
                     </div>
 
                     <div class="card-footer text-center">
-                        {{ $assignments->appends(request()->input())->links() }}
+                        {{ $quizzes->appends(request()->input())->links() }}
                     </div>
                 </div>
             </div>

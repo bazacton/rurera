@@ -83,7 +83,7 @@ class ProjectsLocationsReservationsAssignments extends \Google\Service\Resource
    * demand mode. (assignments.delete)
    *
    * @param string $name Required. Name of the resource, e.g.
-   * `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+   * `projects/myproject/locations/US/reservations/team1-prod/custom_quiz/123`
    * @param array $optParams Optional parameters.
    * @return BigqueryreservationEmpty
    */
@@ -128,7 +128,7 @@ class ProjectsLocationsReservationsAssignments extends \Google\Service\Resource
    * (assignments.move)
    *
    * @param string $name Required. The resource name of the assignment, e.g.
-   * `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+   * `projects/myproject/locations/US/reservations/team1-prod/custom_quiz/123`
    * @param MoveAssignmentRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Assignment
@@ -144,7 +144,7 @@ class ProjectsLocationsReservationsAssignments extends \Google\Service\Resource
    * (assignments.patch)
    *
    * @param string $name Output only. Name of the resource. E.g.:
-   * `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+   * `projects/myproject/locations/US/reservations/team1-prod/custom_quiz/123`.
    * The assignment_id must only contain lower case alphanumeric characters or
    * dashes and the max length is 64 characters.
    * @param Assignment $postBody

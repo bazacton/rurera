@@ -295,7 +295,7 @@ class WebinarController extends Controller
 
         $parent_assigned_list = array();
         if( isset( $user->id ) ) {
-            $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
+            $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id')->get()->toArray();
 
             if (!empty($parent_assignedArray)) {
                 foreach ($parent_assignedArray as $parent_assignedObj) {

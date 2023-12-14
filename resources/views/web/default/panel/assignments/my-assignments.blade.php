@@ -50,7 +50,7 @@
         <h2 class="section-title">{{ trans('update.filter_assignments') }}</h2>
 
         <div class="panel-section-card py-20 px-25 mt-20">
-            <form action="/panel/assignments/my-assignments" method="get" class="row">
+            <form action="/panel/custom_quiz/my-assignments" method="get" class="row">
                 <div class="col-12 col-lg-4">
                     <div class="row">
                         <div class="col-12 col-md-6">

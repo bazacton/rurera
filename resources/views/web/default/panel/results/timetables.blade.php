@@ -80,7 +80,7 @@ $rand_id = rand(99,9999);
                         </div>
                     </div>
 
-                    @php $summary_total_questions = $summary_time_spend = $summary_coins_earned = 0; @endphp
+                    @php $summary_total_questions = $summary_time_spend = $summary_coins_earned = 0; $incorrect_questions = 0; @endphp
                     <div class="question-area-block question-summary">
                         <div class="chart-summary-fields result-layout-summary">
                                             <div class="sats-summary">
@@ -110,8 +110,8 @@ $rand_id = rand(99,9999);
                                                             </svg>
                                                         </div>
                                                         <div class="summary-text">
-                                                            <label>Questions Missed</label>
-                                                            <div class="score">0%</div>
+                                                            <label>Questions Incorrect</label>
+                                                            <div class="score incorrect-questions">0</div>
                                                         </div>
                                                     </div>
 
@@ -193,6 +193,7 @@ $rand_id = rand(99,9999);
 
                             $summary_time_spend += $time_consumed;
                             $summary_coins_earned += ($is_correct == 'true')? 1 : 0;
+                            $incorrect_questions += ($is_correct == 'false')? 1 : 0;
                             @endphp
 
                             <div class="question-result-layout question-status-{{$check_class}}">
@@ -266,6 +267,7 @@ $rand_id = rand(99,9999);
 <script type="text/javascript">
     $(document).ready(function () {
 
+        $(".incorrect-questions").html('{{$incorrect_questions}}');
         $(".summary-time-spend").html('{{$summary_time_spend}} s');
         $(".summary-coins-earned").html('{{$summary_coins_earned}}');
 

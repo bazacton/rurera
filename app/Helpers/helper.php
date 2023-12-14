@@ -1,6 +1,7 @@
 <?php
 
 use App\Mixins\Financial\MultiCurrency;
+use App\Models\UserAssignedTopics;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Quiz;
@@ -5511,7 +5512,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            
+
 
         ),
         'radio'    => array(
@@ -5520,7 +5521,7 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-           
+
             'score'              => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
@@ -5634,8 +5635,8 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            
-            
+
+
 
         ),
 
@@ -5645,7 +5646,7 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-           
+
             'score'         => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
@@ -5794,7 +5795,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-            
+
 
         ),
 
@@ -5804,7 +5805,7 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            
+
             'score'         => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
@@ -5947,7 +5948,7 @@ function element_properties_meta($chapters)
                 'type'    => 'elements_data'
             ),
 
-            
+
 
         ),
 
@@ -6078,7 +6079,7 @@ function element_properties_meta($chapters)
                 'value' => 'basic',
                 'label' => esc_html__('Basic', 'leform')
             ),
-            
+
             'score'         => array(
                 'value' => '',
                 'label' => esc_html__('Score', 'leform'),
@@ -6215,7 +6216,7 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
                 'type'    => 'description-style'
             ),
-            
+
             'elements_data' => array(
                 'value'   => '',
                 'label'   => '',
@@ -6459,7 +6460,7 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-           
+
         ),
         'sum_quiz'           => array(
             'basic'         => array(
@@ -6708,7 +6709,7 @@ function element_properties_meta($chapters)
             ),
 
         ),
-        
+
 
         'image_quiz'     => array(
             'basic'         => array(
@@ -7001,8 +7002,8 @@ function element_properties_meta($chapters)
                 'tooltip' => '',
                 'type'    => 'elements_data'
             ),
-           
-            
+
+
         ),
         'question_label' => array(
             'basic'         => array(
@@ -7563,7 +7564,7 @@ function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_ass
             </div>
             <?php } } ?>
 
-            
+
             <div class="form-group">
                 <span class="input-label">Deadline Date</span>
                     <input type="text" name="deadline" id="singledatepicker_<?php echo $topic_id; ?>" class="deadline singledatepicker form-control mt-10">
@@ -7611,16 +7612,16 @@ function getTopicTitle($topic_id, $topic_type){
                 $QuizObj = Quiz::find($topic_id);
                 $topic_title = isset( $QuizObj->id)? $QuizObj->getTitleAttribute() : '';
             break;
-            
+
             case "practice":
                 $QuizObj = Quiz::find($topic_id);
                 $topic_title = $QuizObj->getTitleAttribute();
             break;
-            
+
             case "timestables":
                 $topic_title = 'Times Tables';
             break;
-            
+
             case "book_page":
                $bookData = BooksPagesInfoLinks::where('id', $topic_id)->with([
                     'BooksInfoLinkPage',
@@ -7645,7 +7646,13 @@ function getTopicTitle($topic_id, $topic_type){
            break;
 
             case "timestables_assignment":
-                $topic_title = 'Times Tables';
+                $UserAssignedTopics = UserAssignedTopics::find($topic_id);
+                $topic_title = 'Times Tables - '.$UserAssignedTopics->StudentAssignmentData->title;
+            break;
+
+            case "assignment":
+                $UserAssignedTopics = UserAssignedTopics::find($topic_id);
+                $topic_title = 'Assignment - '.$UserAssignedTopics->StudentAssignmentData->title;
             break;
 
 
@@ -7793,4 +7800,125 @@ function sumNestedArrayValues($array) {
     }
 
     return $sum;
+}
+
+
+function svgAvatars_validate_filename( $name ) {
+	$file = array(
+		'name' => '',
+		'type' => ''
+	);
+	// the file extentions must be exactly png or svg
+	if ( ( $name && strrpos( $name, 'png', -3 ) !== false ) || ( $name && strrpos( $name, 'svg', -3 ) !== false ) ) {
+		list( $file['name'], $file['type'] ) = explode( '.', $name );
+
+		// file name must start with 'svgA' and following digits only
+		if ( preg_match( '/^(svgA)[0-9]+$/', $file['name'] ) !== 1 ) {
+			$file['name'] = 'invalid';
+			$file['type'] = 'invalid';
+		}
+	} else {
+		$file['name'] = 'invalid';
+		$file['type'] = 'invalid';
+	}
+	return $file;
+}
+
+function svgAvatars_sanitize_downloading_name( $name ) {
+	//Strip out any % encoded octets
+	$sanitized = preg_replace( '|%[a-fA-F0-9][a-fA-F0-9]|', '', $name );
+	//Limit to A-Z,a-z,0-9,_,-
+	$sanitized = preg_replace( '/[^A-Za-z0-9_-]/', '', $sanitized );
+	return $sanitized;
+}
+
+function svgAvatars_validate_imagedata( $data, $filetype ) {
+	if ( $filetype === 'png' ) {
+		if ( ( substr( $data, 0, 22 ) ) !== 'data:image/png;base64,' ) {
+			// doesn't contain the expected first 22 characters
+			return false;
+		}
+		$base64 = str_replace('data:image/png;base64,', '', $data);
+		if ( ( base64_encode( base64_decode( $base64, true ) ) ) !== $base64) {
+			// decoding and re-encoding the data fails
+			return false;
+		}
+		// all is fine
+		return $base64;
+	} elseif ( $filetype === 'svg' ) {
+		// sanitize SVG before saving on disk
+		$svg = new svgAvatarsSvgCodeSanitizer();
+		$svg->load_svg( $data );
+		$svg->sanitize_svg();
+		$sanitized_svg = $svg->save_svg();
+		return $sanitized_svg;
+	} else {
+		return false;
+	}
+}
+
+// whitelisting all the SVG code
+class svgAvatarsSvgCodeSanitizer {
+
+	private $document;
+	private static $whitelist_elems = array();
+	private static $whitelist_attrs = array();
+
+	function __construct() {
+		global $svgAvatars_svgcode_whitelist_elems;
+		global $svgAvatars_svgcode_whitelist_attrs;
+
+		$this->document = new DOMDocument();
+		$this->document->preserveWhiteSpace = false;
+
+		require_once 'svg-whitelist.php';
+		self::$whitelist_elems = $svgAvatars_svgcode_whitelist_elems;
+		self::$whitelist_attrs = $svgAvatars_svgcode_whitelist_attrs;
+	}
+
+	function load_svg( $data ) {
+		$this->document->loadXML( stripcslashes( $data ) );
+	}
+
+	function sanitize_svg() {
+		$elems = $this->document->getElementsByTagName( "*" );
+		for( $i = 0; $i < $elems->length; $i++ ) {
+			$node = $elems->item($i);
+			$tag_name = $node->tagName;
+			if( in_array( $tag_name, self::$whitelist_elems ) ) {
+				for( $j = 0; $j < $node->attributes->length; $j++ ) {
+					$attr_name = $node->attributes->item($j)->name;
+					if( ! in_array( $attr_name, self::$whitelist_attrs ) ) {
+						$node->removeAttribute( $attr_name );
+					}
+				}
+			} else {
+				$node->parentNode->removeChild( $node );
+			}
+		}
+	}
+
+	function save_svg() {
+		$this->document->formatOutput = true;
+		return $this->document->saveXML();
+	}
+}
+
+
+function getTime($secondsString) {
+    $h = floor($secondsString / 3600); // Get whole hours
+    $secondsString -= $h * 3600;
+    $m = floor($secondsString / 60); // Get remaining minutes
+    $secondsString -= $m * 60;
+
+    $return_string = '';
+    if ($h > 0) {
+        $return_string .= $h . ":";
+    }
+    if ($m > 0) {
+        $return_string .= ($m < 10 ? '0' . $m : $m) . ":";
+    }
+    $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
+
+    return $return_string;
 }

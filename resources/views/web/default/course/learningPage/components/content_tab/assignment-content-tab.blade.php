@@ -7,7 +7,7 @@
     $assignmentUrl = "{$course->getLearningPageUrl()}?type=assignment&item={$item->id}";
     $assignmentUrlTarget = "_self";
     if ($course->isOwner($user->id)) {
-        $assignmentUrl = "/panel/assignments/{$item->id}/students";
+        $assignmentUrl = "/panel/custom_quiz/{$item->id}/students";
         $assignmentUrlTarget = "_blank";
     } elseif ($user->isAdmin()) {
         $assignmentUrl = "#!";

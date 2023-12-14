@@ -82,6 +82,7 @@ class AnalyticsController extends Controller
             'timestables',
             'vocabulary',
             'timestables_assignment',
+            'assignment',
         );
         /*$types_array = array(
             '11plus',

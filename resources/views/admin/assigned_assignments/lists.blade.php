@@ -188,7 +188,7 @@
                                     </td>
                                     <td>
                                         @can('admin_assignments_edits')
-                                        <a href="{{ getAdminPanelUrl() }}/assignments/{{ $assignedAssignmentObj->id }}/edit"
+                                        <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $assignedAssignmentObj->id }}/edit"
                                            class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>

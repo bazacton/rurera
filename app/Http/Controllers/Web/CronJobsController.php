@@ -7,7 +7,6 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\TimestablesAssignments;
-use App\Models\UserAssignedTimestables;
 use App\Models\TimestablesTournaments;
 use App\Models\TimestablesTournamentsEvents;
 use Illuminate\Support\Facades\DB;

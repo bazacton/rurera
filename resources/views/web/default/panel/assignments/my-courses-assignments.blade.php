@@ -126,10 +126,10 @@
                                                 </button>
 
                                                 <div class="dropdown-menu menu-lg">
-                                                    <a href="/panel/assignments/{{ $assignment->id }}/students?status=pending" target="_blank"
+                                                    <a href="/panel/custom_quiz/{{ $assignment->id }}/students?status=pending" target="_blank"
                                                        class="webinar-actions d-block mt-10 font-weight-normal">{{ trans('update.pending_review') }}</a>
 
-                                                    <a href="/panel/assignments/{{ $assignment->id }}/students" target="_blank"
+                                                    <a href="/panel/custom_quiz/{{ $assignment->id }}/students" target="_blank"
                                                        class="webinar-actions d-block mt-10 font-weight-normal">{{ trans('update.all_assignments') }}</a>
                                                 </div>
                                             </div>

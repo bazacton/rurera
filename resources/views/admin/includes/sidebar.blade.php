@@ -194,6 +194,13 @@
                    </a>
                </li>
            @endcan()
+            
+            <li class="nav-item {{ (request()->is('admin/custom_quiz')) ? 'active' : '' }}">
+                <a href="{{ getAdminPanelUrl('/custom_quiz') }}" class="nav-link">
+                    <i class="fas fa-tasks"></i>
+                    <span>Custom Quiz</span>
+                </a>
+            </li>
 
             <li class="menu-header">PLANNER</li>
 
@@ -216,16 +223,11 @@
             @endcan()
 
             @can('admin_assignments')
+                
                 <li class="nav-item {{ (request()->is('admin/assignments')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/assignments') }}" class="nav-link">
                         <i class="fas fa-tasks"></i>
                         <span>Assignments</span>
-                    </a>
-                </li>
-                <li class="nav-item {{ (request()->is('admin/timestables_assignments')) ? 'active' : '' }}">
-                    <a href="{{ getAdminPanelUrl('/timestables_assignments') }}" class="nav-link">
-                        <i class="fas fa-tasks"></i>
-                        <span>Timestables Assignments</span>
                     </a>
                 </li>
             @endif

@@ -27,7 +27,6 @@ Route::group(['prefix' => 'api_sessions'] , function () {
 
 Route::get('/mobile-app' , 'Web\MobileAppController@index')->middleware(['share'])->name('mobileAppRoute');
 Route::get('/maintenance' , 'Web\MaintenanceController@index')->middleware(['share'])->name('maintenanceRoute');
-
 /* Emergency Database Update */
 Route::get('/emergencyDatabaseUpdate' , function () {
     \Illuminate\Support\Facades\Artisan::call('migrate');
@@ -458,7 +457,9 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'assignment'] , function () {
-        Route::get('/{quiz_slug}' , 'AssignmentController@start');
+        Route::get('/{assignment_id}' , 'AssignmentController@assignment');
+        Route::get('/{assignment_id}/start' , 'AssignmentController@start');
+        //Route::get('/{quiz_slug}' , 'AssignmentController@start');
     });
 
     Route::group(['prefix' => 'spells'] , function () {

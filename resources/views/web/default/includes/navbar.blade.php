@@ -152,7 +152,10 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                                                             @endif
                                                             <div class="menu-colum-text">
                                                                 <a
-                                                                        href="/{{$navigation_slug}}/{{$chapter_data['chapter_slug']}}"><strong>{{isset(
+                                                                        href="/{{$navigation_slug}}/{{$chapter_data['chapter_slug']}}"><strong>{!! isset(
+                                                                        $chapter_data['chapter_icon_code'] )?
+                                                                        $chapter_data['chapter_icon_code'] :
+                                                                        '' !!}{{isset(
                                                                         $chapter_data['chapter_title'] )?
                                                                         $chapter_data['chapter_title'] :
                                                                         ''}}</strong></a>

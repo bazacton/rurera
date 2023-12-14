@@ -12,7 +12,7 @@
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ getAdminPanelUrl() }}">{{ trans('admin/main.dashboard') }}</a></div>
                 <div class="breadcrumb-item"><a href="{{ getAdminPanelUrl() }}/assignments">{{ trans('update.assignments') }}</a></div>
-                <div class="breadcrumb-item"><a href="{{ getAdminPanelUrl() }}/assignments/{{ $assignment->id }}/students">{{ trans('public.students') }}</a></div>
+                <div class="breadcrumb-item"><a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $assignment->id }}/students">{{ trans('public.students') }}</a></div>
                 <div class="breadcrumb-item">{{ trans('admin/main.conversation') }}</div>
             </div>
         </div>

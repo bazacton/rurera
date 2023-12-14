@@ -2,6 +2,17 @@
 
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/vendors/select2/select2.min.css">
+
+    <link href="/assets/default/vendors/svgavatars/css/normalize.css" rel="stylesheet">
+	<link href="/assets/default/vendors/svgavatars/css/spectrum.css" rel="stylesheet">
+	<link href="/assets/default/vendors/svgavatars/css/svgavatars.css" rel="stylesheet">
+
+    <script src="/assets/default/vendors/svgavatars/js/jquery-3.5.1.min.js"></script>
+	<script src="/assets/default/vendors/svgavatars/js/svgavatars.tools.js"></script>
+	<script src="/assets/default/vendors/svgavatars/js/svgavatars.defaults.js"></script>
+	<script src="/assets/default/vendors/svgavatars/js/languages/svgavatars.en.js"></script>
+	<script src="/assets/default/vendors/svgavatars/js/svgavatars.core.min.js"></script>
+
 @endpush
 
 @section('content')

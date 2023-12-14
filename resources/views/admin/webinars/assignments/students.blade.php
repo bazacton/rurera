@@ -190,7 +190,7 @@
 
                                 <td class="align-middle text-right">
                                     @can('admin_webinar_assignments_conversations')
-                                        <a href="{{ getAdminPanelUrl() }}/assignments/{{ $assignment->id }}/history/{{ $history->id }}/conversations" class="btn-transparent text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.conversations') }}">
+                                        <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $assignment->id }}/history/{{ $history->id }}/conversations" class="btn-transparent text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.conversations') }}">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
                                     @endcan

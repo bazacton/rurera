@@ -38,12 +38,16 @@ var question_submit_process = false;
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+    var bypass_validation = $(".question-submit-btn").attr('data-bypass_validation');
     if( question_submit_process == true){
         return false;
     }
     question_submit_process = true;
-    console.log('question-submit');
     returnType = rurera_validation_process($(this).closest('form'));
+
+    if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
+        returnType = true;
+    }
     if (returnType == false) {
         jQuery.noConflict();
         //$("#validation_error").modal('show');
@@ -770,6 +774,30 @@ function init_question_functions() {
             });
             $(".draggable-items li").draggable({revert: "invalid", helper: "clone"});
         }
+       var duration_type = $(".question-area-block").attr('data-duration_type');
+       var time_interval = $(".question-area-block").attr('data-time_interval');
+       var practice_time = $(".question-area-block").attr('data-practice_time');
+
+        if( rurera_is_field(duration_type) && duration_type == 'per_question') {
+                clearInterval(Quizintervals);
+                $('.quiz-timer-counter').html(time_interval);
+                $('.quiz-timer-counter').attr('data-time_counter', time_interval);
+                Quizintervals = setInterval(function () {
+                    var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                    $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+
+                    if (duration_type == 'per_question') {
+                        if (parseInt(quiz_timer_counter) == 0) {
+                            clearInterval(Quizintervals);
+                            $('.question-submit-btn').attr('data-bypass_validation', 'yes');
+                            $('#question-submit-btn')[0].click();
+                        }
+                    }
+
+                }, 1000);
+            }
 
         //Temporary Commented
         currentRequest = jQuery.ajax({
