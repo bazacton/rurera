@@ -1488,6 +1488,34 @@ class QuestionsAttemptController extends Controller
                     'updated_at' => time(),
                 ]);
             }
+
+            $assignment_method = $UserAssignedTopics->StudentAssignmentData->assignment_method;
+
+            $QuestionsAttemptController = new QuestionsAttemptController();
+            $resultData = $QuestionsAttemptController->get_result_data($UserAssignedTopics->id);
+            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+
+            if( $assignment_method == 'target_improvements') {
+                $resultData = isset( $resultData->{$QuizzesResult->id} )? $resultData->{$QuizzesResult->id} : array();
+                $total_percentage = isset( $resultData->total_percentage )? $resultData->total_percentage : 0;
+                $time_consumed_correct_average = isset( $resultData->time_consumed_correct_average )? $resultData->time_consumed_correct_average : 0;
+
+                $target_percentage = $UserAssignedTopics->StudentAssignmentData->target_percentage;
+                $target_average_time = $UserAssignedTopics->StudentAssignmentData->target_average_time;
+
+                if( $total_percentage >= $target_percentage && $time_consumed_correct_average <= $target_average_time){
+                    $StudentAssignments = StudentAssignments::find($UserAssignedTopics->student_assignment_id);
+                    $StudentAssignments->update([
+                        'status'     => 'completed',
+                        'updated_at' => time(),
+                    ]);
+                    $UserAssignedTopics->update([
+                        'status'     => 'completed',
+                        'updated_at' => time(),
+                    ]);
+                }
+            }
+
         }
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
@@ -1717,6 +1745,12 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['status'] = $resultObjData->status;
                 $response_data[$q_result_id]['created_at'] = $resultObjData->created_at;
                 $response_data[$q_result_id]['attempted'] = 0;
+                if( $resultObjData->quiz_result_type == 'timestables_assignment'){
+                    $results = json_decode($resultObjData->results);
+                    $response_data[$q_result_id]['total_questions'] = countSubItemsOnly($results);
+                }
+
+
 
                 if (!empty($resultObjData->attempts)) {
                     foreach ($resultObjData->attempts as $attemptObj) {
@@ -1726,6 +1760,10 @@ class QuestionsAttemptController extends Controller
                                 $response_data[$q_result_id]['correct'] += ($resultQuestionObj->status == 'correct') ? 1 : 0;
                                 $response_data[$q_result_id]['incorrect'] += ($resultQuestionObj->status == 'incorrect') ? 1 : 0;
                                 $response_data[$q_result_id]['in_review'] += ($resultQuestionObj->status == 'in_review') ? 1 : 0;
+                                $resultQuestionObj->time_consumed = $resultQuestionObj->time_consumed;
+                                if( $resultObjData->quiz_result_type == 'timestables_assignment'){
+                                    $resultQuestionObj->time_consumed = ($resultQuestionObj->time_consumed / 10);
+                                }
                                 $response_data[$q_result_id]['time_consumed'] += $resultQuestionObj->time_consumed;
                                 if( $resultQuestionObj->status == 'correct') {
                                     $response_data[$q_result_id]['time_consumed_corrected'] += $resultQuestionObj->time_consumed;

@@ -316,7 +316,7 @@
                                             </div>
 
 
-                                            <div class="form-group assignment_topic_type_fields vocabulary_fields">
+                                            <div class="form-group">
                                                 <label class="input-label">Assignment Method</label>
                                                    <div class="input-group">
                                                        <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
