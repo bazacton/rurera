@@ -35,10 +35,20 @@ class AssignmentController extends Controller
     public function timestablesAssignment($UserAssignedTopicsObj)
     {
 
+        $user = auth()->user();
+
+
+        $no_of_attempts = $UserAssignedTopicsObj->StudentAssignmentData->no_of_attempts;
+        $total_attempts = QuizzesResult::where('parent_type_id', $UserAssignedTopicsObj->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
+
+        if ($total_attempts >= $no_of_attempts) {
+            return view('web.default.quizzes.unauthorized');
+        }
+
         if ($UserAssignedTopicsObj->StudentAssignmentData->status != 'active' || $UserAssignedTopicsObj->status != 'active') {
             return view('web.default.quizzes.unauthorized');
         }
-        $user = auth()->user();
+
         $question_type = 'multiplication';
         $no_of_questions = $UserAssignedTopicsObj->StudentAssignmentData->no_of_questions;
         $tables_numbers = json_decode($UserAssignedTopicsObj->StudentAssignmentData->tables_no);
@@ -130,7 +140,7 @@ class AssignmentController extends Controller
                 'created_at'       => time(),
                 'parent_type_id'   => $UserAssignedTopicsObj->id,
                 'quiz_result_type' => 'timestables_assignment',
-                'no_of_attempts'   => 100,
+                'no_of_attempts'   => $no_of_attempts,
                 'other_data'       => json_encode($questions_list),
             ]);
 
@@ -154,6 +164,7 @@ class AssignmentController extends Controller
             'duration_type'  => $UserAssignedTopicsObj->StudentAssignmentData->duration_type,
             'practice_time'  => ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60),
             'time_interval'  => $UserAssignedTopicsObj->StudentAssignmentData->time_interval,
+            'total_questions' => $total_questions,
         ];
         return view('web.default.timestables.start', $data);
     }
@@ -205,6 +216,7 @@ class AssignmentController extends Controller
         $quizQuestionsList = isset($quizObj->quizQuestionsList) ? $quizObj->quizQuestionsList->pluck('question_id')->toArray() : array();
         $selectedQuestionsList = array_rand($quizQuestionsList, $no_of_questions);
         $selectedQuestionsList = array_intersect_key($quizQuestionsList, array_flip($selectedQuestionsList));
+        $timer_hide = false;
 
         /*$total_attempted = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
         if ($total_attempted >= $AssignedAssignments->no_of_attempts) {
@@ -381,7 +393,19 @@ class AssignmentController extends Controller
 
                     }
 
-                    $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                    if ($assignment_type == 'vocabulary') {
+                        $timer_hide = true;
+                        $resultsQuestionsData['duration_type'] = $UserAssignedTopicsObj->StudentAssignmentData->duration_type;
+                        $resultsQuestionsData['practice_time'] = $UserAssignedTopicsObj->StudentAssignmentData->practice_time;
+                        $resultsQuestionsData['time_interval'] = $UserAssignedTopicsObj->StudentAssignmentData->time_interval;
+                        $time_limit = 0;
+                        $time_limit = ($UserAssignedTopicsObj->StudentAssignmentData->duration_type == 'total_practice') ? ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60) : $time_limit;
+                        $time_limit = ($UserAssignedTopicsObj->StudentAssignmentData->duration_type == 'per_question') ? $UserAssignedTopicsObj->StudentAssignmentData->time_interval : $time_limit;
+                        $resultsQuestionsData['time_limit'] = $time_limit;
+                        $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+                    } else {
+                        $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                    }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }
             }
@@ -416,6 +440,7 @@ class AssignmentController extends Controller
                 'duration_type'          => $UserAssignedTopicsObj->StudentAssignmentData->duration_type,
                 'practice_time'          => ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60),
                 'time_interval'          => $UserAssignedTopicsObj->StudentAssignmentData->time_interval,
+                'timer_hide'             => $timer_hide,
             ];
 
             if ($assignment_type == 'practice') {

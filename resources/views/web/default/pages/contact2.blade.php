@@ -385,7 +385,7 @@
             </div>
         </section>
 
-        <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background: url(assets/default/svgs/bank-note-white-thin.svg) var(--primary);">
+        <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background-color: var(--primary);">
             <div class="container">
                 <div class="row">
                     <div class="col-12">

@@ -35,6 +35,7 @@ quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
 var QuestionSubmitRequest = null;
 var question_submit_process = false;
+
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
@@ -59,7 +60,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         question_submit_process = false;
         return false;
     }
-
     clearInterval(Questioninterval);
     rurera_loader($(this), 'div');
 
@@ -78,6 +78,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var attempt_id = $(".question-area .question-step").attr('data-qattempt');
     var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
     var time_consumed = $(".question-area .question-step").attr('data-elapsed');
+    console.log(time_consumed);
 
 
     var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
@@ -687,6 +688,11 @@ function init_question_functions() {
             $('#next-btn')[0].click();
         }
         if (evt.key === 'Enter') {
+            if(rurera_is_field(Questionintervals)) {
+                console.log('inner enter');
+                console.log(Questionintervals);
+                clearInterval(Questionintervals);
+            }
             $('#question-submit-btn')[0].click();
         }
     });
@@ -786,6 +792,9 @@ function init_question_functions() {
                     var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
                     quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
                     $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                    if($('.nub-of-sec').length > 0){
+                        $('.nub-of-sec').html(getTime(quiz_timer_counter));
+                    }
                     $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
 
                     if (duration_type == 'per_question') {

@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
     .home-banner {background: url(../assets/default/img/home-banner.jpg) 0 0 /cover no-repeat; min-height: 650px;}
-    .home-categories-section {background: url(assets/default/svgs/bank-note-white-thin.svg) #f27530;}
-    .choose-sats-section {background-color: #7679ee; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.2) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;}
+    .home-categories-section {background-color: #f27530;}
+    .choose-sats-section {background-color: #7679ee;}
     .reward-program-section {background-color: #fffcee;}
-    .lms-newsletter {background: url(../assets/default/svgs/diagonal-lines-white.svg) #f6b801;}
+    .lms-newsletter {background-color: #f6b801;}
     .blue-filter {filter: brightness(0) saturate(100%) invert(20%) sepia(28%) saturate(3293%) hue-rotate(225deg) brightness(97%) contrast(96%);}
     .yellow-filter {filter: brightness(0) saturate(100%) invert(82%) sepia(51%) saturate(5470%) hue-rotate(9deg) brightness(108%) contrast(99%);}
     .orange-filter {filter: brightness(0) saturate(100%) invert(46%) sepia(70%) saturate(3496%) hue-rotate(359deg) brightness(96%) contrast(98%);}

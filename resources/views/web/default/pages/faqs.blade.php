@@ -663,7 +663,7 @@
             </div>
         </div>
     </section>
-        <section class="lms-column-section lms-text-section w-100 mt-50" style="background: url(../assets/default/svgs/diagonal-lines.svg) #fdfced;">
+        <section class="lms-column-section lms-text-section w-100 mt-50" style="background-color: #fdfced;">
         <div class="container">
             <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">

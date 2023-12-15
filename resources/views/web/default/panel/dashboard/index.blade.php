@@ -113,7 +113,7 @@
 
 <div class="dashboard">
     <div class="row">
-        <div class="col-12 col-lg-9 mt-35">
+        <div class="col-12 col-lg-12 mt-35">
             <div class="assignments-table">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -168,54 +168,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-3 mt-35">
-            <!-- <div class="bg-white account-balance rounded-sm panel-shadow py-15 py-md-30 px-10 px-md-20">
-                <div class="text-center">
-                    <img src="/assets/default/img/activity/36.svg" class="account-balance-icon" alt="">
+        <div class="col-12 col-lg-12 mt-35">
+            <div class="bg-white noticeboard rounded-sm panel-shadow py-10 py-md-20 px-15 px-md-30">
+                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
-                    <h3 class="font-16 font-weight-500 text-gray mt-25">Reward Points</h3>
-                    <span class="mt-5 d-block font-30 text-secondary">{{$userObj->getRewardPoints()}}</span>
-                </div>
-            </div> -->
-            <div class="noticeboard rounded-sm panel-shadow py-10 py-md-20 px-15 px-md-20" style="background-color: #e67035;">
-                <h3 class="font-18 font-weight-bold text-white">Noticeboard</h3>
-                <div class="noticeboard-item py-15">
-                    <div class="d-flex align-items-start flex-column">
-                        <div class="pb-15">
-                            <h4 class="js-noticeboard-title font-weight-500 text-white">New Year Sales Festival</h4>
-                            <div class="font-12 text-white mt-5">
-                                <span class="mr-5">Created by Staff</span>
-                                |
-                                <span class="js-noticeboard-time ml-5">12 Jul 2021 | 19:26</span>
+                @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
+                    <div class="noticeboard-item py-15">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
+                                <div class="font-12 text-gray mt-5">
+                                    <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
+                                    |
+                                    <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button" data-id="{{ $getUnreadNoticeboard->id }}" class="js-noticeboard-info btn btn-sm btn-border-white">{{ trans('panel.more_info') }}</button>
+                                <input type="hidden" class="js-noticeboard-message" value="{{ $getUnreadNoticeboard->message }}">
                             </div>
                         </div>
-
-                        <div>
-                            <button type="button" data-id="12" class="js-noticeboard-info btn btn-sm btn-border-white">More info
-                            </button>
-                            <input type="hidden" class="js-noticeboard-message" value="<p>Due to the New Year Festival, users who buy more than $ 200 will be given a 20% discount code.</p>">
-                        </div>
                     </div>
-                </div>
-                <div class="noticeboard-item py-15">
-                    <div class="d-flex align-items-start flex-column">
-                        <div class="pb-15">
-                            <h4 class="js-noticeboard-title font-weight-500 text-white">Top summer classes</h4>
-                            <div class="font-12 text-white mt-5">
-                                <span class="mr-5">Created by Staff</span>
-                                |
-                                <span class="js-noticeboard-time ml-5">10 Jul 2021 | 08:55</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="button" data-id="10" class="js-noticeboard-info btn btn-sm btn-border-white">More info
-                            </button>
-                            <input type="hidden" class="js-noticeboard-message"
-                                   value="<p>You can find top summer courses on the platform homepage and get all of them with 50% discount by using &quot;mysummer&quot; discount coupon.</p>">
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>

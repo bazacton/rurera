@@ -22,12 +22,14 @@ use App\Models\UserAssignedTopics;
 use App\Models\WebinarChapter;
 use App\Models\WebinarChapterItem;
 use App\Models\WebinarReport;
+use App\Models\Category;
 use App\Models\Webinar;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\SubChapters;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Route;
 
 class WebinarController extends Controller
 {
@@ -45,9 +47,12 @@ class WebinarController extends Controller
                 return $contentLimitation;
             }
         }*/
+        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
+        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
+        $categoryObj = Category::where('slug', $category_slug)->first();
 
 
-        $course = Webinar::where('slug', $slug)
+        $course = Webinar::where('slug', $slug)->where('category_id', $categoryObj->id)
             ->with([
                 'quizzes'                 => function ($query) use ($sub_chapter_id) {
                     $query->where('status', 'active')->where('sub_chapter_id', $sub_chapter_id)

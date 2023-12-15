@@ -82,7 +82,21 @@ if( $duration_type == 'total_practice'){
                     </div>
 
                     <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
-                        <div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
+                        <div class="spells-quiz-info">
+                            <ul>
+                                <li class="show-correct-answer">
+                                    <span class="tt_question_no">1</span> Of {{$total_questions}}
+                                </li>
+                                <li>
+                                    <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
+                                </li>
+                                <li class="total-points">
+                                    <span class="tt_points">0</span> Points
+                                </li>
+                            </ul>
+                        </div>
+                        <br><br>
+
                         <div class="col-12 col-lg-8 mx-auto">
 
                             @if( is_array( $questions_list ))
@@ -179,7 +193,13 @@ if( $duration_type == 'total_practice'){
 
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+
+            if( duration_type == 'no_time_limit'){
+                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+            }else {
+                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            }
+
             $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
             if( duration_type == 'per_question'){
@@ -264,6 +284,14 @@ if( $duration_type == 'total_practice'){
 
         $('.questions-status').append('<span class="'+status_class+'"></span>');
 
+        if( status_class == 'successful') {
+            var tt_points = $(".tt_points").html();
+            tt_points = parseInt(tt_points) + 1;
+            $(".tt_points").html(tt_points);
+        }
+
+
+
 
         $('.questions-block').addClass('hide');
         $('.questions-block').removeClass('active');
@@ -272,6 +300,9 @@ if( $duration_type == 'total_practice'){
 
             $('.questions-block[data-id="' + next_question + '"]').removeClass('hide');
             $('.questions-block[data-id="' + next_question + '"]').addClass('active');
+            var tt_question_no = $(".tt_question_no").html();
+            tt_question_no = parseInt(tt_question_no) + 1;
+            $(".tt_question_no").html(tt_question_no);
             $("#editor-fields-" + next_question).focus();
 
             var Questionintervals = setInterval(function () {

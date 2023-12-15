@@ -129,12 +129,12 @@
       </div>
     </div>
   </section>
-  <section class="lms-services lms-contact-info mx-w-100 pt-80 pb-50 mb-80 lms-wave-shape-top" style="background-color: #f6b801; background-image: linear-gradient(transparent 11px, rgba(255, 255, 255, 0.5) 12px, transparent 12px), linear-gradient(90deg, transparent 11px, rgba(255, 255, 255, 0.5) 12px, transparent 12px); background-size: 100% 12px, 12px 100%;">
+  <section class="lms-services lms-contact-info mx-w-100 pt-80 pb-50 mb-80 lms-wave-shape-top" style="background-color: #f6b801;">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="section-title text-center mb-50">
-            <h2 class="mt-0 mb-10">Rurera tools for book reading validation</h2>
+            <h2 class="mt-0 mb-10 font-40">Rurera tools for book reading validation</h2>
             <p class="font-19 pt-5 text-dark-charcoal">Reading stimulates critical thinking, analytical skills, and problem-solving abilities.</p>
           </div>
         </div>
@@ -261,12 +261,12 @@
       </div>
     </div>
   </section>
-  <section class="lms-blog lms-blog-grid mx-w-100 pt-80 pb-50 mb-80" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
+  <section class="lms-blog lms-blog-grid mx-w-100 pt-80 pb-50 mb-80" style="background-color:#7679ee;">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-12">
           <div class="section-title mb-50">
-            <h2 itemprop="title" class="text-dark-charcoal text-white">Inspiring every student to Read and show their <span class="text
+            <h2 itemprop="title" class="text-dark-charcoal text-white font-40">Inspiring every student to Read and show their <span class="text
   scribble">best.</span>
             </h2>
             <p class="font-19 pt-10 text-white"> Discover ebooks, fiction books, board books, kids stories , children books, and more from Rurera book shelf. <br> Truly Loved by millions of readers worldwide! </p>
@@ -486,12 +486,12 @@
       </div>
     </div>
   </section>
-  <section class="lms-text-section w-100 py-70 mt-80" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(238, 238, 238, 0.1) 10px), repeating-linear-gradient(rgba(204, 204, 204, 0.1), #f27530); background-color: #f27530;">
+  <section class="lms-text-section w-100 py-70 mt-80" style="background-color: #f27530;">
     <div class="container">
       <div class="row">
         <div class="col-12">
           <div class="lms-text-holder d-flex flex-column justify-content-center text-center" itemscope="" itemtype="https://schema.org/lms-text-holder">
-            <h2 itemprop="title" class="mb-20 text-white">Find Your Next Book to Read!</h2>
+            <h2 itemprop="title" class="mb-20 text-white font-40">Find Your Next Book to Read!</h2>
             <p class="text-white font-19" itemprop="description"> In the digital realm, students have discovered the convenience and accessibility of online book reading, <br> allowing them to explore a vast library of resources anytime and anywhere. </p>
             <div class="lms-btn-group mt-30 justify-content-center">
               <a itemprop="url" href="https://rurera.chimpstudio.co.uk/register" class="lms-btn rounded-pill text-white border-white">Get Started</a>

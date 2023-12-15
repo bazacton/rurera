@@ -28,6 +28,7 @@ class StudentAssignments extends Model
         'target_average_time',
         'assignment_reviewer',
         'assignment_review_due_date',
+        'assignment_method',
         'no_of_attempts',
         'status',
         'created_by',

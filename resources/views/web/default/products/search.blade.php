@@ -116,7 +116,7 @@ Access to the rewards with 3 simple steps</p>
 
         </section>
     </div>
-    <section class="lms-column-section lms-text-section py-70 mx-w-100 mt-80" style="background:url(assets/default/svgs/bank-note-white.svg) #f6b801;">
+    <section class="lms-column-section lms-text-section py-70 mx-w-100 mt-80" style="background-color: #f6b801;">
         <div class="container">
             <div class="row">
                 <div class="col-12">

@@ -26,7 +26,14 @@ $is_development = (!empty( $search_tags ) && in_array('development', $search_tag
 $no_of_words = strlen($correct_answer);
 $field_width = ($no_of_words * 1.5);
 $question->question_average_time = 0.70;
-$total_time = gmdate("i:s", $question->question_average_time*60);
+if( isset( $time_limit )){
+ $total_time = gmdate("i:s", $time_limit);
+ $question->question_average_time = ($time_limit/60);
+}
+else{
+    $total_time = gmdate("i:s", $question->question_average_time*60);
+}
+
 
 @endphp
 <div class="question-area spell-question-area">
@@ -229,25 +236,6 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
     var SpellQuestionintervalCountDownFunc = function() {
              currentFunctionStart = 'started';
             Questioninterval = setInterval(function () {
-                var seconds_count = $(".question-time-remaining-{{ $question->id }}").attr('data-remaining');
-                seconds_count = parseInt(seconds_count) - parseInt(1);
-
-                var minutes = Math.floor(seconds_count / 60);
-                var remainingSeconds = seconds_count % 60;
-
-
-                $(".question-time-remaining-{{ $question->id }}").attr('data-remaining', seconds_count);
-                $(".question-time-remaining-{{ $question->id }}").html(minutes+':'+remainingSeconds);
-                if( seconds_count < 1){
-                    var field_value = $(".editor-field").val();
-                    if( field_value == ''){
-                        $(".editor-field").val('Empty');
-                    }
-                    $('#question-submit-btn')[0].click();
-                }
-            }, 1000);
-
-            var Questionintervals = setInterval(function () {
                 var seconds_count_done = $(".question-step-{{ $question->id }}").attr('data-elapsed');
                 seconds_count_done = parseInt(seconds_count_done) + parseInt(1);
                 $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count_done);
@@ -265,6 +253,7 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
         $(this).closest('.spell-question-area').find('.question-correct-answere').removeClass('rurera-hide');
 
     });
+
     $(document).on('click', '#sound-icon-{{ $question->id }}', function (e) {
         var context = new AudioContext();
         $('#field-{{$field_id}}').focus();
@@ -294,6 +283,10 @@ $total_time = gmdate("i:s", $question->question_average_time*60);
     });
 
     jQuery(document).ready(function() {
+
+
+
+
         $('#field-{{$field_id}}').focus();
         $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),

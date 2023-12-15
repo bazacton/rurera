@@ -13464,6 +13464,13 @@ p {
     /* border-radius: 10px;
     box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .04);
     background-color: #fff */
+    padding: 0 !important;
+}
+.activities-container .chart-filters {
+    padding: 15px 20px 0;
+}
+.chart-filters .analytics-data-ul a {
+    padding-top: 0;
 }
 @media (max-width:767px) {
     .activities-container img {
@@ -13957,9 +13964,9 @@ p {
     max-height: 70px;
 }
 .login-password .input-label {
-    margin: 0 0 30px;
-    font-size: 20px;
-    font-weight: 500;
+    margin: 0 0 15px;
+    font-size: 24px;
+    font-weight: 600;
     color: #515554;
 }
 .login-password .form-group {
@@ -13969,18 +13976,18 @@ p {
     align-items: center;
 }
 .login-password form {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 .login-password input[type="password"] {
     border: 0;
     padding: 0;
     color: #eeeeee;
-    letter-spacing: 10px;
+    letter-spacing: 18px;
     text-align: center;
-    font-size: 30px;
-    height: 25px;
+    height: 40px;
     min-height: auto;
     -webkit-text-security: none;
+    font-size: 80px;
 }
 .login-password input[type="password"] {
     -webkit-text-security: circle;
@@ -16046,7 +16053,7 @@ Custom Pagination Style End
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item .sidenav-item-collapse li:before {display: none;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item {border-left: 1px solid rgba(255,255,255,0.4); flex-direction: column; justify-content: center; line-height: normal; align-items: center; display: inline-flex; position: relative; padding: 0 25px;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item:first-child {border: 0;}
-.panel-page-section .panel-sidebar .sidebar-menu {width: 100%; height: auto; overflow: auto; padding-bottom: 0; padding-top: 0; display: flex; justify-content: start; align-items: center; margin-left: -12px; margin-right: -12px;}
+.panel-page-section .panel-sidebar .sidebar-menu {width: 100%; height: auto; overflow: auto; padding-bottom: 0; padding-top: 0; display: flex; justify-content: center; align-items: center; margin-left: -12px; margin-right: -12px;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item a {display: inline-flex; flex-direction: column; justify-content: center; align-items: center; color: #fff;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item span {font-size: 16px !important; font-weight: 400 !important;color: #fff; margin-right: 0 !important; display: inline-block;}
 .panel-page-section .panel-sidebar .sidebar-menu .sidenav-item-active span {color: #fff !important;}
@@ -16054,6 +16061,7 @@ Custom Pagination Style End
 .panel-page-section .panel-sidebar .simplebar-mask,
 .panel-page-section .panel-sidebar .simplebar-wrapper,
 .panel-page-section .panel-sidebar .sidebar-menu {overflow: inherit;}
+.panel-page-section {background-color: #fafafc; padding-bottom: 50px;}
 .panel-page-section .panel-content {width: 100%; padding: 0; margin-top: 40px;}
 .panel-page-section .panel-sidebar .sidebar-menu.pt-10 {margin-top: -10px;}
 /* Panel Sidebar And Panel Content Style End */

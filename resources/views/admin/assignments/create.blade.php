@@ -315,8 +315,21 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="form-group assignment_topic_type_fields vocabulary_fields">
-                                                <label class="input-label">Target - Percentage</label>
+                                                <label class="input-label">Assignment Method</label>
+                                                   <div class="input-group">
+                                                       <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
+                                                               class="form-control select2 assignment_method_check">
+                                                           <option value="practice">Practice</option>
+                                                           <option value="target_improvements">Target / Improvements</option>
+                                                       </select>
+                                                       <div class="invalid-feedback"></div>
+                                                   </div>
+                                               </div>
+
+                                            <div class="form-group assignment_method_check_fields target_improvements_fields">
+                                                <label class="input-label">Percentage of Correct Answers</label>
                                                 <input type="number"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_percentage]"
                                                        value="{{ !empty($assignment) ? ($assignment->target_percentage) : old('target_percentage') }}"
@@ -324,16 +337,32 @@
                                                        placeholder=""/>
                                                 <div class="invalid-feedback"></div>
                                             </div>
-                                            <div class="form-group assignment_topic_type_fields vocabulary_fields">
-                                                OR
+                                            <div class="form-group assignment_method_check_fields target_improvements_fields">
+                                                AND
                                                 <br><br>
-                                                <label class="input-label">Target- Average Time (Seconds)</label>
+                                                <label class="input-label">Average Time of Correct Answers (Seconds)</label>
                                                 <input type="number"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_average_time]"
                                                        value="{{ !empty($assignment) ? ($assignment->target_average_time) : old('target_average_time') }}"
                                                        class="js-ajax-title form-control "
                                                        placeholder=""/>
                                                 <div class="invalid-feedback"></div>
+                                            </div>
+
+
+                                            <div class="assignment_topic_type_fields sats_fields">
+                                            <div class="form-group">
+                                                <label class="input-label d-block">Year Group</label>
+                                                <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_group]"
+                                                        class="form-control" data-placeholder="Select Year Group">
+                                                    <option value="All">All</option>
+                                                    <option value="Year 3">Year 3</option>
+                                                    <option value="Year 4">Year 4</option>
+                                                    <option value="Year 5">Year 5</option>
+                                                    <option value="Year 6">Year 6</option>
+                                                </select>
+                                            </div>
+                                                <div class="yeargroup-ajax-fields"></div>
                                             </div>
 
 
@@ -355,7 +384,10 @@
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][duration_type]"
                                                             class="form-control select2 duration_conditional_check">
-                                                        <option value="total_practice" selected>
+                                                        <option value="no_time_limit" selected>
+                                                            No Time Limit
+                                                        </option>
+                                                        <option value="total_practice">
                                                             Total Practice
                                                         </option>
                                                         <option value="per_question">
@@ -424,7 +456,7 @@
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_reviewer]"
                                                             class="form-control select2">
-                                                        <option value="">Select</option>
+                                                        <option value="0" selected>Select</option>
                                                         @if( !empty( $teachers ) )
                                                             @foreach( $teachers as $teacherObj)
                                                                 <option value="{{$teacherObj->id}}">{{$teacherObj->full_name}}</option>
@@ -772,6 +804,14 @@
             $('.' + current_value + '_fields').removeClass('rurera-hide');
         });
 
+        $('body').on('change', '.assignment_method_check', function (e) {
+            var current_value = $(this).val();
+            $(".assignment_method_check_fields").addClass('rurera-hide');
+            $('.' + current_value + '_fields').removeClass('rurera-hide');
+        });
+
+
+
         $('body').on('change', '.year_vocabulary_ajax_select', function (e) {
             var year_id = $(this).val();
             jQuery.ajax({
@@ -803,40 +843,7 @@
         $(".conditional_check").change();
         $(".duration_conditional_check").change();
         $(".assignment_topic_type_check").change();
-
-
-        var currentRequest2 = null;
-        $('body').on('click', '#preview-tab', function (e) {
-            var thisObj = $(".assignment-preview");
-
-            var questions_ids = [];
-            $("ul.questions-list li").each(function () {
-                var question_id = $(this).attr('data-question_id');
-                questions_ids.push(question_id);
-            });
-            if (questions_ids.length > 0) {
-                rurera_loader(thisObj, 'div');
-                currentRequest2 = jQuery.ajax({
-                    type: "GET",
-                    url: '/admin/custom_quiz/assignment_preview',
-                    beforeSend: function () {
-                        if (currentRequest2 != null) {
-                            currentRequest2.abort();
-                        }
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {"questions_ids": questions_ids},
-                    success: function (return_data) {
-                        rurera_remove_loader(thisObj, 'button');
-                        $(".assignment-preview").html(return_data);
-                    }
-                });
-            }
-
-        });
-
+        $(".assignment_method_check").change();
     });
 
 </script>

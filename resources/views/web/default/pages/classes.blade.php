@@ -49,7 +49,7 @@
         </div>
     </div>
 </section>
-<section class="lms-search-services mb-0 py-50" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(238,238,238,0.1) 10px), repeating-linear-gradient(rgba(204,204,204,0.1), #f18700 ); background-color: #f18700;">
+<section class="lms-search-services mb-0 py-50" style="background-color: #f18700;">
     <div class="container">
         <div class="row">
         <div class="col-12 col-lg-12">
@@ -107,12 +107,12 @@
         </form>
     </section>
 </div>
-<section class="mt-60 pt-80 pb-90 find-instructor-section" style="background: url(../assets/default/svgs/diagonal-lines-white-light.svg) #3d358b;">
+<section class="mt-60 pt-80 pb-90 find-instructor-section" style="background-color: #3d358b;">
     <div class="container">
        <div class="row">
           <div class="col-12">
             <div class="section-title mb-50">
-                <h2 class="mb-10 text-white" itemprop="title">The next-generation e-learning platform</h2>
+                <h2 class="mb-10 text-white font-40" itemprop="title">The next-generation e-learning platform</h2>
                 <p class="font-19 text-white" itemprop="description">Track progress, manage time effectively,<br> and access detailed answer explanations.</p>
             </div>
           </div>
@@ -207,7 +207,7 @@
         </div>
     </div>
 </section>
-<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background: url(assets/default/svgs/bank-note-white-thin.svg) #7679ee;">
+<section class="lms-column-section lms-text-section mx-w-100 py-70 mt-70 mb-10" style="background-color: #7679ee;">
     <div class="container">
        <div class="row">
           <div class="col-12">

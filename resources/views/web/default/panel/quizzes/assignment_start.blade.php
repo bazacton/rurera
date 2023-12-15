@@ -173,7 +173,8 @@ if( $duration_type == 'total_practice'){
                         </div>
                     </div>
 
-                    <div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
+                    @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
+                    <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
                     <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
 
@@ -283,10 +284,23 @@ if( $duration_type == 'total_practice'){
 
     $(document).ready(function () {
 
+        $("body").on("click", ".question-submit-btn", function (e) {
+            if( duration_type == 'per_question'){
+                clearInterval(Quizintervals);
+            }
+        });
+
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            if( duration_type == 'no_time_limit'){
+                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+            }else {
+                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            }
             $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            if($('.nub-of-sec').length > 0){
+                $('.nub-of-sec').html(getTime(quiz_timer_counter));
+            }
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
             if( duration_type == 'per_question'){
                 if( parseInt(quiz_timer_counter) == 0){
@@ -299,6 +313,9 @@ if( $duration_type == 'total_practice'){
                 if( parseInt(quiz_timer_counter) == 0){
                     clearInterval(Quizintervals);
                     $(".review-btn").click();
+                    if($('.question-review-btn').length > 0){
+                        $('.question-review-btn').click();
+                    }
                 }
             }
 

@@ -445,7 +445,6 @@ class QuestionsAttemptController extends Controller
         $user_question_layout = $request->get('user_question_layout');
 
 
-
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
@@ -556,7 +555,6 @@ class QuestionsAttemptController extends Controller
         $is_complete = ($currentIndex < count($questions_list) - 1) ? false : true;
 
 
-
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $resultLogObj = $QuestionsAttemptController->createResultLog([
@@ -587,6 +585,52 @@ class QuestionsAttemptController extends Controller
             }
         }
 
+
+        if ($quizAttempt->attempt_type == 'assignment') {
+            if ($is_complete == true) {
+                $QuizzesResult = QuizzesResult::find($resultLogObj->id);
+                $QuizzesResult->update(['status' => 'passed']);
+
+                $UserAssignedTopicsObj = UserAssignedTopics::find($parent_type_id);
+                $assignment_method = $UserAssignedTopicsObj->StudentAssignmentData->assignment_method;
+                $no_of_attempts = $UserAssignedTopicsObj->StudentAssignmentData->no_of_attempts;
+
+                $resultData = $QuestionsAttemptController->get_result_data($UserAssignedTopicsObj->id);
+                $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                $total_attempts = count((array) $resultData);
+                if( $total_attempts >= $no_of_attempts){
+                    $StudentAssignments = StudentAssignments::find($UserAssignedTopicsObj->student_assignment_id);
+                    $StudentAssignments->update([
+                        'status'     => 'completed',
+                        'updated_at' => time(),
+                    ]);
+                    $UserAssignedTopicsObj->update([
+                        'status'     => 'completed',
+                        'updated_at' => time(),
+                    ]);
+                }
+                if( $assignment_method == 'target_improvements') {
+                    $resultData = isset( $resultData->{$resultLogObj->id} )? $resultData->{$resultLogObj->id} : array();
+                    $total_percentage = isset( $resultData->total_percentage )? $resultData->total_percentage : 0;
+                    $time_consumed_correct_average = isset( $resultData->time_consumed_correct_average )? $resultData->time_consumed_correct_average : 0;
+
+                    $target_percentage = $UserAssignedTopicsObj->StudentAssignmentData->target_percentage;
+                    $target_average_time = $UserAssignedTopicsObj->StudentAssignmentData->target_average_time;
+
+                    if( $total_percentage >= $target_percentage && $time_consumed_correct_average <= $target_average_time){
+                        $StudentAssignments = StudentAssignments::find($UserAssignedTopicsObj->student_assignment_id);
+                        $StudentAssignments->update([
+                            'status'     => 'completed',
+                            'updated_at' => time(),
+                        ]);
+                        $UserAssignedTopicsObj->update([
+                            'status'     => 'completed',
+                            'updated_at' => time(),
+                        ]);
+                    }
+                }
+            }
+        }
 
 
         $test = $newQuestionsArray = array();
@@ -638,8 +682,8 @@ class QuestionsAttemptController extends Controller
 
                     if (!empty($newQuestionsArray)) {
                         $questions_layout_response = $this->practice_questions_layout_update($new_array, $quizAttempt, $resultLogObj, $newQuestionsArray);
-                        $questions_layout = isset( $questions_layout_response['questions_layout'] )? $questions_layout_response['questions_layout'] : '';
-                        $next_question_id = isset( $questions_layout_response['next_question_id'] )? $questions_layout_response['next_question_id'] : 0;
+                        $questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
+                        $next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
                         $updated_questions_layout = json_encode($questions_layout);
                         //pre($new_array, false);
                         //pre($previous_questions_list, false);
@@ -690,13 +734,13 @@ class QuestionsAttemptController extends Controller
             foreach ($questions_list as $question_no_index => $result_question_id) {
                 $question_no = $question_no_index;
                 $resultQuestionObj = QuizzResultQuestions::find($result_question_id);
-                $question_id    = isset( $resultQuestionObj->question_id )? $resultQuestionObj->question_id : 0;
+                $question_id = isset($resultQuestionObj->question_id) ? $resultQuestionObj->question_id : 0;
                 $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
                 $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
 
-                if( in_array($result_question_id, $newQuestionsArray)) {
+                if (in_array($result_question_id, $newQuestionsArray)) {
                     $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
-                }else{
+                } else {
                     $nextQuestionArray['questionObj'] = QuizzesQuestion::find($question_id);
                     $nextQuestionArray['newQuestionResult'] = $resultQuestionObj;
                 }
@@ -708,8 +752,8 @@ class QuestionsAttemptController extends Controller
                     $active_question_id = $newQuestionResult->question_id;
                 }
 
-                if( in_array($result_question_id, $newQuestionsArray)) {
-                    $next_question_id  = ( $next_question_id == 0)? $newQuestionResult->id :  $next_question_id;
+                if (in_array($result_question_id, $newQuestionsArray)) {
+                    $next_question_id = ($next_question_id == 0) ? $newQuestionResult->id : $next_question_id;
                 }
 
                 if (isset($questionObj->id)) {
@@ -768,7 +812,7 @@ class QuestionsAttemptController extends Controller
             'questions_layout' => $questions_layout,
             'next_question_id' => $next_question_id,
         );
-        
+
     }
 
     function validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index = 0)
@@ -823,7 +867,7 @@ class QuestionsAttemptController extends Controller
     /*
      * Update Rewards Points if Answere is correct
      */
-    public function update_reward_points($QuizzResultQuestions, $is_question_correct)
+    public function update_reward_points($QuizzResultQuestions, $is_question_correct, $result_parent_type_id = 0 )
     {
         if ($is_question_correct != true) {
             return;
@@ -833,8 +877,10 @@ class QuestionsAttemptController extends Controller
         $parent_id = isset($QuizzResultQuestions->parent_type_id) ? $QuizzResultQuestions->parent_type_id : 0;
         $question_id = isset($QuizzResultQuestions->question_id) ? $QuizzResultQuestions->question_id : 0;
         $parent_type = isset($QuizzResultQuestions->quiz_result_type) ? $QuizzResultQuestions->quiz_result_type : 0;
+        $assignment_id = 0;
         if ($parent_type == 'timestables' || $parent_type == 'timestables_assignment') {
             $question_id = $QuizzResultQuestions->id;
+            $assignment_id = $result_parent_type_id;
         }
 
         if ($parent_type == 'vocabulary') {
@@ -881,6 +927,7 @@ class QuestionsAttemptController extends Controller
                 'parent_type' => $parent_type,
                 'full_data'   => $full_data,
                 'updated_at'  => time(),
+                'assignment_id' => $assignment_id,
             ]);
         }
 
@@ -1363,8 +1410,6 @@ class QuestionsAttemptController extends Controller
         $timestables_data = $request->get('timestables_data');
         $attempt_id = $request->get('attempt_id');
 
-        pre($timestables_data);
-
         $user = auth()->user();
 
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
@@ -1407,28 +1452,6 @@ class QuestionsAttemptController extends Controller
         $QuizzAttempts = QuizzAttempts::find($attempt_id);
         $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
 
-        if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {
-            $UserAssignedTopics = UserAssignedTopics::find($QuizzesResult->parent_type_id);
-            $UserAssignedTopics->update([
-                'status'     => 'completed',
-                'updated_at' => time(),
-            ]);
-
-            $pendingEventCounts = UserAssignedTopics::where('topic_id', $UserAssignedTopics->topic_id)->where('status', 'active')->count();
-
-            if ($pendingEventCounts == 0) {
-                $TimestablesEvents = TimestablesEvents::find($UserAssignedTopics->topic_id);
-                $TimestablesEvents->update([
-                    'status'     => 'completed',
-                    'updated_at' => time(),
-                ]);
-                $StudentAssignments = StudentAssignments::find($UserAssignedTopics->student_assignment_id);
-                $StudentAssignments->update([
-                    'status'     => 'completed',
-                    'updated_at' => time(),
-                ]);
-            }
-        }
 
         $QuizzesResult->update([
             'user_id'        => $user->id,
@@ -1439,6 +1462,33 @@ class QuestionsAttemptController extends Controller
             'no_of_attempts' => 100,
             'other_data'     => json_encode($new_result_data),
         ]);
+
+        if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {
+            $UserAssignedTopics = UserAssignedTopics::find($QuizzesResult->parent_type_id);
+            $no_of_attempts = $UserAssignedTopics->StudentAssignmentData->no_of_attempts;
+            $total_attempts = QuizzesResult::where('parent_type_id', $UserAssignedTopics->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
+
+            $UserAssignedTopics->update([
+                'updated_at' => time(),
+            ]);
+
+            if ($total_attempts >= $no_of_attempts) {
+                $TimestablesEvents = TimestablesEvents::find($UserAssignedTopics->topic_id);
+                $TimestablesEvents->update([
+                    'status'     => 'completed',
+                    'updated_at' => time(),
+                ]);
+                $StudentAssignments = StudentAssignments::find($UserAssignedTopics->student_assignment_id);
+                $StudentAssignments->update([
+                    'status'     => 'completed',
+                    'updated_at' => time(),
+                ]);
+                $UserAssignedTopics->update([
+                    'status'     => 'completed',
+                    'updated_at' => time(),
+                ]);
+            }
+        }
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
@@ -1475,7 +1525,7 @@ class QuestionsAttemptController extends Controller
                     'review_required'  => 0,
                     'attempted_at'     => time(),
                 ]);
-                $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false);
+                $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
 
 
             }
@@ -1658,6 +1708,7 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['unanswered'] = 0;
                 $response_data[$q_result_id]['in_review'] = 0;
                 $response_data[$q_result_id]['time_consumed'] = 0;
+                $response_data[$q_result_id]['time_consumed_corrected'] = 0;
                 $response_data[$q_result_id]['average_time'] = 0;
                 $response_data[$q_result_id]['mastered_words'] = 0;
                 $response_data[$q_result_id]['in_progress_words'] = 0;
@@ -1676,6 +1727,9 @@ class QuestionsAttemptController extends Controller
                                 $response_data[$q_result_id]['incorrect'] += ($resultQuestionObj->status == 'incorrect') ? 1 : 0;
                                 $response_data[$q_result_id]['in_review'] += ($resultQuestionObj->status == 'in_review') ? 1 : 0;
                                 $response_data[$q_result_id]['time_consumed'] += $resultQuestionObj->time_consumed;
+                                if( $resultQuestionObj->status == 'correct') {
+                                    $response_data[$q_result_id]['time_consumed_corrected'] += $resultQuestionObj->time_consumed;
+                                }
                                 $response_data[$q_result_id]['average_time'] += $resultQuestionObj->average_time;
                                 if (isset($user_mastered_words[$resultQuestionObj->question_id])) {
                                     if (!isset($questions_ids[$resultQuestionObj->question_id])) {
@@ -1702,6 +1756,14 @@ class QuestionsAttemptController extends Controller
                 $response_data[$q_result_id]['unanswered'] = count($questions_list) - $response_data[$q_result_id]['attempted'];
                 $percentage = ($response_data[$q_result_id]['correct'] > 0) ? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['attempted'] : 0;
                 $response_data[$q_result_id]['percentage'] = round($percentage, 2);
+
+                $total_percentage = ($response_data[$q_result_id]['correct'] > 0) ? ($response_data[$q_result_id]['correct'] * 100) / $response_data[$q_result_id]['total_questions'] : 0;
+                $response_data[$q_result_id]['total_percentage'] = round($total_percentage, 2);
+
+
+
+                $time_consumed_correct_average = ($response_data[$q_result_id]['time_consumed_corrected'] > 0) ? ($response_data[$q_result_id]['time_consumed_corrected']) / $response_data[$q_result_id]['correct'] : 0;
+                $response_data[$q_result_id]['time_consumed_correct_average'] = round($time_consumed_correct_average, 2);
 
 
                 $time_consumed = isset($response_data[$q_result_id]['time_consumed']) ? $response_data[$q_result_id]['time_consumed'] : 0;
