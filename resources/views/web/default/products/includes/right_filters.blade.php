@@ -1,4 +1,4 @@
-@if(!empty($authUser) and ($authUser->isOrganization() or $authUser->isTeacher()))
+@if(!empty($authUser) and ($authUser->isOrganization()))
     <a href="/panel/store/products/new" class="mt-20 btn btn-primary btn-flex align-items-center w-100">
         <i data-feather="shopping-bag" width="20" height="20" class="mr-5"></i>
         <span>{{ trans('update.add_new_product') }}</span>

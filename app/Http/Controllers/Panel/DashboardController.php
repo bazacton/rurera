@@ -23,9 +23,15 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $user = auth()->user();
 
         $nextBadge = $user->getBadges(true, true);
+        if (auth()->user()->isTeacher()) {
+            return redirect('/admin');
+        }
 
         $data = [
             'pageTitle' => trans('panel.dashboard'),

@@ -21,6 +21,12 @@ class PanelAuthenticate
             $referralSettings = getReferralSettings();
             view()->share('referralSettings', $referralSettings);
             return $next($request);
+        }else{
+            if (auth()->guest()) {
+                $referralSettings = getReferralSettings();
+                view()->share('referralSettings', $referralSettings);
+                return $next($request);
+            }
         }
 
         return redirect('/login');

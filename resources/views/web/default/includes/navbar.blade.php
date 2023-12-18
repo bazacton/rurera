@@ -246,9 +246,9 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
             <div class="nav-icons-or-start-live navbar-order">
                 <div class="xs-w-100 d-flex align-items-center justify-content-between">
                     @if(!empty($authUser))
-                    <div class="d-flex">
+                    <!-- <div class="d-flex">
                         <div class="border-left mx-5 mx-lg-15"></div>
-                    </div>
+                    </div> -->
                     @endif
 
                     @if(!empty($authUser))

@@ -15,7 +15,7 @@
                 </div>
                 <div class="notifications-top">
                     <span class="ntn-label">Notifications</span>
-                    <a href="#">View All Notifications</a>
+                    <a href="#">View All</a>
                 </div>
                 @if(!empty($unReadNotifications) and count($unReadNotifications))
 

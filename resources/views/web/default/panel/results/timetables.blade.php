@@ -86,15 +86,6 @@ $rand_id = rand(99,9999);
                                             <div class="sats-summary">
                                                 <div class="row">
                                                     <div class="col-12 col-md-4 col-lg-3 bitcoin-box">
-                                                        <div class="sats-summary-icon">
-                                                            <img src="/assets/default/svgs/bitcoin.svg" alt="">
-                                                        </div>
-                                                        <div class="summary-text">
-                                                            <label>Questions Answered</label>
-                                                            <div class="score">{{countSubItemsOnly((array) $results)}}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 col-lg-3">
                                                         <div class="sats-summary-icon" style="background-color: #8cc811;">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #fff;">
                                                                 <g id="Group_1264" transform="translate(-188.102 -869.102)">
@@ -108,6 +99,15 @@ $rand_id = rand(99,9999);
                                                                     </g>
                                                                 </g>
                                                             </svg>
+                                                        </div>
+                                                        <div class="summary-text">
+                                                            <label>Questions Answered</label>
+                                                            <div class="score">{{countSubItemsOnly((array) $results)}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-4 col-lg-3">
+                                                        <div class="sats-summary-icon" style="background-color: #dc160b;">
+                                                            <img src="/assets/default/svgs/cross-white.svg" alt="">
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Questions Incorrect</label>
@@ -217,7 +217,7 @@ $rand_id = rand(99,9999);
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label" for="radio2"><span>{{$rowObj->correct_answer}}</span></label></li>
                                             </ul>
-                                            <span class="list-title">{{auth()->user()->full_name}} answered:</span>
+                                            <span class="list-title">{{isset( auth()->user()->full_name )? auth()->user()->full_name : 'Guest'}} answered:</span>
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label correct" for="radio2"><span>{{$rowObj->answer}}</span></label></li>
                                             </ul>

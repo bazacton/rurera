@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
+use App\Models\QuizzResultQuestions;
 use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,11 +22,11 @@ use Illuminate\Support\Facades\DB;
 class TimestablesController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
-        if (auth()->user()->isParent()) {
+        if (auth()->check() && auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', auth()->user()->id)
@@ -62,15 +63,26 @@ class TimestablesController extends Controller
     public function genearte(Request $request)
     {
         if (!auth()->check()) {
-            return redirect('/login');
+            //return redirect('/login');
         }
-        if (!auth()->subscription('timestables')) {
+        /*if (!auth()->subscription('timestables')) {
             return view('web.default.quizzes.not_subscribed');
-        }
-        $user = auth()->user();
+        }*/
+        $user = getUser();
+
         $question_type = $request->post('question_type');
         $no_of_questions = $request->post('no_of_questions');
         $tables_numbers = $request->post('question_values');
+
+        if( auth()->guest()) {
+            $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', 'timestables')->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
+            $total_questions_allowed = getTimestablesLimit();
+            $no_of_questions = ($total_questions_allowed - $total_attempted_questions);
+            if( $no_of_questions < 1){
+                return view('web.default.quizzes.limit_reached');
+            }
+        }
+
         $tables_types = [];
 
         if ($question_type == 'multiplication' || $question_type == 'multiplication_division') {
@@ -86,7 +98,7 @@ class TimestablesController extends Controller
         $questions_list = $already_exists = array();
 
 
-        $max_questions = 20;
+        $max_questions = 12;
         $current_question_max = 1;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
@@ -94,11 +106,16 @@ class TimestablesController extends Controller
             $current_question_max++;
         }
 
+        $questions_no_array_fixed = $questions_no_array;
+
         $questions_count = 1;
         if ($total_questions > 0) {
             while ($questions_count <= $total_questions) {
                 $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
                 $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                if (empty($questions_no_array)) {
+                    $questions_no_array = $questions_no_array_fixed;
+                }
                 $questions_no_array = array_values($questions_no_array);
                 shuffle($questions_no_array);
                 $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
@@ -112,7 +129,7 @@ class TimestablesController extends Controller
 
                 $last_value = ($questions_no_dynamic) * $table_no;
                 $from_value = ($type == '÷') ? $last_value : $table_no;
-                $limit = 20;
+                $limit = 12;
                 $min = 2;
                 $min = ($type == '÷') ? 1 : $min;
                 $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
@@ -155,6 +172,7 @@ class TimestablesController extends Controller
                 'quiz_result_type' => 'timestables',
                 'no_of_attempts'   => 100,
                 'other_data'       => json_encode($questions_list),
+                'user_ip'          => getUserIP(),
             ]);
 
             $QuizzAttempts = QuizzAttempts::create([
@@ -164,15 +182,20 @@ class TimestablesController extends Controller
                 'end_grade'      => 0,
                 'created_at'     => time(),
                 'attempt_type'   => $QuizzesResult->quiz_result_type,
+                'user_ip'        => getUserIP(),
             ]);
             $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
         }
 
 
         $data = [
-            'pageTitle'      => 'Start',
-            'questions_list' => $questions_list,
-            'QuizzAttempts'  => $QuizzAttempts,
+            'pageTitle'       => 'Start',
+            'questions_list'  => $questions_list,
+            'QuizzAttempts'   => $QuizzAttempts,
+            'duration_type'   => 'no_time_limit',
+            'time_interval'   => 0,
+            'practice_time'   => 0,
+            'total_questions' => $total_questions,
         ];
         return view('web.default.timestables.start', $data);
     }
@@ -474,9 +497,9 @@ class TimestablesController extends Controller
                    'created_at'     => time(),
                    'start_at'     => $eventDate['start'],
                    'deadline_date'     => $eventDate['end'],
-               ]);*/
+               ]);
 
-            }
+            }*/
         }
         return view('web.default.timestables.start', $data);
     }
@@ -577,7 +600,6 @@ class TimestablesController extends Controller
         //DB::disableQueryLog();
 
 
-
         $rendered_view = view('web.default.timestables.global_arena', ['timestablesTournamentsEvents' => $TimestablesTournamentsEvents])->render();
         echo $rendered_view;
         die();
@@ -587,16 +609,17 @@ class TimestablesController extends Controller
     /*
      * Update Tournament Event
      */
-    public function update_tournament_event(Request $request){
+    public function update_tournament_event(Request $request)
+    {
         $tournament_event_id = $request->post('tournament_event_id');
         $TimestablesEventObj = TimestablesTournamentsEvents::find($tournament_event_id);
         $seconds_count = $request->post('seconds_count');
         $eventData = array(
             'time_remaining' => $seconds_count,
-            'updated_at' => time(),
+            'updated_at'     => time(),
         );
         $response = '';
-        if( $seconds_count < 1){
+        if ($seconds_count < 1) {
             $eventData['status'] = 'archived';
 
             $timestablesEventNewObj = $TimestablesEventObj->replicate();
@@ -658,10 +681,10 @@ class TimestablesController extends Controller
                                         </div>';
 
 
-
         }
         $TimestablesEventObj->update($eventData);
-        echo $response;exit;
+        echo $response;
+        exit;
 
     }
 

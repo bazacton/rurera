@@ -120,6 +120,39 @@ if (! function_exists('app')) {
     }
 }
 
+if (! function_exists('getUser')) {
+    /**
+     * Get the available User or a Guest User
+     *
+     */
+    function getUser()
+    {
+        $user = auth()->user();
+        if( empty( $user)){
+            $user['id'] = 0;
+            $user = (object) $user;
+        }
+        return $user;
+    }
+}
+
+if (! function_exists('getUserIP')) {
+    /**
+     * Get the available User or a Guest User
+     *
+     */
+    function getUserIP()
+    {
+        $user = auth()->user();
+        $userIP = 0;
+        if( empty( $user)){
+            $userIP = request()->ip();
+
+        }
+        return $userIP;
+    }
+}
+
 if (! function_exists('app_path')) {
     /**
      * Get the path to the application folder.
@@ -960,4 +993,8 @@ if (! function_exists('view')) {
 
         return $factory->make($view, $data, $mergeData);
     }
+}
+
+function getTimestablesLimit(){
+    return 60;
 }

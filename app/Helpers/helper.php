@@ -7662,6 +7662,36 @@ function getTopicTitle($topic_id, $topic_type){
 }
 
 /*
+ * Reward Title by ID
+ */
+function getRewardTitle($rewardObj){
+
+    $reward_title = trans('update.reward_type_'.$rewardObj->type);
+    if( isset( $rewardObj->parent_type) && !empty( $rewardObj->parent_type)){
+        switch( $rewardObj->parent_type ){
+
+            case "timestables":
+                $reward_title = 'Times Tables';
+            break;
+
+            case "assignment":
+                $resultObj = QuizzesResult::find($rewardObj->result_id);
+                $assignmentTitle = isset( $resultObj->assignment->StudentAssignmentData->title )? $resultObj->assignment->StudentAssignmentData->title : '';
+                $reward_title = 'Assignment: '. $assignmentTitle;
+            break;
+
+            case "timestables_assignment":
+                $resultObj = QuizzesResult::find($rewardObj->result_id);
+                $assignmentTitle = isset( $resultObj->assignment->StudentAssignmentData->title )? $resultObj->assignment->StudentAssignmentData->title : '';
+                $reward_title = 'Timestables Assignment: '. $assignmentTitle;
+            break;
+
+        }
+    }
+    return $reward_title;
+}
+
+/*
  * Add Link to Sitemap
  */
     function putSitemap($request, $images = array()){

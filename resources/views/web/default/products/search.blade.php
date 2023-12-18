@@ -17,7 +17,7 @@ Access to the rewards with 3 simple steps</p>
                             <span class="search-icon">
                                 <img src="../assets/default/svgs/search.svg" alt="default search" title="default search" width="100%" height="auto" loading="eager">
                             </span>
-                            <input class="px-45" type="text" placeholder="Search your favorite toys">
+                            <input class="px-45" type="text" name="search" value="{{isset($_GET['search'])? $_GET['search'] : ''}}" placeholder="Search your favorite toys">
                             <button type="submit">Search</button>
                         </div>
                     </form>

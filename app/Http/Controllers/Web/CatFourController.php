@@ -49,7 +49,7 @@ class CatFourController extends Controller
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'cat4');
 
 
-        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id')->get()->toArray();
+        $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id')->get()->toArray();
 
         $parent_assigned_list = array();
         if (!empty($parent_assignedArray)) {

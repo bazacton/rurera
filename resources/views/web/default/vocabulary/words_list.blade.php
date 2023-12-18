@@ -27,6 +27,33 @@
                 @if( !empty( $spellQuiz))
 
                 <div class="col-12">
+                    <section class="pb-70">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="master-list">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="master-card master">
+                                                    <strong>Mastered Words</strong> <span>{{count($user_mastered_words)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="master-card non-master">
+                                                    <strong>Troubled Words</strong> <span>{{count($user_non_mastered_words)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="master-card non-use">
+                                                    <strong>Not Used Words</strong> <span>{{$non_used_words}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <section class="lms-data-table spells spells-data-list elevenplus-block">
                         <h3>
                             {{$spellQuiz->getTitleAttribute()}} Words List

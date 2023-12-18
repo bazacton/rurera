@@ -66,6 +66,7 @@
                         $parent_type = isset( $analyticData['parent_type'] )? $analyticData['parent_type'] : '';
                         $result_id = isset( $analyticData['result_id'] )? $analyticData['result_id'] : 0;
                         $start_time = isset( $analyticData['start_time'] )? $analyticData['start_time'] : 0;
+                        $more_than_minute = isset( $analyticData['more_than_minute'] )? $analyticData['more_than_minute'] : 'yes';
                         $end_time = isset( $analyticData['end_time'] )? $analyticData['end_time'] : 0;
                         $type = isset( $analyticData['type'] )? $analyticData['type'] : '';
 
@@ -75,7 +76,11 @@
                                 <a href="javascript:;" class="text-left">
                                     {{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}
                                     @if( $type != 'book_read')
+                                    @if( $more_than_minute == 'yes')
                                     | <span class="start_end_time" style="font-size: 16px;">{{ dateTimeFormat($start_time,'H:i') }} - {{ dateTimeFormat($end_time,'H:i') }}</span>
+                                    @else
+                                    | <span class="start_end_time" style="font-size: 16px;">{{ dateTimeFormat($start_time,'H:i:s') }} - {{ dateTimeFormat($end_time,'H:i:s') }}</span>
+                                    @endif
                                     @endif
                                 </a>
                                 @if( $parent_type == 'practice' || $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment'
@@ -102,7 +107,7 @@
                                 <span class="col-3">Active practice: {{isset( $analyticData['practice_time'] )? $analyticData['practice_time'] : 0}} min</span>
                                 <span class="col-3">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
                                 <span class="col-3">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
-                                <span class="col-3">Level: {{isset( $analyticData['score_level'] )? $analyticData['score_level'] : ''}}</span>
+
                                 @else
                                 <span class="col-3">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
                                 <span class="col-3">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>

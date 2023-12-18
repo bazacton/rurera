@@ -79,6 +79,10 @@ class ProductController extends Controller
         $options = $request->get('options', null);
         $categoryId = $request->get('category_id', null);
         $filterOption = $request->get('filter_option', null);
+        $search = $request->get('search', null);
+        if( $search != ''){
+            $query->whereTranslationLike('title' , '%' . $search . '%');
+        }
 
         if (!empty($isFree) and $isFree == 'on') {
             $query->where(function ($qu) {

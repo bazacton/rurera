@@ -182,6 +182,15 @@ class AnalyticsController extends Controller
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['result_id'] = $QuizzesAttemptObj->quiz_result_id;
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['start_time'] = $QuizzesAttemptObj->created_at;
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'] = isset($QuizzesAttemptObj->endSession->created_at) ? $QuizzesAttemptObj->endSession->created_at : '';
+
+                        if( $QuizzesAttemptObj->attempt_type == 'timestables'){
+                            $end_date_str = $QuizzesAttemptObj->created_at + ($practice_time*60);
+                            $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'] = $end_date_str;
+                        }
+                        $start_time = $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['start_time'];
+                        $end_time = $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'];
+
+                        $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['more_than_minute'] = (($end_time - $start_time) > 59)? 'yes' : 'no';
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['type'] = '';
 
                     }

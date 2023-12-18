@@ -32,6 +32,7 @@ class RewardController extends Controller
         $rewards = $query->orderBy('created_at', 'desc')
             ->paginate(10);
 
+
         $mostPointsUsers = RewardAccounting::selectRaw('*,sum(score) as total_points')
             ->groupBy('user_id')
             ->whereHas('user')
@@ -45,6 +46,10 @@ class RewardController extends Controller
         $earnByExchange = 0;
         if (!empty($rewardsSettings) and !empty($rewardsSettings['exchangeable']) and $rewardsSettings['exchangeable'] == '1') {
             $earnByExchange = $availablePoints / $rewardsSettings['exchangeable_unit'];
+        }
+
+        foreach( $rewards as $rewardObj){
+            $rewardTitle = getRewardTitle($rewardObj);
         }
 
         $data = [

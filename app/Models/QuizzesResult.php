@@ -19,6 +19,11 @@ class QuizzesResult extends Model
         return $this->belongsTo('App\Models\Quiz', 'quiz_id', 'id');
     }
 
+    public function assignment()
+    {
+        return $this->belongsTo('App\Models\UserAssignedTopics', 'parent_type_id', 'id');
+    }
+
     public function quizz_result_questions()
     {
         return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id');

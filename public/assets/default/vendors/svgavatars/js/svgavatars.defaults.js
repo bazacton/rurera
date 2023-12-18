@@ -71,7 +71,7 @@ function svgAvatarsOptions() {
 		hideGravatar: false,
 
 		// must be exactly 'light' or 'dark'
-		colorScheme: 'dark',
+		colorScheme: 'light',
 
 		// true will disable share option
 		hideShareButton: false,

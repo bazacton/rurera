@@ -40,11 +40,11 @@
 
         @if(!empty($rewards))
 
-            <div class="panel-section-card py-20 px-25 mt-20">
+            <div class="panel-section-card mt-20">
                 <div class="row">
                     <div class="col-12 ">
                         <div class="table-responsive">
-                            <table class="table text-center custom-table">
+                            <table class="table text-center custom-table simple-table">
                                 <thead>
                                 <tr>
                                     <th class="text-left">{{ trans('public.title') }}</th>
@@ -56,8 +56,9 @@
                                 <tbody>
 
                                 @foreach($rewards as $reward)
+                                    @php $rewardTitle = getRewardTitle($reward); @endphp
                                     <tr>
-                                        <td class="text-left">{{ trans('update.reward_type_'.$reward->type) }}</td>
+                                        <td class="text-left">{{ $rewardTitle }}</td>
                                         <td class="text-center align-middle">{{ $reward->score }}</td>
                                         <td class="text-center align-middle">
                                             @if($reward->status == \App\Models\RewardAccounting::ADDICTION)

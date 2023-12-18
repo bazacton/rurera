@@ -49,7 +49,7 @@ class IndependentExamsController extends Controller
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'independent_exams');
 
 
-        $parent_assignedArray = UserAssignedTopics::where('parent_id', $user->id)->where('status', 'active')->select('id', 'parent_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
+        $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
         $parent_assigned_list = array();
         if (!empty($parent_assignedArray)) {
             foreach ($parent_assignedArray as $parent_assignedObj) {

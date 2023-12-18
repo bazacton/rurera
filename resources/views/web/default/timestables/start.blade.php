@@ -34,7 +34,7 @@ if( $duration_type == 'total_practice'){
 @endphp
 <div class="content-section">
 
-    <section class="lms-quiz-section">
+    <section class="lms-quiz-section justify-content-start">
 
 
         <div class="container-fluid questions-data-block read-quiz-content"
@@ -118,7 +118,7 @@ if( $duration_type == 'total_practice'){
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}">
                                    <div class="questions-controls">
-                                       <span class="time-count-seconds">0</span>
+                                       <span class="time-count-seconds" style="display:none;">0</span>
                                        <a href="#">
                                         <img src="/assets/default/svgs/vol-mute.svg" alt="mute svg">
                                        </a>

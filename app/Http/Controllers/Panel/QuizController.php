@@ -376,6 +376,7 @@ class QuizController extends Controller
 
     public function start(Request $request, $id)
     {
+        pre('test');
         $user = auth()->user();
         $quiz = Quiz::where('id', $id)->with([
             'quizQuestionsList' => function ($query) {

@@ -88,21 +88,8 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="row">
-                        <div class="col-12 col-lg-5">
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('update.seller') }}</label>
 
-                                <select name="seller_id" class="form-control select2" data-allow-clear="false">
-                                    <option value="all">{{ trans('public.all') }}</option>
-
-                                    @foreach($sellers as $seller)
-                                        <option value="{{ $seller->id }}" @if(request()->get('seller_id',null) == $seller->id) selected @endif>{{ $seller->full_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-3">
+                        <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label class="input-label">{{ trans('public.type') }}</label>
                                 <select class="form-control" id="type" name="type">
@@ -117,7 +104,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-3">
+                        <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label class="input-label">{{ trans('public.status') }}</label>
                                 <select class="form-control" id="status" name="status">
@@ -155,7 +142,7 @@
                             <table class="table text-center custom-table">
                                 <thead>
                                 <tr>
-                                    <th>{{ trans('update.seller') }}</th>
+                                    <th class=" text-left">Title</th>
                                     <th class=" text-left">{{ trans('update.order_id') }}</th>
                                     <th class="text-center">Total Points</th>
                                     <th class="text-center">{{ trans('public.type') }}</th>
@@ -168,16 +155,11 @@
 
                                 @foreach($orders as $order)
                                     <tr>
+
                                         <td class="text-left">
-                                            <div class="user-inline-avatar d-flex align-items-center">
-                                                <div class="avatar bg-gray200">
-                                                    <img src="{{ !empty($order->seller) ? $order->seller->getAvatar() : '' }}" class="img-cover" alt="">
-                                                </div>
-                                                <div class=" ml-5">
-                                                    <span class="d-block">{{ !empty($order->seller) ? $order->seller->full_name : '' }}</span>
-                                                    <span class="mt-5 font-12 text-gray d-block">{{ !empty($order->seller) ? $order->seller->email : '' }}</span>
-                                                </div>
-                                            </div>
+                                            @if(!empty($order) and !empty($order->product))
+                                            <span><a href="/products/{{ $order->product->slug }}" target="_blank">{{ $order->product->title }}</a></span>
+                                            @endif
                                         </td>
 
                                         <td class=" text-left">
