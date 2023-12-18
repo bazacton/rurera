@@ -995,6 +995,4 @@ if (! function_exists('view')) {
     }
 }
 
-function getTimestablesLimit(){
-    return 60;
-}
+

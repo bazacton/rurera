@@ -77,8 +77,12 @@ class TimestablesController extends Controller
         if( auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', 'timestables')->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
             $total_questions_allowed = getTimestablesLimit();
-            $no_of_questions = ($total_questions_allowed - $total_attempted_questions);
-            if( $no_of_questions < 1){
+            $no_of_questions_new = ($total_questions_allowed - $total_attempted_questions);
+            if( $no_of_questions_new <= $no_of_questions){
+                $no_of_questions = $no_of_questions_new;
+            }
+            if( $no_of_questions_new < 1){
+                $no_of_questions = $no_of_questions_new;
                 return view('web.default.quizzes.limit_reached');
             }
         }

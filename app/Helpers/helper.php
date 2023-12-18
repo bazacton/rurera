@@ -7952,3 +7952,17 @@ function getTime($secondsString) {
 
     return $return_string;
 }
+
+function getTimestablesLimit(){
+    return 60;
+}
+
+function getGuestLimit($type){
+    $limit = 10;
+    switch ($type) {
+        case "vocabulary":
+            $limit = 10;
+            break;
+    }
+    return $limit;
+}

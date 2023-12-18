@@ -376,13 +376,26 @@ class QuizController extends Controller
 
     public function start(Request $request, $id)
     {
-        pre('test');
-        $user = auth()->user();
+        //$user = auth()->user();
+        $user = getUser();
+
+        $no_of_questions = 0;
+
+
         $quiz = Quiz::where('id', $id)->with([
             'quizQuestionsList' => function ($query) {
                 $query->where('status', 'active');
             },
         ])->first();
+
+        if( auth()->guest()) {
+            $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', $quiz->quiz_type)->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
+            $total_questions_allowed = getGuestLimit($quiz->quiz_type);
+            $no_of_questions = ($total_questions_allowed - $total_attempted_questions);
+            if( $no_of_questions < 1){
+                return view('web.default.quizzes.limit_reached');
+            }
+        }
 
         if ($quiz->quiz_type == 'assignment') {
 
@@ -399,7 +412,11 @@ class QuizController extends Controller
 
         }
 
-        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting');
+        if (auth()->guest()) {
+            $newQuizStart->where('user_ip', getUserIP());
+        }
+        $newQuizStart = $newQuizStart->first();
 
 
         $questions_list = array();
@@ -408,6 +425,9 @@ class QuizController extends Controller
                 $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
                 $questions_list[] = $question_id;
             }
+        }
+        if( $no_of_questions > 0) {
+            $questions_list = array_slice($questions_list, 0, $no_of_questions);
         }
 
         if ($quiz->quiz_type == 'practice') {
@@ -449,8 +469,12 @@ class QuizController extends Controller
             $attempted_questions = array();
             if (isset($newQuizStart->id)) {
                 $attempted_questions = QuizzResultQuestions::where('user_id', $user->id)
-                    ->where('quiz_result_id', $newQuizStart->id)
-                    ->pluck('question_id')->toArray();
+                    ->where('quiz_result_id', $newQuizStart->id);
+
+                if (auth()->guest()) {
+                    $attempted_questions->where('user_ip', getUserIP());
+                }
+                $attempted_questions->pluck('question_id')->toArray();
             }
         }
 
@@ -624,7 +648,11 @@ class QuizController extends Controller
 
                     }
 
-                    $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                    if ($quiz->quiz_type == 'vocabulary') {
+                        $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+                    }else {
+                        $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                    }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }
             }
