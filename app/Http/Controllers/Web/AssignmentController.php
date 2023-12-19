@@ -394,7 +394,7 @@ class AssignmentController extends Controller
                     }
 
                     if ($assignment_type == 'vocabulary') {
-                        $timer_hide = true;
+
                         $resultsQuestionsData['duration_type'] = $UserAssignedTopicsObj->StudentAssignmentData->duration_type;
                         $resultsQuestionsData['practice_time'] = $UserAssignedTopicsObj->StudentAssignmentData->practice_time;
                         $resultsQuestionsData['time_interval'] = $UserAssignedTopicsObj->StudentAssignmentData->time_interval;
@@ -408,6 +408,11 @@ class AssignmentController extends Controller
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }
+            }
+
+            $timer_hide = true;
+            if ($assignment_type == 'timestables') {
+                $timer_hide = false;
             }
 
 

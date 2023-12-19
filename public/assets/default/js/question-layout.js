@@ -50,13 +50,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         returnType = true;
     }
     if (returnType == false) {
-        jQuery.noConflict();
+        //jQuery.noConflict();
         //$("#validation_error").modal('show');
-        var error_message = $.growl.error({
+        /*var error_message = $.growl.error({
            message: 'Please fill all the required fields before submitting.',
            duration: 10000,
-        });
-
+        });*/
         question_submit_process = false;
         return false;
     }

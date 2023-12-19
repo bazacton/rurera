@@ -129,7 +129,7 @@ class QuestionsAttemptController extends Controller
                     'correct_answer'   => json_encode($correct_answers),
                     'user_answer'      => '',
                     'quiz_layout'      => $questionObj->question_layout,
-                    'quiz_grade'       => $questionObj->question_score,
+                    'quiz_grade'       => 1,
                     'average_time'     => $questionObj->question_average_time,
                     'time_consumed'    => 0,
                     'difficulty_level' => $questionObj->question_difficulty_level,
@@ -810,7 +810,7 @@ class QuestionsAttemptController extends Controller
             $mastered_words = isset($UserVocabulary->mastered_words) ? (array)json_decode($UserVocabulary->mastered_words) : array();
             $in_progress_words = isset($UserVocabulary->in_progress_words) ? (array)json_decode($UserVocabulary->in_progress_words) : array();
             $non_mastered_words = isset($UserVocabulary->non_mastered_words) ? (array)json_decode($UserVocabulary->non_mastered_words) : array();
-            $question_score = 5;
+            //$question_score = 5;
             if (!isset($in_progress_words[$question_id])) {
                 //return;
             }

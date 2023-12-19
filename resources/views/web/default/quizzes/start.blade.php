@@ -20,7 +20,7 @@ $rand_id = rand(99,9999);
 
 @section('content')
 
-<div class="learning-page">
+<div class="learning-page type-{{$quiz->quiz_type}}">
 
 
     <div class="d-flex position-relative">
@@ -32,7 +32,7 @@ $rand_id = rand(99,9999);
                     <h3 class="mb-5">{{$quiz->getTitleAttribute()}}</h3>
                     <span class="font-12 font-weight-400 text-gray">Go to the quiz page for more information</span>
                 </div>
-                <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="d-flex align-items-center justify-content-center w-100 h-100">
 
 
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">

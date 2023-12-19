@@ -14741,6 +14741,7 @@ p {line-height: 1.5;}
 .rtl .custom-table thead th {text-align: right;}
 .custom-table tbody td {font-size: 15px; font-weight: 400; line-height: 1.19; text-align: center; color: #171347; border-bottom: 1px solid #ececec; padding: 15px 20px;}
 .table-responsive {overflow: visible;}
+.custom-table.simple-table {margin-bottom: 0;}
 @media (max-width:991px) {
     .table-responsive {overflow-x: auto;}
 }
@@ -17773,6 +17774,7 @@ Product Tabs Slider Style Start
 .lms-quiz-section .quiz-topbar .timer-number,
 .timer-number, .lms-quiz-section .quiz-topbar p{color: #333;}
 .question-layout-block form.question-fields .questions-nav-controls {border-top: 1px solid #999; padding-top: 30px; padding-left: 0;}
+.type-sats .question-layout-block form.question-fields {border: 0; padding: 0; border-radius: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
 /* Lms Font End Display End */
 
@@ -17849,7 +17851,8 @@ Product Tabs Slider Style Start
 .spells-quiz-info ul li:first-child {border-left: 0;}
 .spells-quiz-info ul li span {display: inline-block; font-weight: 600; font-size: 20px;}
 .spells-quiz-info ul li .nub-of-sec {color: #7caf40; }
-.question-layout-block form.question-fields {background-color: #f8f8f8; border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0}
+.question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0;}
+.type-sats .question-layout-block form.question-fields {background-color: inherit;}
 .spell-question-area .question-layout-block form.question-fields {padding: 0;}
 .timebar {display: inline-block; position: relative; height: 3px; width: 100%; }
 .timebar .bar-inner {height: 100%; background-color: green; transition: all .4s ease;}
@@ -17869,7 +17872,7 @@ Product Tabs Slider Style Start
 .spells-quiz-from .form-btn-field {padding-top: 30px;}
 .spells-quiz-sound strong .sound-icon,
 .question-status-modal .modal-title h3 .sound-icon {background-color: #fff; display: inline-block; vertical-align: middle; color: #9c0e28; font-size: 22px; height: 40px; width: 40px; box-shadow: 0 0 4px rgba(0,0,0,0.4); line-height: 40px; border-radius: 100%; cursor: pointer;}
-body .learning-page .learning-content {background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; overflow: hidden;}
+/* body .learning-page .learning-content {background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; overflow: hidden;} */
 .lms-quiz-section .questions-data-block {border: 0;}
 .spells-quiz-from .form-field:has(.frontend-field-error) {width: auto; display: inline-block; position: relative; border: 0;}
 .spells-quiz-from .form-field:has(.frontend-field-error):before {content: ""; position: absolute; bottom: 0px; left: 0; width: 96%; height: 3px; border-bottom: 3px solid #dd4343;}
@@ -17921,6 +17924,7 @@ body .learning-page .learning-content {background: url(/assets/default/img/mount
 .question-status-modal p span {background-color: #fff; color: #333; line-height: normal; display: inline-block; padding: 0 5px 2px; border-radius: 3px;}
 /* Vertical Keyboard Style End */
 body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1; border-color: #ccc;}
+body .learning-page.type-sats .learning-content .learning-content-box {border-color: transparent;}
 body .learning-page .learning-title {border-color: #ccc;}
 .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
 .field_extra_small{width: 22% !important;}
@@ -18018,6 +18022,25 @@ body .learning-page .learning-title {border-color: #ccc;}
 }
 .svga-light #svga-gender {
     background-color: #fff;
+}
+.rurera-button-loader .preloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.rurera-button-loader .preloader img {
+    width: 300px;
+    object-fit: contain;
+    height: 300px;
+}
+span.preloader-text {
+    display: block;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
 }
  
 /*************************************

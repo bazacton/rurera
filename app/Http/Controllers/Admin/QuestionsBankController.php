@@ -1433,6 +1433,7 @@ class QuestionsBankController extends Controller
             'search_tags'              => $search_tags,
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
             'question_example'            => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
+            'question_type'            => isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -1590,6 +1591,7 @@ class QuestionsBankController extends Controller
             'search_tags'              => $search_tags,
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
             'question_example'            => isset($questionData['question_example']) ? $questionData['question_example'] : '' ,
+            'question_type'            => isset($questionData['question_type']) ? $questionData['question_type'] : '' ,
         ]);
 
         if (!empty($quizQuestion)) {
@@ -1778,6 +1780,7 @@ class QuestionsBankController extends Controller
         $data = [
             'pageTitle'                 => trans('public.edit') . ' ' . $question->title ,
             'question_difficulty_level' => $question->question_difficulty_level ,
+            'question_type' => $question->question_type ,
             'question_score'            => $question->question_score ,
             'chapter_db_id'             => $question->chapter_id ,
             'question_title'            => $question->question_title ,

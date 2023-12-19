@@ -1,5 +1,5 @@
 @php namespace App\Http\Controllers\Web; @endphp
-@extends(getTemplate().'.layouts.appstart')
+@extends(getTemplate() .'.panel.layouts.panel_layout')
 @php
 $i = 0; $j = 1;
 $rand_id = rand(99,9999);

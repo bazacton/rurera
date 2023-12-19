@@ -103,10 +103,11 @@
             $datepicker.daterangepicker({
                 locale: {
                     format: 'YYYY-MM-DD',
-                    cancelLabel: 'Clear'
+                    //cancelLabel: 'Clear'
                 },
                 singleDatePicker: true,
                 timePicker: false,
+                autoApply: true, // Set autoApply to true to automatically apply the selected date
                 autoUpdateInput: false,
                 drops: drops3,
             });

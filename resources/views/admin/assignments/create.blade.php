@@ -221,13 +221,11 @@
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
                                                             class="form-control select2 assignment_topic_type_check">
                                                         <option value="practice">Practice</option>
-                                                        <option value="assessment">Assessment</option>
                                                         <option value="sats">SATs</option>
                                                         <option value="11plus">11 Plus</option>
                                                         <option value="independent_exams">Independent Exams</option>
                                                         <option value="iseb">ISEB</option>
                                                         <option value="cat4">CAT 4</option>
-                                                        <option value="challenge">Challenge</option>
                                                         <option value="vocabulary">Vocabulary</option>
                                                         <option value="timestables">Timestables</option>
                                                     </select>
@@ -236,14 +234,15 @@
                                             </div>
 
 
-                                            <div class="assignment_topic_type_fields vocabulary_fields">
+                                            <div class="assignment_topic_type_fields vocabulary_fields sats_fields">
                                                 <div class="form-group">
                                                     <label>Year</label>
                                                     <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
-                                                            class="form-control year_vocabulary_ajax_select select2 @error('year_id') is-invalid @enderror"
+                                                            class="form-control year_quiz_ajax_select select2 @error('year_id') is-invalid @enderror"
                                                             name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
                                                         <option {{ !empty($trend) ?
                                                         '' : 'selected' }} disabled>Select Year</option>
+                                                        <option value="0">Select All</option>
 
                                                         @foreach($categories as $category)
                                                         @if(!empty($category->subCategories) and
@@ -269,7 +268,7 @@
                                                     </div>
                                                     @enderror
                                                 </div>
-                                                <div class="vocabulary-ajax-fields">
+                                                <div class="quiz-ajax-fields">
                                                 </div>
                                             </div>
 
@@ -350,11 +349,12 @@
                                             </div>
 
 
-                                            <div class="assignment_topic_type_fields sats_fields">
+                                            <div class="assignment_topic_type_fields 11plus_fields independent_exams_fields iseb_fields cat4_fields">
                                             <div class="form-group">
                                                 <label class="input-label d-block">Year Group</label>
                                                 <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_group]"
-                                                        class="form-control" data-placeholder="Select Year Group">
+                                                        class="form-control year_group_quiz_ajax_select" data-placeholder="Select Year Group">
+                                                    <option value="">Select Year Group</option>
                                                     <option value="All">All</option>
                                                     <option value="Year 3">Year 3</option>
                                                     <option value="Year 4">Year 4</option>
@@ -421,7 +421,7 @@
                                             <div class="form-group">
                                                 <label class="input-label">Start Date</label>
                                                 <div class="input-group">
-                                                    <input type="text"
+                                                    <input type="text" autocomplete="off"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
                                                            value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
                                                            class="form-control datepicker"
@@ -432,7 +432,7 @@
                                             <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
                                                 <label class="input-label">End Date</label>
                                                 <div class="input-group">
-                                                    <input type="text"
+                                                    <input type="text" autocomplete="off"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
                                                            value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
                                                            class="form-control datepicker"
@@ -470,7 +470,7 @@
                                             <div class="form-group">
                                                 <label class="input-label">Review Due Date</label>
                                                 <div class="input-group">
-                                                    <input type="text"
+                                                    <input type="text" autocomplete="off"
                                                            name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_review_due_date]"
                                                            value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_review_due_date, 'Y-m-d', false) : old('assignment_review_due_date') }}"
                                                            class="form-control datepicker"
@@ -812,21 +812,41 @@
 
 
 
-        $('body').on('change', '.year_vocabulary_ajax_select', function (e) {
+        $('body').on('change', '.year_quiz_ajax_select', function (e) {
             var year_id = $(this).val();
+            var quiz_type = $(".assignment_topic_type_check").val();
             jQuery.ajax({
                 type: "GET",
-                url: '/admin/common/vocabulary_quiz_by_year',
+                url: '/admin/common/types_quiz_by_year',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {"year_id": year_id},
+                data: {"quiz_type": quiz_type, "year_id": year_id},
                 success: function (return_data) {
-                    $(".vocabulary-ajax-fields").html(return_data);
+                    $(".quiz-ajax-fields").html(return_data);
                 }
             });
         });
-        $('body').on('change', '.vocabulary_topic_select', function (e) {
+
+        $('body').on('change', '.year_group_quiz_ajax_select', function (e) {
+            var year_group = $(this).val();
+            var quiz_type = $(".assignment_topic_type_check").val();
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/types_quiz_by_year_group',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"quiz_type": quiz_type, "year_group": year_group},
+                success: function (return_data) {
+                    $(".yeargroup-ajax-fields").html(return_data);
+                }
+            });
+        });
+
+
+
+        $('body').on('change', '.topic_selection', function (e) {
             var current_value = $(this).val();
             var total_questions = $(this).find('option[value="'+current_value+'"]').attr('data-total_questions');
             console.log(total_questions);

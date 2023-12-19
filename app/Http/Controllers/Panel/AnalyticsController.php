@@ -22,8 +22,8 @@ class AnalyticsController extends Controller
 
         $graphs_array = array();
 
-        $start_date = strtotime('2023-09-20');
-        $end_date = strtotime('2023-09-26');
+        $start_date = strtotime('2023-12-18');
+        $end_date = strtotime('2023-12-24');
         $custom_dates = array(
             'start' => $start_date,
             'end'   => $end_date,
@@ -187,8 +187,8 @@ class AnalyticsController extends Controller
                             $end_date_str = $QuizzesAttemptObj->created_at + ($practice_time*60);
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'] = $end_date_str;
                         }
-                        $start_time = $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['start_time'];
-                        $end_time = $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'];
+                        $start_time = (int) $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['start_time'];
+                        $end_time = (int) $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['end_time'];
 
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['more_than_minute'] = (($end_time - $start_time) > 59)? 'yes' : 'no';
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['type'] = '';

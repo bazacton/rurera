@@ -213,11 +213,16 @@ class CommonController extends Controller
         exit;
     }
 
-    public function vocabulary_quiz_by_year(Request $request)
+    public function types_quiz_by_year(Request $request)
     {
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
-        $resultsQuery = Quiz::where('year_id', $year_id)->where('quiz_type', 'vocabulary')->where('status', 'active');
+        $quiz_type = $request->get('quiz_type', null);
+        $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
+
+        if( $year_id > 0){
+            $resultsQuery = $resultsQuery->where('year_id', $year_id);
+        }
 
         $results = $resultsQuery->get();
 
@@ -226,9 +231,9 @@ class CommonController extends Controller
                         <label class="input-label">Select Topic</label>
                         <div class="input-group">
                             <select name="ajax[new][topic_id]"
-                                    class="form-control select2 vocabulary_topic_select">';
+                                    class="form-control select2 topic_selection">';
 
-        $response .= '<option value="">Select Vocabulary Quiz</option>';
+        $response .= '<option value="">Select Topic</option>';
         if (!empty($results)) {
             foreach ($results as $rowObj) {
                 $count_questions = isset( $rowObj->quizQuestionsList )? count($rowObj->quizQuestionsList) : 0;
@@ -242,6 +247,42 @@ class CommonController extends Controller
 
         exit;
     }
+
+    public function types_quiz_by_year_group(Request $request)
+    {
+        $user = auth()->user();
+        $year_group = $request->get('year_group', null);
+        $quiz_type = $request->get('quiz_type', null);
+        $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
+
+        if( $year_group != 'All'){
+            $resultsQuery = $resultsQuery->where('year_group', $year_group);
+        }
+
+        $results = $resultsQuery->get();
+
+
+        $response = '<div class="form-group">
+                        <label class="input-label">Select Topic</label>
+                        <div class="input-group">
+                            <select name="ajax[new][topic_id]"
+                                    class="form-control select2 topic_selection">';
+
+        $response .= '<option value="">Select Topic</option>';
+        if (!empty($results)) {
+            foreach ($results as $rowObj) {
+                $count_questions = isset( $rowObj->quizQuestionsList )? count($rowObj->quizQuestionsList) : 0;
+                $selected ='';
+                $response .= '<option data-total_questions="'.$count_questions.'" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+            }
+        }
+        $response .= '</select></div></div>';
+
+        echo $response;
+
+        exit;
+    }
+
 
 
 

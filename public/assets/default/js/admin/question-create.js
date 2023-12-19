@@ -211,6 +211,7 @@ function leform_save(_object, question_status) {
     var search_tags = $("[name=search_tags]").val();
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
+    var question_type = $("[name=question_type]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
     var review_required = ($('[name=review_required]').prop('checked')) ? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
@@ -254,6 +255,7 @@ function leform_save(_object, question_status) {
         "chapter_id": chapter_id,
         "question_score": question_score,
         "question_average_time": question_average_time,
+        "question_type": question_type,
         "glossary_ids": glossary_ids,
         "difficulty_level": difficulty_level,
         "review_required": review_required,

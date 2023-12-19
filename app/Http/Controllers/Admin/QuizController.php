@@ -524,27 +524,27 @@ class QuizController extends Controller
             'Below'     => array(
                 'questions'         => isset($data['Below']) ? $data['Below'] : '',
                 'points_percentage' => isset($data['Below_points']) ? $data['Below_points'] : '',
-                'points'            => (round(($Below_points * $mastery_points) / 100) / $Below_questions),
+                'points'            => 0,
             ),
             'Emerging'  => array(
                 'questions'         => isset($data['Emerging']) ? $data['Emerging'] : '',
                 'points_percentage' => isset($data['Emerging_points']) ? $data['Emerging_points'] : '',
-                'points'            => (round(($Emerging_points * $mastery_points) / 100) / $Emerging_questions),
+                'points'            => 0,
             ),
             'Expected'  => array(
                 'questions'         => isset($data['Expected']) ? $data['Expected'] : '',
                 'points_percentage' => isset($data['Expected_points']) ? $data['Expected_points'] : '',
-                'points'            => (round(($Expected_points * $mastery_points) / 100) / $Expected_questions),
+                'points'            => 0,
             ),
             'Exceeding' => array(
                 'questions'         => isset($data['Exceeding']) ? $data['Exceeding'] : '',
                 'points_percentage' => isset($data['Exceeding_points']) ? $data['Exceeding_points'] : '',
-                'points'            => (round(($Exceeding_points * $mastery_points) / 100) / $Exceeding_questions),
+                'points'            => 0,
             ),
             'Challenge' => array(
                 'questions'         => isset($data['Challenge']) ? $data['Challenge'] : '',
                 'points_percentage' => isset($data['Challenge_points']) ? $data['Challenge_points'] : '',
-                'points'            => (round(($Challenge_points * $mastery_points) / 100) / $Challenge_questions),
+                'points'            => 0,
             )
         );
 
@@ -575,6 +575,7 @@ class QuizController extends Controller
         ]);
 
         if (!empty($quiz)) {
+
 
 
             $quiz_question_ids = array();

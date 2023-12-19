@@ -7963,6 +7963,9 @@ function getGuestLimit($type){
         case "vocabulary":
             $limit = 10;
             break;
+        case "sats":
+            $limit = 100;
+            break;
     }
     return $limit;
 }

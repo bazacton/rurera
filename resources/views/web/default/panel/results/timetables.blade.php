@@ -170,7 +170,7 @@ $rand_id = rand(99,9999);
                                                 </div>
                                             </div>
                                         </div>
-                        <div class="col-12 col-lg-12 mx-auto">
+                        <div class="mx-auto">
 
 
                             @php $counter = 1; @endphp

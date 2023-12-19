@@ -820,6 +820,23 @@ $rand_id = rand(999,99999);
 
                                                     <div class="col-12">
                                                         <div class="form-group">
+                                                            <label class="input-label">Question Type</label>
+                                                            <select name="question_type" class="custom-select ">
+                                                                <option value="">Select Type</option>
+                                                                <option value="dropdown">Dropdown</option>
+                                                                <option value="true_false">True False</option>
+                                                                <option value="matching">Matching</option>
+                                                                <option value="sorting">Sorting</option>
+                                                                <option value="single_select">Single Select</option>
+                                                                <option value="text_field">Text Field</option>
+                                                                <option value="multi_select">Multi Select</option>
+                                                                <option value="short_answer">Short Answer</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="form-group">
                                                             <label class="input-label">Difficulty Level</label>
                                                             <select name="difficulty_level" class="custom-select ">
                                                                 <option value="Emerging">Emerging</option>

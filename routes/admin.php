@@ -398,7 +398,9 @@ Route::group([
             Route::get('/users_by_section', 'CommonController@users_by_section');
             Route::get('/subjects_by_year', 'CommonController@subjects_by_year');
             Route::get('/generate_audio', 'CommonController@generate_audio');
-            Route::get('/vocabulary_quiz_by_year', 'CommonController@vocabulary_quiz_by_year');
+            Route::get('/types_quiz_by_year', 'CommonController@types_quiz_by_year');
+            Route::get('/types_quiz_by_year_group', 'CommonController@types_quiz_by_year_group');
+
 
         });
 

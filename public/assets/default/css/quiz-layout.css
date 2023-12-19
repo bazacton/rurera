@@ -3,16 +3,15 @@ Lms Sorting Fields Style
 **********************************/
 .lms-sub-heading {margin: 0 0 20px; color: #000; font-weight: 500; font-size: 15px;}
 .lms-sub-heading .lms-numbers {display: block; padding-top: 10px; margin-left: 20px; font-weight: 700; letter-spacing: 1px;}
-.lms-sorting-fields {display: inline-block; width: 100%; overflow: hidden; overflow-x: auto;}
 .option-row-1.option-small .lms-sorting-fields {gap: 10px;}
 .lms-sorting-fields span {line-height: normal; display: block; font-size: 15px;}
-.lms-sorting-fields .field-holder {border: 1px solid #ccc; border-radius: 2px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px;}
+.lms-sorting-fields .field-holder {border: 2px solid #ddd; border-radius: 8px; border-bottom-width: 4px; padding:16px 15px; cursor: all-scroll; position: relative; height: auto; min-width: 130px;}
 .lms-sorting-fields.multi-lines {flex-direction: column; align-items: flex-start; margin-left: 0; margin-right: 0;}
 .lms-sorting-fields.multi-lines .field-holder {margin: 0 0 10px; width: 100%; visibility: visible !important;}
 .lms-sorting-fields.multi-lines .field-holder:last-child {margin-bottom: 0;}
 .sort-icon {height: 20px; width: 25px; display: inline-block; vertical-align: middle; }
 .sort-icon span,
-.lms-quiz-section .sort-icon span {height: 3px; background-color: #000; margin-bottom: 4px; display: block; }
+.lms-quiz-section .sort-icon span {height: 3px; background-color: #999; margin-bottom: 4px; display: block; }
 .lms-sorting-fields .sort-icon {position: absolute; right: 15px; top: 50%; transform: translateY(-50%); }
 .inline-fields .lms-sorting-fields {flex-wrap: wrap;}
 .inline-fields.lms-sortable-img {margin: 0;}
@@ -22,11 +21,11 @@ Lms Sorting Fields Style
 .row-fields .lms-sorting-fields {flex-direction: column;}
 .lms-sorting-fields .field-holder label {margin: 0; pointer-events: none;}
 .lms-sorting-fields .field-holder img {max-width: 100%;}
-.lms-sortable-img.lms-sorting-fields .field-holder img {max-width: 60px; max-height: 60px; object-fit: contain;}
+.lms-sortable-img.lms-sorting-fields .field-holder img {max-width: 60px; height: 55px; object-fit: cover;}
 .lms-sorting-fields .match-question {position: initial !important; display: inline-block; width: 100% !important; height: auto !important;}
 .lms-sorting-fields .match-question.ui-sortable-placeholder {position: absolute !important;}
 .lms-sorting-fields .field-holder .sort-icon ~ label {padding-right: 40px;}
-.lms-sorting-fields {display: inline-block; width: 100%; overflow: hidden; overflow-x: auto;}
+.lms-sorting-fields {display: inline-block; width: 100%;}
 .question-textarea .table {overflow: hidden;}
 /**********************************
 Lms Signs Style 
@@ -38,10 +37,10 @@ Lms Signs Style
     flex-direction: column;
 } */
 .form-box.inline-fields .lms-radio-select {margin-bottom: 0;}
-.lms-radio-select label {margin: 0; border: 1px solid #ddd; min-height: 50px; display: inline-flex; align-items: center; border-radius: 2px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
+.lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;}
-.lms-radio-select input[type=radio]:checked~label:before {box-shadow: 0 0 0 6px #70c17c inset; border-color: transparent; }
+.lms-radio-select label:hover {background-color: rgba(0,0,0,0.02);}
 /* .lms-radio-select label:after {
     content: "";
     position: absolute;
@@ -55,7 +54,7 @@ Lms Signs Style
     z-index: -1;
 } */
 .lms-radio-select input[type=radio] {position: absolute; width: 0; height: 0;}
-.lms-radio-select input[type=radio]:checked~label {border-color: #70c17c; }
+.lms-radio-select input[type=radio]:checked~label {background-color: rgba(0,0,0,0.02);}
 .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transition: 0.4s; }
 .row-fields .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transform: none;}
 .row-fields .lms-radio-select label:after {width: 0; transform: none;}
@@ -79,7 +78,7 @@ Lms Signs Style
 .lms-checkbox-img.inline-fields .field-holder {max-width: 31.777%; margin: 0 14px 10px 0; width: 31.777%;}
 .lms-radio-select .field-holder:nth-child(3),
 .lms-radio-select .field-holder:nth-child(6) {margin-right: 0;}
-.learning-page .learning-content {background-color: inherit; /* height: auto; */ overflow: hidden; padding-bottom: 40px; border-radius: 0;}
+.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0;}
 .question-area .lms-radio-select {margin: 0;}
 /* Image Top Style Start */
 .image-top .lms-radio-select label {flex-direction: column; padding-bottom: 20px;}
@@ -91,11 +90,13 @@ Lms Signs Style
 /* Image Top Style End */
 .lms-radio-select.inline-fields {flex-direction: row;}
 .alphabet-list-style {counter-reset: listStyle;}
-.alphabet-list-style .field-holder {counter-increment: listStyle; padding-left: 0; position: relative;}
+.alphabet-list-style .field-holder {counter-increment: listStyle; position: relative; padding: 0;}
 .alphabet-list-style .field-holder:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; background-color: #9c9c9c; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #fff; margin-top: -12px; }
 .numeric-list-style {counter-reset: listStyle;}
-.numeric-list-style > .field-holder {counter-increment: listStyle; position: relative;}
-.numeric-list-style > .field-holder:before {content: counter(listStyle); position:absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; background-color: #9c9c9c; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #fff; margin-top: -12px; }
+.numeric-list-style > .field-holder,
+.numeric-list-style > .form-field {counter-increment: listStyle; position: relative; padding-left: 45px;}
+.numeric-list-style > .field-holder:before,
+.numeric-list-style > .form-field:before {content: counter(listStyle); position:absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; background-color: #9c9c9c; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #fff; margin-top: -12px; }
 .numeric-list-style .lms-radio-select .field-holder label,
 .alphabet-list-style .lms-radio-select.image-right .field-holder input[type="radio"] ~ label,
 .alphabet-list-style .lms-radio-select.image-right .field-holder input[type="radio"] ~ label,
@@ -115,7 +116,7 @@ Rurera Row Style
 .rurera-in-row {display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start;}
 .rurera-in-row .rurera-in-row {width: 100%;}
 .rurera-in-row .field-holder,
-.rurera-in-row .form-field {width: auto;}
+.rurera-in-row .form-field {width: 31.888%;}
 .lms-radio-select input[type=radio] ~ label {padding-right: 50px;}
 .leform-element .leform-col .leform-element {padding: 0;}
 .quiz-group .leform-column-label {margin-bottom: 15px;}
@@ -135,14 +136,13 @@ Lms Form Fields Style
 .form-box { width: calc(100% - 120px); position: relative;}
 .leform-form-editor .form-box {width: 100%;}
 .form-field input[type="checkbox"] {position: absolute; left: 0; top: 0; opacity: 0;}
-.form-field label {background-color: #fff; border: 1px solid #ddd; border-radius: 2px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
+.form-field label {background-color: #fff; border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; position: relative; cursor: pointer; padding: 15px; width: 100%; margin-bottom: 0; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
 .lms-checkbox-img .form-field label {height: 100%;}
 .form-field input[type="checkbox"] ~ label {min-height: 52px; padding-right: 60px;}
-.form-field label:before {content: ""; height: 30px; width: 30px; position: absolute; right: 15px; top: 50%; margin-top: -15px; border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;}
-.form-field label:after {content: "\2713"; position: absolute; top: 50%; right: 15px; height: 30px; width: 30px; text-align: center; line-height: 30px; margin-top: -15px; color: #fff; opacity: 0; border-radius: 2px; -webkit-transform: scale(0); transform: scale(0); -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;}
-.form-field input[type="checkbox"]:checked ~ label:before {border: 0; background: rgb(112,193,124); background: -moz-linear-gradient(left,  rgba(112,193,124,1) 0%, rgba(109,193,133,1) 50%, rgba(94,161,92,1) 50%, rgba(92,159,92,1) 100%); background: -webkit-linear-gradient(left,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); background: linear-gradient(to right,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c17c', endColorstr='#5c9f5c',GradientType=1 );}
+/* .form-field label:before {content: ""; height: 30px; width: 30px; position: absolute; right: 15px; top: 50%; margin-top: -15px; border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;} */
+/* .form-field label:after {content: "\2713"; position: absolute; top: 50%; right: 15px; height: 30px; width: 30px; text-align: center; line-height: 30px; margin-top: -15px; color: #fff; opacity: 0; border-radius: 2px; -webkit-transform: scale(0); transform: scale(0); -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;} */
+/* .form-field input[type="checkbox"]:checked ~ label:before {border: 0; background: rgb(112,193,124); background: -moz-linear-gradient(left,  rgba(112,193,124,1) 0%, rgba(109,193,133,1) 50%, rgba(94,161,92,1) 50%, rgba(92,159,92,1) 100%); background: -webkit-linear-gradient(left,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); background: linear-gradient(to right,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c17c', endColorstr='#5c9f5c',GradientType=1 );} */
 .form-field input[type="checkbox"]:checked ~ label:after {opacity: 1; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-.form-field label:hover,
 .lms-radio-select label:hover {box-shadow: 0 0 8px rgba(0,0,0,0.1);}
 .row-fields.lms-checkbox-img label {padding: 5px;}
 .lms-checkbox-img .form-field label:before {width: 30px; height: 30px; right: 15px; border-radius: 100%; margin-top: -15px;}
@@ -195,8 +195,9 @@ Lms Form Fields Style
 .inline-fields .form-field:nth-child(6) {margin-right: 0;}
 .leform-form-editor .form-box .form-field:last-child,
 .leform-form-editor .input-holder input.input-simple { margin-bottom: 0;}
-.form-field input[type="checkbox"]:checked ~ label {border-color: #70c17c; /* background-color: #def7e4; */}
-.form-field input[type="checkbox"]:checked ~ label img {margin-right: 15px; filter: invert(90%) sepia(4%) saturate(7377%) hue-rotate(63deg) brightness(111%) contrast(51%);}
+.form-field input[type="checkbox"]:checked ~ label,
+.form-field label:hover {background-color: rgba(0,0,0,0.02);}
+.form-field input[type="checkbox"]:checked ~ label img {margin-right: 15px;}
 /*option medium style*/
 .lms-checkbox-img.option-medium .form-field label {font-size: 24px;}
 .lms-checkbox-img.option-medium label img {width: 80px; height: 80px;}
@@ -211,11 +212,13 @@ Lms Form Fields Style
 .lms-checkbox-img.option-large .form-field label:before {height: 70px; width: 70px; margin-top: -35px;}
 .lms-checkbox-img.option-large .form-field label:after {right: 38px; font-size: 30px; margin-top: -20px;}
 /*image top style*/
-.lms-checkbox-img.image-top .form-field label {flex-direction: column; justify-content: center; padding-right: 40px; }
+.lms-checkbox-img.image-top .form-field label {flex-direction: column; justify-content: flex-start; align-items: flex-start; padding-right: 15px; color: #838383; }
 .lms-checkbox-img.image-top .form-field label:before {border-radius: 0; height: 20px; width: 20px; top:10px; margin: 0; right: 10px;}
 .lms-checkbox-img.image-top .form-field label:after {right: 13px; top: 9px; margin-top: 0; width: 15px; height: 15px; font-size: 14px; }
-.lms-checkbox-img.image-top label img {margin: 0 0 10px;}
+.lms-checkbox-img.image-top label img {margin: 0px 0px 10px; width: auto; max-width: 100%; height: auto;}
 .lms-checkbox-img.image-top .form-field input[type="checkbox"]:checked ~ label img {margin-right: 0;}
+.numeric-list-style.image-top .form-field {counter-increment: listStyle;}
+.numeric-list-style.image-top .form-field:after{content: counter(listStyle); position:absolute; bottom: 10px; right: 20px; font-weight: 500; text-transform: uppercase; border: 1px solid #e4e4e4; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #666; font-size: 14px; }
 /*image right style*/
 .lms-checkbox-img.image-right .form-field label img,
 .lms-radio-select.image-right .field-holder label img {position: absolute; right: 10px; margin: 0; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);}
@@ -268,7 +271,7 @@ Lms Question List Style
 .question-layout-block form.question-fields .questions-nav-controls {margin-top: auto;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
-.question-textarea p {font-size: 17px; color: #000; font-weight: 500;}
+.question-textarea p {font-size: 16px; color: #000; font-weight: 400;}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
 .question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 0 25px 0 10px; background: none; background-image: none; font-size: 16px; color: #999;}
@@ -452,7 +455,21 @@ Lms Quiz Wf Style Start
 .question-label {position: relative;}
 .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;}
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0; padding: 8px 15px; border-radius: 6px; line-height: normal; text-align: left; font-size: 17px; border: 1px solid #999; display: inline-block; vertical-align: middle;width: calc(100% - 70px);}
+.lms-quiz-section .question-label span {margin: 0;padding: 12px 15px;border-radius: 6px;line-height: normal;text-align: left;border: 2px solid #ddd;display: inline-block;vertical-align: middle;width: calc(100% - 70px);position: relative;}
+.question-label span:before,
+.lms-quiz-section .question-label span:before {
+    background-color: #fff;
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    margin-top: -6px;
+    border-top: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    transform: rotate(-45deg);
+}
 .divide-numbers .divider, .lms-quiz-section .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0; border: 0;}
 .quiz-group.text-center {margin: 0; display: flex; align-items: center; justify-content: center; position: relative;}
 .lms-quiz-section .quiz-group.mt-50 {margin-bottom: 0;}
@@ -469,7 +486,6 @@ Lms Quiz Wf Style Start
 .lms-quiz-section .section-title h2 br {display: none;}
 .quiz-group .quiz-numbers,
 .quiz-numbers {font-size: 24px; color: #000; letter-spacing: 4px;  margin: 0;}
-.lms-quiz-section span {font-size: 17px; color: #000; font-weight: 500;}
 .lms-quiz-section span span {display: inline-block;}
 .flag-question.flaged svg g {fill: #4c5387;}
 /* span~.input-holder {
@@ -1327,6 +1343,10 @@ Lms Quiz Wf Style End
     align-items: center;
     justify-content: center;
 }
+.type-sats .lms-quiz-section {
+    height: 100%;
+    background: none;
+}
 .read-text-controls {
     padding: 20px 20px 20px 0;
 }
@@ -1714,9 +1734,9 @@ span.seperator_line {border:3px solid; border-color:#000; width: 50px; display: 
 #question_preview .prev-next-controls {border-top: 1px solid #eee; padding-top: 30px; padding-left: 0;}
 #question_preview .prev-next-controls .review-btn {left: 0;}
 .draggable-items {margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 10px;}
-.draggable-items .ui-draggable {background-color: var(--primary); background-image: none; color: #fff; padding: 6px 25px 12px; height: auto; border: 0; margin: 0; border-radius: 8px; box-shadow: 0 5px 0 rgba(0,0,0,0.1);}
-.draggable-items .ui-draggable span {color: #fff; vertical-align: middle;}
-.droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 10px 20px; margin: 8px 0; border-radius: 3px; border: 1px solid #999; vertical-align: middle; min-width: 80px; text-align: center; min-height: 45px; }
+.draggable-items .ui-draggable {background-image: none;color: #666;padding: 4px 25px 8px;height: auto;margin: 0;border-radius: 8px;border: 2px solid #ddd; border-bottom-width: 4px;}
+.draggable-items .ui-draggable span {color: #999; vertical-align: middle;}
+.droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 10px 20px; margin: 8px 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: bottom; min-width: 80px; text-align: center; min-height: 45px; }
 span.Selectable.marking-selected {background: #fff716;}
 .marking-quiz-data span {display: inline;}
 span.Selectable:hover {text-decoration: underline;}

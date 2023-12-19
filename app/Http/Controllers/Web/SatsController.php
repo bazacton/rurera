@@ -197,9 +197,9 @@ class SatsController extends Controller
     public function index()
     {
         if (!auth()->check()) {
-            return redirect('/login');
+            //return redirect('/login');
         }
-        $user = auth()->user();
+        $user = getUser();
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $summary_type = 'sats';
@@ -239,14 +239,14 @@ class SatsController extends Controller
         }
 
         $childs = array();
-        if (auth()->user()->isParent()) {
+        if (auth()->check() && auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', $user->id)
                 ->where('status', 'active')
                 ->get();
         }
-        if (auth()->user()->isTeacher()) {
+        if (auth()->check() && auth()->user()->isTeacher()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'teacher')
                 ->where('parent_id', $user->id)
@@ -279,20 +279,20 @@ class SatsController extends Controller
     public function start(Request $request, $quiz_slug)
     {
         if (!auth()->check()) {
-            return redirect('/login');
+            //return redirect('/login');
         }
 
         //$quiz = Quiz::find($id);
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;
-        if (!auth()->subscription('sats') && !auth()->assginment('sats', $id)) {
+        /*if (!auth()->subscription('sats') && !auth()->assginment('sats', $id)) {
             return view('web.default.quizzes.not_subscribed');
-        }
+        }*/
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $started_already = $QuestionsAttemptController->started_already($id);
+        //$started_already = $QuestionsAttemptController->started_already($id);
 
-        //$started_already = false;
+        $started_already = false;
         if ($started_already == true) {
             $data = [
                 'pageTitle'  => 'Start',

@@ -125,8 +125,8 @@ if( $duration_type == 'total_practice'){
                                     <div class="swiper-button-next"></div>
                                 </div>
                                 <div class="quiz-timer">
-                                    <span class="timer-number">4<em>m</em></span> <span
-                                            class="timer-number">50<em>s</em></span>
+
+                                    <span class="timer-number"><div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div></span>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,6 @@ if( $duration_type == 'total_practice'){
    </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
-
 
 
 <script>

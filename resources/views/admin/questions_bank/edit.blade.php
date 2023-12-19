@@ -615,6 +615,23 @@ $rand_id = rand(999,99999);
                                         </div>
 
                                         <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Question Type</label>
+                                            <select name="question_type" class="custom-select ">
+                                                <option value="" {{ ($question_type=='') ? 'selected' : '' }}>Select Type</option>
+                                                <option value="dropdown" {{ ($question_type=='dropdown') ? 'selected' : '' }}>Dropdown</option>
+                                                <option value="true_false" {{ ($question_type=='true_false') ? 'selected' : '' }}>True False</option>
+                                                <option value="matching" {{ ($question_type=='matching') ? 'selected' : '' }}>Matching</option>
+                                                <option value="sorting" {{ ($question_type=='sorting') ? 'selected' : '' }}>Sorting</option>
+                                                <option value="single_select" {{ ($question_type=='single_select') ? 'selected' : '' }}>Single Select</option>
+                                                <option value="text_field" {{ ($question_type=='text_field') ? 'selected' : '' }}>Text Field</option>
+                                                <option value="multi_select" {{ ($question_type=='multi_select') ? 'selected' : '' }}>Multi Select</option>
+                                                <option value="short_answer" {{ ($question_type=='short_answer') ? 'selected' : '' }}>Short Answer</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label class="input-label">Difficulty Level</label>
                                                 <select name="difficulty_level" class="custom-select ">
