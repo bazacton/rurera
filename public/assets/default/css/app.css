@@ -13192,7 +13192,7 @@ p {line-height: 1.5;}
 .panel-content .webinar-card {box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .04) !important;}
 .panel-content .webinar-card:hover {transform: unset !important;box-shadow: 0 8px 23px 0 rgba(62, 73, 84, .15) !important;transition: all .5s ease;}
 .panel-content .webinar-card .image-box:after {border-radius: 10px 0 0 10px;}
-.panel-section-card {border-radius: 0;box-shadow: 0 0 5px rgba(0,0,0,0.2);background-color: #fff;}
+.panel-section-card {border-radius: 10px;box-shadow: 0 0 15px rgba(0,0,0,0.05);background-color: #fff;}
 /* .section-title h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -14739,7 +14739,7 @@ p {line-height: 1.5;}
 .custom-table thead th {font-size: 14px; font-weight: 500; line-height: 1.19; text-align: left; color: #818894; border-bottom: none; border-top: none;}
 .rtl .custom-table thead td,
 .rtl .custom-table thead th {text-align: right;}
-.custom-table tbody td {font-size: 14px; font-weight: 500; line-height: 1.19; text-align: center; color: #171347;}
+.custom-table tbody td {font-size: 15px; font-weight: 400; line-height: 1.19; text-align: center; color: #171347; border-bottom: 1px solid #ececec; padding: 15px 20px;}
 .table-responsive {overflow: visible;}
 @media (max-width:991px) {
     .table-responsive {overflow-x: auto;}
