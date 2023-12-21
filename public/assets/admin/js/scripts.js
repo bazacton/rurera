@@ -718,7 +718,9 @@ function rurera_remove_loader(thisObj, loader_type) {
     switch (loader_type) {
         case "button":
             thisObj.removeClass('rurera-processing');
-            thisObj.find('.rurera-button-loader').remove();
+            thisObj.unwrap('.rurera-loader-holder');
+            $('body').removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
             break;
         case "page":
             $('body').removeClass('rurera-processing');

@@ -206,17 +206,6 @@
                                         @if( !empty($categories ))
 
                                         <div class="years-group populated-data">
-
-                                            <div class="form-group">
-                                                <label class="input-label">Assignment Title</label>
-                                                <input type="text"
-                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
-                                                       value="{{ !empty($assignment) ? $assignment->title : old('title') }}"
-                                                       class="js-ajax-title form-control "
-                                                       placeholder=""/>
-                                                <div class="invalid-feedback"></div>
-                                            </div>
-
                                             <div class="form-group">
                                                 <label class="input-label">Assignment Type</label>
                                                 <div class="input-group">
@@ -224,10 +213,10 @@
                                                     <div class="radio-buttons">
                                                         <label class="card-radio">
                                                             <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                                   class="assignment_topic_type_check" value="practice">
+                                                                   class="assignment_topic_type_check" value="practice" checked>
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                 <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                 <img src="/assets/default/img/assignment-logo/practice.png">
                                                                     <h3>Practice</h3>
                                                                </div>
                                                           </span>
@@ -237,7 +226,7 @@
                                                                    class="assignment_topic_type_check" value="sats">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/sats.png">
                                                                     <h3>SATs</h3>
                                                                </div>
                                                           </span>
@@ -247,7 +236,7 @@
                                                                    class="assignment_topic_type_check" value="11plus">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/11plus.png">
                                                                     <h3>11 Plus</h3>
                                                                </div>
 
@@ -259,7 +248,7 @@
                                                                    class="assignment_topic_type_check" value="independent_exams">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/independent-exams.png">
                                                                     <h3>Independent Exams</h3>
                                                                </div>
 
@@ -271,7 +260,7 @@
                                                                    class="assignment_topic_type_check" value="iseb">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/iseb.png">
                                                                     <h3>ISEB</h3>
                                                                </div>
 
@@ -283,7 +272,7 @@
                                                                    class="assignment_topic_type_check" value="cat4">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/cat4.png">
                                                                     <h3>CAT 4</h3>
                                                                </div>
 
@@ -295,7 +284,7 @@
                                                                    class="assignment_topic_type_check" value="vocabulary">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/vocabulary.png">
                                                                     <h3>Vocabulary</h3>
                                                                </div>
 
@@ -307,7 +296,7 @@
                                                                    class="assignment_topic_type_check" value="timestables">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
+                                                                    <img src="/assets/default/img/assignment-logo/timestables.png">
                                                                     <h3>Timestables</h3>
                                                                </div>
 
@@ -318,49 +307,109 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-section assignment_topic_type_fields practice_fields">
+                                                <h2 class="section-title">Practice</h2>
+                                            </div>
 
-                                            <div class="assignment_topic_type_fields vocabulary_fields sats_fields">
-                                                <div class="form-group">
-                                                    <label>Year</label>
-                                                    <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
-                                                            class="form-control year_quiz_ajax_select select2 @error('year_id') is-invalid @enderror"
-                                                            name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
-                                                        <option {{ !empty($trend) ?
-                                                        '' : 'selected' }} disabled>Select Year</option>
-                                                        <option value="0">Select All</option>
 
-                                                        @foreach($categories as $category)
-                                                        @if(!empty($category->subCategories) and
-                                                        count($category->subCategories))
-                                                        <optgroup label="{{  $category->title }}">
-                                                            @foreach($category->subCategories as $subCategory)
-                                                            <option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
-                                                                {{$subCategory->title}}
-                                                            </option>
-                                                            @endforeach
-                                                        </optgroup>
-                                                        @else
-                                                        <option value="{{ $category->id }}"
-                                                                class="font-weight-bold">{{
-                                                            $category->title }}
-                                                        </option>
-                                                        @endif
-                                                        @endforeach
-                                                    </select>
-                                                    @error('year_id')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
+                                            <div class="form-section assignment_topic_type_fields sats_fields">
+                                                <h2 class="section-title">Sats</h2>
+                                            </div>
+
+
+                                            <div class="form-section assignment_topic_type_fields 11plus_fields">
+                                                <h2 class="section-title">11 Plus</h2>
+                                            </div>
+
+
+                                            <div class="form-section assignment_topic_type_fields independent_exams_fields">
+                                                <h2 class="section-title">Independent Exams</h2>
+                                            </div>
+
+
+                                            <div class="form-section assignment_topic_type_fields iseb_fields">
+                                                <h2 class="section-title">ISEB</h2>
+                                            </div>
+
+
+                                            <div class="form-section assignment_topic_type_fields cat4_fields">
+                                                <h2 class="section-title">CAT 4</h2>
+                                            </div>
+
+
+                                            <div class="form-section assignment_topic_type_fields vocabulary_fields">
+                                                <h2 class="section-title">Vocabulary</h2>
+                                            </div>
+
+                                            <div class="form-section assignment_topic_type_fields timestables_fields">
+                                                <h2 class="section-title">Times Tables</h2>
+                                            </div>
+
+
+                                            <div class="assignment_topic_type_fields vocabulary_fields sats_fields practice_fields">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                        <div class="form-group">
+                                                            <label class="input-label">Year Group</label>
+                                                            <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
+                                                                    class="form-control year_quiz_ajax_select @error('year_id') is-invalid @enderror"
+                                                                    name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
+                                                                <option value="0">Select Year Group</option>
+
+                                                                @foreach($categories as $category)
+                                                                @if(!empty($category->subCategories) and
+                                                                count($category->subCategories))
+                                                                @foreach($category->subCategories as $subCategory)
+                                                                <option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
+                                                                    {{$subCategory->title}}
+                                                                </option>
+                                                                @endforeach
+                                                                @endif
+                                                                @endforeach
+                                                            </select>
+                                                            @error('year_id')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
                                                     </div>
-                                                    @enderror
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                        <div class="quiz-ajax-fields"></div>
+                                                    </div>
                                                 </div>
-                                                <div class="quiz-ajax-fields">
+                                            </div>
+                                            <div class="practice-quiz-ajax-fields assignment_topic_type_fields practice_fields"></div>
+
+
+                                            <div class="assignment_topic_type_fields 11plus_fields independent_exams_fields iseb_fields cat4_fields">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                        <div class="form-group">
+                                                            <label class="input-label d-block">Year Group</label>
+                                                            <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_group]"
+                                                                    class="form-control year_group_quiz_ajax_select" data-placeholder="Select Year Group">
+                                                                <option value="">Select Year Group</option>
+                                                                <option value="All">All</option>
+                                                                <option value="Year 3" selected>Year 3</option>
+                                                                <option value="Year 4">Year 4</option>
+                                                                <option value="Year 5">Year 5</option>
+                                                                <option value="Year 6">Year 6</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                        <div class="yeargroup-ajax-fields"></div>
+                                                    </div>
                                                 </div>
                                             </div>
 
+                                            <div class="practice-quiz-topics-list assignment_topic_type_fields practice_fields"></div>
 
                                             @php
                                             $tables_no = isset( $assignment->tables_no )? json_decode($assignment->tables_no) : array();
                                             @endphp
+
 
                                             <div class="form-group assignment_topic_type_fields timestables_fields">
                                                 <div class="questions-select-number">
@@ -399,74 +448,161 @@
                                                 </div>
                                             </div>
 
-
-
-
-
-                                            <div class="assignment_topic_type_fields 11plus_fields independent_exams_fields iseb_fields cat4_fields">
-                                                <div class="form-group">
-                                                    <label class="input-label d-block">Year Group</label>
-                                                    <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_group]"
-                                                            class="form-control year_group_quiz_ajax_select" data-placeholder="Select Year Group">
-                                                        <option value="">Select Year Group</option>
-                                                        <option value="All">All</option>
-                                                        <option value="Year 3">Year 3</option>
-                                                        <option value="Year 4">Year 4</option>
-                                                        <option value="Year 5">Year 5</option>
-                                                        <option value="Year 6">Year 6</option>
-                                                    </select>
-                                                </div>
-                                                <div class="yeargroup-ajax-fields"></div>
+                                            <div class="form-section">
+                                                <h2 class="section-title">General information</h2>
                                             </div>
 
-
                                             <div class="form-group">
-                                                <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
-
-                                                <div class="range-slider">
-                                                    <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
-                                                    <div class="range-slider_line">
-                                                        <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
-                                                    </div>
-                                                    <input type="range" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][no_of_questions]" value="0" class="js-ajax-title form-control no_of_questions range-slider-field" min="0" max="0" placeholder=""/>
-                                                </div>
-
-
+                                                <label class="input-label">Assignment Title</label>
+                                                <input type="text"
+                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
+                                                       value="{{ !empty($assignment) ? $assignment->title : old('title') }}"
+                                                       class="js-ajax-title form-control "
+                                                       placeholder=""/>
                                                 <div class="invalid-feedback"></div>
-
                                             </div>
 
                                             <div class="form-group">
-                                                        <label class="input-label">Assignment Method</label>
-                                                        <div class="input-group">
+                                                <label class="input-label">Assignment Description</label>
+                                                <textarea
+                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][description]"
+                                                        class="form-control summernote-editor-mintool"
+                                                        placeholder="" rows="20"></textarea>
+                                                <div class="invalid-feedback"></div>
+                                            </div>
 
-                                                            <div class="radio-buttons">
-                                                                <label class="card-radio">
-                                                                    <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
-                                                                           class="assignment_method_check" value="practice">
-                                                                    <span class="radio-btn"><i class="las la-check"></i>
+                                            <div class="form-section">
+                                                <h2 class="section-title">Schedule</h2>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                                    <div class="form-group">
+                                                        <label class="input-label">Training Start Date</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
+                                                                    <i class="fa fa-calendar-week"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" autocomplete="off"
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
+                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
+                                                                   class="form-control datepicker" min="2023-12-20" max="2023-12-31"
+                                                                   placeholder=""/>
+                                                            <div class="invalid-feedback"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                                    <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
+                                                        <label class="input-label">Training Due Date</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
+                                                                    <i class="fa fa-calendar-week"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" autocomplete="off"
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
+                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
+                                                                   class="form-control datepicker"
+                                                                   placeholder=""/>
+                                                            <div class="invalid-feedback"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                                    <div class="form-group">
+                                                        <label class="input-label">Review Due Date</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
+                                                                    <i class="fa fa-calendar-week"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" autocomplete="off"
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_review_due_date]"
+                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_review_due_date, 'Y-m-d', false) : old('assignment_review_due_date') }}"
+                                                                   class="form-control datepicker"
+                                                                   placeholder=""/>
+                                                            <div class="invalid-feedback"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                    <div class="form-group">
+                                                        <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
+
+                                                        <div class="range-slider">
+                                                            <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
+                                                            <div class="range-slider_line">
+                                                                <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
+                                                            </div>
+                                                            <input type="range" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][no_of_questions]" value="0"
+                                                                   class="js-ajax-title form-control no_of_questions range-slider-field" min="0" max="0" placeholder=""/>
+                                                        </div>
+
+
+                                                        <div class="invalid-feedback"></div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                    <div class="form-group">
+                                                        <label class="input-label">No of Attempts</label>
+
+                                                        <div class="invalid-feedback"></div>
+                                                        <div class="range-slider">
+                                                            <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
+                                                            <div class="range-slider_line">
+                                                                <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
+                                                            </div>
+                                                            <input type="range"
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][no_of_attempts]"
+                                                                   value="0"
+                                                                   class="js-ajax-title form-control no_of_attempts range-slider-field"
+                                                                   placeholder="" min="0" max="10"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="input-label">Assignment Method</label>
+                                                <div class="input-group">
+
+                                                    <div class="radio-buttons">
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
+                                                                   class="assignment_method_check" value="practice" checked>
+                                                            <span class="radio-btn"><i class="las la-check"></i>
                                                                         <div class="card-icon">
                                                                             <h3>Practice</h3>
                                                                        </div>
 
                                                                   </span>
-                                                                </label>
-                                                                <label class="card-radio">
-                                                                    <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
-                                                                           class="assignment_method_check" value="target_improvements">
-                                                                    <span class="radio-btn"><i class="las la-check"></i>
+                                                        </label>
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_method]"
+                                                                   class="assignment_method_check" value="target_improvements">
+                                                            <span class="radio-btn"><i class="las la-check"></i>
                                                                         <div class="card-icon">
                                                                             <h3>Target / Improvements</h3>
                                                                        </div>
 
                                                                   </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                                        </label>
                                                     </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
-                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                     <div class="form-group assignment_method_check_fields target_improvements_fields">
                                                         <label class="input-label">Percentage of Correct Answers</label>
 
@@ -477,17 +613,15 @@
                                                                 <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
                                                             </div>
                                                             <input type="range"
-                                                               name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_percentage]"
-                                                               value="0"
-                                                               class="js-ajax-title form-control correct_answers_percentage range-slider-field" min="0" max="100"
-                                                               placeholder=""/>
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_percentage]"
+                                                                   value="0"
+                                                                   class="js-ajax-title form-control correct_answers_percentage range-slider-field" min="0" max="100"
+                                                                   placeholder=""/>
                                                         </div>
 
 
-
-
                                                     </div>
-                                                    </div>
+                                                </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                     <div class="form-group assignment_method_check_fields target_improvements_fields">
                                                         <label class="input-label">Average Time of Correct Answers (Seconds)</label>
@@ -498,10 +632,10 @@
                                                                 <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
                                                             </div>
                                                             <input type="range"
-                                                               name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_average_time]"
-                                                               value="0"
-                                                               class="js-ajax-title form-control average_time range-slider-field" min="0" max="60"
-                                                               placeholder=""/>
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_average_time]"
+                                                                   value="0"
+                                                                   class="js-ajax-title form-control average_time range-slider-field" min="0" max="60"
+                                                                   placeholder=""/>
                                                         </div>
                                                         <div class="invalid-feedback"></div>
                                                     </div>
@@ -516,10 +650,9 @@
                                                     <div class="radio-buttons">
                                                         <label class="card-radio">
                                                             <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][duration_type]"
-                                                                   class="duration_conditional_check" value="no_time_limit">
+                                                                   class="duration_conditional_check" value="no_time_limit" checked>
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
                                                                     <h3>No Time Limit</h3>
                                                                </div>
 
@@ -530,7 +663,6 @@
                                                                    class="duration_conditional_check" value="total_practice">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
                                                                     <h3>Total Practice</h3>
                                                                </div>
 
@@ -541,7 +673,6 @@
                                                                    class="duration_conditional_check" value="per_question">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
                                                                     <h3>Per Question</h3>
                                                                </div>
 
@@ -554,12 +685,18 @@
                                             </div>
 
                                             <div class="form-group duration_type_fields total_practice_fields">
-                                                <label class="input-label">Practice Time (Minutes)</label>
-                                                <input type="number"
-                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][practice_time]"
-                                                       value="{{ !empty($assignment) ? ($assignment->practice_time) : old('practice_time') }}"
-                                                       class="js-ajax-title form-control "
-                                                       placeholder=""/>
+                                                <label class="input-label">Practice Time (<span class="practice_interval_data">Minutes</span>)</label>
+                                                <div class="range-slider">
+                                                    <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
+                                                    <div class="range-slider_line">
+                                                        <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
+                                                    </div>
+                                                    <input type="range"
+                                                           name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][practice_time]"
+                                                           value="0"
+                                                           class="js-ajax-title form-control practice_interval range-slider-field" step="20" min="0" max="240"
+                                                           placeholder=""/>
+                                                </div>
                                                 <div class="invalid-feedback"></div>
                                             </div>
 
@@ -572,67 +709,21 @@
                                                         <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
                                                     </div>
                                                     <input type="range"
-                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][time_interval]"
-                                                       value="0"
-                                                       class="js-ajax-title form-control time_interval range-slider-field" step="10" min="0" max="1200"
-                                                       placeholder=""/>
+                                                           name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][time_interval]"
+                                                           value="0"
+                                                           class="js-ajax-title form-control time_interval range-slider-field" step="10" min="0" max="1200"
+                                                           placeholder=""/>
                                                 </div>
 
                                                 <div class="invalid-feedback"></div>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-6">
-                                                    <div class="form-group">
-                                                        <label class="input-label">Start Date</label>
-                                                        <div class="input-group">
-                                                            <input type="text" autocomplete="off"
-                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
-                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
-                                                                   class="form-control datepicker"
-                                                                   placeholder=""/>
-                                                            <div class="invalid-feedback"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-6">
-                                                    <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
-                                                        <label class="input-label">End Date</label>
-                                                        <div class="input-group">
-                                                            <input type="text" autocomplete="off"
-                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
-                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
-                                                                   class="form-control datepicker"
-                                                                   placeholder=""/>
-                                                            <div class="invalid-feedback"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="input-label">No of Attempts</label>
-
-                                                <div class="invalid-feedback"></div>
-                                                <div class="range-slider">
-                                                    <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
-                                                    <div class="range-slider_line">
-                                                        <div id="slider_line" class="range-slider_line-fill" style="width: 0%;"></div>
-                                                    </div>
-                                                    <input type="range"
-                                                       name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][no_of_attempts]"
-                                                       value="0"
-                                                       class="js-ajax-title form-control no_of_attempts range-slider-field"
-                                                       placeholder="" min="0" max="10"/>
-                                                </div>
-                                            </div>
 
                                             <div class="form-group">
                                                 <label class="input-label">Assignment Reviewer</label>
                                                 <div class="input-group">
-                                                    <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_reviewer]"
-                                                            class="form-control select2">
-                                                        <option value="0" selected>Select</option>
+                                                    <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_reviewer][]"
+                                                            class="form-control select2" multiple="multiple">
                                                         @if( !empty( $teachers ) )
                                                         @foreach( $teachers as $teacherObj)
                                                         <option value="{{$teacherObj->id}}">{{$teacherObj->full_name}}</option>
@@ -643,18 +734,9 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label class="input-label">Review Due Date</label>
-                                                <div class="input-group">
-                                                    <input type="text" autocomplete="off"
-                                                           name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_review_due_date]"
-                                                           value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_review_due_date, 'Y-m-d', false) : old('assignment_review_due_date') }}"
-                                                           class="form-control datepicker"
-                                                           placeholder=""/>
-                                                    <div class="invalid-feedback"></div>
-                                                </div>
+                                            <div class="form-section">
+                                                <h2 class="section-title">User Criteria</h2>
                                             </div>
-
 
                                             <div class="form-group">
                                                 <label class="input-label">Assignment Assign Type</label>
@@ -667,7 +749,6 @@
                                                                    class="duration_conditional_check" value="Individual">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
                                                                     <h3>Individual</h3>
                                                                </div>
 
@@ -679,7 +760,6 @@
                                                                    class="duration_conditional_check" value="Class" checked>
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <img src="https://img.freepik.com/free-vector/sport-equipment-concept_1284-13034.jpg?size=626&ext=jpg">
                                                                     <h3>Class</h3>
                                                                </div>
 
@@ -785,6 +865,22 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        if ($('.summernote-editor-mintool').length) {
+
+            $('.summernote-editor-mintool').summernote({
+                toolbar: [
+                    ['font', ['bold', 'underline']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        $('.summernote-editor_' + parent_field_id).val(EditorValueEnocde(contents));
+                        trigger_field_change($('.summernote-editor_' + parent_field_id));
+                    }
+                }
+            });
+        }
 
 
         $('body').on('change', '.select_all', function (e) {
@@ -1008,6 +1104,8 @@
         $('body').on('change', '.year_quiz_ajax_select', function (e) {
             var year_id = $(this).val();
             var quiz_type = $(".assignment_topic_type_check:checked").val();
+            var thisObj = $(this);//$(".quiz-ajax-fields");
+            rurera_loader(thisObj, 'button');
             jQuery.ajax({
                 type: "GET",
                 url: '/admin/common/types_quiz_by_year',
@@ -1016,7 +1114,12 @@
                 },
                 data: {"quiz_type": quiz_type, "year_id": year_id},
                 success: function (return_data) {
-                    $(".quiz-ajax-fields").html(return_data);
+                    if(quiz_type == 'practice'){
+                        $(".practice-quiz-ajax-fields").html(return_data);
+                    }else {
+                        $(".quiz-ajax-fields").html(return_data);
+                    }
+                    rurera_remove_loader(thisObj, 'button');
                 }
             });
         });
@@ -1024,6 +1127,8 @@
         $('body').on('change', '.year_group_quiz_ajax_select', function (e) {
             var year_group = $(this).val();
             var quiz_type = $(".assignment_topic_type_check:checked").val();
+            var thisObj = $(this);//$(".yeargroup-ajax-fields");
+            rurera_loader(thisObj, 'button');
             jQuery.ajax({
                 type: "GET",
                 url: '/admin/common/types_quiz_by_year_group',
@@ -1033,12 +1138,33 @@
                 data: {"quiz_type": quiz_type, "year_group": year_group},
                 success: function (return_data) {
                     $(".yeargroup-ajax-fields").html(return_data);
+                    rurera_remove_loader(thisObj, 'button');
+                }
+            });
+        });
+
+        $('body').on('change', '.assignment_subject_check', function (e) {
+            var subject_id = $(this).val();
+            var thisObj = $(this);
+            rurera_loader($(".practice-quiz-topics-list"), 'div');
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/topics_subtopics_by_subject',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"subject_id": subject_id},
+                success: function (return_data) {
+                    rurera_remove_loader($(".practice-quiz-topics-list"), 'button');
+                    $(".practice-quiz-topics-list").html(return_data);
                 }
             });
         });
 
 
-        $('.range-slider-field').each(function() {
+
+
+        $('.range-slider-field').each(function () {
             var thisObj = $(this);
             //var sliderStructure = $('<div class="range-slider"><div id="slider_thumb" class="range-slider_thumb" style="left: 425.5px;">0</div><div class="range-slider_line"><div id="slider_line" class="range-slider_line-fill" style="width: 46%;"></div></div>'+thisObj.clone().wrap('<div>').parent().html() +'</div>');
             //thisObj.replaceWith(sliderStructure);
@@ -1046,40 +1172,46 @@
             var sliderThumb = thisObj.closest('.range-slider').find('.range-slider_thumb');
             var sliderLine = thisObj.closest('.range-slider').find('.range-slider_line-fill');
             showSliderValue(sliderInput, sliderThumb, sliderLine);
-            $(window).on("resize", function() {
-              showSliderValue(sliderInput, sliderThumb, sliderLine);
+            $(window).on("resize", function () {
+                showSliderValue(sliderInput, sliderThumb, sliderLine);
             });
 
-            sliderInput.on('input', function() {
-              showSliderValue(sliderInput, sliderThumb, sliderLine);
+            sliderInput.on('input', function () {
+                showSliderValue(sliderInput, sliderThumb, sliderLine);
             });
         });
 
         function showSliderValue(sliderInput, sliderThumb, sliderLine) {
-          sliderThumb.html(sliderInput.val());
-          var max_value = sliderInput.attr('max');
-          var current_percentage = (sliderInput.val() * 100 / max_value);
-          var bulletPosition = sliderInput.val() / sliderInput.attr('max');
-          var space = sliderInput.width() - sliderThumb.width();
-          var text_to_display = sliderInput.val();
-          if( sliderInput.hasClass('time_interval')){
-              $(".time_interval_data").html(sliderInput.val()+' Seconds, '+formatTime(sliderInput.val()));
-          }
-          sliderThumb.css('left', (bulletPosition * space) + 'px');
-          sliderLine.css('width', current_percentage + '%');
+            sliderThumb.html(sliderInput.val());
+            var max_value = sliderInput.attr('max');
+            var current_percentage = (sliderInput.val() * 100 / max_value);
+            var bulletPosition = sliderInput.val() / sliderInput.attr('max');
+            var space = sliderInput.width() - sliderThumb.width();
+            space = parseInt(space) + parseInt(20);
+            console.log(space);
+            var text_to_display = sliderInput.val();
+            if (sliderInput.hasClass('time_interval')) {
+                $(".time_interval_data").html(sliderInput.val() + ' Seconds, ' + formatTime(sliderInput.val(), 'm', 's'));
+            }
+            if (sliderInput.hasClass('practice_interval')) {
+                $(".practice_interval_data").html(sliderInput.val() + ' Minutes, ' + formatTime(sliderInput.val(), 'h', 'm'));
+            }
+
+            sliderThumb.css('left', (bulletPosition * space) + 'px');
+            sliderLine.css('width', current_percentage + '%');
         }
 
-        function formatTime(seconds) {
+        function formatTime(seconds, label_1, label_2) {
             var minutes = Math.floor(seconds / 60);
             var remainingSeconds = seconds % 60;
 
             var formattedTime = "";
 
             if (minutes > 0) {
-                formattedTime += minutes + "m ";
+                formattedTime += minutes + label_1 + " ";
             }
 
-            formattedTime += remainingSeconds + "s";
+            formattedTime += remainingSeconds + label_2;
 
             return formattedTime;
         }
@@ -1095,9 +1227,25 @@
 
 
         $(".conditional_check").change();
-        $(".duration_conditional_check").change();
-        $(".assignment_topic_type_check").change();
-        $(".assignment_method_check").change();
+        $(".duration_conditional_check:checked").change();
+        $(".assignment_topic_type_check:checked").change();
+        $(".assignment_method_check:checked").change();
+        $(".year_quiz_ajax_select").change();
+        $(".year_group_quiz_ajax_select").change();
+
+
+        $('body').on('change', '.section-parent', function (e) {
+            let $this = $(this);
+            let parent = $this.parent().closest('.section-box');
+            let isChecked = e.target.checked;
+
+            if (isChecked) {
+                parent.find('input[type="checkbox"].section-child').prop('checked', true);
+            } else {
+                parent.find('input[type="checkbox"].section-child').prop('checked', false);
+            }
+        });
+
     });
 
 </script>

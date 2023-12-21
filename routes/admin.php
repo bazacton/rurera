@@ -400,6 +400,7 @@ Route::group([
             Route::get('/generate_audio', 'CommonController@generate_audio');
             Route::get('/types_quiz_by_year', 'CommonController@types_quiz_by_year');
             Route::get('/types_quiz_by_year_group', 'CommonController@types_quiz_by_year_group');
+            Route::get('/topics_subtopics_by_subject', 'CommonController@topics_subtopics_by_subject');
 
 
         });

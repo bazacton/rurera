@@ -90,7 +90,10 @@ Lms Signs Style
 /* Image Top Style End */
 .lms-radio-select.inline-fields {flex-direction: row;}
 .alphabet-list-style {counter-reset: listStyle;}
-.alphabet-list-style .field-holder {counter-increment: listStyle; position: relative; padding: 0;}
+.alphabet-list-style .field-holder {counter-increment: listStyle; position: relative; padding-left: 45px;}
+.alphabet-list-style .field-holder:has(input){
+    padding-left: 0;
+}
 .alphabet-list-style .field-holder:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 1; }
 .numeric-list-style {counter-reset: listStyle;}
 .numeric-list-style > .field-holder,
@@ -281,18 +284,20 @@ Lms Question List Style
 .question-textarea p {font-size: 16px; color: #000; font-weight: 400;}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
-.question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 0 25px 0 10px; background: none; background-image: none; font-size: 16px; color: #999;}
+.question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 8px; background: none; background-image: none; font-size: 16px; color: #000; font-weight: 400;}
 .question-textarea .select-box,
-.question-layout .select-box {border-radius: 5px; background: #fff; position: relative; line-height: normal; border: 1px solid #dbd8d8; padding: 3px 0px; display: -webkit-inline-box;}
+.question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 3px 15px 3px 0; margin: 0 5px; display: -webkit-inline-box;}
 .question-textarea .field-group .select-box {text-align: left;}
 .question-textarea .select-box:after,
-.question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 10px; margin-top: -2px;}
+.question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 0; margin-top: -2px;}
 .question-textarea input[type="text"],
 .question-layout input[type="text"],
-.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 500; border-radius: 8px; display: inline-block; padding: 0 10px;}
+.input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0;}
-.input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 1px solid #000;}
+.input-holder.input_line,
+.lms-quiz-section .input-holder.input_line {border: 0; vertical-align: bottom;}
+.input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd;}
 .question-layout .input-group-prepend ~ input[type="text"] {border-radius: 0; border-color: #eee; border-width: 1px; text-align: left;}
 .question-layout .input-group .admin-file-manager,
 .question-layout .input-group .admin-file-view {background-color: #fff !important; border: 1px solid #eee !important;}
@@ -1740,10 +1745,10 @@ span.seperator_line {border:3px solid; border-color:#000; width: 50px; display: 
 #question_preview .marks {right: 30px; top: 20px; bottom: auto;}
 #question_preview .prev-next-controls {border-top: 1px solid #eee; padding-top: 30px; padding-left: 0;}
 #question_preview .prev-next-controls .review-btn {left: 0;}
-.draggable-items {margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 10px;}
+.draggable-items {display: flex; flex-wrap: wrap; gap: 10px;}
 .draggable-items .ui-draggable {background-image: none;color: #666;padding: 4px 25px 8px;height: auto;margin: 0;border-radius: 8px;border: 2px solid #ddd; border-bottom-width: 4px;}
 .draggable-items .ui-draggable span {color: #999; vertical-align: middle;}
-.droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 10px 20px; margin: 8px 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: bottom; min-width: 80px; text-align: center; min-height: 45px; }
+.droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 0; margin: 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: baseline; min-width: 190px; text-align: center; min-height: 45px; line-height: 40px; }
 span.Selectable.marking-selected {background: #fff716;}
 .marking-quiz-data span {display: inline;}
 span.Selectable:hover {text-decoration: underline;}
@@ -1752,6 +1757,9 @@ span.Selectable:hover {text-decoration: underline;}
 .review_submit .modal-content .close {position: absolute; top: 10px; right: 15px; z-index: 1;}
 .review_submit .modal-body {display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; justify-content: center;}
 .review_submit .submit_quiz_final {padding: 15px 50px; font-weight: 500;}
+[data-type*="draggable_quiz"] p {
+    line-height: 40px;
+  }
 
 /* Question-Result-Layout Style Start */
 .question-result-layout {
@@ -1871,3 +1879,9 @@ span.Selectable:hover {text-decoration: underline;}
     object-fit: contain;
 }
 /* Question-Result-Layout Style End */
+.options img {
+    max-width: 100%;
+}
+.stems img {
+    max-width: 100%;
+}

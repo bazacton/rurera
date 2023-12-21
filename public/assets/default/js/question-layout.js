@@ -1237,7 +1237,7 @@ function drawLine(stem, option) {
     }
 }
 
-function rurera_loader(thisObj, loader_type) {
+function rurera_loader(thisObj, loader_type, display_text = null) {
 
     switch (loader_type) {
         case "div":
@@ -1278,8 +1278,12 @@ function rurera_loader(thisObj, loader_type) {
                 $('body').addClass('rurera-processing');
                 var loader_no = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
                 loader_no = 4;
+                var preloader_text = '';
+                if( display_text != null && display_text != ''){
+                    preloader_text = '<span class="preloader-text">'+display_text+'</span>';
+                }
                 $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
-                    <div class="preloader"><img src="/assets/default/img/preloaders/'+loader_no+'.webp"><span class="preloader-text">Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz</span></div>\n\
+                    <div class="preloader"><img src="/assets/default/img/preloaders/'+loader_no+'.webp">'+preloader_text+'</div>\n\
                 </div>');
             break;
     }
@@ -1289,7 +1293,9 @@ function rurera_remove_loader(thisObj, loader_type) {
     switch (loader_type) {
         case "button":
             thisObj.removeClass('rurera-processing');
-            thisObj.find('.rurera-button-loader').remove();
+            thisObj.unwrap('.rurera-loader-holder');
+            $('body').removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
             break;
         case "page":
             $('body').removeClass('rurera-processing');

@@ -218,34 +218,114 @@ class CommonController extends Controller
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
         $quiz_type = $request->get('quiz_type', null);
-        $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
 
-        if( $year_id > 0){
-            $resultsQuery = $resultsQuery->where('year_id', $year_id);
-        }
+        if( $quiz_type == 'practice'){
 
-        $results = $resultsQuery->get();
+            $response = $this->get_subjects_by_year($year_id);
+        }else {
+            $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
+
+            if ($year_id > 0) {
+                $resultsQuery = $resultsQuery->where('year_id', $year_id);
+            }
+
+            $results = $resultsQuery->get();
 
 
-        $response = '<div class="form-group">
+            $response = '<div class="form-group">
                         <label class="input-label">Select Topic</label>
                         <div class="input-group">
                             <select name="ajax[new][topic_id]"
                                     class="form-control select2 topic_selection">';
 
-        $response .= '<option value="">Select Topic</option>';
-        if (!empty($results)) {
-            foreach ($results as $rowObj) {
-                $count_questions = isset( $rowObj->quizQuestionsList )? count($rowObj->quizQuestionsList) : 0;
-                $selected ='';
-                $response .= '<option data-total_questions="'.$count_questions.'" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+            $response .= '<option value="">Select Topic</option>';
+            if (!empty($results)) {
+                foreach ($results as $rowObj) {
+                    $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
+                    $selected = '';
+                    $response .= '<option data-total_questions="' . $count_questions . '" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+                }
             }
+            $response .= '</select></div></div>';
         }
-        $response .= '</select></div></div>';
 
         echo $response;
 
         exit;
+    }
+
+    public function topics_subtopics_by_subject(Request $request)
+    {
+        $user = auth()->user();
+        $subject_id = $request->get('subject_id', null);
+        $courseObj = Webinar::find($subject_id);
+        $chapters = $courseObj->chapters;
+        $response = '<div class="row">';
+        if( !empty( $chapters ) ){
+            foreach( $chapters as $chapterObj){
+                $subChapters = $chapterObj->subChapters;
+                $sub_chapters_response = '';
+
+                if( !empty( $subChapters ) ) {
+                    foreach ($subChapters as $subChapterObj) {
+
+                        $sub_chapters_response .= '<div class="form-check mt-1">
+                            <input type="checkbox" name="ajax[new][topic_ids][]" id="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'" value="'.$subChapterObj->id.'" class="form-check-input section-child">
+                            <label class="form-check-label cursor-pointer mt-0" for="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'">
+                                '.$subChapterObj->sub_chapter_title.'
+                            </label>
+                        </div>';
+                    }
+                }
+                 $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
+                        <div class="card-header">
+                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_'.$chapterObj->id.'" value="1" class="form-check-input mt-0 section-parent">
+                            <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_'.$chapterObj->id.'">
+                                '.$chapterObj->getTitleAttribute().'
+                            </label>
+                        </div>
+
+                        <div class="card-body">
+                            '.$sub_chapters_response.'
+                        </div>
+                </div></div>';
+            }
+        }
+
+        $response .= '</div>';
+        echo $response;
+
+        exit;
+    }
+
+    public function get_subjects_by_year($year_id){
+        $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
+
+        $subjects_response = '';
+        if( !empty( $courses ) ){
+            foreach( $courses as $courseObj){
+                $subjects_response .= '
+                                        <label class="card-radio">
+                                            <input type="radio" name="ajax[new][subject]"
+                                                   class="assignment_subject_check" value="'.$courseObj->id.'">
+                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                        <div class="card-icon">
+                                                            <h3>'.$courseObj->getTitleAttribute().'</h3>
+                                                       </div>
+
+                                                  </span>
+                                        </label>';
+            }
+        }
+        $response = '<div class="form-group">
+                <label class="input-label">Subject</label>
+                <div class="input-group">
+                    <div class="radio-buttons">
+                        '.$subjects_response.'
+                    </div>
+                </div>
+            </div>';
+        return $response;
     }
 
     public function types_quiz_by_year_group(Request $request)

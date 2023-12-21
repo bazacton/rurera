@@ -110,7 +110,7 @@
                     <div class="invalid-feedback"></div>
                 </div>
 
-                <div class="conditional-fields vocabulary-fields sats-fields ">
+                <div class="conditional-fields vocabulary-fields practice-fields sats-fields">
                     <div class="form-group">
                         <label>Year</label>
                         <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"

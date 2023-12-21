@@ -192,6 +192,10 @@ class AssignmentsController extends Controller
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
 
+
+        //pre('test');
+
+
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $classes_query = Classes::where('parent_id', '=', 0)->where('status', 'active');
@@ -249,8 +253,65 @@ class AssignmentsController extends Controller
             $this->validate($request, $rules);
         }
 
+        $topic_ids = isset($data['topic_ids']) ? $data['topic_ids'] : array();
         $assignment_topic_type = isset($data['assignment_topic_type']) ? $data['assignment_topic_type'] : '';
         $topic_id = isset($data['topic_id']) ? $data['topic_id'] : '';
+        if( $assignment_topic_type == 'practice'){
+            $question_list_ids = QuizzesQuestionsList::whereIn('quiz_id', $topic_ids)->where('status', 'active')->pluck('id')->toArray();
+
+            $assignment_title = isset($data['title']) ? $data['title'] : '';
+
+            $practiceQuiz = Quiz::create([
+                'quiz_slug'                   => Quiz::makeSlug($assignment_title),
+                'webinar_id'                  => 0,
+                'chapter_id'                  => 0,
+                'creator_id'                  => $user->id,
+                'webinar_title'               => '',
+                'attempt'                     => 100,
+                'quiz_type'                   => 'practice',//isset($data['quiz_type']) ? $data['quiz_type'] : '',
+                'sub_chapter_id'              => 0,
+                'pass_mark'                   => 1,
+                'time'                        => 100,
+                'display_number_of_questions' => 0,
+                'status'                      => Quiz::ACTIVE,
+                'certificate'                 => 1,
+                'created_at'                  => time(),
+                'quiz_settings'               => json_encode(array()),
+                'mastery_points'              => 0,
+                'show_all_questions'          => 0,
+                'sub_title'                   => '',
+                'quiz_image'                  => '',
+                'quiz_pdf'                    => '',
+                'quiz_instructions'           => '',
+                'year_group'                  => '',
+                'subject'                     => '',
+                'examp_board'                 => '',
+                'year_id'                     => isset($data['year_id']) ? $data['year_id'] : 0,
+                'quiz_category'               => '',
+
+            ]);
+
+            QuizTranslation::updateOrCreate([
+                'quiz_id' => $practiceQuiz->id,
+                'locale'  => mb_strtolower($locale),
+            ], [
+                'title' => $assignment_title,
+            ]);
+
+            if (!empty($question_list_ids)) {
+                foreach ($question_list_ids as $sort_order => $question_id) {
+                    QuizzesQuestionsList::create([
+                        'quiz_id'     => $practiceQuiz->id,
+                        'question_id' => $question_id,
+                        'status'      => 'active',
+                        'sort_order'  => $sort_order,
+                        'created_by'  => $user->id,
+                        'created_at'  => time()
+                    ]);
+                }
+            }
+            $topic_id = $practiceQuiz->id;
+        }
 
         $assignment_start_date = isset($data['assignment_start_date']) ? strtotime($data['assignment_start_date']) : '';
         $assignment_end_date = isset($data['assignment_end_date']) ? strtotime($data['assignment_end_date']) : '';
@@ -291,6 +352,7 @@ class AssignmentsController extends Controller
         $StudentAssignments = StudentAssignments::create([
             'parent_id'                  => $user->id,
             'title'                      => isset($data['title']) ? $data['title'] : '',
+            'description'                => isset($data['description']) ? $data['description'] : '',
             'assignment_type'            => $assignment_topic_type,
             'tables_no'                  => isset($data['tables_no']) ? json_encode($data['tables_no']) : '',
             'no_of_questions'            => isset($data['no_of_questions']) ? $data['no_of_questions'] : '',
@@ -304,12 +366,13 @@ class AssignmentsController extends Controller
             'class_ids'                  => isset($data['class_ids']) ? json_encode($data['class_ids']) : '',
             'target_percentage'          => isset($data['target_percentage']) ? $data['target_percentage'] : 0,
             'target_average_time'        => isset($data['target_average_time']) ? $data['target_average_time'] : 0,
-            'assignment_reviewer'        => isset($data['assignment_reviewer']) ? $data['assignment_reviewer'] : 0,
+            'assignment_reviewer'        => isset($data['assignment_reviewer']) ? json_encode($data['assignment_reviewer']) : array(),
             'assignment_review_due_date' => isset($data['assignment_review_due_date']) ? strtotime($data['assignment_review_due_date']) : 0,
             'assignment_method'          => isset($data['assignment_method']) ? $data['assignment_method'] : 'practice',
             'status'                     => 'active',
             'created_by'                 => $user->id,
             'created_at'                 => time(),
+            'topic_ids'                  => json_encode($topic_ids),
         ]);
 
         $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();

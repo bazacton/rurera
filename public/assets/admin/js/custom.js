@@ -112,6 +112,7 @@
                 drops: drops3,
             });
 
+
             $datepicker.on('apply.daterangepicker', function (ev, picker) {
                 $(this).val(picker.startDate.format('YYYY-MM-DD'));
             });

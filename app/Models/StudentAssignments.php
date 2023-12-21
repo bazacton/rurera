@@ -13,6 +13,7 @@ class StudentAssignments extends Model
     protected $fillable = [
         'parent_id',
         'title',
+        'description',
         'assignment_type',
         'assignment_assign_type',
         'tables_no',
@@ -34,6 +35,7 @@ class StudentAssignments extends Model
         'created_by',
         'created_at',
         'updated_at',
+        'topic_ids',
     ];
 
 

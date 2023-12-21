@@ -1,6 +1,6 @@
 $(document).on('click', '.book-info-link', function () {
     var thisObj = $(this);
-    rurera_loader(thisObj, 'animation');
+    rurera_loader(thisObj, 'animation', 'Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz');
     $("body").removeClass("menu-open");
     var info_id = $(this).attr('data-id');
     var info_type = $(this).attr('data-type');
