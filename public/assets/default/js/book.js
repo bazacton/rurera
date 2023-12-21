@@ -1,4 +1,6 @@
 $(document).on('click', '.book-info-link', function () {
+    var thisObj = $(this);
+    rurera_loader(thisObj, 'animation');
     $("body").removeClass("menu-open");
     var info_id = $(this).attr('data-id');
     var info_type = $(this).attr('data-type');
@@ -8,6 +10,7 @@ $(document).on('click', '.book-info-link', function () {
         data: {},
         success: function (return_data) {
             $(".infolinks-data").html(return_data);
+            rurera_remove_loader(thisObj, 'page');
 
 
             $(".close-btn").on("click", function (a) {

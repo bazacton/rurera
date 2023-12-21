@@ -7966,6 +7966,9 @@ function getGuestLimit($type){
         case "sats":
             $limit = 100;
             break;
+        case "books":
+            $limit = 5;
+            break;
     }
     return $limit;
 }

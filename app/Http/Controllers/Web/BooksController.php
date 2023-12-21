@@ -8,6 +8,7 @@ use App\Models\BooksPages;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\BooksUserPagesInfoLinks;
 use App\Models\BooksUserReading;
+use App\Models\QuizzResultQuestions;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\DB;
@@ -44,10 +45,10 @@ class BooksController extends Controller
 
     public function book($book_slug)
     {
-        if (!auth()->subscription('bookshelf')) {
+        /*if (!auth()->subscription('bookshelf')) {
             return view('web.default.quizzes.not_subscribed');
-        }
-        $user = auth()->user();
+        }*/
+        $user = getUser();
 
 
         $bookObj = Books::where('book_slug', $book_slug)->with([
@@ -57,11 +58,16 @@ class BooksController extends Controller
                 $query->where('user_id', $user->id)->where('status', 'active');
             },
         ])->first();
+        //pre($bookObj);
 
+        $pagesLimit = getGuestLimit('books');
         $page_content = array();
         $info_type = array();
+        $pages_count = 0;
         if (!empty($bookObj->bookPages)) {
             foreach ($bookObj->bookPages as $page_data) {
+                $pages_count++;
+
 
                 $info_link_html = '';
                 if (!empty($page_data->PageInfoLinks)) {
@@ -99,6 +105,7 @@ class BooksController extends Controller
                 'pageTitle'    => $bookObj->book_title,
                 'book'         => $bookObj,
                 'page_content' => $page_content,
+                'pagesLimit'   => $pagesLimit,
             ];
             return view('web.default.pages.book', $data);
         }
@@ -137,7 +144,6 @@ class BooksController extends Controller
         });
 
 
-
         $bookPageInfoLinks = $bookPageInfoLinks->groupBy(function ($bookPageInfoLinks) {
             return $bookPageInfoLinks->BooksInfoLinkPage->page_no;
         });
@@ -162,7 +168,7 @@ class BooksController extends Controller
 
     public function info_detail($info_id)
     {
-        $user = auth()->user();
+        $user = getUser();
 
         $infoLinkData = BooksPagesInfoLinks::where('id', $info_id)->first();
         $info_type = isset($infoLinkData->info_type) ? $infoLinkData->info_type : '';
@@ -190,7 +196,11 @@ class BooksController extends Controller
                 $dependent_info = isset($data_values->dependent_info) ? explode(',', $data_values->dependent_info) : array();
                 $no_of_attempts = (isset($data_values->no_of_attempts) && $data_values->no_of_attempts != '') ? $data_values->no_of_attempts : 0;
                 $all_infolinks_checked = (count(array_intersect($dependent_info, $user_info_links_ids))) ? true : false;
-                $all_infolinks_checked = true;
+                //pre($all_infolinks_checked);
+                //$all_infolinks_checked = true;
+                $questions_layout = $results_questions_array = array();
+                $questions_array = $exclude_array = array();
+                $active_question_id = $first_question_id = 0;
 
                 if ($all_infolinks_checked == true) {
 
@@ -202,17 +212,107 @@ class BooksController extends Controller
                         'questions_list'   => $questions_ids,
                         'no_of_attempts'   => $no_of_attempts,
                     ]);
+                    $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
+
+                    if ($prev_active_question_id > 0) {
+                        $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
+                        $prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
+                    }
+
+                    $questions_list = $questions_ids;
 
                     $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
                     $attempt_log_id = createAttemptLog($attemptLogObj->id, 'Session Started', 'started');
-                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj);
-                    $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
-                    $question_no = isset($nextQuestionArray['question_no']) ? $nextQuestionArray['question_no'] : 0;
-                    $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
-                    $QuizzesResult = isset($nextQuestionArray['QuizzesResult']) ? $nextQuestionArray['QuizzesResult'] : (object)array();
-                    //pre($newQuestionResult);
+                    //$nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
+
+
+
+                    //$exclude_array[] = $questionObj->id;
+                    //$questions_array[] = $questionObj;
+
+
+
+
+                    if (!empty($questions_list)) {
+                        $questions_counter = 0;
+                        foreach ($questions_list as $question_no_index => $question_id) {
+                            $question_no = $question_no_index;
+                            $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
+                            $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
+
+                            $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
+
+                            $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
+
+                            $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+
+                            if ($question_id == $prev_active_question_id) {
+                                $active_question_id = $newQuestionResult->id;
+                            }
+
+                            if (isset($questionObj->id)) {
+                                $questions_array[] = $newQuestionResult;
+                                $exclude_array[] = $newQuestionResult->id;
+
+                                $question_no = $question_no_index + 1;
+                                if ($question_no_index == 0) {
+                                    $first_question_id = $newQuestionResult->id;
+                                }
+
+                                $question_response_layout = '';
+
+
+                                $results_questions_array[$newQuestionResult->id] = [
+                                    'question'          => $questionObj,
+                                    'prev_question'     => $prev_question,
+                                    'next_question'     => $next_question,
+                                    'quizAttempt'       => $attemptLogObj,
+                                    'questionsData'     => rurera_encode($questionObj),
+                                    'newQuestionResult' => $newQuestionResult,
+                                    'question_no'       => $question_no,
+                                    'quizResultObj'     => $resultLogObj
+                                ];
+
+
+                            }
+                            $questions_counter++;
+
+                        }
+                    }
+
+                    if (!empty($results_questions_array)) {
+                        $questions_list = array_keys($results_questions_array);
+                        $resultLogObj->update([
+                            'questions_list' => json_encode($questions_list),
+                        ]);
+                        $attemptLogObj->update([
+                            'questions_list' => json_encode($questions_list),
+                        ]);
+                        foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
+
+                            $resultsQuestionsData['prev_question'] = 0;
+                            $resultsQuestionsData['next_question'] = 0;
+                            $currentIndex = array_search($resultQuestionID, $questions_list);
+
+
+                            if ($currentIndex !== false) {
+                                // Get the previous index
+                                $previousIndex = ($currentIndex > 0) ? $questions_list[$currentIndex - 1] : 0;
+                                // Get the next index
+                                $nextIndex = ($currentIndex < count($questions_list) - 1) ? $questions_list[$currentIndex + 1] : 0;
+                                $resultsQuestionsData['prev_question'] = $previousIndex;
+                                $resultsQuestionsData['next_question'] = $nextIndex;
+
+                            }
+
+                            $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                            $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+                        }
+                    }
 
                 }
+                $question = $questions_array;
+               $question = rurera_encode($question);
 
 
                 $response = view("web.default.books.includes." . $info_type, [
@@ -222,7 +322,10 @@ class BooksController extends Controller
                     "question"              => isset($questionObj) ? $questionObj : array(),
                     "quizAttempt"           => isset($attemptLogObj) ? $attemptLogObj : array(),
                     "newQuestionResult"     => isset($newQuestionResult) ? $newQuestionResult : array(),
+                    'questions_layout'      => $questions_layout,
+                    'question'               => $question,
                     "question_no"           => isset($question_no) ? $question_no : 0,
+                    "first_question_id" => $first_question_id,
                 ]);
                 break;
 
@@ -250,6 +353,7 @@ class BooksController extends Controller
      */
     public function update_reading(Request $request)
     {
+        pre('test');
         $user = auth()->user();
         $page_ids = $request->get('page_ids');
         $time_lapsed = $request->get('time_lapsed');

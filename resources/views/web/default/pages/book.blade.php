@@ -10,6 +10,7 @@
 <script src="/assets/vendors/flipbook/js/flipbook.min.js?ver={{$random_id}}"></script>
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/default/js/book.js?ver={{$random_id}}"></script>
+<script src="/assets/default/js/question-layout.js?ver={{$random_id}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .page-content-area{
@@ -92,9 +93,18 @@
                     }
                 }
                 $landing_page .= '</ul> </div><div class="book-title-img-holder"> <figure> <img src="/assets/vendors/flipbook/images/book-title-img.png" alt=""> </figure> </div></div>';
+                $pages_count = 0;
                 @endphp
                 @if(!empty( $book->bookPages ) )
                     @foreach( $book->bookPages as $bookPage)
+                         @php $pages_count++;
+                           if(!auth()->check())
+                           {
+                               if ($pages_count >= $pagesLimit) {
+                                   continue;
+                               }
+                           }
+                           @endphp
                         {
                             @php $page_content_data = isset( $page_content[$bookPage->id])? $page_content[$bookPage->id] : ''; @endphp
                             @php $read_time = isset( $bookPage->BooksPageUserReadings->read_time )? $bookPage->BooksPageUserReadings->read_time : 0 @endphp
@@ -105,6 +115,14 @@
         				},
                     @php $page_count++; @endphp
                     @endforeach
+                @endif
+                @if(!auth()->check())
+                {
+                    src:"/store/1/books/subscribe.jpg",
+                    thumb:"/store/1/books/subscribe.jpg",
+                    title:"Subscribe to View More",
+                    htmlContent: ''
+                },
                 @endif
             ],
             btnToc : {enabled:false},

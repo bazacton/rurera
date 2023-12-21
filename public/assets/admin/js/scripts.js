@@ -701,6 +701,16 @@ function rurera_loader(thisObj, loader_type) {
                                 </div>');
 
             break;
+
+
+        case "animation":
+            $('body').addClass('rurera-processing');
+            var loader_no = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+            loader_no = 4;
+            $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
+                <div class="preloader"><img src="/assets/default/img/preloaders/'+loader_no+'.webp"><span class="preloader-text">Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz</span></div>\n\
+            </div>');
+        break;
     }
 }
 

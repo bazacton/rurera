@@ -28,16 +28,12 @@ $content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($
             </div>
 
 
-            <div class="question-area-block" data-type="book">
-                @include('web.default.panel.questions.question_layout',[
-                'question'=> $question,
-                'question_no' => $question_no,
-                'quizAttempt' => $quizAttempt,
-                'newQuestionResult' => $newQuestionResult,
-                'prev_question' => 0,
-                'next_question' => 0,
-                'quizResultObj' => $QuizzesResult
-                ])
+            <div class="question-area-block" data-quiz_type="book" data-active_question_id="0" data-questions_layout="{{json_encode($questions_layout)}}">
+
+
+                @php $first_question = rurera_decode($questions_layout[$first_question_id]);
+                echo $first_question;
+                @endphp
             </div>
 
             <div class="question-area-temp hide"></div>
@@ -61,3 +57,6 @@ $content = isset($data_values->infobox_value)? base64_decode(trim(stripslashes($
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
+<script>
+    init_question_functions();
+</script>

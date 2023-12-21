@@ -36,6 +36,7 @@ quiz_user_data[0]['correct'] = {};
 var QuestionSubmitRequest = null;
 var question_submit_process = false;
 
+
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
@@ -190,7 +191,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
 
                 quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
-                window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+                if (quiz_type != 'book_page') {
+                    window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+                }
 
 
 
@@ -704,7 +707,8 @@ function init_question_functions() {
     });
 
     var currentRequest = null;
-    $(document).on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+    $("body").on('click', '.quiz-pagination ul li, .questions-nav-controls .prev-btn, .questions-nav-controls .next-btn', function (e) {
+
         if ($(this).hasClass('disable-btn')) {
             return;
         }
@@ -1262,12 +1266,34 @@ function rurera_loader(thisObj, loader_type) {
         case "page":
             $('body').addClass('rurera-processing');
             $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
-                                <div class="spinner">\n\
-                                    <div class="double-bounce1"></div>\n\
-                                    <div class="double-bounce2"></div>\n\
-                                </div>\n\
-                            </div>');
+                <div class="spinner">\n\
+                    <div class="double-bounce1"></div>\n\
+                    <div class="double-bounce2"></div>\n\
+                </div>\n\
+            </div>');
 
+            break;
+
+        case "animation":
+                $('body').addClass('rurera-processing');
+                var loader_no = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+                loader_no = 4;
+                $('body').append('<div class="rurera-button-loader" style="display: block;">\n\
+                    <div class="preloader"><img src="/assets/default/img/preloaders/'+loader_no+'.webp"><span class="preloader-text">Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz</span></div>\n\
+                </div>');
+            break;
+    }
+}
+
+function rurera_remove_loader(thisObj, loader_type) {
+    switch (loader_type) {
+        case "button":
+            thisObj.removeClass('rurera-processing');
+            thisObj.find('.rurera-button-loader').remove();
+            break;
+        case "page":
+            $('body').removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
             break;
     }
 }
