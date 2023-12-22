@@ -99,6 +99,9 @@ $rand_id = rand(99,9999);
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
+                            @if( isset( $quiz->quiz_type ))
+                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png"> ->
+                           @endif
                             <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
@@ -106,6 +109,53 @@ $rand_id = rand(99,9999);
                             <div class="topbar-right">
                                 <div class="quiz-timer">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="0">0s</div></span>
+                                </div>
+                                <div class="instruction-controls">
+                                    <div class="font-setting">
+                                        <button class="font-btn">
+                                            <img src="/assets/default/svgs/settings.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="font-controls">
+                                                <a href="#" class="decreasetext">
+                                                    <img src="/assets/default/svgs/small-font.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="resettext">
+                                                    <img src="/assets/default/svgs/reset-text.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="increasetext">
+                                                    <img src="/assets/default/svgs/big-text.svg" alt="#">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="color-setting">
+                                        <button class="color-btn">
+                                            <img src="/assets/default/svgs/color-setting.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="color-controls">
+                                                <a href="#" class="cr-aquaBlue-btn"></a>
+                                                <a href="#" class="cr-celery-btn"></a>
+                                                <a href="#" class="cr-grass-btn"></a>
+                                                <a href="#" class="cr-jade-btn"></a>
+                                                <a href="#" class="cr-magenta-btn"></a>
+                                                <a href="#" class="cr-orange-btn"></a>
+                                                <a href="#" class="cr-purple-btn"></a>
+                                                <a href="#" class="cr-skyBlue-btn"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-setting">
+                                        <button class="info-btn">
+                                            <img src="/assets/default/svgs/info-icon.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="info-text">
+                                                <h3>info</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,6 +304,23 @@ $rand_id = rand(99,9999);
 
         }, 1000);
 
+        $("body").on("click", ".increasetext", function (e) {
+                    curSize = parseInt($('.question-layout').css('font-size')) + 2;
+                    if (curSize <= 32)
+                        $('.question-layout').css('font-size', curSize);
+                });
+
+                $("body").on("click", ".resettext", function (e) {
+                    if (curSize != 18)
+                    $('.question-layout').css('font-size', 18);
+                });
+
+                $("body").on("click", ".decreasetext", function (e) {
+                    curSize = parseInt($('.question-layout').css('font-size')) - 2;
+                    if (curSize >= 14)
+                    $('.question-layout').css('font-size', curSize);
+                });
+
     });
 
     function getTime(secondsString) {
@@ -266,9 +333,9 @@ $rand_id = rand(99,9999);
         if( h > 0) {
             var return_string = return_string + h + "h ";
         }
-        if( m > 0 || h > 0) {
+        //if( m > 0 || h > 0) {
             var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
-        }
+        //}
         var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
         return_string = return_string + 's';
 

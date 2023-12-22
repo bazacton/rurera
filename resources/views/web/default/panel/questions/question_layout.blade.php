@@ -117,6 +117,8 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                                 </g>
                             </svg>
                         </a>
+                        @else
+                        <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn rurera-hide" data-question_id="{{$prev_question}}">&nbsp;</a>
                         @endif
                         @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
@@ -165,10 +167,12 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
 
 </div>
 <script>
-    var Questioninterval = setInterval(function () {
-        var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');
-        seconds_count = parseInt(seconds_count) + parseInt(1);
-        $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count);
-    }, 1000);
+    function question_layout_functions() {
+        var Questioninterval = setInterval(function () {
+            var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');
+            seconds_count = parseInt(seconds_count) + parseInt(1);
+            $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count);
+        }, 1000);
+    }
 </script>
 

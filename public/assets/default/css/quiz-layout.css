@@ -278,7 +278,7 @@ Lms Question List Style
 .question-layout-block form.question-fields,
 .question-fields .left-content {min-height: 700px; display: flex; flex-direction: column;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 80px; color: #adabab; }
-.question-layout-block form.question-fields .questions-nav-controls {margin-top: auto;}
+.question-layout-block form.question-fields .questions-nav-controls {margin-top: auto; min-height: 80px;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
 .question-textarea p {font-size: 16px; color: #000; font-weight: 400;}
@@ -1225,6 +1225,10 @@ Lms Quiz Wf Style End
 .quiz-timer {
     display: flex;
     align-items: center;
+}
+.quiz-timer .timer-number {
+    max-width: 130px;
+    min-width: 130px;
 }
 .quiz-pagination .has-flag a {
     background-color: #fff;

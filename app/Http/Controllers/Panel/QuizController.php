@@ -449,8 +449,10 @@ class QuizController extends Controller
                 $questions_list = array();
                 if (!empty($difficulty_level_array)) {
                     foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
-                        $breakdown_array = (array)$quiz_settings->{$difficulty_level_label}->breakdown;
 
+                        $breakdown_array = isset( $quiz_settings->{$difficulty_level_label}->breakdown)? $quiz_settings->{$difficulty_level_label}->breakdown : array();
+
+                        $breakdown_array = is_array($breakdown_array)? $breakdown_array : (array) $breakdown_array;
                         if (!empty($breakdown_array)) {
                             foreach ($breakdown_array as $question_type => $questions_count) {
                                 //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
@@ -625,6 +627,8 @@ class QuizController extends Controller
                     $questions_counter++;
 
                 }
+            }else{
+                return view(getTemplate() . '.quizzes.unauthorized');
             }
 
             if (!empty($results_questions_array)) {

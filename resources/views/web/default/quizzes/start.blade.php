@@ -29,24 +29,29 @@ $rand_id = rand(99,9999);
         <div class="learning-page-content flex-grow-1 bg-info-light p-15">
             <div class="learning-content" id="learningPageContent">
                 <div class="learning-title">
+                    @if( isset( $quiz->quiz_type ))
+                        <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png"> ->
+                    @endif
                     <h3 class="mb-5">{{$quiz->getTitleAttribute()}}</h3>
-                    <span class="font-12 font-weight-400 text-gray">Go to the quiz page for more information</span>
                 </div>
                 <div class="d-flex align-items-center justify-content-center w-100 h-100">
 
 
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
-                        @if( isset( $quiz->quiz_instructions ) && $quiz->quiz_instructions != '')
-                            <h3>Instructions:</h3>
-                        {!! $quiz->quiz_instructions !!}
-                        @endif
+
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
 
                         <a href="javascript:;" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
                            class="quiz-start-btn btn btn-primary btn-sm mt-15">Start Quiz</a>
-                        <div class="learning-content-quiz"></div>
+                        <div class="learning-content-quiz">
+                            @if( isset( $quiz->quiz_instructions ) && $quiz->quiz_instructions != '')
+                                   <h3>Instructions:</h3>
+                               {!! $quiz->quiz_instructions !!}
+                           @endif
+
+                        </div>
 
                     </div>
                 </div>

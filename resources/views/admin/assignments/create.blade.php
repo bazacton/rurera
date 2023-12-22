@@ -302,6 +302,16 @@
 
                                                               </span>
                                                         </label>
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
+                                                                   class="assignment_topic_type_check" value="assignment">
+                                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                                <div class="card-icon">
+                                                                    <img src="/assets/default/img/assignment-logo/practice.png">
+                                                                    <h3>Custom Assignment</h3>
+                                                               </div>
+                                                          </span>
+                                                        </label>
                                                     </div>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -345,8 +355,12 @@
                                                 <h2 class="section-title">Times Tables</h2>
                                             </div>
 
+                                            <div class="form-section assignment_topic_type_fields assignment_fields">
+                                                <h2 class="section-title">Custom Assignment</h2>
+                                            </div>
 
-                                            <div class="assignment_topic_type_fields vocabulary_fields sats_fields practice_fields">
+
+                                            <div class="assignment_topic_type_fields vocabulary_fields sats_fields practice_fields assignment_fields">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                         <div class="form-group">

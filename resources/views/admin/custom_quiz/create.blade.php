@@ -36,11 +36,11 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new') }} Assignment</h1>
+            <h1>{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new') }} Quiz</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="/admin/">{{ trans('admin/main.dashboard') }}</a>
                 </div>
-                <div class="breadcrumb-item active"><a href="/admin/assignments">Assignment</a>
+                <div class="breadcrumb-item active"><a href="/admin/assignments">Quiz</a>
                 </div>
                 <div class="breadcrumb-item">{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new')
                     }}
@@ -67,7 +67,7 @@
                                         <div class="years-group populated-data">
 
                                             <div class="form-group">
-                                                <label class="input-label">Assignment Title</label>
+                                                <label class="input-label">Quiz Title</label>
                                                 <input type="text"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
                                                        value="{{ !empty($assignment) ? $assignment->title : old('title') }}"

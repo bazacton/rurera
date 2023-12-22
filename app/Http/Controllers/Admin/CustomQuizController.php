@@ -61,7 +61,7 @@ class CustomQuizController extends Controller
         //DB::disableQueryLog();
 
         $data = [
-            'pageTitle'        => 'Assignments',
+            'pageTitle'        => 'Custom Quizzes',
             'quizzes'          => $quizzes,
             'totalAssignments' => $totalAssignments,
         ];
@@ -79,7 +79,7 @@ class CustomQuizController extends Controller
                 ->whereIn('id', $webinar_ids)->get();
         }
 
-        return view('admin.assignments.lists', $data);
+        return view('admin.custom_quiz.lists', $data);
     }
 
     private function filters($query, $request)
@@ -203,7 +203,7 @@ class CustomQuizController extends Controller
             'assignment' => $assignment,
         ];
 
-        return view('admin.assignments.assign', $data);
+        return view('admin.custom_quiz.assign', $data);
     }
 
     public function create()
@@ -217,11 +217,11 @@ class CustomQuizController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $data = [
-            'pageTitle'  => 'Create Assignment',
+            'pageTitle'  => 'Create Quiz',
             'categories' => $categories,
         ];
 
-        return view('admin.assignments.create', $data);
+        return view('admin.custom_quiz.create', $data);
     }
 
     public function store(Request $request)
@@ -279,7 +279,7 @@ class CustomQuizController extends Controller
             'quiz_instructions'           => '',
             'year_group'                  => '',
             'subject'                     => '',
-            'year_id'                     => (isset($data['year_id']) && $data['year_id'] > 0) ? $data['year_id'] : 100,
+            'year_id'                     => $request->get('year_id'),
             'subject_id'                  => (isset($data['subject_id']) && $data['subject_id'] > 0) ? $data['subject_id'] : 100,
         ]);
 
@@ -320,7 +320,7 @@ class CustomQuizController extends Controller
                 'redirect_url' => $redirectUrl
             ]);
         } else {
-            return redirect()->route('adminEditAssignment', ['id' => $quiz->id]);
+            return redirect()->route('adminEditCustomQuiz', ['id' => $quiz->id]);
         }
     }
 
@@ -422,7 +422,7 @@ class CustomQuizController extends Controller
         }
         $data['chapters'] = $chapters_list;
 
-        return view('admin.assignments.edit', $data);
+        return view('admin.custom_quiz.edit', $data);
     }
 
 
@@ -452,7 +452,7 @@ class CustomQuizController extends Controller
                 } else {
 
                     $QuizzesQuestion = QuizzesQuestion::findOrFail($question_id);
-                    $questionObj = $QuizzesQuestion->replicate();
+                    /*$questionObj = $QuizzesQuestion->replicate();
                     $questionObj->reference_question_id = $question_id;
                     $questionObj->created_at = time();
                     $questionObj->quiz_id = $assignment_id;
@@ -461,6 +461,7 @@ class CustomQuizController extends Controller
                     unset($questionObj['correct']);
                     unset($questionObj['translations']);
                     $AassignmentQuestion = AssignmentsQuestions::firstOrCreate($questionObj);
+                    */
                     QuizzesQuestionsList::create([
                         'quiz_id'     => $assignment_id,
                         'question_id' => $question_id,
@@ -468,14 +469,15 @@ class CustomQuizController extends Controller
                         'sort_order'  => $sort_order,
                         'created_by'  => $user->id,
                         'created_at'  => time(),
-                        'reference_question_id' => $AassignmentQuestion->id,
+                        //'reference_question_id' => $AassignmentQuestion->id,
+                        'reference_question_id' => 0,
                     ]);
                 }
                 $sort_order++;
             }
         }
         QuizzesQuestionsList::where('quiz_id', $assignment_id)->whereNotIn('question_id', $quiz_question_ids)->delete();
-        AssignmentsQuestions::where('quiz_id', $assignment_id)->whereNotIn('reference_question_id', $quiz_question_ids)->delete();
+        //AssignmentsQuestions::where('quiz_id', $assignment_id)->whereNotIn('reference_question_id', $quiz_question_ids)->delete();
         //}
         pre('Done');
     }

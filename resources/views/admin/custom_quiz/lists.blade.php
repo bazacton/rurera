@@ -8,11 +8,11 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Assignments</h1>
+        <h1>Custom Quizzes</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="{{ getAdminPanelUrl() }}">{{trans('admin/main.dashboard')}}</a>
             </div>
-            <div class="breadcrumb-item">Assignments</div>
+            <div class="breadcrumb-item">Custom Quizzes</div>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-wrap">
                     <div class="card-header">
-                        <h4>Total Assignments</h4>
+                        <h4>Total Quizzes</h4>
                     </div>
                     <div class="card-body">
                         {{ $totalAssignments }}
@@ -164,7 +164,7 @@
                         @can('admin_assignments_create')
                         <div class="text-right">
                             <a href="{{ getAdminPanelUrl() }}/custom_quiz/create" class="btn btn-primary ml-2">Create
-                                Assignment</a>
+                                Custom Quiz</a>
                         </div>
                         @endcan
                     </div>
@@ -214,11 +214,6 @@
                                         @endcan
 
                                         @can('admin_assignments_edit')
-                                        <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $quiz->id }}/assign"
-                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
-                                           data-placement="top" title="Assign">
-                                            <i class="fa fa-plus"></i>
-                                        </a>
                                         <a href="{{ getAdminPanelUrl() }}/custom_quiz/{{ $quiz->id }}/edit"
                                            class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">

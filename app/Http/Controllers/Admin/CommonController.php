@@ -314,6 +314,7 @@ class CommonController extends Controller
                                                    class="assignment_subject_check" value="'.$courseObj->id.'">
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
+                                                            '.$courseObj->icon_code.'
                                                             <h3>'.$courseObj->getTitleAttribute().'</h3>
                                                        </div>
 

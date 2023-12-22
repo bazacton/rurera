@@ -15,18 +15,19 @@ $rand_id = rand(99,9999);
         background: #ff4a4a;
         color: #fff;
     }
-    .rurera-hide{
-        display:none;
+
+    .rurera-hide {
+        display: none;
     }
 
 </style>
 
 @php $timer_counter = 0;
 if( $duration_type == 'per_question'){
-    $timer_counter = $time_interval;
+$timer_counter = $time_interval;
 }
 if( $duration_type == 'total_practice'){
-    $timer_counter = $practice_time;
+$timer_counter = $practice_time;
 }
 @endphp
 <div class="content-section">
@@ -90,6 +91,9 @@ if( $duration_type == 'total_practice'){
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
+                            @if( isset( $quiz->quiz_type ))
+                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png"> ->
+                           @endif
                             <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
@@ -98,6 +102,53 @@ if( $duration_type == 'total_practice'){
                                 <div class="quiz-timer">
 
                                     <span class="timer-number"><div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div></span>
+                                </div>
+                                <div class="instruction-controls">
+                                    <div class="font-setting">
+                                        <button class="font-btn">
+                                            <img src="/assets/default/svgs/settings.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="font-controls">
+                                                <a href="#" class="decreasetext">
+                                                    <img src="/assets/default/svgs/small-font.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="resettext">
+                                                    <img src="/assets/default/svgs/reset-text.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="increasetext">
+                                                    <img src="/assets/default/svgs/big-text.svg" alt="#">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="color-setting">
+                                        <button class="color-btn">
+                                            <img src="/assets/default/svgs/color-setting.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="color-controls">
+                                                <a href="#" class="cr-aquaBlue-btn"></a>
+                                                <a href="#" class="cr-celery-btn"></a>
+                                                <a href="#" class="cr-grass-btn"></a>
+                                                <a href="#" class="cr-jade-btn"></a>
+                                                <a href="#" class="cr-magenta-btn"></a>
+                                                <a href="#" class="cr-orange-btn"></a>
+                                                <a href="#" class="cr-purple-btn"></a>
+                                                <a href="#" class="cr-skyBlue-btn"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-setting">
+                                        <button class="info-btn">
+                                            <img src="/assets/default/svgs/info-icon.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="info-text">
+                                                <h3>info</h3>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +178,8 @@ if( $duration_type == 'total_practice'){
 
                     @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
                     <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
-                    <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                    <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}"
+                         data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
 
                         @if( is_array( $question ))
@@ -165,48 +217,49 @@ if( $duration_type == 'total_practice'){
 
 @if($quiz->quiz_type == 'vocabulary')
 <div class="question-status-modal">
-  <div class="modal fade question_status_modal" id="question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Incorrect!</h3>
-              <span class="inc" style="text-decoration: line-through;">are</span>
-              <span class="cor">are</span>
+    <div class="modal fade question_status_modal" id="question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-box">
+                        <div class="modal-title">
+                            <h3>Incorrect!</h3>
+                            <span class="inc" style="text-decoration: line-through;">are</span>
+                            <span class="cor">are</span>
+                        </div>
+                        <p>
+                            <span>verb</span> when more than one person is being something
+                        </p>
+                        <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
+                    </div>
+                </div>
             </div>
-            <p>
-              <span>verb</span> when more than one person is being something
-            </p>
-            <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 @endif
 
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-       <div class="modal-content">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-           <div class="modal-body">
-               <p></p>
-               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
-           </div>
-       </div>
-   </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-body">
+                <p></p>
+                <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab"
+                   aria-controls="home" aria-selected="true"> Submit </a>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal fade validation_error" id="validation_error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-       <div class="modal-content">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-           <div class="modal-body">
-               <p>Please fill all the required fields before submitting.</p>
-           </div>
-       </div>
-   </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-body">
+                <p>Please fill all the required fields before submitting.</p>
+            </div>
+        </div>
+    </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 
@@ -220,67 +273,83 @@ if( $duration_type == 'total_practice'){
 
     var Quizintervals = null;
 
-   var duration_type = $(".question-area-block").attr('data-duration_type');
-   var time_interval = $(".question-area-block").attr('data-time_interval');
-   var practice_time = $(".question-area-block").attr('data-practice_time');
+    var duration_type = $(".question-area-block").attr('data-duration_type');
+    var time_interval = $(".question-area-block").attr('data-time_interval');
+    var practice_time = $(".question-area-block").attr('data-practice_time');
 
-    $(document).ready(function () {
 
-        $("body").on("click", ".question-submit-btn", function (e) {
-            if( duration_type == 'per_question'){
-                clearInterval(Quizintervals);
-            }
-        });
-
-        Quizintervals = setInterval(function () {
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            if( duration_type == 'no_time_limit'){
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            }else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-            if($('.nub-of-sec').length > 0){
-                $('.nub-of-sec').html(getTime(quiz_timer_counter));
-            }
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-            if( duration_type == 'per_question'){
-                if( parseInt(quiz_timer_counter) == 0){
+        function quiz_default_functions() {
+            $("body").on("click", ".question-submit-btn", function (e) {
+                if (duration_type == 'per_question') {
                     clearInterval(Quizintervals);
-                    $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                    $('#question-submit-btn')[0].click();
                 }
-            }
-            if( duration_type == 'total_practice'){
-                if( parseInt(quiz_timer_counter) == 0){
-                    clearInterval(Quizintervals);
-                    $(".review-btn").click();
-                    if($('.question-review-btn').length > 0){
-                        $('.question-review-btn').click();
+            });
+
+            Quizintervals = setInterval(function () {
+                var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+                if (duration_type == 'no_time_limit') {
+                    quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+                } else {
+                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+                }
+                $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                if ($('.nub-of-sec').length > 0) {
+                    $('.nub-of-sec').html(getTime(quiz_timer_counter));
+                }
+                $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+                if (duration_type == 'per_question') {
+                    if (parseInt(quiz_timer_counter) == 0) {
+                        clearInterval(Quizintervals);
+                        $('.question-submit-btn').attr('data-bypass_validation', 'yes');
+                        $('#question-submit-btn')[0].click();
                     }
                 }
-            }
+                if (duration_type == 'total_practice') {
+                    if (parseInt(quiz_timer_counter) == 0) {
+                        clearInterval(Quizintervals);
+                        $(".review-btn").click();
+                        if ($('.question-review-btn').length > 0) {
+                            $('.question-review-btn').click();
+                        }
+                    }
+                }
 
-        }, 1000);
+            }, 1000);
 
-    });
-    
-    function getTime(secondsString) {
-            var h = Math.floor(secondsString / 3600); //Get whole hours
-            secondsString -= h * 3600;
-            var m = Math.floor(secondsString / 60); //Get remaining minutes
-            secondsString -= m * 60;
-    
-            var return_string = '';
-            if( h > 0) {
-                var return_string = return_string + h + ":";
-            }
-            if( m > 0) {
-                var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
-            }
-            var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
-    
-            return return_string;
+            $("body").on("click", ".increasetext", function (e) {
+                curSize = parseInt($('.question-layout').css('font-size')) + 2;
+                if (curSize <= 32)
+                    $('.question-layout').css('font-size', curSize);
+            });
+
+            $("body").on("click", ".resettext", function (e) {
+                if (curSize != 18)
+                    $('.question-layout').css('font-size', 18);
+            });
+
+            $("body").on("click", ".decreasetext", function (e) {
+                curSize = parseInt($('.question-layout').css('font-size')) - 2;
+                if (curSize >= 14)
+                    $('.question-layout').css('font-size', curSize);
+            });
         }
+
+    function getTime(secondsString) {
+        var h = Math.floor(secondsString / 3600); //Get whole hours
+        secondsString -= h * 3600;
+        var m = Math.floor(secondsString / 60); //Get remaining minutes
+        secondsString -= m * 60;
+
+        var return_string = '';
+        if (h > 0) {
+            var return_string = return_string + h + ":";
+        }
+        if (m > 0) {
+            var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
+        }
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+
+        return return_string;
+    }
 
 </script>

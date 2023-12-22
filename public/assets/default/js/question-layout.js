@@ -35,6 +35,7 @@ quiz_user_data[0]['incorrect'] = {};
 quiz_user_data[0]['correct'] = {};
 var QuestionSubmitRequest = null;
 var question_submit_process = false;
+var Questioninterval = null;
 
 
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
@@ -60,7 +61,10 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         question_submit_process = false;
         return false;
     }
-    clearInterval(Questioninterval);
+    if(rurera_is_field(Questioninterval)) {
+        clearInterval(Questioninterval);
+    }
+
     rurera_loader($(this), 'div');
 
     var quiz_type = $(".question-area-block").attr('data-type');
@@ -493,6 +497,7 @@ function init_question_functions() {
 
 
     sort_init();
+    question_layout_functions();
 
     $(document).on('click', '.match-question .stems li', function (e) {
         stem = $(this);
@@ -810,6 +815,7 @@ function init_question_functions() {
 
                 }, 1000);
             }
+        question_layout_functions();
 
         //Temporary Commented
         currentRequest = jQuery.ajax({

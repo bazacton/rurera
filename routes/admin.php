@@ -358,7 +358,7 @@ Route::group([
             Route::get('/single_question_preview', 'CustomQuizController@single_question_preview');
             Route::post('/publish_assignment', 'CustomQuizController@publish_assignment');
             Route::post('/store', 'CustomQuizController@store');
-            Route::get('/{id}/edit', 'CustomQuizController@edit')->name('adminEditAssignment');
+            Route::get('/{id}/edit', 'CustomQuizController@edit')->name('adminEditCustomQuiz');
             Route::post('/{id}/update', 'CustomQuizController@update');
             Route::post('/{id}/update', 'CustomQuizController@update');
             Route::get('/{id}/assign', 'CustomQuizController@assign')->name('adminAssignAssignment');

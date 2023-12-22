@@ -4442,10 +4442,11 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     width: 100%;
 }
 .radio-buttons .card-radio {
-    width: 15.333%;
+    width: 11.111%;
     margin-bottom: 0;
 }
 .populated-data .radio-btn {
+    background-color: #fff;
     border: 2px solid transparent;
     border-radius: 10px;
     display: flex;
@@ -4454,7 +4455,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
     box-shadow: 0 0 10px #c3c3c367;
     cursor: pointer;
     padding: 15px 12px;
-    min-height: 80px;
+    min-height: 111px;
     align-items: center;
     justify-content: center;
 }
@@ -4547,6 +4548,16 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 .populated-data .input-group-prepend ~ .form-control {
     border-radius: 0 4px 4px 0 !important;
+}
+.card-icon svg {
+    max-width: 35px;
+    max-height: 35px;
+    fill: #495057;
+    vertical-align: top;
+    margin: 0 0 10px;
+}
+.card-icon path {
+    fill: #495057;
 }
 /*Range Slider Style Start*/
 .range-slider {
