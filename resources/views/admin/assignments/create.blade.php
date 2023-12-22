@@ -177,7 +177,7 @@
 
 <section class="section">
     <div class="section-header">
-        <h1>{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new') }} Timestables Assignment</h1>
+        <h1>{{!empty($assignment) ?trans('/admin/main.edit'): trans('admin/main.new') }} Assignment</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/admin/">{{ trans('admin/main.dashboard') }}</a>
             </div>
@@ -207,7 +207,7 @@
 
                                         <div class="years-group populated-data">
                                             <div class="form-group">
-                                                <label class="input-label">Assignment Type</label>
+                                                <label class="input-label">Practice Type</label>
                                                 <div class="input-group">
 
                                                     <div class="radio-buttons">
@@ -217,7 +217,7 @@
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
                                                                  <img src="/assets/default/img/assignment-logo/practice.png">
-                                                                    <h3>Practice</h3>
+                                                                    <h3>Courses</h3>
                                                                </div>
                                                           </span>
                                                         </label>
@@ -308,7 +308,7 @@
                                             </div>
 
                                             <div class="form-section assignment_topic_type_fields practice_fields">
-                                                <h2 class="section-title">Practice</h2>
+                                                <h2 class="section-title">Courses</h2>
                                             </div>
 
 
@@ -352,7 +352,7 @@
                                                         <div class="form-group">
                                                             <label class="input-label">Year Group</label>
                                                             <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
-                                                                    class="form-control year_quiz_ajax_select @error('year_id') is-invalid @enderror"
+                                                                    class="form-control year_quiz_ajax_select select2 @error('year_id') is-invalid @enderror"
                                                                     name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
                                                                 <option value="0">Select Year Group</option>
 
@@ -388,7 +388,7 @@
                                                         <div class="form-group">
                                                             <label class="input-label d-block">Year Group</label>
                                                             <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][year_group]"
-                                                                    class="form-control year_group_quiz_ajax_select" data-placeholder="Select Year Group">
+                                                                    class="form-control year_group_quiz_ajax_select select2 " data-placeholder="Select Year Group">
                                                                 <option value="">Select Year Group</option>
                                                                 <option value="All">All</option>
                                                                 <option value="Year 3" selected>Year 3</option>
@@ -453,7 +453,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="input-label">Assignment Title</label>
+                                                <label class="input-label">Practice Title</label>
                                                 <input type="text"
                                                        name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
                                                        value="{{ !empty($assignment) ? $assignment->title : old('title') }}"
@@ -463,7 +463,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="input-label">Assignment Description</label>
+                                                <label class="input-label">Practice Description</label>
                                                 <textarea
                                                         name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][description]"
                                                         class="form-control summernote-editor-mintool"
@@ -478,7 +478,7 @@
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-4">
                                                     <div class="form-group">
-                                                        <label class="input-label">Training Start Date</label>
+                                                        <label class="input-label">Practice Start Date</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
@@ -488,7 +488,7 @@
                                                             <input type="text" autocomplete="off"
                                                                    name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
                                                                    value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
-                                                                   class="form-control datepicker" min="2023-12-20" max="2023-12-31"
+                                                                   class="form-control practice-start-date rureradatepicker" min="{{date('Y-m-d')}}"
                                                                    placeholder=""/>
                                                             <div class="invalid-feedback"></div>
                                                         </div>
@@ -496,7 +496,7 @@
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-4">
                                                     <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
-                                                        <label class="input-label">Training Due Date</label>
+                                                        <label class="input-label">Practice Due Date</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
@@ -506,7 +506,7 @@
                                                             <input type="text" autocomplete="off"
                                                                    name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
                                                                    value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
-                                                                   class="form-control datepicker"
+                                                                   class="form-control practice-due-date rureradatepicker" min="{{date('Y-m-d')}}"
                                                                    placeholder=""/>
                                                             <div class="invalid-feedback"></div>
                                                         </div>
@@ -524,7 +524,7 @@
                                                             <input type="text" autocomplete="off"
                                                                    name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_review_due_date]"
                                                                    value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_review_due_date, 'Y-m-d', false) : old('assignment_review_due_date') }}"
-                                                                   class="form-control datepicker"
+                                                                   class="form-control reviewer-date rureradatepicker" min="{{date('Y-m-d')}}"
                                                                    placeholder=""/>
                                                             <div class="invalid-feedback"></div>
                                                         </div>
@@ -573,7 +573,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="input-label">Assignment Method</label>
+                                                <label class="input-label">Practice Method</label>
                                                 <div class="input-group">
 
                                                     <div class="radio-buttons">
@@ -614,7 +614,7 @@
                                                             </div>
                                                             <input type="range"
                                                                    name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][target_percentage]"
-                                                                   value="0"
+                                                                   value="0" data-label="%"
                                                                    class="js-ajax-title form-control correct_answers_percentage range-slider-field" min="0" max="100"
                                                                    placeholder=""/>
                                                         </div>
@@ -1092,6 +1092,15 @@
             var current_value = $(this).val();
             $(".assignment_topic_type_fields").addClass('rurera-hide');
             $('.' + current_value + '_fields').removeClass('rurera-hide');
+            var total_questions = 0;
+            if( current_value == 'timestables'){
+                total_questions = 200;
+            }
+
+
+            $(".max_questions").html('Max: ' + total_questions);
+            $(".no_of_questions").attr('max', total_questions);
+            $(".no_of_questions").val(0);
         });
 
         $('body').on('change', '.assignment_method_check', function (e) {
@@ -1105,6 +1114,7 @@
             var year_id = $(this).val();
             var quiz_type = $(".assignment_topic_type_check:checked").val();
             var thisObj = $(this);//$(".quiz-ajax-fields");
+            $(".yeargroup-ajax-fields").html('');
             rurera_loader(thisObj, 'button');
             jQuery.ajax({
                 type: "GET",
@@ -1128,6 +1138,8 @@
             var year_group = $(this).val();
             var quiz_type = $(".assignment_topic_type_check:checked").val();
             var thisObj = $(this);//$(".yeargroup-ajax-fields");
+            $(".practice-quiz-ajax-fields").html('');
+            $(".quiz-ajax-fields").html('');
             rurera_loader(thisObj, 'button');
             jQuery.ajax({
                 type: "GET",
@@ -1175,20 +1187,20 @@
             $(window).on("resize", function () {
                 showSliderValue(sliderInput, sliderThumb, sliderLine);
             });
-
             sliderInput.on('input', function () {
                 showSliderValue(sliderInput, sliderThumb, sliderLine);
             });
         });
 
         function showSliderValue(sliderInput, sliderThumb, sliderLine) {
-            sliderThumb.html(sliderInput.val());
+            var label_value = sliderInput.attr('data-label');
+            label_value  = (label_value != undefined && label_value != 'undefined')? label_value : '';
+            sliderThumb.html(sliderInput.val()+label_value);
             var max_value = sliderInput.attr('max');
             var current_percentage = (sliderInput.val() * 100 / max_value);
             var bulletPosition = sliderInput.val() / sliderInput.attr('max');
             var space = sliderInput.width() - sliderThumb.width();
             space = parseInt(space) + parseInt(20);
-            console.log(space);
             var text_to_display = sliderInput.val();
             if (sliderInput.hasClass('time_interval')) {
                 $(".time_interval_data").html(sliderInput.val() + ' Seconds, ' + formatTime(sliderInput.val(), 'm', 's'));
@@ -1225,6 +1237,19 @@
             $(".no_of_questions").val(0);
         });
 
+        $('body').on('change', '.topics_multi_selection', function (e) {
+
+            var total_questions = 0;
+            $('.topics_multi_selection:checked').each(function () {
+                total_questions = parseInt(total_questions) + parseInt($(this).attr('data-total_questions'));
+            });
+
+            $(".max_questions").html('Max: ' + total_questions);
+            $(".no_of_questions").attr('max', total_questions);
+            //$( ".no_of_questions" ).val( $( "#slider-range-max" ).slider( "value" ) );
+            $(".no_of_questions").val(0);
+        });
+
 
         $(".conditional_check").change();
         $(".duration_conditional_check:checked").change();
@@ -1234,7 +1259,7 @@
         $(".year_group_quiz_ajax_select").change();
 
 
-        $('body').on('change', '.section-parent', function (e) {
+        $('body').on('change', '.topic-section-parent', function (e) {
             let $this = $(this);
             let parent = $this.parent().closest('.section-box');
             let isChecked = e.target.checked;
@@ -1244,6 +1269,19 @@
             } else {
                 parent.find('input[type="checkbox"].section-child').prop('checked', false);
             }
+
+            $(".topics_multi_selection").change();
+        });
+
+        $('body').on('apply.daterangepicker', '.practice-start-date', function (ev, picker) {
+            $(".practice-due-date").attr('min',picker.startDate.format('YYYY-MM-DD'));
+            $(".reviewer-date").attr('min',picker.startDate.format('YYYY-MM-DD'));
+            resetRureraDatePickers();
+        });
+
+        $('body').on('apply.daterangepicker', '.practice-due-date', function (ev, picker) {
+            $(".reviewer-date").attr('min',picker.startDate.format('YYYY-MM-DD'));
+            resetRureraDatePickers();
         });
 
     });

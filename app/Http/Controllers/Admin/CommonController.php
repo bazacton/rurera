@@ -268,9 +268,13 @@ class CommonController extends Controller
 
                 if( !empty( $subChapters ) ) {
                     foreach ($subChapters as $subChapterObj) {
+                        $quizData = $subChapterObj->quizData;
+                        $quiz_id = isset( $quizData->item_id )? $quizData->item_id : 0;
+                        $quizData = isset( $subChapterObj->quizData->quiz )? $subChapterObj->quizData->quiz : array();
+                        $count_questions = isset($quizData->quizQuestionsList) ? count($quizData->quizQuestionsList) : 0;
 
                         $sub_chapters_response .= '<div class="form-check mt-1">
-                            <input type="checkbox" name="ajax[new][topic_ids][]" id="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'" value="'.$subChapterObj->id.'" class="form-check-input section-child">
+                            <input type="checkbox" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'" value="'.$quiz_id.'" class="form-check-input section-child topics_multi_selection">
                             <label class="form-check-label cursor-pointer mt-0" for="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'">
                                 '.$subChapterObj->sub_chapter_title.'
                             </label>
@@ -279,7 +283,7 @@ class CommonController extends Controller
                 }
                  $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
                         <div class="card-header">
-                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_'.$chapterObj->id.'" value="1" class="form-check-input mt-0 section-parent">
+                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_'.$chapterObj->id.'" value="1" class="form-check-input mt-0 topic-section-parent">
                             <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_'.$chapterObj->id.'">
                                 '.$chapterObj->getTitleAttribute().'
                             </label>

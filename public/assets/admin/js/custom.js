@@ -124,6 +124,60 @@
     };
     resetDatePickers();
 
+
+    window.resetRureraDatePickers = () => {
+        if (jQuery().daterangepicker) {
+
+            if( $(".rureradatepicker").length > 0){
+
+                $(".rureradatepicker").each(function () {
+                    const $datepicker = $(this);
+                    const drops3 = $datepicker.attr('data-drops') ?? 'down';
+                    const minValue = $datepicker.attr('min');
+                    const maxValue = $datepicker.attr('max');
+
+                    var configOptions = {
+                        'locale': {
+                            format: 'YYYY-MM-DD',
+                        },
+                        'singleDatePicker': true,
+                        'timePicker': false,
+                        'autoApply': true, // Set autoApply to true to automatically apply the selected date
+                        'autoUpdateInput': false,
+                        'drops': drops3,
+                    };
+
+                    if( rurera_is_field(minValue)) {
+                        configOptions['minDate'] = minValue;
+                    }
+                    if( rurera_is_field(maxValue)) {
+                        configOptions['maxDate'] = maxValue;
+                    }
+
+                    $datepicker.daterangepicker(configOptions);
+
+                    $datepicker.on('apply.daterangepicker', function (ev, picker) {
+                        $(this).val(picker.startDate.format('YYYY-MM-DD'));
+                    });
+
+                    $datepicker.on('cancel.daterangepicker', function (ev, picker) {
+                        $(this).val('');
+                    });
+                });
+            }
+        }
+    };
+    resetRureraDatePickers();
+
+    function rurera_is_field(field_value) {
+        if (field_value != 'undefined' && field_value != undefined && field_value != '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 // Timepicker
     if (jQuery().timepicker) {
         $(".setTimepicker").each(function (key, item) {

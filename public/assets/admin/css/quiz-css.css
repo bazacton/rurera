@@ -547,7 +547,7 @@ img.note-float-right {
 }
 .leform-element-html hr {
 	border: 0;
-	border-top: 1px solid #a0a0a0;
+	border-top: 2px dotted #ddd;
 	margin: 0.3em 0;
 }
 .leform-element-html ul {

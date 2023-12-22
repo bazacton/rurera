@@ -347,6 +347,8 @@ class AssignmentController extends Controller
                                 'field_id'              => $field_id,
                                 'correct_answer'        => $correct_answer,
                                 'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
+                                'disable_next'          => 'true',
+                                'disable_prev'          => 'true',
                             ];
                         } else {
                             $results_questions_array[$newQuestionResult->id] = [
@@ -357,7 +359,9 @@ class AssignmentController extends Controller
                                 'questionsData'     => rurera_encode($questionObj),
                                 'newQuestionResult' => $newQuestionResult,
                                 'question_no'       => $question_no,
-                                'quizResultObj'     => $resultLogObj
+                                'quizResultObj'     => $resultLogObj,
+                                'disable_next'      => 'true',
+                                'disable_prev'      => 'true',
                             ];
                         }
 

@@ -601,6 +601,8 @@ class QuizController extends Controller
                                 'total_questions_count' => $total_questions_count,
                                 'field_id'              => $field_id,
                                 'correct_answer'        => $correct_answer,
+                                'disable_next'          => 'true',
+                                'disable_prev'          => 'true',
                                 'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
                             ];
                         } else {
@@ -612,7 +614,9 @@ class QuizController extends Controller
                                 'questionsData'     => rurera_encode($questionObj),
                                 'newQuestionResult' => $newQuestionResult,
                                 'question_no'       => $question_no,
-                                'quizResultObj'     => $resultLogObj
+                                'quizResultObj'     => $resultLogObj,
+                                'disable_next'      => 'true',
+                                'disable_prev'      => 'true',
                             ];
                         }
 

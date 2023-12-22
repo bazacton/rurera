@@ -17773,7 +17773,7 @@ Product Tabs Slider Style Start
 .lms-quiz-section .quiz-topbar .quiz-pagination li a,
 .lms-quiz-section .quiz-topbar .timer-number,
 .timer-number, .lms-quiz-section .quiz-topbar p{color: #333;}
-.question-layout-block form.question-fields .questions-nav-controls {border-top: 1px solid #999; padding-top: 30px; padding-left: 0;}
+.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dotted #ddd; padding-top: 30px; padding-left: 0;}
 .type-sats .question-layout-block form.question-fields {border: 0; padding: 0; border-radius: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
 /* Lms Font End Display End */

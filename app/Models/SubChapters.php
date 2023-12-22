@@ -29,6 +29,11 @@ class SubChapters extends Model
         return $this->hasMany('App\Models\WebinarChapterItem', 'parent_id', 'id');
     }
 
+    public function quizData()
+    {
+        return $this->hasOne('App\Models\WebinarChapterItem', 'parent_id', 'id');
+    }
+
     public function webinar()
     {
         return $this->belongsTo('App\Models\Webinar', 'webinar_id', 'id');

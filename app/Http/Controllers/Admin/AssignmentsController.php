@@ -410,7 +410,6 @@ class AssignmentsController extends Controller
             }
         }
 
-
         if ($request->ajax()) {
 
             $redirectUrl = '';

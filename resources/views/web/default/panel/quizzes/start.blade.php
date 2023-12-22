@@ -21,7 +21,6 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/assets/vendors/flipbook/css/slide-menu.css">
 
-<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 <style>
     .ui-state-highlight {
@@ -105,38 +104,8 @@ $rand_id = rand(99,9999);
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                <div class="quiz-pagination">
-                                    <div class="swiper-container">
-                                        <ul class="swiper-wrapper">
-                                            @if( !empty( $questions_list ) )
-                                            @php $question_count = 1; @endphp
-                                                @foreach( $questions_list as $question_id)
-                                                @php $is_flagged = false;
-                                                $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
-                                                ($newQuizStart->flagged_questions) : array();
-                                                @endphp
-                                                @if( is_array( $flagged_questions ) && in_array( $question_id,
-                                                    $flagged_questions))
-                                                    @php $is_flagged = true;
-                                                    @endphp
-                                                @endif
-                                                @php $question_status_class = isset( $questions_status_array[$question_id]
-                                                )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                                <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                                        'has-flag' : ''}} {{$question_status_class}}"><a
-                                                            href="javascript:;">
-                                                        {{$question_count}}</a></li>
-                                                @php $question_count++; @endphp
-                                                @endforeach
-                                            @endif
-                                        </ul>
-                                    </div>
-                                    <div class="swiper-button-prev"></div>
-                                    <div class="swiper-button-next"></div>
-                                </div>
                                 <div class="quiz-timer">
-                                    <span class="timer-number">4<em>m</em></span> <span
-                                            class="timer-number">50<em>s</em></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="0">0s</div></span>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +222,6 @@ $rand_id = rand(99,9999);
 <script src="/assets/default/js/parts/quiz-start.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js?ver={{$rand_id}}"></script>
 
@@ -265,9 +233,47 @@ $rand_id = rand(99,9999);
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
 
 
+    var Quizintervals = null;
+
+       var duration_type = 'no_time_limit';
+
     $(document).ready(function () {
 
+        Quizintervals = setInterval(function () {
+            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+            if( duration_type == 'no_time_limit'){
+                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+            }else {
+                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            }
+            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            if($('.nub-of-sec').length > 0){
+                $('.nub-of-sec').html(getTime(quiz_timer_counter));
+            }
+            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+
+        }, 1000);
+
     });
+
+    function getTime(secondsString) {
+        var h = Math.floor(secondsString / 3600); //Get whole hours
+        secondsString -= h * 3600;
+        var m = Math.floor(secondsString / 60); //Get remaining minutes
+        secondsString -= m * 60;
+
+        var return_string = '';
+        if( h > 0) {
+            var return_string = return_string + h + "h ";
+        }
+        if( m > 0 || h > 0) {
+            var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
+        }
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+        return_string = return_string + 's';
+
+        return return_string;
+    }
 
 </script>
 @endpush
