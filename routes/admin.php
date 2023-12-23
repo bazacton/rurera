@@ -421,10 +421,17 @@ Route::group([
         Route::group(['prefix' => 'questions_bank'], function () {
             Route::get('/', 'QuestionsBankController@index');
             Route::get('/import_spells', 'QuestionsBankController@import_spells');
-            Route::get('/import_true_false_spells', 'QuestionsBankController@import_true_false_spells');
+            Route::get('/import_true_false_questions', 'QuestionsBankController@import_true_false_questions');
+            Route::get('/import_single_response_questions', 'QuestionsBankController@import_single_response_questions');
+            Route::get('/import_text_dropdown_questions', 'QuestionsBankController@import_text_dropdown_questions');
+            Route::get('/import_text_blank_questions', 'QuestionsBankController@import_text_blank_questions');
+
+
             Route::get('/import_true_false_spells_correct', 'QuestionsBankController@import_true_false_spells_correct');
             Route::get('/import_mcqs_questions_correct', 'QuestionsBankController@import_mcqs_questions_correct');
             Route::get('/import_short_questions', 'QuestionsBankController@import_short_questions');
+
+
 
 
 

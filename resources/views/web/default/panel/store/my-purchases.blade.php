@@ -139,7 +139,7 @@
                 <div class="row">
                     <div class="col-12 ">
                         <div class="table-responsive">
-                            <table class="table text-center custom-table">
+                            <table class="table text-center custom-table simple-table">
                                 <thead>
                                 <tr>
                                     <th class=" text-left">Title</th>

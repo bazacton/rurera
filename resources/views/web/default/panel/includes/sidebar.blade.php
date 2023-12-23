@@ -65,7 +65,11 @@
         <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
             <a class="d-flex align-items-center">
                 <span class="sidenav-item-icon mr-10">
-                    @include('web.default.panel.includes.sidebar_icons.dashboard')
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3V21" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M21 21H3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 16L12.25 10.75L15.75 14.25L21 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </span>
                 <span class="font-14 text-dark-blue font-weight-500"><a href="/panel/analytics">Analytics</a></span>
             </a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\TextToSpeechController;
 use App\Models\Quiz;
 use App\Models\Glossary;
 use App\Models\QuizzesQuestion;
+use App\Models\QuizzesQuestionsList;
 use App\Models\Translation\QuizzesQuestionTranslation;
 use App\Models\Category;
 use App\Models\QuizzesResult;
@@ -30,6 +31,7 @@ use Elasticsearch;
 class QuestionsBankController extends Controller
 {
 
+    public $replace_able_text = array();
     function getDirContents($dir, &$results = array()) {
         $files = scandir($dir);
 
@@ -458,122 +460,1105 @@ class QuestionsBankController extends Controller
     /*
      * Import TRUE / FALSE Questions
      */
-    public function import_true_false_spells()
+    public function import_true_false_questions()
     {
         $user = auth()->user();
 
+        $difficulty_level = 'Emerging';
+        $question_type = 'true_false';
+        $quiz_id = 40;
+        $example_question_id = 9012;
+        $year_id = 616;
+        $subject_id = 2082;
+        $chapter_id = 195;
+        $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
+        $quizObj = Quiz::find($quiz_id);
 
-        //Year 4
-        $files_array = array(
-            'true-false-part01',
-            'true-false-part02',
-            'true-false-part03',
-            'true-false-part04',
-            'true-false-part05',
-        );
-        $grade = 'Year 7';
+        $import_date = '22-12-2023';
 
-        foreach( $files_array as $file_name){
-            $excel = 'grade-7-truefalse/'.$file_name.'.xlsx';
-            echo '<hr><br><br>';
-            echo $file_name.'<br>';
-            $other_slug = $file_name;
+        $file_path = 'import/'.$import_date.'/true-false.xlsx';
+        $required_options = "*True*False*Don't Know";
 
-            $rows = Excel::toArray(null, $excel);
-            if (!empty($rows)) {
-                foreach ($rows as $rowArray) {
-                    if (!empty($rowArray)) {
-                        foreach ($rowArray as $key => $rowData) {
-                            if ($key == 0) {
-                                continue;
-                            }
-                            $random_id = rand(1111, 9999);
-                            $question_layout = 'IjxzdHlsZT48L3N0eWxlPjxkaXYgaWQ9XCJsZWZvcm0tZWxlbWVudC0xXCIgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC0xIGxlZm9ybS1lbGVtZW50IHF1aXotZ3JvdXAgbGVmb3JtLWVsZW1lbnQtaHRtbFwiIGRhdGEtdHlwZT1cInF1ZXN0aW9uX2xhYmVsXCI+PGRpdiBjbGFzcz1cInF1ZXN0aW9uLWxhYmVsXCI+PHNwYW4+VHJ1ZS9GYWxzZVE8L3NwYW4+PC9kaXY+PC9kaXY+PGRpdiBpZD1cImxlZm9ybS1lbGVtZW50LTBcIiBjbGFzcz1cImxlZm9ybS1lbGVtZW50LTAgbGVmb3JtLWVsZW1lbnQgcXVpei1ncm91cCBsZWZvcm0tZWxlbWVudC1odG1sXCIgZGF0YS10eXBlPVwidHJ1ZWZhbHNlX3F1aXpcIj48c3BhbiBjbGFzcz1cInRydWVmYWxzZV9xdWl6IGxlZm9ybS1pbnB1dCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZCBsZWZvcm0tY3ItbGF5b3V0LXVuZGVmaW5lZFwiPlxuPGRpdiBjbGFzcz1cImZvcm0tYm94IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJsbXMtcmFkaW8tc2VsZWN0IHJ1cmVyYS1pbi1yb3cgdW5kZWZpbmVkIGltYWdlLXJpZ2h0IG5vbmVcIj5cbjxkaXYgY2xhc3M9XCJmaWVsZC1ob2xkZXIgbGVmb3JtLWNyLWNvbnRhaW5lci1tZWRpdW0gbGVmb3JtLWNyLWNvbnRhaW5lci11bmRlZmluZWRcIj5cbjxpbnB1dCBjbGFzcz1cImVkaXRvci1maWVsZFwiIHR5cGU9XCJyYWRpb1wiIG5hbWU9XCJmaWVsZC0zNzM4MlwiIGlkPVwiZmllbGQtMzczODItMFwiIHZhbHVlPVwiVHJ1ZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTBcIj5UcnVlPC9sYWJlbD5cbjwvZGl2PlxuPGRpdiBjbGFzcz1cImZpZWxkLWhvbGRlciBsZWZvcm0tY3ItY29udGFpbmVyLW1lZGl1bSBsZWZvcm0tY3ItY29udGFpbmVyLXVuZGVmaW5lZFwiPlxuPGlucHV0IGNsYXNzPVwiZWRpdG9yLWZpZWxkXCIgdHlwZT1cInJhZGlvXCIgbmFtZT1cImZpZWxkLTM3MzgyXCIgaWQ9XCJmaWVsZC0zNzM4Mi0xXCIgdmFsdWU9XCJGYWxzZVwiPlxuPGxhYmVsIGZvcj1cImZpZWxkLTM3MzgyLTFcIj5GYWxzZTwvbGFiZWw+XG48L2Rpdj5cbjwvZGl2PlxuPC9kaXY+PC9zcGFuPjxkaXYgY2xhc3M9XCJsZWZvcm0tZWxlbWVudC1jb3ZlclwiPjwvZGl2PjwvZGl2PiI=';
+        $excelFile = Excel::toArray(null, $file_path);
 
-                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+        $excel_columns = array('Keywords','Type','Reference','Image','Label','Text-AL','Answer','Explanation');
 
-                            $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
-
-
-                            pre($question_layout);
-
-                            $element_data = '
-                            {"37382":{"basic":"basic","correct_answer":"False","score":"5","elements_data":"W3t9XQ==","field_id":37382,"type":"truefalse_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3},
-                            "0":{"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
-                            "1":{"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"TrueFalseQ","elements_data":"W3t9XQ=="}}';
-                            $layout_elements = '[{"basic":"basic","correct_answer":"False","score":"5","elements_data":"W3t9XQ==","field_id":37382,"type":"truefalse_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":3,"id":3},
-                            {"type":"paragraph_quiz","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":1,"id":1,"basic":"basic","content":"question details","elements_data":"W3t9XQ=="},
-                            {"type":"question_label","resize":"both","height":"auto","_parent":"1","_parent-col":"0","_seq":2,"id":2,"basic":"basic","content":"TrueFalseQ","elements_data":"W3t9XQ=="}]';
-
-                            $correct_answer = isset( $rowData[3] )? $rowData[3] : '';
-                            $correct_answer = ($correct_answer == 1)? 'True' : 'False';
-                            $questionLabel = isset( $rowData[1] )? $rowData[1] : '';
-                            $questionLabel = 'Select One Correct Answer';
-                            $new_title = isset( $rowData[2] )? $rowData[2] : '';
-                            $new_tags = str_replace(',', ' | ', $rowData[0]);
-                            $question_solve = isset( $rowData[4] )? ucfirst($rowData[4]) : '';
-                            $element_data = str_replace('37382', $random_id, $element_data);
-                            $element_data = str_replace('TrueFalseQ', $questionLabel, $element_data);
-                            $element_data = str_replace('"correct_answer":"False"', '"correct_answer":"' . $correct_answer . '"', $element_data);
-                            $element_data = str_replace('question details', $new_title, $element_data);
-
-
-                            $layout_elements = str_replace('"correct_answer":"False"', '"correct_answer":"' . $correct_answer . '"', $layout_elements);
-                            $layout_elements = str_replace('TrueFalseQ', $questionLabel, $layout_elements);
-                            $layout_elements = str_replace('37382', $random_id, $layout_elements);
-                            $layout_elements = str_replace('question details', $new_title, $layout_elements);
-
-
-                            $question_layout = str_replace('37382', $random_id, $question_layout);
-                            $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
-
-                            $quizQuestion = QuizzesQuestion::create([
-                                'quiz_id'                   => 0,
-                                'creator_id'                => $user->id,
-                                'grade'                     => '',
-                                'question_year'             => 0,
-                                'question_score'            => 1,
-                                'question_average_time'     => 2,
-                                'question_difficulty_level' => 'Below',
-                                'question_template_type'    => 'sum_quiz',
-                                //isset( $questionData['type'] )? $questionData['type'] : '',
-                                'chapter_id'                => 195,
-                                'question_title'            => $new_title,
-                                'question_layout'           => $question_layout,
-                                'question_solve'            => $question_solve,
-                                'glossary_ids'              => '["1"]',
-                                'elements_data'             => $element_data,
-                                'layout_elements'           => $layout_elements,
-                                'category_id'               => 616,
-                                'course_id'                 => 2082,
-                                'sub_chapter_id'            => 0,
-                                'type'                      => 'descriptive',
-                                'created_at'                => time(),
-                                'question_status'           => 'Submit for review',
-                                'comments_for_reviewer'     => '',
-                                'search_tags'               => $new_tags.' | '.$grade.' | TRUEFALSE',
-                                'review_required'           => 0,
-                                'question_example'          => '<p>test</p>',
-                            ]);
-
-                            QuizzesQuestionTranslation::updateOrCreate([
-                                'quizzes_question_id' => $quizQuestion->id,
-                                'locale'              => 'en',
-                            ], [
-                                'title'   => $new_title,
-                                'correct' => '',
-                            ]);
-                            //pre($quizQuestion->id);
-                            pre($quizQuestion->id, false);
+        $questions_counter = 1;
+        if( !empty( $excelFile ) ) {
+            foreach ($excelFile as $sheetName => $sheetsArray) {
+                if( !empty( $sheetsArray )){
+                    foreach( $sheetsArray as $key => $sheetData){
+                        if ($key == 0) {
+                            continue;
                         }
+                        if( !isset( $sheetData[0] ) || empty( $sheetData[0] ) || $sheetData[0] == '' ){
+                            continue;
+                        }
+                        $random_id = rand(1111, 9999);
+
+                        // Sheet Data
+
+                        $sheet_image = isset( $sheetData[3] )? $sheetData[3] : '';
+
+                        $correct_answer = isset( $sheetData[6] )? $sheetData[6] : '';
+                        $correct_answer = ($correct_answer == 1)? 1 : 2;
+                        $question_label = isset( $sheetData[4] )? $sheetData[4] : '';
+                        $question_after_label = isset( $sheetData[5] )? $sheetData[5] : '';
+                        $question_reference = isset( $sheetData[2] )? $sheetData[2] : '';
+                        $keywords = str_replace(',', ' | ', $sheetData[0]);
+                        $question_solve = isset( $sheetData[7] )? ucfirst($sheetData[7]) : '';
+                        $question_reference = str_replace('[Text-AL]', $question_after_label, $question_reference);
+
+                        $updated_array  = array(
+                            'correct_answer' => $correct_answer,
+                            'question_label' => $question_label,
+                            'question_after_label' => $question_after_label,
+                            'question_reference' => $question_reference,
+                            'keywords' => $keywords,
+                            'question_solve' => $question_solve,
+                            'required_options' => $required_options,
+                            'sheet_image' => $sheet_image,
+                        );
+                        $replace_keys = array();
+
+
+                        $question_layout = $exampleQuestionObj->question_layout;
+                        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                        /*
+                         * Elements Data Starts
+                         */
+                        $element_data = $exampleQuestionObj->elements_data;
+                        $element_data_decoded = json_decode($element_data);
+                        $element_data_decoded_new = $element_data_decoded;
+
+                        if( !empty( $element_data_decoded ) ){
+                            foreach( $element_data_decoded as $key => $element_data_value){
+                                $prev_key = $key;
+                                if( isset($element_data_value->field_id) ){
+                                    $replace_keys[$key] = $random_id;
+                                    $key = $random_id;
+                                    $element_data_decoded_new = (array) $element_data_decoded_new;
+                                    unset( $element_data_decoded_new[$prev_key]);
+                                    $element_data_decoded_new = (object) $element_data_decoded_new;
+
+                                }
+                                $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $element_data = json_encode($element_data_decoded_new);
+
+                        /*
+                         * Elements Data Ends
+                         */
+
+                        /*
+                         * Layout Data Starts
+                         */
+
+                        $layout_elements = $exampleQuestionObj->layout_elements;
+                        $layout_elements_decoded = json_decode($layout_elements);
+                        $layout_data_decoded_new = $layout_elements_decoded;
+                        if( !empty( $layout_elements_decoded ) ){
+                            foreach( $layout_elements_decoded as $key => $layout_elements_value){
+
+                                $prev_key = $key;
+                                if( isset($layout_elements_value->field_id) ){
+                                    //unset( $layout_data_decoded_new[$prev_key]);
+
+                                }
+                                $layout_data_decoded_new[$key] = $this->get_question_updated_layout_data($layout_elements_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $layout_elements = json_encode($layout_data_decoded_new);
+
+                        /*
+                        * Layout Data Ends
+                        */
+
+                        $question_layout = $this->get_question_updated_layout($question_layout, $replace_keys, $updated_array, $random_id, $question_type);
+
+                        $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+
+                        $quizQuestion = QuizzesQuestion::create([
+                            'quiz_id'                   => 0,
+                            'creator_id'                => $user->id,
+                            'grade'                     => '',
+                            'question_year'             => 0,
+                            'question_score'            => 1,
+                            'question_average_time'     => 2,
+                            'question_difficulty_level' => $difficulty_level,
+                            'question_template_type'    => 'sum_quiz',
+                            'chapter_id'                => $chapter_id,
+                            'question_title'            => $question_reference,
+                            'question_layout'           => $question_layout,
+                            'question_solve'            => $question_solve,
+                            'glossary_ids'              => '',
+                            'elements_data'             => $element_data,
+                            'layout_elements'           => $layout_elements,
+                            'category_id'               => $year_id,
+                            'course_id'                 => $subject_id,
+                            'sub_chapter_id'            => 0,
+                            'type'                      => 'descriptive',
+                            'created_at'                => time(),
+                            'question_status'           => 'Submit for review',
+                            'comments_for_reviewer'     => '',
+                            'search_tags'               => $keywords,
+                            'review_required'           => 0,
+                            'question_example'          => '<p>test</p>',
+                            'question_type'             => $question_type,
+                        ]);
+
+                        QuizzesQuestionTranslation::updateOrCreate([
+                            'quizzes_question_id' => $quizQuestion->id,
+                            'locale'              => 'en',
+                        ], [
+                            'title'   => $question_reference,
+                            'correct' => '',
+                        ]);
+
+                        QuizzesQuestionsList::create([
+                            'quiz_id'     => $quizObj->id,
+                            'question_id' => $quizQuestion->id,
+                            'status'      => 'active',
+                            'sort_order'  => 0,
+                            'created_by'  => $user->id,
+                            'created_at'  => time()
+                        ]);
+                        //pre($quizQuestion->id);
+                        pre($questions_counter.') '.$quizQuestion->id, false);
+                        $questions_counter++;
                     }
                 }
             }
         }
 
 
+        pre($file_path, false);
 
         pre('Completed!!!!');
+    }
+
+
+    /*
+     * Import MCQs Single Response Questions
+     */
+    public function import_single_response_questions()
+    {
+        $user = auth()->user();
+        $this->replace_able_text    = array();
+
+        $difficulty_level = 'Expected';
+        $question_type = 'single_select';
+        $quiz_id = 31;
+        $example_question_id = 9213;
+        $year_id = 616;
+        $subject_id = 2082;
+        $chapter_id = 195;
+        $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
+        $quizObj = Quiz::find($quiz_id);
+
+        $import_date = '22-12-2023';
+
+        $file_path = 'import/'.$import_date.'/single-response.xlsx';
+        $required_options = "*True*False*Don't Know";
+
+        $excelFile = Excel::toArray(null, $file_path);
+
+        $excel_columns = array('Keywords','Type','Reference','Image','Label','Text-BL','options','Answer','Explanation');
+
+        $questions_counter = 1;
+        if( !empty( $excelFile ) ) {
+            foreach ($excelFile as $sheetName => $sheetsArray) {
+                if( !empty( $sheetsArray )){
+                    foreach( $sheetsArray as $key => $sheetData){
+                        if ($key == 0) {
+                            continue;
+                        }
+                        if( !isset( $sheetData[0] ) || empty( $sheetData[0] ) || $sheetData[0] == '' ){
+                            continue;
+                        }
+                        $this->replace_able_text    = array();
+                        $random_id = rand(1111, 9999);
+
+                        // Sheet Data
+
+                        $keywords = str_replace(',', ' | ', $sheetData[0]);
+                        $question_reference = isset( $sheetData[2] )? $sheetData[2] : '';
+                        $sheet_image = isset( $sheetData[3] )? $sheetData[3] : '';
+                        $question_label = isset( $sheetData[4] )? $sheetData[4] : '';
+                        $question_before_label = isset( $sheetData[5] )? $sheetData[5] : '';
+                        $required_options = isset( $sheetData[6] )? $sheetData[6] : '';
+                        $correct_answer = isset( $sheetData[7] )? $sheetData[7] : '';
+                        $correct_answer = ($correct_answer == 1)? 1 : 2;
+                        $question_solve = isset( $sheetData[8] )? ucfirst($sheetData[8]) : '';
+
+
+                        $question_reference = str_replace('[Text-BL]', $question_before_label, $question_reference);
+
+                        $updated_array  = array(
+                            'correct_answer' => $correct_answer,
+                            'question_label' => $question_label,
+                            'question_before_label' => $question_before_label,
+                            'question_reference' => $question_reference,
+                            'keywords' => $keywords,
+                            'question_solve' => $question_solve,
+                            'required_options' => $required_options,
+                            'sheet_image' => $sheet_image,
+                        );
+                        $replace_keys = array();
+
+
+                        $question_layout = $exampleQuestionObj->question_layout;
+                        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                        /*
+                         * Elements Data Starts
+                         */
+                        $element_data = $exampleQuestionObj->elements_data;
+                        $element_data_decoded = json_decode($element_data);
+                        $element_data_decoded_new = $element_data_decoded;
+
+                        if( !empty( $element_data_decoded ) ){
+                            foreach( $element_data_decoded as $key => $element_data_value){
+                                $prev_key = $key;
+                                if( isset($element_data_value->field_id) ){
+                                    $replace_keys[$key] = $random_id;
+                                    $key = $random_id;
+                                    $element_data_decoded_new = (array) $element_data_decoded_new;
+                                    unset( $element_data_decoded_new[$prev_key]);
+                                    $element_data_decoded_new = (object) $element_data_decoded_new;
+
+                                }
+                                $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $element_data = json_encode($element_data_decoded_new);
+
+                        /*
+                         * Elements Data Ends
+                         */
+
+                        /*
+                         * Layout Data Starts
+                         */
+
+                        $layout_elements = $exampleQuestionObj->layout_elements;
+                        $layout_elements_decoded = json_decode($layout_elements);
+                        $layout_data_decoded_new = $layout_elements_decoded;
+                        if( !empty( $layout_elements_decoded ) ){
+                            foreach( $layout_elements_decoded as $key => $layout_elements_value){
+
+                                $prev_key = $key;
+                                if( isset($layout_elements_value->field_id) ){
+                                    //unset( $layout_data_decoded_new[$prev_key]);
+
+                                }
+                                $layout_data_decoded_new[$key] = $this->get_question_updated_layout_data($layout_elements_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $layout_elements = json_encode($layout_data_decoded_new);
+
+                        /*
+                        * Layout Data Ends
+                        */
+
+                        $question_layout = $this->get_question_updated_layout($question_layout, $replace_keys, $updated_array, $random_id, $question_type);
+
+
+                        $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+
+                        $quizQuestion = QuizzesQuestion::create([
+                            'quiz_id'                   => 0,
+                            'creator_id'                => $user->id,
+                            'grade'                     => '',
+                            'question_year'             => 0,
+                            'question_score'            => 1,
+                            'question_average_time'     => 2,
+                            'question_difficulty_level' => $difficulty_level,
+                            'question_template_type'    => 'sum_quiz',
+                            'chapter_id'                => $chapter_id,
+                            'question_title'            => $question_reference,
+                            'question_layout'           => $question_layout,
+                            'question_solve'            => $question_solve,
+                            'glossary_ids'              => '',
+                            'elements_data'             => $element_data,
+                            'layout_elements'           => $layout_elements,
+                            'category_id'               => $year_id,
+                            'course_id'                 => $subject_id,
+                            'sub_chapter_id'            => 0,
+                            'type'                      => 'descriptive',
+                            'created_at'                => time(),
+                            'question_status'           => 'Submit for review',
+                            'comments_for_reviewer'     => '',
+                            'search_tags'               => $keywords,
+                            'review_required'           => 0,
+                            'question_example'          => '<p>test</p>',
+                            'question_type'             => $question_type,
+                        ]);
+
+                        QuizzesQuestionTranslation::updateOrCreate([
+                            'quizzes_question_id' => $quizQuestion->id,
+                            'locale'              => 'en',
+                        ], [
+                            'title'   => $question_reference,
+                            'correct' => '',
+                        ]);
+
+                        QuizzesQuestionsList::create([
+                            'quiz_id'     => $quizObj->id,
+                            'question_id' => $quizQuestion->id,
+                            'status'      => 'active',
+                            'sort_order'  => 0,
+                            'created_by'  => $user->id,
+                            'created_at'  => time()
+                        ]);
+                        //pre($quizQuestion->id);
+                        pre($questions_counter.') '.$quizQuestion->id, false);
+                        $questions_counter++;
+                    }
+                }
+            }
+        }
+
+
+        pre($file_path, false);
+
+        pre('Completed!!!!');
+    }
+
+    /*
+     * Import dropdown  Questions
+     */
+    public function import_text_dropdown_questions()
+    {
+        $user = auth()->user();
+        $this->replace_able_text    = array();
+
+        $difficulty_level = 'Emerging';
+        $question_type = 'dropdown';
+        $quiz_id = 32;
+        $example_question_id = 10114;
+        $year_id = 616;
+        $subject_id = 2082;
+        $chapter_id = 195;
+        $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
+        $quizObj = Quiz::find($quiz_id);
+
+        $import_date = '22-12-2023';
+
+        $file_path = 'import/'.$import_date.'/drop-down.xlsx';
+        $required_options = "*True*False*Don't Know";
+
+        $excelFile = Excel::toArray(null, $file_path);
+
+        $excel_columns = array('Keywords','Type','Reference','Image','Label','Text-AL','Answer','Explanation');
+
+        $questions_counter = 1;
+        if( !empty( $excelFile ) ) {
+            foreach ($excelFile as $sheetName => $sheetsArray) {
+                if( !empty( $sheetsArray )){
+                    foreach( $sheetsArray as $key => $sheetData){
+                        if ($key == 0) {
+                            continue;
+                        }
+                        if( !isset( $sheetData[0] ) || empty( $sheetData[0] ) || $sheetData[0] == '' ){
+                            continue;
+                        }
+                        $this->replace_able_text    = array();
+                        $random_id = rand(1111, 9999);
+
+                        // Sheet Data
+
+                        $keywords = str_replace(',', ' | ', $sheetData[0]);
+                        $question_reference = isset( $sheetData[2] )? $sheetData[2] : '';
+                        $sheet_image = isset( $sheetData[3] )? $sheetData[3] : '';
+                        $question_label = isset( $sheetData[4] )? $sheetData[4] : '';
+                        $question_after_label = isset( $sheetData[5] )? $sheetData[5] : '';
+                        $correct_answer = isset( $sheetData[6] )? $sheetData[6] : '';
+                        $question_solve = isset( $sheetData[7] )? ucfirst($sheetData[7]) : '';
+
+
+                        $question_reference = str_replace('[Text-AL]', $question_after_label, $question_reference);
+                        $question_reference = str_replace('[Blank]', '', $question_reference);
+
+                        $updated_array  = array(
+                            'correct_answer' => $correct_answer,
+                            'question_label' => $question_label,
+                            'question_after_label' => $question_after_label,
+                            'question_reference' => $question_reference,
+                            'keywords' => $keywords,
+                            'question_solve' => $question_solve,
+                            'sheet_image' => $sheet_image,
+                        );
+                        $replace_keys = array();
+
+
+                        $question_layout = $exampleQuestionObj->question_layout;
+                        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                        /*
+                         * Elements Data Starts
+                         */
+                        $element_data = $exampleQuestionObj->elements_data;
+                        $element_data_decoded = json_decode($element_data);
+                        $element_data_decoded_new = $element_data_decoded;
+
+                        if( !empty( $element_data_decoded ) ){
+                            foreach( $element_data_decoded as $key => $element_data_value){
+                                $prev_key = $key;
+                                if( isset($element_data_value->field_id) || isset( $element_data_value->{'data-id'}) ){
+                                    $replace_keys[$key] = $random_id;
+                                    $key = $random_id;
+                                    $element_data_decoded_new = (array) $element_data_decoded_new;
+                                    unset( $element_data_decoded_new[$prev_key]);
+                                    $element_data_decoded_new = (object) $element_data_decoded_new;
+
+                                }
+                                $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $element_data = json_encode($element_data_decoded_new);
+
+                        /*
+                         * Elements Data Ends
+                         */
+
+                        /*
+                         * Layout Data Starts
+                         */
+
+                        $layout_elements = $exampleQuestionObj->layout_elements;
+                        $layout_elements_decoded = json_decode($layout_elements);
+                        $layout_data_decoded_new = $layout_elements_decoded;
+                        if( !empty( $layout_elements_decoded ) ){
+                            foreach( $layout_elements_decoded as $key => $layout_elements_value){
+
+                                $prev_key = $key;
+                                if( isset($layout_elements_value->field_id) ){
+                                    //unset( $layout_data_decoded_new[$prev_key]);
+
+                                }
+                                $layout_data_decoded_new[$key] = $this->get_question_updated_layout_data($layout_elements_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $layout_elements = json_encode($layout_data_decoded_new);
+
+                        /*
+                        * Layout Data Ends
+                        */
+
+                        $question_layout = $this->get_question_updated_layout($question_layout, $replace_keys, $updated_array, $random_id, $question_type);
+                        //pre($layout_elements, false);
+
+
+                        $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+
+                        $quizQuestion = QuizzesQuestion::create([
+                            'quiz_id'                   => 0,
+                            'creator_id'                => $user->id,
+                            'grade'                     => '',
+                            'question_year'             => 0,
+                            'question_score'            => 1,
+                            'question_average_time'     => 2,
+                            'question_difficulty_level' => $difficulty_level,
+                            'question_template_type'    => 'sum_quiz',
+                            'chapter_id'                => $chapter_id,
+                            'question_title'            => $question_reference,
+                            'question_layout'           => $question_layout,
+                            'question_solve'            => $question_solve,
+                            'glossary_ids'              => '',
+                            'elements_data'             => $element_data,
+                            'layout_elements'           => $layout_elements,
+                            'category_id'               => $year_id,
+                            'course_id'                 => $subject_id,
+                            'sub_chapter_id'            => 0,
+                            'type'                      => 'descriptive',
+                            'created_at'                => time(),
+                            'question_status'           => 'Submit for review',
+                            'comments_for_reviewer'     => '',
+                            'search_tags'               => $keywords,
+                            'review_required'           => 0,
+                            'question_example'          => '<p>test</p>',
+                            'question_type'             => $question_type,
+                        ]);
+
+                        QuizzesQuestionTranslation::updateOrCreate([
+                            'quizzes_question_id' => $quizQuestion->id,
+                            'locale'              => 'en',
+                        ], [
+                            'title'   => $question_reference,
+                            'correct' => '',
+                        ]);
+
+                        QuizzesQuestionsList::create([
+                            'quiz_id'     => $quizObj->id,
+                            'question_id' => $quizQuestion->id,
+                            'status'      => 'active',
+                            'sort_order'  => 0,
+                            'created_by'  => $user->id,
+                            'created_at'  => time()
+                        ]);
+                        pre($questions_counter.') '.$quizQuestion->id, false);
+                        $questions_counter++;
+                    }
+                }
+            }
+        }
+
+
+        pre($file_path, false);
+
+        pre('Completed!!!!');
+    }
+
+    /*
+     * Import dropdown  Questions
+     */
+    public function import_text_blank_questions()
+    {
+        $user = auth()->user();
+        $this->replace_able_text    = array();
+
+        $difficulty_level = 'Exceeding';
+        $question_type = 'text_field';
+        $quiz_id = 33;
+        $example_question_id = 10247;
+        $year_id = 616;
+        $subject_id = 2082;
+        $chapter_id = 195;
+        $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
+        $quizObj = Quiz::find($quiz_id);
+
+        $import_date = '22-12-2023';
+
+        $file_path = 'import/'.$import_date.'/fill-in the-blank.xlsx';
+        $required_options = "*True*False*Don't Know";
+
+        $excelFile = Excel::toArray(null, $file_path);
+
+        $excel_columns = array('Keywords','Type','Reference','Image','Label','Text-AL','Answer','Explanation');
+
+        $questions_counter = 1;
+        if( !empty( $excelFile ) ) {
+            foreach ($excelFile as $sheetName => $sheetsArray) {
+                if( !empty( $sheetsArray )){
+                    foreach( $sheetsArray as $key => $sheetData){
+                        if ($key == 0) {
+                            continue;
+                        }
+                        if( !isset( $sheetData[0] ) || empty( $sheetData[0] ) || $sheetData[0] == '' ){
+                            continue;
+                        }
+                        $this->replace_able_text    = array();
+                        $random_id = rand(1111, 9999);
+
+                        // Sheet Data
+
+                        $keywords = str_replace(',', ' | ', $sheetData[0]);
+                        $question_reference = isset( $sheetData[2] )? $sheetData[2] : '';
+                        $sheet_image = isset( $sheetData[3] )? $sheetData[3] : '';
+                        $question_label = isset( $sheetData[4] )? $sheetData[4] : '';
+                        $question_after_label = isset( $sheetData[5] )? $sheetData[5] : '';
+                        $correct_answer = isset( $sheetData[6] )? $sheetData[6] : '';
+                        $question_solve = isset( $sheetData[7] )? ucfirst($sheetData[7]) : '';
+
+
+                        $question_reference = str_replace('[Text-AL]', $question_after_label, $question_reference);
+                        $question_reference = str_replace('[Blank]', '', $question_reference);
+
+                        $updated_array  = array(
+                            'correct_answer' => $correct_answer,
+                            'question_label' => $question_label,
+                            'question_after_label' => $question_after_label,
+                            'question_reference' => $question_reference,
+                            'keywords' => $keywords,
+                            'question_solve' => $question_solve,
+                            'sheet_image' => $sheet_image,
+                        );
+                        $replace_keys = array();
+
+
+                        $question_layout = $exampleQuestionObj->question_layout;
+                        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+
+                        /*
+                         * Elements Data Starts
+                         */
+                        $element_data = $exampleQuestionObj->elements_data;
+                        $element_data_decoded = json_decode($element_data);
+                        $element_data_decoded_new = $element_data_decoded;
+
+                        if( !empty( $element_data_decoded ) ){
+                            foreach( $element_data_decoded as $key => $element_data_value){
+                                $prev_key = $key;
+                                if( isset($element_data_value->field_id) || isset( $element_data_value->{'data-id'}) ){
+                                    $replace_keys[$key] = $random_id;
+                                    $key = $random_id;
+                                    $element_data_decoded_new = (array) $element_data_decoded_new;
+                                    unset( $element_data_decoded_new[$prev_key]);
+                                    $element_data_decoded_new = (object) $element_data_decoded_new;
+
+                                }
+                                $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $element_data = json_encode($element_data_decoded_new);
+
+                        /*
+                         * Elements Data Ends
+                         */
+
+                        /*
+                         * Layout Data Starts
+                         */
+
+                        $layout_elements = $exampleQuestionObj->layout_elements;
+                        $layout_elements_decoded = json_decode($layout_elements);
+                        $layout_data_decoded_new = $layout_elements_decoded;
+                        if( !empty( $layout_elements_decoded ) ){
+                            foreach( $layout_elements_decoded as $key => $layout_elements_value){
+
+                                $prev_key = $key;
+                                if( isset($layout_elements_value->field_id) ){
+                                    //unset( $layout_data_decoded_new[$prev_key]);
+
+                                }
+                                $layout_data_decoded_new[$key] = $this->get_question_updated_layout_data($layout_elements_value, $updated_array, $random_id, $question_type);
+                            }
+                        }
+                        $layout_elements = json_encode($layout_data_decoded_new);
+
+                        /*
+                        * Layout Data Ends
+                        */
+
+                        $question_layout = $this->get_question_updated_layout($question_layout, $replace_keys, $updated_array, $random_id, $question_type);
+                        //pre($layout_elements, false);
+
+
+                        $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
+
+
+                        $quizQuestion = QuizzesQuestion::create([
+                            'quiz_id'                   => 0,
+                            'creator_id'                => $user->id,
+                            'grade'                     => '',
+                            'question_year'             => 0,
+                            'question_score'            => 1,
+                            'question_average_time'     => 2,
+                            'question_difficulty_level' => $difficulty_level,
+                            'question_template_type'    => 'sum_quiz',
+                            'chapter_id'                => $chapter_id,
+                            'question_title'            => $question_reference,
+                            'question_layout'           => $question_layout,
+                            'question_solve'            => $question_solve,
+                            'glossary_ids'              => '',
+                            'elements_data'             => $element_data,
+                            'layout_elements'           => $layout_elements,
+                            'category_id'               => $year_id,
+                            'course_id'                 => $subject_id,
+                            'sub_chapter_id'            => 0,
+                            'type'                      => 'descriptive',
+                            'created_at'                => time(),
+                            'question_status'           => 'Submit for review',
+                            'comments_for_reviewer'     => '',
+                            'search_tags'               => $keywords,
+                            'review_required'           => 0,
+                            'question_example'          => '<p>test</p>',
+                            'question_type'             => $question_type,
+                        ]);
+
+                        QuizzesQuestionTranslation::updateOrCreate([
+                            'quizzes_question_id' => $quizQuestion->id,
+                            'locale'              => 'en',
+                        ], [
+                            'title'   => $question_reference,
+                            'correct' => '',
+                        ]);
+
+                        QuizzesQuestionsList::create([
+                            'quiz_id'     => $quizObj->id,
+                            'question_id' => $quizQuestion->id,
+                            'status'      => 'active',
+                            'sort_order'  => 0,
+                            'created_by'  => $user->id,
+                            'created_at'  => time()
+                        ]);
+                        pre($questions_counter.') '.$quizQuestion->id, false);
+                        $questions_counter++;
+                    }
+                }
+            }
+        }
+
+
+        pre($file_path, false);
+
+        pre('Completed!!!!');
+    }
+
+    public function get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type = ''){
+        $current_type = isset( $element_data_value->type )? $element_data_value->type : '';
+        $field_id = isset( $element_data_value->field_id )? $element_data_value->field_id : '';
+        $current_options = isset( $element_data_value->options )? $element_data_value->options : array();
+        $template_style = isset( $element_data_value->template_style )? $element_data_value->template_style : '';
+        $required_options = isset( $updated_array['required_options'] )? explode('*', $updated_array['required_options']) : array();
+        $required_image = isset( $updated_array['sheet_image'] )? $updated_array['sheet_image'] : '';
+        $correct_answer = isset( $updated_array['correct_answer'] )? $updated_array['correct_answer'] : '';
+
+        $current_array = $element_data_value;
+        $current_encoded_string = json_encode($current_array);
+        $new_encoded_string = str_replace('PH-Text-AL', isset( $updated_array['question_after_label'])? $updated_array['question_after_label'] : '', $current_encoded_string);
+        $new_encoded_string = str_replace('PH-Label', isset( $updated_array['question_label'])? $updated_array['question_label'] : '', $current_encoded_string);
+        $new_encoded_string = str_replace('PH-Text-BL', isset( $updated_array['question_before_label'])? $updated_array['question_before_label'] : '', $current_encoded_string);
+
+
+        $element_data_value_new = json_decode($new_encoded_string);
+
+        if( isset($element_data_value->field_id) ){
+            $element_data_value_new->field_id = $random_id;
+        }
+
+
+
+        if( $current_type == 'radio'){
+            $long_text = false;
+            $new_options = array();
+            if( !empty($required_options )){
+                $option_count = 1;
+
+                foreach( $required_options as $option_value){
+                    if( $option_value == ''){ continue; }
+
+                    if( strlen($option_value) > 13){
+                        $long_text = true;
+                        $this->replace_able_text['rurera-in-row'] = 'rurera-in-cols';
+                    }
+                    $new_options[]  = (object) array(
+                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                        'label' => $option_value,
+                        'value' => $option_value,
+                        'image' => $required_image,
+                    );
+
+                    $option_count++;
+                }
+            }
+            $element_data_value_new->options = $new_options;
+
+            if( $long_text == true){
+               $element_data_value_new->template_style = 'rurera-in-cols';
+            }
+        }
+
+        if( $current_type == 'html'){
+
+            if( $question_type == 'dropdown'){
+
+                $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+                $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+                $explode_content = explode('[', $question_after_label);
+                $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+                $dropdown_options = explode(']', $explode_content[1]);
+                $question_after_text = isset( $dropdown_options[1] )? $dropdown_options[1] : '';
+                $dropdown_options = isset( $dropdown_options[0] )? explode('/', $dropdown_options[0]) : array();
+
+                $dropdown_response = '';
+                $correct_answer_array = array($correct_answer);
+                if( !empty( $dropdown_options ) ){
+                    foreach( $dropdown_options as $dropdown_item){
+                        $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
+                    }
+                }
+                $dropdown_options_str = htmlentities(base64_encode(json_encode($dropdown_options)));
+                $correct_answer_str = htmlentities(base64_encode(json_encode($correct_answer_array)));
+
+                $updated_dropdown_response = str_replace($previous_dropdown_response,'<select class="editor-field" data-id="'.$random_id.'" data-options="'.$dropdown_options_str.'" data-field_type="select" id="field-'.$random_id.'" data-correct="'.$correct_answer_str.'" data-select_option="'.$correct_answer.'">'.$dropdown_response.'</select>', $previous_dropdown_response);
+                $updated_dropdown_response = $question_before_text.' '.$updated_dropdown_response.' '.$question_after_text;
+
+                $element_data_value_new->content = $updated_dropdown_response;
+            }
+
+            if( $question_type == 'text_field'){
+
+                $previous_text_response = '<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="68322" id="field-68322" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="correctAnswer" correct_answere="correctAnswer"> </span>';
+                $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+                $explode_content = explode('[Blank]', $question_after_label);
+                $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+                $question_after_text = isset( $explode_content[1] )? $explode_content[1] : '';
+
+                $updated_text_response = str_replace($previous_text_response,'<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="'.$random_id.'" id="field-'.$random_id.'" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="'.$correct_answer.'" correct_answere="'.$correct_answer.'"> </span>', $previous_text_response);
+                $updated_text_response = $question_before_text.' '.$updated_text_response.' '.$question_after_text;
+
+                $element_data_value_new->content = $updated_text_response;
+            }
+
+
+
+            $new_options = array();
+            if( !empty($required_options )){
+                $option_count = 1;
+
+                foreach( $required_options as $option_value){
+                    if( $option_value == ''){ continue; }
+                    $new_options[]  = (object) array(
+                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                        'label' => $option_value,
+                        'value' => $option_value,
+                        'image' => $required_image,
+                    );
+
+                    $option_count++;
+                }
+            }
+            $element_data_value_new->options = $new_options;
+
+        }
+        if( $question_type == 'dropdown'){
+            if( isset( $element_data_value_new->{'data-field_type'} ) && $element_data_value_new->{'data-field_type'} == 'select'){
+                $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+                $explode_content = explode('[', $question_after_label);
+                $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+                $dropdown_options = explode(']', $explode_content[1]);
+                $question_after_text = isset( $dropdown_options[1] )? $dropdown_options[1] : '';
+                $dropdown_options = isset( $dropdown_options[0] )? explode('/', $dropdown_options[0]) : array();
+
+                $dropdown_response = '';
+                $correct_answer_array = array($correct_answer);
+                if( !empty( $dropdown_options ) ){
+                    foreach( $dropdown_options as $dropdown_item){
+                        $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
+                    }
+                }
+                $dropdown_options_str = htmlentities(base64_encode(json_encode($dropdown_options)));
+                $correct_answer_str = htmlentities(base64_encode(json_encode($correct_answer_array)));
+
+                $element_data_value_new->{'data-options'} = $dropdown_options_str;
+                $element_data_value_new->{'data-correct'} = json_encode($correct_answer_array);
+                $element_data_value_new->{'data-id'} = $random_id;
+                $element_data_value_new->{'id'} = 'field-'.$random_id;
+                //$options_temp = html_entity_decode(base64_decode(trim(stripslashes($options))));
+            }
+        }
+        if( $question_type == 'text_field'){
+            if( isset( $element_data_value_new->{'data-field_type'} ) && $element_data_value_new->{'data-field_type'} == 'text'){
+
+                $element_data_value_new->{'data-correct_answere'} = $correct_answer;
+                $element_data_value_new->{'correct_answere'} = $correct_answer;
+                $element_data_value_new->{'data-id'} = $random_id;
+                $element_data_value_new->{'id'} = 'field-'.$random_id;
+            }
+        }
+
+        return $element_data_value_new;
+    }
+
+    public function get_question_updated_layout_data($element_data_value, $updated_array, $random_id, $question_type = ''){
+        $current_type = isset( $element_data_value->type )? $element_data_value->type : '';
+        $field_id = isset( $element_data_value->field_id )? $element_data_value->field_id : '';
+        $current_options = isset( $element_data_value->options )? $element_data_value->options : array();
+        $required_options = isset( $updated_array['required_options'] )? explode('*', $updated_array['required_options']) : array();
+        $required_image = isset( $updated_array['sheet_image'] )? $updated_array['sheet_image'] : '';
+        $correct_answer = isset( $updated_array['correct_answer'] )? $updated_array['correct_answer'] : '';
+
+        $current_array = $element_data_value;
+        $current_encoded_string = json_encode($current_array);
+        $new_encoded_string = str_replace('PH-Text-AL', isset( $updated_array['question_after_label'])? $updated_array['question_after_label'] : '', $current_encoded_string);
+        $new_encoded_string = str_replace('PH-Label', isset( $updated_array['question_label'])? $updated_array['question_label'] : '', $new_encoded_string);
+        $new_encoded_string = str_replace('PH-Text-BL', isset( $updated_array['question_before_label'])? $updated_array['question_before_label'] : '', $new_encoded_string);
+        $element_data_value_new = json_decode($new_encoded_string);
+
+        if( isset($element_data_value->field_id) ){
+            $element_data_value_new->field_id = $random_id;
+        }
+
+
+
+        if( $current_type == 'radio'){
+            $long_text = false;
+            $new_options = array();
+            if( !empty($required_options )){
+                $option_count = 1;
+                foreach( $required_options as $option_value){
+                    if( $option_value == ''){ continue; }
+
+                    if( strlen($option_value) > 13){
+                        $long_text = true;
+                        $this->replace_able_text['rurera-in-row'] = 'rurera-in-cols';
+                    }
+
+                    $new_options[]  = (object) array(
+                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                        'label' => $option_value,
+                        'value' => $option_value,
+                        'image' => $required_image,
+                    );
+
+                    $option_count++;
+                }
+            }
+            $element_data_value_new->options = $new_options;
+            if( $long_text == true){
+               $element_data_value_new->template_style = 'rurera-in-cols';
+            }
+
+        }
+
+
+        if( $current_type == 'html'){
+
+            if( $question_type == 'dropdown'){
+
+                $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+                $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+                $explode_content = explode('[', $question_after_label);
+                $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+                $dropdown_options = explode(']', $explode_content[1]);
+                $question_after_text = isset( $dropdown_options[1] )? $dropdown_options[1] : '';
+                $dropdown_options = isset( $dropdown_options[0] )? explode('/', $dropdown_options[0]) : array();
+
+                $dropdown_response = '';
+                $correct_answer_array = array($correct_answer);
+                if( !empty( $dropdown_options ) ){
+                    foreach( $dropdown_options as $dropdown_item){
+                        $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
+                    }
+                }
+                $dropdown_options_str = htmlentities(base64_encode(json_encode($dropdown_options)));
+                $correct_answer_str = htmlentities(base64_encode(json_encode($correct_answer_array)));
+
+                $updated_dropdown_response = str_replace($previous_dropdown_response,'<select class="editor-field" data-id="'.$random_id.'" data-options="'.$dropdown_options_str.'" data-field_type="select" id="field-'.$random_id.'" data-correct="'.$correct_answer_str.'" data-select_option="'.$correct_answer.'">'.$dropdown_response.'</select>', $previous_dropdown_response);
+                $updated_dropdown_response = $question_before_text.' <span class="select-box quiz-input-group">'.$updated_dropdown_response.'</span> '.$question_after_text;
+
+                $element_data_value_new->content = $updated_dropdown_response;
+            }
+
+            if( $question_type == 'text_field'){
+
+                $previous_text_response = '<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="68322" id="field-68322" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="correctAnswer" correct_answere="correctAnswer"> </span>';
+                $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+                $explode_content = explode('[Blank]', $question_after_label);
+                $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+                $question_after_text = isset( $explode_content[1] )? $explode_content[1] : '';
+
+                $updated_text_response = str_replace($previous_text_response,'<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="'.$random_id.'" id="field-'.$random_id.'" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="'.$correct_answer.'" correct_answere="'.$correct_answer.'"> </span>', $previous_text_response);
+                $updated_text_response = $question_before_text.' '.$updated_text_response.' '.$question_after_text;
+
+                $element_data_value_new->content = $updated_text_response;
+            }
+
+            $new_options = array();
+            if( !empty($required_options )){
+                $option_count = 1;
+
+                foreach( $required_options as $option_value){
+                    if( $option_value == ''){ continue; }
+                    $new_options[]  = (object) array(
+                        'default' => ($option_count == $correct_answer)? 'on' : 'off',
+                        'label' => $option_value,
+                        'value' => $option_value,
+                        'image' => $required_image,
+                    );
+
+                    $option_count++;
+                }
+            }
+
+        }
+
+        return $element_data_value_new;
+    }
+
+    public function get_question_updated_layout($question_layout, $replace_keys, $updated_array, $random_id, $question_type){
+        $current_type = isset( $element_data_value->type )? $element_data_value->type : '';
+        $field_id = isset( $element_data_value->field_id )? $element_data_value->field_id : '';
+        $current_options = isset( $element_data_value->options )? $element_data_value->options : array();
+        $required_options = isset( $updated_array['required_options'] )? explode('*', $updated_array['required_options']) : array();
+        $required_image = isset( $updated_array['sheet_image'] )? $updated_array['sheet_image'] : '';
+        $correct_answer = isset( $updated_array['correct_answer'] )? $updated_array['correct_answer'] : '';
+
+        if( !empty( $replace_keys)){
+            foreach( $replace_keys as $replace_key => $replace_value){
+                $question_layout = str_replace($replace_key, $replace_value, $question_layout);
+            }
+        }
+        $question_layout = str_replace('PH-Text-AL', isset( $updated_array['question_after_label'])? $updated_array['question_after_label'] : '', $question_layout);
+        $question_layout = str_replace('PH-Label', isset( $updated_array['question_label'])? $updated_array['question_label'] : '', $question_layout);
+        $question_layout = str_replace('PH-Text-BL', isset( $updated_array['question_before_label'])? $updated_array['question_before_label'] : '', $question_layout);
+
+        $radio_layout_response = '';
+        if( $question_type == 'single_select' || $question_type == 'true_false') {
+            if (!empty($required_options)) {
+                $option_index = 0;
+                foreach ($required_options as $option_value) {
+                    if ($option_value == '') {
+                        continue;
+                    }
+                    $radio_layout_response .= '<div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-' . $option_index . '" value="' . $option_value . '"><label for="field-' . $random_id . '-' . $option_index . '">' . $option_value . '</label></div>';
+                    $option_index++;
+                }
+
+                $question_layout = str_replace("Don't know", 'Dont know', $question_layout);
+                $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0">True</label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-1" value="Option 2"><label for="field-' . $random_id . '-1">False</label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-2" value="Option 2"><label for="field-' . $random_id . '-2">Dont know</label></div></div>';
+
+                if ($question_type == 'single_select') {
+                    $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0">Option1</label></div></div>';
+                }
+
+                $question_layout = str_replace($replaceable, '<div class="lms-radio-select rurera-in-row undefined ">' . $radio_layout_response . '</div>', $question_layout);
+            }
+        }
+        if( $question_type == 'dropdown') {
+            $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+            $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+            $explode_content = explode('[', $question_after_label);
+            $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+            $dropdown_options = explode(']', $explode_content[1]);
+            $question_after_text = isset( $dropdown_options[1] )? $dropdown_options[1] : '';
+            $dropdown_options = isset( $dropdown_options[0] )? explode('/', $dropdown_options[0]) : array();
+
+            $dropdown_response = '';
+            $correct_answer_array = array($correct_answer);
+            if( !empty( $dropdown_options ) ){
+                foreach( $dropdown_options as $dropdown_item){
+                    $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
+                }
+            }
+            $dropdown_options_str = htmlentities(base64_encode(json_encode($dropdown_options)));
+            $correct_answer_str = htmlentities(base64_encode(json_encode($correct_answer_array)));
+
+            $updated_dropdown_response = str_replace($previous_dropdown_response,'<select class="editor-field" data-id="'.$random_id.'" data-options="'.$dropdown_options_str.'" data-field_type="select" id="field-'.$random_id.'" data-correct="'.$correct_answer_str.'" data-select_option="'.$correct_answer.'">'.$dropdown_response.'</select>', $previous_dropdown_response);
+            $updated_dropdown_response = $question_before_text.' <span class="select-box quiz-input-group">'.$updated_dropdown_response.'</span> '.$question_after_text;
+
+
+            $replaceable = 'TEXT-REPLACE';
+            $question_layout = str_replace($replaceable, $updated_dropdown_response, $question_layout);
+        }
+        if( $question_type == 'text_field') {
+
+            $previous_text_response = '<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="68322" id="field-68322" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="correctAnswer" correct_answere="correctAnswer"> </span>';
+            $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
+            $explode_content = explode('[Blank]', $question_after_label);
+            $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
+            $question_after_text = isset( $explode_content[1] )? $explode_content[1] : '';
+
+            $updated_text_response = str_replace($previous_text_response,'<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="'.$random_id.'" id="field-'.$random_id.'" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="'.$correct_answer.'" correct_answere="'.$correct_answer.'"> </span>', $previous_text_response);
+            $updated_text_response = $question_before_text.' '.$updated_text_response.' '.$question_after_text;
+
+            $replaceable = 'TEXT-REPLACE';
+            $question_layout = str_replace($replaceable, $updated_text_response, $question_layout);
+        }
+        if( !empty( $this->replace_able_text ) ){
+            foreach( $this->replace_able_text as $replace_index => $replace_value){
+                $question_layout = str_replace($replace_index, $replace_value, $question_layout);
+            }
+        }
+
+        return $question_layout;
     }
 
     public function import_mcqs_questions_correct(){
@@ -1517,9 +2502,17 @@ class QuestionsBankController extends Controller
                             $attrib_arr = ( $element_content != '')? lmsParseTag($element_content , 'editor-field') : array();
 
 
+
                             $fields_data = array();
                             if (!empty($attrib_arr)) {
                                 foreach ($attrib_arr as $attribData) {
+                                    if( $field_type == 'html') {
+                                        if( isset( $attribData['data-field_type'] ) && $attribData['data-field_type'] == 'select'){
+                                            $data_correct = isset( $attribData['data-correct'] )? $attribData['data-correct'] : '';
+                                            $data_correct = base64_decode(trim(stripslashes($data_correct)));
+                                            $attribData['data-correct'] = $data_correct;
+                                        }
+                                    }
                                     $id = isset($attribData['data-id']) ? $attribData['data-id'] : '';
                                     if ($id != '') {
                                         $fields_data[$id] = $attribData;

@@ -27,11 +27,11 @@ $rand_id = rand(99,9999);
 
 
         <div class="learning-page-content flex-grow-1 bg-info-light p-15">
-            <div class="default-loaded-data rurera-hide"></div>
+
             <div class="learning-content" id="learningPageContent">
                 <div class="learning-title">
                     @if( isset( $assignmentObj->StudentAssignmentData->assignment_type ))
-                        <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$assignmentObj->StudentAssignmentData->assignment_type}}.png"> ->
+                        <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$assignmentObj->StudentAssignmentData->assignment_type}}.png">
                     @endif
                     <h3 class="mb-5">{{$title}}</h3>
                 </div>

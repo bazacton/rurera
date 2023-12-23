@@ -100,7 +100,7 @@ $rand_id = rand(99,9999);
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
                             @if( isset( $quiz->quiz_type ))
-                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png"> ->
+                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
                             <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
@@ -151,9 +151,38 @@ $rand_id = rand(99,9999);
                                             <img src="/assets/default/svgs/info-icon.svg" alt="#">
                                         </button>
                                         <div class="instruction-dropdown">
-                                            <div class="info-text">
-                                                <h3>info</h3>
-                                            </div>
+                                            <div class="instruction-text">
+                                                            <h3>INSTRUCTIONS</h3>
+                                                            <h4>Setting Up Your Page</h4>
+                                                            <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
+                                                            <ul>
+                                                                <li>a coloured overlay (this will change the background colour and may help you read the questions better)</li>
+                                                            </ul>
+                                                            <img src="/assets/default/img/overlay.png" alt="#">
+                                                            <ul>
+                                                                <li>the font size</li>
+                                                            </ul>
+                                                            <img src="/assets/default/img/font-size.png">
+                                                            <p>We recommend you setup your page BEFORE the test starts.</p>
+                                                            <p>Changing these features during the test will reduce the amount of time you have to answer the questions.</p>
+                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                                                            <h4>Navigating The Test</h4>
+                                                            <p>Read the instructions for each question carefully.</p>
+                                                            <p>Choose your answer by clicking on it. If you want to change your mind, click on a different answer.</p>
+                                                            <p>Once you are sure of your answer click ‘Submit Answer’. You will not be able to go back to change your answer.</p>
+                                                            <img src="/assets/default/img/answer.png" alt="#">
+                                                            <p>You can use a pen/pencil and paper to make notes if you wish. Your working and notes will not be marked.</p>
+                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                                                            <h4>About The Test</h4>
+                                                            <p>The Verbal Reasoning Test assesses a range of English language skills including:</p>
+                                                            <ul>
+                                                                <li>Comprehension</li>
+                                                                <li>Reasoning</li>
+                                                                <li>Logic</li>
+                                                            </ul>
+                                                            <p>The questions you see in this Walkthrough are examples of these types.</p>
+                                                            <p>Some of these types may appear in the test, while others may not.</p>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -287,17 +316,17 @@ $rand_id = rand(99,9999);
 
        var duration_type = 'no_time_limit';
 
-    $(document).ready(function () {
+    function quiz_default_functions() {
 
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            if( duration_type == 'no_time_limit'){
+            if (duration_type == 'no_time_limit') {
                 quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            }else {
+            } else {
                 quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
             }
             $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-            if($('.nub-of-sec').length > 0){
+            if ($('.nub-of-sec').length > 0) {
                 $('.nub-of-sec').html(getTime(quiz_timer_counter));
             }
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
@@ -305,23 +334,23 @@ $rand_id = rand(99,9999);
         }, 1000);
 
         $("body").on("click", ".increasetext", function (e) {
-                    curSize = parseInt($('.question-layout').css('font-size')) + 2;
-                    if (curSize <= 32)
-                        $('.question-layout').css('font-size', curSize);
-                });
+            curSize = parseInt($('.question-layout').css('font-size')) + 2;
+            if (curSize <= 32)
+                $('.question-layout').css('font-size', curSize);
+        });
 
-                $("body").on("click", ".resettext", function (e) {
-                    if (curSize != 18)
-                    $('.question-layout').css('font-size', 18);
-                });
+        $("body").on("click", ".resettext", function (e) {
+            if (curSize != 18)
+                $('.question-layout').css('font-size', 18);
+        });
 
-                $("body").on("click", ".decreasetext", function (e) {
-                    curSize = parseInt($('.question-layout').css('font-size')) - 2;
-                    if (curSize >= 14)
-                    $('.question-layout').css('font-size', curSize);
-                });
+        $("body").on("click", ".decreasetext", function (e) {
+            curSize = parseInt($('.question-layout').css('font-size')) - 2;
+            if (curSize >= 14)
+                $('.question-layout').css('font-size', curSize);
+        });
 
-    });
+    }
 
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours

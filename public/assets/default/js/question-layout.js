@@ -497,7 +497,7 @@ function init_question_functions() {
 
 
     sort_init();
-    question_layout_functions();
+
 
     $(document).on('click', '.match-question .stems li', function (e) {
         stem = $(this);
@@ -754,6 +754,7 @@ function init_question_functions() {
 
 
         $(".question-area-block").html(question_layout);
+        var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
         if( rurera_is_field(total_points) == true && total_points != ''){
@@ -815,7 +816,18 @@ function init_question_functions() {
 
                 }, 1000);
             }
-        question_layout_functions();
+
+        //question_layout_functions();
+
+        if(rurera_is_field(Questioninterval)) {
+            clearInterval(Questioninterval);
+        }
+        var Questioninterval = setInterval(function () {
+            console.log(quizQuestionID);
+            var seconds_count = $(".question-step-"+quizQuestionID).attr('data-elapsed');
+            seconds_count = parseInt(seconds_count) + parseInt(1);
+            $(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
+        }, 1000);
 
         //Temporary Commented
         currentRequest = jQuery.ajax({

@@ -5562,23 +5562,6 @@ function element_properties_meta($chapters)
                 'tooltip' => esc_html__('This description appears below the field.', 'leform'),
                 'type'    => 'text'
             ),
-            'style'              => array(
-                'type'  => 'tab',
-                'value' => 'style',
-                'label' => esc_html__('Style', 'leform')
-            ),
-            'image_size'    => array(
-                'value'   => '',
-                'label'   => esc_html__('Image Size', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image_small' => esc_html__('Small', 'leform'),
-                        'image_medium' => esc_html__('Medium', 'leform'),
-                        'image_large' => esc_html__('Large', 'leform'),
-                    )
-            ),
             'template_style'     => array(
                 'value'   => 'rurera-in-row',
                 'label'   => esc_html__('Template Style', 'leform'),
@@ -5588,18 +5571,6 @@ function element_properties_meta($chapters)
                     array(
                         'rurera-in-row' => esc_html__('Row', 'leform'),
                         'rurera-in-cols' => esc_html__('Columns', 'leform'),
-                    )
-            ),
-
-            'template_alignment' => array(
-                'value'   => 'image-right',
-                'label'   => esc_html__('Image Alignment (Optional)', 'leform'),
-                '',
-                'type'    => 'select',
-                'options' =>
-                    array(
-                        'image-right' => esc_html__('Right', 'leform'),
-                        'image-top'   => esc_html__('Top', 'leform'),
                     )
             ),
             'list_style'         => array(
@@ -5614,21 +5585,6 @@ function element_properties_meta($chapters)
                         'numeric-list-style'  => esc_html__('Numbers', 'leform'),
                     )
             ),
-
-            'description-style'  => array(
-                'value'   => array(
-                    'position' => '',
-                    'align'    => ''
-                ),
-                'caption' => array(
-                    'position' => esc_html__('Position', 'leform'),
-                    'align'    => esc_html__('Align', 'leform')
-                ),
-                'label'   => esc_html__('Description style', 'leform'),
-                'tooltip' => esc_html__('Choose where to display the description relative to the field and its alignment.', 'leform'),
-                'type'    => 'description-style'
-            ),
-
             'elements_data'      => array(
                 'value'   => '',
                 'label'   => '',

@@ -14736,10 +14736,12 @@ p {line-height: 1.5;}
     .rtl .mobile-app__buttons {margin-right: 0 !important; margin-left: 0 !important; width: 100%; margin-bottom: 15px; justify-content: start;}
 }
 .custom-table thead td,
-.custom-table thead th {font-size: 14px; font-weight: 500; line-height: 1.19; text-align: left; color: #818894; border-bottom: none; border-top: none;}
+.custom-table thead th {line-height: 1.19; text-align: left; color: #818894; border-bottom: none; border-top: none;}
 .rtl .custom-table thead td,
 .rtl .custom-table thead th {text-align: right;}
-.custom-table tbody td {font-size: 15px; font-weight: 400; line-height: 1.19; text-align: center; color: #171347; border-bottom: 1px solid #ececec; padding: 15px 20px;}
+.custom-table tbody td {font-weight: 400; line-height: 1.19; text-align: center; color: #171347; border-bottom: 1px solid #ececec; padding: 15px 20px;}
+.custom-table tbody td a {font-weight: 600;}
+.custom-table tbody td:first-child {padding-left: .75rem;}
 .table-responsive {overflow: visible;}
 .custom-table.simple-table {margin-bottom: 0;}
 @media (max-width:991px) {
@@ -14758,7 +14760,7 @@ p {line-height: 1.5;}
 .table-actions.dropdown .dropdown-menu button:hover {color: var(--primary);}
 .table-actions.dropdown .dropdown-menu.menu-lg {min-width: 192px !important;}
 .table-actions.dropdown.table-actions-lg .dropdown-menu {min-width: 150px !important;}
-.input-label {font-size: 14px; font-weight: 500; line-height: 1.19; color: #171347;}
+.input-label {font-weight: 500; line-height: 1.19; color: #171347;}
 .input-label .braces {font-size: 11px; }
 .category-filter-title {position: relative; font-size: 16px; font-weight: 800; line-height: 1.19; color: #171347; }
 .category-filter-title:after {content: ""; width: 50px; height: 3px; background-color: var(--primary); position: absolute; bottom: -10px; left: 0;}
@@ -17042,12 +17044,12 @@ Sats Listing Style Start
 .sats-listing-card.medium .text-holder h4 {margin-bottom: 0;}
 .sats-listing-card table {width: 100%;}
 .sats-listing-card table img {max-width: 50px; display: inline-block; margin-right: 15px;}
-.sats-listing-card table h4 {display: inline-block; vertical-align: middle; width: calc(100% - 70px); font-size: 16px;}
+.sats-listing-card table h4 {display: inline-block; vertical-align: middle; width: calc(100% - 70px);}
 .sats-listing-card thead {background-color: var(--primary);}
 .sats-listing-card.medium {box-shadow: 0 0 5px rgba(0,0,0,0.2); border-radius: 0; display: flex; align-items: flex-start; flex-wrap: wrap; padding: 0 0 15px; width: 100%;}
 .sats-listing-card thead th,
 .panel-section-card .custom-table thead td, 
-.panel-section-card .custom-table thead th {padding: 15px 20px; color: #333; text-align: left; font-weight: 600; font-size: 16px;}
+.panel-section-card .custom-table thead th {padding: 15px 20px; color: #333; text-align: left; font-weight: 600;}
 .sats-listing-card tbody tr td {border-bottom: 1px solid #ececec; padding: 15px 20px;}
 .sats-listing-card .attempt-progress {min-width: 120px;}
 .sats-listing-card.medium .media-holder {
@@ -17222,7 +17224,7 @@ Sats Listing Style End
 .dataTables_wrapper .dataTables_length select {display: inline-block; width: 100%; height: 31px; padding: 0.130rem 1.75rem 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #495057; vertical-align: middle; background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px; border: 1px solid #ced4da; border-radius: 0.25rem; -webkit-appearance: none; -moz-appearance: none; appearance: none; margin: 0 5px;}
 div.dataTables_wrapper div.dataTables_filter label {margin: 0;}
 div.dataTables_wrapper div.dataTables_filter input[type="search"] {color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; height: 31px;}
-.dataTable td a {font-weight: 600; font-size: 16px; margin-right: 10px;}
+.dataTable td a {font-weight: 600; margin-right: 10px;}
 .dataTables_wrapper .paginate_button.previous {border-radius: 5px 0 0 5px;}
 .dataTables_wrapper .paginate_button.next {border-radius: 0 5px 5px 0;}
 .table tbody td .sub_label,
@@ -17271,7 +17273,7 @@ Time Table Style Start
 Time Table Style End
 *************************************/
 .elevenplus-block thead {background-color: var(--primary);}
-.elevenplus-block .table thead th {border: 0; color: #fff; font-size: 18px;}
+.elevenplus-block .table thead th {border: 0; color: #fff;}
 .elevenplus-block .table tbody {border-style: solid; border-color: #ececec; border-width: 0 1px 1px 1px;}
 .elevenplus-block .table tbody tr:nth-of-type(odd) {background-color: #fff;}
 .elevenplus-block .table tbody td {border: 0; border-bottom: 1px solid #ececec; padding: 20px 15px;}
@@ -17712,7 +17714,7 @@ Product Tabs Slider Style Start
 .sats-summary .summary-text {width: calc(100% - 35px);}
 .chart-summary-fields .sats-summary [class*="col-"] {background-color: #f5f5f5; align-items: center;}
 .chart-summary-fields .sats-summary .sats-summary-icon {margin-right: 15px; width: 35px; height: 35px; text-align: center; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;}
-.chart-summary-fields .sats-summary .sats-summary-icon img {width: 35px; height: 35px;}
+.chart-summary-fields .sats-summary .sats-summary-icon img {width: 19px; height: 19px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);}
 .chart-summary-fields .sats-summary .sats-summary-icon svg {width: 20px; height: 20px;}
 .chart-summary-fields .sats-summary .summary-text {width: calc(100% - 50px);}
 .sats-summary label {display: block; margin: 0 0 6px;}
@@ -17773,7 +17775,7 @@ Product Tabs Slider Style Start
 .lms-quiz-section .quiz-topbar .quiz-pagination li a,
 .lms-quiz-section .quiz-topbar .timer-number,
 .timer-number, .lms-quiz-section .quiz-topbar p{color: #333;}
-.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dotted #ddd; padding-top: 30px; padding-left: 0;}
+.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding-top: 30px; padding-left: 0;}
 .type-sats .question-layout-block form.question-fields {border: 0; padding: 0; border-radius: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
 /* Lms Font End Display End */
@@ -17801,12 +17803,13 @@ Product Tabs Slider Style Start
 .simple-table thead {background-color: inherit; border-bottom: 2px solid #ddd;}
 .spells .dataTable thead tr th,
 .elevenplus-block .simple-table thead tr th{color: #333; padding-left: 0; }
-.simple-table thead tr th {padding-bottom: 20px;}
+.simple-table thead tr th {padding-bottom: 20px; padding-top: 20px;}
 .simple-table thead tr th:first-child {padding-left: 0;}
 .panel-section-card .simple-table thead tr th:first-child {padding-left: .75rem;}
 .spells .dataTable td a {font-weight: 600; font-size: 18px; text-decoration: none; }
+.elevenplus-block {box-shadow: 0 0 5px rgba(0,0,0,0.2);}
 .spells .table-bordered,
-.simple-table.table-bordered {border: 0;}
+.simple-table.table-bordered {border: 0; margin-bottom: 0;}
 .spells.elevenplus-block .table tbody,
 .elevenplus-block .simple-table.table tbody {border-width: 0;}
 .spells .table tbody tr:nth-child(even),

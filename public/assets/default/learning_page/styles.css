@@ -247,6 +247,7 @@ html{overflow:hidden}@media (max-width:991px){html{overflow-y:auto;overflow-x:hi
 }
 .learning-page .learning-title .quiz-type-icon {
     width: 60px;
+    max-width: 100%;
     object-fit: contain;
     margin: 0px 15px 0 0;
 }
@@ -256,6 +257,26 @@ html{overflow:hidden}@media (max-width:991px){html{overflow-y:auto;overflow-x:hi
 .learning-title > h3 {
     display: inline-block;
     vertical-align: middle;
+    position: relative;
+    padding: 0 0 0 25px;
+}
+.learning-title > h3:before,
+.learning-title > h3:after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #999;
+    border-top: 2px solid #999;
+    transform: rotate(45deg);
+    top: 50%;
+    left: 0;
+    margin-top: -4px;
+}
+.learning-title > h3:after {
+    left: 5px;
 }
 .learning-content .text-lesson-content {
     padding-left: 130px !important;
@@ -374,6 +395,39 @@ html{overflow:hidden}@media (max-width:991px){html{overflow-y:auto;overflow-x:hi
 .color-controls .cr-skyBlue-btn {
     background-color: rgba(0, 191, 255, 0.2);
     border-color: rgb(0, 191, 255);
+}
+.instruction-text h3 {
+    font-size: 26px;
+    margin: 0 0 15px;
+}
+.instruction-text h4 {
+    font-size: 26px;
+    margin: 0 0 15px;
+}
+.lms-quiz-section .quiz-topbar .instruction-text p {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: none;
+    line-height: normal;
+    margin: 0 0 20px;
+}
+.instruction-text ul {
+    margin: 0 0 25px;
+    padding: 0 0 0 30px;
+}
+.instruction-text ul li {
+    list-style: disc;
+    padding-left: 0px;
+}
+.instruction-text img {
+    margin: 0 0 25px;
+    max-width: 100%;
+}
+.instruction-controls .instruction-text {
+    min-width: 600px;
+    height: 700px;
+    overflow: hidden;
+    overflow-y: auto;
 }
 /* Instruction Controls End */
 

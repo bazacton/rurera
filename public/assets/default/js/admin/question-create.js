@@ -5297,13 +5297,10 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                 case "multichoice_template":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
                     leform_form_elements[i]['field_id'] = random_id;
-                    console.log('radio-fields');
                     var template_style = leform_form_elements[i]['template_style'];
                     var template_size = leform_form_elements[i]['template_size'];
-                    var template_alignment = leform_form_elements[i]['template_alignment'];
                     var list_style = leform_form_elements[i]['list_style'];
-                    var image_size = leform_form_elements[i]['image_size'];
-                    template_style = template_style +' '+template_size +' '+template_alignment +' '+list_style+' '+image_size;
+                    template_style = template_style +' '+template_size +' '+list_style;
                     style += "#leform-element-" + i + " div.leform-input{height:auto;line-height:1;}";
                     properties['radio-size'] = leform_form_options['checkbox-radio-style-size'];
                     if (leform_form_elements[i]['radio-style-position'] == "")
@@ -8952,6 +8949,8 @@ $(document).on('click', '.editor-field', function () {
             var options_array = (options != '') ? JSON.parse(options) : [];
 
             var corrects = $(this).attr('data-correct');
+            //var correct_string = leform_encode64(JSON.stringify(correct_options));
+            corrects = leform_decode64(corrects);
             var corrects_array = (corrects != '') ? JSON.parse(corrects) : [];
 
             var field_layout_html = $(field_layout_html);
@@ -9038,9 +9037,11 @@ $(document).on('change', '.select-correct-element-field', function () {
     var field_id = $(this).attr('data-field_id');
     var field_type = $(this).attr('data-field_type');
     var correct_options = $(".note-editable #field-" + field_id).attr('data-correct');
+    correct_options = leform_decode64(correct_options);
 
     if (correct_options != '') {
-        correct_options = jQuery.parseJSON(correct_options);
+        //correct_options = jQuery.parseJSON(correct_options);
+        correct_options = [];
     } else {
         correct_options = [];
     }
@@ -9055,8 +9056,9 @@ $(document).on('change', '.select-correct-element-field', function () {
         correct_options.splice($.inArray($(this).val(), correct_options), 1);
     }
 
+    var correct_string = leform_encode64(JSON.stringify(correct_options));
 
-    $(".note-editable #field-" + field_id).attr('data-correct', JSON.stringify(correct_options));
+    $(".note-editable #field-" + field_id).attr('data-correct', correct_string);
 
 
 });
@@ -9267,11 +9269,6 @@ $(document).on('click', '.generate-question-code', function () {
             }
         }
     });
-
-
-    console.log('log start');
-    console.log(question_fields_obj);
-    console.log('log end');
 
 
     thisParentObj.find('#leform-elements_data').val(leform_encode64(JSON.stringify(question_fields_obj)));
