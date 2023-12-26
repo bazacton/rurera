@@ -1011,10 +1011,30 @@ function _leform_properties_prepare(_object) {
                     break;
 
                 case 'image':
-                    var imageObj = $.parseHTML(leform_escape_html(properties[key]));
+                    //var imageObj = $.parseHTML(leform_escape_html(properties[key]));
+                    var imageObj = $($.parseHTML(leform_escape_html(properties[key])));
                     var image_src = imageObj.find('img').attr('src');
-                    console.log(image_src);
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' /></div></div>";
+
+                    var image_field = '<div class="form-group mt-15">\n' +
+                                '                    <div class="input-group">\n' +
+                                '                        <div class="input-group-prepend">\n' +
+                                '                            <button type="button" class="input-group-text admin-file-manager" data-input="leform-' + key + '" data-preview="holder">\n' +
+                                '                                <i class="fa fa-upload"></i>\n' +
+                                '                            </button>\n' +
+                                '                        </div>\n' +
+                                '                        <input type="text" type="text" name="leform-' + key + '" id="leform-' + key + '" value="' + leform_escape_html(properties[key]) + '" placeholder=""/>\n' +
+                                '                        <div class="input-group-append">\n' +
+                                '                            <button type="button" class="input-group-text admin-file-view" data-input="leform-' + key + '">\n' +
+                                '                                <i class="fa fa-eye"></i>\n' +
+                                '                            </button>\n' +
+                                '                        </div>\n' +
+                                '                    </div>\n' +
+                                '                </div>';
+
+
+                    //var image_field = "<input type='text' name='leform-" + key + "' id='leform-" + key + "' value='" + leform_escape_html(properties[key]) + "' placeholder='' />";
+
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'>"+image_field+"</div></div>";
                     break;
 
                 case 'file':
@@ -5476,7 +5496,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var content = leform_form_elements[i]["content"];
 
 
-                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div>"+draggable_options+content+"<div class='leform-element-cover'></div></div>";
+                    html += "<div id='leform-element-" + i + "' class='quiz-group leform-element-" + i + " leform-element" + (properties["label-style-position"] != "" ? " leform-element-label-" + properties["label-style-position"] : "") + (leform_form_elements[i]['description-style-position'] != "" ? " leform-element-description-" + leform_form_elements[i]['description-style-position'] : "") + "' data-type='" + leform_form_elements[i]["type"] + "'><div class='leform-column-label" + column_label_class + "'><label class='leform-label" + (leform_form_elements[i]['label-style-align'] != "" ? " leform-ta-" + leform_form_elements[i]['label-style-align'] : "") + "'>" + properties["required-label-left"] + leform_escape_html(leform_form_elements[i]["label"]) + properties["required-label-right"] + properties["tooltip-label"] + "</label></div>"+content+draggable_options+"<div class='leform-element-cover'></div></div>";
                     break;
 
                 case "marking_quiz":
@@ -5838,9 +5858,11 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     break;
 
                 case "image_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
                     console.log('image-quiz');
 
-                    var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
+                    //var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
+                    var imageObj = $($.parseHTML(leform_form_elements[i]["content"]));
                     console.log(imageObj);
                     var image_field_id = imageObj.find('img').attr('data-id');
                     var image_field_id = "leform-element-" + i;
@@ -5849,10 +5871,12 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                         imageObj.find('img').attr('data-style', imageStyle);
                     }
                     var image_content = imageObj.get(0).outerHTML;
-                    console.log(leform_form_elements[i]);
+                    var image_content = leform_form_elements[i]["content"];
+
+                    var image_layout = '<span className="block-holder image-field"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="editor-field" src="'+image_content+'" heigh="50" width="50"></span>';
 
 
-                    html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='image-field-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_content + "<div class='leform-element-cover'></div></div>";
+                    html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='image-field-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_layout + "<div class='leform-element-cover'></div></div>";
                     break;
 
                 case "heading_quiz":

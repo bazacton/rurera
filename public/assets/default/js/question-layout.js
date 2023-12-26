@@ -261,7 +261,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                                 $(".editor-field").addClass(question_status_class);
                                 //$(".nub-of-sec").html('');
                                 clearInterval(Questioninterval);
-                                jQuery.noConflict();
+                                //jQuery.noConflict();
                                 $(".question-status-modal .modal-box .modal-title span.inc").html(return_data.question_user_input);
                                 $(".question-status-modal .modal-box .modal-title span.cor").html(return_data.question_correct_answere);
                                 $(".question-status-modal .modal-box p").html(defination_text);
@@ -271,12 +271,17 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         }
                     } else{
                         //thisForm.find('.question-submit-btn').remove();
-                        thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
-                        const interval = setInterval(() => {
-                            console.log('interval-test');
-                            $('#next-btn')[0].click();
-                            clearInterval(interval);
-                        }, 3000);
+                        if (quiz_type == 'practice') {
+                            $("#quiz_question_status_modal").modal('show');
+                            thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+
+                        }else {
+                            const interval = setInterval(() => {
+                                console.log('interval-test');
+                                $('#next-btn')[0].click();
+                                clearInterval(interval);
+                            }, 3000);
+                        }
                     }
                 }
             } else {
@@ -326,17 +331,20 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 }
                 if (return_data.incorrect_flag == true) {
 
-                    thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
-                    if (quiz_type == 'book') {
-                        if (question_response_layout != '') {
-                            var question_response_layout = return_data.question_response_layout;
-                            $(".question-area-block").html(question_response_layout);
+                    if (quiz_type == 'practice') {
+                        thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                    }else {
+                        if (quiz_type == 'book') {
+                            if (question_response_layout != '') {
+                                var question_response_layout = return_data.question_response_layout;
+                                $(".question-area-block").html(question_response_layout);
+                            }
+                        } else {
+                            const interval = setInterval(() => {
+                                $('#next-btn')[0].click();
+                                clearInterval(interval);
+                            }, 3000);
                         }
-                    } else {
-                        const interval = setInterval(() => {
-                            $('#next-btn')[0].click();
-                            clearInterval(interval);
-                        }, 3000);
                     }
 
                 } else {
@@ -348,11 +356,15 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         }
                     }
 
-                    thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
-                    const interval = setInterval(() => {
-                        $('#next-btn')[0].click();
-                        clearInterval(interval);
-                    }, 3000);
+                    if (quiz_type == 'practice') {
+                        thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
+                    }
+                    else {
+                        const interval = setInterval(() => {
+                            $('#next-btn')[0].click();
+                            clearInterval(interval);
+                        }, 3000);
+                    }
 
 
                     /*

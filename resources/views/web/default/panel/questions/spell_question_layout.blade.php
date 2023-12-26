@@ -202,6 +202,8 @@ else{
                                 </g>
                             </svg>
                         </a>
+                        @else
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn rurera-hide" data-question_id="{{$next_question}}" data-actual_question_id="{{$next_question}}">&nbsp;</a>
                         @endif
                         @if( !isset( $disable_submit ) || $disable_submit == 'false')
                         <a href="javascript:;" id="question-submit-btn" class="question-submit-btn">

@@ -191,14 +191,14 @@ class UserController extends Controller
         } elseif ( $file['type'] === 'svg' ) {
             $data = stripcslashes( $data );
             $file_name = $file['name'] . '.svg';
+
+            //file_put_contents( $uploads_dir . $file_name, $data );
+            //file_put_contents('avatar/'.$file_name, $data);
         }
-
-        pre($user);
-
-        //file_put_contents( $uploads_dir . $file_name, $data );
-
-        pre($file);
-        pre('test1');
+        file_put_contents('avatar/'.$file_name, $data);
+        $user->update([
+           'avatar' => '/avatar/'.$file_name
+       ]);
 
     }
 

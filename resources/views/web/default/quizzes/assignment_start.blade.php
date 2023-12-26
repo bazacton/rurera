@@ -6,7 +6,7 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
 <link rel="stylesheet" href="/assets/default/css/panel.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-
+<link rel="stylesheet" href="/assets/admin/vendor/bootstrap/bootstrap.min.css"/>
 
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
@@ -27,14 +27,108 @@ $rand_id = rand(99,9999);
 
 
         <div class="learning-page-content flex-grow-1 bg-info-light p-15">
+            <div class="default-loaded-data rurera-hide"></div>
+            <div class="learning-content read-quiz-content" id="learningPageContent">
 
-            <div class="learning-content" id="learningPageContent">
-                <div class="learning-title">
-                    @if( isset( $assignmentObj->StudentAssignmentData->assignment_type ))
-                        <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$assignmentObj->StudentAssignmentData->assignment_type}}.png">
-                    @endif
-                    <h3 class="mb-5">{{$title}}</h3>
+
+                <section class="quiz-topbar start-landing-page">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            @if( isset( $assignmentObj->StudentAssignmentData->assignment_type ))
+                            <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$assignmentObj->StudentAssignmentData->assignment_type}}.png">
+                        @endif
+                            <div class="quiz-top-info"><p>{{$title}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+                            <div class="topbar-right">
+                                <div class="quiz-timer">
+
+                                    <span class="timer-number"><div class="quiz-timer-counter {{isset( $timer_hide )? $timer_hide : ''}}" data-time_counter="{{isset( $timer_counter )? $timer_counter : ''}}">{{getTime(isset( $timer_counter )? $timer_counter : 0)}}</div></span>
+                                </div>
+                                <div class="instruction-controls">
+                                    <div class="font-setting">
+                                        <button class="font-btn">
+                                            <img src="/assets/default/svgs/settings.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="font-controls">
+                                                <a href="#" class="decreasetext">
+                                                    <img src="/assets/default/svgs/small-font.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="resettext">
+                                                    <img src="/assets/default/svgs/reset-text.svg" alt="#">
+                                                </a>
+                                                <a href="#" class="increasetext">
+                                                    <img src="/assets/default/svgs/big-text.svg" alt="#">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="color-setting">
+                                        <button class="color-btn">
+                                            <img src="/assets/default/svgs/color-setting.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="color-controls">
+                                                <a href="#" class="cr-aquaBlue-btn"></a>
+                                                <a href="#" class="cr-celery-btn"></a>
+                                                <a href="#" class="cr-grass-btn"></a>
+                                                <a href="#" class="cr-jade-btn"></a>
+                                                <a href="#" class="cr-magenta-btn"></a>
+                                                <a href="#" class="cr-orange-btn"></a>
+                                                <a href="#" class="cr-purple-btn"></a>
+                                                <a href="#" class="cr-skyBlue-btn"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-setting">
+                                        <button class="info-btn">
+                                            <img src="/assets/default/svgs/info-icon.svg" alt="#">
+                                        </button>
+                                        <div class="instruction-dropdown">
+                                            <div class="instruction-text">
+                                                            <h3>INSTRUCTIONS</h3>
+                                                            <h4>Setting Up Your Page</h4>
+                                                            <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
+                                                            <ul>
+                                                                <li>a coloured overlay (this will change the background colour and may help you read the questions better)</li>
+                                                            </ul>
+                                                            <img src="/assets/default/img/overlay.png" alt="#">
+                                                            <ul>
+                                                                <li>the font size</li>
+                                                            </ul>
+                                                            <img src="/assets/default/img/font-size.png">
+                                                            <p>We recommend you setup your page BEFORE the test starts.</p>
+                                                            <p>Changing these features during the test will reduce the amount of time you have to answer the questions.</p>
+                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                                                            <h4>Navigating The Test</h4>
+                                                            <p>Read the instructions for each question carefully.</p>
+                                                            <p>Choose your answer by clicking on it. If you want to change your mind, click on a different answer.</p>
+                                                            <p>Once you are sure of your answer click ‘Submit Answer’. You will not be able to go back to change your answer.</p>
+                                                            <img src="/assets/default/img/answer.png" alt="#">
+                                                            <p>You can use a pen/pencil and paper to make notes if you wish. Your working and notes will not be marked.</p>
+                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                                                            <h4>About The Test</h4>
+                                                            <p>The Verbal Reasoning Test assesses a range of English language skills including:</p>
+                                                            <ul>
+                                                                <li>Comprehension</li>
+                                                                <li>Reasoning</li>
+                                                                <li>Logic</li>
+                                                            </ul>
+                                                            <p>The questions you see in this Walkthrough are examples of these types.</p>
+                                                            <p>Some of these types may appear in the test, while others may not.</p>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
+                <div class="row justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w-100">
 
 
@@ -128,12 +222,35 @@ $rand_id = rand(99,9999);
                     </div>
                 </section>
                 @endif
+                </div>
             </div>
 
 
         </div>
     </div>
 </div>
+<div class="quiz-question-status-modal">
+  <div class="modal fade quiz_question_status_modal" id="quiz_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Incorrect!</h3>
+              <span class="inc" style="text-decoration: line-through;">are</span>
+              <span class="cor">are</span>
+            </div>
+            <p>
+              <span>verb</span> when more than one person is being something
+            </p>
+            <a href="javascript:;" class="confirm-btn quiz-question-confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @push('scripts_bottom')
@@ -145,7 +262,8 @@ $rand_id = rand(99,9999);
 <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs"
         data-app-key="v5gxvm7qj1ku9la"></script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/assets/default/js/parts/video_player_helpers.min.js"></script>
 <script src="/assets/learning_page/scripts.min.js?var={{$rand_id}}"></script>
 

@@ -2,12 +2,10 @@
     <h2 class="section-title after-line">{{ trans('financial.account') }}</h2>
 
     <div class="row mt-20">
-        <div class="col-12 col-lg-12">
-            <div id="svgAvatars"></div>
-        </div>
 
-        <div class="col-12 col-lg-4">
 
+        <div class="col-12 col-lg-3">
+            <div class="profile-image-holder">
            <div class="form-group">
                <label class="input-label">{{ trans('auth.profile_image') }}</label>
                <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="rounded-circle my-15 d-block ml-5">
@@ -47,6 +45,11 @@
                 @enderror
             </div>
 
+        </div>
+        </div>
+
+        <div class="col-12 col-lg-9">
+            <div id="svgAvatars"></div>
         </div>
     </div>
 

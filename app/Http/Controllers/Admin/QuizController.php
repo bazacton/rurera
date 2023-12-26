@@ -548,6 +548,24 @@ class QuizController extends Controller
             )
         );
 
+        $quiz_settings = array(
+            'Emerging'  => array(
+                'questions' => isset($data['Emerging']) ? sumNestedArrayValues($data['Emerging']) : '',
+                'breakdown' => isset($data['Emerging']) ? $data['Emerging'] : '',
+            ),
+            'Expected'  => array(
+                'questions' => isset($data['Expected']) ? sumNestedArrayValues($data['Expected']) : '',
+                'breakdown' => isset($data['Expected']) ? $data['Expected'] : '',
+            ),
+            'Exceeding' => array(
+                'questions' => isset($data['Exceeding']) ? sumNestedArrayValues($data['Exceeding']) : '',
+                'breakdown' => isset($data['Exceeding']) ? $data['Exceeding'] : '',
+                'incorrect_attempts' => isset($data['incorrect_attempts']) ? $data['incorrect_attempts'] : 0,
+                'excess_time_taken' => isset($data['excess_time_taken']) ? $data['excess_time_taken'] : 0,
+            ),
+
+        );
+
         $quiz->update([
             //'webinar_id' => !empty($webinar) ? $webinar->id : null,
             //'chapter_id' => !empty($chapter) ? $chapter->id : null,

@@ -17,10 +17,9 @@ $rand_id = rand(99,9999);
     .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate{display:none !important;}
 </style>
 @endpush
-
 @section('content')
 
-<div class="learning-page type-{{$quiz->quiz_type}}">
+<div class="learning-page type-{{$quiz->quiz_type}} type-sats">
 
 
     <div class="d-flex position-relative">

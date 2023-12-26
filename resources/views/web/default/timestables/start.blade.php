@@ -10,6 +10,7 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/admin/css/quiz-css.css?var={{$rand_id}}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<meta name="viewport" content="width=device-width">
 
 <style>
     .ui-state-highlight {
@@ -116,7 +117,7 @@ if( $duration_type == 'total_practice'){
                             		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
-                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}">
+                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
                                        <a href="#">
@@ -126,18 +127,18 @@ if( $duration_type == 'total_practice'){
                                 </div>
                                 <div class="questions-block-numbers">
                                    <ul class="d-flex justify-content-center flex-wrap">
-                                      <li id="key-7" data-value="8"><a href="javascript:;">7</a></li>
-                            			<li id="key-8" data-value="8"><a href="javascript:;">8</a></li>
-                            			<li id="key-9" data-value="9"><a href="javascript:;">9</a></li>
-                            			<li id="key-4" data-value="4"><a href="javascript:;">4</a></li>
-                            			<li id="key-5" data-value="5"><a href="javascript:;">5</a></li>
-                            			<li id="key-6" data-value="6"><a href="javascript:;">6</a></li>
-                            			<li id="key-1" data-value="1"><a href="javascript:;">1</a></li>
-                            			<li id="key-2" data-value="2"><a href="javascript:;">2</a></li>
-                            			<li id="key-3" data-value="3"><a href="javascript:;">3</a></li>
-                            			<li class="delete" data-value="delete"><a href="javascript:;">Delete</a></li>
-                            			<li id="key-0" data-value="0"><a href="javascript:;">0</a></li>
-                            			<li class="enter" data-value="enter"><a href="javascript:;">Enter</a></li>
+                                      <li id="key-7" data-value="7"><span>7</span></li>
+                            			<li id="key-8" data-value="8"><span>8</span></li>
+                            			<li id="key-9" data-value="9"><span>9</span></li>
+                            			<li id="key-4" data-value="4"><span>4</span></li>
+                            			<li id="key-5" data-value="5"><span>5</span></li>
+                            			<li id="key-6" data-value="6"><span>6</span></li>
+                            			<li id="key-1" data-value="1"><span>1</span></li>
+                            			<li id="key-2" data-value="2"><span>2</span></li>
+                            			<li id="key-3" data-value="3"><span>3</span></li>
+                            			<li class="delete" data-value="delete"><span>Delete</span></li>
+                            			<li id="key-0" data-value="0"><span>0</span></li>
+                            			<li class="enter" data-value="enter"><span>Enter</span></li>
                                    </ul>
                                 </div>
                             	</form>
@@ -179,6 +180,9 @@ if( $duration_type == 'total_practice'){
     $(document).on('click', '.start-timestables-quiz', function (e) {
         $(".quiz-first-question").show();
         $(".start-btn-container").hide();
+        if (isMobileOrTablet()) {
+            $(".editor-fields").attr('readonly', 'readonly');
+        }
         $(".editor-fields").focus();
         var Questionintervals = setInterval(function () {
             if ($('.questions-block[data-id="0"]').hasClass('active')) {
@@ -239,6 +243,9 @@ if( $duration_type == 'total_practice'){
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
         var current_value = $(this).attr('data-value');
+        if (isMobileOrTablet()) {
+            $(".editor-fields").attr('readonly', 'readonly');
+        }
         $(this).closest('form').find('.editor-fields').focus();
         var current_field_value = $(this).closest('form').find('.editor-fields').val();
         if( current_value == 'delete'){
@@ -303,6 +310,9 @@ if( $duration_type == 'total_practice'){
             var tt_question_no = $(".tt_question_no").html();
             tt_question_no = parseInt(tt_question_no) + 1;
             $(".tt_question_no").html(tt_question_no);
+            if (isMobileOrTablet()) {
+                $(".editor-fields").attr('readonly', 'readonly');
+            }
             $("#editor-fields-" + next_question).focus();
 
             var Questionintervals = setInterval(function () {
@@ -439,6 +449,19 @@ if( $duration_type == 'total_practice'){
                 }
             }
         })
+    }
+    function isMobileOrTablet() {
+        // Adjust the width and height values based on your needs
+      const maxWidth = 768;
+      const maxHeight = 1024;
+      return (
+        window.innerWidth <= maxWidth &&
+        window.innerHeight <= maxHeight &&
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      );
+    }
+    if (isMobileOrTablet()) {
+        $(".editor-fields").attr('readonly', 'readonly');
     }
 </script>
 @endpush

@@ -39,7 +39,7 @@ Lms Signs Style
 .form-box.inline-fields .lms-radio-select {margin-bottom: 0;}
 .lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
-.lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;}
+/* .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;} */
 .lms-radio-select label:hover {background-color: rgba(0,0,0,0.02);}
 /* .lms-radio-select label:after {
     content: "";
@@ -281,7 +281,7 @@ Lms Question List Style
 .question-layout-block form.question-fields .questions-nav-controls {margin-top: auto; min-height: 80px;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
-.question-textarea p {font-size: 16px; color: #000; font-weight: 400;}
+.question-textarea p {/* font-size: 16px; color: #000; font-weight: 400;*/}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
 .question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 8px; background: none; background-image: none; font-size: 16px; color: #000; font-weight: 400;}
@@ -549,16 +549,20 @@ Lms Quiz Wf Style Start
 }
 .textarea_lines textarea {
     background-attachment: local;
-    background-image:
+    /* background-image:
         linear-gradient(to right, white 10px, transparent 10px),
         linear-gradient(to left, white 10px, transparent 10px),
-        repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+        repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px); */
     line-height: 31px;
-    padding: 0 0 0 10px;
+    padding: 0;
     outline: none;
     width: 100%;
     resize: none;
     color: #000;
+    background:
+   url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 6 6"><circle cx="3" cy="3" r="2" fill="LightGray" /></svg>') 
+     0 0.8em/4px 1.8em 
+     white;
 }
 /* draggable-handle style */
 .ui-draggable.ui-draggable-handle {
@@ -1226,7 +1230,6 @@ Lms Quiz Wf Style End
     align-items: center;
 }
 .quiz-timer .timer-number {
-    max-width: 140px;
     min-width: 140px;
 }
 .quiz-pagination .has-flag a {
@@ -1799,7 +1802,7 @@ span.seperator_line {border:3px solid; border-color:#000; width: 50px; display: 
 #question_preview .marks {right: 30px; top: 20px; bottom: auto;}
 #question_preview .prev-next-controls {border-top: 1px solid #eee; padding-top: 30px; padding-left: 0;}
 #question_preview .prev-next-controls .review-btn {left: 0;}
-.draggable-items {display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;}
+.draggable-items {display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; margin-top: 40px;}
 .draggable-items .ui-draggable {background-image: none;color: #666;padding: 4px 25px 8px;height: auto;margin: 0;border-radius: 8px;border: 2px solid #ddd; border-bottom-width: 4px;}
 .draggable-items .ui-draggable span {color: #999; vertical-align: middle;}
 .droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 0; margin: 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: middle; min-width: 190px; text-align: center; min-height: 45px; line-height: 40px; }
@@ -1812,6 +1815,8 @@ span.Selectable:hover {text-decoration: underline;}
 .review_submit .modal-body {display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; justify-content: center;}
 .review_submit .submit_quiz_final {padding: 15px 50px; font-weight: 500;}
 .question-layout p {line-height: 50px;}
+.lms-quiz-section .droppable_area .draggable-option {border: 2px solid #ddd; line-height: normal; padding: 4px 20px 8px; border-radius: 5px; border-bottom-width: 4px;}
+.question-layout .ui-state-highlight {border: 0; padding: 0 5px 0 0;}
 
 /* Question-Result-Layout Style Start */
 .question-result-layout {

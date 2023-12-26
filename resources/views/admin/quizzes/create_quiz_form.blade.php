@@ -661,7 +661,7 @@
                         @foreach( $quiz->quizQuestionsList as $questionObj)
                         @if( !empty( $questionObj->QuestionData))
                         @foreach( $questionObj->QuestionData as $questionDataObj)
-                        <li data-id="{{$questionDataObj->id}}">{{$questionDataObj->getTitleAttribute()}} <input
+                        <li data-id="{{$questionDataObj->id}}" data-question_type="{{$questionDataObj->question_type}}">{{$questionDataObj->getTitleAttribute()}} <input
                                     type="hidden" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new'
                                                            }}][question_list_ids][]"
                                     value="{{$questionDataObj->id}}">

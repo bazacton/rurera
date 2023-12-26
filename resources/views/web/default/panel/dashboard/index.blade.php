@@ -114,6 +114,22 @@
 <div class="dashboard">
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
+            <div class="dashboard-filters">
+                <ul>
+                    <li><a href="#">Filters Books</a></li>
+                    <li><a href="#">Times Table</a></li>
+                    <li><a href="#">Spells</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Enterence Exam</a></li>
+                    <li><a href="#">SATs Title Test</a></li>
+                    <li><a href="#">Task Name</a></li>
+                    <li><a href="#">(Subject / Topic) Set by @ Parent</a></li>
+                    <li><a href="#">Pass</a></li>
+                    <li><a href="#">Not Submitted</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-lg-12 mt-35">
             <div class="assignments-table">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -124,7 +140,6 @@
                         <a class="nav-link user-assignments-tab" data-type="previous" data-content_id="recent" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
                            aria-controls="recent" aria-selected="false">Recent</a>
                     </li>
-
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="homeworks" role="tabpanel"

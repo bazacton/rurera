@@ -621,6 +621,7 @@ class QuestionsAttemptController extends Controller
 
         //pre($questionObj, false);
         //pre($question_response_layout);
+        $quiz_type = (isset( $assignment_type ) && $assignment_type != '')? $assignment_type : $quizAttempt->attempt_type;
 
         $response = array(
             'show_fail_message'        => $show_fail_message,
@@ -634,7 +635,7 @@ class QuestionsAttemptController extends Controller
             //'question'                 => $question,
             //'question_response_layout' => $question_response_layout,
             //'newQuestionResult'        => $newQuestionResult,
-            'quiz_type'                => $quizAttempt->attempt_type,
+            'quiz_type'                => $quiz_type,
             'question_result_id'       => isset($newQuestionResult->id) ? $newQuestionResult->id : '',
             'total_points'             => $total_points,
             'single_question_layout'   => $single_question_layout,

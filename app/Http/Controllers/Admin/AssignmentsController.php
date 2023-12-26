@@ -257,7 +257,7 @@ class AssignmentsController extends Controller
         $assignment_topic_type = isset($data['assignment_topic_type']) ? $data['assignment_topic_type'] : '';
         $topic_id = isset($data['topic_id']) ? $data['topic_id'] : '';
         if( $assignment_topic_type == 'practice'){
-            $question_list_ids = QuizzesQuestionsList::whereIn('quiz_id', $topic_ids)->where('status', 'active')->pluck('id')->toArray();
+            $question_list_ids = QuizzesQuestionsList::whereIn('quiz_id', $topic_ids)->where('status', 'active')->pluck('question_id')->toArray();
 
             $assignment_title = isset($data['title']) ? $data['title'] : '';
 

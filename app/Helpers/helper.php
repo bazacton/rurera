@@ -6680,7 +6680,7 @@ function element_properties_meta($chapters)
                 'type'    => 'html'
             ),*/
             'content'       => array(
-                'value' => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
+                'value' => '/assets/default/img/quiz/placeholder-image.png',
                 'label' => esc_html__('Image', 'leform'),
                 'type'  => 'image'
             ),

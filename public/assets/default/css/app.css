@@ -17327,8 +17327,8 @@ Questions Select, Questions Block style Start
 .questions-status {margin: 0 -3px; padding: 0 20px;}
 .questions-status .successful {background-color: #3ebc3f;}
 .questions-status .wrong {background-color: #d11d1e;}
-.questions-arithmetic-box {box-sizing: border-box; position: relative; min-height: 100px;}
-.questions-arithmetic-box:before {content: ""; position: absolute; left: 50%; top: 0; width: 115%;height: 100%; transform: translateX(-50%); pointer-events: none;  background-color: var(--primary); box-shadow: 0 0 8px rgba(0,0,0,0.2);}
+.questions-arithmetic-box {box-sizing: border-box; position: relative; min-height: 100px; padding: 0 15px;}
+.questions-arithmetic-box:before {content: ""; position: absolute; left: 0; top: 0; width: 100%;height: 100%; pointer-events: none;  background-color: var(--primary); box-shadow: 0 0 8px rgba(0,0,0,0.2);}
 .questions-arithmetic-box input[type="text"] {border: 0; font-size: 35px; color: #fff; font-weight: 700; width: calc(100% - 300px); background-color: inherit; margin-left: 8px;     position: relative; z-index: 1;}
 .questions-arithmetic-box span,
 .lms-quiz-section .questions-arithmetic-box span {font-size: 35px; color: #fff; font-weight: 700; position: relative; z-index: 1;}
@@ -17336,10 +17336,10 @@ Questions Select, Questions Block style Start
 .questions-block-numbers {overflow: hidden;}
 .questions-block-numbers ul {border-right: 1px solid #f1f0f5; border-bottom: 1px solid #f1f0f5; margin: 0 -2px;}
 .questions-block-numbers li {flex-basis: 33%;}
-.questions-block-numbers a {display: block; padding: 40px 15px; text-align: center; font-size: 26px; font-weight: 500; transition: all .5s ease; border: 1px solid #f1f0f5; border-bottom: 0; border-right: 0; color: #000;}
-.questions-block-numbers .delete a {color: #fe0000;}
-.questions-block-numbers .enter a {    color: #008001;}
-.questions-block-numbers a:active {background-color: var(--primary); color: #fff;}
+.questions-block-numbers span {display: block; padding: 40px 15px; text-align: center; font-size: 26px; font-weight: 500; transition: all .5s ease; border: 1px solid #f1f0f5; border-bottom: 0; border-right: 0; color: #000;}
+.questions-block-numbers .delete span {color: #fe0000;}
+.questions-block-numbers .enter span {    color: #008001;}
+.questions-block-numbers span:active {background-color: var(--primary); color: #fff;}
 .questions-controls {position: relative; z-index: 1; margin-left: auto;}
 .questions-controls svg path {transition: all .5s;}
 .questions-controls a:hover svg path {fill: #fff;}
@@ -17799,6 +17799,8 @@ Product Tabs Slider Style Start
 .alphabet-list .add-btn.collapsed:before {width: 0;}
 .alphabet-list .add-btn:before {content: ""; position: absolute; left: 50%; top: 50%; height: 2px; width: 18px; border-bottom: 2px solid #ddd; margin: -1px 0 0 -9px; transition: all .3s; -webkit-transition: all .3s; -o-transition: all .3s;}
 .alphabet-list .card-body {padding: 20px 0 0 0; color: #666; font-size: 16px;}
+.spells.elevenplus-block {box-shadow: none;}
+.spells-table-inner {box-shadow: 0 0 5px rgba(0,0,0,0.2);}
 .spells .dataTable thead,
 .simple-table thead {background-color: inherit; border-bottom: 2px solid #ddd;}
 .spells .dataTable thead tr th,
@@ -18045,6 +18047,20 @@ span.preloader-text {
     text-align: center;
     margin: 0 auto;
 }
+.dashboard-filters {
+    background-color: #fff;
+    padding: 15px 15px;
+    border-radius: 10px;
+}
+.dashboard-filters ul {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+.dashboard-filters li a {
+    font-size: 15px;
+    font-weight: 500;
+}
  
 /*************************************
 Lms Responsive Style Start
@@ -18144,7 +18160,7 @@ Lms Responsive Style Start
     .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
     .topbar-right {flex-wrap: wrap; width: 100%;}
-    body .lms-quiz-section {height: auto;}
+    body .lms-quiz-section {/*height: auto;*/}
     .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
     .sats-listing-card.medium {overflow: hidden; overflow-x: auto;}
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
@@ -18283,9 +18299,9 @@ Lms Responsive Style Start
     .chart-filters,
     .chart-filters ul {flex-wrap: wrap;}
     .spell-question-area .left-content {justify-content: flex-start;}
-    .spells-quiz-info {position: relative; margin-bottom: 30px;}
-    .spells-quiz-info ul {flex-direction: column;}
-    .spells-quiz-info ul li {border-left: 0; border-bottom: 1px solid #bac3ca; width: 100%; }
+    .spells-quiz-info ul {justify-content: flex-start; gap: 0;}
+    /*.spells-quiz-info {position: relative; margin-bottom: 30px;}
+    .spells-quiz-info ul li {border-left: 0; border-bottom: 1px solid #bac3ca; width: 100%; } */
     .spells-quiz-from button {margin-top: 10px;}
     .learning-page .learning-content {padding: 0 15px;}
     .spells .dataTable td a,
@@ -18332,6 +18348,9 @@ Lms Responsive Style Start
     .lms-testimonial-slider .swiper-button-next, 
     .lms-testimonial-slider .swiper-button-prev {top: 25%;}
     .exame-listing .exame-holder .exame-list:after {right: 12px;}
+    .questions-block {padding-top: 0;}
+    .questions-block-numbers a {padding: 20px 8px;}
+    .questions-arithmetic-box input[type="text"] {width: calc(100% - 200px);}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}

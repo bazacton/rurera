@@ -346,21 +346,22 @@ $timer_counter = $practice_time;
             }, 1000);
 
             $("body").on("click", ".increasetext", function (e) {
-                curSize = parseInt($('.question-layout').css('font-size')) + 2;
+                curSize = parseInt($('.learning-page').css('font-size')) + 2;
                 if (curSize <= 32)
-                    $('.question-layout').css('font-size', curSize);
+                    $('.learning-page').css('font-size', curSize);
             });
 
             $("body").on("click", ".resettext", function (e) {
-                if (curSize != 18)
-                    $('.question-layout').css('font-size', 18);
+                if (curSize != 16)
+                $('.learning-page').css('font-size', 18);
             });
 
             $("body").on("click", ".decreasetext", function (e) {
-                curSize = parseInt($('.question-layout').css('font-size')) - 2;
-                if (curSize >= 14)
-                    $('.question-layout').css('font-size', curSize);
+                curSize = parseInt($('.learning-page').css('font-size')) - 2;
+                if (curSize >= 16)
+                $('.learning-page').css('font-size', curSize);
             });
+
         }
 
     function getTime(secondsString) {
