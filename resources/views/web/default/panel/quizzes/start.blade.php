@@ -37,6 +37,7 @@ $rand_id = rand(99,9999);
 
 </style>
 @endpush
+@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : ''; @endphp
 @section('content')
 <div class="content-section">
 
@@ -102,7 +103,7 @@ $rand_id = rand(99,9999);
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - start</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
@@ -357,14 +358,14 @@ $rand_id = rand(99,9999);
         secondsString -= h * 3600;
         var m = Math.floor(secondsString / 60); //Get remaining minutes
         secondsString -= m * 60;
-
         var return_string = '';
         if( h > 0) {
             var return_string = return_string + h + "h ";
         }
-        //if( m > 0 || h > 0) {
+        var quiz_type = '{{$quiz_type}}';
+        if( (m > 0 || h > 0) || quiz_type != 'vocabulary') {
             var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
-        //}
+        }
         var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
         return_string = return_string + 's';
 

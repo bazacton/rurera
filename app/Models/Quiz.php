@@ -40,14 +40,33 @@ class Quiz extends Model implements TranslatableContract
         return ['quiz_slug' => ['source' => 'title']];
     }
 
-    public static function makeSlug($title)
+    public static function makeSlug($title, $id = 0)
     {
-        return strtolower(SlugService::createSlug(self::class, 'quiz_slug', $title));
+        $slug = strtolower(SlugService::createSlug(self::class, 'quiz_slug', $title));
+        return $slug;
+    }
+    public static function makeSlug_bk($title, $id = 0)
+    {
+        $slug = strtolower(SlugService::createSlug(self::class, 'quiz_slug', $title));
+        $count = Quiz::where('quiz_slug', $slug);
+        if( $id > 0){
+            $count = $count->where('id', '!=', $id ?? 0);
+        }
+        $count = $count->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . uniqid();
+        }
+        return $slug;
     }
 
     public function quizQuestionsList()
     {
         return $this->hasMany('App\Models\QuizzesQuestionsList' , 'quiz_id' , 'id')->where('status', 'active')->orderBy('sort_order', 'ASC');
+    }
+
+    public function quizYear()
+    {
+        return $this->belongsTo('App\Models\Category' , 'year_id' , 'id');
     }
 
     public function quizQuestions()

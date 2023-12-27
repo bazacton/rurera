@@ -139,11 +139,12 @@ class SpellsController extends Controller
         abort(404);
     }
 
-    public function words_list(Request $request, $quiz_slug)
+    public function words_list(Request $request, $quiz_year, $quiz_slug)
     {
 
+        $categoryObj = Category::where('slug', $quiz_year)->first();
         $mastered_words = $in_progress_words = $non_mastered_words = array();
-        $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->first();
+        $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
         $UserVocabulary = array();
         if (auth()->check()) {
             $user = auth()->user();
@@ -311,7 +312,7 @@ class SpellsController extends Controller
     /*
      * Start SAT Quiz
      */
-    public function start(Request $request, $quiz_slug)
+    public function start(Request $request, $quiz_year, $quiz_slug)
     {
         if (!auth()->check()) {
             //return redirect('/login');
@@ -320,6 +321,8 @@ class SpellsController extends Controller
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
         }*/
+        $categoryObj = Category::where('slug', $quiz_year)->first();
+        $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;
         //$quiz = Quiz::find($id);

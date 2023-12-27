@@ -78,14 +78,15 @@ Lms Signs Style
 .lms-checkbox-img.inline-fields .field-holder {max-width: 31.777%; margin: 0 14px 10px 0; width: 31.777%;}
 .lms-radio-select .field-holder:nth-child(3),
 .lms-radio-select .field-holder:nth-child(6) {margin-right: 0;}
-.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0;}
+.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0; overflow-x: hidden;}
 .question-area .lms-radio-select {margin: 0;}
 /* Image Top Style Start */
-.image-top .lms-radio-select label {flex-direction: column; padding-bottom: 20px;}
+.image-top .lms-radio-select label {flex-direction: column; padding-bottom: 20px; padding-top: 20px;}
 .image-top.alphabet-list-style .field-holder:before {margin-top: 0; top: 10px;}
-.image-top .lms-radio-select label img {border-bottom: 1px solid #ddd; margin: 0 0 10px; padding: 10px 0 15px; width: 120px; height: 120px;}
+.image-top .lms-radio-select label img {margin: 0; width: 120px; height: 120px;}
+.image-top .lms-radio-select label .inner-label {border-top: 1px solid #ddd;padding: 10px 0 0;width: 100%;text-align: center; margin-top: 10px;}
 .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 31.8%; flex: 0 0 31.8%;}
-.image-top .lms-radio-select input[type=radio] ~ label {padding-right: 0;}
+.image-top .lms-radio-select input[type=radio] ~ label {padding-right: 30px; padding-left: 30px;}
 .image-top .lms-radio-select label:before {visibility: hidden !important;}
 /* Image Top Style End */
 .lms-radio-select.inline-fields {flex-direction: row;}
@@ -158,14 +159,22 @@ Lms Form Fields Style
 .lms-checkbox-img .form-field.wrong label {background: none; border-color: #ff4a4a; color: #000;}
 .lms-checkbox-img .form-field.wrong label:before {border-color: #ff4a4a;}
 .submit-btn,
-.question-submit-btn {border: 1px solid #8fc963; border-radius: 5px; /*font-size: 20px;*/ padding: 0 40px; height: 55px; color: #8fc963; text-transform: uppercase;}
+.question-submit-btn,
+.question-next-btn {border: 1px solid #8fc963; border-radius: 5px; /*font-size: 20px;*/ padding: 0 40px; height: 55px; color: #8fc963; text-transform: uppercase;}
 .question-submit-btn.submit-btn,
-.question-submit-btn {border-color: #8fc963; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-flex; align-items: center; justify-content: center; height: auto; min-height: 45px; padding-left: 20px; padding-right: 35px;}
-.prev-next-controls .question-submit-btn:after {content: ""; position: absolute; right: 15px; top: 50%; height: 7px; width: 14px; border: 2px solid; border-top: 0; border-right: 0; transform: rotate(-50deg); margin: -5px 0 0 0;}
-.prev-next-controls .question-submit-btn {margin-right: 0; position: absolute; right: 0;}
-.prev-next-controls .question-submit-btn svg {display: none;}
+.question-next-btn.submit-btn,
+.question-submit-btn,
+.question-next-btn {border-color: #8fc963; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-flex; align-items: center; justify-content: center; height: auto; min-height: 45px; padding-left: 20px; padding-right: 35px;}
+.prev-next-controls .question-submit-btn:after,
+.question-next-btn:after {content: ""; position: absolute; right: 15px; top: 50%; height: 7px; width: 14px; border: 2px solid; border-top: 0; border-right: 0; transform: rotate(-50deg); margin: -5px 0 0 0;}
+.prev-next-controls .question-submit-btn,
+.prev-next-controls .question-next-btn {margin-right: 0; position: absolute; right: 0;}
+.prev-next-controls .question-submit-btn svg,
+.prev-next-controls .question-next-btn svg {display: none;}
 .question-submit-btn.submit-btn:hover,
-.question-submit-btn:hover {background-color: #8fc963;  color: #f5ffec;}
+.question-next-btn.submit-btn:hover,
+.question-submit-btn:hover,
+.question-next-btn:hover {background-color: #8fc963;  color: #f5ffec;}
 .inline-fields {display: flex; align-items: center; flex-wrap: wrap; margin: 0; width: 100%;}
 .form-box.inline-fields input[type="checkbox"] ~ label {margin: 0; padding-right: 45px;}
 .form-box.inline-fields.lms-checkbox-img input[type="checkbox"] ~ label {padding: 5px;}
@@ -467,20 +476,39 @@ Lms Quiz Wf Style Start
 .question-label {position: relative;}
 .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;}
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0;padding: 12px 15px;border-radius: 6px;line-height: normal;text-align: left;border: 2px solid #ddd;display: inline-block;vertical-align: middle;width: calc(100% - 70px);position: relative;}
-.question-label span:before,
-.lms-quiz-section .question-label span:before {
-    background-color: #fff;
+.lms-quiz-section .question-label span {margin: 0;padding: 12px 15px;border-radius: 6px;line-height: normal;text-align: left;border: 2px solid #ddd;display: inline-block;vertical-align: middle;width: calc(100% - 70px);position: relative; overflow: hidden; border-left: 0;}
+.question-label:after,
+.lms-quiz-section .question-label:after {
     content: "";
     width: 12px;
     height: 12px;
     position: absolute;
     top: 50%;
-    left: -7px;
-    margin-top: -6px;
+    left: 60px;
+    margin-top: -5px;
     border-top: 2px solid #ddd;
     border-left: 2px solid #ddd;
     transform: rotate(-45deg);
+}
+.lms-quiz-section .question-label span:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 38%;
+    width: 2px;
+    background-color: #ddd;
+    content: "";
+    border-radius: 50px 0 0 0;
+}
+.lms-quiz-section .question-label span:after {
+    position: absolute;
+    left: 0px;
+    bottom: -7px;
+    height: 50%;
+    width: 2px;
+    background-color: #ddd;
+    content: "";
+    border-radius: 50px;
 }
 .divide-numbers .divider, .lms-quiz-section .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0; border: 0;}
 .quiz-group.text-center {margin: 0; display: flex; align-items: center; justify-content: center; position: relative;}
@@ -558,93 +586,43 @@ Lms Quiz Wf Style Start
     outline: none;
     width: 100%;
     resize: none;
-    color: #000;
+    color: #999;
     background:
    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 6 6"><circle cx="3" cy="3" r="2" fill="LightGray" /></svg>') 
      0 0.8em/4px 1.8em 
      white;
 }
+.textarea_lines textarea::-webkit-input-placeholder {color: #999; }
+.textarea_lines textarea:-moz-placeholder {color: #999;}
+.textarea_lines textarea::-moz-placeholder {color: #999;}
+.textarea_lines textarea:-ms-input-placeholder {color: #999;}
 /* draggable-handle style */
-.ui-draggable.ui-draggable-handle {
-    cursor: all-scroll;
-    border: 1px solid #d2d2d2;
-    line-height: 26px;
-    min-width: 50px;
-    text-align: center;
-    border-radius: 3px;
-    height: 30px;
-    margin: 3px 6px 0 0;
-    color: #333;
-    background-color: #fcfcfc;
-    background-image: linear-gradient(180deg, #f4f4f4 0%, #eeeeee 50%);
-}
-.image-field-box{
-    position:absolute !important;
-}
-.input-holder:empty {
-    display: none;
-}
+.ui-draggable.ui-draggable-handle {cursor: all-scroll; border: 1px solid #d2d2d2; line-height: 26px; min-width: 50px; text-align: center; border-radius: 3px; height: 30px; margin: 3px 6px 0 0; color: #333; background-color: #fcfcfc; background-image: linear-gradient(180deg, #f4f4f4 0%, #eeeeee 50%);}
+.ui-icon-close {cursor: pointer;}
+.image-field-box{position:absolute !important;}
+.input-holder:empty {display: none;}
 .input-holder input.input-simple::-moz-placeholder,
-.leform-element input.input-simple::-moz-placeholder {
-    color: #d1d1d1;
-    opacity: 1;
-}
+.leform-element input.input-simple::-moz-placeholder {color: #d1d1d1; opacity: 1;}
 .input-holder input.input-simple::-webkit-input-placeholder,
-.leform-element input.input-simple::-webkit-input-placeholder {
-    color: #d1d1d1;
-    opacity: 1;
-}
+.leform-element input.input-simple::-webkit-input-placeholder {color: #d1d1d1; opacity: 1;}
 .input-holder input.input-simple:focus::-moz-placeholder,
-.leform-element input.input-simple:focus::-moz-placeholder {
-    color: transparent;
-}
+.leform-element input.input-simple:focus::-moz-placeholder {color: transparent;}
 .input-holder input.input-simple:focus::-webkit-input-placeholder,
-.leform-element input.input-simple:focus::-webkit-input-placeholder {
-    color: transparent;
-}
-.input-holder .input-label {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.input_line {
-    border-right: 0 !important;
-    border-top: 0 !important;
-    border-left: 0 !important;
-    border-color: #000;
-    border-radius: 0;
-}
-.input-holder .input-label.right {
-    right: 30px;
-    left: auto;
-}
+.leform-element input.input-simple:focus::-webkit-input-placeholder {color: transparent;}
+.input-holder .input-label {position: absolute; left: 10px; top: 50%; transform: translateY(-50%);}
+.input_line {border-right: 0 !important; border-top: 0 !important; border-left: 0 !important; border-color: #000; border-radius: 0;}
+.input-holder .input-label.right {right: 30px;left: auto;}
 .input-holder input[type=number]::-webkit-inner-spin-button, 
-.input-holder input[type=number]::-webkit-outer-spin-button {  
-   opacity: 1;
-}
+.input-holder input[type=number]::-webkit-outer-spin-button {opacity: 1;}
 table.table td .input-holder input[type=number]::-webkit-inner-spin-button, 
 table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
-
 .input-holder input.input_line[type=number]::-webkit-inner-spin-button, 
-.input-holder input.input_line[type=number]::-webkit-outer-spin-button{  
-   opacity: 0;
-}
+.input-holder input.input_line[type=number]::-webkit-outer-spin-button{opacity: 0;}
 .note-editable .input-holder input[type="number"],
-.input-holder .input-label ~ input[type="number"] {
-    text-align: right;
-}
-.input-holder .input-label ~ input.input-simple {
-    padding: 0 25px;
-    min-height: 38px;
-}
-.input-holder .input-label ~ input[type="number"].input-simple  {
-    padding: 0 10px;
-    text-align: left;
-}
-.input-holder .input-label.left ~ input[type="number"].input-simple {
-    text-align: right;
-}
+.input-holder .input-label ~ input[type="number"] {text-align: right;}
+.input-holder .input-label ~ input.input-simple {padding: 0 25px; min-height: 38px;}
+.input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 10px; text-align: left;}
+.input-holder .input-label.left ~ input[type="number"].input-simple {text-align: right;}
 .input-holder .wf-input-label {
     position: absolute;
     text-align: center;
@@ -1335,6 +1313,7 @@ Lms Quiz Wf Style End
     background-color: #F9FAFA;
     border-bottom: 2px solid #ECE9F2;
     padding: 8px 0;
+    margin-bottom: 50px;
 }
 .quiz-topbar .quiz-top-info {
     display: inline-block;
@@ -1366,7 +1345,8 @@ Lms Quiz Wf Style End
     width: 60px;
     object-fit: contain;
 }
-.lms-quiz-section .quiz-topbar p {
+.lms-quiz-section .quiz-topbar p,
+.learning-page .quiz-topbar p {
     font-weight: 600;
     font-size: 1.25rem;
     text-transform: uppercase;
@@ -1816,7 +1796,7 @@ span.Selectable:hover {text-decoration: underline;}
 .review_submit .submit_quiz_final {padding: 15px 50px; font-weight: 500;}
 .question-layout p {line-height: 50px;}
 .lms-quiz-section .droppable_area .draggable-option {border: 2px solid #ddd; line-height: normal; padding: 4px 20px 8px; border-radius: 5px; border-bottom-width: 4px;}
-.question-layout .ui-state-highlight {border: 0; padding: 0 5px 0 0;}
+.question-layout .ui-state-highlight {border: 0; padding: 0 5px 0 0;min-width: 50px;text-align: center;min-height: 30px;line-height: 30px;}
 
 /* Question-Result-Layout Style Start */
 .question-result-layout {

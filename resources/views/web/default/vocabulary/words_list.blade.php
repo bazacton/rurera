@@ -61,7 +61,7 @@
                         </h3>
                         <div class="spells-topbar">
                             <p>This is a preview. View this spelling list in EdShed, with full data available to subscribers.</p>
-                            <a href="/spells/{{$spellQuiz->quiz_slug}}" class="view-btn">Start Test</a>
+                            <a href="/spells/{{$spellQuiz->quizYear->slug}}/{{$spellQuiz->quiz_slug}}" class="view-btn">Start Test</a>
                         </div>
                         <div class="spells-table-inner">
                             <table class="table table-striped table-bordered dataTable">

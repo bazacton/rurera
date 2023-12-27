@@ -264,16 +264,27 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                                 //jQuery.noConflict();
                                 $(".question-status-modal .modal-box .modal-title span.inc").html(return_data.question_user_input);
                                 $(".question-status-modal .modal-box .modal-title span.cor").html(return_data.question_correct_answere);
+
                                 $(".question-status-modal .modal-box p").html(defination_text);
+                                $(".question-status-modal .modal-box p").html(defination_text+'<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+
                                 $("#question_status_modal").modal('show');
                                 $(".confirm-btn").focus();
                             }
                         }
                     } else{
+
                         //thisForm.find('.question-submit-btn').remove();
                         if (quiz_type == 'practice') {
-                            $("#quiz_question_status_modal").modal('show');
+                            //$("#quiz_question_status_modal").modal('show');
                             thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+                            thisForm.find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+                            if (rurera_is_field(return_data.question_solution)) {
+                                thisForm.find('.show-notifications').append(return_data.question_solution);
+                            }
+                            thisForm.find('.question-submit-btn').addClass('rurera-hide');
+                            thisForm.find('.question-next-btn').removeClass('rurera-hide');
+
 
                         }else {
                             const interval = setInterval(() => {
@@ -326,6 +337,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 thisObj.closest('.question-area').find('.correct-appriciate').show(300).delay(2000).hide(300);*/
                 var next_question_no = parseInt(question_no) + 1;
 
+                if (quiz_type == 'vocabulary') {
+                    $(".spells-quiz-sound").append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+                }else{
+                    $(".question-layout-block").append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+                }
+
                 if (quiz_type != 'book') {
                     //thisForm.find('.question-submit-btn').remove();
                 }
@@ -333,6 +350,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
                     if (quiz_type == 'practice') {
                         thisForm.find('.show-notifications').html('<span class="question-status-wrong">Thats incorrect, but well done for trying</span>');
+
                     }else {
                         if (quiz_type == 'book') {
                             if (question_response_layout != '') {
@@ -358,6 +376,11 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
                     if (quiz_type == 'practice') {
                         thisForm.find('.show-notifications').html('<span class="question-status-correct">Well done! Thats exactly right.</span>');
+                        if (rurera_is_field(return_data.question_solution)) {
+                            thisForm.find('.show-notifications').append(return_data.question_solution);
+                        }
+                        thisForm.find('.question-submit-btn').addClass('rurera-hide');
+                        thisForm.find('.question-next-btn').removeClass('rurera-hide');
                     }
                     else {
                         const interval = setInterval(() => {
@@ -694,7 +717,9 @@ function init_question_functions() {
     $(document).on('click', '.confirm-btn', function (e) {
         $('#next-btn')[0].click();
     });
-
+    $(document).on('click', '.question-next-btn', function (e) {
+        $('#next-btn')[0].click();
+    });
 
     $(document).on('keyup', 'body', function (evt) {
         if( $(".question-area").hasClass('spell-question-area')){
@@ -835,7 +860,6 @@ function init_question_functions() {
             clearInterval(Questioninterval);
         }
         var Questioninterval = setInterval(function () {
-            console.log(quizQuestionID);
             var seconds_count = $(".question-step-"+quizQuestionID).attr('data-elapsed');
             seconds_count = parseInt(seconds_count) + parseInt(1);
             $(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
@@ -1342,7 +1366,7 @@ function rurera_validation_process(form_name) {
     var alert_messages = new Array();
     var radio_fields = new Array();
     var checkbox_fields = new Array();
-    form_name.find('.rurera-req-field, .editor-field').each(function (index_no) {
+    form_name.find('.rurera-req-field, .editor-field, .editor-fields').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
         index_no = rurera_is_field(index_no) ? index_no : 0;
@@ -1382,7 +1406,7 @@ function rurera_validation_process(form_name) {
             is_visible = false;
         }
         if (!thisObj.val() && is_visible == true) {
-            if (thisObj.hasClass('rurera-req-field') || thisObj.hasClass('editor-field')) {
+            if (thisObj.hasClass('rurera-req-field') || thisObj.hasClass('editor-field') || thisObj.hasClass('editor-fields')) {
                 array_length = alert_messages.length;
                 alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, '');
                 has_empty[index_no] = true;

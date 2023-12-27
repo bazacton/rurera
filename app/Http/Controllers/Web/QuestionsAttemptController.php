@@ -640,6 +640,7 @@ class QuestionsAttemptController extends Controller
             'total_points'             => $total_points,
             'single_question_layout'   => $single_question_layout,
             'updated_questions_layout' => $updated_questions_layout,
+            'question_solution'         => isset( $questionObj->question_solve )? '<div class="question-solution">'.$questionObj->question_solve.'</div>' : '',
             'test'                     => $test,
             'next_question_id'         => $next_question_id,
         );

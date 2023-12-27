@@ -566,11 +566,13 @@ class QuizController extends Controller
 
         );
 
+
+
         $quiz->update([
             //'webinar_id' => !empty($webinar) ? $webinar->id : null,
             //'chapter_id' => !empty($chapter) ? $chapter->id : null,
             //'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
-            'quiz_slug'          => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] : Quiz::makeSlug($data['title']),
+            'quiz_slug'          => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] : Quiz::makeSlug($data['title'], $id),
             'attempt'            => 100,
             'pass_mark'          => isset($data['pass_mark']) ? $data['pass_mark'] : 1,
             'time'               => 20,

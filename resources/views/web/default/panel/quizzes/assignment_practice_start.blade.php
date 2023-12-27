@@ -29,6 +29,8 @@ $timer_counter = $time_interval;
 if( $duration_type == 'total_practice'){
 $timer_counter = $practice_time;
 }
+$section_class = 'lms-quiz-section';
+$section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $section_class;
 @endphp
 <div class="content-section">
 
@@ -94,13 +96,12 @@ $timer_counter = $practice_time;
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - assignment_start</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
                                 <div class="quiz-timer">
-
                                     <span class="timer-number"><div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div></span>
                                 </div>
                                 <div class="instruction-controls">
@@ -204,12 +205,10 @@ $timer_counter = $practice_time;
 
                         </div>
                     </div>
-
                     @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
                     <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
                     <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}"
-                         data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
-
+                                             data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -267,27 +266,6 @@ $timer_counter = $practice_time;
     </div>
 </div>
 @endif
-<div class="quiz-question-status-modal">
-  <div class="modal fade quiz_question_status_modal" id="quiz_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Incorrect!</h3>
-              <span class="inc" style="text-decoration: line-through;">are</span>
-              <span class="cor">are</span>
-            </div>
-            <p>
-              <span>verb</span> when more than one person is being something
-            </p>
-            <a href="javascript:;" class="confirm-btn quiz-question-confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -386,21 +364,22 @@ $timer_counter = $practice_time;
         }
 
     function getTime(secondsString) {
-        var h = Math.floor(secondsString / 3600); //Get whole hours
-        secondsString -= h * 3600;
-        var m = Math.floor(secondsString / 60); //Get remaining minutes
-        secondsString -= m * 60;
+            var h = Math.floor(secondsString / 3600); //Get whole hours
+            secondsString -= h * 3600;
+            var m = Math.floor(secondsString / 60); //Get remaining minutes
+            secondsString -= m * 60;
 
-        var return_string = '';
-        if (h > 0) {
-            var return_string = return_string + h + ":";
-        }
-        if (m > 0) {
-            var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
-        }
-        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+            var return_string = '';
+            if( h > 0) {
+                var return_string = return_string + h + "h ";
+            }
+            //if( m > 0 || h > 0) {
+                var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
+            //}
+            var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+            return_string = return_string + 's';
 
-        return return_string;
-    }
+            return return_string;
+        }
 
 </script>

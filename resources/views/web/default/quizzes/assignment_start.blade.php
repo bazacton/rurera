@@ -6,7 +6,6 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
 <link rel="stylesheet" href="/assets/default/css/panel.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-<link rel="stylesheet" href="/assets/admin/vendor/bootstrap/bootstrap.min.css"/>
 
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">
@@ -20,7 +19,7 @@ $rand_id = rand(99,9999);
 
 @section('content')
 
-<div class="learning-page">
+<div class="learning-page type-sats">
 
 
     <div class="d-flex position-relative">
@@ -139,7 +138,7 @@ $rand_id = rand(99,9999);
                         </div>
 
                         <a href="javascript:;" data-quiz_url="/assignment/{{$assignmentObj->id}}/start"
-                           class="quiz-start-btn btn btn-primary btn-sm mt-15">Start Quiz</a>
+                           class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">Start Quiz</a>
                         <div class="learning-content-quiz">
                             @if( isset( $assignmentObj->StudentAssignmentData->description ) && $assignmentObj->StudentAssignmentData->description != '')
                                    <h3>Instructions:</h3>
@@ -147,16 +146,20 @@ $rand_id = rand(99,9999);
                            @endif
                         </div>
 
+
+
+
                     </div>
                 </div>
 
-                @if( !empty( $resultData ) )
+                @if( !empty( $resultData ) && !empty((array) $resultData)  )
 
                 <section class="lms-data-table my-80">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
-                                <h3>Summary of your previous attempts</h3>
+
+                                <h3>Summary of your previous attempts </h3>
                                 <table class="table table-striped table-bordered dataTable display responsive" style="width: 100%;"
                                        aria-describedby="example_info">
                                     <thead>

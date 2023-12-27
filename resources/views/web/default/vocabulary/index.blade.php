@@ -221,7 +221,7 @@
                                             <tr class="odd">
                                                 <td>
 
-                                                    <a href="/spells/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}} <span class="spell_category">{{$dataObj->quiz_category}}</span></a>
+                                                    <a href="/spells/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}} <span class="spell_category">{{$dataObj->quiz_category}}</span></a>
                                                     <br> <span class="sub_label">{{$total_questions}} Word(s)</span>
                                                 </td>
                                                 <td>

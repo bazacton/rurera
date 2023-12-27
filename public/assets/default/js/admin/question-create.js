@@ -5345,7 +5345,9 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                             label_data += '<img src="' + leform_form_elements[i]["options"][j]["image"] + '" alt=""> ';
                             var is_image = true;
                         }
-                        label_data += leform_form_elements[i]["options"][j]["label"];
+                        if( leform_form_elements[i]["options"][j]["label"] != ''){
+                            label_data += '<span class="inner-label">' + leform_form_elements[i]["options"][j]["label"] + '</span>';
+                        }
                         option = "<input class='editor-field' type='radio' data-field_id='" + random_id + "' name='field-" + random_id + "' id='field-" + random_id + "-" + j + "' value='" + leform_escape_html(leform_form_elements[i]["options"][j]["value"]) + "'" + selected + " /><label for='field-" + random_id + "-" + j + "'>" + label_data + "</label>";
                         options += "<div class='field-holder leform-cr-container-" + properties["radio-size"] + " leform-cr-container-" + properties["radio-position"] + "'>" + option + "</div>";
                     }

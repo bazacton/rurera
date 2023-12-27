@@ -45,7 +45,6 @@ else{
         <div class="question-layout-block">
 
             <form class="question-fields" action="javascript:;" data-defination="{{isset($word_data['audio_defination'])? $word_data['audio_defination'] : ''}}" data-question_id="{{ $question->id }}">
-                <div class="left-content has-bg">
                 <div class="spells-quiz-info">
                     <ul>
                         <li class="show-correct-answer">
@@ -59,14 +58,15 @@ else{
                         </li>
                     </ul>
                 </div>
+                <div class="left-content has-bg">
                 <div class="spells-quiz-sound">
-                    <strong>Hear It: <a href="javascript:;"  id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}" class="play-btn sound-icon">
+                    <strong>Hear It: <a href="javascript:;"  id="sound-icon-{{ $question->id }}" data-id="audio_file_{{ $question->id }}" class="play-btn sound-icon pause">
                       <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
                       <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
                     </a></strong>
                 </div>
                 <div class="player-box">
-                   <audio autoplay class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
+                   <audio  class="player-box-audio" id="audio_file_{{ $question->id }}" src="{{isset($word_data['audio_file'])? $word_data['audio_file'] : ''}}"> </audio>
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
@@ -284,12 +284,12 @@ else{
         $('#sound-icon-{{ $question->id }}').toggleClass("pause");
     });
 
-    jQuery(document).ready(function() {
-
-
+    $(document).on('click', '.start-spell-quiz', function (e) {
+    //jQuery(document).ready(function() {
 
 
         $('#field-{{$field_id}}').focus();
+        console.log('#sound-icon-{{ $question->id }}');
         $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),
