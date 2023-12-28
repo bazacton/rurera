@@ -6,7 +6,7 @@ $rand_id = rand(99,9999);
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
 <link rel="stylesheet" href="/assets/default/css/panel.css?var={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/vendors/video/video-js.min.css">
-
+<script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="/assets/default/css/quiz-layout.css?ver={{$rand_id}}">
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css?var={{$rand_id}}">

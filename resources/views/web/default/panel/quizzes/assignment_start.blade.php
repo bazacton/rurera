@@ -21,7 +21,7 @@ $rand_id = rand(99,9999);
     }
 
 </style>
-
+@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : ''; @endphp
 @php $timer_counter = 0;
 if( $duration_type == 'per_question'){
 $timer_counter = $time_interval;
@@ -374,9 +374,10 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
         if( h > 0) {
             var return_string = return_string + h + "h ";
         }
-        //if( m > 0 || h > 0) {
+        var quiz_type = '{{$quiz_type}}';
+        if( (m > 0 || h > 0) || quiz_type != 'vocabulary') {
             var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
-        //}
+        }
         var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
         return_string = return_string + 's';
 

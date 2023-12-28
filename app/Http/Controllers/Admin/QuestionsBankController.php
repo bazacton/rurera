@@ -840,7 +840,7 @@ class QuestionsBankController extends Controller
         $difficulty_level = 'Emerging';
         $question_type = 'dropdown';
         $quiz_id = 32;
-        $example_question_id = 10114;
+        $example_question_id = 8614;
         $year_id = 616;
         $subject_id = 2082;
         $chapter_id = 195;
@@ -1002,6 +1002,7 @@ class QuestionsBankController extends Controller
                             'created_by'  => $user->id,
                             'created_at'  => time()
                         ]);
+                        //pre($quizQuestion->id);
                         pre($questions_counter.') '.$quizQuestion->id, false);
                         $questions_counter++;
                     }
@@ -1259,7 +1260,8 @@ class QuestionsBankController extends Controller
 
             if( $question_type == 'dropdown'){
 
-                $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+                $previous_dropdown_response = '<select class="editor-field small" data-id="46747" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-46747" data-correct="WyJvcHRpb24yIl0=" data-field_size="small" data-select_option="option2" data-score="1" score="1"><option value="option1">option1</option><option value="option2">option2</option><option value="option3">option3</option></select>';
+                //$previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
                 $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
                 $explode_content = explode('[', $question_after_label);
                 $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
@@ -1270,6 +1272,7 @@ class QuestionsBankController extends Controller
                 $dropdown_response = '';
                 $correct_answer_array = array($correct_answer);
                 if( !empty( $dropdown_options ) ){
+                    $dropdown_response .= '<option value="">Select Option</option>';
                     foreach( $dropdown_options as $dropdown_item){
                         $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
                     }
@@ -1330,6 +1333,7 @@ class QuestionsBankController extends Controller
                 $dropdown_response = '';
                 $correct_answer_array = array($correct_answer);
                 if( !empty( $dropdown_options ) ){
+                    $dropdown_response .= '<option value="">Select Option</option>';
                     foreach( $dropdown_options as $dropdown_item){
                         $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
                     }
@@ -1338,7 +1342,7 @@ class QuestionsBankController extends Controller
                 $correct_answer_str = htmlentities(base64_encode(json_encode($correct_answer_array)));
 
                 $element_data_value_new->{'data-options'} = $dropdown_options_str;
-                $element_data_value_new->{'data-correct'} = json_encode($correct_answer_array);
+                $element_data_value_new->{'data-correct'} = $correct_answer_str;//json_encode($correct_answer_array);
                 $element_data_value_new->{'data-id'} = $random_id;
                 $element_data_value_new->{'id'} = 'field-'.$random_id;
                 //$options_temp = html_entity_decode(base64_decode(trim(stripslashes($options))));
@@ -1353,6 +1357,8 @@ class QuestionsBankController extends Controller
                 $element_data_value_new->{'id'} = 'field-'.$random_id;
             }
         }
+
+        //pre($element_data_value_new);
 
         return $element_data_value_new;
     }
@@ -1413,7 +1419,8 @@ class QuestionsBankController extends Controller
 
             if( $question_type == 'dropdown'){
 
-                $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+                //$previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+                $previous_dropdown_response = '<select class="editor-field small" data-id="46747" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-46747" data-correct="WyJvcHRpb24yIl0=" data-field_size="small" data-select_option="option2" data-score="1" score="1"><option value="option1">option1</option><option value="option2">option2</option><option value="option3">option3</option></select>';
                 $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
                 $explode_content = explode('[', $question_after_label);
                 $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
@@ -1424,6 +1431,7 @@ class QuestionsBankController extends Controller
                 $dropdown_response = '';
                 $correct_answer_array = array($correct_answer);
                 if( !empty( $dropdown_options ) ){
+                    $dropdown_response .= '<option value="">Select Option</option>';
                     foreach( $dropdown_options as $dropdown_item){
                         $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
                     }
@@ -1513,7 +1521,8 @@ class QuestionsBankController extends Controller
             }
         }
         if( $question_type == 'dropdown') {
-            $previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+            //$previous_dropdown_response = '<select class="editor-field" data-id="6323" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-6323" data-correct="WyJvcHRpb24yIl0=" data-select_option="option3"><option value="option1">option1</option></select>';
+            $previous_dropdown_response = '<select class="editor-field small" data-id="46747" data-options="WyJvcHRpb24xIiwib3B0aW9uMiIsIm9wdGlvbjMiXQ==" data-field_type="select" id="field-46747" data-correct="WyJvcHRpb24yIl0=" data-field_size="small" data-select_option="option2" data-score="1" score="1"><option value="option1">option1</option><option value="option2">option2</option><option value="option3">option3</option></select>';
             $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
             $explode_content = explode('[', $question_after_label);
             $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
@@ -1524,6 +1533,7 @@ class QuestionsBankController extends Controller
             $dropdown_response = '';
             $correct_answer_array = array($correct_answer);
             if( !empty( $dropdown_options ) ){
+                $dropdown_response .= '<option value="">Select Option</option>';
                 foreach( $dropdown_options as $dropdown_item){
                     $dropdown_response .= '<option value="'.$dropdown_item.'">'.$dropdown_item.'</option>';
                 }
@@ -1537,6 +1547,7 @@ class QuestionsBankController extends Controller
 
             $replaceable = 'TEXT-REPLACE';
             $question_layout = str_replace($replaceable, $updated_dropdown_response, $question_layout);
+            $question_layout = $updated_dropdown_response;
         }
         if( $question_type == 'text_field') {
 
@@ -2509,7 +2520,7 @@ class QuestionsBankController extends Controller
                                     if( $field_type == 'html') {
                                         if( isset( $attribData['data-field_type'] ) && $attribData['data-field_type'] == 'select'){
                                             $data_correct = isset( $attribData['data-correct'] )? $attribData['data-correct'] : '';
-                                            $data_correct = base64_decode(trim(stripslashes($data_correct)));
+                                            //$data_correct = base64_decode(trim(stripslashes($data_correct)));
                                             $attribData['data-correct'] = $data_correct;
                                         }
                                     }

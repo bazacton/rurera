@@ -28,7 +28,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
 
 @endphp
 
-<div class="question-area">
+<div class="question-area" data-total_questions="{{$total_questions}}">
     <div class="correct-appriciate" style="display:none"></div>
     <div class="question-step question-step-{{ $question->id }}" data-elapsed="0"
          data-qattempt="{{isset( $quizAttempt->id )? $quizAttempt->id : 0}}"

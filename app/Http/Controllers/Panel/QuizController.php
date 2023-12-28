@@ -711,6 +711,7 @@ class QuizController extends Controller
     {
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+        //$correct_answer = $QuestionsAttemptController->get_question_correct_answers(QuizzesQuestion::find(9136));
         $QuizzesResult = QuizzesResult::find($result_id);
         $quiz = Quiz::find($QuizzesResult->parent_type_id);
 

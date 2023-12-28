@@ -240,12 +240,15 @@ class AssignmentController extends Controller
             $show_all_questions = true;
 
             $QuestionsAttemptController = new QuestionsAttemptController();
+
             $resultLogObj = $QuestionsAttemptController->createResultLog([
                 'parent_type_id'   => $UserAssignedTopicsObj->id,
                 'quiz_result_type' => 'assignment',
                 'questions_list'   => $questions_list,
                 'no_of_attempts'   => $no_of_attempts
             ]);
+            $questions_list = json_decode($resultLogObj->questions_list);
+            $questions_list = QuizzResultQuestions::whereIN('id', $questions_list)->pluck('question_id')->toArray();
 
             $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
 
@@ -253,6 +256,8 @@ class AssignmentController extends Controller
                 $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
                 $prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
             }
+
+
 
 
             $attemptLogObj = $QuestionsAttemptController->createAttemptLog($resultLogObj);
@@ -428,6 +433,7 @@ class AssignmentController extends Controller
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
 
+            //pre($active_question_id, false);
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
                 'questions_list'         => $questions_list,

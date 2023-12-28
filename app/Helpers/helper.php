@@ -2350,6 +2350,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-square-root-alt',
             'type'  => 'other'
         ),
+        'image_quiz_draggable'         => array(
+            'title' => esc_html__('Draggable Image', 'leform'),
+            'icon'  => 'fas fa-image',
+            'type'  => 'other'
+        ),
         'image_quiz'         => array(
             'title' => esc_html__('Image', 'leform'),
             'icon'  => 'fas fa-image',
@@ -6667,6 +6672,32 @@ function element_properties_meta($chapters)
         ),
 
 
+        'image_quiz_draggable'     => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            /*'content'       => array(
+                'value'   => '<span class="block-holder image-field"><img data-field_type="image" data-id="23119" id="field-23119" class="editor-field" src="/assets/default/img/quiz/placeholder-image.png" heigh="50" width="50"></span>',
+                'label'   => esc_html__('Content', 'leform'),
+                'tooltip' => '',
+                'type'    => 'html'
+            ),*/
+            'content'       => array(
+                'value' => '/assets/default/img/quiz/placeholder-image.png',
+                'label' => esc_html__('Image', 'leform'),
+                'type'  => 'image'
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+
+        ),
+
         'image_quiz'     => array(
             'basic'         => array(
                 'type'  => 'tab',
@@ -6683,6 +6714,31 @@ function element_properties_meta($chapters)
                 'value' => '/assets/default/img/quiz/placeholder-image.png',
                 'label' => esc_html__('Image', 'leform'),
                 'type'  => 'image'
+            ),
+            'image_size'     => array(
+                'value'   => 'image-small',
+                'label'   => esc_html__('Image Size', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-small' => esc_html__('Small', 'leform'),
+                        'image-medium' => esc_html__('Medium', 'leform'),
+                        'image-large' => esc_html__('Large', 'leform'),
+                        'image-full' => esc_html__('Full Size', 'leform'),
+                    )
+            ),
+            'image_position'     => array(
+                'value'   => 'image-left',
+                'label'   => esc_html__('Image Position', 'leform'),
+                '',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        'image-left' => esc_html__('Left', 'leform'),
+                        'image-center' => esc_html__('Center', 'leform'),
+                        'image-right' => esc_html__('Right', 'leform'),
+                    )
             ),
             'elements_data' => array(
                 'value'   => '',
@@ -6767,8 +6823,7 @@ function element_properties_meta($chapters)
                 'options' =>
                     array(
                         'textarea_plain' => esc_html__('plain', 'leform'),
-                        'textarea_lines' => esc_html__('Lines', 'leform'),
-                        'textarea_clouds' => esc_html__('Clouds', 'leform'),
+                        'textarea_lines' => esc_html__('Dotted Line', 'leform'),
                     )
             ),
             'maxlength'         => array(

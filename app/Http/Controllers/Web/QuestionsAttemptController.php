@@ -320,8 +320,12 @@ class QuestionsAttemptController extends Controller
                     $data_field_type = isset($elementData->{'data-field_type'}) ? $elementData->{'data-field_type'} : '';
                     if ($data_field_type == 'select') {
                         $question_correct = array();
-                        $data_selected_option = $elementData->{'data-select_option'};
-                        $question_correct[] = $data_selected_option;
+                        $data_correct = isset($elementData->{'data-correct'}) ? $elementData->{'data-correct'} : '';
+                        $data_correct = html_entity_decode(base64_decode(trim(stripslashes($data_correct))));
+                        $question_correct = isset($data_correct) ? json_decode($data_correct) : '';
+                        //pre($question_correct);
+                        //$data_selected_option = $elementData->{'data-select_option'};
+                        //$question_correct[] = $question_correct;
                     }
 
                     $correct_answers[$field_key] = $question_correct;
@@ -744,6 +748,15 @@ class QuestionsAttemptController extends Controller
         $is_question_correct = true;
         $user_input = is_array($user_input) ? $user_input : strtolower($user_input);
         $user_input = is_array($user_input) ? $user_input : ucfirst($user_input);
+        $field_type = isset($current_question_obj->{'data-field_type'}) ? $current_question_obj->{'data-field_type'} : '';
+        if( $field_type == 'select'){
+            $data_correct = isset($current_question_obj->{'data-correct'}) ? $current_question_obj->{'data-correct'} : '';
+            $data_correct = html_entity_decode(base64_decode(trim(stripslashes($data_correct))));
+            $question_correct = isset($data_correct) ? json_decode($data_correct) : '';
+        }
+
+
+        //pre($question_type);
 
         if ($question_type == 'checkbox' || $question_type == 'radio') {
             $question_correct = array();
@@ -1010,6 +1023,7 @@ class QuestionsAttemptController extends Controller
                 $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, 0);
                 $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
                 $correct_answers = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : array();
+
                 if (!empty($question_validate_response['question_correct'])) {
                     foreach ($correct_answers as $correct_answer) {
                         $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';

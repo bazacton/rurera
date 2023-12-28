@@ -51,7 +51,7 @@ else{
                             <span>{{$question_no}}</span> Of {{$total_questions_count}}
                         </li>
                         <li>
-                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span> Seconds
+                            <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span>
                         </li>
                         <li class="total-points">
                             <span>{{isset( $total_points )? $total_points : 0}} </span> Points
@@ -155,7 +155,7 @@ else{
 
                     <div class="form-btn-field">
                         <button type="button" class="question-review-btn" data-id="{{ $question->id }}">Finish</button>
-                        <button type="submit" class="question-submit-btn">Submit</button>
+                        <button type="submit" class="question-submit-btn">Enter</button>
                     </div>
                 </div>
 

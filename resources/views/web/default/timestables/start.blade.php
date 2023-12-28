@@ -346,7 +346,7 @@ if( $duration_type == 'total_practice'){
             $(".tt_points").html(tt_points);
             $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
         }else{
-            //$(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
         }
 
 

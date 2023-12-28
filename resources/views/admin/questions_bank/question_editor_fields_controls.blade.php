@@ -8,7 +8,8 @@
                                               placeholder="Label" data-field_id="field_dynamic_id"></div>
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="label_position" data-field_id="field_dynamic_id">
-                <option value="left" selected="selected">Left</option>
+                <option value="" selected="selected">Field Position</option>
+                <option value="left">Left</option>
                 <option value="right">Right</option>
             </select>
         </div>
@@ -17,7 +18,8 @@
                                               placeholder="Size" data-field_id="field_dynamic_id"></div>
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="style_field" data-field_id="field_dynamic_id">
-                <option value="input_box" selected="selected">box</option>
+                <option value="" selected="selected">Field Style</option>
+                <option value="input_box">box</option>
                 <option value="input_line">Line</option>
             </select>
         </div>
@@ -32,7 +34,8 @@
 
         <div class='quiz-form-control'>
             <select class="element-field" data-field_type="type" data-field_id="field_dynamic_id">
-                <option value="text" selected="selected">Alpha numeric</option>
+                <option value="" selected="selected">Field Type</option>
+                <option value="text">Alpha numeric</option>
                 <option value="number">Numbers</option>
             </select>
         </div>

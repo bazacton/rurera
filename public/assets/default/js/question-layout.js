@@ -29,6 +29,7 @@ let audioChunks = [];
 let timeLimit = 60; // Set the time limit in seconds
 
 var quiz_user_data = [];
+var attempted_questions = 0;
 quiz_user_data[0] = {};
 quiz_user_data[0]['attempt'] = {};
 quiz_user_data[0]['incorrect'] = {};
@@ -166,6 +167,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             "time_consumed": time_consumed
         },
         success: function (return_data) {
+            attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
 
@@ -340,7 +342,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 if (quiz_type == 'vocabulary') {
                     $(".spells-quiz-sound").append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
                 }else{
-                    $(".question-layout-block").append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+                    if (quiz_type == 'practice') {
+                        $(".question-layout-block").append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+                    }
                 }
 
                 if (quiz_type != 'book') {
@@ -869,7 +873,7 @@ function init_question_functions() {
         currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
-            url: '/question_attempt/mark_as_active',
+            url: '/question_attempt/mark_as_active1',
             async: true,
             beforeSend: function () {
                 console.log(currentRequest);
@@ -927,14 +931,9 @@ function init_question_functions() {
 
     $(document).on('click', '.questions-nav-controls .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
+        var total_questions = $(".question-area").attr('data-total_questions');
 
-        var total_questions = $('.quiz-pagination ul li').length;
-        var total_correct = $('.quiz-pagination ul li.correct').length;
-        var total_incorrect = $('.quiz-pagination ul li.incorrect').length;
-        console.log('Total: ' + total_questions);
-        var total_attempted = (parseInt(total_correct) + parseInt(total_incorrect));
-        console.log('Attempted: ' + (parseInt(total_correct) + parseInt(total_incorrect)));
-        $(".review_submit .modal-body p").html('You have attempted ' + total_attempted + ' questions out of ' + total_questions + '. Are you sure you want to submit?');
+        $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions out of ' + total_questions + '. Are you sure you want to submit?');
 
 
         /*var thisObj = $(this);

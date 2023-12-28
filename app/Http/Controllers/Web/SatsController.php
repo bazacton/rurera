@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
 use App\Models\Page;
 use App\Models\Quiz;
+use App\Models\QuizzesQuestion;
 use App\Models\UserAssignedTopics;
 use App\User;
 use Illuminate\Http\Request;
@@ -202,6 +203,7 @@ class SatsController extends Controller
         $user = getUser();
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+
         $summary_type = 'sats';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
 

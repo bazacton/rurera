@@ -5859,9 +5859,9 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                     break;
 
-                case "image_quiz":
+                case "image_quiz_draggable":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
-                    console.log('image-quiz');
+                    console.log('image-quiz-draggable');
 
                     //var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
                     var imageObj = $($.parseHTML(leform_form_elements[i]["content"]));
@@ -5879,6 +5879,30 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
 
                     html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='image-field-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_layout + "<div class='leform-element-cover'></div></div>";
+                    break;
+
+                case "image_quiz":
+                    var random_id = Math.floor((Math.random() * 99999) + 1);
+                    console.log('image-quiz');
+
+                    //var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
+                    var imageObj = $($.parseHTML(leform_form_elements[i]["content"]));
+                    console.log(imageObj);
+                    var image_field_id = imageObj.find('img').attr('data-id');
+                    var image_field_id = "leform-element-" + i;
+                    var imageStyle = !DataIsEmpty(image_styles[image_field_id]) ? image_styles[image_field_id] : '';
+                    if (!DataIsEmpty(imageStyle)) {
+                        imageObj.find('img').attr('data-style', imageStyle);
+                    }
+                    var image_content = imageObj.get(0).outerHTML;
+                    var image_content = leform_form_elements[i]["content"];
+                    var image_size = !DataIsEmpty(leform_form_elements[i]["image_size"])? leform_form_elements[i]["image_size"] : 'image-small';
+                    var image_position = !DataIsEmpty(leform_form_elements[i]["image_position"])? leform_form_elements[i]["image_position"] : 'image-left';
+
+                    var image_layout = '<span className="block-holder image-field"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="editor-field" src="'+image_content+'"></span>';
+
+
+                    html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='"+image_position+" "+image_size+" image-element-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_layout + "<div class='leform-element-cover'></div></div>";
                     break;
 
                 case "heading_quiz":
