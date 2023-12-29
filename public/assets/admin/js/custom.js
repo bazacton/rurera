@@ -749,4 +749,229 @@ $(document).ready(function () {
 //     }).fnDestroy();
 
 // });
-  
+
+$(document).on('submit', '.rurera-form-validation', function (e) {
+    returnType = rurera_validation_process($(this));
+    if (returnType == false) {
+        return false;
+    }
+});
+
+
+/*
+ * Validation Process by Form
+ */
+function rurera_validation_process(form_name) {
+    var has_empty = new Array();
+    var alert_messages = new Array();
+    var radio_fields = new Array();
+    var checkbox_fields = new Array();
+    form_name.find('.rurera-req-field, .editor-field, .editor-fields').each(function (index_no) {
+        is_visible = true;
+        var thisObj = jQuery(this);
+        index_no = rurera_is_field(index_no) ? index_no : 0;
+        var visible_id = thisObj.data('visible');
+        has_empty[index_no] = false;
+        checkbox_fields[index_no] = false;
+        if (rurera_is_field(visible_id) == true) {
+            is_visible = jQuery("#" + visible_id).is(':hidden');
+            if (jQuery("#" + visible_id).css('display') !== 'none') {
+                is_visible = true;
+            } else {
+                is_visible = false;
+            }
+        }
+        /*if (thisObj.attr('type') == 'checkbox') {
+            thisObj = jQuery("#" + thisObj.attr('name'));
+            if (thisObj.val() == 'off') {
+                thisObj.val('');
+            }
+        }*/
+        if (thisObj.attr('type') == 'radio') {
+            var field_name = thisObj.attr('name');
+            var is_field_checked = jQuery('input[name="' + field_name + '"]').is(':checked');
+            if (is_field_checked == false) {
+                radio_fields[index_no] = thisObj;
+            }
+            //has_empty[index_no] = true;
+            is_visible = false;
+        }
+        if (thisObj.attr('type') == 'checkbox') {
+            var field_name = thisObj.attr('name');
+            var is_field_checked = jQuery('input[name="' + field_name + '"]').is(':checked');
+            if (is_field_checked == false) {
+                checkbox_fields[index_no] = thisObj;
+            }
+            //has_empty[index_no] = true;
+            is_visible = false;
+        }
+        if (!thisObj.val() && is_visible == true) {
+            if (thisObj.hasClass('rurera-req-field') || thisObj.hasClass('editor-field') || thisObj.hasClass('editor-fields')) {
+                array_length = alert_messages.length;
+                alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, '');
+                has_empty[index_no] = true;
+            }
+        } else {
+            if (is_visible == true) {
+                has_empty[index_no] = rurera_check_field_type(thisObj, alert_messages, has_empty[index_no]);
+            }
+        }
+        if (has_empty[index_no] == false) {
+            thisObj.next('.chosen-container').removeClass('backend-field-error');
+            thisObj.next('.rurera-req-field').next('.pbwp-box').removeClass('backend-field-error');
+            thisObj.removeClass('backend-field-error');
+            thisObj.closest('.jqte').removeClass('backend-field-error');
+        }
+    });
+    if (radio_fields.length > 0) {
+        for (i = 0; i < radio_fields.length; i++) {
+            var thisnewObj = radio_fields[i];
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'radio');
+            has_empty[i] = true;
+        }
+    }
+    if (checkbox_fields.length > 0) {
+        for (i = 0; i < checkbox_fields.length; i++) {
+            var thisnewObj = checkbox_fields[i];
+            if (rurera_is_field(thisnewObj)) {
+                array_length = alert_messages.length;
+                alert_messages[array_length] = rurera_insert_error_message(thisnewObj, alert_messages, '', 'checkbox');
+                has_empty[i] = true;
+            }
+        }
+    }
+    var error_messages = ' test error message<br><br>';
+    if (has_empty.length > 0 && jQuery.inArray(true, has_empty) != -1) {
+        array_length = alert_messages.length;
+        for (i = 0; i < array_length; i++) {
+            if (i > 0) {
+                error_messages = error_messages + '<br>';
+            }
+            error_messages = error_messages + alert_messages[i];
+        }
+        //jQuery.growl.remove();
+        console.log(error_messages);
+        /*var error_message = jQuery.growl.error({
+            message: error_messages,
+            duration: 10000,
+        });*/
+        return false;
+    }
+}
+
+function rurera_is_field(field_value) {
+    if (field_value != 'undefined' && field_value != undefined && field_value != '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+/*
+ * Making list of errors
+ */
+function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_type = '') {
+    thisObj.addClass('backend-field-error');
+    if (field_type == 'checkbox' || field_type == 'radio') {
+
+        var field_name = thisObj.attr('name');
+        $('[name="' + field_name + '"]').addClass('backend-field-error');
+    }
+
+    if (thisObj.is('select')) {
+        thisObj.next('.chosen-container').addClass('backend-field-error');
+        var field_label = thisObj.closest('.field-holder').children('label').html();
+        if (rurera_is_field(field_label) == false) {
+            var field_label = thisObj.find(":selected").text();
+        }
+        if (rurera_is_field(field_label) == false) {
+            var field_label = thisObj.closest('.rurera-dev-appended-cats').children().children().children('label').html();
+        }
+    } else {
+        var field_label = thisObj.closest('.field-holder').children('label').html();
+        if (typeof field_label === 'undefined') {
+            var field_label = thisObj.attr('placeholder');
+        }
+    }
+    if (thisObj.is(':hidden')) {
+        thisObj.next('.rurera-req-field').next('.pbwp-box').addClass('backend-field-error');
+    }
+    if (thisObj.hasClass('rurera_editor')) {
+        thisObj.closest('.jqte').addClass('backend-field-error');
+    }
+
+    var res = '';
+    if (typeof field_label !== "undefined") {
+        res = field_label.replace("*", " ");
+    } else {
+        res = 'Label / Placeholder is missing';
+    }
+    return '* ' + res + error_msg;
+}
+
+/*
+ * Check if Provided data for field is valid
+ */
+
+function rurera_check_field_type(thisObj, alert_messages, has_empty) {
+    /*
+     * Check for Email Field
+     */
+    if (thisObj.hasClass('rurera-email-field')) {
+        var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, ' is not valid Email!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Number Field
+     */
+    if (thisObj.hasClass('rurera-number-field')) {
+        var pattern = /[0-9 -()+]+$/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid Number!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for URL Field
+     */
+    if (thisObj.hasClass('rurera-url-field')) {
+        var pattern = /^(http|https)?:\/\/[a-zA-Z0-9-\.]+\.[a-z]{2,4}/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid URL!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Date Field
+     */
+    if (thisObj.hasClass('rurera-date-field')) {
+        //var pattern = /([0-9][1-2])\/([0-2][0-9]|[3][0-1])\/((19|20)[0-9]{2})/;
+        var pattern = /^\d{1,2}.\d{1,2}.\d{4} \d{2}:\d{2}$/;
+        if (!pattern.test(thisObj.val())) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not valid Date!');
+            has_empty = true;
+        }
+    }
+    /*
+     * Check for Range Field
+     */
+    if (thisObj.hasClass('rurera-range-field')) {
+        var min_val = thisObj.data('min');
+        var max_val = thisObj.data('max');
+        if (!(thisObj.val() >= min_val) || !(thisObj.val() <= max_val)) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, 'is not in Range! ( ' + min_val + ' - ' + max_val + ' )');
+            has_empty = true;
+        }
+    }
+    return has_empty;
+}

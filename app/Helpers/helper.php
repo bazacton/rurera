@@ -2410,6 +2410,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-marker',
             'type'  => 'other'
         ),
+        'example_question'     => array(
+            'title' => esc_html__('Example Question', 'leform'),
+            'icon'  => 'fas fa-question',
+            'type'  => 'other'
+        ),
         'seperator'          => array(
             'title' => esc_html__('Seperator', 'leform'),
             'icon'  => 'fas fa-cut',
@@ -7034,6 +7039,30 @@ function element_properties_meta($chapters)
                 'type'    => 'elements_data'
             ),
         ),
+        'example_question' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'question_id'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Question', 'leform'),
+                'class' => 'search-question-select2',
+                'type'    => 'select',
+                'options' =>
+                    array(
+                        '0' => esc_html__('Select Question', 'leform'),
+                    )
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+
         'audio_file' => array(
             'basic'         => array(
                 'type'  => 'tab',
@@ -7700,6 +7729,22 @@ function getRewardTitle($rewardObj){
         }
     }
     return $reward_title;
+}
+
+/*
+ * Get Question Layout File according to the type
+ */
+function get_question_layout_file($resultLogObj){
+
+    $quiz_result_type = isset( $resultLogObj->quiz_result_type )? $resultLogObj->quiz_result_type : '';
+    if( $quiz_result_type == 'assignment'){
+        $assignmentObj = $resultLogObj->assignment;
+        $quiz_result_type = isset( $assignmentObj->StudentAssignmentData->assignment_type )? $assignmentObj->StudentAssignmentData->assignment_type : '';
+    }
+    $layout_file = 'question_layout';
+    $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
+    $layout_file = in_array($quiz_result_type, $entrance_exams)? 'enterance_exams_question_layout' : $layout_file;
+    return $layout_file;
 }
 
 /*

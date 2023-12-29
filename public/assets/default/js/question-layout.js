@@ -916,7 +916,11 @@ function init_question_functions() {
         });
     });
     var active_question_id = $(".question-area-block").attr('data-active_question_id');
-    $('.quiz-pagination ul li[data-question_id="' + active_question_id + '"]').click();
+    console.log('active_question_id-'+active_question_id);
+    if( rurera_is_field(active_question_id)) {
+        console.log('is_field-active_question_id-'+active_question_id);
+        $('.active-question-btn[data-question_id="' + active_question_id + '"]').click();
+    }
 
     function rurera_lookup(array, prop, value) {
         for (var i = 0, len = array.length; i < len; i++) {

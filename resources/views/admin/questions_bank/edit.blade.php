@@ -615,6 +615,14 @@ $rand_id = rand(999,99999);
                                         </div>
 
                                         <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="input-label">Example Question</label>
+                                                <select name="example_question" id="example_question" data-search-option="questions_ids"
+                                                      class="form-control search-question-select2" data-placeholder="Search Question"></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
                                         <div class="form-group">
                                             <label class="input-label">Question Type</label>
                                             <select name="question_type" class="custom-select ">
@@ -1207,6 +1215,11 @@ $rand_id = rand(999,99999);
 
 
 <script src="/assets/default/js/admin/quiz.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        handleMultiSelect2('search-question-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
+    });
+</script>
 <script type="text/javascript">
     $("body").on("click", ".add-glossary-modal", function (t) {
         $("#add-glosary-modal-box").modal({backdrop: "static"});

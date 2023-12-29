@@ -290,6 +290,7 @@ else{
 
         $('#field-{{$field_id}}').focus();
         console.log('#sound-icon-{{ $question->id }}');
+        console.log('start-spell-quiz');
         $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),

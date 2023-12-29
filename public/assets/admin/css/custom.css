@@ -1318,3 +1318,8 @@ Lms Card Style Start
 /*****************************
 Lms Card Style End
 ******************************/
+
+.backend-field-error {
+    border: 1px solid;
+    border-color: #ff0000 !important;
+}

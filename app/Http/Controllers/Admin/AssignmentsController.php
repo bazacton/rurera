@@ -235,6 +235,7 @@ class AssignmentsController extends Controller
 
         $rules = [
             //'title' => 'required|max:255',
+            //'assignment_start_date' => 'required',
             //'webinar_id' => 'required|exists:webinars,id',
             //'pass_mark' => 'required',
         ];

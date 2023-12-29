@@ -18212,8 +18212,10 @@ Lms Responsive Style Start
     .counter-holder .svg-shapes-top {right: -193px; top: -36px;}
     .row.circle-icon-list {padding: 0 15px;}
     .quiz-first-question .questions-status {padding-top: 15px;}
-    .info-setting .instruction-dropdown {width: 330px;}
-    .instruction-controls .instruction-text {min-width: auto;}
+    .info-setting .instruction-dropdown {margin-right: -10px; width: 300px;}
+    body .learning-page {padding-top: 0;}
+    body .instruction-controls .instruction-text {min-width: auto; height: 450px;}
+    body .read-quiz-content .quiz-topbar {position: relative;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -18366,7 +18368,9 @@ Lms Responsive Style Start
     body .quiz-topbar .quiz-top-info:after {display: none;}
     body .prev-next-controls .review-btn {margin-top: 10px;}
     body .quiz-topbar .quiz-type-icon {margin: 0 0 15px;}
-    .instruction-text ul li {text-align: left;}
+    body .instruction-text ul li {text-align: left;}
+    body .topbar-right {justify-content: center;}
+    body .quiz-timer .timer-number {min-width: auto; margin-left: 0;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -18480,6 +18484,7 @@ Lms Responsive Style Start
     body .question-fields .left-content {min-height: auto;}
     body .prev-next-controls {flex-direction: column-reverse;}
     body .prev-next-controls a {width: 100%;}
+    body .lms-radio-img.rurera-in-row .lms-radio-select .field-holder {max-width: 100%;flex: 0 0 100%;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

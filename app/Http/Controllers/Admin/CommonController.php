@@ -58,6 +58,27 @@ class CommonController extends Controller
     }
 
     /*
+     * Get Example Question
+     */
+    public function get_example_question(Request $request)
+    {
+        $user = auth()->user();
+        $question_id = $request->get('question_id', null);
+        $response = '';
+        $questionObj = QuizzesQuestion::find($question_id);
+        $question_layout = isset( $questionObj->question_layout )? $questionObj->question_layout : '';
+        $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+        $question_layout = str_replace('editor-field', 'example-editor-field', $question_layout);
+
+        //pre($questionObj);
+
+        echo $question_layout;
+
+        exit;
+    }
+
+
+    /*
      * Get Classes added by Year / Category
      * @incase of Teacher it will be restricted to teacher added classes only
      */
@@ -219,10 +240,10 @@ class CommonController extends Controller
         $year_id = $request->get('year_id', null);
         $quiz_type = $request->get('quiz_type', null);
 
-        if( $quiz_type == 'practice'){
+        if ($quiz_type == 'practice') {
 
             $response = $this->get_subjects_by_year($year_id);
-        }else {
+        } else {
             $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
 
             if ($year_id > 0) {
@@ -261,36 +282,36 @@ class CommonController extends Controller
         $courseObj = Webinar::find($subject_id);
         $chapters = $courseObj->chapters;
         $response = '<div class="row">';
-        if( !empty( $chapters ) ){
-            foreach( $chapters as $chapterObj){
+        if (!empty($chapters)) {
+            foreach ($chapters as $chapterObj) {
                 $subChapters = $chapterObj->subChapters;
                 $sub_chapters_response = '';
 
-                if( !empty( $subChapters ) ) {
+                if (!empty($subChapters)) {
                     foreach ($subChapters as $subChapterObj) {
                         $quizData = $subChapterObj->quizData;
-                        $quiz_id = isset( $quizData->item_id )? $quizData->item_id : 0;
-                        $quizData = isset( $subChapterObj->quizData->quiz )? $subChapterObj->quizData->quiz : array();
+                        $quiz_id = isset($quizData->item_id) ? $quizData->item_id : 0;
+                        $quizData = isset($subChapterObj->quizData->quiz) ? $subChapterObj->quizData->quiz : array();
                         $count_questions = isset($quizData->quizQuestionsList) ? count($quizData->quizQuestionsList) : 0;
 
                         $sub_chapters_response .= '<div class="form-check mt-1">
-                            <input type="checkbox" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'" value="'.$quiz_id.'" class="form-check-input section-child topics_multi_selection">
-                            <label class="form-check-label cursor-pointer mt-0" for="topic_ids_'.$chapterObj->id.'_'.$subChapterObj->id.'">
-                                '.$subChapterObj->sub_chapter_title.'
+                            <input type="checkbox" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '" value="' . $quiz_id . '" class="form-check-input section-child topics_multi_selection">
+                            <label class="form-check-label cursor-pointer mt-0" for="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '">
+                                ' . $subChapterObj->sub_chapter_title . '
                             </label>
                         </div>';
                     }
                 }
-                 $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
+                $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
                         <div class="card-header">
-                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_'.$chapterObj->id.'" value="1" class="form-check-input mt-0 topic-section-parent">
-                            <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_'.$chapterObj->id.'">
-                                '.$chapterObj->getTitleAttribute().'
+                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_' . $chapterObj->id . '" value="1" class="form-check-input mt-0 topic-section-parent">
+                            <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_' . $chapterObj->id . '">
+                                ' . $chapterObj->getTitleAttribute() . '
                             </label>
                         </div>
 
                         <div class="card-body">
-                            '.$sub_chapters_response.'
+                            ' . $sub_chapters_response . '
                         </div>
                 </div></div>';
             }
@@ -302,20 +323,21 @@ class CommonController extends Controller
         exit;
     }
 
-    public function get_subjects_by_year($year_id){
+    public function get_subjects_by_year($year_id)
+    {
         $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
 
         $subjects_response = '';
-        if( !empty( $courses ) ){
-            foreach( $courses as $courseObj){
+        if (!empty($courses)) {
+            foreach ($courses as $courseObj) {
                 $subjects_response .= '
                                         <label class="card-radio">
                                             <input type="radio" name="ajax[new][subject]"
-                                                   class="assignment_subject_check" value="'.$courseObj->id.'">
+                                                   class="assignment_subject_check" value="' . $courseObj->id . '">
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
-                                                            '.$courseObj->icon_code.'
-                                                            <h3>'.$courseObj->getTitleAttribute().'</h3>
+                                                            ' . $courseObj->icon_code . '
+                                                            <h3>' . $courseObj->getTitleAttribute() . '</h3>
                                                        </div>
 
                                                   </span>
@@ -326,7 +348,7 @@ class CommonController extends Controller
                 <label class="input-label">Subject</label>
                 <div class="input-group">
                     <div class="radio-buttons">
-                        '.$subjects_response.'
+                        ' . $subjects_response . '
                     </div>
                 </div>
             </div>';
@@ -340,7 +362,7 @@ class CommonController extends Controller
         $quiz_type = $request->get('quiz_type', null);
         $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
 
-        if( $year_group != 'All'){
+        if ($year_group != 'All') {
             $resultsQuery = $resultsQuery->where('year_group', $year_group);
         }
 
@@ -356,9 +378,9 @@ class CommonController extends Controller
         $response .= '<option value="">Select Topic</option>';
         if (!empty($results)) {
             foreach ($results as $rowObj) {
-                $count_questions = isset( $rowObj->quizQuestionsList )? count($rowObj->quizQuestionsList) : 0;
-                $selected ='';
-                $response .= '<option data-total_questions="'.$count_questions.'" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+                $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
+                $selected = '';
+                $response .= '<option data-total_questions="' . $count_questions . '" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
             }
         }
         $response .= '</select></div></div>';
@@ -369,8 +391,6 @@ class CommonController extends Controller
     }
 
 
-
-
     /*
     * Generate Audio File by Text
     */
@@ -379,9 +399,9 @@ class CommonController extends Controller
         $user = auth()->user();
         $audio_text = $request->get('audio_text', null);
         $word_audio = $audio_text;
-        $word_audio = '<speak>'.$word_audio.'</speak>';
+        $word_audio = '<speak>' . $word_audio . '</speak>';
         $audio_sentense = $request->get('audio_sentense', null);
-        $audio_text = '<speak>'.$audio_text.' [P-1] as in '. $audio_sentense .' </speak>';
+        $audio_text = '<speak>' . $audio_text . ' [P-1] as in ' . $audio_sentense . ' </speak>';
         $audio_text = str_replace('[P-', '<break time="', $audio_text);
         $audio_text = str_replace(']', 's"/>', $audio_text);
 
@@ -391,13 +411,12 @@ class CommonController extends Controller
         $text_word_audio_path = $TextToSpeechController->getSpeechAudioFilePath($word_audio);
 
         return array(
-            'audio_file' => '/speech-audio/' . $text_audio_path,
+            'audio_file'      => '/speech-audio/' . $text_audio_path,
             'word_audio_file' => '/speech-audio/' . $text_word_audio_path,
         );
 
         exit;
     }
-
 
 
 }

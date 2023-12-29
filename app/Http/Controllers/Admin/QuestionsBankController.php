@@ -2430,6 +2430,8 @@ class QuestionsBankController extends Controller
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
             'question_example'            => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
             'question_type'            => isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
+            'example_question'            => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
+
         ]);
 
         if (!empty($quizQuestion)) {
@@ -2596,6 +2598,7 @@ class QuestionsBankController extends Controller
             'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
             'question_example'            => isset($questionData['question_example']) ? $questionData['question_example'] : '' ,
             'question_type'            => isset($questionData['question_type']) ? $questionData['question_type'] : '' ,
+            'example_question'            => isset($questionData['example_question']) && !empty($questionData['example_question']) ? $questionData['example_question'] : 0,
         ]);
 
         if (!empty($quizQuestion)) {

@@ -731,6 +731,7 @@ class QuestionsAttemptController extends Controller
 
                     }
 
+
                     $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }

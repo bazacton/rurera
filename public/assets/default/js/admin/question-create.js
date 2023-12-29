@@ -212,6 +212,7 @@ function leform_save(_object, question_status) {
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
     var question_type = $("[name=question_type]").val();
+    var example_question = $("[name=example_question]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
     var review_required = ($('[name=review_required]').prop('checked')) ? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
@@ -256,6 +257,7 @@ function leform_save(_object, question_status) {
         "question_score": question_score,
         "question_average_time": question_average_time,
         "question_type": question_type,
+        "example_question": example_question,
         "glossary_ids": glossary_ids,
         "difficulty_level": difficulty_level,
         "review_required": review_required,
@@ -1245,7 +1247,9 @@ function _leform_properties_prepare(_object) {
                             options += "<option" + selected + " value='" + leform_escape_html(option_key) + "'>" + leform_escape_html(leform_meta[type][key]['options'][option_key]) + "</option>";
                         }
                     }
-                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "'>" + options + "</select></div></div></div>";
+                    console.log();
+                    var field_class = (leform_meta[type][key]['class'] != undefined)? leform_meta[type][key]['class'] : '';
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
 
                 case 'select_sub':
@@ -1738,6 +1742,7 @@ function _leform_properties_prepare(_object) {
             }
         });
     }
+    handleMultiSelect2('search-question-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
     if ($('.summernote-editor-notool').length) {
 
@@ -6013,6 +6018,44 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><div class='question-label'><span>" + leform_form_elements[i]["content"] + "</span></div></div>";
                     console.log(html);
                     break;
+
+                case "example_question":
+
+                    var question_id = leform_form_elements[i]["question_id"];
+                    var data_class = 'example_data_'+i+'_class';
+                    var element_layout = '<div class="example-question">\n' +
+                                    '                        <ul class="nav-controls">\n' +
+                                    '                            <li>\n' +
+                                    '                                <a class="toggle-btn" data-toggle="collapse" href="#example-question" role="button" aria-expanded="false" aria-controls="example-question">Example</a>\n' +
+                                    '                            </li>\n' +
+                                    '                        </ul>\n' +
+                                    '                        <div class="content-box">\n' +
+                                    '                            <div id="example-question" class="collapse">\n' +
+                                    '                                <button class="close-btn" type="button" data-toggle="collapse" data-target="#example-question" aria-expanded="false" aria-controls="example-question">\n' +
+                                    '                                    &#10005;\n' +
+                                    '                                </button>\n' +
+                                    '                                <div class="disable-div '+data_class+'"></div>\n' +
+                                    '                            </div>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>';
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>"+element_layout+"</div>";
+
+                    if( question_id > 0) {
+                        jQuery.ajax({
+                            type: "GET",
+                            url: '/admin/common/get_example_question',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {"question_id": question_id},
+                            success: function (return_data) {
+                                jQuery('.' + data_class).html(return_data);
+                            }
+                        });
+                    }
+                    break;
+
+
                     
                 case "audio_file":
                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'><audio controls>\n" +

@@ -208,7 +208,10 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                     @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
                     <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
                     <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}"
-                                             data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                                             data-active_question_id="{{$active_actual_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                        @if( $active_actual_question_id > 0 )
+                        <a href="javascript:;" id="next-btn1" class="next-btn rurera-hide active-question-btn" data-question_id="{{$active_actual_question_id}}" data-actual_question_id="{{$active_actual_question_id}}">&nbsp;</a>
+                        @endif
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp

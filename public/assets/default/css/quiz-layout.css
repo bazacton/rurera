@@ -78,7 +78,7 @@ Lms Signs Style
 .lms-checkbox-img.inline-fields .field-holder {max-width: 31.777%; margin: 0 14px 10px 0; width: 31.777%;}
 .lms-radio-select .field-holder:nth-child(3),
 .lms-radio-select .field-holder:nth-child(6) {margin-right: 0;}
-.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0; overflow: hidden;}
+.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0; overflow-x: hidden; height: calc(100vh - 90px);}
 .question-area .lms-radio-select {margin: 0;}
 /* Image Top Style Start */
 .lms-radio-img .lms-radio-select label {flex-direction: column; padding-bottom: 20px; padding-top: 20px;}
@@ -101,7 +101,7 @@ Lms Signs Style
 .numeric-list-style > .form-field {counter-increment: listStyle; position: relative;}
 .lms-sorting-fields.numeric-list-style > .field-holder {padding-left: 45px;}
 .numeric-list-style > .field-holder:before,
-.numeric-list-style > .form-field:before {content: counter(listStyle); position:absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 0; color: #999; margin-top: -12px; z-index: 1;}
+.numeric-list-style > .form-field:before {content: counter(listStyle); position:absolute; top: 0; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 0; color: #999; margin-top: 10px; z-index: 1;}
 .numeric-list-style .lms-radio-select .field-holder label,
 .alphabet-list-style .lms-radio-select.image-right .field-holder input[type="radio"] ~ label,
 .alphabet-list-style .lms-radio-select.image-right .field-holder input[type="radio"] ~ label,
@@ -613,7 +613,7 @@ Lms Quiz Wf Style Start
         line-height: 31px;
 } */
 /* draggable-handle style */
-.ui-draggable.ui-draggable-handle {cursor: all-scroll; border: 1px solid #d2d2d2; line-height: 26px; min-width: 50px; text-align: center; border-radius: 3px; height: 30px; margin: 3px 6px 0 0; color: #333; background-color: #fcfcfc; background-image: linear-gradient(180deg, #f4f4f4 0%, #eeeeee 50%);}
+.ui-draggable.ui-draggable-handle {cursor: all-scroll;border: 2px solid #ddd;border-bottom-width: 4px;line-height: normal;text-align: center;border-radius: 8px;margin: 3px 6px 0 0;color: #333;background-color: #fcfcfc;padding: 4px 25px 8px;width: auto;}
 .ui-icon-close {cursor: pointer;}
 .image-field-box{position:absolute !important;}
 .input-holder:empty {display: none;}
@@ -1233,6 +1233,9 @@ Lms Quiz Wf Style End
 }
 .quiz-timer .timer-number {
     min-width: 140px;
+}
+.start-landing-page .quiz-timer .timer-number {
+    color: #333;
 }
 .quiz-pagination .has-flag a {
     background-color: #fff;
@@ -1950,3 +1953,48 @@ span.Selectable:hover {text-decoration: underline;}
 .stems img {
     max-width: 100%;
 }
+/* Example Question Toggle Element Style Start */
+.example-question {
+    padding-left: 80px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    width: 98%;
+}
+.example-question .nav-controls {
+    position: relative;
+    display: inline-block;
+}
+.example-question .content-box {
+    border: 2px solid #ddd;
+    border-bottom-width: 4px;
+    border-radius: 0 8px 8px 8px;
+    padding: 25px;
+    position: relative;
+    min-height: 100px;
+}
+.example-question .toggle-btn {
+    border: 2px solid #ddd;
+    border-bottom: 0;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 8px 8px 0 0;
+    font-weight: 500;
+    color: var(--primary);
+}
+.example-question .close-btn {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border: 0;
+    background-color: inherit;
+    font-size: 18px;
+    color: #999;
+    padding: 0;
+}
+#example-question {
+    position: relative;
+}
+.example-question .toggle-btn.collapsed {
+    color: #343434;
+}
+/* Example Question Toggle Element Style End */

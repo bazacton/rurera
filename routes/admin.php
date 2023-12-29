@@ -402,7 +402,7 @@ Route::group([
             Route::get('/types_quiz_by_year_group', 'CommonController@types_quiz_by_year_group');
             Route::get('/topics_subtopics_by_subject', 'CommonController@topics_subtopics_by_subject');
 
-
+            Route::get('/get_example_question', 'CommonController@get_example_question');
         });
 
         Route::group(['prefix' => 'quizzes-questions'], function () {

@@ -247,8 +247,8 @@ class AssignmentController extends Controller
                 'questions_list'   => $questions_list,
                 'no_of_attempts'   => $no_of_attempts
             ]);
-            $questions_list = json_decode($resultLogObj->questions_list);
-            $questions_list = QuizzResultQuestions::whereIN('id', $questions_list)->pluck('question_id')->toArray();
+            //$questions_list = json_decode($resultLogObj->questions_list);
+            //$questions_list = QuizzResultQuestions::whereIN('id', $questions_list)->pluck('question_id')->toArray();
 
             $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
 
@@ -270,7 +270,7 @@ class AssignmentController extends Controller
             //$exclude_array[] = $questionObj->id;
             //$questions_array[] = $questionObj;
             $questions_layout = $results_questions_array = array();
-            $active_question_id = $first_question_id = 0;
+            $active_question_id = $active_actual_question_id = $first_question_id = $question_no = 0;
 
 
             if (!empty($questions_list)) {
@@ -288,6 +288,7 @@ class AssignmentController extends Controller
 
                     if ($question_id == $prev_active_question_id) {
                         $active_question_id = $newQuestionResult->id;
+                        $active_actual_question_id = $newQuestionResult->question_id;
                     }
 
                     if (isset($questionObj->id)) {
@@ -413,7 +414,8 @@ class AssignmentController extends Controller
                         $resultsQuestionsData['time_limit'] = $time_limit;
                         $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {
-                        $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                        $question_layout_file = get_question_layout_file($resultLogObj);
+                        $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }
@@ -434,6 +436,8 @@ class AssignmentController extends Controller
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
 
             //pre($active_question_id, false);
+            $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
+            $show_pagination = in_array($assignment_type, $entrance_exams)? 'yes' : 'no';
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
                 'questions_list'         => $questions_list,
@@ -452,10 +456,12 @@ class AssignmentController extends Controller
                 'newQuestionResult'      => $newQuestionResult,
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $active_question_id,
+                'active_actual_question_id' => $active_actual_question_id,
                 'duration_type'          => $UserAssignedTopicsObj->StudentAssignmentData->duration_type,
                 'practice_time'          => ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60),
                 'time_interval'          => $UserAssignedTopicsObj->StudentAssignmentData->time_interval,
                 'timer_hide'             => $timer_hide,
+                'show_pagination'        => $show_pagination
             ];
 
             if ($assignment_type == 'practice') {
