@@ -66,13 +66,15 @@ class CommonController extends Controller
         $question_id = $request->get('question_id', null);
         $response = '';
         $questionObj = QuizzesQuestion::find($question_id);
+
         $question_layout = isset( $questionObj->question_layout )? $questionObj->question_layout : '';
         $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
         $question_layout = str_replace('editor-field', 'example-editor-field', $question_layout);
 
+        $question_layout_response = '<div class="example_question_'.$question_id.'" data-question_title="'.$questionObj->question_title.'">'.$question_layout.'</div>';
         //pre($questionObj);
 
-        echo $question_layout;
+        echo $question_layout_response;
 
         exit;
     }

@@ -7049,7 +7049,7 @@ function element_properties_meta($chapters)
                 'value'   => '',
                 'label'   => esc_html__('Question', 'leform'),
                 'class' => 'search-question-select2',
-                'type'    => 'select',
+                'type'    => 'ajax_select_new',
                 'options' =>
                     array(
                         '0' => esc_html__('Select Question', 'leform'),

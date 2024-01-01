@@ -1247,7 +1247,25 @@ function _leform_properties_prepare(_object) {
                             options += "<option" + selected + " value='" + leform_escape_html(option_key) + "'>" + leform_escape_html(leform_meta[type][key]['options'][option_key]) + "</option>";
                         }
                     }
-                    console.log();
+                    var field_class = (leform_meta[type][key]['class'] != undefined)? leform_meta[type][key]['class'] : '';
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+                    break;
+                    
+                case 'ajax_select_new':
+                    options = "";
+                    var question_title = jQuery(".example_question_"+properties[key]).attr('data-question_title');
+                    question_title = !DataIsEmpty(question_title)? question_title : '';
+                    if(question_title != ''){
+                        options = "<option selected value='" + properties[key] + "'>" + question_title + "</option>";
+                    }
+                    for (var option_key in leform_meta[type][key]['options']) {
+                        if (leform_meta[type][key]['options'].hasOwnProperty(option_key)) {
+                            selected = "";
+                            if (option_key == properties[key])
+                                selected = " selected='selected'";
+                            options += "<option" + selected + " value='" + leform_escape_html(option_key) + "'>" + leform_escape_html(leform_meta[type][key]['options'][option_key]) + "</option>";
+                        }
+                    }
                     var field_class = (leform_meta[type][key]['class'] != undefined)? leform_meta[type][key]['class'] : '';
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
@@ -1743,6 +1761,7 @@ function _leform_properties_prepare(_object) {
         });
     }
     handleMultiSelect2('search-question-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
+
 
     if ($('.summernote-editor-notool').length) {
 
@@ -6026,19 +6045,19 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var element_layout = '<div class="example-question">\n' +
                                     '                        <ul class="nav-controls">\n' +
                                     '                            <li>\n' +
-                                    '                                <a class="toggle-btn" data-toggle="collapse" href="#example-question" role="button" aria-expanded="false" aria-controls="example-question">Example</a>\n' +
+                                    '                                <a class="toggle-btn" data-toggle="collapse" href="#example-question_'+i+'" role="button" aria-expanded="false" aria-controls="example-question_'+i+'">Example</a>\n' +
                                     '                            </li>\n' +
                                     '                        </ul>\n' +
                                     '                        <div class="content-box">\n' +
-                                    '                            <div id="example-question" class="collapse">\n' +
-                                    '                                <button class="close-btn" type="button" data-toggle="collapse" data-target="#example-question" aria-expanded="false" aria-controls="example-question">\n' +
+                                    '                            <div id="example-question_'+i+'" class="collapse">\n' +
+                                    '                                <button class="close-btn" type="button" data-toggle="collapse" data-target="#example-question_'+i+'" aria-expanded="false" aria-controls="example-question_'+i+'">\n' +
                                     '                                    &#10005;\n' +
                                     '                                </button>\n' +
                                     '                                <div class="disable-div '+data_class+'"></div>\n' +
                                     '                            </div>\n' +
                                     '                        </div>\n' +
                                     '                    </div>';
-                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "'>"+element_layout+"</div>";
+                    html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "' data-question_id='"+question_id+"' data-question_title='"+question_id+"'>"+element_layout+"</div>";
 
                     if( question_id > 0) {
                         jQuery.ajax({
@@ -6050,6 +6069,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                             data: {"question_id": question_id},
                             success: function (return_data) {
                                 jQuery('.' + data_class).html(return_data);
+                                //example_question_7493
                             }
                         });
                     }

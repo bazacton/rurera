@@ -73,22 +73,6 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                         </span>
                         @endif
 
-                    <div class="example-question">
-                        <ul class="nav-controls">
-                            <li>
-                                <a class="toggle-btn" data-toggle="collapse" href="#example-question" role="button" aria-expanded="false" aria-controls="example-question">Example</a>
-                            </li>
-                        </ul>
-                        <div class="content-box">
-                            <div id="example-question" class="collapse">
-                                <button class="close-btn" type="button" data-toggle="collapse" data-target="#example-question" aria-expanded="false" aria-controls="example-question">
-                                    &#10005;
-                                </button>
-                                data here..
-                            </div>
-                        </div>
-                    </div>
-
                     @php $classes = isset( $class )? $class : ''; @endphp
                     <div id="leform-form-1"
                          class="{{$classes}} leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
