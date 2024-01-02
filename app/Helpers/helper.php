@@ -2415,6 +2415,11 @@ function toolbar_tools()
             'icon'  => 'fas fa-question',
             'type'  => 'other'
         ),
+        'questions_group'     => array(
+            'title' => esc_html__('Questions Group', 'leform'),
+            'icon'  => 'fas fa-question',
+            'type'  => 'other'
+        ),
         'seperator'          => array(
             'title' => esc_html__('Seperator', 'leform'),
             'icon'  => 'fas fa-cut',
@@ -7062,6 +7067,36 @@ function element_properties_meta($chapters)
                 'type'    => 'elements_data'
             ),
         ),
+        'questions_group' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
+            ),
+            'no_of_display_questions'         => array(
+                'value' => '1',
+                'label' => esc_html__('Display Questions', 'leform'),
+                'type'  => 'number'
+            ),
+            'question_ids'    => array(
+                'value'   => '',
+                'label'   => esc_html__('Questions', 'leform'),
+                'class' => 'search-question-select2',
+                'type'    => 'ajax_multi_select_new',
+                'multi-select' => 'on',
+                'options' =>
+                    array(
+                        '0' => esc_html__('Select Questions', 'leform'),
+                    )
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+
 
         'audio_file' => array(
             'basic'         => array(
@@ -8027,4 +8062,28 @@ function getGuestLimit($type){
             break;
     }
     return $limit;
+}
+
+function isKeyValueFoundInMultiArray($multiArray, $searchKey, $searchValue) {
+    // Flag to indicate if the key and value are found
+    $keyValueFound = false;
+    $foundArray = array();
+
+    // Loop through each child array
+    foreach ($multiArray as $childArray) {
+        $childArray = (array) $childArray;
+        // Check if the key exists in the child array and if the corresponding value matches
+        if (isset($childArray[$searchKey]) && $childArray[$searchKey] == $searchValue) {
+            // Key and value found
+            $keyValueFound = true;
+            $foundArray = $childArray;
+            break; // Break out of the loop since we found what we were looking for
+        }
+    }
+
+    // Return the result
+    return array(
+            'is_found' => $keyValueFound,
+            'foundArray' => $foundArray,
+    );
 }

@@ -79,6 +79,36 @@ class CommonController extends Controller
         exit;
     }
 
+    /*
+     * Get Example Question
+     */
+    public function get_group_questions(Request $request)
+    {
+        $user = auth()->user();
+        $question_ids = $request->get('question_ids', null);
+        $question_layout_response = '';
+
+        if( !empty( $question_ids ) ){
+            foreach( $question_ids as $question_id){
+               $questionObj = QuizzesQuestion::find($question_id);
+               $question_layout = isset( $questionObj->question_layout )? $questionObj->question_layout : '';
+               $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
+               $question_layout_response .= '<div class="example_question_'.$question_id.'" data-question_title="'.$questionObj->question_title.'">'.$question_layout.'</div>';
+            }
+        }
+
+
+
+        //$question_layout = str_replace('editor-field', 'example-editor-field', $question_layout);
+
+        //$question_layout_response = '<div class="example_question_'.$question_id.'" data-question_title="'.$questionObj->question_title.'">'.$question_layout.'</div>';
+        //pre($questionObj);
+
+        echo $question_layout_response;
+
+        exit;
+    }
+
 
     /*
      * Get Classes added by Year / Category

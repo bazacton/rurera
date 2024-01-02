@@ -1270,6 +1270,25 @@ function _leform_properties_prepare(_object) {
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
                     break;
 
+                case 'ajax_multi_select_new':
+                    options = "";
+                    var question_title = jQuery(".example_question_"+properties[key]).attr('data-question_title');
+                    question_title = !DataIsEmpty(question_title)? question_title : '';
+                    if(question_title != ''){
+                        options = "<option selected value='" + properties[key] + "'>" + question_title + "</option>";
+                    }
+                    for (var option_key in leform_meta[type][key]['options']) {
+                        if (leform_meta[type][key]['options'].hasOwnProperty(option_key)) {
+                            selected = "";
+                            if (option_key == properties[key])
+                                selected = " selected='selected'";
+                            options += "<option" + selected + " value='" + leform_escape_html(option_key) + "'>" + leform_escape_html(leform_meta[type][key]['options'][option_key]) + "</option>";
+                        }
+                    }
+                    var field_class = (leform_meta[type][key]['class'] != undefined)? leform_meta[type][key]['class'] : '';
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select multiple name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+                    break;
+
                 case 'select_sub':
                     options = "";
                     var chapters = leform_meta[type][key]['options'];
@@ -6074,6 +6093,29 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                         });
                     }
                     break;
+
+                case "questions_group":
+
+                        var question_ids = leform_form_elements[i]["question_ids"];
+                        console.log(question_ids);
+                        var data_class = 'group_example_data_'+i+'_class';
+                        var element_layout = '<div class="group_questions_data">Questions Group</div>';
+                        html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "' data-question_ids='"+question_ids+"' data-question_title='"+question_ids+"'>"+element_layout+"</div>";
+
+                        //if( question_ids > 0) {
+                            jQuery.ajax({
+                                type: "GET",
+                                url: '/admin/common/get_group_questions',
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                data: {"question_ids": question_ids},
+                                success: function (return_data) {
+                                    //jQuery('.' + data_class).html(return_data);
+                                }
+                            });
+                        //}
+                        break;
 
 
                     

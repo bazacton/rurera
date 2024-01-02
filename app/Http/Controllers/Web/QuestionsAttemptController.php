@@ -353,10 +353,13 @@ class QuestionsAttemptController extends Controller
         $user_question_layout = $request->get('user_question_layout');
 
 
+
+        $group_questions_list[] = $qresult_id;
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
 
         $questionObj = QuizzesQuestion::find($question_id);
+
 
         $review_required = $questionObj->review_required;
         $review_required = ($review_required == 1) ? true : false;
@@ -365,11 +368,29 @@ class QuestionsAttemptController extends Controller
 
 
         $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
+
+        $found_resonse = isKeyValueFoundInMultiArray((array) $elements_data, 'type', 'questions_group');
+
+        if ($found_resonse['is_found'] == true) {
+            $group_questions_list = QuizzResultQuestions::where('parent_question_id', $qresult_id)->pluck('id')->toArray();
+            $group_questions_list[] = $qresult_id;
+        }
+        //pre('test');
         $question_response_layout = '';
         $question_data = $request->get('question_data');
         $question_data = json_decode(base64_decode(trim(stripslashes($question_data))), true);
 
+
         $questions_data = isset($question_data[0]) ? $question_data[0] : $question_data;
+
+
+
+        if( !empty( $group_questions_list )){
+            foreach( $group_questions_list as $group_question_id){
+                //$child_question_validation = $this->group_question_validation($group_question_id, $questions_data);
+                //pre($child_question_validation);
+            }
+        }
 
         $field_type = isset($questions_data['type']) ? $questions_data['type'] : '';
         if ($field_type == 'insert_into_sentense') {
@@ -383,77 +404,92 @@ class QuestionsAttemptController extends Controller
             $show_fail_message = false;
         }
 
-        $incorrect_array = $correct_array = $user_input_array = array();
-        $question_user_input = '';
 
-        if (!empty($questions_data)) {
-            foreach ($questions_data as $q_id => $user_input) {
 
-                $q_index = $q_id;
-                $sub_index = '';
-                if (strpos($q_id, "-")) {
-                    $q_index = explode('-', $q_index);
-                    $q_id = isset($q_index[0]) ? $q_index[0] : '';
-                    $sub_index = isset($q_index[1]) ? $q_index[1] : $sub_index;
-                }
 
-                $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
-                $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
-                $question_correct = isset($current_question_obj->correct_answere) ? $current_question_obj->correct_answere : '';
-                $question_correct2 = isset($current_question_obj->correct_answer) ? $current_question_obj->correct_answer : '';
-                $question_correct = ($question_correct == '') ? $question_correct2 : $question_correct;
-                $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
-                $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
-                $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
-                $question_user_input = $user_input;
-                $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
-                $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
+        if( !empty( $group_questions_list ) ){
+            foreach( $group_questions_list as $group_question_id){
+                $incorrect_array = $correct_array = $user_input_array = array();
+                $question_user_input = '';
+                if (!empty($questions_data)) {
+                    foreach ($questions_data as $q_id => $user_input) {
+                        $QuizzResultQuestions = QuizzResultQuestions::find($group_question_id);
+                        $questionObj = QuizzesQuestion::find($QuizzResultQuestions->question_id);
+                        $elements_data = isset($questionObj->elements_data) ? json_decode($questionObj->elements_data) : array();
 
-                $this->update_reward_points($QuizzResultQuestions, $is_question_correct);
-                $this->update_vocabulary_list($QuizzResultQuestions, $is_question_correct);
-                $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : true;
-                $user_input = is_array($user_input) ? $user_input : array($user_input);
-                if ($is_question_correct == false) {
-                    if ($sub_index != '') {
-                        $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
-                        $incorrect_array[$q_id][$sub_index]['user_input'] = $user_input;
-                    } else {
-                        $incorrect_array[$q_id]['correct'] = $question_correct;
-                        $incorrect_array[$q_id]['user_input'] = $user_input;
+                        $q_index = $q_id;
+                        $sub_index = '';
+                        if (strpos($q_id, "-")) {
+                            $q_index = explode('-', $q_index);
+                            $q_id = isset($q_index[0]) ? $q_index[0] : '';
+                            $sub_index = isset($q_index[1]) ? $q_index[1] : $sub_index;
+                        }
+
+                        $current_question_obj = isset($elements_data->$q_id) ? $elements_data->$q_id : array();
+                        $question_type = isset($current_question_obj->type) ? $current_question_obj->type : '';
+                        $question_correct = isset($current_question_obj->correct_answere) ? $current_question_obj->correct_answere : '';
+                        $question_correct2 = isset($current_question_obj->correct_answer) ? $current_question_obj->correct_answer : '';
+                        $question_correct = ($question_correct == '') ? $question_correct2 : $question_correct;
+                        $data_correct = isset($current_question_obj->{'data-correct'}) ? json_decode($current_question_obj->{'data-correct'}) : '';
+                        $question_correct = ($question_correct != '') ? $question_correct : $data_correct;
+                        $question_correct = is_array($question_correct) ? $question_correct : array($question_correct);
+                        $question_user_input = $user_input;
+                        $question_validate_response = $this->validate_correct_answere($current_question_obj, $question_correct, $question_type, $user_input, $sub_index);
+                        $is_question_correct = isset($question_validate_response['is_question_correct']) ? $question_validate_response['is_question_correct'] : true;
+
+                        //$this->update_reward_points($QuizzResultQuestions, $is_question_correct);
+                        //$this->update_vocabulary_list($QuizzResultQuestions, $is_question_correct);
+                        $question_correct = isset($question_validate_response['question_correct']) ? $question_validate_response['question_correct'] : array();
+                        //pre($question_correct, false);
+                        if( empty( $question_correct ) || (isset( $question_correct[0] ) && $question_correct[0] == '') ){
+                            continue;
+                        }
+                        $user_input = is_array($user_input) ? $user_input : array($user_input);
+                        if ($is_question_correct == false) {
+                            if ($sub_index != '') {
+                                $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
+                                $incorrect_array[$q_id][$sub_index]['user_input'] = $user_input;
+                            } else {
+                                $incorrect_array[$q_id]['correct'] = $question_correct;
+                                $incorrect_array[$q_id]['user_input'] = $user_input;
+                            }
+                            $incorrect_flag = true;
+
+                        } else {
+                            if ($sub_index != '') {
+                                $correct_array[$q_id][$sub_index] = $question_correct;
+                            } else {
+                                $correct_array[$q_id] = $question_correct;
+                            }
+                        }
+                        if ($sub_index != '') {
+                            $user_input_array[$q_id][$sub_index] = $user_input;
+                        } else {
+                            $user_input_array[$q_id] = $user_input;
+                        }
+
                     }
-                    $incorrect_flag = true;
-
-                } else {
-                    if ($sub_index != '') {
-                        $correct_array[$q_id][$sub_index] = $question_correct;
-                    } else {
-                        $correct_array[$q_id] = $question_correct;
-                    }
-                }
-                if ($sub_index != '') {
-                    $user_input_array[$q_id][$sub_index] = $user_input;
-                } else {
-                    $user_input_array[$q_id] = $user_input;
                 }
 
+                if ($incorrect_flag == true) {
+                    $question_answer_status = 'incorrect';
+                } else {
+                    $question_answer_status = 'correct';
+                }
+
+                $question_answer_status = ($review_required == true) ? 'in_review' : $question_answer_status;
+
+                $QuizzResultQuestions->update([
+                    'status'               => $question_answer_status,
+                    'user_answer'          => json_encode($user_input_array),
+                    'time_consumed'        => ($time_consumed > 0) ? $time_consumed : 0,
+                    'user_question_layout' => $user_question_layout,
+                    'attempted_at'         => time(),
+                ]);
             }
         }
 
-        if ($incorrect_flag == true) {
-            $question_answer_status = 'incorrect';
-        } else {
-            $question_answer_status = 'correct';
-        }
 
-        $question_answer_status = ($review_required == true) ? 'in_review' : $question_answer_status;
-
-        $QuizzResultQuestions->update([
-            'status'               => $question_answer_status,
-            'user_answer'          => json_encode($user_input_array),
-            'time_consumed'        => ($time_consumed > 0) ? $time_consumed : 0,
-            'user_question_layout' => $user_question_layout,
-            'attempted_at'         => time(),
-        ]);
 
         createAttemptLog($quizAttempt->id, 'Answered question: #' . $QuizzResultQuestions->id, 'attempt', $QuizzResultQuestions->id);
 
@@ -650,6 +686,16 @@ class QuestionsAttemptController extends Controller
         );
         echo json_encode($response);
         exit;
+    }
+
+    /*
+     * Get Group Question Validation
+     */
+    public function group_question_validation($group_question_id, $questions_data){
+
+        $QuizzResultQuestionObj = QuizzResultQuestions::find($group_question_id);
+        $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
+        pre($questionObj);
     }
 
     public function practice_questions_layout_update($questions_list, $attemptLogObj, $resultLogObj, $newQuestionsArray)
@@ -1623,7 +1669,9 @@ class QuestionsAttemptController extends Controller
             foreach ($correct_answers as $field_id => $correct_answer_array) {
                 if (!empty($correct_answer_array)) {
                     foreach ($correct_answer_array as $correct_answer) {
-                        $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';
+                        if( $correct_answer != '') {
+                            $correct_answer_response .= '<li><label class="lms-question-label" for="radio2"><span>' . $correct_answer . '</span></label></li>';
+                        }
                     }
                 }
             }

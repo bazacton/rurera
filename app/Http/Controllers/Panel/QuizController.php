@@ -659,6 +659,72 @@ class QuizController extends Controller
                     if ($quiz->quiz_type == 'vocabulary') {
                         $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     }else {
+                        $questionObjData = $resultsQuestionsData['question'];
+                        $resultParentQuestionObj = $resultsQuestionsData['newQuestionResult'];
+
+                        $elements_data = json_decode($questionObjData->elements_data);
+                        $group_questions_layout = '';
+                        $found_resonse = isKeyValueFoundInMultiArray((array) $elements_data, 'type', 'questions_group');
+
+                        if ($found_resonse['is_found'] == true) {
+                            $questions_group = isset( $found_resonse['foundArray'] )? $found_resonse['foundArray'] : array();
+                            $no_of_display_questions = isset( $questions_group['no_of_display_questions'] )? $questions_group['no_of_display_questions'] : 0;
+                            $questions_ids = isset( $questions_group['question_ids'] )? $questions_group['question_ids'] : array();
+
+                            $questions_ids_attempted = QuizzResultQuestions::whereIn('question_id', $questions_ids)->where('parent_question_id', '>', 0)->where('parent_type_id', $resultLogObj->parent_type_id)->where('status', '!=', 'waiting')->where('user_id', $user->id)->pluck('question_id')->toArray();
+
+                            $questions_ids = array_diff($questions_ids, $questions_ids_attempted);
+
+                            $no_of_display_questions = 3;
+                            $no_of_display_questions = (count($questions_ids) > $no_of_display_questions)? $no_of_display_questions :  count($questions_ids);
+                            $questions_ids_random = array_rand($questions_ids, $no_of_display_questions);
+                            if (!is_array($questions_ids_random)) {
+                                $questions_ids_random = array($questions_ids_random);
+                            }
+
+                            // Initialize an empty array to store the selected questions
+                            $selected_questions = array();
+
+                            // Populate the selected questions array using the random keys
+                            foreach ($questions_ids_random as $key) {
+                                $selected_questions[] = $questions_ids[$key];
+                            }
+
+
+                            if( !empty( $selected_questions ) ){
+                                foreach( $selected_questions as $group_question_id){
+                                    $groupQuestionObj = QuizzesQuestion::find($group_question_id);
+
+
+                                    $correct_answers = $QuestionsAttemptController->get_question_correct_answers($groupQuestionObj);
+                                    $resultQuestionObj = QuizzResultQuestions::create([
+                                        'question_id'      => $groupQuestionObj->id,
+                                        'quiz_result_id'   => $attemptLogObj->quiz_result_id,
+                                        'quiz_attempt_id'  => $attemptLogObj->id,
+                                        'user_id'          => $user->id,
+                                        'correct_answer'   => json_encode($correct_answers),
+                                        'user_answer'      => '',
+                                        'quiz_layout'      => $groupQuestionObj->question_layout,
+                                        'quiz_grade'       => 1,
+                                        'average_time'     => $groupQuestionObj->question_average_time,
+                                        'time_consumed'    => 0,
+                                        'difficulty_level' => $groupQuestionObj->question_difficulty_level,
+                                        'status'           => 'waiting',
+                                        'created_at'       => time(),
+                                        'parent_type_id'   => $attemptLogObj->parent_type_id,
+                                        'quiz_result_type' => $attemptLogObj->attempt_type,
+                                        'review_required'  => $questionObj->review_required,
+                                        'is_active'        => 0,
+                                        'user_ip'          => getUserIP(),
+                                        'parent_question_id' => $resultParentQuestionObj->id
+                                    ]);
+                                    $group_questions_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($groupQuestionObj->question_layout)))));
+                                }
+                            }
+
+                        }
+                        //pre($group_questions_layout);
+                        $resultsQuestionsData['group_questions_layout'] = $group_questions_layout;
                         $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
@@ -715,7 +781,7 @@ class QuizController extends Controller
         $QuizzesResult = QuizzesResult::find($result_id);
         $quiz = Quiz::find($QuizzesResult->parent_type_id);
 
-        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->get();
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $result_id)->where('status', '!=', 'waiting')->where('parent_question_id', 0)->get();
         $quizAttempt = QuizzAttempts::where('quiz_result_id', $result_id)->first();
 
         $questions_layout = $questions_list = array();
@@ -737,6 +803,18 @@ class QuizController extends Controller
                 }
                 if ($QuizzesResult->quiz_result_type != 'vocabulary') {
 
+                    $child_questions = $QuizzResultQuestionObj->get_child_questions;
+                    $group_questions_layout = '';
+
+                    if( !empty( $child_questions  ) ){
+                        foreach($child_questions as $childQuestionObj){
+                            $group_questions_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($childQuestionObj->quiz_layout)))));
+                            $group_questions_layout .= $QuestionsAttemptController->get_question_result_layout($childQuestionObj->id);
+                        }
+                    }
+
+
+
                     $question_response_layout .= view('web.default.panel.questions.question_layout', [
                         'question'          => $questionObj,
                         'prev_question'     => 0,
@@ -751,11 +829,14 @@ class QuizController extends Controller
                         'disable_next'      => 'true',
                         'class'             => 'disable-div',
                         'layout_type'       => 'results',
+                        'group_questions_layout' => $group_questions_layout,
                     ])->render();
                 }
 
 
-                $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+                if( $child_questions->count() == 0 ) {
+                    $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
+                }
 
                 $question_response_layout .= '</div>';
                 //$questions_layout[$QuizzResultQuestionObj->question_id] = rurera_encode(stripslashes($question_response_layout));
