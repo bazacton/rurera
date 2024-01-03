@@ -2431,6 +2431,8 @@ class QuestionsBankController extends Controller
             'question_example'            => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
             'question_type'            => isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
             'example_question'            => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
+            'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
+
 
         ]);
 
@@ -2599,6 +2601,7 @@ class QuestionsBankController extends Controller
             'question_example'            => isset($questionData['question_example']) ? $questionData['question_example'] : '' ,
             'question_type'            => isset($questionData['question_type']) ? $questionData['question_type'] : '' ,
             'example_question'            => isset($questionData['example_question']) && !empty($questionData['example_question']) ? $questionData['example_question'] : 0,
+            'reference_type'            => isset($questionData['reference_type']) && !empty($questionData['reference_type']) ? $questionData['reference_type'] : 'Course',
         ]);
 
         if (!empty($quizQuestion)) {
@@ -2797,6 +2800,7 @@ class QuestionsBankController extends Controller
             'layout_elements'           => $form_elements ,
             'question_solve'            => $question->question_solve ,
             'question_example'            => $question->question_example ,
+            'reference_type'            => $question->reference_type ,
             'glossary_ids'              => $glossary_ids ,
             'chapters'                  => $chapters_list ,
             'categories'                => $categories ,

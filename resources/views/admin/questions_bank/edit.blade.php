@@ -667,6 +667,20 @@ $rand_id = rand(999,99999);
                                         </div>
 
                                         <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="input-label">Reference Type</label>
+                                                <select name="reference_type" class="custom-select ">
+                                                    <option value="Course" {{ ($reference_type==
+                                                    'Course') ? 'selected' : '' }}>Course</option>
+                                                    <option value="Mock Exams" {{ ($reference_type==
+                                                    'Mock Exams') ? 'selected' : '' }}>Mock Exams</option>
+                                                    <option value="Both" {{ ($reference_type==
+                                                    'Both') ? 'selected' : '' }}>Both</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
                                             <div class="form-group custom-switches-stacked">
                                                 <label class="custom-switch pl-0">
                                                     <input type="checkbox"

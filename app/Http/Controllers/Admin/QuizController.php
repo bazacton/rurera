@@ -310,7 +310,7 @@ class QuizController extends Controller
             'creator_id'                  => isset($webinar->creator_id) ? $webinar->creator_id : $user->id,
             'webinar_title'               => isset($webinar->title) ? $webinar->title : '',
             'attempt'                     => (isset($data['attempt']) && $data['attempt'] > 0) ? $data['attempt'] : 100,
-            'quiz_type'                   => 'practice',//isset($data['quiz_type']) ? $data['quiz_type'] : '',
+            'quiz_type'                   => isset($data['quiz_type']) ? $data['quiz_type'] : '',
             'sub_chapter_id'              => isset($data['sub_chapter_id']) ? $data['sub_chapter_id'] : 0,
             'pass_mark'                   => 1,
             'time'                        => (isset($data['time']) && $data['time'] > 0) ? $data['time'] : 100,

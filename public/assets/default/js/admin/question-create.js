@@ -215,6 +215,7 @@ function leform_save(_object, question_status) {
     var question_type = $("[name=question_type]").val();
     var example_question = $("[name=example_question]").val();
     var difficulty_level = $("[name=difficulty_level]").val();
+    var reference_type = $("[name=reference_type]").val();
     var review_required = ($('[name=review_required]').prop('checked')) ? 1 : 0;
     var glossary_ids = $("#glossary_ids").val();
 
@@ -262,6 +263,7 @@ function leform_save(_object, question_status) {
         "example_question": example_question,
         "glossary_ids": glossary_ids,
         "difficulty_level": difficulty_level,
+        "reference_type" : reference_type,
         "review_required": review_required,
         "action": "leform-form-save",
         "form-id": jQuery("#leform-id").val(),
