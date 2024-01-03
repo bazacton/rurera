@@ -24,6 +24,12 @@
         background: #617fe9;
         color: #fff;
     }
+    .card-header.inner-header{
+        padding-left:45px;
+    }
+    .test_type_conditional_fields .card-body {
+        padding-left: 60px;
+    }
 </style>
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 
@@ -33,7 +39,7 @@
     <section>
 
         <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-12">
 
 
                 <div class="d-flex align-items-center justify-content-between">
@@ -110,11 +116,32 @@
                     <div class="invalid-feedback"></div>
                 </div>
 
+                <div class="conditional-fields sats-fields">
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Type</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][mock_type]"
+                                class="form-control mock_type" data-placeholder="Select Type">
+                            <option value="mock_practice" {{ (!empty($quiz) and ($quiz->mock_type == 'mock_practice' || $quiz->mock_practice == ''))
+                                ? 'selected'
+                                : ''
+                                }}>Practice
+                            </option>
+                            <option value="mock_exam" {{ (!empty($quiz) and $quiz->mock_type == 'mock_exam') ?
+                                'selected'
+                                : '' }}>Mock Exam
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
                 <div class="conditional-fields vocabulary-fields practice-fields sats-fields">
+
                     <div class="form-group">
                         <label>Year</label>
                         <select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
-                                class="form-control year_subject_ajax_select select2 @error('year_id') is-invalid @enderror"
+                                class="form-control year_mock_exams_subject_ajax_select year-group-select select2 @error('year_id') is-invalid @enderror"
                                 name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]">
                             <option {{ !empty($trend) ?
                             '' : 'selected' }} disabled>Select Year</option>
@@ -144,6 +171,12 @@
                         @enderror
                     </div>
                 </div>
+                <div class="practice-quiz-ajax-fields populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
+
+
+                <div class="practice-quiz-topics-list populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
+
+                <div class="mock-exams-quiz-settings populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
 
                 <div class="conditional-fields vocabulary-fields ">
                     <div class="form-group mt-15 ">
@@ -232,7 +265,6 @@
                 $sats_hide_class = (empty($quiz ) || $quiz->quiz_type == 'sats')? '' : 'hide-class';
                 $eleven_plus_hide_class = (empty($quiz ) || $quiz->quiz_type == '11plus')? 'hide-class' : '';
                 @endphp
-
 
                 <div class="conditional-fields sats-fields 11plus-fields {{$sats_hide_class}}">
                     <div class="form-group">
@@ -723,12 +755,200 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 
         handleQuestionsMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
+
+        $('body').on('change', '.year_mock_exams_subject_ajax_select', function (e) {
+            var year_id = $(this).val();
+            var thisObj = $(this);//$(".quiz-ajax-fields");
+            var quiz_type = $('.quiz-type').val();
+            var mock_type = $('.mock_type').val();
+
+            $(".practice-quiz-topics-list").html('');
+            if( quiz_type == 'sats' || quiz_type == '11plus' || quiz_type == 'independent_exams' || quiz_type == 'iseb' || quiz_type == 'cat4' ) {
+                if( mock_type == 'mock_practice') {
+                    $(".practice-quiz-ajax-fields").html('');
+                    rurera_loader(thisObj, 'button');
+                    jQuery.ajax({
+                        type: "GET",
+                        url: '/admin/common/get_mock_subjects_by_year',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {"year_id": year_id},
+                        success: function (return_data) {
+                            $(".practice-quiz-ajax-fields").html(return_data);
+                            rurera_remove_loader(thisObj, 'button');
+                        }
+                    });
+                }
+            }
+        });
+
+        $('body').on('change', '.mock_exams_subject_check', function (e) {
+            var subject_id = $(this).val();
+            var thisObj = $(this);
+            rurera_loader($(".practice-quiz-topics-list"), 'div');
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/mock_topics_subtopics_by_subject',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"subject_id": subject_id, "chapter_type": 'Mock Exams'},
+                success: function (return_data) {
+                    rurera_remove_loader($(".practice-quiz-topics-list"), 'button');
+                    $(".practice-quiz-topics-list").html(return_data);
+                }
+            });
+        });
+
+        $('body').on('click', '.year_mock_exams_subject_ajax_select', function (e) {
+            var thisObj = $('.populated-content-area');
+            var year_id = $(this).attr('data-year_id');
+            $(".year_id_field").val(year_id);
+            rurera_loader(thisObj, 'div');
+            jQuery.ajax({
+                type: "GET",
+                url: '/admin/common/subjects_by_year',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"year_id": year_id},
+                success: function (return_data) {
+                    $(".populated-data").addClass('rurera-hide');
+                    rurera_remove_loader(thisObj, 'button');
+                    if (return_data != '') {
+                        $(".populated-content-area").append(return_data);
+                        subjects_callback();
+                    }
+                }
+            });
+        });
+
+        var subjects_callback = function () {
+            $('body').on('change', '.subject_ajax_select', function (e) {
+                var thisObj = $('.populated-content-area');
+                var subject_id = $(this).val();
+                $(".subject_id_field").val(subject_id);
+                rurera_loader(thisObj, 'div');
+                jQuery.ajax({
+                    type: "GET",
+                    url: '/admin/custom_quiz/topics_subtopics_by_subject',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"subject_id": subject_id},
+                    success: function (return_data) {
+                        //$(".populated-data").addClass('rurera-hide');
+                        rurera_remove_loader(thisObj, 'button');
+                        if (return_data != '') {
+                            //$(".populated-content-area").append(return_data);
+                            $(".topics-subtopics-content-area").append(return_data);
+                            $("#questions-tab").click();
+                            //questions_callback();
+                        }
+                    }
+                });
+            });
+        }
+        subjects_callback();
+
+
+
+        $('body').on('change', '.topic-section-parent', function (e) {
+            let $this = $(this);
+            let parent = $this.parent().closest('.section-box');
+            let isChecked = e.target.checked;
+
+            if (isChecked) {
+                parent.find('input[type="checkbox"].topic-section-parent-child').prop('checked', true);
+                parent.find('input[type="checkbox"].section-child').prop('checked', true);
+                parent.find('.inner-header').addClass('rurera-hide');
+            } else {
+                parent.find('input[type="checkbox"].topic-section-parent-child').prop('checked', false);
+                parent.find('input[type="checkbox"].section-child').prop('checked', false);
+                parent.find('.inner-header').removeClass('rurera-hide');
+            }
+
+            $(".topics_multi_selection").change();
+            $(".topic-section-parent-child").change();
+        });
+        $('body').on('change', '.topic-section-parent-child', function (e) {
+            let $this = $(this);
+            let parent = $this.parent().closest('.section-box');
+            let isChecked = e.target.checked;
+
+            if (isChecked) {
+                parent.find('input[type="checkbox"].section-child').prop('checked', true);
+                parent.find('.card-body').addClass('rurera-hide');
+
+            } else {
+                parent.find('input[type="checkbox"].section-child').prop('checked', false);
+                parent.find('.card-body').removeClass('rurera-hide');
+            }
+
+            $(".topics_multi_selection").change();
+        });
+
+
+        $(document).on('change', '.topics_multi_selection', function (e) {
+
+            var return_response = '<div class="row">\n\
+                                    <div class="col-4 col-md-4">\n\
+                                        <div class="form-group">\n\
+                                            <label class="input-label">Chapter</label><br>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                    <div class="col-4 col-md-4">\n\
+                                        <div class="form-group">\n\
+                                            <label class="input-label">Total Questions</label><br>\n\
+                                        </div>\n\
+                                    </div>\n\
+                                    <div class="col-4 col-md-4">\n\
+                                        <div class="form-group">\n\
+                                            <label class="input-label">Exam Questions</label>\n\
+                                        </div>\n\
+                                    </div>';
+            $(".topics_multi_selection:checked").each(function( e ) {
+                var sub_chapter_id = $(this).val();
+                var sub_chapter_title = $(this).attr('data-title');
+                var total_questions = $(this).attr('data-total_questions');
+
+                return_response += '<div class="col-4 col-md-4">\n\
+                                            <div class="form-group">\n\
+                                                <h6 class="input-label">'+sub_chapter_title+'</h6>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="col-4 col-md-4">\n\
+                                            <div class="form-group">\n\
+                                                <h6 class="input-label total-questions-block" data-question_type="dropdown">'+total_questions+'</h6>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div class="col-4 col-md-4">\n\
+                                            <div class="form-group">\n\
+                                                <input type="number" value="0" max="'+total_questions+'" name="ajax[{{ $quiz_add_edit }}][mock_exam_settings]['+sub_chapter_id+']" class="form-control" placeholder="">\n\
+                                            </div>\n\
+                                        </div>';
+
+            });
+            return_response += '</div>';
+            $(".mock-exams-quiz-settings").html(return_response);
+        });
+
+
         $(document).on('change', '.quiz-type', function (e) {
             var quiz_type = $(this).val();
             $(".conditional-fields").addClass('hide-class');
             $('.' + quiz_type + "-fields").removeClass('hide-class');
         });
+        $(document).on('change', '.test_type_field', function (e) {
+           var test_type = $(this).val();
+           $(".test_type_conditional_fields").addClass('hide-class');
+           $('.test_type_conditional_fields.' + test_type + "-fields").removeClass('hide-class');
+       });
+
+
         $(".quiz-type").change();
+        $(".test_type_field").change();
 
         $(document).on('change', '.search-questions-select2', function (e) {
             var field_value = $(this).val();

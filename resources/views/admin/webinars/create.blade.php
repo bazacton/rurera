@@ -105,7 +105,8 @@
                                                 <label class="input-label d-block">Type</label>
                                                 <select name="webinar_type" class="custom-select @error('type')  is-invalid @enderror">
                                                     <option value="Course" @if( !empty($webinar) and $webinar->webinar_type == 'Course') selected @endif>Course</option>
-                                                    <option value="Vocabulary" @if( !empty($webinar) and $webinar->webinar_type == 'Vocabulary') selected @endif>Vocabulary</option>
+                                                    <option value="Mock Exams" @if( !empty($webinar) and $webinar->webinar_type == 'Mock Exams') selected @endif>Mock Exams</option>
+                                                    <option value="Both" @if( !empty($webinar) and $webinar->webinar_type == 'Both') selected @endif>Both</option>
                                                 </select>
                                                 @error('type')
                                                 <div class="invalid-feedback">

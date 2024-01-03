@@ -33,7 +33,7 @@ class AssignmentsController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('admin_assignments');
+        //$this->authorize('admin_assignments');
 
         removeContentLocale();
         //DB::enableQueryLog();
@@ -186,7 +186,7 @@ class AssignmentsController extends Controller
 
     public function create()
     {
-        $this->authorize('admin_assignments_create');
+        //$this->authorize('admin_assignments_create');
 
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')

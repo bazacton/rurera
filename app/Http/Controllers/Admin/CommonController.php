@@ -109,6 +109,28 @@ class CommonController extends Controller
         exit;
     }
 
+    /*
+     * Get Example Question
+     */
+    public function get_group_questions_options(Request $request)
+    {
+        $user = auth()->user();
+        $question_ids = $request->get('question_ids', null);
+        $question_ids = explode(',', $question_ids);
+        $question_layout_response = '';
+
+        if( !empty( $question_ids ) ){
+            foreach( $question_ids as $question_id){
+               $questionObj = QuizzesQuestion::find($question_id);
+               $question_layout_response .= '<option value="'.$questionObj->id.'" selected>'.$questionObj->question_title.'</option>';
+            }
+        }
+
+        echo $question_layout_response;
+
+        exit;
+    }
+
 
     /*
      * Get Classes added by Year / Category
@@ -311,8 +333,14 @@ class CommonController extends Controller
     {
         $user = auth()->user();
         $subject_id = $request->get('subject_id', null);
+        $chapter_type = $request->get('chapter_type', null);
         $courseObj = Webinar::find($subject_id);
-        $chapters = $courseObj->chapters;
+        if ($chapter_type == 'Mock Exams' || $chapter_type == 'Both') {
+            $chapters = $courseObj->chapters->whereIN('chapter_type', array('Mock Exams', 'Both'));
+        } else{
+            $chapters = $courseObj->chapters;
+        }
+
         $response = '<div class="row">';
         if (!empty($chapters)) {
             foreach ($chapters as $chapterObj) {
@@ -355,6 +383,59 @@ class CommonController extends Controller
         exit;
     }
 
+    public function mock_topics_subtopics_by_subject(Request $request)
+    {
+        $user = auth()->user();
+        $subject_id = $request->get('subject_id', null);
+        $chapter_type = $request->get('chapter_type', null);
+        $courseObj = Webinar::find($subject_id);
+        if ($chapter_type == 'Mock Exams' || $chapter_type == 'Both') {
+            $chapters = $courseObj->chapters->whereIN('chapter_type', array('Mock Exams', 'Both'));
+        } else{
+            $chapters = $courseObj->chapters;
+        }
+
+        $response = '<div class="row">';
+        if (!empty($chapters)) {
+            foreach ($chapters as $chapterObj) {
+                $subChapters = $chapterObj->subChapters;
+                $sub_chapters_response = '';
+
+                if (!empty($subChapters)) {
+                    foreach ($subChapters as $subChapterObj) {
+                        $count_questions = $subChapterObj->questions_list->count();
+
+                        $sub_chapters_response .= '<div class="form-check mt-1">
+                            <input type="checkbox" data-title="' . $subChapterObj->sub_chapter_title . '" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '" value="' . $subChapterObj->id . '" class="form-check-input section-child topics_multi_selection">
+                            <label class="form-check-label cursor-pointer mt-0" for="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '">
+                                ' . $subChapterObj->sub_chapter_title . '
+                            </label>
+                        </div>';
+                    }
+                }
+                $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
+                        <div class="card-header">
+                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_' . $chapterObj->id . '" value="1" class="form-check-input mt-0 topic-section-parent">
+                            <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_' . $chapterObj->id . '">
+                                ' . $chapterObj->getTitleAttribute() . '
+                            </label>
+                        </div>
+
+                        <div class="card-body">
+                            ' . $sub_chapters_response . '
+                        </div>
+                </div></div>';
+            }
+        }
+
+        $response .= '</div>';
+        echo $response;
+
+        exit;
+    }
+
+
+
     public function get_subjects_by_year($year_id)
     {
         $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
@@ -386,6 +467,45 @@ class CommonController extends Controller
             </div>';
         return $response;
     }
+
+    public function get_mock_subjects_by_year(Request $request)
+    {
+        $user = auth()->user();
+        $year_id = $request->get('year_id', null);
+
+        $courses = Webinar::where('category_id', $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
+
+        $subjects_response = '';
+        if (!empty($courses)) {
+            foreach ($courses as $courseObj) {
+                $subjects_response .= '
+                                        <label class="card-radio">
+                                            <input type="radio" name="ajax[new][subject]"
+                                                   class="mock_exams_subject_check" value="' . $courseObj->id . '">
+                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                        <div class="card-icon">
+                                                            ' . $courseObj->icon_code . '
+                                                            <h3>' . $courseObj->getTitleAttribute() . '</h3>
+                                                       </div>
+
+                                                  </span>
+                                        </label>';
+            }
+        }
+        $response = '<div class="form-group">
+                <label class="input-label">Subject</label>
+                <div class="input-group">
+                    <div class="radio-buttons">
+                        ' . $subjects_response . '
+                    </div>
+                </div>
+            </div>';
+        echo $response;
+
+        exit;
+    }
+
+
 
     public function types_quiz_by_year_group(Request $request)
     {

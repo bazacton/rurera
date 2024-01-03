@@ -105,6 +105,15 @@
             </div>
 
             <div class="form-group">
+                <label class="input-label d-block">Type</label>
+                <select name="ajax[chapter][chapter_type]" class="custom-select js-ajax-chapter_type">
+                    <option value="Course" selected>Course</option>
+                    <option value="Mock Exams">Mock Exams</option>
+                    <option value="Both">Both</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                <label class="input-label">Custom Link</label>
                <input type="text" name="ajax[chapter][custom_link]" class="form-control js-ajax-custom_link" value=""/>
                <span class="invalid-feedback"></span>

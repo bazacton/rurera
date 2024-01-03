@@ -2417,7 +2417,7 @@ function toolbar_tools()
         ),
         'questions_group'     => array(
             'title' => esc_html__('Questions Group', 'leform'),
-            'icon'  => 'fas fa-question',
+            'icon'  => 'fas fa-object-group',
             'type'  => 'other'
         ),
         'seperator'          => array(

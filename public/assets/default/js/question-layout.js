@@ -869,6 +869,12 @@ function init_question_functions() {
             $(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
         }, 1000);
 
+        if( $('#sound-icon-'+quizQuestionID).length > 0) {
+            $('#sound-icon-'+quizQuestionID).removeClass('pause');
+            $('#sound-icon-'+quizQuestionID).click();
+        }
+
+
         //Temporary Commented
         currentRequest = jQuery.ajax({
             type: "POST",

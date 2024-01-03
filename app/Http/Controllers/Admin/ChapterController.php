@@ -148,6 +148,7 @@ class ChapterController extends Controller
                     'check_all_contents_pass' => (!empty($data['check_all_contents_pass']) and $data['check_all_contents_pass'] == 'on'),
                     'created_at' => time(),
                     'chapter_slug' => $chapter_slug,
+                    'chapter_type' => isset( $data['chapter_type'] )? $data['chapter_type'] : 'Course',
                 ]);
 
                 if (!empty($chapter)) {
@@ -232,6 +233,8 @@ class ChapterController extends Controller
                     'challenge_border_color' => isset( $data['challenge_border_color'] )? $data['challenge_border_color'] : '',
                     'chapter_slug' => $chapter_slug,
                     'custom_link' => isset( $data['custom_link'] )? $data['custom_link'] : '',
+                    'chapter_type' => isset( $data['chapter_type'] )? $data['chapter_type'] : '',
+
                 ]);
 
                 if (!empty($chapter)) {

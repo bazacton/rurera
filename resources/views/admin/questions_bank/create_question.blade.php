@@ -756,6 +756,18 @@ $rand_id = rand(999,99999);
 
                                                             <div class="col-12">
                                                                 <div class="form-group">
+                                                                    <label class="input-label">Sub Topic</label>
+                                                                    <select id="chapter_id"
+                                                                            class="form-control populate ajax-subchapter-dropdown"
+                                                                            name="sub_chapter_id">
+                                                                        <option value="">Please select year, subject, Topic</option>
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-group">
                                                                     <label class="input-label">Search Keywords / Tags (Enter Search terms which will be use when looking for your questions)</label>
                                                                     <input type="text" data-role="tagsinput"
                                                                            name="search_tags"
@@ -1207,6 +1219,20 @@ $rand_id = rand(999,99999);
             }
         });
     });
+
+    $(document).on('change', '.ajax-chapter-dropdown', function () {
+        var chapter_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/sub_chapters_by_chapter',
+            data: {'chapter_id': chapter_id},
+            success: function (return_data) {
+                $(".ajax-subchapter-dropdown").html(return_data);
+            }
+        });
+    });
+
+
 
     $(document).on('click', '#question_preview-tab', function () {
 

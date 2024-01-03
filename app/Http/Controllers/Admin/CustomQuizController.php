@@ -660,6 +660,8 @@ class CustomQuizController extends Controller
         exit;
     }
 
+
+
     public function topics_subtopics_by_subject(Request $request, $subject_id = 0, $is_exit = true, $default_chapter = 0, $default_subchapter = 0)
     {
         if ($subject_id == 0) {

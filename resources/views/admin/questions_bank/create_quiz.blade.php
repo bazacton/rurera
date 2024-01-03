@@ -42,14 +42,6 @@ $tabs_options    = tabs_options();
 
 
 
-
-
-
-
-
-
-
-
                 <div class="hap-container">
                     <div class="hap-content">
                         <div class="hap-content-area">

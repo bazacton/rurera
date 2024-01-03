@@ -271,6 +271,7 @@ Route::group([
             Route::get('/{id}/delete', 'WebinarController@destroy');
             Route::get('/courses_by_categories', 'WebinarController@courses_by_categories');
             Route::get('/chapters_by_course', 'WebinarController@chapters_by_course');
+            Route::get('/sub_chapters_by_chapter', 'WebinarController@sub_chapters_by_chapter');
             Route::get('/{id}/approve', 'WebinarController@approve');
             Route::get('/{id}/reject', 'WebinarController@reject');
             Route::get('/{id}/unpublish', 'WebinarController@unpublish');
@@ -401,9 +402,14 @@ Route::group([
             Route::get('/types_quiz_by_year', 'CommonController@types_quiz_by_year');
             Route::get('/types_quiz_by_year_group', 'CommonController@types_quiz_by_year_group');
             Route::get('/topics_subtopics_by_subject', 'CommonController@topics_subtopics_by_subject');
+            Route::get('/mock_topics_subtopics_by_subject', 'CommonController@mock_topics_subtopics_by_subject');
 
             Route::get('/get_example_question', 'CommonController@get_example_question');
             Route::get('/get_group_questions', 'CommonController@get_group_questions');
+            Route::get('/get_group_questions_options', 'CommonController@get_group_questions_options');
+            Route::get('/get_mock_subjects_by_year', 'CommonController@get_mock_subjects_by_year');
+
+
         });
 
         Route::group(['prefix' => 'quizzes-questions'], function () {

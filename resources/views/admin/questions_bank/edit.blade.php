@@ -535,7 +535,7 @@ $rand_id = rand(999,99999);
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="input-label">Topic</label>
-                                                        <select id="chapter_id"
+                                                        <select data-sub_chapter_id="{{$questionObj->sub_chapter_id}}" id="chapter_id"
                                                                 class="form-control populate ajax-chapter-dropdown"
                                                                 name="chapter_id">
                                                             <option value="">Please select year, subject</option>
@@ -543,6 +543,19 @@ $rand_id = rand(999,99999);
 
                                                     </div>
                                                 </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <label class="input-label">Sub Topic</label>
+                                                        <select id="chapter_id"
+                                                                class="form-control populate ajax-subchapter-dropdown"
+                                                                name="sub_chapter_id">
+                                                            <option value="">Please select year, subject, Topic</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
 
                                                 <div class="col-12">
                                                     <div class="form-group">
@@ -1260,6 +1273,8 @@ $rand_id = rand(999,99999);
         });
     });
 
+
+
     $(document).on('change', '.ajax-courses-dropdown', function () {
         var course_id = $(this).val();
         var chapter_id = $(this).attr('data-chapter_id');
@@ -1270,6 +1285,20 @@ $rand_id = rand(999,99999);
             data: {'course_id': course_id, 'chapter_id': chapter_id},
             success: function (return_data) {
                 $(".ajax-chapter-dropdown").html(return_data);
+                $('.ajax-chapter-dropdown').change();
+            }
+        });
+    });
+
+    $(document).on('change', '.ajax-chapter-dropdown', function () {
+        var chapter_id = $(this).val();
+        var sub_chapter_id = $(this).attr('data-sub_chapter_id');
+        $.ajax({
+            type: "GET",
+            url: '/admin/webinars/sub_chapters_by_chapter',
+            data: {'chapter_id': chapter_id, 'sub_chapter_id': sub_chapter_id},
+            success: function (return_data) {
+                $(".ajax-subchapter-dropdown").html(return_data);
             }
         });
     });

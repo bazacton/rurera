@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesResult;
+use App\Models\EntranceExamsTopics;
 use App\Models\QuizzesQuestionsList;
 use App\Models\Translation\QuizTranslation;
 use App\Models\Webinar;
@@ -224,6 +225,8 @@ class QuizController extends Controller
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
+        
+
         $data['chapters'] = $chapters_list;
         $data['categories'] = $categories;
 
@@ -257,6 +260,7 @@ class QuizController extends Controller
             $this->validate($request, $rules);
         }
 
+        $mock_exam_settings = isset($data['mock_exam_settings']) ? $data['mock_exam_settings'] : array();
 
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
 
@@ -299,7 +303,6 @@ class QuizController extends Controller
             ),
 
         );
-
         $quiz = Quiz::create([
             'quiz_slug'                   => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] : Quiz::makeSlug($data['title']),
             'webinar_id'                  => isset($webinar->id) ? $webinar->id : 0,
@@ -323,11 +326,13 @@ class QuizController extends Controller
             'quiz_pdf'                    => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '',
             'quiz_instructions'           => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '',
             'year_group'                  => isset($data['year_group']) ? $data['year_group'] : '',
-            'subject'                     => isset($data['subject']) ? $data['subject'] : '',
+            //'subject'                     => isset($data['subject']) ? $data['subject'] : '',
+            'subject'                     => '',
             'examp_board'                 => isset($data['examp_board']) ? $data['examp_board'] : '',
             'year_id'                     => isset($data['year_id']) ? $data['year_id'] : 0,
             'quiz_category'               => isset($data['quiz_category']) ? $data['quiz_category'] : '',
-
+            'mock_exam_settings'          => isset($data['mock_exam_settings']) ? json_encode($data['mock_exam_settings']) : json_encode(array()),
+            'mock_type'                   => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -588,10 +593,13 @@ class QuizController extends Controller
             'quiz_pdf'           => isset($data['quiz_pdf']) ? $data['quiz_pdf'] : '',
             'quiz_instructions'  => isset($data['quiz_instructions']) ? $data['quiz_instructions'] : '',
             'year_group'         => isset($data['year_group']) ? $data['year_group'] : '',
-            'subject'            => isset($data['subject']) ? $data['subject'] : '',
+            //'subject'            => isset($data['subject']) ? $data['subject'] : '',
+            'subject'            => '',
             'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
             'year_id'            => isset($data['year_id']) ? $data['year_id'] : 0,
             'quiz_category'      => isset($data['quiz_category']) ? $data['quiz_category'] : '',
+            'mock_exam_settings' => isset($data['mock_exam_settings']) ? json_encode($data['mock_exam_settings']) : json_encode(array()),
+            'mock_type'          => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
         ]);
 
         if (!empty($quiz)) {

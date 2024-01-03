@@ -388,6 +388,56 @@ class QuizController extends Controller
             },
         ])->first();
 
+        $entrance_exams = array(
+            'sats','11plus','independent_exams','iseb','cat4'
+        );
+
+        $questions_list = array();
+        if (!empty($quiz->quizQuestionsList)) {
+            foreach ($quiz->quizQuestionsList as $questionlistData) {
+                $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
+                $questions_list[] = $question_id;
+            }
+        }
+
+        if( in_array( $quiz->quiz_type, $entrance_exams) && $quiz->mock_type == 'mock_practice'){
+
+            $quizQuestionsList = array();
+
+            $mock_exam_settings = json_decode($quiz->mock_exam_settings);
+            $mock_exam_settings = (array) $mock_exam_settings;
+
+
+
+            if( !empty( $mock_exam_settings ) ){
+                foreach( $mock_exam_settings as $sub_chapter_id => $no_of_test_questions ) {
+                    $questions_list_array = QuizzesQuestion::where('sub_chapter_id', $sub_chapter_id)->pluck('id')->toArray();
+                    $corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list_array)->where('parent_type_id', $quiz->id)->where('status', 'correct')->pluck('question_id')->toArray();
+
+                    $questions_list_array = array_diff($questions_list_array, $corrected_list);
+                    if( count($questions_list_array) < $no_of_test_questions){
+                        $extra_questions_count = ($no_of_test_questions - count($questions_list_array));
+
+                        $correctedQuestionsList = array_rand($corrected_list, $extra_questions_count);
+                        $correctedQuestionsList = is_array($correctedQuestionsList)? $correctedQuestionsList : array($correctedQuestionsList);
+                        $correctedQuestionsList = array_intersect_key($corrected_list, array_flip($correctedQuestionsList));
+                        $correctedQuestionsList = array_values($correctedQuestionsList);
+                        $questions_list_array  = array_merge($questions_list_array, $correctedQuestionsList);
+
+
+                    }
+                    $selectedQuestionsList = array_rand($questions_list_array, $no_of_test_questions);
+                    $selectedQuestionsList = array_intersect_key($questions_list_array, array_flip($selectedQuestionsList));
+
+                    $selectedQuestionsList = array_values($selectedQuestionsList);
+                    $questions_list_array = $selectedQuestionsList;
+                    $quizQuestionsList  = array_merge($quizQuestionsList, $questions_list_array);
+
+                }
+            }
+            $questions_list  = $quizQuestionsList;
+        }
+
         if( auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', $quiz->quiz_type)->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
             $total_questions_allowed = getGuestLimit($quiz->quiz_type);
@@ -419,13 +469,7 @@ class QuizController extends Controller
         $newQuizStart = $newQuizStart->first();
 
 
-        $questions_list = array();
-        if (!empty($quiz->quizQuestionsList)) {
-            foreach ($quiz->quizQuestionsList as $questionlistData) {
-                $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
-                $questions_list[] = $question_id;
-            }
-        }
+
         if( $no_of_questions > 0) {
             $questions_list = array_slice($questions_list, 0, $no_of_questions);
         }
@@ -668,14 +712,13 @@ class QuizController extends Controller
 
                         if ($found_resonse['is_found'] == true) {
                             $questions_group = isset( $found_resonse['foundArray'] )? $found_resonse['foundArray'] : array();
-                            $no_of_display_questions = isset( $questions_group['no_of_display_questions'] )? $questions_group['no_of_display_questions'] : 0;
+                            $no_of_display_questions = isset( $questions_group['no_of_display_questions'] )? $questions_group['no_of_display_questions'] : 1;
                             $questions_ids = isset( $questions_group['question_ids'] )? $questions_group['question_ids'] : array();
 
                             $questions_ids_attempted = QuizzResultQuestions::whereIn('question_id', $questions_ids)->where('parent_question_id', '>', 0)->where('parent_type_id', $resultLogObj->parent_type_id)->where('status', '!=', 'waiting')->where('user_id', $user->id)->pluck('question_id')->toArray();
 
                             $questions_ids = array_diff($questions_ids, $questions_ids_attempted);
 
-                            $no_of_display_questions = 3;
                             $no_of_display_questions = (count($questions_ids) > $no_of_display_questions)? $no_of_display_questions :  count($questions_ids);
                             $questions_ids_random = array_rand($questions_ids, $no_of_display_questions);
                             if (!is_array($questions_ids_random)) {

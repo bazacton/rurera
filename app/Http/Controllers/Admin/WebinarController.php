@@ -1250,6 +1250,28 @@ class WebinarController extends Controller
 
         }
 
+    public function sub_chapters_by_chapter(Request $request)
+    {
+        $chapter_id = $request->get('chapter_id');
+        $selected_sub_chapter_id = $request->get('sub_chapter_id');
+
+        $WebinarSubChapter = SubChapters::where('chapter_id', $chapter_id)->get();
+
+        $response = '<option value="">Select Sub Chapter</option>';
+        if (!empty($WebinarSubChapter)) {
+            foreach ($WebinarSubChapter as $WebinarSubChapterObj) {
+                    $selected = ($selected_sub_chapter_id == $WebinarSubChapterObj->id)? 'selected' : '';
+                    $response .= '<option value="' . $WebinarSubChapterObj->id . '" '.$selected.'>' . $WebinarSubChapterObj->sub_chapter_title . '</option>';
+            }
+        }
+
+        echo $response;
+        exit;
+
+    }
+
+
+
 
     public function exportExcel(Request $request)
     {

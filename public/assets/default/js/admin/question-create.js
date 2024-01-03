@@ -208,6 +208,7 @@ function leform_save(_object, question_status) {
     var category_id = $("[name=category_id]").val();
     var course_id = $("[name=course_id]").val();
     var chapter_id = $("[name=chapter_id]").val();
+    var sub_chapter_id = $("[name=sub_chapter_id]").val();
     var search_tags = $("[name=search_tags]").val();
     var question_score = $("[name=question_score]").val();
     var question_average_time = $("[name=question_average_time]").val();
@@ -254,6 +255,7 @@ function leform_save(_object, question_status) {
         "category_id": category_id,
         "course_id": course_id,
         "chapter_id": chapter_id,
+        "sub_chapter_id": sub_chapter_id,
         "question_score": question_score,
         "question_average_time": question_average_time,
         "question_type": question_type,
@@ -1272,21 +1274,24 @@ function _leform_properties_prepare(_object) {
 
                 case 'ajax_multi_select_new':
                     options = "";
-                    var question_title = jQuery(".example_question_"+properties[key]).attr('data-question_title');
-                    question_title = !DataIsEmpty(question_title)? question_title : '';
-                    if(question_title != ''){
-                        options = "<option selected value='" + properties[key] + "'>" + question_title + "</option>";
-                    }
-                    for (var option_key in leform_meta[type][key]['options']) {
-                        if (leform_meta[type][key]['options'].hasOwnProperty(option_key)) {
-                            selected = "";
-                            if (option_key == properties[key])
-                                selected = " selected='selected'";
-                            options += "<option" + selected + " value='" + leform_escape_html(option_key) + "'>" + leform_escape_html(leform_meta[type][key]['options'][option_key]) + "</option>";
+                    var question_ids = jQuery(_object).attr("data-question_ids");
+
+                    jQuery.ajax({
+                        type: "GET",
+                        url: '/admin/common/get_group_questions_options',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {"question_ids": question_ids},
+                        success: function (return_data) {
+                            options = return_data;
+                            console.log("#leform-" + key + "");
+                            jQuery("#leform-question_ids").html(return_data);
                         }
-                    }
+                    });
                     var field_class = (leform_meta[type][key]['class'] != undefined)? leform_meta[type][key]['class'] : '';
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-third'><select multiple name='leform-" + key + "' id='leform-" + key + "' class='"+field_class+"'>" + options + "</select></div></div></div>";
+
                     break;
 
                 case 'select_sub':

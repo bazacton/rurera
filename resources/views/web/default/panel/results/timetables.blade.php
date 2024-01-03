@@ -207,7 +207,7 @@ $rand_id = rand(99,9999);
                                         <div class="lms-radio-lists">
                                             <span class="questions-total-holder d-block mb-30">( {{$counter}}/{{countSubItemsOnly((array) $results)}} Questions ) </span>
                                             <div class="selected-text-field">
-                                                <span>{{$rowObj->from}} <span>x</span> {{$rowObj->to}} <span>=</span></span>
+                                                <span>{{$rowObj->from}} <span>{{$rowObj->type}}</span> {{$rowObj->to}} <span>=</span></span>
                                                 <span class="user_answer">{{$rowObj->answer}}</span>
                                             </div>
                                             <div class="questions-controls">
