@@ -7075,7 +7075,7 @@ function element_properties_meta($chapters)
             ),
             'no_of_display_questions'         => array(
                 'value' => '1',
-                'label' => esc_html__('Display Questions', 'leform'),
+                'label' => esc_html__('No of Displaying Questions', 'leform'),
                 'type'  => 'number'
             ),
             'question_ids'    => array(
@@ -8025,6 +8025,24 @@ class svgAvatarsSvgCodeSanitizer {
 	}
 }
 
+function getTimeWithText($secondsString) {
+    $h = floor($secondsString / 3600); // Get whole hours
+    $secondsString -= $h * 3600;
+    $m = floor($secondsString / 60); // Get remaining minutes
+    $secondsString -= $m * 60;
+
+    $return_string = '';
+    if ($h > 0) {
+        $return_string .= $h . "h ";
+    }
+    if ($m > 0) {
+        $return_string .= ($m < 10 ? '0' . $m : $m) . "m ";
+    }
+    $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
+
+    $return_string .= 's';
+    return $return_string;
+}
 
 function getTime($secondsString) {
     $h = floor($secondsString / 3600); // Get whole hours
@@ -8086,4 +8104,35 @@ function isKeyValueFoundInMultiArray($multiArray, $searchKey, $searchValue) {
             'is_found' => $keyValueFound,
             'foundArray' => $foundArray,
     );
+}
+
+/*
+ * Get array lenght
+ */
+function array_limit_length($array_data, $length_value){
+
+   $arrayList = array_rand($array_data, $length_value);
+    $arrayList = is_array($arrayList)? $arrayList : array($arrayList);
+    $arrayList = array_intersect_key($array_data, array_flip($arrayList));
+    $arrayList = array_values($arrayList);
+    return $arrayList;
+
+}
+
+function find_array_index_by_value($data, $value_key){
+    $return_data = array();
+    if( !empty( $data ) ) {
+        foreach ($data as $category => $options) {
+            foreach ($options as $key => $values) {
+                if (is_array($values) && in_array($value_key, $values)) {
+                    $index = array_search($value_key, $values);
+                    $return_data['main_index'] = $category;
+                    $return_data['parent_index'] = $key;
+                    $return_data['value_index'] = $index;
+                    break 2; // break both loops
+                }
+            }
+        }
+    }
+    return $return_data;
 }

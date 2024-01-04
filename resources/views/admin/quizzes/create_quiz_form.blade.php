@@ -457,7 +457,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Emerging']->breakdown->dropdown)? $quiz_settings['Emerging']->breakdown->dropdown : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][dropdown]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -477,7 +477,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Emerging']->breakdown->true_false)? $quiz_settings['Emerging']->breakdown->true_false : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][true_false]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -497,7 +497,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Emerging']->breakdown->matching)? $quiz_settings['Emerging']->breakdown->matching : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Emerging][matching]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -540,7 +540,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Expected']->breakdown->sorting)? $quiz_settings['Expected']->breakdown->sorting : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][sorting]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -560,7 +560,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Expected']->breakdown->single_select)? $quiz_settings['Expected']->breakdown->single_select : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Expected][single_select]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -603,7 +603,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Exceeding']->breakdown->text_field)? $quiz_settings['Exceeding']->breakdown->text_field : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][text_field]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -623,7 +623,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Exceeding']->breakdown->multi_select)? $quiz_settings['Exceeding']->breakdown->multi_select : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][multi_select]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -643,7 +643,7 @@
                         <div class="col-4 col-md-4">
                             <div class="form-group">
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Exceeding']->breakdown->short_answer)? $quiz_settings['Exceeding']->breakdown->short_answer : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][Exceeding][short_answer]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -655,7 +655,7 @@
                             <div class="form-group">
                                 <label class="input-label">Incorrect Attempts</label>
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Exceeding']->incorrect_attempts)? $quiz_settings['Exceeding']->incorrect_attempts : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][incorrect_attempts]"
                                        class="form-control" placeholder=""/>
                             </div>
@@ -664,7 +664,7 @@
                             <div class="form-group">
                                 <label class="input-label">Excess Time Taken</label>
                                 <input type="number"
-                                       value="0"
+                                       value="{{isset( $quiz_settings['Exceeding']->excess_time_taken)? $quiz_settings['Exceeding']->excess_time_taken : 0}}"
                                        name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][excess_time_taken]"
                                        class="form-control @error('title')  is-invalid @enderror" placeholder=""/>
                             </div>

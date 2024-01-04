@@ -62,6 +62,8 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         question_submit_process = false;
         return false;
     }
+
+    //question_submit_process = false;
     if(rurera_is_field(Questioninterval)) {
         clearInterval(Questioninterval);
     }

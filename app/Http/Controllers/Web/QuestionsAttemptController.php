@@ -44,6 +44,8 @@ class QuestionsAttemptController extends Controller
         $quiz_result_type = isset($params['quiz_result_type']) ? $params['quiz_result_type'] : 0;
         $questions_list = isset($params['questions_list']) ? $params['questions_list'] : array();
         $no_of_attempts = isset($params['no_of_attempts']) ? $params['no_of_attempts'] : 0;
+        $other_data = isset($params['other_data']) ? $params['other_data'] : '';
+        $quiz_breakdown = isset($params['quiz_breakdown']) ? $params['quiz_breakdown'] : '';
 
 
         $newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_result_type', $quiz_result_type)->where('user_id', $user->id)->where('status', 'waiting')->first();
@@ -59,13 +61,14 @@ class QuestionsAttemptController extends Controller
                 'parent_type_id'   => $parent_type_id,
                 'quiz_result_type' => $quiz_result_type,
                 'no_of_attempts'   => $no_of_attempts,
+                'other_data'       => $other_data,
                 'user_ip'          => getUserIP(),
+                'quiz_breakdown'   => $quiz_breakdown,
             ]);
         }
 
         return $newQuizStart;
     }
-
 
     /*
      * Create Question Attempt Log For Attempting
@@ -268,6 +271,7 @@ class QuestionsAttemptController extends Controller
                 if ($QuizzResultQuestionsCount == 0) {
                     $is_attempt_allowed = true;
                 }
+                $is_attempt_allowed = true;
                 break;
 
 
@@ -357,6 +361,10 @@ class QuestionsAttemptController extends Controller
         $group_questions_list[] = $qresult_id;
         $QuizzResultQuestions = QuizzResultQuestions::find($qresult_id);
         $quizAttempt = QuizzAttempts::find($qattempt_id);
+        $quizResultObj = QuizzesResult::find($quizAttempt->quiz_result_id);
+
+
+
 
         $questionObj = QuizzesQuestion::find($question_id);
 
@@ -403,6 +411,7 @@ class QuestionsAttemptController extends Controller
         if ($quizAttempt->attempt_type == 'sats' || $quizAttempt->attempt_type == '11plus') {
             $show_fail_message = false;
         }
+        $single_question_layout = $updated_questions_layout = '';
 
 
 
@@ -446,6 +455,82 @@ class QuestionsAttemptController extends Controller
                         }
                         $user_input = is_array($user_input) ? $user_input : array($user_input);
                         if ($is_question_correct == false) {
+
+
+                            if ($quizAttempt->attempt_type == 'practice') {
+                                /*
+                                * Practice Quiz Incorrect attempt add another Question
+                                * @Start
+                                */
+                                $other_data = isset($quizResultObj->other_data) ? json_decode($quizResultObj->other_data) : array();
+                                $return_search_data = find_array_index_by_value($other_data, $qresult_id);
+                                $main_index = isset($return_search_data['main_index']) ? $return_search_data['main_index'] : '';
+                                $parent_index = isset($return_search_data['parent_index']) ? $return_search_data['parent_index'] : '';
+                                $value_index = isset($return_search_data['value_index']) ? $return_search_data['value_index'] : 0;
+
+                                $quizObj = Quiz::find($quizResultObj->parent_type_id);
+                                $questions_list = array();
+                                if (!empty($quizObj->quizQuestionsList)) {
+                                    foreach ($quizObj->quizQuestionsList as $questionlistData) {
+                                        $questions_list[] = $questionlistData->question_id;
+                                    }
+                                }
+
+                                //DB::enableQueryLog();
+                                //pre(DB::getQueryLog());
+                                //DB::disableQueryLog();
+                                $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->whereNull('quizz_result_questions.question_id')->limit(1)->pluck('quizzes_questions.id')->toArray();
+
+                                $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+                                if ($new_question_id == 0) {
+                                    $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'incorrect')->limit(1)->pluck('quizzes_questions.id')->toArray();
+                                    $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+                                    if ($new_question_id == 0) {
+                                        $new_question_id = QuizzesQuestion::leftJoin('quizz_result_questions', 'quizzes_questions.id', '=', 'quizz_result_questions.question_id')->whereIN('quizzes_questions.id', $questions_list)->where('quizzes_questions.question_type', $parent_index)->where('quizzes_questions.question_difficulty_level', $main_index)->where('quizz_result_questions.status', 'correct')->limit(1)->pluck('quizzes_questions.id')->toArray();
+                                        $new_question_id = isset($new_question_id[0]) ? $new_question_id[0] : 0;
+                                    }
+                                }
+                                if ($new_question_id > 0) {
+                                    $nextQuestionArray = $this->nextQuestion($quizAttempt, array(), 0, true, array(), $quizResultObj, $new_question_id);
+                                    $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
+
+                                    $other_data->{$main_index}->{$parent_index}[] = $newQuestionResult->id;
+
+                                    $updated_questions_list = array();
+                                    foreach ($other_data as $difficulty_level => $question_type) {
+                                        foreach ($question_type as $q_id_array) {
+                                            foreach ($q_id_array as $q_id) {
+                                                $updated_questions_list[] = $q_id;
+                                            }
+                                        }
+                                    }
+                                    $questions_list = $updated_questions_list;
+
+                                    $quizResultObj->update([
+                                        'questions_list' => json_encode($questions_list),
+                                        'other_data'     => json_encode($other_data),
+                                    ]);
+                                    $quizAttempt->update([
+                                        'questions_list' => json_encode($questions_list),
+                                    ]);
+
+                                    $questions_layout_response = $this->practice_questions_layout_update($questions_list, $quizAttempt, $quizResultObj, array());
+                                    $questions_layout = isset($questions_layout_response['questions_layout']) ? $questions_layout_response['questions_layout'] : '';
+                                    $next_question_id = isset($questions_layout_response['next_question_id']) ? $questions_layout_response['next_question_id'] : 0;
+                                    $updated_questions_layout = json_encode($questions_layout);
+                                }
+
+                                /*
+                                 * Practice Quiz Incorrect attempt add another Question
+                                 * @Ends
+                                 */
+                            }
+
+
+
+
+
+
                             if ($sub_index != '') {
                                 $incorrect_array[$q_id][$sub_index]['correct'] = $question_correct;
                                 $incorrect_array[$q_id][$sub_index]['user_input'] = $user_input;
@@ -587,10 +672,9 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-
         $test = $newQuestionsArray = array();
         $next_question_id = 0;
-        $single_question_layout = $updated_questions_layout = '';
+
         if ($quizAttempt->attempt_type == 'practice') {
             if ($is_complete == true) {
 
@@ -2060,5 +2144,143 @@ class QuestionsAttemptController extends Controller
         );
     }
 
+
+    /*
+     * Returns the Questions List based on type and not attempted / incorrect
+     *
+     * @params Array
+     * item @ quiz Obj
+     * @calling sub functions to return the specific data based on type
+     *
+     * @return questions_list Array
+     */
+    public function getQuizQuestionsList($quiz){
+
+        $entrance_exams = array('sats','11plus','independent_exams','iseb','cat4');
+        $questions_list = array();
+        if (!empty($quiz->quizQuestionsList)) {
+            foreach ($quiz->quizQuestionsList as $questionlistData) {
+                $question_id = ($quiz->quiz_type == 'assignment') ? $questionlistData->reference_question_id : $questionlistData->question_id;
+                $questions_list[] = $question_id;
+            }
+        }
+
+        if( in_array( $quiz->quiz_type, $entrance_exams) && $quiz->mock_type == 'mock_practice'){
+            $questions_list_data_array = $this->get_mock_practice_questions_list($quiz, $questions_list);
+            $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
+            $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
+        }
+
+        if ($quiz->quiz_type == 'practice') {
+            $questions_list_data_array = $this->get_course_practice_questions_list($quiz, $questions_list);
+            $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
+            $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
+            $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
+        }
+
+        return array(
+            'questions_list' => $questions_list,
+            'other_data'     => isset( $other_data )? $other_data : '',
+            'quiz_breakdown' => isset( $quiz_breakdown )? $quiz_breakdown : '',
+        );
+
+    }
+
+    /*
+     * Returns the Mock Practice questions List (Quiz Type is Entrance Exam and Type is Mock Practice)
+     *
+     * @params Array
+     * item @ quiz Obj
+     *
+     * @return questions_list Array
+     */
+    public function get_mock_practice_questions_list($quiz, $questions_list){
+
+        $quizQuestionsList = array();
+
+        $mock_exam_settings = json_decode($quiz->mock_exam_settings);
+        $mock_exam_settings = (array) $mock_exam_settings;
+
+        if( !empty( $mock_exam_settings ) ){
+            foreach( $mock_exam_settings as $sub_chapter_id => $no_of_test_questions ) {
+                $questions_list_array = QuizzesQuestion::where('sub_chapter_id', $sub_chapter_id)->pluck('id')->toArray();
+                $corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list_array)->where('parent_type_id', $quiz->id)->where('status', 'correct')->pluck('question_id')->toArray();
+
+                $questions_list_array = array_diff($questions_list_array, $corrected_list);
+                if( count($questions_list_array) < $no_of_test_questions){
+                    $extra_questions_count = ($no_of_test_questions - count($questions_list_array));
+                    $correctedQuestionsList = array_limit_length($corrected_list, $extra_questions_count);
+                    $questions_list_array  = array_merge($questions_list_array, $correctedQuestionsList);
+
+                }
+
+                $questions_list_array = array_limit_length($questions_list_array, $no_of_test_questions);
+                $quizQuestionsList  = array_merge($quizQuestionsList, $questions_list_array);
+
+            }
+        }
+        $questions_list  = $quizQuestionsList;
+
+        return array(
+            'questions_list' => $questions_list,
+        );
+
+    }
+
+    /*
+     * Returns the Quiz / Course Practice questions List (Quiz Type is Practice and it is assigned in course)
+     *
+     * @params Array
+     * item @ quiz Obj
+     *
+     * @return questions_list Array
+     */
+    public function get_course_practice_questions_list($quiz, $questions_list){
+
+        $quiz_settings = json_decode($quiz->quiz_settings);
+        $quiz_breakdown = $quiz->quiz_settings;
+
+        $questions_limit = array();
+        $questions_limit['emerging'] = isset($quiz_settings->Emerging->questions) ? $quiz_settings->Emerging->questions : 0;
+        $questions_limit['expected'] = isset($quiz_settings->Expected->questions) ? $quiz_settings->Expected->questions : 0;
+        $questions_limit['exceeding'] = isset($quiz_settings->Exceeding->questions) ? $quiz_settings->Exceeding->questions : 0;
+
+
+        $difficulty_level_array = [
+            'emerging'  => 'Emerging',
+            'expected'  => 'Expected',
+            'exceeding' => 'Exceeding',
+        ];
+
+        $questions_list_ids = $questions_list;
+        $questions_list = $practice_breakdown = array();
+        if (!empty($difficulty_level_array)) {
+            foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
+
+                $breakdown_array = isset( $quiz_settings->{$difficulty_level_label}->breakdown)? $quiz_settings->{$difficulty_level_label}->breakdown : array();
+
+                $breakdown_array = is_array($breakdown_array)? $breakdown_array : (array) $breakdown_array;
+                if (!empty($breakdown_array)) {
+                    foreach ($breakdown_array as $question_type => $questions_count) {
+                        //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                        $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                        if (!empty($questions_array)) {
+                            foreach ($questions_array as $questionID) {
+                                $practice_breakdown[$difficulty_level_label][$question_type][] = $questionID;
+                                $questions_list[] = $questionID;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $other_data = json_encode($practice_breakdown);
+
+        return array(
+            'questions_list' => $questions_list,
+            'other_data'     => $other_data,
+            'quiz_breakdown' => $quiz_breakdown,
+        );
+    }
 
 }

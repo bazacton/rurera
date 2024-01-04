@@ -6204,8 +6204,6 @@ function leform_build_style_text(_properties, _key) {
         style += "color:" + _properties[_key + "-color"] + ";";
     if (_properties.hasOwnProperty(_key + "-bold") && _properties[_key + "-bold"] == "on")
         style += "font-weight:bold;";
-    else
-        style += "font-weight:normal;";
     if (_properties.hasOwnProperty(_key + "-italic") && _properties[_key + "-italic"] == "on")
         style += "font-style:italic;";
     else

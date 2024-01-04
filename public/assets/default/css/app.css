@@ -17812,7 +17812,7 @@ Product Tabs Slider Style Start
 .spells .dataTable thead tr th:first-child {padding-left: 15px;}
 .panel-section-card .simple-table thead tr th:first-child {padding-left: .75rem;}
 .spells .dataTable td a {font-weight: 600; font-size: 18px; text-decoration: none; }
-.elevenplus-block {box-shadow: 0 0 5px rgba(0,0,0,0.2);}
+/* .elevenplus-block {box-shadow: 0 0 5px rgba(0,0,0,0.2);} */
 .spells .table-bordered,
 .simple-table.table-bordered {border: 0; margin-bottom: 0;}
 .spells.elevenplus-block .table tbody,

@@ -4172,8 +4172,8 @@ STYLE
 .question-number-holder ~ .leform-form .question-textarea {
     min-height: auto;
     clear: inherit;
-	overflow: hidden;
-	overflow-x: auto;
+	/* overflow: hidden;
+	overflow-x: auto; */
 }
 .question-number-holder ~ .leform-form .question-textarea p {
     margin-top: 0;

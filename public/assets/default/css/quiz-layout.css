@@ -490,7 +490,8 @@ Lms Quiz Wf Style Start
     border-left: 2px solid #ddd;
     transform: rotate(-45deg);
 }
-.lms-quiz-section .question-label span:before {
+.lms-quiz-section .question-label span:before,
+.question-label span:before {
     position: absolute;
     left: 0;
     top: 0;
@@ -500,7 +501,8 @@ Lms Quiz Wf Style Start
     content: "";
     border-radius: 50px 0 0 0;
 }
-.lms-quiz-section .question-label span:after {
+.lms-quiz-section .question-label span:after,
+.question-label span:after {
     position: absolute;
     left: 0px;
     bottom: -7px;
@@ -1236,6 +1238,7 @@ Lms Quiz Wf Style End
 }
 .start-landing-page .quiz-timer .timer-number {
     color: #333;
+    text-align: right;
 }
 .quiz-pagination .has-flag a {
     background-color: #fff;
@@ -1964,13 +1967,14 @@ span.Selectable:hover {text-decoration: underline;}
     position: relative;
     display: inline-block;
 }
-.example-question .content-box {
+.example-question #example-question {
     border: 2px solid #ddd;
     border-bottom-width: 4px;
     border-radius: 0 8px 8px 8px;
     padding: 25px;
     position: relative;
     min-height: 100px;
+    transition: none !important;
 }
 .example-question .toggle-btn {
     border: 2px solid #ddd;
@@ -1980,11 +1984,13 @@ span.Selectable:hover {text-decoration: underline;}
     border-radius: 8px 8px 0 0;
     font-weight: 500;
     color: var(--primary);
+    transition: none;
+    margin-right: -4px;
 }
 .example-question .close-btn {
     position: absolute;
-    right: -10px;
-    top: -10px;
+    right: 10px;
+    top: 10px;
     border: 0;
     background-color: inherit;
     font-size: 18px;
@@ -1996,5 +2002,20 @@ span.Selectable:hover {text-decoration: underline;}
 }
 .example-question .toggle-btn.collapsed {
     color: #343434;
+    border-radius: 8px;
+    border-bottom: 2px solid #ddd;
+}
+.example-question .toggle-btn:before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    position:absolute;
+    left:2px;
+    bottom: -2px;
+    z-index: 1;
+}
+.example-question .toggle-btn.collapsed:before {
+    display: none;
 }
 /* Example Question Toggle Element Style End */

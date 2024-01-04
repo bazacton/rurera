@@ -37,6 +37,10 @@ $rand_id = rand(99,9999);
 </style>
 @endpush
 @section('content')
+@php
+$attempted_questions = is_array( $questions_list )? count($questions_list): 0;
+$total_questions = is_array( $attempt_questions_list )? count($attempt_questions_list): 0;
+@endphp
 <div class="content-section">
 
     <section class="lms-quiz-section no-bg">
@@ -78,7 +82,7 @@ $rand_id = rand(99,9999);
                                 </div>
                                 <div class="summary-text">
                                     <label>Questions Answered</label>
-                                    <div class="score">0 / --</div>
+                                    <div class="score">{{$attempted_questions}} / {{$total_questions}}</div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 col-lg-3">
@@ -98,7 +102,7 @@ $rand_id = rand(99,9999);
                                 </div>
                                 <div class="summary-text">
                                     <label>Questions Missed</label>
-                                    <div class="score">0%</div>
+                                    <div class="score">{{$total_questions-$attempted_questions}}</div>
                                 </div>
                             </div>
 
@@ -110,7 +114,7 @@ $rand_id = rand(99,9999);
                                 </div>
                                 <div class="summary-text">
                                     <label>Time Spent</label>
-                                    <div class="score">0m / 0m</div>
+                                    <div class="score">{{getTimeWithText($time_consumed)}}</div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 col-lg-3">
@@ -151,7 +155,7 @@ $rand_id = rand(99,9999);
                                 </div>
                                 <div class="summary-text">
                                     <label>Coin earned</label>
-                                    <div class="score">0</div>
+                                    <div class="score">{{$coins_earned}}</div>
                                 </div>
                             </div>
                         </div>
