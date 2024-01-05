@@ -11,7 +11,7 @@
 @endpush
 
 @section('content')
-<section class="page-section analytics-graph-data">
+<section class="page-section analytics-graph-data hide">
     @include('web.default.panel.analytics.graph_data',['show_types'=> true, 'graphs_array' => $graphs_array,
     'summary_type' => $summary_type,
     'QuestionsAttemptController'=> $QuestionsAttemptController])
@@ -19,7 +19,7 @@
 <section>
 
 
-    <div class="activities-container mt-25 p-20 p-lg-35">
+    <div class="activities-container mt-25 p-20 p-lg-35 ">
         <div class="chart-filters">
             <h3>Analytics</h3>
             <ul class="analytics-data-ul">

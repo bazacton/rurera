@@ -688,7 +688,8 @@ class QuizController extends Controller
                         }
                         //pre($group_questions_layout);
                         $resultsQuestionsData['group_questions_layout'] = $group_questions_layout;
-                        $question_response_layout = view('web.default.panel.questions.question_layout', $resultsQuestionsData)->render();
+                        $question_layout_file = get_quiz_question_layout_file($quiz);
+                        $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                 }
@@ -723,11 +724,13 @@ class QuizController extends Controller
                 'active_question_id'     => $active_question_id,
             ];
 
-            if ($resultLogObj->quiz_result_type == 'practice') {
+            $start_layout_file = get_quiz_start_layout_file($quiz);
+            return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
+            /*if ($resultLogObj->quiz_result_type == 'practice') {
                 return view(getTemplate() . '.panel.quizzes.practice_start', $data);
             } else {
                 return view(getTemplate() . '.panel.quizzes.start', $data);
-            }
+            }*/
         }
         abort(404);
     }

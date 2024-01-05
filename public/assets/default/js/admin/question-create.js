@@ -5933,11 +5933,9 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
 
                 case "image_quiz":
                     var random_id = Math.floor((Math.random() * 99999) + 1);
-                    console.log('image-quiz');
 
                     //var imageObj = $.parseHTML(leform_form_elements[i]["content"]);
                     var imageObj = $($.parseHTML(leform_form_elements[i]["content"]));
-                    console.log(imageObj);
                     var image_field_id = imageObj.find('img').attr('data-id');
                     var image_field_id = "leform-element-" + i;
                     var imageStyle = !DataIsEmpty(image_styles[image_field_id]) ? image_styles[image_field_id] : '';
@@ -5949,7 +5947,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var image_size = !DataIsEmpty(leform_form_elements[i]["image_size"])? leform_form_elements[i]["image_size"] : 'image-small';
                     var image_position = !DataIsEmpty(leform_form_elements[i]["image_position"])? leform_form_elements[i]["image_position"] : 'image-left';
 
-                    var image_layout = '<span className="block-holder image-field"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="editor-field" src="'+image_content+'"></span>';
+                    var image_layout = '<span className="block-holder image-field"><img data-field_type="image" data-id="'+random_id+'" id="field-'+random_id+'" class="image-editor-field" src="'+image_content+'"></span>';
 
 
                     html += "<div style='" + imageStyle + "' id='leform-element-" + i + "' class='"+image_position+" "+image_size+" image-element-box leform-element-" + i + " leform-element quiz-group leform-element-html'  data-type='" + leform_form_elements[i]["type"] + "'>" + image_layout + "<div class='leform-element-cover'></div></div>";
@@ -6071,7 +6069,7 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     var element_layout = '<div class="example-question">\n' +
                                     '                        <ul class="nav-controls">\n' +
                                     '                            <li>\n' +
-                                    '                                <a class="toggle-btn" data-toggle="collapse" href="#example-question_'+i+'" role="button" aria-expanded="false" aria-controls="example-question_'+i+'">Example</a>\n' +
+                                    '                                <a class="toggle-btn collapsed" data-toggle="collapse" href="#example-question_'+i+'" role="button" aria-expanded="false" aria-controls="example-question_'+i+'">Example</a>\n' +
                                     '                            </li>\n' +
                                     '                        </ul>\n' +
                                     '                        <div class="content-box">\n' +

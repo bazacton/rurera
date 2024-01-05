@@ -20,7 +20,7 @@ $navBtnText = $navbarButton->title;
 $navbarPages = isset( $navData['navbarPages'] )? $navData['navbarPages'] : array();
 $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : array();
 @endphp
-
+@if( !isset( $authUser ) || !$authUser->isUser())
 <div id="navbarVacuum"></div>
 <nav id="navbar" class="navbar1 navbar-expand-lg navbar-light top-navbar">
     <div class="{{ (!empty($isPanel) and $isPanel) ? 'container-fluid' : 'container-fluid'}}">
@@ -315,3 +315,4 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
 @push('scripts_bottom')
 <script src="/assets/default/js/parts/navbar.min.js"></script>
 @endpush
+@endif

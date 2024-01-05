@@ -43,6 +43,33 @@ class BooksController extends Controller
         abort(404);
     }
 
+    public function books_shelf(Request $request)
+        {
+
+            $books_data = Books::get();
+            $books = array();
+
+            if (!empty($books_data)) {
+                foreach ($books_data as $bookObj) {
+                    if (isset($bookObj->book_category) && $bookObj->book_category != '') {
+                        $books[$bookObj->book_category][] = $bookObj;
+                    }
+                }
+            }
+
+            putSitemap($request);
+
+            if (!empty($books)) {
+                $data = [
+                    'pageTitle' => 'Books',
+                    'books'     => $books,
+                ];
+                return view('web.default.pages.books_shelf', $data);
+            }
+
+            abort(404);
+        }
+
     public function book($book_slug)
     {
         /*if (!auth()->subscription('bookshelf')) {

@@ -1,4 +1,4 @@
-@extends(getTemplate().'.layouts.app')
+@extends('web.default.panel.layouts.panel_layout')
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
@@ -63,72 +63,6 @@
                     <section class="lms-data-table my-30 spells elevenplus-block">
                         <div class="container">
                             <div class="row">
-                                <div class="col-12">
-                                        <div class="listing-search lms-jobs-form mb-20">
-                                            <form>
-                                                <div class="row align-items-center">
-                                                    <div class="col-12 col-lg-6 col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="input-label">Year Group</label>
-                                                            <div class="input-field select-arrow">
-                                                                <select
-                                                                        class="lms-jobs-select"
-                                                                        name="year">
-                                                                    <option {{ !empty($trend) ?
-                                                                    '' : 'selected' }} disabled>Select Year</option>
-
-                                                                    @foreach($categories as $category)
-                                                                    @if(!empty($category->subCategories) and
-                                                                    count($category->subCategories))
-                                                                    <optgroup label="{{  $category->title }}">
-                                                                        @foreach($category->subCategories as $subCategory)
-                                                                        <option value="{{ $subCategory->id }}" @if(request()->get('year') == $subCategory->id) selected="selected" @endif>
-                                                                            {{$subCategory->title}}
-                                                                        </option>
-                                                                        @endforeach
-                                                                    </optgroup>
-                                                                    @else
-                                                                    <option value="{{ $category->id }}"
-                                                                            class="font-weight-bold">{{
-                                                                        $category->title }}
-                                                                    </option>
-                                                                    @endif
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-lg-3 col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="input-label">Category</label>
-                                                            <div class="input-field select-arrow">
-                                                                <select name="quiz_category" class="lms-jobs-select">
-                                                                    <option value="All">All</option>
-                                                                    <option value="Word Lists" @if(request()->get('quiz_category') == 'Word Lists') selected
-                                                                        @endif>Word Lists
-                                                                    </option>
-                                                                    <option value="Spelling Bee" @if(request()->get('quiz_category') ==
-                                                                        'Spelling Bee') selected @endif>Spelling Bee
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-12 col-lg-3 col-md-6">
-                                                        <div class="form-group mb-0">
-                                                            <button type="submit"
-                                                                    class="btn-primary px-20 border-0 rounded-pill text-white text-uppercase">
-                                                                Filter
-                                                            </button>
-                                                            <a href="/spells" class="clear-btn ml-10 text-uppercase text-primary">Clear
-                                                                Filters</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
                                 <div class="col-12">
                                     <div class="spells-table-inner">
                                         <table class="table table-striped table-bordered dataTable" style="width: 100%;"

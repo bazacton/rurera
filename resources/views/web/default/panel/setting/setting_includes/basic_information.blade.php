@@ -1,3 +1,12 @@
+@php
+$user_avatar_settings = $user->user_avatar_settings;
+$user_avatar_settings = json_decode($user_avatar_settings);
+$avatar_settings = isset( $user_avatar_settings->avatar_settings )? (array) $user_avatar_settings->avatar_settings : array();
+$avatar_color_settings = isset( $user_avatar_settings->avatar_color_settings )? (array) $user_avatar_settings->avatar_color_settings : array();
+$avatar_settings = json_encode($avatar_settings);
+$avatar_color_settings = json_encode($avatar_color_settings);
+@endphp
+
 <section>
     <h2 class="section-title after-line">{{ trans('financial.account') }}</h2>
 
@@ -93,3 +102,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var user_avatar_settings = '<?php echo $avatar_settings; ?>';
+    var avatar_color_settings = '<?php echo $avatar_color_settings; ?>';
+
+    user_avatar_settings = JSON.parse(user_avatar_settings);
+    avatar_color_settings = JSON.parse(avatar_color_settings);
+
+</script>

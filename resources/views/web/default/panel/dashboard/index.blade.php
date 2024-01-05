@@ -9,7 +9,6 @@
 @section('content')
 <section class="">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
-        <h1 class="section-title">{{ trans('panel.dashboard') }}</h1>
 
         @if(!$authUser->isUser())
         <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
@@ -31,7 +30,7 @@
     </div>
     @endif
 
-    <div class="bg-white dashboard-banner-container position-relative px-15 px-ld-35 py-10 panel-shadow rounded-sm">
+    <div class="bg-white dashboard-banner-container position-relative px-15 px-ld-35 py-10 panel-shadow panel-border rounded-sm">
         <h2 class="font-30 text-primary line-height-1">
             <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->full_name }},</span>
             <span class="font-16 text-secondary font-weight-bold">{{ trans('panel.have_event',['count' => !empty($unReadNotifications) ? count($unReadNotifications) : 0]) }}</span>
@@ -114,31 +113,15 @@
 <div class="dashboard">
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
-            <div class="dashboard-filters">
-                <ul>
-                    <li><a href="#">Filters Books</a></li>
-                    <li><a href="#">Times Table</a></li>
-                    <li><a href="#">Spells</a></li>
-                    <li><a href="#">Subjects</a></li>
-                    <li><a href="#">Enterence Exam</a></li>
-                    <li><a href="#">SATs Title Test</a></li>
-                    <li><a href="#">Task Name</a></li>
-                    <li><a href="#">(Subject / Topic) Set by @ Parent</a></li>
-                    <li><a href="#">Pass</a></li>
-                    <li><a href="#">Not Submitted</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-12 col-lg-12 mt-35">
-            <div class="assignments-table">
+            <div class="assignments-table panel-border">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active user-assignments-tab" data-type="current" data-content_id="homeworks" id="homeworks-tab" data-toggle="tab" href="#homeworks" role="tab"
-                           aria-controls="homeworks" aria-selected="true">My Assignments</a>
+                           aria-controls="homeworks" aria-selected="true">To Do List</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link user-assignments-tab" data-type="previous" data-content_id="recent" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
-                           aria-controls="recent" aria-selected="false">Recent</a>
+                           aria-controls="recent" aria-selected="false">Recently Completed</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -183,37 +166,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-12 mt-35">
-            <div class="bg-white noticeboard rounded-sm panel-shadow py-10 py-md-20 px-15 px-md-30">
-                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
-
-                @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
-                    <div class="noticeboard-item py-15">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
-                                <div class="font-12 text-gray mt-5">
-                                    <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
-                                    |
-                                    <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
-                                </div>
-                            </div>
-
-                            <div>
-                                <button type="button" data-id="{{ $getUnreadNoticeboard->id }}" class="js-noticeboard-info btn btn-sm btn-border-white">{{ trans('panel.more_info') }}</button>
-                                <input type="hidden" class="js-noticeboard-message" value="{{ $getUnreadNoticeboard->message }}">
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
     </div>
 
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
-            <section class="product-tabs-section">
+            <section class="product-tabs-section panel-border">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -935,8 +892,8 @@
                 @endforeach
 
             </div>
-        </div>
-    </div> -->
+        </div> -->
+    </div>
     </section>
     <!--<section style="padding: 0 0 60px;">
         <div class="container">
@@ -1053,9 +1010,7 @@
     <script src="/assets/default/vendors/chartjs/chart.min.js"></script>
 
     <script>
-        var offlineSuccess = '{{ trans('
-        panel.offline_success
-        ') }}';
+        var offlineSuccess = '';
         var $chartDataMonths = @json($monthlyChart['months']);
         var $chartData = @json($monthlyChart['data']);
     </script>

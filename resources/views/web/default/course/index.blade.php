@@ -1,4 +1,4 @@
-@extends(getTemplate().'.layouts.app')
+@extends('web.default.panel.layouts.panel_layout')
 
 
 @push('styles_top')
@@ -8,33 +8,6 @@
 
 
 @section('content')
-<section class="cart-banner position-relative text-center pages-sub-header">
-    <div class="container h-100">
-        <div class="row h-100 align-items-center text-left">
-            <div class="col-12 col-md-8 col-lg-8 font-19 pl-0">
-                <!-- <p class="lms-subtitle font-19">Start Learning with confidence</p> -->
-                <h1 class="font-50 font-weight-bold mb-15">{{ $course->category->title }}</h1>
-                {!!$course->description!!}
-                <div class="d-flex align-items-center mt-30">
-                    <a href="{{url('/')}}/membership" class="btn btn-primary rounded-pill">Subscribe Now</a>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-4 sub-header-img">
-                <figure style="min-height: auto;"><img src="../assets/default/img/sub-header-icon.png" alt="#">
-                    <figcaption>
-                        <div class="header-img-title">
-                            <strong>Want to subscribe this course ?</strong>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
 
 
 
@@ -43,32 +16,6 @@
             <div class="col-12 p-0">
                 <div class="post-show" style="overflow:hidden;">
 
-
-<section class="categories-wrapp mb-80 lms-wave-shape-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <div class="categories-boxes row">
-
-                    @if( !empty( $courses_list ) )
-                        @foreach( $courses_list as $courseObj)
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                                <div class="categories-card">
-                                    <a href="/{{$course->category->slug}}/{{$courseObj->slug}}">
-                                    <div class="categories-icon" style="background:{{$courseObj->background_color}}">
-                                        {!! $courseObj->icon_code !!}
-                                    </div>
-                                    <h4 class="categories-title">{{$courseObj->getTitleAttribute()}}</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <section class="count-number-wrapp mt-30" style="display:none">
     <div class="container">
         <div class="row">

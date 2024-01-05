@@ -7782,6 +7782,25 @@ function get_question_layout_file($resultLogObj){
     return $layout_file;
 }
 
+function get_quiz_question_layout_file($quizObj){
+
+    $quiz_type = isset( $quizObj->quiz_type )? $quizObj->quiz_type : '';
+    $layout_file = 'question_layout';
+    $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
+    $layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_exam')? 'enterance_exams_question_layout' : $layout_file;
+    return $layout_file;
+}
+
+
+
+function get_quiz_start_layout_file($quizObj){
+    $quiz_type = isset( $quizObj->quiz_type )? $quizObj->quiz_type : '';
+    $layout_file = 'start';
+    $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
+    $layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_exam')? 'enterance_exams_start' : $layout_file;
+    return $layout_file;
+}
+
 /*
  * Add Link to Sitemap
  */

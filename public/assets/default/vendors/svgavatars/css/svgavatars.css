@@ -818,7 +818,7 @@ p.svga-credit {
 	#svga-container {
 		padding-left: 0px;
 		padding-right: 0px;
-		min-width: 576px;
+		min-width: 500px;
 		min-height: 400px;
 	}
 	.svga-row {

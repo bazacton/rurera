@@ -57,15 +57,48 @@
         <div class="panel-content">
             <div class="container">
                 <div class="row"> 
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                         @yield('content')
                     </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+                        <div class="panel-right-sidebar">
+                            <div class="row">
+                                        <div class="col-12 col-lg-12 mt-35">
+                                            <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
+                                                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
+
+                                                @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
+                                                    <div class="noticeboard-item py-15">
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <div>
+                                                                <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
+                                                                <div class="font-12 text-gray mt-5">
+                                                                    <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
+                                                                    |
+                                                                    <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div>
+                                                                <button type="button" data-id="{{ $getUnreadNoticeboard->id }}" class="js-noticeboard-info btn btn-sm btn-border-white">{{ trans('panel.more_info') }}</button>
+                                                                <input type="hidden" class="js-noticeboard-message" value="{{ $getUnreadNoticeboard->message }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                        @include('web.default.includes.footer')
+                  </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('web.default.includes.footer')
+
     @include('web.default.includes.advertise_modal.index')
 </div>
 <!-- Template JS File -->

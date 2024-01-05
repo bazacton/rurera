@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Http\Controllers\Web\TextToSpeechController;
 use App\Models\Category;
 use App\Models\Classes;
@@ -70,6 +71,9 @@ class CommonController extends Controller
         $question_layout = isset( $questionObj->question_layout )? $questionObj->question_layout : '';
         $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question_layout)))));
         $question_layout = str_replace('editor-field', 'example-editor-field', $question_layout);
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $question_layout .= $QuestionsAttemptController->get_example_question_layout($question_id);
 
         $question_layout_response = '<div class="example_question_'.$question_id.'" data-question_title="'.$questionObj->question_title.'">'.$question_layout.'</div>';
         //pre($questionObj);

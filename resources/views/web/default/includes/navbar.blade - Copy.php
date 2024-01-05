@@ -18,7 +18,7 @@ $navBtnText = $navbarButton->title;
 }
 }
 @endphp
-
+@if( !$authUser->isUser())
 <div id="navbarVacuum"></div>
 <nav id="navbar" class="navbar1 navbar-expand-lg navbar-light top-navbar">
     <div class="{{ (!empty($isPanel) and $isPanel) ? 'container-fluid' : 'container-fluid'}}">
@@ -208,3 +208,4 @@ $navBtnText = $navbarButton->title;
 @push('scripts_bottom')
 <script src="/assets/default/js/parts/navbar.min.js"></script>
 @endpush
+@endif

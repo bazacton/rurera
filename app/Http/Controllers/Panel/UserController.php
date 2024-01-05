@@ -182,6 +182,12 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
+        $avatarSettings = isset( $_POST['avatarSettings'] )? $_POST['avatarSettings'] : '';
+        $avatarColorsSettings = isset( $_POST['avatarColorsSettings'] )? $_POST['avatarColorsSettings'] : '';
+        $user_avatar_settings = array(
+            'avatar_settings' => $avatarSettings,
+            'avatar_color_settings' => $avatarColorsSettings
+        );
         $file = svgAvatars_validate_filename( $_POST['filename'] );
         $data =  svgAvatars_validate_imagedata( $_POST['imgdata'], $file['type'] );
 
@@ -197,7 +203,8 @@ class UserController extends Controller
         }
         file_put_contents('avatar/'.$file_name, $data);
         $user->update([
-           'avatar' => '/avatar/'.$file_name
+           'avatar' => '/avatar/'.$file_name,
+           'user_avatar_settings' => json_encode($user_avatar_settings)
        ]);
 
     }

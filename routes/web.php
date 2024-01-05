@@ -442,6 +442,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{info_id}/info_detail' , 'BooksController@info_detail');
         Route::post('/update_reading' , 'BooksController@update_reading');
     });
+
+    Route::group(['prefix' => 'books_shelf'] , function () {
+        Route::get('/' , 'BooksController@books_shelf');
+    });
     Route::group(['prefix' => 'book-shelf'] , function () {
         Route::get('/' , 'BooksController@index');
     });
@@ -452,6 +456,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         //Route::get('/{sat_id}/start' , 'SatsController@start');
         Route::get('/{quiz_slug}' , 'SatsController@start');
     });
+
+    Route::group(['prefix' => 'learn'] , function () {
+        Route::get('/' , 'LearnController@index');
+    });
+
     Route::group(['prefix' => 'sats-preparation'] , function () {
         Route::get('/' , 'SatsController@sats_landing');
     });

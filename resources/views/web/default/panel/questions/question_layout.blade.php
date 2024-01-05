@@ -29,6 +29,10 @@ $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
 $total_questions = count(json_decode($quizAttempt->questions_list));
 
+if( $layout_type == 'results'){
+    $total_questions = count(json_decode($quizResultObj->questions_list));
+}
+
 @endphp
 
 <div class="question-area" data-total_questions="{{$total_questions}}">

@@ -956,9 +956,9 @@ class WebinarController extends Controller
     public function start(Request $request, $subject_slug, $sub_chapter_slug)
     {
 
-        if (!auth()->subscription('courses')) {
+        /*if (!auth()->subscription('courses')) {
             return view('web.default.quizzes.not_subscribed');
-        }
+        }*/
 
         $SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
                     ->first();
@@ -973,7 +973,7 @@ class WebinarController extends Controller
         $quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $started_already = $QuestionsAttemptController->started_already($id);
+        //$started_already = $QuestionsAttemptController->started_already($id);
 
         $started_already = false;
         //pre($started_already);
