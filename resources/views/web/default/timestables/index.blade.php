@@ -78,41 +78,41 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-4 col-lg-2">
-                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
-                          <div class="img-holder">
-                            <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
-                          </div>
-                          <div class="text-holder">
-                            <h3 class="blog-grid-title" itemprop="title">
-                              <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Treasure Mission</a>
-                            </h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2">
-                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
-                          <div class="img-holder">
-                            <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
-                          </div>
-                          <div class="text-holder">
-                            <h3 class="blog-grid-title" itemprop="title">
-                              <a class="tournament-btn" itemprop="Button" href="#">Tournament Tropics</a>
-                            </h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-4 col-lg-2">
-                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                             <div class="img-holder">
-                                <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
+                                <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
                             </div>
                             <div class="text-holder">
                                 <h3 class="blog-grid-title" itemprop="title">
-                                    <a class="grid-btn ajax-callback" data-type="global_arena"  itemprop="Button" href="javascript:;">Global Arena</a>
+                                <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Treasure Mission</a>
                                 </h3>
                             </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-12 col-md-4 col-lg-2">
+                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <h3 class="blog-grid-title" itemprop="title">
+                                <a class="tournament-btn" itemprop="Button" href="#">Tournament Tropics</a>
+                                </h3>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-2">
+                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                                <div class="img-holder">
+                                    <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
+                                </div>
+                                <div class="text-holder">
+                                    <h3 class="blog-grid-title" itemprop="title">
+                                        <a class="grid-btn ajax-callback" data-type="global_arena"  itemprop="Button" href="javascript:;">Global Arena</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
