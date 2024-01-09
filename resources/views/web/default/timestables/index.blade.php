@@ -28,7 +28,7 @@
                               </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
+                        <!-- <div class="col-12 col-md-4 col-lg-2">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                                 <div class="img-holder">
                                     <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
@@ -52,7 +52,7 @@
                                     </h3>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-12 col-md-4 col-lg-2">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                               <div class="img-holder">
