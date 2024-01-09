@@ -17792,6 +17792,7 @@ Product Tabs Slider Style Start
 .template-grid .row .row {margin-left: -5px; margin-right: -5px;}
 .panel-content .grid-card {margin-bottom: 10px;}
 .panel-content .template-grid .text-holder {background-color: #f8f8f8; border: 1px solid #f1f1f1; padding: 14px; min-height: auto;}
+.panel-content .template-grid .text-holder a {word-wrap: break-word;}
 
 /* Lms Font End Display Style */
 .lms-quiz-section .questions-data-block {max-width: 1170px; margin: 0 auto 0; border: 1px solid #999;}
