@@ -1,4 +1,4 @@
-@extends('web.default.panel.layouts.panel_layout')
+@extends('web.default.panel.layouts.panel_layout_full')
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
