@@ -1502,6 +1502,7 @@ class WebinarController extends Controller
 				'created_at'		=> time(),
                 'parent_type_id'   => $quizAttempt->parent_type_id ,
                 'quiz_result_type' => $quizAttempt->attempt_type ,
+                'quiz_level'        => '',
 			]);
 
 		}else{
@@ -1542,7 +1543,7 @@ class WebinarController extends Controller
 				'time_consumed'		=> 0,
 				'difficulty_level'	=> $questionObj->question_difficulty_level,
 				'status'			=> 'waiting',
-				'created_at'		=> time()
+				'created_at'		=> time(),
 			]);
 
 			createAttemptLog($quizAttempt->id, 'Viewed (and possibly read) question #'.$newQuestionResult->id, 'viewed', $newQuestionResult->id);

@@ -1,4 +1,4 @@
-@extends('web.default.layouts.app')
+@extends('web.default.panel.layouts.panel_layout')
 
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
@@ -92,7 +92,7 @@ Access to the rewards with 3 simple steps</p>
                 @include('web.default.products.includes.top_filters')
 
                 <div class="row">
-                    <div class="col-12 col-md-9">
+                    <div class="col-12 col-md-12">
                         <div class="row">
                             @foreach($products as $product)
                             <div class="col-12 col-md-6 col-lg-4 mt-20">
@@ -103,11 +103,6 @@ Access to the rewards with 3 simple steps</p>
                         <div class="mt-50 pt-30">
                             {{ $products->appends(request()->input())->links('vendor.pagination.panel') }}
                         </div>
-                    </div>
-
-
-                    <div class="col-12 col-md-3">
-                        @include('web.default.products.includes.right_filters')
                     </div>
                 </div>
 

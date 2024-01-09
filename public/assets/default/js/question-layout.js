@@ -835,6 +835,11 @@ function init_question_functions() {
        var duration_type = $(".question-area-block").attr('data-duration_type');
        var time_interval = $(".question-area-block").attr('data-time_interval');
        var practice_time = $(".question-area-block").attr('data-practice_time');
+       var time_counter = $(".question-step-"+quizQuestionID).attr('data-time_counter');
+       if(rurera_is_field(time_counter)){
+           time_interval = time_counter;
+       }
+
 
         if( rurera_is_field(duration_type) && duration_type == 'per_question') {
                 clearInterval(Quizintervals);

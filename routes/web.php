@@ -98,6 +98,20 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     if( !empty( $years)){
         foreach( $years as $year_slug){
             Route::group(['prefix' => $year_slug] , function () {
+
+                    /*
+                     * Spelling Routes Starts
+                     */
+                       Route::get('/spelling' , 'SpellsController@index');
+                       Route::get('/{quiz_slug}/spelling-list' , 'SpellsController@words_list');
+                       Route::get('/{quiz_slug}/spelling/exercise/{quiz_level}' , 'SpellsController@start');
+                       Route::get('/{quiz_slug}/spelling/exercise' , 'SpellsController@start');
+                       //Route::get('/words_list' , 'SpellsController@words_list');
+                       //Route::get('/{quiz_year}/{quiz_slug}' , 'SpellsController@start');
+                    /*
+                     * Spelling Routes Ends
+                     */
+
                     Route::get('/{slug}' , 'WebinarController@course');
                     Route::get('/{slug}/file/{file_id}/download' , 'WebinarController@downloadFile');
                     Route::get('/{slug}/file/{file_id}/showHtml' , 'WebinarController@showHtmlFile');
@@ -108,6 +122,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                     Route::get('/{slug}/points/apply' , 'WebinarController@buyWithPoint');
                     Route::post('/{id}/report' , 'WebinarController@reportWebinar');
                     Route::post('/{id}/learningStatus' , 'WebinarController@learningStatus');
+
+
 
                     Route::group(['middleware' => 'web.auth'] , function () {
                         Route::get('/{slug}/installments' , 'WebinarController@getInstallmentsByCourse');
@@ -335,6 +351,24 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     });
 
     Route::group(['prefix' => 'products'] , function () {
+        Route::get('/' , 'ProductController@searchLists');
+        Route::get('/{slug}' , 'ProductController@show');
+        Route::post('/{slug}/points/apply' , 'ProductController@buyWithPoint');
+
+        Route::group(['prefix' => 'reviews'] , function () {
+            Route::post('/store' , 'ProductReviewController@store');
+            Route::post('/store-reply-comment' , 'ProductReviewController@storeReplyComment');
+            Route::get('/{id}/delete' , 'ProductReviewController@destroy');
+            Route::get('/{id}/delete-comment/{commentId}' , 'ProductReviewController@destroy');
+        });
+
+        Route::group(['middleware' => 'web.auth'] , function () {
+            Route::get('/{slug}/installments' , 'ProductController@getInstallmentsByProduct');
+            Route::post('/direct-payment' , 'ProductController@directPayment');
+        });
+    });
+
+    Route::group(['prefix' => 'shop'] , function () {
         Route::get('/' , 'ProductController@searchLists');
         Route::get('/{slug}' , 'ProductController@show');
         Route::post('/{slug}/points/apply' , 'ProductController@buyWithPoint');

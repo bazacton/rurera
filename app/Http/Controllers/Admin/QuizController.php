@@ -333,6 +333,8 @@ class QuizController extends Controller
             'quiz_category'               => isset($data['quiz_category']) ? $data['quiz_category'] : '',
             'mock_exam_settings'          => isset($data['mock_exam_settings']) ? json_encode($data['mock_exam_settings']) : json_encode(array()),
             'mock_type'                   => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
+            'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
+            'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -600,6 +602,8 @@ class QuizController extends Controller
             'quiz_category'      => isset($data['quiz_category']) ? $data['quiz_category'] : '',
             'mock_exam_settings' => isset($data['mock_exam_settings']) ? json_encode($data['mock_exam_settings']) : json_encode(array()),
             'mock_type'          => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
+            'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
+            'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
         ]);
 
         if (!empty($quiz)) {

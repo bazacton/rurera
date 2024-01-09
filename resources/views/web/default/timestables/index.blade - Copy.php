@@ -6,17 +6,17 @@
 
 @section('content')
 <section class="content-section">
-    <section class="page-section template-grid mx-w-100 p-0 news-section mt-40 mb-30">
+    <section class="page-section template-grid mx-w-100 py-60 news-section" style="background-color:#333">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-12 mb-30">
+                <div class="col-12 col-lg-12 mb-10">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="section-title mb-30">
-                                <h1 itemprop="title" class="font-50 font-weight-bold mb-0">Time Tables</h1>
+                            <div class="section-title mb-50">
+                                <h1 itemprop="title" class="font-50 font-weight-bold mb-0 text-white">Time Tables</h1>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                               <div class="img-holder">
                                 <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
@@ -28,7 +28,7 @@
                               </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                                 <div class="img-holder">
                                     <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                                 <div class="img-holder">
                                     <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
+                        <div class="col-12 col-md-4 col-lg-3">
                             <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                               <div class="img-holder">
                                 <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
@@ -65,23 +65,11 @@
                               </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-2">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
-                              <div class="img-holder">
-                                <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
-                              </div>
-                              <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
-                                  <a itemprop="url" href="/timestables/summary">Timestables Summary</a>
-                                </h3>
-                              </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-12">
                     <div class="row">
-                      <div class="col-12 col-md-4 col-lg-2">
+                      <div class="col-12 col-md-4 col-lg-3">
                         <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                           <div class="img-holder">
                             <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
@@ -93,7 +81,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12 col-md-4 col-lg-2">
+                      <div class="col-12 col-md-4 col-lg-3">
                         <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                           <div class="img-holder">
                             <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
@@ -105,7 +93,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12 col-md-4 col-lg-2">
+                      <div class="col-12 col-md-4 col-lg-3">
                         <div class="grid-card" itemtype="https://schema.org/NewsArticle">
                             <div class="img-holder">
                                 <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
@@ -133,7 +121,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="section-title mb-30">
+                    <div class="section-title mb-50">
                       <a href="#" itemprop="button" class="back-btn mb-30" style="margin-right: auto;">
                         <span>←</span>
                     </a>
@@ -617,13 +605,13 @@
             </div>
         </div>
     </section>
-<section class="p-25 panel-border border-radius-10">
+<section class="pt-80 pb-30" style="background-color: #f8f8f8;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-title mb-30 text-center"><h2>Select Arithmetic Operations </h2></div>
+                <div class="section-title mb-50 text-center"><h2>Select Arithmetic Operations </h2></div>
             </div>
-            <div class="col-12 col-lg-12 mx-auto">
+            <div class="col-12 col-lg-8 mx-auto mb-50">
                 <form action="/timestables/generate" method="post">
                     {{ csrf_field() }}
                     <div class="questions-select-option">
@@ -696,6 +684,180 @@
                         <button type="submit" class="questions-submit-btn btn"><span>Play</span></button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mb-50 mt-20 template-grid mx-w-100 mb-60 pt-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-title mb-30 d-flex justify-content-between align-items-center">
+                    <h2 itemprop="title" class="font-30 mb-0 text-dark-charcoal">Templates</h2>
+                    <a href="#" itemprop="button" class="seemore-btn">See More <span>›</span> </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-12 mb-30">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Quiz</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Daily Check-in</a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">4 Questions</li>
+                                    <li itemprop="name">11.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Lesson</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Gratitude Lesson - SEL (Inspired by..) </a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">2 Questions</li>
+                                    <li itemprop="name">15.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Quiz</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Math: 6th Grade (with new question) </a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">5 Questions</li>
+                                    <li itemprop="name">8.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" title="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Quiz</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Math: 3rd Grade (with new question)</a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">3 Questions</li>
+                                    <li itemprop="name">12.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="section-title mb-30 d-flex justify-content-between align-items-center">
+                    <h2 itemprop="title" class="font-30 mb-0 text-dark-charcoal">Mathematics</h2>
+                    <a href="#" itemprop="button" class="seemore-btn">See More <span>›</span> </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Quiz</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Daily Check-in</a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">4 Questions</li>
+                                    <li itemprop="name">11.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Lesson</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Gratitude Lesson - SEL (Inspired by..) </a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">2 Questions</li>
+                                    <li itemprop="name">15.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Quiz</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Math: 6th Grade (with new question) </a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">5 Questions</li>
+                                    <li itemprop="name">8.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" title="Interactive Learning Made Fun: Engaging Quiz Formats For Ks1 And Ks2" width="100%" height="160" itemprop="image" loading="eager">
+                            </div>
+                            <div class="text-holder">
+                                <span><span class="sub-title">Lesson</span></span>
+                                <h3 class="blog-grid-title my-10" itemprop="title">
+                                    <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Math: 3rd Grade (with new question)</a>
+                                </h3>
+                                <ul class="general-info">
+                                    <li itemprop="name">3 Questions</li>
+                                    <li itemprop="name">12.5k plays</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="lms-column-section lms-text-section w-100 pt-50 pb-50" style="background: url(assets/default/svgs/bank-note.svg) #f27530;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="lms-text-holder d-flex flex-column justify-content-center text-center">
+                    <h2 itemprop="title" class="mb-20 text-white">Get Started</h2> <strong itemprop="description" class="text-white">Want to find out more or arrange a free trial ?</strong>
+                    <div class="lms-btn-group mt-30 justify-content-center"><a itemprop="url" href="{{url('/')}}/register" class="lms-btn rounded-pill text-white border-white">Join Rurera today</a></div>
+                </div>
             </div>
         </div>
     </div>

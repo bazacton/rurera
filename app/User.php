@@ -3791,6 +3791,11 @@ class User extends Authenticatable
         return $this->hasOne($this, 'id', 'organ_id');
     }
 
+    public function users_achieved_levels()
+    {
+        return $this->hasOne('App\Models\UsersAchievedLevels', 'user_id', 'id');
+    }
+
 
     public function getOrganizationTeachers()
     {

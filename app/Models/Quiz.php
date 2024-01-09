@@ -95,6 +95,11 @@ class Quiz extends Model implements TranslatableContract
         return $this->belongsTo('App\User' , 'creator_id' , 'id');
     }
 
+    public function vocabulary_achieved_levels()
+    {
+        return $this->hasOne('App\Models\UsersAchievedLevels', 'parent_id', 'id')->where('parent_type', 'vocabulary');
+    }
+
     public function certificates()
     {
         return $this->hasMany('App\Models\Certificate' , 'quiz_id' , 'id');

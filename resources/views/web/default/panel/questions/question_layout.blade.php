@@ -23,7 +23,6 @@
 
 $group_questions_layout  = isset( $group_questions_layout )? $group_questions_layout : '';
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
-
 $question_layout = str_replace('<div class="group_questions_data">Questions Group</div>', $group_questions_layout, $question_layout);
 $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;

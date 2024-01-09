@@ -33,12 +33,23 @@ if( isset( $time_limit )){
 else{
     $total_time = gmdate("i:s", $question->question_average_time*60);
 }
+$duration_type = isset( $duration_type )? $duration_type : 'no_time_limit';
+
+$timer_counter = 0;
+if( isset( $duration_type ) ){
+    if( $duration_type == 'per_question'){
+    $timer_counter = $time_interval;
+    }
+    if( $duration_type == 'total_practice'){
+    $timer_counter = $practice_time;
+    }
+}
 
 
 @endphp
 <div class="question-area spell-question-area">
     <div class="correct-appriciate" style="display:none"></div>
-    <div class="question-step question-step-{{ $question->id }}" data-elapsed="0"
+    <div class="question-step question-step-{{ $question->id }}" data-time_counter="{{$timer_counter}}" data-elapsed="0"
          data-qattempt="{{isset( $quizAttempt->id )? $quizAttempt->id : 0}}"
          data-start_time="0" data-qresult="{{isset( $newQuestionResult->id )? $newQuestionResult->id : 0}}"
          data-quiz_result_id="{{isset( $quizAttempt->quiz_result_id )? $quizAttempt->quiz_result_id : 0}}">
@@ -235,10 +246,23 @@ else{
     var currentFunctionStart = null;
     var Questioninterval = null;
 
+    var hint_counter = 0;
+    var charPosition = 0;
     var SpellQuestionintervalCountDownFunc = function() {
              currentFunctionStart = 'started';
             Questioninterval = setInterval(function () {
                 var seconds_count_done = $(".question-step-{{ $question->id }}").attr('data-elapsed');
+                hint_counter = parseInt(hint_counter) + parseInt(1);
+                var quiz_level = '{{$quiz_level}}';
+                if( quiz_level == 'easy') {
+                    if (parseInt(hint_counter) == 10) {
+                        var ansCorr = '{{$correct_answer}}';
+                        var correct_answer_character = ansCorr.charAt(charPosition);
+                        $(".editor-field").val($(".editor-field").val() + correct_answer_character);
+                        charPosition = parseInt(charPosition) + parseInt(1);
+                        hint_counter = 0;
+                    }
+                }
                 seconds_count_done = parseInt(seconds_count_done) + parseInt(1);
                 $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count_done);
             }, 1000);
@@ -286,6 +310,7 @@ else{
 
     $(document).on('click', '.start-spell-quiz', function (e) {
     //jQuery(document).ready(function() {
+
 
 
         $('#field-{{$field_id}}').focus();

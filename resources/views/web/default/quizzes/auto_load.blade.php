@@ -26,7 +26,7 @@ $rand_id = rand(99,9999);
 
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
 
-                        <a href="javascript:;" id="quiz-start-btn" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
+                        <a href="javascript:;" data-id="{{$quiz->id}}" id="quiz-start-btn" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
                            class="quiz-start-btn ">&nbsp;</a>
                         <div class="learning-content-quiz"></div>
 

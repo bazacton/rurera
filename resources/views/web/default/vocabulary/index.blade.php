@@ -64,115 +64,313 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="spells-table-inner">
-                                        <table class="table table-striped table-bordered dataTable" style="width: 100%;"
-                                            aria-describedby="example_info">
-                                            <thead>
-                                            <tr>
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">List
-                                                </th>
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">&nbsp;
-                                                </th>
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">Mastered Words
-                                                </th>
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">Troubled Words
-                                                </th>
-
-                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending"
-                                                    aria-label="Date: activate to sort column descending">Not Used Words
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
-                                            $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
-                                            @endphp
-
-                                            @foreach( $data as $dataObj)
-                                            @php $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
-                                            $total_attempts = $total_questions_attempt = $correct_questions =
-                                            $incorrect_questions = 0;
-                                            $mastered_words = $non_mastered_words = $in_progress_words = 0;
-                                            $total_questions = isset( $dataObj->quizQuestionsList )? count(
-                                            $dataObj->quizQuestionsList) : 0;
-
-                                            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
-                                            $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
-                                            $in_progress = isset( $resultData->in_progress )? $resultData->in_progress :
-                                            false;
-                                            $current_status = isset( $resultData->current_status )?
-                                            $resultData->current_status
-                                            : '';
-                                            $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
-                                            $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
-
-                                            @endphp
 
 
-                                            @if( !empty( $resultData ) )
+                                    <div class="spell-levels levels-grouping">
+                                        <div class="spell-levels-top">
+                                            <strong>Unite 3 : Grouping and identifying organisms</strong>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="thumb-box">
+                                                        <img src="/assets/default/img/thumb1.png" alt="">
+                                                    </span>
+                                                </a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Hello!</strong>
+                                                        <span>Learn greetings for meeting people</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="thumb-box">
+                                                        <img src="/assets/default/img/thumb1.png" alt="">
+                                                    </span>
+                                                </a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Introducing yourself</strong>
+                                                        <span>Say your name</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="treasure">
+                                                <a href="#">
+                                                    <span class="thumb-box">
+                                                        <img src="/assets/default/img/treasure.png" alt="">
+                                                    </span>
+                                                </a>
+                                            </li>
 
-                                            @php $attempt_count = 1; @endphp
-                                            @foreach( $resultData as $resultObj)
-                                                @php
-
-                                                $mastered_words += $resultObj->mastered_words;
-                                                $non_mastered_words += $resultObj->non_mastered_words;
-                                                $in_progress_words += $resultObj->in_progress_words;
-                                                $total_questions_attempt += $resultObj->attempted;
-                                                $total_questions_attempt += $resultObj->attempted;
-                                                $correct_questions += $resultObj->correct;
-                                                $incorrect_questions += $resultObj->incorrect;
-                                                $total_attempts++;
-                                                @endphp
-
-                                                @php $attempt_count++; @endphp
-                                            @endforeach
-
-                                            @endif
-
-                                            @php
-                                            $total_percentage = 0;
-                                            if( $total_questions_attempt > 0 && $correct_questions > 0){
-                                            $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
-                                            }
-                                            @endphp
-
-                                            @php $total_questions_all += $total_questions;
-                                            $total_questions_attempt_all += $total_questions_attempt;
-                                            $correct_questions_all += $correct_questions;
-                                            $incorrect_questions_all += $incorrect_questions;
-                                            $pending_questions_all += ($total_questions - $total_questions_attempt);
-                                            $not_used_words_all += ($total_questions - $mastered_words - $non_mastered_words - $in_progress_words);
-
-
-                                            @endphp
-
-                                            <tr class="odd">
-                                                <td>
-
-                                                    <a href="/spells/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/words-list" data-slug="{{$dataObj->quiz_slug}}" data-id="{{$dataObj->id}}" >{{$dataObj->getTitleAttribute()}} <span class="spell_category">{{$dataObj->quiz_category}}</span></a>
-                                                    <br> <span class="sub_label">{{$total_questions}} Word(s)</span>
-                                                </td>
-                                                <td>
-                                                    @if( $dataObj->examp_board != '' && $dataObj->examp_board != 'All')
-                                                    <img src="/assets/default/img/{{$dataObj->examp_board}}.jpeg">
-                                                    @endif
-                                                </td>
-                                                <td>{{$mastered_words}}</td>
-                                                <td>{{$non_mastered_words}}</td>
-                                                <td>{{($total_questions - $mastered_words - $non_mastered_words - $in_progress_words)}}</td>
-
-                                            </tr>
-                                            @endforeach
-
-                                            </tbody>
-                                        </table>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="thumb-box">
+                                                        <img src="/assets/default/img/thumb1.png" alt="">
+                                                    </span>
+                                                </a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Saying how you are</strong>
+                                                        <span>Complete all Topics above to unlock this!</span>
+                                                    </div>
+                                                </div>
+                                            </li><li>
+                                                <a href="#">
+                                                    <span class="thumb-box">
+                                                        <img src="/assets/default/img/thumb1.png" alt="">
+                                                    </span>
+                                                </a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Developing fluency</strong>
+                                                        <span>Complete all Topics above to unlock this!</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    </ul>
                                     </div>
+
+
+                                    @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
+                                    $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
+                                    @endphp
+
+                                    @foreach( $data as $dataObj)
+                                    @php
+                                    $treasure_after = isset( $dataObj->treasure_after)? $dataObj->treasure_after : 'no_treasure';
+                                    $resultData = $QuestionsAttemptController->get_result_data($dataObj->id);
+                                    $total_attempts = $total_questions_attempt = $correct_questions =
+                                    $incorrect_questions = 0;
+                                    $mastered_words = $non_mastered_words = $in_progress_words = 0;
+                                    $total_questions = isset( $dataObj->quizQuestionsList )? count(
+                                    $dataObj->quizQuestionsList) : 0;
+
+                                    $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+                                    $is_passed = isset( $resultData->is_passed )? $resultData->is_passed : false;
+                                    $in_progress = isset( $resultData->in_progress )? $resultData->in_progress :
+                                    false;
+                                    $current_status = isset( $resultData->current_status )?
+                                    $resultData->current_status
+                                    : '';
+                                    $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
+                                    $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
+
+                                    @endphp
+
+
+                                    @if( !empty( $resultData ) )
+
+                                    @php $attempt_count = 1; @endphp
+                                    @foreach( $resultData as $resultObj)
+                                        @php
+
+                                        $mastered_words += $resultObj->mastered_words;
+                                        $non_mastered_words += $resultObj->non_mastered_words;
+                                        $in_progress_words += $resultObj->in_progress_words;
+                                        $total_questions_attempt += $resultObj->attempted;
+                                        $total_questions_attempt += $resultObj->attempted;
+                                        $correct_questions += $resultObj->correct;
+                                        $incorrect_questions += $resultObj->incorrect;
+                                        $total_attempts++;
+                                        @endphp
+
+                                        @php $attempt_count++; @endphp
+                                    @endforeach
+
+                                    @endif
+
+                                    @php
+                                    $total_percentage = 0;
+                                    if( $total_questions_attempt > 0 && $correct_questions > 0){
+                                    $total_percentage = ($correct_questions * 100) / $total_questions_attempt;
+                                    }
+                                    @endphp
+
+                                    @php $total_questions_all += $total_questions;
+                                    $total_questions_attempt_all += $total_questions_attempt;
+                                    $correct_questions_all += $correct_questions;
+                                    $incorrect_questions_all += $incorrect_questions;
+                                    $pending_questions_all += ($total_questions - $total_questions_attempt);
+                                    $not_used_words_all += ($total_questions - $mastered_words - $non_mastered_words - $in_progress_words);
+
+
+                                    $level_easy = isset( $dataObj->vocabulary_achieved_levels->level_easy )? $dataObj->vocabulary_achieved_levels->level_easy : 0;
+                                    $level_medium = isset( $dataObj->vocabulary_achieved_levels->level_medium )? $dataObj->vocabulary_achieved_levels->level_medium : 0;
+                                    $level_hard = isset( $dataObj->vocabulary_achieved_levels->level_hard )? $dataObj->vocabulary_achieved_levels->level_hard : 0;
+
+
+
+                                    $treasure_box_closed = '<li class="treasure">
+                                                        <a href="#">
+                                                            <span class="thumb-box">
+                                                                <img src="/assets/default/img/treasure3.png" alt="">
+                                                            </span>
+                                                        </a>
+                                                    </li>';
+                                    $treasure_box_opened = '<li class="treasure">
+                                                                <a href="#">
+                                                                    <span class="thumb-box">
+                                                                        <img src="/assets/default/img/treasure2.png" alt="">
+                                                                    </span>
+                                                                </a>
+                                                            </li>';
+                                    @endphp
+
+                                    <div class="spell-levels">
+                                        <div class="spell-levels-top">
+                                            <div class="spell-top-left">
+                                                <strong>{{$dataObj->getTitleAttribute()}} - {{$treasure_after}} -- {{$level_easy}}</strong>
+                                            </div>
+                                            <div class="spell-top-right">
+                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling-list" class="words-count"><img src="/assets/default/img/skills-icon.png" alt=""><span>{{$total_questions}}</span>word(s)</a>
+                                            </div>
+                                        </div>
+                                        <ul class="justify-content-start">
+                                            <li class="easy" data-id="{{$dataObj->id}}" data-quiz_level="easy">
+                                                <div class="levels-progress circle">
+                                                    <span class="progress-box">
+                                                        <span class="progress-count"></span>
+                                                    </span>
+                                                </div>
+                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">1</a>
+                                            </li>
+                                            @if($treasure_after == 'after_easy')
+                                                @if($level_easy == 1)
+                                                    {!! $treasure_box_opened !!}
+                                                @else
+                                                    {!! $treasure_box_closed !!}
+                                                @endif
+                                            @endif
+                                            <li class="intermediate" data-id="{{$dataObj->id}}" data-quiz_level="medium">
+                                                @if($level_easy == 1)
+                                                    <div class="levels-progress circle">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                        </span>
+                                                    </div>
+                                                    <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">2</a>
+                                                @else
+                                                    <a href="#">
+                                                        <img src="/assets/default/img/panel-lock.png" alt="">
+                                                    </a>
+                                                @endif
+                                            </li>
+                                            @if($treasure_after == 'after_medium')
+                                                @if($level_medium == 1)
+                                                    {!! $treasure_box_opened !!}
+                                                @else
+                                                    {!! $treasure_box_closed !!}
+                                                @endif
+                                            @endif
+                                            <li class="Hard" data-id="{{$dataObj->id}}" quiz_level="hard">
+                                                @if($level_medium == 1)
+                                                    <div class="levels-progress circle">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                        </span>
+                                                    </div>
+                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">3</a>
+                                                @else
+                                                    <a href="#">
+                                                        <img src="/assets/default/img/panel-lock.png" alt="">
+                                                    </a>
+                                                @endif
+                                            </li>
+                                            @if($treasure_after == 'after_hard')
+                                                @if($level_hard == 1)
+                                                    {!! $treasure_box_opened !!}
+                                                @else
+                                                    {!! $treasure_box_closed !!}
+                                                @endif
+                                            @endif
+                                    </ul>
+                                    </div>
+                                    @endforeach
+
+
+
+
+
+                                    <div class="spell-levels">
+                                        <div class="spell-levels-top">
+                                            <div class="spell-top-left">
+                                                <strong>Unit 3 : Grouping and identifying organisms</strong>
+                                                <a href="#" class="words-count simple"><img src="/assets/default/img/skills-icon.png" alt=""><span>80</span>skills</a>
+                                                <div class="levels-progress horizontal">
+                                                    <span class="progress-box">
+                                                        <span class="progress-count" style="width: 40%;"></span>
+                                                    </span>
+                                                    <span class="progress-numbers">04 / 08</span>
+                                                </div>
+                                            </div>
+                                            <div class="spell-top-right">
+                                                <span class="spell-top-img">
+                                                    <img src="/assets/default/img/spell-lelvel-top-img.png" alt="#">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="easy">
+                                                <div class="levels-progress circle">
+                                                    <span class="progress-box">
+                                                        <span class="progress-count"></span>
+                                                    </span>
+                                                </div>
+                                                <a href="#"><img src="/assets/default/img/panel-star.png" alt=""></a>
+                                            </li>
+                                            <li class="intermediate">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="treasure">
+                                                <a href="#"><img src="/assets/default/img/treasure3.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Atoms, elements and the Periodic Table</strong>
+                                                        <span>Complete all Topics above to unlock this!</span>
+                                                        <a href="#" class="locked-btn">Locked</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="treasure">
+                                                <a href="#"><img src="/assets/default/img/treasure3.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <strong>Atoms, elements and the Periodic Table</strong>
+                                                        <span>Complete all Topics above to unlock this!</span>
+                                                        <a href="#" class="locked-btn">Locked</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                                            </li>
+                                            <li class="Hard">
+                                                <a href="#"><img src="/assets/default/img/treasure4.png" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -261,6 +459,15 @@
             document.getElementById(player_id).pause();
         }
     });
+
+    $(document).on('click', '.spell-levels ul li a', function (e) {
+
+        var quiz_id = $(this).closest('li').attr('data-id');
+        var quiz_level = $(this).closest('li').attr('data-quiz_level');
+        localStorage.setItem('quiz_level_'+quiz_id, quiz_level);
+    });
+
+
 
 
 

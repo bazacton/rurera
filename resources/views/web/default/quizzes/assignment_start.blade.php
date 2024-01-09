@@ -137,7 +137,7 @@ $rand_id = rand(99,9999);
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
 
-                        <a href="javascript:;" data-quiz_url="/assignment/{{$assignmentObj->id}}/start"
+                        <a href="javascript:;" data-id="{{$assignmentObj->id}}" data-quiz_url="/assignment/{{$assignmentObj->id}}/start"
                            class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">Start Quiz</a>
                         <div class="learning-content-quiz">
                             @if( isset( $assignmentObj->StudentAssignmentData->description ) && $assignmentObj->StudentAssignmentData->description != '')
@@ -209,7 +209,7 @@ $rand_id = rand(99,9999);
                                         <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->unanswered }} </td>
                                         <td>{{ ($resultObj->status == 'waiting')? '-' : $resultObj->percentage.'%'}} </td>
                                         @if( $resultObj->status == 'waiting')
-                                            <td><a href="javascript:;" class="quiz-start-btn" data-quiz_url="/assignment/{{$assignmentObj->id}}/start">Resume</a></td>
+                                            <td><a href="javascript:;" data-id="{{$assignmentObj->id}}" class="quiz-start-btn" data-quiz_url="/assignment/{{$assignmentObj->id}}/start">Resume</a></td>
                                         @else
                                         <td><a href="/panel/quizzes/{{$resultObj->result_id}}/check_answers">Check Answers</a></td>
                                         @endif

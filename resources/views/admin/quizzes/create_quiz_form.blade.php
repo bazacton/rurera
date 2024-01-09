@@ -136,6 +136,35 @@
                     </div>
                 </div>
 
+                <div class="conditional-fields vocabulary-fields">
+                    <div class="form-group mt-15 ">
+                        <label class="input-label d-block">Treasure</label>
+                        <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][treasure_after]"
+                                class="form-control" data-placeholder="Select Topic Size">
+                            <option value="no_treasure" {{ (!empty($quiz) and $quiz->treasure_after == 'no_treasure') ? 'selected' : ''
+                                }}>No Treasure
+                            </option>
+                            <option value="after_easy" {{ (!empty($quiz) and $quiz->treasure_after == 'after_easy') ? 'selected'
+                                : '' }}>After Easy
+                            </option>
+                            <option value="after_medium" {{ (!empty($quiz) and $quiz->treasure_after == 'after_medium') ? 'selected' : ''
+                                }}>After Medium
+                            </option>
+                            <option value="after_hard" {{ (!empty($quiz) and $quiz->treasure_after == 'after_hard') ? 'selected' : ''
+                                }}>After Hard
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label">Treasure Coins</label>
+                        <input type="number"
+                               value="{{ !empty($quiz) ? $quiz->treasure_coins : old('treasure_coins') }}"
+                               name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][treasure_coins]"
+                               class="form-control @error('treasure_coins')  is-invalid @enderror"
+                               placeholder=""/>
+                    </div>
+                </div>
+
                 <div class="conditional-fields vocabulary-fields practice-fields sats-fields">
 
                     <div class="form-group">

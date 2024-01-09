@@ -5,6 +5,7 @@
     $rtlLanguages = !empty($generalSettings['rtl_languages']) ? $generalSettings['rtl_languages'] : [];
 
     $isRtl = ((in_array(mb_strtoupper(app()->getLocale()), $rtlLanguages)) or (!empty($generalSettings['rtl_layout']) and $generalSettings['rtl_layout'] == 1));
+        $rand_no = rand(99,9999);
 @endphp
 <head>
     @include(getTemplate().'.includes.metas')
@@ -16,8 +17,8 @@
     <link rel="stylesheet" href="/assets/default/vendors/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="/assets/default/vendors/simplebar/simplebar.css">
-    <link rel="stylesheet" href="/assets/default/css/app.css">
-    <link rel="stylesheet" href="/assets/default/css/panel.css">
+    <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
+    <link rel="stylesheet" href="/assets/default/css/panel.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 
     @if($isRtl)
@@ -63,32 +64,55 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                         <div class="panel-right-sidebar">
                             <div class="row">
-                                        <div class="col-12 col-lg-12 mt-35">
-                                            <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
-                                                <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
+                            <div class="col-12 col-lg-12 mt-35">
+                                <div class="panel-rightside-menu">
+                                    <div class="user-info">
+                                        <a href="#">
+                                            <img src="/assets/default/img/user-menu-img.png" alt="">
+                                            <span>
+                                                <strong>KaiserK7</strong>
+                                                <span>View Your Profile</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#">Account</a></li>
+                                        <li><a href="#">Password</a></li>
+                                        <li><a href="#">Reward Points</a></li>
+                                        <li><a href="#">Shop Orders</a></li>
+                                        <li><a href="#">Notification</a></li>
+                                        <li><a href="#">Profile Setting</a></li>
+                                        <li><a href="#">School link</a></li>
+                                        <li><a href="#">Support Desk</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mt-35">
+                                <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
+                                    <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
-                                                @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
-                                                    <div class="noticeboard-item py-15">
-                                                        <div class="d-flex align-items-center justify-content-between">
-                                                            <div>
-                                                                <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
-                                                                <div class="font-12 text-gray mt-5">
-                                                                    <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
-                                                                    |
-                                                                    <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div>
-                                                                <button type="button" data-id="{{ $getUnreadNoticeboard->id }}" class="js-noticeboard-info btn btn-sm btn-border-white">{{ trans('panel.more_info') }}</button>
-                                                                <input type="hidden" class="js-noticeboard-message" value="{{ $getUnreadNoticeboard->message }}">
-                                                            </div>
-                                                        </div>
+                                    @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
+                                        <div class="noticeboard-item py-15">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
+                                                    <div class="font-12 text-gray mt-5">
+                                                        <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
+                                                        |
+                                                        <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
                                                     </div>
-                                                @endforeach
+                                                </div>
 
+                                                <div>
+                                                    <button type="button" data-id="{{ $getUnreadNoticeboard->id }}" class="js-noticeboard-info btn btn-sm btn-border-white">{{ trans('panel.more_info') }}</button>
+                                                    <input type="hidden" class="js-noticeboard-message" value="{{ $getUnreadNoticeboard->message }}">
+                                                </div>
                                             </div>
                                         </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
                                     </div>
                         </div>
                         @include('web.default.includes.footer')
@@ -145,7 +169,7 @@
 @stack('scripts_bottom')
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
 <script src="/assets/default/js/question-layout.js"></script>
-<script src="/assets/default/js//parts/main.min.js"></script>
+<script src="/assets/default/js//parts/main.min.js?ver={{$rand_no}}"></script>
 <script src="/assets/default/js/panel/public.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>

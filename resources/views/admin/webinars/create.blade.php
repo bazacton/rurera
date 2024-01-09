@@ -84,6 +84,20 @@
                                                     @enderror
                                                 </div>
                                                 @endif
+
+                                            <div class="form-group mt-15 ">
+                                                <label class="input-label d-block">Subject Type</label>
+                                                <select name="subject_type" class="custom-select @error('subject_type')  is-invalid @enderror">
+                                                    <option value="Course" @if((!empty($webinar) and $webinar->subject_type == 'Course') or old('subject_type') == 'Course') selected @endif>Course</option>
+                                                    <option value="Other" @if((!empty($webinar) and $webinar->subject_type == 'Other') or old('subject_type') == 'Other') selected @endif>Other</option>
+                                                </select>
+
+                                                @error('subject_type')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
 											
 											
 											<div class="form-group mt-15 ">
@@ -145,6 +159,16 @@
                                                 </div>
                                                 @enderror
                                             </div>
+
+                                            <div class="form-group mt-15">
+                                               <label class="input-label">Custom URL</label>
+                                               <input type="text" name="custom_url" value="{{ !empty($webinar) ? $webinar->custom_url : old('custom_url') }}" class="form-control @error('custom_url')  is-invalid @enderror" placeholder=""/>
+                                               @error('custom_url')
+                                               <div class="invalid-feedback">
+                                                   {{ $message }}
+                                               </div>
+                                               @enderror
+                                           </div>
 
                                             @if(!empty($webinar) and $webinar->creator->isOrganization())
                                                 <div class="form-group mt-15 ">

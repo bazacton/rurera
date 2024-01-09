@@ -12,6 +12,7 @@ use App\Models\UserVocabulary;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use Illuminate\Support\Facades\Route;
 
 class SpellsController extends Controller
 {
@@ -23,9 +24,10 @@ class SpellsController extends Controller
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $summary_type = 'vocabulary';
-        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
+
+        //$QuestionsAttemptController->after_attempt_complete(1);
         $page = Page::where('link', '/spells')->where('status', 'publish')->first();
+        //pre(auth()->user()->vocabulary_achieved_levels);
 
 
         $UserVocabulary = UserVocabulary::where('user_id', $user->id)->where('status', 'active')->first();
@@ -34,31 +36,15 @@ class SpellsController extends Controller
         $non_mastered_words = isset($UserVocabulary->non_mastered_words) ? (array)json_decode($UserVocabulary->non_mastered_words) : array();
 
 
-        $graphs_array = array();
 
         $start_date = strtotime('2023-09-20');
         $end_date = strtotime('2023-09-26');
-
-        $custom_dates = array(
-            'start' => $start_date,
-            'end'   => $end_date,
-        );
-
-        $graphs_array['Custom'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'custom', $start_date, $end_date);
-
-        $graphs_array['Year'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'yearly');
-        $graphs_array['Month'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'monthly');
-        $graphs_array['Week'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'weekly');
-        $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
-        $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
-
 
         $year_group = $request->get('year_group', null);
         $subject = $request->get('subject', null);
         $examp_board = $request->get('examp_board', null);
         $year_id = $request->get('year', '');
         $quiz_category = $request->get('quiz_category', '');
-
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
         if ($year_id != '') {
             $query->where('year_id', $year_id);
@@ -66,20 +52,6 @@ class SpellsController extends Controller
         if ($quiz_category != '' && $quiz_category != 'All') {
             $query->where('quiz_category', $quiz_category);
         }
-
-
-        $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
-        $parent_assigned_list = array();
-        if (!empty($parent_assignedArray)) {
-            foreach ($parent_assignedArray as $parent_assignedObj) {
-                $topic_id = isset($parent_assignedObj['topic_id']) ? $parent_assignedObj['topic_id'] : 0;
-                $assigned_to_id = isset($parent_assignedObj['assigned_to_id']) ? $parent_assignedObj['assigned_to_id'] : 0;
-                $deadline_date = isset($parent_assignedObj['deadline_date']) ? $parent_assignedObj['deadline_date'] : 0;
-                $parent_assigned_list[$topic_id][$assigned_to_id] = $parent_assignedObj;
-                $parent_assigned_list[$topic_id]['deadline_date'] = $deadline_date;
-            }
-        }
-
 
         if (!empty($year_group) and $year_group !== 'All') {
             $query->where('year_group', $year_group);
@@ -93,28 +65,13 @@ class SpellsController extends Controller
             $query->where('examp_board', $examp_board);
         }
 
-        $spellsData = $query->paginate(100);
+        $spellsData = $query->paginate(200);
 
 
-        $childs = array();
-        if (auth()->check() && auth()->user()->isParent()) {
-            $childs = User::where('role_id', 1)
-                ->where('parent_type', 'parent')
-                ->where('parent_id', $user->id)
-                ->where('status', 'active')
-                ->get();
-        }
-
-        if (auth()->check() && auth()->user()->isTeacher()) {
-            $childs = User::where('role_id', 1)
-                ->where('parent_type', 'teacher')
-                ->where('parent_id', $user->id)
-                ->where('status', 'active')
-                ->get();
-        }
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
+
 
         if (!empty($spellsData)) {
             $data = [
@@ -123,11 +80,6 @@ class SpellsController extends Controller
                 'pageRobot'                  => $page->robot ? 'index, follow, all' : 'NOODP, nofollow, noindex',
                 'data'                       => $spellsData,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
-                'childs'                     => $childs,
-                'parent_assigned_list'       => $parent_assigned_list,
-                'graphs_array'               => $graphs_array,
-                'summary_type'               => $summary_type,
-                'custom_dates'               => $custom_dates,
                 'user_mastered_words'        => $mastered_words,
                 'user_in_progress_words'     => $in_progress_words,
                 'user_non_mastered_words'    => $non_mastered_words,
@@ -139,10 +91,11 @@ class SpellsController extends Controller
         abort(404);
     }
 
-    public function words_list(Request $request, $quiz_year, $quiz_slug)
+    public function words_list(Request $request, $quiz_slug)
     {
 
-        $categoryObj = Category::where('slug', $quiz_year)->first();
+        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
+        $categoryObj = Category::where('slug', $category_slug)->first();
         $mastered_words = $in_progress_words = $non_mastered_words = array();
         $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
         $UserVocabulary = array();
@@ -312,7 +265,7 @@ class SpellsController extends Controller
     /*
      * Start SAT Quiz
      */
-    public function start(Request $request, $quiz_year, $quiz_slug)
+    public function start(Request $request, $quiz_slug)
     {
         if (!auth()->check()) {
             //return redirect('/login');
@@ -321,7 +274,8 @@ class SpellsController extends Controller
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
         }*/
-        $categoryObj = Category::where('slug', $quiz_year)->first();
+        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
+        $categoryObj = Category::where('slug', $category_slug)->first();
         $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;

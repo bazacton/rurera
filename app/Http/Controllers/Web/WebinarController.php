@@ -723,6 +723,7 @@ class WebinarController extends Controller
                     return back()->with(['toast' => $toastData]);
                 }
 
+
                 Sale::create([
                     'buyer_id'       => $user->id,
                     'seller_id'      => $course->creator_id,

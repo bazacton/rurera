@@ -21,6 +21,7 @@ use App\Models\QuizzAttempts;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -378,6 +379,7 @@ class QuizController extends Controller
     {
         //$user = auth()->user();
         $user = getUser();
+        $quiz_level = $request->get('quiz_level', 'easy');
 
         $no_of_questions = 0;
 
@@ -390,7 +392,7 @@ class QuizController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz);
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level);
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -432,9 +434,9 @@ class QuizController extends Controller
 
 
         if ($quiz) {
-
             $show_all_questions = $quiz->show_all_questions;
             $show_all_questions = true;
+
 
             $resultLogObj = $QuestionsAttemptController->createResultLog([
                 'parent_type_id'   => $quiz->id,
@@ -443,6 +445,7 @@ class QuizController extends Controller
                 'no_of_attempts'   => $quiz->attempt,
                 'other_data'       => $other_data,
                 'quiz_breakdown'   => $quiz_breakdown,
+                'quiz_level'       => $quiz_level,
             ]);
 
             $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
@@ -510,9 +513,11 @@ class QuizController extends Controller
 
                         if ($quiz->quiz_type == 'vocabulary') {
 
+
+
                             $layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
 
-                            $correct_answer = $audio_file = $audio_text = $audio_sentense = $field_id = '';
+                            $correct_answer = $audio_file = $word_audio = $audio_text = $audio_sentense = $field_id = '';
                             if (!empty($layout_elements)) {
                                 foreach ($layout_elements as $elementData) {
                                     $element_type = isset($elementData->type) ? $elementData->type : '';
@@ -523,6 +528,7 @@ class QuizController extends Controller
                                     $audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
                                     if ($element_type == 'audio_file') {
                                         $audio_file = $content;
+                                        $word_audio = isset($elementData->word_audio) ? $elementData->word_audio : $word_audio;
                                         $audio_text = $audio_text;
                                         $audio_sentense = $audio_sentense;
                                     }
@@ -532,12 +538,15 @@ class QuizController extends Controller
                                     }
                                 }
                             }
+
+                            $audio_file = ($quiz_level == 'hard')? $word_audio : $audio_file;
                             $word_data = array(
                                 'audio_text'       => $audio_text,
                                 'audio_sentense'   => $audio_sentense,
                                 'audio_defination' => $audio_defination,
                                 'audio_file'       => $audio_file,
                                 'field_id'         => $field_id,
+                                'word_audio'       => $word_audio,
                             );
 
                             $total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
@@ -603,6 +612,7 @@ class QuizController extends Controller
                 $attemptLogObj->update([
                     'questions_list' => json_encode($questions_list),
                 ]);
+                $questionDisplayCounter = 1;
                 foreach ($results_questions_array as $resultQuestionID => $resultsQuestionsData) {
 
                     $resultsQuestionsData['prev_question'] = 0;
@@ -621,6 +631,27 @@ class QuizController extends Controller
                     }
 
                     if ($quiz->quiz_type == 'vocabulary') {
+
+
+
+                        //$quiz_level = 'medium';
+                        //$quiz_level = 'hard';
+                        $time_interval = 25;
+                        $duration_type = 'per_question';
+                        if( $quiz_level == 'hard') {
+                            $time_interval = 10;
+                            if ($questionDisplayCounter >= 7) {
+                                $time_interval = 15;
+                            }
+                        }
+                        if( $quiz_level == 'easy'){
+                            $duration_type = 'no_time_limit';
+                        }
+                        $resultsQuestionsData['quiz_level'] = $quiz_level;
+                        $resultsQuestionsData['time_limit'] = $time_interval;
+                        $resultsQuestionsData['time_interval'] = $time_interval;
+                        $resultsQuestionsData['duration_type'] = $duration_type;
+
                         $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {
                         $questionObjData = $resultsQuestionsData['question'];
@@ -692,6 +723,7 @@ class QuizController extends Controller
                         $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
+                    $questionDisplayCounter++;
                 }
             }
 
@@ -723,6 +755,12 @@ class QuizController extends Controller
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $active_question_id,
             ];
+
+            if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {
+                $data['duration_type'] = isset( $duration_type)? $duration_type : '';
+                $data['practice_time'] = isset( $time_interval )? $time_interval : '';
+                $data['time_interval'] = isset( $time_interval )? $time_interval : '';
+            }
 
             $start_layout_file = get_quiz_start_layout_file($quiz);
             return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);

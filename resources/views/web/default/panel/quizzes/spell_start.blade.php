@@ -205,8 +205,8 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
-
+                    <div class="question-area-block" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
+                                                                     data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
 
@@ -301,7 +301,7 @@ $timer_counter = $practice_time;
 
     var duration_type = '{{$duration_type}}';
     console.log(duration_type);
-    console.log('start-page-----');
+    console.log('spell-start-page-----');
 
     function quiz_default_functions() {
 

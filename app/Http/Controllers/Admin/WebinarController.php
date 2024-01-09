@@ -736,6 +736,9 @@ class WebinarController extends Controller
             'seo_title'         => isset($data['seo_title']) ? $data['seo_title'] : '' ,
             'seo_robot_access'         => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0 ,
             'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
+            'custom_url'         => isset($data['custom_url']) ? $data['custom_url'] : '' ,
+            'subject_type'         => isset($data['subject_type']) ? $data['subject_type'] : 'Course' ,
+
 
         ]);
 
@@ -1044,6 +1047,9 @@ class WebinarController extends Controller
             'seo_title'         => isset($data['seo_title']) ? $data['seo_title'] : '' ,
             'seo_robot_access'         => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0 ,
             'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
+            'custom_url'         => isset($data['custom_url']) ? $data['custom_url'] : '' ,
+            'subject_type'         => isset($data['subject_type']) ? $data['subject_type'] : 'Course' ,
+
 
         ]);
 
