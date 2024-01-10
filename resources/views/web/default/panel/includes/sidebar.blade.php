@@ -139,12 +139,21 @@
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
+
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/more.png">
                         </span>
-                        <span class="text-dark-blue font-weight-500"><a href="/panel/analytics">More</a></span>
+                        <span class="text-dark-blue font-weight-500"><a href="javascript:;" class="dropdown-toggle" id="sub-dropdown" data-toggle="dropdown" aria-expanded="true">More</a></span>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="sub-dropdown">
+                        <ul>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">More</a></li>
+                            <li><a href="#">More</a></li>
+                        </ul>
+                    </div>
                 </li>
 
 

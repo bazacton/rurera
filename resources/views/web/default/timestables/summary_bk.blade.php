@@ -10,8 +10,9 @@
 
 @section('content')
 <section class="heatmap-section">
+    <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-10 mx-auto">
+            <div class="col-12 col-lg-12 mx-auto">
                 <div class="heatmap-section-inner">
                     <div class="heatmap-heading mb-30 pl-15">
                         <h2 class="font-weight-normal m-0 font-18">Average per Table</h2>
@@ -98,30 +99,26 @@
                                 <th></th>
                                 @php $count = 2; @endphp
                                 @while($count <= 20)
-                                <th colspan="11" class="header-th">{{$count}} Table</th>
+                                <th class="{{ ($count > 12 )? 'above_12' : 'below_12'}}">{{$count}}</th>
                                 @php $count++; @endphp
                                 @endwhile
                             </tr>
                             </thead>
 
 
-
-                            @if( !empty( $times_tables_data ) )
                             @php $table_main_count = 1; $dates_array = array(); @endphp
-                            @foreach( $times_tables_data as $date => $user_tables_data)
+                            @if( !empty( $times_tables_data ) )
+                            @foreach( $times_tables_data as $date => $tableData)
                             @php $activeClass = ($table_main_count == 1)? 'active' : 'hide'; $dates_array[] = $date; @endphp
                             <tbody class="summary-table-item {{$activeClass}}" data-datestring="{{$date}}">
-
-
-                            @foreach( $user_tables_data as $summary_user_id => $tableData)
-                            <tr>
-
-                            <td>{{$summary_user_id}}</td>
                             @php $count = 2; @endphp
-                            @while($count <= 20)
+                            @while($count <= 16)
                             @php $table_count = 2;
                             $from_table_array = isset( $tableData[$count] )? $tableData[$count] : array();
                             @endphp
+
+                            <tr>
+                                <td>{{$count}}</td>
                                 @while($table_count <= 20)
                                 @php
                                 $to_tableObj = isset( $from_table_array[$table_count] )?
@@ -133,14 +130,10 @@
                                     <span>{{$count}} <span>&#215;</span> {{$table_count}}</span></td>
                                 @php $table_count++; @endphp
                                 @endwhile
+                            </tr>
 
                             @php $count++; @endphp
                             @endwhile
-
-
-
-                            </tr>
-                            @endforeach
                             </tbody>
                             @php $table_main_count++; @endphp
                             @endforeach
@@ -180,6 +173,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 @endsection
@@ -188,7 +182,7 @@
 <script src="/assets/default/vendors/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript">
     if (jQuery('#storlekslider').length > 0) {
-        var valMap = <?php echo isset( $dates_array )? json_encode($dates_array) : ''; ?>;
+        var valMap = <?php echo json_encode($dates_array); ?>;
         const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         $("#storlekslider").slider({
             max: valMap.length - 1,
@@ -224,12 +218,9 @@
         var type_limit  = $(this).attr('data-type_limit');
         if( type_limit == 12){
             $(".above_12").hide();
-            $(".header-th").attr('colspan', 11);
         }
         if( type_limit == 20){
             $(".above_12").show();
-            $(".header-th").attr('colspan', 19);
-
         }
     });
 </script>

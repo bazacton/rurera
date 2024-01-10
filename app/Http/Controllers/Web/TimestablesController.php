@@ -177,6 +177,7 @@ class TimestablesController extends Controller
                 'no_of_attempts'   => 100,
                 'other_data'       => json_encode($questions_list),
                 'user_ip'          => getUserIP(),
+                'attempt_mode'     => 'freedom_mode',
             ]);
 
             $QuizzAttempts = QuizzAttempts::create([
@@ -355,7 +356,8 @@ class TimestablesController extends Controller
                 ->where('parent_id', $user->id)
                 ->where('status', 'active')->pluck('id')->toArray();
         }
-        $times_tables_data = $this->user_times_tables_data($user_ids, 'x');
+        //$times_tables_data = $this->user_times_tables_data($user_ids, 'x');
+        $times_tables_data = $this->user_times_tables_data_single_user($user_ids, 'x');
         $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
         $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
         $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
@@ -368,7 +370,8 @@ class TimestablesController extends Controller
             'first_date'        => $first_date,
             'user_ids'          => $user_ids,
         ];
-        return view('web.default.timestables.summary', $data);
+        //return view('web.default.timestables.summary', $data);
+        return view('web.default.timestables.summary_bk', $data);
     }
 
     /*
@@ -460,6 +463,161 @@ class TimestablesController extends Controller
             'first_date'   => $first_date,
         );
     }
+
+    public function user_times_tables_data_single_user($user_id, $data_type = '')
+    {
+        $user_ids = is_array($user_id) ? $user_id : array($user_id);
+        //DB::enableQueryLog();
+        $times_tables_data = QuizzesResult::whereIn('user_id', $user_ids)->where('quiz_result_type', 'timestables')->orderBy('created_at', 'asc')->get();
+        $times_tables_data = $times_tables_data->groupBy(function ($times_tables_obj) {
+            return date('Y-m-d', $times_tables_obj->created_at);
+        });
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+        $tables_array = $average_time = $total_average_time = array();
+        $first_date = '';
+        if (!empty($times_tables_data)) {
+            foreach ($times_tables_data as $date => $times_tables_array) {
+                if ($first_date == '') {
+                    $first_date = date("d F Y", strtotime($date));
+                }
+                $date = strtotime($date);
+                if (!empty($times_tables_array)) {
+                    foreach ($times_tables_array as $times_tablesObj) {
+                        $current_user_id = $times_tablesObj->user->full_name;//$times_tablesObj->user_id;
+                        $results = json_decode($times_tablesObj->other_data);
+
+                        if (!empty($results)) {
+                            foreach ($results as $table_no => $table_rows) {
+                                $time_consumed = 0;
+                                $timeTables_type = 'x';
+                                if (!empty($table_rows)) {
+                                    foreach ($table_rows as $tableRowObj) {
+                                        if (!isset($tableRowObj->type) || $tableRowObj->type != 'x') {
+                                            $timeTables_type = '÷';
+                                            continue;
+                                        }
+                                        if ($data_type == '' || $tableRowObj->type == $data_type) {
+                                            $time_consumed += ($tableRowObj->time_consumed / 10);
+
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['label'] = $tableRowObj->from . ' ' . $tableRowObj->type . ' ' . $tableRowObj->to;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['time_consumed'] = ($tableRowObj->time_consumed / 10);
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['is_correct'] = ($tableRowObj->is_correct == 'true') ? true : false;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['table_to'] = $tableRowObj->to;
+                                            $class = ($tableRowObj->is_correct == 'true') ? 'correct' : 'wrong';
+                                            $class = ($class == 'correct' && ($tableRowObj->time_consumed / 10) < 2) ? 'correct-fast' : $class;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['class'] = $class;
+                                        }
+                                    }
+                                }
+                                if ($timeTables_type == 'x') {
+                                    $average_time[$table_no]['time_consumed'] = $time_consumed;
+                                    $table_rows_count = is_array($table_rows) ? count($table_rows) : 0;
+                                    $average_time[$table_no]['total_records'] = $table_rows_count;
+                                    $average_time[$table_no]['average_time'] = ($table_rows_count > 0) ? round($time_consumed / $table_rows_count, 2) : 0;
+                                    $average_time_str = ($table_rows_count > 0) ? round($time_consumed / $table_rows_count, 2) : 0;
+
+
+                                    $total_average_time[$table_no]['time_consumed'] = isset($total_average_time[$table_no]['time_consumed']) ? $total_average_time[$table_no]['time_consumed'] + $time_consumed : $time_consumed;
+                                    $total_average_time[$table_no]['total_records'] = isset($total_average_time[$table_no]['total_records']) ? $total_average_time[$table_no]['total_records'] + $table_rows_count : $table_rows_count;
+                                    $total_average_time[$table_no]['average_time'] = isset($total_average_time[$table_no]['average_time']) ? $total_average_time[$table_no]['average_time'] + $average_time_str : $average_time_str;
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $tables_array_final = $tables_last_data = [];
+        if (!empty($tables_array)) {
+            foreach ($tables_array as $datestr => $userData) {
+
+                if (!empty($user_ids)) {
+                    foreach ($user_ids as $user_id) {
+                        $user_full_name = User::where('id', $user_id)->value('full_name');
+                        $tables_array_final[$datestr] = isset($userData) ? $userData : array();
+                        $tables_last_data = isset($userData) ? $userData : array();
+                    }
+                }
+            }
+        }
+
+
+
+        return array(
+            'average_time' => $total_average_time,
+            'tables_array' => $tables_array_final,
+            'tables_last_data' => $tables_last_data,
+            'first_date'   => $first_date,
+        );
+    }
+
+    /*
+     * Get Timestables Result Data
+     * @return the Incorrect / Excess Time taken / Not Attempted
+     * @It only check the numbers those attempted by User e.g if User attempted the table 2, 3, 5 It will only get records for these not others
+     *
+     * @return - Array
+     */
+    public function get_timestables_attempted_result($tables_last_data){
+
+        $incorrect_array = $excess_time_array = $not_attempted_array = $tables_array = $improvement_required_array = array();
+
+        if( !empty( $tables_last_data ) ){
+            foreach( $tables_last_data as $table_no => $table_data){
+                $tables_array[] = $table_no;
+
+                $multiply_with_counter = 12;
+                $counter = 1;
+                while($counter <= $multiply_with_counter){
+                    $is_attempted = isset( $table_data[$counter] )? true : false;
+
+                    //Not Attempted
+                    if( $is_attempted == false){
+                        $not_attempted_array[][$table_no] = $counter;
+                        $improvement_required_array[][$table_no] = $counter;
+
+                    }
+                    $counter++;
+                }
+
+                if( !empty( $table_data ) ){
+                    foreach( $table_data as $table_to => $table_conducted_data){
+
+                        $is_correct = (isset( $table_conducted_data['is_correct'] ) && $table_conducted_data['is_correct'] == 1)? true : false;
+                        $is_excess_time = (isset( $table_conducted_data['time_consumed'] ) && $table_conducted_data['time_consumed'] > 1)? true : false;
+
+                        //Incorrect
+                        if( $is_correct == false){
+                            $incorrect_array[][$table_no] = $table_to;
+                            $improvement_required_array[][$table_no] = $table_to;
+                        }
+
+                        //Excess Time
+                        if( $is_excess_time == true){
+                            $excess_time_array[][$table_no] = $table_to;
+                            $improvement_required_array[][$table_no] = $table_to;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
+        return array(
+            'incorrect_array' => $incorrect_array,
+            'excess_time_array' => $excess_time_array,
+            'not_attempted_array' => $not_attempted_array,
+            'improvement_required_array' => $improvement_required_array,
+            'tables_array' => $tables_array,
+        );
+    }
+
+
 
     /*
      * TimesTables Assignments Create
@@ -584,6 +742,171 @@ class TimestablesController extends Controller
         die();
     }
 
+
+    /*
+     * Generate Power-up Quiz
+     */
+    public function generate_powerup(Request $request)
+    {
+        if (!auth()->check()) {
+            //return redirect('/login');
+        }
+        /*if (!auth()->subscription('timestables')) {
+            return view('web.default.quizzes.not_subscribed');
+        }*/
+        $user = getUser();
+
+        $times_tables_data = $this->user_times_tables_data_single_user(array($user->id), 'x');
+        $tables_last_data = isset($times_tables_data['tables_last_data']) ? $times_tables_data['tables_last_data'] : array();
+        $timestables_attempted_result = $this->get_timestables_attempted_result($tables_last_data);
+        $tables_numbers = isset($timestables_attempted_result['tables_array']) ? $timestables_attempted_result['tables_array'] : array();
+        $incorrect_array = isset($timestables_attempted_result['incorrect_array']) ? $timestables_attempted_result['incorrect_array'] : array();
+        $excess_time_array = isset($timestables_attempted_result['excess_time_array']) ? $timestables_attempted_result['excess_time_array'] : array();
+        $not_attempted_array = isset($timestables_attempted_result['not_attempted_array']) ? $timestables_attempted_result['not_attempted_array'] : array();
+        $improvement_required_array = isset($timestables_attempted_result['improvement_required_array']) ? $timestables_attempted_result['improvement_required_array'] : array();
+
+
+
+        $question_type = 'multiplication';
+        $no_of_questions = 400;
+        $practice_time = $request->post('practice_time');
+        $practice_time_seconds = ($practice_time * 60);
+        //pre($practice_time_seconds);
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+
+        $total_questions = $no_of_questions;
+        $marks = 5;
+
+
+        $questions_list = $already_exists = $questions_array_list = array();
+
+        if( !empty( $improvement_required_array ) ){
+            foreach( $improvement_required_array as $required_data_key => $required_data_array){
+                if( !empty( $required_data_array ) ){
+                    foreach( $required_data_array as $required_data_from => $required_data_to){
+                        $questions_array_list[] = (object)array(
+                            'from'     => $required_data_from,
+                            'to'       => $required_data_to,
+                            'type'     => 'x',
+                            'table_no' => $required_data_from,
+                            'marks'    => $marks,
+                        );
+                    }
+                }
+
+            }
+        }
+
+
+        $max_questions = 12;
+        $current_question_max = 1;
+        $questions_no_array = [];
+        while ($current_question_max <= $max_questions) {
+            $questions_no_array[$current_question_max] = $current_question_max;
+            $current_question_max++;
+        }
+
+        //pre($questions_no_array);
+
+        $questions_no_array_fixed = $questions_no_array;
+
+        $questions_count = 1;
+        if ($total_questions > 0) {
+            while ($questions_count <= $total_questions) {
+                $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
+                $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                if (empty($questions_no_array)) {
+                    $questions_no_array = $questions_no_array_fixed;
+                }
+                $questions_no_array = array_values($questions_no_array);
+                shuffle($questions_no_array);
+                $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                $dynamic_no = rand($dynamic_min, $dynamic_max);
+                $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                if (isset($questions_no_array[$dynamic_no])) {
+                    unset($questions_no_array[$dynamic_no]);
+                    $questions_no_array = array_values($questions_no_array);
+                }
+
+                $last_value = ($questions_no_dynamic) * $table_no;
+                $from_value = ($type == '÷') ? $last_value : $table_no;
+                $limit = 12;
+                $min = 2;
+                $min = ($type == '÷') ? 1 : $min;
+                $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                //$to_value = rand($min, $limit);
+                $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                $questions_array_list[] = (object)array(
+                    'from'     => $from_value,
+                    'to'       => $to_value,
+                    'type'     => $type,
+                    'table_no' => $table_no,
+                    'marks'    => $marks,
+                );
+                $questions_count++;
+            }
+
+            shuffle($questions_array_list);
+
+
+            $question_show_count = 0;
+
+            while ($question_show_count < $no_of_questions) {
+                if ($question_show_count < 20) {
+                    $questions_list[] = (object)isset($questions_array_list[$question_show_count]) ? $questions_array_list[$question_show_count] : array();
+                } else {
+                    $question_counter = rand(2, 19);
+                    $questions_list[] = (object)isset($questions_array_list[$question_counter]) ? $questions_array_list[$question_counter] : array();
+                }
+                $question_show_count++;
+
+            }
+
+
+            $QuizzesResult = QuizzesResult::create([
+                'user_id'          => $user->id,
+                'results'          => json_encode($questions_list),
+                'user_grade'       => 0,
+                'status'           => 'waiting',
+                'created_at'       => time(),
+                'quiz_result_type' => 'timestables',
+                'no_of_attempts'   => 100,
+                'other_data'       => json_encode($questions_list),
+                'user_ip'          => getUserIP(),
+                'attempt_mode'     => 'powerup_mode',
+            ]);
+
+            $QuizzAttempts = QuizzAttempts::create([
+                'quiz_result_id' => $QuizzesResult->id,
+                'user_id'        => $user->id,
+                'start_grade'    => $QuizzesResult->user_grade,
+                'end_grade'      => 0,
+                'created_at'     => time(),
+                'attempt_type'   => $QuizzesResult->quiz_result_type,
+                'user_ip'        => getUserIP(),
+            ]);
+            $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+        }
+
+
+        $data = [
+            'pageTitle'       => 'Start',
+            'questions_list'  => $questions_list,
+            'QuizzAttempts'   => $QuizzAttempts,
+            'duration_type'   => 'total_practice',
+            'time_interval'   => 0,
+            'practice_time'   => $practice_time_seconds,
+            'total_questions' => $total_questions,
+        ];
+        //return view('web.default.timestables.start', $data);
+        return view('web.default.timestables.start_powerup_mode', $data);
+    }
+
     /*
     * TimesTables Global Arena
     */
@@ -608,6 +931,54 @@ class TimestablesController extends Controller
         echo $rendered_view;
         die();
     }
+
+    /*
+    * TimesTables Freedom Mode Layout
+    */
+    public function freedom_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+        //DB::enableQueryLog();
+        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+
+
+        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+
+
+        $rendered_view = view('web.default.timestables.freedom_mode', [])->render();
+        echo $rendered_view;
+        die();
+    }
+
+    /*
+    * TimesTables Power-up Mode Layout
+    */
+    public function powerup_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+        //DB::enableQueryLog();
+        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+
+
+        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+
+
+        $rendered_view = view('web.default.timestables.powerup_mode', [])->render();
+        echo $rendered_view;
+        die();
+    }
+
+
 
 
     /*

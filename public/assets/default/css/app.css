@@ -13122,10 +13122,11 @@ a.badge-circle-gray200.focus,
 a.badge-circle-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94.5%, .5);}
 .nav-tabs .nav-item a.active:after {content: "";position: absolute;bottom: 0;left: 50%;width: 85%;height: 5px;background-color: var(--primary);border-radius: 5px;transform: translate(-50%, 17px);}
 .rtl .nav-tabs .nav-item a.active:after {bottom: 2px;}
-.dropdown-menu {padding: 15px; min-width: 325px; transform: translate3d(0, 54px, 0) !important; z-index: 511; border: unset;top: 40%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
+.dropdown-menu {padding: 15px; min-width: 325px; z-index: 511; border: unset;top: 40%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
 .dropdown:hover .dropdown-menu {opacity: 1; visibility: visible;margin-top: -5px;}
 .dropdown-menu.user-profile-dropdown {min-width: 125px;}
 .dropdown-menu.user-profile-dropdown .dropdown-item {padding: 5px 0 !important;}
+header .dropdown-menu {transform: translate3d(0, 54px, 0) !important;}
 /* .dropdown-menu:after {
     content: "";
     position: absolute;
@@ -13137,6 +13138,18 @@ a.badge-circle-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94
     border-right: 10px solid transparent;
     border-bottom: 10px solid #fff
 } */
+.panel-sidebar .sidebar-menu .dropdown-menu[x-placement^=top]:before {
+    bottom: -6px;
+    top: auto;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.panel-sidebar .sidebar-menu .dropdown-menu[x-placement^=top] {
+    margin-top: -10px;
+}
+.panel-sidebar .sidebar-menu .dropdown-menu {transition: none; margin-top: 10px;}
 .dropdown-menu.user-profile-dropdown .dropdown-item:active {background-color: inherit;}
 html.html-modal-open {overflow: hidden;touch-action: none;}
 .img-cover {width: 100%; height: 100%; overflow: hidden; -o-object-fit: cover; object-fit: cover; -o-object-position: 50% 50%; object-position: 50% 50%;}
@@ -13331,6 +13344,11 @@ p {line-height: 1.5;}
 .user-profile-dropdown .sub-dropdown {position: relative; z-index: 1; margin-left: -20px; padding-left: 20px;}
 .user-profile-dropdown .sidenav-item-collapse {position: absolute; top: 0; right: 100%; background-color: #fff; visibility: hidden; opacity: 0; width: 170px; padding: 15px; text-align: right; border-radius: 10px; box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .16); transition: all .3s; transform: translate3d(0, 54px, 0);}
 .user-profile-dropdown .sub-dropdown:hover .sidenav-item-collapse {opacity: 1; visibility: visible; transform: translate3d(0, 0, 0);}
+.user-profile-icons {margin: 0 0 30px;}
+.user-profile-icons ul {display: flex; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;}
+.user-profile-icons .dropdown > a > img {width: 28px; height: 28px; }
+.user-profile-icons li strong {display: inline-flex; align-items: center; gap: 10px;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: -20px; bottom: auto; left: auto; right: -10px;}
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {height: 462px; overflow: hidden !important; overflow-y: auto !important;}
     .top-navbar .dropdown .dropdown-menu.show {top: 0 !important; transform: none !important; margin-top: 0;}
@@ -17374,13 +17392,15 @@ Questions Select, Questions Block style End
 Heatmap Table style Start
 ***************************/
 .heatmap-section {position: relative; background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; padding-top: 70px; padding-bottom: 70px;}
+.panel-content .heatmap-section {padding: 0; background: none;}
 .heatmap-section-inner {background-color: rgba(248,248,248,0.6); padding: 30px; border: 1px solid rgb(186, 195, 202); border-radius: 8px;}
+.panel-content .heatmap-section-inner {background-color: inherit;}
 .heatmap-heading span {display: block; font-size: 14px; padding-top: 0; line-height: normal;}
 .heatmap-heading {position: relative;}
 .heatmap-heading:before {background-color: #6d6d6d; content: ""; height: 1px; position: absolute; left: 0; top: 50%; width: 9px;}
-.heatmap-table-boxes li {padding-left: 8px; flex: 2 1 0;}
+.heatmap-table-boxes li {flex: 2 1 0;}
 .heatmap-box {background-color: #60a747; min-height: 130px; border-radius: 5px; overflow: hidden; padding: 12px 0 0; min-width: 150px;}
-.heatmap-table-boxes ul {margin-left: -8px;}
+.heatmap-table-boxes ul {flex-wrap: wrap; gap: 10px;}
 .box-top {background-color: rgba(0,0,0,0.2); color: #fff; display: flex; margin: 0 0 30px;}
 .box-top span {flex-basis: 100%; text-align: center; padding: 6px 0;}
 .box-body {display: flex; width: 100%;}
@@ -17850,6 +17870,7 @@ Product Tabs Slider Style Start
 .spells-option select option {padding: 5px 0 5px; margin: 10px;}
 .spells-topbar {background-color: #f5f5f5; margin: 0 0 30px; display: flex; align-items: center; justify-content: space-between; padding: 10px 25px;}
 .spells-topbar .view-btn {border-radius: 50pc; padding: 10px 25px; box-shadow: 0 0 0; border-bottom: 4px solid rgba(0,0,0,0.5);}
+.panel-content .spells-topbar .view-btn {min-width: 130px; text-align: center;}
 .spells .play-btn {display: inline-block; position: relative; width: 20px; height: 20px; vertical-align: middle; }
 .play-btn img {position: absolute; left: 0; top: 50%; margin-top: -10px; width: 20px; -webkit-transition: all 0.4s ease-in-out; transition: all 0.4s ease-in-out;}
 .play-btn .pause-icon {filter: invert(20%) sepia(5%) saturate(18%) hue-rotate(348deg) brightness(89%) contrast(94%); opacity: 0;}
@@ -18097,7 +18118,7 @@ span.preloader-text {
 
 /* Spell Levels Style Start */
 .spell-levels ul {display: flex; align-items: center; flex-wrap: wrap; gap: 30px; justify-content: center;}
-.spell-levels li > a {display: inline-flex; height: 60px; width: 70px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 1;}
+.spell-levels li > a {display: inline-flex; height: 60px; width: 70px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 3;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
 .spell-levels {background-color: #f7f7f7; border: 1px solid #e5e5e5; border-radius: 8px; padding: 30px 30px 60px 40px; margin: 0 0 30px;}
 .spell-levels .easy a {background-color: #57cc02; color: #fff; box-shadow: 0 6px 0 1px #44a404; }
@@ -18107,10 +18128,73 @@ span.preloader-text {
 .words-count span {margin-right: 5px;}
 .words-count img {margin-right: 8px; width: 15px; object-fit: contain;}
 .spell-levels ul li {position: relative; margin-bottom: -15px; padding-bottom: 15px; }
-.levels-progress.circle {position: absolute; top: -16px; left: -15px;}
+/* .levels-progress.circle {position: absolute; top: -16px; left: -15px;}
 .circle .progress-box {border: 8px solid #e5e5e5; display: inline-block; border-radius: 100%; height: 100px; width: 100px; position: relative; }
 .circle .progress-count {border: 8px solid #57cc02; position: absolute; height: 120%; width: 120%; border-radius: 100%; top: -8px; left: -8px;}
-.circle .progress-count:before {position: absolute; left: -9px; top: -9px; width: 121%; height: 121%; border-radius: 100%; content: ""; border: 9px solid #e5e5e5; border-bottom-color: transparent; border-right-color: transparent;}
+.circle .progress-count:before {position: absolute; left: -9px; top: -9px; width: 121%; height: 121%; border-radius: 100%; content: ""; border: 9px solid #e5e5e5; border-bottom-color: transparent; border-right-color: transparent;} */
+
+
+.levels-progress.circle {
+    font-size: 100px;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    top: -17px;
+    left: -15px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.levels-progress.circle .progress-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    clip: rect(0 1em 1em 0.5em);
+}
+.levels-progress.circle .progress-count {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    background: #57cc02;
+    clip: rect(0 1em 1em 0.5em);
+    transform: rotate(180deg);
+    transition: 1.05s;
+}
+.levels-progress.circle.percent_more .progress-box {
+    clip: rect(0 0.5em 1em 0em);
+}
+.percent_more:after {
+    position: absolute;
+    left: 0.5em;
+    top: 0em;
+    right: 0;
+    bottom: 0;
+    background: #57cc02;
+    content: "";
+}
+.circle_inbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background: #fff;
+    z-index: 3;
+    border-radius: 50%;
+}
+.percent_text {
+    position: absolute;
+    font-size: 36px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: none;
+}
 .spell-top-left {flex-direction: column;}
 .words-count.simple {margin-top: 10px; padding: 0; min-height: auto; border: 0; background-color: inherit; min-width: auto; text-transform: uppercase;}
 .levels-progress.horizontal .progress-box {background-color: #ccc; height: 18px; border-radius: 50px; display: block; position: relative; overflow: hidden; min-width: 270px; max-width: 270px;}
@@ -18125,25 +18209,29 @@ span.preloader-text {
 .spell-levels ul li:hover .spell-tooltip {opacity: 1; visibility: visible; margin-top: 0; }
 .spell-levels li > a:active {box-shadow: 0 4px 0 1px #b0b0b0;}
 .spell-levels li.easy > a:active {box-shadow: 0 4px 0 1px #44a404;}
-.spell-levels.levels-grouping li > a {background-color: inherit; height: 80px; width: 80px; box-shadow: 0 0 0 5px #20b774; padding: 5px; }
+.spell-levels.levels-grouping li > a {background-color: inherit; height: 80px; width: 80px; box-shadow: none; padding: 0; }
 .spell-levels.levels-grouping li > a:before {content: ""; height: 60%; width: 4px; position: absolute; left: 50%; top: 100%; margin-left: -2px; background-color: #0ebe73;}
 .spell-levels.levels-grouping {background-color: inherit;}
 .spell-levels.levels-grouping ul {justify-content: flex-start; flex-direction: column; align-items: flex-start;}
 .spell-levels.levels-grouping li {display: flex; align-items: center; flex-wrap: wrap; padding: 0; margin: 0 0 30px;}
 .spell-levels.levels-grouping li:last-child {margin-bottom: 0;}
 .spell-levels.levels-grouping li .spell-tooltip {position: relative; opacity: 1; visibility: visible; left: 0; top: 0; bottom: auto; width: calc(100% - 80px); background-color: initial; border: 0;padding: 0 0 0 25px;   margin: 0;}
-.levels-grouping li > a .thumb-box {display: inline-block;width: 100%; height: 100%; border-radius: 100%; background-color: #ddd;}
+.levels-grouping li > a .thumb-box {display: inline-block;width: 100%; height: 100%; border-radius: 100%; background-color: #ddd; position: relative; z-index: 3;}
 .levels-grouping li > a .thumb-box img {max-width: 100%;height: 100%; width: 100%; border-radius: 100%; object-fit: fill;}
 .levels-grouping .treasure > a .thumb-box img {object-fit: contain; height: auto; border-radius: 0; }
 .levels-grouping li .spell-tooltip-text span {margin: 0; color: #666;}
 .levels-grouping .spell-tooltip-text strong {color: #333; margin-bottom: 5px; font-weight: 500; font-size: 18px;}
 .levels-grouping .spell-tooltip:before {display: none;}
-.spell-levels.levels-grouping li > a:after {content: "\2713"; position: absolute; bottom: -10px; left: 50%; height: 24px; width: 24px; background-color: #15bc76; border-radius: 100%; margin-left: -12px; color: #fff; font-size: 14px; line-height: 24px; box-shadow: 0 0 0 3px #fff; text-align: center; }
+.spell-levels.levels-grouping li > a:after {content: "\2713"; position: absolute; bottom: -15px; left: 50%; height: 24px; width: 24px; background-color: #15bc76; border-radius: 100%; margin-left: -12px; color: #fff; font-size: 14px; line-height: 24px; box-shadow: 0 0 0 3px #fff; text-align: center; z-index: 3; }
 .spell-levels.levels-grouping li:last-child a:before,
 .spell-levels.levels-grouping li:last-child a:after {display: none;}
 .spell-levels.levels-grouping li.treasure a {box-shadow: none; padding: 0;}
 .spell-levels.levels-grouping li.treasure a .thumb-box {background-color: inherit; }
 .spell-levels.levels-grouping li.treasure a:after {display: none;}
+.levels-grouping .levels-progress.circle {left: -10px;top: -10px;}
+.levels-grouping .circle_inbox {border-radius: 100%; width: 90%; height: 90%; left: 5px; top: 5px;}
+.levels-grouping .percent_more:after,
+.levels-grouping .levels-progress.circle .progress-count {background: #0ebe73;}
 .levels-grouping .spell-levels-top strong {color: #626262;}
 .panel-content .search-top-banner {padding: 25px 25px 0 !important; min-height: auto;}
 .panel-content .education-icon-box li:nth-child(1) {left: -38px; top: 15px; }
@@ -18624,7 +18712,6 @@ Lms Responsive Style Start
     .spell-levels.levels-grouping li > a:after{display: none;}
     .levels-grouping .spell-levels-top strong {text-align: center;}
     .spell-levels-top {flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 15px; margin-bottom: 45px;}
-    .levels-progress.circle {top: -15px; left: -15px;}
     .spell-levels {padding: 30px 30px 50px;}
     .circle .progress-box {height: 90px; width: 90px;}
     .spell-levels li > a {height: 50px; width: 60px;}

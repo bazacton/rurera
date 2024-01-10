@@ -1,4 +1,4 @@
-@extends(getTemplate().'.layouts.app')
+@extends('web.default.panel.layouts.panel_layout')
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
@@ -16,7 +16,7 @@
 @section('content')
 
 <section class="content-section">
-    <section class="pt-10" style="background-color: var(--panel-bg);">
+    <section class="pt-10">
         <button type="button" class="spells-back-btn">
             <span>&#8592;</span>
         </button>

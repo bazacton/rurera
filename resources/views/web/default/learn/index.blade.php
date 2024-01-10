@@ -29,7 +29,7 @@
                         <div class="levels-progress horizontal">
                             <span class="progress-numbers">02/40 Skills</span>
                             <span class="progress-box">
-                                <span class="progress-count" style="width: 0%;"></span>
+                                <span class="progress-count" style="width: 10%;"></span>
                             </span>
                         </div>
                         <span class="subject-info">08 Units and 40 Lessons</span>
@@ -58,7 +58,7 @@
                         <div class="levels-progress horizontal">
                             <span class="progress-numbers">02/40 Skills</span>
                             <span class="progress-box">
-                                <span class="progress-count" style="width: 0%;"></span>
+                                <span class="progress-count" style="width: 30%;"></span>
                             </span>
                         </div>
                         <span class="subject-info">08 Units and 40 Lessons</span>
@@ -92,7 +92,7 @@
                         <div class="levels-progress horizontal">
                             <span class="progress-numbers">02/40 Skills</span>
                             <span class="progress-box">
-                                <span class="progress-count" style="width: 0%;"></span>
+                                <span class="progress-count" style="width: 50%;"></span>
                             </span>
                         </div>
                         <span class="subject-info">08 Units and 40 Lessons</span>

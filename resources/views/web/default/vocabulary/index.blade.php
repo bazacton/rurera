@@ -73,6 +73,11 @@
                                         <ul>
                                             <li>
                                                 <a href="#">
+                                                    <div class="levels-progress circle" data-percent="85">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                      </span>
+                                                    </div>
                                                     <span class="thumb-box">
                                                         <img src="/assets/default/img/thumb1.png" alt="">
                                                     </span>
@@ -86,6 +91,11 @@
                                             </li>
                                             <li>
                                                 <a href="#">
+                                                    <div class="levels-progress circle" data-percent="55">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                      </span>
+                                                    </div>
                                                     <span class="thumb-box">
                                                         <img src="/assets/default/img/thumb1.png" alt="">
                                                     </span>
@@ -106,7 +116,13 @@
                                             </li>
 
                                             <li>
+
                                                 <a href="#">
+                                                    <div class="levels-progress circle" data-percent="75">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                      </span>
+                                                    </div>
                                                     <span class="thumb-box">
                                                         <img src="/assets/default/img/thumb1.png" alt="">
                                                     </span>
@@ -119,6 +135,11 @@
                                                 </div>
                                             </li><li>
                                                 <a href="#">
+                                                    <div class="levels-progress circle" data-percent="30">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                      </span>
+                                                    </div>
                                                     <span class="thumb-box">
                                                         <img src="/assets/default/img/thumb1.png" alt="">
                                                     </span>
@@ -229,8 +250,8 @@
                                             </div>
                                         </div>
                                         <ul class="justify-content-start">
-                                            <li class="easy" data-id="{{$dataObj->id}}" data-quiz_level="easy">
-                                                <div class="levels-progress circle">
+                                            <li class="easy {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="easy">
+                                                <div class="levels-progress {{($level_easy == 0)? 'circle' : ''}}" data-percent="75">
                                                     <span class="progress-box">
                                                         <span class="progress-count"></span>
                                                     </span>
@@ -244,9 +265,9 @@
                                                     {!! $treasure_box_closed !!}
                                                 @endif
                                             @endif
-                                            <li class="intermediate" data-id="{{$dataObj->id}}" data-quiz_level="medium">
+                                            <li class="intermediate {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="medium">
                                                 @if($level_easy == 1)
-                                                    <div class="levels-progress circle">
+                                                    <div class="levels-progress {{($level_medium == 0)? 'circle' : ''}}" data-percent="75">
                                                         <span class="progress-box">
                                                             <span class="progress-count"></span>
                                                         </span>
@@ -265,9 +286,9 @@
                                                     {!! $treasure_box_closed !!}
                                                 @endif
                                             @endif
-                                            <li class="Hard" data-id="{{$dataObj->id}}" quiz_level="hard">
+                                            <li class="Hard {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" quiz_level="hard">
                                                 @if($level_medium == 1)
-                                                    <div class="levels-progress circle">
+                                                    <div class="levels-progress {{($level_hard == 0)? 'circle' : ''}}" data-percent="75">
                                                         <span class="progress-box">
                                                             <span class="progress-count"></span>
                                                         </span>

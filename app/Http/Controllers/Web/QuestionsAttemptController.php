@@ -739,6 +739,9 @@ class QuestionsAttemptController extends Controller
         //pre($question_response_layout);
         $quiz_type = (isset($assignment_type) && $assignment_type != '') ? $assignment_type : $quizAttempt->attempt_type;
 
+
+        $populated_response = 'Test Goes here';
+
         $response = array(
             'show_fail_message'        => $show_fail_message,
             'is_complete'              => $is_complete,
@@ -754,6 +757,7 @@ class QuestionsAttemptController extends Controller
             'quiz_type'                => $quiz_type,
             'question_result_id'       => isset($newQuestionResult->id) ? $newQuestionResult->id : '',
             'total_points'             => $total_points,
+            'populated_response'       => $populated_response,
             'single_question_layout'   => $single_question_layout,
             'updated_questions_layout' => $updated_questions_layout,
             'question_solution'        => isset($questionObj->question_solve) ? '<div class="question-solution">' . $questionObj->question_solve . '</div>' : '',
@@ -2295,7 +2299,6 @@ class QuestionsAttemptController extends Controller
             $total_correct = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->pluck('question_id')->toArray();
             $correct_percentage = (count($total_correct) * 100) / count($total_questions);
             $correct_percentage = round($correct_percentage);
-            $correct_percentage = 80;
             if ($correct_percentage >= 80) {
 
 

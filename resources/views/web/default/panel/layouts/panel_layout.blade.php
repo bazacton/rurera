@@ -65,25 +65,133 @@
                         <div class="panel-right-sidebar">
                             <div class="row">
                             <div class="col-12 col-lg-12 mt-35">
+                                <div class="user-profile-icons">
+                                    <ul>
+                                        <li>
+                                            <div class="notifications">
+                                               <strong>
+                                                   <img src="/assets/default/img/panel-sidebar/1.png" alt="">
+                                                   @if(!empty($unReadNotifications) and count($unReadNotifications))
+                                                      {{ count($unReadNotifications) }}
+                                                   @else
+                                                   0
+                                                   @endif
+                                               </strong>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="assignments">
+                                               <strong>
+                                                   <img src="/assets/default/img/panel-sidebar/2.png" alt="">
+                                                  0
+                                               </strong>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="levels">
+                                               <strong>
+                                                   <img src="/assets/default/img/panel-sidebar/3.png" alt="">
+                                                   0
+                                               </strong>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="coin-counts">
+                                               <strong>
+                                                   <img src="/assets/default/img/panel-sidebar/4.png" alt="">
+                                                   {{$authUser->getRewardPoints()}}
+                                               </strong>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="xs-w-100 d-flex align-items-center justify-content-between">
+                                                @if(!empty($authUser))
+                                                <!-- <div class="d-flex">
+                                                    <div class="border-left mx-5 mx-lg-15"></div>
+                                                </div> -->
+                                                @endif
+
+                                                @if(!empty($authUser))
+
+
+                                                <div class="dropdown">
+                                                    <a href="#!" class="navbar-user d-flex align-items-center dropdown-toggle" type="button"
+                                                       id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <img src="{{ $authUser->getAvatar() }}" class="rounded-circle"
+                                                             alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                                                             alt="rounded circle" loading="eager" title="rounded circle">
+                                                    </a>
+
+                                                    <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
+                                                        <div class="dropdown-item user-nav-detail">
+                                                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                                                             alt="rounded circle" loading="eager" title="rounded circle">
+                                                            <span class="font-14 text-dark-blue user-name">{{ $authUser->full_name }}</span>
+                                                            <span class="font-14 text-dark-blue user-email">{{ $authUser->email }}</span>
+                                                            <a href="/panel" class="font-14 text-dark-blue user-manage-btn">Manage Account</a>
+                                                        </div>
+                                                        <div class="d-md-none border-bottom mb-20 pb-10 text-right">
+                                                            <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
+                                                        </div>
+
+
+                                                        @if( !empty( $profile_navs ) )
+                                                        <div class="user-nav-list">
+                                                        @foreach( $profile_navs as $profile_nav)
+
+                                                        <a class="dropdown-item " href="/panel/switch_user/{{$profile_nav['id']}}">
+                                                            <img src="{{ $profile_nav->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
+                                                             alt="rounded circle" loading="eager" title="rounded circle">
+                                                            @php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent' :  $profile_nav['full_name']; @endphp
+                                                            <span class="font-14 text-dark-blue user-list-name">{{ $full_name }}</span>
+                                                            <span class="font-14 text-dark-blue user-list-email">{{ $profile_nav['email'] }}</span>
+                                                        </a>
+
+                                                        @endforeach
+                                                        </div>
+                                                        @endif
+
+                                                        <a class="dropdown-item nav-logout" href="/logout">
+                                                            <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image"
+                                                                 width="25" alt="nav-icon" title="nav-icon" loading="eager">
+                                                            <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @else
+                                                <div class="d-flex align-items-center ml-md-50">
+                                                    <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">Log in</a>
+                                                    <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Try for free</a>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </li>
+                                    </ul>
+
+
+
+
+                                </div>
                                 <div class="panel-rightside-menu">
                                     <div class="user-info">
                                         <a href="#">
-                                            <img src="/assets/default/img/user-menu-img.png" alt="">
+
+                                            <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                                                                                                         alt="User Avatar" loading="eager" title="User Avatar">
                                             <span>
-                                                <strong>KaiserK7</strong>
+                                                <strong>{{ $authUser->full_name }}</strong>
                                                 <span>View Your Profile</span>
                                             </span>
                                         </a>
                                     </div>
                                     <ul>
-                                        <li><a href="#">Account</a></li>
-                                        <li><a href="#">Password</a></li>
-                                        <li><a href="#">Reward Points</a></li>
-                                        <li><a href="#">Shop Orders</a></li>
-                                        <li><a href="#">Notification</a></li>
-                                        <li><a href="#">Profile Setting</a></li>
+                                        <li><a href="/panel/setting">Account Setting</a></li>
+                                        <li><a href="/panel/rewards">Reward Points</a></li>
+                                        <li><a href="/panel/store/purchases">Shop Orders</a></li>
+                                        <li><a href="/panel/notifications">Notification</a></li>
                                         <li><a href="#">School link</a></li>
-                                        <li><a href="#">Support Desk</a></li>
+                                        <li><a href="/panel/support">Support Desk</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -114,8 +222,9 @@
                                 </div>
                             </div>
                                     </div>
+                            @include('web.default.includes.footer')
                         </div>
-                        @include('web.default.includes.footer')
+
                   </div>
                 </div>
             </div>

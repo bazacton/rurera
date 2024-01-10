@@ -264,6 +264,33 @@ $timer_counter = $practice_time;
 </div>
 @endif
 
+
+<div class="question-status-modal">
+  <div class="modal fade spell_test_complete_modal" id="spell_test_complete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Congratulations</h3>
+            </div>
+            <p>
+              You have successfully passed the spelling quiz.
+            </p>
+              @php
+              $current_quiz_level = isset( $newQuizStart->quiz_level )? $newQuizStart->quiz_level : '';
+              $next_level = ($current_quiz_level == 'easy')? 'medium' : $current_quiz_level;
+              $next_level = ($current_quiz_level == 'medium')? 'hard' : $next_level;
+              @endphp
+            <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Results</a>
+            <a href="javascript:;" data-id="{{$quiz->id}}" data-quiz_level="{{$next_level}}" class="js_link_clickable" data-href="/{{isset( $quiz->quizYear->slug )? $quiz->quizYear->slug : ''}}/{{$quiz->quiz_slug}}/spelling/exercise">Next Level</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog">
        <div class="modal-content">
@@ -291,6 +318,17 @@ $timer_counter = $practice_time;
 
 <script>
     //init_question_functions();
+
+
+    $("body").on("click", ".js_link_clickable", function (e) {
+        var href_link = $(this).attr('data-href');
+        var quiz_id = $(this).attr('data-id');
+        var quiz_level = $(this).attr('data-quiz_level');
+        localStorage.setItem('quiz_level_'+quiz_id, quiz_level);
+        window.location.href = href_link;
+    });
+
+
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;
@@ -300,33 +338,44 @@ $timer_counter = $practice_time;
     var Quizintervals = null;
 
     var duration_type = '{{$duration_type}}';
+    var timePaused = false;
     console.log(duration_type);
     console.log('spell-start-page-----');
 
     function quiz_default_functions() {
 
         Quizintervals = setInterval(function () {
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            if (duration_type == 'no_time_limit') {
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            } else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-            if ($('.nub-of-sec').length > 0) {
-                $('.nub-of-sec').html(getTime(quiz_timer_counter));
-            }
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+            if( timePaused == false) {
+                var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+                if (duration_type == 'no_time_limit') {
+                    quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+                } else {
+                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+                }
+                $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                if ($('.nub-of-sec').length > 0) {
+                    $('.nub-of-sec').html(getTime(quiz_timer_counter));
+                }
+                $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
 
-            if (duration_type == 'per_question') {
-                if (parseInt(quiz_timer_counter) == 0) {
-                    clearInterval(Quizintervals);
-                    $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                    $('#question-submit-btn')[0].click();
+                if (duration_type == 'per_question') {
+                    if (parseInt(quiz_timer_counter) == 0) {
+                        clearInterval(Quizintervals);
+                        $('.question-submit-btn').attr('data-bypass_validation', 'yes');
+                        $('#question-submit-btn')[0].click();
+                    }
                 }
             }
 
         }, 1000);
+
+        $("body").on("click", ".question-submit-btn", function (e) {
+            timePaused = true;
+        });
+
+        $("body").on("click", ".question-next-btn", function (e) {
+            timePaused = false;
+        });
 
         $("body").on("click", ".increasetext", function (e) {
             curSize = parseInt($('.learning-page').css('font-size')) + 2;
@@ -365,5 +414,6 @@ $timer_counter = $practice_time;
 
         return return_string;
     }
+
 
 </script>

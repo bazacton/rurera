@@ -43,6 +43,19 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                 </div>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="input-label">Your Preference</label>
+                <select class="form-control"
+                        name="user_preference">
+                    <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
+                </select>
+                @error('display_name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
 
             <div class="form-group">
                 <label class="input-label">Secret Word</label>
@@ -108,5 +121,12 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 
     user_avatar_settings = JSON.parse(user_avatar_settings);
     avatar_color_settings = JSON.parse(avatar_color_settings);
+
+$(document).ready(function () {
+    var start_id = '{{$user->user_preference}}';
+    start_id = (start_id == 'female')? 'girls' : 'boys';
+    $("#svga-start-"+start_id).click();
+});
+
 
 </script>

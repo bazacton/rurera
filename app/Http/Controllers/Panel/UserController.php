@@ -166,6 +166,12 @@ class UserController extends Controller
                 ]);
             }
 
+            if (!empty($data['user_preference'])) {
+                $user->update([
+                    'user_preference' => $data['user_preference']
+                ]);
+            }
+
             $url = '/panel/setting';
 
             $toastData = [
