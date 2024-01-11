@@ -2,14 +2,14 @@
 
 @section('content')
     <section>
-        <h2 class="section-title">{{ trans('update.points_statistics') }}</h2>
+        <h2 class="section-title font-24">{{ trans('update.points_statistics') }}</h2>
 
         <div class="activities-container mt-25 p-20 p-lg-35">
             <div class="row">
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/trophy_cup.png" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $availablePoints }}</strong>
+                        <strong class="font-24 mt-5">{{ $availablePoints }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.available_points') }}</span>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/rank.png" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $totalPoints }}</strong>
+                        <strong class="font-24 mt-5">{{ $totalPoints }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.total_points') }}</span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/spent.png" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $spentPoints }}</strong>
+                        <strong class="font-24 mt-5">{{ $spentPoints }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('update.spent_points') }}</span>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
 
 
     <section class="mt-35">
-        <h2 class="section-title">{{ trans('update.points_statistics') }}</h2>
+        <h2 class="section-title font-24">{{ trans('update.points_statistics') }}</h2>
 
         @if(!empty($rewards))
 

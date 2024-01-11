@@ -112,12 +112,12 @@
                             @php $activeClass = ($table_main_count == 1)? 'active' : 'hide'; $dates_array[] = $date; @endphp
                             <tbody class="summary-table-item {{$activeClass}}" data-datestring="{{$date}}">
                             @php $count = 2; @endphp
-                            @while($count <= 16)
+                            @while($count <= 20)
                             @php $table_count = 2;
                             $from_table_array = isset( $tableData[$count] )? $tableData[$count] : array();
                             @endphp
 
-                            <tr>
+                            <tr class="{{ ($count > 12 )? 'above_12' : 'below_12'}}">
                                 <td>{{$count}}</td>
                                 @while($table_count <= 20)
                                 @php

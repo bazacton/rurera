@@ -12,23 +12,19 @@
                             <li>
                                 <input  type="radio" value="multiplication_division" id="multi-divi" name="question_type" />
                                 <label for="multi-divi" class="d-inline-flex flex-column justify-content-center">
-                                <span class="mb-5">
-                                    8 per correct answer
-                                </span>
+
                                 <strong>Multiplication and Division</strong>
                                 </label>
                             </li>
                             <li>
                                 <input checked type="radio" value="multiplication" id="multi-only" name="question_type" />
                                 <label for="multi-only" class="d-inline-flex flex-column justify-content-center">
-                                <span class="mb-5">4 per correct answer</span>
                                 <strong>Multiplication only</strong>
                                 </label>
                             </li>
                             <li>
                                 <input type="radio" value="division" id="divi-only" name="question_type" />
                                 <label for="divi-only" class="d-inline-flex flex-column justify-content-center">
-                                <span class="mb-5">4 per correct answer</span>
                                 <strong>Division only</strong>
                                 </label>
                             </li>

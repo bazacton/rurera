@@ -83,7 +83,7 @@ if( $duration_type == 'total_practice'){
 
                     </div>
 
-                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
+                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}" data-corrected_questions="0">
 
 
 
@@ -159,6 +159,22 @@ if( $duration_type == 'total_practice'){
             </div>
         </div>
     </section>
+    <div class="powerup-levels">
+        <ul>
+            <li data-minq="0" data-maxq="1">Explorer</li>
+            <li data-minq="2" data-maxq="6">Junior</li>
+            <li data-minq="7" data-maxq="12">Smarty</li>
+            <li data-minq="13" data-maxq="15">Brainy</li>
+            <li data-minq="16" data-maxq="20">Genius</li>
+            <li data-minq="21" data-maxq="30">Creative</li>
+            <li data-minq="31" data-maxq="40">Champion</li>
+            <li data-minq="41" data-maxq="60">Mastery</li>
+            <li data-minq="61" data-maxq="75">Majesty</li>
+            <li data-minq="76" data-maxq="100">Expert</li>
+            <li data-minq="101" data-maxq="600">Maestro</li>
+        </ul>
+    </div>
+
 
 </div>
 <div class="question-status-modal">
@@ -312,6 +328,22 @@ if( $duration_type == 'total_practice'){
         var attempt_id = $(".question-area-block").attr('data-attempt_id');
         var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
         var attempted_questions = parseInt($(".tt_question_no").html());
+        var correct_questions = parseInt($(".question-area-block").attr('data-corrected_questions'));
+
+        $(".powerup-levels ul li").removeClass('active-level');
+
+        $('.powerup-levels ul li').each(function() {
+            var minq = parseInt($(this).attr('data-minq'));
+            var maxq = parseInt($(this).attr('data-maxq'));
+            console.log(minq);
+            console.log(maxq);
+
+            if (correct_questions >= minq && correct_questions <= maxq) {
+              $(this).addClass('active-level'); // You can replace 'active' with your desired class
+            }
+        });
+
+        console.log(correct_questions);
 
         console.log($(this).closest('form'));
         returnType = rurera_validation_process($(this).closest('form'));
@@ -350,6 +382,8 @@ if( $duration_type == 'total_practice'){
             var tt_points = $(".tt_points").html();
             tt_points = parseInt(tt_points) + 1;
             $(".tt_points").html(tt_points);
+            var correct_questions_count = parseInt($(".question-area-block").attr('data-corrected_questions'));
+            $(".question-area-block").attr('data-corrected_questions', parseInt(correct_questions_count)+1);
             $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
         }else{
             $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');

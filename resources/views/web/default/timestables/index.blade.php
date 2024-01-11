@@ -12,8 +12,8 @@
                 <div class="col-12 col-lg-12 mb-30">
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="section-title mb-30">
-                                <h1 itemprop="title" class="font-50 font-weight-bold mb-0">Time Tables</h1>
+                            <div class="section-title mb-20">
+                                <h2 itemprop="title" class="font-24 mb-0">Time Tables</h2>
                             </div>
                         </div>
                         <div class="col-12 col-md-4 col-lg-2">
@@ -22,7 +22,7 @@
                                 <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
                               </div>
                               <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                     <a class="grid-btn ajax-callback" data-type="freedom_mode"  itemprop="Button" href="javascript:;">Freedom mode</a>
                                 </h3>
                               </div>
@@ -59,8 +59,20 @@
                                 <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
                               </div>
                               <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                     <a class="grid-btn ajax-callback" data-type="powerup_mode"  itemprop="Button" href="javascript:;">Power-Up</a>
+                                </h3>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 col-lg-2">
+                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                              <div class="img-holder">
+                                <img src="/store/1/default_images/blogs/blog-18.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
+                              </div>
+                              <div class="text-holder">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <a class="grid-btn ajax-callback" data-type="trophy_mode"  itemprop="Button" href="javascript:;">Trophy Mode</a>
                                 </h3>
                               </div>
                             </div>
@@ -71,7 +83,7 @@
                                 <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
                               </div>
                               <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                   <a itemprop="url" href="/timestables/summary">Heat Map</a>
                                 </h3>
                               </div>
@@ -83,7 +95,7 @@
                                 <img src="/store/1/default_images/blogs/blog-3.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" width="100%" height="160" itemprop="image" loading="eager">
                             </div>
                             <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                 <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Treasure Mission</a>
                                 </h3>
                             </div>
@@ -95,7 +107,7 @@
                                 <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" width="100%" height="160" itemprop="image" loading="eager">
                             </div>
                             <div class="text-holder">
-                                <h3 class="blog-grid-title" itemprop="title">
+                                <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                 <a class="tournament-btn" itemprop="Button" href="#">Tournament</a>
                                 </h3>
                             </div>
@@ -107,7 +119,7 @@
                                     <img src="/store/1/default_images/blogs/blog-38.png" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" width="100%" height="160" itemprop="image" loading="eager">
                                 </div>
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title" itemprop="title">
+                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="global_arena"  itemprop="Button" href="javascript:;">Global Arena</a>
                                     </h3>
                                 </div>

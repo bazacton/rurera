@@ -26,7 +26,7 @@
                                                   @if( !empty( $books ))
                                                   @foreach( $books as $book_category => $category_books)
                                                   <div class="col-lg-12">
-                                                      <h3 class="mb-10 font-36" itemprop="title">{{$book_category}}</h3>
+                                                      <h3 class="mb-10 font-24" itemprop="title">{{$book_category}}</h3>
                                                       <span class="mb-35 d-block" itemprop="sub title">For kids ages 0-3</span>
                                                   </div>
                                                   @if( !empty( $category_books ))
@@ -46,7 +46,7 @@
 
                                                               <div class="col-12 col-lg-6 col-md-5">
                                                                   <div class="text-holder">
-                                                                      <h3 itemprop="title"><a href="/books/{{$bookData->book_slug}}" itemprop="url">{{$bookData->book_title}}</a></h3>
+                                                                      <h3 itemprop="title" class="font-19 font-weight-bold"><a href="/books/{{$bookData->book_slug}}" itemprop="url">{{$bookData->book_title}}</a></h3>
                                                                       <ul itemprop="books info list">
                                                                           <li><span itemprop="info text">Reading Level :</span>{{$bookData->reading_level }}</li>
                                                                           <li><span itemprop="info text">Interest Area :</span>{{$bookData->interest_area }}</li>

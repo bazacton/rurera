@@ -555,6 +555,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/assignment/{assignment_id}' , 'TimestablesController@assignment');
         Route::post('/generate' , 'TimestablesController@genearte');
         Route::post('/generate_powerup' , 'TimestablesController@generate_powerup');
+        Route::post('/generate_trophymode' , 'TimestablesController@generate_trophymode');
         Route::get('/summary' , 'TimestablesController@summary');
         Route::post('/assignment_create' , 'TimestablesController@assignment_create');
 
@@ -566,6 +567,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
         Route::get('/freedom_mode' , 'TimestablesController@freedom_mode');
         Route::get('/powerup_mode' , 'TimestablesController@powerup_mode');
+        Route::get('/trophy_mode' , 'TimestablesController@trophy_mode');
+
     });
 
     Route::group(['prefix' => 'timestables-practice'] , function () {

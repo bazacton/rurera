@@ -766,6 +766,7 @@ class TimestablesController extends Controller
         $improvement_required_array = isset($timestables_attempted_result['improvement_required_array']) ? $timestables_attempted_result['improvement_required_array'] : array();
 
 
+        $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12);
 
         $question_type = 'multiplication';
         $no_of_questions = 400;
@@ -908,6 +909,143 @@ class TimestablesController extends Controller
     }
 
     /*
+     * Generate Power-up Quiz
+     */
+    public function generate_trophymode(Request $request)
+    {
+        if (!auth()->check()) {
+            //return redirect('/login');
+        }
+        /*if (!auth()->subscription('timestables')) {
+            return view('web.default.quizzes.not_subscribed');
+        }*/
+        $user = getUser();
+
+        $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12);
+
+        $question_type = 'multiplication';
+        $no_of_questions = 400;
+        $practice_time = 1;
+        $practice_time_seconds = ($practice_time * 60);
+        //pre($practice_time_seconds);
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+
+        $total_questions = $no_of_questions;
+        $marks = 5;
+
+
+        $questions_list = $already_exists = $questions_array_list = array();
+
+        $max_questions = 12;
+        $current_question_max = 1;
+        $questions_no_array = [];
+        while ($current_question_max <= $max_questions) {
+            $questions_no_array[$current_question_max] = $current_question_max;
+            $current_question_max++;
+        }
+
+        //pre($questions_no_array);
+
+        $questions_no_array_fixed = $questions_no_array;
+
+        $questions_count = 1;
+        if ($total_questions > 0) {
+            while ($questions_count <= $total_questions) {
+                $table_no = isset($tables_numbers[array_rand($tables_numbers)]) ? $tables_numbers[array_rand($tables_numbers)] : 0;
+                $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                if (empty($questions_no_array)) {
+                    $questions_no_array = $questions_no_array_fixed;
+                }
+                $questions_no_array = array_values($questions_no_array);
+                shuffle($questions_no_array);
+                $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                $dynamic_no = rand($dynamic_min, $dynamic_max);
+                $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                if (isset($questions_no_array[$dynamic_no])) {
+                    unset($questions_no_array[$dynamic_no]);
+                    $questions_no_array = array_values($questions_no_array);
+                }
+
+                $last_value = ($questions_no_dynamic) * $table_no;
+                $from_value = ($type == '÷') ? $last_value : $table_no;
+                $limit = 12;
+                $min = 2;
+                $min = ($type == '÷') ? 1 : $min;
+                $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                //$to_value = rand($min, $limit);
+                $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                $questions_array_list[] = (object)array(
+                    'from'     => $from_value,
+                    'to'       => $to_value,
+                    'type'     => $type,
+                    'table_no' => $table_no,
+                    'marks'    => $marks,
+                );
+                $questions_count++;
+            }
+
+            shuffle($questions_array_list);
+
+
+            $question_show_count = 0;
+
+            while ($question_show_count < $no_of_questions) {
+                if ($question_show_count < 20) {
+                    $questions_list[] = (object)isset($questions_array_list[$question_show_count]) ? $questions_array_list[$question_show_count] : array();
+                } else {
+                    $question_counter = rand(2, 19);
+                    $questions_list[] = (object)isset($questions_array_list[$question_counter]) ? $questions_array_list[$question_counter] : array();
+                }
+                $question_show_count++;
+
+            }
+
+
+            $QuizzesResult = QuizzesResult::create([
+                'user_id'          => $user->id,
+                'results'          => json_encode($questions_list),
+                'user_grade'       => 0,
+                'status'           => 'waiting',
+                'created_at'       => time(),
+                'quiz_result_type' => 'timestables',
+                'no_of_attempts'   => 100,
+                'other_data'       => json_encode($questions_list),
+                'user_ip'          => getUserIP(),
+                'attempt_mode'     => 'trophy_mode',
+            ]);
+
+            $QuizzAttempts = QuizzAttempts::create([
+                'quiz_result_id' => $QuizzesResult->id,
+                'user_id'        => $user->id,
+                'start_grade'    => $QuizzesResult->user_grade,
+                'end_grade'      => 0,
+                'created_at'     => time(),
+                'attempt_type'   => $QuizzesResult->quiz_result_type,
+                'user_ip'        => getUserIP(),
+            ]);
+            $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+        }
+
+
+        $data = [
+            'pageTitle'       => 'Start',
+            'questions_list'  => $questions_list,
+            'QuizzAttempts'   => $QuizzAttempts,
+            'duration_type'   => 'total_practice',
+            'time_interval'   => 0,
+            'practice_time'   => $practice_time_seconds,
+            'total_questions' => $total_questions,
+        ];
+        //return view('web.default.timestables.start', $data);
+        return view('web.default.timestables.start_trophy_mode', $data);
+    }
+
+    /*
     * TimesTables Global Arena
     */
     public function global_arena(Request $request)
@@ -974,6 +1112,29 @@ class TimestablesController extends Controller
 
 
         $rendered_view = view('web.default.timestables.powerup_mode', [])->render();
+        echo $rendered_view;
+        die();
+    }
+
+    /*
+    * TimesTables Trophy Mode Layout
+    */
+    public function trophy_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+        //DB::enableQueryLog();
+        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+
+
+        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        //pre(DB::getQueryLog());
+        //DB::disableQueryLog();
+
+
+        $rendered_view = view('web.default.timestables.trophy_mode', [])->render();
         echo $rendered_view;
         die();
     }

@@ -13125,7 +13125,6 @@ a.badge-circle-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94
 .dropdown-menu {padding: 15px; min-width: 325px; z-index: 511; border: unset;top: 40%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
 .dropdown:hover .dropdown-menu {opacity: 1; visibility: visible;margin-top: -5px;}
 .dropdown-menu.user-profile-dropdown {min-width: 125px;}
-.dropdown-menu.user-profile-dropdown .dropdown-item {padding: 5px 0 !important;}
 header .dropdown-menu {transform: translate3d(0, 54px, 0) !important;}
 /* .dropdown-menu:after {
     content: "";
@@ -13204,12 +13203,12 @@ p {line-height: 1.5;}
 .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 25px;}
 .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 25px;}
 @media (max-width:991px) {
-    .panel-content {padding: 90px 15px 30px; width: 100%;}
+    .panel-content {padding: 30px 15px 30px;}
 }
 .panel-content .webinar-card {box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .04) !important;}
 .panel-content .webinar-card:hover {transform: unset !important;box-shadow: 0 8px 23px 0 rgba(62, 73, 84, .15) !important;transition: all .5s ease;}
 .panel-content .webinar-card .image-box:after {border-radius: 10px 0 0 10px;}
-.panel-section-card {border-radius: 10px;box-shadow: 0 0 15px rgba(0,0,0,0.05);background-color: #fff;}
+.panel-section-card {border-radius: 10px;background-color: #fff;}
 /* .section-title h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -13317,15 +13316,16 @@ p {line-height: 1.5;}
 .top-navbar .dropdown-menu.user-profile-dropdown .nav-logout img {display: none; }
 .top-navbar .dropdown-menu.user-profile-dropdown .nav-logout span {font-weight: 500; color: #5a5961;}
 .top-navbar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {border: 0; padding: 5px 0!important; display: inline-block;}
-.dropdown-menu.user-profile-dropdown 
-.user-nav-detail {display: flex; flex-direction: column; justify-content: center; align-items: center;}
 .user-nav-detail .user-name {color: #333; font-weight: 500; display: block; margin: 0 0 5px;}
 .user-nav-detail .user-email {display: block; color: #a5abb7; margin: 0 0 15px;}
 .user-manage-btn {border: 1px solid #d3d4d6; padding: 10px 30px; border-radius: 10px; color: #343e47; font-weight: 500; display: block; text-align: center; margin: 0 auto 10px; width: 80%;}
 .top-navbar .dropdown-menu.user-profile-dropdown:before {display: none;}
 .top-navbar .dropdown-menu.user-profile-dropdown:after {display: none;}
-.dropdown-menu.user-profile-dropdown 
-.user-nav-detail {display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.dropdown-menu.user-profile-dropdown .user-nav-detail {display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px 0;}
+.dropdown-menu.user-profile-dropdown .user-nav-detail img {width: 100px;height: 100px;object-fit: contain;}
+.user-profile-dropdown .nav-logout {display: flex;align-items: center; gap: 10px; flex-wrap: wrap;}
+.user-profile-dropdown .nav-logout span {font-size: 16px;}
+.user-profile-dropdown .dropdown-item:hover {background-color: inherit;}
 .user-nav-detail .user-name {color: #333; font-weight: 500; display: block; margin: 0 0 5px;}
 .user-nav-detail .user-email {display: block;color: #a5abb7;margin: 0 0 15px;}
 .top-navbar .dropdown-menu.user-profile-dropdown .user-nav-detail img {margin: 0 0 15px;}
@@ -13345,10 +13345,10 @@ p {line-height: 1.5;}
 .user-profile-dropdown .sidenav-item-collapse {position: absolute; top: 0; right: 100%; background-color: #fff; visibility: hidden; opacity: 0; width: 170px; padding: 15px; text-align: right; border-radius: 10px; box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .16); transition: all .3s; transform: translate3d(0, 54px, 0);}
 .user-profile-dropdown .sub-dropdown:hover .sidenav-item-collapse {opacity: 1; visibility: visible; transform: translate3d(0, 0, 0);}
 .user-profile-icons {margin: 0 0 30px;}
-.user-profile-icons ul {display: flex; align-items: center; flex-wrap: wrap; gap: 20px; width: 100%;}
+.user-profile-icons ul {display: flex; align-items: center; flex-wrap: wrap; gap: 15px; width: 100%;}
 .user-profile-icons .dropdown > a > img {width: 28px; height: 28px; }
 .user-profile-icons li strong {display: inline-flex; align-items: center; gap: 10px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: -20px; bottom: auto; left: auto; right: -10px;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: 0;}
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {height: 462px; overflow: hidden !important; overflow-y: auto !important;}
     .top-navbar .dropdown .dropdown-menu.show {top: 0 !important; transform: none !important; margin-top: 0;}
@@ -15710,17 +15710,15 @@ Custom Pagination Style End
 .categories-card .topic-numbers {position: absolute; left: 8px; top: 8px; background-color: #b5b0f3; font-size: 10px; padding: 2px 5px; display: inline-block; border-radius: 0 6px; color: #fff; z-index: 1;}
 .categories-element-title {margin: 0 0 30px;}
 .categories-element-title h2,
-.post-show .categories-element-title h2 {overflow: hidden; color: #000;}
+.post-show .categories-element-title h2 {overflow: hidden;}
 .categories-element-title p {margin: 5px 0 0; color: #000; }
 .categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
 .categories-element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; background: #7f7f7f;}
 .subjects-heading {border-bottom: 1px solid #ddd; margin: 0 0 25px; padding: 0 0 20px; }
-.subjects-heading h2 {color: #505050;}
 .categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding: 0 20px 25px; margin: 0 0 25px; transform: none;}
 .categories-card.medium .categories-icon {min-height: 82px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset; min-width: 70px; }
 .categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
-.categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; font-size: 18px; color: #666; margin: 0 0 12px; }
-.categories-card.medium .categories-text .categories-title a {color: #666;}
+.categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
 .categories-card.medium .categories-text .levels-progress.horizontal {position: relative; margin: 0 0 12px; width: 100%;}
 .categories-card.medium .categories-text .levels-progress.horizontal .progress-box {width: 100%; max-width: 100%; background-color: #e5e5e5; height: 14px; }
 .categories-card.medium .progress-numbers {position: absolute; right: 0; top: -30px; font-weight: 400; }
@@ -15753,7 +15751,7 @@ Custom Pagination Style End
 }
 @media (max-width:767px) {
     .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 1; column-count: 1;}
-    .categories-boxes .categories-card {margin-bottom: 30px;}
+    .categories-boxes .categories-card {margin-bottom: 30px; padding-left: 0; padding-right: 0;}
     .pages-sub-header .sub-header-img {display: none;}
 }
 @media (max-width:575px) {
@@ -16330,14 +16328,14 @@ Lms Books Library Style Start
 .lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;} */
 .lms-books-listing .listing-card {margin-bottom: 35px;}
 .lms-books-listing .listing-card figure {position: relative; overflow:hidden; border-radius: 14px; text-align: center;}
-.lms-books-listing .listing-card .img-holder img {border-radius: 14px; box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); max-width: 100%;}
+.lms-books-listing .listing-card .img-holder img {border-radius: 14px; box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); max-width: 100%; object-fit: contain;}
 .lms-books-listing .listing-card .text-holder li img {width: 20px; display: inline-block; vertical-align: bottom;}
 .lms-books-listing .listing-card .text-holder {position: relative;}
 /* .lms-books-listing .listing-card .text-holder h3,
 .lms-books-listing .listing-card .text-holder h1 {margin: 0 0 10px;} */
 .lms-books-listing .listing-card .text-holder ul { margin: 0; padding: 0;}
 .lms-books-listing .listing-card .text-holder li {margin: 0 0 10px; color: #777777; font-weight: 500; font-size: 18px;}
-.lms-books-listing .listing-card .text-holder li span {color: var(--primary); margin-right: 5px;}
+.lms-books-listing .listing-card .text-holder li span {color: #444; margin-right: 5px;}
 .listing-card .btn-holder,
 .book-percentage {position: absolute; right: 15px; top: 50%; transform: translateY(-50%);}
 .listing-card .read-btn, .book-btn {color: var(--primary); font-weight: 600; font-size: 16px; border: 1px solid var(--primary); padding: 15px 25px; border-radius: 8px; border-bottom-width: 5px; background-color: #fff; display: inline-flex; align-items: center; min-width: 206px; vertical-align: middle; position: relative; transform: translate3d(0px, 0%, 0px); overflow: hidden; transition: background 0.4s linear;}
@@ -17788,7 +17786,7 @@ Product Tabs Slider Style Start
 .analytics-data-ul li.has-child > a {position: relative; padding-right: 14px;}
 .graph-data-ul li.has-child > a:after,
 .analytics-data-ul li.has-child > a:after {content: ""; height: 7px; width: 7px; border: 1px solid #0f1338; position: absolute; top: 50%; margin-top: -11px; right: 0; border-top-color: transparent; border-left-color: transparent; transform: rotate(45deg);}
-.chart-filters h3 {color: #0f1338; padding: 0 0 18px;}
+.chart-filters h3 {padding: 0 0 18px;}
 .chart-wraper .sats-summary {border-radius: 0; border: 0; margin: 0 0 25px; padding: 0 0 25px; border-bottom: 1px solid #ededed;}
 .chart-wraper .chart-holder {background-color: #fff; padding: 0;}
 .chart-summary-fields {background-color: #fff; padding: 30px;}
@@ -18120,10 +18118,9 @@ span.preloader-text {
 .spell-levels ul {display: flex; align-items: center; flex-wrap: wrap; gap: 30px; justify-content: center;}
 .spell-levels li > a {display: inline-flex; height: 60px; width: 70px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 3;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
-.spell-levels {background-color: #f7f7f7; border: 1px solid #e5e5e5; border-radius: 8px; padding: 30px 30px 60px 40px; margin: 0 0 30px;}
-.spell-levels .easy a {background-color: #57cc02; color: #fff; box-shadow: 0 6px 0 1px #44a404; }
+.spell-levels {border: 1px solid #e5e5e5; border-radius: 8px; padding: 30px 30px 60px 40px; margin: 0 0 30px;}
+.spell-levels .completed a {background-color: #57cc02; color: #fff; box-shadow: 0 6px 0 1px #44a404; }
 .spell-levels-top {display: flex; align-items: center; justify-content: space-between; margin: 0 0 30px;}
-.spell-levels-top strong {color: #9b9b9b; font-size: 22px; display: block;}
 .words-count {background-color: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 160px; text-align: center; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; line-height: normal; border-bottom-width: 4px; color: #9b9b9b; font-weight: 700;}
 .words-count span {margin-right: 5px;}
 .words-count img {margin-right: 8px; width: 15px; object-fit: contain;}
@@ -18220,7 +18217,7 @@ span.preloader-text {
 .levels-grouping li > a .thumb-box img {max-width: 100%;height: 100%; width: 100%; border-radius: 100%; object-fit: fill;}
 .levels-grouping .treasure > a .thumb-box img {object-fit: contain; height: auto; border-radius: 0; }
 .levels-grouping li .spell-tooltip-text span {margin: 0; color: #666;}
-.levels-grouping .spell-tooltip-text strong {color: #333; margin-bottom: 5px; font-weight: 500; font-size: 18px;}
+.levels-grouping .spell-tooltip-text h4 {margin-bottom: 5px;}
 .levels-grouping .spell-tooltip:before {display: none;}
 .spell-levels.levels-grouping li > a:after {content: "\2713"; position: absolute; bottom: -15px; left: 50%; height: 24px; width: 24px; background-color: #15bc76; border-radius: 100%; margin-left: -12px; color: #fff; font-size: 14px; line-height: 24px; box-shadow: 0 0 0 3px #fff; text-align: center; z-index: 3; }
 .spell-levels.levels-grouping li:last-child a:before,
@@ -18232,7 +18229,6 @@ span.preloader-text {
 .levels-grouping .circle_inbox {border-radius: 100%; width: 90%; height: 90%; left: 5px; top: 5px;}
 .levels-grouping .percent_more:after,
 .levels-grouping .levels-progress.circle .progress-count {background: #0ebe73;}
-.levels-grouping .spell-levels-top strong {color: #626262;}
 .panel-content .search-top-banner {padding: 25px 25px 0 !important; min-height: auto;}
 .panel-content .education-icon-box li:nth-child(1) {left: -38px; top: 15px; }
 .panel-content .education-icon-box li:nth-child(2) {left: 10px; top: -25px; }
@@ -18384,7 +18380,7 @@ Lms Responsive Style Start
     .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .sats-listing-card tbody tr td:nth-child(2) {text-align: left;}
-    .panel-page-section .panel-sidebar {overflow: hidden; position: static !important;}
+    .panel-page-section .panel-sidebar {overflow: hidden; position: static !important; padding-top: 25px !important;}
     .template-grid .grid-card {margin-bottom: 15px;}
     .challenge-box .tab-pane {overflow: hidden; overflow-x: auto;}
     .challenge-box table {overflow: hidden;}
@@ -18428,13 +18424,15 @@ Lms Responsive Style Start
     body .learning-page {padding-top: 0;}
     body .instruction-controls .instruction-text {min-width: auto; height: 450px;}
     body .read-quiz-content .quiz-topbar {position: relative;}
-    body .panel-sidebar .navbar-toggler {position: absolute; right: 20px; top: 50px; display: block;}
+    body .panel-sidebar .navbar-toggler {position: absolute; right: 20px; top: 40px; display: block;}
     body .panel-sidebar .sidebar-logo {align-items: flex-start;}
     body .sidebar-menu-holder {height: 0; visibility: hidden; padding: 0; opacity: 0; position: relative; left: -150%; transition: left .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear;}
     body .sidebar-menu-holder.show {height: auto; opacity: 1; visibility: visible; left: 0;}
-    body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0; padding: 0; top: 10px; right: 0;}
+    body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0; padding: 0; top: 10px; right: 0; z-index: 1;}
     .panel-content .search-top-banner {padding: 25px !important;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
+    .panel-content .panel-right-sidebar {position: relative !important; max-width: 100%;}
+    .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -18619,7 +18617,6 @@ Lms Responsive Style Start
     .search-top-banner .top-search-categories-form .search-input .form-control {box-shadow: 0 0 0 1px rgba(255,255,255,0.2);}
     .search-top-banner .top-search-categories-form .btn {min-width: auto;width: 100%;}
     .footer [class*="col-"] {max-width: 100%;flex: 0 0 100%;}
-    .footer .footer-copyright [class*="col-"] {max-width: 50%;flex: 0 0 50%;}
     .footer .footer-social {text-align: left;}
     .lms-form-wrapper .lms-radio-btn-group li {min-width: 115px;}
     .lms-jobs-form .card-header {flex-direction: column;align-items: flex-start;}
@@ -18713,9 +18710,9 @@ Lms Responsive Style Start
     .levels-grouping .spell-levels-top strong {text-align: center;}
     .spell-levels-top {flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 15px; margin-bottom: 45px;}
     .spell-levels {padding: 30px 30px 50px;}
-    .circle .progress-box {height: 90px; width: 90px;}
-    .spell-levels li > a {height: 50px; width: 60px;}
     .levels-progress.horizontal .progress-box {min-width: auto; width: 100%;}
+    .user-profile-icons ul {gap: 12px;}
+    .panel-content {padding-left: 0; padding-right: 0;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

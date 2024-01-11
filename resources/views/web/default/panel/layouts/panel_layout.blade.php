@@ -64,7 +64,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                         <div class="panel-right-sidebar">
                             <div class="row">
-                            <div class="col-12 col-lg-12 mt-35">
+                            <div class="col-12 col-lg-12 mt-10">
                                 <div class="user-profile-icons">
                                     <ul>
                                         <li>
@@ -88,17 +88,17 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="levels">
+                                            <div class="coin-counts">
                                                <strong>
-                                                   <img src="/assets/default/img/panel-sidebar/3.png" alt="">
+                                                   <img src="/assets/default/img/panel-sidebar/4.png" alt="">
                                                    0
                                                </strong>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="coin-counts">
+                                            <div class="levels">
                                                <strong>
-                                                   <img src="/assets/default/img/panel-sidebar/4.png" alt="">
+                                                   <img src="/assets/default/img/panel-sidebar/3.png" alt="">
                                                    {{$authUser->getRewardPoints()}}
                                                </strong>
                                             </div>
@@ -197,13 +197,13 @@
                             </div>
                             <div class="col-12 col-lg-12 mt-35">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
-                                    <h3 class="font-16 text-dark-blue font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
+                                    <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
                                     @foreach($authUser->getUnreadNoticeboards() as $getUnreadNoticeboard)
                                         <div class="noticeboard-item py-15">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div>
-                                                    <h4 class="js-noticeboard-title font-weight-500 text-secondary">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
+                                                    <h4 class="js-noticeboard-title font-weight-500">{!! truncate($getUnreadNoticeboard->title,150) !!}</h4>
                                                     <div class="font-12 text-gray mt-5">
                                                         <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
                                                         |
@@ -230,6 +230,7 @@
             </div>
         </div>
     </div>
+    <div class="hidden-footer"></div>
 
 
     @include('web.default.includes.advertise_modal.index')
