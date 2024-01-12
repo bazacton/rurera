@@ -80,6 +80,17 @@ class Quiz extends Model implements TranslatableContract
         return $this->hasMany('App\Models\QuizzesResult' , 'quiz_id' , 'id');
     }
 
+    public function parentResults()
+    {
+        return $this->hasMany('App\Models\QuizzesResult' , 'parent_type_id' , 'id');
+    }
+
+    public function parentResultsQuestions()
+    {
+        return $this->hasMany('App\Models\QuizzResultQuestions', 'parent_type_id', 'id')
+            ->where('status', 'correct');
+    }
+
     public function creator()
     {
         return $this->belongsTo('App\User' , 'creator_id' , 'id');
@@ -99,6 +110,7 @@ class Quiz extends Model implements TranslatableContract
     {
         return $this->hasOne('App\Models\UsersAchievedLevels', 'parent_id', 'id')->where('parent_type', 'vocabulary');
     }
+
 
     public function certificates()
     {

@@ -25,7 +25,7 @@ class SpellsController extends Controller
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        //$QuestionsAttemptController->after_attempt_complete(1);
+        //$QuestionsAttemptController->after_attempt_complete(6);
         $page = Page::where('link', '/spells')->where('status', 'publish')->first();
         //pre(auth()->user()->vocabulary_achieved_levels);
 

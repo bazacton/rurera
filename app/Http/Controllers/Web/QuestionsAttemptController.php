@@ -731,7 +731,7 @@ class QuestionsAttemptController extends Controller
         if ($is_complete == true) {
             $QuizzesResult = QuizzesResult::find($resultLogObj->id);
             $QuizzesResult->update(['status' => 'passed']);
-            $this->after_attempt_complete($resultLogObj);
+            $this->after_attempt_complete($QuizzesResult);
         }
 
 
@@ -1470,6 +1470,7 @@ class QuestionsAttemptController extends Controller
                 }
             }
         }
+        $this->after_attempt_complete($QuizzesResult);
         $response = array('question_response_layout' => $question_response_layout);
         echo json_encode($response);
         exit;
@@ -2295,13 +2296,17 @@ class QuestionsAttemptController extends Controller
          * Vocabulary Quiz Test Completion Start
          */
         if ($quiz_result_type == 'vocabulary') {
+            $quizObj = $resultLogObj->parentQuiz;
+            $treasure_after = isset( $quizObj->treasure_after )? $quizObj->treasure_after : 'no_treasure';
+            $treasure_coins = isset( $quizObj->treasure_coins )? $quizObj->treasure_coins : 'treasure_coins';
+            $total_quiz_questions = isset( $quizObj->quizQuestionsList )? count($quizObj->quizQuestionsList) : 0;
+
             $total_questions = isset($resultLogObj->questions_list) ? json_decode($resultLogObj->questions_list) : array();
-            $total_correct = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->pluck('question_id')->toArray();
-            $correct_percentage = (count($total_correct) * 100) / count($total_questions);
-            $correct_percentage = round($correct_percentage);
+
+            $total_attempted_questions = $quizObj->parentResultsQuestions->where('quiz_level', $resultLogObj->quiz_level)->count();
+            $correct_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_quiz_questions) : 0;
+
             if ($correct_percentage >= 80) {
-
-
 
                 $UsersAchievedLevelsObj = UsersAchievedLevels::where('parent_id', $resultLogObj->parent_type_id)->where('parent_type', $resultLogObj->quiz_result_type)->first();
                 if (isset($UsersAchievedLevelsObj->id)) {
@@ -2331,6 +2336,26 @@ class QuestionsAttemptController extends Controller
                         'updated_at'   => time(),
                         'created_at'   => time(),
                     ]);
+                    $treasure_after_level = '';
+                    $treasure_after_level = ($treasure_after == 'after_easy')? 'easy' : $treasure_after_level;
+                    $treasure_after_level = ($treasure_after == 'after_medium')? 'medium' : $treasure_after_level;
+                    $treasure_after_level = ($treasure_after == 'after_hard')? 'hard' : $treasure_after_level;
+                    if( $treasure_after_level == $quiz_level) {
+                        RewardAccounting::create([
+                            'user_id'       => $user->id,
+                            'item_id'       => 0,
+                            'type'          => 'coins',
+                            'score'         => $treasure_coins,
+                            'status'        => 'addiction',
+                            'created_at'    => time(),
+                            'parent_id'     => $quizObj->id,
+                            'parent_type'   => 'vocabulary_treasure',
+                            'full_data'     => '',
+                            'updated_at'    => time(),
+                            'assignment_id' => 0,
+                            'result_id'     => $resultLogObj->id,
+                        ]);
+                    }
                 }
             }
         }

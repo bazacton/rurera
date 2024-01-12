@@ -2,7 +2,7 @@
 
 @section('content')
     <section>
-        <h2 class="section-title">{{ trans('panel.notifications') }}</h2>
+        <h2 class="section-title font-24">{{ trans('panel.notifications') }}</h2>
 
         @if(!empty($notifications) and !$notifications->isEmpty())
             @foreach($notifications as $notification)
@@ -14,8 +14,8 @@
                             @endif
 
                             <div class="">
-                                <h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{ $notification->title }}</h3>
-                                <span class="notification-time d-block font-12 text-gray mt-5">{{ dateTimeFormat($notification->created_at,'j M Y | H:i') }}</span>
+                                <h3 class="notification-title font-19 font-weight-bold">{{ $notification->title }}</h3>
+                                <span class="notification-time d-block text-gray mt-5">{{ dateTimeFormat($notification->created_at,'j M Y | H:i') }}</span>
                             </div>
                         </div>
 

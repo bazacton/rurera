@@ -14,7 +14,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/physical_product3.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ $totalOrders }}</strong>
+                        <strong class="font-24 mt-5">{{ $totalOrders }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('update.total_orders') }}</span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/physical_product2.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ $pendingOrders }}</strong>
+                        <strong class="font-24 mt-5">{{ $pendingOrders }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('update.pending_orders') }}</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/physical_product1.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ $canceledOrders }}</strong>
+                        <strong class="font-24 mt-5">{{ $canceledOrders }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('update.canceled_orders') }}</span>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="col-6 col-md-3 d-flex align-items-center justify-content-center mt-5 mt-md-0">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/33.png" width="64" height="64" alt="">
-                        <strong class="font-30 font-weight-bold mt-5 text-dark-blue">{{ addCurrencyToPrice($totalSales) }}</strong>
+                        <strong class="font-24 mt-5">{{ addCurrencyToPrice($totalSales) }}</strong>
                         <span class="font-16 font-weight-500 text-gray">{{ trans('financial.total_sales') }}</span>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
     </section>
 
     <section class="mt-25">
-        <h2 class="section-title">{{ trans('update.orders_report') }}</h2>
+        <h2 class="section-title font-24">{{ trans('update.orders_report') }}</h2>
 
         <div class="panel-section-card py-20 px-25 mt-20">
             <form action="" method="get" class="row">

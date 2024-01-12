@@ -186,12 +186,27 @@
                                         </a>
                                     </div>
                                     <ul>
-                                        <li><a href="/panel/setting">Account Setting</a></li>
-                                        <li><a href="/panel/rewards">Reward Points</a></li>
-                                        <li><a href="/panel/store/purchases">Shop Orders</a></li>
-                                        <li><a href="/panel/notifications">Notification</a></li>
-                                        <li><a href="#">School link</a></li>
-                                        <li><a href="/panel/support">Support Desk</a></li>
+                                        <li>
+                                            <a href="/panel/setting"><span class="nav-icon"><img src="/assets/default/svgs/account-nav.svg" alt=""></span>Account Setting</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/rewards"><span class="nav-icon"><img src="/assets/default/svgs/reward-nav2.svg" alt=""></span>Reward Points</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/marketing/affiliates"><span class="nav-icon"><img src="/assets/default/svgs/affiliate-nav.svg" alt=""></span>Affiliations</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/store/purchases"><span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>Shop Orders</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/notifications"><span class="nav-icon"><img src="/assets/default/svgs/notifications-nav.svg" alt=""></span>Notification</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><span class="nav-icon"><img src="/assets/default/svgs/school-nav.svg" alt=""></span>School link</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/support"><span class="nav-icon"><img src="/assets/default/svgs/support-nav.svg" alt=""></span>Support Desk</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

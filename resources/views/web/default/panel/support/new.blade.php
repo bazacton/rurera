@@ -9,7 +9,7 @@
         {{ csrf_field() }}
 
         <section>
-            <h2 class="section-title">{{ trans('panel.create_support_message') }}</h2>
+            <h2 class="section-title font-24">{{ trans('panel.create_support_message') }}</h2>
 
             <div class="mt-25 rounded-sm shadow py-20 px-10 px-lg-25 bg-white">
 

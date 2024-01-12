@@ -108,6 +108,42 @@
                                     $level_medium = isset( $dataObj->vocabulary_achieved_levels->level_medium )? $dataObj->vocabulary_achieved_levels->level_medium : 0;
                                     $level_hard = isset( $dataObj->vocabulary_achieved_levels->level_hard )? $dataObj->vocabulary_achieved_levels->level_hard : 0;
 
+                                    $level_easy_in_progress = false;
+                                    $level_medium_in_progress = false;
+                                    $level_hard_in_progress = false;
+
+                                    $easy_progress_percentage = $medium_progress_percentage = $hard_progress_percentage = 0;
+
+                                    if( $level_easy == 0){
+                                        $total_results_count  = $dataObj->parentResults->where('quiz_level', 'easy')->count();
+                                        $level_easy_in_progress = ($total_results_count > 0)? true : false;
+
+                                        if( $level_easy_in_progress == true){
+                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'easy')->groupBy('question_id')->count();
+                                            $easy_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
+                                        }
+                                    }
+                                    if( $level_medium == 0){
+                                        $total_results_count  = $dataObj->parentResults->where('quiz_level', 'medium')->count();
+                                        $level_medium_in_progress = ($total_results_count > 0)? true : false;
+
+                                        if( $level_medium_in_progress == true){
+                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'medium')->groupBy('question_id')->count();
+                                            $medium_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
+                                        }
+                                    }
+                                    if( $level_hard == 0){
+                                        $total_results_count  = $dataObj->parentResults->where('quiz_level', 'hard')->count();
+                                        $level_hard_in_progress = ($total_results_count > 0)? true : false;
+
+                                        if( $level_hard_in_progress == true){
+                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'hard')->groupBy('question_id')->count();
+                                            $hard_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
+                                        }
+                                    }
+                                    $level_easy_in_progress_class = ($level_easy_in_progress == true)? 'circle' : '';
+                                    $level_medium_in_progress_class = ($level_medium_in_progress == true)? 'circle' : '';
+                                    $level_hard_in_progress_class = ($level_hard_in_progress == true)? 'circle' : '';
 
                                     $in_progress = false;
                                     $in_progress_class = ($in_progress == true)? 'circle' : '';
@@ -115,14 +151,14 @@
                                     $treasure_box_closed = '<li class="treasure">
                                                         <a href="#">
                                                             <span class="thumb-box">
-                                                                <img src="/assets/default/img/treasure3.png" alt="">
+                                                                <img src="/assets/default/img/treasure2.png" alt="">
                                                             </span>
                                                         </a>
                                                     </li>';
                                     $treasure_box_opened = '<li class="treasure">
                                                                 <a href="#">
                                                                     <span class="thumb-box">
-                                                                        <img src="/assets/default/img/treasure2.png" alt="">
+                                                                        <img src="/assets/default/img/treasure.png" alt="">
                                                                     </span>
                                                                 </a>
                                                             </li>';
@@ -131,7 +167,7 @@
                                     <div class="spell-levels">
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
-                                                <h3 class="font-19 font-weight-bold">{{$dataObj->getTitleAttribute()}} - {{$treasure_after}} -- {{$level_easy}}</h3>
+                                                <h3 class="font-19 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
                                             </div>
                                             <div class="spell-top-right">
                                                 <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling-list" class="words-count"><img src="/assets/default/img/skills-icon.png" alt=""><span>{{$total_questions}}</span>word(s)</a>
@@ -139,30 +175,26 @@
                                         </div>
                                         <ul class="justify-content-start">
 
-                                            <li class="easy" data-id="{{$dataObj->id}}" data-quiz_level="easy">
-                                                <div class="levels-progress {{($level_easy == 1)? '' : ''}}" data-percent="75">
-                                                    <span class="progress-box">
-                                                        <span class="progress-count"></span>
-                                                    </span>
-                                                </div>
-                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
-                                                    Jump Here
-                                                </a>
-                                            </li>
 
-                                            <li class="easy {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="easy">
-                                                <div class="levels-progress {{($level_easy == 1)? '' : ''}}" data-percent="75">
+                                            <li class="easy {{($level_easy == 1)? 'completed' : 'completed'}}" data-id="{{$dataObj->id}}" data-quiz_level="easy">
+                                                <div class="levels-progress {{$level_easy_in_progress_class}}" data-percent="{{$easy_progress_percentage}}">
                                                     <span class="progress-box">
                                                         <span class="progress-count"></span>
                                                     </span>
                                                 </div>
                                                 <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
                                                     @if($level_easy == 1)
-                                                    1
+                                                    <img src="/assets/default/img/flag-complete.png" alt="">
                                                     @else
-                                                    <img src="/assets/default/img/panel-lock.png" alt="">
+                                                    <img src="/assets/default/img/stepon.png" alt="">
                                                     @endif
                                                 </a>
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <h4 class="font-19 font-weight-bold">Level # 1</h4>
+                                                        <span>Learn greetings for meeting people.</span>
+                                                    </div>
+                                                </div>
                                             </li>
                                             @if($treasure_after == 'after_easy')
                                                 @if($level_easy == 1)
@@ -173,17 +205,29 @@
                                             @endif
                                             <li class="intermediate {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="medium">
                                                 @if($level_easy == 1)
-                                                    <div class="levels-progress {{($level_medium == 0)? '' : ''}}" data-percent="75">
+                                                    <div class="levels-progress {{$level_medium_in_progress_class}}" data-percent="{{$medium_progress_percentage}}">
                                                         <span class="progress-box">
                                                             <span class="progress-count"></span>
                                                         </span>
                                                     </div>
-                                                    <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">2</a>
+                                                    <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
+                                                        @if($level_medium == 1 || $level_medium_in_progress_class != '')
+                                                            <img src="/assets/default/img/flag-complete.png" alt="">
+                                                        @else
+                                                            <img src="/assets/default/img/stepon.png" alt="">
+                                                        @endif
+                                                    </a>
                                                 @else
                                                     <a href="#">
                                                         <img src="/assets/default/img/panel-lock.png" alt="">
                                                     </a>
                                                 @endif
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <h4 class="font-19 font-weight-bold">Level # 2</h4>
+                                                        <span>Say your name.</span>
+                                                    </div>
+                                                </div>
                                             </li>
                                             @if($treasure_after == 'after_medium')
                                                 @if($level_medium == 1)
@@ -192,19 +236,31 @@
                                                     {!! $treasure_box_closed !!}
                                                 @endif
                                             @endif
-                                            <li class="Hard {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" quiz_level="hard">
+                                            <li class="Hard {{($level_medium == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" quiz_level="hard">
                                                 @if($level_medium == 1)
-                                                    <div class="levels-progress {{($level_hard == 0)? 'circle' : ''}}" data-percent="75">
+                                                    <div class="levels-progress {{$level_hard_in_progress_class}}" data-percent="{{$hard_progress_percentage}}">
                                                         <span class="progress-box">
                                                             <span class="progress-count"></span>
                                                         </span>
                                                     </div>
-                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">3</a>
+                                                <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
+                                                    @if($level_hard == 1 || $level_hard_in_progress_class != '')
+                                                        <img src="/assets/default/img/flag-complete.png" alt="">
+                                                    @else
+                                                        <img src="/assets/default/img/stepon.png" alt="">
+                                                    @endif
+                                                </a>
                                                 @else
                                                     <a href="#">
                                                         <img src="/assets/default/img/panel-lock.png" alt="">
                                                     </a>
                                                 @endif
+                                                <div class="spell-tooltip">
+                                                    <div class="spell-tooltip-text">
+                                                        <h4 class="font-19 font-weight-bold">Level # 3</h4>
+                                                        <span>Complete all topics above to unlock this.</span>
+                                                    </div>
+                                                </div>
                                             </li>
                                             @if($treasure_after == 'after_hard')
                                                 @if($level_hard == 1)
@@ -252,7 +308,7 @@
                                                 <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
                                             </li>
                                             <li class="treasure">
-                                                <a href="#"><img src="/assets/default/img/treasure3.png" alt=""></a>
+                                                <a href="#"><img src="/assets/default/img/treasure.png" alt=""></a>
                                             </li>
                                             <li class="Hard">
                                                 <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
@@ -271,7 +327,7 @@
                                                 <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
                                             </li>
                                             <li class="treasure">
-                                                <a href="#"><img src="/assets/default/img/treasure3.png" alt=""></a>
+                                                <a href="#"><img src="/assets/default/img/treasure.png" alt=""></a>
                                             </li>
                                             <li class="Hard">
                                                 <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>

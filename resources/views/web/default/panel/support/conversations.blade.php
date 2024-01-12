@@ -7,14 +7,14 @@
 
 @section('content')
     <section>
-        <h2 class="section-title">{{ trans('panel.support_summary') }}</h2>
+        <h2 class="section-title font-24">{{ trans('panel.support_summary') }}</h2>
 
         <div class="activities-container mt-25 p-20 p-lg-35">
             <div class="row">
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/41.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $openSupportsCount }}</strong>
+                        <strong class="font-24 mt-5">{{ $openSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.open_conversations') }}</span>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/40.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $closeSupportsCount }}</strong>
+                        <strong class="font-24 mt-5">{{ $closeSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.closed_conversations') }}</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="/assets/default/img/activity/39.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $supportsCount }}</strong>
+                        <strong class="font-24 mt-5">{{ $supportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.total_conversations') }}</span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
 
 
     <section class="mt-40">
-        <h2 class="section-title">{{ trans('panel.messages_history') }}</h2>
+        <h2 class="section-title font-24">{{ trans('panel.messages_history') }}</h2>
 
         @if(!empty($supports) and !$supports->isEmpty())
 

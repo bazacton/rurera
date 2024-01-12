@@ -52,7 +52,6 @@ class ReferralController extends Controller
         if ($export) {
             return $affiliates;
         }
-
         return view('admin.referrals.history', $data);
     }
 
