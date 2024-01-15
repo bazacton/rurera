@@ -18071,89 +18071,46 @@ body .learning-page .learning-title {border-color: #ccc;}
 .challenge-box .text-holder {margin-top: auto; margin-bottom: auto;}
 .heatmap-sec .heatmap-table-holder {background-color: #fff;}
 /* Web App Elements Style End */
-.profile-image-holder {
-    background-color: #fff;
-    padding: 0;
-    border-radius: 5px;
-    text-align: center;
-}
-.profile-image-holder input.form-control {
-    height: 38px;
-}
-.profile-image-holder .input-label {
-    margin: 0 0 10px;
-}
-.profile-image-holder img#profileImagePreview {
-    margin: 0 auto 20px !important;
-}
-.svga-light #svga-start-overlay {
-    background-color: #fff;
-}
-.svga-light #svga-gender {
-    background-color: #fff;
-}
-.rurera-button-loader .preloader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-.rurera-button-loader .preloader img {
-    width: 300px;
-    object-fit: contain;
-    height: 300px;
-}
-span.preloader-text {
-    display: block;
-    width: 60%;
-    text-align: center;
-    margin: 0 auto;
-}
-.dashboard-filters {
-    background-color: #fff;
-    padding: 15px 15px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-}
-.dashboard-filters ul {
-    display: flex;
-    align-items: center;
-    gap: 17px;
-}
-.dashboard-filters li a {
-    font-size: 15px;
-    font-weight: 500;
-}
+.profile-image-holder {background-color: #fff; padding: 0; border-radius: 5px; text-align: center; }
+.profile-image-holder input.form-control {height: 38px;}
+.profile-image-holder .input-label {margin: 0 0 10px;}
+.profile-image-holder img#profileImagePreview {margin: 0 auto 20px !important;}
+.svga-light #svga-start-overlay {background-color: #fff;}
+.svga-light #svga-gender {background-color: #fff;}
+.rurera-button-loader .preloader {position: absolute; top: 50%; left: 50%; z-index: 1; transform: translate(-50%, -50%); text-align: center;}
+.rurera-button-loader .preloader img {width: 300px; object-fit: contain; height: 300px;}
+span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 auto;}
+.dashboard-filters {background-color: #fff; padding: 15px 15px; border-radius: 10px; border: 1px solid #ddd;}
+.dashboard-filters ul {display: flex; align-items: center; gap: 17px;}
+.dashboard-filters li a {font-size: 15px; font-weight: 500;}
 
 /* Spell Levels Style Start */
-.spell-levels ul {display: flex;flex-wrap: wrap;gap: 30px;justify-content: center;flex-direction: column;}
-.spell-levels li > a {display: inline-flex; height: 60px; width: 70px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 3;}
+.spell-levels ul {display: none;flex-wrap: wrap;gap: 30px;justify-content: center;flex-direction: column; padding: 0 20px 20px 30px;}
+.spell-levels li > a {display: inline-flex; height: 62px; width: 68px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 3;}
 .spell-levels li > a:before {
     content: "";
-    height: 90%;
+    height: 70%;
     width: 4px;
     position: absolute;
     left: 50%;
     top: 100%;
     margin-left: -2px;
-    background-color: #57cc02;
+    background-color: #b0b0b0;
     margin-top: 10px;
 }
-.spell-levels li:last-child a:before{
-    display: none;
-}
+.spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
-.spell-levels {border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 30px 30px 30px 40px; margin: 0 0 30px;}
-.spell-levels .completed a {background-color: #57cc02; color: #fff; box-shadow: 0 6px 0 1px #44a404; }
-.spell-levels-top {display: flex;align-items: center;justify-content: space-between;margin: 0 0 30px;flex-wrap: wrap;}
+.spell-levels {border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-completed {overflow: hidden;}
+.spell-completed:before {content: "\2713";position: absolute;right: -6px;top: 24px;width: 35px;height: 35px;text-align: center;border-radius: 100%;background-color: #5acb01;color: #fff;line-height: 35px;font-weight: 700;box-shadow: 0 -2px 0 1px rgba(0,0,0,0.2) inset;}
+.spell-levels .completed a {background-color: #8ad1ef; color: #fff; box-shadow: 0 6px 0 1px #2397d2;}
+.spell-levels-top {display: flex; align-items: center;justify-content: space-between;margin: 0;flex-wrap: wrap;padding: 20px; cursor: pointer;}
 .words-count {background-color: #fff; border: 1px solid #e5e5e5; border-radius: 8px; min-width: 160px; text-align: center; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; line-height: normal; border-bottom-width: 4px; color: #9b9b9b; font-weight: 700;}
 .words-count span {margin-right: 5px;}
 .words-count img {margin-right: 8px; width: 15px; object-fit: contain;}
 .spell-levels-top .spell-top-left h3 {margin-bottom: 0;}
 .spell-levels.levels-grouping ul li:has(.levels-progress) a:before {margin-top: 10px;}
-.spell-levels.levels-grouping ul li a:before {background-color: #0ebe73; height: 45%;}
+.spell-levels.levels-grouping ul li a:before {background-color: #0ebe73;}
 .spell-levels.levels-grouping li.treasure {margin-top: -10px;}
 .spell-levels.levels-grouping li.treasure a:before {height: 40%; margin-top: 5px;}
 /* .levels-progress.circle {position: absolute; top: -16px; left: -15px;}
@@ -18165,8 +18122,8 @@ span.preloader-text {
     width: 1em;
     height: 1em;
     position: absolute;
-    top: -8px;
-    left: -15px;
+    top: -15px;
+    left: -16px;
     background: #e5e5e5;
     border-radius: 50%;
     overflow: hidden;
@@ -18185,10 +18142,17 @@ span.preloader-text {
     top: 0;
     width: 1em;
     height: 1em;
-    background: #57cc02;
+    background: #2397d2;
     clip: rect(0 1em 1em 0.5em);
     transform: rotate(180deg);
     transition: 1.05s;
+}
+.spell-levels li:has(.levels-progress) {
+    margin-bottom: 80px;
+}
+.spell-levels li:first-child:has(.levels-progress) {margin-top: 20px;}
+.spell-levels li:has(.levels-progress) a:before {
+    margin-top: 30px;
 }
 .levels-progress.circle.percent_more .progress-box {
     clip: rect(0 0.5em 1em 0em);
@@ -18223,9 +18187,9 @@ span.preloader-text {
 }
 .spell-levels-top .spell-top-left {flex-direction: column;display: flex;align-items: flex-start;}
 .words-count.simple {margin-top: 10px; padding: 0; min-height: auto; border: 0; background-color: inherit; min-width: auto; text-transform: uppercase;}
-.levels-progress.horizontal .progress-box {background-color: #ccc; height: 18px; border-radius: 50px; display: block; position: relative; overflow: hidden; min-width: 270px; max-width: 270px;}
-.levels-progress.horizontal {margin-top: 30px; margin-bottom: 30px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.horizontal .progress-count {display: block; position: absolute; left: 0; top: 0; height: 100%; border-radius: 50px; background-color: #5acb01; }
+.levels-progress.horizontal .progress-box {background-color: #e5e5e5; height: 18px; border-radius: 50px; display: block; position: relative; overflow: hidden; min-width: 270px; max-width: 270px;}
+.levels-progress.horizontal {margin-top: 15px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.horizontal .progress-count {display: block; position: absolute; left: 0; top: 0; height: 100%; border-radius: 50px; background-color: #2397d2; }
 .levels-progress .progress-numbers {color: #757575; font-weight: 600;}
 /* .spell-tooltip {background-color: #f7f7f7; border: 1px solid #e5e5e5; border-radius: 12px; position: absolute; left: -20px; top: 100%; min-width: 300px; z-index: 2; padding: 20px; opacity: 0; visibility: hidden; transition: all .5s ease; margin-top: 15px;} */
 .spell-tooltip-text strong {display: block; color: #b0b0b0; margin: 0 0 10px; }
@@ -18234,11 +18198,11 @@ span.preloader-text {
 .spell-tooltip-text .locked-btn {background-color: #e5e5e5; display: block; text-align: center; padding: 13px 0; line-height: normal; border-radius: 12px; font-size: 15px; font-weight: 600; color: #ababab; text-transform: uppercase; min-height: 46px;}
 /* .spell-levels ul li:hover .spell-tooltip {opacity: 1; visibility: visible; margin-top: 0; } */
 .spell-levels li > a:active {box-shadow: 0 4px 0 1px #b0b0b0;}
-.spell-levels li.easy > a:active {box-shadow: 0 4px 0 1px #44a404;}
+.spell-levels li.easy > a:active {box-shadow: 0 4px 0 1px #0f6c9b;}
 .spell-levels.levels-grouping li > a {background-color: inherit; height: 80px; width: 80px; box-shadow: none; padding: 0; }
 .spell-levels.levels-grouping {background-color: inherit;}
 .spell-levels.levels-grouping ul {justify-content: flex-start; flex-direction: column; align-items: flex-start;}
-.spell-levels li {display: flex; align-items: center; flex-wrap: wrap; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-levels li {display: flex; align-items: center; flex-wrap: wrap; padding: 0; margin: 0 0 58px; position: relative; width: 100%;}
 .spell-levels li:last-child {margin-bottom: 15px;}
 .spell-levels li .spell-tooltip {position: relative; width: calc(100% - 80px); padding: 0 0 0 25px;}
 .levels-grouping li > a .thumb-box {display: inline-block;width: 100%; height: 100%; border-radius: 100%; background-color: #ddd; position: relative; z-index: 3;}
@@ -18261,49 +18225,58 @@ span.preloader-text {
 .panel-content .education-icon-box li:nth-child(2) {left: 10px; top: -25px; }
 .panel-content .education-icon-box li:nth-child(3) {left: 0px; top: 50px;}
 .panel-content .education-icon-box li:nth-child(4) {left: 125px; top: 30px; }
-.panel-content .education-icon-box li:nth-child(5) {left: 70px; top: 30px;
-}
-.panel-content .education-icon-box li:nth-child(6) {
-    left: 85px;
-    top: -40px;
-}
-.panel-content .lms-call-to-action button {
-    min-width: auto;
-    padding: 0 30px;
-}
-.panel-content .lms-call-to-action input[type="text"] {
-    width: 100%;
-}
-.panel-content .lms-setup-progress ul {
-    flex-wrap: wrap;
-    gap: 15px;
-}
-.panel-content .education-icon-box li figure {
-    width: 70px;
-    height: 70px;
-}
-.panel-content .education-icon-box li:nth-child(1) figure {
-    width: 50px;
-    height: 50px;
-}
-.panel-content .education-icon-box li:nth-child(5) figure {
-    width: 50px;
-    height: 50px;
-}
-.panel-content .lms-setup-progress {
-    width: 100%;
-}
-.panel-content h1 {
-    font-size: 36px !important;
-    line-height: 42px !important;
-}
-.panel-content .products-top-header .banner-holder {
-    margin-top: 0;
-}
-.panel-content .lms-text-section {
-    padding: 25px !important;
-}
+.panel-content .education-icon-box li:nth-child(5) {left: 70px; top: 30px;}
+.panel-content .education-icon-box li:nth-child(6) {left: 85px; top: -40px;}
+.panel-content .lms-call-to-action button {min-width: auto; padding: 0 30px;}
+.panel-content .lms-call-to-action input[type="text"] {width: 100%;}
+.panel-content .lms-setup-progress ul {flex-wrap: wrap; gap: 15px;}
+.panel-content .education-icon-box li figure {width: 70px; height: 70px;}
+.panel-content .education-icon-box li:nth-child(1) figure {width: 50px; height: 50px;}
+.panel-content .education-icon-box li:nth-child(5) figure {width: 50px; height: 50px;}
+.panel-content .lms-setup-progress {width: 100%; }
+.panel-content h1 {font-size: 36px !important; line-height: 42px !important;}
+.panel-content .products-top-header .banner-holder {margin-top: 0;}
+.panel-content .lms-text-section {padding: 25px !important;}
 /* Spell Levels Style End */
+.panel-content .lms-jobs-form {
+    box-shadow: none;
+    padding: 0;
+}
+.panel-content .inline-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+.panel-content .inline-filters a {
+    border: 1px dashed #ddd;
+    min-height: 100px;
+    display: inline-flex;
+    min-width: 130px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-weight: 500;
+    flex-direction: column;
+    gap: 10px;
+}
+.panel-content .inline-filters .active a {
+    border-style: solid;
+    box-shadow: 0 -4px 0 0 #1b85fd inset;
+}
+.panel-content .inline-filters a .icon-box {
+    width: 25px;
+    height: 25px;
+}
+.panel-content .inline-filters a .icon-box svg,
+.panel-content .inline-filters a .icon-box img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.panel-content .inline-filters .active a svg g {
+    stroke: #1b85fd;
+}
  
 /*************************************
 Lms Responsive Style Start
@@ -18735,11 +18708,12 @@ Lms Responsive Style Start
     .spell-levels.levels-grouping li > a:before,
     .spell-levels.levels-grouping li > a:after{display: none;}
     .levels-grouping .spell-levels-top strong {text-align: center;}
-    .spell-levels-top {flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 15px; margin-bottom: 45px;}
+    .spell-levels-top {flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 15px; margin-bottom: 45px;cursor: pointer;}
     .spell-levels {padding: 30px 30px 50px;}
     .levels-progress.horizontal .progress-box {min-width: auto; width: 100%;}
     .user-profile-icons ul {gap: 12px;}
     .panel-content {padding-left: 0; padding-right: 0;}
+
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

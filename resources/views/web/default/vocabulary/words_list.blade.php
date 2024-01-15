@@ -17,9 +17,7 @@
 
 <section class="content-section">
     <section class="pt-10">
-        <button type="button" class="spells-back-btn">
-            <span>&#8592;</span>
-        </button>
+        <a href="/spells">Back to List</a>
         <div class="container">
 
             <div class="row pt-80 pb-70">
@@ -27,33 +25,6 @@
                 @if( !empty( $spellQuiz))
 
                 <div class="col-12">
-                    <section class="pb-70">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="master-list">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="master-card master">
-                                                    <strong>Mastered Words</strong> <span>{{count($user_mastered_words)}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="master-card non-master">
-                                                    <strong>Troubled Words</strong> <span>{{count($user_non_mastered_words)}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="master-card non-use">
-                                                    <strong>Not Used Words</strong> <span>{{$non_used_words}}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
                     <section class="lms-data-table spells spells-data-list elevenplus-block">
                         <h3>
                             {{$spellQuiz->getTitleAttribute()}} Words List
@@ -61,7 +32,6 @@
                         </h3>
                         <div class="spells-topbar">
                             <p>This is a preview. View this spelling list in EdShed, with full data available to subscribers.</p>
-                            <a href="/spells/{{$spellQuiz->quizYear->slug}}/{{$spellQuiz->quiz_slug}}" class="view-btn">Start Test</a>
                         </div>
                         <div class="spells-table-inner">
                             <table class="table table-striped table-bordered dataTable">

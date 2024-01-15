@@ -46,8 +46,9 @@ class SpellsController extends Controller
         $year_id = $request->get('year', '');
         $quiz_category = $request->get('quiz_category', '');
         $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
+        $year_id = $user->year_id;
         if ($year_id != '') {
-            $query->where('year_id', $year_id);
+            //$query->where('year_id', $year_id);
         }
         if ($quiz_category != '' && $quiz_category != 'All') {
             $query->where('quiz_category', $quiz_category);
@@ -84,6 +85,7 @@ class SpellsController extends Controller
                 'user_in_progress_words'     => $in_progress_words,
                 'user_non_mastered_words'    => $non_mastered_words,
                 'categories'                 => $categories,
+                'quiz_category' => $quiz_category,
             ];
             return view('web.default.vocabulary.index', $data);
         }

@@ -59,8 +59,9 @@ if( $duration_type == 'total_practice'){
 
                         </div>
                     </div>
+                    <div class="start-counter"></div>
 
-                    <div class="learning-content start-btn-container" id="learningPageContent">
+                    <div class="learning-content start-btn-container hide" id="learningPageContent">
                         <div class="learning-title">
                             <h3 class="mb-5"></h3>
                         </div>
@@ -200,6 +201,20 @@ if( $duration_type == 'total_practice'){
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     //init_question_functions();
+
+
+    var start_counter = 6;
+
+    var Startintervals = setInterval(function () {
+        if (parseInt(start_counter) > 1) {
+            start_counter = parseInt(start_counter) - parseInt(1);
+            $(".start-counter").html(start_counter);
+        } else {
+            $(".start-counter").remove();
+            clearInterval(Startintervals);
+            $(".start-timestables-quiz").click();
+        }
+    }, 1000);
 
     var user_data = [];
     var Quizintervals = null;

@@ -638,9 +638,11 @@ class QuizController extends Controller
                         //$quiz_level = 'hard';
                         $time_interval = 25;
                         $duration_type = 'per_question';
+                        $correct_answer = isset( $resultsQuestionsData['correct_answer'] )? $resultsQuestionsData['correct_answer'] : '';
+                        $word_characters = strlen($correct_answer);
                         if( $quiz_level == 'hard') {
                             $time_interval = 10;
-                            if ($questionDisplayCounter >= 7) {
+                            if ($word_characters >= 7) {
                                 $time_interval = 15;
                             }
                         }
@@ -651,6 +653,7 @@ class QuizController extends Controller
                         $resultsQuestionsData['time_limit'] = $time_interval;
                         $resultsQuestionsData['time_interval'] = $time_interval;
                         $resultsQuestionsData['duration_type'] = $duration_type;
+
 
                         $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {

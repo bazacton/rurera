@@ -10,6 +10,7 @@
     .hide {
         display: none !important;
     }
+
 </style>
 @endpush
 
@@ -22,13 +23,33 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-20">
-                        <h2 class="mt-0 mb-10 font-24">Spelling word list</h2>
+                        <h2 class="mt-0 mb-10 font-24">Spelling word lists</h2>
                         <p class="font-18"> Work through a variety of practice questions to improve your skills and become familiar with
                             the types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>
 
 
+                <div class="col-12">
+                    <div class="listing-search lms-jobs-form mb-20">
+                        <ul class="inline-filters">
+                            @php $active = ($quiz_category == '')? 'active' :'' @endphp
+                            <li class="{{$active}}"><a href="/spells"><span class="icon-box">
+                                                                    <img src="/assets/default/svgs/filter-all.svg">
+                                                                </span>All Word Lists</a></li>
+                            @php $active = ($quiz_category == 'Word Lists')? 'active' :'' @endphp
+                            <li class="{{$active}}"><a href="/spells?quiz_category=Word+Lists"><span class="icon-box">
+                                                                                                <img src="/assets/default/svgs/filter-letters.svg">
+                                                                                            </span>Word Lists
+                                </a></li>
+                            @php $active = ($quiz_category == 'Spelling Bee')? 'active' :'' @endphp
+                            <li class="{{$active}}"><a href="/spells?quiz_category=Spelling+Bee"><span class="icon-box">
+                                                                    <img src="/assets/default/svgs/filter-words.svg">
+                                                                </span>Spelling Bee
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
 
                 @if( !empty( $data))
 
@@ -113,40 +134,49 @@
                                     $level_hard_in_progress = false;
 
                                     $easy_progress_percentage = $medium_progress_percentage = $hard_progress_percentage = 0;
-
+                                    $overall_attempted_questions = 0;
+                                    $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'easy')->groupBy('question_id')->count();
+                                    $overall_attempted_questions += $total_attempted_questions;
                                     if( $level_easy == 0){
                                         $total_results_count  = $dataObj->parentResults->where('quiz_level', 'easy')->count();
                                         $level_easy_in_progress = ($total_results_count > 0)? true : false;
 
                                         if( $level_easy_in_progress == true){
-                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'easy')->groupBy('question_id')->count();
                                             $easy_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
                                         }
                                     }
+                                    $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'medium')->groupBy('question_id')->count();
+                                    $overall_attempted_questions += $total_attempted_questions;
                                     if( $level_medium == 0){
                                         $total_results_count  = $dataObj->parentResults->where('quiz_level', 'medium')->count();
                                         $level_medium_in_progress = ($total_results_count > 0)? true : false;
 
                                         if( $level_medium_in_progress == true){
-                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'medium')->groupBy('question_id')->count();
                                             $medium_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
                                         }
                                     }
+                                    $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'hard')->groupBy('question_id')->count();
+                                    $overall_attempted_questions += $total_attempted_questions;
                                     if( $level_hard == 0){
                                         $total_results_count  = $dataObj->parentResults->where('quiz_level', 'hard')->count();
                                         $level_hard_in_progress = ($total_results_count > 0)? true : false;
-
                                         if( $level_hard_in_progress == true){
-                                            $total_attempted_questions = $dataObj->parentResultsQuestions->where('quiz_level', 'hard')->groupBy('question_id')->count();
                                             $hard_progress_percentage = ($total_attempted_questions > 0)? round(($total_attempted_questions *100) / $total_questions) : 0;
                                         }
                                     }
+
+                                    $overall_percentage = ($overall_attempted_questions > 0)? round(($overall_attempted_questions *100) / ($total_questions*3)) : 0;
                                     $level_easy_in_progress_class = ($level_easy_in_progress == true)? 'circle' : '';
                                     $level_medium_in_progress_class = ($level_medium_in_progress == true)? 'circle' : '';
                                     $level_hard_in_progress_class = ($level_hard_in_progress == true)? 'circle' : '';
 
                                     $in_progress = false;
                                     $in_progress_class = ($in_progress == true)? 'circle' : '';
+
+                                    $spell_quiz_completed = '';
+                                    if( $level_easy == 1 && $level_medium == 1 && $level_hard == 1){
+                                        $spell_quiz_completed = 'spell-completed';
+                                    }
 
                                     $treasure_box_closed = '<li class="treasure">
                                                         <a href="#">
@@ -164,10 +194,17 @@
                                                             </li>';
                                     @endphp
 
-                                    <div class="spell-levels">
+                                    <div class="spell-levels {{$spell_quiz_completed}}">
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
                                                 <h3 class="font-19 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
+                                                @if($overall_percentage > 0 && $overall_percentage != 100)
+                                                <div class="levels-progress horizontal">
+                                                    <span class="progress-box">
+                                                        <span class="progress-count" style="width: {{$overall_percentage}}%;"></span>
+                                                    </span>
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="spell-top-right">
                                                 <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling-list" class="words-count"><img src="/assets/default/img/skills-icon.png" alt=""><span>{{$total_questions}}</span>word(s)</a>
@@ -177,22 +214,25 @@
 
 
                                             <li class="easy {{($level_easy == 1)? 'completed' : 'completed'}}" data-id="{{$dataObj->id}}" data-quiz_level="easy">
-                                                <div class="levels-progress {{$level_easy_in_progress_class}}" data-percent="{{$easy_progress_percentage}}">
-                                                    <span class="progress-box">
-                                                        <span class="progress-count"></span>
-                                                    </span>
-                                                </div>
+                                                @if($easy_progress_percentage > 0)
+                                                    <div class="levels-progress {{$level_easy_in_progress_class}}" data-percent="{{$easy_progress_percentage}}">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count"></span>
+                                                        </span>
+                                                    </div>
+                                                @endif
                                                 <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
-                                                    @if($level_easy == 1)
-                                                    <img src="/assets/default/img/flag-complete.png" alt="">
+                                                    @if($level_easy == 1 || $level_easy_in_progress_class != '')
+                                                        <img src="/assets/default/img/flag-complete.png" alt="">
                                                     @else
-                                                    <img src="/assets/default/img/stepon.png" alt="">
+                                                        <img src="/assets/default/img/stepon.png" alt="">
                                                     @endif
+
                                                 </a>
                                                 <div class="spell-tooltip">
                                                     <div class="spell-tooltip-text">
                                                         <h4 class="font-19 font-weight-bold">Level # 1</h4>
-                                                        <span>Learn greetings for meeting people.</span>
+                                                        <span>No time limit, Discover Word Meanings, Word Sentence.</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -205,11 +245,13 @@
                                             @endif
                                             <li class="intermediate {{($level_easy == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="medium">
                                                 @if($level_easy == 1)
-                                                    <div class="levels-progress {{$level_medium_in_progress_class}}" data-percent="{{$medium_progress_percentage}}">
-                                                        <span class="progress-box">
-                                                            <span class="progress-count"></span>
-                                                        </span>
-                                                    </div>
+                                                    @if($medium_progress_percentage > 0)
+                                                        <div class="levels-progress {{$level_medium_in_progress_class}}" data-percent="{{$medium_progress_percentage}}">
+                                                            <span class="progress-box">
+                                                                <span class="progress-count"></span>
+                                                            </span>
+                                                        </div>
+                                                    @endif
                                                     <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
                                                         @if($level_medium == 1 || $level_medium_in_progress_class != '')
                                                             <img src="/assets/default/img/flag-complete.png" alt="">
@@ -225,7 +267,7 @@
                                                 <div class="spell-tooltip">
                                                     <div class="spell-tooltip-text">
                                                         <h4 class="font-19 font-weight-bold">Level # 2</h4>
-                                                        <span>Say your name.</span>
+                                                        <span>Beat the Clock, Discover Word Meanings.</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -236,13 +278,15 @@
                                                     {!! $treasure_box_closed !!}
                                                 @endif
                                             @endif
-                                            <li class="Hard {{($level_medium == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" quiz_level="hard">
+                                            <li class="Hard {{($level_medium == 1)? 'completed' : ''}}" data-id="{{$dataObj->id}}" data-quiz_level="hard">
                                                 @if($level_medium == 1)
-                                                    <div class="levels-progress {{$level_hard_in_progress_class}}" data-percent="{{$hard_progress_percentage}}">
-                                                        <span class="progress-box">
-                                                            <span class="progress-count"></span>
-                                                        </span>
-                                                    </div>
+                                                    @if($hard_progress_percentage > 0)
+                                                        <div class="levels-progress {{$level_hard_in_progress_class}}" data-percent="{{$hard_progress_percentage}}">
+                                                            <span class="progress-box">
+                                                                <span class="progress-count"></span>
+                                                            </span>
+                                                        </div>
+                                                    @endif
                                                 <a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/spelling/exercise">
                                                     @if($level_hard == 1 || $level_hard_in_progress_class != '')
                                                         <img src="/assets/default/img/flag-complete.png" alt="">
@@ -258,7 +302,7 @@
                                                 <div class="spell-tooltip">
                                                     <div class="spell-tooltip-text">
                                                         <h4 class="font-19 font-weight-bold">Level # 3</h4>
-                                                        <span>Complete all topics above to unlock this.</span>
+                                                        <span>Race Against the Clock, Master the Challenge!</span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -397,6 +441,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('.spell-levels ul').slideUp();
         $('body').on('click', '.graph-data-ul li a', function (e) {
             $('.graph-data-ul li a').removeClass('active');
             $(this).addClass('active');
@@ -449,6 +494,16 @@
         var quiz_level = $(this).closest('li').attr('data-quiz_level');
         localStorage.setItem('quiz_level_'+quiz_id, quiz_level);
     });
+
+
+    $(document).on('click', '.spell-levels-top', function (e) {
+        if (!$(e.target).closest('.spell-top-right').length) {
+            $(this).closest('.spell-levels').find('ul').slideToggle();
+        }
+
+    });
+
+
 
 
 

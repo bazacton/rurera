@@ -2,6 +2,9 @@
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+<style type="text/css">
+    .timestables-mode-content{display:none;}
+</style>
 @endpush
 
 @section('content')
@@ -28,6 +31,7 @@
                                     <img src="/assets/default/svgs/eagle.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Explore multiplication, division, or both at your own pace.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                         <!-- <div class="col-12 col-md-4 col-lg-2">
@@ -56,7 +60,7 @@
                             </div>
                         </div> -->
                         <div class="col-12 col-md-12 col-lg-12">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="powerup_mode"  itemprop="Button" href="javascript:;">Power-Up</a>
@@ -66,10 +70,11 @@
                                     <img src="/assets/default/svgs/battery-level.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Conquer questions to turn your heatmap green.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="trophy_mode"  itemprop="Button" href="javascript:;">Trophy Mode</a>
@@ -79,10 +84,11 @@
                                     <img src="/assets/default/svgs/shuttlecock.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Speed trophy badge by playing 10 games.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                     <a itemprop="url" href="/timestables/summary">Heat Map</a>
@@ -92,10 +98,11 @@
                                     <img src="/assets/default/svgs/fire.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray"></p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                     <a itemprop="url" href="/blog/How-Online-Courses-Benefit-KS1-and-KS2-Students">Treasure Mission</a>
@@ -105,12 +112,13 @@
                                     <img src="/assets/default/img/treasure.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Journey through times tables practice and discover hidden treasures.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
 
                         <div class="col-12 col-md-12 col-lg-12">
                             <h5 itemprop="title" class=" mb-10">Multi Player</h5>
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                     <a class="tournament-btn" itemprop="Button" href="#">Tournament</a>
@@ -120,10 +128,11 @@
                                     <img src="/store/1/default_images/blogs/blog-19.png" class="img-cover" alt="Preparing for Success: Online Courses for Year 5 Students" title="Preparing for Success: Online Courses for Year 5 Students" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Play and compete with classmates in exciting challenges.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
-                            <div class="grid-card" itemtype="https://schema.org/NewsArticle">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="global_arena"  itemprop="Button" href="javascript:;">Global Arena</a>
@@ -133,6 +142,7 @@
                                     <img src="/assets/default/svgs/global-arena.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Connect with individuals worldwide in a Cloud.</p>
+                                <div class="timestables-mode-content"></div>
                             </div>
                         </div>
                     </div>
@@ -646,8 +656,9 @@
 <script>
 $(document).on('click', '.ajax-callback', function (e) {
     var thisObj = $(this);
+    var thisContent_div = thisObj.closest('.timestables-mode-data').find('.timestables-mode-content');
     var ajax_type = $(this).attr('data-type');
-    rurera_loader($(".panel-content"), 'div');
+    rurera_loader(thisObj.closest('.timestables-mode-data'), 'div');
     jQuery.ajax({
        type: "GET",
        url: '/timestables/'+ajax_type,
@@ -656,8 +667,11 @@ $(document).on('click', '.ajax-callback', function (e) {
        },
        data: {'ajax_type':ajax_type},
        success: function (return_data) {
-           jQuery(".show-section-data").html(return_data);
-           rurera_remove_loader($(".panel-content"), 'button');
+           thisContent_div.html(return_data);
+           //jQuery(".show-section-data").html(return_data);
+           $(".timestables-mode-content").slideUp();
+           thisContent_div.slideToggle();
+           rurera_remove_loader(thisObj.closest('.timestables-mode-data'), 'div');
        }
    });
 });

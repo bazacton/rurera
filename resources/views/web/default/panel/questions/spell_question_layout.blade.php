@@ -261,6 +261,7 @@ if( isset( $duration_type ) ){
 
     var hint_counter = 0;
     var charPosition = 0;
+    var userInput = false;
     var SpellQuestionintervalCountDownFunc = function() {
              currentFunctionStart = 'started';
             Questioninterval = setInterval(function () {
@@ -268,7 +269,7 @@ if( isset( $duration_type ) ){
                 hint_counter = parseInt(hint_counter) + parseInt(1);
                 var quiz_level = '{{$quiz_level}}';
                 if( quiz_level == 'easy') {
-                    if (parseInt(hint_counter) == 10) {
+                    if (parseInt(hint_counter) == 1000000000 && userInput == false) {
                         var ansCorr = '{{$correct_answer}}';
                         var correct_answer_character = ansCorr.charAt(charPosition);
                         $(".editor-field").val($(".editor-field").val() + correct_answer_character);
@@ -281,6 +282,10 @@ if( isset( $duration_type ) ){
             }, 1000);
 
         }
+
+    $(document).on('keyup', ".question-step-{{ $question->id }} .editor-field", function (e) {
+        userInput = true;
+    });
 
 </script>
 <script type="text/javascript">

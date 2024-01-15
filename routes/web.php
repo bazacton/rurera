@@ -491,6 +491,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/{quiz_slug}' , 'SatsController@start');
     });
 
+    Route::group(['prefix' => 'tests'] , function () {
+        Route::get('/' , 'TestsController@index');
+        Route::get('/search_tests' , 'TestsController@search_tests');
+
+    });
+
     Route::group(['prefix' => 'learn'] , function () {
         Route::get('/' , 'LearnController@index');
     });
