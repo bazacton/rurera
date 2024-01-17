@@ -2742,7 +2742,6 @@ ul.nav-tabs li.nav-item a.nav-link.active i {
 body, html {
     min-height: 100%;
 }
-
 body {
     background-color: #f4f6f9;
     font-size: 14px;
@@ -2750,7 +2749,6 @@ body {
     font-family: "Nunito", "Segoe UI", arial;
     color: #6c757d;
 }
-
 a.bb {
     text-decoration: none;
     border-bottom: 1px solid var(--primary);

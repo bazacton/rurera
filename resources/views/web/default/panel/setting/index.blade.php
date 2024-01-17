@@ -18,7 +18,7 @@
 @section('content')
 
 
-    <form method="post" id="userSettingForm" class="mt-30" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
+    <form method="post" id="userSettingForm" class="mt-10" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
         {{ csrf_field() }}
         <input type="hidden" name="step" value="{{ !empty($currentStep) ? $currentStep : 1 }}">
         <input type="hidden" name="next_step" value="0">

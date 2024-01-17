@@ -74,14 +74,14 @@ class TimestablesController extends Controller
         $no_of_questions = $request->post('no_of_questions');
         $tables_numbers = $request->post('question_values');
 
-        if( auth()->guest()) {
+        if (auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', 'timestables')->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
             $total_questions_allowed = getTimestablesLimit();
             $no_of_questions_new = ($total_questions_allowed - $total_attempted_questions);
-            if( $no_of_questions_new <= $no_of_questions){
+            if ($no_of_questions_new <= $no_of_questions) {
                 $no_of_questions = $no_of_questions_new;
             }
-            if( $no_of_questions_new < 1){
+            if ($no_of_questions_new < 1) {
                 $no_of_questions = $no_of_questions_new;
                 return view('web.default.quizzes.limit_reached');
             }
@@ -546,12 +546,11 @@ class TimestablesController extends Controller
         }
 
 
-
         return array(
-            'average_time' => $total_average_time,
-            'tables_array' => $tables_array_final,
+            'average_time'     => $total_average_time,
+            'tables_array'     => $tables_array_final,
             'tables_last_data' => $tables_last_data,
-            'first_date'   => $first_date,
+            'first_date'       => $first_date,
         );
     }
 
@@ -562,21 +561,22 @@ class TimestablesController extends Controller
      *
      * @return - Array
      */
-    public function get_timestables_attempted_result($tables_last_data){
+    public function get_timestables_attempted_result($tables_last_data)
+    {
 
         $incorrect_array = $excess_time_array = $not_attempted_array = $tables_array = $improvement_required_array = array();
 
-        if( !empty( $tables_last_data ) ){
-            foreach( $tables_last_data as $table_no => $table_data){
+        if (!empty($tables_last_data)) {
+            foreach ($tables_last_data as $table_no => $table_data) {
                 $tables_array[] = $table_no;
 
                 $multiply_with_counter = 12;
                 $counter = 1;
-                while($counter <= $multiply_with_counter){
-                    $is_attempted = isset( $table_data[$counter] )? true : false;
+                while ($counter <= $multiply_with_counter) {
+                    $is_attempted = isset($table_data[$counter]) ? true : false;
 
                     //Not Attempted
-                    if( $is_attempted == false){
+                    if ($is_attempted == false) {
                         $not_attempted_array[][$table_no] = $counter;
                         $improvement_required_array[][$table_no] = $counter;
 
@@ -584,20 +584,20 @@ class TimestablesController extends Controller
                     $counter++;
                 }
 
-                if( !empty( $table_data ) ){
-                    foreach( $table_data as $table_to => $table_conducted_data){
+                if (!empty($table_data)) {
+                    foreach ($table_data as $table_to => $table_conducted_data) {
 
-                        $is_correct = (isset( $table_conducted_data['is_correct'] ) && $table_conducted_data['is_correct'] == 1)? true : false;
-                        $is_excess_time = (isset( $table_conducted_data['time_consumed'] ) && $table_conducted_data['time_consumed'] > 1)? true : false;
+                        $is_correct = (isset($table_conducted_data['is_correct']) && $table_conducted_data['is_correct'] == 1) ? true : false;
+                        $is_excess_time = (isset($table_conducted_data['time_consumed']) && $table_conducted_data['time_consumed'] > 1) ? true : false;
 
                         //Incorrect
-                        if( $is_correct == false){
+                        if ($is_correct == false) {
                             $incorrect_array[][$table_no] = $table_to;
                             $improvement_required_array[][$table_no] = $table_to;
                         }
 
                         //Excess Time
-                        if( $is_excess_time == true){
+                        if ($is_excess_time == true) {
                             $excess_time_array[][$table_no] = $table_to;
                             $improvement_required_array[][$table_no] = $table_to;
                         }
@@ -609,14 +609,13 @@ class TimestablesController extends Controller
         }
 
         return array(
-            'incorrect_array' => $incorrect_array,
-            'excess_time_array' => $excess_time_array,
-            'not_attempted_array' => $not_attempted_array,
+            'incorrect_array'            => $incorrect_array,
+            'excess_time_array'          => $excess_time_array,
+            'not_attempted_array'        => $not_attempted_array,
             'improvement_required_array' => $improvement_required_array,
-            'tables_array' => $tables_array,
+            'tables_array'               => $tables_array,
         );
     }
-
 
 
     /*
@@ -766,7 +765,19 @@ class TimestablesController extends Controller
         $improvement_required_array = isset($timestables_attempted_result['improvement_required_array']) ? $timestables_attempted_result['improvement_required_array'] : array();
 
 
-        $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12);
+        $tables_numbers = array(
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+        );
 
         $question_type = 'multiplication';
         $no_of_questions = 400;
@@ -783,10 +794,10 @@ class TimestablesController extends Controller
 
         $questions_list = $already_exists = $questions_array_list = array();
 
-        if( !empty( $improvement_required_array ) ){
-            foreach( $improvement_required_array as $required_data_key => $required_data_array){
-                if( !empty( $required_data_array ) ){
-                    foreach( $required_data_array as $required_data_from => $required_data_to){
+        if (!empty($improvement_required_array)) {
+            foreach ($improvement_required_array as $required_data_key => $required_data_array) {
+                if (!empty($required_data_array)) {
+                    foreach ($required_data_array as $required_data_from => $required_data_to) {
                         $questions_array_list[] = (object)array(
                             'from'     => $required_data_from,
                             'to'       => $required_data_to,
@@ -921,7 +932,19 @@ class TimestablesController extends Controller
         }*/
         $user = getUser();
 
-        $tables_numbers = array(2,3,4,5,6,7,8,9,10,11,12);
+        $tables_numbers = array(
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+        );
 
         $question_type = 'multiplication';
         $no_of_questions = 400;
@@ -1046,6 +1069,131 @@ class TimestablesController extends Controller
     }
 
     /*
+     * Generate Treasure Mission Stage
+     */
+    public function generate_treasure_mission(Request $request)
+    {
+        if (!auth()->check()) {
+            //return redirect('/login');
+        }
+        /*if (!auth()->subscription('timestables')) {
+            return view('web.default.quizzes.not_subscribed');
+        }*/
+        $user = getUser();
+
+
+
+        $nugget_id = $request->post('nugget_id');
+        $treasure_mission_data = get_treasure_mission_data();
+        $nugget_data = searchNuggetByID($treasure_mission_data,'id', $nugget_id);
+        $levelData = isset( $nugget_data['levelData'] )? $nugget_data['levelData'] : array();
+        $tables_data = isset( $nugget_data['tables'] )? $nugget_data['tables'] : array();
+        $time_interval = isset( $levelData['time_interval'] )? $levelData['time_interval'] : 0;
+        $life_lines = isset( $levelData['life_lines'] )? $levelData['life_lines'] : 0;
+        $life_lines = $user->user_life_lines;
+        //pre($nugget_data);
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+        $marks = 5;
+        $max_questions = 12;
+        $current_question_max = 1;
+        $questions_no_array = [];
+        while ($current_question_max <= $max_questions) {
+            $questions_no_array[$current_question_max] = $current_question_max;
+            $current_question_max++;
+        }
+        $questions_no_array_fixed = $questions_no_array;
+
+        if( !empty( $tables_data ) ){
+            foreach( $tables_data as $table_no => $table_no_of_questions){
+                $questions_count = 1;
+                if ($table_no_of_questions > 0) {
+                    while ($questions_count <= $table_no_of_questions) {
+
+                        $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+                        if (empty($questions_no_array)) {
+                            $questions_no_array = $questions_no_array_fixed;
+                        }
+                        $questions_no_array = array_values($questions_no_array);
+                        shuffle($questions_no_array);
+                        $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                        $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                        $dynamic_no = rand($dynamic_min, $dynamic_max);
+                        $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                        if (isset($questions_no_array[$dynamic_no])) {
+                            unset($questions_no_array[$dynamic_no]);
+                            $questions_no_array = array_values($questions_no_array);
+                        }
+
+                        $last_value = ($questions_no_dynamic) * $table_no;
+                        $from_value = ($type == '÷') ? $last_value : $table_no;
+                        $limit = 12;
+                        $min = 2;
+                        $min = ($type == '÷') ? 1 : $min;
+                        $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                        //$to_value = rand($min, $limit);
+                        $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                        $questions_array_list[] = (object)array(
+                            'from'     => $from_value,
+                            'to'       => $to_value,
+                            'type'     => $type,
+                            'table_no' => $table_no,
+                            'marks'    => $marks,
+                        );
+                        $questions_count++;
+                    }
+                }
+            }
+        }
+
+        shuffle($questions_array_list);
+
+        $questions_list = $questions_array_list;
+        $practice_time_seconds = 60;
+
+        $QuizzesResult = QuizzesResult::create([
+            'user_id'          => $user->id,
+            'results'          => json_encode($questions_list),
+            'user_grade'       => 0,
+            'status'           => 'waiting',
+            'created_at'       => time(),
+            'quiz_result_type' => 'timestables',
+            'no_of_attempts'   => 100,
+            'other_data'       => json_encode($questions_list),
+            'user_ip'          => getUserIP(),
+            'attempt_mode'     => 'treasure_mode',
+            'nugget_id'        => $nugget_id,
+        ]);
+
+        $QuizzAttempts = QuizzAttempts::create([
+            'quiz_result_id' => $QuizzesResult->id,
+            'user_id'        => $user->id,
+            'start_grade'    => $QuizzesResult->user_grade,
+            'end_grade'      => 0,
+            'created_at'     => time(),
+            'attempt_type'   => $QuizzesResult->quiz_result_type,
+            'user_ip'        => getUserIP(),
+        ]);
+        $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+
+
+        $data = [
+            'pageTitle'       => 'Start',
+            'questions_list'  => $questions_list,
+            'QuizzAttempts'   => $QuizzAttempts,
+            'duration_type'   => 'per_question',
+            'time_interval'   => $time_interval,
+            'life_lines'      => $life_lines,
+            'practice_time'   => 0,
+            'total_questions' => count($questions_array_list),
+        ];
+        return view('web.default.timestables.start_treasure_mode', $data);
+    }
+
+    /*
     * TimesTables Global Arena
     */
     public function global_arena(Request $request)
@@ -1102,19 +1250,30 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        //DB::enableQueryLog();
-        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'powerup_mode')->orderBy('created_at', 'desc')->limit(10)->get();
+        $attempts_array = $attempts_labels = $attempts_values = array();
+        if (!empty($results_data)) {
+            foreach ($results_data as $resultObj) {
+                $created_at = dateTimeFormat($resultObj->created_at, 'j M y');
+                $attempts_array[$created_at] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+                $attempts_labels[] = $created_at;
+                $attempts_values[] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+            }
+        }
+        $attempts_array = array_reverse($attempts_array);
+        $attempts_labels = array_reverse($attempts_labels);
+        $attempts_values = array_reverse($attempts_values);
 
-
-        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
-        //pre(DB::getQueryLog());
-        //DB::disableQueryLog();
-
-
-        $rendered_view = view('web.default.timestables.powerup_mode', [])->render();
+        $rendered_view = view('web.default.timestables.powerup_mode', [
+            'results_data'    => $results_data,
+            'attempts_array'  => $attempts_array,
+            'attempts_labels' => $attempts_labels,
+            'attempts_values' => $attempts_values
+        ])->render();
         echo $rendered_view;
         die();
     }
+
 
     /*
     * TimesTables Trophy Mode Layout
@@ -1139,7 +1298,24 @@ class TimestablesController extends Controller
         die();
     }
 
+    /*
+    * TimesTables Treasure Mission Layout
+    */
+    public function treasure_mission(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+        $user_timetables_levels = json_decode($user->user_timetables_levels);
+        $user_timetables_levels = is_array( $user_timetables_levels ) ? $user_timetables_levels : array();
+        $treasure_mission_data = get_treasure_mission_data();
 
+
+        $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels])->render();
+        echo $rendered_view;
+        die();
+    }
 
 
     /*

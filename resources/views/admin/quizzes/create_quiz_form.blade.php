@@ -116,7 +116,7 @@
                     <div class="invalid-feedback"></div>
                 </div>
 
-                <div class="conditional-fields sats-fields">
+                <div class="conditional-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields">
                     <div class="form-group mt-15 ">
                         <label class="input-label d-block">Type</label>
                         <select name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][mock_type]"
@@ -165,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="conditional-fields vocabulary-fields practice-fields sats-fields">
+                <div class="conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields">
 
                     <div class="form-group">
                         <label>Year</label>
@@ -200,12 +200,12 @@
                         @enderror
                     </div>
                 </div>
-                <div class="practice-quiz-ajax-fields populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
+                <div class="practice-quiz-ajax-fields populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields"></div>
 
 
-                <div class="practice-quiz-topics-list populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
+                <div class="practice-quiz-topics-list populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields"></div>
 
-                <div class="mock-exams-quiz-settings populated-data conditional-fields vocabulary-fields practice-fields sats-fields"></div>
+                <div class="mock-exams-quiz-settings populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields"></div>
 
                 <div class="conditional-fields vocabulary-fields ">
                     <div class="form-group mt-15 ">

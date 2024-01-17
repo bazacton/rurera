@@ -16,12 +16,10 @@ $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
     </td>
     <td>
         <img src="/assets/default/img/assignment-logo/{{$rowObj->quiz_type}}.png" alt="">
-        <h4><a href="/sats/{{$rowObj->quiz_slug}}">{{$rowObj->getTitleAttribute()}}</a>
+        <h4 class="font-19 font-weight-bold"><a href="/sats/{{$rowObj->quiz_slug}}">{{$rowObj->getTitleAttribute()}}</a>
             <br> <span class="sub_label">{{count($rowObj->quizQuestionsList)}} Question(s)</span>
         </h4>
     </td>
-    <td>0</td>
-    <td>12</td>
     <td>
         <div class="attempt-progress">
             <span class="progress-number">0%</span>

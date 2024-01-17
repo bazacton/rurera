@@ -97,7 +97,7 @@ if( $duration_type == 'total_practice'){
                                         <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
                                     </li>
                                     <li class="total-points">
-                                        <span class="tt_points">0</span> Points
+                                        <span class="tt_points">0</span> Points <span class="life-lines">{{$life_lines}}</span>
                                     </li>
                                 </ul>
                             </div> <br><br>
@@ -242,6 +242,20 @@ if( $duration_type == 'total_practice'){
       </div>
     </div>
   </div>
+
+<div class="modal fade timestables_lifelines_modal" id="timestables_lifelines_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Game Over!</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection
@@ -254,10 +268,13 @@ if( $duration_type == 'total_practice'){
 
     var user_data = [];
     var Quizintervals = null;
+    var is_gameover = false;
 
     var duration_type = $(".question-area-block").attr('data-duration_type');
     var time_interval = $(".question-area-block").attr('data-time_interval');
     var practice_time = $(".question-area-block").attr('data-practice_time');
+    var life_lines = '{{$life_lines}}';
+
 
     $(document).on('click', '.timestables-question-confirm-btn', function (e) {
         if( duration_type == 'total_practice'){
@@ -421,6 +438,17 @@ if( $duration_type == 'total_practice'){
             $(".question-area-block").attr('data-corrected_questions', parseInt(correct_questions_count)+1);
             $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
         }else{
+            life_lines = parseInt(life_lines) - 1;
+            $(".life-lines").html(life_lines);
+            if( life_lines < 1){
+               clearInterval(Quizintervals);
+                $(".questions-block.active").nextAll('.questions-block').remove();
+                $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
+                $(".questions-block .question-form").attr('data-bypass_validation', 'yes');
+                var total_questions = $(".question-area-block").attr('data-total_questions');
+                is_gameover = true;
+
+            }
             $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
         }
 
@@ -472,7 +500,11 @@ if( $duration_type == 'total_practice'){
         } else {
             clearInterval(Quizintervals);
             $('.questions-block').addClass('disable-div');
-            $("#timestables_complete_status_modal").modal('show');
+            if( is_gameover == true){
+                $("#timestables_lifelines_modal").modal('show');
+            }else {
+                $("#timestables_complete_status_modal").modal('show');
+            }
             var response_layout = '';
 
 

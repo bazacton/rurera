@@ -195,6 +195,12 @@ $rand_id = rand(99,9999);
                             $summary_coins_earned += ($is_correct == 'true')? 1 : 0;
                             $incorrect_questions += ($is_correct == 'false')? 1 : 0;
                             @endphp
+                            @if( !isset( $rowObj->from ) )
+                                <script>
+                                    location.reload();
+                                </script>
+                                @php exit; @endphp
+                            @endif
 
                             <div class="question-result-layout question-status-{{$check_class}}">
                                 @if( $check_class == 'correct')

@@ -15,7 +15,7 @@
 @section('content')
 <section class="content-section">
 
-    <section class="pt-80">
+    <section class="pt-10">
         <div class="container">
             <div class="row">
 
@@ -26,40 +26,38 @@
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>
-
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
-                    <div class="col-12">
-                            <div class="listing-search lms-jobs-form mb-20">
-                                <form>
-                                    <div class="row align-items-center">
-                                        <div class="col-12 col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="input-field">
-                                                    <input type="text" class="search-tests">
-                                                </div>
-                                            </div>
+                <div class="col-12">
+                    <div class="listing-search lms-jobs-form mb-20">
+                        <form>
+                            <div class="row align-items-center">
+                                <div class="col-12 col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-field">
+                                            <input type="text" class="search-tests">
                                         </div>
-                                        <ul class="tests-list">
-                                           <li data-type="sats">SATs</li>
-                                            <li data-type="11plus">11Plus</li>
-                                            <li data-type="iseb">ISEB</li>
-                                            <li data-type="cat4">CAT 4</li>
-                                            <li data-type="independent_exams">Independent Exams</li>
-                                        </ul>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="col-12 col-lg-12 col-md-12">
+                                    <ul class="tests-list">
+                                        <li data-type="all" class="active">All Tests</li>
+                                        <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt=""> SATs</li>
+                                        <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
+                                        <li data-type="iseb"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
+                                        <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
+                                        <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
+                                    </ul>
+                                </div>
                             </div>
+                        </form>
                     </div>
-
+                </div>
+                <div class="col-12 col-lg-12 col-md-12">
                     <div class="sats-listing-card medium">
                         <table class="simple-table">
                             <thead>
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>Title</th>
-                                <th>Attempts</th>
-                                <th>Last attempt</th>
                                 <th>Accuracy</th>
                             </tr>
                             </thead>
@@ -78,7 +76,6 @@
                         </table>
                     </div>
                 </div>
-
 
                 <div class="col-12">
                     <div class="mt-60">
@@ -168,6 +165,8 @@
 
         $('body').on('click', '.tests-list li', function (e) {
             rurera_loader($(".simple-table tbody"), 'div');
+            $(".tests-list li").removeAttr('class');
+            $(this).addClass('active');
             var quiz_type = $(this).attr('data-type');
             searchRequest = jQuery.ajax({
                 type: "GET",
@@ -183,9 +182,7 @@
                 data: {"quiz_type": quiz_type},
                 success: function (return_data) {
                     rurera_remove_loader($(".simple-table tbody"), 'div');
-                    if (return_data != '') {
-                        $(".simple-table tbody").html(return_data);
-                    }
+                    $(".simple-table tbody").html(return_data);
                 }
             });
 

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/assets/default/css/app.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/default/css/panel.css?ver={{$rand_no}}">
     <link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
+    <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 
     @if($isRtl)
         <link rel="stylesheet" href="/assets/default/css/rtl-app.css">
@@ -288,12 +289,12 @@
                                     <div class="card card-flush border-0 h-lg-100" data-theme="light" style="background-color: #7239EA">
                                         <div class="card-header">
                                             <h3 class="card-title">            
-                                                <span class="text-white fs-3 fw-bold">Facebook Campaign</span>
+                                                <span class="card-label text-white">Facebook Campaign</span>
                                                 <span class="badge badge-success">Active</span>
                                             </h3>       
                                             <div class="card-toolbar">            
-                                                <button class="btn" id="sidebar-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#8594;</button>
-                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown">
+                                                <button class="btn" id="sidebar-dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#8594;</button>
+                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown1">
                                                     <div class="menu-item px-3">
                                                         <div class="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">Quick Actions</div>
                                                     </div>
@@ -378,7 +379,11 @@
                                             <span class="text-gray-500 mt-1 fw-semibold fs-6">Social activities overview</span>
                                         </h3>
                                         <div class="card-toolbar">
-                                            <button class="btn justify-content-end" id="sidebar-dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                                            <button class="btn" id="sidebar-dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </button>
                                             <div class="dropdown-menu" aria-labelledby="sidebar-dropdown2">
                                                 <ul>
                                                     <li><a href="#">New Ticket</a></li>
@@ -402,11 +407,18 @@
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
                                                                 <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown4">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -422,13 +434,20 @@
                                                             <span>Avarage <br> Share</span>
                                                         </div>
                                                         <div class="key-progress">
-                                                            <div class="key-date-select">
+                                                        <div class="key-date-select">
                                                                 <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                    <span></span>
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown5">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -445,12 +464,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown6">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -469,12 +492,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown7">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -491,12 +518,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown8">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -513,12 +544,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown9">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -537,12 +572,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown6">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -559,12 +598,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown6">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -581,12 +624,16 @@
                                                         </div>
                                                         <div class="key-progress">
                                                             <div class="key-date-select">
-                                                                <a href="#">Jul 22 - Aug 22</a>
-                                                                <div class="key-dropdown">
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
-                                                                    <a href="#">Jul 22 - Aug 22</a>
+                                                                <button class="btn" id="sidebar-dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Jul 22 - Aug 22
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="sidebar-dropdown6">
+                                                                    <ul>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                        <li><a href="#">Jul 22 - Aug 22</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                             <div class="levels-progress horizontal">
@@ -605,14 +652,18 @@
                             </div>
 
                             <div class="col-12 col-lg-12">
-                                <div class="notable-card">
+                                <div class="notable-card panel-shadow panel-border">
                                     <div class="card-header">
                                         <h3 class="card-title align-items-start flex-column">            
-                                            <span class="card-label fw-bold text-gray-900">Notable Channels</span>
-                                            <span class="text-gray-500 mt-1 fw-semibold fs-6">Social networks overview</span>
+                                            <span class="card-label">Notable Channels</span>
+                                            <span>Social networks overview</span>
                                         </h3>
                                         <div class="card-toolbar">
-                                            <button class="btn justify-content-end" id="sidebar-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                                            <button class="btn" id="sidebar-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </button>
                                             <div class="dropdown-menu" aria-labelledby="sidebar-dropdown">
                                                 <ul>
                                                     <li><a href="#">New Ticket</a></li>
@@ -629,10 +680,10 @@
                                             <li>
                                                 <div class="social-item">
                                                     <div class="item-left">
-                                                        <img src="/metronic8/demo1/assets/media/svg/brand-logos/dribbble-icon-1.svg" class="me-3 w-30px" alt="">
+                                                        <img src="/assets/default/svgs/dribbble-icon-1.svg" class="me-3 w-30px" alt="">
                                                         <p>
-                                                            <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">Dribbble</a>
-                                                            <span class="text-gray-500 fw-semibold d-block fs-6">Community</span>
+                                                            <a href="#">Dribbble</a>
+                                                            <span>Community</span>
                                                         </p>
                                                     </div>
                                                     <div class="item-right">
@@ -650,8 +701,8 @@
                                                     <div class="item-left">
                                                         <img src="/assets/default/svgs/instagram1.svg" class="me-3 w-30px" alt="">
                                                         <p>
-                                                            <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">Linked In</a>
-                                                            <span class="text-gray-500 fw-semibold d-block fs-6">Social Media</span>
+                                                            <a href="#">Linked In</a>
+                                                            <span>Social Media</span>
                                                         </p>
                                                     </div>
                                                     <div class="item-right">
@@ -668,8 +719,11 @@
                                     </div>
                                 </div>
                             </div>
+                                <div class="col-12 col-lg-12">
+                                                                @include('web.default.includes.footer')
+                                                            </div>
                         </div>
-                        @include('web.default.includes.footer')
+
                         </div>
 
                   </div>
@@ -730,6 +784,8 @@
 <script src="/assets/default/js/panel/public.min.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script src="/assets/admin/vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/default/js/admin/sticky-sidebar.js?ver={{$rand_no}}"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script>
 
     @if(session()->has('registration_package_limited'))

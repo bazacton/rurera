@@ -58,9 +58,15 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="sidebar-menu-holder">
+        <div class="sidebar-menu-top">
+        <a class="sidebar-logo"
+              href="{{url('/')}}/" itemprop="url">
+               <img src="/assets/default/img/sidebar/logo.png"><span class="sidebar-logo-text">Rurera</span>
+         </a>
         <button class="navbar-toggler navbar-order" type="button" id="navbarToggle">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
+        </div>
         <ul class="sidebar-menu pt-10 @if(!empty($authUser->userGroup)) has-user-group @endif @if(empty($getPanelSidebarSettings) or empty($getPanelSidebarSettings['background'])) without-bottom-image @endif" @if((!empty($isRtl) and $isRtl)) data-simplebar-direction="rtl" @endif>
 
 
@@ -105,12 +111,12 @@
                         <span><a href="/books">Books</a></span>
                     </a>
                 </li>
-                <li class="sidenav-item {{ (request()->is('sats') or request()->is('sats/*')) ? 'sidenav-item-active' : '' }}">
+                <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.png">
                         </span>
-                        <span><a href="/sats">Test</a></span>
+                        <span><a href="/tests">Test</a></span>
                     </a>
                 </li>
 

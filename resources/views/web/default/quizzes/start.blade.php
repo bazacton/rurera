@@ -131,9 +131,14 @@ $rand_id = rand(99,9999);
             </section>
                 <div class="row justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w-100">
+                    @php $content_class = ''; @endphp
+                    @if( $quiz->quiz_type == 'vocabulary')
+                    @php $content_class = 'hide'; @endphp
+                        <div class="start-counter"></div>
+                    @endif
 
 
-                    <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                    <div class="learning-content-box {{$content_class}} d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
 
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
@@ -154,7 +159,7 @@ $rand_id = rand(99,9999);
 
                 @if( !empty( $resultData ) && !empty((array) $resultData)  )
 
-                <section class="lms-data-table my-80">
+                <section class="lms-data-table {{$content_class}} my-80">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
@@ -251,3 +256,22 @@ $rand_id = rand(99,9999);
 <script src="/assets/learning_page/forum.min.js"></script>
 @endif
 @endpush
+<script>
+    //init_question_functions();
+
+
+    if( "{{$quiz->quiz_type}}" == 'vocabulary') {
+        var start_counter = 6;
+
+        var Startintervals = setInterval(function () {
+            if (parseInt(start_counter) > 1) {
+                start_counter = parseInt(start_counter) - parseInt(1);
+                $(".start-counter").html(start_counter);
+            } else {
+                $(".start-counter").remove();
+                clearInterval(Startintervals);
+                $(".start-spell-quiz").click();
+            }
+        }, 1000);
+    }
+</script>

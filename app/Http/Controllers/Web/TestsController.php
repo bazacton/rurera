@@ -47,7 +47,7 @@ class TestsController extends Controller
         $graphs_array['Day'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'daily');
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
-        $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus', 'cat4','iseb','independence_exams'))->with('quizQuestionsList');
+        $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
         $sats = $query->paginate(100);
 
         $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
@@ -101,13 +101,15 @@ class TestsController extends Controller
     {
         $QuestionsAttemptController = new QuestionsAttemptController();
         $counter = 0;
-        $search_keyword = $request->get('search_keyword', null);
-        $quiz_type = $request->get('quiz_type', null);
+        $search_keyword = $request->get('search_keyword', '');
+        $quiz_type = $request->get('quiz_type', '');
 
 
         $query = Quiz::where('status', Quiz::ACTIVE);
-        if ($quiz_type != '') {
-            $query->Where('quiz_type', $quiz_type);
+        if ($quiz_type != '' && $quiz_type != 'all') {
+            $query->where('quiz_type', $quiz_type);
+        }else{
+            $query-> whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'));
         }
         $query->with('quizQuestionsList');
         if ($search_keyword != '') {

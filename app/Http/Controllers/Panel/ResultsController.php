@@ -14,12 +14,7 @@ class ResultsController extends Controller
     {
         $QuizzesResult = QuizzesResult::find($result_id);
         $results = json_decode($QuizzesResult->results);
-        //pre($results);
         $other_data = json_decode($QuizzesResult->other_data);
-        //pre($results, false);
-        //pre($results);
-        //pre($QuizzesResult);
-        //pre($result_type);
         $data = [
             'pageTitle' => 'Answers',
             'results' => $results,

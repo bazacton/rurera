@@ -1,4 +1,4 @@
-@extends('web.default.layouts.app')
+@extends('web.default.panel.layouts.panel_layout')
 
 @push('styles_top')
     <link rel="stylesheet" href="/assets/default/css/css-stars.css">

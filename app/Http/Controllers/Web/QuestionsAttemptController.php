@@ -1530,6 +1530,8 @@ class QuestionsAttemptController extends Controller
         $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
 
 
+
+
         $QuizzesResult->update([
             'user_id'        => $user->id,
             'results'        => json_encode($results),
@@ -1544,6 +1546,7 @@ class QuestionsAttemptController extends Controller
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
 
+        $incorrect_array = array();
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
 
@@ -1555,6 +1558,7 @@ class QuestionsAttemptController extends Controller
                 $time_consumed = isset($tableData['time_consumed']) ? $tableData['time_consumed'] : '';
                 $table_no = isset($tableData['table_no']) ? $tableData['table_no'] : '';
                 $is_correct = isset($tableData['is_correct']) ? $tableData['is_correct'] : '';
+
 
 
                 $newQuestionResult = QuizzResultQuestions::create([
@@ -1578,10 +1582,60 @@ class QuestionsAttemptController extends Controller
                     'user_ip'          => getUserIP(),
                     'quiz_level'       => $QuizzesResult->quiz_level,
                 ]);
+                if($is_correct != 'true'){
+                    $incorrect_array[] = $newQuestionResult->id;
+                }
+
                 $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
 
             }
         }
+
+        if( $QuizzesResult->attempt_mode == 'treasure_mode') {
+            $user_life_lines = $user->user_life_lines;
+
+            $user_data = array();
+            if (count($incorrect_array) > 0) {
+                $user_life_lines = $user_life_lines - count($incorrect_array);
+                $user_data['user_life_lines'] = $user_life_lines;
+            }
+            $percentage_correct_answer = $this->get_percetange_corrct_answer($QuizzesResult);
+            $user_timetables_levels = json_decode($user->user_timetables_levels);
+            $user_timetables_levels = is_array($user_timetables_levels)? $user_timetables_levels : array();
+            $user_timetables_levels[] = $QuizzesResult->nugget_id;
+            if( $percentage_correct_answer >= 80){
+
+                //Check for Treasure Box
+
+                $treasure_mission_data = get_treasure_mission_data();
+                $nugget_data = searchNuggetByID($treasure_mission_data,'id', $QuizzesResult->nugget_id);
+                $treasure_box = isset( $nugget_data['treasure_box'] )? $nugget_data['treasure_box'] : 0;
+                if( $treasure_box > 0){
+                    RewardAccounting::create([
+                        'user_id'       => $user->id,
+                        'item_id'       => 0,
+                        'type'          => 'coins',
+                        'score'         => $treasure_box,
+                        'status'        => 'addiction',
+                        'created_at'    => time(),
+                        'parent_id'     => $QuizzesResult->id,
+                        'parent_type'   => 'timestables_treasure',
+                        'full_data'     => $QuizzesResult->nugget_id,
+                        'updated_at'    => time(),
+                        'assignment_id' => 0,
+                        'result_id'     => $QuizzesResult->id,
+                    ]);
+                }
+
+
+                $user_data['user_timetables_levels'] = json_encode($user_timetables_levels);
+
+            }
+            if( !empty( $user_data ) ) {
+                $user->update($user_data);
+            }
+        }
+
 
         if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {
             $UserAssignedTopics = UserAssignedTopics::find($QuizzesResult->parent_type_id);
@@ -2363,6 +2417,20 @@ class QuestionsAttemptController extends Controller
         /*
         * Vocabulary Quiz Test Completion End
         */
+    }
+
+    /*
+     * Get Result Correct Questions Percentage
+     *
+     *
+     */
+    public function get_percetange_corrct_answer($resultLogObj)
+    {
+        $user = getUser();
+        $total_questions = $resultLogObj->quizz_result_questions_list->count();
+        $total_correct_answers = $resultLogObj->quizz_result_questions_list->where('status', 'correct')->count();
+        $correct_percentage = round(($total_correct_answers * 100) / $total_questions);
+        return $correct_percentage;
     }
 
 

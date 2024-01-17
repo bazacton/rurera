@@ -19,26 +19,131 @@
 <section>
 
 
-    <div class="activities-container mt-25 p-20 p-lg-35 ">
-        <div class="chart-filters">
+    <div class="activities-container mt-10 p-20 p-lg-35 ">
+        <div class="chart-filters p-0">
+            <ul class="analytics-type">
+                <li><a href="javascript:;" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.png"> LEARN</a></li>
+                <li><a href="javascript:;" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.png"> TIMESTABLE</a></li>
+                <li><a href="javascript:;" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.png"> WORD LISTS</a></li>
+                <li><a href="javascript:;" data-graph_type="books"><img src="/assets/default/img/sidebar/books.png"> BOOKS</a></li>
+                <li><a href="javascript:;" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.png"> TEST</a></li>
+            </ul>
             <h3>Analytics</h3>
             <ul class="analytics-data-ul">
                 <li><a href="javascript:;" class=" graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
                         September 26, 2023</a>
                 </li>
-                <li class="has-child">
-                    <a href="javascript:;" class="graph_Hour" data-graph_id="graph_id_Hour">Type</a>
-                    <ul class="sub-dropdown">
-                        <li><a href="javascript:;" data-graph_type="11plus">11+</a></li>
-                        <li><a href="javascript:;" data-graph_type="sats">Sats</a></li>
-                        <li><a href="javascript:;" data-graph_type="iseb">ISEB</a></li>
-                        <li><a href="javascript:;" data-graph_type="independent_exams">Independent Exams</a></li>
-                        <li><a href="javascript:;" data-graph_type="timetables">Timestables</a></li>
-                        <li><a href="javascript:;" data-graph_type="books">Books</a></li>
 
-                    </ul>
-                </li>
             </ul>
+
+
+
+        </div>
+
+        <div class="time-card panel-border panel-shadow mb-30">
+            <div class="card-header">
+                <h3 class="font-19 font-weight-bold">
+                    What’s up Today
+                    <span>Total 424,567 deliveries</span>
+                </h3>
+                <div class="card-toolbar">
+                    <a href="#">Report Cecnter</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="time-nav">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span>Jan</span>
+                                <em>12</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Feb</span>
+                                <em>22</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>March</span>
+                                <em>20</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="active" href="#">
+                                <span>April</span>
+                                <em>27</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>May</span>
+                                <em>9</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>June</span>
+                                <em>17</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>July</span>
+                                <em>11</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Aug</span>
+                                <em>6</em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>Sep</span>
+                                <em>10</em>
+                            </a>                    
+                        </li>
+                    </ul>
+                </div>
+                <div class="time-info-list">
+                    <ul>
+                        <li>
+                            <div class="infobox">
+                                <strong>
+                                    <span>10:20</span> - <span>11:00</span> <em>Am</em>
+                                </strong>
+                                <p>9 Degree Project Estimation Meeting</p>
+                                <a href="#"><span>Lead by</span> Peter Marcus</a>
+                            </div>
+                            <a href="#" class="view-btn">View</a>
+                        </li>
+                        <li class="warning-info">
+                            <div class="infobox">
+                                <strong>
+                                    <span>16:30</span> - <span>17:00</span> <em>Pm</em>
+                                </strong>
+                                <p>Dashboard UI/UX Design Review</p>
+                                <a href="#"><span>Lead by</span> Lead by Bob</a>
+                            </div>
+                            <a href="#" class="view-btn">View</a>
+                        </li>
+                        <li class="success-info">
+                            <div class="infobox">
+                                <strong>
+                                    <span>12:00</span> - <span>13:40</span> <em>Am</em>
+                                </strong>
+                                <p>Marketing Campaign Discussion</p>
+                                <a href="#"><span>Lead by</span> Lead by Mark Morris</a>
+                            </div>
+                            <a href="#" class="view-btn">View</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <div class="accordion" id="analyticsAccordion">
@@ -50,14 +155,13 @@
                 <div class="card-header collapsed mb-0" id="headingOne" type="button" data-toggle="collapse"
                      data-target="#report_{{$date_str}}" aria-expanded="true" aria-controls="report_{{$date_str}}">
                     <span>{{ dateTimeFormat($report_date,'d F Y') }}</span>
-                    <span style="float:right">
-                        {{isset( $analyticDataArray['data'] )? count($analyticDataArray['data']) : 0}} Skills practiced: {{isset( $analyticDataArray['question_answered'] )? $analyticDataArray['question_answered'] : 0}} questions
-                    </span>
+
                 </div>
 
                 <div id="report_{{$date_str}}" class="collapse" aria-labelledby="headingOne"
                      data-parent="#analyticsAccordion">
                     <div class="card-body">
+                        <ul class="timeline-list">
 
                         @if( !empty( $analyticDataArray['data'] ) )
                         @foreach( $analyticDataArray['data'] as $attempt_id => $analyticData)
@@ -70,55 +174,46 @@
                         $end_time = isset( $analyticData['end_time'] )? $analyticData['end_time'] : 0;
                         $type = isset( $analyticData['type'] )? $analyticData['type'] : '';
 
+
+                        $detail_link = '';
+                        if( $parent_type == 'practice' || $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment' || $parent_type == 'book_page' || $parent_type == 'vocabulary' || $parent_type == 'assignment'){
+                            $detail_link = '/panel/quizzes/'.$result_id.'/check_answers';
+                        }
+                        if( $parent_type == 'timestables' || $parent_type == 'timestables_assignment'){
+                            $detail_link = '/panel/results/'.$result_id.'/timetables';
+                        }
+
+                        if( $parent_type == 'book_read'){
+                           $book_slug = isset( $analyticData['book_slug'] )? $analyticData['book_slug'] : '';
+                            $detail_link = 'books/'.$book_slug.'/activity';
+                        }
+
                         @endphp
-                        <div class="card-header" id="headingOnes">
-                            <h2 class="mb-0">
-                                <a href="javascript:;" class="text-left">
-                                    {{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}
+
+
+                                <li>
+                                    <div class="timeline-icon"><img src="/assets/default/img/types/{{$parent_type}}.png" width="26" height="26" alt=""></div>
+                                    <div class="timeline-text"><p><strong><a href="{{$detail_link}}">{{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}</a></strong><span class="info-time">{{ dateTimeFormat($start_time,'H:i') }}</span></p>
                                     @if( $type != 'book_read')
-                                    @if( $more_than_minute == 'yes')
-                                    | <span class="start_end_time" style="font-size: 16px;">{{ dateTimeFormat($start_time,'H:i') }} - {{ dateTimeFormat($end_time,'H:i') }}</span>
-                                    @else
-                                    | <span class="start_end_time" style="font-size: 16px;">{{ dateTimeFormat($start_time,'H:i:s') }} - {{ dateTimeFormat($end_time,'H:i:s') }}</span>
+                                        <span class="analytic-item">Active practice: {{isset( $analyticData['practice_time'] )? $analyticData['practice_time'] : 0}} min</span>
+                                        <span class="analytic-item">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
+                                        <span class="analytic-item">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
+
+                                        @else
+                                        <span class="analytic-item">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
+                                        <span class="analytic-item">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>
+                                        <span class="analytic-item">&nbsp;</span>
+                                        <span class="analytic-item">&nbsp;</span>
                                     @endif
-                                    @endif
-                                </a>
-                                @if( $parent_type == 'practice' || $parent_type == 'sats' || $parent_type == '11plus' || $parent_type == 'assessment'
-                                || $parent_type == 'book_page' || $parent_type == 'vocabulary' || $parent_type == 'assignment')
-                                <span style="float:right;font-size: 15px;"><a
-                                            href="/panel/quizzes/{{$result_id}}/check_answers">More Details</a></span>
-                                @endif
-                                @if( $parent_type == 'timestables' || $parent_type == 'timestables_assignment')
-                                <span style="float:right;font-size: 15px;"><a
-                                            href="/panel/results/{{$result_id}}/timetables">More Details</a></span>
-                                @endif
+                                    <span class="analytics-more_details"><a href="{{$detail_link}}">More Details</a></span>
+                                    </div>
+                                </li>
 
-                                @if( $parent_type == 'book_read')
-                                @php $book_slug = isset( $analyticData['book_slug'] )? $analyticData['book_slug'] : '';
-                                @endphp
-                                <span style="float:right;font-size: 15px;"><a href="/books/{{$book_slug}}/activity">More Details</a></span>
-                                @endif
 
-                            </h2>
-                        </div>
-                        <div class="col-12 card-footer" id="headingOnes" style="margin-bottom:10px;">
-                            <div class="row">
-                                @if( $type != 'book_read')
-                                <span class="col-3">Active practice: {{isset( $analyticData['practice_time'] )? $analyticData['practice_time'] : 0}} min</span>
-                                <span class="col-3">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
-                                <span class="col-3">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
-
-                                @else
-                                <span class="col-3">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
-                                <span class="col-3">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>
-                                <span class="col-3">&nbsp;</span>
-                                <span class="col-3">&nbsp;</span>
-                                @endif
-                            </div>
-                        </div>
                         @endforeach
                         @endif
 
+                        </ul>
 
                     </div>
                 </div>

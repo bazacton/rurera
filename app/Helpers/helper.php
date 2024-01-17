@@ -8126,6 +8126,41 @@ function isKeyValueFoundInMultiArray($multiArray, $searchKey, $searchValue) {
     );
 }
 
+function searchNuggetByID($array, $key, $value, $parentLevel = null, $grandparentLevel = null) {
+    foreach ($array as $item) {
+        if (isset($item[$key]) && $item[$key] === $value) {
+            $item['stageData'] = $parentLevel;
+            $item['levelData'] = $grandparentLevel;
+            return $item;
+        }
+
+        if (isset($item['stages']) && is_array($item['stages'])) {
+            $result = searchNuggetByID($item['stages'], $key, $value, [
+                'id' => $item['id'],
+                'title' => $item['title'],
+                'time_interval' => isset( $item['time_interval'] )? $item['time_interval'] : 0,
+                'life_lines' => isset( $item['life_lines'] )? $item['life_lines'] : 0,
+            ], $parentLevel);
+            if ($result !== null) {
+                return $result;
+            }
+        }
+
+        if (isset($item['nuggets']) && is_array($item['nuggets'])) {
+            $result = searchNuggetByID($item['nuggets'], $key, $value, [
+                'id' => $item['id'],
+                'title' => $item['title'],
+                'time_interval' => isset( $item['time_interval'] )? $item['time_interval'] : 0,
+                'life_lines' => isset( $item['life_lines'] )? $item['life_lines'] : 0,
+            ], $parentLevel);
+            if ($result !== null) {
+                return $result;
+            }
+        }
+    }
+
+    return null;
+}
 /*
  * Get array lenght
  */
@@ -8155,4 +8190,90 @@ function find_array_index_by_value($data, $value_key){
         }
     }
     return $return_data;
+}
+
+
+function get_treasure_mission_data(){
+    $treasure_mission_data = array(
+                array(
+                    'title'  => 'Level 1',
+                    'id' => 'level_1',
+                    'time_interval' => 10,
+                    'life_lines' => 10,
+                    'stages' => array(
+                        array(
+                            'title'   => 'Stage 1',
+                            'id' => 'stage_1_1',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_1_1_1','tables' => [2  => 15,10 => 15]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_1_1_2','tables' => [2  => 5, 10 => 5, 3 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_1_3','tables' => [3  => 10,4 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #4','id' => 'nugget_1_1_4','tables' => [4  => 10,5 => 20]),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 2',
+                            'id' => 'stage_1_2',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_1','tables' => [5  => 10,6 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_2','tables' => [6  => 10,7 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_3','tables' => [7  => 10,8 => 20]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_1_2_4','tables' => [8  => 10,9 => 20]),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 3',
+                            'id' => 'stage_1_3',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_1','tables' => [9  => 10,10 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_2','tables' => [10  => 10,11 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_3','tables' => [11  => 10,12 => 20]),
+                            ),
+                        )
+                    )
+                ),
+                array(
+                    'title'  => 'Level 2',
+                    'id' => 'level_2',
+                    'time_interval' => 5,
+                    'life_lines' => 10,
+                    'stages' => array(
+                        array(
+                            'title'   => 'Stage 1',
+                            'id' => 'stage_2_1',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_2_1_1','tables' => [2  => 15,10 => 15]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_2_1_2','tables' => [2  => 5, 10 => 5, 3 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_1_3','tables' => [3  => 10,4 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #4','id' => 'nugget_2_1_4','tables' => [4  => 10,5 => 20]),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 2',
+                            'id' => 'stage_2_2',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_1','tables' => [5  => 10,6 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_2','tables' => [6  => 10,7 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_3','tables' => [7  => 10,8 => 20]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_2_2_4','tables' => [8  => 10,9 => 20]),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 3',
+                            'id' => 'stage_2_3',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_1','tables' => [9  => 10,10 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_2','tables' => [10  => 10,11 => 20], 'treasure_box' => 100),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_3','tables' => [11  => 10,12 => 20]),
+                            ),
+                        )
+                    )
+                ),
+            );
+
+    return $treasure_mission_data;
 }
