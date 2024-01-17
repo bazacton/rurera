@@ -19025,6 +19025,10 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     margin-bottom: 0;
     border-bottom: 0;
 }
+.topics-accordion .card-body {
+    background-color: #d8e5f8;
+    padding: 25px 30px;
+}
  
 /*************************************
 Lms Responsive Style Start
