@@ -8161,6 +8161,46 @@ function searchNuggetByID($array, $key, $value, $parentLevel = null, $grandparen
 
     return null;
 }
+
+function getNextNuggetByCurrentID($array, $key, $value, $parentLevel = null, $grandparentLevel = null, $found = false) {
+    foreach ($array as $item) {
+        if ($found) {
+            $item['stageData'] = $parentLevel;
+            $item['levelData'] = $grandparentLevel;
+            return $item;
+        }
+
+        if (isset($item[$key]) && $item[$key] === $value) {
+            $found = true;
+        }
+
+        if (isset($item['stages']) && is_array($item['stages'])) {
+            $result = getNextNuggetByCurrentID($item['stages'], $key, $value, [
+                'id' => $item['id'],
+                'title' => $item['title'],
+                'time_interval' => isset($item['time_interval']) ? $item['time_interval'] : 0,
+                'life_lines' => isset($item['life_lines']) ? $item['life_lines'] : 0,
+            ], $parentLevel, $found);
+            if ($result !== null) {
+                return $result;
+            }
+        }
+
+        if (isset($item['nuggets']) && is_array($item['nuggets'])) {
+            $result = getNextNuggetByCurrentID($item['nuggets'], $key, $value, [
+                'id' => $item['id'],
+                'title' => $item['title'],
+                'time_interval' => isset($item['time_interval']) ? $item['time_interval'] : 0,
+                'life_lines' => isset($item['life_lines']) ? $item['life_lines'] : 0,
+            ], $parentLevel, $found);
+            if ($result !== null) {
+                return $result;
+            }
+        }
+    }
+
+    return null;
+}
 /*
  * Get array lenght
  */
@@ -8192,85 +8232,336 @@ function find_array_index_by_value($data, $value_key){
     return $return_data;
 }
 
-
+function get_treasure_missions(){
+    $treasure_missions = array(
+        array(
+            'title'  => 'Mission 1',
+            'description' => '',
+            'img'  => '',
+            'id' => 'mission_1',
+        )
+    );
+    return $treasure_missions;
+}
 function get_treasure_mission_data(){
     $treasure_mission_data = array(
                 array(
                     'title'  => 'Level 1',
+                    'description' => 'You’ll start with ten questions on the 10× table; then ten questions on the 2×, 5×, etc. 
+                    You’ll have 30 questions and only 5 seconds for each question.',
                     'id' => 'level_1',
-                    'time_interval' => 10,
+                    'mission_id' => 'mission_1',
+                    'time_interval' => 5,
+                    'per_stage_questions' => 30,
+                    'coins' => 1,
                     'life_lines' => 10,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
                             'id' => 'stage_1_1',
+                            'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_1_1_1','tables' => [2  => 15,10 => 15]),
-                                array('title'  => 'Nugget #2','id' => 'nugget_1_1_2','tables' => [2  => 5, 10 => 5, 3 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_1_3','tables' => [3  => 10,4 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #4','id' => 'nugget_1_1_4','tables' => [4  => 10,5 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_1_1_1','prev_no_questions' => 10, 'previous_tables' => [], 'tables' => [2  => 15,10 => 15]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_1_1_2','prev_no_questions' => 10, 'previous_tables' => [2,10], 'tables' => [3 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_1_3','prev_no_questions' => 10, 'previous_tables' => [2,10,3], 'tables' => [4 => 20]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_1_1_4','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 20]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_1_1_5','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5], 'tables' => [], 'treasure_box' => 100),
 
                             ),
                         ),
                         array(
                             'title'   => 'Stage 2',
                             'id' => 'stage_1_2',
+                            'custom_class' => 'ul-rtl',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_1','tables' => [5  => 10,6 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_2','tables' => [6  => 10,7 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_3','tables' => [7  => 10,8 => 20]),
-                                array('title'  => 'Nugget #4','id' => 'nugget_1_2_4','tables' => [8  => 10,9 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_1_2_1','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5], 'tables' => [6 => 20]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_1_2_2','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6], 'tables' => [7 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_2_3','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6,7], 'tables' => [8 => 20]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_1_2_4','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6,7,8], 'tables' => [9 => 20]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_1_2_5','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [], 'treasure_box' => 100),
 
                             ),
                         ),
                         array(
                             'title'   => 'Stage 3',
                             'id' => 'stage_1_3',
+                            'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_1','tables' => [9  => 10,10 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_2','tables' => [10  => 10,11 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_3','tables' => [11  => 10,12 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_1_3_1','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [10 => 20]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_1_3_2','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10], 'tables' => [11 => 20]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_1_3_3','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4,5,6,7,8,9,11], 'tables' => [12 => 20]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_1_3_4','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                                array('title'  => 'Nugget #5','id' => 'nugget_1_3_5','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [], 'treasure_box' => 100),
                             ),
-                        )
+                        ),
+                        array(
+                           'title'   => 'Stage 4',
+                           'id' => 'stage_1_4',
+                           'custom_class' => 'ul-rtl',
+                           'nuggets' => array(
+                               array('title'  => 'Nugget #1','id' => 'nugget_1_4_1','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #2','id' => 'nugget_1_4_2','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #3','id' => 'nugget_1_4_3','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #4','id' => 'nugget_1_4_4','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #5','id' => 'nugget_1_4_5','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [],'is_last_stage' => true),
+                           ),
+                       ),
                     )
                 ),
+
                 array(
                     'title'  => 'Level 2',
+                    'description' => 'You’ll start with twenty five questions on the 10× table; then twenty five questions on the 2×, 5×, etc. 
+                    You’ll have 50 questions and only 4 seconds for each question.',
                     'id' => 'level_2',
-                    'time_interval' => 5,
+                    'mission_id' => 'mission_1',
+                    'time_interval' => 4,
+                    'per_stage_questions' => 50,
+                    'coins' => 2,
                     'life_lines' => 10,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
                             'id' => 'stage_2_1',
+                            'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_2_1_1','tables' => [2  => 15,10 => 15]),
-                                array('title'  => 'Nugget #2','id' => 'nugget_2_1_2','tables' => [2  => 5, 10 => 5, 3 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_1_3','tables' => [3  => 10,4 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #4','id' => 'nugget_2_1_4','tables' => [4  => 10,5 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_2_1_1','prev_no_questions' => 20, 'previous_tables' => [], 'tables' => [2  => 25,10 => 25]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_2_1_2','prev_no_questions' => 20, 'previous_tables' => [2,10], 'tables' => [3 => 30]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_1_3','prev_no_questions' => 20, 'previous_tables' => [2,10,3], 'tables' => [4 => 30]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_2_1_4','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 30]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_2_1_5','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5], 'tables' => [], 'treasure_box' => 100),
 
                             ),
                         ),
                         array(
                             'title'   => 'Stage 2',
                             'id' => 'stage_2_2',
+                            'custom_class' => 'ul-rtl',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_1','tables' => [5  => 10,6 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_2','tables' => [6  => 10,7 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_3','tables' => [7  => 10,8 => 20]),
-                                array('title'  => 'Nugget #4','id' => 'nugget_2_2_4','tables' => [8  => 10,9 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_2_2_1','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5], 'tables' => [6 => 30]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_2_2_2','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6], 'tables' => [7 => 30]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_2_3','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6,7], 'tables' => [8 => 30]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_2_2_4','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6,7,8], 'tables' => [9 => 30]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_2_2_5','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [], 'treasure_box' => 100),
 
                             ),
                         ),
                         array(
                             'title'   => 'Stage 3',
                             'id' => 'stage_2_3',
+                            'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_1','tables' => [9  => 10,10 => 20]),
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_2','tables' => [10  => 10,11 => 20], 'treasure_box' => 100),
-                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_3','tables' => [11  => 10,12 => 20]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_2_3_1','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [10 => 30]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_2_3_2','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10], 'tables' => [11 => 30]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_2_3_3','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4,5,6,7,8,9,11], 'tables' => [12 => 30]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_2_3_4','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                                array('title'  => 'Nugget #5','id' => 'nugget_2_3_5','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [], 'treasure_box' => 100),
                             ),
-                        )
+                        ),
+                        array(
+                           'title'   => 'Stage 4',
+                           'id' => 'stage_2_4',
+                           'custom_class' => 'ul-rtl',
+                           'nuggets' => array(
+                               array('title'  => 'Nugget #1','id' => 'nugget_2_4_1','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #2','id' => 'nugget_2_4_2','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #3','id' => 'nugget_2_4_3','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #4','id' => 'nugget_2_4_4','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #5','id' => 'nugget_2_4_5','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [],'is_last_stage' => true),
+                           ),
+                       ),
+                    )
+                ),
+
+                array(
+                    'title'  => 'Level 3',
+                    'description' => 'You’ll start with fifty questions on the 10× table; then fifty questions on the 2×, 5×, etc. 
+                    You’ll have 100 questions and only 3 seconds for each question.',
+                    'id' => 'level_3',
+                    'mission_id' => 'mission_1',
+                    'time_interval' => 3,
+                    'per_stage_questions' => 100,
+                    'coins' => 3,
+                    'life_lines' => 10,
+                    'stages' => array(
+                        array(
+                            'title'   => 'Stage 1',
+                            'id' => 'stage_3_1',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_3_1_1','prev_no_questions' => 30, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_3_1_2','prev_no_questions' => 30, 'previous_tables' => [2,10], 'tables' => [3 => 70]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_3_1_3','prev_no_questions' => 30, 'previous_tables' => [2,10,3], 'tables' => [4 => 70]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_3_1_4','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 70]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_3_1_5','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 2',
+                            'id' => 'stage_3_2',
+                            'custom_class' => 'ul-rtl',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_3_2_1','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5], 'tables' => [6 => 70]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_3_2_2','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6], 'tables' => [7 => 70]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_3_2_3','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7], 'tables' => [8 => 70]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_3_2_4','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8], 'tables' => [9 => 70]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_3_2_5','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 3',
+                            'id' => 'stage_3_3',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_3_3_1','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [10 => 70]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_3_3_2','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10], 'tables' => [11 => 70]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_3_3_3','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4,5,6,7,8,9,11], 'tables' => [12 => 70]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_3_3_4','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                                array('title'  => 'Nugget #5','id' => 'nugget_3_3_5','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [], 'treasure_box' => 100),
+                            ),
+                        ),
+                        array(
+                           'title'   => 'Stage 4',
+                           'id' => 'stage_3_4',
+                           'custom_class' => 'ul-rtl',
+                           'nuggets' => array(
+                               array('title'  => 'Nugget #1','id' => 'nugget_3_4_1','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #2','id' => 'nugget_3_4_2','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #3','id' => 'nugget_3_4_3','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #4','id' => 'nugget_3_4_4','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #5','id' => 'nugget_3_4_5','prev_no_questions' => 100, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [],'is_last_stage' => true),
+                           ),
+                       ),
+                    )
+                ),
+
+                array(
+                    'title'  => 'Level 4',
+                    'description' => 'You’ll start with seventy five questions on the 10× table; then seventy five questions on the 2×, 5×, etc. 
+                    You’ll have 150 questions and only 2 seconds for each question.',
+                    'id' => 'level_4',
+                    'mission_id' => 'mission_1',
+                    'time_interval' => 2,
+                    'per_stage_questions' => 150,
+                    'coins' => 4,
+                    'life_lines' => 10,
+                    'stages' => array(
+                        array(
+                            'title'   => 'Stage 1',
+                            'id' => 'stage_4_1',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_4_1_1','prev_no_questions' => 50, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_4_1_2','prev_no_questions' => 50, 'previous_tables' => [2,10], 'tables' => [3 => 100]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_4_1_3','prev_no_questions' => 50, 'previous_tables' => [2,10,3], 'tables' => [4 => 100]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_4_1_4','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 100]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_4_1_5','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 2',
+                            'id' => 'stage_4_2',
+                            'custom_class' => 'ul-rtl',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_4_2_1','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5], 'tables' => [6 => 100]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_4_2_2','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6], 'tables' => [7 => 100]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_4_2_3','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7], 'tables' => [8 => 100]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_4_2_4','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8], 'tables' => [9 => 100]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_4_2_5','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 3',
+                            'id' => 'stage_4_3',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_4_3_1','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [10 => 100]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_4_3_2','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10], 'tables' => [11 => 100]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_4_3_3','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4,5,6,7,8,9,11], 'tables' => [12 => 100]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_4_3_4','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                                array('title'  => 'Nugget #5','id' => 'nugget_4_3_5','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [], 'treasure_box' => 100),
+                            ),
+                        ),
+                        array(
+                           'title'   => 'Stage 4',
+                           'id' => 'stage_4_4',
+                           'custom_class' => 'ul-rtl',
+                           'nuggets' => array(
+                               array('title'  => 'Nugget #1','id' => 'nugget_4_4_1','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #2','id' => 'nugget_4_4_2','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #3','id' => 'nugget_4_4_3','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #4','id' => 'nugget_4_4_4','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #5','id' => 'nugget_4_4_5','prev_no_questions' => 150, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [],'is_last_stage' => true),
+                           ),
+                       ),
+                    )
+                ),
+                
+                array(
+                    'title'  => 'Level 5',
+                    'description' => 'You’ll start with hundred questions on the 10× table; then hundred questions on the 2×, 5×, etc. 
+                    You’ll have 200 questions and only 1 second for each question.',
+                    'id' => 'level_5',
+                    'mission_id' => 'mission_1',
+                    'time_interval' => 1,
+                    'per_stage_questions' => 200,
+                    'coins' => 5,
+                    'life_lines' => 10,
+                    'stages' => array(
+                        array(
+                            'title'   => 'Stage 1',
+                            'id' => 'stage_5_1',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_5_1_1','prev_no_questions' => 70, 'previous_tables' => [], 'tables' => [2  => 65,10 => 65]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_5_1_2','prev_no_questions' => 70, 'previous_tables' => [2,10], 'tables' => [3 => 130]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_5_1_3','prev_no_questions' => 70, 'previous_tables' => [2,10,3], 'tables' => [4 => 130]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_5_1_4','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 130]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_5_1_5','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 2',
+                            'id' => 'stage_5_2',
+                            'custom_class' => 'ul-rtl',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_5_2_1','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5], 'tables' => [6 => 130]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_5_2_2','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6], 'tables' => [7 => 130]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_5_2_3','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6,7], 'tables' => [8 => 130]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_5_2_4','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6,7,8], 'tables' => [9 => 130]),
+                                array('title'  => 'Nugget #5','id' => 'nugget_5_2_5','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [], 'treasure_box' => 100),
+
+                            ),
+                        ),
+                        array(
+                            'title'   => 'Stage 3',
+                            'id' => 'stage_5_3',
+                            'custom_class' => '',
+                            'nuggets' => array(
+                                array('title'  => 'Nugget #1','id' => 'nugget_5_3_1','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6,7,8,9], 'tables' => [10 => 130]),
+                                array('title'  => 'Nugget #2','id' => 'nugget_5_3_2','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10], 'tables' => [11 => 130]),
+                                array('title'  => 'Nugget #3','id' => 'nugget_5_3_3','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4,5,6,7,8,9,11], 'tables' => [12 => 130]),
+                                array('title'  => 'Nugget #4','id' => 'nugget_5_3_4','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                                array('title'  => 'Nugget #5','id' => 'nugget_5_3_5','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [], 'treasure_box' => 100),
+                            ),
+                        ),
+                        array(
+                           'title'   => 'Stage 4',
+                           'id' => 'stage_5_4',
+                           'custom_class' => 'ul-rtl',
+                           'nuggets' => array(
+                               array('title'  => 'Nugget #1','id' => 'nugget_5_4_1','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #2','id' => 'nugget_5_4_2','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #3','id' => 'nugget_5_4_3','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #4','id' => 'nugget_5_4_4','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => []),
+                               array('title'  => 'Nugget #5','id' => 'nugget_5_4_5','prev_no_questions' => 200, 'previous_tables' => [2,10,3,4,5,6,7,8,9,10,11,12], 'tables' => [],'is_last_stage' => true),
+                           ),
+                       ),
                     )
                 ),
             );

@@ -28,6 +28,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+
+        if (auth()->check() && auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $homeSections = HomeSection::orderBy('order', 'asc')->get();
         $selectedSectionsName = $homeSections->pluck('name')->toArray();
 

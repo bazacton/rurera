@@ -61,7 +61,9 @@ if( $duration_type == 'total_practice'){
                         </div>
                     </div>
 
-                    <div class="learning-content start-btn-container" id="learningPageContent">
+                    <div class="start-counter"></div>
+
+                    <div class="learning-content start-btn-container hide" id="learningPageContent">
                         <div class="learning-title">
                             <h3 class="mb-5"></h3>
                         </div>
@@ -266,6 +268,20 @@ if( $duration_type == 'total_practice'){
 <script>
     //init_question_functions();
 
+
+    var start_counter = 6;
+
+    var Startintervals = setInterval(function () {
+        if (parseInt(start_counter) > 1) {
+            start_counter = parseInt(start_counter) - parseInt(1);
+            $(".start-counter").html(start_counter);
+        } else {
+            $(".start-counter").remove();
+            clearInterval(Startintervals);
+            $(".start-timestables-quiz").click();
+        }
+    }, 1000);
+
     var user_data = [];
     var Quizintervals = null;
     var is_gameover = false;
@@ -282,7 +298,6 @@ if( $duration_type == 'total_practice'){
             $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
         }
         $(".questions-block.active .question-form").submit();
-
     });
 
     $(document).on('click', '.start-timestables-quiz', function (e) {
@@ -490,6 +505,7 @@ if( $duration_type == 'total_practice'){
                         if (parseInt(quiz_timer_counter) == 0) {
                             clearInterval(Quizintervals);
                             $("#timestables_question_status_modal").modal('show');
+                            $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                             //$(".questions-block.active .question-form").submit();
                         }
                     }
@@ -517,13 +533,16 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
-                    console.log(return_data);
+                    if (return_data.return_layout != '') {
+                        $(".question-area-block").html(return_data.return_layout);
+
+                    }
                 }
             });
 
             //window.location.href = '/timestables/summary';
             //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
+            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
 
             return false;
 

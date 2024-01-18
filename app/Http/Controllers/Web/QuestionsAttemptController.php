@@ -1581,6 +1581,8 @@ class QuestionsAttemptController extends Controller
                     'attempted_at'     => time(),
                     'user_ip'          => getUserIP(),
                     'quiz_level'       => $QuizzesResult->quiz_level,
+                    'attempt_mode'     => $QuizzesResult->attempt_mode,
+                    'child_type_id'   => $to,
                 ]);
                 if($is_correct != 'true'){
                     $incorrect_array[] = $newQuestionResult->id;
@@ -1689,10 +1691,26 @@ class QuestionsAttemptController extends Controller
                     ]);
                 }
             }
-
         }
 
-        pre($timestables_data);
+        $return_layout = '';
+        if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'treasure_mode') {
+
+            $treasure_mission_data = get_treasure_mission_data();
+            if( $percentage_correct_answer >= 80) {
+                $nuggetObj = getNextNuggetByCurrentID($treasure_mission_data, 'id', $QuizzesResult->nugget_id);
+            }else{
+                $nuggetObj = searchNuggetByID($treasure_mission_data, 'id', $QuizzesResult->nugget_id);
+            }
+            $return_layout .= view('web.default.timestables.finish_treasure_mode', ['QuizzesResult' => $QuizzesResult, 'nuggetObj' => $nuggetObj, 'percentage_correct_answer' => $percentage_correct_answer])->render();
+        }
+
+        $response = array(
+            'return_layout' => $return_layout
+        );
+
+        echo json_encode($response);
+        exit;
     }
 
     public function get_question_result_layout($result_question_id)

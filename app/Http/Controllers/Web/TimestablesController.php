@@ -1088,16 +1088,20 @@ class TimestablesController extends Controller
         $nugget_data = searchNuggetByID($treasure_mission_data,'id', $nugget_id);
         $levelData = isset( $nugget_data['levelData'] )? $nugget_data['levelData'] : array();
         $tables_data = isset( $nugget_data['tables'] )? $nugget_data['tables'] : array();
+        $previous_tables = isset( $nugget_data['previous_tables'] )? $nugget_data['previous_tables'] : array();
+        $prev_no_questions = isset( $nugget_data['prev_no_questions'] )? $nugget_data['prev_no_questions'] : 0;
         $time_interval = isset( $levelData['time_interval'] )? $levelData['time_interval'] : 0;
         $life_lines = isset( $levelData['life_lines'] )? $levelData['life_lines'] : 0;
         $life_lines = $user->user_life_lines;
-        //pre($nugget_data);
+        $questions_array_list = array();
+
 
         $tables_types = [];
         $tables_types[] = 'x';
         $marks = 5;
         $max_questions = 12;
         $current_question_max = 1;
+
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
             $questions_no_array[$current_question_max] = $current_question_max;
@@ -1105,13 +1109,108 @@ class TimestablesController extends Controller
         }
         $questions_no_array_fixed = $questions_no_array;
 
-        if( !empty( $tables_data ) ){
-            foreach( $tables_data as $table_no => $table_no_of_questions){
-                $questions_count = 1;
-                if ($table_no_of_questions > 0) {
-                    while ($questions_count <= $table_no_of_questions) {
+        $excess_time = 70; //7 Seconds
 
-                        $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+        $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+
+        $table_questions_counter = 0;
+
+
+        $incorrect_list = array();
+        if( !empty( $previous_tables ) ) {
+            foreach ($previous_tables as $table_no) {
+                if( $table_no != 3){
+                    continue;
+                }
+                $incorrect_list[$table_no] = QuizzResultQuestions::where('parent_type_id', $table_no)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'treasure_mode')->where('status', 'incorrect')->pluck('child_type_id')->toArray();
+                $excess_time_list[$table_no] = QuizzResultQuestions::where('parent_type_id', $table_no)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'treasure_mode')->where('status', 'correct')->where('time_consumed', '>', $excess_time)->pluck('child_type_id')->toArray();
+                $correct_list[$table_no] = QuizzResultQuestions::where('parent_type_id', $table_no)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'treasure_mode')->where('status', 'correct')->where('time_consumed', '<=', $excess_time)->pluck('child_type_id')->toArray();
+
+                $correct_list[$table_no] = array_unique($correct_list[$table_no]);
+                $incorrect_list[$table_no] = array_unique(array_diff($incorrect_list[$table_no], $correct_list[$table_no]));
+                $excess_time_list[$table_no] = array_unique(array_diff($excess_time_list[$table_no], $correct_list[$table_no]));
+            }
+        }
+
+
+        if( !empty( $incorrect_list ) ){
+            foreach( $incorrect_list as $incorrect_table => $incorrect_no_array){
+                if( !empty( $incorrect_no_array ) ){
+                    foreach( $incorrect_no_array as $incorrect_no){
+                        $questions_array_list[] = (object)array(
+                            'from'     => $incorrect_table,
+                            'to'       => $incorrect_no,
+                            'type'     => $type,
+                            'table_no' => $incorrect_table,
+                            'marks'    => $marks,
+                        );
+                        $table_questions_counter++;
+                    }
+                }
+            }
+        }
+
+        if( !empty( $excess_time_list ) ){
+            foreach( $excess_time_list as $excess_time_table => $excess_time_no_array){
+                if( !empty( $excess_time_no_array ) ) {
+                    foreach ($excess_time_no_array as $excess_time_no) {
+                        $questions_array_list[] = (object)array(
+                            'from'     => $excess_time_table,
+                            'to'       => $excess_time_no,
+                            'type'     => $type,
+                            'table_no' => $excess_time_table,
+                            'marks'    => $marks,
+                        );
+                        $table_questions_counter++;
+                    }
+                }
+            }
+        }
+
+        $questions_count = $table_questions_counter;
+
+        if ($prev_no_questions > 0) {
+            while ($questions_count < $prev_no_questions) {
+                $table_no = isset($previous_tables[array_rand($previous_tables)]) ? $previous_tables[array_rand($previous_tables)] : 0;
+                if (empty($questions_no_array)) {
+                    $questions_no_array = $questions_no_array_fixed;
+                }
+                $questions_no_array = array_values($questions_no_array);
+                shuffle($questions_no_array);
+                $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                $dynamic_no = rand($dynamic_min, $dynamic_max);
+                $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                if (isset($questions_no_array[$dynamic_no])) {
+                    unset($questions_no_array[$dynamic_no]);
+                    $questions_no_array = array_values($questions_no_array);
+                }
+
+                $last_value = ($questions_no_dynamic) * $table_no;
+                $from_value = ($type == '÷') ? $last_value : $table_no;
+                $limit = 12;
+                $min = 2;
+                $min = ($type == '÷') ? 1 : $min;
+                $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                //$to_value = rand($min, $limit);
+                $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                $questions_array_list[] = (object)array(
+                    'from'     => $from_value,
+                    'to'       => $to_value,
+                    'type'     => $type,
+                    'table_no' => $table_no,
+                    'marks'    => $marks,
+                );
+                $questions_count++;
+            }
+        }
+        if( !empty( $tables_data ) ) {
+            foreach ($tables_data as $table_no => $table_no_of_questions) {
+                $questions_count = 0;
+                if ($table_no_of_questions > 0) {
+                    while ($questions_count < $table_no_of_questions) {
                         if (empty($questions_no_array)) {
                             $questions_no_array = $questions_no_array_fixed;
                         }
@@ -1146,13 +1245,12 @@ class TimestablesController extends Controller
                         $questions_count++;
                     }
                 }
+
             }
         }
 
         shuffle($questions_array_list);
-
         $questions_list = $questions_array_list;
-        $practice_time_seconds = 60;
 
         $QuizzesResult = QuizzesResult::create([
             'user_id'          => $user->id,
@@ -1310,7 +1408,6 @@ class TimestablesController extends Controller
         $user_timetables_levels = json_decode($user->user_timetables_levels);
         $user_timetables_levels = is_array( $user_timetables_levels ) ? $user_timetables_levels : array();
         $treasure_mission_data = get_treasure_mission_data();
-
 
         $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels])->render();
         echo $rendered_view;

@@ -17922,8 +17922,7 @@ Product Tabs Slider Style Start
 .panel-content .template-grid .text-holder {background-color: inherit; border: 0; padding: 0; min-height: auto; line-height: normal;}
 .panel-content .template-grid .text-holder a {word-wrap: break-word;}
 .panel-content .grid-card:hover {border-color: #cecece;}
-.panel-content .grid-card .title-label {color: #fb0;font-family: cursive;font-weight: 500;position: relative;}
-.panel-content .grid-card .title-label:after {content: "...";display: inline-block;margin-left: 2px;}
+.panel-content .grid-card .title-label {font-weight: 500;position: relative;background-color: #f3f1f1;font-size: 15px;padding: 6px 8px;border-radius: 4px;}
 
 /* Lms Font End Display Style */
 .lms-quiz-section .questions-data-block {max-width: 1170px; margin: 0 auto 0; border: 1px solid #999;}
@@ -18338,6 +18337,120 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content h1 {font-size: 36px !important; line-height: 42px !important;}
 .panel-content .products-top-header .banner-holder {margin-top: 0;}
 .panel-content .lms-text-section {padding: 25px !important;}
+.panel-content .spell-levels .panel-subheader {
+    padding-right: 160px;
+    margin-bottom: 100px;
+}
+.treasure-mission-layout .spell-levels .horizontal-list {
+    margin: 0 0 220px;
+    position: relative;
+}
+.panel-content .spell-levels .treasure-stage:last-child .horizontal-list {
+    margin-bottom: 100px;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li {
+    display: inline-flex;
+    width: auto;
+    margin: 0 0 0 58px;
+    width: 13.44%;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li:first-child {
+    margin-left: 0;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li > a:before {
+    width: 100%;
+    height: 4px;
+    top: 50%;
+    margin-top: -2px;
+    left: 100%;
+    margin-left: 15px;
+    background-color: #e9e9e9;
+}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {
+    direction: rtl;
+}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {
+    margin-left: 0;
+    margin-right: 58px;
+    justify-content: flex-end;
+}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {
+    right: 100%;
+    left: auto;
+    margin-left: 0;
+    margin-right: 15px;
+}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li > a:before {
+    left: 0;
+    right: 50%;
+    margin-left: 0;
+    margin-right: -2px;
+}
+/* .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li:last-child {
+    margin-right: 0;
+} */
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li:first-child {
+    margin-right: 0;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li:nth-child(5) > a:before {
+    display: none;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 80px;
+}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li {
+    left: 0;
+    right: auto;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {
+    display: block;
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    top: -65px;
+    margin-top: 0;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {
+    content: "";
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    margin-left: -2px;
+    top: 100%;
+    margin-top: 5px;
+    position: absolute;
+    background-color: #e9e9e9;
+}
+.treasure-mission-layout .spell-levels li > a img {
+    max-width: 100%;
+    object-fit: contain;
+}
+.treasure-mission-layout .spell-levels .treasure-stage:last-child ul {
+    margin-bottom: 60px;
+}
+.treasure-mission-layout .spell-levels li:not(.treasure) a img {
+    width: 30px;
+    height: 30px;
+}
+.timestables-modes .spell-levels h5 {
+    margin: 0 0 10px;
+}
+.treasure-mission-layout h3 {
+    margin: 0 0 15px;
+}
+.timestables-back-btn {
+    margin: 0 0 10px;
+    display: inline-block;
+    position: relative;
+}
+.timestables-back-btn:before {
+    content: "\2190";
+    margin-right: 5px;
+}
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {
     box-shadow: none;
@@ -18647,6 +18760,22 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-breadcrumbs li:first-child a:before {
     display: none;
 }
+.panel-subheader .info-modal-btn {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 20px;
+    margin-left: 5px;
+}
+.panel-subheader .info-modal-btn img {
+    max-width: 100%;
+    vertical-align: top;
+}
+.spell-levels .panel-subheader h2 {
+    display: inline-block;
+    vertical-align: middle;
+}
 .panel-stats {
     background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe;
     background-position: 96% 100%;
@@ -18672,15 +18801,24 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     font-size: 19px;
     font-weight: 600;
 }
+.panel-subheader .title {
+    margin: 0 0 25px;
+}
 .stats-list ul {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    padding: 0;
+    gap: 0;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 .stats-list ul li {
     border-left: 1px solid rgba(0,0,0,0.1);
     padding: 0 0 0 25px;
     margin-left: 25px;
+    margin-bottom: 0;
+    width: auto;
 }
 .stats-list ul li:first-child {
     margin-left: 0;
@@ -19017,6 +19155,30 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     border: 0;
     border-radius: 0;
     background: none;
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+    position: relative;
+    transition: all 0.3s;
+}
+.topics-accordion .card-header .btn:hover {
+    background-color: #efefef;
+}
+.topics-accordion .card-header .btn:after {
+    content: "";
+    height: 8px;
+    width: 8px;
+    border-top: 1px solid var(--primary);
+    border-left: 1px solid var(--primary);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -4px;
+    transition: all 0.3s;
+}
+.topics-accordion .card-header .btn.collapsed:after {
+    transform: rotate(-135deg);
 }
 .topics-accordion .card:first-child {
   border-top: 0;
@@ -19028,6 +19190,74 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .topics-accordion .card-body {
     background-color: #d8e5f8;
     padding: 25px 30px;
+}
+.topics-label {
+    display: block;
+    margin: 0 0 15px;
+    font-weight: 500;
+    font-size: 15px;
+}
+.panel-morehelp {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+}
+.help-topics {
+    margin: 0 0 30px;
+}
+.morehelp-title {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 25px;
+}
+.morehelp-title span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+.panel-morehelp .contact-btn {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    display: inline-flex;
+    gap: 10px;
+    padding: 12px;
+    text-align: left;
+}
+.panel-morehelp .contact-btn .icon-box {
+    background-color: #1150d3;
+    height: 28px;
+    width: 28px;
+    border-radius: 100%;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.panel-morehelp .contact-btn img {
+    width: 100%;
+    height: 100%;
+}
+.panel-morehelp .contact-btn p {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: normal;
+}
+.panel-morehelp .contact-btn p span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 5px;
+}
+.topics-accordion li {
+    font-size: 14px;
+}
+.topics-accordion ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
  
 /*************************************
@@ -19349,6 +19579,33 @@ Lms Responsive Style Start
     body .instruction-text ul li {text-align: left;}
     body .topbar-right {justify-content: center;}
     body .quiz-timer .timer-number {min-width: auto; margin-left: 0;}
+    .treasure-stage {
+        text-align: center;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list {
+        display: inline-block !important;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li {
+        margin: 0 0 0 50px;
+        width: auto;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li > a:before {
+        width: 60%;
+        margin-left: 8px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {
+        margin-right: 50px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {
+        margin-right: 8px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {
+        height: 50%;
+        top: -35px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {
+        height: 50%;
+    }
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -19418,6 +19675,76 @@ Lms Responsive Style Start
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
     .lms-contact-form-section {padding-bottom: 0 !important;}
     .spell-levels-top .spell-top-left {width: 100%;}
+    .treasure-mission-layout .spell-levels {
+        text-align: center;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list {
+        display: inline-block !important;
+    }
+    .treasure-mission-layout .spell-levels li > a {
+        height: 43px;
+        width: 45px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li {
+        margin-top: 30px;
+        margin-left: 0;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li a:after {
+        height: 50%;
+        margin-top: 0;
+        width: 2px;
+        margin-left: -1px;
+    }
+    .spell-levels .treasure > a .thumb-box {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .treasure-mission-layout .spell-levels .treasure > a .thumb-box img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li {
+        width: auto;
+        margin: 0 0 0 20px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li img {
+        height: 20px;
+        object-fit: contain;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li > a:before {
+        width: 60%;
+        margin-left: 5px;
+        width: 30%;
+        margin-left: 5px;
+        height: 2px;
+        margin-top: -1px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {
+        margin-right: 5px;
+        height: 2px;
+        margin-top: -1px;
+        width: 30%;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {
+        margin-right: 20px;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list {
+        margin-bottom: 100px;
+    }
+    .treasure-mission-layout .spell-levels li > a {
+        box-shadow: 0 3px 0 1px #b0b0b0;
+    }
+    .treasure-mission-layout .spell-levels li.treasure > a {
+        box-shadow: none;
+    }
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {
+        height: 50%;
+        margin-top: 15px;
+        width: 2px;
+        margin-left: -1px;
+    }
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 

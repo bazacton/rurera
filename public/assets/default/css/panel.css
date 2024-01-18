@@ -129,6 +129,11 @@
     text-align: right;
     margin: 0 0 10px;
 }
+.key-date-select button {
+    height: auto;
+    padding: 0;
+    border: 0;
+}
 .key-statistics .swiper-slide .key-item:last-child {
     border: 0;
     padding: 0;
