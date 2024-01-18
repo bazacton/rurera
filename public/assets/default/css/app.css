@@ -18776,6 +18776,10 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     display: inline-block;
     vertical-align: middle;
 }
+.treasure-stage {
+    width: 100%;
+    display: inline-block;
+}
 .panel-stats {
     background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe;
     background-position: 96% 100%;
