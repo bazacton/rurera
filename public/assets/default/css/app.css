@@ -12474,7 +12474,7 @@ ul {
     -webkit-padding-start: 0;
     padding-inline-start: 0
 }
-body.modal-open,
+/* body.modal-open, */
 body.swal2-shown {
     padding-right: 0 !important
 }
@@ -12540,6 +12540,17 @@ body {
         font-size: 1rem !important;
     }
 }
+.font-22 {
+    font-size: 1.375rem !important;
+    font-weight: 700;
+    line-height: 1.2;
+}
+@media (max-width:767px) {
+    .font-22 {
+        font-size: 1rem !important;
+    }
+}
+
 .font-20 {
     font-size: 1.25rem !important;
     font-weight: 500;
@@ -12567,6 +12578,17 @@ body {
 }
 @media (max-width:767px) {
     .font-16 {
+        font-size: .75rem !important;
+    }
+}
+
+.font-15 {
+    font-size: 0.938rem !important;
+    font-weight: 400;
+    line-height: 1.5;
+}
+@media (max-width:767px) {
+    .font-15 {
         font-size: .75rem !important;
     }
 }
@@ -16116,11 +16138,11 @@ Lms Performace Table Style Start
 .lms-performace-table>li.lms-performace-head div:first-child {max-width: 48%;min-width: 48%;text-align: left;}
 .lms-performace-table>li.lms-performace-head div {padding: 22px 15px;max-width: 15%;min-width: 15%;text-align: center;}
 .lms-performace-table>li.lms-performace-head div span {text-transform: uppercase;font-size: 15px;font-weight: 700;color: #878787;}
-.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #c0c0c0;max-width: 6%;min-width: 6%;}
+.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd;max-width: 6%;min-width: 6%;}
 .lms-performace-table>li.lms-performace-des div {display: table-cell;padding: 22px 10px;white-space: nowrap;text-align: center;}
 .lms-performace-table>li.lms-performace-des div span {font-size: 15px;color: #878787;margin: 0;font-weight: 500;margin: 0;}
-.lms-performace-table>li.lms-performace-des {padding: 0;border: 1px dashed #c0c0c0;border-bottom: 0;}
-.lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #c0c0c0;}
+.lms-performace-table>li.lms-performace-des {padding: 0;border: 1px dashed #ddd;border-bottom: 0;}
+.lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #ddd;}
 .lms-performace-table>li.lms-performace-des .sr-no span {color: #000;}
 .lms-performace-table>li.lms-performace-des .score-des {text-align: left;max-width: 42%;min-width: 42%;display: inline-flex;align-items: center;}
 .lms-performace-table>li.lms-performace-des .level-up,
@@ -16172,6 +16194,48 @@ Lms Performace Table Style Start
 .leaderboard-sub-header .btn-primary{ background-color: var(--primary);border-color: var(--primary); box-shadow: none;}
 .leaderboard-sub-header .btn-outline-primary {color: var(--primary);border-color:var(--primary);}
 .leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: var(--primary);}
+.panel-content .leaderboard>li.lms-performace-des .sr-no, 
+.panel-content .leaderboard>li.lms-performace-head div:first-child,
+.panel-content .leaderboard>li.lms-performace-des .sr-no, 
+.panel-content .leaderboard>li.lms-performace-head div:first-child{
+    max-width: 10%;
+    min-width: 10%;
+}
+.panel-content .leaderboard>li.lms-performace-head div:nth-child(2),
+.panel-content .leaderboard>li.lms-performace-des .score-des{
+    max-width: 30%;
+    min-width: 30%;
+}
+.panel-content .lms-performace-table>li.lms-performace-head div,
+.panel-content .lms-performace-table>li.lms-performace-des .level-up, 
+.panel-content .lms-performace-table>li.lms-performace-des .practised, 
+.panel-content .lms-performace-table>li.lms-performace-des .time-sepen{
+    max-width: 25%;
+    min-width: 25%;
+}
+.panel-content .lms-performace-table>li.lms-performace-head div:last-child,
+.panel-content .lms-performace-table>li.lms-performace-des .coin-earn {
+    max-width: 10%;
+    min-width: 10%;
+}
+.panel-content .lms-performace-table>li.lms-performace-head {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.panel-content .lms-performace-table>li.lms-performace-des .sr-no {
+    border-right: 0;
+}
+.panel-content .lms-performace-table>li.lms-performace-des {
+    border: 0;
+    border-bottom: 1px solid #ddd;
+}
+.panel-content .lms-performace-table>li.lms-performace-des:last-child {
+    border-bottom: 0;
+}
+.panel-content .lms-performace-table>li.lms-performace-head div,
+.panel-content .lms-performace-table>li.lms-performace-des div {
+    padding: 12px 10px;
+}
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -18351,8 +18415,9 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .treasure-mission-layout .spell-levels .horizontal-list li {
     display: inline-flex;
     width: auto;
-    margin: 0 0 0 58px;
-    width: 13.44%;
+    margin: 0 0 0 7.444%;
+    width: 13.222%;
+    box-sizing: border-box;
 }
 .treasure-mission-layout .spell-levels .horizontal-list li:first-child {
     margin-left: 0;
@@ -18363,22 +18428,25 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     top: 50%;
     margin-top: -2px;
     left: 100%;
-    margin-left: 15px;
+    margin-left: 18%;
     background-color: #e9e9e9;
+}
+.treasure-mission-layout .spell-levels li > a {
+    width: 68%;
 }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {
     direction: rtl;
 }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {
     margin-left: 0;
-    margin-right: 58px;
+    margin-right: 7.444%;
     justify-content: flex-end;
 }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {
     right: 100%;
     left: auto;
     margin-left: 0;
-    margin-right: 15px;
+    margin-right: 18%;
 }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li > a:before {
     left: 0;
@@ -19172,8 +19240,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     content: "";
     height: 8px;
     width: 8px;
-    border-top: 1px solid var(--primary);
-    border-left: 1px solid var(--primary);
+    border-top: 1px solid #bbb;
+    border-left: 1px solid #bbb;
     transform: rotate(45deg);
     position: absolute;
     top: 50%;
@@ -19263,7 +19331,19 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     flex-direction: column;
     gap: 15px;
 }
- 
+/* need help page style End */
+.start-counter {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: var(--primary);
+}
 /*************************************
 Lms Responsive Style Start
 *************************************/

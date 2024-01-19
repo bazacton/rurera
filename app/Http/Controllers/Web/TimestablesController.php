@@ -1169,7 +1169,7 @@ class TimestablesController extends Controller
 
         $questions_count = $table_questions_counter;
 
-        if ($prev_no_questions > 0) {
+        if ($prev_no_questions > 0 && !empty( $previous_tables )) {
             while ($questions_count < $prev_no_questions) {
                 $table_no = isset($previous_tables[array_rand($previous_tables)]) ? $previous_tables[array_rand($previous_tables)] : 0;
                 if (empty($questions_no_array)) {

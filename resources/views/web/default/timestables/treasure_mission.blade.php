@@ -67,7 +67,7 @@
                                             $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
                                             $li_count = ($li_count >= 6)? 0 : $li_count;
                                             $last_stage = (isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)? 'last-stage' : '';
-                                            $treasure_mission_class = ($last_stage_completed == 1 && $is_acheived != 1)? 'generate_treasure_mission' : 'locked_nugget';
+                                            $treasure_mission_class = ($is_active == 1 || ($last_stage_completed == 1 && $is_acheived != 1))? 'generate_treasure_mission' : 'locked_nugget';
                                         @endphp
                                         <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
                                             <a href="javascript:;" class="{{$treasure_mission_class}}" data-id="{{$nuggetObj['id']}}">

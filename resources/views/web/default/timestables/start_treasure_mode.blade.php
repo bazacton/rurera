@@ -87,13 +87,65 @@ if( $duration_type == 'total_practice'){
 
                     <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}" data-corrected_questions="0">
 
+                        <div class="trophy-levels hide">
+                            <div class="flex-parent">
+                                <div class="input-flex-container">
+                                    <div class="input explorer">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input junior">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input active smarty">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input brainy">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input genius">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input creative">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input champion">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input mastery">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input majesty">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input expert">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                    <div class="input maestro">
+                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
+                                    </div>
+                                </div>
+                                <div class="description-flex-container">
+                                    <p>Explorer</p>
+                                    <p>Junior</p>
+                                    <p class="active">Smarty</p>
+                                    <p>Brainy</p>
+                                    <p>Genius</p>
+                                    <p>Creative</p>
+                                    <p>Champion</p>
+                                    <p>Mastery</p>
+                                    <p>Majesty</p>
+                                    <p>Expert</p>
+                                    <p>Maestro</p>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <div class="col-12 col-lg-8 mx-auto">
                             <div class="spells-quiz-info">
                                 <ul>
                                     <li class="show-correct-answer">
-                                        <span class="tt_question_no">1</span>
+                                        <span class="tt_question_no">1</span> Of {{$total_questions}}
                                     </li>
                                     <li>
                                         <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
@@ -124,8 +176,9 @@ if( $duration_type == 'total_practice'){
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
-                                       <a href="#">
-                                        <img src="/assets/default/svgs/vol-mute.svg" alt="mute svg">
+                                       <a href="javascript:;">
+                                           <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
+                                           <img src="/assets/default/svgs/mute.svg" class="mute_sound mute_unmute_sound hide" data-action="unmute_sound" alt="unmute svg">
                                        </a>
                                    </div>
                                 </div>
@@ -161,58 +214,7 @@ if( $duration_type == 'total_practice'){
             </div>
         </div>
     </section>
-    <div class="trophy-levels">
-        <div class="flex-parent">
-            <div class="input-flex-container">
-                <div class="input explorer">
-                    <span data-year="1" data-info="Explorer"></span>
-                </div>
-                <div class="input junior">
-                    <span data-year="6" data-info="Junior"></span>
-                </div>
-                <div class="input active smarty">
-                    <span data-year="12" data-info="Smarty"></span>
-                </div>
-                <div class="input brainy">
-                    <span data-year="15" data-info="Brainy"></span>
-                </div>
-                <div class="input genius">
-                    <span data-year="20" data-info="Genius"></span>
-                </div>
-                <div class="input creative">
-                    <span data-year="30" data-info="Creative"></span>
-                </div>
-                <div class="input champion">
-                    <span data-year="40" data-info="Champion"></span>
-                </div>
-                <div class="input mastery">
-                    <span data-year="60" data-info="Mastery"></span>
-                </div>
-                <div class="input majesty">
-                    <span data-year="75" data-info="Majesty"></span>
-                </div>
-                <div class="input expert">
-                    <span data-year="100" data-info="Expert"></span>
-                </div>
-                <div class="input maestro">
-                    <span data-year="150" data-info="Maestro"></span>
-                </div>
-            </div>
-            <div class="description-flex-container">
-                <p>Explorer</p>
-                <p>Junior</p>
-                <p class="active">Smarty</p>
-                <p>Brainy</p>
-                <p>Genius</p>
-                <p>Creative</p>
-                <p>Champion</p>
-                <p>Mastery</p>
-                <p>Majesty</p>
-                <p>Expert</p>
-                <p>Maestro</p>
-            </div>
-        </div>
-    </div>
+
 </div>
 <div class="question-status-modal">
   <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -270,6 +272,19 @@ if( $duration_type == 'total_practice'){
 
 
     var start_counter = 6;
+
+    var is_sound_enabled = true;
+    $(document).on('click', '.mute_unmute_sound', function (e) {
+        $('.mute_unmute_sound').addClass('hide');
+        this_action = $(this).attr('data-action');
+        $('.'+this_action).removeClass('hide');
+        if( this_action == 'mute_sound'){
+            is_sound_enabled = false;
+        }else{
+            is_sound_enabled = true;
+        }
+    });
+
 
     var Startintervals = setInterval(function () {
         if (parseInt(start_counter) > 1) {
@@ -451,7 +466,9 @@ if( $duration_type == 'total_practice'){
             $(".tt_points").html(tt_points);
             var correct_questions_count = parseInt($(".question-area-block").attr('data-corrected_questions'));
             $(".question-area-block").attr('data-corrected_questions', parseInt(correct_questions_count)+1);
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
+            }
         }else{
             life_lines = parseInt(life_lines) - 1;
             $(".life-lines").html(life_lines);
@@ -464,7 +481,9 @@ if( $duration_type == 'total_practice'){
                 is_gameover = true;
 
             }
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            }
         }
 
 
@@ -516,25 +535,32 @@ if( $duration_type == 'total_practice'){
         } else {
             clearInterval(Quizintervals);
             $('.questions-block').addClass('disable-div');
+            rurera_loader($('.question-area-block'), 'div');
             if( is_gameover == true){
                 $("#timestables_lifelines_modal").modal('show');
-            }else {
-                $("#timestables_complete_status_modal").modal('show');
             }
             var response_layout = '';
 
 
-            jQuery.ajax({
+            var currentRequest = null;
+            currentRequest = jQuery.ajax({
                 type: "POST",
                 url: '/question_attempt/timestables_submit',
+                beforeSend: function () {
+                    if (currentRequest != null) {
+                        currentRequest.abort();
+                    }
+                },
                 dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
+                    rurera_remove_loader($('.question-area-block'), 'button');
                     if (return_data.return_layout != '') {
                         $(".question-area-block").html(return_data.return_layout);
+                        rurera_remove_loader($('.question-area-block'), 'button');
 
                     }
                 }

@@ -8261,7 +8261,7 @@ function get_treasure_mission_data(){
                             'id' => 'stage_1_1',
                             'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_1_1_1','prev_no_questions' => 10, 'previous_tables' => [], 'tables' => [2  => 15,10 => 15]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_1_1_1','prev_no_questions' => 0, 'previous_tables' => [], 'tables' => [2  => 15,10 => 15]),
                                 array('title'  => 'Nugget #2','id' => 'nugget_1_1_2','prev_no_questions' => 10, 'previous_tables' => [2,10], 'tables' => [3 => 20]),
                                 array('title'  => 'Nugget #3','id' => 'nugget_1_1_3','prev_no_questions' => 10, 'previous_tables' => [2,10,3], 'tables' => [4 => 20]),
                                 array('title'  => 'Nugget #4','id' => 'nugget_1_1_4','prev_no_questions' => 10, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 20]),
@@ -8325,7 +8325,7 @@ function get_treasure_mission_data(){
                             'id' => 'stage_2_1',
                             'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_2_1_1','prev_no_questions' => 20, 'previous_tables' => [], 'tables' => [2  => 25,10 => 25]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_2_1_1','prev_no_questions' => 0, 'previous_tables' => [], 'tables' => [2  => 25,10 => 25]),
                                 array('title'  => 'Nugget #2','id' => 'nugget_2_1_2','prev_no_questions' => 20, 'previous_tables' => [2,10], 'tables' => [3 => 30]),
                                 array('title'  => 'Nugget #3','id' => 'nugget_2_1_3','prev_no_questions' => 20, 'previous_tables' => [2,10,3], 'tables' => [4 => 30]),
                                 array('title'  => 'Nugget #4','id' => 'nugget_2_1_4','prev_no_questions' => 20, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 30]),
@@ -8389,7 +8389,7 @@ function get_treasure_mission_data(){
                             'id' => 'stage_3_1',
                             'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_3_1_1','prev_no_questions' => 30, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_3_1_1','prev_no_questions' => 0, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
                                 array('title'  => 'Nugget #2','id' => 'nugget_3_1_2','prev_no_questions' => 30, 'previous_tables' => [2,10], 'tables' => [3 => 70]),
                                 array('title'  => 'Nugget #3','id' => 'nugget_3_1_3','prev_no_questions' => 30, 'previous_tables' => [2,10,3], 'tables' => [4 => 70]),
                                 array('title'  => 'Nugget #4','id' => 'nugget_3_1_4','prev_no_questions' => 30, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 70]),
@@ -8453,7 +8453,7 @@ function get_treasure_mission_data(){
                             'id' => 'stage_4_1',
                             'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_4_1_1','prev_no_questions' => 50, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_4_1_1','prev_no_questions' => 0, 'previous_tables' => [], 'tables' => [2  => 50,10 => 50]),
                                 array('title'  => 'Nugget #2','id' => 'nugget_4_1_2','prev_no_questions' => 50, 'previous_tables' => [2,10], 'tables' => [3 => 100]),
                                 array('title'  => 'Nugget #3','id' => 'nugget_4_1_3','prev_no_questions' => 50, 'previous_tables' => [2,10,3], 'tables' => [4 => 100]),
                                 array('title'  => 'Nugget #4','id' => 'nugget_4_1_4','prev_no_questions' => 50, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 100]),
@@ -8517,7 +8517,7 @@ function get_treasure_mission_data(){
                             'id' => 'stage_5_1',
                             'custom_class' => '',
                             'nuggets' => array(
-                                array('title'  => 'Nugget #1','id' => 'nugget_5_1_1','prev_no_questions' => 70, 'previous_tables' => [], 'tables' => [2  => 65,10 => 65]),
+                                array('title'  => 'Nugget #1','id' => 'nugget_5_1_1','prev_no_questions' => 0, 'previous_tables' => [], 'tables' => [2  => 65,10 => 65]),
                                 array('title'  => 'Nugget #2','id' => 'nugget_5_1_2','prev_no_questions' => 70, 'previous_tables' => [2,10], 'tables' => [3 => 130]),
                                 array('title'  => 'Nugget #3','id' => 'nugget_5_1_3','prev_no_questions' => 70, 'previous_tables' => [2,10,3], 'tables' => [4 => 130]),
                                 array('title'  => 'Nugget #4','id' => 'nugget_5_1_4','prev_no_questions' => 70, 'previous_tables' => [2,10,3,4], 'tables' => [5 => 130]),

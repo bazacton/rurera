@@ -155,6 +155,8 @@ class UserController extends Controller
                 $updateData['avatar'] = $profileImage;
             }
 
+            //Temporary
+            $updateData['user_life_lines'] = 10;
 
             if (!empty($updateData)) {
                 $user->update($updateData);
@@ -162,7 +164,9 @@ class UserController extends Controller
 
             if (!empty($data['secret_word'])) {
                 $user->update([
-                    'secret_word' => User::generatePassword($data['secret_word'])
+                    'secret_word' => User::generatePassword($data['secret_word']),
+                    //Temporary
+                    'user_timetables_levels' => ''
                 ]);
             }
 

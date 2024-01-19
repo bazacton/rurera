@@ -13,13 +13,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-12 mb-30">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="section-title mb-20">
-                                <h2 itemprop="title" class="font-24 mb-0">Time Tables</h2>
-                            </div>
+                        <div class="section-title mb-20">
+                            <h2 itemprop="title" class="font-24 mb-0">Time Tables</h2>
                         </div>
-                        <div class="timestables-modes">
+                        <div class="timestables-modes row">
                         <div class="col-12 col-md-12 col-lg-12">
                             <h5 itemprop="title" class=" mb-10">Single Player</h5>
                             <div class="grid-card timestables-mode-data" data-mode_type="freedom_mode" itemtype="https://schema.org/NewsArticle">
@@ -151,10 +148,9 @@
 
                             </div>
                         </div>
-                    </div>
+                </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <div class="show-section-data">

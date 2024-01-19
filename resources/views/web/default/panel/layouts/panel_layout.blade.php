@@ -116,8 +116,8 @@
                                         <li>
                                             <div class="coin-counts">
                                                <strong>
-                                                   <img src="/assets/default/img/panel-sidebar/4.png" alt="">
-                                                   0
+                                                   <img src="/assets/default/img/panel-sidebar/life-line.png" alt="">
+                                                   {{$authUser->user_life_lines}}
                                                </strong>
                                             </div>
                                         </li>

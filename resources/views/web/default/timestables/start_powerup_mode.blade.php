@@ -407,9 +407,15 @@ if( $duration_type == 'total_practice'){
             var response_layout = '';
 
 
-            jQuery.ajax({
+            var currentRequest = null;
+            currentRequest = jQuery.ajax({
                 type: "POST",
                 url: '/question_attempt/timestables_submit',
+                beforeSend: function () {
+                    if (currentRequest != null) {
+                        currentRequest.abort();
+                    }
+                },
                 dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

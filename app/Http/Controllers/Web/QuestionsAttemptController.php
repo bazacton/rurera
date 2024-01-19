@@ -1545,7 +1545,6 @@ class QuestionsAttemptController extends Controller
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
-
         $incorrect_array = array();
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
