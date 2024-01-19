@@ -442,6 +442,7 @@ if( $duration_type == 'total_practice'){
             life_lines = parseInt(life_lines) - 1;
             $(".life-lines").html(life_lines);
             var li_counter = parseInt(life_lines) - 1;
+            $('.life-lines-block .input.active img').attr('src', '/assets/default/img/panel-sidebar/broken-heart.png');
             $('.life-lines-block .input').removeClass('active');
             $('.life-lines-block .input:eq('+li_counter+')').addClass('active');
             if( life_lines < 1){

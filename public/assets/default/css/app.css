@@ -18629,6 +18629,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     height: 100px;
     position: relative;
     z-index: 0;
+    overflow: hidden;
 }
 .trophy-levels .input {
     width: 100%;
@@ -18651,25 +18652,20 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .trophy-levels .input:hover {
   cursor: pointer;
 }
-.trophy-levels .input::before, .trophy-levels .input::after {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #2C3E50;
-  width: 100%;
-  height: 5px;
+.trophy-levels .input::before{
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #2C3E50;
+    width: 100%;
+    height: 5px;
+    left: -70px;
 }
-.trophy-levels .input::before {
-  left: 0;
-}
-.trophy-levels .input::after {
-  right: 0;
-}
-.trophy-levels .input.active {
-  background-color: #2C3E50;
+.trophy-levels .input:first-child:before {
+    display: none;
 }
 .trophy-levels .input.active::before {
   background-color: #2C3E50;
@@ -18686,7 +18682,6 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .trophy-levels .input.active span::after {
   font-size: 15px;
 }
-.trophy-levels .input.active ~ .input, 
 .trophy-levels .input.active ~ .input::before, 
 .trophy-levels .input.active ~ .input::after {
   background-color: #AEB6BF;
