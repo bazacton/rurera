@@ -71,7 +71,7 @@
 
 
                 <li class="sidenav-item {{ (request()->is('panel')) ? 'sidenav-item-active' : '' }}">
-                    <a href="/panel" class="d-flex align-items-center">
+                    <a href="/panel" class="d-flex align-items-center font-15">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/home.png">
                         </span>
@@ -84,7 +84,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/learn.png">
                         </span>
-                        <span><a href="/learn">Learn</a></span>
+                        <span><a href="/learn" class="font-15">Learn</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
@@ -92,7 +92,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/timestable.png">
                         </span>
-                        <span><a href="/timestables-practice">TimesTable</a></span>
+                        <span><a href="/timestables-practice" class="font-15">TimesTable</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
@@ -100,7 +100,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/spell.png">
                         </span>
-                        <span><a href="/spells">Word Lists</a></span>
+                        <span><a href="/spells" class="font-15">Word Lists</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
@@ -108,7 +108,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/books.png">
                         </span>
-                        <span><a href="/books">Books</a></span>
+                        <span><a href="/books" class="font-15">Books</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
@@ -116,7 +116,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.png">
                         </span>
-                        <span><a href="/tests">Test</a></span>
+                        <span><a href="/tests" class="font-15">Test</a></span>
                     </a>
                 </li>
 
@@ -125,7 +125,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/shop.png">
                         </span>
-                        <span><a href="/shop">Shop</a></span>
+                        <span><a href="/shop" class="font-15">Shop</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
@@ -133,7 +133,7 @@
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/grarph.png">
                         </span>
-                        <span><a href="/panel/analytics">Analytics</a></span>
+                        <span><a href="/panel/analytics" class="font-15">Analytics</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
@@ -141,7 +141,7 @@
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/user.png">
                         </span>
-                        <span><a href="/panel/setting">Profile</a></span>
+                        <span><a href="/panel/setting" class="font-15">Profile</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
@@ -150,14 +150,14 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/more.png">
                         </span>
-                        <span><a href="javascript:;" class="dropdown-toggle" id="sub-dropdown" data-toggle="dropdown" aria-expanded="true">More</a></span>
+                        <span><a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" data-toggle="dropdown" aria-expanded="true">More</a></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="sub-dropdown">
                         <ul>
-                            <li><a href="#">More</a></li>
-                            <li><a href="#">More</a></li>
-                            <li><a href="#">More</a></li>
-                            <li><a href="#">More</a></li>
+                            <li><a class="font-15" href="#">More</a></li>
+                            <li><a class="font-15" href="#">More</a></li>
+                            <li><a class="font-15" href="#">More</a></li>
+                            <li><a class="font-15" href="#">More</a></li>
                         </ul>
                     </div>
                 </li>

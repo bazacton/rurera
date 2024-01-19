@@ -21,8 +21,8 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
-                        <h2 class="mt-0 mb-10">KS2 SATs Online 10-Minutes test practices</h2>
-                        <p> Work through a variety of practice questions to improve your skills and become familiar with
+                        <h2 class="mt-0 mb-10 font-22">KS2 SATs Online 10-Minutes test practices</h2>
+                        <p class="font-14"> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
                     </div>
                 </div>

@@ -120,10 +120,11 @@ if( $duration_type == 'total_practice'){
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
-                                   <div class="questions-controls">
+                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
-                                       <a href="#">
-                                        <img src="/assets/default/svgs/vol-mute.svg" alt="mute svg">
+                                       <a href="javascript:;">
+                                           <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
+                                           <img src="/assets/default/svgs/mute.svg" class="mute_sound mute_unmute_sound hide" data-action="unmute_sound" alt="unmute svg">
                                        </a>
                                    </div>
                                 </div>
@@ -203,7 +204,21 @@ if( $duration_type == 'total_practice'){
     //init_question_functions();
 
 
+
     var start_counter = 6;
+
+    var is_sound_enabled = true;
+    $(document).on('click', '.mute_unmute_sound', function (e) {
+            $('.mute_unmute_sound').addClass('hide');
+            this_action = $(this).attr('data-action');
+            $('.'+this_action).removeClass('hide');
+            if( this_action == 'mute_sound'){
+                is_sound_enabled = false;
+            }else{
+                is_sound_enabled = true;
+            }
+            $(".editor-fields").focus();
+        });
 
     var Startintervals = setInterval(function () {
         if (parseInt(start_counter) > 1) {
@@ -359,9 +374,13 @@ if( $duration_type == 'total_practice'){
             var tt_points = $(".tt_points").html();
             tt_points = parseInt(tt_points) + 1;
             $(".tt_points").html(tt_points);
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
+            }
         }else{
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            }
         }
 
 
@@ -416,9 +435,15 @@ if( $duration_type == 'total_practice'){
             var response_layout = '';
 
 
-            jQuery.ajax({
+            var currentRequest = null;
+            currentRequest = jQuery.ajax({
                 type: "POST",
                 url: '/question_attempt/timestables_submit',
+                beforeSend: function () {
+                    if (currentRequest != null) {
+                        currentRequest.abort();
+                    }
+                },
                 dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

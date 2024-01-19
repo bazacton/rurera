@@ -156,7 +156,7 @@ class UserController extends Controller
             }
 
             //Temporary
-            $updateData['user_life_lines'] = 10;
+            $updateData['user_life_lines'] = 5;
 
             if (!empty($updateData)) {
                 $user->update($updateData);

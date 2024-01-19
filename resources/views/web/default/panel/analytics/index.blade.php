@@ -28,7 +28,7 @@
                 <li><a href="javascript:;" data-graph_type="books"><img src="/assets/default/img/sidebar/books.png"> BOOKS</a></li>
                 <li><a href="javascript:;" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.png"> TEST</a></li>
             </ul>
-            <h3>Analytics</h3>
+            <h3 class="font-22">Analytics</h3>
             <ul class="analytics-data-ul">
                 <li><a href="javascript:;" class=" graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
                         September 26, 2023</a>

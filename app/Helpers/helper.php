@@ -8235,11 +8235,62 @@ function find_array_index_by_value($data, $value_key){
 function get_treasure_missions(){
     $treasure_missions = array(
         array(
-            'title'  => 'Mission 1',
+            'title'  => 'Polaris',
             'description' => '',
-            'img'  => '',
+            'is_locked' => false,
+            'img'  => '/assets/default/svgs/filter-all.svg',
             'id' => 'mission_1',
-        )
+        ),
+        array(
+            'title'  => 'Sirius',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_2',
+        ),
+        array(
+            'title'  => 'Centauri',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_3',
+        ),
+        array(
+            'title'  => 'Betelgeuse',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_4',
+        ),
+        array(
+            'title'  => 'Rigel',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_5',
+        ),
+        array(
+            'title'  => 'Vega',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_6',
+        ),
+        array(
+            'title'  => 'Pleiades',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_7',
+        ),
+        array(
+            'title'  => 'Canopus',
+            'description' => '',
+            'is_locked' => true,
+            'img'  => '/assets/default/img/panel-lock.png',
+            'id' => 'mission_8',
+        ),
+
     );
     return $treasure_missions;
 }
@@ -8254,7 +8305,7 @@ function get_treasure_mission_data(){
                     'time_interval' => 5,
                     'per_stage_questions' => 30,
                     'coins' => 1,
-                    'life_lines' => 10,
+                    'life_lines' => 5,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
@@ -8318,7 +8369,7 @@ function get_treasure_mission_data(){
                     'time_interval' => 4,
                     'per_stage_questions' => 50,
                     'coins' => 2,
-                    'life_lines' => 10,
+                    'life_lines' => 5,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
@@ -8382,7 +8433,7 @@ function get_treasure_mission_data(){
                     'time_interval' => 3,
                     'per_stage_questions' => 100,
                     'coins' => 3,
-                    'life_lines' => 10,
+                    'life_lines' => 5,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
@@ -8446,7 +8497,7 @@ function get_treasure_mission_data(){
                     'time_interval' => 2,
                     'per_stage_questions' => 150,
                     'coins' => 4,
-                    'life_lines' => 10,
+                    'life_lines' => 5,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',
@@ -8510,7 +8561,7 @@ function get_treasure_mission_data(){
                     'time_interval' => 1,
                     'per_stage_questions' => 200,
                     'coins' => 5,
-                    'life_lines' => 10,
+                    'life_lines' => 5,
                     'stages' => array(
                         array(
                             'title'   => 'Stage 1',

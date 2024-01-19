@@ -26,8 +26,8 @@
                                                   @if( !empty( $books ))
                                                   @foreach( $books as $book_category => $category_books)
                                                   <div class="col-lg-12">
-                                                      <h3 class="mb-10 font-24" itemprop="title">{{$book_category}}</h3>
-                                                      <span class="mb-35 d-block" itemprop="sub title">For kids ages 0-3</span>
+                                                      <h3 class="mb-10 font-22" itemprop="title">{{$book_category}}</h3>
+                                                      <span class="mb-35 d-block font-14" itemprop="sub title">For kids ages 0-3</span>
                                                   </div>
                                                   @if( !empty( $category_books ))
                                                   @foreach( $category_books as $bookData)

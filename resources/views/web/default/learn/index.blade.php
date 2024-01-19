@@ -382,14 +382,14 @@
         </div>
     </div>
     <div class="categories-element-title">
-        <h2 class="font-24"><span>{{$categoryObj->category->getTitleAttribute()}} - {{$categoryObj->getTitleAttribute()}}</span></h2>
+        <h2 class="font-22"><span>{{$categoryObj->category->getTitleAttribute()}} - {{$categoryObj->getTitleAttribute()}}</span></h2>
         <p>{{$categoryObj->category->getTitleAttribute()}} courses - Comprehensive list of courses for Children Aged 5, 6 and 7.</p>
     </div>
 
     <div class="categories-boxes row">
         <div class="col-12">
             <div class="subjects-heading">
-                <h2 class="font-24">Subjects</h2>
+                <h2 class="font-22">Subjects</h2>
             </div>
         </div>
 
@@ -544,7 +544,7 @@
         </div>
         <div class="col-12">
             <div class="subjects-heading">
-                <h2 class="font-24">Additional Subjects</h2>
+                <h2 class="font-22">Additional Subjects</h2>
             </div>
         </div>
         <div class="col-12">

@@ -1,6 +1,35 @@
+<style>
+    .rurera-hide{display:none;}
+</style>
 <section class="p-0 mt-30 treasure-mission-layout">
 
     <h3>Treasure Mission</h3>
+
+    @php $get_treasure_missions  = get_treasure_missions(); @endphp
+
+
+    @if( !empty( $get_treasure_missions ) )
+        <div class="listing-search lms-jobs-form mb-20">
+            <ul class="inline-filters">
+            @foreach( $get_treasure_missions as $key => $missionData)
+                @php $is_active = ($key == 0)? 'active' : '';
+                $is_locked = isset( $missionData['is_locked'] )? $missionData['is_locked'] : false;
+                $li_class = ($is_locked == true)? 'mission-locked' : 'treasure-mission-li';
+                @endphp
+                <li class=" {{$li_class}} {{$is_active}}" data-mission_id="{{isset( $missionData['id'])? $missionData['id'] : ''}}">
+                    <a href="javascript:;">
+                        <span class="icon-box">
+                                <img src="{{isset( $missionData['img'])? $missionData['img'] : ''}}">
+                        </span>
+                        {{isset( $missionData['title'])? $missionData['title'] : ''}}
+                    </a>
+                </li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <form action="/timestables/generate_treasure_mission" method="post" class="treasure_mission_form">
                         {{ csrf_field() }}
         <input type="hidden" name="nugget_id" id="nugget_id" value="0">
@@ -8,7 +37,7 @@
     @if( !empty( $treasure_mission_data ) )
     @php $counter = 0; $last_stage_completed = false;@endphp
     @foreach( $treasure_mission_data as $levelObj)
-        <div class="spell-levels border-0">
+        <div class="spell-levels border-0 rurera-hide" data-mission_id="{{isset( $levelObj['mission_id'] )? $levelObj['mission_id'] : ''}}">
             <div class="panel-subheader">
                 <div class="title">
                     <h2 class="font-19 font-weight-bold">{{isset( $levelObj['title'] )? $levelObj['title'] : ''}}</h2>
@@ -126,4 +155,13 @@ $(document).on('click', '.generate_treasure_mission', function (e) {
     $(".treasure_mission_form").submit();
 
 });
+$(document).on('click', '.treasure-mission-li', function (e) {
+    $(".treasure-mission-li").removeClass('active');
+    $(this).addClass('active');
+    $('.spell-levels').addClass('rurera-hide');
+    var mission_id = $(this).attr('data-mission_id');
+    $('.spell-levels[data-mission_id="'+mission_id+'"]').removeClass('rurera-hide');
+
+});
+$(".treasure-mission-li.active").click();
 </script>

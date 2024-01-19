@@ -61,7 +61,9 @@ if( $duration_type == 'total_practice'){
                         </div>
                     </div>
 
-                    <div class="learning-content start-btn-container" id="learningPageContent">
+                    <div class="start-counter"></div>
+
+                    <div class="learning-content start-btn-container hide" id="learningPageContent">
                         <div class="learning-title">
                             <h3 class="mb-5"></h3>
                         </div>
@@ -120,10 +122,11 @@ if( $duration_type == 'total_practice'){
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
-                                   <div class="questions-controls">
+                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
-                                       <a href="#">
-                                        <img src="/assets/default/svgs/vol-mute.svg" alt="mute svg">
+                                       <a href="javascript:;">
+                                           <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
+                                           <img src="/assets/default/svgs/mute.svg" class="mute_sound mute_unmute_sound hide" data-action="unmute_sound" alt="unmute svg">
                                        </a>
                                    </div>
                                 </div>
@@ -254,6 +257,31 @@ if( $duration_type == 'total_practice'){
 
     var user_data = [];
     var Quizintervals = null;
+
+    var start_counter = 6;
+    var is_sound_enabled = true;
+    $(document).on('click', '.mute_unmute_sound', function (e) {
+        $('.mute_unmute_sound').addClass('hide');
+        this_action = $(this).attr('data-action');
+        $('.'+this_action).removeClass('hide');
+        if( this_action == 'mute_sound'){
+            is_sound_enabled = false;
+        }else{
+            is_sound_enabled = true;
+        }
+        $(".editor-fields").focus();
+    });
+
+    var Startintervals = setInterval(function () {
+        if (parseInt(start_counter) > 1) {
+            start_counter = parseInt(start_counter) - parseInt(1);
+            $(".start-counter").html(start_counter);
+        } else {
+            $(".start-counter").remove();
+            clearInterval(Startintervals);
+            $(".start-timestables-quiz").click();
+        }
+    }, 1000);
 
     var duration_type = $(".question-area-block").attr('data-duration_type');
     var time_interval = $(".question-area-block").attr('data-time_interval');
@@ -419,9 +447,13 @@ if( $duration_type == 'total_practice'){
             $(".tt_points").html(tt_points);
             var correct_questions_count = parseInt($(".question-area-block").attr('data-corrected_questions'));
             $(".question-area-block").attr('data-corrected_questions', parseInt(correct_questions_count)+1);
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/correct-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
+            }
         }else{
-            $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            if( is_sound_enabled == true) {
+                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+            }
         }
 
 
@@ -475,10 +507,15 @@ if( $duration_type == 'total_practice'){
             $("#timestables_complete_status_modal").modal('show');
             var response_layout = '';
 
-
-            jQuery.ajax({
+            var currentRequest = null;
+            currentRequest = jQuery.ajax({
                 type: "POST",
                 url: '/question_attempt/timestables_submit',
+                beforeSend: function () {
+                    if (currentRequest != null) {
+                        currentRequest.abort();
+                    }
+                },
                 dataType: 'json',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

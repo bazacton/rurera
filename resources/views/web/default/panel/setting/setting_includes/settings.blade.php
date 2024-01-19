@@ -3,7 +3,7 @@
 @endpush
 
 <section class="mt-30">
-    <h2 class="section-title after-line">{{ trans('update.settings') }}</h2>
+    <h2 class="section-title after-line font-22">{{ trans('update.settings') }}</h2>
 
     <div class="row mt-20">
         <div class="col-12 col-lg-4">

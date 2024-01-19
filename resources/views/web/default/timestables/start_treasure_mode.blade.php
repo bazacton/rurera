@@ -87,55 +87,23 @@ if( $duration_type == 'total_practice'){
 
                     <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}" data-corrected_questions="0">
 
-                        <div class="trophy-levels hide">
+                        <div class="trophy-levels life-lines-container">
+                            <h4>{{isset( $levelData['title'] )? $levelData['title'] : ''}} - {{isset( $nugget_data['title'] )? $nugget_data['title'] : ''}}</h4>
                             <div class="flex-parent">
-                                <div class="input-flex-container">
-                                    <div class="input explorer">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input junior">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input active smarty">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input brainy">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input genius">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input creative">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input champion">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input mastery">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input majesty">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input expert">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                    <div class="input maestro">
-                                        <span data-year="" data-info=""><img src="/assets/default/img/panel-sidebar/life-line.png" alt=""></span>
-                                    </div>
-                                </div>
-                                <div class="description-flex-container">
-                                    <p>Explorer</p>
-                                    <p>Junior</p>
-                                    <p class="active">Smarty</p>
-                                    <p>Brainy</p>
-                                    <p>Genius</p>
-                                    <p>Creative</p>
-                                    <p>Champion</p>
-                                    <p>Mastery</p>
-                                    <p>Majesty</p>
-                                    <p>Expert</p>
-                                    <p>Maestro</p>
+                                <div class="input-flex-container life-lines-block">
+                                    @php $life_counter = 1; @endphp
+                                    @if( isset( $life_lines ) && $life_lines > 0)
+                                        @while($life_counter <= 5)
+                                            @php $is_life_active = ( $life_counter == $life_lines)? 'active' : '';
+                                                $life_line_img = ( $life_counter > $life_lines)? 'broken-heart.png' : 'life-line.png';
+                                            @endphp
+                                            <div class="input {{$is_life_active}}">
+                                                <img src="/assets/default/img/panel-sidebar/{{$life_line_img}}" alt="">
+                                                <span data-year="" data-info=""></span>
+                                            </div>
+                                            @php $life_counter++; @endphp
+                                        @endwhile
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -283,6 +251,7 @@ if( $duration_type == 'total_practice'){
         }else{
             is_sound_enabled = true;
         }
+        $(".editor-fields").focus();
     });
 
 
@@ -472,6 +441,9 @@ if( $duration_type == 'total_practice'){
         }else{
             life_lines = parseInt(life_lines) - 1;
             $(".life-lines").html(life_lines);
+            var li_counter = parseInt(life_lines) - 1;
+            $('.life-lines-block .input').removeClass('active');
+            $('.life-lines-block .input:eq('+li_counter+')').addClass('active');
             if( life_lines < 1){
                clearInterval(Quizintervals);
                 $(".questions-block.active").nextAll('.questions-block').remove();

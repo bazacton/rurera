@@ -194,10 +194,6 @@
                                             </div>
                                         </li>
                                     </ul>
-
-
-
-
                                 </div>
                                 <div class="panel-rightside-menu">
                                     <div class="user-info">
@@ -260,6 +256,58 @@
                                         </div>
                                     @endforeach
 
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mt-35">
+                                <div class="referrals panel-border panel-shadow rounded-sm">
+                                    <div class="referral-card">
+                                        <h3 class="font-19 font-weight-bold">Link your students and <br /> start earning!</h3>
+                                        <p>
+                                            To link your clients, enter their email below. <br />
+                                            If they don't yet use Atom, they'll get 10% <br />
+                                            off their first month, and <strong>you will earn 15% <br /> of their subscription payment every month. </strong>
+                                        </p>
+                                        <div class="referral-form">
+                                            <form>
+                                                <label>Parent's email</label>
+                                                <div class="form-feild">
+                                                    <input type="text" placeholder="parent@mail.com">
+                                                    <button type="submit">Invite</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="referral-invites">
+                                            <div class="heading">
+                                                <h3 class="font-19 font-weight-bold">Track your invites</h3>
+                                                <a href="#">See all <span>&#8594;</span></a>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <strong>0</strong>
+                                                    <span>Total users earning</span>
+                                                </li>
+                                                <li>
+                                                    <strong>1</strong>
+                                                    <span>Pending invites</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="referral-payment">
+                                            <div class="heading">
+                                                <h3 class="font-19 font-weight-bold">Your wallet</h3>
+                                                <a href="#">Go to referrals <span>&#8594;</span></a>
+                                            </div>
+                                            <p>
+                                                <span class="icon-box">
+                                                    <img src="/assets/default/svgs/wallet.svg" alt="">
+                                                </span>
+                                                <strong>
+                                                    £0.00
+                                                    <em>Pending payment</em>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-12">

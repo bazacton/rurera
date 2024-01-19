@@ -100,7 +100,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var user_question_layout = thisForm.find('.question-layout').html();
     var user_question_layout = leform_encode64(JSON.stringify(user_question_layout));
     $('.question-all-good').remove();
-    $(this).closest('form').find('.editor-field').each(function () {
+    $(this).closest('form').find('.editor-field:not(img)').each(function () {
         $(this).removeClass('validate-error');
         var field_name = $(this).attr('name');
         var field_id = $(this).attr('id');
@@ -200,7 +200,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
 
                 quiz_user_data = chimp_encode64(JSON.stringify(quiz_user_data));
 
-                
+
 
 
                 if (quiz_type != 'book_page' && quiz_type != 'vocabulary') {
@@ -1392,7 +1392,7 @@ function rurera_validation_process(form_name) {
     var alert_messages = new Array();
     var radio_fields = new Array();
     var checkbox_fields = new Array();
-    form_name.find('.rurera-req-field, .editor-field, .editor-fields').each(function (index_no) {
+    form_name.find('.rurera-req-field:not(img), .editor-field:not(img), .editor-fields:not(img)').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);
         index_no = rurera_is_field(index_no) ? index_no : 0;

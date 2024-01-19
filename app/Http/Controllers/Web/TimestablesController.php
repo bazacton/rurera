@@ -103,7 +103,7 @@ class TimestablesController extends Controller
 
 
         $max_questions = 12;
-        $current_question_max = 1;
+        $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
             $questions_no_array[$current_question_max] = $current_question_max;
@@ -242,7 +242,7 @@ class TimestablesController extends Controller
 
 
         $max_questions = $no_of_questions;//20;
-        $current_question_max = 1;
+        $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
             $questions_no_array[$current_question_max] = $current_question_max;
@@ -813,7 +813,7 @@ class TimestablesController extends Controller
 
 
         $max_questions = 12;
-        $current_question_max = 1;
+        $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
             $questions_no_array[$current_question_max] = $current_question_max;
@@ -962,7 +962,7 @@ class TimestablesController extends Controller
         $questions_list = $already_exists = $questions_array_list = array();
 
         $max_questions = 12;
-        $current_question_max = 1;
+        $current_question_max = 2;
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
             $questions_no_array[$current_question_max] = $current_question_max;
@@ -1100,7 +1100,7 @@ class TimestablesController extends Controller
         $tables_types[] = 'x';
         $marks = 5;
         $max_questions = 12;
-        $current_question_max = 1;
+        $current_question_max = 2;
 
         $questions_no_array = [];
         while ($current_question_max <= $max_questions) {
@@ -1249,6 +1249,7 @@ class TimestablesController extends Controller
             }
         }
 
+
         shuffle($questions_array_list);
         $questions_list = $questions_array_list;
 
@@ -1285,6 +1286,8 @@ class TimestablesController extends Controller
             'duration_type'   => 'per_question',
             'time_interval'   => $time_interval,
             'life_lines'      => $life_lines,
+            'nugget_data'    => $nugget_data,
+            'levelData'      => $levelData,
             'practice_time'   => 0,
             'total_questions' => count($questions_array_list),
         ];

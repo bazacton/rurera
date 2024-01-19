@@ -1604,7 +1604,7 @@ class QuestionsAttemptController extends Controller
             $user_timetables_levels = json_decode($user->user_timetables_levels);
             $user_timetables_levels = is_array($user_timetables_levels)? $user_timetables_levels : array();
             $user_timetables_levels[] = $QuizzesResult->nugget_id;
-            if( $percentage_correct_answer >= 80){
+            if( $percentage_correct_answer >= 95){
 
                 //Check for Treasure Box
 
@@ -1696,7 +1696,7 @@ class QuestionsAttemptController extends Controller
         if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'treasure_mode') {
 
             $treasure_mission_data = get_treasure_mission_data();
-            if( $percentage_correct_answer >= 80) {
+            if( $percentage_correct_answer >= 95) {
                 $nuggetObj = getNextNuggetByCurrentID($treasure_mission_data, 'id', $QuizzesResult->nugget_id);
             }else{
                 $nuggetObj = searchNuggetByID($treasure_mission_data, 'id', $QuizzesResult->nugget_id);
