@@ -10,17 +10,17 @@
                 </div>
                 <div class="col-12 col-lg-12 mx-auto">
                    <a href="/panel/results/{{$QuizzesResult->id}}/timetables" class="timestables-results">See Results</a>
-                    @if( $percentage_correct_answer >= 80)
+                    @if( $percentage_correct_answer >= 95)
                         <a href="javascript:;"  data-id="{{isset( $nuggetObj['id'] )? $nuggetObj['id'] : ''}}" class="timestables-next-stage">Next Stage</a>
                     @else
-                        <a href="javascript:;"  data-id="{{isset( $nuggetObj['id'] )? $nuggetObj['id'] : ''}}" class="timestables-next-stage">Retry</a>
+                        <a href="javascript:;"  data-id="{{isset( $nuggetObj['id'] )? $nuggetObj['id'] : ''}}" class="timestables-retry-stage">Retry</a>
                     @endif
                 </div>
             </div>
         </div>
     </section>
 <script>
-$(document).on('click', '.timestables-next-stage', function (e) {
+$(document).on('click', '.timestables-next-stage, .timestables-retry-stage', function (e) {
     var nugget_id = $(this).attr('data-id');
     $("#nugget_id").val(nugget_id);
     $(".treasure_mission_form").submit();

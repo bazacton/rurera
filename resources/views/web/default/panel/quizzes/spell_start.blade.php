@@ -339,8 +339,6 @@ $timer_counter = $practice_time;
 
     var duration_type = '{{$duration_type}}';
     var timePaused = false;
-    console.log(duration_type);
-    console.log('spell-start-page-----');
 
     function quiz_default_functions() {
 
@@ -370,7 +368,17 @@ $timer_counter = $practice_time;
         }, 1000);
 
         $("body").on("click", ".question-submit-btn", function (e) {
+            var editor_field_value = '';
+            var thisObj = $(this);
+            var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();
+            thisObj.closest('.spells-quiz-from').find('.editor-field-inputs').each(function() {
+                editor_field_value += $(this).val();
+            });
+            thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
             timePaused = true;
+            if( thisValue == '' && editor_field_value != ''){
+                thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
+            }
         });
 
         $("body").on("click", ".question-next-btn", function (e) {
@@ -399,6 +407,7 @@ $timer_counter = $practice_time;
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours
         secondsString -= h * 3600;
+
         var m = Math.floor(secondsString / 60); //Get remaining minutes
         secondsString -= m * 60;
         var return_string = '';

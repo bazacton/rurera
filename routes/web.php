@@ -563,6 +563,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/generate_powerup' , 'TimestablesController@generate_powerup');
         Route::post('/generate_trophymode' , 'TimestablesController@generate_trophymode');
         Route::post('/generate_treasure_mission' , 'TimestablesController@generate_treasure_mission');
+        Route::post('/generate_showdown_mode' , 'TimestablesController@generate_showdown_mode');
+
+
+
         Route::get('/summary' , 'TimestablesController@summary');
         Route::post('/assignment_create' , 'TimestablesController@assignment_create');
 
@@ -575,6 +579,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/freedom_mode' , 'TimestablesController@freedom_mode');
         Route::get('/powerup_mode' , 'TimestablesController@powerup_mode');
         Route::get('/trophy_mode' , 'TimestablesController@trophy_mode');
+        Route::get('/showdown_mode' , 'TimestablesController@showdown_mode');
         Route::get('/treasure_mission' , 'TimestablesController@treasure_mission');
 
 

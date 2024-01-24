@@ -1,4 +1,4 @@
-<section class="p-25 panel-border border-radius-10">
+<section class="p-25 panel-border border-radius-10 mb-50">
     <div class="container">
         <div class="row">
             <canvas id="powerup_chart"></canvas>

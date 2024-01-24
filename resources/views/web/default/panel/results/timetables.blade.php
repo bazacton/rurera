@@ -62,7 +62,7 @@ $rand_id = rand(99,9999);
              data-total_questions="30">
 
             <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12 col-sm-12 mt-40">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-10">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -274,7 +274,7 @@ $rand_id = rand(99,9999);
     $(document).ready(function () {
 
         $(".incorrect-questions").html('{{$incorrect_questions}}');
-        $(".summary-time-spend").html('{{$summary_time_spend}} s');
+        $(".summary-time-spend").html('{{getTimeWithText($summary_time_spend)}}');
         $(".summary-coins-earned").html('{{$summary_coins_earned}}');
 
     });

@@ -1545,7 +1545,8 @@ class QuestionsAttemptController extends Controller
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
-        $incorrect_array = array();
+        $total_time_consumed = 0;
+        $incorrect_array = $correct_array = array();
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
 
@@ -1557,6 +1558,7 @@ class QuestionsAttemptController extends Controller
                 $time_consumed = isset($tableData['time_consumed']) ? $tableData['time_consumed'] : '';
                 $table_no = isset($tableData['table_no']) ? $tableData['table_no'] : '';
                 $is_correct = isset($tableData['is_correct']) ? $tableData['is_correct'] : '';
+                $total_time_consumed += $time_consumed;
 
 
 
@@ -1586,10 +1588,25 @@ class QuestionsAttemptController extends Controller
                 if($is_correct != 'true'){
                     $incorrect_array[] = $newQuestionResult->id;
                 }
+                if($is_correct == 'true'){
+                    $correct_array[] = $newQuestionResult->id;
+                }
 
                 $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
 
             }
+        }
+
+        $QuizzesResult->update([
+            'total_correct' => count($correct_array),
+            'total_time_consumed'     => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+        ]);
+
+        if( $QuizzesResult->attempt_mode == 'showdown_mode') {
+            $user->update([
+                'showdown_correct' => count($correct_array),
+                'showdown_time_consumed' => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+            ]);
         }
 
         if( $QuizzesResult->attempt_mode == 'treasure_mode') {

@@ -54,7 +54,7 @@
                 <h2 class="section-title font-24">{{ trans('update.purchases_history') }}</h2>
             </div>
 
-            <div class="panel-section-card py-20 px-25 mt-20">
+            <div class="panel-section-card p-0 mt-20">
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">

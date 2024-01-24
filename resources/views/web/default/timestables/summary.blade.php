@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-<section class="heatmap-section">
+<section class="heatmap-section mt-10">
         <div class="row">
             <div class="col-12 col-lg-10 mx-auto">
                 <div class="heatmap-section-inner">

@@ -88,84 +88,6 @@ if( $duration_type == 'total_practice'){
                     <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}" data-corrected_questions="0">
 
 
-                    <div class="spell-levels border-0">
-                        @php $ul_custom_class = isset( $stageObj['custom_class'] )? $stageObj['custom_class'] : ''; $li_count = $counter = $last_stage_completed = 0;  @endphp
-                        @if( isset( $stageObj['nuggets'] ) && !empty( $stageObj['nuggets'] ) )
-                            <div class="treasure-stage">
-                                <ul class="justify-content-start horizontal-list p-0 {{$ul_custom_class}}" style="display: block;">
-                                    @foreach( $stageObj['nuggets'] as $nuggetObj)
-                                        @php $counter++; $li_count++ @endphp
-                                        @php $is_acheived = in_array( $nuggetObj['id'], $user_timetables_levels)? true : false;
-                                            $is_active = (empty($user_timetables_levels) && $counter == 1)? true : false;
-                                            $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
-                                            $li_count = ($li_count >= 6)? 0 : $li_count;
-                                            $last_stage = (isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)? 'last-stage' : '';
-                                            $treasure_mission_class = ($is_active == 1 || ($last_stage_completed == 1 && $is_acheived != 1))? 'generate_treasure_mission' : 'locked_nugget';
-                                        @endphp
-                                        <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
-                                            <a href="javascript:;" class="{{$treasure_mission_class}}" data-id="{{$nuggetObj['id']}}">
-                                                @if($is_acheived == 1 )
-                                                    <img src="/assets/default/img/tick-white.png" alt="">
-                                                @elseif($is_active == 1 )
-                                                    <img src="/assets/default/img/stepon.png" alt="">
-                                                @else
-                                                    @if($last_stage_completed == 1)
-                                                        <img src="/assets/default/img/stepon.png" alt="">
-                                                    @else
-                                                        @if( isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)
-                                                            <img src="/assets/default/img/flag-grey.png" alt="">
-                                                        @else
-                                                            <img src="/assets/default/img/panel-lock.png" alt="">
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            </a>
-                                        </li>
-                                        @if( isset( $nuggetObj['treasure_box'] ))
-                                            @php $li_count++;
-                                                $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
-                                                $li_count = ($li_count >= 6)? 0 : $li_count;
-                                            @endphp
-                                            <li class="treasure {{$li_custom_class}}">
-                                                <a href="#">
-                                                    <span class="thumb-box">
-                                                        @if($is_acheived == 1)
-                                                            <img src="/assets/default/img/treasure.png" alt="">
-                                                        @else
-                                                            <img src="/assets/default/img/treasure2.png" alt="">
-                                                        @endif
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @php $last_stage_completed = $is_acheived; @endphp
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
-
-
-                        <div class="trophy-levels life-lines-container">
-                            <div class="flex-parent">
-                                <div class="input-flex-container life-lines-block">
-                                    @php $life_counter = 1; @endphp
-                                    @if( isset( $life_lines ) && $life_lines > 0)
-                                        @while($life_counter <= 5)
-                                            @php $is_life_active = ( $life_counter == $life_lines)? 'active' : '';
-                                                $life_line_img = ( $life_counter > $life_lines)? 'broken-heart.png' : 'life-line.png';
-                                            @endphp
-                                            <div class="input {{$is_life_active}}">
-                                                <img src="/assets/default/img/panel-sidebar/{{$life_line_img}}" alt="">
-                                                <span data-year="" data-info=""></span>
-                                            </div>
-                                            @php $life_counter++; @endphp
-                                        @endwhile
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
 
                         <div class="col-12 col-lg-8 mx-auto">
                             <div class="spells-quiz-info">
@@ -200,7 +122,7 @@ if( $duration_type == 'total_practice'){
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
                                                                            class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
-                                   <div class="questions-controls">
+                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
                                        <a href="javascript:;">
                                            <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
@@ -240,7 +162,6 @@ if( $duration_type == 'total_practice'){
             </div>
         </div>
     </section>
-
 </div>
 <div class="question-status-modal">
   <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -272,20 +193,6 @@ if( $duration_type == 'total_practice'){
       </div>
     </div>
   </div>
-
-<div class="modal fade timestables_lifelines_modal" id="timestables_lifelines_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Game Over!</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 @endsection
@@ -296,9 +203,10 @@ if( $duration_type == 'total_practice'){
 <script>
     //init_question_functions();
 
+    var user_data = [];
+    var Quizintervals = null;
 
     var start_counter = 6;
-
     var is_sound_enabled = true;
     $(document).on('click', '.mute_unmute_sound', function (e) {
         $('.mute_unmute_sound').addClass('hide');
@@ -312,7 +220,6 @@ if( $duration_type == 'total_practice'){
         $(".editor-fields").focus();
     });
 
-
     var Startintervals = setInterval(function () {
         if (parseInt(start_counter) > 1) {
             start_counter = parseInt(start_counter) - parseInt(1);
@@ -324,15 +231,9 @@ if( $duration_type == 'total_practice'){
         }
     }, 1000);
 
-    var user_data = [];
-    var Quizintervals = null;
-    var is_gameover = false;
-
     var duration_type = $(".question-area-block").attr('data-duration_type');
     var time_interval = $(".question-area-block").attr('data-time_interval');
     var practice_time = $(".question-area-block").attr('data-practice_time');
-    var life_lines = '{{$life_lines}}';
-
 
     $(document).on('click', '.timestables-question-confirm-btn', function (e) {
         if( duration_type == 'total_practice'){
@@ -340,6 +241,7 @@ if( $duration_type == 'total_practice'){
             $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
         }
         $(".questions-block.active .question-form").submit();
+
     });
 
     $(document).on('click', '.start-timestables-quiz', function (e) {
@@ -497,21 +399,6 @@ if( $duration_type == 'total_practice'){
                 $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
             }
         }else{
-            life_lines = parseInt(life_lines) - 1;
-            $(".life-lines").html(life_lines);
-            var li_counter = parseInt(life_lines) - 1;
-            $('.life-lines-block .input.active img').attr('src', '/assets/default/img/panel-sidebar/broken-heart.png');
-            $('.life-lines-block .input').removeClass('active');
-            $('.life-lines-block .input:eq('+li_counter+')').addClass('active');
-            if( life_lines < 1){
-               clearInterval(Quizintervals);
-                $(".questions-block.active").nextAll('.questions-block').remove();
-                $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
-                $(".questions-block .question-form").attr('data-bypass_validation', 'yes');
-                var total_questions = $(".question-area-block").attr('data-total_questions');
-                is_gameover = true;
-
-            }
             if( is_sound_enabled == true) {
                 $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
             }
@@ -555,7 +442,6 @@ if( $duration_type == 'total_practice'){
                         if (parseInt(quiz_timer_counter) == 0) {
                             clearInterval(Quizintervals);
                             $("#timestables_question_status_modal").modal('show');
-                            $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                             //$(".questions-block.active .question-form").submit();
                         }
                     }
@@ -566,12 +452,8 @@ if( $duration_type == 'total_practice'){
         } else {
             clearInterval(Quizintervals);
             $('.questions-block').addClass('disable-div');
-            rurera_loader($('.question-area-block'), 'div');
-            if( is_gameover == true){
-                $("#timestables_lifelines_modal").modal('show');
-            }
+            $("#timestables_complete_status_modal").modal('show');
             var response_layout = '';
-
 
             var currentRequest = null;
             currentRequest = jQuery.ajax({
@@ -588,18 +470,13 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
-                    rurera_remove_loader($('.question-area-block'), 'button');
-                    if (return_data.return_layout != '') {
-                        $(".question-area-block").html(return_data.return_layout);
-                        rurera_remove_loader($('.question-area-block'), 'button');
-
-                    }
+                    window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
                 }
             });
 
             //window.location.href = '/timestables/summary';
             //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
+
 
             return false;
 

@@ -111,6 +111,20 @@
                         </div>
 
                         <div class="col-12 col-md-12 col-lg-12">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
+                                <div class="text-holder">
+                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <a class="grid-btn ajax-callback" data-type="showdown_mode"  itemprop="Button" href="javascript:;">Showdown</a>
+                                    </h3>
+                                </div>
+                                <div class="img-holder">
+                                    <img src="/assets/default/img/treasure.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" itemprop="image" loading="eager">
+                                </div>
+                                <p class="text-gray">Journey through times tables practice and discover hidden treasures.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-12 col-lg-12">
                             <h5 itemprop="title" class=" mb-10">Multi Player</h5>
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">

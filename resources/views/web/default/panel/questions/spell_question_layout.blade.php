@@ -81,10 +81,15 @@ if( isset( $duration_type ) ){
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-                        <input type="text" maxlength="{{$no_of_words}}" class="editor-field" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}" style="width: {{$field_width}}ch;
-                            background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ {{$field_width}}ch 2px no-repeat;
-                            font: 1.2rem 'Ubuntu Mono', monospace;
-                            letter-spacing: 0.5ch;">
+                        @php $words_counter = 0; @endphp
+                        @while($words_counter < $no_of_words)
+                            <input type="text" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs" style="width: 1ch;
+                                                    background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
+                                                    font: 1.2rem 'Ubuntu Mono', monospace;
+                                                    letter-spacing: 0.5ch;">
+                            @php $words_counter++; @endphp
+                        @endwhile
+                        <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
 
 
@@ -92,76 +97,6 @@ if( isset( $duration_type ) ){
                     <div class="question-correct-answere rurera-hide">
                         {{$correct_answer}}
                     </div>
-                    <div class="rurera-virtual-keyboard rurera-hide">
-                        <div class="keyboard-delete">
-                            <input type="button" value="delete" class="delete">
-                        </div>
-                        <div class="virtual-keyboard">
-                          <div class="keyboard-controls">
-                            <input type="button" class="control-nub" value="1">
-                            <input type="button" class="control-nub" value="2">
-                            <input type="button" class="control-nub" value="3">
-                            <input type="button" class="control-nub" value="4">
-                            <input type="button" class="control-nub" value="5">
-                            <input type="button" class="control-nub" value="6">
-                            <input type="button" class="control-nub" value="7">
-                            <input type="button" class="control-nub" value="8">
-                            <input type="button" class="control-nub" value="9">
-                            <input type="button" class="control-nub" value="0">
-                          </div>
-
-                          <div class="keyboard-controls">
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="q"></span>
-                                <span><input type="button" value="w"></span>
-                                <span><input type="button" value="e"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                              <span><input type="button" value="r"></span>
-                              <span><input type="button" value="t"></span>
-                              <span><input type="button" value="y"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                              <span><input type="button" value="u"></span>
-                              <span><input type="button" value="i"></span>
-                              <span><input type="button" value="o"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="p"></span>
-                                <span><input type="button" value="a"></span>
-                                <span><input type="button" value="s"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="d"></span>
-                                <span><input type="button" value="f"></span>
-                                <span><input type="button" value="g"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="h"></span>
-                                <span><input type="button" value="j"></span>
-                                <span><input type="button" value="k"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="l"></span>
-                                <span><input type="button" value="z"></span>
-                                <span><input type="button" value="x"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                                <span><input type="button" value="c"></span>
-                                <span><input type="button" value="v"></span>
-                                <span><input type="button" value="b"></span>
-                            </div>
-                            <div class="keyboard-cell">
-                              <span><input type="button" value="n"></span>
-                                <span><input type="button" value="m"></span>
-                                <span><input type="button" value="shift" class="shift"></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="keyboard-controls spacebar">
-                          <input type="button" value="">
-                        </div>
-                      </div>
 
 
                     <div class="form-btn-field">
@@ -262,6 +197,9 @@ if( isset( $duration_type ) ){
     var hint_counter = 0;
     var charPosition = 0;
     var userInput = false;
+    var excludeArray = [];
+    var ansCorr = '{{$correct_answer}}';
+    var ansCharactersCount = ansCorr.length;
     var SpellQuestionintervalCountDownFunc = function() {
              currentFunctionStart = 'started';
             Questioninterval = setInterval(function () {
@@ -269,10 +207,22 @@ if( isset( $duration_type ) ){
                 hint_counter = parseInt(hint_counter) + parseInt(1);
                 var quiz_level = '{{$quiz_level}}';
                 if( quiz_level == 'easy') {
-                    if (parseInt(hint_counter) == 1000000000 && userInput == false) {
-                        var ansCorr = '{{$correct_answer}}';
+                    if (parseInt(hint_counter) == 10 && userInput == false) {
+
+                        $('.editor-field-inputs').each(function() {
+                          var $this = $(this);
+                          var value = $this.val();
+                          if (value !== "") {
+                            var counterId = $this.attr('data-counter_id');
+                            excludeArray.push(charPosition);
+                          }
+                        });
+
+                        var charPosition = getRandomNumberNotInArray(ansCharactersCount, excludeArray);
+                        excludeArray.push(charPosition);
+                        console.log('charPosition--'+charPosition);
                         var correct_answer_character = ansCorr.charAt(charPosition);
-                        $(".editor-field").val($(".editor-field").val() + correct_answer_character);
+                        $('.editor-field-inputs[data-counter_id="'+charPosition+'"').attr('placeholder',correct_answer_character);
                         charPosition = parseInt(charPosition) + parseInt(1);
                         hint_counter = 0;
                     }
@@ -284,8 +234,31 @@ if( isset( $duration_type ) ){
         }
 
     $(document).on('keyup', ".question-step-{{ $question->id }} .editor-field", function (e) {
-        userInput = true;
+        userInput = false;
+        hint_counter = 0;
     });
+
+    $(document).on('input keydown', ".editor-field-inputs", function (e) {
+        var $this = $(this);
+          var value = $this.val();
+
+          if (event.type === 'input' && value.length === 1) {
+            $this.next('.editor-field-inputs').focus();
+          } else if (event.type === 'keydown' && event.which === 8 && value === "") {
+            $this.prev('.editor-field-inputs').focus();
+          }
+    });
+
+
+    function getRandomNumberNotInArray(maxNumber, excludeArray) {
+      var randomNumber;
+      do {
+        randomNumber = Math.floor(Math.random() * parseInt(maxNumber)); // Generate random number from 0 to 8
+      } while (excludeArray.includes(randomNumber)); // Repeat if the number is in the array
+
+      return randomNumber;
+    }
+
 
 </script>
 <script type="text/javascript">
@@ -301,7 +274,6 @@ if( isset( $duration_type ) ){
     $(document).on('click', '#sound-icon-{{ $question->id }}', function (e) {
         var context = new AudioContext();
         $('#field-{{$field_id}}').focus();
-        console.log(currentFunctionStart);
         if( currentFunctionStart == null) {
             SpellQuestionintervalCountDownFunc();
         }
@@ -311,12 +283,8 @@ if( isset( $duration_type ) ){
 
         $(this).toggleClass("pause");
         if ($(this).hasClass('pause')) {
-            console.log('play');
-            console.log(player_id);
             document.getElementById(player_id).play();
         } else {
-            console.log('pause');
-            console.log(player_id);
             document.getElementById(player_id).pause();
         }
     });
@@ -332,8 +300,6 @@ if( isset( $duration_type ) ){
 
 
         $('#field-{{$field_id}}').focus();
-        console.log('#sound-icon-{{ $question->id }}');
-        console.log('start-spell-quiz');
         $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),

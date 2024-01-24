@@ -24,6 +24,9 @@ class TimestablesController extends Controller
 
     public function index(Request $request)
     {
+
+
+
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
         if (auth()->check() && auth()->user()->isParent()) {
@@ -1279,6 +1282,13 @@ class TimestablesController extends Controller
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
 
 
+        $stageData = array();
+        if( isset( $nugget_data['stageData']['id'] ) ){
+            $stageData = searchNuggetByID($treasure_mission_data,'id', $nugget_data['stageData']['id']);
+        }
+        $user_timetables_levels = json_decode($user->user_timetables_levels);
+        $user_timetables_levels = is_array( $user_timetables_levels ) ? $user_timetables_levels : array();
+
         $data = [
             'pageTitle'       => 'Start',
             'questions_list'  => $questions_list,
@@ -1288,10 +1298,150 @@ class TimestablesController extends Controller
             'life_lines'      => $life_lines,
             'nugget_data'    => $nugget_data,
             'levelData'      => $levelData,
+            'stageObj'     => $stageData,
+            'user_timetables_levels' => $user_timetables_levels,
             'practice_time'   => 0,
             'total_questions' => count($questions_array_list),
         ];
         return view('web.default.timestables.start_treasure_mode', $data);
+    }
+
+
+    /*
+     * Generate Showdown Mode Stage
+     */
+    public function generate_showdown_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            //return redirect('/login');
+        }
+        /*if (!auth()->subscription('timestables')) {
+            return view('web.default.quizzes.not_subscribed');
+        }*/
+        $user = getUser();
+        $tables_data = array(
+            '2' => 6,
+            '3' => 10,
+            '4' => 10,
+            '5' => 7,
+            '6' => 10,
+            '7' => 10,
+            '8' => 10,
+            '9' => 10,
+            '10' => 7,
+            '11' => 10,
+            '12' => 10,
+        );
+
+        $previous_tables = isset( $nugget_data['previous_tables'] )? $nugget_data['previous_tables'] : array();
+        $practice_time_seconds = (5 * 60);
+        $questions_array_list = array();
+
+
+        $tables_types = [];
+        $tables_types[] = 'x';
+        $marks = 5;
+        $max_questions = 12;
+        $current_question_max = 2;
+
+        $questions_no_array = [];
+        while ($current_question_max <= $max_questions) {
+            $questions_no_array[$current_question_max] = $current_question_max;
+            $current_question_max++;
+        }
+        $questions_no_array_fixed = $questions_no_array;
+
+        $type = isset($tables_types[array_rand($tables_types)]) ? $tables_types[array_rand($tables_types)] : 0;
+
+        $table_questions_counter = 0;
+
+
+        $questions_count = $table_questions_counter;
+
+
+        if( !empty( $tables_data ) ) {
+            foreach ($tables_data as $table_no => $table_no_of_questions) {
+                $questions_count = 0;
+                if ($table_no_of_questions > 0) {
+                    while ($questions_count < $table_no_of_questions) {
+                        if (empty($questions_no_array)) {
+                            $questions_no_array = $questions_no_array_fixed;
+                        }
+                        $questions_no_array = array_values($questions_no_array);
+                        shuffle($questions_no_array);
+                        $dynamic_min = array_keys($questions_no_array, min($questions_no_array))[0];
+                        $dynamic_max = array_keys($questions_no_array, max($questions_no_array))[0];
+                        $dynamic_no = rand($dynamic_min, $dynamic_max);
+                        $questions_no_dynamic = isset($questions_no_array[$dynamic_no]) ? $questions_no_array[$dynamic_no] : 0;
+                        if (isset($questions_no_array[$dynamic_no])) {
+                            unset($questions_no_array[$dynamic_no]);
+                            $questions_no_array = array_values($questions_no_array);
+                        }
+
+                        $last_value = ($questions_no_dynamic) * $table_no;
+                        $from_value = ($type == '÷') ? $last_value : $table_no;
+                        $limit = 12;
+                        $min = 2;
+                        $min = ($type == '÷') ? 1 : $min;
+                        $limit = ($type == '÷') ? ($table_no * $limit) : $limit;
+                        //$to_value = rand($min, $limit);
+                        $to_value = ($type == '÷') ? $table_no : $questions_no_dynamic;
+
+
+                        $questions_array_list[] = (object)array(
+                            'from'     => $from_value,
+                            'to'       => $to_value,
+                            'type'     => $type,
+                            'table_no' => $table_no,
+                            'marks'    => $marks,
+                        );
+                        $questions_count++;
+                    }
+                }
+
+            }
+        }
+
+
+        shuffle($questions_array_list);
+        $questions_list = $questions_array_list;
+
+        $QuizzesResult = QuizzesResult::create([
+            'user_id'          => $user->id,
+            'results'          => json_encode($questions_list),
+            'user_grade'       => 0,
+            'status'           => 'waiting',
+            'created_at'       => time(),
+            'quiz_result_type' => 'timestables',
+            'no_of_attempts'   => 100,
+            'other_data'       => json_encode($questions_list),
+            'user_ip'          => getUserIP(),
+            'attempt_mode'     => 'showdown_mode',
+            'nugget_id'        => 0,
+        ]);
+
+        $QuizzAttempts = QuizzAttempts::create([
+            'quiz_result_id' => $QuizzesResult->id,
+            'user_id'        => $user->id,
+            'start_grade'    => $QuizzesResult->user_grade,
+            'end_grade'      => 0,
+            'created_at'     => time(),
+            'attempt_type'   => $QuizzesResult->quiz_result_type,
+            'user_ip'        => getUserIP(),
+        ]);
+        $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Started', 'started');
+
+
+        $data = [
+            'pageTitle'       => 'Start',
+            'questions_list'  => $questions_list,
+            'QuizzAttempts'   => $QuizzAttempts,
+            'duration_type'   => 'total_practice',
+            'time_interval'   => 0,
+            'practice_time'   => $practice_time_seconds,
+            'total_questions' => count($questions_array_list),
+        ];
+        return view('web.default.timestables.start_showdown_mode', $data);
     }
 
     /*
@@ -1413,6 +1563,26 @@ class TimestablesController extends Controller
         $treasure_mission_data = get_treasure_mission_data();
 
         $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels])->render();
+        echo $rendered_view;
+        die();
+    }
+
+    /*
+    * TimesTables Showdown Mode Layout
+    */
+    public function showdown_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+        $usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
+            ->orderByDesc('showdown_correct')
+            ->orderBy('showdown_time_consumed', 'asc')
+            ->pluck('id')->toArray();
+        $user_rank = array_search($user->id, $usersList);
+        $user_rank = ( $user_rank !== false)? $user_rank+1 : $user_rank;
+        $rendered_view = view('web.default.timestables.showdown_mode', ['user_rank' => $user_rank])->render();
         echo $rendered_view;
         die();
     }
