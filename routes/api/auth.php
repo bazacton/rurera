@@ -8,6 +8,7 @@ Route::group(['namespace' => 'Auth', 'middleware' => ['api.request.type']], func
     Route::post('/register/step/{step}', ['as' => 'register', 'uses' => 'RegisterController@stepRegister']);
     Route::post('/login', ['as' => 'login', 'uses' => 'LoginController@login']);
 
+
     Route::post('/forget-password', ['as' => 'forgot', 'uses' => 'ForgotPasswordController@sendEmail']);
     Route::post('/reset-password/{token}', ['as' => 'updatePassword', 'uses' => 'ResetPasswordController@updatePassword']);
     Route::post('/verification', ['as' => 'verification', 'uses' => 'VerificationController@confirmCode']);

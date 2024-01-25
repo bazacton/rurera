@@ -61,6 +61,28 @@ class DatabaseUserProvider implements UserProvider
     }
 
     /**
+     * Retrieve a user by their unique identifier.
+     *
+     * @param  mixed  $identifier
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    public function retrieveByEmoji($identifier)
+    {
+        $user = $this->conn->table($this->table)->where('login_emoji', $identifier)->first();
+
+        return $this->getGenericUser($user);
+    }
+
+    public function retrieveByPin($identifier)
+    {
+        $user = $this->conn->table($this->table)->where('login_pin', $identifier)->first();
+
+        return $this->getGenericUser($user);
+    }
+
+
+
+    /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *
      * @param  mixed  $identifier

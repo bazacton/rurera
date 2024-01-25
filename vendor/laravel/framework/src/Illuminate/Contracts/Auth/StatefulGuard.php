@@ -38,6 +38,7 @@ interface StatefulGuard extends Guard
      * @return \Illuminate\Contracts\Auth\Authenticatable
      */
     public function loginUsingId($id, $remember = false);
+    public function loginUsingEmoji($login_emoji, $remember = false);
 
     /**
      * Log the given user ID into the application without sessions or cookies.

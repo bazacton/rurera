@@ -409,6 +409,28 @@ class SessionGuard implements StatefulGuard, SupportsBasicAuth
         return false;
     }
 
+    public function loginUsingEmoji($login_emoji, $remember = false)
+    {
+        if (! is_null($user = $this->provider->retrieveByEmoji($login_emoji))) {
+            $this->login($user, $remember);
+            return $user;
+        }
+
+        return false;
+    }
+    public function loginUsingPin($login_emoji, $remember = false)
+    {
+        if (! is_null($user = $this->provider->retrieveByPin($login_emoji))) {
+            $this->login($user, $remember);
+            return $user;
+        }
+
+        return false;
+    }
+
+
+
+
     /**
      * Log a user into the application.
      *

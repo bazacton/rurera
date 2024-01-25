@@ -28,6 +28,9 @@ Route::group([
         Route::post('/offlineToggle', 'UserController@offlineToggle');
         Route::get('/{id}/getInfo', 'UserController@getUserInfo');
         Route::post('/update_avatar', 'UserController@update_avatar');
+        Route::post('/generate-emoji', 'UserController@generateEmoji');
+        Route::post('/generate-pin', 'UserController@generatePin');
+
     });
 
     Route::group(['prefix' => 'webinars'], function () {

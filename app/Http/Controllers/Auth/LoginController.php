@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -85,6 +86,43 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    public function login_emoji(Request $request)
+    {
+        $rules = [
+            'login_emoji' => 'required|min:6',
+        ];
+
+        $this->validate($request, $rules);
+
+
+        if ($this->attemptEmojiLogin($request)) {
+            $this->afterLogged($request, false, false);
+            return 'loggedin';
+        }
+
+        return 'Incorrect';
+        //return $this->sendFailedEmojiLoginResponse($request);
+    }
+
+    public function login_pin(Request $request)
+    {
+        $rules = [
+            'login_pin' => 'required|min:6',
+        ];
+
+        $this->validate($request, $rules);
+
+        if ($this->attemptPinLogin($request)) {
+            $this->afterLogged($request, false, false);
+            return 'loggedin';
+        }
+
+        return 'Incorrect';
+        //return $this->sendFailedEmojiLoginResponse($request);
+    }
+
+
+
     public function logout(Request $request)
     {
         $user = auth()->user();
@@ -132,10 +170,57 @@ class LoginController extends Controller
         return $this->guard()->attempt($credentials, $remember);
     }
 
+    protected function attemptEmojiLogin(Request $request)
+    {
+        $credentials = [
+            'login_emoji' => $request->get('login_emoji')
+        ];
+
+        $remember = true;
+
+        /*if (!empty($request->get('remember')) and $request->get('remember') == true) {
+            $remember = true;
+        }*/
+
+        $is_loggedin = Auth::loginUsingEmoji($request->get('login_emoji'), true);
+        if( isset( $is_loggedin->id ) ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected function attemptPinLogin(Request $request)
+    {
+        $credentials = [
+            'login_pin' => $request->get('login_pin')
+        ];
+
+        $remember = true;
+
+        /*if (!empty($request->get('remember')) and $request->get('remember') == true) {
+            $remember = true;
+        }*/
+
+        $is_loggedin = Auth::loginUsingPin($request->get('login_pin'), true);
+        if( isset( $is_loggedin->id ) ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function sendFailedLoginResponse(Request $request)
     {
         throw ValidationException::withMessages([
             'username' => [trans('validation.password_or_username')],
+        ]);
+    }
+
+    public function sendFailedEmojiLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'login_emoji' => ['Selected Emojis are Incorrect'],
         ]);
     }
 
@@ -168,7 +253,7 @@ class LoginController extends Controller
         return redirect('/login')->with(['login_failed_active_session' => $toastData]);
     }
 
-    public function afterLogged(Request $request, $verify = false)
+    public function afterLogged(Request $request, $verify = false, $is_redirect = true)
     {
         $user = auth()->user();
 
@@ -236,10 +321,12 @@ class LoginController extends Controller
         $cartManagerController = new CartManagerController();
         $cartManagerController->storeCookieCartsToDB();
 
-        if ($user->isAdmin()) {
-            return redirect(getAdminPanelUrl() . '');
-        } else {
-            return redirect('/panel');
+        if( $is_redirect == true) {
+            if ($user->isAdmin()) {
+                return redirect(getAdminPanelUrl() . '');
+            } else {
+                return redirect('/panel');
+            }
         }
     }
 

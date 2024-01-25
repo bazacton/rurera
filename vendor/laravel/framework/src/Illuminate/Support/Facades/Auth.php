@@ -9,6 +9,8 @@ use RuntimeException;
  * @method static \Illuminate\Auth\AuthManager extend(string $driver, \Closure $callback)
  * @method static \Illuminate\Auth\AuthManager provider(string $name, \Closure $callback)
  * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
+ * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingEmoji(mixed $login_emoji, bool $remember = false)
+ * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingPin(mixed $login_pin, bool $remember = false)
  * @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
  * @method static \Illuminate\Contracts\Auth\Guard|\Illuminate\Contracts\Auth\StatefulGuard guard(string|null $name = null)
  * @method static \Illuminate\Contracts\Auth\UserProvider|null createUserProvider(string $provider = null)

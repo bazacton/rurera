@@ -128,6 +128,8 @@ class TestsController extends Controller
                 ])->render();
             }
         }
+
+        $response_layout .= '<script>$(".total-tests").html("Total Tests: '.$tests->count().'")</script>';
         echo $response_layout;
         exit;
 

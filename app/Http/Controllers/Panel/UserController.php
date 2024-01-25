@@ -219,6 +219,72 @@ class UserController extends Controller
 
     }
 
+    public function generateEmoji(Request $request)
+    {
+        $emojisList = emojisList();
+
+        $UsedEmojisList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_emoji', '!=', '')->pluck('login_emoji')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($emojisList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,60);
+            $generatedIndexes = array_slice($emojisList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedEmojisList));
+
+        $user = auth()->user();
+        $user->update([
+            'login_emoji' => $generatedString
+        ]);
+        $response = '<h3 class="mb-30">Please Store this Emojis Somewhere to use for login!</h3><div class="emoji-icons" style="min-height:auto;">';
+            if( !empty( $generatedIndexes )  ){
+                foreach( $generatedIndexes as $emojiIndex){
+                    $response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/'.$emojiIndex.'.svg"></a>';
+                }
+            }
+        $response .= '</div>';
+
+        echo $response;exit;
+
+    }
+
+    public function generatePin(Request $request)
+    {
+        $loginList = array(0,1,2,3,4,5,6,7,8,9);
+
+        $UsedLoginList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_pin', '!=', '')->pluck('login_pin')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($loginList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,5);
+            $generatedIndexes = array_slice($loginList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedLoginList));
+
+        $user = auth()->user();
+        $user->update([
+            'login_pin' => $generatedString
+        ]);
+        $response = '<h3 class="mb-30">Please Store this Pin Somewhere to use for login!</h3>';
+        $response .= '<br><strong>'.$generatedString.'</strong>';
+
+        echo $response;exit;
+
+    }
+
+
 
     private function handleNewsletter($email, $user_id, $joinNewsletter)
     {

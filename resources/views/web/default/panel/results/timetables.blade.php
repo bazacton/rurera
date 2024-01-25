@@ -256,8 +256,6 @@ $rand_id = rand(99,9999);
             </div>
         </div>
     </section>
-
-
 </div>
 
 @endsection

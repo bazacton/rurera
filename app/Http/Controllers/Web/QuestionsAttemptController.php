@@ -1720,6 +1720,11 @@ class QuestionsAttemptController extends Controller
             }
             $return_layout .= view('web.default.timestables.finish_treasure_mode', ['QuizzesResult' => $QuizzesResult, 'nuggetObj' => $nuggetObj, 'percentage_correct_answer' => $percentage_correct_answer])->render();
         }
+        
+        if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'freedom_mode') {
+            $results = json_decode($QuizzesResult->results);
+            $return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
+        }
 
         $response = array(
             'return_layout' => $return_layout

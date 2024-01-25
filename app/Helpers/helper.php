@@ -8045,7 +8045,7 @@ class svgAvatarsSvgCodeSanitizer {
 	}
 }
 
-function getTimeWithText($secondsString) {
+function getTimeWithText($secondsString, $show_empty = true) {
     $h = floor($secondsString / 3600); // Get whole hours
     $secondsString -= $h * 3600;
     $m = floor($secondsString / 60); // Get remaining minutes
@@ -8058,9 +8058,12 @@ function getTimeWithText($secondsString) {
     if ($m > 0) {
         $return_string .= ($m < 10 ? '0' . $m : $m) . "m ";
     }
-    $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
+    $secondsString  = round($secondsString, 2);
 
-    $return_string .= 's';
+    if( $secondsString > 0 || $show_empty == true) {
+        $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
+        $return_string .= 's';
+    }
     return $return_string;
 }
 
@@ -8618,4 +8621,18 @@ function get_treasure_mission_data(){
             );
 
     return $treasure_mission_data;
+}
+
+
+function emojisList(){
+
+    $emojisList = array(
+            'icon1','icon2','icon3','icon4','icon5','icon6','icon7','icon8','icon9','icon10','icon11','icon12','icon13','icon14','icon15','icon16','icon17','icon18','icon19','icon20',
+            'icon21','icon22','icon23','icon24','icon25','icon26','icon27','icon28','icon29','icon30','icon31','icon32','icon33','icon34','icon35','icon36','icon37','icon38','icon39','icon40',
+            'icon41','icon42','icon43','icon44','icon45','icon46','icon47','icon48','icon49','icon50','icon51','icon52','icon53','icon54','icon55','icon56','icon57','icon58','icon59','icon60',
+            'icon61','icon62','icon63','icon64','icon65','icon66','icon67','icon68','icon69','icon70','icon71','icon72','icon73','icon74','icon75','icon76','icon77',
+    );
+
+    return $emojisList;
+
 }

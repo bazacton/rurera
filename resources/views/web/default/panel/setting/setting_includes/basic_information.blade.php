@@ -67,6 +67,11 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                 @enderror
             </div>
 
+            <div class="form-group">
+                <a class="btn btn-sm btn-primary ml-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
+                <a class="btn btn-sm btn-primary ml-15 regenerate-pin" href="javascript:;">Generate Pin</a>
+            </div>
+
         </div>
         </div>
 
@@ -126,6 +131,57 @@ $(document).ready(function () {
     var start_id = '{{$user->user_preference}}';
     start_id = (start_id == 'female')? 'girls' : 'boys';
     $("#svga-start-"+start_id).click();
+
+
+    $(document).on('click', '.regenerate-emoji', function (e) {
+        rurera_loader($("#userSettingForm"), 'div');
+        var login_emoji = $(".emoji-password-field").val();
+
+        jQuery.ajax({
+           type: "POST",
+           url: '/panel/users/generate-emoji',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {'login_emoji':login_emoji},
+           success: function (return_data) {
+               rurera_remove_loader($("#userSettingForm"), 'div');
+               Swal.fire({
+                  icon: 'success',
+                  html: return_data,
+                  showCloseButton: true,
+                   allowOutsideClick: false,
+                   allowEscapeKey: false,
+                  showConfirmButton: !1
+              });
+           }
+       });
+
+    });
+
+    $(document).on('click', '.regenerate-pin', function (e) {
+        rurera_loader($("#userSettingForm"), 'div');
+        jQuery.ajax({
+           type: "POST",
+           url: '/panel/users/generate-pin',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {},
+           success: function (return_data) {
+               rurera_remove_loader($("#userSettingForm"), 'div');
+               Swal.fire({
+                  icon: 'success',
+                  html: return_data,
+                  showCloseButton: true,
+                   allowOutsideClick: false,
+                   allowEscapeKey: false,
+                  showConfirmButton: !1
+              });
+           }
+       });
+
+    });
 });
 
 

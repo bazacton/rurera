@@ -12,6 +12,10 @@ interface UserProvider
      */
     public function retrieveById($identifier);
 
+    public function retrieveByEmoji($identifier);
+    public function retrieveByPin($identifier);
+
+
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *

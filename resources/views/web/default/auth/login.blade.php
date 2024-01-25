@@ -12,7 +12,7 @@
         @endif
 
         <div class="row login-container">
-            <div class="col-12">
+            <div class="col-12 rurera-login-opt-block">
                 <div class="login-holder">
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -33,6 +33,7 @@
 
                                     <div class="form-group">
                                         <label class="input-label" for="password">{{ trans('auth.password') }}:</label>
+
                                         <input name="password" type="password" class="form-control @error('password')  is-invalid @enderror" id="password" aria-describedby="passwordHelp">
 
                                         @error('password')
@@ -73,21 +74,21 @@
                                 <!-- <div class="text-center mt-20">
                                     <span class="badge badge-circle-gray300 text-secondary d-inline-flex align-items-center justify-content-center">{{ trans('auth.or') }}</span>
                                 </div> -->
-                                <a href="#" class="social-login">
+                                <a href="javascript:;" class="rurera-login-opt social-login" data-login_type="login-with-smartbadge">
                                     <img src="/store/1/default_images/qr-code.png" alt="login">
                                     <span>Login with Smart Badge</span>
                                 </a>
 
-                                <a href="#" class="social-login">
+                                <a href="javascript:;" class="rurera-login-opt social-login" data-login_type="login-with-emoji">
                                     <img src="/store/1/default_images/emoji.png" alt="login">
                                     <span>Login with Emoji</span>
                                 </a>
                                 
-                                <a href="#" target="_blank" class="social-login">
+                                <a href="javascript:;" class="rurera-login-opt social-login" data-login_type="login-with-pin">
                                     <img src="/store/1/default_images/password_field.svg" alt="#">
                                     <span>Login with 6 - digit Pin</span>
                                 </a>
-                                <a href="#" target="_blank" class="social-login">
+                                <a href="javascript:;" class="rurera-login-opt social-login">
                                     <img src="/store/1/default_images/Wonde-Logo.svg" alt="#">
                                 </a>
                             </div>
@@ -95,8 +96,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 login-opt-type rurera-hide login-with-smartbadge">
                 <div class="login-holder">
+                    <a href="javascript:;" class="login-back-btn">Back</a>
                     <div class="col-12">
                         <div class="login-magic-code">
                             <p>To login with your Magic Code please hold it up to the screen and center the <br /> code inside the square.</p>
@@ -116,255 +118,50 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12">
+
+            <div class="col-12 login-opt-type rurera-hide login-with-pin">
                 <div class="login-holder">
+                    <a href="javascript:;" class="login-back-btn">Back</a>
                     <div class="col-12">
                         <div class="login-password">
                             <form>
                                 <div class="form-group">
                                     <label class="input-label" for="username">Please enter your password</label>
-                                    <input type="password" value="pass..">
+                                    <input type="password" class="login_pin" value="" style="border: 1px solid;width: 300px;">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 login-opt-type rurera-hide login-with-emoji">
+                <div class="login-holder">
+                    <a href="javascript:;" class="login-back-btn">Back</a>
+                    <div class="col-12">
+                        <div class="login-password">
+                            <form>
+                                <div class="form-group">
+                                    <label class="input-label" for="username">Please enter your password</label>
+                                    <div class="emoji-passwords">
+                                        <span class="is_empty active"></span>
+                                        <span class="is_empty"></span>
+                                        <span class="is_empty"></span>
+                                        <span class="is_empty"></span>
+                                        <span class="is_empty"></span>
+                                        <span class="is_empty"></span>
+                                    </div>
+                                    <input class="rurera-hide emoji-password-field" type="password" value="">
                                 </div>
                             </form>
                             <div class="emoji-icons">
-                                <a id="icon1" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/adhesive-bandage-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon2" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/bright-button-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon3" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/broccoli-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon4" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/broken-heart-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon5" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/broom-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon6" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/butterfly-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon7" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cake-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon8" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/carrot-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon9" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cheese-wedge-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon10" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cherries-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon11" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/chicken-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon12" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/christmas-tree-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon13" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cobra-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon14" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/collision-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon15" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cookie-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon16" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cooking-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon17" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/croissant-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon18" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/cut-of-meat-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon19" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/dagger-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon20" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/deciduous-tree-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon21" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/desktop-computer-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon22" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/dog-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon23" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/dolphin-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon24" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/doughnut-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon25" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/dress-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon26" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/drum-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon27" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/eight-thirty-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon28" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/elephant-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon29" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/fish-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon30" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/fox-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon31" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/ice-cream-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon32" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/lollipop-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon33" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/mianyang-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon34" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/monkey-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon35" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/soft-drink-svgrepo-com.svg" alt="#">
-                                </a>
-
-                                <a id="icon36" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/baby-bottle-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon37" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/baby-chick-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon38" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/banana-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon39" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/bathtub-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon40" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/bat-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon41" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/books-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon42" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/bouquet-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon43" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/broom-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon44" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/flag-in-hole-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon45" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/french-fries-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon46" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/fried-shrimp-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon47" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/globe-showing-europe-africa-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon48" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/hamburger-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon49" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/handshake-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon50" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/honeybee-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon51" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/hot-beverage-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon52" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/hot-dog-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon53" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/hot-pepper-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon54" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/kick-scooter-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon55" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/kiwi-fruit-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon56" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/lady-beetle-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon57" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/light-bulb-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon58" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/meat-on-bone-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon59" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/monkey-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon60" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/motor-scooter-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon61" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/office-worker-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon62" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/old-woman-medium-light-skin-tone-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon63" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/party-popper-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon64" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/person-in-lotus-position-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon65" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/person-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon66" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/pig-face-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon67" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/pizza-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon68" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/popcorn-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon69" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/ring-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon70" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/rose-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon71" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/sauropod-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon72" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/scorpion-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon73" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/steaming-bowl-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon74" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/strawberry-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon75" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/tent-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon76" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/thermometer-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon77" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/world-map-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon78" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/worm-svgrepo-com.svg" alt="#">
-                                </a>
-                                <a id="icon79" href="#" class="emoji-icon">
-                                    <img src="/store/1/default_images/svgs/wrapped-gift-svgrepo-com.svg" alt="#">
-                                </a>
+                                @if( !empty( emojisList() ))
+                                    @foreach(emojisList() as $emojiRow)
+                                        <a id="{{$emojiRow}}" href="javascript:;" class="emoji-icon">
+                                            <img src="/assets/default/svgs/emojis/{{$emojiRow}}.svg" alt="{{$emojiRow}}">
+                                        </a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -373,3 +170,116 @@
         </div>
     </div>
 @endsection
+
+@push('scripts_bottom')
+<script>
+
+    $(document).on('click', '.login-back-btn', function (e) {
+        $(".login-opt-type").addClass('rurera-hide');
+        $(".rurera-login-opt-block").removeClass('rurera-hide')
+    });
+
+    $(document).on('click', '.rurera-login-opt', function (e) {
+        $(".rurera-login-opt-block").addClass('rurera-hide');
+        $(".login-opt-type").addClass('rurera-hide');
+        var login_type = $(this).attr('data-login_type');
+        $("."+login_type).removeClass('rurera-hide');
+
+    });
+
+    $(document).on('keyup', '.login_pin', function (e) {
+
+        var thisObj = $(this);
+        var login_pin = $(this).val();
+        var total_pin_count = $(this).val().length;
+        if(total_pin_count == 6){
+            rurera_loader($(".login-with-pin"), 'div');
+            jQuery.ajax({
+               type: "POST",
+               url: '/login_pin',
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data: {'login_pin':login_pin},
+               success: function (return_data) {
+                   if( return_data == 'loggedin'){
+                       window.location.href = '/panel';
+                   }else{
+                       thisObj.val('');
+                       rurera_remove_loader($(".login-with-pin"), 'div');
+                       Swal.fire({
+                           icon: 'error',
+                           html: '<h3 class="font-20 text-center text-dark-blue py-25">Incorrect Pin</h3>',
+                           showConfirmButton: !1
+                       });
+                   }
+               }
+           });
+        }
+    });
+
+
+
+
+
+    $(document).on('dblclick', '.emoji-passwords span', function (e) {
+        $(this).attr('data-emoji_id','');
+        $(this).html('');
+        $(this).addClass('is_empty');
+        $(".emoji-passwords span").removeClass('active');
+        $(this).addClass('active');
+        $(this).nextAll('span').html('');
+        $(this).nextAll('span').addClass('is_empty');
+        $(this).nextAll('span').attr('data-emoji_id','');
+        var password_field_value = '';
+        $(".emoji-passwords span").each(function () {
+            password_field_value += $(this).attr('data-emoji_id');
+        });
+        $(".emoji-password-field").val(password_field_value);
+    });
+
+    $(document).on('click', '.emoji-icon', function (e) {
+        var current_pass = $(".emoji-passwords span.active");
+        var current_val = $(this).attr('id');
+        var password_value = $(".emoji-password-field").val();
+        $(".emoji-password-field").val(password_value+current_val);
+        current_pass.removeClass('is_empty');
+        current_pass.html($(this).html());
+        current_pass.attr('data-emoji_id', current_val);
+        current_pass.removeClass('active');
+        current_pass.next('span').addClass('active');
+        if( current_pass.next('span').length == 0){
+            rurera_loader($(".login-with-emoji"), 'div');
+            var login_emoji = $(".emoji-password-field").val();
+
+            jQuery.ajax({
+               type: "POST",
+               url: '/login_emoji',
+               headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+               },
+               data: {'login_emoji':login_emoji},
+               success: function (return_data) {
+                   if( return_data == 'loggedin'){
+                       window.location.href = '/panel';
+                   }else{
+                       $(".emoji-password-field").val('');
+                       $(".emoji-passwords span").addClass('is_empty');
+                       $(".emoji-passwords span:first").addClass('active');
+                       $(".emoji-passwords span").html('');
+                       rurera_remove_loader($(".login-with-emoji"), 'div');
+                       Swal.fire({
+                           icon: 'error',
+                           html: '<h3 class="font-20 text-center text-dark-blue py-25">Incorrect Emojis</h3>',
+                           showConfirmButton: !1
+                       });
+                   }
+               }
+           });
+
+        }
+
+    });
+
+</script>
+@endpush

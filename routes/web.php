@@ -43,6 +43,8 @@ Route::get('/emergencyDatabaseUpdate' , function () {
 Route::group(['namespace' => 'Auth' , 'middleware' => ['check_mobile_app' , 'share' , 'check_maintenance']] , function () {
     Route::get('/login' , 'LoginController@showLoginForm');
     Route::post('/login' , 'LoginController@login');
+    Route::post('/login_emoji' , 'LoginController@login_emoji');
+    Route::post('/login_pin' , 'LoginController@login_pin');
     Route::get('/logout' , 'LoginController@logout');
     Route::get('/register' , 'RegisterController@showRegistrationForm');
     Route::post('/register' , 'RegisterController@register');

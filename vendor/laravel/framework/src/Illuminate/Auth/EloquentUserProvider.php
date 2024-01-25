@@ -52,6 +52,26 @@ class EloquentUserProvider implements UserProvider
                     ->first();
     }
 
+    public function retrieveByEmoji($identifier)
+    {
+        $model = $this->createModel();
+
+        return $this->newModelQuery($model)
+                    ->where('login_emoji', $identifier)
+                    ->first();
+    }
+
+    public function retrieveByPin($identifier)
+    {
+        $model = $this->createModel();
+
+        return $this->newModelQuery($model)
+                    ->where('login_pin', $identifier)
+                    ->first();
+    }
+
+
+
     /**
      * Retrieve a user by their unique identifier and "remember me" token.
      *

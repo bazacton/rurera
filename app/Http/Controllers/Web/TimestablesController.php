@@ -1576,13 +1576,21 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        $usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
+        /*$usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
             ->orderByDesc('showdown_correct')
             ->orderBy('showdown_time_consumed', 'asc')
             ->pluck('id')->toArray();
         $user_rank = array_search($user->id, $usersList);
         $user_rank = ( $user_rank !== false)? $user_rank+1 : $user_rank;
-        $rendered_view = view('web.default.timestables.showdown_mode', ['user_rank' => $user_rank])->render();
+        */
+        
+        $usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
+                    ->orderByDesc('showdown_correct')
+                    ->orderBy('showdown_time_consumed', 'asc')
+                    ->get();
+
+
+        $rendered_view = view('web.default.timestables.showdown_mode', ['usersList' => $usersList])->render();
         echo $rendered_view;
         die();
     }

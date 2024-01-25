@@ -431,7 +431,8 @@ if( $duration_type == 'total_practice'){
         } else {
             clearInterval(Quizintervals);
             $('.questions-block').addClass('disable-div');
-            $("#timestables_complete_status_modal").modal('show');
+            //$("#timestables_complete_status_modal").modal('show');
+            rurera_loader($('.question-area-block'), 'div');
             var response_layout = '';
 
 
@@ -450,13 +451,20 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
+                    rurera_remove_loader($('.question-area-block'), 'button');
+                    if (return_data.return_layout != '') {
+                        $(".question-area-block").html(return_data.return_layout);
+                        rurera_remove_loader($('.question-area-block'), 'button');
+
+                    }
+                    //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
                     console.log(return_data);
                 }
             });
 
             //window.location.href = '/timestables/summary';
             //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
+
 
             return false;
 

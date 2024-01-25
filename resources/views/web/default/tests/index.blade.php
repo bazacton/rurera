@@ -1,4 +1,4 @@
-@extends('web.default.panel.layouts.panel_layout')
+@extends('web.default.panel.layouts.panel_layout_full')
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
@@ -21,9 +21,9 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
-                        <h2 class="mt-0 mb-10 font-22">KS2 SATs Online 10-Minutes test practices</h2>
-                        <p class="font-14"> Work through a variety of practice questions to improve your skills and become familiar with
-                            the <br> types of questions you'll encounter on the SATs. </p>
+                        <h2 class="mt-0 mb-10 font-22">Mock Tests</h2>
+                        <p class="font-14 mb-15">Click on ‘Assign test’ next to your test papers. Here, you can choose the mock test(s) for which you would like to assign mock tests. Each learner has a limit mock tests per month, but guardians and teachers are allowed flexibility to decide which tests your learner should focus on. </p>
+                        <p class="font-14">Once you’ve assigned the mock tests, they will appear on the homepage of your learner’s account.</p>
                     </div>
                 </div>
                 <div class="col-12">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-12 col-md-12">
-                                    <ul class="tests-list">
+                                    <ul class="tests-list mb-30">
                                         <li data-type="all" class="active">All Tests</li>
                                         <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt=""> SATs</li>
                                         <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
@@ -46,6 +46,7 @@
                                         <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
                                         <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                     </ul>
+                                    <h4 class="total-tests">Total Tests: {{$sats->count()}}</h4>
                                 </div>
                             </div>
                         </form>
@@ -54,13 +55,6 @@
                 <div class="col-12 col-lg-12 col-md-12">
                     <div class="sats-listing-card medium">
                         <table class="simple-table">
-                            <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th>Title</th>
-                                <th>Accuracy</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             @if( !empty( $sats))
                             @php $counter = 0; @endphp
