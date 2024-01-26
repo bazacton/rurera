@@ -17,6 +17,7 @@ use App\Models\TimestablesAssignments;
 use App\Models\UserAssignedTimestables;
 use App\Models\TimestablesTournaments;
 use App\Models\TimestablesTournamentsEvents;
+use App\Models\ShowdownLeaderboards;
 use Illuminate\Support\Facades\DB;
 
 class TimestablesController extends Controller
@@ -1583,14 +1584,31 @@ class TimestablesController extends Controller
         $user_rank = array_search($user->id, $usersList);
         $user_rank = ( $user_rank !== false)? $user_rank+1 : $user_rank;
         */
-        
-        $usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
-                    ->orderByDesc('showdown_correct')
-                    ->orderBy('showdown_time_consumed', 'asc')
-                    ->get();
+
+        $currentDate = new \DateTime();
+
+        // Find the last Monday
+        $currentDate->modify('last monday');
+        $lastMonday = $currentDate->format('Y-m-d');
+        $lastMonday .= ' 00:00:00';
+
+        // Find next Friday
+        $currentDate->modify('next sunday');
+        $nextSunday = $currentDate->format('Y-m-d');
+        $nextSunday .= ' 23:59:59';
+
+        $lastMonday = strtotime($lastMonday);
+        $nextSunday = strtotime($nextSunday);
+
+        $leaderboardResults = ShowdownLeaderboards::where('showdown_time_consumed', '>', 0)->whereBetween('created_at', [$lastMonday, $nextSunday])
+            ->orderByDesc('showdown_correct')
+            ->orderBy('showdown_time_consumed', 'asc')
+        ->get();
+
+        $alreadyAttempt = $leaderboardResults->contains('user_id', $user->id);
 
 
-        $rendered_view = view('web.default.timestables.showdown_mode', ['usersList' => $usersList])->render();
+        $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults])->render();
         echo $rendered_view;
         die();
     }

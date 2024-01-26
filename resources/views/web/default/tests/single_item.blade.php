@@ -8,21 +8,13 @@ $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : fal
 $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
 $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
 $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
-
+$quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
 @endphp
 <tr>
     <td>
-        <img src="/assets/default/img/assignment-logo/{{$rowObj->quiz_type}}.png" alt="">
+        <img src="{{$quiz_image}}" alt="">
         <h4 class="font-19 font-weight-bold"><a href="/sats/{{$rowObj->quiz_slug}}">{{$rowObj->getTitleAttribute()}}</a>
-            <br> <span class="sub_label">{{count($rowObj->quizQuestionsList)}} Question(s)</span> <span class="sub_label">Time: {{getTimeWithText(($rowObj->time*60), false)}}</span>
-            <br>
-            <div class="attempt-progress">
-                <span class="progress-number">0%</span>
-                <span class="progress-holder">
-                    <span class="progressbar"
-                          style="width: 0%;"></span>
-                </span>
-            </div>
+            <br> <span class="sub_label">{{count($rowObj->quizQuestionsList)}} Question(s),</span> <span class="sub_label">Time:{{getTimeWithText(($rowObj->time*60), false)}},</span> <span class="sub_label">Accuracy: 5%</span>
         </h4>
     </td>
     <td class="text-right">

@@ -15,12 +15,12 @@
 @section('content')
 <section class="content-section">
 
-    <section class="pt-80">
+    <section class="pt-5">
         <div class="container">
             <div class="row">
 
                 <div class="col-12">
-                    <div class="section-title text-left mb-50">
+                    <div class="section-title text-left mb-30">
                         <h2 class="mt-0 mb-10">KS2 SATs Online 10-Minutes test practices</h2>
                         <p> Work through a variety of practice questions to improve your skills and become familiar with
                             the <br> types of questions you'll encounter on the SATs. </p>
@@ -28,7 +28,6 @@
                 </div>
 
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-
                     <div class="sats-listing-card medium">
                         <table class="simple-table">
                             <thead>

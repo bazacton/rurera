@@ -21,7 +21,7 @@
                             <h5 itemprop="title" class="font-14 mb-10">Single Player</h5>
                             <div class="grid-card timestables-mode-data" data-mode_type="freedom_mode" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="freedom_mode"  itemprop="Button" href="javascript:;">Freedom mode</a>
                                     </h3>
                                 </div>  
@@ -60,7 +60,7 @@
 
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="powerup_mode"  itemprop="Button" href="javascript:;">Power-Up</a>
                                     </h3>
                                 </div>
@@ -73,7 +73,7 @@
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                         <a class="grid-btn ajax-callback" data-type="trophy_mode"  itemprop="Button" href="javascript:;">Trophy Mode</a>
                                     </h3>
                                 </div>
@@ -86,7 +86,7 @@
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                     <a itemprop="url" href="/timestables/summary">Heat Map</a>
                                     </h3>
                                 </div>
@@ -99,7 +99,7 @@
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                     <a class="grid-btn ajax-callback" data-type="treasure_mission"  itemprop="Button" href="javascript:;">Treasure Mission</a>
                                     </h3>
                                 </div>
@@ -113,12 +113,12 @@
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                     <a class="grid-btn ajax-callback" data-type="showdown_mode"  itemprop="Button" href="javascript:;">Showdown</a>
                                     </h3>
                                 </div>
                                 <div class="img-holder">
-                                    <img src="/assets/default/img/treasure.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" itemprop="image" loading="eager">
+                                    <img src="/assets/default/img/showdown.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" itemprop="image" loading="eager">
                                 </div>
                                 <p class="text-gray">Journey through times tables practice and discover hidden treasures.</p>
                             </div>
@@ -128,7 +128,7 @@
                             <h5 itemprop="title" class=" mb-10">Multi Player</h5>
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                     <a class="grid-btn" itemprop="Button" href="javascript:;">Tournament</a>
                                         <span class="title-label">Coming Soon</span>
                                     </h3>
@@ -142,7 +142,7 @@
                         <div class="col-12 col-md-12 col-lg-12">
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
-                                    <h3 class="blog-grid-title font-19 font-weight-bold" itemprop="title">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                         <a class="grid-btn" itemprop="Button" href="javascript:;">Global Arena
                                             <span class="title-label">Coming Soon</span>
                                         </a>

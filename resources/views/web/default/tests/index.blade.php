@@ -22,8 +22,8 @@
                 <div class="col-12">
                     <div class="section-title text-left mb-50">
                         <h2 class="mt-0 mb-10 font-22">Mock Tests</h2>
-                        <p class="font-14 mb-15">Click on ‘Assign test’ next to your test papers. Here, you can choose the mock test(s) for which you would like to assign mock tests. Each learner has a limit mock tests per month, but guardians and teachers are allowed flexibility to decide which tests your learner should focus on. </p>
-                        <p class="font-14">Once you’ve assigned the mock tests, they will appear on the homepage of your learner’s account.</p>
+                        <p class="mb-15">Click on ‘Assign test’ next to your test papers. Here, you can choose the mock test(s) for which you would like to assign mock tests. Each learner has a limit mock tests per month, but guardians and teachers are allowed flexibility to decide which tests your learner should focus on. </p>
+                        <p>Once you’ve assigned the mock tests, they will appear on the homepage of your learner’s account.</p>
                     </div>
                 </div>
                 <div class="col-12">

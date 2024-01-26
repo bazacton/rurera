@@ -197,7 +197,7 @@
                                     <div class="spell-levels {{$spell_quiz_completed}}">
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
-                                                <h3 class="font-19 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
+                                                <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
                                                 <div class="levels-progress horizontal">
                                                     <span class="progress-box">

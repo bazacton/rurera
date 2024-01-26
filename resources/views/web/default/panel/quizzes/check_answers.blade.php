@@ -77,15 +77,6 @@ $total_questions = is_array( $attempt_questions_list )? count($attempt_questions
                     <div class="sats-summary">
                         <div class="row">
                             <div class="col-12 col-md-4 col-lg-3 bitcoin-box">
-                                <div class="sats-summary-icon">
-                                    <img src="/assets/default/svgs/bitcoin.svg" alt="">
-                                </div>
-                                <div class="summary-text">
-                                    <label>Questions Answered</label>
-                                    <div class="score">{{$attempted_questions}} / {{$total_questions}}</div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 col-lg-3">
                                 <div class="sats-summary-icon" style="background-color: #8cc811;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #fff;">
                                         <g id="Group_1264" transform="translate(-188.102 -869.102)">
@@ -99,6 +90,15 @@ $total_questions = is_array( $attempt_questions_list )? count($attempt_questions
                                             </g>
                                         </g>
                                     </svg>
+                                </div>
+                                <div class="summary-text">
+                                    <label>Questions Answered</label>
+                                    <div class="score">{{$attempted_questions}} / {{$total_questions}}</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="sats-summary-icon" style="background-color: #fe3c30;">
+                                    <img src="/assets/default/svgs/question-circle.svg" alt="">
                                 </div>
                                 <div class="summary-text">
                                     <label>Questions Missed</label>

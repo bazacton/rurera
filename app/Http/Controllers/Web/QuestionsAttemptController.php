@@ -18,6 +18,7 @@ use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
 use App\Models\UserVocabulary;
 use App\Models\UsersAchievedLevels;
+use App\Models\ShowdownLeaderboards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -1607,6 +1608,17 @@ class QuestionsAttemptController extends Controller
                 'showdown_correct' => count($correct_array),
                 'showdown_time_consumed' => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
             ]);
+
+            ShowdownLeaderboards::create([
+                'user_id'           => $user->id,
+                'result_id'         => $QuizzesResult->id,
+                'showdown_correct'  => count($correct_array),
+                'showdown_time_consumed'         => ($total_time_consumed > 0)? ($total_time_consumed / 10) : 0,
+                'status'            => 'active',
+                'created_at'        => time(),
+                'created_by'        => $user->id,
+            ]);
+
         }
 
         if( $QuizzesResult->attempt_mode == 'treasure_mode') {
