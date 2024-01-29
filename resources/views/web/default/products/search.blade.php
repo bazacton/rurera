@@ -5,12 +5,12 @@
 @endpush
 
 @section('content')
-<section class="products-top-header lms-call-to-action search-top-banner position-relative pb-0 flex-column pt-70 pb-50" style="background-color: #333399;">
+<section class="products-top-header lms-call-to-action search-top-banner position-relative pb-0 flex-column pt-70 pb-50 mt-10" style="background-color: #333399;">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-10 col-lg-10 mx-0 text-left">
-                    <h1 itemprop="title" class="font-50 font-weight-bold text-white">Exchange Rewards <br />Get more <span class="text-scribble">toys</span> with every practice</h1>
-                    <p itemprop="description" class="mt-15 mb-40 text-white font-19">Unlock Knowledge and Reward Yourself with Exciting Toys.<br />
+                    <h1 itemprop="title" class="font-26 font-weight-bold text-white">Exchange Rewards <br />Get more <span class="text-scribble">toys</span> with every practice</h1>
+                    <p itemprop="description" class="mt-15 mb-40 text-white">Unlock Knowledge and Reward Yourself with Exciting Toys.<br />
 Access to the rewards with 3 simple steps</p>
                     <form class="w-75 mx-0 mb-50">
                         <div class="field-holder has-icon d-flex">
@@ -105,10 +105,7 @@ Access to the rewards with 3 simple steps</p>
                         </div>
                     </div>
                 </div>
-
             </form>
-
-
         </section>
     </div>
     <section class="lms-column-section lms-text-section py-70 mx-w-100 mt-80" style="background-color: #f6b801;">

@@ -428,7 +428,7 @@ if( $duration_type == 'total_practice'){
             }, 100);
 
             if( duration_type == 'per_question') {
-                console.log('clear interval');
+                console.log('clear interval');  
                 clearInterval(Quizintervals);
                 $('.quiz-timer-counter').html(time_interval);
                 $('.quiz-timer-counter').attr('data-time_counter', time_interval);
@@ -446,7 +446,7 @@ if( $duration_type == 'total_practice'){
                         }
                     }
 
-                }, 1000);
+                }, 100);
             }
 
         } else {

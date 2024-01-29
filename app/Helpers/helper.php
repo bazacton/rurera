@@ -8217,6 +8217,19 @@ function array_limit_length($array_data, $length_value){
 
 }
 
+function getQuizTypeTitle($quiz_type){
+    $quiz_types_array = array(
+        '11plus' => '11Plus',
+        'sats' => 'Sats',
+        'independent_exams' => 'Independent Exams',
+        'iseb' => 'ISEB',
+        'cat4' => 'CAT 4',
+        'challenge' => 'Challenge',
+        'vocabulary' => 'Vocabulary',
+    );
+
+    return isset( $quiz_types_array[$quiz_type] )? $quiz_types_array[$quiz_type] : '';
+}
 function find_array_index_by_value($data, $value_key){
     $return_data = array();
     if( !empty( $data ) ) {

@@ -154,8 +154,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="sub-dropdown">
                         <ul>
-                            <li><a class="font-15" href="#">More</a></li>
-                            <li><a class="font-15" href="#">More</a></li>
+                            <li><a class="font-15" href="/faqs">FAQs</a></li>
+                            <li><a class="font-15" href="/custom_html">Custom HTML</a></li>
                             <li><a class="font-15" href="#">More</a></li>
                             <li><a class="font-15" href="#">More</a></li>
                         </ul>

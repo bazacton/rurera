@@ -1,26 +1,88 @@
+<style>
+    .hide{display:none;}
+    .above_12{display:none;}
+</style>
 <section class="p-25 panel-border border-radius-10 mb-50">
     <div class="container">
         <div class="row">
-            <canvas id="powerup_chart"></canvas>
-            @if( !empty( $attempts_array ) )
 
-            @endif
-            <table class="simple-table text-left">
-                <thead>
-                    <tr>
-                        <th>When</th>
-                        <th>Your Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach( $results_data as $resultsRow)
+
+
+            <div class="heatmap-select-option">
+                <div class="select-field">
+                    <input checked type="radio" id="select-one" name="heatmap">
+                    <label for="select-one" class="heatmap-type" data-type_limit="12"> 2-12<span>&#215;</span> </label>
+                    <input type="radio" id="select-two" name="heatmap">
+                    <label for="select-two" class="border-right-0 heatmap-type" data-type_limit="20"> 2-20<span>&#215;</span> </label>
+                </div>
+            </div>
+
+            <div class="heatmap-table-holder mb-20">
+
+                <div class="heatmap-table-holder mb-20">
+
+                    <table class="heatmap-table">
+                        <thead>
                         <tr>
-                            <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
-                            <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
+                            <th></th>
+                            @php $count = 2; @endphp
+                            @while($count <= 20)
+                            <th class="{{ ($count > 12 )? 'above_12' : 'below_12'}}">{{$count}}</th>
+                            @php $count++; @endphp
+                            @endwhile
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        </thead>
+
+
+                        @php $table_main_count = 1; $dates_array = array(); @endphp
+                        @if( !empty( $times_tables_data ) )
+                        @foreach( $times_tables_data as $date => $tableData)
+                        @php $activeClass = ($table_main_count == 1)? 'active' : 'hide'; $dates_array[] = $date; @endphp
+                        <tbody class="summary-table-item {{$activeClass}}" data-datestring="{{$date}}">
+                        @php $count = 2; @endphp
+                        @while($count <= 20)
+                        @php $table_count = 2;
+                        $from_table_array = isset( $tableData[$count] )? $tableData[$count] : array();
+                        @endphp
+
+                        <tr class="{{ ($count > 12 )? 'above_12' : 'below_12'}}">
+                            <td>{{$count}}</td>
+                            @while($table_count <= 20)
+                            @php
+                            $to_tableObj = isset( $from_table_array[$table_count] )?
+                            $from_table_array[$table_count] : array();
+                            $class = isset( $to_tableObj['class'] )? $to_tableObj['class'] : '';
+
+                            @endphp
+                            <td class="{{$class}} {{ ($table_count > 12 )? 'above_12' : 'below_12'}}">
+                                <span>{{$count}} <span>&#215;</span> {{$table_count}}</span></td>
+                            @php $table_count++; @endphp
+                            @endwhile
+                        </tr>
+
+                        @php $count++; @endphp
+                        @endwhile
+                        </tbody>
+                        @php $table_main_count++; @endphp
+                        @endforeach
+                        @endif
+
+                    </table>
+
+
+                </div>
+
+                <div class="heatmap-heading mb-20">
+                    <span>Drag to time travel or click below to focus a table</span>
+                </div>
+                <div class="heatmap-range-slider">
+                    <a href="#" class="range-play-btn"><span>&#9654;</span></a>
+                    <div id="storlekslider"></div>
+                    <div class="range-value">
+                        <input type="text" name="storlek" id="storlek_testet" value=""/>
+                        <span>{{$first_date}}</span>
+                    </div>
+                </div>
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>
             </div>
@@ -58,305 +120,52 @@
         </div>
     </div>
 </section>
-<section class="lms-performace-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="leaderboard-tab">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <ul class="lms-performace-table leaderboard">
-                                <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">
-                                    <div><h2 class="text-center font-18">Serial#</h2></div>
-                                    <div class="text-left"><span>User</span></div>
-                                    <div class="text-center"><span>Total Books Read</span></div>
-                                    <div class="text-center"><span>Time Spent</span></div>
-                                    <div class="text-center"><span>Earned Points</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>1</span></div>
-                                    <div class="score-des w-25">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>200</span></div>
-                                    <div class="time-sepen text-center"><span>30 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>100</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>2</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>250</span></div>
-                                    <div class="time-sepen text-center"><span>36 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>150</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>3</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>300</span></div>
-                                    <div class="time-sepen text-center"><span>40 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>4</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>350</span></div>
-                                    <div class="time-sepen text-center"><span>46 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>250</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>5</span></div>
-                                    <div class="score-des w-25">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>200</span></div>
-                                    <div class="time-sepen text-center"><span>50 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>400</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>6</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>900</span></div>
-                                    <div class="time-sepen text-center"><span>100 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>300</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>7</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>500</span></div>
-                                    <div class="time-sepen text-center"><span>70 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>400</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>8</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>350</span></div>
-                                    <div class="time-sepen text-center"><span>60 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>500</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>9</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>525</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>10</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>400</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>320</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>11</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>500</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>12</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>100</span></div>
-                                    <div class="time-sepen text-center"><span>20 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>250</span></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <ul class="lms-performace-table leaderboard">
-                                <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">
-                                    <div><h2 class="text-center font-18">Serial#</h2></div>
-                                    <div class="text-left"><span>User</span></div>
-                                    <div class="text-center"><span>Total Books Read</span></div>
-                                    <div class="text-center"><span>Time Spent</span></div>
-                                    <div class="text-center"><span>Earned Points</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>1</span></div>
-                                    <div class="score-des w-25">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>200</span></div>
-                                    <div class="time-sepen text-center"><span>30 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>100</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>2</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>250</span></div>
-                                    <div class="time-sepen text-center"><span>36 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>150</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>3</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>300</span></div>
-                                    <div class="time-sepen text-center"><span>40 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>4</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>350</span></div>
-                                    <div class="time-sepen text-center"><span>46 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>250</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>5</span></div>
-                                    <div class="score-des w-25">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>200</span></div>
-                                    <div class="time-sepen text-center"><span>50 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>400</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>6</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>900</span></div>
-                                    <div class="time-sepen text-center"><span>100 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>300</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>7</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>500</span></div>
-                                    <div class="time-sepen text-center"><span>70 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>400</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>8</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>350</span></div>
-                                    <div class="time-sepen text-center"><span>60 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>500</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>9</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>525</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>10</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>400</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>320</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>11</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">jessica alba</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>500</span></div>
-                                    <div class="time-sepen text-center"><span>80 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>200</span></div>
-                                </li>
-                                <li class="lms-performace-des leaderboard-des">
-                                    <div class="sr-no text-center"><span>12</span></div>
-                                    <div class="score-des">
-                                        <figure><img src="/store/870/avatar/617a4f7c09d61.png" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager" /></figure>
-                                        <span><a href="#">Angelina mark</a></span>
-                                    </div>
-                                    <div class="level-up text-center"><span>100</span></div>
-                                    <div class="time-sepen text-center"><span>20 minutes</span></div>
-                                    <div class="coin-earn text-center"><span>250</span></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <script>
     $(document).ready(function () {
-        @if(!empty($attempts_labels))
-            var ctx = document.getElementById('powerup_chart').getContext('2d');
-            var chart_labels = '{{json_encode($attempts_labels)}}';
-            var chart_labelsArray = JSON.parse(chart_labels.replace(/&quot;/g, '"'));
 
-           var chart_values = '{{json_encode($attempts_values)}}';
-           var chart_valuesArray = JSON.parse(chart_values.replace(/&quot;/g, '"'));
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: chart_labelsArray,
-                    datasets: [{
-                        label: 'Questions',
-                        data: chart_valuesArray,
-                        backgroundColor: 'transparent',
-                        borderColor: '#43d477',
-                        borderWidth: 2
-                    }]
-                },
-
+        if (jQuery('#storlekslider').length > 0) {
+            var valMap = <?php echo json_encode($dates_array); ?>;
+            const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            $("#storlekslider").slider({
+                max: valMap.length - 1,
+                slide: function(event, ui) {
+                    var datestring = valMap[ui.value];
+                    jsTimestamp = new Date(valMap[ui.value] * 1000);
+                    var month_label = months[jsTimestamp.getMonth()];
+                    $(".range-value span").html(month_label+' '+jsTimestamp.getFullYear());
+                    $("#storlek_testet").val(jsTimestamp.getDate());
+                    $("#storlek_testet").attr('data-datestring', datestring);
+                    $(".summary-table-item").removeClass('active');
+                    $(".summary-table-item").addClass('hide');
+                    $('.summary-table-item[data-datestring="'+datestring+'"]').addClass('active');
+                    $('.summary-table-item[data-datestring="'+datestring+'"]').removeClass('hide');
+    
+    
+    
+    
+                    $(ui.value).val(jsTimestamp.getDate());
+                }
             });
-        @endif
+        }
+    
+        if (jQuery('#storlek_testet').length > 0) {
+            $("#storlek_testet").keyup(function () {
+    
+                $("#storlekslider").slider("value", $(this).val());
+                var value1 = $("#storlek_testet").val();
+            });
+        }
+
+        $(document).on('click', '.heatmap-type', function (e) {
+            var type_limit  = $(this).attr('data-type_limit');
+            if( type_limit == 12){
+                $(".above_12").hide();
+            }
+            if( type_limit == 20){
+                $(".above_12").show();
+            }
+        });
+
     });
 
 </script>

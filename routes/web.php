@@ -603,6 +603,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::post('assign_user_topic', 'UserController@assign_user_topic');
 
+    Route::get('custom_html', 'TestsController@custom_html');
+
+    Route::get('faqs', 'FaqsController@index');
+
+
+
 
     /*
      * Cron Functions

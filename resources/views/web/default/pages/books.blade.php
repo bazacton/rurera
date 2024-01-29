@@ -15,7 +15,7 @@
 @endpush
 
 @section('content')
-  <section class="lms-books-listing p-0" style="background-color: #ffff;">
+  <section class="lms-books-listing pt-10">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -46,7 +46,7 @@
 
                                                               <div class="col-12 col-lg-6 col-md-5">
                                                                   <div class="text-holder">
-                                                                      <h3 itemprop="title" class="font-19 font-weight-bold"><a href="/books/{{$bookData->book_slug}}" itemprop="url">{{$bookData->book_title}}</a></h3>
+                                                                      <h3 itemprop="title" class="font-18 font-weight-bold mb-5"><a href="/books/{{$bookData->book_slug}}" itemprop="url">{{$bookData->book_title}}</a></h3>
                                                                       <ul itemprop="books info list">
                                                                           <li><span itemprop="info text">Reading Level :</span>{{$bookData->reading_level }}</li>
                                                                           <li><span itemprop="info text">Interest Area :</span>{{$bookData->interest_area }}</li>

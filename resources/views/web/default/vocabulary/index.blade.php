@@ -17,7 +17,7 @@
 @section('content')
 
 <section class="content-section">
-    <section class="pt-10" style="background-color: #fff;">
+    <section class="pt-10">
         <div class="container">
             <div class="row">
 

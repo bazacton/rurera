@@ -136,4 +136,14 @@ class TestsController extends Controller
     }
 
 
+    public function custom_html(Request $request)
+    {
+        $data = [
+            'pageTitle'                  => 'Custom HTML',
+        ];
+        return view('web.default.custom_html.index', $data);
+
+    }
+
+
 }

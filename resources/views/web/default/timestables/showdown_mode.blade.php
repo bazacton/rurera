@@ -19,6 +19,21 @@
             @endif
 
             <div class="col-12 col-lg-12 mx-auto">
+                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$currentWeek}}">Current Week</a>
+                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week</a>
+                <span class="dropdown">
+                  <a href="javascript:;" class="rurera-list-btn dropdown-toggle">
+                      Select Week
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      @php $weekCounter = 1; @endphp
+                      @while( $weekCounter <= 52)
+                        @php $is_selected = ($weekCounter == $selectedWeek)? 'active' : ''; @endphp
+                        <a class="dropdown-item week-selection-btn {{$is_selected}}" data-week_no="{{$weekCounter}}" href="javascript:;">Week: {{$weekCounter}}</a>
+                      @php $weekCounter++; @endphp
+                      @endwhile
+                  </div>
+                </span>
                 <ul class="lms-performace-table leaderboard mt-30">
                     <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">
                         <div><h2 class="text-center font-18">Rank#</h2></div>
@@ -48,3 +63,6 @@
         </div>
     </div>
 </section>
+<style>
+
+</style>

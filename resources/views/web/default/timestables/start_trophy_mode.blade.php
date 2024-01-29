@@ -96,7 +96,7 @@ if( $duration_type == 'total_practice'){
                                         <span class="tt_question_no">1</span>
                                     </li>
                                     <li>
-                                        <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
+                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{getTime($timer_counter)}}</span>
                                     </li>
                                     <li class="total-points">
                                         <span class="tt_points">0</span> Points
@@ -307,8 +307,6 @@ if( $duration_type == 'total_practice'){
             if ($('.questions-block[data-id="0"]').hasClass('active')) {
                 var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
                 seconds_count = parseInt(seconds_count) + parseInt(1);
-                seconds_count = (seconds_count == 10)? 1 : seconds_count;
-                console.log(seconds_count);
                 $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
                 $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             } else {
@@ -324,15 +322,13 @@ if( $duration_type == 'total_practice'){
             }else {
                 quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
             }
-            var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
-            console.log('Seconds = '+quiz_timer_counter);
 
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            $('.quiz-timer-counter').html(getTime((quiz_timer_counter/10)));
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
             if( duration_type == 'per_question'){
                 if( parseInt(quiz_timer_counter) == 0){
-                    clearInterval(Questionintervals);
                     clearInterval(Quizintervals);
+                    clearInterval(Questionintervals);
                     $("#timestables_question_status_modal").modal('show');
                     $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                     //$(".questions-block.active .question-form").submit();
@@ -340,15 +336,15 @@ if( $duration_type == 'total_practice'){
             }
             if( duration_type == 'total_practice'){
                 if( parseInt(quiz_timer_counter) == 0){
-                    clearInterval(Questionintervals);
                     clearInterval(Quizintervals);
+                    clearInterval(Questionintervals);
                     $("#timestables_question_status_modal").modal('show');
                     $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                     //$(".question-form").submit();
                 }
             }
 
-        }, 1000);
+        }, 100);
 
     });
 
@@ -386,6 +382,8 @@ if( $duration_type == 'total_practice'){
             $(this).closest('form').find('.editor-fields').val(current_field_value + current_value);
         }
     });
+
+
 
 
 
@@ -504,7 +502,7 @@ if( $duration_type == 'total_practice'){
                         }
                     }
 
-                }, 1000);
+                }, 100);
             }
 
         } else {
@@ -586,6 +584,9 @@ if( $duration_type == 'total_practice'){
         $(".prevm").removeClass('active');
         $(".nextm").addClass('active');
     });
+
+
+
 
 
 

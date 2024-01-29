@@ -26,11 +26,42 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
+
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+use Intervention\Image\Facades\Image;
+
 class UserController extends Controller
 {
     public function setting($step = 1)
     {
         $user = auth()->user();
+
+        if( isset( $_GET['qrcode'] ) ) {
+            // Generate QR code
+            $renderer = new ImageRenderer(
+                new RendererStyle(200),
+                new ImagickImageBackEnd()
+            );
+            $writer = new Writer($renderer);
+            $qrCode = $writer->writeString('Your QR code data here');
+
+            // Add logo to the QR code
+            $qrCodeImage = Image::make($qrCode);
+            $logo = Image::make('path_to_your_logo.png');
+
+            // Calculate position for the logo in the center
+            $logoWidth = $logo->width();
+            $logoHeight = $logo->height();
+            $qrCodeImage->insert($logo, 'center');
+
+            // Save or output the final QR code image
+            $qrCodeImage->save('path_to_save_final_qr_code.png');
+        }
+
 
         if (!empty($user->location)) {
             $user->location = \Geo::getST_AsTextFromBinary($user->location);

@@ -698,6 +698,30 @@ $(document).on('click', '.ajax-callback', function (e) {
        }
    });
 });
+
+$(document).on('click', '.week-selection-btn', function (e) {
+    var thisObj = $(this);
+    var week_no = $(this).attr('data-week_no');
+    var thisContent_div = $(".timestables-mode-content");
+    var ajax_type = 'showdown_mode';
+    rurera_loader(thisContent_div, 'div');
+    jQuery.ajax({
+       type: "GET",
+       url: '/timestables/'+ajax_type,
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       },
+       data: {'ajax_type':ajax_type, 'weekNumber':week_no},
+       success: function (return_data) {
+           thisContent_div.html(return_data);
+           //jQuery(".show-section-data").html(return_data);
+           $(".timestables-modes").slideUp();
+           $(".timestables-mode-block").slideDown();
+           rurera_remove_loader(thisContent_div, 'div');
+       }
+   });
+});
+
 $(document).on('click', '.back-btn', function (e) {
     $('.deals-section').addClass("hide-sec");
     $('.challenge-sec').addClass("hide-sec");

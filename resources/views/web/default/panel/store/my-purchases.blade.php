@@ -62,9 +62,6 @@
                                 <thead>
                                 <tr>
                                     <th class=" text-left">Title</th>
-                                    <th class=" text-left">{{ trans('update.order_id') }}</th>
-                                    <th class="text-center">Total Points</th>
-                                    <th class="text-center">{{ trans('public.type') }}</th>
                                     <th class="text-center">{{ trans('public.status') }}</th>
                                     <th class="text-center">{{ trans('public.date') }}</th>
                                     <th></th>
@@ -77,25 +74,12 @@
 
                                         <td class="text-left">
                                             @if(!empty($order) and !empty($order->product))
-                                            <span><a href="/products/{{ $order->product->slug }}" target="_blank">{{ $order->product->title }}</a></span>
-                                            @endif
-                                        </td>
-
-                                        <td class=" text-left">
-                                            <span class="d-block font-weight-500 text-dark-blue font-16">{{ $order->id }}</span>
-                                            <span class="d-block font-12 text-gray">{{ $order->quantity }} {{ trans('update.product') }}</span>
-                                        </td>
-                                       
-
-                                        <td class="align-middle">
-                                            @if(!empty($order) and !empty($order->product))
-                                                <span>{{ $order->product->point }}</span>
-                                            @endif
-                                        </td>
-
-                                        <td class="align-middle">
-                                            @if(!empty($order) and !empty($order->product))
-                                                <span>{{ trans('update.product_type_'.$order->product->type) }}</span>
+                                            <span><a href="/products/{{ $order->product->slug }}" target="_blank">{{ $order->product->title }}</a>
+                                                Order #{{ $order->id }},
+                                                @if(!empty($order) and !empty($order->product))
+                                                    {{ $order->product->point }}
+                                                @endif
+                                            </span>
                                             @endif
                                         </td>
                                         <td class="align-middle">

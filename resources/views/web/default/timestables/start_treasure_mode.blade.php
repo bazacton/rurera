@@ -388,7 +388,7 @@ if( $duration_type == 'total_practice'){
                 }
             }
 
-        }, 1000);
+        }, 100);
 
     });
 

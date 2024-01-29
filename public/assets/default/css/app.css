@@ -39,6 +39,7 @@
 html {
     /* overflow: auto !important; */
     scroll-behavior: smooth;
+    height: 100%;
 }
 .btn-text-primary {
     color: #27325e !important
@@ -318,6 +319,7 @@ section {
     display: block
 }
 body {
+    background-color: #fff;
     margin: 0;
     font-family: main-font-family;
     font-size: 1rem;
@@ -325,7 +327,10 @@ body {
     line-height: 1.3;
     color: #343434;
     text-align: left;
-    background-color: #fff;
+}
+.panel-page-section,
+#panel_app {
+    height: 100%;
 }
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important
@@ -12906,7 +12911,7 @@ p {line-height: 1.5;}
 .panel-content .webinar-card {box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .04) !important;}
 .panel-content .webinar-card:hover {transform: unset !important;box-shadow: 0 8px 23px 0 rgba(62, 73, 84, .15) !important;transition: all .5s ease;}
 .panel-content .webinar-card .image-box:after {border-radius: 10px 0 0 10px;}
-.panel-section-card {border-radius: 10px;background-color: #fff;}
+/* .panel-section-card {border-radius: 10px;background-color: #fff;} */
 /* .section-title h2 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -14547,7 +14552,7 @@ Lms Product Card Style Start
 **********************************/
 .product-card .image-box,
 .product-card .image-box img {border-radius: 0; }
-.product-card .image-box {display: flex; align-items: center; justify-content: center; padding: 15px 0 0; height: auto;}
+.product-card .image-box {background-color: #fff; display: flex; align-items: center; justify-content: center; height: auto;}
 .product-card .image-box .image-box__a {width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;}
 .product-card .image-box img.img-cover {max-height: 100%; width: 100%; -o-object-fit: contain; object-fit: contain;}
 .product-show-image-card .img-cover,
@@ -14557,7 +14562,7 @@ Lms Product Card Style Start
 .navbar-shopping-cart .simplebar-content-wrapper,
 .navbar-notification-card .simplebar-content-wrapper {overflow: hidden scroll !important;}
 /* Product Card Style Start */
-.product-card {position: relative; border-radius: 15px; background-color: #fff; transition: all .5s ease;}
+.product-card {position: relative; border-radius: 15px; transition: all .5s ease;}
 .product-card .image-box {position: relative; width: 100%; height: 185px;}
 .product-card .image-box,
 .product-card .image-box img {border-radius: 15px 15px 0 0;}
@@ -14572,10 +14577,10 @@ Lms Product Card Style Start
 .product-card .image-box .hover-card-action .btn-add-product-to-cart:hover {background-color: var(--primary-hover) }
 .rtl .product-card .image-box .hover-card-action {right: auto; left: 20px;}
 .product-card .product-card-body {padding: 20px 0px 10px 0px; }
-.product-card .product-card-body .product-price-box .real {font-size: 14px; font-weight: 500; line-height: 1; color: #343434; pointer-events: none; display: flex; align-items: center;}
+.product-card .product-card-body .product-price-box .real {font-weight: 500; line-height: 1; color: #343434; pointer-events: none; display: flex; align-items: center;}
 .product-card .product-card-body .product-price-box .real svg {width: 16px; height: 16px; margin-right: 5px; color: var(--primary);}
 .product-card .product-card-body .product-price-box .off {font-size: 14px; font-weight: 400; line-height: 1.29; color: #818894; text-decoration: line-through; }
-.product-card .product-card-body .product-title {font-weight: bold !important; height: 48px; text-overflow: ellipsis; overflow: hidden; }
+.product-card .product-card-body .product-title {font-weight: bold !important; text-overflow: ellipsis; min-height: 87px; /* height: 48px; overflow: hidden; */ }
 .product-card .product-icon {color: var(--secondary); }
 .product-show-image-card {height: 460px; border-radius: 15px; }
 .product-card .cart-button {display: flex; width: 100%; align-items: center; justify-content: center; border: 3px solid var(--primary); padding: .5rem 2rem; color: var(--primary); font-size: 16px; line-height: 1.5; background-color: #fff; position: relative;}
@@ -14971,8 +14976,8 @@ Lms Setup Progress Style Start
 .lms-setup-progress .step-number {justify-content: center; flex: 0 0 auto; box-sizing: border-box; width: 30px; height: 30px; border-radius: 100%; font-size: 15px;}
 .lms-subscription-step .step-number {background-color: #00aeef; color: #fff;}
 .lms-subscription-step .step-name {color: #fff;}
-.lms-setup-progress .step-name {margin-left: 12px; font-size: 19px;}
-.lms-setup-progress .separator {flex: 1 0 28px; margin-left: 12px; margin-right: 12px; height: 1px; background-color: #ddd;}
+.lms-setup-progress .step-name {margin-left: 10px; font-size: 14px;}
+.lms-setup-progress .separator {flex: 1 0 20px; margin-left: 8px; margin-right: 8px; height: 1px; background-color: #ddd;}
 .lms-account-setup .step-number {border: 1px solid #fff; color: #fdb532;}
 .lms-confirmation-step .step-number {border: 2px solid #1eb7bd; color: #1eb7bd;}
 .lms-account-setup .step-name {color: #fff;}
@@ -15229,7 +15234,7 @@ Custom Pagination Style End
 .container-fluid .container,
 .container .container {padding: 0;}
 .categories-wrapp {background: #f0f1f3; padding: 90px 0 60px 0;}
-.categories-boxes .categories-card {position: relative; overflow: hidden; text-align: center; border-radius: 10px; box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1); transition: all 0.3s ease-in-out; background-color: #fff; margin-bottom: 30px;}
+.categories-boxes .categories-card {position: relative; overflow: hidden; text-align: center; border-radius: 10px; box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1); transition: all 0.3s ease-in-out; margin-bottom: 30px;}
 .categories-card.active,
 .categories-card:hover {box-shadow: 0 4px 0px 2px #D3D3D3; transform: scaleX(1.1);}
 .categories-card.active .categories-icon,
@@ -15251,7 +15256,7 @@ Custom Pagination Style End
 .categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
 /* .categories-element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; background: #7f7f7f;} */
 .subjects-heading {border-bottom: 1px solid #ddd; margin: 0 0 25px; padding: 0 0 20px; }
-.categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding: 0 20px 25px; margin: 0 0 25px; transform: none;}
+.categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
 .categories-card.medium .categories-icon {min-height: 82px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset; min-width: 70px; }
 .categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
 .categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
@@ -15260,6 +15265,8 @@ Custom Pagination Style End
 .categories-card.medium .progress-numbers {position: absolute; right: 0; top: -30px; font-weight: 400; }
 .categories-card.medium .subject-info {display: block; text-align: left;}
 .categories-card.medium .learning-btn {position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-weight: 600; text-transform: uppercase; color: #666;}
+.categories-card.medium:nth-child(even) {background-color: #fff;}
+.categories-card.medium:nth-child(odd) {background-color: inherit;}
 /* Categories Boxes Style End */
 /* Count Number Boxes Style Start */
 .count-number-wrapp .section-title h2 {margin: 0 0 20px; font-size: 2.6rem; }
@@ -15316,8 +15323,9 @@ Custom Pagination Style End
 .panel-page-section .panel-sidebar .simplebar-wrapper,
 .panel-page-section .panel-sidebar .sidebar-menu {overflow: inherit;}
 .panel-page-section {background-color: #fafafc; padding-bottom: 50px;} */
-.panel-page-section .panel-content {/*width: 100%; padding: 0; margin-top: 40px;*/}
+.panel-page-section .panel-content {/*width: 100%; padding: 0; margin-top: 40px;*/ background-color: #fafafa; height: 100%;}
 /* .panel-page-section .panel-sidebar .sidebar-menu.pt-10 {margin-top: -10px;} */
+body:has(.container-nosidebar) {background-color: #fafafa; height: 100%;}
 /* Panel Sidebar And Panel Content Style End */
 /****************************************
  Sigup Pages Style Start
@@ -15879,6 +15887,9 @@ Lms Books Library Style Start
 .search-books a {color: #fff; font-size: 18px; text-transform: capitalize; }
 .search-books ul li {padding: 0 15px;}
 .lms-books-listing {padding: 70px 0 35px;}
+.panel-content .lms-books-listing {
+    background-color: inherit;
+}
 /* .lms-books-listing h3 a,
 .lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;} */
 .lms-books-listing .listing-card {margin-bottom: 35px;}
@@ -15890,7 +15901,7 @@ Lms Books Library Style Start
 /* .lms-books-listing .listing-card .text-holder h3,
 .lms-books-listing .listing-card .text-holder h1 {margin: 0 0 10px;} */
 .lms-books-listing .listing-card .text-holder ul { margin: 0; padding: 0;}
-.lms-books-listing .listing-card .text-holder li {margin: 0 0 10px; color: #777777; font-weight: 500; font-size: 18px;}
+.lms-books-listing .listing-card .text-holder li {margin: 0 0 8px; color: #777777; font-weight: 500; /* font-size: 18px; */}
 .lms-books-listing .listing-card .text-holder li span {color: #444; margin-right: 5px;}
 .listing-card .btn-holder,
 .book-percentage {position: absolute; right: 15px; top: 50%; transform: translateY(-50%);}
@@ -16649,7 +16660,7 @@ Sats Listing Style Start
 .sats-listing-card thead th,
 .panel-section-card .custom-table thead td, 
 .panel-section-card .custom-table thead th {padding: 15px 20px; color: #333; text-align: left; font-weight: 600;}
-.sats-listing-card tbody tr td {border-bottom: 1px solid #ececec; padding: 15px 20px;}
+.sats-listing-card tbody tr td {border-bottom: 1px solid #ececec; padding: 25px 20px;}
 .sats-listing-card .attempt-progress {min-width: 120px;}
 .sats-listing-card.medium .media-holder {margin: -15px 0 0 12px; background-color: #fff; width: 100px; box-shadow: 0 0 5px rgba(0,0,0,0.2); min-height: 120px; display: inline-flex; align-items: center; justify-content: center; position: relative;}
 .sats-listing-card.medium .media-holder:after,
@@ -16673,6 +16684,14 @@ Sats Listing Style Start
 .test-info ul li {border-bottom: 1px solid #dddddf; display: flex; align-items: center; line-height: normal; padding: 8px 10px; flex-wrap: wrap; }
 .test-info ul li:last-child {border-bottom: 0;}
 .sats-listing-card .test-info ul li span {width: 50%; margin: 0; font-size: 15px; font-weight: 400;}
+.simple-table tbody tr:hover {background-color: #fff !important;}
+.sats-listing-card.medium .simple-table tbody tr:nth-child(even),
+.sats-listing-card.medium .simple-table tbody tr:nth-child(even):hover,
+.panel-section-card tbody tr:nth-child(even),
+.panel-section-card tbody tr:nth-child(even) {background-color: #fff !important;}
+.sats-listing-card.medium .simple-table tbody tr:nth-child(odd),
+.panel-section-card tbody tr:nth-child(odd),
+.sats-listing-card.medium .simple-table tbody tr:hover {background-color: inherit !important;}
 /* .panel-content .sats-listing-card.medium {height: 338px; overflow-y: auto; padding-bottom: 0;}
 .panel-content .sats-listing-card.medium::-webkit-scrollbar-track
 {
@@ -17069,7 +17088,7 @@ Choose Plan Style End
 /*************************************
 Dashboard Form-Tabs Style Start
 *************************************/
-.lms-jobs-form {border: 1px solid #e2e8f0; background-color: #fff; border-radius: 10px; padding: 15px; /*max-width: 700px;*/ max-width: 100%;}
+.lms-jobs-form {border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; /*max-width: 700px;*/ max-width: 100%;}
 .db-form-tabs {margin: 0 0 40px;}
 .db-form-tabs .nav-tabs {margin: 0 0 30px; border: 0;}
 .db-form-tabs .nav-tabs a {color: #b5bcc2; border: 1px solid #fff; border-radius: 5px; font-size: 16px; padding: 10px 16px; }
@@ -17172,6 +17191,13 @@ Dashboard Form-Tabs Style End
 .col-lg-9 .sats-listing-card tbody tr td:nth-child(2) {min-width: 390px;}
 .sats-listing-card .rurera-unlock-item img,
 .sats-listing-card .rurera-lock-item img {margin-right: 0;}
+
+.panel-content .sats-listing-card tbody tr td:first-child {
+    width: 84%;
+}
+.panel-content .sats-listing-card tbody tr td:nth-child(2) {
+    min-width: auto;
+}
 /* .sats-listing-card table h4 a br {
     display: none;
 } */
@@ -17259,7 +17285,7 @@ Product Tabs Slider Style Start
 .chart-summary-fields .sats-summary [class*="col-"].bitcoin-box {background-color: initial;}
 .chart-summary-fields .sats-summary .score {color: #0d173b; font-size: 16px;}
 .chart-summary-fields .sats-summary [class*="col-"].bg-none {background-color: inherit; padding: 20px 0;}
-.chart-filters {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid #a2bad2; margin: 0 0 30px; background-color: #fff;}
+.chart-filters {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; border-bottom: 2px solid #a2bad2; margin: 0 0 30px;}
 .chart-filters ul {display: inline-flex; align-items: center; gap: 20px; margin: 0;}
 .chart-filters li a {font-size: 15px; color: #66667e; display: block; line-height: normal; padding: 12px 14px; font-weight: 500; border-radius: 5px 5px 0 0;}
 .chart-filters .filter-icon {margin-right: 5px;}
@@ -17303,7 +17329,7 @@ Product Tabs Slider Style Start
 .general-info li:first-child:before {display: none;}
 .template-grid .row .row [class*="col"] {padding: 0 5px;}
 .template-grid .row .row {margin-left: -5px; margin-right: -5px;}
-.panel-content .grid-card {border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
+.panel-content .grid-card {background-color: #fff; border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
 .panel-content .grid-card .img-holder {height: auto; width: 90px; margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);}
 .panel-content .grid-card .img-holder img {border-radius: 5px;}
 .panel-content .template-grid .text-holder {background-color: inherit; border: 0; padding: 0; min-height: auto; line-height: normal;}
@@ -17363,7 +17389,6 @@ Product Tabs Slider Style Start
 .simple-table tbody tr:nth-child(even) {background: #fbfbfd;}
 .spells .table tbody tr:nth-child(odd),
 .simple-table tbody tr:nth-child(odd) {background: #FFF} */
-.simple-table tbody tr:hover {background-color: #fff !important;}
 .spells-option select {border: 0; padding-right: 5px; color: #999; min-width: 150px;}
 .spells-option select option {padding: 5px 0 5px; margin: 10px;}
 .spells-topbar {background-color: #f5f5f5; margin: 0 0 30px; display: flex; align-items: center; justify-content: space-between; padding: 10px 25px;}
@@ -17558,7 +17583,7 @@ body .learning-page .learning-title {border-color: #ccc;}
 .challenge-box .text-holder {margin-top: auto; margin-bottom: auto;}
 .heatmap-sec .heatmap-table-holder {background-color: #fff;}
 /* Web App Elements Style End */
-.profile-image-holder {background-color: #fff; padding: 0; border-radius: 5px; text-align: center; }
+.profile-image-holder {padding: 0; border-radius: 5px; text-align: center; }
 .profile-image-holder input.form-control {height: 38px;}
 .profile-image-holder .input-label {margin: 0 0 10px;}
 .profile-image-holder img#profileImagePreview {margin: 0 auto 20px !important;}
@@ -17578,7 +17603,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels li > a:before {content: ""; height: 70%; width: 4px; position: absolute; left: 50%; top: 100%; margin-left: -2px; background-color: #b0b0b0; margin-top: 10px;}
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
-.spell-levels {border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-levels {background-color: #fff; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
 .spell-completed {overflow: hidden;}
 .spell-completed:before {content: "\2713";position: absolute;right: -6px;top: 24px;width: 35px;height: 35px;text-align: center;border-radius: 100%;background-color: #5acb01;color: #fff;line-height: 35px;font-weight: 700;box-shadow: 0 -2px 0 1px rgba(0,0,0,0.2) inset;}
 .spell-levels .completed a {background-color: #8ad1ef; color: #fff; box-shadow: 0 6px 0 1px #2397d2;}
@@ -17649,12 +17674,12 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .education-icon-box li:nth-child(6) {left: 85px; top: -40px;}
 .panel-content .lms-call-to-action button {min-width: auto; padding: 0 30px;}
 .panel-content .lms-call-to-action input[type="text"] {width: 100%;}
-.panel-content .lms-setup-progress ul {flex-wrap: wrap; gap: 15px;}
+.panel-content .lms-setup-progress ul {flex-wrap: wrap; gap: 10px;}
 .panel-content .education-icon-box li figure {width: 70px; height: 70px;}
 .panel-content .education-icon-box li:nth-child(1) figure {width: 50px; height: 50px;}
 .panel-content .education-icon-box li:nth-child(5) figure {width: 50px; height: 50px;}
 .panel-content .lms-setup-progress {width: 100%; }
-.panel-content h1 {font-size: 36px !important; line-height: 42px !important;}
+/* .panel-content h1 {font-size: 36px !important; line-height: 42px !important;} */
 .panel-content .products-top-header .banner-holder {margin-top: 0;}
 .panel-content .lms-text-section {padding: 25px !important;}
 .panel-content .spell-levels .panel-subheader {padding-right: 160px; margin-bottom: 100px;}
@@ -17703,14 +17728,14 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
-.panel-content .inline-filters .active a {border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
+.panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
 .panel-content .inline-filters a .icon-box {width: 25px; height: 25px;}
 .panel-content .inline-filters a .icon-box svg,
 .panel-content .inline-filters a .icon-box img {max-width: 100%; max-height: 100%;}
 .panel-content .inline-filters .active a svg g {stroke: #1b85fd; }
 .tests-list {width: 100%; display: flex; gap: 10px; padding: 0; flex-wrap: wrap;}
-.tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 20px; min-height: 100px; border-radius: 5px; min-width: 100px;}
-.tests-list li.active {border-color: var(--primary); color: var(--primary); border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
+.tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 20px; min-height: 100px; border-radius: 5px; min-width: 120px;}
+.tests-list li.active {background-color: #fff; border-color: var(--primary); color: var(--primary); border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
 .tests-list img {width: 30px; height: 30px; object-fit: contain; }
 .panel-content .lms-jobs-form .input-field input[type="text"] {padding-right: 45px;}
 .panel-content .lms-jobs-form .input-field:before {content: ""; height: 25px; width: 25px; position: absolute; right: 15px; top: 50%; margin-top: -12px; background: url(/assets/default/svgs/search.svg) no-repeat;}
@@ -17836,7 +17861,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .start-counter {position: fixed; height: 100%; width: 100%; left: 0; top: 0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--primary);}
 
 /* Referrals Style Start */
-.referrals {padding: 20px; }
+.referrals {background-color: #ddd; padding: 20px;}
 .referral-card > h3 {margin: 0 0 15px; }
 .referral-card > p {margin: 0 0 25px;}
 .referral-form label {display: block; line-height: normal; margin-bottom: 8px; font-weight: 600; position: relative;}
@@ -17848,11 +17873,11 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .referral-invites {margin: 0 0 30px;}
 .referrals .heading {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin: 0 0 10px;}
 .referrals .heading a {color: #1d64e0; font-weight: 500;}
-.referral-invites ul {background-color: #f5f8ff; border-radius: 12px; padding: 20px; display: flex;align-items: flex-start; justify-content: space-between;}
+.referral-invites ul {background-color: #f1f1f1; border-radius: 12px; padding: 20px; display: flex;align-items: flex-start; justify-content: space-between;}
 .referral-invites li {display: inline-flex; flex-direction: column; gap: 8px;}
 .referral-invites li strong {font-size: 19px; line-height: normal;}
 .referral-invites li span {line-height: normal;}
-.referral-payment p {background-color: #f5f8ff; border-radius: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-bottom: 0; padding: 20px;}
+.referral-payment p {background-color: #f1f1f1; border-radius: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin-bottom: 0; padding: 20px;}
 .referral-payment .icon-box {width: 65px; }
 .referral-payment .icon-box img {max-width: 100%;}
 .referral-payment strong {font-size: 36px; line-height: normal; width: calc(100% - 80px);}
@@ -18351,14 +18376,13 @@ Lms Responsive Style Start
     .spell-levels.levels-grouping li > a:before,
     .spell-levels.levels-grouping li > a:after{display: none;}
     .levels-grouping .spell-levels-top strong {text-align: center;}
-    .spell-levels-top {flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 15px;}
+    .spell-levels-top {background-color: #fff; flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 15px;}
     .levels-progress.horizontal .progress-box {min-width: auto; width: 100%;}
     .panel-content {padding-left: 0; padding-right: 0;}
     .panel-content .inline-filters li {width: 47%;}
     .panel-content .inline-filters a {width: 100%;}
     .trophy-levels .input::before {left: -46px;}
     .tests-list li {flex-basis: 48%; text-align: center;}
-
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

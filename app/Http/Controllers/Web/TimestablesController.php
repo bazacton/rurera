@@ -19,6 +19,7 @@ use App\Models\TimestablesTournaments;
 use App\Models\TimestablesTournamentsEvents;
 use App\Models\ShowdownLeaderboards;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class TimestablesController extends Controller
 {
@@ -1516,11 +1517,20 @@ class TimestablesController extends Controller
         $attempts_labels = array_reverse($attempts_labels);
         $attempts_values = array_reverse($attempts_values);
 
+        $times_tables_data = $this->user_times_tables_data_single_user($user->id, 'x');
+        $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
+        $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
+        $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
+
+
+
         $rendered_view = view('web.default.timestables.powerup_mode', [
             'results_data'    => $results_data,
             'attempts_array'  => $attempts_array,
             'attempts_labels' => $attempts_labels,
-            'attempts_values' => $attempts_values
+            'attempts_values' => $attempts_values,
+            'times_tables_data' => $times_tables_data,
+            'first_date' => $first_date,
         ])->render();
         echo $rendered_view;
         die();
@@ -1536,16 +1546,27 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        //DB::enableQueryLog();
-        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
+        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'trophy_mode')->orderBy('created_at', 'desc')->limit(10)->get();
+        $attempts_array = $attempts_labels = $attempts_values = array();
+        if (!empty($results_data)) {
+            foreach ($results_data as $resultObj) {
+                $created_at = dateTimeFormat($resultObj->created_at, 'j M y');
+                $attempts_array[$created_at] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+                $attempts_labels[] = $created_at;
+                $attempts_values[] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+            }
+        }
+        $attempts_array = array_reverse($attempts_array);
+        $attempts_labels = array_reverse($attempts_labels);
+        $attempts_values = array_reverse($attempts_values);
 
 
-        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
-        //pre(DB::getQueryLog());
-        //DB::disableQueryLog();
-
-
-        $rendered_view = view('web.default.timestables.trophy_mode', [])->render();
+        $rendered_view = view('web.default.timestables.trophy_mode', [
+            'results_data'    => $results_data,
+            'attempts_array'  => $attempts_array,
+            'attempts_labels' => $attempts_labels,
+            'attempts_values' => $attempts_values,
+        ])->render();
         echo $rendered_view;
         die();
     }
@@ -1577,6 +1598,7 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+        $weekNumber = $request->get('weekNumber', 0);
         /*$usersList = User::where('role_id', 1)->where('showdown_time_consumed', '>', 0)
             ->orderByDesc('showdown_correct')
             ->orderBy('showdown_time_consumed', 'asc')
@@ -1585,16 +1607,24 @@ class TimestablesController extends Controller
         $user_rank = ( $user_rank !== false)? $user_rank+1 : $user_rank;
         */
 
-        $currentDate = new \DateTime();
 
-        // Find the last Monday
-        $currentDate->modify('last monday');
-        $lastMonday = $currentDate->format('Y-m-d');
+        $currentDate = Carbon::now();
+        $currentWeek = $currentDate->weekOfYear;
+        if( $weekNumber > 0){
+            $currentDate = Carbon::now()->setISODate(date('Y'), $weekNumber, 1);
+        }
+        $currentWeekStartDate = $currentDate->clone()->startOfWeek();
+        $currentWeekEndDate = $currentDate->clone()->endOfWeek();
+
+        $selectedWeek = $currentDate->weekOfYear;
+
+        $previousWeek = ($selectedWeek-1);
+
+
+        $lastMonday = $currentWeekStartDate->toDateString();
         $lastMonday .= ' 00:00:00';
 
-        // Find next Friday
-        $currentDate->modify('next sunday');
-        $nextSunday = $currentDate->format('Y-m-d');
+        $nextSunday = $currentWeekEndDate->toDateString();
         $nextSunday .= ' 23:59:59';
 
         $lastMonday = strtotime($lastMonday);
@@ -1607,8 +1637,12 @@ class TimestablesController extends Controller
 
         $alreadyAttempt = $leaderboardResults->contains('user_id', $user->id);
 
+        if( $selectedWeek != $currentWeek){
+            $alreadyAttempt = true;
+        }
 
-        $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults])->render();
+
+        $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults, 'selectedWeek' => $selectedWeek, 'currentWeek'=>$currentWeek, 'previousWeek'=>$previousWeek ])->render();
         echo $rendered_view;
         die();
     }

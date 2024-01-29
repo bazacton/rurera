@@ -767,9 +767,9 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="col-12 col-lg-12">
-                                                                @include('web.default.includes.footer')
-                                                            </div>
+                            <div class="col-12 col-lg-12">
+                                @include('web.default.includes.footer')
+                            </div>
                         </div>
 
                         </div>

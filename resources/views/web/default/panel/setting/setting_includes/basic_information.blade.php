@@ -68,8 +68,8 @@ $avatar_color_settings = json_encode($avatar_color_settings);
             </div>
 
             <div class="form-group">
-                <a class="btn btn-sm btn-primary ml-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
-                <a class="btn btn-sm btn-primary ml-15 regenerate-pin" href="javascript:;">Generate Pin</a>
+                <a class="btn btn-sm btn-primary d-block mb-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
+                <a class="btn btn-sm btn-primary d-block regenerate-pin" href="javascript:;">Generate Pin</a>
             </div>
 
         </div>

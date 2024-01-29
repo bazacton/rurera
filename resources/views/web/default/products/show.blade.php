@@ -26,7 +26,6 @@
                     @endif
                 </div>
 
-
                 <div class="product-show-thumbnail-card d-flex align-items-center mt-20">
                     <div class="thumbnail-card is-first-thumbnail-card cursor-pointer position-relative">
                         <img src="{{ $product->thumbnail }}" alt="{{ $product->title }}" class="img-cover rounded-sm" loading="lazy" width="100%" height="auto" itemprop="image">
