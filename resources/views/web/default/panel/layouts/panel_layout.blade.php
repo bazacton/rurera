@@ -780,6 +780,14 @@
         </div>
     </div>
     <div class="hidden-footer"></div>
+    <div class="scroll-btn">
+        <div class="round">
+            <div id="cta">
+                <span class="arrow primera next"></span>
+                <span class="arrow segunda next"></span>
+            </div>
+        </div>
+    </div>
 
 
     @include('web.default.includes.advertise_modal.index')
