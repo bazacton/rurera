@@ -46,7 +46,7 @@
                                         <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
                                         <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                     </ul>
-                                    <h4 class="total-tests">Total Tests: {{$sats->count()}}</h4>
+                                    <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
                                 </div>
                             </div>
                         </form>

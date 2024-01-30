@@ -148,4 +148,28 @@ class Quiz extends Model implements TranslatableContract
 
         return null;
     }
+
+    static function getQuizPercentage($SubChapterID)
+    {
+        $chapterItem = WebinarChapterItem::where('type', 'quiz')
+            ->where('parent_id', $SubChapterID)
+            ->first();
+
+        $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;
+
+        $quizObj = Quiz::find($id);
+
+        $quizResults = isset( $quizObj->parentResults )? $quizObj->parentResults : array();
+        $quiz_percentage = 0;
+
+        if( !empty( $quizResults ) ){
+            foreach( $quizResults as $resultObj){
+                $total_questions = count(json_decode($resultObj->questions_list));
+                $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->count();
+                $percentage = ($correct_questions * 100)/$total_questions;
+                $quiz_percentage = ($quiz_percentage <= $percentage)? round($percentage) : $quiz_percentage;
+            }
+        }
+        return $quiz_percentage;
+    }
 }

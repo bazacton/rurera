@@ -1,4 +1,4 @@
-@php $rand_id = rand(999,99999); $layout_type = isset( $layout_type )? $layout_type : ''; @endphp
+@php use App\Http\Controllers\Web\QuestionsAttemptController; $rand_id = rand(999,99999); $layout_type = isset( $layout_type )? $layout_type : ''; @endphp
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -22,11 +22,23 @@
 @php
 
 $group_questions_layout  = isset( $group_questions_layout )? $group_questions_layout : '';
+$layout_elements  = isset( $question->layout_elements )? json_decode($question->layout_elements) : array();
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
 $question_layout = str_replace('<div class="group_questions_data">Questions Group</div>', $group_questions_layout, $question_layout);
 $search_tags = ($question->search_tags != '')? explode(' | ', $question->search_tags) : array();
 $is_development = (!empty( $search_tags ) && in_array('development', $search_tags))? true : false;
 $total_questions = count(json_decode($quizAttempt->questions_list));
+
+$QuestionsAttemptController = new QuestionsAttemptController();
+$correctAnswers = $QuestionsAttemptController->get_question_correct_answers($question);
+$element_data = json_decode($question->elements_data);
+$layout_elements = json_decode($question->layout_elements);
+if( !empty( $correctAnswers)){
+    foreach( $correctAnswers as $correct_answer){
+        echo implode(',', $correct_answer).'<br>';
+    }
+    echo '<br>';
+}
 
 if( $layout_type == 'results'){
     $total_questions = count(json_decode($quizResultObj->questions_list));

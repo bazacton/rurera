@@ -19,6 +19,9 @@
     overflow: hidden;
     padding-top: 80px;
 }
+.learning-page .learning-page {
+    padding-top: 0;
+}
 .menu-closed .panel-sidebar ~ .learning-page-content {
     /* margin-left: 100px; */
     margin-left: 15px;

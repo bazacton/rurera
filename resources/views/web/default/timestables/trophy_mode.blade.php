@@ -1,27 +1,6 @@
 <section class="p-25 panel-border border-radius-10">
     <div class="container">
         <div class="row">
-
-            <canvas id="trophy_chart"></canvas>
-            @if( !empty( $attempts_array ) )
-
-            @endif
-            <table class="simple-table text-left">
-                <thead>
-                    <tr>
-                        <th>When</th>
-                        <th>Your Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach( $results_data as $resultsRow)
-                        <tr>
-                            <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
-                            <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>
             </div>
@@ -35,6 +14,26 @@
                     </div>
                 </form>
             </div>
+            <canvas id="trophy_chart"></canvas>
+               @if( !empty( $attempts_array ) )
+
+               @endif
+               <table class="simple-table text-left">
+                   <thead>
+                       <tr>
+                           <th>When</th>
+                           <th>Your Score</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       @foreach( $results_data as $resultsRow)
+                           <tr>
+                               <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
+                               <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
+                           </tr>
+                       @endforeach
+                   </tbody>
+               </table>
         </div>
     </div>
 </section>

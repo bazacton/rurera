@@ -973,6 +973,11 @@ class WebinarController extends Controller
 
         $quiz = Quiz::find($id);
 
+        $quizPercentage = Quiz::getQuizPercentage($quiz);
+
+        pre($quizPercentage);
+
+
         $QuestionsAttemptController = new QuestionsAttemptController();
         //$started_already = $QuestionsAttemptController->started_already($id);
 

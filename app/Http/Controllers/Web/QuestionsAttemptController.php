@@ -324,6 +324,7 @@ class QuestionsAttemptController extends Controller
                                 }
                             }
                         }
+                        $correct_answers[$field_key] = $question_correct;
                     }
 
                     $data_field_type = isset($elementData->{'data-field_type'}) ? $elementData->{'data-field_type'} : '';
@@ -912,6 +913,7 @@ class QuestionsAttemptController extends Controller
                 $user_input = str_replace('&nbsp;', '', $user_input);
             }
 
+            $question_correct = array_map('ucfirst', $question_correct);
             if (!in_array($user_input, $question_correct)) {
                 $is_question_correct = false;
             } else {

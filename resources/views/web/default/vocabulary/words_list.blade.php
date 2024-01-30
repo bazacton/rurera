@@ -20,19 +20,16 @@
         <a href="/spells">Back to List</a>
         <div class="container">
 
-            <div class="row pt-80 pb-70">
+            <div class="row pt-15 pb-70">
 
                 @if( !empty( $spellQuiz))
 
                 <div class="col-12">
                     <section class="lms-data-table spells spells-data-list elevenplus-block">
-                        <h3>
+                        <h3 class="font-22 mb-30">
                             {{$spellQuiz->getTitleAttribute()}} Words List
                             <span>We have a great range of question types to&nbsp;choose&nbsp;from.</span>
                         </h3>
-                        <div class="spells-topbar">
-                            <p>This is a preview. View this spelling list in EdShed, with full data available to subscribers.</p>
-                        </div>
                         <div class="spells-table-inner">
                             <table class="table table-striped table-bordered dataTable">
                                 <thead>

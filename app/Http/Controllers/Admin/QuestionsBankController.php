@@ -466,11 +466,12 @@ class QuestionsBankController extends Controller
 
         $difficulty_level = 'Emerging';
         $question_type = 'true_false';
-        $quiz_id = 40;
+        $quiz_id = 250;
         $example_question_id = 9012;
         $year_id = 616;
         $subject_id = 2082;
         $chapter_id = 195;
+        $sub_chapter = 88;
         $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
         $quizObj = Quiz::find($quiz_id);
 
@@ -580,7 +581,6 @@ class QuestionsBankController extends Controller
 
                         $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
 
-
                         $quizQuestion = QuizzesQuestion::create([
                             'quiz_id'                   => 0,
                             'creator_id'                => $user->id,
@@ -599,7 +599,7 @@ class QuestionsBankController extends Controller
                             'layout_elements'           => $layout_elements,
                             'category_id'               => $year_id,
                             'course_id'                 => $subject_id,
-                            'sub_chapter_id'            => 0,
+                            'sub_chapter_id'            => $sub_chapter,
                             'type'                      => 'descriptive',
                             'created_at'                => time(),
                             'question_status'           => 'Submit for review',
@@ -651,11 +651,12 @@ class QuestionsBankController extends Controller
 
         $difficulty_level = 'Expected';
         $question_type = 'single_select';
-        $quiz_id = 31;
+        $quiz_id = 250;
         $example_question_id = 9213;
         $year_id = 616;
         $subject_id = 2082;
         $chapter_id = 195;
+        $sub_chapter = 88;
         $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
         $quizObj = Quiz::find($quiz_id);
 
@@ -734,6 +735,7 @@ class QuestionsBankController extends Controller
                                 $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
                             }
                         }
+                        //pre($element_data_decoded_new);
                         $element_data = json_encode($element_data_decoded_new);
 
                         /*
@@ -788,7 +790,7 @@ class QuestionsBankController extends Controller
                             'layout_elements'           => $layout_elements,
                             'category_id'               => $year_id,
                             'course_id'                 => $subject_id,
-                            'sub_chapter_id'            => 0,
+                            'sub_chapter_id'            => $sub_chapter,
                             'type'                      => 'descriptive',
                             'created_at'                => time(),
                             'question_status'           => 'Submit for review',
@@ -839,11 +841,12 @@ class QuestionsBankController extends Controller
 
         $difficulty_level = 'Emerging';
         $question_type = 'dropdown';
-        $quiz_id = 32;
+        $quiz_id = 250;
         $example_question_id = 8614;
         $year_id = 616;
         $subject_id = 2082;
         $chapter_id = 195;
+        $sub_chapter = 88;
         $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
         $quizObj = Quiz::find($quiz_id);
 
@@ -920,6 +923,9 @@ class QuestionsBankController extends Controller
                                 $element_data_decoded_new->{$key} = $this->get_question_updated_element_data($element_data_value, $updated_array, $random_id, $question_type);
                             }
                         }
+
+
+                        //pre(json_decode($element_data));
                         $element_data = json_encode($element_data_decoded_new);
 
                         /*
@@ -975,7 +981,7 @@ class QuestionsBankController extends Controller
                             'layout_elements'           => $layout_elements,
                             'category_id'               => $year_id,
                             'course_id'                 => $subject_id,
-                            'sub_chapter_id'            => 0,
+                            'sub_chapter_id'            => $sub_chapter,
                             'type'                      => 'descriptive',
                             'created_at'                => time(),
                             'question_status'           => 'Submit for review',
@@ -1026,11 +1032,12 @@ class QuestionsBankController extends Controller
 
         $difficulty_level = 'Exceeding';
         $question_type = 'text_field';
-        $quiz_id = 33;
-        $example_question_id = 10247;
+        $quiz_id = 250;
+        $example_question_id = 9254;
         $year_id = 616;
         $subject_id = 2082;
         $chapter_id = 195;
+        $sub_chapter = 88;
         $exampleQuestionObj = QuizzesQuestion::find($example_question_id);
         $quizObj = Quiz::find($quiz_id);
 
@@ -1143,7 +1150,6 @@ class QuestionsBankController extends Controller
 
                         $question_layout = htmlentities(base64_encode(json_encode($question_layout)));
 
-
                         $quizQuestion = QuizzesQuestion::create([
                             'quiz_id'                   => 0,
                             'creator_id'                => $user->id,
@@ -1162,7 +1168,7 @@ class QuestionsBankController extends Controller
                             'layout_elements'           => $layout_elements,
                             'category_id'               => $year_id,
                             'course_id'                 => $subject_id,
-                            'sub_chapter_id'            => 0,
+                            'sub_chapter_id'            => $sub_chapter,
                             'type'                      => 'descriptive',
                             'created_at'                => time(),
                             'question_status'           => 'Submit for review',
@@ -1288,7 +1294,7 @@ class QuestionsBankController extends Controller
 
             if( $question_type == 'text_field'){
 
-                $previous_text_response = '<span class="input-holder input_line"><span class="input-label left" contenteditable="false"></span><input data-field_type="text" class="editor-field input-simple input_line medium" data-id="68322" id="field-68322" data-score="1" score="1" data-placeholder="" placeholder="" data-label="" data-label_position="left" data-size="" size="" data-style_field="input_line" data-field_size="medium" data-type="text" type="text" data-correct_answere="correctAnswer" correct_answere="correctAnswer"> </span>';
+                $previous_text_response = '<span class="input-holder input_line"><span class="input-label" contenteditable="false"></span><input type="text" class="editor-field input-simple medium input_line" id="field-68450" size="" score="1" placeholder=""> </span>';
                 $question_after_label = isset( $updated_array['question_after_label'] ) ? $updated_array['question_after_label'] : '';
                 $explode_content = explode('[Blank]', $question_after_label);
                 $question_before_text = isset( $explode_content[0] )? $explode_content[0] : '';
@@ -1343,6 +1349,7 @@ class QuestionsBankController extends Controller
 
                 $element_data_value_new->{'data-options'} = $dropdown_options_str;
                 $element_data_value_new->{'data-correct'} = $correct_answer_str;//json_encode($correct_answer_array);
+                $element_data_value_new->{'data-select_option'} = $correct_answer;//json_encode($correct_answer_array);
                 $element_data_value_new->{'data-id'} = $random_id;
                 $element_data_value_new->{'id'} = 'field-'.$random_id;
                 //$options_temp = html_entity_decode(base64_decode(trim(stripslashes($options))));
@@ -1511,10 +1518,11 @@ class QuestionsBankController extends Controller
                 }
 
                 $question_layout = str_replace("Don't know", 'Dont know', $question_layout);
-                $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0">True</label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-1" value="Option 2"><label for="field-' . $random_id . '-1">False</label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-2" value="Option 2"><label for="field-' . $random_id . '-2">Dont know</label></div></div>';
+
+                $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">True</span></label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-1" value="Option 2"><label for="field-' . $random_id . '-1"><span class="inner-label">False</span></label></div><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-2" value="Option 3"><label for="field-' . $random_id . '-2"><span class="inner-label">Dont know</span></label></div></div>';
 
                 if ($question_type == 'single_select') {
-                    $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0">Option1</label></div></div>';
+                    $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">Option 1</span></label></div></div>';
                 }
 
                 $question_layout = str_replace($replaceable, '<div class="lms-radio-select rurera-in-row undefined ">' . $radio_layout_response . '</div>', $question_layout);

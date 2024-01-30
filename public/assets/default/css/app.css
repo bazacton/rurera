@@ -39,7 +39,6 @@
 html {
     /* overflow: auto !important; */
     scroll-behavior: smooth;
-    height: 100%;
 }
 .btn-text-primary {
     color: #27325e !important
@@ -14500,14 +14499,15 @@ Lms Describe Sentences Style
 /*********************************
 Lms Chapter Style Start
 **********************************/
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {border: 2px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 25px;}
+.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {background-color: #fff; border: 2px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 25px;}
 .lms-chapter-area .lms-chapter-ul .element-title h2 {margin: 0 0 20px;}
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 0;}
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid;}
+.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid; margin-bottom: 14px;}
+.lms-chapter-area .lms-chapter-ul >li ul li a {width: calc(100% - 30px); vertical-align: top;}
 .show-more-btn {color: var(--primary); font-weight: 500; display: inline-block; position: relative; padding-right: 15px; font-size: 15px; cursor: pointer;}
 .show-more-btn:after {content: ""; position: absolute; right: 0; border: 2px solid; height: 8px; width: 8px; border-top: 0; border-left: 0; transform: rotate(45deg); top: 50%; margin-top: -4px; }
 .mastery-banner-card {border-style: solid; border-width: 4px 1px 1px 1px; border-color: #dbdbdb; border-top-color: #1f64f0; border-radius: 5px; margin: 0 0 30px; padding: 30px;}
-.lms-chapter-area .sidebar-nav .sidebar-title {margin-top: 0; margin-bottom: 20px;}
+.lms-chapter-area .sidebar-nav .sidebar-title {font-size: 1.6rem; margin-top: 0; margin-bottom: 20px;}
 /* .mastery-banner-card:after { background: url(../img/quiz/bg-challenge.png) no-repeat right top; width: 585px; height: 196px; position: absolute; right: 0; top: 4px; content: ""; } */
 .mastery-banner-card strong {display: block; margin: 0 0 8px; line-height: normal;}
 .mastery-banner-card p {font-size: 15px; font-weight: 500; line-height: 24px; margin: 0 0 20px;}
@@ -14515,7 +14515,7 @@ Lms Chapter Style Start
 .lms-chapter-area {display: flex; align-items: flex-start; }
 .lms-chapter-area .row {width: 100%;}
 .sidebar-nav {margin-bottom: 20px;}
-.sidebar-nav ul {margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap;}
+.sidebar-nav ul {margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap;overflow: hidden;}
 /* .sidebar-nav ul li.active a,
 .sidebar-nav ul li:hover a {
     background-color: #146ebe;
@@ -14525,8 +14525,9 @@ Lms Chapter Style Start
     margin-left: -12px;
 } */
 .sidebar-nav ul li {line-height: normal; margin: 0;}
-.sidebar-nav ul li a {font-size: 15px; font-weight: 600; color: var(--primary); padding: 0 15px 12px 0; display: block; transition: all 0.3s ease-in-out;}
+.sidebar-nav ul li a {font-size: 15px; font-weight: 600; color: var(--primary); padding: 0 25px 12px 0; display: block; transition: all 0.3s ease-in-out; position: relative;}
 .sidebar-nav ul li a:hover {color: #333;}
+.sidebar-nav ul li a:before {background-color: #ccc; border-radius: 100%; position: absolute; left: -15px; top: 50%; content: ""; height: 6px; width: 6px; margin-top: -9px;}
 .lms-chapter-area .lms-chapter-footer {background: #63e6be; padding: 25px 30px; border-radius: 30px; position: relative; margin-top: 30px;}
 .lms-chapter-area .lms-chapter-footer .lms-chapter-icon {position: absolute; bottom: 7px; left: 15px;}
 .lms-chapter-area .lms-chapter-widget {max-width: 500px; margin: 0 auto; position: relative;}
@@ -15294,7 +15295,6 @@ Custom Pagination Style End
 }
 @media (max-width:767px) {
     .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 1; column-count: 1;}
-    .categories-boxes .categories-card {margin-bottom: 30px; padding-left: 0; padding-right: 0;}
     .pages-sub-header .sub-header-img {display: none;}
 }
 @media (max-width:575px) {
@@ -15302,6 +15302,9 @@ Custom Pagination Style End
     .count-number-boxes .count-number-card {padding-left: 15px; border-left: 0;}
     .count-number-boxes .count-number-card:nth-child(3) {padding-left: 15px;}
     .footer .footer-logo {width: 100%;}
+    .categories-card.medium .categories-text .categories-title {margin-bottom: 5px;}
+    .categories-card.medium .categories-text {text-align: left;}
+    .categories-card.medium .learning-btn {display: block; position: initial; transform: none; margin: 0 0 6px;}
 }
 /* Count Number Boxes Style End */
 /* Panel Sidebar And Panel Content Style Start */
@@ -15325,16 +15328,15 @@ Custom Pagination Style End
 .panel-page-section {background-color: #fafafc; padding-bottom: 50px;} */
 .panel-page-section .panel-content {/*width: 100%; padding: 0; margin-top: 40px;*/ background-color: #fafafa; height: 100%;}
 /* .panel-page-section .panel-sidebar .sidebar-menu.pt-10 {margin-top: -10px;} */
-body:has(.container-nosidebar) {background-color: #fafafa; height: 100%;}
+body:has(.container-nosidebar) {height: 100%;}
+body:has(.panel-right-sidebar),
+body:has(.container-nosidebar) {background-color: #fafafa;}
 /* Panel Sidebar And Panel Content Style End */
 /****************************************
  Sigup Pages Style Start
 *****************************************/
 .hero {width: 100%; margin-top: 0; margin-bottom: 0; padding-top: 40px; padding-bottom: 100px; font-size: 45px; overflow: visible;}
 .video-container {width: 80%; height: auto; max-width: none; margin: auto; display: block;}
-.post-show h1,
-.post-show h2,
-.post-show h3 {font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px;}
 .section-wrap {width: 95%; height: auto; max-height: none; max-width: 1350px; flex-direction: row; margin-top: 40px; margin-left: auto; margin-right: auto; display: flex;}
 .div-block-24 {width: 50%; flex-direction: column; justify-content: center; align-items: flex-start; font-size: 50%; display: flex;}
 .div-block-25 {width: 50%; justify-content: center; display: flex;}
@@ -15347,9 +15349,6 @@ body:has(.container-nosidebar) {background-color: #fafafa; height: 100%;}
 .text-block-19 { color: #27325e; text-align: center; font-family: Mont, sans-serif; font-size: 20px; font-weight: 800; line-height: 30.67px;}
 .section-3 {margin-bottom: 0; padding-top: 50px; padding-bottom: 50px;}
 .container-headers-copy {width: 90%; height: auto; flex-direction: column; align-items: center; display: flex; }
-.post-show h1,
-.post-show h2,
-.post-show h3 {font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px;}
 .small-header {text-align: center; letter-spacing: 8px; margin-bottom: 0; font-size: 16px; font-weight: 800;}
 .big-header.black-font {color: #fff; color: #000; margin-top: 10px; margin-bottom: 10px; font-size: 40px; position: relative; }
 .paragraph-10 {width: 80%; color: gray; text-align: center; margin-left: auto; margin-right: auto; font-size: 20px; line-height: 28.6px; text-decoration: none; display: block;}
@@ -15377,9 +15376,6 @@ body:has(.container-nosidebar) {background-color: #fafafa; height: 100%;}
 .video-container-copy {width: 63%; max-width: none; flex-direction: row; justify-content: center; align-items: center; margin: auto; display: block; }
 .w-embed-youtubevideo {width: 100%; background-image: url(https://d3e54v103j8qbb.cloudfront.net/static/youtube-placeholder.2b05e7d68d.svg); background-position: 50%; background-size: cover; padding-bottom: 0; padding-left: 0; padding-right: 0; position: relative;}
 .big-header.black-font {color: #fff; color: #27325e; margin-top: 10px; margin-bottom: 10px; font-size: 40px; position: relative; }
-.post-show h1,
-.post-show h2,
-.post-show h3 {font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px;}
 .big-header {color: #27325e; text-align: center; font-size: 50px;}
 .div-block-43 {height: 80px; flex-direction: row; display: flex;}
 .div-block-44 {width: 50%; flex-direction: column; justify-content: center; display: flex;}
@@ -15391,9 +15387,6 @@ body:has(.container-nosidebar) {background-color: #fafafa; height: 100%;}
 .div-block-26 {width: 85%; height: auto; max-width: 1350px; flex-direction: column; justify-content: space-between; align-items: center; margin-bottom: 10px; margin-left: auto; margin-right: auto; display: flex;}
 .div-block-18 {flex-direction: row; justify-content: center; align-items: stretch; margin-top: 10px; margin-bottom: 10px; display: flex;}
 .text-block-17 {margin-top: 0; margin-bottom: 0; font-family: Mont, sans-serif; font-size: 19px; font-weight: 700;}
-.post-show h1,
-.post-show h2,
-.post-show h3 {font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px; line-height: 115%;}
 .first-section-header {color: #27325e; text-align: left; text-transform: capitalize; margin-top: 10px; margin-bottom: 10px; margin-right: 40px; font-family: Mont, sans-serif; font-size: 50px; font-style: normal;}
 .section-wrap {width: 95%; height: auto; max-height: none; max-width: 1350px; flex-direction: row; margin-top: 40px; margin-left: auto; margin-right: auto; display: flex;}
 .button.jumbo-button.sign-up.green.big-button {width: 250px; height: 60px; color: #fff; background-color: #27325e; border: 1px solid #27325e; border-radius: 100px; justify-content: center; text-decoration: none; align-items: center; margin-top: 0; margin-bottom: 0; margin-left: 0; display: flex; position: static;}
@@ -16946,14 +16939,15 @@ Heatmap Table style Start
 .heatmap-table-text li {font-weight: 700;}
 .range-play-btn {height: 34px; width: 34px; display: inline-flex; align-items: center; justify-content: center; background-color: rgba(0,0,0,0.1); border-radius: 100%; font-size: 20px; margin-right: 10px; flex-basis: 34px;}
 .heatmap-range-slider {display: flex; align-items: center; margin: 0 0 30px; flex-wrap: wrap;}
-.heatmap-range-slider .ui-slider.ui-widget-content {background-color: var(--primary); margin-right: 20px; flex-basis: 72%;width: 72%; border: 0; height: 2px;}
+.heatmap-range-slider .ui-slider.ui-widget-content {background-color: var(--primary); margin-right: 20px; flex-basis: 72%;width: 72%; border: 0; height: 2px; position: relative;}
 .heatmap-range-slider .ui-slider .ui-slider-range {background-color: #e9e9e9;}
-.heatmap-range-slider .ui-slider-horizontal .ui-slider-handle {background-color: var(--primary); border-radius: 100%; border: 0; top: 50%; margin-top: -8px; margin-left: -1px;height: 16px; width: 16px;}
+.heatmap-range-slider .ui-slider-horizontal .ui-slider-handle {background-color: var(--primary); border-radius: 100%; border: 0; top: 50%; position: absolute; margin-top: -8px; margin-left: -1px;height: 16px; width: 16px; cursor: pointer; transition: all .4s ease;}
 .heatmap-range-slider .range-value {background-color: rgba(0,0,0,0.1); display: inline-flex; padding: 10px 12px; border-radius: 5px; flex-basis: 130px; width: 130px;}
 .range-value input {width: calc(100% - 82px); border: 0; background-color: initial; font-weight: 700;}
 .range-value span {max-width: 80px; font-size: 16px; font-weight: 700; color: #000;}
 .heatmap-table td span {display: inline-flex;}
-.heatmap-table-holder {overflow: hidden; overflow-x: auto;}
+.heatmap-table-holder {overflow: hidden; overflow-x: auto; width: 100%;}
+.timestables-mode-block .heatmap-table th, .timestables-mode-block .heatmap-table td {padding: 10px 13px;}
 .heatmap-table-holder table.heatmap-table {overflow: hidden;}
 .heatmap-table .summary-table-item {position: relative;}
 .heatmap-table .summary-table-item:after {display: block; content: ""; margin-bottom: 15px;}
@@ -17290,6 +17284,7 @@ Product Tabs Slider Style Start
 .chart-filters li a {font-size: 15px; color: #66667e; display: block; line-height: normal; padding: 12px 14px; font-weight: 500; border-radius: 5px 5px 0 0;}
 .chart-filters .filter-icon {margin-right: 5px;}
 .analytics-type li a {border: 1px dashed #ddd; text-align: center; padding: 20px 15px; min-width: 125px;}
+.chart-filters .analytics-type .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
 .chart-filters .analytics-type {width: 100%; margin: 0 0 25px; flex-wrap: wrap;}
 .analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: auto; height: auto;}
 .chart-filters > ul > li > a.active {background-color: rgba(0,0,0,0.1);color: #2c4a7e;}
@@ -17595,6 +17590,11 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .dashboard-filters {background-color: #fff; padding: 15px 15px; border-radius: 10px; border: 1px solid #ddd;}
 .dashboard-filters ul {display: flex; align-items: center; gap: 17px;}
 .dashboard-filters li a {font-size: 15px; font-weight: 500;}
+.profile-image-holder a.btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Spell Levels Style Start */
 .spell-levels ul {display: none;flex-wrap: wrap;gap: 30px;justify-content: center;flex-direction: column; padding: 0 20px 20px 30px;}
@@ -17603,7 +17603,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels li > a:before {content: ""; height: 70%; width: 4px; position: absolute; left: 50%; top: 100%; margin-left: -2px; background-color: #b0b0b0; margin-top: 10px;}
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
-.spell-levels {background-color: #fff; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-levels {border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
 .spell-completed {overflow: hidden;}
 .spell-completed:before {content: "\2713";position: absolute;right: -6px;top: 24px;width: 35px;height: 35px;text-align: center;border-radius: 100%;background-color: #5acb01;color: #fff;line-height: 35px;font-weight: 700;box-shadow: 0 -2px 0 1px rgba(0,0,0,0.2) inset;}
 .spell-levels .completed a {background-color: #8ad1ef; color: #fff; box-shadow: 0 6px 0 1px #2397d2;}
@@ -17683,12 +17683,11 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .products-top-header .banner-holder {margin-top: 0;}
 .panel-content .lms-text-section {padding: 25px !important;}
 .panel-content .spell-levels .panel-subheader {padding-right: 160px; margin-bottom: 100px;}
-.treasure-mission-layout .spell-levels .horizontal-list {margin: 0 0 220px; position: relative;}
+.treasure-mission-layout .spell-levels .horizontal-list {margin: 0 -15px 220px 0; position: relative;}
 .panel-content .spell-levels .treasure-stage:last-child .horizontal-list {margin-bottom: 100px;}
 .treasure-mission-layout .spell-levels .horizontal-list li {display: inline-flex; width: auto; margin: 0 0 0 7.444%; width: 13.222%; box-sizing: border-box;}
 .treasure-mission-layout .spell-levels .horizontal-list li:first-child {margin-left: 0;}
 .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 100%; height: 4px; top: 50%; margin-top: -2px; left: 100%; margin-left: 18%;background-color: #e9e9e9;}
-.treasure-mission-layout .spell-levels li > a {width: 68%;}
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {direction: rtl;}
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {margin-left: 0; margin-right: 7.444%; justify-content: flex-end; }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {right: 100%; left: auto; margin-left: 0; margin-right: 18%;}
@@ -17739,6 +17738,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .tests-list img {width: 30px; height: 30px; object-fit: contain; }
 .panel-content .lms-jobs-form .input-field input[type="text"] {padding-right: 45px;}
 .panel-content .lms-jobs-form .input-field:before {content: ""; height: 25px; width: 25px; position: absolute; right: 15px; top: 50%; margin-top: -12px; background: url(/assets/default/svgs/search.svg) no-repeat;}
+.listing-search .has-border {border-bottom: 1px solid #e2e2e2; padding: 0 0 25px 0; }
 /* Trophy Levels Style Start */
 .trophy-levels .spell-levels li > a {height: 30px; width: 35px;}
 .trophy-levels .spell-levels li > a:before {display: none; }
@@ -17774,7 +17774,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-subheader .info-modal-btn {height: 20px; width: 20px; display: inline-block; cursor: pointer; line-height: 20px; margin-left: 5px;}
 .panel-subheader .info-modal-btn img {max-width: 100%; vertical-align: top; }
 .spell-levels .panel-subheader h2 {display: inline-block; vertical-align: middle;}
-.treasure-stage {width: 100%; display: inline-block; }
+.treasure-stage {width: 100%; display: inline-block; padding-left: 20px; }
 .panel-stats {background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe; background-position: 96% 100%; padding: 25px 20px; border-radius: 5px; margin: 0 0 25px;}
 .stats-user {margin: 0 0 20px;}
 .stats-user > a {display: flex; align-items: center; gap: 10px;}
@@ -17887,6 +17887,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .rurera-hide {
     display: none;
 }
+.panel-page-section .timestables-mode-content .form-btn {margin-bottom: 25px;}
 
 /*************************************
 Lms Responsive Style Start
@@ -17991,7 +17992,12 @@ Lms Responsive Style Start
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .sats-listing-card tbody tr td:nth-child(2) {text-align: left; min-width: auto;}
     .rurera-list-btn {padding: 10px 15px; min-width: 100px; text-align: center;}
-    .panel-page-section .panel-sidebar {overflow: hidden; position: static !important; padding-top: 25px !important;}
+    .panel-page-section .panel-sidebar {overflow: hidden; position: static !important; padding-top: 25px !important; padding-bottom: 25px !important; height: auto;}
+    .panel-page-section .questions-submit-btn {width: 82%;}
+    .timestables-mode-content .heatmap-range-slider {margin-bottom: 0;}
+    .heatmap-range-slider .range-value {flex-basis: 100%; width: 100%;}
+    .range-value input {width: calc(100% - 120px);}
+    .range-value span {max-width: none;}
     .template-grid .grid-card {margin-bottom: 15px;}
     .challenge-box .tab-pane {overflow: hidden; overflow-x: auto;}
     .challenge-box table {overflow: hidden;}
@@ -18309,7 +18315,7 @@ Lms Responsive Style Start
     .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 60%;margin-left: 5px;width: 30%;margin-left: 5px;height: 2px;margin-top: -1px;}
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {margin-right: 5px;height: 2px;margin-top: -1px;width: 30%;}
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {margin-right: 20px;}
-    .treasure-mission-layout .spell-levels .horizontal-list {margin-bottom: 100px;}
+    .treasure-mission-layout .spell-levels .horizontal-list {margin-bottom: 100px; margin-right: 0;}
     .treasure-mission-layout .spell-levels li > a {box-shadow: 0 3px 0 1px #b0b0b0;}
     .treasure-mission-layout .spell-levels li.treasure > a {box-shadow: none;}
     .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {height: 50%;margin-top: 15px;width: 2px;margin-left: -1px;}
@@ -18383,6 +18389,13 @@ Lms Responsive Style Start
     .panel-content .inline-filters a {width: 100%;}
     .trophy-levels .input::before {left: -46px;}
     .tests-list li {flex-basis: 48%; text-align: center;}
+    .questions-select-option ul {flex-wrap: wrap; padding-right: 1px; padding-bottom: 1px;}
+    .panel-content .questions-select-option li {margin-right: 0; margin-bottom: -1px;}
+    .questions-select-option li:first-child label,
+    .questions-select-option li:last-child label {border-radius: 0;}
+    .panel-content .inline-filters {gap: 15px;}
+    .timestables-mode-content .week-selection-btn {margin-bottom: 5px;}
+    .product-card .product-card-body .product-title {min-height: auto;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -18400,4 +18413,6 @@ Lms Responsive Style Start
     .counter-holder .svg-shapes-top {right: 60px;}
     .counter-holder .svg-shapes-bottom {left: 32px;}
     .spells-quiz-from .form-btn-field {display: flex;flex-direction: column-reverse; padding-left: 20px; padding-right: 20px;}
+    .spell-levels li {align-items: flex-start;}
+    .spell-levels li > a:before {height: 100%; margin-top: 14px;}
 }

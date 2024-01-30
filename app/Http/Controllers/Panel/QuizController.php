@@ -630,6 +630,7 @@ class QuizController extends Controller
 
                     }
 
+
                     if ($quiz->quiz_type == 'vocabulary') {
 
 
@@ -758,6 +759,12 @@ class QuizController extends Controller
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $active_question_id,
             ];
+
+            if ($quiz->quiz_type == 'sats') {
+                $data['duration_type'] = 'total_practice';
+                $data['practice_time'] = $quiz->time;
+                $data['time_interval'] = 0;
+            }
 
             if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {
                 $data['duration_type'] = isset( $duration_type)? $duration_type : '';

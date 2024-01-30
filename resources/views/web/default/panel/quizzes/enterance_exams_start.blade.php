@@ -20,7 +20,17 @@ $rand_id = rand(99,9999);
     }
 
 </style>
-@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : ''; @endphp
+@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : '';
+$duration_type = isset( $duration_type )? $duration_type : 'no_time_limit';
+
+$timer_counter = 0;
+if( $duration_type == 'per_question'){
+$timer_counter = $time_interval;
+}
+if( $duration_type == 'total_practice'){
+$timer_counter = $practice_time;
+}
+@endphp
 <div class="content-section">
 
     <section class="lms-quiz-section">
@@ -119,7 +129,7 @@ $rand_id = rand(99,9999);
                                        <div class="swiper-button-next"></div>
                                    </div>
                                 <div class="quiz-timer">
-                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="0">0s</div></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{($practice_time*60)}}">0s</div></span>
                                 </div>
                                 <div class="instruction-controls">
                                     <div class="font-setting">
@@ -317,7 +327,7 @@ $rand_id = rand(99,9999);
 
     var Quizintervals = null;
 
-       var duration_type = 'no_time_limit';
+    var duration_type = '{{$duration_type}}';
 
     function quiz_default_functions() {
 
@@ -333,6 +343,11 @@ $rand_id = rand(99,9999);
                 $('.nub-of-sec').html(getTime(quiz_timer_counter));
             }
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+            if( quiz_timer_counter == 0){
+                clearInterval(Quizintervals);
+                rurera_loader($(".lms-quiz-section"), 'div');
+                $(".submit_quiz_final").click();
+            }
 
         }, 1000);
 
