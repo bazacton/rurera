@@ -119,6 +119,7 @@ class QuestionsAttemptController extends Controller
         }
 
 
+
         if ($check_question_passed == 0) {
             $QuizzResultQuestionsCount = QuizzResultQuestions::where('parent_type_id', $quizAttempt->parent_type_id)->where('quiz_result_type', $quizAttempt->attempt_type)->where('user_id', $user->id)->where('question_id', $question_id)->where('quiz_result_id', $quizAttempt->quiz_result_id)->where('status', '!=', 'waiting')->count();
             $questionAttemptAllowed = $this->question_attempt_allowed($QuizzesResult, $QuizzResultQuestionsCount);
@@ -145,7 +146,7 @@ class QuestionsAttemptController extends Controller
                     'parent_type_id'   => $quizAttempt->parent_type_id,
                     'quiz_result_type' => $quizAttempt->attempt_type,
                     'review_required'  => $questionObj->review_required,
-                    'is_active'        => 0,
+                    'is_active'        => ($QuizzesResult->active_question_id == $questionObj->id)? 1 : 0,
                     'user_ip'          => getUserIP(),
                     'quiz_level'       => $QuizzesResult->quiz_level,
                 ]);
@@ -1432,11 +1433,12 @@ class QuestionsAttemptController extends Controller
     {
         $question_id = $request->get('question_id');
         $qattempt_id = $request->get('qattempt_id');
+        $actual_question_id = $request->get('actual_question_id');
         $attemptLogObj = QuizzAttempts::find($qattempt_id);
         $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_id', $attemptLogObj->quiz_result_id)->update(array('is_active' => 0));
         $QuizzResultQuestions = QuizzResultQuestions::where('id', $question_id)->where('quiz_result_id', $attemptLogObj->quiz_result_id)->update(array('is_active' => 1));
 
-        $QuizzesResult = QuizzesResult::where('id', $attemptLogObj->quiz_result_id)->update(array('active_question_id' => $question_id));
+        $QuizzesResult = QuizzesResult::where('id', $attemptLogObj->quiz_result_id)->update(array('active_question_id' => $actual_question_id));
     }
 
     /*
@@ -2596,6 +2598,12 @@ class QuestionsAttemptController extends Controller
     public function get_course_practice_questions_list($quiz, $questions_list)
     {
 
+        $user = getUser();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
+        $other_data = array();
+        if( isset( $newQuizStart->id)){
+            $other_data = json_decode($newQuizStart->other_data);
+        }
         $quiz_settings = json_decode($quiz->quiz_settings);
         $quiz_breakdown = $quiz->quiz_settings;
 
@@ -2621,10 +2629,17 @@ class QuestionsAttemptController extends Controller
                 $breakdown_array = is_array($breakdown_array) ? $breakdown_array : (array)$breakdown_array;
                 if (!empty($breakdown_array)) {
                     foreach ($breakdown_array as $question_type => $questions_count) {
+                        $questions_count = isset( $other_data->{$difficulty_level_label}->{$question_type})? count($other_data->{$difficulty_level_label}->{$question_type}) : $questions_count;
                         //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
                         $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
                         if (!empty($questions_array)) {
                             foreach ($questions_array as $questionID) {
+
+                                $resultQuestionObj = QuizzResultQuestions::where('question_id', $questionID)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status','waiting')->first();
+                                if( isset($resultQuestionObj->id)){
+                                    $questionOBJ = QuizzesQuestion::where('id','!=', $questionID)->whereNotIn('id', $questions_list)->whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->first();
+                                    $questionID = isset( $questionOBJ->id)? $questionOBJ->id : $questionID;
+                                }
                                 $practice_breakdown[$difficulty_level_label][$question_type][] = $questionID;
                                 $questions_list[] = $questionID;
                             }

@@ -1063,4 +1063,31 @@ class Webinar extends Model implements TranslatableContract
             }
         }
     }
+
+    static function getSubjectPercentage($courseObj)
+    {
+        $webinar_sub_chapters = isset($courseObj->webinar_sub_chapters) ? $courseObj->webinar_sub_chapters : array();
+        $total_questions = $total_correct_questions = $total_skils = $skills_attempted = 0;
+
+        if( !empty( $webinar_sub_chapters ) ){
+            foreach( $webinar_sub_chapters as $subChapter){
+                $total_skils++;
+                $quiz_percentage = Quiz::getQuizPercentage($subChapter->id, true);
+                $total_questions_new = isset( $quiz_percentage['total_questions_count'] )? $quiz_percentage['total_questions_count'] : 0;
+                $total_questions += $total_questions_new;
+                $total_correct_questions += isset( $quiz_percentage['total_correct_questions'] )? $quiz_percentage['total_correct_questions'] : 0;
+                $skills_attempted += ($total_questions_new > 0)? 1 : 0;
+            }
+        }
+        $percentage = 0;
+        if( $total_questions > 0) {
+            $percentage = ($total_correct_questions * 100) / $total_questions;
+        }
+        $percentage = round($percentage);
+        return array(
+            'percentage' => $percentage,
+            'total_skils' => $total_skils,
+            'skills_attempted' => $skills_attempted,
+        );
+    }
 }

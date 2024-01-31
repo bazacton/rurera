@@ -474,6 +474,7 @@ class QuizController extends Controller
             //$questions_array[] = $questionObj;
             $questions_layout = $results_questions_array = array();
             $active_question_id = $first_question_id = 0;
+            $actual_question_ids = array();
 
 
             //Stores the question id of questions results table with the index of actual question ID
@@ -583,6 +584,7 @@ class QuizController extends Controller
                                 'disable_next'      => 'true',
                                 'disable_prev'      => 'true',
                             ];
+                            $actual_question_ids[$newQuestionResult->id] = $questionObj->id;
                         }
 
                         $questions_result_reference_array[$question_id] = $newQuestionResult->id;
@@ -716,6 +718,7 @@ class QuizController extends Controller
                                         'user_ip'            => getUserIP(),
                                         'parent_question_id' => $resultParentQuestionObj->id
                                     ]);
+                                    $actual_question_ids[$resultQuestionObj->id] = $groupQuestionObj->id;
                                     $group_questions_layout .= html_entity_decode(json_decode(base64_decode(trim(stripslashes($groupQuestionObj->question_layout)))));
                                 }
                             }
@@ -725,6 +728,7 @@ class QuizController extends Controller
                         $resultsQuestionsData['group_questions_layout'] = $group_questions_layout;
                         $question_layout_file = get_quiz_question_layout_file($quiz);
                         $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
+
                     }
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                     $questionDisplayCounter++;
@@ -757,7 +761,8 @@ class QuizController extends Controller
                 'question_points'        => $question_points,
                 'newQuestionResult'      => $newQuestionResult,
                 'questions_status_array' => $questions_status_array,
-                'active_question_id'     => $active_question_id,
+                'active_question_id'     => $resultLogObj->active_question_id,
+                'actual_question_ids' => $actual_question_ids,
             ];
 
             if ($quiz->quiz_type == 'sats') {

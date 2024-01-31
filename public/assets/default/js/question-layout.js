@@ -692,6 +692,7 @@ function init_question_functions() {
     //sort_init();
     $(document).on('click', '.flag-question.notflaged', function (e) {
         var question_id = $(this).attr('data-question_id');
+        var question_no = $(this).attr('data-question_no');
         var qresult_id = $(this).attr('data-qresult_id');
 
         var thisObj = $(this);
@@ -703,7 +704,7 @@ function init_question_functions() {
             },
             data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'flag'},
             success: function (return_data) {
-                $(".quiz-pagination li[data-question_id='" + question_id + "']").addClass('has-flag');
+                $(".quiz-pagination li[data-question_id='" + question_no + "']").addClass('has-flag');
                 thisObj.removeClass('notflaged');
                 thisObj.addClass('flaged');
             }
@@ -714,6 +715,7 @@ function init_question_functions() {
 
     $(document).on('click', '.flag-question.flaged', function (e) {
         var question_id = $(this).attr('data-question_id');
+        var question_no = $(this).attr('data-question_no');
         var qresult_id = $(this).attr('data-qresult_id');
         var thisObj = $(this);
         jQuery.ajax({
@@ -724,7 +726,7 @@ function init_question_functions() {
             },
             data: {"question_id": question_id, "qresult_id": qresult_id, "flag_type": 'unflag'},
             success: function (return_data) {
-                $(".quiz-pagination li[data-question_id='" + question_id + "']").removeClass('has-flag');
+                $(".quiz-pagination li[data-question_id='" + question_no + "']").removeClass('has-flag');
                 thisObj.removeClass('flaged');
                 thisObj.addClass('notflaged');
             }
@@ -778,7 +780,7 @@ function init_question_functions() {
         }
 
         var question_id = $(this).attr('data-question_id');
-        var actual_question_id = $(this).attr('data-actual_question_id');
+
         var li_obj = $('.quiz-pagination ul li[data-question_id="' + question_id + '"]');
         if ($(this).hasClass('correct') || $(this).hasClass('incorrect')) {
             return;
@@ -892,11 +894,12 @@ function init_question_functions() {
         }
 
 
+        var actual_question_id = $(".question-fields").attr('data-question_id');
         //Temporary Commented
         currentRequest = jQuery.ajax({
             type: "POST",
             dataType: 'json',
-            url: '/question_attempt/mark_as_active1',
+            url: '/question_attempt/mark_as_active',
             async: true,
             beforeSend: function () {
                 console.log(currentRequest);

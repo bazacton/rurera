@@ -55,9 +55,32 @@ class QuestionsBankController extends Controller
     public function index(Request $request)
     {
 
+        $user = auth()->user();
+        if( isset( $_GET['import'])){
+            $quiz_ids = array(251,252,253);
+            $questionsList = QuizzesQuestionsList::where('quiz_id', 250)->pluck('question_id')->toArray();
+            if( !empty( $quiz_ids ) ){
+                foreach( $quiz_ids as $quizID){
+                    if( !empty( $questionsList ) ){
+                        foreach( $questionsList as $questionID){
+                            QuizzesQuestionsList::create([
+                               'quiz_id'     => $quizID,
+                               'question_id' => $questionID,
+                               'status'      => 'active',
+                               'sort_order'  => 0,
+                               'created_by'  => $user->id,
+                               'created_at'  => time()
+                           ]);
+                        }
+                    }
+                }
+            }
+
+            pre('Done');
+        }
         //pre($this->getDirContents('New folder/store/'));
 
-        $user = auth()->user();
+
         $this->authorize('admin_questions_bank');
 
         removeContentLocale();
@@ -1523,9 +1546,11 @@ class QuestionsBankController extends Controller
 
                 if ($question_type == 'single_select') {
                     $replaceable = '<div class="lms-radio-select rurera-in-row undefined "><div class="field-holder leform-cr-container-medium leform-cr-container-undefined"><input class="editor-field" type="radio" name="field-' . $random_id . '" id="field-' . $random_id . '-0" value="Option 1"><label for="field-' . $random_id . '-0"><span class="inner-label">Option 1</span></label></div></div>';
+
                 }
 
                 $question_layout = str_replace($replaceable, '<div class="lms-radio-select rurera-in-row undefined ">' . $radio_layout_response . '</div>', $question_layout);
+
             }
         }
         if( $question_type == 'dropdown') {
@@ -1555,7 +1580,7 @@ class QuestionsBankController extends Controller
 
             $replaceable = 'TEXT-REPLACE';
             $question_layout = str_replace($replaceable, $updated_dropdown_response, $question_layout);
-            $question_layout = $updated_dropdown_response;
+            //$question_layout = $updated_dropdown_response;
         }
         if( $question_type == 'text_field') {
 

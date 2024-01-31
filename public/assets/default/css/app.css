@@ -14501,9 +14501,10 @@ Lms Chapter Style Start
 **********************************/
 .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer {background-color: #fff; border: 2px solid #eee; border-radius: 10px; padding: 20px; margin-bottom: 25px;}
 .lms-chapter-area .lms-chapter-ul .element-title h2 {margin: 0 0 20px;}
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 0;}
-.lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid; margin-bottom: 14px;}
-.lms-chapter-area .lms-chapter-ul >li ul li a {width: calc(100% - 30px); vertical-align: top;}
+body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {-moz-column-count: 2; column-count: 2; gap: 15px; padding: 0;}
+body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li {-moz-column-break-inside: avoid; break-inside: avoid; margin-bottom: 14px;}
+body .lms-chapter-area .lms-chapter-ul >li ul li a {width: calc(100% - 30px); vertical-align: top;}
+.lms-chapter-area .lms-chapter-ul >li ul li a img {width: 15px; height: 15px; object-fit: contain; vertical-align: middle; display: inline-block; margin-left: 5px;}
 .show-more-btn {color: var(--primary); font-weight: 500; display: inline-block; position: relative; padding-right: 15px; font-size: 15px; cursor: pointer;}
 .show-more-btn:after {content: ""; position: absolute; right: 0; border: 2px solid; height: 8px; width: 8px; border-top: 0; border-left: 0; transform: rotate(45deg); top: 50%; margin-top: -4px; }
 .mastery-banner-card {border-style: solid; border-width: 4px 1px 1px 1px; border-color: #dbdbdb; border-top-color: #1f64f0; border-radius: 5px; margin: 0 0 30px; padding: 30px;}
@@ -16058,7 +16059,7 @@ Lms Activity-Timeline Style Start
 .timeline-list {margin: 0; padding: 0;}
 .timeline-list li {display: flex; flex-wrap: wrap; margin: 0 0 35px; position: relative;}
 .timeline-list li:before {content: ""; background-color: #dddddd; position: absolute; left: 12px; top: 30px; height: 100%; width: 1px; z-index: -1;}
-.timeline-list li:nth-child(even) {-webkit-animation: float 8s ease-in-out infinite; animation: float 8s ease-in-out infinite; transform: translatey(0px);}
+/* .timeline-list li:nth-child(even) {-webkit-animation: float 8s ease-in-out infinite; animation: float 8s ease-in-out infinite; transform: translatey(0px);}
 .timeline-list li:nth-child(odd) {-webkit-animation: float 12s ease-in-out infinite; animation: float 12s ease-in-out infinite; transform: translatey(0px);}
 @-webkit-keyframes float {
   0% {transform: translatey(0px);}
@@ -16069,7 +16070,7 @@ Lms Activity-Timeline Style Start
   0% {transform: translatey(0px);}
   50% {transform: translatey(-10px);}
   100% {transform: translatey(0px);}
-}
+} */
 .timeline-list li:last-child:after {content: ""; background-color: #b2b2b2; border-radius: 100%; position: absolute; left: 9px; top: 100%; height: 6px; width: 6px; margin-top: 25px;}
 .timeline-icon {width: 26px;}
 .timeline-icon svg,
@@ -16908,7 +16909,7 @@ Heatmap Table style Start
 .heatmap-section {position: relative; background: url(/assets/default/img/mountain.jpg) no-repeat; background-size: cover; padding-top: 70px; padding-bottom: 70px;}
 .panel-content .heatmap-section {padding: 0; background: none;}
 .heatmap-section-inner {background-color: rgba(248,248,248,0.6); padding: 30px; border: 1px solid rgb(186, 195, 202); border-radius: 8px;}
-.panel-content .heatmap-section-inner {background-color: inherit;}
+.panel-content .heatmap-section-inner {background-color: #fff; border-bottom-width: 4px;}
 .heatmap-heading span {display: block; font-size: 14px; padding-top: 0; line-height: normal;}
 .heatmap-heading {position: relative;}
 .heatmap-heading:before {background-color: #6d6d6d; content: ""; height: 1px; position: absolute; left: 0; top: 50%; width: 9px;}
@@ -16944,7 +16945,7 @@ Heatmap Table style Start
 .heatmap-range-slider .ui-slider-horizontal .ui-slider-handle {background-color: var(--primary); border-radius: 100%; border: 0; top: 50%; position: absolute; margin-top: -8px; margin-left: -1px;height: 16px; width: 16px; cursor: pointer; transition: all .4s ease;}
 .heatmap-range-slider .range-value {background-color: rgba(0,0,0,0.1); display: inline-flex; padding: 10px 12px; border-radius: 5px; flex-basis: 130px; width: 130px;}
 .range-value input {width: calc(100% - 82px); border: 0; background-color: initial; font-weight: 700;}
-.range-value span {max-width: 80px; font-size: 16px; font-weight: 700; color: #000;}
+.range-value span {max-width: 80px; font-size: 15px; font-weight: 700; color: #000;}
 .heatmap-table td span {display: inline-flex;}
 .heatmap-table-holder {overflow: hidden; overflow-x: auto; width: 100%;}
 .timestables-mode-block .heatmap-table th, .timestables-mode-block .heatmap-table td {padding: 10px 13px;}
@@ -16986,6 +16987,12 @@ Heatmap Table style Start
 .question-summary .lms-radio-lists .questions-controls {display: inline-block;width: 100%;text-align: right;position: absolute;}
 .question-summary .lms-radio-lists .time-of-answer {display: inline-block;padding: 8px 8px;text-align: center;}
 .question-summary .lms-radio-lists .selected-text-field {margin: 0 0 10px;}
+
+.panel-content .col-6 .heatmap-table-holder .range-value span {font-size: 13px; text-align: right; }
+.panel-content .col-6 .heatmap-range-slider .range-value {padding: 5px; flex-basis: 110px; width: 110px;}
+.panel-content .col-6 .heatmap-range-slider .ui-slider.ui-widget-content {flex-basis: 53%; width: 53%; margin-right: 10px;}
+.panel-content .col-6 .heatmap-range-slider .range-value input {width: calc(100% - 50px);}
+.timestables-mode-block .col-6 form .questions-submit-btn {width: 82%;}
 /***************************
 Heatmap Table style End
 ***************************/
@@ -17325,12 +17332,12 @@ Product Tabs Slider Style Start
 .template-grid .row .row [class*="col"] {padding: 0 5px;}
 .template-grid .row .row {margin-left: -5px; margin-right: -5px;}
 .panel-content .grid-card {background-color: #fff; border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
-.panel-content .grid-card .img-holder {height: auto; width: 90px; margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);}
-.panel-content .grid-card .img-holder img {border-radius: 5px;}
+.panel-content .grid-card .img-holder {margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);height: 90px; width: 90px;}
+.panel-content .grid-card .img-holder img {border-radius: 0; object-fit: contain;}
 .panel-content .template-grid .text-holder {background-color: inherit; border: 0; padding: 0; min-height: auto; line-height: normal;}
 .panel-content .template-grid .text-holder a {word-wrap: break-word;}
 .panel-content .grid-card:hover {border-color: #cecece;}
-.panel-content .grid-card .title-label {font-weight: 500;position: relative;background-color: #f3f1f1;font-size: 15px;padding: 6px 8px;border-radius: 4px;}
+.panel-content .grid-card .title-label {font-weight: 500; position: relative; background-color: #f3f1f1; font-size: 15px; padding: 6px 8px; border-radius: 4px; margin-left: 10px; margin-bottom: 5px; display: inline-block; line-height: normal;}
 
 /* Lms Font End Display Style */
 .lms-quiz-section .questions-data-block {max-width: 1170px; margin: 0 auto 0; border: 1px solid #999;}
@@ -17603,7 +17610,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels li > a:before {content: ""; height: 70%; width: 4px; position: absolute; left: 50%; top: 100%; margin-left: -2px; background-color: #b0b0b0; margin-top: 10px;}
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
-.spell-levels {border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-levels {background-color: #fff; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.treasure-mission-layout .spell-levels {background-color: initial;}
 .spell-completed {overflow: hidden;}
 .spell-completed:before {content: "\2713";position: absolute;right: -6px;top: 24px;width: 35px;height: 35px;text-align: center;border-radius: 100%;background-color: #5acb01;color: #fff;line-height: 35px;font-weight: 700;box-shadow: 0 -2px 0 1px rgba(0,0,0,0.2) inset;}
 .spell-levels .completed a {background-color: #8ad1ef; color: #fff; box-shadow: 0 6px 0 1px #2397d2;}
@@ -17884,10 +17892,84 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .referral-payment strong em {display: block; font-weight: 500; font-style: normal; font-size: 20px;}
 .referral-card p br {display: none;}
 /* Referrals Style End */
-.rurera-hide {
-    display: none;
-}
+.rurera-hide {display: none;}
 .panel-page-section .timestables-mode-content .form-btn {margin-bottom: 25px;}
+
+/* Quests Style Start  */
+.quests-list {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+.quests-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.quests-item .icon-box {
+    margin-right: 10px;
+    text-align: center;
+    width: 52px;
+}
+.quests-item .item-text {
+    width: calc(100% - 70px);
+}
+.quests-list h3 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 25px;
+}
+.quests-item .item-text .levels-progress.horizontal {
+    margin-top: 0;
+    margin-right: -4px;
+    display: inline-block;
+    width: calc(100% - 33px);
+    vertical-align: middle;
+    position: relative;
+}
+.quests-item .item-text .levels-progress.horizontal .progress-box {
+    min-width: auto;
+    max-width: none;
+    border-radius: 50px 0 0 50px;
+}
+.progress-icon {
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: middle;
+    width: 33px;
+}
+.quests-item .icon-box img {
+    max-width: 100%;
+}
+.quests-item .progress-numbers {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+}
+.quests-list li {
+    margin-bottom: 35px;
+}
+.quests-list h3 .view-all {
+    font-size: 15px;
+    color: #36b4ee;
+    text-transform: uppercase;
+}
+.quests-list li:last-child {
+    margin-bottom: 15px;
+}
+.quests-item .item-text h5 {
+    margin-bottom: 8px;
+}
+.quests-item .horizontal .progress-count {
+    border-radius: 50px 0 0 50px;
+}
+/* Quests Style End */
 
 /*************************************
 Lms Responsive Style Start

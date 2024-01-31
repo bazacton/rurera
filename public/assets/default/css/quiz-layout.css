@@ -1,3 +1,12 @@
+html:has(.quiz-topbar) {
+    margin-left: calc(100vw - 100%);
+	margin-right: 0;
+    overflow: auto;
+}
+body:has(.quiz-topbar) {
+    height: auto;
+}
+
 /**********************************
 Lms Sorting Fields Style
 **********************************/
@@ -78,7 +87,7 @@ Lms Signs Style
 .lms-checkbox-img.inline-fields .field-holder {max-width: 31.777%; margin: 0 14px 10px 0; width: 31.777%;}
 .lms-radio-select .field-holder:nth-child(3),
 .lms-radio-select .field-holder:nth-child(6) {margin-right: 0;}
-.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; */ padding-bottom: 0; border-radius: 0; overflow-x: hidden; height: calc(100vh - 90px);}
+.learning-page .learning-content {background-color: inherit; /* height: auto; overflow: hidden; overflow-x: hidden; height: calc(100vh - 90px);*/ padding-bottom: 0; border-radius: 0; height: 100%;}
 .question-area .lms-radio-select {margin: 0;}
 /* Image Top Style Start */
 .lms-radio-img .lms-radio-select label {flex-direction: column; padding-bottom: 20px; padding-top: 20px;}
@@ -1346,6 +1355,7 @@ Lms Quiz Wf Style End
     margin-bottom: 50px;
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 2;
     width: 100%;
 }
@@ -1429,6 +1439,8 @@ Lms Quiz Wf Style End
 .type-sats .lms-quiz-section {
     height: 100%;
     background: none;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 .read-text-controls {
     padding: 20px 20px 20px 0;
