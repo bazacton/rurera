@@ -109,14 +109,15 @@ $timer_counter = $practice_time;
                                            @php $is_flagged = false;
                                            $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
                                            ($newQuizStart->flagged_questions) : array();
+                                           $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
                                            @endphp
-                                           @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                           @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
                                            $flagged_questions))
                                            @php $is_flagged = true;
                                            @endphp
                                            @endif
                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                           <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                           <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
                                                    'has-flag' : ''}} {{$question_status_class}}"><a
                                                    href="javascript:;">
                                                    {{$question_count}}</a></li>
@@ -330,6 +331,9 @@ $timer_counter = $practice_time;
     var duration_type = '{{$duration_type}}';
 
     function quiz_default_functions() {
+
+        var active_question_id = $(".question-area-block").attr('data-active_question_id');
+       $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
 
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');

@@ -1,5 +1,7 @@
-
-<section class="p-25 panel-border border-radius-10">
+<div class="section-title mb-20">
+    <h2 itemprop="title" class="font-22 mb-0">Showdown Mode</h2>
+</div>
+<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -16,8 +18,23 @@
                     </div>
                 </form>
             </div>
+            @else
+               <div class="col-12 col-lg-12 mx-auto">
+                   <h4>You have already attempted this week. Please return next week to make another attempt.</h4>
+               </div>
             @endif
 
+
+
+        </div>
+    </div>
+</section>
+<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title mb-30 text-center"><h2>Weekly Ranking</h2></div>
+            </div>
             <div class="col-12 col-lg-12 mx-auto">
                 <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$currentWeek}}">Current Week</a>
                 <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week</a>
@@ -59,10 +76,9 @@
                     @endif
                 </ul>
             </div>
-
         </div>
-    </div>
-</section>
+            </div>
+        </section>
 <style>
 
 </style>

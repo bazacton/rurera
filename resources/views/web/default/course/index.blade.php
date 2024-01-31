@@ -105,9 +105,11 @@
                                             @php $topic_percentage = Quiz::getQuizPercentage($sub_chapter['id']);
                                             $topic_percentage_flag = ( $topic_percentage >= 95)? '<img src="/assets/default/svgs/completion-star.svg">' : '';
                                             $topic_percentage_flag = ( $topic_percentage == 100)? '<img src="/assets/default/svgs/completion-flag.svg">' : $topic_percentage_flag;
+                                            $topic_percentage_text = ($topic_percentage > 0)? '('.$topic_percentage.')' : '';
+                                            $topic_percentage_text .= $topic_percentage_flag;
                                             @endphp
                                             <li>
-                                                <a href="/{{$course->category->slug}}/{{$course->slug}}/{{$sub_chapter['sub_chapter_slug']}}">{{ $sub_chapter['title'] }} - {{$topic_percentage}}%{!! $topic_percentage_flag !!}</a>
+                                                <a href="/{{$course->category->slug}}/{{$course->slug}}/{{$sub_chapter['sub_chapter_slug']}}">{{ $sub_chapter['title'] }} {!! $topic_percentage_text !!}</a>
                                                 {{ user_assign_topic_template($sub_chapter['id'], 'practice', $childs, $parent_assigned_list) }}
                                             </li>
                                         @endif

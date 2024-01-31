@@ -1,4 +1,7 @@
-<section class="p-25 panel-border border-radius-10">
+<div class="section-title mb-20">
+    <h2 itemprop="title" class="font-22 mb-0">Freedom Mode</h2>
+</div>
+<section class="p-25 panel-border border-bottom-4 border-radius-10" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">

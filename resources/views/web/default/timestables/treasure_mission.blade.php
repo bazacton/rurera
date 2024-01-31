@@ -1,9 +1,10 @@
 <style>
     .rurera-hide{display:none;}
 </style>
+<div class="section-title mb-20">
+    <h2 itemprop="title" class="font-22 mb-0">Treasure Mission</h2>
+</div>
 <section class="p-0 mt-30 treasure-mission-layout">
-
-    <h3>Treasure Mission</h3>
 
     @php $get_treasure_missions  = get_treasure_missions(); @endphp
 

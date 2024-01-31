@@ -100,6 +100,35 @@ $timer_counter = $practice_time;
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
+                                <div class="quiz-pagination rurera-hide">
+                                   <div class="swiper-container">
+                                   <ul class="swiper-wrapper">
+                                       @if( !empty( $questions_list ) )
+                                       @php $question_count = 1; @endphp
+                                       @foreach( $questions_list as $question_id)
+                                       @php $is_flagged = false;
+                                       $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                       ($newQuizStart->flagged_questions) : array();
+                                       $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
+                                       @endphp
+                                       @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
+                                       $flagged_questions))
+                                       @php $is_flagged = true;
+                                       @endphp
+                                       @endif
+                                       @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                       <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                               'has-flag' : ''}} {{$question_status_class}}"><a
+                                               href="javascript:;">
+                                               {{$question_count}}</a></li>
+                                       @php $question_count++; @endphp
+                                       @endforeach
+                                       @endif
+                                   </ul>
+                                   </div>
+                                   <div class="swiper-button-prev"></div>
+                                   <div class="swiper-button-next"></div>
+                               </div>
                                 <div class="quiz-timer">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">0s</div></span>
                                 </div>
@@ -301,10 +330,15 @@ $timer_counter = $practice_time;
 
     var duration_type = '{{$duration_type}}';
     console.log(duration_type);
-    console.log('start-page-----');
+    console.log('start-page1-----');
+
+
+
 
     function quiz_default_functions() {
 
+        var active_question_id = $(".question-area-block").attr('data-active_question_id');
+        $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
             if (duration_type == 'no_time_limit') {

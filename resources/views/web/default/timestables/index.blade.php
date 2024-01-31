@@ -18,7 +18,7 @@
                             <h2 itemprop="title" class="font-22 mb-0">Time Tables</h2>
                         </div>
                         <div class="col-12 col-md-12 col-lg-12">
-                            <h5 itemprop="title" class="font-14 mb-10">Single Player</h5>
+                            <h5 itemprop="title" class="font-20 font-weight-bold mb-10">Single Player</h5>
                             <div class="grid-card timestables-mode-data" data-mode_type="freedom_mode" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="col-12 col-md-12 col-lg-12">
-                            <h5 itemprop="title" class=" mb-10">Multi Player</h5>
+                            <h5 itemprop="title" class="font-20 font-weight-bold mb-10 mt-20">Multi Player</h5>
                             <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                 <div class="text-holder">
                                     <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">

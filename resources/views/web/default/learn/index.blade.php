@@ -1,4 +1,5 @@
 @extends('web.default.panel.layouts.panel_layout')
+@php use App\Models\Webinar; @endphp
 
 @push('styles_top')
 
@@ -19,27 +20,9 @@
         </div>
 
         <div class="col-12">
-
-            <div class="categories-card medium">
-                <div class="categories-icon" style="background-color: #f29b32;">
-                    <img src="/store/1/subjects_images/history.png" alt="">
-                </div>
-                <div class="categories-text">
-                    <h4 class="categories-title font-19 font-weight-bold"><a href="#">History</a></h4>
-                    <div class="levels-progress horizontal">
-                        <span class="progress-numbers">02/40 Skills</span>
-                        <span class="progress-box">
-                            <span class="progress-count" style="width: 10%;"></span>
-                        </span>
-                    </div>
-                    <span class="subject-info">08 Units and 40 Lessons</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12">
         @if( !empty( $courses_list ) )
            @foreach( $courses_list as $courseObj)
+                @php $subject_percentage = Webinar::getSubjectPercentage($courseObj); @endphp
                     <div class="categories-card medium">
                         <div class="categories-icon" style="background:{{$courseObj->background_color}}">
                             @if($courseObj->icon_code != '')
@@ -50,7 +33,16 @@
                         </div>
                         <div class="categories-text">
                             <h4 class="categories-title font-19 font-weight-bold"><a href="/{{$categoryObj->slug}}/{{$courseObj->slug}}">{{$courseObj->getTitleAttribute()}}</a></h4>
-                            <a href="/{{$categoryObj->slug}}/{{$courseObj->slug}}" class="learning-btn">Start Learning</a>
+                            @if( isset( $subject_percentage['percentage'] ) && $subject_percentage['percentage'] > 0)
+                                <div class="levels-progress horizontal">
+                                    <span class="progress-numbers">{{$subject_percentage['skills_attempted']}}/{{$subject_percentage['total_skils']}} Skills</span>
+                                    <span class="progress-box">
+                                        <span class="progress-count" style="width: {{$subject_percentage['percentage']}}%;"></span>
+                                    </span>
+                                </div>
+                            @else
+                                <a href="/{{$categoryObj->slug}}/{{$courseObj->slug}}" class="learning-btn">Start Learning</a>
+                            @endif
                             <span class="subject-info">{{$courseObj->chapters->count()}} Units and {{$courseObj->webinar_sub_chapters->count()}} Lessons</span>
                         </div>
                     </div>

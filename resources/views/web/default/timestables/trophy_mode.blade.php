@@ -1,4 +1,7 @@
-<section class="p-25 panel-border border-radius-10">
+<div class="section-title mb-20">
+    <h2 itemprop="title" class="font-22 mb-0">Trophy Mode</h2>
+</div>
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -14,6 +17,17 @@
                     </div>
                 </form>
             </div>
+
+        </div>
+    </div>
+</section>
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title mb-30 text-center"><h2>Trophy History</h2></div>
+            </div>
+
             <canvas id="trophy_chart"></canvas>
                @if( !empty( $attempts_array ) )
 
@@ -34,9 +48,10 @@
                        @endforeach
                    </tbody>
                </table>
+
         </div>
-    </div>
-</section>
+        </div>
+    </section>
 
 <script>
     $(document).ready(function () {

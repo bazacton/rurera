@@ -195,6 +195,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                @if(request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/marketing/affiliates') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support'))
                                 <div class="panel-rightside-menu">
                                     <div class="user-info">
                                         <a href="#">
@@ -231,6 +232,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                @endif
                             </div>
                             <div class="col-12 col-lg-12 mt-35">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
@@ -258,6 +260,74 @@
 
                                 </div>
                             </div>
+                            <div class="col-12 col-lg-12 mt-35">
+                                <div class="quests-list">
+                                    <h3 class="font-19 font-weight-bold">
+                                        Daily Quests
+                                        <a href="#" class="view-all">View All</a>
+                                    </h3>
+                                    <ul>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/img/earn-img.png" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Earn 10 XP</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 0%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 10</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-icon1.png" alt="">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/img/score-img.png" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Score 90% or higher in 2 <br /> lessons</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 40%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 2</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-icon2.png" alt="">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/img/bird-icon.png" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 20%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 2</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-icon3.png" alt="">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @if(request()->is('panel/marketing/affiliates'))
                             <div class="col-12 col-lg-12 mt-35">
                                 <div class="referrals panel-border panel-shadow rounded-sm">
                                     <div class="referral-card">
@@ -310,6 +380,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-12 col-lg-12">
                                 <div class="mobile-app-card panel-shadow mt-35">
                                     <div class="card h-md-100" dir="ltr"> 

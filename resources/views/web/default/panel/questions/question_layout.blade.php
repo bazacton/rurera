@@ -141,7 +141,7 @@ if( $layout_type == 'results'){
                         @endif
                         @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
-                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}" data-actual_question_id="{{$next_question}}">
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}" data-actual_question_id="{{$question->id}}">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"
@@ -154,7 +154,7 @@ if( $layout_type == 'results'){
                             </svg>
                         </a>
                         @else
-                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn rurera-hide" data-question_id="{{$next_question}}" data-actual_question_id="{{$next_question}}">&nbsp;</a>
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn rurera-hide" data-question_id="{{$next_question}}" data-actual_question_id="{{$question->id}}">&nbsp;</a>
                         @endif
                         @if( !isset( $disable_submit ) || $disable_submit == 'false')
                         <a href="javascript:;" id="question-submit-btn" class="question-submit-btn">

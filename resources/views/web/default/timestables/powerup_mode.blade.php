@@ -2,10 +2,12 @@
     .hide{display:none;}
     .above_12{display:none;}
 </style>
-<section class="p-25 panel-border border-radius-10 mb-50">
+<div class="section-title mb-20">
+    <h2 itemprop="title" class="font-22 mb-0">Powerup Mode</h2>
+</div>
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
     <div class="container">
         <div class="row">
-
 
             <div class="col-12">
                     <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>
@@ -41,7 +43,14 @@
                         </div>
                     </form>
                 </div>
-
+    </div>
+</section>
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title mb-30 text-center"><h2>Heatmap</h2></div>
+            </div>
             <div class="heatmap-select-option">
                 <div class="select-field">
                     <input checked type="radio" id="select-one" name="heatmap">
@@ -119,8 +128,10 @@
                 </div>
 
         </div>
-    </div>
-</section>
+        </div>
+           </div>
+       </section>
+
 <script>
     $(document).ready(function () {
 
