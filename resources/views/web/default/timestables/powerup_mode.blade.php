@@ -5,7 +5,7 @@
 <div class="section-title mb-20">
     <h2 itemprop="title" class="font-22 mb-0">Powerup Mode</h2>
 </div>
-<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
 
@@ -45,7 +45,7 @@
                 </div>
     </div>
 </section>
-<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">

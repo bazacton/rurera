@@ -342,6 +342,7 @@ $timer_counter = $practice_time;
 
     function quiz_default_functions() {
 
+        $('.editor-field-inputs:eq(0)').focus();
         Quizintervals = setInterval(function () {
             if( timePaused == false) {
                 var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');

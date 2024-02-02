@@ -79,38 +79,40 @@
                     </a>
                 </li>
 
-                <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/learn.png">
-                        </span>
-                        <span><a href="/learn" class="font-15">Learn</a></span>
-                    </a>
-                </li>
-                <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/timestable.png">
-                        </span>
-                        <span><a href="/timestables-practice" class="font-15">TimesTable</a></span>
-                    </a>
-                </li>
-                <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/spell.png">
-                        </span>
-                        <span><a href="/spells" class="font-15">Word Lists</a></span>
-                    </a>
-                </li>
-                <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/books.png">
-                        </span>
-                        <span><a href="/books" class="font-15">Books</a></span>
-                    </a>
-                </li>
+                @if(auth()->user()->isUser())
+                    <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center">
+                            <span class="sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/learn.png">
+                            </span>
+                            <span><a href="/learn" class="font-15">Learn</a></span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center">
+                            <span class="sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/timestable.png">
+                            </span>
+                            <span><a href="/timestables-practice" class="font-15">TimesTable</a></span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center">
+                            <span class="sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/spell.png">
+                            </span>
+                            <span><a href="/spells" class="font-15">Word Lists</a></span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center">
+                            <span class="sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/books.png">
+                            </span>
+                            <span><a href="/books" class="font-15">Books</a></span>
+                        </a>
+                    </li>
+                @endif
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
@@ -120,6 +122,7 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
@@ -128,6 +131,7 @@
                         <span><a href="/shop" class="font-15">Shop</a></span>
                     </a>
                 </li>
+                @endif
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
@@ -139,11 +143,29 @@
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/user.png">
+                            <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
                         </span>
                         <span><a href="/panel/setting" class="font-15">Profile</a></span>
                     </a>
                 </li>
+                 <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center">
+                            <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/referrals.png">
+                            </span>
+                            <span><a href="/panel/marketing/affiliates" class="font-15">Referrals</a></span>
+                        </a>
+                    </li>
+            @if(auth()->user()->isParent())
+                <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center">
+                        <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                            <img src="/assets/default/img/sidebar/members.png">
+                        </span>
+                        <span><a href="/panel/members" class="font-15">Members</a></span>
+                    </a>
+                </li>
+            @endif
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
 
                     <a class="d-flex align-items-center">
@@ -156,7 +178,7 @@
                         <ul>
                             <li><a class="font-15" href="/faqs">FAQs</a></li>
                             <li><a class="font-15" href="/custom_html">Custom HTML</a></li>
-                            <li><a class="font-15" href="#">More</a></li>
+                            <li><a class="font-15" href="/logout">Logout</a></li>
                             <li><a class="font-15" href="#">More</a></li>
                         </ul>
                     </div>
@@ -222,36 +244,6 @@
                         </ul>
                     </div>
                 </li>-->
-
-                @if(!$authUser->isUser() or (!empty($referralSettings) and $referralSettings['status'] and $authUser->affiliate))
-                    <li class="sidenav-item {{ (request()->is('panel/marketing') or request()->is('panel/marketing/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-10">
-                            @include('web.default.panel.includes.sidebar_icons.marketing')
-                        </span>
-                            <span class="font-14 text-dark-blue font-weight-500">{{ trans('panel.marketing') }}</span>
-                        </a>
-
-                        <div class="sidenav-dropdown {{ (request()->is('panel/marketing') or request()->is('panel/marketing/*')) ? 'show' : '' }}" id="marketingCollapse">
-                            <ul class="sidenav-item-collapse">
-                                @if(!$authUser->isUser())
-                                    <li class="mt-5 {{ (request()->is('panel/marketing/special_offers')) ? 'active' : '' }}">
-                                        <a href="/panel/marketing/special_offers">{{ trans('panel.discounts') }}</a>
-                                    </li>
-                                    <li class="mt-5 {{ (request()->is('panel/marketing/promotions')) ? 'active' : '' }}">
-                                        <a href="/panel/marketing/promotions">{{ trans('panel.promotions') }}</a>
-                                    </li>
-                                @endif
-
-                                @if(!empty($referralSettings) and $referralSettings['status'] and $authUser->affiliate)
-                                    <li class="mt-5 {{ (request()->is('panel/marketing/affiliates')) ? 'active' : '' }}">
-                                        <a href="/panel/marketing/affiliates">{{ trans('panel.affiliates') }}</a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
-                @endif
 
                 @if(getFeaturesSettings('forums_status'))
                     <li class="sidenav-item {{ (request()->is('panel/forums') or request()->is('panel/forums/*')) ? 'sidenav-item-active' : '' }}">

@@ -6,6 +6,7 @@
 
     $isRtl = ((in_array(mb_strtoupper(app()->getLocale()), $rtlLanguages)) or (!empty($generalSettings['rtl_layout']) and $generalSettings['rtl_layout'] == 1));
         $rand_no = rand(99,9999);
+    $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : array();
 @endphp
 <head>
     @include(getTemplate().'.includes.metas')
@@ -52,12 +53,15 @@
 
     
     <div class="panel-page-section">
-        @include(getTemplate(). '.includes.navbar')
-        @if(auth()->check() && auth()->user()->isUser())
+        @if(auth()->check() && (auth()->user()->isUser()))
+            @include(getTemplate(). '.includes.navbar')
+        @endif
+        @if(auth()->check() && (auth()->user()->isUser() || auth()->user()->isParent()))
             @include(getTemplate(). '.panel.includes.sidebar')
         @endif
         <div class="panel-content">
             <div class="container">
+
                 <div class="row"> 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                         @yield('content')
@@ -66,6 +70,7 @@
                         <div class="panel-right-sidebar">
                             <div class="row">
                             <div class="col-12 col-lg-12 mt-10">
+                                @if(auth()->check() && (auth()->user()->isUser()))
                                 <div class="user-profile-icons">
                                     <ul>
                                         <li class="dropdown dropdown-list-toggle">
@@ -195,8 +200,11 @@
                                         </li>
                                     </ul>
                                 </div>
-                                @if(request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/marketing/affiliates') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support'))
-                                <div class="panel-rightside-menu">
+                                @endif
+
+
+                                @if(request()->is('custom_html')  || request()->is('panel/billing')  || request()->is('panel/change_password')  || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
+                                <div class="panel-rightside-menu mb-30">
                                     <div class="user-info">
                                         <a href="#">
 
@@ -216,9 +224,6 @@
                                             <a href="/panel/rewards"><span class="nav-icon"><img src="/assets/default/svgs/reward-nav2.svg" alt=""></span>Reward Points</a>
                                         </li>
                                         <li>
-                                            <a href="/panel/marketing/affiliates"><span class="nav-icon"><img src="/assets/default/svgs/affiliate-nav.svg" alt=""></span>Affiliations</a>
-                                        </li>
-                                        <li>
                                             <a href="/panel/store/purchases"><span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>Shop Orders</a>
                                         </li>
                                         <li>
@@ -228,13 +233,76 @@
                                             <a href="#"><span class="nav-icon"><img src="/assets/default/svgs/school-nav.svg" alt=""></span>School link</a>
                                         </li>
                                         <li>
-                                            <a href="/panel/support"><span class="nav-icon"><img src="/assets/default/svgs/support-nav.svg" alt=""></span>Support Desk</a>
+                                            <a href="/panel/support/tickets"><span class="nav-icon"><img src="/assets/default/svgs/support-nav.svg" alt=""></span>Support Desk</a>
                                         </li>
+                                        @if(auth()->user()->isParent())
+                                        <li>
+                                            <a href="/panel/billing"><span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>Billing</a>
+                                        </li>
+                                        <li>
+                                            <a href="/panel/change_password"><span class="nav-icon"><img src="/assets/default/svgs/account-nav.svg" alt=""></span>Change Password</a>
+                                        </li>
+                                        @endif
                                     </ul>
                                 </div>
                                 @endif
                             </div>
-                            <div class="col-12 col-lg-12 mt-35">
+                                @if(request()->is('panel') || request()->is('custom_html') || request()->is('panel/marketing/affiliates'))
+                                    <div class="col-12 col-lg-12 mb-30">
+                                        <div class="referrals panel-border panel-shadow rounded-sm">
+                                            <div class="referral-card">
+                                                <h3 class="font-19 font-weight-bold">Link your students and <br /> start earning!</h3>
+                                                <p>
+                                                    To link your clients, enter their email below. <br />
+                                                    If they don't yet use Atom, they'll get 10% <br />
+                                                    off their first month, and <strong>you will earn 15% <br /> of their subscription payment every month. </strong>
+                                                </p>
+                                                <div class="referral-form">
+                                                    <form>
+                                                        <label>Parent's email</label>
+                                                        <div class="form-feild">
+                                                            <input type="text" placeholder="parent@mail.com">
+                                                            <button type="submit">Invite</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="referral-invites">
+                                                    <div class="heading">
+                                                        <h3 class="font-19 font-weight-bold">Track your invites</h3>
+                                                        <a href="#">See all <span>&#8594;</span></a>
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <strong>0</strong>
+                                                            <span>Total users earning</span>
+                                                        </li>
+                                                        <li>
+                                                                                    <strong>1</strong>
+                                                                                    <span>Pending invites</span>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="referral-payment">
+                                                                            <div class="heading">
+                                                                                <h3 class="font-19 font-weight-bold">Your wallet</h3>
+                                                                                <a href="#">Go to referrals <span>&#8594;</span></a>
+                                                                            </div>
+                                                                            <p>
+                                                                                <span class="icon-box">
+                                                                                    <img src="/assets/default/svgs/wallet.svg" alt="">
+                                                                                </span>
+                                                                                <strong>
+                                                                                    £0.00
+                                                                                    <em>Pending payment</em>
+                                                                                </strong>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endif
+                            @if(request()->is('custom_html') || request()->is('panel') || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
+                            <div class="col-12 col-lg-12 mb-30">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
                                     <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
@@ -246,7 +314,7 @@
                                                     <div class="font-12 text-gray mt-5">
                                                         <span class="mr-5">{{ trans('public.created_by') }} {{ $getUnreadNoticeboard->sender }}</span>
                                                         |
-                                                        <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y | H:i') }}</span>
+                                                        <span class="js-noticeboard-time ml-5">{{ dateTimeFormat($getUnreadNoticeboard->created_at,'j M Y') }}</span>
                                                     </div>
                                                 </div>
 
@@ -260,7 +328,9 @@
 
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-12 mt-35">
+                                @endif
+                            @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
+                            <div class="col-12 col-lg-12 mb-30">
                                 <div class="quests-list">
                                     <h3 class="font-19 font-weight-bold">
                                         Daily Quests
@@ -327,62 +397,11 @@
                                     </ul>
                                 </div>
                             </div>
-                            @if(request()->is('panel/marketing/affiliates'))
-                            <div class="col-12 col-lg-12 mt-35">
-                                <div class="referrals panel-border panel-shadow rounded-sm">
-                                    <div class="referral-card">
-                                        <h3 class="font-19 font-weight-bold">Link your students and <br /> start earning!</h3>
-                                        <p>
-                                            To link your clients, enter their email below. <br />
-                                            If they don't yet use Atom, they'll get 10% <br />
-                                            off their first month, and <strong>you will earn 15% <br /> of their subscription payment every month. </strong>
-                                        </p>
-                                        <div class="referral-form">
-                                            <form>
-                                                <label>Parent's email</label>
-                                                <div class="form-feild">
-                                                    <input type="text" placeholder="parent@mail.com">
-                                                    <button type="submit">Invite</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="referral-invites">
-                                            <div class="heading">
-                                                <h3 class="font-19 font-weight-bold">Track your invites</h3>
-                                                <a href="#">See all <span>&#8594;</span></a>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <strong>0</strong>
-                                                    <span>Total users earning</span>
-                                                </li>
-                                                <li>
-                                                    <strong>1</strong>
-                                                    <span>Pending invites</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="referral-payment">
-                                            <div class="heading">
-                                                <h3 class="font-19 font-weight-bold">Your wallet</h3>
-                                                <a href="#">Go to referrals <span>&#8594;</span></a>
-                                            </div>
-                                            <p>
-                                                <span class="icon-box">
-                                                    <img src="/assets/default/svgs/wallet.svg" alt="">
-                                                </span>
-                                                <strong>
-                                                    £0.00
-                                                    <em>Pending payment</em>
-                                                </strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             @endif
+                            
+                            @if(request()->is('custom_html'))
                             <div class="col-12 col-lg-12">
-                                <div class="mobile-app-card panel-shadow mt-35">
+                                <div class="mobile-app-card panel-shadow mb-30">
                                     <div class="card h-md-100" dir="ltr"> 
                                         <div class="card-body d-flex flex-column flex-center">  
                                             <div class="mb-2">
@@ -404,7 +423,7 @@
                             </div>
 
                             <div class="col-12 col-lg-12">
-                                <div class="facebook-card mt-35">
+                                <div class="facebook-card mb-30">
                                     <div class="card card-flush border-0 h-lg-100" data-theme="light" style="background-color: #7239EA">
                                         <div class="card-header">
                                             <h3 class="card-title">            
@@ -491,7 +510,7 @@
                             </div>
 
                             <div class="col-12 col-lg-12">
-                                <div class="key-statistics panel-shadow panel-border mt-35">
+                                <div class="key-statistics panel-shadow panel-border mb-30">
                                     <div class="key-header">
                                         <h3 class="card-title align-items-start flex-column">            
                                             <span class="card-label fw-bold text-gray-900">Key Statistics</span>
@@ -842,6 +861,7 @@
                                 @include('web.default.includes.footer')
                             </div>
                         </div>
+                        @endif
 
                         </div>
 

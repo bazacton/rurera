@@ -238,15 +238,32 @@ if( isset( $duration_type ) ){
         hint_counter = 0;
     });
 
-    $(document).on('input keydown', ".editor-field-inputs", function (e) {
+    $(document).on('input keydown paste', ".editor-field-inputs", function (event) {
         var $this = $(this);
-          var value = $this.val();
+        var value = $this.val();
 
-          if (event.type === 'input' && value.length === 1) {
+        if (event.type === 'paste') {
+            event.preventDefault(); // Prevent default paste behavior
+
+            // Get the pasted text
+            var pastedText = (event.originalEvent || event).clipboardData.getData('text');
+
+            // Split the pasted text into individual characters
+            var characters = pastedText.split('');
+
+            // Distribute each character into successive input fields
+            characters.forEach(function(char) {
+                $this.val(char);
+                $this = $this.next('.editor-field-inputs');
+            });
+
+            // Ensure focus is on the last input field
+            $this.focus();
+        } else if ((event.type === 'input' || event.type === 'keydown') && value.length === 1) {
             $this.next('.editor-field-inputs').focus();
-          } else if (event.type === 'keydown' && event.which === 8 && value === "") {
+        } else if (event.type === 'keydown' && event.which === 8 && value === "") {
             $this.prev('.editor-field-inputs').focus();
-          }
+        }
     });
 
 
@@ -273,7 +290,8 @@ if( isset( $duration_type ) ){
 
     $(document).on('click', '#sound-icon-{{ $question->id }}', function (e) {
         var context = new AudioContext();
-        $('#field-{{$field_id}}').focus();
+        $('.editor-field-inputs:eq(0)').focus();
+        //$('#field-{{$field_id}}').focus();
         if( currentFunctionStart == null) {
             SpellQuestionintervalCountDownFunc();
         }
@@ -297,9 +315,10 @@ if( isset( $duration_type ) ){
     $(document).on('click', '.start-spell-quiz', function (e) {
     //jQuery(document).ready(function() {
 
+        console.log('focus-field');
 
-
-        $('#field-{{$field_id}}').focus();
+        $('.editor-field-inputs:eq(0)').focus();
+        //$('#field-{{$field_id}}').focus();
         $('#sound-icon-{{ $question->id }}').click();
           var $keyboardWrapper = $('.virtual-keyboard'),
           $key = $keyboardWrapper.find("input"),

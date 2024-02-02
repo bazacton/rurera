@@ -151,6 +151,7 @@ class Quiz extends Model implements TranslatableContract
 
     static function getQuizPercentage($SubChapterID, $all_data = false)
     {
+        $user = auth()->user();
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
             ->where('parent_id', $SubChapterID)
             ->first();
@@ -166,7 +167,7 @@ class Quiz extends Model implements TranslatableContract
         if( !empty( $quizResults ) ){
             foreach( $quizResults as $resultObj){
                 $total_questions = count(json_decode($resultObj->questions_list));
-                $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->count();
+                $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->where('user_id',$user->id)->count();
                 $total_questions_count += $total_questions;
                 $total_correct_questions += $correct_questions;
                 $percentage = ($correct_questions * 100)/$total_questions;

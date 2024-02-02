@@ -33,6 +33,19 @@ Route::group([
 
     });
 
+    Route::group(['prefix' => 'billing'], function () {
+        Route::get('/', 'MembersController@billing');
+    });
+
+    Route::group(['prefix' => 'change_password'], function () {
+       Route::get('/', 'MembersController@change_password');
+   });
+
+    Route::group(['prefix' => 'members'], function () {
+        Route::get('/', 'MembersController@index');
+    });
+
+
     Route::group(['prefix' => 'webinars'], function () {
         Route::group(['middleware' => 'user.not.access'], function () {
             Route::get('/', 'WebinarController@index');

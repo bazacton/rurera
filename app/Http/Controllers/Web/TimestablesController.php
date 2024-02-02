@@ -1642,7 +1642,7 @@ class TimestablesController extends Controller
         }
 
 
-        $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults, 'selectedWeek' => $selectedWeek, 'currentWeek'=>$currentWeek, 'previousWeek'=>$previousWeek ])->render();
+        $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults, 'selectedWeek' => $selectedWeek, 'currentWeek'=>$currentWeek, 'previousWeek'=>$previousWeek, 'lastMonday' => $lastMonday,'nextSunday' => $nextSunday ])->render();
         echo $rendered_view;
         die();
     }

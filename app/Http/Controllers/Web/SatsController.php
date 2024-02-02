@@ -304,11 +304,12 @@ class SatsController extends Controller
             //$QuizController = new QuizController();
             //return $QuizController->start($request, $id);
         } else {
-            $resultData = $QuestionsAttemptController->get_result_data($id);
-            $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
-            $is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
-            $in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
-            $current_status = isset($resultData->current_status) ? $resultData->current_status : '';
+            //$resultData = $QuestionsAttemptController->get_result_data($id);
+            //$resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+            //$is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
+            //$in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
+            //$current_status = isset($resultData->current_status) ? $resultData->current_status : '';
+            $resultData = array();
             $data = [
                 'pageTitle'  => 'Start',
                 'quiz'       => $quiz,

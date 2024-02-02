@@ -14,6 +14,7 @@ use App\Models\Noticeboard;
 use App\Models\Notification;
 use App\Models\Permission;
 use App\Models\ProductOrder;
+use App\Models\QuizzAttempts;
 use App\Models\QuizzesResult;
 use App\Models\QuizzResultQuestions;
 use App\Models\Region;
@@ -3896,6 +3897,15 @@ class User extends Authenticatable
             ->sum('amount');
 
         return $totalIncome;
+    }
+
+    public function getLastActivity()
+    {
+        $lastActivity = QuizzAttempts::where('user_id', $this->id)
+            ->orderBy('id', 'DESC')
+            ->first();
+
+        return isset( $lastActivity->created_at )? $lastActivity->created_at : '';
     }
 
     public function getPayout()

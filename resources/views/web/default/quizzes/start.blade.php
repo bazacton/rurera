@@ -46,7 +46,7 @@ $rand_id = rand(99,9999);
                             <div class="topbar-right">
                                 <div class="quiz-timer">
 
-                                    <span class="timer-number"><div class="quiz-timer-counter {{isset( $timer_hide )? $timer_hide : ''}}" data-time_counter="{{isset( $timer_counter )? $timer_counter : ''}}">{{getTime(isset( $timer_counter )? $timer_counter : 0)}}</div></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter {{isset( $timer_hide )? $timer_hide : ''}}" data-time_counter="{{isset( $timer_counter )? $timer_counter : ''}}">00:00</div></span>
                                 </div>
                                 <div class="instruction-controls">
                                     <div class="font-setting">
@@ -139,6 +139,40 @@ $rand_id = rand(99,9999);
 
 
                     <div class="learning-content-box {{$content_class}} d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+
+
+                        <div class="instruction-text">
+                            <h3>INSTRUCTIONS</h3>
+                            <h4>Setting Up Your Page</h4>
+                            <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
+                            <ul>
+                                <li>a coloured overlay (this will change the background colour and may help you read the questions better)</li>
+                            </ul>
+                            <img src="/assets/default/img/overlay.png" alt="#">
+                            <ul>
+                                <li>the font size</li>
+                            </ul>
+                            <img src="/assets/default/img/font-size.png">
+                            <p>We recommend you setup your page BEFORE the test starts.</p>
+                            <p>Changing these features during the test will reduce the amount of time you have to answer the questions.</p>
+                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                            <h4>Navigating The Test</h4>
+                            <p>Read the instructions for each question carefully.</p>
+                            <p>Choose your answer by clicking on it. If you want to change your mind, click on a different answer.</p>
+                            <p>Once you are sure of your answer click ‘Submit Answer’. You will not be able to go back to change your answer.</p>
+                            <img src="/assets/default/img/answer.png" alt="#">
+                            <p>You can use a pen/pencil and paper to make notes if you wish. Your working and notes will not be marked.</p>
+                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
+                            <h4>About The Test</h4>
+                            <p>The Verbal Reasoning Test assesses a range of English language skills including:</p>
+                            <ul>
+                                <li>Comprehension</li>
+                                <li>Reasoning</li>
+                                <li>Logic</li>
+                            </ul>
+                            <p>The questions you see in this Walkthrough are examples of these types.</p>
+                            <p>Some of these types may appear in the test, while others may not.</p>
+                      </div>
 
                         <div class="learning-content-box-icon">
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">

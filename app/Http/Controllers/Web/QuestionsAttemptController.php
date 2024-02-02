@@ -2148,17 +2148,23 @@ class QuestionsAttemptController extends Controller
      * Graph Data
      */
 
-    public function prepare_graph_data($result_type)
+    public function prepare_graph_data($result_type, $user_id = 0)
     {
-        $user = getUser();
-        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('user_id', $user->id)->where('status', '!=', 'waiting')->get();
+        if( $user_id == 0) {
+            $user = getUser();
+            $user_id = $user->id;
+        }
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('user_id', $user_id)->where('status', '!=', 'waiting')->get();
         return $QuizzResultQuestions;
     }
 
-    public function user_graph_data($QuizzResultQuestions, $return_type, $start_date = '', $end_date = '')
+    public function user_graph_data($QuizzResultQuestions, $return_type, $start_date = '', $end_date = '',$user_id = 0)
     {
 
-        $user = auth()->user();
+        if( $user_id == 0) {
+           $user = getUser();
+           $user_id = $user->id;
+       }
 
         /*$year = 2023;
         $QuizzResultQuestions = $QuizzResultQuestions->filter(function ($QuizzResultQuestions) use ($year) {

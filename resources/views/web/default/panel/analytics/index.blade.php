@@ -28,6 +28,24 @@
                 <li><a href="javascript:;" data-graph_type="books"><img src="/assets/default/img/sidebar/books.png"> BOOKS</a></li>
                 <li><a href="javascript:;" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.png"> TEST</a></li>
             </ul>
+            @if(auth()->check() && (auth()->user()->isParent()))
+
+            <div class="form-group">
+                <label class="input-label">Select Child</label>
+
+                <form action="/panel/analytics/" method="get" class="child-analytics-form">
+                    <select name="child" class="form-control child-analytics">
+                        <option value="">Select Child</option>
+                    @if( !empty( $childs ) )
+                        @foreach($childs as $childObj)
+                                <option value="{{ $childObj->id }}">{{ $childObj->full_name }}</option>
+                        @endforeach
+                    </select>
+                    </form>
+                </div>
+            @endif
+            @endif
+
             <h3 class="font-22">Analytics</h3>
             <ul class="analytics-data-ul">
                 <li><a href="javascript:;" class=" graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
@@ -233,6 +251,12 @@
 <script src="/assets/default/vendors/daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('body').on('change', '.child-analytics', function (e) {
+            console.log('test');
+            $(".child-analytics-form").submit();
+        });
+
         $('body').on('click', '.graph-data-ul li a', function (e) {
             var thisObj = $('.chart-summary-fields');
             var graph_type = $(this).attr('data-graph_type');

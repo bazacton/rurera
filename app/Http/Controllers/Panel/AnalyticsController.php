@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Models\QuizzesResult;
 use App\Models\QuizzAttempts;
 use App\Models\BooksUserReading;
+use App\User;
 use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
@@ -14,11 +15,15 @@ class AnalyticsController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $user_id = $user->id;
+        if (auth()->user()->isParent()) {
+            $user_id = isset( $_GET['child'] )? $_GET['child'] : $user_id;
+        }
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $summary_type = '11plus';
-        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type);
+        $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type, $user_id);
 
         $graphs_array = array();
 
@@ -38,7 +43,7 @@ class AnalyticsController extends Controller
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
 
-        $BooksUserReading = BooksUserReading::where('user_id', $user->id)->where('status', 'active')->with([
+        $BooksUserReading = BooksUserReading::where('user_id', $user_id)->where('status', 'active')->with([
             'BooksPages.BookData',
         ])->orderBy('created_at', 'desc')->get();
 
@@ -88,7 +93,7 @@ class AnalyticsController extends Controller
             '11plus',
         );*/
 
-        $QuizzesAttempts = QuizzAttempts::where('user_id', $user->id)->whereIn('attempt_type', $types_array)->with([
+        $QuizzesAttempts = QuizzAttempts::where('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
             'timeConsumed',
             'endSession' => function ($query) {
                 $query->orderBy('id', 'desc');
@@ -98,6 +103,21 @@ class AnalyticsController extends Controller
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
+
+        $childs = array();
+        if (auth()->user()->isParent()) {
+
+            $childs = User::where('role_id', 1)
+                ->where('parent_type', 'parent')
+                ->where('parent_id', $user->id)
+                ->where('status', 'active')
+                ->with([
+                    'userSubscriptions' => function ($query) {
+                        $query->with(['subscribe']);
+                    }
+                ])
+                ->get();
+        }
 
 
         $analytics_data = array();
@@ -199,7 +219,6 @@ class AnalyticsController extends Controller
         }
         //pre('test');
 
-
         $data['pageTitle'] = 'Analytics';
         $data['analytics_data'] = $analytics_data;
         //$data['user_graph_data'] = $user_graph_data;
@@ -207,6 +226,7 @@ class AnalyticsController extends Controller
         $data['graphs_array'] = $graphs_array;
         $data['custom_dates'] = $custom_dates;
         $data['summary_type'] = $summary_type;
+        $data['childs'] = $childs;
         $data['QuestionsAttemptController'] = $QuestionsAttemptController;
         return view('web.default.panel.analytics.index', $data);
     }

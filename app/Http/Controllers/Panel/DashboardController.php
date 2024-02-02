@@ -28,6 +28,8 @@ class DashboardController extends Controller
         }
         $user = auth()->user();
 
+
+
         $nextBadge = $user->getBadges(true, true);
         if (auth()->user()->isTeacher()) {
             return redirect('/admin');
@@ -167,7 +169,8 @@ class DashboardController extends Controller
             $subscribes = Subscribe::all();
             $data['subscribes'] = $subscribes ?? [];
 
-            return view(getTemplate() . '.panel.parent.dashboard', $data);
+            //return view(getTemplate() . '.panel.parent.dashboard', $data);
+            return view(getTemplate() . '.panel.dashboard.index', $data);
             //return view(getTemplate() . '.panel.dashboard.index', $data);
         } else {
             return view(getTemplate() . '.panel.dashboard.index', $data);

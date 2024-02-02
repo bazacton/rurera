@@ -132,14 +132,20 @@
     /*will-change: transform;*/
 }
 
-.flipbook-page3-html {
+/* .flipbook-page3-html {
     transform: unset !important;
-}
+} */
 .page_0 {
     position: relative;
 }
+.flipbook-page3-html.page_0 {
+    position: absolute;
+    top: 575px;
+    width: 100%;
+    height: 100%;
+}
 .flipbook-page3-inner {
-    overflow:hidden;
+    /* overflow:hidden; */
     width: 100%;
     height: 100%;
     position: absolute;
@@ -2093,10 +2099,11 @@
 Flip Book Custom Style Start
 ****************************/
 .flipbook-data {
-    transform: inherit;
     background-color: #fff;
     padding: 30px;
     height: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
 /* .flipbook-page3-front:first-child .flipbook-page3-bg {
     position: initial;

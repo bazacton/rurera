@@ -1,5 +1,5 @@
 
-@php $random_id = rand(999,99999); @endphp
+@php $random_id = rand(999,99999);@endphp
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></scrip>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -80,7 +80,6 @@
                 '<div class="card-footer"> <div class="btn-options"> ' .
                 '<a href="#" class="listing-btn"><i class="fa-book fa"></i>Read the eBook</a> ' .
                 '<a href="#" class="listing-btn"><i class="fa-question-circle fa"></i>Take the quiz</a> ' .
-                '<a href="#" class="remove-btn">Remove from reading </a> ' .
                 '</div></div></div></div>' .
                 '<div class="author-book-types"> <h5>What kind of book is The '.$book_title.'</h5> ' .
                 '<ul> ';
@@ -94,8 +93,16 @@
                 }
                 $landing_page .= '</ul> </div><div class="book-title-img-holder"> <figure> <img src="/assets/vendors/flipbook/images/book-title-img.png" alt=""> </figure> </div></div>';
                 $pages_count = 0;
+
                 @endphp
                 @if(!empty( $book->bookPages ) )
+                    {
+                        @php $read_time = 0; @endphp
+                        src:"/store/1/books/landing.jpg",
+                        thumb:"/store/1/books/landing.jpg",
+                        title:"Landing Page",
+                        htmlContent: '<div class="loadedDiv" data-page_id="0" data-time_lapsed="{{$read_time}}" data-start_time="0">{!! $landing_page !!}</div>'
+                    },
                     @foreach( $book->bookPages as $bookPage)
                          @php $pages_count++;
                            if(!auth()->check())
@@ -111,7 +118,7 @@
                             src:"/{{$bookPage->page_path}}",
         					thumb:"/{{$bookPage->page_path}}",
         					title:"{{$bookPage->page_title}}",
-        					htmlContent: '<div class="loadedDiv" data-page_id="{{$bookPage->id}}" data-time_lapsed="{{$read_time}}" data-start_time="0">{!! ($page_count == 1)? $landing_page.$page_content_data : $page_content_data !!}</div>'
+        					htmlContent: '<div class="loadedDiv" data-page_id="{{$bookPage->id}}" data-time_lapsed="{{$read_time}}" data-start_time="0">{!! ($page_count == 1)? $page_content_data : $page_content_data !!}</div>'
         				},
                     @php $page_count++; @endphp
                     @endforeach
@@ -218,7 +225,7 @@
 
 <div id="container">
         <div class="menu-cross-btn">
-            <a href="#"><i class="fa fa-times"></i></a>
+            <a href="/books"><i class="fa fa-times"></i></a>
         </div>
         <div class="infolinks-data"></div>
 

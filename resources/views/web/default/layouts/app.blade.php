@@ -49,9 +49,11 @@
 
 <div id="app">
 
+    @if(!request()->is('login') && !request()->is('register') && !request()->is('forget-password'))
     @if(!isset($appHeader))
         @include('web.default.includes.top_nav')
         @include('web.default.includes.navbar')
+    @endif
     @endif
 
     @if(!empty($justMobileApp))
@@ -60,8 +62,10 @@
 
     @yield('content')
 
-    @if(!isset($appFooter))
-        @include('web.default.includes.footer_home')
+    @if(!request()->is('login') && !request()->is('register') && !request()->is('forget-password'))
+        @if(!isset($appFooter))
+            @include('web.default.includes.footer_home')
+        @endif
     @endif
 
     @include('web.default.includes.advertise_modal.index')

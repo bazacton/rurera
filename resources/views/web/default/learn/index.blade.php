@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<section class="content-section mt-10">
+<section class="content-section">
     <div class="categories-element-title">
         <h2 class="font-22"><span>{{$categoryObj->category->getTitleAttribute()}} - {{$categoryObj->getTitleAttribute()}}</span></h2>
         <p>{{$categoryObj->category->getTitleAttribute()}} courses - Comprehensive list of courses for Children Aged 5, 6 and 7.</p>

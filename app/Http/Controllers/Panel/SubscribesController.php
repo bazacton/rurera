@@ -51,12 +51,18 @@ class SubscribesController extends Controller
         $subscribe_for = $request->input('subscribe_for');
         $subscribe_for = ($subscribe_for > 0) ? $subscribe_for : 0;
         $student_names = $request->input('student_name');
+        $student_last_names = $request->input('student_last_name');
+        $student_usernames = $request->input('student_username');
+        $student_passwords = $request->input('student_password');
+
+
+
         $package_ids = $request->input('package_id');
         $paymentChannels = PaymentChannel::where('status', 'active')->get();
         $expiry_date = strtotime('+' . $subscribe_for . ' month', time());
 
         $full_data['subscribe_for'] = $subscribe_for;
-        $full_data['students'] = $student_names;
+        $full_data['students'] = $student_usernames;
         $full_data['package_id'] = $package_ids;
         $full_data['expiry_date'] = $expiry_date;
 
@@ -212,17 +218,20 @@ class SubscribesController extends Controller
 
         if (!empty($student_names)) {
             foreach ($student_names as $index_no => $student_name) {
+                $student_last_name = isset( $student_last_names[$index_no] )? $student_last_names[$index_no] : '';
+                $student_username = isset( $student_usernames[$index_no] )? $student_usernames[$index_no] : '';
+                $student_password = isset( $student_passwords[$index_no] )? $student_passwords[$index_no] : '';
                 $rand_id = rand(0, 99999);
                 $package = isset($package_ids[$index_no]) ? $package_ids[$index_no] : 0;
                 $child_discount = isset($childs_discounts[$index_no]) ? $childs_discounts[$index_no] : 0;
                 $charged_amount = isset($charged_amounts_array[$index_no]) ? $charged_amounts_array[$index_no] : 0;
                 $subscribeData = Subscribe::find($package);
                 $userObj = User::create([
-                    'full_name'   => $student_name,
+                    'full_name'   => $student_name.' '.$student_last_name,
                     'role_name'   => 'user',
                     'role_id'     => 1,
-                    'email'       => 'test' . $rand_id . '@rurera.com',
-                    'password'    => User::generatePassword('123456'),
+                    'email'       => $student_username . '@rurera.com',
+                    'password'    => User::generatePassword($student_password),
                     'status'      => 'active',
                     'verified'    => true,
                     'created_at'  => time(),

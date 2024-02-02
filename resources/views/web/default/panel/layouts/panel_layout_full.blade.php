@@ -51,8 +51,10 @@
 
     
     <div class="panel-page-section">
-        @include(getTemplate(). '.includes.navbar')
-        @if(auth()->check() && auth()->user()->isUser())
+        @if(auth()->check() && (auth()->user()->isUser()))
+            @include(getTemplate(). '.includes.navbar')
+        @endif
+        @if(auth()->check() && (auth()->user()->isUser() || auth()->user()->isParent()))
             @include(getTemplate(). '.panel.includes.sidebar')
         @endif
         <div class="panel-content">

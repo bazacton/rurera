@@ -1,7 +1,10 @@
 @extends(getTemplate().'.layouts.app')
-
+<style>
+    body{background-color: #fafafa !important;}
+</style>
 @section('content')
     <div class="container">
+        <div class="text-center mb-30 mt-50"><a href="/"><img src="/store/1/logo.png"></a></div>
         @if(!empty(session()->has('msg')))
             <div class="alert alert-info alert-dismissible fade show mt-30" role="alert">
                 {{ session()->get('msg') }}
@@ -13,6 +16,7 @@
 
         <div class="row login-container">
             <div class="col-12 rurera-login-opt-block">
+
                 <div class="login-holder">
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -89,7 +93,7 @@
                                     <span>Login with 6 - digit Pin</span>
                                 </a>
                                 <a href="javascript:;" class="rurera-login-opt social-login">
-                                    <img src="/store/1/default_images/Wonde-Logo.svg" alt="#">
+                                    <img src="/store/1/default_images/Wonde-Logo.svg" alt="#"> <span class="coming-soon">Coming Soon</span>
                                 </a>
                             </div>
                         </div>

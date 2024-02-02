@@ -174,7 +174,7 @@ if( $duration_type == 'total_practice'){
                                         <span class="tt_question_no">1</span> Of {{$total_questions}}
                                     </li>
                                     <li>
-                                        <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
+                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{getTime($timer_counter)}}</span>
                                     </li>
                                     <li class="total-points">
                                         <span class="tt_points">0</span> Points
@@ -369,7 +369,7 @@ if( $duration_type == 'total_practice'){
                 quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
             }
 
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            $('.quiz-timer-counter').html(getTime((quiz_timer_counter/10)));
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
             if( duration_type == 'per_question'){
                 if( parseInt(quiz_timer_counter) == 0){
@@ -543,12 +543,12 @@ if( $duration_type == 'total_practice'){
             if( duration_type == 'per_question') {
                 console.log('clear interval');
                 clearInterval(Quizintervals);
-                $('.quiz-timer-counter').html(time_interval);
-                $('.quiz-timer-counter').attr('data-time_counter', time_interval);
+                $('.quiz-timer-counter').html(getTime((time_interval)));
+                $('.quiz-timer-counter').attr('data-time_counter', time_interval*10);
                 Quizintervals = setInterval(function () {
                     var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
                     quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter/10));
                     $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
 
                     if (duration_type == 'per_question') {
@@ -560,7 +560,7 @@ if( $duration_type == 'total_practice'){
                         }
                     }
 
-                }, 1000);
+                }, 100);
             }
 
         } else {

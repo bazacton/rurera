@@ -1,15 +1,20 @@
 @extends(getTemplate().'.layouts.app')
-
+<style>
+    body{background-color: #fafafa !important;}
+</style>
 @section('content')
     <div class="container">
-        <div class="row login-container">
+        <div class="text-center mb-30 mt-50"><a href="/"><img src="/store/1/logo.png"></a></div>
+        <div class="login-container">
+            <div class="login-holder row" style="padding:0;">
+
             <div class="col-12 col-md-6 pl-0">
                 <img src="{{ getPageBackgroundSettings('remember_pass') }}" class="img-cover" alt="Login">
             </div>
 
             <div class="col-12 col-md-6">
 
-                <div class="login-card">
+                <div class="login-card mt-20">
                     <h1 class="font-20 font-weight-bold">{{ trans('auth.forget_password') }}</h1>
 
                     <form method="post" action="/send-email" class="mt-35">
@@ -39,6 +44,7 @@
                     </div>
 
                 </div>
+            </div>
             </div>
         </div>
     </div>

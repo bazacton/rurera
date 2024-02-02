@@ -321,7 +321,7 @@ body {
     background-color: #fff;
     margin: 0;
     font-family: main-font-family;
-    font-size: 1rem;
+    font-size: 1rem !important;
     font-weight: 400;
     line-height: 1.3;
     color: #343434;
@@ -12424,18 +12424,22 @@ th {
 a:active,
 a:link,
 a:visited {
-    transition: all .2s ease
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 li {
-    list-style: none
+    list-style: none;
 }
 a:focus,
 a:hover {
     cursor: pointer;
-    text-decoration: none
+    text-decoration: none;
 }
 * {
-    outline: none !important
+    outline: none !important;
 }
 
 input[type=email],
@@ -12447,25 +12451,25 @@ textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    outline: none
+    outline: none;
 }
 .gm-style {
-    font-family: main-font-family !important
+    font-family: main-font-family !important;
 }
 @-webkit-keyframes autofill {
     to {
-        background: transparent
+        background: transparent;
     }
 }
 input:-webkit-autofill,
 select:-webkit-autofill,
 textarea:-webkit-autofill {
     -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both
+    -webkit-animation-fill-mode: both;
 }
 svg {
     overflow: auto;
-    vertical-align: inherit
+    vertical-align: inherit;
 }
 ul {
     -webkit-margin-before: 0;
@@ -12477,11 +12481,11 @@ ul {
     -webkit-margin-end: 0;
     margin-inline-end: 0;
     -webkit-padding-start: 0;
-    padding-inline-start: 0
+    padding-inline-start: 0;
 }
 /* body.modal-open, */
 body.swal2-shown {
-    padding-right: 0 !important
+    padding-right: 0 !important;
 }
 body {
     font-family: var(--font-family-base) !important;
@@ -12489,11 +12493,11 @@ body {
 }
 @media (max-width:767px) {
     body {
-        font-size: 14px
+        font-size: 14px;
     }
 }
 .custom-switch .custom-control-label:before {
-    top: -.11rem
+    top: -.11rem;
 }
 .font-72 {
     font-size: 4.5rem !important;
@@ -12501,7 +12505,7 @@ body {
 .font-48,
 .font-72 {
     font-weight: 700;
-    line-height: 1.22
+    line-height: 1.22;
 }
 .font-48 {
     font-size: 3rem !important;
@@ -12538,7 +12542,7 @@ body {
 .font-24 {
     font-size: 1.5rem !important;
     font-weight: 700;
-    line-height: 1.5
+    line-height: 1.5;
 }
 @media (max-width:767px) {
     .font-24 {
@@ -12559,7 +12563,7 @@ body {
 .font-20 {
     font-size: 1.25rem !important;
     font-weight: 500;
-    line-height: 1.22
+    line-height: 1.22;
 }
 .font-19 {
     font-size: 1.188rem !important;
@@ -12573,13 +12577,13 @@ body {
 }
 @media (max-width:767px) {
     .font-20 {
-        font-size: .875rem
+        font-size: .875rem;
     }
 }
 .font-16 {
     font-size: 1rem !important;
     font-weight: 400;
-    line-height: 1.5
+    line-height: 1.5;
 }
 @media (max-width:767px) {
     .font-16 {
@@ -12598,39 +12602,39 @@ body {
     }
 }
 .font-14 {
-    font-size: .875rem
+    font-size: .875rem;
 }
 .font-12,
 .font-14 {
     font-weight: 400;
-    line-height: 1.4
+    line-height: 1.4;
 }
 .font-12 {
-    font-size: .75rem
+    font-size: .75rem;
 }
 .font-weight-500 {
-    font-weight: 500
+    font-weight: 500;
 }
 @media (max-width:767px) {
     .h2,
     h2 {
-        font-size: 1.1rem
+        font-size: 1.1rem;
     }
 }
 @media (max-width:767px) {
     .h3,
     h3 {
-        font-size: .9rem
+        font-size: .9rem;
     }
 }
 @-webkit-keyframes sc-pending {
     to {
-        background-position: 16px 0
+        background-position: 16px 0;
     }
 }
 @keyframes sc-pending {
     to {
-        background-position: 16px 0
+        background-position: 16px 0;
     }
 }
 .loadingbar.primary,
@@ -12639,10 +12643,10 @@ body {
     background-repeat: repeat !important;
     -webkit-animation: sc-pending .5s linear infinite;
     animation: sc-pending .5s linear infinite;
-    background-color: var(--primary)
+    background-color: var(--primary);
 }
 .loadingbar.secondary {
-    opacity: .75
+    opacity: .75;
 }
 .loadingbar.secondary,
 .loadingbar.secondary:hover {
@@ -12650,13 +12654,13 @@ body {
     background-repeat: repeat !important;
     -webkit-animation: sc-pending .5s linear infinite;
     animation: sc-pending .5s linear infinite;
-    background-color: var(--secondary)
+    background-color: var(--secondary);
 }
 .loadingbar.secondary:hover {
-    opacity: .95
+    opacity: .95;
 }
 .loadingbar.gray {
-    opacity: .75
+    opacity: .75;
 }
 .loadingbar.gray,
 .loadingbar.gray:hover {
@@ -12664,7 +12668,7 @@ body {
     background-repeat: repeat !important;
     -webkit-animation: sc-pending .5s linear infinite;
     animation: sc-pending .5s linear infinite;
-    background-color: #ececec
+    background-color: #ececec;
 }
 .loadingbar.gray:hover {opacity: .95;}
 .loadingbar.danger {opacity: .75; color: #fff;}
@@ -12679,7 +12683,7 @@ body {
 @media (max-width:991px) {
     .btn-sm-block {
         width: 100%;
-        max-width: 100%
+        max-width: 100%;
     }
 }
 .btn-border-white {background-color: #fff; border-radius: 6px; border: 1px solid #f1f1f1; color: #818894; transition: all .3s;}
@@ -12704,7 +12708,7 @@ body {
         font-size: 14px !important;
         padding-right: 22px;
         padding-left: 22px;
-        height: 44px
+        height: 44px;
     }
 }
 .badge-circle-danger,
@@ -15611,21 +15615,21 @@ Lms Card Style End
 Lms Performace Table Style Start
 ******************************/
 .lms-performace-table>li {display: flex;align-items: center;padding: 0;}
-.lms-performace-table>li.lms-performace-head {justify-content: space-between;padding: 0;}
+.lms-performace-table>li.lms-performace-head {padding: 0;}
 .lms-performace-table>li.lms-performace-head div {padding: 22px 15px;}
-.lms-performace-table>li.lms-performace-head div:first-child {max-width: 48%;min-width: 48%;text-align: left;}
-.lms-performace-table>li.lms-performace-head div {padding: 22px 15px;max-width: 15%;min-width: 15%;text-align: center;}
+.lms-performace-table>li.lms-performace-head div:first-child {width: 48%;text-align: left;}
+.lms-performace-table>li.lms-performace-head div {padding: 22px 15px;width: 15%;text-align: center;}
 .lms-performace-table>li.lms-performace-head div span {text-transform: uppercase;font-size: 15px;font-weight: 700;color: #878787;}
-.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd;max-width: 6%;min-width: 6%;}
+.lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd;width: 6%;}
 .lms-performace-table>li.lms-performace-des div {display: table-cell;padding: 22px 10px;white-space: nowrap;text-align: center;}
 .lms-performace-table>li.lms-performace-des div span {font-size: 15px;color: #878787;margin: 0;font-weight: 500;margin: 0;}
 .lms-performace-table>li.lms-performace-des {padding: 0;border: 1px dashed #ddd;border-bottom: 0;}
 .lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #ddd;}
 .lms-performace-table>li.lms-performace-des .sr-no span {color: #000;}
-.lms-performace-table>li.lms-performace-des .score-des {text-align: left;max-width: 42%;min-width: 42%;display: inline-flex;align-items: center;}
+.lms-performace-table>li.lms-performace-des .score-des {text-align: left;width: 42%;display: inline-flex;align-items: center;}
 .lms-performace-table>li.lms-performace-des .level-up,
 .lms-performace-table>li.lms-performace-des .practised,
-.lms-performace-table>li.lms-performace-des .time-sepen {max-width: 15%;min-width: 15%;}
+.lms-performace-table>li.lms-performace-des .time-sepen {width: 15%;}
 .lms-performace-table>li.lms-performace-des .coin-earn {max-width: 6%;min-width: 6%;}
 .lms-performace-table>li.lms-performace-des .coin-earn span svg {width: 20px;height: 20px;display: inline-block;vertical-align: middle;margin-right: 5px;}
 .lms-performace-table>li.lms-performace-des .coin-earn span {color: #183152;font-weight: 700;font-size: 18px;}
@@ -15637,30 +15641,29 @@ Lms Performace Table Style Start
 .lms-performace-section .element-title h5 {text-transform: uppercase;color: #183152;font-size: 18px;font-weight: bold;}
 .lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #c0c0c0;}
 .lms-performace-table>li.lms-performace-head div span.coin-icon svg {width: 24px;height: 24px;}
-.lms-performace-table>li.lms-performace-head div:last-child {max-width: 7%;min-width: 7%;}
+.lms-performace-table>li.lms-performace-head div:last-child {width: 7%;}
 .lms-performace-table figure img {width: 50px;height: 50px;border-radius: 100%;}
 .lms-performace-table figure {margin-right: 15px;}
-.leaderboard>li.lms-performace-head div:nth-child(2) {max-width: 55%;min-width: 55%;text-align: left;}
+.leaderboard>li.lms-performace-head div:nth-child(2) {width: 55%;text-align: left;}
 .leaderboard>li.lms-performace-des .sr-no,
-.leaderboard>li.lms-performace-head div:first-child {max-width: 8%;min-width: 8%;}
-.leaderboard>li.lms-performace-des .score-des {padding-left: 20px;flex-wrap: wrap;min-width: 55%;max-width: 55%;}
+.leaderboard>li.lms-performace-head div:first-child {width: 8%;}
+.leaderboard>li.lms-performace-des .score-des {padding-left: 20px;flex-wrap: wrap; width: 55%;}
 .leaderboard>li.lms-performace-des .score-des span {width: calc(100% - 65px);}
-.leaderboard>li.lms-performace-head.leaderboard-title div:first-child {max-width: 12%;min-width: 12%;}
+.leaderboard>li.lms-performace-head.leaderboard-title div:first-child {width: 12%;}
 .leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(3),
-.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(3){max-width:25%; min-width: 25%;}
+.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(3){width:25%;}
 .leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(4),
-.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(4){max-width:17%; min-width: 17%;}
+.leaderboard>li.lms-performace-des.leaderboard-des div:nth-child(4){width: 20%;}
 .leaderboard>li.lms-performace-head.leaderboard-title div:first-child h5{color: #878787;}
-.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {max-width: 30%;min-width: 30%;text-align: left;}
-.leaderboard>li.lms-performace-des.leaderboard-des .sr-no {max-width: 12%;min-width: 12%;}
-.leaderboard>li.lms-performace-des.leaderboard-des .score-des {padding-left: 20px;flex-wrap: wrap;min-width: 30%;max-width: 30%;}
+.leaderboard>li.lms-performace-head.leaderboard-title div:nth-child(2) {width: 30%;text-align: left;}
+.leaderboard>li.lms-performace-des.leaderboard-des .sr-no {width: 12%;}
+.leaderboard>li.lms-performace-des.leaderboard-des .score-des {padding-left: 20px;flex-wrap: wrap;width: 30%;}
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn,
-.lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{min-width: 16%;max-width: 16%;text-align: left;}
+.lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{width: 16%;text-align: left;}
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn > .badge-btn{width: auto; padding: 0;}
 .lms-performace-table>li.lms-performace-des.leaderboard-des .sr-no span {color: #878787;font-size: 20px;font-weight:500;display: block;}
 .lms-performace-table>li.lms-performace-des.leaderboard-des div{white-space: normal;}
 .lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px; font-weight: 500; text-transform:capitalize;}
-.lms-performace-table>li.lms-performace-des.leaderboard-des div{padding: 22px 15px;}
 .lms-performace-table>li.lms-performace-des .icon-table-1{color: #ffd000;}
 .lms-performace-table>li.lms-performace-des .icon-table-2 {color: #c7c7c7;}
 .leaderboard-tab .nav-tabs {border-bottom: 0;justify-content: end;}
@@ -15675,21 +15678,19 @@ Lms Performace Table Style Start
 .panel-content .leaderboard>li.lms-performace-des .sr-no, 
 .panel-content .leaderboard>li.lms-performace-head div:first-child,
 .panel-content .leaderboard>li.lms-performace-des .sr-no, 
-.panel-content .leaderboard>li.lms-performace-head div:first-child{max-width: 10%; min-width: 10%;}
-.panel-content .leaderboard>li.lms-performace-head div:nth-child(2),
-.panel-content .leaderboard>li.lms-performace-des .score-des{max-width: 30%; min-width: 30%;}
+.panel-content .leaderboard>li.lms-performace-head div:first-child{width: 10%;}
 .panel-content .lms-performace-table>li.lms-performace-head div,
 .panel-content .lms-performace-table>li.lms-performace-des .level-up, 
 .panel-content .lms-performace-table>li.lms-performace-des .practised, 
-.panel-content .lms-performace-table>li.lms-performace-des .time-sepen{max-width: 25%; min-width: 25%;}
+.panel-content .lms-performace-table>li.lms-performace-des .time-sepen{width: 25%;}
 .panel-content .lms-performace-table>li.lms-performace-head div:last-child,
-.panel-content .lms-performace-table>li.lms-performace-des .coin-earn {max-width: 18%; min-width: 18%;}
+.panel-content .lms-performace-table>li.lms-performace-des .coin-earn {width: 20%;}
 .panel-content .lms-performace-table>li.lms-performace-head {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
 .panel-content .lms-performace-table>li.lms-performace-des .sr-no {border-right: 0;}
 .panel-content .lms-performace-table>li.lms-performace-des {border: 0; border-bottom: 1px solid #ddd;}
 .panel-content .lms-performace-table>li.lms-performace-des:last-child {border-bottom: 0; }
 .panel-content .lms-performace-table>li.lms-performace-head div,
-.panel-content .lms-performace-table>li.lms-performace-des div {padding: 12px 10px;}
+.panel-content .lms-performace-table>li.lms-performace-des div {padding: 12px 20px;}
 .lms-performace-table>li.lms-performace-des.active {background-color: #e5e5e5;}
 /*****************************
 Lms Performace Table Style End
@@ -16302,23 +16303,38 @@ body{overflow-x: hidden;}
 .lms-jobs-form .checkbox-field label { font-size: 16px; font-weight: 500; text-transform: capitalize; margin-left: 15px; margin-bottom: 0; }
 .lms-jobs-form .input-field input[type="text"]::-webkit-input-placeholder, 
 .lms-jobs-form .input-field textarea::-webkit-input-placeholder,
-.lms-jobs-form .input-field input[type="email"]::-webkit-input-placeholder { color:#cbd5e1; opacity: 1; }
+.lms-jobs-form .input-field input[type="email"]::-webkit-input-placeholder,
+.lms-jobs-form .input-field input[type="password"]::-webkit-input-placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]::-moz-placeholder, 
 .lms-jobs-form .input-field textarea::-moz-placeholder,
-.lms-jobs-form .input-field input[type="email"]::-moz-placeholder { color:#cbd5e1; opacity: 1; }
+.lms-jobs-form .input-field input[type="email"]::-moz-placeholder,
+.lms-jobs-form .input-field input[type="password"]::-moz-placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]:-ms-input-placeholder, 
 .lms-jobs-form .input-field textarea:-ms-input-placeholder,
-.lms-jobs-form .input-field input[type="email"]:-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+.lms-jobs-form .input-field input[type="email"]:-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="password"]:-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder, 
 .lms-jobs-form .input-field textarea::-ms-input-placeholder,
-.lms-jobs-form .input-field input[type="email"]::-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+.lms-jobs-form .input-field input[type="email"]::-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="password"]::-ms-input-placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]::placeholder,
 .lms-jobs-form .input-field textarea::placeholder,
-.lms-jobs-form .input-field input[type="email"]::placeholder { color:#cbd5e1; opacity: 1; }
+.lms-jobs-form .input-field input[type="email"]::placeholder,
+.lms-jobs-form .input-field input[type="password"]::placeholder { color:#cbd5e1; opacity: 1; }
+
 .lms-jobs-form .input-field input[type="text"]:-ms-input-placeholder,
-.lms-jobs-form .input-field textarea:-ms-input-placeholder { color:#cbd5e1; }
+.lms-jobs-form .input-field textarea:-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="password"]:-ms-input-placeholder { color:#cbd5e1; }
+
 .lms-jobs-form .input-field input[type="text"]::-ms-input-placeholder,
+.lms-jobs-form .input-field input[type="password"]::-ms-input-placeholder,
 .lms-jobs-form .input-field textarea::-ms-input-placeholder { color:#cbd5e1; }
+
+
 .lms-jobs-form .input-field input[type="text"],
 .lms-jobs-form .input-field input[type="email"],
 .lms-jobs-form .input-field input[type="password"],
@@ -16495,10 +16511,11 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .modal-dialog {max-width: 860px; margin-top: 10%;}
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
-.lms-choose-membership .modal-body{padding: 1rem 2rem 4rem 2rem;}
+.lms-choose-membership .modal-content {position: relative;}
+.lms-choose-membership .modal-body{padding: 30px;}
 .lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
 .lms-choose-membership .book-form {margin: 0 auto;}
-.lms-choose-membership .form-group{margin-bottom: 30px;}
+.lms-choose-membership .form-group{margin-bottom: 15px;}
 .lms-choose-membership .input-field {border: 0;border-radius: 0;background: none;padding: 0;height: auto;width: 100%;position: relative;}
 .lms-choose-membership .input-field input[type="text"] {background: #fff; border-radius: 6px;height: 46px;width: 100%;padding: 11px;border: 2px solid #b4bac8;color: #b5b8bf;}
 .lms-choose-membership .input-field input::-webkit-input-placeholder {color: #b5b8bf;}
@@ -16524,7 +16541,7 @@ Lms Choose Membership Model Style Start
 .membership-steps-list li:last-child { width: 50px;}
 .membership-steps-list li:before {content: "";position: absolute;left: 55px;top: 20px;width: 77%;height: 13px;background: #afbacc;padding-left: 50px;border-radius: 0;}
 .membership-steps-list li:last-child:before { display: none;}
-.lms-choose-membership h2 {color: var(--primary-hover);font-size: 1.6rem;}
+.lms-choose-membership h2 {font-size: 1.6rem;}
 .membership-steps h3{color: var(--primary-hover);}
 .lms-choose-membership .book-detail p {position: relative;}
 .lms-choose-membership .book-detail p .icon-svg {position: absolute;left: -50px;top: 0;width: 40px;height: 40px;border: 2px solid var(--primary-hover);display: inline-flex;border-radius: 100%;align-items: center;justify-content: center;}
@@ -16537,15 +16554,91 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .bg-none {background: transparent;color: var(--primary-hover);box-shadow: none;}
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
-.lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right;}
+.lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right; position: absolute; right: -10px; top: -15px; z-index: 1;}
 .membership-sub-header { position: relative; overflow: hidden;}
 .lms-choose-membership .form-separator {position: relative;overflow: hidden;text-align: center;margin: 30px 0;}
 .lms-choose-membership .form-separator span {display: inline-block;padding: 0 15px;font-size: 20px;color: #b5b8bf;position: relative;}
 .lms-choose-membership .form-separator span:before { content: "";position: absolute;left: 100%;width: 999px;height: 1px;background: #b5b8bf;top: 16px;}
 .lms-choose-membership .form-separator span:after {content: "";position: absolute;right: 100%;width: 999px;height: 1px;background: #b5b8bf;top: 16px;}
 .lms-choose-membership .social-login {border-radius: 50px;border: 2px solid #b4bac8;font-size: 20px;font-weight: bold;color: #b5b8bf;}
-.lms-choose-membership .form-login-reading .input-field input[type="text"] {height: 60px;}
+.lms-choose-membership .form-login-reading .input-field input[type="text"] {height: 48px;border: 1px solid #ddd;}
 .lms-choose-membership .error-message {font-size: 18px;color: #ee3565;font-weight: 500;}
+.lms-choose-membership .fomr-label {
+    display: inline-block;
+    margin: 0 0 8px;
+    position: relative;
+    line-height: normal;
+}
+.lms-choose-membership .form-login-reading .input-field input.input-date,
+.lms-choose-membership .form-login-reading .input-field input.input-month{
+    width: 60px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.lms-choose-membership .form-login-reading .input-field input.input-year {
+    width: 120px;
+}
+.lms-choose-membership h5 {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.lms-choose-membership .form-group .select-sub-label {
+    font-size: 14px;
+    color: #999;
+    display: block;
+    line-height: normal;
+    margin: 0 0 13px;
+    position: relative;
+    cursor: pointer;
+}
+.lms-choose-membership .select-field input[type=radio] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.lms-choose-membership .select-field {
+    position: relative;
+}
+.lms-choose-membership .select-field label {
+    font-size: 18px;
+    position: relative;
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 0 0 0 30px;
+}
+.lms-choose-membership .select-field label:before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
+    border-radius: 100%;
+}
+.lms-choose-membership .select-field input[type=radio]:checked ~ label:before {
+    box-shadow: 0 0 0 5px #ddd inset;
+}
+.lms-choose-membership .form-group input[type="password"] {
+    height: 48px;
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 11px;
+    border-radius: 6px;
+}
+.lms-choose-membership .form-group .btn-field {
+    margin: 0;
+    text-align: right;
+}
+.lms-choose-membership .form-group .btn-field button {
+    width: auto;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px 30px;
+    height: auto;
+}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -17049,9 +17142,14 @@ Choose Plan Style Start
 .lms-form-wrapper .lms-choose-plan .lms-radio-btn-group li:last-child .lms-label {border-right: 1px solid #d1d1d1;}
 .lms-form-wrapper .lms-radio-btn-group li .lms-label span span {font-weight: 600; color: #959191; font-size: 15px;}
 .lms-choose-plan-selected .lms-jobs-form .input-field .lms-jobs-select {font-size: 16px; background-color: inherit;}
-.lms-choose-plan-selected .lms-jobs-form .input-field input[type="text"] {background-color: inherit; font-size: 16px; border-radius: 6px; border-color: #d1d1d1; height: 44px;}
+.lms-choose-plan-selected .lms-jobs-form .form-label {display: block; margin: 0 0 10px;}
+.panel-content .lms-choose-plan-selected .lms-jobs-form .input-field:before {display: none;}
+.lms-choose-plan-selected .lms-jobs-form .input-field input[type="text"] {background-color: inherit; font-size: 16px; border-radius: 6px; border-color: #d1d1d1; height: 44px; font-weight: 400;}
 .lms-choose-plan-selected button {background-color: inherit; border: 1px solid #d1d1d1; width: 100%; height: 44px; border-radius: 6px; font-weight: 500; text-align: left; padding: 0 15px; color: #444;}
 .lms-choose-plan-selected .lms-jobs-form .select-arrow:after {transform: rotate(-45deg); right: 15px;}
+.lms-choose-plan-selected .lms-jobs-form .input-field {margin: 0 0 15px;}
+.lms-choose-plan-selected .lms-jobs-form .input-field input[type="password"] {background-color: #fff; font-size: 16px;}
+.lms-choose-plan-selected  .input-field .form-control {font-size: 16px; color: #cbd5e1; border-color: #ddd;border-radius: 6px;height: 44px;}
 .choose-plan-modal .modal-dialog {max-width: 650px;}
 .select-plan input[type="radio"] {position: absolute; width: 0; height: 0; opacity: 0;}
 .select-plan {position: relative;}
@@ -17113,7 +17211,7 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .lms-jobs-form .card {margin-top: 25px; border: 0;}
 .db-form-tabs .lms-jobs-form .card .text-muted {margin: 0 0 15px;}
 .db-form-tabs .card-title,
-.db-form-tabs .card-body h5 {font-size: 1.25rem; font-weight: 400; margin-bottom: 0; }
+.db-form-tabs .card-body h5 {font-size: 1.25rem; margin-bottom: 0; }
 .db-form-tabs .lms-jobs-form .btn-danger {width: auto; padding: 0 15px; background-color: #dc3545; color: #fff; font-size: 14px; font-weight: 400; height: 35px;}
 .db-form-tabs .billing-card,
 .db-form-tabs .card {background-color: #fff;box-shadow: 0 0 15px rgba(0,0,0,0.05); margin-bottom: 30px;padding: 10px 0;border: 1px solid #e2e8f0;border-radius: 10px;}
@@ -17135,7 +17233,6 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .badge.bg-secondary {background-color: #1f3b64 !important; color: #fff; font-weight: 600;}
 .db-form-tabs .badge.bg-success {background-color: #198754 !important; color: #fff; font-weight: 600;}
 .db-form-tabs .table tbody td a {color: #287eff; text-decoration: underline; }
-.db-form-tabs .list-group-item h6 a {font-weight: 500; color: #287eff; text-decoration: underline;}
 .db-form-tabs a.dropdown-toggle {border: 1px solid #287eff; border-radius: 2px; height: 16px; width: 16px; display: inline-flex; align-items: center; justify-content: center;}
 .db-form-tabs .dropdown-toggle:after {display: none;}
 .db-form-tabs .dropdown-menu {min-width: 150px;}
@@ -17156,15 +17253,15 @@ Dashboard Form-Tabs Style Start
 .form-switch .form-check-input:checked {background: url(/assets/default/svgs/switch-circle-white.svg); background-position: right center; background-repeat: no-repeat; background-size: contain; background-color: #287eff; }
 .form-check-input {border-color: #e9ecef; -webkit-appearance: none; border: 1px solid rgba(0,0,0,.25); width: 1em; height: 1em;}
 .db-notifications .list-group-custom li:after {display: none;}
-.db-form-tabs .list-group-item h6 {font-weight: 500;}
 .db-notifications small {font-size: .875em; color: #9399a1!important; display: block; padding-top: 5px; }
 .db-form-tabs .lms-faqs {border: 1px solid #e2e8f0;background-color: #fff;border-radius: 10px;padding: 30px;max-width: 700px;margin: 0;}
 .db-form-tabs .lms-faqs .card {padding: 0; background-color: inherit; box-shadow: none; border: 0;}
 .db-form-tabs .lms-faqs .card:last-child {margin-bottom: 0;}
 .db-members .card {background-color: inherit; box-shadow: none; border: 0; }
-.db-members .card .card-header {background-color: inherit; padding: 0; margin: 0 0 30px; align-items: center;}
+.db-members .card .card-header {padding: 15px 20px !important; margin: 0; align-items: center; border-radius: 0; border-bottom: 1px solid #e2e8f0;}
 .db-members .card .card-body {padding: 0;}
-.db-members .card .list-group-item {background-color: #fff; border: 1px solid #e2e8f0; margin: 0 0 15px; border-radius: 5px; padding: 10px 15px;}
+.db-members .card .list-group-item {background-color: #fff;border-bottom: 1px solid #ddd;margin: 0;border-radius: 0;padding: 20px 15px;}
+.db-members .card .list-group-item:last-child {border-bottom: 0;}
 .db-members .card .list-group-item .col-auto:first-child {padding-right: 0;}
 .billing-card .list-group-item {padding: 0;}
 .db-notifications {max-width: 700px;}
@@ -17173,6 +17270,54 @@ Dashboard Form-Tabs Style Start
 .db-notifications .list-group-item div div {max-width: 40%;}
 .list-group.column-2 {flex-direction: inherit; flex-wrap: wrap; margin-left: -15px; margin-right: 0;}
 .db-members .card .column-2 .list-group-item {max-width: 47.5%; width: 47.5%; margin-left: 15px;}
+.dashboard .lms-jobs-form {border: 0; }
+.panel-content .dashboard .lms-jobs-form .input-field:before {display: none;}
+.db-members .card .card-header button,
+.member-card-header .btn {background-color: inherit; box-shadow: none; border: 0; padding: 0; color: var(--primary); font-weight: 600; font-size: 16px; height: auto;}
+.db-members .card .list-group-item small {font-size: 15px;}
+.db-members .card .card-header button img,
+.member-card-header .btn img {width: 18px; height: 18px; filter: invert(30%) sepia(100%) saturate(813%) hue-rotate(171deg) brightness(97%) contrast(106%); margin-right: 6px;}
+.db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
+.db-members .card .list-group-item:nth-child(odd) {background-color: inherit;}
+.lms-choose-plan-selected .lms-jobs-form .input-field {
+    margin: 0 0 15px;
+}
+.member-card-header {
+    background-color: #fff;
+    padding: 0 20px;
+}
+.member-card-header .dropdown {
+    margin-left: auto;
+}
+.db-form-tabs .list-group-item .connet-user-btn {
+    border: 1px solid var(--primary);
+    border-radius: 30px;
+    padding: 8px 15px;
+    line-height: normal;
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 500;
+}
+.list-group-item span {
+    color: #999;
+}
+.list-group-item strong {
+    color: #343434;
+}
+.list-group-item .switch-user-btn img {
+    border: 1px solid var(--primary);
+    min-width: auto;
+    min-height: auto;
+    padding: 5px;
+    margin-right: 10px;
+}
+.db-form-tabs .list-group-item a.connet-user-btn img {
+    width: 25px;
+    height: 25px;
+    min-width: auto;
+    min-height: auto;
+    margin-right: 5px;
+}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -17732,7 +17877,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
 /* Spell Levels Style End */
-.panel-content .lms-jobs-form {box-shadow: none; padding: 0;}
+.panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }

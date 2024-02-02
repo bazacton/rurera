@@ -1,7 +1,7 @@
 <div class="section-title mb-20">
     <h2 itemprop="title" class="font-22 mb-0">Showdown Mode</h2>
 </div>
-<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -20,7 +20,7 @@
             </div>
             @else
                <div class="col-12 col-lg-12 mx-auto">
-                   <h4>You have already attempted this week. Please return next week to make another attempt.</h4>
+                   <h4 class="text-center">You have already attempted this week.<br>Please return next week to make another attempt.</h4>
                </div>
             @endif
 
@@ -29,28 +29,16 @@
         </div>
     </div>
 </section>
-<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-50" style="background-color: #fff;">
+<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-0" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Weekly Ranking</h2></div>
+                <h4 class="text-center mb-20">{{ dateTimeFormat($lastMonday,'j F Y') }} to  {{ dateTimeFormat($nextSunday,'j F Y') }}</h4>
             </div>
             <div class="col-12 col-lg-12 mx-auto">
                 <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$currentWeek}}">Current Week</a>
-                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week</a>
-                <span class="dropdown">
-                  <a href="javascript:;" class="rurera-list-btn dropdown-toggle">
-                      Select Week
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      @php $weekCounter = 1; @endphp
-                      @while( $weekCounter <= 52)
-                        @php $is_selected = ($weekCounter == $selectedWeek)? 'active' : ''; @endphp
-                        <a class="dropdown-item week-selection-btn {{$is_selected}}" data-week_no="{{$weekCounter}}" href="javascript:;">Week: {{$weekCounter}}</a>
-                      @php $weekCounter++; @endphp
-                      @endwhile
-                  </div>
-                </span>
+                <a href="javascript:;" class="rurera-list-btn week-selection-btn" data-week_no="{{$previousWeek}}">Last Week {{$previousWeek}}</a>
                 <ul class="lms-performace-table leaderboard mt-30">
                     <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">
                         <div><h2 class="text-center font-18">Rank#</h2></div>
@@ -64,7 +52,7 @@
                             @php $is_active = ($leaderboardRow->user->id == auth()->user()->id)? 'active' : ''; @endphp
                             <li class="lms-performace-des leaderboard-des {{$is_active}}">
                                 <div class="sr-no text-center"><span>{{$user_counter}}</span></div>
-                                <div class="score-des w-25">
+                                <div class="score-des">
                                     <figure><img src="{{$leaderboardRow->user->getAvatar()}}" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager"></figure>
                                     <span><a href="#">{{$leaderboardRow->user->full_name}}</a></span>
                                 </div>

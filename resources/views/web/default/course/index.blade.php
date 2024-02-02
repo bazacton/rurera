@@ -17,7 +17,7 @@
             <div class="col-12 p-0">
                 <div class="post-show" style="overflow:hidden;">
 
-<section class="count-number-wrapp mt-30" style="display:none">
+<section class="count-number-wrapp" style="display:none">
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">
@@ -70,7 +70,7 @@
         </div>
     </div>
 </section>
-<section class="lms-chapter-section mt-20">
+<section class="lms-chapter-section">
     <div class="container">
         <div class="row">
             <div class="col-12 lms-chapter-area">
