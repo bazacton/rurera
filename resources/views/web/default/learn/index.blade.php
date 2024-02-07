@@ -35,7 +35,7 @@
                             <h4 class="categories-title font-19 font-weight-bold"><a href="/{{$categoryObj->slug}}/{{$courseObj->slug}}">{{$courseObj->getTitleAttribute()}}</a></h4>
                             @if( isset( $subject_percentage['percentage'] ) && $subject_percentage['percentage'] > 0)
                                 <div class="levels-progress horizontal">
-                                    <span class="progress-numbers">{{$subject_percentage['skills_attempted']}}/{{$subject_percentage['total_skils']}} Skills</span>
+                                    <span class="progress-numbers">{{$subject_percentage['skills_attempted']}}/{{$subject_percentage['total_skils']}} Lessons</span>
                                     <span class="progress-box">
                                         <span class="progress-count" style="width: {{$subject_percentage['percentage']}}%;"></span>
                                     </span>

@@ -43,7 +43,11 @@
     @endif
 
 </head>
-<body class="menu-closed @if($isRtl) rtl @endif">
+@php $bodyClass = ''; @endphp
+@if(auth()->check() && auth()->user()->isParent())
+    @php $bodyClass = 'parent-panel'; @endphp
+@endif
+<body class="menu-closed @if($isRtl) rtl @endif {{$bodyClass}}">
 
 @php
     $isPanel = true;
@@ -340,7 +344,7 @@
                                         <li>
                                             <div class="quests-item">
                                                 <div class="icon-box">
-                                                    <img src="/assets/default/img/earn-img.png" alt="">
+                                                    <img src="/assets/default/svgs/star-quests.svg" alt="">
                                                 </div>
                                                 <div class="item-text">
                                                     <h5>Earn 10 XP</h5>
@@ -351,7 +355,8 @@
                                                         <span class="progress-numbers">0 / 10</span>
                                                     </div>
                                                     <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-icon1.png" alt="">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +20
                                                     </span>
                                                 </div>
                                             </div>
@@ -370,7 +375,8 @@
                                                         <span class="progress-numbers">0 / 2</span>
                                                     </div>
                                                     <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-icon2.png" alt="">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +15
                                                     </span>
                                                 </div>
                                             </div>
@@ -389,12 +395,42 @@
                                                         <span class="progress-numbers">0 / 2</span>
                                                     </div>
                                                     <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-icon3.png" alt="">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +100
                                                     </span>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mb-30">
+                                <div class="store-stats">
+                                <h2 itemprop="title" class="font-19 font-weight-bold mb-10">Store Stats</h2>
+                                <ul>
+                                    <li>
+                                    <div class="store-item">
+                                        <span class="item-label">Owned Items:</span>
+                                        <span class="iteme-numbers">
+                                        91 <em>(1151 items total)</em>
+                                        </span>
+                                    </div>
+                                    </li>
+                                    <li>
+                                    <div class="store-item">
+                                        <img src="/assets/default/img/stats-coins.png" alt="">
+                                        <span class="item-label">Current Balance:</span>
+                                        <span class="iteme-numbers">706</span>
+                                    </div>
+                                    </li>
+                                    <li>
+                                    <div class="store-item">
+                                        <img src="/assets/default/img/stats-coins.png" alt="">
+                                        <span class="item-label">Lifetime Spending:</span>
+                                        <span class="iteme-numbers">0</span>
+                                    </div>
+                                    </li>
+                                </ul>
                                 </div>
                             </div>
                             @endif

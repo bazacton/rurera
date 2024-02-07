@@ -29,8 +29,12 @@ $rand_id = rand(99,9999);
             <div class="default-loaded-data rurera-hide"></div>
             <div class="learning-content read-quiz-content" id="learningPageContent">
 
+                @php $content_class = ''; @endphp
+                @if( $quiz->quiz_type == 'vocabulary' || $quiz->quiz_type == 'practice')
+                @php $content_class = 'hide'; @endphp
+                @endif
 
-                <section class="quiz-topbar start-landing-page">
+                <section class="quiz-topbar start-landing-page {{$content_class}}">
                 <div class="container-fluid">
                     <div class="row">
 
@@ -43,6 +47,7 @@ $rand_id = rand(99,9999);
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
+
                             <div class="topbar-right">
                                 <div class="quiz-timer">
 
@@ -132,7 +137,7 @@ $rand_id = rand(99,9999);
                 <div class="row justify-content-center">
                 <div class="d-flex align-items-center justify-content-center w-100">
                     @php $content_class = ''; @endphp
-                    @if( $quiz->quiz_type == 'vocabulary')
+                    @if( $quiz->quiz_type == 'vocabulary' || $quiz->quiz_type == 'practice')
                     @php $content_class = 'hide'; @endphp
                         <div class="start-counter"></div>
                     @endif
@@ -294,7 +299,7 @@ $rand_id = rand(99,9999);
     //init_question_functions();
 
 
-    if( "{{$quiz->quiz_type}}" == 'vocabulary') {
+    if( "{{$quiz->quiz_type}}" == 'vocabulary' || "{{$quiz->quiz_type}}" == 'practice') {
         var start_counter = 6;
 
         var Startintervals = setInterval(function () {
@@ -304,7 +309,8 @@ $rand_id = rand(99,9999);
             } else {
                 $(".start-counter").remove();
                 clearInterval(Startintervals);
-                $(".start-spell-quiz").click();
+                $(".quiz-start-btn").click();
+                $(".learning-content-box").removeClass('hide')
             }
         }, 1000);
     }

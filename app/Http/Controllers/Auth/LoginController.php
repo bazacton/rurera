@@ -315,7 +315,8 @@ class LoginController extends Controller
         }
 
         $user->update([
-            'logged_count' => (int)$user->logged_count + 1
+            'logged_count' => (int)$user->logged_count + 1,
+            'is_from_parent' => 0
         ]);
 
         $cartManagerController = new CartManagerController();

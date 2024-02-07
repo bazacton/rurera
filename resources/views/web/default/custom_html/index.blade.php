@@ -427,7 +427,7 @@
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group mt-30">
                                 <div class="btn-field">
-                                    <button type="submit">Create student's profile</button>
+                                    <button type="submit" class="nav-link" id="book-tab" data-toggle="tab" data-target="#book" type="button" role="tab" aria-controls="book" aria-selected="true">Create student's profile</button>
                                 </div>
                             </div>
                         </div>

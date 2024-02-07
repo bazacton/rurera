@@ -46,13 +46,14 @@ if( $layout_type == 'results'){
 
 @endphp
 
-<div class="question-area" data-total_questions="{{$total_questions}}">
+<div class="question-area active" data-total_questions="{{$total_questions}}">
     <div class="correct-appriciate" style="display:none"></div>
-    <div class="question-step question-step-{{ $question->id }}" data-elapsed="0"
+    <div class="question-step question-step-{{ $question->id }} rurera-question-timer active" data-timer_id="{{ $question->id }}" data-elapsed="0"
          data-qattempt="{{isset( $quizAttempt->id )? $quizAttempt->id : 0}}"
          data-start_time="0" data-qresult="{{isset( $newQuestionResult->id )? $newQuestionResult->id : 0}}"
          data-quiz_result_id="{{isset( $quizAttempt->quiz_result_id )? $quizAttempt->quiz_result_id : 0}}">
         <div class="question-layout-block">
+            <div class="time-elapsed">0</div>
 
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
@@ -204,7 +205,7 @@ if( $layout_type == 'results'){
             var seconds_count = $(".question-step-{{ $question->id }}").attr('data-elapsed');
             seconds_count = parseInt(seconds_count) + parseInt(1);
             $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count);
-        }, 1000);
+        }, 100);
     }
 </script>
 

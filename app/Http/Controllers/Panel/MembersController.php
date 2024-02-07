@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Mixins\RegistrationPackage\UserPackage;
+use App\Models\Category;
 use App\Models\Subscribe;
 use App\Models\Comment;
 use App\Models\Gift;
@@ -74,9 +75,14 @@ class MembersController extends Controller
             $data['frequency_discounts'] = $frequency_discounts;
 
 
+            $categories = Category::where('parent_id' , null)
+                       ->with('subCategories')
+                       ->get();
             $subscribes = Subscribe::all();
             $data['subscribes'] = $subscribes ?? [];
             $data['pageTitle'] = 'Members';
+            $data['categories'] = $categories;
+            //pre($categories);
 
             return view(getTemplate() . '.panel.parent.dashboard', $data);
             //return view(getTemplate() . '.panel.dashboard.index', $data);

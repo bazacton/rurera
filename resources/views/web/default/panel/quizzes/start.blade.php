@@ -234,6 +234,23 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
+                    <div class="quiz-status-bar">
+                        <div class="correct-in-row">0 IN A ROW -- </div>
+                        <div class="quiz-questions-bar-holder">
+                            <div class="quiz-questions-bar">
+                                <span class="bar-fill" style="width: 50%;"></span>
+                            </div>
+                            <span class="coin-numbers">
+                                <img src="/assets/default/img/quests-coin.png" alt="">
+                                <span>+0</span>
+                            </span>
+                        </div>
+                        <div class="quiz-corrects-incorrects">
+                            <span class="quiz-corrects">0</span>
+                            <span class="quiz-incorrects">0</span>
+                        </div>
+                    </div>
+
                     <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
@@ -293,6 +310,25 @@ $timer_counter = $practice_time;
 </div>
 @endif
 
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <div class="modal-title">
+          <h3>Inactive</h3>
+            <span class="inactivity-timer">30</span>
+        </div>
+        <p>
+          Continue this Practice
+        </p>
+        <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Continue</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
    <div class="modal-dialog">
        <div class="modal-content">
@@ -327,19 +363,74 @@ $timer_counter = $practice_time;
 
 
     var Quizintervals = null;
+    var InactivityInterval = null;
+    var focusInterval = null;
+    var focusIntervalCount = 60;
+    var timerStop = false;
 
     var duration_type = '{{$duration_type}}';
-    console.log(duration_type);
-    console.log('start-page1-----');
 
 
 
 
     function quiz_default_functions() {
 
+        window.addEventListener('blur', function () {
+            //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
+            //inactivity-timer
+            if( focusInterval == null) {
+
+                focusInterval = setInterval(function () {
+                    var focus_count = focusIntervalCount-1;
+                    console.log('focusout--'+focus_count);
+                    focusIntervalCount = focus_count;
+                    if (focus_count <= 0) {
+                        timerStop = true;
+                        $(".question_inactivity_modal").modal('show');
+                        if( InactivityInterval == null) {
+                            InactivityInterval = setInterval(function () {
+                                var inactivity_timer = parseInt($(".inactivity-timer").html() - 1);
+                                $(".inactivity-timer").html(inactivity_timer);
+                                if (parseInt(inactivity_timer) <= 0) {
+                                    $(".question_inactivity_modal").modal('hide');
+                                    $(".inactivity-timer").html(30);
+                                    clearInterval(InactivityInterval);
+                                    InactivityInterval = null;
+                                }
+                            }, 1000);
+                        }
+                        focusIntervalCount = 60;
+                        clearInterval(focusInterval);
+                        focusInterval = null;
+                    }
+                }, 1000);
+
+            }
+        });
+
+
+        window.addEventListener('focus', function () {
+            focusIntervalCount = 60;
+            clearInterval(focusInterval);
+            focusInterval = null;
+        });
+
+        $(document).on('click', '.continue-btn', function (e) {
+            timerStop = false;
+            focusIntervalCount = 60;
+            focusInterval = null;
+            $(".inactivity-timer").html(30);
+            clearInterval(InactivityInterval);
+            InactivityInterval = null;
+        });
+
         var active_question_id = $(".question-area-block").attr('data-active_question_id');
         $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
         Quizintervals = setInterval(function () {
+            if( timerStop == true){
+                return;
+            }
+
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
             if (duration_type == 'no_time_limit') {
                 quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
@@ -378,6 +469,8 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
+
+
 
     }
 

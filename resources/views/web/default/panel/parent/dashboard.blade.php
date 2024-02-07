@@ -109,7 +109,7 @@
                         <div class="col-12">
 
 
-                            <div class="lms-form-wrapper mb-50">
+                            <div class="lms-form-wrapper mb-15">
 
                                 <div class="lms-choose-plan d-flex mb-30">
                                     <div class="lms-choose-field">
@@ -186,122 +186,147 @@
             </div>
             <div class="modal-body">
 
-                <form action="/panel/financial/pay-subscribes" method="post" class="w-100">
-                    {{ csrf_field() }}
+
                     <div class="col-12">
                         @php $discount = isset( $ParentsOrders->payment_frequency )?
                         $frequency_discounts[$ParentsOrders->payment_frequency] : 0; @endphp
 
 
-                        <div class="lms-form-wrapper mb-50">
+                        <div class="lms-form-wrapper mb-15">
 
-                            @if( isset( $ParentsOrders->id ) )
-                            <input type="radio" class="hide subscribe_for" name="subscribe_for"
-                                   value="{{isset($ParentsOrders->payment_frequency)? $ParentsOrders->payment_frequency : 1}}"
-                                   data-discount="{{$discount}}" checked>
-                            @else
-                            <div class="lms-choose-plan d-flex mb-30">
-                                <div class="lms-choose-field">
-                                    <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
-                                    <div class="lms-radio-select">
-                                        <ul class="lms-radio-btn-group d-inline-flex align-items-center">
 
-                                            @php
-                                            $payment_frequency = isset( $ParentsOrders->payment_frequency )?
-                                            $ParentsOrders->payment_frequency : 1; @endphp
-                                            <li>
-                                                @php $checked = (isset( $payment_frequency) &&
-                                                $payment_frequency == 1)? 'checked' : ''; @endphp
-                                                <input type="radio" id="month" value="1" data-discount="0"
-                                                       name="subscribe_for" {{$checked}}/>
-                                                <label class="lms-label" for="month">
-                                                    <span>01 month</span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                @php $checked = (isset( $payment_frequency) &&
-                                                $payment_frequency == 3)? 'checked' : ''; @endphp
-                                                <input type="radio" id="three_months" value="3" data-discount="5"
-                                                       name="subscribe_for" {{$checked}}/>
-                                                <label class="lms-label" for="three_months">
-                                                    <span>03 month <span>(5%)</span> </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                @php $checked = (isset( $payment_frequency) &&
-                                                $payment_frequency == 6)? 'checked' : ''; @endphp
-                                                <input type="radio" id="six_months" value="6" data-discount="10"
-                                                       name="subscribe_for" {{$checked}}/>
-                                                <label class="lms-label" for="six_months">
-                                                    <span>06 month <span>(10%)</span> </span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                @php $checked = (isset( $payment_frequency) &&
-                                                $payment_frequency == 12)? 'checked' : ''; @endphp
-                                                <input type="radio" id="year" value="12" data-discount="20"
-                                                       name="subscribe_for" {{$checked}}/>
-                                                <label class="lms-label" for="year">
-                                                    <span>whole year <span>(20%)</span></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            <input type="hidden" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="1">
 
 
                             <div class="childs-block">
-                                <div class="child-item lms-choose-plan-selected mt-10 mb-20">
+                                <div class="child-item lms-choose-plan-selected">
                                     <div class="lms-jobs-form">
+                                        <form action="/panel/financial/pay-subscribes" method="post" class="w-100 childs-form">
+                                        {{ csrf_field() }}
                                         <div class="row user-details-block">
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <span class="form-label">Student's first name</span>
                                                 <div class="input-field">
-                                                    <input type="text" name="student_name[]"
+                                                    <input type="text" name="student_name"
                                                            placeholder="Student First Name">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <span class="form-label">Student's last name</span>
                                                 <div class="input-field">
-                                                    <input type="text" name="student_last_name[]"
+                                                    <input type="text" name="student_last_name"
                                                            placeholder="Student Last Name">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <span class="form-label">Student Username</span>
                                                 <div class="input-field">
-                                                    <input type="text" name="student_username[]"
+                                                    <input type="text" name="username"
                                                            placeholder="Username">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <span class="form-label">Student Password</span>
                                                 <div class="input-field">
-                                                    <input type="password" name="student_password[]"
+                                                    <input type="password" name="student_password"
                                                            placeholder="Password">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <span class="form-label">Student Preference</span>
                                                 <div class="input-field">
-                                                    <select class="form-control">
+                                                    <select class="form-control" name="user_preference">
                                                         <option value="">Preference</option>
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <span class="form-label">Student Year</span>
+                                                <div class="input-field">
+                                                    <select class="form-control"
+                                                            name="year_id">
+                                                        <option disabled>Choose Year</option>
+                                                        @foreach($categories as $category)
+                                                        @if(!empty($category->subCategories) and count($category->subCategories))
+                                                        <optgroup label="{{  $category->title }}">
+                                                            @foreach($category->subCategories as $subCategory)
+                                                            <option value="{{ $subCategory->id }}">{{ $subCategory->title }}</option>
+                                                            @endforeach
+                                                        </optgroup>
+                                                        @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <button type="button" class="btn btn-primary btn-block mt-50 childs-next-btn" style="background:#0272b6; color:#fff">Next
                                             </button>
                                         </div>
+                                        </form>
                                         <div class="row choose-package-block rurera-hide">
+                                            <form action="/panel/financial/pay-subscribes" method="post" class="w-100 package-form">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="user_id" class="package_user_id">
+                                                @if( isset( $ParentsOrders->id ) )
+                                            <input type="radio" class="hide subscribe_for" name="subscribe_for"
+                                                   value="{{isset($ParentsOrders->payment_frequency)? $ParentsOrders->payment_frequency : 1}}"
+                                                   data-discount="{{$discount}}" checked>
+                                            @else
+                                            <div class="lms-choose-plan d-flex mb-30">
+                                                <div class="lms-choose-field">
+                                                    <strong class="choose-title d-block mb-20 font-24">Choose a plan</strong>
+                                                    <div class="lms-radio-select">
+                                                        <ul class="lms-radio-btn-group d-inline-flex align-items-center">
+
+                                                            @php
+                                                            $payment_frequency = isset( $ParentsOrders->payment_frequency )?
+                                                            $ParentsOrders->payment_frequency : 1; @endphp
+                                                            <li>
+                                                                @php $checked = (isset( $payment_frequency) &&
+                                                                $payment_frequency == 1)? 'checked' : ''; @endphp
+                                                                <input type="radio" id="month" value="1" data-discount="0"
+                                                                       name="subscribe_for" {{$checked}}/>
+                                                                <label class="lms-label" for="month">
+                                                                    <span>01 month</span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                @php $checked = (isset( $payment_frequency) &&
+                                                                $payment_frequency == 3)? 'checked' : ''; @endphp
+                                                                <input type="radio" id="three_months" value="3" data-discount="5"
+                                                                       name="subscribe_for" {{$checked}}/>
+                                                                <label class="lms-label" for="three_months">
+                                                                    <span>03 month <span>(5%)</span> </span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                @php $checked = (isset( $payment_frequency) &&
+                                                                $payment_frequency == 6)? 'checked' : ''; @endphp
+                                                                <input type="radio" id="six_months" value="6" data-discount="10"
+                                                                       name="subscribe_for" {{$checked}}/>
+                                                                <label class="lms-label" for="six_months">
+                                                                    <span>06 month <span>(10%)</span> </span>
+                                                                </label>
+                                                            </li>
+                                                            <li>
+                                                                @php $checked = (isset( $payment_frequency) &&
+                                                                $payment_frequency == 12)? 'checked' : ''; @endphp
+                                                                <input type="radio" id="year" value="12" data-discount="20"
+                                                                       name="subscribe_for" {{$checked}}/>
+                                                                <label class="lms-label" for="year">
+                                                                    <span>whole year <span>(20%)</span></span>
+                                                                </label>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+
+                                            <input type="hidden" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="1">
+
                                             <div class="col-12 col-lg-12 col-md-124">
-                                                <strong class="choose-title d-block mb-20 mt-20 font-24">Choose Package</strong>
+                                                <strong class="choose-title d-block mb-10 font-24">Choose Package</strong>
                                                 <div class="subscribe-plan-holder">
                                                     <div class="container">
                                                         <div class="row">
@@ -315,19 +340,21 @@
                                                                     <input type="radio" class="package_id choose-package update-package-{{$subscribe->id}}"
                                                                            data-label="{{ $subscribe->title }}"
                                                                            id="up-{{$subscribe->id}}" data-price="{{$subscribe->price}}"
-                                                                           value="{{ $subscribe->id }}" name="package_id[]">
+                                                                           value="{{ $subscribe->id }}" name="package_id">
                                                                     <label for="up-{{$subscribe->id}}" data-label="{{ $subscribe->title }}">
                                                                         <div class="subscribe-plan position-relative d-flex flex-column rounded-lg py-25 px-20">
-                                                                                    <span class="subscribe-icon mb-35">
-                                                                                        <img src="../assets/default/svgs/box-color2.svg" alt="#">
-                                                                                        <img src="../assets/default/svgs/box-white.svg"
-                                                                                             class="box-white-svg" alt="#">
-                                                                                    </span>
-                                                                            <h3 itemprop="title"
-                                                                                class="font-24 font-weight-500 text-dark-charcoal pt-20">{{
-                                                                                $subscribe->title }}</h3>
-                                                                            <div class="d-flex align-items-start text-dark-charcoal mt-10">
-                                                                                <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>
+                                                                            <span class="subscribe-icon mb-20">
+                                                                                <img src="../assets/default/img/pig.png" height="auto" width="auto" alt="Box image">
+                                                                            </span>
+                                                                            <div class="subscribe-title">
+                                                                                <h3 itemprop="title" class="font-24 font-weight-500">{{$subscribe->title }}</h3>
+                                                                                <span>A simple start for everyone</span>
+                                                                            </div>
+                                                                            <div class="d-flex align-items-start mt-10 subscribe-price">
+                                                                                <span itemprop="price" class="font-36 line-height-1">
+                                                                                    {!! addCurrencyToPrice($subscribe->price, null, 'currency_small') !!}
+                                                                                </span>
+                                                                                <span class="yearly-price">$ 90 / year</span>
                                                                             </div>
                                                                             <span class="plan-label d-block font-weight-500 pt-20">For Teachers</span>
                                                                             <ul class="plan-feature">
@@ -366,10 +393,11 @@
                                                 </div>
                                             </div>
                                             <div class="total-amount"></div>
-                                            <button type="submit" class="btn btn-primary btn-block mt-50" style="background:#0272b6; color:#fff">{{
+                                            <button type="submit" class="btn btn-primary btn-block mt-30" style="background:#0272b6; color:#fff">{{
                                                 trans('financial.purchase') }}
                                             </button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                                 
@@ -377,7 +405,6 @@
 
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -385,7 +412,7 @@
 
 
 <div class="child-hidden-block hide">
-    <div class="child-item lms-choose-plan-selected mt-10">
+    <div class="child-item lms-choose-plan-selected">
         <div class="lms-jobs-form">
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-8">
@@ -409,7 +436,7 @@
 
 <div class="modal fade choose-plan-modal update-plan-model" id="update-plan-modal" tabindex="-1"
      aria-labelledby="update-plan-modalLabel" aria-hidden="true">
-    <form action="/panel/financial/update-plan" method="post" class="w-100">
+    <form action="/panel/financial/add-childs" method="post" class="w-100 ">
         {{ csrf_field() }}
         <div class="modal-dialog">
             <div class="modal-content">
@@ -435,16 +462,21 @@
                                                value="{{ $subscribe->id }}" name="package">
                                         <label for="up-{{$subscribe->id}}" data-label="{{ $subscribe->title }}">
                                             <div class="subscribe-plan position-relative d-flex flex-column rounded-lg py-25 px-20">
-                                                        <span class="subscribe-icon mb-35">
-                                                            <img src="../assets/default/svgs/box-color2.svg" alt="#">
-                                                            <img src="../assets/default/svgs/box-white.svg"
-                                                                 class="box-white-svg" alt="#">
-                                                        </span>
-                                                <h3 itemprop="title"
-                                                    class="font-24 font-weight-500 text-dark-charcoal pt-20">{{
-                                                    $subscribe->title }}</h3>
-                                                <div class="d-flex align-items-start text-dark-charcoal mt-10">
-                                                    <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>
+                                                <span class="subscribe-icon mb-20">
+                                                    <img src="../assets/default/img/plan-rocket.png" height="auto" width="auto" alt="Box image">
+                                                </span>
+                                                <div class="subscribe-title">
+                                                    <h3 itemprop="title" class="font-24 font-weight-500 pt-20">
+                                                        {{$subscribe->title }}
+                                                    </h3>
+                                                    <span>A simple start for everyone</span>
+                                                </div>
+                                                <div class="d-flex align-items-start mt-10 subscribe-price">
+                                                    <span itemprop="price" class="font-36 line-height-1">
+                                                        {!! addCurrencyToPrice($subscribe->price, null, 'currency_small') !!}
+                                                        <em>/month</em>
+                                                    </span>
+                                                    <span class="yearly-price">$ 90 / year</span>
                                                 </div>
                                                 <span class="plan-label d-block font-weight-500 pt-20">For Teachers</span>
                                                 <ul class="plan-feature">
@@ -514,16 +546,18 @@
                                            value="{{ $subscribe->id }}" name="package">
                                     <label for="{{$subscribe->id}}" data-label="{{ $subscribe->title }}">
                                         <div class="subscribe-plan position-relative d-flex flex-column rounded-lg py-25 px-20">
-                                                        <span class="subscribe-icon mb-35">
-                                                            <img src="../assets/default/svgs/box-color2.svg" alt="#">
-                                                            <img src="../assets/default/svgs/box-white.svg"
-                                                                 class="box-white-svg" alt="#">
-                                                        </span>
-                                            <h3 itemprop="title"
-                                                class="font-24 font-weight-500 text-dark-charcoal pt-20">{{
-                                                $subscribe->title }}</h3>
-                                            <div class="d-flex align-items-start text-dark-charcoal mt-10">
-                                                <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span>
+                                            <span class="subscribe-icon mb-20">
+                                                <img src="../assets/default/img/plan-rocket.png" height="auto" width="auto" alt="Box image">
+                                            </span>
+                                            <div class="subscribe-title">
+                                                <h3 itemprop="title" class="font-24 font-weight-500">{{$subscribe->title }}</h3>
+                                                <span>A simple start for everyone</span>
+                                            </div>
+                                            <div class="d-flex align-items-start mt-10 subscribe-price">
+                                                <span itemprop="price" class="font-36 line-height-1">
+                                                    {!! addCurrencyToPrice($subscribe->price, null, 'currency_small') !!}
+                                                </span>
+                                                <span class="yearly-price">$ 20 / year</span>
                                             </div>
                                             <span class="plan-label d-block font-weight-500 pt-20">For Teachers</span>
                                             <ul class="plan-feature">
@@ -604,8 +638,47 @@
     });
 
     $(document).on('click', '.childs-next-btn', function (e) {
-        $('.user-details-block').addClass('rurera-hide');
-        $('.choose-package-block').removeClass('rurera-hide');
+
+        var formData = new FormData($(".childs-form")[0]);
+        jQuery.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data:formData,
+            dataType:'json',
+            url: '/panel/financial/add-childs',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (return_data) {
+                $(".package_user_id").val(return_data.user_id)
+                $('.user-details-block').addClass('rurera-hide');
+                $('.choose-package-block').removeClass('rurera-hide');
+            },
+            error: function error(err) {
+                var errors = err.responseJSON.errors;
+                var error_mesages = '';
+                for (var key in errors) {
+                    if (errors.hasOwnProperty(key)) {
+                        var errorMessages = errors[key];
+                        errorMessages.forEach(function(errorMessage) {
+                            error_mesages += errorMessage+'<br>';
+                            console.log("Field: " + key + ", Error: " + errorMessage);
+                            // Perform any other action you need with the error message
+                        });
+                    }
+                }
+                Swal.fire({
+                  icon: 'error',
+                  html: '<h3 class="font-20 text-center text-dark-blue py-25">'+error_mesages+'</h3>',
+                  showConfirmButton: false,
+                  width: '25rem'
+                });
+            }
+        });
+
+        //$('.user-details-block').addClass('rurera-hide');
+        //$('.choose-package-block').removeClass('rurera-hide');
     });
 
     $(document).on('click', '.add-child-btn', function (e) {

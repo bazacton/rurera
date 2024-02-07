@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Mail;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+use Illuminate\Support\Facades\Session;
 
 class TestsController extends Controller
 {
@@ -23,6 +24,11 @@ class TestsController extends Controller
             //return redirect('/login');
         }
         $user = getUser();
+
+        $switchUserObj = (object) array();
+        if( $user->selected_user > 0) {
+            $switchUserObj = User::find($user->selected_user);
+        }
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
@@ -48,6 +54,7 @@ class TestsController extends Controller
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
         $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
+        $query->where('year_id', $user->year_id);
         $sats = $query->paginate(100);
 
         $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
@@ -63,6 +70,7 @@ class TestsController extends Controller
         }
 
         $childs = array();
+        
         if (auth()->check() && auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
@@ -70,6 +78,7 @@ class TestsController extends Controller
                 ->where('status', 'active')
                 ->get();
         }
+        
         if (auth()->check() && auth()->user()->isTeacher()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'teacher')
@@ -86,6 +95,7 @@ class TestsController extends Controller
                 'sats'                       => $sats,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,
+                'switchUserObj'              => $switchUserObj,
                 'parent_assigned_list'       => $parent_assigned_list,
                 'graphs_array'               => $graphs_array,
                 'summary_type'               => $summary_type,
@@ -99,10 +109,13 @@ class TestsController extends Controller
 
     public function search_tests(Request $request)
     {
+        $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
         $counter = 0;
         $search_keyword = $request->get('search_keyword', '');
         $quiz_type = $request->get('quiz_type', '');
+
+        $switch_user = $user->selected_user;
 
 
         $query = Quiz::where('status', Quiz::ACTIVE);
@@ -115,6 +128,12 @@ class TestsController extends Controller
         if ($search_keyword != '') {
             $query->whereTranslationLike('title', '%' . $search_keyword . '%')->orWhere('quiz_type', 'like', "%$search_keyword%");
         }
+
+        if( $switch_user > 0){
+            $switchUserObj = User::find($switch_user);
+            $query->where('year_id', $switchUserObj->year_id);
+        }
+
 
         $tests = $query->paginate(100);
 
@@ -131,6 +150,15 @@ class TestsController extends Controller
 
         $response_layout .= '<script>$(".total-tests").html("Total Tests: '.$tests->count().'")</script>';
         echo $response_layout;
+        exit;
+
+    }
+
+    public function switch_user(Request $request)
+    {
+        $user = getUser();
+        $switch_user = $request->get('switch_user', '');
+        $user->update(['selected_user' => $switch_user]);
         exit;
 
     }

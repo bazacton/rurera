@@ -496,6 +496,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'tests'] , function () {
         Route::get('/' , 'TestsController@index');
         Route::get('/search_tests' , 'TestsController@search_tests');
+        Route::get('/switch_user' , 'TestsController@switch_user');
 
     });
 

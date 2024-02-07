@@ -37,6 +37,9 @@ quiz_user_data[0]['correct'] = {};
 var QuestionSubmitRequest = null;
 var question_submit_process = false;
 var Questioninterval = null;
+var correctInRow = 0;
+var totalCorrectCount = 0;
+var totalInCorrectCount = 0;
 
 
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
@@ -173,6 +176,29 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
 
+            if(return_data.incorrect_flag == true ){
+                correctInRow = 0;
+                totalInCorrectCount = totalInCorrectCount+1;
+            }else{
+                totalCorrectCount = totalCorrectCount+1;
+                correctInRow = correctInRow+1;
+            }
+            if( $(".correct-in-row").length > 0){
+                $(".correct-in-row").html(correctInRow+' IN A ROW');
+            }
+
+            if( $(".quiz-corrects").length > 0){
+                $(".quiz-corrects").html(totalCorrectCount);
+            }
+
+            if( $(".quiz-incorrects").length > 0){
+                $(".quiz-incorrects").html(totalInCorrectCount);
+            }
+            if( $(".coin-numbers").length > 0){
+                $(".coin-numbers span").html('+'+totalCorrectCount);
+            }
+
+
 
             if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
                 var updated_questions_layout = return_data.updated_questions_layout;
@@ -181,7 +207,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             }
             if (rurera_is_field(return_data.next_question_id) && return_data.next_question_id != 0) {
                var next_question_id = return_data.next_question_id;
-               console.log(next_question_id);
                 $('.next-btn').attr('data-question_id', next_question_id);
            }
 
@@ -808,6 +833,7 @@ function init_question_functions() {
         var question_layout = JSON.parse(question_layout);
 
 
+
         $(".question-area-block").html(question_layout);
         var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
 
@@ -893,6 +919,18 @@ function init_question_functions() {
             $('#sound-icon-'+quizQuestionID).click();
         }
 
+        var total_questions = $(".question-area").attr('data-total_questions');
+        if($(".quiz-questions-bar").length > 0){
+            var total_corrects = parseInt($(".quiz-corrects").html());
+            var total_incorrects = parseInt($(".quiz-incorrects").html());
+            var total_percentage = ((total_corrects+total_incorrects) * 100) / parseInt(total_questions);
+            $(".quiz-questions-bar .bar-fill").css('width', total_percentage+'%');
+            console.log(total_percentage);
+
+
+        }
+
+        console.log('totalquestion------'+total_questions);
 
         var actual_question_id = $(".question-fields").attr('data-question_id');
         //Temporary Commented

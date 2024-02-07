@@ -306,6 +306,7 @@ Route::group([
         Route::post('/pay-subscribes', 'SubscribesController@pay');
         Route::post('/update_subscribe_plan', 'SubscribesController@updateSubscribePlan');
         Route::post('/update-plan', 'SubscribesController@updatePlan');
+        Route::post('/add-childs', 'SubscribesController@addChilds');
 
 
         Route::group(['prefix' => 'registration-packages'], function () {

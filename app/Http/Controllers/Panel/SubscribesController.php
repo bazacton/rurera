@@ -50,21 +50,14 @@ class SubscribesController extends Controller
         $user = auth()->user();
         $subscribe_for = $request->input('subscribe_for');
         $subscribe_for = ($subscribe_for > 0) ? $subscribe_for : 0;
-        $student_names = $request->input('student_name');
-        $student_last_names = $request->input('student_last_name');
-        $student_usernames = $request->input('student_username');
-        $student_passwords = $request->input('student_password');
+        $user_id = $request->input('user_id');
 
 
-
-        $package_ids = $request->input('package_id');
+        $package_id = $request->input('package_id');
         $paymentChannels = PaymentChannel::where('status', 'active')->get();
         $expiry_date = strtotime('+' . $subscribe_for . ' month', time());
-
         $full_data['subscribe_for'] = $subscribe_for;
-        $full_data['students'] = $student_usernames;
-        $full_data['package_id'] = $package_ids;
-        $full_data['expiry_date'] = $expiry_date;
+        $full_data['students'][] = $user_id;
 
         //$subscribeArr = Subscribe::whereIn('id', $package_ids)->get();
         $ParentsOrders = ParentsOrders::where('user_id', $user->id)->where('status', '!=', 'inactive')->first();
@@ -79,39 +72,22 @@ class SubscribesController extends Controller
         );
 
 
-        /*if (empty($subscribeArr)) {
-            $toastData = [
-                'msg'    => trans('site.subscribe_not_valid'),
-                'status' => 'error'
-            ];
-            return back()->with(['toast' => $toastData]);
-        }*/
 
         $packages_amount = $child_count = 0;
-        $child_count = (isset($ParentsOrders->id)) ? 1 : $child_count;
+        $child_count = 1;
         $childs_discounts = $charged_amounts_array = array();
 
-        if (!empty($package_ids)) {
-            foreach ($package_ids as $package_key => $package_id) {
-                $child_count++;
-                $subscribeObj = Subscribe::find($package_id);
-                $discount_percentage = 0;
-                if ($child_count > 1) {
-                    $discount_percentage = 5;
-                }
-                $discount_amount = ($discount_percentage * $subscribeObj->price) / 100;
-                $packages_amount += ($subscribeObj->price - $discount_amount);
-                $total_discount += $discount_amount;
-                $childs_discounts[$package_key] = $discount_amount;
-                $charged_amounts_array[$package_key] = ($subscribeObj->price - $discount_amount);
-            }
+        $subscribeObj = Subscribe::find($package_id);
+        $discount_percentage = 0;
+        if ($child_count > 1) {
+             $discount_percentage = 5;
         }
-
-        $discount_percentage = isset($discounts_array[$subscribe_for]) ? $discounts_array[$subscribe_for] : 0;
-        $discount_amount = ($packages_amount * $discount_percentage) / 100;
-        $packages_amount = ($packages_amount - $discount_amount);
+        $discount_amount = ($discount_percentage * $subscribeObj->price) / 100;
+        $packages_amount += ($subscribeObj->price - $discount_amount);
         $total_discount += $discount_amount;
-        $packages_amount = ($packages_amount * $subscribe_for);
+        $child_discount = $discount_amount;
+        $charged_amount = ($subscribeObj->price - $discount_amount);
+
         if (isset($ParentsOrders->id)) {
             $package_created = $ParentsOrders->created_at;
             $package_expiry = $ParentsOrders->expiry_at;
@@ -128,10 +104,13 @@ class SubscribesController extends Controller
             //$per_day_amount = ($packages_amount / $package_total_days);
             $packages_amount = ($remaining_days * $per_day_amount);
         }
-
         $packages_amount = round($packages_amount, 2);
 
         $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
+
+
+        $full_data['package_id'][] = $package_id;
+        $full_data['expiry_date'] = $expiry_date;
 
 
         $financialSettings = getFinancialSettings();
@@ -172,6 +151,9 @@ class SubscribesController extends Controller
             $ParentsOrders->update($parentOrdersData);
         }
 
+        $subscribeData = Subscribe::find($package_id);
+
+
         $user->update([
             'payment_frequency' => $ParentsOrders->payment_frequency
         ]);
@@ -185,8 +167,6 @@ class SubscribesController extends Controller
             ];
             return back()->with(['toast' => $toastData]);
         }
-
-
 
         $order = Order::create([
             "user_id"        => $user->id,
@@ -216,50 +196,25 @@ class SubscribesController extends Controller
             'created_at'       => time(),
         ]);
 
-        if (!empty($student_names)) {
-            foreach ($student_names as $index_no => $student_name) {
-                $student_last_name = isset( $student_last_names[$index_no] )? $student_last_names[$index_no] : '';
-                $student_username = isset( $student_usernames[$index_no] )? $student_usernames[$index_no] : '';
-                $student_password = isset( $student_passwords[$index_no] )? $student_passwords[$index_no] : '';
-                $rand_id = rand(0, 99999);
-                $package = isset($package_ids[$index_no]) ? $package_ids[$index_no] : 0;
-                $child_discount = isset($childs_discounts[$index_no]) ? $childs_discounts[$index_no] : 0;
-                $charged_amount = isset($charged_amounts_array[$index_no]) ? $charged_amounts_array[$index_no] : 0;
-                $subscribeData = Subscribe::find($package);
-                $userObj = User::create([
-                    'full_name'   => $student_name.' '.$student_last_name,
-                    'role_name'   => 'user',
-                    'role_id'     => 1,
-                    'email'       => $student_username . '@rurera.com',
-                    'password'    => User::generatePassword($student_password),
-                    'status'      => 'active',
-                    'verified'    => true,
-                    'created_at'  => time(),
-                    'parent_type' => 'parent',
-                    'parent_id'   => $user->id,
-                ]);
+        $UserSubscriptions = UserSubscriptions::create([
+            "buyer_id"        => $user->id,
+            "user_id"         => $user_id,
+            'order_id'        => $order->id,
+            'order_parent_id' => $ParentsOrders->id,
+            'order_item_id'   => $orderItem->id,
+            'subscribe_id'    => $package_id,
+            'is_courses'      => $subscribeData->is_courses,
+            'is_timestables'  => $subscribeData->is_timestables,
+            'is_bookshelf'    => $subscribeData->is_bookshelf,
+            'is_sats'         => $subscribeData->is_sats,
+            'is_elevenplus'   => $subscribeData->is_elevenplus,
+            "status"          => 'inactive',
+            "created_at"      => time(),
+            "expiry_at"       => $expiry_date,
+            "child_discount"  => $child_discount,
+            "charged_amount"  => $charged_amount,
+        ]);
 
-                $UserSubscriptions = UserSubscriptions::create([
-                    "buyer_id"        => $user->id,
-                    "user_id"         => $userObj->id,
-                    'order_id'        => $order->id,
-                    'order_parent_id' => $ParentsOrders->id,
-                    'order_item_id'   => $orderItem->id,
-                    'subscribe_id'    => $package,
-                    'is_courses'      => $subscribeData->is_courses,
-                    'is_timestables'  => $subscribeData->is_timestables,
-                    'is_bookshelf'    => $subscribeData->is_bookshelf,
-                    'is_sats'         => $subscribeData->is_sats,
-                    'is_elevenplus'   => $subscribeData->is_elevenplus,
-                    "status"          => 'inactive',
-                    "created_at"      => time(),
-                    "expiry_at"       => $expiry_date,
-                    "child_discount"  => $child_discount,
-                    "charged_amount"  => $charged_amount,
-                ]);
-
-            }
-        }
 
         if ($amount > 0) {
 
@@ -470,8 +425,8 @@ class SubscribesController extends Controller
      * Update Plan for a child
      */
     /*
-         * Update Subscribe Plan
-         */
+     * Update Subscribe Plan
+     */
     public function updatePlan(Request $request)
     {
         $user = auth()->user();
@@ -665,6 +620,51 @@ class SubscribesController extends Controller
             'status' => 'success'
         ];
         return back()->with(['toast' => $toastData]);
+    }
+
+    /*
+     * Add Childs
+     */
+    public function addChilds(Request $request)
+    {
+        $user = auth()->user();
+        $package_id = $request->input('package');
+        $child_id = $request->input('child_id');
+
+        $student_name = $request->input('student_name');
+        $student_last_name = $request->input('student_last_name');
+        $student_username = $request->input('username');
+        $student_password = $request->input('student_password');
+        $user_preference = $request->input('user_preference');
+        $year_id = $request->input('year_id');
+
+        $this->validate($request, [
+            'username' => 'required|string|max:255|unique:users',
+        ]);
+
+        $user = User::create([
+            'full_name' => $student_name.' '.$student_last_name,
+            'role_name' => 'user',
+            'role_id' => 1,
+            'username' => $student_username,
+            'password' => User::generatePassword($student_password),
+            'status' => 'active',
+            'verified' => true,
+            'created_at' => time(),
+            'parent_type' => 'parent',
+            'parent_id' => $user->id,
+            'year_id' => $year_id,
+            'class_id' => 0,
+            'section_id' => 0,
+        ]);
+        $toastData = [
+            'title'  => 'public.request_success',
+            'msg'    => 'User Successfully Registered',
+            'status' => 'success',
+            'user_id' => $user->id,
+        ];
+        echo json_encode($toastData);exit;
+        //return back()->with(['toast' => $toastData]);
     }
 
     public function pay_old(Request $request)

@@ -2193,7 +2193,7 @@ function convertPriceToDefaultCurrency($price, $userCurrencyItem = null)
     return $price;
 }
 
-function addCurrencyToPrice($price, $userCurrencyItem = null)
+function addCurrencyToPrice($price, $userCurrencyItem = null, $currecty_type = '')
 {
     if (empty($userCurrencyItem)) {
         $userCurrencyItem = getUserCurrencyItem();
@@ -2203,6 +2203,10 @@ function addCurrencyToPrice($price, $userCurrencyItem = null)
     if (!empty($price)) {
         $currency = currencySign($userCurrencyItem->currency);
         $currencyPosition = $userCurrencyItem->currency_position;
+
+        if( $currecty_type  == 'currency_small'){
+            $currency  = '<small>'.$currency.'</small>';
+        }
 
         switch ($currencyPosition) {
             case 'left':

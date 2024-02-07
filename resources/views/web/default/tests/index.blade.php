@@ -20,6 +20,29 @@
             <div class="row">
 
                 <div class="col-12">
+
+                    @if( !empty( $childs ) )
+                        <div class="p-15 mt-20 p-lg-20 db-form-tabs panel-border font-weight-500 text-dark-blue rounded-sm panel-shadow mb-20 switch-user-block">
+
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <a href="javascript:;" class="avatar"><img src="{{$switchUserObj->getAvatar()}}" alt="{{isset( $switchUserObj->full_name )? $switchUserObj->full_name : ''}}" class="avatar rounded-circle"></a>
+                                    </div>
+
+                                    <div class="col-5 ms-2">
+                                        <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $switchUserObj->full_name )? $switchUserObj->full_name : ''}}</a></h6>
+                                    </div>
+                                    <div class="col-auto ms-auto mr-md-3 last-activity">
+                                        <a href="javascript:;" class="switch-user-btn" data-toggle="modal" data-target="#switch_user_modal">
+                                           <img src="/assets/default/img/default/user-switch.png">
+                                       </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="section-title text-left mb-50">
                         <h2 class="mt-0 mb-10 font-22">Mock Tests</h2>
                         <p class="mb-15">Click on ‘Assign test’ next to your test papers. Here, you can choose the mock test(s) for which you would like to assign mock tests. Each learner has a limit mock tests per month, but guardians and teachers are allowed flexibility to decide which tests your learner should focus on. </p>
@@ -81,6 +104,40 @@
     </section>
 
 </section>
+<div class="modal fade switch_user_modal" id="switch_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-box">
+                    <div class="modal-title">
+                        <h3>Switch User</h3>
+                    </div>
+                    <div class="p-15 db-form-tabs mt-20 p-lg-20 font-weight-500 text-dark-blue rounded-sm panel-shadow mb-20 switch-user-block">
+
+                        @foreach( $childs as $childObj)
+                        <div class="list-group-item">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <a href="javascript:;" class="avatar"><img src="{{$childObj->getAvatar()}}" alt="{{isset( $childObj->full_name )? $childObj->full_name : ''}}" class="avatar rounded-circle"></a>
+                                </div>
+
+                                <div class="col-5 ms-2">
+                                    <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $childObj->full_name )? $childObj->full_name : ''}}</a></h6>
+                                </div>
+                                <div class="col-auto ms-auto mr-md-3 last-activity">
+                                    <a href="javascript:;" class="switch-user-btn switch-user-btn-event" data-user_id="{{$childObj->id}}">
+                                       <img src="/assets/default/img/default/user-switch.png">
+                                   </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts_bottom')
@@ -155,6 +212,28 @@
                 }
             });
 
+        });
+
+        var SwitchRequest = null;
+        $('body').on('click', '.switch-user-btn-event', function (e) {
+            rurera_loader($(".switch_user_modal .switch-user-block"), 'div');
+            var switch_user = $(this).attr('data-user_id');
+            SwitchRequest = jQuery.ajax({
+                type: "GET",
+                url: '/tests/switch_user',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (SwitchRequest != null) {
+                        SwitchRequest.abort();
+                    }
+                },
+                data: {"switch_user": switch_user},
+                success: function (return_data) {
+                    location.reload();
+                }
+            });
         });
 
         $('body').on('click', '.tests-list li', function (e) {

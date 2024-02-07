@@ -110,7 +110,8 @@ class BooksController extends Controller
                                 break;
 
                             case "highlighter":
-                                $info_link_html .= '<span style="position: absolute;opacity: 0.7;' . $data_values->highlighter_size . '; ' . $data_values->highlighter_background . '">';
+                                $highlighter_size = isset( $data_values->highlighter_size )? $data_values->highlighter_size : 0;
+                                $info_link_html .= '<span style="position: absolute;opacity: 0.7;' . $highlighter_size . '; ' . $data_values->highlighter_background . '">';
                                 $info_link_html .= '</span>';
                                 break;
 

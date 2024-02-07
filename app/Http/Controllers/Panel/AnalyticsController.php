@@ -97,13 +97,14 @@ class AnalyticsController extends Controller
             'timeConsumed',
             'endSession' => function ($query) {
                 $query->orderBy('id', 'desc');
-            }
-        ])->orderBy('created_at', 'desc')->get();
+            },
+        ])->whereHas('quizzes_results', function ($query) {
+            $query->where('status', '!=', 'waiting');
+        })->orderBy('created_at', 'desc')->get();
 
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
-
         $childs = array();
         if (auth()->user()->isParent()) {
 

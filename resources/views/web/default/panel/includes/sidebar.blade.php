@@ -73,13 +73,11 @@
                 <li class="sidenav-item {{ (request()->is('panel')) ? 'sidenav-item-active' : '' }}">
                     <a href="/panel" class="d-flex align-items-center font-15">
                         <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/home.png">
+                            <img src="/assets/default/img/sidebar/home.svg">
                         </span>
                         <span>Home</span>
                     </a>
                 </li>
-
-                @if(auth()->user()->isUser())
                     <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center">
                             <span class="sidenav-item-icon mr-20">
@@ -99,7 +97,7 @@
                     <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center">
                             <span class="sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/spell.png">
+                                <img src="/assets/default/img/sidebar/spell.svg">
                             </span>
                             <span><a href="/spells" class="font-15">Word Lists</a></span>
                         </a>
@@ -107,16 +105,15 @@
                     <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center">
                             <span class="sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/books.png">
+                                <img src="/assets/default/img/sidebar/books.svg">
                             </span>
                             <span><a href="/books" class="font-15">Books</a></span>
                         </a>
                     </li>
-                @endif
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/test.png">
+                            <img src="/assets/default/img/sidebar/test.svg">
                         </span>
                         <span><a href="/tests" class="font-15">Test</a></span>
                     </a>
@@ -135,7 +132,7 @@
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/grarph.png">
+                            <img src="/assets/default/img/sidebar/grarph.svg">
                         </span>
                         <span><a href="/panel/analytics" class="font-15">Analytics</a></span>
                     </a>
@@ -166,13 +163,13 @@
                     </a>
                 </li>
             @endif
-                <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
+                <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }} dropdown show">
 
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/more.png">
+                            <img src="/assets/default/img/sidebar/more.svg">
                         </span>
-                        <span><a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" data-toggle="dropdown" aria-expanded="true">More</a></span>
+                        <a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="sub-dropdown">
                         <ul>

@@ -41,7 +41,11 @@
     @endif
 
 </head>
-<body class="menu-closed @if($isRtl) rtl @endif">
+@php $bodyClass = ''; @endphp
+@if(auth()->check() && auth()->user()->isParent())
+    @php $bodyClass = 'parent-panel'; @endphp
+@endif
+<body class="menu-closed @if($isRtl) rtl @endif {{$bodyClass}}">
 
 @php
     $isPanel = true;

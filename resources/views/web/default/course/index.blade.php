@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="sidebar-nav mb-30">
-                            <h3 class="sidebar-title font-26 text-dark-charcoal">Course topics</h3>
+                            <h3 class="sidebar-title font-26 text-dark-charcoal">Course Units</h3>
                             <ul>
                                 @foreach($course->chapters as $chapter)
                                     @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
@@ -103,8 +103,8 @@
                                         @foreach($sub_chapters[$chapter->id] as $sub_chapter)
                                         @if(!empty($sub_chapter))
                                             @php $topic_percentage = Quiz::getQuizPercentage($sub_chapter['id']);
-                                            $topic_percentage_flag = ( $topic_percentage >= 95)? '<img src="/assets/default/svgs/completion-star.svg">' : '';
-                                            $topic_percentage_flag = ( $topic_percentage == 100)? '<img src="/assets/default/svgs/completion-flag.svg">' : $topic_percentage_flag;
+                                            $topic_percentage_flag = ( $topic_percentage >= 95)? '<img src="/assets/default/svgs/completion-flag.svg">' : '';
+                                            $topic_percentage_flag = ( $topic_percentage == 100)? '<img src="/assets/default/svgs/completion-star.svg">' : $topic_percentage_flag;
                                             $topic_percentage_text = ($topic_percentage > 0)? '('.$topic_percentage.')' : '';
                                             $topic_percentage_text .= $topic_percentage_flag;
                                             @endphp
