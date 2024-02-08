@@ -1291,6 +1291,12 @@ class TimestablesController extends Controller
         $user_timetables_levels = json_decode($user->user_timetables_levels);
         $user_timetables_levels = is_array( $user_timetables_levels ) ? $user_timetables_levels : array();
 
+        if( $life_lines <= 0){
+            $data['unauthorized_text'] = 'You dont have any life line, please come again tomorrow!';
+            $data['unauthorized_link'] = '/timestables-practice';
+            return view('web.default.quizzes.unauthorized_landing', $data);
+        }
+        //pre($life_lines);
         $data = [
             'pageTitle'       => 'Start',
             'questions_list'  => $questions_list,

@@ -17600,7 +17600,8 @@ Product Tabs Slider Style Start
 .question-layout-block form.question-fields,
 .spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0;}
 .quiz-first-question .spells-quiz-info ul {gap: 0; border: 1px solid #f1f0f5; border-radius: 0;position: relative;z-index: 1;}
-.quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5;}
+.quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5; word-wrap: break-word;}
+.quiz-first-question .spells-quiz-info ul li .quiz-timer-counter {width: 100%;}
 .quiz-first-question .spells-quiz-info ~ br {display: none;}
 .type-sats .question-layout-block form.question-fields {background-color: inherit;}
 .spell-question-area .question-layout-block form.question-fields {padding: 0;}
@@ -18166,6 +18167,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .plan-switch-option {
     display: flex;
@@ -18595,6 +18597,7 @@ Lms Responsive Style Start
     body.panel-sidebar-open {overflow: hidden;}
     .sidebar-menu-top {border-bottom: 1px solid rgba(0,0,0,0.1); padding: 15px 0 15px 15px; position: relative;}
     body .sidebar-menu-holder .sidebar-logo {display: flex;}
+    .results-revenue-card .text-box p br {display: none;}
 }
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
@@ -18776,6 +18779,9 @@ Lms Responsive Style Start
     .sats-listing-card table:not(thead) td {text-align: left;}
     .sats-listing-card table:not(thead) td h4 {text-align: left; width: 100%;}
     .sats-listing-card table:not(thead) td img {margin: 0 0 10px;}
+    .results-info {width: auto;}
+    .results-revenue-card .text-box,
+    .have-question-card .text-box {width: 100%; padding: 20px 0 0 0;}
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -18873,6 +18879,8 @@ Lms Responsive Style Start
     body .panel-content .lms-performace-table>li.lms-performace-des .coin-earn{width: auto !important; max-width: none; min-width: auto; display: table-cell; text-align: center; vertical-align: middle;}
     body .panel-content .lms-performace-table figure {margin-right: 0;}
     body .panel-content .lms-performace-table>li.lms-performace-des div span a {padding-top: 5px; align-items: center; justify-content: center;}
+    body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {column-count: 1;}
+    body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li:last-child {margin-bottom: 0;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 
@@ -18938,6 +18946,7 @@ Lms Responsive Style Start
     .panel-content .inline-filters {gap: 15px;}
     .timestables-mode-content .week-selection-btn {margin-bottom: 5px;}
     .product-card .product-card-body .product-title {min-height: auto;}
+    .save-plan {margin: 50px 0 0 0;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

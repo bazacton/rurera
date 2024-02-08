@@ -20,7 +20,8 @@
 </div>
 
 @php
-
+$quiz_type = isset( $quizAttempt->attempt_type )? $quizAttempt->attempt_type : '';
+$question_number_holder_class = ( $quiz_type == 'practice')? 'hide' : '';
 $group_questions_layout  = isset( $group_questions_layout )? $group_questions_layout : '';
 $layout_elements  = isset( $question->layout_elements )? json_decode($question->layout_elements) : array();
 $question_layout = html_entity_decode(json_decode(base64_decode(trim(stripslashes($question->question_layout)))));
@@ -53,7 +54,6 @@ if( $layout_type == 'results'){
          data-start_time="0" data-qresult="{{isset( $newQuestionResult->id )? $newQuestionResult->id : 0}}"
          data-quiz_result_id="{{isset( $quizAttempt->quiz_result_id )? $quizAttempt->quiz_result_id : 0}}">
         <div class="question-layout-block">
-            <div class="time-elapsed">0</div>
 
             <form class="question-fields" action="javascript:;" data-question_id="{{ $question->id }}">
                 <div class="left-content has-bg">
@@ -71,7 +71,7 @@ if( $layout_type == 'results'){
                         @endif
                     </div>
                     @endif
-                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{$total_questions}} Questions ) @if($layout_type != 'results') Question ID: {{ $question->id }} @endif  Level: {{ $question->question_difficulty_level }} type: {{ $question->question_type }}</span>
+                    <span class="questions-total-holder d-block mb-30 {{$question_number_holder_class}}">( {{$question_no}}/{{$total_questions}} Questions ) @if($layout_type != 'results') Question ID: {{ $question->id }} @endif  Level: {{ $question->question_difficulty_level }} type: {{ $question->question_type }}</span>
 
                         @if($layout_type != 'results')
                         <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>

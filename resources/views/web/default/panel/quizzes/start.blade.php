@@ -86,7 +86,9 @@ $timer_counter = $practice_time;
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : '';
+            $top_rightbar_class = ($quiz->quiz_type == 'practice')? 'rurera-hide' : '';
+            @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -129,10 +131,10 @@ $timer_counter = $practice_time;
                                    <div class="swiper-button-prev"></div>
                                    <div class="swiper-button-next"></div>
                                </div>
-                                <div class="quiz-timer">
+                                <div class="quiz-timer {{$top_rightbar_class}}">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">0s</div></span>
                                 </div>
-                                <div class="instruction-controls">
+                                <div class="instruction-controls {{$top_rightbar_class}}">
                                     <div class="font-setting">
                                         <button class="font-btn">
                                             <img src="/assets/default/svgs/settings.svg" alt="#">
@@ -235,7 +237,7 @@ $timer_counter = $practice_time;
                     </div>
 
                     <div class="quiz-status-bar">
-                        <div class="correct-in-row">0 IN A ROW -- </div>
+                        <div class="correct-in-row"></div>
                         <div class="quiz-questions-bar-holder">
                             <div class="quiz-questions-bar">
                                 <span class="bar-fill" style="width: 50%;"></span>
@@ -394,6 +396,7 @@ $timer_counter = $practice_time;
                                 if (parseInt(inactivity_timer) <= 0) {
                                     $(".question_inactivity_modal").modal('hide');
                                     $(".inactivity-timer").html(30);
+                                    $(".submit_quiz_final").click();
                                     clearInterval(InactivityInterval);
                                     InactivityInterval = null;
                                 }
