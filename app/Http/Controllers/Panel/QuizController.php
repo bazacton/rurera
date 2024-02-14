@@ -379,6 +379,7 @@ class QuizController extends Controller
     {
         //$user = auth()->user();
         $user = getUser();
+
         $quiz_level = $request->get('quiz_level', 'easy');
 
         $no_of_questions = 0;
@@ -727,6 +728,7 @@ class QuizController extends Controller
                         //pre($group_questions_layout);
                         $resultsQuestionsData['group_questions_layout'] = $group_questions_layout;
                         $question_layout_file = get_quiz_question_layout_file($quiz);
+                        $resultsQuestionsData['disable_finish'] = true;
                         $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
 
                     }
@@ -762,7 +764,7 @@ class QuizController extends Controller
                 'newQuestionResult'      => $newQuestionResult,
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $resultLogObj->active_question_id,
-                'actual_question_ids' => $actual_question_ids,
+                'actual_question_ids'   => $actual_question_ids,
             ];
 
             if ($quiz->quiz_type == 'sats') {
@@ -807,10 +809,13 @@ class QuizController extends Controller
         $time_consumed = $QuizzResultQuestions->sum('time_consumed');
         $coins_earned = $QuizzResultQuestions->where('status','correct')->sum('quiz_grade');
         $questions_layout = $questions_list = array();
-        $first_question_id = 0;
+        $first_question_id = $incorrect_count = 0;
         $count = 1;
         if (!empty($QuizzResultQuestions)) {
             foreach ($QuizzResultQuestions as $QuizzResultQuestionObj) {
+                if( $QuizzResultQuestionObj->question_id != 9362){
+                    //continue;
+                }
                 if ($count == 1) {
                     $first_question_id = $QuizzResultQuestionObj->question_id;
                 }
@@ -818,6 +823,9 @@ class QuizController extends Controller
                 $questionObj = QuizzesQuestion::find($QuizzResultQuestionObj->question_id);
                 $question_response_layout = '';
                 $question_response_layout = '<div class="question-result-layout question-status-' . $QuizzResultQuestionObj->status . '">';
+                if ($QuizzResultQuestionObj->status == 'incorrect') {
+                    $incorrect_count++;
+                }
                 if ($QuizzResultQuestionObj->status == 'correct') {
                     $question_response_layout .= '<div class="earn-coins-icon">
                         <img src="/assets/default/img/reward.png" alt="">
@@ -836,6 +844,7 @@ class QuizController extends Controller
                     }
 
 
+
                     $question_response_layout .= view('web.default.panel.questions.question_layout', [
                         'question'               => $questionObj,
                         'prev_question'          => 0,
@@ -848,7 +857,7 @@ class QuizController extends Controller
                         'disable_finish'         => 'true',
                         'disable_prev'           => 'true',
                         'disable_next'           => 'true',
-                        'class'                  => 'disable-div',
+                        //'class'                  => 'disable-div',
                         'layout_type'            => 'results',
                         'group_questions_layout' => $group_questions_layout,
                     ])->render();
@@ -868,6 +877,7 @@ class QuizController extends Controller
         }
         $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
+        //pre('test');
         $data = [
             'pageTitle' => 'Answers',
 
@@ -879,8 +889,10 @@ class QuizController extends Controller
             'first_question_id'      => $first_question_id,
             'questions_status_array' => $questions_status_array,
             'questions_layout'       => $questions_layout,
+            'QuizzesResult'          => $QuizzesResult,
             'time_consumed'          => $time_consumed,
             'coins_earned'          => $coins_earned,
+            'incorrect_count' => $incorrect_count,
         ];
         return view(getTemplate() . '.panel.quizzes.check_answers', $data);
     }

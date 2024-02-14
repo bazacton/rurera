@@ -111,6 +111,10 @@ class CatFourController extends Controller
             return redirect('/login');
         }
 
+        if (auth()->check() && auth()->user()->isParent()) {
+            return redirect('/panel');
+        }
+
         if (!auth()->subscription('11plus')) {
             return view('web.default.quizzes.not_subscribed');
         }

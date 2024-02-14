@@ -52,7 +52,7 @@
 
     <a class="sidebar-logo"
        href="{{url('/')}}/" itemprop="url">
-        <img src="/assets/default/img/sidebar/logo.png"><span class="sidebar-logo-text">Rurera</span>
+        <img src="/assets/default/img/sidebar/logo.svg"><span class="sidebar-logo-text">Rurera</span>
     </a>
     <button class="navbar-toggler navbar-order" type="button" id="navbarToggle">
         <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@
         <div class="sidebar-menu-top">
         <a class="sidebar-logo"
               href="{{url('/')}}/" itemprop="url">
-               <img src="/assets/default/img/sidebar/logo.png"><span class="sidebar-logo-text">Rurera</span>
+               <img src="/assets/default/img/sidebar/logo.svg"><span class="sidebar-logo-text">Rurera</span>
          </a>
         <button class="navbar-toggler navbar-order" type="button" id="navbarToggle">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -81,7 +81,7 @@
                     <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center">
                             <span class="sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/learn.png">
+                                <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
                             <span><a href="/learn" class="font-15">Learn</a></span>
                         </a>
@@ -89,7 +89,7 @@
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center">
                             <span class="sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/timestable.png">
+                                <img src="/assets/default/img/sidebar/timestable.svg">
                             </span>
                             <span><a href="/timestables-practice" class="font-15">TimesTable</a></span>
                         </a>
@@ -123,7 +123,7 @@
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
                         <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/shop.png">
+                            <img src="/assets/default/img/sidebar/shop.svg">
                         </span>
                         <span><a href="/shop" class="font-15">Shop</a></span>
                     </a>

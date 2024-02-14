@@ -364,7 +364,7 @@
                                         <li>
                                             <div class="quests-item">
                                                 <div class="icon-box">
-                                                    <img src="/assets/default/img/score-img.png" alt="">
+                                                    <img src="/assets/default/svgs/certificate.svg" alt="">
                                                 </div>
                                                 <div class="item-text">
                                                     <h5>Score 90% or higher in 2 <br /> lessons</h5>
@@ -384,7 +384,7 @@
                                         <li>
                                             <div class="quests-item">
                                                 <div class="icon-box">
-                                                    <img src="/assets/default/img/bird-icon.png" alt="">
+                                                    <img src="/assets/default/svgs/clock.svg" alt="">
                                                 </div>
                                                 <div class="item-text">
                                                     <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
@@ -410,24 +410,20 @@
                                 <ul>
                                     <li>
                                     <div class="store-item">
-                                        <span class="item-label">Owned Items:</span>
-                                        <span class="iteme-numbers">
-                                        91 <em>(1151 items total)</em>
+                                        <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                        <span class="item-label">
+                                            Current Balance
+                                            <span class="iteme-numbers">706</span>
                                         </span>
                                     </div>
                                     </li>
                                     <li>
                                     <div class="store-item">
-                                        <img src="/assets/default/img/stats-coins.png" alt="">
-                                        <span class="item-label">Current Balance:</span>
-                                        <span class="iteme-numbers">706</span>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="store-item">
-                                        <img src="/assets/default/img/stats-coins.png" alt="">
-                                        <span class="item-label">Lifetime Spending:</span>
-                                        <span class="iteme-numbers">0</span>
+                                        <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                        <span class="item-label">
+                                            Lifetime Spending
+                                            <span class="iteme-numbers">0</span>
+                                        </span>
                                     </div>
                                     </li>
                                 </ul>

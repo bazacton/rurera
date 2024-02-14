@@ -6,69 +6,85 @@
 
 @section('content')
     <section class="">
-        <h2 class="section-title">{{ trans('panel.affiliate_statistics') }}</h2>
 
-        <div class="activities-container mt-25 p-20 p-lg-35">
-            <div class="row">
+        <div class="referral-holder">
+              <div class="section-title mb-20">
+                  <h2 itemprop="title" class="font-22 mb-0">Referral program</h2>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-lg-6">
+                      <div class="referral-text mb-30">
+                          <h3 class="font-18 font-weight-bold mb-5" itemprop="title">How to use Referral Program</h3>
+                          <p class="text-gray mb-15">Use images to enhance your post, improve its folow, add humor and explain complex topics</p>
+                          <a href="#" class="started-btn font-15 font-weight-500">Get Started</a>
+                      </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                      <div class="referral-text mb-30">
+                          <h3 class="font-18 font-weight-bold mb-5" itemprop="title">Your Referral Link</h3>
+                          <p class="text-gray mb-15">Plan your blog post by choosing a topic, creating an outline conduct <br> research, and checking facts</p>
+                          <div class="referral-link">
+                              <input type="text" class="link-address font-15 font-weight-500" name="affiliate_url" value="{{ $affiliateCode->getAffiliateUrl() }}">
+                              <a href="javascript:;" class="link-btn font-15 font-weight-500 js-copy" data-input="affiliate_url">Copy Link</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12">
+                      <div class="referral-price-lists mb-30">
+                          <div class="row">
+                              <div class="col-12 col-lg-3 col-md-4">
+                                  <div class="referral-price-card text-center">
+                                      <span class="font-18 d-block mb-5" style="color: #624abc;">{{ trans('panel.referred_users') }}</span>
+                                      <strong class="font-30">{{ $referredUsersCount }}</strong>
+                                  </div>
+                              </div>
+                              <div class="col-12 col-lg-3 col-md-4">
+                                  <div class="referral-price-card text-center">
+                                      <span class="font-18 d-block mb-5" style="color: #5fa66e;">Bonus</span>
+                                      <strong class="font-30">{{ addCurrencyToPrice(round($registrationBonus, 2)) }}</strong>
+                                  </div>
+                              </div>
+                              <div class="col-12 col-lg-3 col-md-4">
+                                  <div class="referral-price-card text-center">
+                                      <span class="font-18 d-block mb-5" style="color: #d13b61;">{{ trans('panel.affiliate_bonus') }}</span>
+                                      <strong class="font-30">{{ addCurrencyToPrice(round($affiliateBonus, 2)) }}</strong>
+                                  </div>
+                              </div>
 
-                <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
-                        <img src="/assets/default/img/activity/48.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ $referredUsersCount }}</strong>
-                        <span class="font-16 text-gray font-weight-500">{{ trans('panel.referred_users') }}</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12">
+                      <div class="referral-text mb-30">
+                          @if(!empty($referralSettings))
+                              <div class="mt-15 text-gray">
+                                  @if(!empty($referralSettings['affiliate_user_amount']))<p>- {{ trans('panel.user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['affiliate_user_amount']) }}</p>@endif
+                                  @if(!empty($referralSettings['referred_user_amount']))<p>- {{ trans('panel.referred_user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['referred_user_amount']) }}</p>@endif
+                                  @if(!empty($referralSettings['affiliate_user_commission']))<p>- {{ trans('panel.referred_user_purchase_commission') }}: {{ $referralSettings['affiliate_user_commission'] }}%</p>@endif
+                                  <p>- {{ trans('panel.your_affiliate_code') }}: {{ $affiliateCode->code }}</p>
+                                  @if(!empty($referralSettings['referral_description']))<p>- {{ $referralSettings['referral_description'] }}</p>@endif
+                              </div>
+                          @endif
+                      </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="referral-withdraw mb-30">
+                      <div class="withdraw-card p-20 d-flex align-items-center flex-wrap">
+                          <div class="icon-box">
+                              <img src="/assets/default/img/withdraw-icon.png" alt="">
+                          </div>
+                          <div class="withdraw-text">
+                              <h3 class="blog-grid-title font-18 font-weight-bold mb-5" itemprop="title">Withdraw Your Money to a Bank Account</h3>
+                              <p class="font-15">Withdraw money securily to your bank account. Commision is $25 per transaction under $50,000</p>
+                          </div>
+                          <div class="withdraw-btn-holder">
+                              <a href="#" class="withdraw-btn">Withdraw Money</a>
+                          </div>
+                      </div>
                     </div>
-                </div>
-
-                <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
-                        <img src="/assets/default/img/activity/38.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice(round($registrationBonus, 2)) }}</strong>
-                        <span class="font-16 text-gray font-weight-500">{{ trans('panel.registration_bonus') }}</span>
-                    </div>
-                </div>
-
-                <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
-                        <img src="/assets/default/img/activity/36.svg" width="64" height="64" alt="">
-                        <strong class="font-30 text-dark-blue font-weight-bold mt-5">{{ addCurrencyToPrice(round($affiliateBonus, 2)) }}</strong>
-                        <span class="font-16 text-gray font-weight-500">{{ trans('panel.affiliate_bonus') }}</span>
-                    </div>
-                </div>
-
+                  </div>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <section class="mt-25">
-        <h2 class="section-title">{{ trans('panel.affiliate_summary') }}</h2>
-
-        @if(!empty($referralSettings))
-            <div class="mt-15 font-14 text-gray">
-                @if(!empty($referralSettings['affiliate_user_amount']))<p>- {{ trans('panel.user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['affiliate_user_amount']) }}</p>@endif
-                @if(!empty($referralSettings['referred_user_amount']))<p>- {{ trans('panel.referred_user_registration_reward') }}: {{ addCurrencyToPrice($referralSettings['referred_user_amount']) }}</p>@endif
-                @if(!empty($referralSettings['affiliate_user_commission']))<p>- {{ trans('panel.referred_user_purchase_commission') }}: {{ $referralSettings['affiliate_user_commission'] }}%</p>@endif
-                <p>- {{ trans('panel.your_affiliate_code') }}: {{ $affiliateCode->code }}</p>
-                @if(!empty($referralSettings['referral_description']))<p>- {{ $referralSettings['referral_description'] }}</p>@endif
-            </div>
-        @endif
-
-        <div class="row mt-15">
-            <div class="col-12 col-lg-5">
-                <h3 class="font-16 font-weight-500">{{ trans('panel.affiliate_url') }}</h3>
-
-                <div class="form-group mt-5">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button type="button" class="input-group-text js-copy" data-input="affiliate_url" data-toggle="tooltip" data-placement="top" title="{{ trans('public.copy') }}" data-copy-text="{{ trans('public.copy') }}" data-done-text="{{ trans('public.done') }}">
-                                <i data-feather="copy" width="18" height="18" class="text-white"></i>
-                            </button>
-                        </div>
-                        <input type="text" name="affiliate_url" readonly value="{{ $affiliateCode->getAffiliateUrl() }}" class="form-control"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </section>
 
     <section class="mt-25">

@@ -7802,6 +7802,7 @@ function get_quiz_start_layout_file($quizObj){
     $layout_file = 'start';
     $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
     $layout_file = ($quiz_type == 'vocabulary')? 'spell_start' : $layout_file;
+    $layout_file = ($quiz_type == 'practice')? 'course_start' : $layout_file;
     $layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_exam')? 'enterance_exams_start' : $layout_file;
     return $layout_file;
 }

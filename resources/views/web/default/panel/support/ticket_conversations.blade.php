@@ -12,7 +12,7 @@
         <div class="activities-container mt-25 p-20 p-lg-35">
             <div class="row">
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/41.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $openSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.open_conversations') }}</span>
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/40.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $closeSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.closed_conversations') }}</span>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/39.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $supportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.total_conversations') }}</span>
@@ -42,10 +42,10 @@
     <section class="mt-25">
         <h2 class="section-title font-24">{{ trans('panel.message_filters') }}</h2>
 
-        <div class="panel-section-card py-20 px-25 mt-20">
+        <div class="panel-section-card py-20 px-25 mt-20 bg-white py-20 panel-shadow rounded-sm w-100">
             <form action="/panel/support/tickets" method="get">
                 <div class="row">
-                    <div class="col-12 col-lg-5">
+                    <div class="col-12 col-lg-6">
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
@@ -77,7 +77,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-5">
+                    <div class="col-12 col-lg-6">
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-lg-2 d-flex align-items-center justify-content-end">
+                    <div class="col-12 col-lg-3 d-flex align-items-center justify-content-end">
                         <button type="submit" class="btn btn-sm font-14 btn-primary w-100 mt-2">{{ trans('public.show_results') }}</button>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
 
             <div class="bg-white shadow rounded-sm py-10 py-lg-25 px-15 px-lg-30 mt-25">
                 <div class="row">
-                    <div id="conversationsList" class="col-12 col-lg-6 conversations-list">
+                    <div id="conversationsList" class="col-12 col-lg-5 conversations-list">
                         <div class="table-responsive">
                             <table class="table table-md">
                                 <tr>
@@ -174,7 +174,7 @@
                     </div>
 
                     @if(!empty($selectSupport))
-                        <div class="col-12 col-lg-6 border-left border-gray300">
+                        <div class="col-12 col-lg-7 border-left border-gray300">
                             <div class="conversation-box p-15 d-flex align-items-center justify-content-between">
                                 <div>
                                     <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $selectSupport->title }}</span>
@@ -256,7 +256,7 @@
                             </div>
                         </div>
                     @else
-                        <div class="col-12 col-lg-6 border-left border-gray300">
+                        <div class="col-12 col-lg-7 border-left border-gray300">
                             @include(getTemplate() . '.includes.no-result',[
                                 'file_name' => 'support.png',
                                 'title' => trans('panel.select_support'),

@@ -284,6 +284,10 @@ class SatsController extends Controller
             //return redirect('/login');
         }
 
+        if (auth()->check() && auth()->user()->isParent()) {
+            return redirect('/panel');
+        }
+
         //$quiz = Quiz::find($id);
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;

@@ -86,24 +86,50 @@ $timer_counter = $practice_time;
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : '';
+            $top_rightbar_class = ($quiz->quiz_type == 'practice')? 'rurera-hide' : '';
+            @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
-                            @if( isset( $quiz->quiz_type ))
-                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
-                           @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - start</p>
-                            </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                <div class="quiz-timer">
+                                <div class="quiz-pagination rurera-hide">
+                                   <div class="swiper-container">
+                                   <ul class="swiper-wrapper">
+                                       @if( !empty( $questions_list ) )
+                                       @php $question_count = 1; @endphp
+                                       @foreach( $questions_list as $question_id)
+                                       @php $is_flagged = false;
+                                       $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                       ($newQuizStart->flagged_questions) : array();
+                                       $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
+                                       @endphp
+                                       @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
+                                       $flagged_questions))
+                                       @php $is_flagged = true;
+                                       @endphp
+                                       @endif
+                                       @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                       <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                               'has-flag' : ''}} {{$question_status_class}}"><a
+                                               href="javascript:;">
+                                               {{$question_count}}</a></li>
+                                       @php $question_count++; @endphp
+                                       @endforeach
+                                       @endif
+                                   </ul>
+                                   </div>
+                                   <div class="swiper-button-prev"></div>
+                                   <div class="swiper-button-next"></div>
+                               </div>
+                                <div class="quiz-timer {{$top_rightbar_class}}">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">0s</div></span>
                                 </div>
-                                <div class="instruction-controls">
+                                <div class="instruction-controls {{$top_rightbar_class}}">
                                     <div class="font-setting">
                                         <button class="font-btn">
                                             <img src="/assets/default/svgs/settings.svg" alt="#">
@@ -179,6 +205,9 @@ $timer_counter = $practice_time;
                                         </div>
                                     </div>
                                 </div>
+                                <div class="close-btn-holder">
+                                    <button class="close-btn review-btn" data-toggle="modal" data-target="#review_submit">&#x2715;</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -187,6 +216,7 @@ $timer_counter = $practice_time;
 
 
             <div class="row justify-content-center">
+
                 <div class="container">
                     <div class="row">
                 <div class="col-lg-9 col-md-12 col-sm-12 mt-50">
@@ -207,8 +237,25 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
-                                                                     data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                    <div class="quiz-status-bar">
+                        <div class="correct-in-row"></div>
+                        <div class="quiz-questions-bar-holder">
+                            <div class="quiz-questions-bar">
+                                <span class="bar-fill" style="width: 50%;"></span>
+                            </div>
+                            <span class="coin-numbers">
+                                <img src="/assets/default/img/quests-coin.png" alt="">
+                                <span>+0</span>
+                            </span>
+                        </div>
+                        <div class="quiz-corrects-incorrects">
+                            <span class="quiz-corrects">0</span>
+                            <span class="quiz-incorrects">0</span>
+                        </div>
+                    </div>
+
+                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
 
@@ -235,7 +282,6 @@ $timer_counter = $practice_time;
                     <div class="question-area-temp hide"></div>
 
                 </div>
-
                 <div class="col-lg-3 col-md-12 col-sm-12 mt-50">
                     <div class="col-12 col-lg-12 mb-30">
                         <div class="quests-list">
@@ -337,10 +383,8 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
                 </div>
-                    </div>
                 </div>
-
-
+            </div>
             </div>
         </div>
     </section>
@@ -372,31 +416,23 @@ $timer_counter = $practice_time;
 </div>
 @endif
 
-
-<div class="question-status-modal">
-  <div class="modal fade spell_test_complete_modal" id="spell_test_complete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Congratulations</h3>
-            </div>
-            <p>
-              You have successfully passed the spelling quiz.
-            </p>
-              @php
-              $current_quiz_level = isset( $newQuizStart->quiz_level )? $newQuizStart->quiz_level : '';
-              $next_level = ($current_quiz_level == 'easy')? 'medium' : $current_quiz_level;
-              $next_level = ($current_quiz_level == 'medium')? 'hard' : $next_level;
-              @endphp
-            <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Results</a>
-            <a href="javascript:;" data-id="{{$quiz->id}}" data-quiz_level="{{$next_level}}" class="js_link_clickable" data-href="/{{isset( $quiz->quizYear->slug )? $quiz->quizYear->slug : ''}}/{{$quiz->quiz_slug}}/spelling/exercise">Next Level</a>
-          </div>
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <div class="modal-title">
+          <h3>Inactive</h3>
+            <span class="inactivity-timer">30</span>
         </div>
+        <p>
+          Continue this Practice
+        </p>
+        <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Continue</a>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -426,17 +462,6 @@ $timer_counter = $practice_time;
 
 <script>
     //init_question_functions();
-
-
-    $("body").on("click", ".js_link_clickable", function (e) {
-        var href_link = $(this).attr('data-href');
-        var quiz_id = $(this).attr('data-id');
-        var quiz_level = $(this).attr('data-quiz_level');
-        localStorage.setItem('quiz_level_'+quiz_id, quiz_level);
-        window.location.href = href_link;
-    });
-
-
     $('body').addClass('quiz-show');
     var header = document.getElementById("navbar");
     var headerOffset = (header != null) ? header.offsetHeight : 100;
@@ -444,55 +469,96 @@ $timer_counter = $practice_time;
 
 
     var Quizintervals = null;
+    var InactivityInterval = null;
+    var focusInterval = null;
+    var focusIntervalCount = 60;
+    var timerStop = false;
 
     var duration_type = '{{$duration_type}}';
-    var timePaused = false;
+
+
+
 
     function quiz_default_functions() {
 
-        $('.editor-field-inputs:eq(0)').focus();
-        Quizintervals = setInterval(function () {
-            if( timePaused == false) {
-                var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-                if (duration_type == 'no_time_limit') {
-                    quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-                } else {
-                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                }
-                $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-                if ($('.nub-of-sec').length > 0) {
-                    $('.nub-of-sec').html(getTime(quiz_timer_counter));
-                }
-                $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+        window.addEventListener('blur', function () {
+            //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
+            //inactivity-timer
+            if( focusInterval == null) {
 
-                if (duration_type == 'per_question') {
-                    if (parseInt(quiz_timer_counter) == 0) {
-                        clearInterval(Quizintervals);
-                        $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                        $('#question-submit-btn')[0].click();
+                focusInterval = setInterval(function () {
+                    var focus_count = focusIntervalCount-1;
+                    console.log('focusout--'+focus_count);
+                    focusIntervalCount = focus_count;
+                    if (focus_count <= 0) {
+                        timerStop = true;
+                        $(".question_inactivity_modal").modal('show');
+                        if( InactivityInterval == null) {
+                            InactivityInterval = setInterval(function () {
+                                var inactivity_timer = parseInt($(".inactivity-timer").html() - 1);
+                                $(".inactivity-timer").html(inactivity_timer);
+                                if (parseInt(inactivity_timer) <= 0) {
+                                    $(".question_inactivity_modal").modal('hide');
+                                    $(".inactivity-timer").html(30);
+                                    $(".submit_quiz_final").click();
+                                    clearInterval(InactivityInterval);
+                                    InactivityInterval = null;
+                                }
+                            }, 1000);
+                        }
+                        focusIntervalCount = 60;
+                        clearInterval(focusInterval);
+                        focusInterval = null;
                     }
+                }, 1000);
+
+            }
+        });
+
+
+        window.addEventListener('focus', function () {
+            focusIntervalCount = 60;
+            clearInterval(focusInterval);
+            focusInterval = null;
+        });
+
+        $(document).on('click', '.continue-btn', function (e) {
+            timerStop = false;
+            focusIntervalCount = 60;
+            focusInterval = null;
+            $(".inactivity-timer").html(30);
+            clearInterval(InactivityInterval);
+            InactivityInterval = null;
+        });
+
+        var active_question_id = $(".question-area-block").attr('data-active_question_id');
+        $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+        Quizintervals = setInterval(function () {
+            if( timerStop == true){
+                return;
+            }
+
+            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+            if (duration_type == 'no_time_limit') {
+                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+            } else {
+                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            }
+            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            if ($('.nub-of-sec').length > 0) {
+                $('.nub-of-sec').html(getTime(quiz_timer_counter));
+            }
+            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+
+            if (duration_type == 'per_question') {
+                if (parseInt(quiz_timer_counter) == 0) {
+                    clearInterval(Quizintervals);
+                    $('.question-submit-btn').attr('data-bypass_validation', 'yes');
+                    $('#question-submit-btn')[0].click();
                 }
             }
 
         }, 1000);
-
-        $("body").on("click", ".question-submit-btn", function (e) {
-            var editor_field_value = '';
-            var thisObj = $(this);
-            var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();
-            thisObj.closest('.spells-quiz-from').find('.editor-field-inputs').each(function() {
-                editor_field_value += $(this).val();
-            });
-            thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
-            timePaused = true;
-            if( thisValue == '' && editor_field_value != ''){
-                thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
-            }
-        });
-
-        $("body").on("click", ".question-next-btn", function (e) {
-            timePaused = false;
-        });
 
         $("body").on("click", ".increasetext", function (e) {
             curSize = parseInt($('.learning-page').css('font-size')) + 2;
@@ -511,12 +577,13 @@ $timer_counter = $practice_time;
             $('.learning-page').css('font-size', curSize);
         });
 
+
+
     }
 
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours
         secondsString -= h * 3600;
-
         var m = Math.floor(secondsString / 60); //Get remaining minutes
         secondsString -= m * 60;
         var return_string = '';
@@ -532,6 +599,5 @@ $timer_counter = $practice_time;
 
         return return_string;
     }
-
 
 </script>

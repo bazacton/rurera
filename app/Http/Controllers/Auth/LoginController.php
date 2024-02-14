@@ -65,7 +65,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            'username' => 'required|numeric',
+            'username' => 'required',
             'password' => 'required|min:6',
         ];
 
@@ -158,7 +158,7 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         $credentials = [
-            $this->username() => $request->get('username'),
+            'username' => $request->get('username'),
             'password' => $request->get('password')
         ];
         $remember = true;

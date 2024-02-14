@@ -997,7 +997,7 @@ function init_question_functions() {
 
 
 
-    $(document).on('click', '.questions-nav-controls .review-btn', function (e) {
+    $(document).on('click', '.questions-nav-controls .review-btn, .topbar-right .review-btn', function (e) {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
         var total_questions = $(".question-area").attr('data-total_questions');
 

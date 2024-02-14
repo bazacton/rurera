@@ -6,6 +6,398 @@
 
 @section('content')
 <section class="content-section mt-10">
+    <div class="rewards-layout mb-50">
+        <div class="row">
+            <div class="col-12">
+                <div class="rewards-header p-20 mb-30">
+                    <div class="text-holder d-flex align-items-center justify-content-sm-center flex-wrap text-center flex-column">
+                        <p class="mb-20">Join Loyalty Points and get rewarded while you shop. You'll <br> get <strong>250 points</strong> for signing up. What are you waiting for?</p>
+                        <div class="header-controls">
+                            <a href="#" class="join-btn">Join now</a>
+                            <a href="#" class="login-btn">Log in</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="rewards-heading text-center mb-30">
+                    <h2 class="rewards-heading-text font-24 font-weight-normal">Earn points</h2>
+                </div>
+                <div class="rewards-layout-box column-3 p-20 mb-30">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/bag.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Make a purchase</h5>
+                                    <span class="item-points">10 points per $1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/signup.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Create an account</h5>
+                                    <span class="item-points">250 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Happy Birthday</h5>
+                                    <span class="item-points">500 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/bubble-star.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Leave a Review</h5>
+                                    <span class="item-points">100 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/bubble-star.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Add a photo in your Review</h5>
+                                    <span class="item-points">200 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/reward-facebook.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Like us on Facebook</h5>
+                                    <span class="item-points">100 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/newsletter.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Sign up to our mailing list</h5>
+                                    <span class="item-points">100 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/reward-instagram.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Follow us on Instagram</h5>
+                                    <span class="item-points">100 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/bag.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Carbon Neutral Order</h5>
+                                    <span class="item-points">50 points</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/visit.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Read Our Latest Blog</h5>
+                                    <span class="item-points">50 points</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="rewards-heading text-center mb-30">
+                    <h2 class="rewards-heading-text font-24 font-weight-normal">Rewards</h2>
+                </div>
+                <div class="rewards-layout-box column-3 p-20 mb-30">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rewards-item item-left d-flex align-items-center justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/bag.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Redeem your points when you checkout</h5>
+                                    <span class="item-points">100 points per $1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">House Plant Invigorator</h5>
+                                    <span class="item-points">100% off . 500 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Digital Plant Thermometer 🌡️</h5>
+                                    <span class="item-points">100% off . 1,800 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Pride Plant Magnets</h5>
+                                    <span class="item-points">100% off . 600 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Coco Coir Pole</h5>
+                                    <span class="item-points">100% off . 1,200 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Plant Picks For A Purpose</h5>
+                                    <span class="item-points">100% off . 600 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Arber Organic Plant Food</h5>
+                                    <span class="item-points">100% off . 2,200 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Arber Organic Bio Insecticide</h5>
+                                    <span class="item-points">100% off . 2,200 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="rewards-item d-flex align-items-center flex-column justify-content-center">
+                                <span class="icon-box">
+                                    <img src="/assets/default/svgs/birthday.svg" alt="">
+                                </span>
+                                <div class="item-text">
+                                    <h5 class="item-title">Lively Root Icon Dad Hat</h5>
+                                    <span class="item-points">100% off . 2,200 points</span>
+                                    <a href="#" class="view-btn font-14 font-weight-normal">View product</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="rewards-heading text-center mb-30">
+                    <h2 class="rewards-heading-text font-24 font-weight-normal">Tiers</h2>
+                </div>
+                <div class="rewards-layout-box p-20">
+                    <div class="rewards-tier-box">
+                        <div class="row">
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="tier-item">
+                                    <div class="tier-item-header">
+                                        <span class="tier-number">1</span>
+                                        <h5 class="item-title">Sprout Squad</h5>
+                                        <span class="item-sub-title">Start here</span>
+                                    </div>
+                                    <div class="tier-points">
+                                        <span>10 points per $1</span>
+                                    </div>
+                                    <div class="tier-item-footer"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="tier-item">
+                                    <div class="tier-item-header">
+                                        <span class="tier-number">2</span>
+                                        <h5 class="item-title">Bloomer Bunch</h5>
+                                        <span class="item-sub-title">Spend $250</span>
+                                    </div>
+                                    <div class="tier-points">
+                                        <span>12 points per $1</span>
+                                    </div>
+                                    <div class="tier-item-footer"></div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="tier-item">
+                                    <div class="tier-item-header">
+                                        <span class="tier-number">3</span>
+                                        <h5 class="item-title">Evergreen Group</h5>
+                                        <span class="item-sub-title">Start here</span>
+                                    </div>
+                                    <div class="tier-points">
+                                        <span>15 points per $1</span>
+                                    </div>
+                                    <div class="tier-item-footer">
+                                      <span class="font-14">Subscribe to any product</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-4">
+                                <div class="tier-item">
+                                    <div class="tier-item-header">
+                                        <span class="tier-number">4</span>
+                                        <h5 class="item-title">V.I.P.P</h5>
+                                        <span class="item-sub-title">Start here</span>
+                                    </div>
+                                    <div class="tier-points">
+                                        <span>10 points per $1</span>
+                                    </div>
+                                    <div class="tier-item-footer">
+                                      <span class="font-14">Subscribe to any product</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="referral-holder">
+      <div class="section-title mb-20">
+          <h2 itemprop="title" class="font-22 mb-0">Referral program</h2>
+      </div>
+      <div class="row">
+          <div class="col-12 col-lg-6">
+              <div class="referral-text mb-30">
+                  <h3 class="font-18 font-weight-bold mb-5" itemprop="title">How to use Referral Program</h3>
+                  <p class="text-gray mb-15">Use images to enhance your post, improve its folow, add humor and explain complex topics</p>
+                  <a href="#" class="started-btn font-15 font-weight-500">Get Started</a>
+              </div>
+          </div>
+          <div class="col-12 col-lg-6">
+              <div class="referral-text mb-30">
+                  <h3 class="font-18 font-weight-bold mb-5" itemprop="title">Your Referral Link</h3>
+                  <p class="text-gray mb-15">Plan your blog post by choosing a topic, creating an outline conduct <br> research, and checking facts</p>
+                  <div class="referral-link">
+                      <input type="text" class="link-address font-15 font-weight-500" value="https://keenthemes.com/referral/?refid=345re">
+                      <a href="#" class="link-btn font-15 font-weight-500">Copy Link</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="referral-price-lists mb-30">
+                  <div class="row">
+                      <div class="col-12 col-lg-3 col-md-4">
+                          <div class="referral-price-card text-center">
+                              <span class="font-18 d-block mb-5" style="color: #624abc;">Net Earnings</span>
+                              <strong class="font-30">$63,240</strong>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-3 col-md-4">
+                          <div class="referral-price-card text-center">
+                              <span class="font-18 d-block mb-5" style="color: #5fa66e;">Balance</span>
+                              <strong class="font-30">$8,530</strong>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-3 col-md-4">
+                          <div class="referral-price-card text-center">
+                              <span class="font-18 d-block mb-5" style="color: #d13b61;">Avg Deal Size</span>
+                              <strong class="font-30">$2,600</strong>
+                          </div>
+                      </div>
+                      <div class="col-12 col-lg-3 col-md-4">
+                          <div class="referral-price-card text-center">
+                              <span class="font-18 d-block mb-5" style="color: #5175cd;">Referral Signups</span>
+                              <strong class="font-30">$783</strong>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="referral-text mb-30">
+                  <p class="text-gray">Writing headlines for blog posts is as much an art as it is a science, and probably warrants its own post, but for now, all I'd advise is experimenting with what works for your audience, especially if it's not resonating with your audience </p>
+              </div>
+          </div>
+          <div class="col-12">
+            <div class="referral-withdraw mb-30">
+              <div class="withdraw-card p-20 d-flex align-items-center flex-wrap">
+                  <div class="icon-box">
+                      <img src="/assets/default/img/withdraw-icon.png" alt="">
+                  </div>
+                  <div class="withdraw-text">
+                      <h3 class="blog-grid-title font-18 font-weight-bold mb-5" itemprop="title">Withdraw Your Money to a Bank Account</h3>
+                      <p class="font-15">Withdraw money securily to your bank account. Commision is $25 per transaction under $50,000</p>
+                  </div>
+                  <div class="withdraw-btn-holder">
+                      <a href="#" class="withdraw-btn">Withdraw Money</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
     <div class="spell-levels levels-grouping">
         <div class="spell-levels-top">
             <h3 class="font-19 font-weight-bold">Unite 3 : Grouping and identifying organisms</h3>
@@ -258,7 +650,17 @@
             </h3>
             <div class="popup-controls">
                 <a href="#" class="discord-btn">Ask on Discord</a>
-                <a href="#" class="submit-btn">Submit Ticket</a>
+                <a href="#" class="submit-btn">
+                  Submit Ticket
+                  <div class="lms-tooltip">
+                    <div class="tooltip-box">
+                        <h5 class="font-18 font-weight-bold text-white mb-5">Use basic phrases</h5>
+                        <span class="d-block mb-15 text-white">Prove yor proficiency with Legendary</span>
+                        <button class="tooltip-btn practice font-14 d-block mb-15 text-center" onclick='window.location.href = ""'>practice +5 XP</button>
+                        <button class="tooltip-btn legendary d-block font-14 text-center" onclick='window.location.href = ""'>Legendary +4 XP</button>
+                    </div>
+                  </div>
+                </a>
             </div>
         </div>
     </div>

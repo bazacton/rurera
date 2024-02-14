@@ -482,13 +482,14 @@ class UserController extends Controller
         $this->authorize('admin_users_create');
         $data = $request->all();
 
-        $username = $this->username($data);
+        //$username = $this->username($data);
+        $username = 'username';
         $data[$username] = $data['username'];
         $request->merge([$username => $data['username']]);
-        unset($data['username']);
+        //unset($data['username']);
 
         $this->validate($request, [
-            $username => ($username == 'mobile') ? 'required|numeric|unique:users' : 'required|string|email|max:255|unique:users',
+            $username => 'required|unique:users',
             'full_name' => 'required|min:3|max:128',
             'role_id' => 'required|exists:roles,id',
             'password' => 'required|string|min:6',
@@ -524,6 +525,7 @@ class UserController extends Controller
                     'year_id' => isset( $data['year_id'] ) ? $data['year_id'] : 0,
                     'class_id' => isset( $data['class_id'] ) ? $data['class_id'] : 0,
                     'section_id' => isset( $data['section_id'] ) ? $data['section_id'] : 0,
+                    'user_life_lines' => 5,
                 ]);
 
                 if (!empty($data['group_id'])) {

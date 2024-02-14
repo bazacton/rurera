@@ -110,7 +110,7 @@ if( $layout_type == 'results'){
                     <div class="show-notifications"></div>
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
-                        @if( !isset( $disable_finish ) || $disable_finish == 'false')
+                        @if( !isset( $disable_finish ) || $disable_finish != 'false')
                         <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"

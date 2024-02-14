@@ -9,10 +9,10 @@
     <section>
         <h2 class="section-title font-24">{{ trans('panel.support_summary') }}</h2>
 
-        <div class="activities-container mt-25 p-20 p-lg-35">
+        <div class="activities-container mt-30 p-20 p-lg-35">
             <div class="row">
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/41.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $openSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.open_conversations') }}</span>
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/40.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $closeSupportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.closed_conversations') }}</span>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <div class="d-flex flex-column align-items-center text-center">
+                    <div class="d-flex flex-column align-items-center text-center bg-white py-20 panel-shadow rounded-sm w-100">
                         <img src="/assets/default/img/activity/39.svg" width="64" height="64" alt="">
                         <strong class="font-24 mt-5">{{ $supportsCount }}</strong>
                         <span class="font-16 text-gray font-weight-500">{{ trans('panel.total_conversations') }}</span>
@@ -45,9 +45,9 @@
 
         @if(!empty($supports) and !$supports->isEmpty())
 
-            <div class="bg-white shadow rounded-sm py-10 py-lg-25 px-15 px-lg-30 mt-25">
+            <div class="bg-white shadow rounded-sm py-10 py-lg-25 px-15 px-lg-15 mt-25">
                 <div class="row">
-                    <div id="conversationsList" class="col-12 col-lg-6 conversations-list">
+                    <div id="conversationsList" class="col-12 col-lg-5 conversations-list">
                         <div class="table-responsive">
                             <table class="table table-md">
                                 <tr>
@@ -108,7 +108,7 @@
                     </div>
 
                     @if(!empty($selectSupport))
-                        <div class="col-12 col-lg-6 border-left border-gray300">
+                        <div class="col-12 col-lg-7 border-left border-gray300">
                             <div class="conversation-box p-15 d-flex align-items-center justify-content-between">
                                 <div>
                                     <span class="font-weight-500 font-14 text-dark-blue d-block">{{ $selectSupport->title }}</span>

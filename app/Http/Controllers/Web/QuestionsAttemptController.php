@@ -1764,6 +1764,8 @@ class QuestionsAttemptController extends Controller
         $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
         $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
 
+        //pre($user_answers, false);
+        //pre($elements_data);
         $question_answers_array = array();
         if (!empty($elements_data)) {
             foreach ($elements_data as $field_key => $elementData) {
@@ -1778,6 +1780,7 @@ class QuestionsAttemptController extends Controller
         }
 
 
+
         $script = '';
         if (!empty($question_answers_array)) {
             foreach ($question_answers_array as $field_key => $question_answer_data) {
@@ -1788,8 +1791,8 @@ class QuestionsAttemptController extends Controller
                 switch ($field_type) {
 
                     case "radio":
-
                         if (!empty($user_values)) {
+
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
@@ -1823,6 +1826,7 @@ class QuestionsAttemptController extends Controller
                     case "text":
 
                         if (!empty($user_values)) {
+                            pre($user_values, false);
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [
@@ -1835,11 +1839,23 @@ class QuestionsAttemptController extends Controller
                             }
                         }
 
+                        /*if (!empty($correct_values)) {
+                            foreach ($correct_values as $user_correct_key => $correct_value) {
+                                $user_selected_value = isset($user_values[$user_correct_key]) ? $user_values[$user_correct_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'          => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_correct_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }*/
+
                         break;
                 }
             }
         }
-
 
         $question_layout = '<div class="question-area"><div class="question-step question-step-' . $resultQuestionObj->question_id . '" data-elapsed="0" data-qattempt="' . $resultQuestionObj->quiz_attempt_id . '"
                      data-start_time="0" data-qresult="' . $resultQuestionObj->id . '"

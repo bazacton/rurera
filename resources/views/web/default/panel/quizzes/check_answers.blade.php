@@ -32,6 +32,9 @@ $rand_id = rand(99,9999);
     .editor-field.correct{
         background: #70c17c !important;
     }
+    .editor-field.wrong{
+        background: #ff4f4f !important
+    }
     .question-area{min-height:300px !important;}
 
 </style>
@@ -93,7 +96,7 @@ $total_questions = is_array( $attempt_questions_list )? count($attempt_questions
                                 </div>
                                 <div class="summary-text">
                                     <label>Questions Answered</label>
-                                    <div class="score">{{$attempted_questions}} / {{$total_questions}}</div>
+                                    <div class="score">{{$attempted_questions}}{{ ($QuizzesResult->quiz_result_type == 'practice')? '' : ' / '.$total_questions}}</div>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4 col-lg-3">
@@ -101,8 +104,8 @@ $total_questions = is_array( $attempt_questions_list )? count($attempt_questions
                                     <img src="/assets/default/svgs/question-circle.svg" alt="">
                                 </div>
                                 <div class="summary-text">
-                                    <label>Questions Missed</label>
-                                    <div class="score">{{$total_questions-$attempted_questions}}</div>
+                                    <label>Questions Incorrect</label>
+                                    <div class="score">{{$incorrect_count}}</div>
                                 </div>
                             </div>
 

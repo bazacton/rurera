@@ -25,7 +25,7 @@
                                 <form method="Post" action="/login" class="mt-20">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="form-group">
-                                        <label class="input-label" for="username">{{ trans('auth.email_or_mobile') }}:</label>
+                                        <label class="input-label" for="username">Username:</label>
                                         <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" id="username"
                                             value="{{ old('username') }}" aria-describedby="emailHelp">
                                         @error('username')

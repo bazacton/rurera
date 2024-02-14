@@ -961,6 +961,11 @@ class WebinarController extends Controller
             return view('web.default.quizzes.not_subscribed');
         }*/
 
+        if (auth()->check() && auth()->user()->isParent()) {
+            return redirect('/panel');
+        }
+
+
         $SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
                     ->first();
 
