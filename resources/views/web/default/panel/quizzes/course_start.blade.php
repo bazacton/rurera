@@ -94,6 +94,11 @@ $timer_counter = $practice_time;
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 col-sm-12">
+                            @if( isset( $quiz->quiz_type ))
+                               <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
+                           @endif
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
+                            </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
@@ -219,7 +224,7 @@ $timer_counter = $practice_time;
 
                 <div class="container">
                     <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-8 col-md-12 col-sm-12">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -237,7 +242,7 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
-                    <div class="quiz-status-bar">
+                    <div class="quiz-status-bar rurera-hide">
                         <div class="correct-in-row"></div>
                         <div class="quiz-questions-bar-holder">
                             <div class="quiz-questions-bar">
@@ -282,7 +287,22 @@ $timer_counter = $practice_time;
                     <div class="question-area-temp hide"></div>
 
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="col-12 col-lg-12 mb-30">
+                        <div class="store-stats">
+                            <ul>
+                                <li>
+                                <div class="store-item">
+                                    <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                    <span class="item-label">
+                                        Current Balance
+                                        <span class="iteme-numbers">706</span>
+                                    </span>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="col-12 col-lg-12 mb-30">
                         <div class="quests-list">
                             <h3 class="font-19 font-weight-bold">
@@ -313,7 +333,7 @@ $timer_counter = $practice_time;
                                 <li>
                                     <div class="quests-item">
                                         <div class="icon-box">
-                                            <img src="/assets/default/img/score-img.png" alt="">
+                                            <img src="/assets/default/svgs/certificate.svg" alt="">
                                         </div>
                                         <div class="item-text">
                                             <h5>Score 90% or higher in 2 <br /> lessons</h5>
@@ -333,7 +353,7 @@ $timer_counter = $practice_time;
                                 <li>
                                     <div class="quests-item">
                                         <div class="icon-box">
-                                            <img src="/assets/default/img/bird-icon.png" alt="">
+                                            <img src="/assets/default/svgs/clock.svg" alt="">
                                         </div>
                                         <div class="item-text">
                                             <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
@@ -353,35 +373,7 @@ $timer_counter = $practice_time;
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-12 mb-30">
-                        <div class="store-stats">
-                        <h2 itemprop="title" class="font-19 font-weight-bold mb-10">Store Stats</h2>
-                        <ul>
-                            <li>
-                            <div class="store-item">
-                                <span class="item-label">Owned Items:</span>
-                                <span class="iteme-numbers">
-                                91 <em>(1151 items total)</em>
-                                </span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Current Balance:</span>
-                                <span class="iteme-numbers">706</span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Lifetime Spending:</span>
-                                <span class="iteme-numbers">0</span>
-                            </div>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
+
                 </div>
                 </div>
             </div>
@@ -422,13 +414,14 @@ $timer_counter = $practice_time;
     <div class="modal-body">
       <div class="modal-box">
         <div class="modal-title">
-          <h3>Inactive</h3>
             <span class="inactivity-timer">30</span>
         </div>
+        <h3>Are you still there?</h3>
         <p>
-          Continue this Practice
+            Looks like you're inactive. Your session will be close and redirected in 2 minutes.
         </p>
-        <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Continue</a>
+        <a href="javascript:;" class="leavenow-btn" data-dismiss="modal" aria-label="Close">LEAVE NOW</a>
+       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">I'M STILL HERE</a>
       </div>
     </div>
   </div>

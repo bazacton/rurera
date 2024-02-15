@@ -44,7 +44,7 @@ if( $duration_type == 'total_practice'){
             <div class="row justify-content-center">
                 <div class="container">
                     <div class="row">
-                <div class="col-lg-9 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-8 col-md-12 col-sm-12 mt-50 quiz-section-block">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -86,7 +86,6 @@ if( $duration_type == 'total_practice'){
                     </div>
 
                     <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
-
 
 
                         <div class="col-12 col-lg-8 mx-auto">
@@ -159,8 +158,24 @@ if( $duration_type == 'total_practice'){
                     </div>
 
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 mt-50">
-                    <div class="col-12 col-lg-12 mb-3 quiz-sidebar hide">
+
+                <div class="col-lg-4 col-md-12 col-sm-12 mt-50 quiz-sidebar hide">
+                    <div class="col-12 col-lg-12 mb-30">
+                        <div class="store-stats">
+                            <ul>
+                                <li>
+                                <div class="store-item">
+                                    <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                    <span class="item-label">
+                                        Current Balance
+                                        <span class="iteme-numbers">706</span>
+                                    </span>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12 mb-30">
                         <div class="quests-list">
                             <h3 class="font-19 font-weight-bold">
                                 Daily Quests
@@ -190,7 +205,7 @@ if( $duration_type == 'total_practice'){
                                 <li>
                                     <div class="quests-item">
                                         <div class="icon-box">
-                                            <img src="/assets/default/img/score-img.png" alt="">
+                                            <img src="/assets/default/svgs/certificate.svg" alt="">
                                         </div>
                                         <div class="item-text">
                                             <h5>Score 90% or higher in 2 <br /> lessons</h5>
@@ -210,7 +225,7 @@ if( $duration_type == 'total_practice'){
                                 <li>
                                     <div class="quests-item">
                                         <div class="icon-box">
-                                            <img src="/assets/default/img/bird-icon.png" alt="">
+                                            <img src="/assets/default/svgs/clock.svg" alt="">
                                         </div>
                                         <div class="item-text">
                                             <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
@@ -230,35 +245,7 @@ if( $duration_type == 'total_practice'){
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-12 mb-30 quiz-sidebar hide">
-                        <div class="store-stats">
-                        <h2 itemprop="title" class="font-19 font-weight-bold mb-10">Store Stats</h2>
-                        <ul>
-                            <li>
-                            <div class="store-item">
-                                <span class="item-label">Owned Items:</span>
-                                <span class="iteme-numbers">
-                                91 <em>(1151 items total)</em>
-                                </span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Current Balance:</span>
-                                <span class="iteme-numbers">706</span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Lifetime Spending:</span>
-                                <span class="iteme-numbers">0</span>
-                            </div>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
+
                 </div>
             </div>
                     
@@ -440,7 +427,7 @@ if( $duration_type == 'total_practice'){
 
 
 
-
+    var currentRequest = null;
     $(document).on('submit', '.question-form', function (e) {
 
         var bypass_validation = $(this).closest('form').attr('data-bypass_validation');
@@ -496,6 +483,7 @@ if( $duration_type == 'total_practice'){
 
 
 
+
         if (parseInt(next_question) < parseInt(total_questions)) {
             $('.questions-block').addClass('hide');
             $('.questions-block').removeClass('active');
@@ -547,7 +535,6 @@ if( $duration_type == 'total_practice'){
             var response_layout = '';
 
 
-            var currentRequest = null;
             currentRequest = jQuery.ajax({
                 type: "POST",
                 url: '/question_attempt/timestables_submit',
@@ -562,14 +549,12 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
-                    rurera_remove_loader($('.question-area-block'), 'button');
+                    rurera_remove_loader($('.question-area-block'), 'div');
                     if (return_data.return_layout != '') {
                         $(".question-area-block").html(return_data.return_layout);
-                        rurera_remove_loader($('.question-area-block'), 'button');
-
+                        //rurera_remove_loader($('.question-area-block'), 'button');
                     }
                     //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
-                    console.log(return_data);
                 }
             });
 

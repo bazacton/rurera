@@ -298,6 +298,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                             }
                             thisForm.find('.question-submit-btn').addClass('rurera-hide');
                             thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                            $(".quiz-status-bar").removeClass('rurera-hide');
 
 
                         }else {
@@ -397,6 +398,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         }
                         thisForm.find('.question-submit-btn').addClass('rurera-hide');
                         thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                        $(".quiz-status-bar").removeClass('rurera-hide');
                     }
                     else {
                         const interval = setInterval(() => {

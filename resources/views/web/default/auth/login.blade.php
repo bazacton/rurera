@@ -3,8 +3,13 @@
     body{background-color: #fafafa !important;}
 </style>
 @section('content')
-    <div class="container">
-        <div class="text-center mb-30 mt-50"><a href="/"><img src="/store/1/logo.png"></a></div>
+    <div class="container d-flex flex-column justify-content-center align-items-center h-100">
+        <div class="text-center mb-30 mt-50">
+            <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
+                <img src="/assets/default/img/sidebar/logo.svg">
+                <span class="logo-text font-30 font-weight-bold ml-10">Rurera</span>
+            </a>
+        </div>
         @if(!empty(session()->has('msg')))
             <div class="alert alert-info alert-dismissible fade show mt-30" role="alert">
                 {{ session()->get('msg') }}
@@ -14,7 +19,7 @@
             </div>
         @endif
 
-        <div class="row login-container">
+        <div class="row login-container mt-0">
             <div class="col-12 rurera-login-opt-block">
 
                 <div class="login-holder">
@@ -101,8 +106,8 @@
                 </div>
             </div>
             <div class="col-12 login-opt-type rurera-hide login-with-smartbadge">
+                <a href="javascript:;" class="login-back-btn">Back</a>
                 <div class="login-holder">
-                    <a href="javascript:;" class="login-back-btn">Back</a>
                     <div class="col-12">
                         <div class="login-magic-code">
                             <p>To login with your Magic Code please hold it up to the screen and center the <br /> code inside the square.</p>
@@ -123,15 +128,22 @@
                 </div>
             </div>
 
-            <div class="col-12 login-opt-type rurera-hide login-with-pin">
-                <div class="login-holder">
-                    <a href="javascript:;" class="login-back-btn">Back</a>
+            <div class="col-12 login-opt-type login-with-pin mx-auto rurera-hide">
+                <a href="javascript:;" class="login-back-btn">Back</a>
+                <div class="login-holder d-flex flex-column justify-content-center align-items-center">
                     <div class="col-12">
                         <div class="login-password">
-                            <form>
-                                <div class="form-group">
-                                    <label class="input-label" for="username">Please enter your password</label>
-                                    <input type="password" class="login_pin" value="" style="border: 1px solid;width: 300px;">
+                            <form class="mb-10">
+                                <div class="form-group d-inline-flex align-items-start justify-content-start flex-row flex-wrap">
+                                    <label class="input-label" for="username">
+                                        Enter Pin Code
+                                        <span class="d-block font-16 font-weight-normal pt-5">If your teacher has given you a PIN code to access Rurera Go, enter <br> it in the form below..</span>
+                                    </label>
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                 </div>
                             </form>
                         </div>
@@ -140,8 +152,8 @@
             </div>
 
             <div class="col-12 login-opt-type rurera-hide login-with-emoji">
+                <a href="javascript:;" class="login-back-btn">Back</a>
                 <div class="login-holder">
-                    <a href="javascript:;" class="login-back-btn">Back</a>
                     <div class="col-12">
                         <div class="login-password">
                             <form>

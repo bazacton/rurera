@@ -1513,10 +1513,7 @@ class QuestionsAttemptController extends Controller
                 $results[$tableData['table_no']][] = $tableData;
             }
         }
-
-
-        $new_array = array_merge($get_last_results, $results);
-
+        $new_array = $results;//array_merge($get_last_results, $results);
 
         $new_result_data = array();
         if (!empty($new_array)) {
@@ -1738,6 +1735,10 @@ class QuestionsAttemptController extends Controller
         }
         
         if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'freedom_mode') {
+            $results = json_decode($QuizzesResult->results);
+            $return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
+        }
+        if ($QuizzesResult->quiz_result_type == 'timestables_assignment') {
             $results = json_decode($QuizzesResult->results);
             $return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
         }

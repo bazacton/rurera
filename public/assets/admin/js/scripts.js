@@ -726,6 +726,10 @@ function rurera_remove_loader(thisObj, loader_type) {
             $('body').removeClass('rurera-processing');
             $('body').find('.rurera-button-loader').remove();
             break;
+        case "div":
+            thisObj.removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
+            break;
     }
 }
 

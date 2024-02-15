@@ -16,7 +16,7 @@
 @section('content')
 <section class="member-card-header">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
-        <h1 class="section-title">Members</h1>
+        <h1 class="section-title font-22">Members</h1>
         <div class="dropdown">
 
         <button type="button" class="btn btn-sm btn-primary add-child-btn" data-toggle="modal"
@@ -24,7 +24,6 @@
         </button>
 
     </div>
-        <br><br><br>
     </div>
 </section>
 
@@ -52,7 +51,7 @@
                                         </div>
 
                                         <div class="col-5 ms-2">
-                                            <h6 class="font-19 font-weight-bold"><a href="#">{{$childObj->full_name}}</a></h6>
+                                            <h6 class="font-18 font-weight-bold"><a href="#">{{$childObj->full_name}}</a></h6>
                                             <small class="text-muted">
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
@@ -70,7 +69,7 @@
                                             <img src="/assets/default/img/default/user-switch.png">
                                         </a>
                                         <a href="javascript:;" class="connet-user-btn">
-                                            <img src="/assets/default/img/default/plus-icon.png"> Connect to Class
+                                            <img src="/assets/default/svgs/plus+.svg"> Connect to Class
                                         </a>
                                         <div class="col-auto ms-auto mr-md-3 last-activity">
                                             <span><strong>{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : 'No Activity' }}</strong>

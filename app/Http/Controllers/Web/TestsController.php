@@ -54,7 +54,9 @@ class TestsController extends Controller
         $graphs_array['Hour'] = $QuestionsAttemptController->user_graph_data($QuizzResultQuestionsObj, 'hourly');
 
         $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
-        $query->where('year_id', $user->year_id);
+        if (auth()->check() && auth()->user()->isUser()) {
+            $query->where('year_id', $user->year_id);
+        }
         $sats = $query->paginate(100);
 
         $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
@@ -132,6 +134,9 @@ class TestsController extends Controller
         if( $switch_user > 0){
             $switchUserObj = User::find($switch_user);
             $query->where('year_id', $switchUserObj->year_id);
+        }
+        if (auth()->check() && auth()->user()->isUser()) {
+            $query->where('year_id', $user->year_id);
         }
 
 

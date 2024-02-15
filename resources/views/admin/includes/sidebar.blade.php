@@ -52,6 +52,13 @@
                 </li>
             @endcan
 
+            <li class="nav-item {{ (request()->is(getAdminPanelUrl('/schools', false))) ? 'active' : '' }}">
+                <a href="{{ getAdminPanelUrl('/schools') }}" class="nav-link">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Schools</span>
+                </a>
+            </li>
+
             @if($authUser->can('admin_webinars') or
                 $authUser->can('admin_bundles') or
                 $authUser->can('admin_categories') or

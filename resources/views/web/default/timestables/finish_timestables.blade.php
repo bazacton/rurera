@@ -1,6 +1,4 @@
-    <section class="p-25 panel-border border-radius-10">
-        <div class="container">
-            <div class="row">
+
                 <div class="col-12">
                     <div class="chart-summary-fields result-layout-summary">
                         <h3 class="text-center font-30 mb-50">
@@ -112,6 +110,3 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>

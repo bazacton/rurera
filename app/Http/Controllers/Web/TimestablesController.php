@@ -367,6 +367,9 @@ class TimestablesController extends Controller
         $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
         $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
 
+        if( empty( $times_tables_data )) {
+            $times_tables_data['is_empty'] = 'yes';
+        }
         $data = [
             'pageTitle'         => 'Timestables Summary',
             'times_tables_data' => $times_tables_data,
@@ -473,13 +476,16 @@ class TimestablesController extends Controller
     {
         $user_ids = is_array($user_id) ? $user_id : array($user_id);
         //DB::enableQueryLog();
-        $times_tables_data = QuizzesResult::whereIn('user_id', $user_ids)->where('quiz_result_type', 'timestables')->orderBy('created_at', 'asc')->get();
+        $times_tables_data = QuizzesResult::whereIn('user_id', $user_ids)->whereIN('quiz_result_type', array('timestables','timestables_assignment'))->orderBy('created_at', 'asc')->get();
         $times_tables_data = $times_tables_data->groupBy(function ($times_tables_obj) {
             return date('Y-m-d', $times_tables_obj->created_at);
         });
+
+
         //pre(DB::getQueryLog());
         //DB::disableQueryLog();
         $tables_array = $average_time = $total_average_time = array();
+        $already_Exists = $savedData = array();
         $first_date = '';
         if (!empty($times_tables_data)) {
             foreach ($times_tables_data as $date => $times_tables_array) {
@@ -507,11 +513,30 @@ class TimestablesController extends Controller
 
                                             $tables_array[$date][$table_no][$tableRowObj->to]['label'] = $tableRowObj->from . ' ' . $tableRowObj->type . ' ' . $tableRowObj->to;
                                             $tables_array[$date][$table_no][$tableRowObj->to]['time_consumed'] = ($tableRowObj->time_consumed / 10);
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['average_time'] = ($tableRowObj->time_consumed / 10);
                                             $tables_array[$date][$table_no][$tableRowObj->to]['is_correct'] = ($tableRowObj->is_correct == 'true') ? true : false;
                                             $tables_array[$date][$table_no][$tableRowObj->to]['table_to'] = $tableRowObj->to;
+
+                                            $savedData[$table_no][$tableRowObj->to][] =  $tables_array[$date][$table_no][$tableRowObj->to];
+
                                             $class = ($tableRowObj->is_correct == 'true') ? 'correct' : 'wrong';
                                             $class = ($class == 'correct' && ($tableRowObj->time_consumed / 10) < 2) ? 'correct-fast' : $class;
+                                            $tables_array[$date][$table_no][$tableRowObj->to]['class'] = '';
                                             $tables_array[$date][$table_no][$tableRowObj->to]['class'] = $class;
+                                            if( isset( $already_Exists[$table_no][$tableRowObj->to])){
+                                                $average_time_consumed = $time_consumed_event = 0;
+                                                foreach( $savedData[$table_no][$tableRowObj->to] as $alreadyData){
+                                                    $time_consumed_event = ($alreadyData['is_correct'] == true)? $alreadyData['average_time'] : 10;
+                                                }
+                                                $average_time_consumed = ($time_consumed_event*100)/(count($savedData[$table_no][$tableRowObj->to])*10);
+                                                $tables_array[$date][$table_no][$tableRowObj->to]['average_time'] = $average_time_consumed;
+                                                $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = $tables_array[$date][$table_no][$tableRowObj->to]['attempts']+1;
+                                                $tables_array[$date][$table_no][$tableRowObj->to]['class'] = 'average_'.intval(floor($average_time_consumed / 10));
+                                            }else{
+                                                $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = 1;
+                                                //$tables_array[$date][$table_no][$tableRowObj->to]['class'] = '';
+                                            }
+                                            $already_Exists[$table_no][$tableRowObj->to] = $tableRowObj->to;
                                         }
                                     }
                                 }
@@ -536,6 +561,8 @@ class TimestablesController extends Controller
             }
         }
 
+        //pre($tables_array);
+        //pre($tables_array);
         $tables_array_final = $tables_last_data = [];
         if (!empty($tables_array)) {
             foreach ($tables_array as $datestr => $userData) {
@@ -549,8 +576,6 @@ class TimestablesController extends Controller
                 }
             }
         }
-
-
         return array(
             'average_time'     => $total_average_time,
             'tables_array'     => $tables_array_final,
@@ -707,12 +732,13 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        $userPastAssignments = UserAssignedTimestables::where('user_id', $user->id)->where('status', 'completed')->orderBy('created_at', 'asc')
-            ->whereHas(
-                'timestables_events', function ($query) {
-                $query->where('start_at', '<=', time());
-            }
-            )->get();
+
+        $userPastAssignments = UserAssignedTopics::where('assigned_to_id', $user->id)
+                        ->where('status', 'completed')
+                        ->with([
+                            'StudentAssignmentData',
+                        ])
+                        ->get();
 
         $respose = '';
         if (!empty($userPastAssignments) && count($userPastAssignments) > 0) {
@@ -788,6 +814,7 @@ class TimestablesController extends Controller
         $no_of_questions = 400;
         $practice_time = $request->post('practice_time');
         $practice_time_seconds = ($practice_time * 60);
+        $practice_time_seconds = 10;
         //pre($practice_time_seconds);
 
         $tables_types = [];
@@ -1528,6 +1555,9 @@ class TimestablesController extends Controller
         $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
         $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
 
+        if( empty( $times_tables_data )) {
+            $times_tables_data['is_empty'] = 'yes';
+        }
 
 
         $rendered_view = view('web.default.timestables.powerup_mode', [

@@ -40,12 +40,18 @@
                        </tr>
                    </thead>
                    <tbody>
+                   @if( $results_data->count() > 0)
                        @foreach( $results_data as $resultsRow)
                            <tr>
                                <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
                                <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
                            </tr>
                        @endforeach
+                   @else
+                   <tr>
+                       <td colspan="2" class="text-center">No records found</td>
+                  </tr>
+                   @endif
                    </tbody>
                </table>
 
@@ -55,7 +61,6 @@
 
 <script>
     $(document).ready(function () {
-        @if(!empty($attempts_labels))
             var ctx = document.getElementById('trophy_chart').getContext('2d');
             var chart_labels = '{{json_encode($attempts_labels)}}';
             var chart_labelsArray = JSON.parse(chart_labels.replace(/&quot;/g, '"'));
@@ -76,7 +81,6 @@
                 },
 
             });
-        @endif
 
     });
 

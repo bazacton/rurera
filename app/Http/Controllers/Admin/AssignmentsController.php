@@ -256,7 +256,7 @@ class AssignmentsController extends Controller
 
         $topic_ids = isset($data['topic_ids']) ? $data['topic_ids'] : array();
         $assignment_topic_type = isset($data['assignment_topic_type']) ? $data['assignment_topic_type'] : '';
-        $topic_id = isset($data['topic_id']) ? $data['topic_id'] : '';
+        $topic_id = isset($data['topic_id']) ? $data['topic_id' ] : '';
         if( $assignment_topic_type == 'practice'){
             $question_list_ids = QuizzesQuestionsList::whereIn('quiz_id', $topic_ids)->where('status', 'active')->pluck('question_id')->toArray();
 
@@ -350,6 +350,10 @@ class AssignmentsController extends Controller
                 break;
         }
 
+        $topic_ids = is_array($topic_ids)? $topic_ids : array($topic_ids);
+        $data['assignment_reviewer'] = isset( $data['assignment_reviewer'] )? $data['assignment_reviewer'] : array();
+        $data['assignment_reviewer'] = is_array($data['assignment_reviewer'])? $data['assignment_reviewer'] : array( $data['assignment_reviewer'] );
+
         $StudentAssignments = StudentAssignments::create([
             'parent_id'                  => $user->id,
             'title'                      => isset($data['title']) ? $data['title'] : '',
@@ -364,7 +368,7 @@ class AssignmentsController extends Controller
             'assignment_end_date'        => $assignment_end_date,
             'no_of_attempts'             => isset($data['no_of_attempts']) ? ($data['no_of_attempts']) : 0,
             'recurring_type'             => 'Once',
-            'class_ids'                  => isset($data['class_ids']) ? json_encode($data['class_ids']) : '',
+            'class_ids'                  => (isset($data['class_ids']) && is_array($data['class_ids'])) ? json_encode($data['class_ids']) : '',
             'target_percentage'          => isset($data['target_percentage']) ? $data['target_percentage'] : 0,
             'target_average_time'        => isset($data['target_average_time']) ? $data['target_average_time'] : 0,
             'assignment_reviewer'        => isset($data['assignment_reviewer']) ? json_encode($data['assignment_reviewer']) : array(),

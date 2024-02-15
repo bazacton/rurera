@@ -155,6 +155,22 @@
 
                             </div>
                         </div>
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
+                                <div class="text-holder">
+                                    <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
+                                        <a class="grid-btn" itemprop="Button" href="javascript:;">School Zone
+                                            <span class="title-label">Coming Soon</span>
+                                        </a>
+                                    </h3>
+                                </div>
+                                <div class="img-holder">
+                                    <img src="/assets/default/svgs/global-arena.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
+                                </div>
+                                <p class="text-gray">Connect with individuals worldwide in a Cloud.</p>
+
+                            </div>
+                        </div>
                         </div>
                         <div class="timestables-mode-block">
                             <a href="javascript:;" class="timestables-back-btn">Back</a>

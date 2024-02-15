@@ -49,7 +49,7 @@ Lms Signs Style
 .lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 /* .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;} */
-.lms-radio-select label:hover {background-color: rgba(0,0,0,0.02);}
+.lms-radio-select label:hover {background-color: rgba(0,0,0,0.05);}
 /* .lms-radio-select label:after {
     content: "";
     position: absolute;
@@ -63,7 +63,7 @@ Lms Signs Style
     z-index: -1;
 } */
 .lms-radio-select input[type=radio] {position: absolute; width: 0; height: 0;}
-.lms-radio-select input[type=radio]:checked~label {background-color: rgba(0,0,0,0.02);}
+.lms-radio-select input[type=radio]:checked~label {background-color: rgba(0,0,0,0.05);}
 .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transition: 0.4s; }
 .row-fields .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transform: none;}
 .row-fields .lms-radio-select label:after {width: 0; transform: none;}
@@ -177,7 +177,7 @@ Lms Form Fields Style
 .prev-next-controls .question-submit-btn:after,
 .question-next-btn:after {content: ""; position: absolute; right: 15px; top: 50%; height: 7px; width: 14px; border: 2px solid; border-top: 0; border-right: 0; transform: rotate(-50deg); margin: -5px 0 0 0;}
 .prev-next-controls .question-submit-btn,
-.prev-next-controls .question-next-btn {margin-right: 0; position: absolute; right: 0;}
+.prev-next-controls .question-next-btn {margin-right: 0; position: absolute; right: 0; min-width: 160px;}
 .prev-next-controls .question-submit-btn svg,
 .prev-next-controls .question-next-btn svg {display: none;}
 .question-submit-btn.submit-btn:hover,
@@ -197,6 +197,9 @@ Lms Form Fields Style
 .left-content.has-bg {background: url(../assets/images/lms-bg.png) no-repeat center top;}
 .leform-element-html img {object-fit: cover;}
 .block-holder img.editor-field {padding: 4px; box-shadow: 0 0 0 2px #fff inset; border: 4px solid rgba(0,0,0,0.1); border-radius: 2px;}
+.spells-quiz-from .question-next-btn {height: auto; position: relative; min-height: 58px; min-width: 150px; font-size: 18px; font-weight: 500; }
+.spells-quiz-from .question-next-btn svg {display: none;}
+.spells-quiz-from .question-next-btn:after {right: 30px;}
 @media screen and (max-width: 767px) {
     .lms-content-holder .question-layout-block {padding: 0 15px;}
     .right-content {position: relative; margin: 0 auto;}
@@ -485,7 +488,7 @@ Lms Quiz Wf Style Start
 .question-label {position: relative;}
 .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;}
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0;padding: 12px 15px;border-radius: 6px;line-height: normal;text-align: left;border: 2px solid #ddd;display: inline-block;vertical-align: middle;width: calc(100% - 70px);position: relative; overflow: hidden; border-left: 0;}
+.lms-quiz-section .question-label span {margin: 0;padding: 12px 15px;border-radius: 6px;line-height: normal;text-align: left;border: 2px solid #ddd;display: inline-block;vertical-align: middle;width: calc(100% - 66px);position: relative; overflow: hidden; border-left: 0;}
 .question-label:after,
 .lms-quiz-section .question-label:after {
     content: "";
@@ -1541,6 +1544,7 @@ Lms Quiz Wf Style End
     text-transform: uppercase;
     /* font-size: 15px; */
 }
+.quiz-topbar .close-btn {min-width: 45px; min-height: 45px;}
 .prev-btn,
 .next-btn {
     min-width: auto;

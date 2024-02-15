@@ -462,7 +462,7 @@ if( $duration_type == 'total_practice'){
 
             //window.location.href = '/timestables/summary';
             //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
+            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
 
             return false;
 

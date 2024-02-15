@@ -335,6 +335,21 @@
                                 @endif
                             @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
                             <div class="col-12 col-lg-12 mb-30">
+                                <div class="store-stats">
+                                    <ul>
+                                        <li>
+                                        <div class="store-item">
+                                            <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                            <span class="item-label">
+                                                Current Balance
+                                                <span class="iteme-numbers">706</span>
+                                            </span>
+                                        </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mb-30">
                                 <div class="quests-list">
                                     <h3 class="font-19 font-weight-bold">
                                         Daily Quests
@@ -404,31 +419,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-12 mb-30">
-                                <div class="store-stats">
-                                <h2 itemprop="title" class="font-19 font-weight-bold mb-10">Store Stats</h2>
-                                <ul>
-                                    <li>
-                                    <div class="store-item">
-                                        <img src="/assets/default/svgs/stats-coins.svg" alt="">
-                                        <span class="item-label">
-                                            Current Balance
-                                            <span class="iteme-numbers">706</span>
-                                        </span>
-                                    </div>
-                                    </li>
-                                    <li>
-                                    <div class="store-item">
-                                        <img src="/assets/default/svgs/stats-coins.svg" alt="">
-                                        <span class="item-label">
-                                            Lifetime Spending
-                                            <span class="iteme-numbers">0</span>
-                                        </span>
-                                    </div>
-                                    </li>
-                                </ul>
-                                </div>
-                            </div>
+
                             @endif
                             
                             @if(request()->is('custom_html'))

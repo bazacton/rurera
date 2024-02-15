@@ -54,6 +54,18 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input name="email" type="text"
+                                               class="form-control @error('email') is-invalid @enderror"
+                                               id="email" value="{{ old('email') }}">
+                                        @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="input-label">{{ trans('admin/main.password') }}</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">

@@ -84,7 +84,7 @@ class DashboardController extends Controller
                 ])
                 ->get();
 
-            //pre($assignmentsArray);
+            //pre($user->id);
 
 
             $webinarsIds = $user->getPurchasedCoursesIds();
@@ -183,17 +183,20 @@ class DashboardController extends Controller
         $fetch_type = $request->get('fetch_type');
 
         $assignmentsQuery = UserAssignedTopics::where('assigned_to_id', $user->id);
-        $assignmentsQuery->where('status', 'active');
+
         if ($fetch_type == 'upcoming') {
+            $assignmentsQuery->where('status', 'active');
             $assignmentsQuery->where('start_at', '>', strtotime(date('Y-m-d')));
             $assignmentsQuery->where('deadline_date', '>', time());
         }
         if ($fetch_type == 'current') {
+            $assignmentsQuery->where('status', 'active');
             $assignmentsQuery->where('start_at', '<=', time());
             $assignmentsQuery->where('deadline_date', '>=', time());
         }
         if ($fetch_type == 'previous') {
-            $assignmentsQuery->where('start_at', '<', strtotime(date('Y-m-d')));
+            $assignmentsQuery->where('status', 'completeds');
+            //$assignmentsQuery->where('start_at', '<', strtotime(date('Y-m-d')));
             //$assignmentsQuery->where('deadline_date', '>=', time());
         }
 
@@ -203,7 +206,7 @@ class DashboardController extends Controller
         $assignmentsResults = $assignmentsQuery->get();
 
         $response = '';
-        if (!empty($assignmentsResults)) {
+        if ($assignmentsResults->count() > 0) {
             foreach ($assignmentsResults as $assignmentObj) {
                 $assignmentTitle = $assignmentObj->StudentAssignmentData->title;
                 $assignmentLink = '/assignment/'.$assignmentObj->id;
@@ -224,6 +227,8 @@ class DashboardController extends Controller
                                 </div>
                             </li>';
             }
+        }else{
+            $response .= '<li>No assigned assignments at the moment</li>';
         }
 
         echo $response;

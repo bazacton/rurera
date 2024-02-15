@@ -83,11 +83,14 @@ if( isset( $duration_type ) ){
                     <div class="form-field">
                         @php $words_counter = 0; @endphp
                         @while($words_counter < $no_of_words)
-                            <input type="text" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs" style="width: 1ch;
+                            @php $words_counterplus = $words_counter+1;
+                            $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
+                            @endphp
+                            <input type="text" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs" style="width: {{$field_width}}ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
                                                     font: 1.2rem 'Ubuntu Mono', monospace;
                                                     letter-spacing: 0.5ch;">
-                            @php $words_counter++; @endphp
+                        @php $words_counter++;@endphp
                         @endwhile
                         <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
@@ -207,7 +210,7 @@ if( isset( $duration_type ) ){
                 hint_counter = parseInt(hint_counter) + parseInt(1);
                 var quiz_level = '{{$quiz_level}}';
                 if( quiz_level == 'easy') {
-                    if (parseInt(hint_counter) == 10 && userInput == false) {
+                    if (parseInt(hint_counter) == 30 && userInput == false) {
 
                         $('.editor-field-inputs').each(function() {
                           var $this = $(this);

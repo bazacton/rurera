@@ -496,6 +496,7 @@ class UserController extends Controller
             'status' => 'required',
         ]);
 
+
         if (!empty($data['role_id'])) {
             $role = Role::find($data['role_id']);
 
@@ -515,6 +516,7 @@ class UserController extends Controller
                     'role_name' => $role->name,
                     'role_id' => $data['role_id'],
                     $username => $data[$username],
+                    'email' => isset( $data['email'] )? $data['email'] : '',
                     'password' => User::generatePassword($data['password']),
                     'status' => $data['status'],
                     'affiliate' => $usersAffiliateStatus,

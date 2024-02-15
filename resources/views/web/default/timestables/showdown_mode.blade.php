@@ -47,7 +47,7 @@
                         <div class="text-center"><span>Time Spent</span></div>
                     </li>
                     @php $user_counter = 1; @endphp
-                    @if( !empty( $leaderboardResults ) )
+                    @if( $leaderboardResults->count() > 0 )
                         @foreach( $leaderboardResults as $leaderboardRow)
                             @php $is_active = ($leaderboardRow->user->id == auth()->user()->id)? 'active' : ''; @endphp
                             <li class="lms-performace-des leaderboard-des {{$is_active}}">
@@ -61,7 +61,11 @@
                             </li>
                             @php $user_counter++; @endphp
                         @endforeach
-                    @endif
+                    @else
+                    <li class="lms-performace-des leaderboard-des">
+                       <div class="sr-no text-center"><span>No records found</span></div>
+                   </li>
+                       @endif
                 </ul>
             </div>
         </div>

@@ -140,7 +140,7 @@
 }
 .flipbook-page3-html.page_0 {
     position: absolute;
-    top: 575px;
+    top: 0;
     width: 100%;
     height: 100%;
 }
@@ -2100,9 +2100,9 @@ Flip Book Custom Style Start
 ****************************/
 .flipbook-data {
     background-color: #fff;
-    padding: 30px;
-    height: 100%;
-    width: 80%;
+    padding: 50px;
+    height: auto;
+    width: 100%;
     margin: 0 auto;
 }
 /* .flipbook-page3-front:first-child .flipbook-page3-bg {
@@ -2428,6 +2428,20 @@ Flip Book Custom Style Start
     border-radius: 50px;
     text-decoration: none;
     outline: none;
+}
+body .flipbook-quiz {
+    width: 750px;
+}
+body .prev-next-controls .review-btn,
+body .prev-next-controls .question-submit-btn, 
+body .prev-next-controls .question-next-btn {
+    position: relative;
+}
+body .prev-next-controls .question-submit-btn {
+    margin-right: 10px;
+}
+body .quiz-open .flipbook-quiz {
+    transform: translateX(-10%) translateZ(0);
 }
 /****************************
 Flip Book Custom Style End

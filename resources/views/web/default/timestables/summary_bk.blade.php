@@ -124,6 +124,8 @@
                                 $to_tableObj = isset( $from_table_array[$table_count] )?
                                 $from_table_array[$table_count] : array();
                                 $class = isset( $to_tableObj['class'] )? $to_tableObj['class'] : '';
+                                $attempts = isset( $to_tableObj['attempts'] )? $to_tableObj['attempts'] : 0;
+                                $class = ($attempts > 4)? $class : '';
 
                                 @endphp
                                 <td class="{{$class}} {{ ($table_count > 12 )? 'above_12' : 'below_12'}}">

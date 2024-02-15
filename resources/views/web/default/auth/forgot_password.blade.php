@@ -4,8 +4,13 @@
 </style>
 @section('content')
     <div class="container">
-        <div class="text-center mb-30 mt-50"><a href="/"><img src="/store/1/logo.png"></a></div>
-        <div class="login-container">
+        <div class="text-center mb-30 mt-50">
+            <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
+                <img src="/assets/default/img/sidebar/logo.svg">
+                <span class="logo-text font-30 font-weight-bold ml-10">Rurera</span>
+            </a>
+        </div>
+        <div class="login-container mt-0">
             <div class="login-holder row" style="padding:0;">
 
             <div class="col-12 col-md-6 pl-0">

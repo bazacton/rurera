@@ -2508,6 +2508,13 @@
 	visibility: visible !important;
 	opacity: 1 !important;
 }
+.leform-element.leform-element-0 {
+	margin-top: 0;
+}
+.question-layout-block .leform-element {
+    padding-left: 0;
+    padding-right: 0;
+}
 .leform-element::before {
 	display: table;
 	content: ' ';

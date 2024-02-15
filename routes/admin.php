@@ -517,6 +517,18 @@ Route::group([
         });
 
         /*
+        * Schools
+        */
+       Route::group(['prefix' => 'schools'], function () {
+           Route::get('/', 'SchoolsController@index');
+           Route::get('/create', 'SchoolsController@create');
+           Route::get('/{id}/edit', 'SchoolsController@edit')->name('adminEditGlossary');
+           Route::get('/{id}/delete', 'SchoolsController@destroy');
+           Route::post('/store', 'SchoolsController@store');
+           Route::post('/{id}/store', 'SchoolsController@store');
+       });
+
+        /*
          * Classes
          */
         Route::group(['prefix' => 'classes'], function () {

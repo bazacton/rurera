@@ -323,6 +323,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                             }
                             thisForm.find('.question-submit-btn').addClass('rurera-hide');
                             thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                            $(".quiz-status-bar").removeClass('rurera-hide');
 
 
                         }else {
@@ -422,6 +423,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                         }
                         thisForm.find('.question-submit-btn').addClass('rurera-hide');
                         thisForm.find('.question-next-btn').removeClass('rurera-hide');
+                        $(".quiz-status-bar").removeClass('rurera-hide');
                     }
                     else {
                         const interval = setInterval(() => {
@@ -761,6 +763,7 @@ function init_question_functions() {
         $('#next-btn')[0].click();
     });
     $(document).on('click', '.question-next-btn', function (e) {
+        $(".quiz-status-bar").addClass('rurera-hide');
         $('#next-btn')[0].click();
     });
 
@@ -1420,6 +1423,11 @@ function rurera_remove_loader(thisObj, loader_type) {
             break;
         case "page":
             $('body').removeClass('rurera-processing');
+            $('body').find('.rurera-button-loader').remove();
+            break;
+
+        case "div":
+            thisObj.removeClass('rurera-processing');
             $('body').find('.rurera-button-loader').remove();
             break;
     }
