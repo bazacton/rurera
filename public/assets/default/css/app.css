@@ -14441,7 +14441,8 @@ span.question-status-wrong,
 .student-block-text {padding: 25px 10px; position: relative;}
 .userthumb .userthumb-text span,
 .student-block-text span {margin-top: 2px; line-height: normal; color: #999;}
-.student-block-text .user-year-info {color: var(--primary); position: absolute; right: 10px; padding-top: 5px;}
+.student-block-text .user-year-info {color: var(--primary); position: absolute; right: 10px; padding-top: 2px;}
+.student-block-text .user-name {color: #343434; padding-right: 45px;}
 @media (max-width: 575px) {
     .learning-page .lms-side-menu-left .sidebar-logo {display: inline-flex; padding: 10px; height: 50px;}
     .learning-page .lms-side-menu-left {display: flex; align-items: center;}

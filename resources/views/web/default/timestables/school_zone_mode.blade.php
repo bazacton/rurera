@@ -8,7 +8,7 @@
        <li data-type="single-player"><img src="/assets/default/img/single.png" alt=""> Leaderboard</li>
    </ul>
 </div>
-<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
+<section class="p-20 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">

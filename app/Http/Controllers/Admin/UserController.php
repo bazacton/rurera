@@ -237,13 +237,13 @@ class UserController extends Controller
             shuffle($loginList);
 
             // Take the first 6 emojis as random indexes
-            $random_offset = rand(0,5);
+            $random_offset = rand(1,6);
             $generatedIndexes = array_slice($loginList, $random_offset, 6);
 
             // Create a string by concatenating the randomly selected emojis
             $generatedString = implode('', $generatedIndexes);
 
-        } while (in_array($generatedString, $UsedLoginList));
+        } while (in_array($generatedString, $UsedLoginList) || strlen($generatedString) < 6);
 
         $user->update([
             'login_pin' => $generatedString

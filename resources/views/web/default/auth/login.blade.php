@@ -139,6 +139,8 @@
                                         Enter Pin Code
                                         <span class="d-block font-16 font-weight-normal pt-5">If your teacher has given you a PIN code to access Rurera Go, enter <br> it in the form below..</span>
                                     </label>
+                                    <input type="hidden" class="login_pin_final" value="">
+                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
@@ -203,10 +205,10 @@
 
     });
 
-    $(document).on('keyup', '.login_pin', function (e) {
+    $(document).on('keyup change', '.login_pin_final', function (e) {
 
         var thisObj = $(this);
-        var login_pin = $(this).val();
+        var login_pin_final = $(this).val();
         var total_pin_count = $(this).val().length;
         if(total_pin_count == 6){
             rurera_loader($(".login-with-pin"), 'div');
@@ -216,7 +218,7 @@
                headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                },
-               data: {'login_pin':login_pin},
+               data: {'login_pin':login_pin_final},
                success: function (return_data) {
                    if( return_data == 'loggedin'){
                        window.location.href = '/panel';
@@ -295,6 +297,48 @@
 
         }
 
+    });
+    $(document).on('input keydown paste', ".login_pin", function (event) {
+        var $this = $(this);
+        var value = $this.val();
+
+        if (event.type === 'paste') {
+            event.preventDefault(); // Prevent default paste behavior
+
+            // Get the pasted text
+            var pastedText = (event.originalEvent || event).clipboardData.getData('text');
+
+            // Split the pasted text into individual characters
+            var characters = pastedText.split('');
+
+            // Distribute each character into successive input fields
+            characters.forEach(function(char) {
+                $this.val(char);
+                $this = $this.next('.login_pin');
+            });
+
+            // Ensure focus is on the last input field
+            $this.focus();
+        } else if ((event.type === 'input' || event.type === 'keydown') && value.length === 1) {
+            $this.next('.login_pin').focus();
+        } else if (event.type === 'keydown' && event.which === 8 && value === "") {
+            $this.prev('.login_pin').focus();
+        }
+
+
+        allFilled = true;
+        var login_pin_code = '';
+        $(".login_pin").each(function(){
+            login_pin_code += $(this).val();
+            if($(this).val() === ''){
+                allFilled = false;
+                return false;
+            }
+        });
+        if(allFilled){
+            $(".login_pin_final").val(login_pin_code);
+            $(".login_pin_final").change();
+        }
     });
 
 </script>
