@@ -594,10 +594,15 @@ class TimestablesController extends Controller
     public function get_timestables_attempted_result($tables_last_data)
     {
 
+        $user = getUser();
+        $user_timestables_no = isset( $user->timestables_no )? json_decode($user->timestables_no) : array();
         $incorrect_array = $excess_time_array = $not_attempted_array = $tables_array = $improvement_required_array = array();
 
         if (!empty($tables_last_data)) {
             foreach ($tables_last_data as $table_no => $table_data) {
+                if (!in_array($table_no, $user_timestables_no)){
+                    continue;
+                }
                 $tables_array[] = $table_no;
 
                 $multiply_with_counter = 12;
@@ -795,7 +800,7 @@ class TimestablesController extends Controller
         $not_attempted_array = isset($timestables_attempted_result['not_attempted_array']) ? $timestables_attempted_result['not_attempted_array'] : array();
         $improvement_required_array = isset($timestables_attempted_result['improvement_required_array']) ? $timestables_attempted_result['improvement_required_array'] : array();
 
-
+        $user_timestables_no = isset( $user->timestables_no )? json_decode($user->timestables_no) : array();
         $tables_numbers = array(
             2,
             3,
@@ -809,6 +814,8 @@ class TimestablesController extends Controller
             11,
             12
         );
+
+        $tables_numbers = $user_timestables_no;
 
         $question_type = 'multiplication';
         $no_of_questions = 400;
@@ -842,6 +849,7 @@ class TimestablesController extends Controller
 
             }
         }
+
 
 
         $max_questions = 12;
@@ -910,7 +918,6 @@ class TimestablesController extends Controller
                 $question_show_count++;
 
             }
-
 
             $QuizzesResult = QuizzesResult::create([
                 'user_id'          => $user->id,

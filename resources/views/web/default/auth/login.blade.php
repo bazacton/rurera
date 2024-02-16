@@ -3,7 +3,7 @@
     body{background-color: #fafafa !important;}
 </style>
 @section('content')
-    <div class="container d-flex flex-column justify-content-center align-items-center h-100">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
         <div class="text-center mb-30 mt-50">
             <a href="/" class="login-logo d-inline-flex justify-content-center align-items-center">
                 <img src="/assets/default/img/sidebar/logo.svg">

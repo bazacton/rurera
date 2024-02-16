@@ -511,6 +511,8 @@ class UserController extends Controller
                     $parent_type = 'teacher';
                     $parent_id = $userObj->id;
                 }
+                $class_id = isset( $data['class_id'] ) ? $data['class_id'] : 0;
+                $classObj = Classes::where('id', $class_id)->first();
                 $user = User::create([
                     'full_name' => $data['full_name'],
                     'role_name' => $role->name,
@@ -528,6 +530,7 @@ class UserController extends Controller
                     'class_id' => isset( $data['class_id'] ) ? $data['class_id'] : 0,
                     'section_id' => isset( $data['section_id'] ) ? $data['section_id'] : 0,
                     'user_life_lines' => 5,
+                    'timestables_no' => isset( $classObj->timestables_no )? $classObj->timestables_no : json_encode(array()),
                 ]);
 
                 if (!empty($data['group_id'])) {
@@ -910,6 +913,7 @@ class UserController extends Controller
         $user->year_id = !empty($data['year_id']) ? $data['year_id'] : 0;
         $user->class_id = !empty($data['class_id']) ? $data['class_id'] : 0;
         $user->section_id = !empty($data['section_id']) ? $data['section_id'] : 0;
+        $user->timestables_no = isset( $data['tables_no'] )? json_encode($data['tables_no']) : json_encode(array());
 
         if (!empty($data['password'])) {
             $user->password = User::generatePassword($data['password']);

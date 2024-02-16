@@ -138,15 +138,20 @@ class ClassesController extends Controller {
         }
 
         $sections = isset( $data['sections'] )? $data['sections'] : array();
+        $tables_no = isset( $data['tables_no'] )? $data['tables_no'] : array();
+        $apply_all = isset( $data['apply_all'] )? $data['apply_all'] : 'off';
+
+        
 
 
 
         if ($id != '' && $id > 0) {
             $this->authorize('admin_classes_edit');
             $classObj = Classes::findOrFail($id);
-            $classObj->update([
+            Classes::where('id', $classObj->id)->update([
                 'category_id' => isset($data['category_id']) ? $data['category_id'] : '',
                 'title' => isset($data['title']) ? $data['title'] : '',
+                'timestables_no' => json_encode($tables_no),
             ]);
         } else {
             $this->authorize('admin_classes_create');
@@ -157,6 +162,7 @@ class ClassesController extends Controller {
                 'status' => 'active',
                 'created_by' => $user->id,
                 'created_at' => time(),
+                'timestables_no' => json_encode($tables_no),
             ]);
         }
 
@@ -178,6 +184,10 @@ class ClassesController extends Controller {
                     ]);
                 }
             }
+        }
+        if( $apply_all == 'on') {
+            $userUpdate = User::where('class_id', $classObj->id)->update(['timestables_no' => json_encode($tables_no)]);
+
         }
 
 

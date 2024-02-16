@@ -29,7 +29,7 @@
                                     {{ csrf_field() }}
 
                                     <div class="form-group">
-                                        <label>{{ trans('/admin/main.full_name') }}</label>
+                                        <label>{{ trans('/admin/main.full_name') }}111</label>
                                         <input type="text" name="full_name"
                                                class="form-control  @error('full_name') is-invalid @enderror"
                                                value="{{ old('full_name') }}"
