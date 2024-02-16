@@ -334,6 +334,7 @@ Route::group([
         Route::get('/deleteAccount', 'UserController@deleteAccount');
         Route::post('/update-user', 'UserController@updateUser');
         Route::post('/update-user-password', 'UserController@updateUserPassword');
+        Route::post('/connect-user-class', 'UserController@connectUserClass');
 
     });
 

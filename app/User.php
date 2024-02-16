@@ -3787,6 +3787,21 @@ class User extends Authenticatable
 
     }
 
+    public function userYear()
+    {
+        return $this->hasOne('App\Models\Category', 'id', 'year_id');
+    }
+
+    public function userClass()
+    {
+        return $this->hasOne('App\Models\Classes', 'id', 'class_id');
+    }
+
+    public function userSection()
+    {
+        return $this->hasOne('App\Models\Classes', 'id', 'section_id');
+    }
+
     public function organization()
     {
         return $this->hasOne($this, 'id', 'organ_id');

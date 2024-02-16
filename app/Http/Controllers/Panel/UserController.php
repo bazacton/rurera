@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Classes;
 
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
@@ -929,6 +929,40 @@ class UserController extends Controller
 
 
         return back()->with(['toast' => $toastData]);
+
+    }
+
+    /*
+     * Update User Class
+     */
+    public function connectUserClass(Request $request)
+    {
+        $user = auth()->user();
+        $connect_user_id = $request->input('user_id');
+        $class_code = $request->input('class_code');
+        $userObj = User::find($connect_user_id);
+        $classObj = Classes::where('class_code', $class_code)->first();
+        $parentClassObj = Classes::where('id', $classObj->parent_id)->first();
+        if( isset( $classObj->id ) ) {
+            $userObj->update([
+                'year_id'    => $classObj->category_id,
+                'class_id'   => $classObj->parent_id,
+                'section_id' => $classObj->id,
+                'timestables_no' => $parentClassObj->timestables_no,
+            ]);
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Updated Successfully',
+                'status' => 'success'
+            ];
+        }else{
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Incorrect Class Code',
+                'status' => 'error'
+            ];
+        }
+        echo json_encode($toastData);exit;
 
     }
 

@@ -56,6 +56,7 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
+                                                {{$childObj->userYear->getTitleAttribute()}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}<br>
                                                 Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
@@ -68,8 +69,8 @@
                                         <a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn">
                                             <img src="/assets/default/img/default/user-switch.png">
                                         </a>
-                                        <a href="javascript:;" class="connet-user-btn">
-                                            <img src="/assets/default/svgs/plus+.svg"> Connect to Class
+                                        <a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}">
+                                            <img src="/assets/default/svgs/plus.svg"> Connect to Class
                                         </a>
                                         <div class="col-auto ms-auto mr-md-3 last-activity">
                                             <span><strong>{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : 'No Activity' }}</strong>
@@ -601,6 +602,37 @@
     </div>
 </div>
 
+<div class="modal fade class-connect-modal" id="class-connect-modal" tabindex="-1"
+     aria-labelledby="class-connect-modallabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Connect To Class</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="#" method="post" class="w-100 connect-to-class-form">
+
+                    {{ csrf_field() }}
+                    <input type="hidden" name="user_id" class="connect_user_id">
+                    <div class="row user-details-block">
+                        <div class="col-12 col-lg-6 col-md-6">
+                            <span class="form-label">Class Code</span>
+                            <div class="input-field">
+                                <input type="text" name="class_code" placeholder="Class Code">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts_bottom')
@@ -685,8 +717,41 @@
         $('.choose-package-block').addClass('rurera-hide');
     });
 
+    $(document).on('click', '.class-code-submit', function (e) {
+        var thisObj = $(this);
+        rurera_loader(thisObj, 'div');
+        var formData = new FormData($(".connect-to-class-form")[0]);
+        jQuery.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data:formData,
+            dataType:'json',
+            url: '/panel/setting/connect-user-class',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (return_data) {
+                rurera_remove_loader(thisObj, 'button');
+                $("#class-connect-modal").modal('hide');
+                Swal.fire({
+                  icon: return_data.status,
+                  html: '<h3 class="font-20 text-center text-dark-blue py-25">'+return_data.msg+'</h3>',
+                  showConfirmButton: false,
+                  width: '25rem'
+                });
+            },
+        });
+    });
 
 
+
+
+    $(document).on('click', '.connect-user-btn', function (e) {
+        var user_id = $(this).attr('data-user_id');
+        $(".connect_user_id").val(user_id);
+
+    });
 
 
     $(document).on('click', '.subscribe-plans', function (e) {

@@ -307,6 +307,32 @@
                                                             @endif
                             @if(request()->is('custom_html') || request()->is('panel') || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
                             <div class="col-12 col-lg-12 mb-30">
+                                <div class="user-pocket">
+                                    <div class="pocket-card panel-shadow panel-border rounded-sm">
+                                        <div class="card-header d-flex align-items-center justify-content-between p-0">
+                                            <a href="#" class="author-info d-inline-flex align-items-center flex-wrap">
+                                                <img src="/avatar/svgA5311352175689545.png" alt="">
+                                                <span class="author-text font-19 font-weight-bold">
+                                                    Jonh Smith
+                                                    <span class="d-block font-14 font-weight-normal">Administrator</span>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="pocket-btn btn-link collapsed d-inline-flex flex-column justify-content-center align-items-center" data-toggle="collapse" data-target="#pocket-menu" aria-expanded="false" aria-controls="pocket-menu">
+                                                <span class="line-lg"></span>
+                                                <span class="line-md"></span>
+                                                <span class="line-sm"></span>
+                                            </a>
+                                        </div>
+                                        <div id="pocket-menu" class="pocket-menu collapse pt-10" aria-labelledby="pocket-menu">
+                                            <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-account.svg" alt=""></span>My Account</a>
+                                            <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-setting.svg" alt=""></span>Settings</a>
+                                            <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/lock-closed.svg" alt=""></span>Lock Screen</a>
+                                            <a href="#" class="font-15 font-weight-500 d-flex align-items-center mt-15"><span class="nav-icon"><img src="/assets/default/svgs/user-logout.svg" alt=""></span>Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mb-30">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
                                     <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
