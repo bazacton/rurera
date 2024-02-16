@@ -107,8 +107,34 @@
                         </div>
                         <div class="summary-btns">
                             <a href="/panel/results/{{$QuizzesResult->id}}/timetables" class="summary-btn">Summary of Attempt</a>
-                            <a href="" class="re-attempt-btn">Re-attempt</a>
+                            <a href="javascript:;" class="re-attempt-btn" data-attempt_type="{{$QuizzesResult->attempt_mode}}">Re-attempt</a>
                             <a href="/panel" class="back-btn">Back</a>
                         </div>
                     </div>
                 </div>
+                @if($QuizzesResult->attempt_mode == 'freedom_mode')
+                @php $attempt_options = isset( $QuizzesResult->attempt_options ) ? json_decode($QuizzesResult->attempt_options) : array();
+                $question_values = isset( $attempt_options->question_values )? $attempt_options->question_values : array();
+                @endphp
+                <form action="/timestables/generate" method="post" class="hide re-attempt-form">
+                    {{ csrf_field() }}
+                    <input type="radio" value="{{isset($attempt_options->question_type)? $attempt_options->question_type : ''}}" name="question_type" checked />
+                    <input checked type="radio" value="{{isset($attempt_options->no_of_questions)? $attempt_options->no_of_questions : ''}}" name="no_of_questions" />
+                    @if( !empty( $question_values ))
+                        @foreach( $question_values as $question_table)
+                            <input type="checkbox" value="{{$question_table}}" name="question_values[]" id="ten" checked /> <label for="ten" >{{$question_table}}</label>
+                        @endforeach
+                    @endif
+                </form>
+                @endif
+                <script>
+                    $(document).on('click', '.re-attempt-btn', function (e) {
+
+                        var attempt_type = $(this).attr('data-attempt_type');
+                        if( attempt_type == ''){
+                            $(".re-attempt-form").submit();
+                        }else{
+                            location.reload();
+                        }
+                    });
+                </script>

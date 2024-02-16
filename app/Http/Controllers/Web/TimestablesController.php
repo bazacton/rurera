@@ -29,6 +29,7 @@ class TimestablesController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        $user = auth()->user();
 
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
@@ -79,6 +80,12 @@ class TimestablesController extends Controller
         $question_type = $request->post('question_type');
         $no_of_questions = $request->post('no_of_questions');
         $tables_numbers = $request->post('question_values');
+
+        $attempt_options = array(
+            'question_type' => $question_type,
+            'no_of_questions' => $no_of_questions,
+            'question_values' => $tables_numbers,
+        );
 
         if (auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', 'timestables')->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
@@ -184,6 +191,7 @@ class TimestablesController extends Controller
                 'other_data'       => json_encode($questions_list),
                 'user_ip'          => getUserIP(),
                 'attempt_mode'     => 'freedom_mode',
+                'attempt_options' => json_encode($attempt_options),
             ]);
 
             $QuizzAttempts = QuizzAttempts::create([
@@ -1693,6 +1701,31 @@ class TimestablesController extends Controller
 
 
         $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults, 'selectedWeek' => $selectedWeek, 'currentWeek'=>$currentWeek, 'previousWeek'=>$previousWeek, 'lastMonday' => $lastMonday,'nextSunday' => $nextSunday ])->render();
+        echo $rendered_view;
+        die();
+    }
+
+    /*
+    * TimesTables School Zone Mode Layout
+    */
+    public function school_zone_mode(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        $user = auth()->user();
+
+        $yearStudents = User::where('role_id', 1)
+            ->where('year_id', $user->year_id)
+            ->where('status', 'active')
+            ->get();
+        $classStudents = User::where('role_id', 1)
+            ->where('year_id', $user->year_id)
+            ->where('class_id', $user->class_id)
+            ->where('status', 'active')
+            ->get();
+
+        $rendered_view = view('web.default.timestables.school_zone_mode', ['yearStudents' => $yearStudents, 'classStudents' => $classStudents])->render();
         echo $rendered_view;
         die();
     }

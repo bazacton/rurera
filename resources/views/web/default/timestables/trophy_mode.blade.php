@@ -78,9 +78,13 @@
                         data: chart_valuesArray,
                         backgroundColor: 'transparent',
                         borderColor: '#43d477',
-                        borderWidth: 2
+                        borderWidth: 2,
+                        fill: true
                     }]
                 },
+                options: {
+                    maintainAspectRatio: false,
+                }
 
             });
 

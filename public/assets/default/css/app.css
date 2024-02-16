@@ -14431,6 +14431,7 @@ span.question-status-correct {margin-top: 10px; border: 1px solid #44b13d; paddi
 span.question-status-correct:before {filter: invert(54%) sepia(75%) saturate(386%) hue-rotate(68deg) brightness(92%) contrast(100%); position: absolute; left: 15px; top: 50%; margin-top: -15px; width: 30px; height: 30px; background: url(/assets/default/svgs/thumb-star.svg) no-repeat; background-size: 100%; content: "";}
 span.question-status-wrong,
 .lms-quiz-section .question-status-wrong {margin-top: 10px; border: 2px solid #ef9797; padding: 10px 15px; color: #f08c8c;}
+.show-notifications .question-solution {background-color: #f6faf6; border-radius: 5px; padding: 15px; margin-top: 15px;}
 /* User Question Holder Style End */
 @media (max-width: 575px) {
     .learning-page .lms-side-menu-left .sidebar-logo {display: inline-flex; padding: 10px; height: 50px;}

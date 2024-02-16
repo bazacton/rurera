@@ -584,6 +584,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/trophy_mode' , 'TimestablesController@trophy_mode');
         Route::get('/showdown_mode' , 'TimestablesController@showdown_mode');
         Route::get('/treasure_mission' , 'TimestablesController@treasure_mission');
+        Route::get('/school_zone' , 'TimestablesController@school_zone_mode');
 
 
     });

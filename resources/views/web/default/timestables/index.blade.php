@@ -110,9 +110,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn" itemprop="Button" href="javascript:;">School Zone
-                                                <span class="title-label">Coming Soon</span>
-                                            </a>
+                                            <a class="grid-btn ajax-callback" data-type="school_zone"  itemprop="Button" href="javascript:;">School Zone</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
