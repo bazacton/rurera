@@ -56,7 +56,7 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
-                                                {{$childObj->userYear->getTitleAttribute()}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}<br>
+                                                {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}<br>
                                                 Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;

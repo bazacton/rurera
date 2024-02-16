@@ -19,15 +19,14 @@
                         </div>
                         <div class="col-12 col-lg-12 col-md-12">
                             <ul class="tests-list type-list mb-30">
-                                <li data-type="single-player" class="active"><img src="/assets/default/img/assignment-logo/sats.png" alt=""> Single Player</li>
-                                <li data-type="multi-player"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> Multi Player</li>
+                                <li data-type="single-player" class="active"><img src="/assets/default/img/single.png" alt=""> Single Player</li>
+                                <li data-type="multi-player"><img src="/assets/default/img/multi.png" alt=""> Multi Player</li>
                             </ul>
                         </div>
 
 
                         <div class="type-list-data single-player-data">
                             <div class="col-12 col-md-12 col-lg-12">
-                                <h5 itemprop="title" class="font-20 font-weight-bold mb-10">Single Player</h5>
                                 <div class="grid-card timestables-mode-data" data-mode_type="freedom_mode" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
@@ -77,7 +76,7 @@
                                     <div class="img-holder">
                                         <img src="/assets/default/svgs/fire.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
                                     </div>
-                                    <p class="text-gray"></p>
+                                    <p class="text-gray">Colours visualization for user data in heatmap</p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-12 col-lg-12">
@@ -123,11 +122,27 @@
 
                                 </div>
                             </div>
+
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
+                                    <div class="text-holder">
+                                        <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
+                                            <a class="grid-btn" itemprop="Button" href="javascript:;">Analytics
+                                                <span class="title-label">Coming Soon</span>
+                                            </a>
+                                        </h3>
+                                    </div>
+                                    <div class="img-holder">
+                                        <img src="/assets/default/svgs/analytics.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
+                                    </div>
+                                    <p class="text-gray">Connect with individuals worldwide in a Cloud.</p>
+
+                                </div>
+                            </div>
                         </div>
 
                         <div class="type-list-data multi-player-data rurera-hide">
                             <div class="col-12 col-md-12 col-lg-12">
-                                <h5 itemprop="title" class="font-20 font-weight-bold mb-10">Multi Player</h5>
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">

@@ -106,7 +106,9 @@
                             </div>
                         </div>
                         <div class="summary-btns">
-                            <a href="/panel/results/{{$QuizzesResult->id}}/timetables">Summary of Attempt</a>
+                            <a href="/panel/results/{{$QuizzesResult->id}}/timetables" class="summary-btn">Summary of Attempt</a>
+                            <a href="" class="re-attempt-btn">Re-attempt</a>
+                            <a href="/panel" class="back-btn">Back</a>
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,9 @@ class BooksController extends Controller
     public function index(Request $request)
     {
 
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $books_data = Books::get();
         $books = array();
 
@@ -72,6 +75,9 @@ class BooksController extends Controller
 
     public function book($book_slug)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         /*if (!auth()->subscription('bookshelf')) {
             return view('web.default.quizzes.not_subscribed');
         }*/

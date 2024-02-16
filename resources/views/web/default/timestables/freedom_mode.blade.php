@@ -1,7 +1,7 @@
 <div class="section-title mb-20">
     <h2 itemprop="title" class="font-22 mb-0">Freedom Mode</h2>
 </div>
-<section class="p-25 panel-border border-bottom-4 border-radius-10" style="background-color: #fff;">
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -80,3 +80,39 @@
         </div>
     </div>
 </section>
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title mb-30 text-center"><h2>Freedom Mode History</h2></div>
+            </div>
+            <div class="col-12">
+               @if( !empty( $attempts_array ) )
+
+               @endif
+               <table class="simple-table text-left">
+                   <thead>
+                       <tr>
+                           <th>When</th>
+                           <th>Your Score</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                   @if( $results_data->count() > 0)
+                       @foreach( $results_data as $resultsRow)
+                           <tr>
+                               <td>{{dateTimeFormat($resultsRow->created_at,'j M Y')}}</td>
+                               <td>{{$resultsRow->quizz_result_questions_list->where('status', '=', 'correct')->count()}}</td>
+                           </tr>
+                       @endforeach
+                   @else
+                   <tr>
+                       <td colspan="2" class="text-center">No records found</td>
+                  </tr>
+                   @endif
+                   </tbody>
+               </table>
+            </div>
+        </div>
+    </div>
+    </section>

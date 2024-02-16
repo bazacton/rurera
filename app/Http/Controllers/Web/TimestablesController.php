@@ -26,8 +26,9 @@ class TimestablesController extends Controller
 
     public function index(Request $request)
     {
-
-
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
 
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
@@ -530,7 +531,7 @@ class TimestablesController extends Controller
                                                 }
                                                 $average_time_consumed = ($time_consumed_event*100)/(count($savedData[$table_no][$tableRowObj->to])*10);
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['average_time'] = $average_time_consumed;
-                                                $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = $tables_array[$date][$table_no][$tableRowObj->to]['attempts']+1;
+                                                $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = isset( $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] )? $tables_array[$date][$table_no][$tableRowObj->to]['attempts']+1 : 1;
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['class'] = 'average_'.intval(floor($average_time_consumed / 10));
                                             }else{
                                                 $tables_array[$date][$table_no][$tableRowObj->to]['attempts'] = 1;
@@ -1520,16 +1521,22 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        //DB::enableQueryLog();
-        $TournamentsPendingEvents = TimestablesTournamentsEvents::where('status', 'pending')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
 
+        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->orderBy('created_at', 'desc')->limit(10)->get();
+        $attempts_array = $attempts_labels = $attempts_values = array();
+        if (!empty($results_data)) {
+            foreach ($results_data as $resultObj) {
+                $created_at = dateTimeFormat($resultObj->created_at, 'j M y');
+                $attempts_array[$created_at] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+                $attempts_labels[] = $created_at;
+                $attempts_values[] = $resultObj->quizz_result_questions_list->where('status', '=', 'correct')->count();
+            }
+        }
+        $attempts_array = array_reverse($attempts_array);
+        $attempts_labels = array_reverse($attempts_labels);
+        $attempts_values = array_reverse($attempts_values);
 
-        $TimestablesTournamentsEvents = TimestablesTournamentsEvents::where('status', 'active')->where('active_at', '<=', time())->orderBy('time_remaining', 'asc')->get();
-        //pre(DB::getQueryLog());
-        //DB::disableQueryLog();
-
-
-        $rendered_view = view('web.default.timestables.freedom_mode', [])->render();
+        $rendered_view = view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
         echo $rendered_view;
         die();
     }

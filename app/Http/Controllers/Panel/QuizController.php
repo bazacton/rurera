@@ -797,6 +797,9 @@ class QuizController extends Controller
     public function check_answers(Request $request, $result_id)
     {
 
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $QuestionsAttemptController = new QuestionsAttemptController();
         //$correct_answer = $QuestionsAttemptController->get_question_correct_answers(QuizzesQuestion::find(9136));
         $QuizzesResult = QuizzesResult::find($result_id);

@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Trophy History</h2></div>
             </div>
-
+            <div class="col-12">
             <canvas id="trophy_chart"></canvas>
                @if( !empty( $attempts_array ) )
 
@@ -54,6 +54,8 @@
                    @endif
                    </tbody>
                </table>
+
+            </div>
 
         </div>
         </div>

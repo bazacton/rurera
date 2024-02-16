@@ -28,6 +28,9 @@ class ProductController extends Controller
 
     public function searchLists(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
         $data = $request->all();
 
         $query = Product::where('products.status', Product::$active)

@@ -13245,7 +13245,7 @@ p {line-height: 1.5;}
 .login-logo {gap: 8px;}
 .login-logo img {max-width: 50px; object-fit: contain;}
 .login-logo .logo-text {color: #203c64; text-transform: uppercase;}
-.login-container .login-holder {background-color: #fff; border: 1px solid #ececec; border-radius: 8px; padding: 30px; margin-bottom: 15px;}
+.login-container .login-holder {background-color: #fff; border: 1px solid #ececec; border-radius: 8px; padding: 30px; margin-bottom: 15px; max-width: 1120px; min-width: 1120px;}
 .login-holder .row {align-items: center;}
 .login-box {border: 1px dashed #dadada; border-radius: 5px; margin: 0 0 20px; padding: 20px;}
 .login-options .login-box:last-child {margin-bottom: 0;}
@@ -13279,7 +13279,7 @@ p {line-height: 1.5;}
 .login-card .login-option .social-login img {height: 18px; width: 18px; }
 .login-controls {width: 50%; display: inline-block; margin-right: -4px; vertical-align: middle; padding-top: 20px; }
 .login-card .login-option div {margin-left: auto; }
-.emoji-icons {min-height: 300px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 670px; margin: 0 auto; }
+.emoji-icons {min-height: 300px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 0 auto; max-width: 610px; }
 .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 43px; width: 43px; }
 .emoji-icons .emoji-icon img {max-width: 100%; }
 .login-password p {text-align: center; color: #5c78a8; font-size: 18px; }
@@ -13288,7 +13288,7 @@ p {line-height: 1.5;}
 .emoji-passwords img {max-width: 100%; width: 30px; height: 30px; object-fit: contain;}
 .login-with-smartbadge .login-holder,
 .login-with-emoji .login-holder,
-.login-with-pin .login-holder{max-width: 750px; min-width: 750px; min-height: 450px;}
+.login-with-pin .login-holder{max-width: 1120px; min-width: 1120px; min-height: 450px;}
 @media (max-width:991px) {
     .login-container {margin: 60px 0 70px;}
 }
@@ -17226,11 +17226,11 @@ Dashboard Form-Tabs Style Start
 .lms-choose-plan-selected .lms-jobs-form .input-field {margin: 0 0 15px;}
 .member-card-header {border-bottom: 1px solid #ddd;padding: 0 0 25px;}
 .member-card-header .dropdown {margin-left: auto;}
-.db-form-tabs .list-group-item .connet-user-btn {border: 1px solid var(--primary); border-radius: 30px; padding: 8px 15px; line-height: normal; display: inline-block; color: var(--primary);font-weight: 500;}
+.db-form-tabs .list-group-item .connect-user-btn {border: 1px solid var(--primary); border-radius: 30px; padding: 8px 15px; line-height: normal; display: inline-block; color: var(--primary);font-weight: 500;}
 .list-group-item span {color: #999;}
 .list-group-item strong {color: #343434;}
 .list-group-item .switch-user-btn img {border: 1px solid var(--primary); background-color: #61616b; min-width: auto; min-height: auto; padding: 5px; margin-right: 15px; filter: invert(99%) sepia(2%) saturate(2%) hue-rotate(230deg) brightness(117%) contrast(100%);}
-.db-form-tabs .list-group-item a.connet-user-btn img {background-color: inherit; width: 25px; height: 25px; min-width: auto; min-height: auto;}
+.db-form-tabs .list-group-item a.connect-user-btn img {background-color: inherit; width: 25px; height: 25px; min-width: auto; min-height: auto;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -17385,6 +17385,7 @@ Product Tabs Slider Style Start
 .general-info li:first-child:before {display: none;}
 .template-grid .row .row [class*="col"] {padding: 0 5px;}
 .template-grid .row .row {margin-left: -5px; margin-right: -5px;}
+.type-list-data {width: 100%;}
 .panel-content .grid-card {background-color: #fff; border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
 .panel-content .grid-card .img-holder {margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);height: 90px; width: 90px;}
 .panel-content .grid-card .img-holder img {border-radius: 0; object-fit: contain;}
@@ -18088,7 +18089,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .question_inactivity_modal .modal-content {
     text-align: center;
 }
-.question_inactivity_modal .modal-content .continue-btn {
+.question_inactivity_modal .modal-content .continue-btn,
+.question_inactivity_modal .modal-content .leavenow-btn {
     background-color: var(--primary);
     color: #fff;
     padding: 12px 30px;
@@ -18096,6 +18098,9 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     border-radius: 5px;
     min-width: 200px;
     text-align: center;
+}
+.question_inactivity_modal .modal-content .leavenow-btn {
+    margin-bottom: 10px;
 }
 .question_inactivity_modal .modal-content p {
     margin: 0 0 15px;
@@ -18492,7 +18497,7 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .row .col-5 {flex: 0 0 85%; max-width: 85%; padding-bottom: 10px;}
     .db-members .card .list-group-item {padding-left: 30px;}
     .db-members .list-group-item .switch-user-btn,
-    .db-form-tabs .list-group-item .connet-user-btn{margin-top: 5px;}
+    .db-form-tabs .list-group-item .connect-user-btn{margin-top: 5px;}
     .rewards-layout-box.column-3 .row {grid-template-columns: 1fr 1fr;}
     .rewards-layout-box.column-3 .col-12 {grid-column: 1/3;}
     .rewards-header p br {display: none;}
