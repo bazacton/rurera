@@ -170,6 +170,88 @@ class UserController extends Controller
         return view('admin.users.students', $data);
     }
 
+    public function studentsPrintDetails(Request $request, $is_export_excel = false)
+    {
+        $userObj = auth()->user();
+
+        $users = array();
+
+        $users = User::where('role_name', Role::$user);
+
+        if(auth()->user()->isTeacher()){
+            $users = $users->where('parent_type', 'teacher')->where('parent_id', $userObj->id);
+        }
+        $users = $users->get();
+        if( !empty( $users ) ){
+            foreach( $users as $studentObj){
+                if( $studentObj->login_emoji == ''){
+                    $studentObj = $this->generateEmoji($studentObj);
+                }
+                if( $studentObj->login_pin == ''){
+                    $studentObj = $this->generatePin($studentObj);
+                }
+            }
+        }
+
+
+        $data = [
+            'pageTitle' => 'Students',
+            'users' => $users,
+        ];
+
+        return view('admin.users.print_students', $data);
+    }
+
+
+    public function generateEmoji($user)
+    {
+        $emojisList = emojisList();
+        $UsedEmojisList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_emoji', '!=', '')->pluck('login_emoji')->toArray();
+        do {
+            // Shuffle the emojis list
+            shuffle($emojisList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,60);
+            $generatedIndexes = array_slice($emojisList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedEmojisList));
+
+        $user->update([
+            'login_emoji' => $generatedString
+        ]);
+        return $user;
+    }
+
+    public function generatePin($user)
+    {
+        $loginList = array(0,1,2,3,4,5,6,7,8,9);
+
+        $UsedLoginList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_pin', '!=', '')->pluck('login_pin')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($loginList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,5);
+            $generatedIndexes = array_slice($loginList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedLoginList));
+
+        $user->update([
+            'login_pin' => $generatedString
+        ]);
+        return $user;
+
+    }
+
     public function instructors(Request $request, $is_export_excel = false)
     {
         $this->authorize('admin_instructors_list');

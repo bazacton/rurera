@@ -11,6 +11,7 @@
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a>{{ trans('admin/main.students') }}</a></div>
                 <div class="breadcrumb-item"><a href="#">{{ trans('admin/main.users_list') }}</a></div>
+                <div class="breadcrumb-item"><a href="/admin/students/print_details">Print Details</a></div>
             </div>
         </div>
     </section>

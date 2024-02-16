@@ -66,6 +66,7 @@ Route::group([
 
         Route::group(['prefix' => 'students'], function () {
             Route::get('/', 'UserController@students');
+            Route::get('/print_details', 'UserController@studentsPrintDetails');
             Route::get('/excel', 'UserController@exportExcelStudents');
         });
 

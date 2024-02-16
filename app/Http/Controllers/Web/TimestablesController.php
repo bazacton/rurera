@@ -31,6 +31,12 @@ class TimestablesController extends Controller
         }
         $user = auth()->user();
 
+        $trophyLeaderboard = User::where('trophy_average', '>', 0)
+            ->orderBy('trophy_average', 'asc')
+        ->get();
+
+        //pre($trophyLeaderboard);
+
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
         if (auth()->check() && auth()->user()->isParent()) {

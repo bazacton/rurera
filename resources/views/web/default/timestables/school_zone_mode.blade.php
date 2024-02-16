@@ -12,34 +12,33 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="section-title mb-30 text-center"><h2>Year Students </h2></div>
-            </div>
-            <div class="col-12">
-                    <div class="school-zone-students">
+                <div class="school-zone-students row">
 
-                        @if( $yearStudents->count() > 0)
+                    @if( $yearStudents->count() > 0)
 
-                            @foreach( $yearStudents as $studentObj)
-                                <div class="student-block">
+                        @foreach( $yearStudents as $studentObj)
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="student-block mb-15">
                                     <img src="{{$studentObj->getAvatar()}}">
-                                    {{isset( $studentObj->userYear->id) ? $studentObj->userYear->getTitleAttribute() : ''}}
-                                    {{$studentObj->full_name}}
-                                    Ranking: Test Rank - {{$studentObj->trophy_badge}}
-                                    Ranking: Coins - 100
-
+                                    <span class="student-block-text d-block font-18 font-weight-bold">
+                                        <span class="user-year-info font-15 font-weight-bold d-block mt-0">
+                                            {{isset( $studentObj->userYear->id) ? $studentObj->userYear->getTitleAttribute() : ''}}
+                                        </span>
+                                        <span class="user-name d-block mt-0">
+                                            {{$studentObj->full_name}}
+                                        </span>
+                                        <span class="font-14 font-weight-normal d-block">
+                                            Ranking: Test Rank - {{$studentObj->trophy_badge}}
+                                            Ranking: Coins - 100
+                                        </span>
+                                    </span>
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
 
-                        @endif
-
-
-
-                    </div>
+                    @endif
+                </div>
             </div>
-
-
-
-
         </div>
     </div>
 </section>

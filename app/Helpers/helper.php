@@ -8654,3 +8654,29 @@ function emojisList(){
     return $emojisList;
 
 }
+
+
+function get_trophy_badge($average_questions){
+    $trophy_badges = array(
+        '0.5' => 'Maestro',
+        '0.7' => 'Expert',
+        '0.9' => 'Majesty',
+        '1' => 'Mastery',
+        '1.5' => 'Champion',
+        '2' => 'Creative',
+        '3' => 'Genius',
+        '4' => 'Brainy',
+        '5' => 'Smarty',
+        '10' => 'Junior',
+       '1000' => 'Explorer',
+    );
+    $return_badge = '';
+    foreach ($trophy_badges as $key => $value) {
+        if ($average_questions <= $key) {
+            $return_badge = $value;
+            break;
+        }
+    }
+    return $return_badge;
+
+}
