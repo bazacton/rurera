@@ -526,13 +526,16 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
-                    console.log(return_data);
+                    rurera_remove_loader($('.question-area-block'), 'div');
+                    if (return_data.return_layout != '') {
+                        $(".question-area-block").html(return_data.return_layout);
+                    }
                 }
             });
 
             //window.location.href = '/timestables/summary';
             //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
+            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
 
             return false;
 

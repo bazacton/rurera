@@ -14432,6 +14432,7 @@ span.question-status-correct:before {filter: invert(54%) sepia(75%) saturate(386
 span.question-status-wrong,
 .lms-quiz-section .question-status-wrong {margin-top: 10px; border: 2px solid #ef9797; padding: 10px 15px; color: #f08c8c;}
 .show-notifications .question-solution {background-color: #f6faf6; border-radius: 5px; padding: 15px; margin-top: 15px;}
+.show-notifications .question-solution:empty {display: none;}
 /* User Question Holder Style End */
 .userthumb,
 .student-block {background-color: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; padding: 5px; margin-bottom: 30px; }
@@ -14443,6 +14444,10 @@ span.question-status-wrong,
 .student-block-text span {margin-top: 2px; line-height: normal; color: #999;}
 .student-block-text .user-year-info {color: var(--primary); position: absolute; right: 10px; padding-top: 2px;}
 .student-block-text .user-name {color: #343434; padding-right: 45px;}
+.student-block-text .student-rank span {display: block; margin-bottom: 10px;}
+.student-rank span img {width: 18px; height: 18px; vertical-align: middle; margin-left: 5px;}
+.student-block-text .student-rank {margin-top: 10px;}
+.student-block-text .student-rank span:last-child {margin-bottom: 0;}
 @media (max-width: 575px) {
     .learning-page .lms-side-menu-left .sidebar-logo {display: inline-flex; padding: 10px; height: 50px;}
     .learning-page .lms-side-menu-left {display: flex; align-items: center;}
@@ -15683,8 +15688,7 @@ Lms Performace Table Style Start
 .leaderboard-sub-header .btn-outline-primary {color: var(--primary);border-color:var(--primary);}
 .leaderboard-sub-header .btn-outline-primary:hover{color:#fff; border-color: transparent;background-color: var(--primary);}
 .panel-content .leaderboard>li.lms-performace-des .sr-no, 
-.panel-content .leaderboard>li.lms-performace-head div:first-child,
-.panel-content .leaderboard>li.lms-performace-des .sr-no, 
+.panel-content .leaderboard>li.lms-performace-head div:first-child, 
 .panel-content .leaderboard>li.lms-performace-head div:first-child{width: 10%;}
 .panel-content .lms-performace-table>li.lms-performace-head div,
 .panel-content .lms-performace-table>li.lms-performace-des .level-up, 
@@ -15699,6 +15703,14 @@ Lms Performace Table Style Start
 .panel-content .lms-performace-table>li.lms-performace-head div,
 .panel-content .lms-performace-table>li.lms-performace-des div {padding: 12px 20px;}
 .lms-performace-table>li.lms-performace-des.active {background-color: #e5e5e5;}
+.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-head div:first-child,
+.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no {
+    width: 25%;
+}
+.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no span {
+    font-size: 16px;
+    font-weight: 400;
+}
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -17262,7 +17274,7 @@ Dashboard Form-Tabs Style End
 .sats-listing-card .rurera-unlock-item img,
 .sats-listing-card .rurera-lock-item img {margin-right: 0;}
 
-.panel-content .sats-listing-card tbody tr td:first-child {width: 84%;}
+/* .panel-content .sats-listing-card tbody tr td:first-child {width: 84%;} */
 .panel-content .sats-listing-card tbody tr td:nth-child(2) {min-width: auto;}
 /* .sats-listing-card table h4 a br {
     display: none;
@@ -17414,7 +17426,7 @@ Product Tabs Slider Style Start
 .timer-number, .lms-quiz-section .quiz-topbar p,
 .learning-page .quiz-topbar p{color: #333;}
 .question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding-top: 30px; padding-left: 0;}
-.type-sats .question-layout-block form.question-fields {border: 0; padding: 0; border-radius: 0;}
+.type-sats .question-layout-block form.question-fields {background-color: inherit; border: 0; padding: 0; border-radius: 0; margin-bottom: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
 /* Lms Font End Display End */
 
@@ -17503,7 +17515,6 @@ Product Tabs Slider Style Start
 .quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5; word-wrap: break-word;}
 .quiz-first-question .spells-quiz-info ul li .quiz-timer-counter {width: 100%;}
 .quiz-first-question .spells-quiz-info ~ br {display: none;}
-.type-sats .question-layout-block form.question-fields {background-color: inherit;}
 .spell-question-area .question-layout-block form.question-fields {padding: 0;}
 .timebar {display: inline-block; position: relative; height: 3px; width: 100%; }
 .timebar .bar-inner {height: 100%; background-color: green; transition: all .4s ease;}
@@ -17809,6 +17820,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .tests-list {width: 100%; display: flex; gap: 10px; padding: 0; flex-wrap: wrap;}
 .tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 20px; min-height: 100px; border-radius: 5px; min-width: 120px;}
 .tests-list li.active {background-color: #fff; border-color: var(--primary); color: var(--primary); border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
+.tests-list.school-zone-list li {min-height: 60px;}
 .tests-list img {width: 30px; height: 30px; object-fit: contain; }
 .panel-content .lms-jobs-form .input-field input[type="text"] {padding-right: 45px;}
 .panel-content .lms-jobs-form .input-field:before {content: ""; height: 25px; width: 25px; position: absolute; right: 15px; top: 50%; margin-top: -12px; background: url(/assets/default/svgs/search.svg) no-repeat;}

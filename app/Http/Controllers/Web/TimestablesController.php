@@ -1608,7 +1608,7 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'trophy_mode')->orderBy('created_at', 'desc')->limit(10)->get();
+        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'trophy_mode')->orderBy('created_at', 'desc')->where('status', '!=', 'waiting')->limit(10)->get();
         $attempts_array = $attempts_labels = $attempts_values = array();
         if (!empty($results_data)) {
             foreach ($results_data as $resultObj) {
@@ -1730,6 +1730,8 @@ class TimestablesController extends Controller
             ->get();
 
         $trophyLeaderboard = User::where('trophy_average', '>', 0)
+                    ->where('year_id', $user->year_id)
+                    //->where('class_id', $user->class_id)
                     ->orderBy('trophy_average', 'asc')
                 ->get();
 

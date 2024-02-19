@@ -1,14 +1,12 @@
 <div class="section-title mb-20">
     <h2 itemprop="title" class="font-22 mb-0">School Zone</h2>
 </div>
-<div class="col-12 col-lg-12 col-md-12">
-   <ul class="tests-list school-zone-list mb-30">
-       <li data-type="my-year" class="active"><img src="/assets/default/img/single.png" alt=""> My Year</li>
-       <li data-type="my-class"><img src="/assets/default/img/single.png" alt=""> My Class</li>
-       <li data-type="leaderboard"><img src="/assets/default/img/single.png" alt=""> Leaderboard</li>
-   </ul>
-</div>
-<section class="p-20 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-30 school-zone-data my-year-data" style="background-color: #fff;">
+<ul class="tests-list school-zone-list mb-30">
+    <li data-type="my-year" class="active">My Year</li>
+    <li data-type="my-class">My Class</li>
+    <li data-type="leaderboard">Leaderboard</li>
+</ul>
+<section class="border-widht-2 border-bottom-4 border-radius-10 mb-30 school-zone-data my-year-data">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -27,9 +25,9 @@
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->full_name}}
                                         </span>
-                                        <span class="font-14 font-weight-normal d-block">
-                                            Ranking: Test Rank - {{$studentObj->trophy_badge}}
-                                            Ranking: Coins - 100
+                                        <span class="student-rank font-14 font-weight-normal d-block">
+                                            <span>Ranking: Test Rank {{$studentObj->trophy_badge}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
+                                            <span>Ranking: Coins - 100 <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>
                                     </span>
                                 </div>
@@ -42,7 +40,7 @@
         </div>
     </div>
 </section>
-<section class="p-20 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-30 school-zone-data my-class-data rurera-hide" style="background-color: #fff;">
+<section class="p-20 border-widht-2 border-bottom-4 border-radius-10 mb-30 school-zone-data my-class-data rurera-hide" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -61,9 +59,9 @@
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->full_name}}
                                         </span>
-                                        <span class="font-14 font-weight-normal d-block">
-                                            Ranking: Test Rank - {{$studentObj->trophy_badge}}
-                                            Ranking: Coins - 100
+                                        <span class="student-rank font-14 font-weight-normal d-block">
+                                            <span>Ranking: Test Rank {{$studentObj->trophy_badge}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
+                                            <span>Ranking: Coins - 100 <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>
                                     </span>
                                 </div>
@@ -76,7 +74,7 @@
         </div>
     </div>
 </section>
-<section class="p-25 panel-border border-widht-2 border-bottom-4 border-radius-10 mb-0 school-zone-data leaderboard-data rurera-hide" style="background-color: #fff;">
+<section class="p-25 border-widht-2 border-bottom-4 border-radius-10 mb-0 school-zone-data leaderboard-data rurera-hide" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">

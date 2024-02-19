@@ -1751,13 +1751,16 @@ class QuestionsAttemptController extends Controller
                         ->where('status', '!=', 'waiting');
             $total_counts = $trophyDetails->count();
             $total_correct = $trophyDetails->sum('total_correct');
-            if( $total_counts > 1){
+            if( $total_counts > 0){
                 $average_questions = ($total_counts*60) / $total_correct;
+                $average_questions = round($average_questions, 1);
                 $user->update([
                     'trophy_badge' => get_trophy_badge($average_questions),
                     'trophy_average'   => $average_questions,
                 ]);
             }
+            $results = json_decode($QuizzesResult->results);
+            $return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
         }
 
         $response = array(

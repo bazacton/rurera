@@ -66,19 +66,7 @@
                                     <p class="text-gray">Speed trophy badge by playing 10 games.</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-12 col-lg-12">
-                                <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
-                                    <div class="text-holder">
-                                        <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                        <a itemprop="url" href="/timestables/summary">Heat Map</a>
-                                        </h3>
-                                    </div>
-                                    <div class="img-holder">
-                                        <img src="/assets/default/svgs/fire.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
-                                    </div>
-                                    <p class="text-gray">Colours visualization for user data in heatmap</p>
-                                </div>
-                            </div>
+
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
@@ -120,14 +108,24 @@
 
                                 </div>
                             </div>
-
+                            <div class="col-12 col-md-12 col-lg-12">
+                                    <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
+                                        <div class="text-holder">
+                                            <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
+                                            <a itemprop="url" href="/timestables/summary">Heat Map</a>
+                                            </h3>
+                                        </div>
+                                        <div class="img-holder">
+                                            <img src="/assets/default/svgs/fire.svg" class="img-cover" alt="Engaging Students through Interactive Technologies" title="Engaging Students through Interactive Technologies" itemprop="image" loading="eager">
+                                        </div>
+                                        <p class="text-gray">Colours visualization for user data in heatmap</p>
+                                    </div>
+                            </div>
                             <div class="col-12 col-md-12 col-lg-12">
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn" itemprop="Button" href="javascript:;">Analytics
-                                                <span class="title-label">Coming Soon</span>
-                                            </a>
+                                            <a itemprop="url" href="/panel/analytics">Analytics</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
