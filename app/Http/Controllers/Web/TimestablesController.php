@@ -1548,9 +1548,7 @@ class TimestablesController extends Controller
         $attempts_labels = array_reverse($attempts_labels);
         $attempts_values = array_reverse($attempts_values);
 
-        $rendered_view = view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
-        echo $rendered_view;
-        die();
+        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
     }
 
     /*
@@ -1594,8 +1592,7 @@ class TimestablesController extends Controller
             'times_tables_data' => $times_tables_data,
             'first_date' => $first_date,
         ])->render();
-        echo $rendered_view;
-        die();
+        return $rendered_view;
     }
 
 

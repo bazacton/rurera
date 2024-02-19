@@ -30,7 +30,7 @@
                                 <div class="grid-card timestables-mode-data" data-mode_type="freedom_mode" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn ajax-callback" data-type="freedom_mode"  itemprop="Button" href="javascript:;">Freedom mode</a>
+                                            <a itemprop="url" href="/timestables-practice/freedom-mode">Freedom mode</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
@@ -44,7 +44,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn ajax-callback" data-type="powerup_mode"  itemprop="Button" href="javascript:;">Power-Up</a>
+                                            <a itemprop="url" href="/timestables-practice/powerup-mode">Power-Up</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
