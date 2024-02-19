@@ -31,9 +31,7 @@ class TimestablesController extends Controller
         }
         $user = auth()->user();
 
-        $trophyLeaderboard = User::where('trophy_average', '>', 0)
-            ->orderBy('trophy_average', 'asc')
-        ->get();
+
 
         //pre($trophyLeaderboard);
 
@@ -1731,7 +1729,12 @@ class TimestablesController extends Controller
             ->where('status', 'active')
             ->get();
 
-        $rendered_view = view('web.default.timestables.school_zone_mode', ['yearStudents' => $yearStudents, 'classStudents' => $classStudents])->render();
+        $trophyLeaderboard = User::where('trophy_average', '>', 0)
+                    ->orderBy('trophy_average', 'asc')
+                ->get();
+
+
+        $rendered_view = view('web.default.timestables.school_zone_mode', ['trophyLeaderboard' => $trophyLeaderboard, 'yearStudents' => $yearStudents, 'classStudents' => $classStudents])->render();
         echo $rendered_view;
         die();
     }

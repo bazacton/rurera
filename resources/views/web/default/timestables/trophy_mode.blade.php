@@ -28,7 +28,9 @@
                 <div class="section-title mb-30 text-center"><h2>Trophy History</h2></div>
             </div>
             <div class="col-12">
-            <canvas id="trophy_chart"></canvas>
+                <div class="chart-box" style="height: 200px; width:100%;">
+                    <canvas id="trophy_chart" style="height:200px;width: content-box;"></canvas>
+                </div>
                @if( !empty( $attempts_array ) )
 
                @endif
@@ -83,9 +85,9 @@
                     }]
                 },
                 options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                 }
-
             });
 
     });

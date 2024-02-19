@@ -1751,7 +1751,7 @@ class QuestionsAttemptController extends Controller
                         ->where('status', '!=', 'waiting');
             $total_counts = $trophyDetails->count();
             $total_correct = $trophyDetails->sum('total_correct');
-            if( $total_counts > 4){
+            if( $total_counts > 1){
                 $average_questions = ($total_counts*60) / $total_correct;
                 $user->update([
                     'trophy_badge' => get_trophy_badge($average_questions),
