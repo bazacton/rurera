@@ -344,6 +344,7 @@ Route::group([
             Route::get('/create', 'AssignmentsController@create');
             Route::post('/store', 'AssignmentsController@store');
             Route::get('/{id}/edit', 'AssignmentsController@edit')->name('adminEditAssignment');
+            Route::get('/{id}/progress', 'AssignmentsController@progress');
         });
 
         /*

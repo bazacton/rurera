@@ -239,6 +239,16 @@
                 </li>
             @endif
 
+            @can('admin_assignments')
+
+                <li class="nav-item {{ (request()->is('admin/timestables_assignments')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/timestables_assignments') }}" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Timestables Practice</span>
+                    </a>
+                </li>
+            @endif
+
             @can('admin_assigned_assignments')
                 <li class="nav-item {{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/assigned_assignments') }}" class="nav-link">

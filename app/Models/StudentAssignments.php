@@ -38,5 +38,10 @@ class StudentAssignments extends Model
         'topic_ids',
     ];
 
+    public function students()
+    {
+        return $this->hasMany('App\Models\UserAssignedTopics', 'student_assignment_id', 'id');
+    }
+
 
 }

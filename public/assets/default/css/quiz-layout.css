@@ -49,7 +49,7 @@ Lms Signs Style
 .lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 /* .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;} */
-.lms-radio-select label:hover {background-color: rgba(0,0,0,0.05);}
+.lms-radio-select label:hover {background-color: rgba(0,0,0,0.02);}
 /* .lms-radio-select label:after {
     content: "";
     position: absolute;
@@ -63,7 +63,7 @@ Lms Signs Style
     z-index: -1;
 } */
 .lms-radio-select input[type=radio] {position: absolute; width: 0; height: 0;}
-.lms-radio-select input[type=radio]:checked~label {background-color: rgba(0,0,0,0.05);}
+.lms-radio-select input[type=radio]:checked~label {background-color: rgba(0,0,0,0.05); box-shadow: none;}
 .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transition: 0.4s; }
 .row-fields .lms-radio-select input[type=radio]:checked~label:after {width: 100%; transform: none;}
 .row-fields .lms-radio-select label:after {width: 0; transform: none;}
@@ -158,7 +158,7 @@ Lms Form Fields Style
 /* .form-field label:after {content: "\2713"; position: absolute; top: 50%; right: 15px; height: 30px; width: 30px; text-align: center; line-height: 30px; margin-top: -15px; color: #fff; opacity: 0; border-radius: 2px; -webkit-transform: scale(0); transform: scale(0); -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;} */
 /* .form-field input[type="checkbox"]:checked ~ label:before {border: 0; background: rgb(112,193,124); background: -moz-linear-gradient(left,  rgba(112,193,124,1) 0%, rgba(109,193,133,1) 50%, rgba(94,161,92,1) 50%, rgba(92,159,92,1) 100%); background: -webkit-linear-gradient(left,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); background: linear-gradient(to right,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c17c', endColorstr='#5c9f5c',GradientType=1 );} */
 .form-field input[type="checkbox"]:checked ~ label:after {opacity: 1; -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
-.lms-radio-select label:hover {box-shadow: 0 0 8px rgba(0,0,0,0.1);}
+.lms-radio-select label:hover {box-shadow: 0 0 5px rgba(0,0,0,0.1);}
 .row-fields.lms-checkbox-img label {padding: 5px;}
 .lms-checkbox-img .form-field label:before {width: 30px; height: 30px; right: 15px; border-radius: 100%; margin-top: -15px;}
 .lms-checkbox-img .form-field label:after {right: 24px; font-size: 14px; height: auto; width: auto; line-height: normal; top: 50%; margin-top: -10px;}
@@ -295,7 +295,7 @@ Lms Question List Style
 .question-footer span {font-weight: 500; font-size: 13px; line-height: normal; }
 .question-footer input[type="submit"] {background-color: #70c17c; border: 0; font-size: 14px; text-transform: uppercase; font-weight: 600; color: #fff; padding: 8px 20px; border-radius: 3px;}
 .question-textarea {padding: 10px; margin: 0 0 10px; line-height: 30px; position: relative; }
-.question-textarea.quiz-group {padding-top: 2px; margin-left: 0;}
+.question-textarea.quiz-group {padding-top: 0; margin-left: 0;}
 .question-layout-block form.question-fields,
 .question-fields .left-content {min-height: 700px; display: flex; flex-direction: column;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 80px; color: #adabab; }

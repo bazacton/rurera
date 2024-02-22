@@ -14896,7 +14896,7 @@ Lms FAQS Style Start
 .lms-faqs .nav-tabs li {margin: 0 1px; flex: 1 1;}
 .lms-faqs .card {border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 25px; padding: 0 0 25px;}
 .lms-faqs .card .card-header {background-color: inherit; padding: 0; border: 0;}
-.lms-faqs .card .card-header .btn-link {height: auto; padding: 0 35px 0 0; display: block; width: 100%; text-align: left; position: relative; color: #2d3d4d; transition: none;}
+.lms-faqs .card .card-header .btn-link {height: auto; padding: 0 35px 0 0; display: block; width: 100%; text-align: left; position: relative; transition: none;}
 .lms-faqs .card .card-header .btn-link h3 {font-weight: normal; color: inherit; font-size: inherit; }
 .lms-faqs .card .card-header .btn-link:before,
 .lms-faqs .card .card-header .btn-link:after {background-color: #2d3d4d; content: " "; display: block; position: absolute; right: 0; top: 50%; height: 2px; width: 20px; border-radius: 5px; transform: translateY(-50%) rotate(180deg); transition: transform .3s ease;}
@@ -18166,6 +18166,148 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .pocket-menu img {height: 20px; width: 20px;}
 .pocket-menu > a {color: #5b6b79;}
 .pocket-menu .nav-icon {margin-right: 8px;}
+/* Why Us Page Style Start */
+.section-sub-title {
+    background-color: #f5f5f5;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 3px;
+}
+.why-us .text-holder {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.simple-divider .divider-separator {
+    border-top: 1px solid #ddd;
+    display: block;
+    height: 1px;
+}
+.why-us-default-btn {
+    color: #010ed0;
+    border-bottom: 3px solid #dee0ff;
+    line-height: normal;
+}
+.impact-inner {
+    background-color: #242627;
+    border-radius: 5px;
+    padding: 160px 415px 25px 25px;
+    position: relative;
+    overflow: hidden;
+}
+.our-impact .section-sub-title {
+    background-color: #00000026;
+    color: #dee0ff;
+    position: absolute;
+    top: 25px;
+}
+.shap-dots {
+    position: absolute;
+    right: 100px;
+    bottom: -60px;
+}
+.our-impact h2 {
+    color: #dee0ff;
+}
+.schedule-btn {
+    background-color: #dee0ff;
+    border-radius: 5px;
+    color: #010ed0;
+}
+.review-stars img {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    margin-right: -5px;
+}
+.review-stars .stars {
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+    display: inline-block;
+    width: 75px;
+}
+.review-stars .stars-inner {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+span.review-stars,
+span.review-label {line-height: normal;}
+.counter-review {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.counter-holder li {
+    width: 20%;
+}
+.counter-holder ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.review-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.review-counts {
+    display: inline-flex;
+    align-items: end;
+    gap: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.counter-holder .text-holder {
+    display: flex;
+    flex-direction: column;
+}
+.counter-holder .text-holder strong {
+    font-size: 30px;
+    line-height: normal;
+    position: relative;
+}
+.counter-holder .text-holder em {
+    font-style: normal;
+    font-size: 20px;
+}
+.counter-holder .text-holder strong:before {
+    background-color: #00000026;
+    content: "";
+    width: 3px;
+    height: 28px;
+    display: inline-block;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    margin-top: -14px;
+}
+.team-box img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.team-box span {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: normal;
+    padding-top: 15px;
+}
+.team-box span em {
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #999;
+}
+/* Why Us Page Style End */
 
 /*************************************
 Lms Responsive Style Start

@@ -178,7 +178,7 @@
     <section class="mb-60 pt-80">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-lg-8 col-md-8">
+                <div class="col-12 col-lg-12 col-md-12">
                     <div class="section-title text-center mb-50">
                         <h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
                         <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>

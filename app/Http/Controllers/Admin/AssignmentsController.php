@@ -464,6 +464,41 @@ class AssignmentsController extends Controller
         return view('admin.assignments.create', $data);
     }
 
+    public function progress(Request $request, $id)
+    {
+        $this->authorize('admin_quizzes_edit');
+
+
+        $assignmentObj = StudentAssignments::query()->where('id', $id)->where('status', '!=', 'inactive')->first();
+        foreach( $assignmentObj->students as $assignmentTopicObj){
+            //pre($assignmentTopicObj->count(), false);
+        }
+
+        if (empty($assignmentObj)) {
+            abort(404);
+        }
+
+        $categories = Category::where('parent_id', null)
+            ->with('subCategories')->orderBy('order', 'asc')
+            ->get();
+
+
+        $sections_query = Classes::where('parent_id', '>', 0)->where('status', 'active')->with([
+            'users'
+        ]);
+
+        $sections = $sections_query->get();
+
+        $data = [
+            'pageTitle'  => 'Progress',
+            'assignmentObj' => $assignmentObj,
+            'categories' => $categories,
+            'sections'   => $sections,
+        ];
+
+        return view('admin.assignments.progress', $data);
+    }
+
 
     public function delete(Request $request, $id)
     {

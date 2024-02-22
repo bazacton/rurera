@@ -224,6 +224,11 @@
                                            data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
+                                        <a href="{{ getAdminPanelUrl() }}/assignments/{{ $assignmentObj->id }}/progress"
+                                           class="btn-transparent btn-sm text-primary" data-toggle="tooltip"
+                                           data-placement="top" title="Progress">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                         @endcan
 
                                         @can('admin_assignments_deletesss')

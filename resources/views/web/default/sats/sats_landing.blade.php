@@ -764,7 +764,7 @@
                         consideration.</p>
                 </div>
             </div>
-            <div class="col-12 col-lg-9 col-md-9 mx-auto">
+            <div class="col-12 col-lg-12 col-md-12 mx-auto">
                 <div class="mt-0">
                     <div class="lms-faqs mx-w-100 mt-0">
                         <div id="accordion">

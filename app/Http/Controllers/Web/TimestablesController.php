@@ -1584,7 +1584,7 @@ class TimestablesController extends Controller
         }
 
 
-        $rendered_view = view('web.default.timestables.powerup_mode', [
+        $rendered_view = view('web.default.n.powerup_mode', [
             'results_data'    => $results_data,
             'attempts_array'  => $attempts_array,
             'attempts_labels' => $attempts_labels,

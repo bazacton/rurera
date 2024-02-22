@@ -875,7 +875,7 @@
                     <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>
                 </div>
             </div>
-            <div class="col-12 col-lg-8 col-md-12 mx-auto">
+            <div class="col-12 col-lg-12 col-md-12 mx-auto">
                 <div class="mt-0">
                     <div class="lms-faqs mx-w-100 mt-0">
                         <div id="accordion">
