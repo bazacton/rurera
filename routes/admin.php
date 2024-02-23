@@ -543,6 +543,14 @@ Route::group([
         });
 
         /*
+         * Sections
+         */
+        Route::group(['prefix' => 'sections'], function () {
+            Route::get('/', 'ClassesController@sections');
+            Route::get('/users', 'ClassesController@sections_users');
+        });
+
+        /*
          * National Curriculum
          */
         Route::group(['prefix' => 'national_curriculum'], function () {

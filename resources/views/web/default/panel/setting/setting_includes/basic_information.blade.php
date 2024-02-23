@@ -16,32 +16,43 @@ $avatar_color_settings = json_encode($avatar_color_settings);
         <div class="col-12 col-lg-3">
             <div class="profile-image-holder">
            <div class="form-group">
-               <label class="input-label">{{ trans('auth.profile_image') }}</label>
-               <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="rounded-circle my-15 d-block ml-5">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <label class="input-label">{{ trans('auth.profile_image') }}</label>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="rounded-circle my-15 d-block ml-5">
+                        <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
+                            <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
+                            {{ trans('auth.select_image') }}
+                        </button>
 
-               <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
-                   <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
-                   {{ trans('auth.select_image') }}
-               </button>
-
-               <div class="input-group">
-                   <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
-                   @error('profile_image')
-                   <div class="invalid-feedback">
-                       {{ $message }}
-                   </div>
-                   @enderror
-               </div>
+                        <div class="input-group">
+                            <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
+                            @error('profile_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
            </div>
 
             <div class="form-group">
-                <label class="input-label">Display Name</label>
-                <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
-                @error('display_name')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <label class="input-label">Display Name</label>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
+                        @error('display_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                 </div>
-                @enderror
             </div>
             <div class="form-group">
                 <label class="input-label">Your Preference</label>

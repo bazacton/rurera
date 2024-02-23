@@ -593,6 +593,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/' , 'TimestablesController@index');
         Route::get('/freedom-mode' , 'TimestablesController@freedom_mode');
         Route::get('/powerup-mode' , 'TimestablesController@powerup_mode');
+        Route::get('/trophy-mode' , 'TimestablesController@trophy_mode');
+        Route::get('/treasure-mission' , 'TimestablesController@treasure_mission');
+        Route::get('/showdown-mode' , 'TimestablesController@showdown_mode');
+        Route::get('/school-zone' , 'TimestablesController@school_zone_mode');
     });
 
     Route::get('/sitemap.xml' , function () {

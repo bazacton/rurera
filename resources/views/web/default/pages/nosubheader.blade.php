@@ -1,8 +1,9 @@
 @extends(getTemplate().'.layouts.app')
 
 @push('styles_top')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94 || $page->id == 96 || $page->id == 115)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148)
         <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+        <link rel="stylesheet" href="/assets/default/vendors/scroll-animation/animate.css">
     @endif
 @if($page->id == 44)
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
@@ -27,9 +28,10 @@
 @endsection
 
 @push('scripts_bottom')
-@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 87 || $page->id == 39 || $page->id == 94 || $page->id == 96 || $page->id == 115)
+@if($page->id == 11 || $page->id == 50 || $page->id == 15 || $page->id == 72 || $page->id == 87 || $page->id == 39 || $page->id == 94 || $page->id == 96 || $page->id == 115 || $page->id == 148)
                         <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
                         <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+                        <script src="/assets/default/vendors/scroll-animation/wow.js"></script>
                     @endif
 @if($page->id == 44)
                         <script src="/assets/default/vendors/draw-lines/draw-lines.js"></script>

@@ -15,7 +15,8 @@ class Classes extends Model
         'title',
         'status',
         'created_by',
-        'created_at'
+        'created_at',
+        'class_code'
     ];
 
     public function user()
@@ -26,6 +27,11 @@ class Classes extends Model
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
+    }
+
+    public function sectionClass()
+    {
+        return $this->belongsTo('App\Models\Classes', 'parent_id', 'id');
     }
 
     public function sections()

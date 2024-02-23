@@ -215,7 +215,7 @@
                 <li class="nav-item{{ (request()->is('admin/national_curriculum')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/national_curriculum') }}" class="nav-link">
                         <i class="fas fa-graduation-cap"></i>
-                        <span>National Curriculum</span>
+                        <span>National Curriculum <img src="/assets/default/svgs/crown.svg" style="width:25px"></span>
                     </a>
                 </li>
             @endcan()
@@ -224,7 +224,7 @@
                 <li class="nav-item {{ (request()->is('admin/weekly_planner')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/weekly_planner') }}" class="nav-link">
                         <i class="fas fa-calendar-week"></i>
-                        <span>Weekly Planner</span>
+                        <span>Weekly Planner <img src="/assets/default/svgs/crown.svg" style="width:25px"></span>
                     </a>
                 </li>
             @endcan()
@@ -239,15 +239,6 @@
                 </li>
             @endif
 
-            @can('admin_assignments')
-
-                <li class="nav-item {{ (request()->is('admin/timestables_assignments')) ? 'active' : '' }}">
-                    <a href="{{ getAdminPanelUrl('/timestables_assignments') }}" class="nav-link">
-                        <i class="fas fa-tasks"></i>
-                        <span>Timestables Practice</span>
-                    </a>
-                </li>
-            @endif
 
             @can('admin_assigned_assignments')
                 <li class="nav-item {{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">
@@ -519,6 +510,16 @@
             @endif
 
             @can('admin_users')
+                <li class="nav-item {{ (request()->is('admin/students')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/students') }}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Students</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(!auth()->user()->isTeacher())
+            @can('admin_users')
                 <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/staffs', false)) or request()->is(getAdminPanelUrl('/students', false)) or request()->is(getAdminPanelUrl('/instructors', false)) or request()->is(getAdminPanelUrl('/organizations', false))) ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                         <i class="fas fa-users"></i>
@@ -558,6 +559,7 @@
                     </ul>
                 </li>
             @endcan
+            @endif
 
 
             @can('admin_users_not_access_content_lists')

@@ -1626,8 +1626,7 @@ class TimestablesController extends Controller
             'attempts_labels' => $attempts_labels,
             'attempts_values' => $attempts_values,
         ])->render();
-        echo $rendered_view;
-        die();
+        return $rendered_view;
     }
 
     /*
@@ -1644,8 +1643,7 @@ class TimestablesController extends Controller
         $treasure_mission_data = get_treasure_mission_data();
 
         $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels])->render();
-        echo $rendered_view;
-        die();
+        return $rendered_view;
     }
 
     /*
@@ -1702,8 +1700,8 @@ class TimestablesController extends Controller
 
 
         $rendered_view = view('web.default.timestables.showdown_mode', ['alreadyAttempt' => $alreadyAttempt, 'leaderboardResults' => $leaderboardResults, 'selectedWeek' => $selectedWeek, 'currentWeek'=>$currentWeek, 'previousWeek'=>$previousWeek, 'lastMonday' => $lastMonday,'nextSunday' => $nextSunday ])->render();
-        echo $rendered_view;
-        die();
+
+        return $rendered_view;
     }
 
     /*
@@ -1715,6 +1713,11 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+        $yearObj = $user->userYear;
+        $classObj = $user->userClass;
+        $classSections = $classObj->sections;
+
+        $yearSections = $yearObj->yearSections;
 
         $yearStudents = User::where('role_id', 1)
             ->where('year_id', $user->year_id)
@@ -1726,16 +1729,13 @@ class TimestablesController extends Controller
             ->where('status', 'active')
             ->get();
 
-        $trophyLeaderboard = User::where('trophy_average', '>', 0)
-                    ->where('year_id', $user->year_id)
-                    //->where('class_id', $user->class_id)
-                    ->orderBy('trophy_average', 'asc')
-                ->get();
+        $trophyLeaderboard = User::where('year_id', $user->year_id)
+            ->orderByRaw("CASE WHEN trophy_average = 0 OR trophy_average IS NULL THEN 1 ELSE 0 END, trophy_average ASC")
+            ->get();
 
 
-        $rendered_view = view('web.default.timestables.school_zone_mode', ['trophyLeaderboard' => $trophyLeaderboard, 'yearStudents' => $yearStudents, 'classStudents' => $classStudents])->render();
-        echo $rendered_view;
-        die();
+        $rendered_view = view('web.default.timestables.school_zone_mode', ['trophyLeaderboard' => $trophyLeaderboard, 'yearStudents' => $yearStudents, 'classStudents' => $classStudents, 'classSections' => $classSections])->render();
+        return $rendered_view;
     }
 
 

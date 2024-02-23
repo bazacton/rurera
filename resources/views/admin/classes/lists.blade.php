@@ -8,10 +8,17 @@
 <section class="section">
     <div class="section-header">
         <h1>Classes</h1>
+        @can('admin_classes_create')
+            <div class="text-left">
+                <a href="/admin/classes/create" class="btn btn-primary">New Class</a>
+            </div>
+        @endcan
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/admin/">{{trans('admin/main.dashboard')}}</a>
             </div>
-            <div class="breadcrumb-item">Classes</div>
+            <div class="breadcrumb-item">Classes
+
+            </div>
         </div>
     </div>
 
@@ -68,23 +75,28 @@
 
         <div class="row">
             <div class="col-12 col-md-12">
+                <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="topics-tab" href="/admin/classes">
+                            <span class="tab-title">Classes</span>
+                            <span class="tab-detail">Classes List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="topics-tab" href="/admin/sections" >
+                            <span class="tab-title">Sections</span>
+                            <span class="tab-detail">Sections List</span>
+                        </a>
+                    </li>
+                </ul>
                 <div class="card">
-                    @can('admin_classes_create')
-                    <div class="card-header">
-                        <div class="text-right">
-                            <a href="/admin/classes/create" class="btn btn-primary">New Class</a>
-                        </div>
-                    </div>
-                    @endcan
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped font-14">
                                 <tr>
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
-                                    <th class="text-left">Category</th>
+                                    <th class="text-left">Curriculum</th>
                                     <th class="text-left">Sections</th>
-                                    <th class="text-left">Added Date</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
                                 </tr>
 
@@ -97,12 +109,11 @@
                                     <td class="text-left">
                                         @if( !empty( $classData->sections ) )
                                             @foreach($classData->sections as $sectionData)
-                                                {{$sectionData->title}}<br>
+                                                <a href="/admin/sections/users?section={{$sectionData->id}}">{{$sectionData->title}}</a><br>
                                             @endforeach
                                         @endif
 
                                     </td>
-                                    <td class="text-left">{{ dateTimeFormat($classData->created_at, 'j M y | H:i') }}</td>
                                     <td>
                                         @can('admin_classes_edit')
                                         <a href="/admin/classes/{{ $classData->id }}/edit" class="btn-transparent btn-sm text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">

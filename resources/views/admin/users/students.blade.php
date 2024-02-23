@@ -185,6 +185,11 @@
 
     <div class="card">
         <div class="card-header">
+            @can('admin_users_create')
+                <div class="text-right">
+                    <a href="/admin/users/create" class="btn btn-primary">New Student</a>
+                </div>
+            @endcan
             @can('admin_users_export_excel')
                 <a href="{{ getAdminPanelUrl() }}/students/excel?{{ http_build_query(request()->all()) }}" class="btn btn-primary">{{ trans('admin/main.export_xls') }}</a>
             @endcan

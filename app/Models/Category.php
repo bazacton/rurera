@@ -52,6 +52,11 @@ class Category extends Model implements TranslatableContract
         return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
     }
 
+    public function yearSections()
+    {
+        return $this->hasMany('App\Models\Classes', 'category_id', 'id')->where('parent_id', 0);
+    }
+
     public function subCategories()
     {
         return $this->hasMany($this, 'parent_id', 'id')->orderBy('order', 'asc');

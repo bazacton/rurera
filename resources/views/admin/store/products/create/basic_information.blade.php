@@ -81,6 +81,44 @@
                 @enderror
             </div>
 
+            @if( !empty(auth()->user()::$country_location) )
+            <div class="form-group">
+                <label class="input-label">Country</label>
+                <select name="country_location[]" class="form-control authors_select {{ !empty($product) ? 'js-edit-content-locale' : '' }}" multiple="multiple">
+                    @foreach(auth()->user()::$country_location as $country_code => $country_name)
+                        @php $selected = (isset( $product->country_location) && in_array($country_code, json_decode($product->country_location)))? 'selected' : ''; @endphp
+                        <option value="{{ $country_code }}" {{$selected}}>{{ $country_name }}</option>
+                    @endforeach
+                </select>
+                @error('locale')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            @endif
+
+            <div class="form-group">
+                <label class="input-label">Product URL (Daraz)</label>
+                <input type="text" name="seller_url" value="{{ !empty($product) ? $product->seller_url : old('seller_url') }}" class="form-control @error('seller_url')  is-invalid @enderror" placeholder=""/>
+                <div class="text-muted text-small mt-1">Seller URL</div>
+                @error('seller_url')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label class="input-label">Product Price (Daraz)</label>
+                <input type="number" name="seller_price" value="{{ !empty($product) ? $product->seller_price : old('seller_price') }}" class="form-control @error('seller_price')  is-invalid @enderror" placeholder=""/>
+                <div class="text-muted text-small mt-1">Seller Price</div>
+                @error('seller_price')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             <div class="form-group">
                 <label class="input-label">{{ trans('update.required_points') }}</label>
                 <input type="number" name="point" value="{{ !empty($product) ? $product->point : old('point') }}" class="form-control @error('point')  is-invalid @enderror"/>

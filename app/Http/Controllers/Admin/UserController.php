@@ -176,10 +176,16 @@ class UserController extends Controller
 
         $users = array();
 
+        $users_ids = $request->input('users');
+        $users_ids = explode(',', $users_ids);
+
         $users = User::where('role_name', Role::$user);
 
         if(auth()->user()->isTeacher()){
             $users = $users->where('parent_type', 'teacher')->where('parent_id', $userObj->id);
+            if( !empty( $users_ids )){
+                $users = $users->whereIn('id', $users_ids);
+            }
         }
         $users = $users->get();
         if( !empty( $users ) ){

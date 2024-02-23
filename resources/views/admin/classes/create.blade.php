@@ -192,7 +192,7 @@
                             @endif
 
                             <div class="form-group">
-                                <label>{{ trans('/admin/main.category') }}</label>
+                                <label>Curriculum</label>
                                 <select class="form-control @error('category_id') is-invalid @enderror"
                                         name="category_id">
                                     <option {{ !empty($trend) ?
@@ -319,6 +319,10 @@
                                                        class="form-control w-auto flex-grow-1"
                                                        value="{{ $sectionObj->title }}"
                                                        placeholder="{{ trans('admin/main.choose_title') }}"/>
+
+                                                <input type="text" name="section_code"
+                                               class="form-control"
+                                               value="{{ $sectionObj->class_code }}" readonly disabled/>
 
 
                                                 <div class="input-group-append">

@@ -57,7 +57,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn ajax-callback" data-type="trophy_mode"  itemprop="Button" href="javascript:;">Trophy Mode</a>
+                                            <a itemprop="url" href="/timestables-practice/trophy-mode">Trophy Mode</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
@@ -71,7 +71,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                        <a class="grid-btn ajax-callback" data-type="treasure_mission"  itemprop="Button" href="javascript:;">Treasure Mission</a>
+                                        <a itemprop="url" href="/timestables-practice/treasure-mission">Treasure Mission</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
@@ -85,7 +85,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                        <a class="grid-btn ajax-callback" data-type="showdown_mode"  itemprop="Button" href="javascript:;">Showdown</a>
+                                            <a itemprop="url" href="/timestables-practice/showdown-mode">Showdown</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">
@@ -98,7 +98,7 @@
                                 <div class="grid-card timestables-mode-data" itemtype="https://schema.org/NewsArticle">
                                     <div class="text-holder">
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
-                                            <a class="grid-btn ajax-callback" data-type="school_zone"  itemprop="Button" href="javascript:;">School Zone</a>
+                                            <a itemprop="url" href="/timestables-practice/school-zone">School Zone</a>
                                         </h3>
                                     </div>
                                     <div class="img-holder">

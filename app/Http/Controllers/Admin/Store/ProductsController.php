@@ -366,6 +366,9 @@ class ProductsController extends Controller
             'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
             'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
             'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
+            'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : json_encode(array('uk')),
+            'seller_url' => isset( $data['seller_url'] )? $data['seller_url'] : '',
+            'seller_price' => isset( $data['seller_price'] )? $data['seller_price'] : 0,
 
         ]);
 
@@ -536,6 +539,9 @@ class ProductsController extends Controller
             'seo_title' => isset( $data['seo_title'] )? $data['seo_title'] : '',
             'seo_robot_access' => isset( $data['seo_robot_access'] )? $data['seo_robot_access'] : 0,
             'include_xml' => isset( $data['include_xml'] )? $data['include_xml'] : 0,
+            'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : json_encode(array('uk')),
+            'seller_url' => isset( $data['seller_url'] )? $data['seller_url'] : '',
+            'seller_price' => isset( $data['seller_price'] )? $data['seller_price'] : 0,
         ]);
 
         ProductTranslation::updateOrCreate([

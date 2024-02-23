@@ -1,3 +1,17 @@
+<style>
+    .hide{display:none;}
+    .above_12{display:none;}
+</style>
+@extends('web.default.panel.layouts.panel_layout')
+
+@push('styles_top')
+<link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
+@endpush
+
+@section('content')
+<div class="timestables-mode-block">
+<a href="/timestables-practice" class="timestables-back-btn">Back</a>
+<div class="timestables-mode-content">
 <div class="section-title mb-20">
     <h2 itemprop="title" class="font-22 mb-0">Showdown Mode</h2>
 </div>
@@ -71,6 +85,15 @@
         </div>
             </div>
         </section>
-<style>
 
-</style>
+
+</div>
+</div>
+@endsection
+
+@push('scripts_bottom')
+<script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
+<script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/default/vendors/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/default/vendors/chartjs/chart.min.js"></script>
+@endpush
