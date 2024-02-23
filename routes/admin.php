@@ -548,6 +548,8 @@ Route::group([
         Route::group(['prefix' => 'sections'], function () {
             Route::get('/', 'ClassesController@sections');
             Route::get('/users', 'ClassesController@sections_users');
+            Route::get('/joining-requests', 'ClassesController@joiningRequests');
+            Route::post('/join-request-action', 'ClassesController@joiningRequestAction');
         });
 
         /*

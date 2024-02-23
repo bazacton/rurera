@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Classes;
-
+use App\Models\JoinRequests;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
@@ -944,15 +944,29 @@ class UserController extends Controller
         $classObj = Classes::where('class_code', $class_code)->first();
         $parentClassObj = Classes::where('id', $classObj->parent_id)->first();
         if( isset( $classObj->id ) ) {
-            $userObj->update([
+
+            JoinRequests::create([
+                'user_id'    => $connect_user_id,
+                'section_id'    => $classObj->id,
+                'status'      => 'active',
+                'action_by'      => 0,
+                'created_at' => time()
+            ]);
+            /*$userObj->update([
                 'year_id'    => $classObj->category_id,
                 'class_id'   => $classObj->parent_id,
                 'section_id' => $classObj->id,
                 'timestables_no' => $parentClassObj->timestables_no,
             ]);
+            $userObj->update([
+                'year_id'    => $classObj->category_id,
+                'class_id'   => $classObj->parent_id,
+                'section_id' => $classObj->id,
+                'timestables_no' => $parentClassObj->timestables_no,
+            ]);*/
             $toastData = [
                 'title'  => '',
-                'msg'    => 'Updated Successfully',
+                'msg'    => 'Join Request Successfully Sent',
                 'status' => 'success'
             ];
         }else{

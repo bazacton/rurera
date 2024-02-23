@@ -17664,10 +17664,10 @@ body .learning-page .learning-title {border-color: #ccc;}
 .challenge-box .text-holder {margin-top: auto; margin-bottom: auto;}
 .heatmap-sec .heatmap-table-holder {background-color: #fff;}
 /* Web App Elements Style End */
-.profile-image-holder {padding: 0; border-radius: 5px; text-align: center; }
-.profile-image-holder input.form-control {height: 38px;}
+.profile-image-holder {background-color: #fff;border: 1px solid #ddd;padding: 0;border-radius: 5px;}
+.profile-image-holder .form-control {height: 45px;background-color: #f9f9f9;border: 0;}
 .profile-image-holder .input-label {margin: 0 0 10px;}
-.profile-image-holder img#profileImagePreview {margin: 0 auto 20px !important;}
+.profile-image-holder img#profileImagePreview {border-radius: 5px;border: 3px solid #fff;box-shadow: 0 0 8px rgba(0,0,0,0.2);}
 .svga-light #svga-start-overlay {background-color: #fff;}
 .svga-light #svga-gender {background-color: #fff;}
 .rurera-button-loader .preloader {position: absolute; top: 50%; left: 50%; z-index: 1; transform: translate(-50%, -50%); text-align: center;}
@@ -17677,6 +17677,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .dashboard-filters ul {display: flex; align-items: center; gap: 17px;}
 .dashboard-filters li a {font-size: 15px; font-weight: 500;}
 .profile-image-holder a.btn {display: flex !important; align-items: center; justify-content: center;}
+#userSettingForm #svga-container.svga-light {background-color: #fff;padding: 10px;border: 1px solid #ddd;border-radius: 5px;}
 
 /* Spell Levels Style Start */
 .spell-levels ul {display: none;flex-wrap: wrap;gap: 30px;justify-content: center;flex-direction: column; padding: 0 20px 20px 30px;}

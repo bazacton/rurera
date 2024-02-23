@@ -7,11 +7,11 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Sections</h1>
+        <h1>Joining Requests</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/admin/">{{trans('admin/main.dashboard')}}</a>
             </div>
-            <div class="breadcrumb-item">Sections </div>
+            <div class="breadcrumb-item">Joining Requests </div>
         </div>
     </div>
 
@@ -29,13 +29,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" id="topics-tab" href="/admin/sections" >
+                        <a class="nav-link " id="topics-tab" href="/admin/sections" >
                             <span class="tab-title">Sections</span>
                             <span class="tab-detail">Sections List</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="topics-tab" href="/admin/sections/joining-requests" >
+                        <a class="nav-link active" id="topics-tab" href="/admin/sections/joining-requests" >
                             <span class="tab-title">Joining Requests</span>
                             <span class="tab-detail">Pending Joining Requests</span>
                         </a>
@@ -46,25 +46,27 @@
                         <div class="table-responsive">
                             <table class="table table-striped font-14">
                                 <tr>
-                                    <th class="text-left">{{ trans('admin/main.title') }}</th>
-                                    <th class="text-left">Curriculum</th>
+                                    <th class="text-left">Student</th>
                                     <th class="text-left">Class</th>
-                                    <th class="text-left">No of Students</th>
-                                    <th>Class Code</th>
+                                    <th class="text-left">Section</th>
+                                    <th>Action</th>
                                 </tr>
 
-                                @foreach($sections as $sectionData)
+                                @foreach($joining_requests as $requestObj)
                                 <tr>
                                     <td>
-                                        <span>{{ $sectionData->title }}</span>
+                                        <span>{{ $requestObj->student->full_name }}</span>
                                     </td>
-                                    <td class="text-left">{{ $sectionData->category->getTitleAttribute() }}</td>
-                                    <td class="text-left">{{ $sectionData->sectionClass->title }}</td>
-                                    <td class="text-left"><a href="/admin/sections/users?section={{$sectionData->id}}">{{ $sectionData->users->count() }}</a></td>
+                                    <td class="text-left">{{ $requestObj->section->sectionClass->title }}</td>
+                                    <td class="text-left">{{ $requestObj->section->title }}</td>
                                     <td>
-                                        {{ $sectionData->class_code }}
+                                        <a href="javascript:;" class="btn-transparent btn-sm text-primary request-action" data-action_type="approved" data-request_id="{{$requestObj->id}}">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn-transparent btn-sm text-primary request-action" data-action_type="cancelled" data-request_id="{{$requestObj->id}}">
+                                            <i class="fa fa-times"></i>
+                                        </a>
                                     </td>
-
                                 </tr>
                                 @endforeach
 
@@ -73,7 +75,7 @@
                     </div>
 
                     <div class="card-footer text-center">
-                        {{ $sections->links() }}
+                        {{ $joining_requests->links() }}
                     </div>
                 </div>
             </div>
@@ -84,4 +86,23 @@
 
 @push('scripts_bottom')
 
+<script>
+    $(document).on('click', '.request-action', function (e) {
+        rurera_loader($("#userSettingForm"), 'div');
+        var action_type = $(this).attr('data-action_type');
+        var request_id = $(this).attr('data-request_id');
+        jQuery.ajax({
+           type: "POST",
+           url: '/admin/sections/join-request-action',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {'action_type':action_type,'request_id':request_id},
+           success: function (return_data) {
+               window.location.href = '/admin/sections/joining-requests';
+           }
+       });
+
+    });
+</script>
 @endpush

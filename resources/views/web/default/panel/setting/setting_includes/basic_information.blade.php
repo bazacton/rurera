@@ -8,93 +8,120 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 @endphp
 
 <section>
-    <h2 class="section-title after-line">{{ trans('financial.account') }}</h2>
+    <h2 class="section-title">{{ trans('financial.account') }}</h2>
 
     <div class="row mt-20">
 
 
-        <div class="col-12 col-lg-3">
-            <div class="profile-image-holder">
-           <div class="form-group">
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        <label class="input-label">{{ trans('auth.profile_image') }}</label>
-                    </div>
-                    <div class="col-12 col-lg-8">
-                        <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="rounded-circle my-15 d-block ml-5">
-                        <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
-                            <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
-                            {{ trans('auth.select_image') }}
-                        </button>
-
-                        <div class="input-group">
-                            <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
-                            @error('profile_image')
-                            <div class="invalid-feedback">
-                                {{ $message }}
+        <div class="col-12 col-lg-12">
+            <div class="profile-image-holder p-25 mb-50">
+                <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <label class="input-label font-15">{{ trans('auth.profile_image') }}</label>
                             </div>
-                            @enderror
+                            <div class="col-12 col-lg-8">
+                                <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="mb-15 d-block">
+                                <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
+                                    <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
+                                    {{ trans('auth.select_image') }}
+                                </button>
+
+                                <div class="input-group">
+                                    <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
+                                    @error('profile_image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <label class="input-label font-15">Display Name</label>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
+                                @error('display_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                </div>
-           </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        <label class="input-label">Display Name</label>
-                    </div>
-                    <div class="col-12 col-lg-8">
-                        <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
-                        @error('display_name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <label class="input-label font-15">Your Preference</label>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <select class="form-control" name="user_preference">
+                                    <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
+                                </select>
+                                @error('display_name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
                         </div>
-                        @enderror
                     </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <label class="input-label font-15">Secret Word</label>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <input type="password" name="secret_word" value="{{ old('secret_word') }}" class="form-control @error('secret_word')  is-invalid @enderror" placeholder=""/>
+                                @error('secret_word')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4">
+                                <label class="input-label font-15">Class Code</label>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <input type="text" name="class_code" value="" class="form-control" placeholder=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 col-lg-4"></div>
+                            <div class="col-12 col-lg-8">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;">Generate Pin</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="form-group">
-                <label class="input-label">Your Preference</label>
-                <select class="form-control"
-                        name="user_preference">
-                    <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
-                    <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
-                </select>
-                @error('display_name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+            <div class="col-12 col-lg-12">
+                <div id="svgAvatars"></div>
             </div>
-
-            <div class="form-group">
-                <label class="input-label">Secret Word</label>
-                <input type="password" name="secret_word" value="{{ old('secret_word') }}" class="form-control @error('secret_word')  is-invalid @enderror" placeholder=""/>
-                @error('secret_word')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label class="input-label">Class Code</label>
-                <input type="text" name="class_code" value="" class="form-control" placeholder=""/>
-            </div>
-
-            <div class="form-group">
-                <a class="btn btn-sm btn-primary d-block mb-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
-                <a class="btn btn-sm btn-primary d-block regenerate-pin" href="javascript:;">Generate Pin</a>
-            </div>
-
         </div>
-        </div>
-
-        <div class="col-12 col-lg-9">
-            <div id="svgAvatars"></div>
-        </div>
-    </div>
 
 </section>
 

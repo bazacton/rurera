@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use App\Models\JoinRequests;
 
 class ClassesController extends Controller {
 
@@ -343,6 +344,7 @@ class ClassesController extends Controller {
         return view('admin.sections.lists', $data);
     }
 
+
     private function sections_filters($query, $request) {
         $title = $request->get('title', null);
         $status = $request->get('status', null);
@@ -364,6 +366,80 @@ class ClassesController extends Controller {
 
 
         return $query;
+    }
+
+    public function joiningRequests(Request $request) {
+        $user = auth()->user();
+        $this->authorize('admin_classes');
+        removeContentLocale();
+        $query = JoinRequests::query();
+        $joining_requests = $query->where('status', 'active')->paginate(50);
+
+
+        $data = [
+            'pageTitle' => 'Joining Requests',
+            'joining_requests' => $joining_requests,
+        ];
+
+        return view('admin.sections.joining_requests', $data);
+    }
+
+    /*
+     * Update User Class
+     */
+    public function joiningRequestAction(Request $request)
+    {
+        $user = auth()->user();
+
+        $action_type = $request->input('action_type');
+        $request_id = $request->input('request_id');
+        $requestObj = JoinRequests::find($request_id);
+
+        $classObj = Classes::where('id', $requestObj->section_id)->first();
+
+        $connect_user_id = $requestObj->user_id;
+        $userObj = User::find($connect_user_id);
+        $parentClassObj = Classes::where('id', $classObj->parent_id)->first();
+        if( isset( $classObj->id ) ) {
+
+            $requestObj->update([
+                'status'    => $action_type,
+                'action_by'   => $user->id,
+            ]);
+            if( $action_type == 'approved') {
+                $userObj->update([
+                    'year_id'        => $classObj->category_id,
+                    'class_id'       => $classObj->parent_id,
+                    'section_id'     => $classObj->id,
+                    'timestables_no' => $parentClassObj->timestables_no,
+                ]);
+                $userObj->update([
+                    'year_id'        => $classObj->category_id,
+                    'class_id'       => $classObj->parent_id,
+                    'section_id'     => $classObj->id,
+                    'timestables_no' => $parentClassObj->timestables_no,
+                ]);
+                $toastData = [
+                    'title'  => '',
+                    'msg'    => 'Join Request Successfully Accepted',
+                    'status' => 'success'
+                ];
+            }else{
+                $toastData = [
+                    'title'  => '',
+                    'msg'    => 'Join Request Successfully Cancelled',
+                    'status' => 'success'
+                ];
+            }
+        }else{
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Incorrect Request',
+                'status' => 'error'
+            ];
+        }
+        echo json_encode($toastData);exit;
+
     }
 
 }
