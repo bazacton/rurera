@@ -122,7 +122,7 @@
                                     </td>
                                     <td>
                                         @can('admin_classes_edit')
-                                        <a href="/admin/classes/{{ $classData->id }}/edit" class="btn-transparent btn-sm text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">
+                                        <a href="/admin/classes/{{$classData->id}}/edit" class="btn-transparent btn-sm text-primary edit-class-btn1" data-class_id="{{$classData->id}}" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         @endcan
@@ -147,8 +147,39 @@
         </div>
     </div>
 </section>
+<div id="class-edit-modal" class="class-edit-modal modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body class-edit-content">
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts_bottom')
+
+<script>
+    $(document).on('click', '.edit-class-btn', function (e) {
+        //rurera_loader($("#userSettingForm"), 'div');
+        var class_id = $(this).attr('data-class_id');
+        jQuery.ajax({
+           type: "GET",
+           url: '/admin/classes/edit_modal',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {'class_id':class_id},
+           success: function (return_data) {
+               $(".class-edit-content").html(return_data);
+               $("#class-edit-modal").modal('show');
+               console.log(return_data);
+           }
+       });
+
+    });
+</script>
+
 
 @endpush

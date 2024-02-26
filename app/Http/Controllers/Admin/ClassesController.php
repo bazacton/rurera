@@ -442,4 +442,28 @@ class ClassesController extends Controller {
 
     }
 
+    /*
+     * Class Edit Modal
+     */
+    public function editModal(Request $request)
+    {
+        $user = auth()->user();
+
+        $class_id = $request->input('class_id');
+
+        $classObj = Classes::findOrFail($class_id);
+
+        $categories = Category::where('parent_id', null)
+               ->with('subCategories')
+               ->get();
+           $data = [
+           'pageTitle' => 'Edit Class',
+           'categories' => $categories,
+           'class' => $classObj,
+        ];
+
+        echo view('admin.classes.edit_class', $data);
+        exit;
+    }
+
 }

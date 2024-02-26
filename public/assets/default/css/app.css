@@ -14580,7 +14580,7 @@ Lms Product Card Style Start
 .navbar-shopping-cart .simplebar-content-wrapper,
 .navbar-notification-card .simplebar-content-wrapper {overflow: hidden scroll !important;}
 /* Product Card Style Start */
-.product-card {position: relative; border-radius: 15px; transition: all .5s ease;}
+.product-card {background-color: #fff; position: relative; border-radius: 15px; transition: all .5s ease;padding: 20px;}
 .product-card .image-box {position: relative; width: 100%; height: 185px;}
 .product-card .image-box,
 .product-card .image-box img {border-radius: 15px 15px 0 0;}
@@ -18191,6 +18191,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     color: #010ed0;
     border-bottom: 3px solid #dee0ff;
     line-height: normal;
+    position: relative;
 }
 .impact-inner,
 .contact-heading-holder {
@@ -19073,6 +19074,139 @@ Lms Responsive Style Start
     .rewards-header p br {display: none;}
     .referral-price-card {margin-bottom: 15px;}
     .login-card {margin-bottom: 30px;}
+    .login-container .login-holder {padding: 20px;max-width: 100%;min-width: auto;}
+    .how-it-work img,
+    .why-us img{
+        object-fit: cover;
+    }
+    .impact-inner {
+        padding-right: 10px;
+        padding-top: 25px;
+    }
+    .impact-inner .shap-dots {
+        right: 0;
+        bottom: -210px;
+        width: 100%;
+        text-align: center;
+        z-index: 0;
+    }
+    .impact-inner .text-holder {
+        position: relative;
+        z-index: 1;
+        padding-top: 50px;
+    }
+    .our-impact .section-sub-title {
+        top: 0;
+    }
+    .counter-holder .counter-box {
+        display: flex;
+        flex-direction: column;
+    }
+    .counter-holder ul {
+        padding-left: 25px;
+    }
+    .counter-holder li {
+        margin-bottom: 25px;
+        width: 100%;
+    }
+    .counter-holder li:last-child {
+        margin-bottom: 0;
+    }
+    .team-section .team-holder {
+        padding: 0 15px;
+    }
+    .team-holder .team-box {
+        margin-bottom: 25px;
+    }
+    .partner-section .text-holder {
+        margin-bottom: 30px;
+    }
+    .partner-logos .img-holder {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .contact-heading-holder {
+        padding-right: 15px;
+        padding-top: 60px;
+    }
+    .rurera-timeline .img-holder {
+        width: 100%;
+        padding: 0;
+        position: relative;
+    }
+    .rurera-timeline .text-holder {
+        border: 0;
+        width: 100%;
+        padding: 25px 0;
+    }
+    .rurera-timeline li:before {
+        background-color: #fff;
+        margin: 0;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    .rurera-timeline li:after {
+        left:8px;
+        top: 8px;
+        z-index: 1;
+    }
+    .rurera-timeline .img-holder:before {
+        background-color: #ddd;
+        height: 1px;
+        width: 50px;
+        content: "";
+        position: absolute;
+        left: -35px;
+        top: 7px;
+    }
+    .timeline-circle:before {
+        background-color: #ddd;
+        content: "";
+        height: 50px;
+        position: absolute;
+        left: 50%;
+        bottom: -50px;
+        width: 1px;
+    }
+    .rurera-timeline li {
+        padding: 0 0 0 50px;
+    }
+    .timeline-circle {
+        margin-bottom: 50px;
+        position: relative;
+    }
+    .rurera-timeline {
+        border-bottom: 0;
+        overflow: hidden;
+    }
+    .rurera-timeline ul {
+        position: relative;
+    }
+    .rurera-timeline .img-holder figure {
+        position: relative;
+        z-index: 1;
+    }
+    .rurera-timeline ul:before {
+        background-color: #ddd;
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 0;
+        height: 100%;
+        width: 1px;
+    }
+    .how-it-work .text-holder {
+        padding-bottom: 25px;
+    }
+    .services-section .services-box {
+        margin-bottom: 25px;
+    }
+    .footer-logo-wrapper {
+        margin-left: 0;
+    }
+    .custom-footer {overflow: hidden;}
+    
 }
 @media screen and (max-width: 640px) {
     .lms-faqs .nav-tabs {height: auto; margin: 0 -2px 30px;}
@@ -19178,6 +19312,7 @@ Lms Responsive Style Start
     .login-controls {width: 100%;}
     .login-holder .login-options .social-login {flex-direction: column; gap: 0;}
     .login-holder .login-options span {margin-top: 10px;}
+    .benefits-list ul li {width: 100%;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 

@@ -89,16 +89,6 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <label class="input-label font-15">Class Code</label>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <input type="text" name="class_code" value="" class="form-control" placeholder=""/>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <div class="row">

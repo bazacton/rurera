@@ -535,6 +535,7 @@ Route::group([
          */
         Route::group(['prefix' => 'classes'], function () {
             Route::get('/', 'ClassesController@index');
+            Route::get('/edit_modal', 'ClassesController@editModal');
             Route::get('/create', 'ClassesController@create');
             Route::get('/{id}/edit', 'ClassesController@edit')->name('adminEditClass');
             Route::get('/{id}/delete', 'ClassesController@destroy');

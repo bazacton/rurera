@@ -30,6 +30,7 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+        //pre($user->id);
 
 
 
