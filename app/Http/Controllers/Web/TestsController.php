@@ -21,8 +21,13 @@ class TestsController extends Controller
     public function index()
     {
         if (!auth()->check()) {
-            //return redirect('/login');
+            return redirect('/login');
         }
+        return view('web.default.panel.unauthorized_landing', array(
+            'title' => 'Unauthorized',
+            'unauthorized_text' => 'You are not authorize for this page',
+            'unauthorized_link' => '/panel',
+        ));
         $user = getUser();
 
         $switchUserObj = (object) array();

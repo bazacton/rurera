@@ -3260,6 +3260,7 @@ pre {
     font-size: 24px;
     margin-top: 3px;
     color: #34395e;
+    margin-right: 15px;
 }
 
 .section .section-header .section-header-back {
@@ -4629,3 +4630,22 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 	background-color: #303030;
 }
 /*Range Slider Style End*/
+
+/*Responsive Style Start*/
+@media screen and (min-width: 1024px) and (max-width: 1800px) {
+    .main-sidebar ~ .main-content {
+        margin: 0;
+        max-width: 100%;
+        padding-left: 280px;
+    }
+}
+@media(max-width:1024px) {
+    .main-sidebar ~ .main-content {
+        padding-left: 30px;
+        margin-left: 0;
+        padding-right: 30px;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+/*Responsive Style End*/

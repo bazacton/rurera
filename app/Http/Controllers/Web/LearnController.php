@@ -23,6 +23,14 @@ class LearnController extends Controller
     {
 
         $user = getUser();
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        return view('web.default.panel.unauthorized_landing', array(
+            'title' => 'Unauthorized',
+            'unauthorized_text' => 'You are not authorize for this page',
+            'unauthorized_link' => '/panel',
+        ));
 
         $categoryObj = Category::where('id', 616)->first();
         $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->get();

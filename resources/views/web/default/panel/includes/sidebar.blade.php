@@ -83,7 +83,7 @@
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
-                            <span><a href="/learn" class="font-15">Learn</a></span>
+                            <span><a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
                         </a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
@@ -107,7 +107,7 @@
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
-                            <span><a href="/books" class="font-15">Books</a></span>
+                            <span><a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
                         </a>
                     </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
@@ -115,7 +115,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.svg">
                         </span>
-                        <span><a href="/tests" class="font-15">Test</a></span>
+                        <span><a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
                     </a>
                 </li>
 
@@ -163,6 +163,7 @@
                     </a>
                 </li>
             @endif
+            @if(!auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }} dropdown show">
 
                     <a class="d-flex align-items-center">
@@ -180,6 +181,7 @@
                         </ul>
                     </div>
                 </li>
+            @endif
 
 
 
