@@ -381,6 +381,7 @@ class UserController extends Controller
 
         $query = fromAndToDateFilter($from, $to, $query, 'created_at');
 
+
         if (!empty($full_name)) {
             $query->where('full_name', 'like', "%$full_name%");
         }
@@ -533,7 +534,11 @@ class UserController extends Controller
         $user = auth()->user();
         $this->authorize('admin_users_create');
 
-        $roles = Role::orderBy('created_at', 'desc')->get();
+        $roles = Role::orderBy('created_at', 'desc');
+        if(auth()->user()->isAdminTeacher()){
+            $roles = $roles->whereIn('name', array('user','teachers'));
+        }
+        $roles = $roles->get();
         $userGroups = Group::orderBy('created_at', 'desc')->where('status', 'active')->get();
         $classes = Classes::where('created_by', $user->id)->where('status', 'active')->where('parent_id', 0)->get();
 
@@ -578,7 +583,8 @@ class UserController extends Controller
 
         $this->validate($request, [
             $username => 'required|unique:users',
-            'full_name' => 'required|min:3|max:128',
+            'first_name' => 'required|min:3|max:128',
+            'last_name' => 'required|min:3|max:128',
             'role_id' => 'required|exists:roles,id',
             'password' => 'required|string|min:6',
             'status' => 'required',
@@ -595,14 +601,17 @@ class UserController extends Controller
                 $parent_id = 0;
                 $userObj = auth()->user();
 
-                if(auth()->user()->isTeacher()){
+                if(auth()->user()->isTeacher() || auth()->user()->isAdminTeacher()){
                     $parent_type = 'teacher';
                     $parent_id = $userObj->id;
                 }
                 $class_id = isset( $data['class_id'] ) ? $data['class_id'] : 0;
                 $classObj = Classes::where('id', $class_id)->first();
+                $first_name = isset( $data['first_name'] )? $data['first_name'] : '';
+                $last_name = isset( $data['last_name'] )? $data['last_name'] : '';
+                $full_name = $first_name.' '.$last_name;
                 $user = User::create([
-                    'full_name' => $data['full_name'],
+                    'full_name' => $full_name,//$data['full_name'],
                     'role_name' => $role->name,
                     'role_id' => $data['role_id'],
                     $username => $data[$username],
@@ -619,6 +628,8 @@ class UserController extends Controller
                     'section_id' => isset( $data['section_id'] ) ? $data['section_id'] : 0,
                     'user_life_lines' => 5,
                     'timestables_no' => isset( $classObj->timestables_no )? $classObj->timestables_no : json_encode(array()),
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                 ]);
 
                 if (!empty($data['group_id'])) {
@@ -701,7 +712,11 @@ class UserController extends Controller
 
         $userBadges = $user->getBadges(false);
 
-        $roles = Role::all();
+        $roles = Role::orderBy('created_at', 'desc');
+        if(auth()->user()->isAdminTeacher()){
+            $roles = $roles->whereIn('name', array('user','teachers'));
+        }
+        $roles = $roles->get();
         $badges = Badge::all();
 
         $userLanguages = getGeneralSettings('user_languages');
@@ -942,7 +957,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $this->validate($request, [
-            'full_name' => 'required|min:3|max:128',
+            'first_name' => 'required|min:3|max:128',
+            'last_name' => 'required|min:3|max:128',
             'role_id' => 'required|exists:roles,id',
             'email' => (!empty($user->email)) ? 'required|email|unique:users,email,' . $user->id . ',id,deleted_at,NULL' : 'nullable|email|unique:users',
             'mobile' => (!empty($user->mobile)) ? 'required|numeric|unique:users,mobile,' . $user->id . ',id,deleted_at,NULL' : 'nullable|numeric|unique:users',
@@ -984,8 +1000,11 @@ class UserController extends Controller
             }
         }
 
+        $first_name = !empty($data['first_name']) ? $data['first_name'] : null;
+        $last_name = !empty($data['last_name']) ? $data['last_name'] : null;
+        $full_name = $first_name.' '.$last_name;
 
-        $user->full_name = !empty($data['full_name']) ? $data['full_name'] : null;
+        $user->full_name = $full_name;//!empty($data['full_name']) ? $data['full_name'] : null;
         $user->role_name = $role->name;
         $user->role_id = $role->id;
         $user->timezone = $data['timezone'] ?? null;
@@ -1002,6 +1021,8 @@ class UserController extends Controller
         $user->class_id = !empty($data['class_id']) ? $data['class_id'] : 0;
         $user->section_id = !empty($data['section_id']) ? $data['section_id'] : 0;
         $user->timestables_no = isset( $data['tables_no'] )? json_encode($data['tables_no']) : json_encode(array());
+        $user->first_name = $first_name;
+        $user->last_name = $last_name;
 
         if (!empty($data['password'])) {
             $user->password = User::generatePassword($data['password']);
@@ -1471,5 +1492,66 @@ class UserController extends Controller
         ];
 
         return back()->with(['toast' => $toastData]);
+    }
+
+    public function teachers(Request $request, $is_export_excel = false)
+    {
+        $userObj = auth()->user();
+        $this->authorize('admin_teachers_list');
+
+        $query = User::where('role_name', Role::$teacher);
+
+        if(auth()->user()->isAdminTeacher()){
+            $query = $query->where('parent_type', 'teacher')->where('parent_id', $userObj->id);
+        }
+
+        $totalStudents = deepClone($query)->count();
+        $inactiveStudents = deepClone($query)->where('status', 'inactive')
+            ->count();
+        $banStudents = deepClone($query)->where('ban', true)
+            ->whereNotNull('ban_end_at')
+            ->where('ban_end_at', '>', time())
+            ->count();
+
+        $totalOrganizationsStudents = User::where('role_name', Role::$user)
+            ->whereNotNull('organ_id')
+            ->count();
+        $userGroups = Group::where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $organizations = User::select('id', 'full_name', 'created_at')
+            ->where('role_name', Role::$organization)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
+        $query = $this->filters($query, $request);
+
+        if ($is_export_excel) {
+            $users = $query->orderBy('created_at', 'desc')->get();
+        } else {
+            $users = $query->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+
+        $users = $this->addUsersExtraInfo($users);
+
+        if ($is_export_excel) {
+            return $users;
+        }
+
+        $data = [
+            'pageTitle' => 'Teachers',
+            'users' => $users,
+            'totalStudents' => $totalStudents,
+            'inactiveStudents' => $inactiveStudents,
+            'banStudents' => $banStudents,
+            'totalOrganizationsStudents' => $totalOrganizationsStudents,
+            'userGroups' => $userGroups,
+            'organizations' => $organizations,
+        ];
+
+        return view('admin.users.teachers', $data);
     }
 }

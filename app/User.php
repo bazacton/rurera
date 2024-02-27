@@ -3465,6 +3465,11 @@ class User extends Authenticatable
         return $this->role->is_admin;
     }
 
+    public function isAdminRole()
+    {
+        return $this->role_name === Role::$admin;
+    }
+
     public function isUser()
     {
         return $this->role_name === Role::$user;
@@ -3473,6 +3478,11 @@ class User extends Authenticatable
     public function isTeacher()
     {
         return $this->role_name === Role::$teacher;
+    }
+
+    public function isAdminTeacher()
+    {
+        return $this->role_name === Role::$adminTeacher;
     }
 
     public function isOrganization()

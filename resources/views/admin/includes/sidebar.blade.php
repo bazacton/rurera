@@ -509,6 +509,15 @@
                 </li>
             @endif
 
+            @can('admin_teachers_list')
+                <li class="nav-item {{ (request()->is('admin/teachers')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/teachers') }}" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Teachers</span>
+                    </a>
+                </li>
+            @endif
+
             @can('admin_users')
                 <li class="nav-item {{ (request()->is('admin/students')) ? 'active' : '' }}">
                     <a href="{{ getAdminPanelUrl('/students') }}" class="nav-link">
@@ -518,7 +527,7 @@
                 </li>
             @endif
 
-            @if(!auth()->user()->isTeacher())
+            @if(!auth()->user()->isTeacher() && !auth()->user()->isAdminTeacher())
             @can('admin_users')
                 <li class="nav-item dropdown {{ (request()->is(getAdminPanelUrl('/staffs', false)) or request()->is(getAdminPanelUrl('/students', false)) or request()->is(getAdminPanelUrl('/instructors', false)) or request()->is(getAdminPanelUrl('/organizations', false))) ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">

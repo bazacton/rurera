@@ -12997,7 +12997,7 @@ p {line-height: 1.5;}
 .top-navbar .dropdown-menu.user-profile-dropdown:after {display: none;}
 .dropdown-menu.user-profile-dropdown .user-nav-detail {display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px 0;}
 .dropdown-menu.user-profile-dropdown .user-nav-detail img {width: 100px;height: 100px;object-fit: contain; margin-bottom: 10px;}
-.user-profile-dropdown .nav-logout {display: flex;align-items: center; gap: 10px; flex-wrap: wrap;}
+.user-profile-dropdown .nav-logout {display: inline-flex;align-items: center;gap: 10px;flex-wrap: wrap;border: 1px solid #d3d4d6;border-radius: 10px;justify-content: center;min-width: 175px;width: auto;padding: 10px 30px;}
 .user-profile-dropdown .nav-logout span {font-size: 16px;}
 .user-profile-dropdown .dropdown-item:hover {background-color: inherit;}
 .user-nav-detail .user-name {color: #333; font-weight: 500; display: block; margin: 0 0 5px;}
@@ -13025,9 +13025,8 @@ p {line-height: 1.5;}
 .user-profile-icons ul {display: flex; align-items: center; flex-wrap: wrap; gap: 12px; width: 100%;}
 .user-profile-icons .dropdown > a > img {width: 28px; height: 28px; }
 .user-profile-icons li strong {display: inline-flex; align-items: center; gap: 5px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: 0;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: 0; text-align: center;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list {padding: 0 0 12px !important; margin: 0 0 12px;}
-.panel-right-sidebar .user-profile-dropdown .nav-logout {padding: 0;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {padding: 0 !important;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .user-list-name {font-weight: 500;}
 @media (max-width:767px) {
@@ -17585,7 +17584,7 @@ Product Tabs Slider Style Start
 .confirm-btn:hover {color: #fff;}
 .question-status-modal p span {background-color: #fff; color: #333; line-height: normal; display: inline-block; padding: 0 5px 2px; border-radius: 3px;}
 /* Vertical Keyboard Style End */
-body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1; border-color: #ccc;}
+body .learning-page .learning-content .learning-content-box {position: relative; z-index: 1;}
 body .learning-page.type-sats .learning-content .learning-content-box {border-color: transparent;}
 body .learning-page .learning-title {border-color: #ccc;}
 .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
@@ -17594,6 +17593,137 @@ body .learning-page .learning-title {border-color: #ccc;}
 .field_medium {width: 75% !important;}
 .field_large {width: 100% !important;}
 /* .question-area-block {text-align: center; color: #fff; font-size: 24px;} */
+
+/* Learning New Style Start */
+.learning-content-box {
+    background: url(/assets/default/img/learning-bg.png) no-repeat #faf2db bottom;
+    border: 1px solid #f3c766;
+    border-top-width: 9px;
+    border-radius: 10px;
+    padding: 50px 60px 0;
+    text-align: center;
+    overflow: hidden;
+}
+.learning-content-box .learning-icon {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.learning-content-box .learning-text {
+    margin: 0 0 45px;
+}
+.learning-content-box .learning-text h5 {
+    font-size: 1.875rem;
+    margin-bottom: 10px;
+}
+.learning-content-box .learning-text p {
+    font-size: 1.125rem;
+    color: #8f9297;
+    margin: 0 0 30px;
+}
+.learning-text .get-btn {
+    background-color: #f2c862;
+    border: 1px solid #b0955d;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    color: #604b20;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    min-width: 215px;
+    margin-bottom: 10px;
+}
+.btn-animate-left{
+    position: absolute;
+    left: -20px;
+    top: -10px;
+    width: 40px;
+}
+.btn-animate-right {
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    width: 40px;
+}
+.shadow-sm img {
+    width: 24px;
+    height: 24px;
+}
+.shadow-lg img {
+    height: 32px;
+    width: 32px;
+}
+.get-btn .shadow-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.get-btn [class*="shadow-"] {
+    box-shadow: none !important;
+}
+.learning-text .get-btn .btn-text img {
+    margin-right: 5px;
+}
+.learn-option {
+    color: #4d5259;
+    font-weight: 500;
+}
+.learn-option .learn-book-btn {
+    color: #3182ce;
+    border-bottom: 1px solid #3182ce;
+    line-height: normal;
+    display: inline-block;
+}
+.learning-table-holder {
+    background-color: #fff;
+    border: 1px solid #f3c766;
+    border-bottom: 0;
+    border-top-width: 9px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+.learning-table-holder:before,
+.learning-table-holder:after{
+    background-color: #fff;
+    border-top: 9px solid #f3c766;
+    border-right: 1px solid #f3c766;
+    border-radius: 0 10px 0 0;
+    box-shadow: 6px -6px 0 6px inset #fff9ef;
+    content: "";
+    position: absolute;
+    right: -26px;
+    top: 10px;
+    height: 100%;
+    width: 25px;
+}
+.learning-table-holder:after {
+    right: -51px;
+    top: 25px;
+}
+.learning-table {
+    padding: 30px 12px 0;
+    height: 150px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.learning-table th {
+    color: #d5d5d5;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 0 10px 10px;
+    line-height: normal;
+    text-align: left;
+}
+.learning-table td {
+    color: #f8bd45;
+    font-weight: 500;
+    padding: 10px;
+    line-height: normal;
+    text-align: left;
+}
+/* Learning New Style End */
 
 /* Category-Box Style Start */
 .category-box {box-shadow: 0 0 5px rgba(0,0,0,0.1); display: flex; flex-direction: column; padding: 20px; border-radius: 5px; margin-bottom: 30px;}

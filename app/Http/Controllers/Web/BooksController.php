@@ -22,10 +22,13 @@ class BooksController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
-        return view('web.default.panel.unauthorized_landing', array(
-            'unauthorized_text' => 'You are not authorize for this page',
-            'unauthorized_link' => '/panel',
-        ));
+        if( auth()->user()->id != 1075) {
+            return view('web.default.panel.unauthorized_landing', array(
+                'title'             => 'Unauthorized',
+                'unauthorized_text' => 'You are not authorize for this page',
+                'unauthorized_link' => '/panel',
+            ));
+        }
         $books_data = Books::get();
         $books = array();
 

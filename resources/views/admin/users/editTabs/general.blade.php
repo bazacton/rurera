@@ -146,18 +146,30 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label>{{ trans('/admin/main.full_name') }}</label>
-                    <input type="text" name="full_name"
-                           class="form-control  @error('full_name') is-invalid @enderror"
-                           value="{{ !empty($user) ? $user->full_name : old('full_name') }}"
-                           placeholder="{{ trans('admin/main.create_field_full_name_placeholder') }}"/>
-                    @error('full_name')
+                    <label>First Name</label>
+                    <input type="text" name="first_name"
+                           class="form-control  @error('first_name') is-invalid @enderror"
+                           value="{{ !empty($user) ? $user->first_name : old('first_name') }}"
+                           placeholder="First Name"/>
+                    @error('first_name')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name"
+                           class="form-control  @error('last_name') is-invalid @enderror"
+                           value="{{ !empty($user) ? $user->last_name : old('last_name') }}"
+                           placeholder="Last Name"/>
+                    @error('last_name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
                 <div class="form-group">
                     <label>Year</label>

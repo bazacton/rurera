@@ -10,6 +10,7 @@ class Role extends Model
     static $admin = 'admin';
     static $user = 'user';
     static $teacher = 'teachers';
+    static $adminTeacher = 'admin_teacher';
     static $author = 'author';
     static $reviewer = 'reviewer';
     static $parent = 'parent';
@@ -24,6 +25,7 @@ class Role extends Model
             case self::$user:
             case self::$organization:
             case self::$teacher:
+            case self::$adminTeacher:
                 return false;
                 break;
             default:

@@ -35,97 +35,102 @@
                                 <li class="nav-item">
                                     <a class="nav-link @if(empty($becomeInstructor)) active @endif" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">{{ trans('admin/main.main_general') }}</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="true">{{ trans('auth.images') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="financial-tab" data-toggle="tab" href="#financial" role="tab" aria-controls="financial" aria-selected="true">{{ trans('admin/main.financial') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="occupations-tab" data-toggle="tab" href="#occupations" role="tab" aria-controls="occupations" aria-selected="true">{{ trans('site.occupations') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="badges-tab" data-toggle="tab" href="#badges" role="tab" aria-controls="badges" aria-selected="true">{{ trans('admin/main.badges') }}</a>
-                                </li>
-
-                                @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
-                                    @can('admin_update_user_registration_package')
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="registrationPackage-tab" data-toggle="tab" href="#registrationPackage" role="tab" aria-controls="registrationPackage" aria-selected="true">{{ trans('update.registration_package') }}</a>
-                                        </li>
-                                    @endcan
-                                @endif
-
-                                @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
-                                    @can('admin_update_user_meeting_settings')
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="meetingSettings-tab" data-toggle="tab" href="#meetingSettings" role="tab" aria-controls="meetingSettings" aria-selected="true">{{ trans('update.meeting_settings') }}</a>
-                                        </li>
-                                    @endcan
-                                @endif
-
-                                @if(!empty($becomeInstructor))
+                                @if(auth()->user()->isAdminRole())
                                     <li class="nav-item">
-                                        <a class="nav-link @if(!empty($becomeInstructor)) active @endif" id="become_instructor-tab" data-toggle="tab" href="#become_instructor" role="tab" aria-controls="become_instructor" aria-selected="true">{{ trans('admin/main.become_instructor_info') }}</a>
+                                        <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="true">{{ trans('auth.images') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="financial-tab" data-toggle="tab" href="#financial" role="tab" aria-controls="financial" aria-selected="true">{{ trans('admin/main.financial') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="occupations-tab" data-toggle="tab" href="#occupations" role="tab" aria-controls="occupations" aria-selected="true">{{ trans('site.occupations') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="badges-tab" data-toggle="tab" href="#badges" role="tab" aria-controls="badges" aria-selected="true">{{ trans('admin/main.badges') }}</a>
+                                    </li>
+
+                                    @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
+                                        @can('admin_update_user_registration_package')
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="registrationPackage-tab" data-toggle="tab" href="#registrationPackage" role="tab" aria-controls="registrationPackage" aria-selected="true">{{ trans('update.registration_package') }}</a>
+                                            </li>
+                                        @endcan
+                                    @endif
+
+                                    @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
+                                        @can('admin_update_user_meeting_settings')
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="meetingSettings-tab" data-toggle="tab" href="#meetingSettings" role="tab" aria-controls="meetingSettings" aria-selected="true">{{ trans('update.meeting_settings') }}</a>
+                                            </li>
+                                        @endcan
+                                    @endif
+
+                                    @if(!empty($becomeInstructor))
+                                        <li class="nav-item">
+                                            <a class="nav-link @if(!empty($becomeInstructor)) active @endif" id="become_instructor-tab" data-toggle="tab" href="#become_instructor" role="tab" aria-controls="become_instructor" aria-selected="true">{{ trans('admin/main.become_instructor_info') }}</a>
+                                        </li>
+                                    @endif
+
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="purchased_courses-tab" data-toggle="tab" href="#purchased_courses" role="tab" aria-controls="purchased_courses" aria-selected="true">{{ trans('update.purchased_courses') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="purchased_bundles-tab" data-toggle="tab" href="#purchased_bundles" role="tab" aria-controls="purchased_bundles" aria-selected="true">{{ trans('update.purchased_bundles') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="purchased_products-tab" data-toggle="tab" href="#purchased_products" role="tab" aria-controls="purchased_products" aria-selected="true">{{ trans('update.purchased_products') }}</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="topics-tab" data-toggle="tab" href="#topics" role="tab" aria-controls="topics" aria-selected="true">{{ trans('update.forum_topics') }}</a>
                                     </li>
                                 @endif
-
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="purchased_courses-tab" data-toggle="tab" href="#purchased_courses" role="tab" aria-controls="purchased_courses" aria-selected="true">{{ trans('update.purchased_courses') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="purchased_bundles-tab" data-toggle="tab" href="#purchased_bundles" role="tab" aria-controls="purchased_bundles" aria-selected="true">{{ trans('update.purchased_bundles') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="purchased_products-tab" data-toggle="tab" href="#purchased_products" role="tab" aria-controls="purchased_products" aria-selected="true">{{ trans('update.purchased_products') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="topics-tab" data-toggle="tab" href="#topics" role="tab" aria-controls="topics" aria-selected="true">{{ trans('update.forum_topics') }}</a>
-                                </li>
                             </ul>
 
                             <div class="tab-content" id="myTabContent2">
 
                                 @include('admin.users.editTabs.general')
 
-                                @include('admin.users.editTabs.images')
+                                @if(auth()->user()->isAdminRole())
 
-                                @include('admin.users.editTabs.financial')
+                                    @include('admin.users.editTabs.images')
 
-                                @include('admin.users.editTabs.occupations')
+                                    @include('admin.users.editTabs.financial')
 
-                                @include('admin.users.editTabs.badges')
+                                    @include('admin.users.editTabs.occupations')
 
-                                @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
-                                    @can('admin_update_user_registration_package')
-                                        @include('admin.users.editTabs.registration_package')
-                                    @endcan
+                                    @include('admin.users.editTabs.badges')
+
+                                    @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
+                                        @can('admin_update_user_registration_package')
+                                            @include('admin.users.editTabs.registration_package')
+                                        @endcan
+                                    @endif
+
+                                    @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
+                                        @can('admin_update_user_meeting_settings')
+                                            @include('admin.users.editTabs.meeting_settings')
+                                        @endcan
+                                    @endif
+
+                                    @if(!empty($becomeInstructor))
+                                        @include('admin.users.editTabs.become_instructor')
+                                    @endif
+
+                                    @include('admin.users.editTabs.purchased_courses')
+
+                                    @include('admin.users.editTabs.purchased_bundles')
+
+                                    @include('admin.users.editTabs.purchased_products')
+
+                                    @include('admin.users.editTabs.topics')
                                 @endif
-
-                                @if(!empty($user) and ($user->isOrganization() or $user->isTeacher()))
-                                    @can('admin_update_user_meeting_settings')
-                                        @include('admin.users.editTabs.meeting_settings')
-                                    @endcan
-                                @endif
-
-                                @if(!empty($becomeInstructor))
-                                    @include('admin.users.editTabs.become_instructor')
-                                @endif
-
-                                @include('admin.users.editTabs.purchased_courses')
-
-                                @include('admin.users.editTabs.purchased_bundles')
-
-                                @include('admin.users.editTabs.purchased_products')
-
-                                @include('admin.users.editTabs.topics')
 
                             </div>
                         </div>

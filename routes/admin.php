@@ -70,6 +70,10 @@ Route::group([
             Route::get('/excel', 'UserController@exportExcelStudents');
         });
 
+        Route::group(['prefix' => 'teachers'], function () {
+            Route::get('/', 'UserController@teachers');
+        });
+
         Route::group(['prefix' => 'instructors'], function () {
             Route::get('/', 'UserController@instructors');
             Route::get('/excel', 'UserController@exportExcelInstructors');

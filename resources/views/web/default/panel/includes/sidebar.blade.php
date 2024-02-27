@@ -83,7 +83,7 @@
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
-                            <span><a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
+                            <span><a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                         </a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
@@ -107,7 +107,7 @@
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
-                            <span><a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
+                            <span><a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                         </a>
                     </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
@@ -115,7 +115,7 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.svg">
                         </span>
-                        <span><a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" style="width:25px"></a></span>
+                        <span><a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                     </a>
                 </li>
 

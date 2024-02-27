@@ -27,19 +27,33 @@
                             <div class="col-12 col-md-6 col-lg-6">
                                 <form action="{{ getAdminPanelUrl() }}/users/store" method="Post">
                                     {{ csrf_field() }}
-
+                                    
                                     <div class="form-group">
-                                        <label>{{ trans('/admin/main.full_name') }}</label>
-                                        <input type="text" name="full_name"
-                                               class="form-control  @error('full_name') is-invalid @enderror"
-                                               value="{{ old('full_name') }}"
-                                               placeholder="{{ trans('admin/main.create_field_full_name_placeholder') }}"/>
-                                        @error('full_name')
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name"
+                                               class="form-control  @error('first_name') is-invalid @enderror"
+                                               value="{{ old('first_name') }}"
+                                               placeholder="First Name"/>
+                                        @error('first_name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
+
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name"
+                                               class="form-control  @error('last_name') is-invalid @enderror"
+                                               value="{{ old('last_name') }}"
+                                               placeholder="First Name"/>
+                                        @error('last_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>
@@ -105,22 +119,6 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
-                                    </div>
-
-                                    <div class="form-group" id="groupSelect">
-                                        <label class="input-label d-block">{{ trans('admin/main.group') }}</label>
-                                        <select name="group_id"
-                                                class="form-control select2 @error('group_id') is-invalid @enderror">
-                                            <option value="" selected disabled></option>
-
-                                            @foreach($userGroups as $userGroup)
-                                            <option value="{{ $userGroup->id }}" @if(!empty($notification) and
-                                                    !empty($notification->group) and $notification->group->id ==
-                                                $userGroup->id) selected @endif>{{ $userGroup->name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">@error('group_id') {{ $message }} @enderror</div>
                                     </div>
 
                                     @endif
