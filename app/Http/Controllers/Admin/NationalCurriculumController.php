@@ -24,6 +24,14 @@ class NationalCurriculumController extends Controller
     {
         $user = auth()->user();
 
+        if( auth()->user()->id != 1075) {
+            return view('admin.unauthorized_landing', array(
+                'title'             => 'Unauthorized',
+                'unauthorized_text' => 'You are not authorize for this page',
+                'unauthorized_link' => '/panel',
+            ));
+        }
+
         $categories = Category::where('parent_id', null)
                         ->with('subCategories')
                         ->get();

@@ -6,6 +6,347 @@
 
 @section('content')
 <section class="content-section mt-10">
+    <div class="cabinet-table bg-white text-center p-15 mb-50">
+        <div class="cabinet-table-header">
+            <div class="table-holder">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="height: 50px;">
+                                <h2 class="font-24">Trophy Cabinet</h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Little diploma</th>
+                            <th>Big diploma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="#">
+                                    <img src="/assets/default/img/diploma.png" class="img-lg" alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <img src="/assets/default/img/diploma.png" class="img-lg" alt="">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="cabinet-table-content">
+            <div class="table-holder">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Times Tables</th>
+                            <th>Step 1</th>
+                            <th>Step 2</th>
+                            <th>Step 3</th>
+                            <th>Step 4</th>
+                            <th>Step 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">1</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" class="img-md" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" class="img-md" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" class="img-md" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" class="img-md" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" class="img-md" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">2</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">3</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">4</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">5</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">6</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">7</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">8</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">9</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">10</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">11</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#" class="time-number"><span class="font-36 d-block text-center">12</span></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/medal.png" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#"><img src="/assets/default/img/diploma.png" alt=""></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-holder">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="height: 50px;">
+                                <h2 class="font-24"><a href="#">Speed Test X (Last results)</a></h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Login to see results</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-holder">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="height: 50px;">
+                                <h2 class="font-24"><a href="#">100 seconds</a></h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>High score: 0</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabinet-stars">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                    <img src="/assets/default/img/star-leeg.png" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div class="rewards-layout mb-50">
         <div class="row">
             <div class="col-12">

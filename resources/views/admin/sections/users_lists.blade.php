@@ -61,7 +61,7 @@
                                         <span><label><input type="checkbox" class="form-control sections-users" value="{{ $userObj->id }}"></label>{{ $userObj->full_name }}</span>
                                     </td>
                                     <td class="text-left">{{ $userObj->getRewardPoints() }}</td>
-                                    <td class="text-left">{{ $userObj->full_name }}</td>
+                                    <td class="text-left">{{ ($userObj->last_login > 0)? dateTimeFormat($userObj->last_login, 'j M y | H:i') : '-' }}</td>
                                     <td>
                                         @can('admin_classes_edit')
                                         <a href="/admin/classes/{{ $userObj->id }}/edit" class="btn-transparent btn-sm text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">

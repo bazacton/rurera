@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Panel\QuizController;
+use App\Models\DailyQuests;
 use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\QuizzAttempts;
@@ -29,12 +30,16 @@ class TimestablesController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
         //pre($user->id);
 
+        //$DailyQuestsController = new DailyQuestsController();
+        //$QuizzesResult = QuizzesResult::find(6);
+        //$DailyQuestsController->questCompletionCheck($QuizzesResult);
 
-
-        //pre($trophyLeaderboard);
 
         $page = Page::where('link', '/timestables-practice')->where('status', 'publish')->first();
         $childs = array();
@@ -1534,6 +1539,13 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+        $DailyQuestsController = new DailyQuestsController();
+
+        $quests = DailyQuests::where('quest_topic_type', 'timestables')
+        ->where('timestables_mode', 'freedom_mode')
+        ->where('status', 'active')
+        ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
+        ->get();
 
         $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->orderBy('created_at', 'desc')->limit(10)->get();
         $attempts_array = $attempts_labels = $attempts_values = array();
@@ -1549,7 +1561,7 @@ class TimestablesController extends Controller
         $attempts_labels = array_reverse($attempts_labels);
         $attempts_values = array_reverse($attempts_values);
 
-        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
+        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data, 'quests' => $quests, 'DailyQuestsController' => $DailyQuestsController])->render();
     }
 
     /*
@@ -1730,7 +1742,7 @@ class TimestablesController extends Controller
             ->where('status', 'active')
             ->get();
 
-        $trophyLeaderboard = User::where('year_id', $user->year_id)
+        $trophyLeaderboard = User::where('year_id', $user->year_id)->where('class_id', $user->class_id)
             ->orderByRaw("CASE WHEN trophy_average = 0 OR trophy_average IS NULL THEN 1 ELSE 0 END, trophy_average ASC")
             ->get();
 

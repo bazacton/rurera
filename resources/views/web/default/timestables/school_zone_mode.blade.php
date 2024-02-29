@@ -64,13 +64,15 @@
 
                     @php $section_counter = 1; $selected_section = 0; @endphp
                     @if( $classSections->count() > 0)
-                        <ul class="tests-list sections-list mb-30">
-                            @foreach( $classSections as $classSectionObj)
-                                @php $selected_section = ($section_counter == 1)? $classSectionObj->id : $selected_section; @endphp
-                                <li data-type="section-{{$classSectionObj->id}}" class="{{($section_counter==1)? 'active' : ''}}">{{$classSectionObj->title}}</li>
-                                @php $section_counter++; @endphp
-                            @endforeach
-                        </ul>
+                        <div class="col-12">
+                            <ul class="tests-list sections-list mb-30">
+                                @foreach( $classSections as $classSectionObj)
+                                    @php $selected_section = ($section_counter == 1)? $classSectionObj->id : $selected_section; @endphp
+                                    <li data-type="section-{{$classSectionObj->id}}" class="{{($section_counter==1)? 'active' : ''}}">{{$classSectionObj->title}}</li>
+                                    @php $section_counter++; @endphp
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
 
                     @if( $yearStudents->count() > 0)

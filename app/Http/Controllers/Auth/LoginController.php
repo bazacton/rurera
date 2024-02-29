@@ -313,10 +313,10 @@ class LoginController extends Controller
 
             return $this->sendMaximumActiveSessionResponse();
         }
-
         $user->update([
             'logged_count' => (int)$user->logged_count + 1,
-            'is_from_parent' => 0
+            'is_from_parent' => 0,
+            'last_login' => time(),
         ]);
 
         $cartManagerController = new CartManagerController();

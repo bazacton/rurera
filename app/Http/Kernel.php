@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AdminAuthenticate;
 use App\Http\Middleware\CheckMaintenance;
+use App\Http\Middleware\CheckIsStudent;
 use App\Http\Middleware\CheckMobileApp;
 use App\Http\Middleware\Impersonate;
 use App\Http\Middleware\PanelAuthenticate;
@@ -84,6 +85,7 @@ class Kernel extends HttpKernel
         'share' => Share::class,
         'check_mobile_app' => CheckMobileApp::class,
         'check_maintenance' => CheckMaintenance::class,
+        'check_is_student' => CheckIsStudent::class,
         // api
         'api.auth' => \App\Http\Middleware\Api\Authenticate::class,
         'api.guest' => \App\Http\Middleware\Api\RedirectIfAuthenticated::class,

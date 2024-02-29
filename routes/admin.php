@@ -352,6 +352,16 @@ Route::group([
         });
 
         /*
+         * Daily Quests Routing
+         */
+        Route::group(['prefix' => 'daily_quests'], function () {
+            Route::get('/', 'DailyQuestsController@index')->name('adminListDailyQuests');
+            Route::get('/create', 'DailyQuestsController@create');
+            Route::post('/store', 'DailyQuestsController@store');
+            Route::get('/{id}/edit', 'DailyQuestsController@edit')->name('adminEditDailyQuests');
+        });
+
+        /*
          * Assignments Routing
          */
         Route::group(['prefix' => 'custom_quiz'], function () {

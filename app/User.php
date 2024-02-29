@@ -30,6 +30,7 @@ use App\Models\Webinar;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -4315,6 +4316,21 @@ class User extends Authenticatable
             ->sum('score');
 
         return $credit - $debit;
+    }
+    
+    public function getTodayPoints()
+    {
+        $todayStartTimestamp = Carbon::now()->startOfDay()->timestamp;
+        $todayEndTimestamp = Carbon::now()->endOfDay()->timestamp;
+        $credit = RewardAccounting::where('user_id', $this->id)
+            ->where('status', RewardAccounting::ADDICTION)
+            ->whereBetween('created_at', [
+                $todayStartTimestamp,
+                $todayEndTimestamp
+            ])
+            ->sum('score');
+
+        return $credit;
     }
 
     public function getRewardPointsByType($parent_type, $parent_id = 0)

@@ -20,7 +20,10 @@ class SpellsController extends Controller
     public function index(Request $request)
     {
         if (!auth()->check()) {
-            //return redirect('/login');
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();

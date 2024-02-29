@@ -104,6 +104,10 @@ class LoginController extends Controller
         $this->validate($request, $rules);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            $user = auth()->user();
+            $user->update([
+                'last_login' => time(),
+            ]);
             return Redirect::to(getAdminPanelUrl());
         }
 

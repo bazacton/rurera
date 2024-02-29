@@ -361,7 +361,7 @@
                                 @endif
                             @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
                             <div class="col-12 col-lg-12 mb-30">
-                                <div class="store-stats">
+                                <div class="store-stats panel-border bg-white rounded-sm p-20">
                                     <ul>
                                         <li>
                                         <div class="store-item">
@@ -375,76 +375,98 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-12 mb-30">
-                                <div class="quests-list">
-                                    <h3 class="font-19 font-weight-bold">
-                                        Daily Quests
-                                        <a href="#" class="view-all">View All</a>
-                                    </h3>
-                                    <ul>
-                                        <li>
-                                            <div class="quests-item">
-                                                <div class="icon-box">
-                                                    <img src="/assets/default/svgs/star-quests.svg" alt="">
-                                                </div>
-                                                <div class="item-text">
-                                                    <h5>Earn 10 XP</h5>
-                                                    <div class="levels-progress horizontal">
-                                                        <span class="progress-box">
-                                                            <span class="progress-count" style="width: 0%;"></span>
-                                                        </span>
-                                                        <span class="progress-numbers">0 / 10</span>
+                                @if( $quests->count() > 0 )
+                                    <div class="col-12 col-lg-12 mb-30">
+                                        <div class="quests-list panel-border bg-white rounded-sm p-20">
+                                            <h3 class="font-19 font-weight-bold">
+                                                Daily Quests
+                                                <a href="#" class="view-all font-weight-bold font-15">View All</a>
+                                            </h3>
+                                            <ul>
+                                                    @foreach( $quests as $questObj)
+                                                        @php $questUserData = $DailyQuestsController->getQuestUserData($questObj); @endphp
+                                                        <li>
+                                                                <div class="quests-item">
+                                                                    <div class="icon-box">
+                                                                        <img src="/assets/default/svgs/star-quests.svg" alt="">
+                                                                    </div>
+                                                                    <div class="item-text">
+                                                                        <h5>{{$questObj->title}}</h5>
+                                                                        <div class="levels-progress horizontal">
+                                                                            <span class="progress-box">
+                                                                                <span class="progress-count" style="width: {{isset( $questUserData['completion_percentage'] )? $questUserData['completion_percentage'] : 0}}%;"></span>
+                                                                            </span>
+                                                                            <span class="progress-numbers">{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</span>
+                                                                        </div>
+                                                                        <span class="progress-icon">
+                                                                            <img src="/assets/default/img/quests-coin.png" alt="">
+                                                                            +{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                    @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <div class="col-12 col-lg-12 mb-30">
+                                    <div class="product-card medium panel-border bg-white rounded-sm p-20">
+                                        <div class="product-controls nav" id="myTab" role="tablist">
+                                            <a href="#trending" class="active font-16 font-weight-bold" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">Trending Toys</a>
+                                            <a href="#shortlisted" class="font-16 font-weight-bold" id="shortlisted-tab" data-toggle="tab" href="#shortlisted" role="tab" aria-controls="shortlisted" aria-selected="false">Shortlisted</a>
+                                        </div>
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+                                                <figure>
+                                                    <div class="image-box">
+                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
+
+
+                                                            <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
+                                                        </a>
                                                     </div>
-                                                    <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-coin.png" alt="">
-                                                        +20
-                                                    </span>
-                                                </div>
+
+                                                    <figcaption class="product-card-body">
+
+                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
+                                                            <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
+                                                        </a>
+
+                                                        <div class="product-price-box">
+                                                            <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
+                                                        </div>
+                                                    </figcaption>
+
+                                                </figure>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="quests-item">
-                                                <div class="icon-box">
-                                                    <img src="/assets/default/svgs/certificate.svg" alt="">
-                                                </div>
-                                                <div class="item-text">
-                                                    <h5>Score 90% or higher in 2 <br /> lessons</h5>
-                                                    <div class="levels-progress horizontal">
-                                                        <span class="progress-box">
-                                                            <span class="progress-count" style="width: 40%;"></span>
-                                                        </span>
-                                                        <span class="progress-numbers">0 / 2</span>
+                                            <div class="tab-pane fade" id="shortlisted" role="tabpanel" aria-labelledby="shortlisted-tab">
+                                                <figure>
+                                                    <div class="image-box">
+                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
+
+
+                                                            <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
+                                                        </a>
                                                     </div>
-                                                    <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-coin.png" alt="">
-                                                        +15
-                                                    </span>
-                                                </div>
+
+                                                    <figcaption class="product-card-body">
+
+                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
+                                                            <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
+                                                        </a>
+
+                                                        <div class="product-price-box">
+                                                            <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
+                                                        </div>
+                                                    </figcaption>
+
+                                                </figure>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="quests-item">
-                                                <div class="icon-box">
-                                                    <img src="/assets/default/svgs/clock.svg" alt="">
-                                                </div>
-                                                <div class="item-text">
-                                                    <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
-                                                    <div class="levels-progress horizontal">
-                                                        <span class="progress-box">
-                                                            <span class="progress-count" style="width: 20%;"></span>
-                                                        </span>
-                                                        <span class="progress-numbers">0 / 2</span>
-                                                    </div>
-                                                    <span class="progress-icon">
-                                                        <img src="/assets/default/img/quests-coin.png" alt="">
-                                                        +100
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
                             @endif
                             

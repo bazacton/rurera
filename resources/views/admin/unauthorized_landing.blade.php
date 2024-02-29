@@ -1,7 +1,6 @@
-@extends('web.default.panel.layouts.panel_layout')
-@php use App\Models\Webinar; @endphp
+@extends('admin.layouts.app')
 
-@push('styles_top')
+@push('libraries_top')
 
 @endpush
 
@@ -13,7 +12,7 @@
     <div class="d-flex position-relative">
 
 
-        <div class="learning-page-content flex-grow-1 bg-info-light pt-15">
+        <div class="learning-page-content flex-grow-1 bg-info-light p-15">
             <div class="learning-content" id="learningPageContent">
                 <div class="d-flex align-items-center justify-content-center w-100">
 
@@ -36,8 +35,8 @@
                             <span><img src="/assets/default/svgs/croun-plus.svg" width="192" height="40" alt=""></span>
                         </div>
                         <div class="learning-text">
-                            <h5 class="font-30 mb-10">Access Real-time Student Activity</h5>
-                            <p class="font-18">Get PLUS today for accsecc to live student activity and progress from the freedom of your desk.</p>
+                            <h5>Access Real-time Student Activity</h5>
+                            <p>Get PLUS today for accsecc to live student activity and progress from the freedom of your desk.</p>
                             <button class="get-btn">
                                 <span class="btn-animate-left">
                                     <span class="shadow-sm">

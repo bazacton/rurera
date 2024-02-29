@@ -59,7 +59,7 @@
                                         <span>{{ $sectionData->title }}</span>
                                     </td>
                                     <td class="text-left">{{ $sectionData->category->getTitleAttribute() }}</td>
-                                    <td class="text-left">{{ $sectionData->sectionClass->title }}</td>
+                                    <td class="text-left">{{ isset( $sectionData->sectionClass->title )? $sectionData->sectionClass->title : '' }}</td>
                                     <td class="text-left"><a href="/admin/sections/users?section={{$sectionData->id}}">{{ $sectionData->users->count() }}</a></td>
                                     <td>
                                         {{ $sectionData->class_code }}

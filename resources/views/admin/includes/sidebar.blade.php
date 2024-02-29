@@ -239,6 +239,16 @@
                 </li>
             @endif
 
+            @can('admin_daily_quests')
+
+                <li class="nav-item {{ (request()->is('admin/daily_quests')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/daily_quests') }}" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Daily Quests</span>
+                    </a>
+                </li>
+            @endif
+
 
             @can('admin_assigned_assignments')
                 <li class="nav-item {{ (request()->is('admin/assigned_assignments')) ? 'active' : '' }}">

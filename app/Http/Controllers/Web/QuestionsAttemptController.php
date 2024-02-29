@@ -1742,6 +1742,9 @@ class QuestionsAttemptController extends Controller
             $results = json_decode($QuizzesResult->results);
             $return_layout .= view('web.default.timestables.finish_timestables', ['QuizzesResult' => $QuizzesResult, 'results' => $results])->render();
         }
+
+        $DailyQuestsController = new DailyQuestsController();
+        $DailyQuestsController->questCompletionCheck($QuizzesResult);
         
         
         if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'trophy_mode') {
@@ -1751,7 +1754,7 @@ class QuestionsAttemptController extends Controller
                         ->where('status', '!=', 'waiting');
             $total_counts = $trophyDetails->count();
             $total_correct = $trophyDetails->sum('total_correct');
-            if( $total_counts > 0){
+            if( $total_counts > 4){
                 $average_questions = ($total_counts*60) / $total_correct;
                 $average_questions = round($average_questions, 1);
                 $user->update([

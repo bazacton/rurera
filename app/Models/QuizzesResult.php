@@ -39,6 +39,25 @@ class QuizzesResult extends Model
         return $this->hasMany('App\Models\QuizzResultQuestions', 'quiz_result_id', 'id');
     }
 
+    public function quizz_result_points()
+    {
+        return $this->hasMany('App\Models\QuizzResultQuestions', 'quiz_result_id', 'id')->where('status', '=', 'correct');
+    }
+
+    public function quizz_result_percentage()
+    {
+        $totalQuestions = $this->quizz_result_questions_list()->count();
+        $correctPoints = $this->quizz_result_points()->count();
+
+        if ($totalQuestions > 0) {
+            $percentage = ($correctPoints / $totalQuestions) * 100;
+        } else {
+            $percentage = 0; // Handle division by zero
+        }
+
+        return $percentage;
+    }
+
     public function quizz_result_reward_points()
     {
         return $this->belongsTo('App\Models\QuizzResultQuestions', 'id', 'quiz_result_id')->where('status', '=', 'correct');

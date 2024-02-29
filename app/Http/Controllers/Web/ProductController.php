@@ -31,6 +31,9 @@ class ProductController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $data = $request->all();
 
         $query = Product::where('products.status', Product::$active)

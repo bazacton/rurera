@@ -23,6 +23,9 @@ class TestsController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         if( auth()->user()->id != 1075) {
             return view('web.default.panel.unauthorized_landing', array(
                 'title'             => 'Unauthorized',

@@ -14,7 +14,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 
 
         <div class="col-12 col-lg-12">
-            <div class="profile-image-holder p-25 mb-50">
+            <div class="profile-image-holder p-25 mb-10">
                 <div class="form-group">
                         <div class="row">
                             <div class="col-12 col-lg-4">
@@ -22,9 +22,9 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                             </div>
                             <div class="col-12 col-lg-8">
                                 <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="mb-15 d-block">
-                                <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary select-image-cropit" data-ref-image="profileImagePreview" data-ref-input="profile_image">
+                                <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary profile-image-btn">
                                     <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
-                                    {{ trans('auth.select_image') }}
+                                    Update Profile Picture
                                 </button>
 
                                 <div class="input-group">
@@ -73,7 +73,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group rurera-hide">
                         <div class="row">
                             <div class="col-12 col-lg-4">
                                 <label class="input-label font-15">Secret Word</label>
@@ -90,7 +90,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group rurera-hide">
                         <div class="row">
                             <div class="col-12 col-lg-4"></div>
                             <div class="col-12 col-lg-8">
@@ -108,12 +108,22 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 
                 </div>
             </div>
-            <div class="col-12 col-lg-12">
-                <div id="svgAvatars"></div>
-            </div>
+
         </div>
 
 </section>
+
+
+<div class="modal fade" id="profile-image-modal" tabindex="-1" role="dialog" aria-labelledby="profile-image-modal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                    <div id="svgAvatars"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade" id="avatarCropModalContainer" tabindex="-1" role="dialog" aria-labelledby="avatarCrop">
@@ -191,6 +201,12 @@ $(document).ready(function () {
        });
 
     });
+
+    $(document).on('click', '.profile-image-btn', function (e) {
+        $("#profile-image-modal").modal('show');
+    });
+
+
 
     $(document).on('click', '.regenerate-pin', function (e) {
         rurera_loader($("#userSettingForm"), 'div');
