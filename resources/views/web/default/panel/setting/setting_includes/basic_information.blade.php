@@ -171,9 +171,9 @@ $avatar_color_settings = json_encode($avatar_color_settings);
     avatar_color_settings = JSON.parse(avatar_color_settings);
 
 $(document).ready(function () {
-    var start_id = '{{$user->user_preference}}';
-    start_id = (start_id == 'female')? 'girls' : 'boys';
-    $("#svga-start-"+start_id).click();
+
+
+
 
 
     $(document).on('click', '.regenerate-emoji', function (e) {
@@ -202,8 +202,15 @@ $(document).ready(function () {
 
     });
 
+    var imageClicked = false;
     $(document).on('click', '.profile-image-btn', function (e) {
         $("#profile-image-modal").modal('show');
+        if( imageClicked == false) {
+            var start_id = '{{$user->user_preference}}';
+            start_id = (start_id == 'female') ? 'girls' : 'boys';
+            $("#svga-start-" + start_id).click();
+            imageClicked = true;
+        }
     });
 
 

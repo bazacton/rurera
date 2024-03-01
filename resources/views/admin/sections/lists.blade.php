@@ -48,7 +48,6 @@
                                 <tr>
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
                                     <th class="text-left">Curriculum</th>
-                                    <th class="text-left">Class</th>
                                     <th class="text-left">No of Students</th>
                                     <th>Class Code</th>
                                 </tr>
@@ -56,10 +55,9 @@
                                 @foreach($sections as $sectionData)
                                 <tr>
                                     <td>
-                                        <span>{{ $sectionData->title }}</span>
+                                        <span>{{ $sectionData->title }} {{ isset( $sectionData->sectionClass->title )? '('.$sectionData->sectionClass->title.')' : '' }}</span>
                                     </td>
                                     <td class="text-left">{{ $sectionData->category->getTitleAttribute() }}</td>
-                                    <td class="text-left">{{ isset( $sectionData->sectionClass->title )? $sectionData->sectionClass->title : '' }}</td>
                                     <td class="text-left"><a href="/admin/sections/users?section={{$sectionData->id}}">{{ $sectionData->users->count() }}</a></td>
                                     <td>
                                         {{ $sectionData->class_code }}

@@ -305,6 +305,7 @@
 
                                     @if((!empty($class->sections)))
                                     @foreach($class->sections as $key => $sectionObj)
+                                    @php  $section_teachers = $sectionObj->teachers->pluck('teacher_id')->toArray(); @endphp
                                     <li class="form-group list-group">
 
                                         <div class="p-2 border rounded-sm">
@@ -323,6 +324,16 @@
                                                 <input type="text" name="section_code"
                                                class="form-control"
                                                value="{{ $sectionObj->class_code }}" readonly disabled/>
+
+                                                <select class="form-control select2" name="sections[{{ $sectionObj->id }}][class_teachers][]" multiple="multiple">
+                                                    @if( $teachers->count() > 0)
+                                                        @foreach( $teachers as $teacherObj)
+                                                            @php $selected = in_array($teacherObj->id, $section_teachers)? 'selected' : ''; @endphp
+                                                            <option value="{{$teacherObj->id}}" {{$selected}}>{{$teacherObj->full_name}}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+
 
 
                                                 <div class="input-group-append">

@@ -7746,6 +7746,7 @@ function getTopicTitle($topic_id, $topic_type){
 function getRewardTitle($rewardObj){
 
     $reward_title = trans('update.reward_type_'.$rewardObj->type);
+    $reward_title = 'Registration Bonus';
     if( isset( $rewardObj->parent_type) && !empty( $rewardObj->parent_type)){
         switch( $rewardObj->parent_type ){
 
@@ -7764,6 +7765,7 @@ function getRewardTitle($rewardObj){
                 $assignmentTitle = isset( $resultObj->assignment->StudentAssignmentData->title )? $resultObj->assignment->StudentAssignmentData->title : '';
                 $reward_title = 'Timestables Assignment: '. $assignmentTitle;
             break;
+
 
         }
     }

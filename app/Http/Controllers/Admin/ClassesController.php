@@ -6,6 +6,7 @@ use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
 use App\Models\Classes;
+use App\Models\ClassTeachers;
 use App\Models\Category;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -77,12 +78,17 @@ class ClassesController extends Controller {
 
         $classObj = Classes::findOrFail($id);
 
+
+        $teachers = User::select('id', 'full_name')->where('role_id', 7)->get();
+
+
         $categories = Category::where('parent_id', null)
                 ->with('subCategories')
                 ->get();
             $data = [
             'pageTitle' => 'Edit Class',
             'categories' => $categories,
+            'teachers' => $teachers,
             'class' => $classObj,
         ];
 
@@ -146,6 +152,7 @@ class ClassesController extends Controller {
 
 
 
+
         if ($id != '' && $id > 0) {
             $this->authorize('admin_classes_edit');
             $classObj = Classes::findOrFail($id);
@@ -164,6 +171,7 @@ class ClassesController extends Controller {
                 'created_by' => $user->id,
                 'created_at' => time(),
                 'timestables_no' => json_encode($tables_no),
+                'school_id' => $user->school_id,
             ]);
         }
 
@@ -172,6 +180,9 @@ class ClassesController extends Controller {
         if( !empty( $sections ) ){
             foreach( $sections as $section_id => $sectionData){
                 $sectionObj = Classes::find($section_id);
+                $class_teachers = isset( $sectionData['class_teachers'] )? $sectionData['class_teachers'] : array();
+
+                $section_teachers = $sectionObj->teachers->pluck('teacher_id')->toArray();
 
                 if( isset( $sectionObj->id ) ){
                     $section_data = array(
@@ -190,7 +201,23 @@ class ClassesController extends Controller {
                         'created_by' => $user->id,
                         'created_at' => time(),
                         'class_code' => $this->generateRandomCode(),
+                        'school_id' => $user->school_id,
                     ]);
+                }
+
+
+                if( !empty( $class_teachers ) ){
+                    foreach( $class_teachers as $teacher_id){
+                        if( !in_array($teacher_id, $section_teachers)){
+                            $classTeacherObj = ClassTeachers::create([
+                                'class_id' => $sectionObj->id,
+                                'teacher_id' => $teacher_id,
+                                'status' => 'active',
+                                'created_by' => $user->id,
+                                'created_at' => time(),
+                            ]);
+                        }
+                    }
                 }
             }
         }
@@ -316,6 +343,7 @@ class ClassesController extends Controller {
 
         $query = $this->sections_filters($query, $request);
 
+        $query = $query->where('school_id', $user->school_id);
 
         $sections = $query->with('user', 'sections')->where('parent_id', '!=', 0)->paginate(50);
 

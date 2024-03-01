@@ -58,7 +58,7 @@
 
         </div>
 
-        <div class="time-card panel-border panel-shadow mb-30">
+        <div class="time-card panel-border panel-shadow mb-30 rurera-hide">
             <div class="card-header">
                 <h3 class="font-19 font-weight-bold">
                     What’s up Today

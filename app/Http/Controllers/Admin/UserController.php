@@ -593,6 +593,7 @@ class UserController extends Controller
 
         if (!empty($data['role_id'])) {
             $role = Role::find($data['role_id']);
+            $school_id = 0;
 
             if (!empty($role)) {
                 $referralSettings = getReferralSettings();
@@ -604,6 +605,7 @@ class UserController extends Controller
                 if(auth()->user()->isTeacher() || auth()->user()->isAdminTeacher()){
                     $parent_type = 'teacher';
                     $parent_id = $userObj->id;
+                    $school_id = $userObj->school_id;
                 }
                 $class_id = isset( $data['class_id'] ) ? $data['class_id'] : 0;
                 $classObj = Classes::where('id', $class_id)->first();
@@ -630,6 +632,7 @@ class UserController extends Controller
                     'timestables_no' => isset( $classObj->timestables_no )? $classObj->timestables_no : json_encode(array()),
                     'first_name' => $first_name,
                     'last_name' => $last_name,
+                    'school_id' => $school_id
                 ]);
 
                 if (!empty($data['group_id'])) {

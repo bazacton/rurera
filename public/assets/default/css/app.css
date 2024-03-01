@@ -5379,7 +5379,7 @@ input[type=submit].btn-block {
 }
 .dropdown-toggle:after {
     display: inline-block;
-    margin-left: .255em;
+    margin-left: .5em;
     vertical-align: .255em;
     content: "";
     border-top: .3em solid;
@@ -12804,7 +12804,7 @@ a.badge-circle-gray200.focus,
 a.badge-circle-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94.5%, .5);}
 .nav-tabs .nav-item a.active:after {content: "";position: absolute;bottom: 0;left: 50%;width: 85%;height: 5px;background-color: var(--primary);border-radius: 5px;transform: translate(-50%, 17px);}
 .rtl .nav-tabs .nav-item a.active:after {bottom: 2px;}
-.dropdown-menu {padding: 15px; min-width: 325px; z-index: 511; border: unset;top: 40%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
+.dropdown-menu {padding: 15px; min-width: 325px; z-index: 511; border: unset;top: 100%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
 .dropdown:hover .dropdown-menu {opacity: 1; visibility: visible;margin-top: -5px;}
 .dropdown-menu.user-profile-dropdown {min-width: 125px;}
 header .dropdown-menu {transform: translate3d(0, 54px, 0) !important;}
@@ -17321,7 +17321,7 @@ Dashboard Form-Tabs Style End
 .top-navbar .coin-counts {margin-left: 10px;}
 .coin-counts strong {color: var(--primary); font-size: 18px; display: inline-flex; align-items: center;}
 .coin-counts img {max-width: 26px; max-height: 26px; object-fit: contain; margin-right: 8px; display: inline-block; margin-top: -3px;}
-.panel-right-sidebar .coin-counts img {margin-right: 5px;}
+.panel-right-sidebar .coin-counts img {margin-right: 5px; max-width: none; max-height: none; width: 28px; height: 28px; margin-top: 0;}
 .top-navbar .nav-icons-or-start-live {margin-left: 15px;}
 /*************************************
 Assignments Table Style Start
@@ -17553,7 +17553,7 @@ Product Tabs Slider Style Start
 .spells-quiz-from .form-field {margin: 0 0 40px;}
 .spells-quiz-from input[type="text"],
 .question-layout.spells-quiz-from input[type="text"] {border: 0; width: 10.5ch; font: 1.2rem 'Ubuntu Mono', monospace; letter-spacing: 0.5ch; height: auto; min-height: auto; border: 0; border-radius: 0; padding: 0; text-transform: uppercase; font-size: 28px; font-weight: 600 !important; background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 10ch 2px no-repeat;}
-.spells-quiz-from button {min-width: 230px; background-color: #46484a; border: 0; padding: 18px 50px; font-size: 18px; font-weight: 500; text-transform: uppercase; border-radius: 5px; color: #fff;}
+.spells-quiz-from button {min-width: 150px; background-color: #46484a; border: 0; padding: 18px 50px; font-size: 18px; font-weight: 500; text-transform: uppercase; border-radius: 5px; color: #fff;}
 .spells-quiz-from button:hover {background-color: #46484a; color: #fff;}
 .spells-quiz-from .form-btn-field {padding-top: 30px;}
 .spells-quiz-sound strong .sound-icon,
@@ -18504,7 +18504,7 @@ span.review-label {line-height: normal;}
     margin: 2px 0 0 0;
 }
 .contact-form .form-btn-field button,
-.how-it-work .get-btn, .form-btn-field button {
+.how-it-work .get-btn {
     background-color: #010ed0;
     border-radius: 5px;
     border: 0;
@@ -18744,7 +18744,7 @@ Lms Responsive Style Start
     body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0;padding: 0;top: 50%;right: 15px;z-index: 1;margin-top: -18px;}
     .panel-content .search-top-banner {padding: 25px !important;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
-    .panel-content .panel-right-sidebar {position: relative !important; max-width: 100%; display: none;}
+    .panel-content .panel-right-sidebar {padding-top: 25px;}
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
     body.panel-sidebar-open {overflow: hidden;}
     .sidebar-menu-top {border-bottom: 1px solid rgba(0,0,0,0.1); padding: 15px 0 15px 15px; position: relative;}
@@ -18909,7 +18909,7 @@ Lms Responsive Style Start
     body .instruction-text ul li {text-align: left;}
     body .topbar-right {justify-content: center;}
     body .quiz-timer .timer-number {min-width: auto; margin-left: 0;}
-    .treasure-stage {text-align: center;}
+    .treasure-stage {text-align: center; padding-left: 0;}
     .treasure-mission-layout .spell-levels .horizontal-list {display: inline-block !important;}
     .treasure-mission-layout .spell-levels .horizontal-list li {margin: 0 0 0 50px; width: auto;}
     .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 60%; margin-left: 8px;}
@@ -18925,7 +18925,7 @@ Lms Responsive Style Start
     .stats-list ul li {border-left: 0; width: 100%; padding: 0 0 15px; margin: 0 0 15px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1);}
     .stats-list ul li:last-child {border-bottom: 0; padding: 0; margin: 0;}
     .panel-content .spell-levels .panel-subheader {padding-right: 135px;}
-    .chart-filters .analytics-type li {flex-basis: 47%;}
+    .chart-filters .analytics-type li {flex-basis: 46%;}
     .time-card {padding: 15px;}
     .time-card .card-header {flex-wrap: wrap;}
     .time-nav ul {flex-wrap: wrap; justify-content: flex-start;}
@@ -18983,6 +18983,8 @@ Lms Responsive Style Start
     .learning-start .learning-text {margin-bottom: 30px;}
     .learning-start .learning-text h5 {font-size: 1.2rem !important;}
     .learning-start .learning-text p {font-size: 1rem !important;margin-bottom: 20px;}
+    .panel-right-sidebar .product-card .font-16 {font-size: 16px !important;}
+    .container-fluid.read-quiz-content {padding-left: 15px; padding-right: 15px;}
 }
 
 @media screen and (max-width: 640px) {
@@ -19180,4 +19182,6 @@ Lms Responsive Style Start
     .spell-levels li {align-items: flex-start;}
     .spell-levels li > a:before {height: 100%; margin-top: 14px;}
     .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 100%; padding-top: 10px;}
+    .panel-content .template-grid .text-holder a {display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 5px;}
+    .panel-content .grid-card .title-label, .login-options .coming-soon {margin: 0;}
 }

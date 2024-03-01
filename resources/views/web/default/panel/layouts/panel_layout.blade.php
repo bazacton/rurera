@@ -251,6 +251,8 @@
                                 </div>
                                 @endif
                             </div>
+
+                                @if(auth()->user()->isParent())
                                 @if(request()->is('panel') || request()->is('custom_html') || request()->is('panel/marketing/affiliates'))
                                     <div class="col-12 col-lg-12 mb-30">
                                         <div class="referrals panel-border panel-shadow rounded-sm">
@@ -332,6 +334,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                                @endif
                             <div class="col-12 col-lg-12 mb-30">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
                                     <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
@@ -368,14 +372,14 @@
                                             <img src="/assets/default/svgs/stats-coins.svg" alt="">
                                             <span class="item-label">
                                                 Current Balance
-                                                <span class="iteme-numbers">706</span>
+                                                <span class="iteme-numbers">{{$authUser->getRewardPoints()}}</span>
                                             </span>
                                         </div>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                                @if( $quests->count() > 0 )
+                                @if( isset( $quests ) && $quests->count() > 0 )
                                     <div class="col-12 col-lg-12 mb-30">
                                         <div class="quests-list panel-border bg-white rounded-sm p-20">
                                             <h3 class="font-19 font-weight-bold">
