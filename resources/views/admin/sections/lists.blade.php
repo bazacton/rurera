@@ -25,19 +25,16 @@
                     <li class="nav-item">
                         <a class="nav-link" id="topics-tab" href="/admin/classes">
                             <span class="tab-title">Classes</span>
-                            <span class="tab-detail">Classes List</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" id="topics-tab" href="/admin/sections" >
                             <span class="tab-title">Sections</span>
-                            <span class="tab-detail">Sections List</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="topics-tab" href="/admin/sections/joining-requests" >
                             <span class="tab-title">Joining Requests</span>
-                            <span class="tab-detail">Pending Joining Requests</span>
                         </a>
                     </li>
                 </ul>

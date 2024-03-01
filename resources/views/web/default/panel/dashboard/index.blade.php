@@ -177,271 +177,43 @@
                             <div class="product-tabs">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="latest-toy-tab" data-toggle="tab"
-                                           href="#latest-toy" role="tab" aria-controls="latest-toy"
-                                           aria-selected="true">Latest Toy</a>
+                                        <a class="nav-link active" id="trending-toys-tab" data-toggle="tab"
+                                           href="#trending-toys" role="tab" aria-controls="trending-toys"
+                                           aria-selected="true">Trending Toys</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="favorite-toys-tab" data-toggle="tab"
-                                           href="#favorite-toys" role="tab" aria-controls="favorite-toys"
+                                        <a class="nav-link" id="shortlisted-toys-tab" data-toggle="tab"
+                                           href="#shortlisted-toys" role="tab" aria-controls="shortlisted-toys"
                                            aria-selected="false">Favorite Toys</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="productTabContent">
-                                    <div class="tab-pane fade active show" id="latest-toy" role="tabpanel"
-                                         aria-labelledby="latest-toy-tab">
+                                    <div class="tab-pane fade active show" id="trending-toys" role="tabpanel"
+                                         aria-labelledby="trending-toys-tab">
                                         <div class="swiper-container product-tabs-slider">
                                             <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/2-1.jpg" class="img-cover"
-                                                                         alt="VTech Ride - Go Recycling Truck">
-                                                                </a>
+                                                @if( isset( $trending_toys ) && $trending_toys->count() > 0)
+                                                    @foreach( $trending_toys as $product)
+                                                        @php
+                                                            $hasDiscount = $product->getActiveDiscount();
+                                                        @endphp
+                                                        <div class="swiper-slide">
+                                                            <div class="product-card">
+                                                                <figure>
+                                                                    @include('web.default.products.includes.card')
+                                                                </figure>
                                                             </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        VTech Ride - Go Recycling Truck</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 500 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/VTech-Ride-Go-Recycling-Truck">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/products images/amazing-police-and-rescue.jpeg"
-                                                                         class="img-cover"
-                                                                         alt="Magformers Amazing Police And Rescue 26 Piece Set">
-                                                                </a>
-                                                            </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        Magformers Amazing Police And Rescue 26 Piece
-                                                                        Set</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 600 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/Magformers-Amazing-Police-And-Rescue-26-Piece-Set-1">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/products images/magic-touch-wooden-piano-01.jpg"
-                                                                         class="img-cover"
-                                                                         alt="Hape Baby Einstein Magic Touch Wooden Piano">
-                                                                </a>
-                                                            </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        Hape Baby Einstein Magic Touch Wooden Piano</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 300 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/Hape-Baby-Einstein-Magic-Touch-Wooden-Piano">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/products images/tikes-tap-a-tune-drum-01.jpg"
-                                                                         class="img-cover"
-                                                                         alt="Little Tikes Tap A Tune Drum">
-                                                                </a>
-                                                            </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        Little Tikes Tap A Tune Drum</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 600 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/Little-Tikes-Tap-A-Tune-Drum">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/products images/geosafari-junior-kidnoculars-01.jpeg"
-                                                                         class="img-cover"
-                                                                         alt="Learning Resources GeoSafari Junior Kidnoculars">
-                                                                </a>
-                                                            </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        Learning Resources GeoSafari Junior
-                                                                        Kidnoculars</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 500 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <div class="product-card">
-                                                        <figure>
-                                                            <div class="image-box">
-                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars"
-                                                                   class="image-box__a">
-
-
-                                                                    <img src="/store/1/Shop/products images/geosafari-junior-kidnoculars-01.jpeg"
-                                                                         class="img-cover"
-                                                                         alt="Learning Resources GeoSafari Junior Kidnoculars">
-                                                                </a>
-                                                            </div>
-
-                                                            <figcaption class="product-card-body">
-
-                                                                <a href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">
-                                                                    <h3 class="mt-15 product-title font-weight-bold font-16 text-dark-blue">
-                                                                        Learning Resources GeoSafari Junior
-                                                                        Kidnoculars</h3>
-                                                                </a>
-
-                                                                <div class="product-price-box mt-25">
-                                                                    <span class="real font-14"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                stroke="currentColor" stroke-width="2"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                class="feather feather-zap"><polygon
-                                                                                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 500 Coins</span>
-                                                                </div>
-                                                            </figcaption>
-                                                            <button type="button" class="cart-button"><a
-                                                                        class="bt-button"
-                                                                        href="{{url('/')}}/products/Learning-Resources-GeoSafari-Junior-Kidnoculars">BUY</a>
-                                                            </button>
-                                                        </figure>
-                                                    </div>
-                                                </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                             <!-- Add Arrows -->
                                             <div class="swiper-button-prev"></div>
                                             <div class="swiper-button-next"></div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="favorite-toys" role="tabpanel"
-                                         aria-labelledby="favorite-toys-tab">
+                                    <div class="tab-pane fade" id="shortlisted-toys" role="tabpanel"
+                                         aria-labelledby="shortlisted-toys-tab">
                                         <div class="swiper-container product-tabs-slider">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">

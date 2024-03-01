@@ -103,6 +103,7 @@ class DailyQuestsController extends Controller
         $no_of_practices = $questObj->no_of_practices;
         $lessons_score = $questObj->lessons_score;
         $no_of_answers = $questObj->no_of_answers;
+        $screen_time = $questObj->screen_time;
 
 
 
@@ -130,7 +131,16 @@ class DailyQuestsController extends Controller
                 return $result->quizz_result_points->count() >= $no_of_answers;
             });
         }
+
+        if( $quest_method == 'screen_time'){
+            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($screen_time) {
+                //pre($result->sum('total_time_consumed'));
+                return $result->sum('total_time_consumed') >= ($screen_time > 0)? ($screen_time/60) : 0;
+            });
+        }
         //$QuizzesResults = $QuizzesResults->get();
+
+        //pre($QuizzesResults->count());
 
         $completion_percentage = 0;
         if( $QuizzesResults->count() >  0){

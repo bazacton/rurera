@@ -86,6 +86,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Total Trending Products</h4>
+                            </div>
+                            <div class="card-body d-flex flex-column p-0">
+                                <span>{{ $totalTrendingProducts }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <section class="card">

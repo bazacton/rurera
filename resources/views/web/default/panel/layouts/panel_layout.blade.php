@@ -334,8 +334,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endif
                                 @endif
+                            @if(request()->is('custom_html') || request()->is('panel') || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
                             <div class="col-12 col-lg-12 mb-30">
                                 <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
                                     <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
@@ -414,63 +415,51 @@
                                         </div>
                                     </div>
                                 @endif
-
-                                <div class="col-12 col-lg-12 mb-30">
-                                    <div class="product-card medium panel-border bg-white rounded-sm p-20">
-                                        <div class="product-controls nav" id="myTab" role="tablist">
-                                            <a href="#trending" class="active font-16 font-weight-bold" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">Trending Toys</a>
-                                            <a href="#shortlisted" class="font-16 font-weight-bold" id="shortlisted-tab" data-toggle="tab" href="#shortlisted" role="tab" aria-controls="shortlisted" aria-selected="false">Shortlisted</a>
-                                        </div>
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
-                                                <figure>
-                                                    <div class="image-box">
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
+                                @if(request()->is('shop'))
 
 
-                                                            <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
-                                                        </a>
-                                                    </div>
-
-                                                    <figcaption class="product-card-body">
-
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
-                                                            <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
-                                                        </a>
-
-                                                        <div class="product-price-box">
-                                                            <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
-                                                        </div>
-                                                    </figcaption>
-
-                                                </figure>
+                                    <div class="col-12 col-lg-12 mb-30">
+                                        <div class="product-card medium panel-border bg-white rounded-sm p-20">
+                                            <div class="product-controls nav" id="myTab" role="tablist">
+                                                <a href="#trending" class="active font-16 font-weight-bold" id="trending-tab" data-toggle="tab" href="#trending" role="tab" aria-controls="trending" aria-selected="true">Trending Toys</a>
+                                                <a href="#shortlisted" class="font-16 font-weight-bold" id="shortlisted-tab" data-toggle="tab" href="#shortlisted" role="tab" aria-controls="shortlisted" aria-selected="false">Shortlisted</a>
                                             </div>
-                                            <div class="tab-pane fade" id="shortlisted" role="tabpanel" aria-labelledby="shortlisted-tab">
-                                                <figure>
-                                                    <div class="image-box">
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
+                                                    @if( isset( $trending_toys ) && $trending_toys->count() > 0)
+                                                        @foreach( $trending_toys as $product)
+                                                            @include('web.default.products.includes.sidebar_card')
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                <div class="tab-pane fade" id="shortlisted" role="tabpanel" aria-labelledby="shortlisted-tab">
+                                                    <figure>
+                                                        <div class="image-box">
+                                                            <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
 
 
-                                                            <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
-                                                        </a>
-                                                    </div>
-
-                                                    <figcaption class="product-card-body">
-
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
-                                                            <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
-                                                        </a>
-
-                                                        <div class="product-price-box">
-                                                            <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
+                                                                <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
+                                                            </a>
                                                         </div>
-                                                    </figcaption>
 
-                                                </figure>
+                                                        <figcaption class="product-card-body">
+
+                                                            <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
+                                                                <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
+                                                            </a>
+
+                                                            <div class="product-price-box">
+                                                                <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
+                                                            </div>
+                                                        </figcaption>
+
+                                                    </figure>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                @endif
 
                             @endif
                             

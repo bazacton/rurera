@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Mixins\RegistrationPackage\UserPackage;
+use App\Models\Product;
 use App\Models\Subscribe;
 use App\Models\Comment;
 use App\Models\Gift;
@@ -42,7 +43,6 @@ class DashboardController extends Controller
 
         if (!$user->isUser()) {
 
-
             $meetingIds = Meeting::where('creator_id', $user->id)->pluck('id')->toArray();
             $pendingAppointments = ReserveMeeting::whereIn('meeting_id', $meetingIds)
                 ->whereHas('sale')
@@ -75,6 +75,7 @@ class DashboardController extends Controller
             $data['monthlySalesCount'] = count($monthlySales) ? $monthlySales->sum('total_amount') : 0;
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
         } else {
+            $trending_toys = Product::where('status', 'active')->where('is_trending', 1)->orderByDesc('trending_at')->limit(10)->get();
             $assignmentsArray = UserAssignedTopics::where('assigned_to_id', $user->id)
                 ->where('status', 'active')
                 ->where('start_at', '<=', time())
@@ -116,6 +117,8 @@ class DashboardController extends Controller
             $data['reserveMeetingsCount'] = count($reserveMeetings);
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
             $data['assignmentsArray'] = $assignmentsArray;
+            $data['trending_toys'] = $trending_toys;
+
         }
 
         $data['giftModal'] = $this->showGiftModal($user);

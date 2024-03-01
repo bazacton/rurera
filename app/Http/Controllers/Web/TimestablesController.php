@@ -1547,6 +1547,12 @@ class TimestablesController extends Controller
         ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
         ->get();
 
+        //$questObj = DailyQuests::find(3);
+        //pre($questObj, false);
+
+        //$questUserData = $DailyQuestsController->getQuestUserData($questObj);
+        //pre($questUserData);
+
         $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->orderBy('created_at', 'desc')->limit(10)->get();
         $attempts_array = $attempts_labels = $attempts_values = array();
         if (!empty($results_data)) {

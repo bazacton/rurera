@@ -1,4 +1,5 @@
 @extends(getTemplate().'.layouts.app')
+@php $rand_no = rand(99,9999); @endphp
 <style>
     body{background-color: #fafafa !important;}
 </style>
@@ -176,7 +177,7 @@
                                 @if( !empty( emojisList() ))
                                     @foreach(emojisList() as $emojiRow)
                                         <a id="{{$emojiRow}}" href="javascript:;" class="emoji-icon">
-                                            <img src="/assets/default/svgs/emojis/{{$emojiRow}}.svg" alt="{{$emojiRow}}">
+                                            <img src="/assets/default/svgs/emojis/{{$emojiRow}}.svg?ver={{$rand_no}}" alt="{{$emojiRow}}">
                                         </a>
                                     @endforeach
                                 @endif

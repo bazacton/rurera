@@ -194,6 +194,17 @@
                </label>
            </div>
 
+            <div class="form-group custom-switches-stacked">
+               <label class="input-label">Trending:</label>
+               <label class="custom-switch pl-0">
+                   <label class="custom-switch-description mb-0 mr-2">No</label>
+                   <input type="hidden" name="is_trending" value="0">
+                   <input type="checkbox" name="is_trending" id="is_trending" value="1" {{ (!empty($product) and $product->is_trending) ? 'checked="checked"' : '' }} class="custom-switch-input"/>
+                   <span class="custom-switch-indicator"></span>
+                   <label class="custom-switch-description mb-0 cursor-pointer" for="is_trending">Yes</label>
+               </label>
+           </div>
+
             <div class="form-group">
                 <label class="input-label">{{ trans('public.summary') }}</label>
                 <textarea name="summary" rows="6" class="form-control @error('summary')  is-invalid @enderror " placeholder="{{ trans('update.product_summary_placeholder') }}">{{ (!empty($product) and !empty($product->translate($locale))) ? $product->translate($locale)->summary : old('summary') }}</textarea>

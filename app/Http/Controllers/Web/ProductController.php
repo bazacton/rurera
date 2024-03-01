@@ -61,6 +61,7 @@ class ProductController extends Controller
         $pageTitle = $seoSettings['title'] ?? '';
         $pageDescription = $seoSettings['description'] ?? '';
         $pageRobot = getPageRobot('products_lists');
+        $trending_toys = Product::where('status', 'active')->where('is_trending', 1)->orderByDesc('trending_at')->limit(10)->get();
 
         $data = [
             'pageTitle' => $pageTitle,
@@ -70,6 +71,7 @@ class ProductController extends Controller
             'productCategories' => $categories,
             'selectedCategory' => $selectedCategory,
             'products' => $products,
+            'trending_toys' => $trending_toys,
         ];
 
         return view(getTemplate() . '.products.search', $data);

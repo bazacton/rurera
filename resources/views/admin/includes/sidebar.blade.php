@@ -14,9 +14,11 @@
                 @endif
             </a>
         </div>
+        @if(!auth()->user()->isTeacher())
         <div class="sidebar-brand">
             <input class="search-dashboard form-control">
         </div>
+        @endif
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="/">
                 @if(!empty($generalSettings['site_name']))
@@ -26,7 +28,7 @@
         </div>
 
         @if(auth()->user()->isTeacher())
-            <div class="sidebar-brand">
+            <div class="sidebar-brand rurera-hide">
                 <b>Total Points: {{ $authUser->author_points }}</b>
             </div>
         @endif

@@ -102,6 +102,7 @@ class ProductsController extends Controller
     private function getTopPageStats($query)
     {
         $totalPhysicalProducts = deepClone($query)->where('type', Product::$physical)->count();
+        $totalTrendingProducts = deepClone($query)->where('is_trending', 1)->count();
         $totalPhysicalSales = deepClone($query)->where('type', Product::$physical)
             ->join('product_orders', 'products.id', 'product_orders.product_id')
             ->select(DB::raw('sum(quantity) as salesCount'))
@@ -134,6 +135,7 @@ class ProductsController extends Controller
             'totalVirtualSales' => !empty($totalVirtualSales) ? $totalVirtualSales->salesCount : 0,
             'totalSellers' => $totalSellers,
             'totalBuyers' => !empty($totalBuyers) ? $totalBuyers->buyerCount : 0,
+            'totalTrendingProducts' => $totalTrendingProducts,
         ];
     }
 
@@ -322,6 +324,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $this->authorize('admin_store_new_product');
+        $user = auth()->user();
 
         $rules = [
             'creator_id' => 'required|exists:users,id',
@@ -369,6 +372,9 @@ class ProductsController extends Controller
             'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : json_encode(array('uk')),
             'seller_url' => isset( $data['seller_url'] )? $data['seller_url'] : '',
             'seller_price' => isset( $data['seller_price'] )? $data['seller_price'] : 0,
+            'is_trending' => isset( $data['is_trending'] )? $data['is_trending'] : 0,
+            'trending_by' => $user->id,
+            'trending_at' => time(),
 
         ]);
 
@@ -462,6 +468,7 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('admin_store_delete_product');
+        $user = auth()->user();
 
         $product = Product::findOrFail($id);
 
@@ -542,6 +549,9 @@ class ProductsController extends Controller
             'country_location'         => isset($data['country_location']) ? json_encode($data['country_location']) : json_encode(array('uk')),
             'seller_url' => isset( $data['seller_url'] )? $data['seller_url'] : '',
             'seller_price' => isset( $data['seller_price'] )? $data['seller_price'] : 0,
+            'is_trending' => isset( $data['is_trending'] )? $data['is_trending'] : 0,
+            'trending_by' => $user->id,
+            'trending_at' => time(),
         ]);
 
         ProductTranslation::updateOrCreate([

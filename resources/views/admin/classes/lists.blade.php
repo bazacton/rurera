@@ -21,80 +21,34 @@
             </div>
         </div>
     </div>
+    <div class="row">
+       <div class="col-12 col-md-12">
+           <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
+               <li class="nav-item">
+                   <a class="nav-link active" id="topics-tab" href="/admin/classes">
+                       <span class="tab-title">Classes</span>
+                   </a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="topics-tab" href="/admin/sections" >
+                       <span class="tab-title">Sections</span>
+                   </a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" id="topics-tab" href="/admin/sections/joining-requests" >
+                       <span class="tab-title">Joining Requests</span>
+                   </a>
+               </li>
+           </ul>
+       </div>
+    </div>
 
 
     <div class="section-body">
 
-        <section class="card">
-            <div class="card-body">
-                <form action="/admin/classes" method="get" class="row mb-0">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="input-label">{{ trans('admin/main.search') }}</label>
-                            <input type="text" class="form-control" name="title" value="{{ request()->get('title') }}">
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="input-label">{{trans('admin/main.category')}}</label>
-                            <select name="category_id" data-plugin-selectTwo class="form-control populate ajax-category-courses">
-                                <option value="">{{trans('admin/main.all_categories')}}</option>
-                                @foreach($categories as $category)
-                                @if(!empty($category->subCategories) and count($category->subCategories))
-                                <optgroup label="{{  $category->title }}">
-                                    @foreach($category->subCategories as $subCategory)
-                                    <option value="{{ $subCategory->id }}" @if(request()->get('category_id') == $subCategory->id) selected="selected" @endif>{{ $subCategory->title }}</option>
-                                    @endforeach
-                                </optgroup>
-                                @else
-                                <option value="{{ $category->id }}" @if(request()->get('category_id') == $category->id) selected="selected" @endif>{{ $category->title }}</option>
-                                @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="input-label">{{ trans('admin/main.status') }}</label>
-                            <select name="statue" data-plugin-selectTwo class="form-control populate">
-                                <option value="">{{ trans('admin/main.all_status') }}</option>
-                                <option value="active" @if(request()->get('status') == 'active') selected @endif>{{ trans('admin/main.active') }}</option>
-                                <option value="inactive" @if(request()->get('status') == 'inactive') selected @endif>{{ trans('admin/main.inactive') }}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-end">
-                        <button type="submit" class="btn btn-primary w-100">{{ trans('admin/main.show_results') }}</button>
-                    </div>
-                </form>
-            </div>
-        </section>
 
         <div class="row">
             <div class="col-12 col-md-12">
-                <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="topics-tab" href="/admin/classes">
-                            <span class="tab-title">Classes</span>
-                            <span class="tab-detail">Classes List</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="topics-tab" href="/admin/sections" >
-                            <span class="tab-title">Sections</span>
-                            <span class="tab-detail">Sections List</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="topics-tab" href="/admin/sections/joining-requests" >
-                            <span class="tab-title">Joining Requests</span>
-                            <span class="tab-detail">Pending Joining Requests</span>
-                        </a>
-                    </li>
-                </ul>
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
