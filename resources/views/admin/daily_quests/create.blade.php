@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/assets/default/css/quiz-frontend.css">
 <link rel="stylesheet" href="/assets/default/css/quiz-create-frontend.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dubrox/Multiple-Dates-Picker-for-jQuery-UI@master/jquery-ui.multidatespicker.css">
 <style>
     .year-group-select, .subject-group-select, .subchapter-group-select li {
         cursor: pointer;
@@ -414,14 +414,37 @@
                                                 <div class="invalid-feedback"></div>
                                             </div>
 
+
+                                            <div class="form-group">
+                                                <label class="input-label">Quest Icon</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button type="button" class="input-group-text admin-file-manager" data-input="quest_icon" data-preview="holder">
+                                                            <i class="fa fa-upload"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" name="quest_icon" id="quest_icon" value="{{ !empty($assignment) ? $assignment->quest_icon : old('quest_icon') }}" class="form-control @error('quest_icon')  is-invalid @enderror"/>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="input-group-text admin-file-view" data-input="quest_icon">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                    @error('quest_icon')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
                                             <div class="form-section">
                                                 <h2 class="section-title">Schedule</h2>
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-4">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-4">
                                                     <div class="form-group">
-                                                        <label class="input-label">Quest Start Date</label>
+                                                        <label class="input-label">Quest Dates</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
@@ -429,12 +452,12 @@
                                                                 </button>
                                                             </div>
                                                             <input type="text" autocomplete="off"
-                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_start_date]"
-                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->quest_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
-                                                                   class="form-control practice-start-date rureradatepicker rurera-req-field @error('quest_start_date') is-invalid @enderror"
+                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_dates]"
+                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->quest_dates, 'Y-m-d', false) : old('quest_dates') }}"
+                                                                   class="form-control practice-start-date rureramultidatespicker rurera-req-field @error('quest_dates') is-invalid @enderror"
                                                                    min="{{date('Y-m-d')}}"
                                                                    placeholder=""/>
-                                                            @error('quest_start_date')
+                                                            @error('quest_dates')
                                                             <div class="invalid-feedback">
                                                                 {{ $message }}
                                                             </div>
@@ -442,24 +465,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 col-4">
-                                                    <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
-                                                        <label class="input-label">Quest Due Date</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <button type="button" class="input-group-text admin-file-manager" data-input="logo" data-preview="holder">
-                                                                    <i class="fa fa-calendar-week"></i>
-                                                                </button>
-                                                            </div>
-                                                            <input type="text" autocomplete="off"
-                                                                   name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_end_date]"
-                                                                   value="{{ !empty($assignment) ? dateTimeFormat($assignment->quest_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
-                                                                   class="form-control practice-due-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}"
-                                                                   placeholder=""/>
-                                                            <div class="invalid-feedback"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
 
                                             <div class="form-group">
@@ -590,58 +596,6 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="input-label">Recurring Type</label>
-                                                <div class="input-group">
-
-
-                                                    <div class="radio-buttons">
-                                                        <label class="card-radio">
-                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]"
-                                                                   class="recurring_type" value="Daily" checked>
-                                                            <span class="radio-btn"><i class="las la-check"></i>
-                                                                <div class="card-icon">
-                                                                    <h3>Daily</h3>
-                                                               </div>
-
-                                                          </span>
-                                                        </label>
-                                                        <label class="card-radio">
-                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]"
-                                                                   class="recurring_type" value="Weekly">
-                                                            <span class="radio-btn"><i class="las la-check"></i>
-                                                                <div class="card-icon">
-                                                                    <h3>Weekly</h3>
-                                                               </div>
-
-                                                          </span>
-                                                        </label>
-                                                        <label class="card-radio">
-                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]"
-                                                                   class="recurring_type" value="Monthly">
-                                                            <span class="radio-btn"><i class="las la-check"></i>
-                                                                <div class="card-icon">
-                                                                    <h3>Monthly</h3>
-                                                               </div>
-
-                                                         </span>
-                                                        </label>
-                                                        <label class="card-radio">
-                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][recurring_type]"
-                                                                   class="recurring_type" value="Yearly">
-                                                            <span class="radio-btn"><i class="las la-check"></i>
-                                                                <div class="card-icon">
-                                                                    <h3>Yearly</h3>
-                                                               </div>
-
-                                                         </span>
-                                                        </label>
-                                                    </div>
-
-                                                    <div class="invalid-feedback"></div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
                                                 <label class="input-label">Coins Type</label>
                                                 <div class="input-group">
 
@@ -739,10 +693,10 @@
 
                                                         <label class="card-radio">
                                                             <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_assign_type]"
-                                                                   class="duration_conditional_check" value="Individual">
+                                                                   class="duration_conditional_check" value="Class" checked>
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <h3>Individual</h3>
+                                                                    <h3>Class</h3>
                                                                </div>
 
                                                           </span>
@@ -750,10 +704,10 @@
 
                                                         <label class="card-radio">
                                                             <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_assign_type]"
-                                                                   class="duration_conditional_check" value="Class" checked>
+                                                                   class="duration_conditional_check" value="Individual">
                                                             <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
-                                                                    <h3>Class</h3>
+                                                                    <h3>Individual</h3>
                                                                </div>
 
                                                           </span>
@@ -764,7 +718,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group duration_conditional_fields">
                                                 <label class="input-label">Class</label>
                                                 <div class="input-group">
                                                     <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_type]" class="form-control select2 class_condition">
@@ -852,7 +806,10 @@
 @endsection
 
 @push('scripts_bottom')
+
+<script src="https://cdn.jsdelivr.net/gh/dubrox/Multiple-Dates-Picker-for-jQuery-UI@master/jquery-ui.multidatespicker.js"></script>
 <script src="/assets/default/vendors/sortable/jquery-ui.min.js"></script>
+
 <script src="/assets/default/js/admin/filters.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script type="text/javascript">
@@ -1072,12 +1029,22 @@
         $('body').on('change', '.class_condition', function (e) {
             var current_value = $(this).val();
             $(".conditional_sections").addClass('rurera-hide');
-            $('.class_sections_' + current_value).removeClass('rurera-hide');
+            var duration_conditional_check = $(".duration_conditional_check:checked").val();
+            if( duration_conditional_check == 'Individual') {
+                $('.class_sections_' + current_value).removeClass('rurera-hide');
+            }
         });
 
         $('body').on('change', '.duration_conditional_check', function (e) {
             var current_value = $(this).val();
+            $(".duration_conditional_fields").removeClass('rurera-hide');
+            if( current_value == 'All'){
+                $(".duration_conditional_fields").addClass('rurera-hide');
+            }
             $(".duration_type_fields").addClass('rurera-hide');
+            if( current_value != 'Individual') {
+                $(".conditional_sections").addClass('rurera-hide');
+            }
             $('.' + current_value + '_fields').removeClass('rurera-hide');
         });
 

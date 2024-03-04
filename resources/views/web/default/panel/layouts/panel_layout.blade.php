@@ -133,7 +133,7 @@
                                         <li>
                                             <div class="levels">
                                                <strong>
-                                                   <img src="/assets/default/img/panel-sidebar/3.png" alt="">
+                                                   <img src="/assets/default/img/panel-sidebar/coins.svg" alt="">
                                                    {{$authUser->getRewardPoints()}}
                                                </strong>
                                             </div>
@@ -380,20 +380,24 @@
                                     </ul>
                                 </div>
                             </div>
-                                @if( isset( $quests ) && $quests->count() > 0 )
+                                @if( $authUser->getUserQuests()->count() > 0 )
                                     <div class="col-12 col-lg-12 mb-30">
                                         <div class="quests-list panel-border bg-white rounded-sm p-20">
                                             <h3 class="font-19 font-weight-bold">
                                                 Daily Quests
-                                                <a href="#" class="view-all font-weight-bold font-15">View All</a>
+                                                <a href="/quests" class="view-all font-weight-bold font-15">View All</a>
                                             </h3>
                                             <ul>
-                                                    @foreach( $quests as $questObj)
-                                                        @php $questUserData = $DailyQuestsController->getQuestUserData($questObj); @endphp
+                                                    @foreach( $authUser->getUserQuests() as $questObj)
+                                                        @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
+
+                                                        $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.png';
+                                                        $quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
+                                                        @endphp
                                                         <li>
                                                                 <div class="quests-item">
                                                                     <div class="icon-box">
-                                                                        <img src="/assets/default/svgs/star-quests.svg" alt="">
+                                                                        <img src="{{$quest_icon}}" alt="">
                                                                     </div>
                                                                     <div class="item-text">
                                                                         <h5>{{$questObj->title}}</h5>

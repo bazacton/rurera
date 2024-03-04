@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Http\Controllers\Web\CartManagerController;
+use App\Http\Controllers\Web\DailyQuestsController;
 use App\Mixins\Financial\MultiCurrency;
 use App\Models\Cart;
 use App\Models\Category;
@@ -48,6 +49,10 @@ class Share
 
         $generalSettings = getGeneralSettings();
         view()->share('generalSettings', $generalSettings);
+
+        $DailyQuestsController = new DailyQuestsController();
+
+        view()->share('DailyQuestsController', $DailyQuestsController);
 
 
         $currency = currencySign();

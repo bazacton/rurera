@@ -28,15 +28,21 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\Translation\QuizzesQuestionTranslation;
+use Illuminate\Support\Carbon;
 
 class DailyQuestsController extends Controller
 {
     public function index(Request $request)
     {
+        $user = auth()->user();
+        $user_id = $user->id;
+
+        $class_id = $user->class_id;
         //$this->authorize('admin_assignments');
 
         removeContentLocale();
         //DB::enableQueryLog();
+        $today_date = strtotime(date('Y-m-d'));
 
         $query = DailyQuests::query()->where('status', '!=', 'inactive');
 
@@ -263,15 +269,26 @@ class DailyQuestsController extends Controller
         $no_of_practices = isset($data['no_of_practices']) ? $data['no_of_practices'] : '';
         $lessons_score = isset($data['lessons_score']) ? $data['lessons_score'] : '';
         $screen_time = isset($data['screen_time']) ? $data['screen_time'] : '';
-        $recurring_type = isset($data['recurring_type']) ? $data['recurring_type'] : '';
+        $recurring_type = isset($data['recurring_type']) ? $data['recurring_type'] : 'Once';
         $quest_assign_type = isset($data['quest_assign_type']) ? $data['quest_assign_type'] : '';
 
+
+        $quest_dates = isset($data['quest_dates']) ? explode(',', $data['quest_dates']) : array();
         $quest_start_date = isset($data['quest_start_date']) ? strtotime($data['quest_start_date']) : '';
         $quest_end_date = isset($data['quest_end_date']) ? strtotime($data['quest_end_date']) : '';
 
         $coins_type = isset($data['coins_type']) ? $data['coins_type'] : 'custom';
         $no_of_coins = isset($data['no_of_coins']) ? $data['no_of_coins'] : 0;
         $coins_percentage = isset($data['coins_percentage']) ? $data['coins_percentage'] : 0;
+        $quest_icon = isset($data['quest_icon']) ? $data['quest_icon'] : '';
+        $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
+
+        $quest_dates = array_map(function($date) {
+            return strtotime(trim($date));
+        }, $quest_dates);
+        $quest_dates = json_encode($quest_dates, JSON_UNESCAPED_SLASHES);
+        $quest_users = json_encode($users_array, JSON_UNESCAPED_SLASHES);
+
 
         $DailyQuests = DailyQuests::create([
             'parent_id'                 => $user->id,
@@ -284,8 +301,6 @@ class DailyQuestsController extends Controller
             'screen_time'               => $screen_time,
             'no_of_answers'             => $no_of_answers,
             'quest_method'              => $quest_method,
-            'quest_start_date'          => $quest_start_date,
-            'quest_end_date'            => $quest_end_date,
             'recurring_type'            => $recurring_type,
             'class_ids'                 => '',
             'status'                    => 'active',
@@ -295,9 +310,12 @@ class DailyQuestsController extends Controller
             'coins_type'                => $coins_type,
             'no_of_coins'               => $no_of_coins,
             'coins_percentage'          => $coins_percentage,
+            'quest_icon'                => $quest_icon,
+            'quest_dates'                => $quest_dates,
+            'quest_users'                => $quest_users,
         ]);
 
-        return redirect()->route('adminListDailyQuests', []);
+       return redirect()->route('adminListDailyQuests', []);
     }
 
     public function edit(Request $request, $id)

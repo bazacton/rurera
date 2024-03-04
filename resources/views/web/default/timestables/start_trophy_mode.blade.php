@@ -162,7 +162,7 @@ if( $duration_type == 'total_practice'){
             </div>
         </div>
     </section>
-    <div class="trophy-levels">
+    <div class="trophy-levels rurera-hide">
         <div class="flex-parent">
             <div class="input-flex-container">
                 <div class="input explorer">

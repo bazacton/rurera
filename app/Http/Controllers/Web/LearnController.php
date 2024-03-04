@@ -30,7 +30,7 @@ class LearnController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/panel');
         }
-        if( auth()->user()->id != 1075) {
+        if( auth()->user()->id != 1133) {
             return view('web.default.panel.unauthorized_landing', array(
                 'title'             => 'Unauthorized',
                 'unauthorized_text' => 'You are not authorize for this page',

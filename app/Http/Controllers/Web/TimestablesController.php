@@ -1539,13 +1539,7 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
-        $DailyQuestsController = new DailyQuestsController();
 
-        $quests = DailyQuests::where('quest_topic_type', 'timestables')
-        ->where('timestables_mode', 'freedom_mode')
-        ->where('status', 'active')
-        ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
-        ->get();
 
         //$questObj = DailyQuests::find(3);
         //pre($questObj, false);
@@ -1567,7 +1561,7 @@ class TimestablesController extends Controller
         $attempts_labels = array_reverse($attempts_labels);
         $attempts_values = array_reverse($attempts_values);
 
-        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data, 'quests' => $quests, 'DailyQuestsController' => $DailyQuestsController])->render();
+        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
     }
 
     /*
@@ -1603,7 +1597,7 @@ class TimestablesController extends Controller
         }
 
 
-        $rendered_view = view('web.default.n.powerup_mode', [
+        $rendered_view = view('web.default.timestables.powerup_mode', [
             'results_data'    => $results_data,
             'attempts_array'  => $attempts_array,
             'attempts_labels' => $attempts_labels,

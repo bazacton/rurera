@@ -600,6 +600,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/school-zone' , 'TimestablesController@school_zone_mode');
     });
 
+    Route::group(['prefix' => 'quests'] , function () {
+        Route::get('/' , 'DailyQuestsController@index');
+    });
+
     Route::get('/sitemap.xml' , function () {
         return Response::view('sitemap')->header('Content-Type' , 'application/xml');
     });

@@ -109,7 +109,48 @@
 
 
 </section>
-
+<div class="row mt-35">
+    <div class="col-12 col-md-4 col-lg-43">
+        <div class="dashboard-card">
+            <span class="icon-box"><img src="/assets/default/svgs/plus.svg"></span>
+            <h5><a href="#">Start New Website</a></h5>
+            <span>Create an entirely new website</span>
+            <a href="#" class="select-btn">Select</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+        <div class="dashboard-card">
+            <span class="icon-box"><img src="/assets/default/svgs/arrow-right.svg"></span>
+            <h5><a href="#">Migrate Website</a></h5>
+            <span>Move over an existing website</span>
+            <a href="#" class="select-btn">Select</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+        <div class="dashboard-card">
+            <span class="icon-box"><img src="/assets/default/svgs/file-code.svg"></span>
+            <h5><a href="#">Start Site</a></h5>
+            <span>Let's build your website together</span>
+            <a href="#" class="select-btn">Select</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+        <div class="dashboard-card">
+            <span class="icon-box"><img src="/assets/default/svgs/skip.svg"></span>
+            <h5><a href="#">Sip This</a></h5>
+            <span>I will take care of the setup myself</span>
+            <a href="#" class="select-btn">Select</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4">
+        <div class="dashboard-card completed">
+            <span class="icon-box"><img src="/assets/default/svgs/check-white.svg"></span>
+            <h5><a href="#">Completed</a></h5>
+            <span>Let's build your website together</span>
+            <a href="#" class="select-btn">Select</a>
+        </div>
+    </div>
+</div>
 <div class="dashboard">
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">

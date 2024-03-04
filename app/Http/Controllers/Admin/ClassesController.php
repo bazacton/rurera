@@ -182,7 +182,11 @@ class ClassesController extends Controller {
                 $sectionObj = Classes::find($section_id);
                 $class_teachers = isset( $sectionData['class_teachers'] )? $sectionData['class_teachers'] : array();
 
-                $section_teachers = $sectionObj->teachers->pluck('teacher_id')->toArray();
+				$section_teachers = array();
+				if( isset( $sectionObj->id )){
+					$section_teachers = $sectionObj->teachers->pluck('teacher_id')->toArray();
+				}
+                
 
                 if( isset( $sectionObj->id ) ){
                     $section_data = array(

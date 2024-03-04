@@ -27,6 +27,7 @@ use App\Models\Follow;
 use App\Models\Sale;
 use App\Models\Section;
 use App\Models\Webinar;
+use App\Models\DailyQuests;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -4194,6 +4195,30 @@ class User extends Authenticatable
         */
 
         return $noticeboards;
+    }
+
+    public function getUserQuests(){
+
+        $user = $this;
+        $user_id = $user->id;
+        $class_id = $user->class_id;
+        $today_date = strtotime(date('Y-m-d'));
+        $query = DailyQuests::query()
+            ->where('status', '!=', 'inactive')
+            ->whereJsonContains('quest_dates', $today_date)
+            ->where(function($query) use ($user_id, $class_id) {
+                $query->where(function($q) use ($user_id) {
+                    $q->where('quest_assign_type', 'Individual')
+                        ->whereJsonContains('quest_users', $user_id);
+                })->orWhere(function($q) use ($class_id) {
+                    $q->where('quest_assign_type', 'Class')
+                        ->whereJsonContains('class_ids', $class_id);
+                })->orWhere('quest_assign_type', 'All');
+            });
+
+        $query->whereJsonContains('quest_dates', $today_date);
+        $quests = $query->get();
+        return $quests;
     }
 
     public function getPurchasedCoursesIds()

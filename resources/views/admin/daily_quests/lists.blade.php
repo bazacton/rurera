@@ -175,8 +175,7 @@
                                 <tr>
                                     <th class="text-left">{{ trans('admin/main.title') }}</th>
                                     <th class="text-center">Type</th>
-                                    <th class="text-center">Start Date</th>
-                                    <th class="text-center">End Date</th>
+                                    <th class="text-center">Quest Created</th>
                                     <th class="text-center">Recurring</th>
                                     <th class="text-center">{{ trans('admin/main.status') }}</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
@@ -192,10 +191,7 @@
                                         <span>{{$questObj->quest_topic_type}}</span>
                                     </td>
                                     <td>
-                                        <span>{{ dateTimeFormat($questObj->quest_start_date, 'j M Y H:i') }}</span>
-                                    </td>
-                                    <td>
-                                        <span>{{ dateTimeFormat($questObj->quest_end_date, 'j M Y H:i') }}</span>
+                                        <span>{{ dateTimeFormat($questObj->created_at, 'j M Y H:i') }}</span>
                                     </td>
                                     <td>
                                         <span>{{$questObj->recurring_type}}</span>

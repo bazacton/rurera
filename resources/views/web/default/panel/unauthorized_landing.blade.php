@@ -32,8 +32,7 @@
                     </div> -->
                     <div class="learning-start">
                         <div class="learning-icon">
-                            <span><img src="/assets/default/svgs/croun-img.svg" width="111" height="80" alt=""></span>
-                            <span><img src="/assets/default/svgs/croun-plus.svg" width="192" height="40" alt=""></span>
+                            <span><img src="/assets/default/svgs/crown-simple.svg" width="111" height="80" alt=""></span>
                         </div>
                         <div class="learning-text">
                             <h5 class="font-30 mb-10">Access Real-time Student Activity</h5>

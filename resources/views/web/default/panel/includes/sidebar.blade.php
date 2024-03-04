@@ -119,6 +119,15 @@
                     </a>
                 </li>
 
+             <li class="sidenav-item {{ (request()->is('quests') or request()->is('quests/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center">
+                    <span class="sidenav-item-icon mr-20">
+                        <img src="/assets/default/img/sidebar/quests.svg">
+                    </span>
+                    <span><a href="/quests" class="font-15">Quests</a></span>
+                </a>
+            </li>
+
                 @if(auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center">
@@ -135,6 +144,15 @@
                             <img src="/assets/default/img/sidebar/grarph.svg">
                         </span>
                         <span><a href="/panel/analytics" class="font-15">Analytics</a></span>
+                    </a>
+                </li>
+
+                <li class="sidenav-item {{ (request()->is('timestables-practice/school-zone') or request()->is('timestables-practice/school-zone/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center">
+                        <span class="sidenav-item-icon mr-20">
+                            <img src="/assets/default/svgs/school-zone.svg">
+                        </span>
+                        <span><a href="/timestables-practice/school-zone" class="font-15">School Zone</a></span>
                     </a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">

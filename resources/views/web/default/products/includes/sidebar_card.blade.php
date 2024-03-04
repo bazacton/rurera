@@ -8,13 +8,13 @@
     <figcaption class="product-card-body">
 
         <a href="{{ $product->getUrl() }}" itemprop="url">
-            <h3 class="product-title font-weight-bold font-18" itemprop="title">{{ $product->title,'title' }}</h3>
+            <h3 class="product-title font-weight-bold font-16" itemprop="title">{{ $product->title,'title' }}</h3>
         </a>
 
 
         @if( ($product->point - $authUser->getRewardPoints()) > 0)
-        <div class="product-price-box mt-15">
-            <span class="real" itemprop="price"><i data-feather="zap" width="20" height="20" class=""></i> {{ ($product->point - $authUser->getRewardPoints()) }} Coins Remaining</span>
+        <div class="product-price-box mt-10">
+            <span class="real font-15" itemprop="price"><i data-feather="zap" width="20" height="20" class=""></i> {{ ($product->point - $authUser->getRewardPoints()) }} Coins <span class="coins-remaining">Remaining</span></span>
         </div>
         @endif
     </figcaption>

@@ -49,17 +49,19 @@
                                         <label><input type="checkbox" class="form-control select-all" data-type_class="sections-users" name="select_all" value="1"></label>
                                         Student</th>
                                     <th class="text-left">Coins</th>
-                                    <th class="text-left">Last Login</th>
+                                    <th class="text-left">Last Activity</th>
                                     <th>{{ trans('admin/main.actions') }}</th>
                                 </tr>
 
                                 @foreach($users as $userObj)
+                                @php $last_login = ($userObj->last_login > 0)? dateTimeFormat($userObj->last_login, 'j M y | H:i') : '-';
                                 <tr>
                                     <td>
                                         <span><label><input type="checkbox" class="form-control sections-users" value="{{ $userObj->id }}"></label>{{ $userObj->full_name }}</span>
                                     </td>
                                     <td class="text-left">{{ $userObj->getRewardPoints() }}</td>
                                     <td class="text-left">{{ ($userObj->last_login > 0)? dateTimeFormat($userObj->last_login, 'j M y | H:i') : '-' }}</td>
+                                    <td class="text-left">{{ ($userObj->getLastActivity() > 0)? dateTimeFormat($userObj->getLastActivity(), 'j M y | H:i') : '-' }}</td>
                                     <td>
                                         @can('admin_classes_edit')
                                         <a href="/admin/classes/{{ $userObj->id }}/edit" class="btn-transparent btn-sm text-primary" data-toggle="tooltip" data-placement="top" title="{{ trans('admin/main.edit') }}">
