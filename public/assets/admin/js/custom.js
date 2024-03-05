@@ -172,23 +172,16 @@
     window.resetRureraMultiDatesPickers = () => {
         if (jQuery().daterangepicker) {
 
-            if ($(".rureramultidatespicker").length > 0) {
-                $('.rureramultidatespicker').multiDatesPicker({
-                        dateFormat: 'dd-mm-yy', // Date format
-                        showButtonPanel: true, // Show button panel
-                        numberOfMonths: 1, // Number of months to show
-                        closeText: 'Done', // Customize the text for the "Done" button
-                        onClose: function() {
-                            // Perform any actions needed when the date picker is closed (e.g., validation)
-                        }
-                    });
+            if( $(".rureramultidatespicker").length > 0){
+
+                $('.rureramultidatespicker').datepicker({
+                   multidate: true,
+                   format: 'dd-mm-yyyy'
+               });
             }
-
-
-
         }
     };
-    resetRureraMultiDatesPickers();
+    //resetRureraMultiDatesPickers();
 
     function rurera_is_field(field_value) {
         if (field_value != 'undefined' && field_value != undefined && field_value != '') {

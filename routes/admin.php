@@ -359,6 +359,7 @@ Route::group([
             Route::get('/create', 'DailyQuestsController@create');
             Route::post('/store', 'DailyQuestsController@store');
             Route::get('/{id}/edit', 'DailyQuestsController@edit')->name('adminEditDailyQuests');
+            Route::post('/update_dates', 'DailyQuestsController@update_dates');
         });
 
         /*

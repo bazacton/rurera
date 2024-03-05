@@ -79,108 +79,109 @@
                     </a>
                 </li>
                     <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
+                        <a class="d-flex align-items-center" href="/learn">
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
-                            <span><a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                         </a>
+                        <a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
+                        <a class="d-flex align-items-center" href="/timestables-practice">
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/timestable.svg">
                             </span>
-                            <span><a href="/timestables-practice" class="font-15">TimesTable</a></span>
                         </a>
+                        <a href="/timestables-practice" class="font-15">TimesTable</a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
+                        <a class="d-flex align-items-center" href="/spells">
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/spell.svg">
                             </span>
-                            <span><a href="/spells" class="font-15">Word Lists</a></span>
                         </a>
+                        <a href="/spells" class="font-15">Word Lists</a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
+                        <a class="d-flex align-items-center" href="/books">
                             <span class="sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
-                            <span><a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                         </a>
+                        <a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
                     </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/tests">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.svg">
                         </span>
-                        <span><a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a></span>
                     </a>
+                    <a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
                 </li>
 
              <li class="sidenav-item {{ (request()->is('quests') or request()->is('quests/*')) ? 'sidenav-item-active' : '' }}">
-                <a class="d-flex align-items-center">
+                <a class="d-flex align-items-center" href="/quests">
                     <span class="sidenav-item-icon mr-20">
                         <img src="/assets/default/img/sidebar/quests.svg">
                     </span>
-                    <span><a href="/quests" class="font-15">Quests</a></span>
                 </a>
+                <a href="/quests" class="font-15">Quests</a>
             </li>
 
                 @if(auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/shop">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/shop.svg">
                         </span>
-                        <span><a href="/shop" class="font-15">Shop</a></span>
                     </a>
+                    <a href="/shop" class="font-15">Shop</a>
                 </li>
                 @endif
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/panel/analytics">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/grarph.svg">
                         </span>
-                        <span><a href="/panel/analytics" class="font-15">Analytics</a></span>
                     </a>
+                    <a href="/panel/analytics" class="font-15">Analytics</a>
                 </li>
 
                 <li class="sidenav-item {{ (request()->is('timestables-practice/school-zone') or request()->is('timestables-practice/school-zone/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/timestables-practice/school-zone">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/svgs/school-zone.svg">
                         </span>
-                        <span><a href="/timestables-practice/school-zone" class="font-15">School Zone</a></span>
                     </a>
+                    <a href="/timestables-practice/school-zone" class="font-15">School Zone</a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/panel/setting">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
                         </span>
-                        <span><a href="/panel/setting" class="font-15">Profile</a></span>
                     </a>
+                    <a href="/panel/setting" class="font-15">Profile</a>
                 </li>
                  <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center">
+                        <a class="d-flex align-items-center" href="/panel/marketing/affiliates">
                             <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                                 <img src="/assets/default/img/sidebar/referrals.png">
                             </span>
-                            <span><a href="/panel/marketing/affiliates" class="font-15">Referrals</a></span>
                         </a>
+                        <a href="/panel/marketing/affiliates" class="font-15">Referrals</a>
                     </li>
             @if(auth()->user()->isParent())
                 <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center">
+                    <a class="d-flex align-items-center" href="/panel/members">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/members.png">
                         </span>
-                        <span><a href="/panel/members" class="font-15">Members</a></span>
                     </a>
+                    <a href="/panel/members" class="font-15">Members</a>
                 </li>
             @endif
+
             @if(!auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }} dropdown show">
 
@@ -188,8 +189,8 @@
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/more.svg">
                         </span>
-                        <a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                     </a>
+                    <a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
                     <div class="dropdown-menu" aria-labelledby="sub-dropdown">
                         <ul>
                             <li><a class="font-15" href="/faqs">FAQs</a></li>
@@ -200,6 +201,14 @@
                     </div>
                 </li>
             @endif
+            <li class="sidenav-item logout-sidebar">
+                <a class="d-flex align-items-center" href="/logout">
+                    <span class="sidenav-item-icon mr-20">
+                        <img src="/assets/default/img/icons/sidebar/logout.svg">
+                    </span>
+                </a>
+                <a href="/logout" class="font-15">Log out</a>
+            </li>
 
 
 

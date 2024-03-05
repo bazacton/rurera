@@ -8682,3 +8682,10 @@ function get_trophy_badge($average_questions){
     return $return_badge;
 
 }
+
+function getAllowedUsers(){
+    return array(
+        1133,
+        1160,
+    );
+}

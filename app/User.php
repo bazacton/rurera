@@ -4201,7 +4201,7 @@ class User extends Authenticatable
 
         $user = $this;
         $user_id = $user->id;
-        $class_id = $user->class_id;
+        $class_id = $user->section_id;
         $today_date = strtotime(date('Y-m-d'));
         $query = DailyQuests::query()
             ->where('status', '!=', 'inactive')

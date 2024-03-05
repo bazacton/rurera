@@ -142,6 +142,7 @@ class DailyQuestsController extends Controller
         $QuizzesResults->where('created_at' ,'<=', strtotime(date('Y-m-d 23:59:59')));
 
         $QuizzesResults = $QuizzesResults->get();
+
         if( $quest_method == 'lessons_score'){
             $QuizzesResults = $QuizzesResults->filter(function ($result) use ($lessons_score) {
                 return $result->quizz_result_percentage() >= $lessons_score;
@@ -149,8 +150,12 @@ class DailyQuestsController extends Controller
         }
 
         if( $quest_method == 'correct_answers'){
-            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($no_of_answers) {
-                return $result->quizz_result_points->count() >= $no_of_answers;
+            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($no_of_answers, $no_of_practices) {
+                if( $no_of_practices > 1) {
+                    return $result->quizz_result_points->count() >= $no_of_answers;
+                }else{
+                    return 1;
+                }
             });
         }
 
@@ -167,7 +172,10 @@ class DailyQuestsController extends Controller
         }
         //$QuizzesResults = $QuizzesResults->get();
 
-        //pre($QuizzesResults->count());
+        /*if( $questObj->quest_topic_type == 'practice'){
+            pre($quest_method);
+            pre($QuizzesResults->count());
+        }*/
 
         $completion_percentage = 0;
         if( $QuizzesResults->count() >  0){
@@ -185,6 +193,20 @@ class DailyQuestsController extends Controller
 
         if( $quest_method == 'correct_answers_in_row'){
             $quest_bar_label = $QuizzesResults->count().' / '.$no_of_practices;
+        }
+
+        if( $quest_method == 'correct_answers' && $no_of_practices == 1){
+            $corrected_answers = 0;
+            if( $QuizzesResults->count() > 0){
+                foreach( $QuizzesResults as $resultObj){
+                    $corrected_answers  =+ $resultObj->quizz_result_points->count();
+                }
+            }
+            $completion_percentage = ($corrected_answers * 100) / $no_of_answers;
+            $completion_percentage = ( $completion_percentage > 100)? 100 : $completion_percentage;
+            $completion_percentage = ( $completion_percentage < 0)? 0 : $completion_percentage;
+            $quest_bar_label = $completion_percentage.'%';
+
         }
 
         $response = array(

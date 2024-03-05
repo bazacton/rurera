@@ -282,12 +282,17 @@ class DailyQuestsController extends Controller
         $coins_percentage = isset($data['coins_percentage']) ? $data['coins_percentage'] : 0;
         $quest_icon = isset($data['quest_icon']) ? $data['quest_icon'] : '';
         $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
+        $section_id = isset($data['section_id']) ? array($data['section_id']) : array();
+
 
         $quest_dates = array_map(function($date) {
             return strtotime(trim($date));
         }, $quest_dates);
         $quest_dates = json_encode($quest_dates, JSON_UNESCAPED_SLASHES);
         $quest_users = json_encode($users_array, JSON_UNESCAPED_SLASHES);
+        $section_id = array_map('intval', $section_id);
+        $section_id = json_encode($section_id, JSON_UNESCAPED_SLASHES);
+
 
 
         $DailyQuests = DailyQuests::create([
@@ -302,7 +307,7 @@ class DailyQuestsController extends Controller
             'no_of_answers'             => $no_of_answers,
             'quest_method'              => $quest_method,
             'recurring_type'            => $recurring_type,
-            'class_ids'                 => '',
+            'class_ids'                 => $section_id,
             'status'                    => 'active',
             'created_by'                => $user->id,
             'created_at'                => time(),
@@ -383,6 +388,23 @@ class DailyQuestsController extends Controller
         ];
 
         return view('admin.assignments.progress', $data);
+    }
+
+    public function update_dates(Request $request)
+    {
+        $quest_id = $request->get('quest_id');
+        $quest_dates = $request->get('dates_string');
+        $quest_dates = isset($quest_dates) ? explode(',', $quest_dates) : array();
+        $quest_dates = array_map(function($date) {
+            return strtotime(trim($date));
+        }, $quest_dates);
+        $quest_dates = json_encode($quest_dates, JSON_UNESCAPED_SLASHES);
+
+        $questObj = DailyQuests::find($quest_id);
+
+        $questObj->update(['quest_dates' => $quest_dates]);
+        pre('done');
+
     }
 
 
