@@ -390,7 +390,7 @@
                                                 @foreach( $authUser->getUserQuests() as $questObj)
                                                     @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
 
-                                                    $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.png';
+                                                    $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
                                                     $quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
                                                     @endphp
                                                     <li>
@@ -436,27 +436,11 @@
                                                 @endif
                                             </div>
                                             <div class="tab-pane fade" id="shortlisted" role="tabpanel" aria-labelledby="shortlisted-tab">
-                                                <figure>
-                                                    <div class="image-box">
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" class="image-box__a" itemprop="url">
-
-
-                                                            <img src="/store/1/Shop/products images/learning-resources-pop-for-sight-words-game-01.jpeg" class="img-cover" width="160" height="160" alt="Learning Resources Pop for Sight Words Game" itemprop="image">
-                                                        </a>
-                                                    </div>
-
-                                                    <figcaption class="product-card-body">
-
-                                                        <a href="https://rurera.com/products/Learning-Resources-Pop-for-Sight-Words-Game" itemprop="url">
-                                                            <h3 class="product-title font-weight-bold font-16" itemprop="title">Learning Resources Pop for Sight Words Game</h3>
-                                                        </a>
-
-                                                        <div class="product-price-box">
-                                                            <span class="real" itemprop="price"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> 45000 Coins</span>
-                                                        </div>
-                                                    </figcaption>
-
-                                                </figure>
+                                                @if( isset( $shortlisted_toys ) && $shortlisted_toys->count() > 0)
+                                                   @foreach( $shortlisted_toys as $product)
+                                                       @include('web.default.products.includes.sidebar_card')
+                                                   @endforeach
+                                               @endif
                                             </div>
                                         </div>
                                     </div>

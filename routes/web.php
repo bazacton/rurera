@@ -356,6 +356,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/' , 'ProductController@searchLists');
         Route::get('/{slug}' , 'ProductController@show');
         Route::post('/{slug}/points/apply' , 'ProductController@buyWithPoint');
+        Route::post('/update-shortlist' , 'ProductController@shortListUpdate');
+
 
         Route::group(['prefix' => 'reviews'] , function () {
             Route::post('/store' , 'ProductReviewController@store');
@@ -584,9 +586,6 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/trophy_mode' , 'TimestablesController@trophy_mode');
         Route::get('/showdown_mode' , 'TimestablesController@showdown_mode');
         Route::get('/treasure_mission' , 'TimestablesController@treasure_mission');
-        Route::get('/school_zone' , 'TimestablesController@school_zone_mode');
-
-
     });
 
     //Route::group(['prefix' => 'timestables-practice' , 'middleware' => 'check_is_student'] , function () {
@@ -597,7 +596,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/trophy-mode' , 'TimestablesController@trophy_mode');
         Route::get('/treasure-mission' , 'TimestablesController@treasure_mission');
         Route::get('/showdown-mode' , 'TimestablesController@showdown_mode');
-        Route::get('/school-zone' , 'TimestablesController@school_zone_mode');
+    });
+
+    Route::group(['prefix' => 'school-zone'] , function () {
+        Route::get('/' , 'TimestablesController@school_zone_mode');
     });
 
     Route::group(['prefix' => 'quests'] , function () {

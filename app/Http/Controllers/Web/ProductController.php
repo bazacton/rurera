@@ -12,6 +12,7 @@ use App\Models\Cart;
 use App\Models\Follow;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductsViews;
 use App\Models\ProductOrder;
 use App\Models\ProductSelectedFilterOption;
 use App\Models\ProductSelectedSpecification;
@@ -34,6 +35,7 @@ class ProductController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/panel');
         }
+        $user = auth()->user();
         $data = $request->all();
 
         $query = Product::where('products.status', Product::$active)
@@ -62,6 +64,8 @@ class ProductController extends Controller
         $pageDescription = $seoSettings['description'] ?? '';
         $pageRobot = getPageRobot('products_lists');
         $trending_toys = Product::where('status', 'active')->where('is_trending', 1)->orderByDesc('trending_at')->limit(10)->get();
+        $shortlisted_products = isset( $user->shortlisted_products )? json_decode($user->shortlisted_products) : array();
+        $shortlisted_toys = Product::where('status', 'active')->whereIN('id', $shortlisted_products)->orderByDesc('trending_at')->limit(10)->get();
 
         $data = [
             'pageTitle' => $pageTitle,
@@ -72,6 +76,8 @@ class ProductController extends Controller
             'selectedCategory' => $selectedCategory,
             'products' => $products,
             'trending_toys' => $trending_toys,
+            'shortlisted_toys' => $shortlisted_toys,
+            'shortlisted_products' => $shortlisted_products,
         ];
 
         return view(getTemplate() . '.products.search', $data);
@@ -201,6 +207,7 @@ class ProductController extends Controller
             $user = auth()->user();
         }
 
+
         $contentLimitation = $this->checkContentLimitation($user, true);
         if ($contentLimitation != "ok") {
             return $contentLimitation;
@@ -251,6 +258,18 @@ class ProductController extends Controller
 
         if (empty($product)) {
             abort(404);
+        }
+
+        $ProductsViews = ProductsViews::where('user_id', $user->id)->where('product_id', $product->id)->first();
+        if( isset( $ProductsViews->id)){
+            $ProductsViews->update(['updated_at' => time()]);
+        }else{
+            $ProductsViews = ProductsViews::create([
+                'product_id' => $product->id,
+                'user_id' => $user->id,
+                'created_at' => time(),
+                'updated_at' => time()
+            ]);
         }
 
         $selectableSpecifications = $product->selectedSpecifications->where('allow_selection', true)
@@ -448,6 +467,34 @@ class ProductController extends Controller
         }
 
         abort(404);
+    }
+
+    public function shortListUpdate(Request $request)
+    {
+        $user = auth()->user();
+        $product_id = $request->get('product_id', 0);
+        $action_type = $request->get('action_type');
+        $shortlisted_products = isset( $user->shortlisted_products )? json_decode($user->shortlisted_products) : array();
+        $return_label = 'Updated Successfully!';
+        if( $action_type == 'add'){
+            if( !in_array($product_id, $shortlisted_products)){
+                $shortlisted_products[] = $product_id;
+            }
+        }
+        if( $action_type == 'remove'){
+            if( in_array($product_id, $shortlisted_products)){
+                unset($shortlisted_products[array_search($product_id, $shortlisted_products)]);
+            }
+        }
+        $shortlisted_products = array_map('intval', $shortlisted_products);
+        $shortlisted_products = json_encode($shortlisted_products, JSON_UNESCAPED_SLASHES);
+        $user->update(['shortlisted_products' => $shortlisted_products ]);
+        $toastData = [
+           'title'  => '',
+           'msg'    => $return_label,
+           'status' => 'success'
+       ];
+       echo json_encode($toastData);exit;
     }
 
 }

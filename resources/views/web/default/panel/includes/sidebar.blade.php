@@ -54,6 +54,76 @@
        href="{{url('/')}}/" itemprop="url">
         <img src="/assets/default/img/sidebar/logo.svg"><span class="sidebar-logo-text">Rurera</span>
     </a>
+
+        @if(auth()->check() && (auth()->user()->isUser()))
+                                        <div class="user-profile-icons sidebar-mobile-user-profile">
+                                            <ul>
+                                                <li class="dropdown dropdown-list-toggle">
+                                                    <strong>
+                                                        <img src="/assets/default/img/panel-sidebar/1.png" alt="">
+                                                    @if(!empty($unReadNotifications) and count($unReadNotifications))
+                                                    {{ count($unReadNotifications) }}
+                                                @else
+                                                0
+                                                @endif
+                                                    </strong>
+
+                                                    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+                                                        <div class="dropdown-header">{{ trans('admin/main.notifications') }}
+                                                            <div class="float-right">
+                                                                @can('admin_notifications_markAllRead')
+                                                                    <a href="{{ getAdminPanelUrl() }}/notifications/mark_all_read">{{ trans('admin/main.mark_all_read') }}</a>
+                                                                @endcan
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="dropdown-list-content dropdown-list-icons">
+                                                            @foreach($unReadNotifications as $unreadNotification)
+                                                                <a href="{{ getAdminPanelUrl() }}/notifications" class="dropdown-item">
+                                                                    <div class="dropdown-item-icon bg-info text-white d-flex align-items-center justify-content-center">
+                                                                        <i class="far fa-user"></i>
+                                                                    </div>
+                                                                    <div class="dropdown-item-desc">
+                                                                        {{ $unreadNotification->title }}
+                                                                        <div class="time text-primary">{{ dateTimeFormat($unreadNotification->created_at,'Y M j | H:i') }}</div>
+                                                                    </div>
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="dropdown-footer text-center">
+                                                            <a href="{{ getAdminPanelUrl() }}/notifications">{{ trans('admin/main.view_all') }} <i class="fas fa-chevron-right"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="assignments">
+                                                    <strong>
+                                                        <img src="/assets/default/img/panel-sidebar/2.png" alt="">
+                                                        0
+                                                    </strong>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="coin-counts">
+                                                    <strong>
+                                                        <img src="/assets/default/img/panel-sidebar/heart-red.png" alt="">
+                                                        {{$authUser->user_life_lines}}
+                                                    </strong>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="levels">
+                                                    <strong>
+                                                        <img src="/assets/default/img/panel-sidebar/coins.svg" alt="">
+                                                        {{$authUser->getRewardPoints()}}
+                                                    </strong>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        @endif
+
+
     <button class="navbar-toggler navbar-order" type="button" id="navbarToggle">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -147,13 +217,13 @@
                     <a href="/panel/analytics" class="font-15">Analytics</a>
                 </li>
 
-                <li class="sidenav-item {{ (request()->is('timestables-practice/school-zone') or request()->is('timestables-practice/school-zone/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/timestables-practice/school-zone">
+                <li class="sidenav-item {{ (request()->is('school-zone') or request()->is('school-zone/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/school-zone">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/svgs/school-zone.svg">
                         </span>
                     </a>
-                    <a href="/timestables-practice/school-zone" class="font-15">School Zone</a>
+                    <a href="/school-zone" class="font-15">School Zone</a>
                 </li>
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/panel/setting">

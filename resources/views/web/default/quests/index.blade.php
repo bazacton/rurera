@@ -21,7 +21,7 @@
                 </div>
 @if( $quests->count() > 0 )
     <div class="col-12 col-lg-12 mb-30">
-        <div class="quests-list panel-border bg-white rounded-sm p-20">
+        <div class="quests-list panel-border bg-white rounded-sm p-30">
 
             <ul>
                     @foreach( $quests as $questObj)
@@ -36,14 +36,14 @@
                                         <img src="{{$quest_icon}}" alt="">
                                     </div>
                                     <div class="item-text">
-                                        <h5>{{$questObj->title}}</h5>
+                                        <h5 class="font-18 font-weight-bold">{{$questObj->title}}</h5>
                                         <div class="levels-progress horizontal">
                                             <span class="progress-box">
                                                 <span class="progress-count" style="width: {{isset( $questUserData['completion_percentage'] )? $questUserData['completion_percentage'] : 0}}%;"></span>
                                             </span>
                                             <span class="progress-numbers">{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</span>
                                         </div>
-                                        <span class="progress-icon">
+                                        <span class="progress-icon font-14">
                                             <img src="/assets/default/img/quests-coin.png" alt="">
                                             +{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
                                         </span>

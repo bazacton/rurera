@@ -76,6 +76,9 @@ class DashboardController extends Controller
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
         } else {
             $trending_toys = Product::where('status', 'active')->where('is_trending', 1)->orderByDesc('trending_at')->limit(10)->get();
+            $shortlisted_products = isset( $user->shortlisted_products )? json_decode($user->shortlisted_products) : array();
+            $shortlisted_toys = Product::where('status', 'active')->whereIN('id', $shortlisted_products)->orderByDesc('trending_at')->limit(10)->get();
+
             $assignmentsArray = UserAssignedTopics::where('assigned_to_id', $user->id)
                 ->where('status', 'active')
                 ->where('start_at', '<=', time())
@@ -118,6 +121,8 @@ class DashboardController extends Controller
             $data['monthlyChart'] = $this->getMonthlySalesOrPurchase($user);
             $data['assignmentsArray'] = $assignmentsArray;
             $data['trending_toys'] = $trending_toys;
+            $data['shortlisted_toys'] = $shortlisted_toys;
+            $data['shortlisted_products'] = $shortlisted_products;
 
         }
 

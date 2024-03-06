@@ -1293,9 +1293,12 @@
 
     $(document).ready(function () {
 
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
         $('.rureramultidatespicker').datepicker({
            multidate: true,
-           format: 'dd-mm-yyyy'
+           format: 'dd-mm-yyyy',
+           startDate: 'today',
        });
         if ($('.summernote-editor-mintool').length) {
 

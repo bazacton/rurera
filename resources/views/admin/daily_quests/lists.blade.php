@@ -666,11 +666,11 @@
 
 
                                 @foreach($quests as $questObj)
-                                @php $dates_string = json_decode($questObj->quest_dates);
+                                @php $dates_string = ''; $dates_array = json_decode($questObj->quest_dates);
 
-                                if( !empty( $dates_string ) ){
+                                if( !empty( $dates_array ) ){
                                     $formattedDates = array();
-                                    foreach ($dates_string as $timestamp) {
+                                    foreach ($dates_array as $timestamp) {
                                         $formattedDates[] = date('d-m-Y', $timestamp);
                                     }
                                     $dates_string = implode(',', $formattedDates);
@@ -769,9 +769,13 @@
     $(document).ready(function () {
 
         window.resetRureraMultiDatesPickerField = () => {
+
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
             $('.rureramultidatespicker').datepicker({
                multidate: true,
-               format: 'dd-mm-yyyy'
+               format: 'dd-mm-yyyy',
+                startDate: 'today',
            });
         };
         resetRureraMultiDatesPickerField();
