@@ -14,8 +14,10 @@
             <div class="row">
                 <div class="col-12 col-lg-12 mb-30">
                         <div class="timestables-modes row">
-                        <div class="section-title mb-20">
-                            <h2 itemprop="title" class="font-22 mb-0">Time Tables</h2>
+                            <div class="col-12 col-lg-12 col-md-12">
+                                <div class="section-title mb-30">
+                                <h2 itemprop="title" class="font-22 mb-0">Time Tables</h2>
+                            </div>
                         </div>
                         <div class="col-12 col-lg-12 col-md-12">
                             <ul class="tests-list type-list mb-30">
@@ -73,11 +75,18 @@
                                         <h3 class="blog-grid-title font-18 font-weight-bold" itemprop="title">
                                         <a itemprop="url" href="/timestables-practice/treasure-mission">Treasure Mission</a>
                                         </h3>
+                                        <div class="coin-counts">
+                                        <strong>
+                                            <img src="/assets/default/img/panel-sidebar/heart-red.png" alt="">
+                                            {{$authUser->user_life_lines}}
+                                        </strong>
+                                        </div>
                                     </div>
                                     <div class="img-holder">
                                         <img src="/assets/default/img/treasure.png" class="img-cover" alt="How Online Courses Benefit KS1 and KS2 Students" title="How Online Courses Benefit KS1 and KS2 Students" itemprop="image" loading="eager">
                                     </div>
                                     <p class="text-gray">Journey through times tables practice and discover hidden treasures.</p>
+                                    
                                 </div>
                             </div>
 

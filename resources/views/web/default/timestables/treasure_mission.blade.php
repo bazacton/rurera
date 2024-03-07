@@ -11,10 +11,10 @@
 
 @section('content')
 <div class="timestables-mode-block">
-<a href="/timestables-practice" class="timestables-back-btn">Back</a>
+
 <div class="timestables-mode-content">
 <div class="section-title mb-20">
-    <h2 itemprop="title" class="font-22 mb-0">Treasure Mission</h2>
+    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Treasure Mission</h2>
 </div>
 <section class="p-0 mt-30 treasure-mission-layout">
 

@@ -186,7 +186,7 @@ $timer_counter = $practice_time;
             </section>
 
 
-            <div class="row justify-content-center">
+            <div class="justify-content-center">
                 <div class="container">
                     <div class="row">
                 <div class="col-lg-8 col-md-12 col-sm-12">
@@ -236,7 +236,7 @@ $timer_counter = $practice_time;
 
                 </div>
 
-                <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="col-lg-4 col-md-12 col-sm-12 panel-right-sidebar">
                     <div class="col-12 col-lg-12 mb-30">
                         <div class="store-stats">
                             <ul>

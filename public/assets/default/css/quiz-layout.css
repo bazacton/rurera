@@ -1315,23 +1315,6 @@ Lms Quiz Wf Style End
     display: inline-block;
     margin-right: 15px;
 }
-@media (max-width: 1600px) {
-    .topbar-right {
-        justify-content: flex-start;
-    }
-    .quiz-topbar .col-xl-7 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    .quiz-timer {
-        position: absolute;
-        right: 20px;
-        top: -40px;
-    }
-    .quiz-top-info {
-        margin: 0 0 15px;
-    }
-}
 /************************************ 
  Quiz Top-Bar Style End
 *************************************/
@@ -1367,6 +1350,7 @@ Lms Quiz Wf Style End
     vertical-align: middle;
     position: relative;
     padding: 0 0 0 25px;
+    margin-bottom: 0;
 }
 .quiz-topbar .quiz-top-info:before,
 .quiz-topbar .quiz-top-info:after {

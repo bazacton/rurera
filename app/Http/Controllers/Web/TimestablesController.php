@@ -34,6 +34,22 @@ class TimestablesController extends Controller
             return redirect('/panel');
         }
         $user = auth()->user();
+
+        /*
+        $QuestionsAttemptController = new QuestionsAttemptController();
+
+
+        $results = QuizzesResult::where('status', '!=', 'waiting')->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->get();
+
+        if( $results->count() > 0 ){
+            foreach( $results as $resultObj){
+                $result_timestables_average = $QuestionsAttemptController->resultTimestablesAverage($resultObj->id);
+            }
+        }
+
+
+        pre('done');*/
+
         //pre($user->id);
 
         //$DailyQuestsController = new DailyQuestsController();
@@ -1564,7 +1580,9 @@ class TimestablesController extends Controller
         $attempts_labels = array_reverse($attempts_labels);
         $attempts_values = array_reverse($attempts_values);
 
-        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data])->render();
+        $locked_tables = json_decode($user->locked_tables);
+
+        return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data, 'locked_tables'=>$locked_tables])->render();
     }
 
     /*
@@ -1749,8 +1767,10 @@ class TimestablesController extends Controller
             ->orderByRaw("CASE WHEN trophy_average = 0 OR trophy_average IS NULL THEN 1 ELSE 0 END, trophy_average ASC")
             ->get();
 
+        $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'trophy_mode')->orderBy('created_at', 'desc')->where('status', '!=', 'waiting')->limit(10)->get();
 
-        $rendered_view = view('web.default.timestables.school_zone_mode', ['trophyLeaderboard' => $trophyLeaderboard, 'yearStudents' => $yearStudents, 'classStudents' => $classStudents, 'classSections' => $classSections])->render();
+
+        $rendered_view = view('web.default.timestables.school_zone_mode', ['results_data' => $results_data, 'trophyLeaderboard' => $trophyLeaderboard, 'yearStudents' => $yearStudents, 'classStudents' => $classStudents, 'classSections' => $classSections])->render();
         return $rendered_view;
     }
 

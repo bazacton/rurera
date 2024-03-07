@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
 {
-    public function index()
+    public function index(Request $request, $type = 'all')
     {
         $user = auth()->user();
         $user_id = $user->id;
@@ -89,9 +89,13 @@ class AnalyticsController extends Controller
             'timestables_assignment',
             'assignment',
         );
-        /*$types_array = array(
-            '11plus',
-        );*/
+        $type_selected = 'all';
+        if( $type != 'all'){
+            $type_selected = $type;
+            $types_array = array($type);
+        }
+
+
 
         $QuizzesAttempts = QuizzAttempts::where('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
             'timeConsumed',
@@ -128,6 +132,7 @@ class AnalyticsController extends Controller
 
             foreach ($QuizzesAttempts as $date_str => $dateObj) {
                 if (!empty($dateObj)) {
+                    $analytics_data[$date_str]['coins_earned'] = 0;
                     $analytics_data[$date_str]['practice_time'] = 0;
                     $analytics_data[$date_str]['question_answered'] = 0;
 
@@ -165,8 +170,10 @@ class AnalyticsController extends Controller
                         $question_incorrect = $QuizzesAttemptObj->timeConsumed->where('status', 'incorrect')->count();
                         $coins_earned = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->sum('quiz_grade');
                         //$last_attempted = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->orderBy('name', 'desc')->count();
-                        $practice_time = ($practice_time > 0) ? round($practice_time / 60, 2) : 0;
+                        $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
+                        $practice_time = ($practice_time > 0) ? round($practice_time, 2) : 0;
                         $question_missed = (count($questions_list) - $question_answered);
+                        $analytics_data[$date_str]['coins_earned'] += $coins_earned;
                         $analytics_data[$date_str]['practice_time'] += $practice_time;
                         $analytics_data[$date_str]['practice_time'] += isset($read_time_data) ? $read_time_data : 0;
                         $read_time_data = 0;
@@ -183,8 +190,6 @@ class AnalyticsController extends Controller
                             $score_level = ($total_percentage > 80) ? 'Expert' : $score_level;
                         }
 
-
-                        $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
 
 
                         $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['parent_type'] = $QuizzesAttemptObj->attempt_type;
@@ -216,8 +221,10 @@ class AnalyticsController extends Controller
 
                     }
                 }
+
             }
         }
+
         //pre('test');
 
         $data['pageTitle'] = 'Analytics';
@@ -228,6 +235,7 @@ class AnalyticsController extends Controller
         $data['custom_dates'] = $custom_dates;
         $data['summary_type'] = $summary_type;
         $data['childs'] = $childs;
+        $data['type_selected'] = $type_selected;
         $data['QuestionsAttemptController'] = $QuestionsAttemptController;
         return view('web.default.panel.analytics.index', $data);
     }

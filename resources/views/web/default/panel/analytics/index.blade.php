@@ -11,6 +11,9 @@
 @endpush
 
 @section('content')
+<div class="section-title mb-40">
+    <h2 itemprop="title" class="font-22 mb-0">Analytics</h2>
+</div>
 <section class="page-section analytics-graph-data hide">
     @include('web.default.panel.analytics.graph_data',['show_types'=> true, 'graphs_array' => $graphs_array,
     'summary_type' => $summary_type,
@@ -22,11 +25,12 @@
     <div class="activities-container mt-10 p-20 p-lg-35 ">
         <div class="chart-filters p-0">
             <ul class="analytics-type">
-                <li><a href="javascript:;" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.png"> LEARN</a></li>
-                <li><a href="javascript:;" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.png"> TIMESTABLE</a></li>
-                <li><a href="javascript:;" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.png"> WORD LISTS</a></li>
-                <li><a href="javascript:;" data-graph_type="books"><img src="/assets/default/img/sidebar/books.png"> BOOKS</a></li>
-                <li><a href="javascript:;" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.png"> TEST</a></li>
+                <li {{($type_selected == 'all')? 'class=active' : ''}}><a href="/panel/analytics" data-graph_type="all"><img src="/assets/default/img/sidebar/all.svg"> ALL</a></li>
+                <li {{($type_selected == 'learn')? 'class=active' : ''}}><a href="/panel/analytics/learn" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.svg"> LEARN</a></li>
+                <li {{($type_selected == 'timestables')? 'class=active' : ''}}><a href="/panel/analytics/timestables" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.svg"> TIMESTABLE</a></li>
+                <li {{($type_selected == 'vocabulary')? 'class=active' : ''}}><a href="/panel/analytics/vocabulary" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.svg"> WORD LISTS</a></li>
+                <li {{($type_selected == 'books')? 'class=active' : ''}}><a href="/panel/analytics/books" data-graph_type="books"><img src="/assets/default/img/sidebar/books.svg"> BOOKS</a></li>
+                <li {{($type_selected == 'tests')? 'class=active' : ''}}><a href="/panel/analytics/tests" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.svg"> TEST</a></li>
             </ul>
             @if(auth()->check() && (auth()->user()->isParent()))
 
@@ -46,9 +50,8 @@
             @endif
             @endif
 
-            <h3 class="font-22">Analytics</h3>
             <ul class="analytics-data-ul">
-                <li><a href="javascript:;" class=" graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
+                <li><a href="javascript:;" class=" hide graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
                         September 26, 2023</a>
                 </li>
 
@@ -168,11 +171,22 @@
 
             @if( !empty( $analytics_data) )
             @foreach( $analytics_data as $date_str => $analyticDataArray)
+            @php if(!isset( $analyticDataArray['practice_time'] ) || $analyticDataArray['practice_time'] == 0){ continue; } @endphp
             @php $report_date = strtotime(str_replace('_', '-', $date_str)); @endphp
             <div class="card">
                 <div class="card-header collapsed mb-0" id="headingOne" type="button" data-toggle="collapse"
                      data-target="#report_{{$date_str}}" aria-expanded="true" aria-controls="report_{{$date_str}}">
                     <span>{{ dateTimeFormat($report_date,'d F Y') }}</span>
+                    <span class="analytics-timespend float-right">
+                        <img src="/assets/default/img/panel-sidebar/clock.svg" alt=""> 
+                        <span>{{ isset( $analyticDataArray['practice_time'] )? getTimeWithText($analyticDataArray['practice_time']) : 0 }}</span>
+                    </span>
+                    <span class="analytics-cions-earned float-right mr-10">
+                        <img src="/assets/default/img/panel-sidebar/coins.svg" alt="">
+                        <span>
+                            {{ isset( $analyticDataArray['coins_earned'] )? $analyticDataArray['coins_earned'] : 0 }}
+                        </span>
+                    </span>
 
                 </div>
 
@@ -213,7 +227,7 @@
                                     <div class="timeline-icon"><img src="/assets/default/img/types/{{$parent_type}}.png" width="26" height="26" alt=""></div>
                                     <div class="timeline-text"><p><strong><a href="{{$detail_link}}">{{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}</a></strong><span class="info-time">{{ dateTimeFormat($start_time,'H:i') }}</span></p>
                                     @if( $type != 'book_read')
-                                        <span class="analytic-item">Active practice: {{isset( $analyticData['practice_time'] )? $analyticData['practice_time'] : 0}} min</span>
+                                        <span class="analytic-item">Active practice: {{isset( $analyticData['practice_time'] )? getTimeWithText($analyticData['practice_time']) : 0}}</span>
                                         <span class="analytic-item">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
                                         <span class="analytic-item">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
 

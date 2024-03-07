@@ -209,6 +209,9 @@ class DailyQuestsController extends Controller
 
         }
 
+        $completion_percentage = ( $completion_percentage > 100)? 100 : $completion_percentage;
+        $completion_percentage = ( $completion_percentage < 0)? 0 : $completion_percentage;
+
         $response = array(
             'is_completed' => ($completion_percentage == 100)? true : false,
             'no_of_practices' => $no_of_practices,

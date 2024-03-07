@@ -3102,6 +3102,19 @@ a.badge-gray200:focus {
     font-size: 14px;
     font-weight: 500;
 }
+#analyticsAccordion .card-header span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+#analyticsAccordion .card-header img {
+    max-width: 25px;
+    max-height: 20px;
+    object-fit: contain;
+}
+#analyticsAccordion .card-header .analytics-cions-earned span {
+    min-width: 35px;
+}
 .card-footer {
     padding: .75rem 1.25rem;
     background-color: rgba(52, 52, 52, .03);
@@ -12805,7 +12818,7 @@ a.badge-circle-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94
 .nav-tabs .nav-item a.active:after {content: "";position: absolute;bottom: 0;left: 50%;width: 85%;height: 5px;background-color: var(--primary);border-radius: 5px;transform: translate(-50%, 17px);}
 .rtl .nav-tabs .nav-item a.active:after {bottom: 2px;}
 .dropdown-menu {padding: 15px; min-width: 325px; z-index: 511; border: unset;top: 100%; transition: all .5s; overflow: visible !important;visibility: hidden;opacity: 0;margin-top: -15px;display: block;}
-.dropdown:hover .dropdown-menu {opacity: 1; visibility: visible;margin-top: -5px;}
+.dropdown:hover .dropdown-menu {opacity: 1; visibility: visible;margin-top: 15px;}
 .dropdown-menu.user-profile-dropdown {min-width: 125px;}
 header .dropdown-menu {transform: translate3d(0, 54px, 0) !important;}
 /* .dropdown-menu:after {
@@ -12909,7 +12922,7 @@ p {line-height: 1.5;}
     background-color: #fff */
     padding: 0 !important;
 }
-.activities-container .chart-filters {padding: 15px 20px 0;}
+.activities-container .chart-filters {padding: 15px 20px 0; border: 0;}
 .chart-filters .analytics-data-ul a {padding-top: 0;}
 @media (max-width:767px) {
     .activities-container img {width: 44px;height: 44px;}
@@ -13011,7 +13024,6 @@ p {line-height: 1.5;}
 #navbarNotification {height: 40px; width: 40px; display: inline-flex; text-align: center; border: 1px solid #e5e6e8; border-radius: 50%; margin-right: 0; align-items: center; justify-content: center; position: relative;}
 #navbarNotification svg {margin: 0 !important; color: #a0a7af;}
 .top-navbar .dropdown #navbarNotification .badge {top: -2px; position: absolute; right: -2px; height: 15px; width: 15px;}
-.dropdown:hover .dropdown-menu {opacity: 1;visibility: visible; margin-top: 0;}
 .rtl .top-navbar .dropdown .dropdown-menu {right: auto !important; left: 0 !important;}
 .rtl .top-navbar .dropdown .dropdown-menu:after {right: auto; left: 15px;}
 .user-profile-dropdown .sub-dropdown {position: relative; z-index: 1; margin-left: -20px; padding-left: 20px;}
@@ -13021,11 +13033,78 @@ p {line-height: 1.5;}
 .user-profile-icons ul {display: flex; align-items: center; flex-wrap: wrap; gap: 12px; justify-content: space-between; width: 100%;}
 .user-profile-icons .dropdown > a > img,
 .user-profile-icons img {width: 28px; height: 28px; object-fit: contain; }
-.user-profile-icons li strong {display: inline-flex; align-items: center; gap: 5px;}
-.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: 0; text-align: center;}
+.user-profile-icons li strong {display: inline-flex; align-items: center; gap: 5px; position: relative;}
+.panel-right-sidebar .dropdown-menu.user-profile-dropdown {min-width: 250px; top: 100%; bottom: auto; left: auto; right: -10px; text-align: center;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list {padding: 0 0 12px !important; margin: 0 0 12px;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .dropdown-item {padding: 0 !important;}
 .panel-right-sidebar .dropdown-menu.user-profile-dropdown .user-nav-list .user-list-name {font-weight: 500;}
+.user-profile-icons .dropdown-menu:after, 
+.user-profile-icons .dropdown-menu:before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 30px;
+    height: 15px;
+    width: 15px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid#ddd;
+    transform: rotate(45deg);
+}
+.user-profile-icons .dropdown-menu:before {
+    background-color: #fff;
+    top: -6px;
+    box-shadow: none;
+    border: 0;
+}
+.user-profile-icons .dropdown-menu {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    right: -15px;
+    transition: none;
+    margin: 0;
+}
+.user-profile-icons .dropdown:hover .dropdown-menu {
+    margin-top: 5px;
+}
+.user-profile-icons ul .menu-button-mobile,
+.user-profile-icons ul .sidebar-logo-mobile{
+    display: none;
+}
+.user-coins-menu .dropdown-header {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.user-coins-menu .dropdown-header img {
+    width: 60px;
+    height: 60px;
+}
+.user-coins-menu .coins-text {
+    width: calc(100% - 75px);
+    font-weight: 700;
+    color: #343434;
+    font-size: 18px;
+    line-height: normal;
+}
+.user-coins-menu .coins-text span {
+    display: flex;
+    font-weight: 400;
+    font-size: 15px;
+    color: #999;
+    position: relative;
+    align-items: flex-start;
+    line-height: normal;
+    gap: 5px;
+    padding-top: 5px;
+    flex-direction: column;
+}
+.user-coins-menu .coins-text span a {
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: underline;
+}
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {height: 462px; overflow: hidden !important; overflow-y: auto !important;}
     .top-navbar .dropdown .dropdown-menu.show {top: 0 !important; transform: none !important; margin-top: 0;}
@@ -15964,9 +16043,10 @@ Lms Books Library Style Start
 /* .lms-books-listing h3 a,
 .lms-books-listing h1 a {font-size: 24px; text-transform: capitalize;} */
 .lms-books-listing .listing-card {margin-bottom: 35px;}
-.panel-content .lms-books-listing .listing-card {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 20px;}
-.lms-books-listing .listing-card figure {position: relative; overflow:hidden; border-radius: 14px; text-align: center;}
-.lms-books-listing .listing-card .img-holder img {border-radius: 14px; box-shadow: 0 0 14px rgba(0, 0, 0, 0.3); max-width: 100%; object-fit: cover;}
+.panel-content .lms-books-listing .listing-card {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 20px; position: relative;}
+.lms-books-listing .listing-card .img-holder {height: 100%;}
+.lms-books-listing .listing-card figure {position: relative; overflow: hidden; border-radius: 5px; text-align: center; height: 100%;display: flex;align-items: center;}
+.lms-books-listing .listing-card .img-holder img {border-radius: 5px; max-width: 100%; object-fit: contain; height: auto;}
 .lms-books-listing .listing-card .text-holder li img {width: 20px; display: inline-block; vertical-align: bottom;}
 .lms-books-listing .listing-card .text-holder {position: relative;}
 /* .lms-books-listing .listing-card .text-holder h3,
@@ -16004,7 +16084,6 @@ Lms Books Library Style Start
 .book-percentage span {color: #0a96e6; margin-top: 0; }
 .listing-card .remove-btn {font-size: 18px; color: #ffbfbf; font-weight: 600; display: inline-block; vertical-align: middle; margin-right: 15px; position: absolute; left: -100px; top: 50%; transform: translateY(-50%);}
 .lms-books-listing .listing-card:hover .remove-btn {color: #ff2626; margin-right: 10px;}
-.panel-content .lms-books-listing .listing-card {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 25px; }
 .panel-content .books-listing-holder .row .row [class*="col-"]:last-child .listing-card {border: 0; padding: 0;}
 .panel-content .lms-books-listing .listing-card .text-holder li:last-child {margin-bottom: 0;}
 .book-library-sub-header .text-holder {display: inline-block; position: relative;}
@@ -16030,10 +16109,6 @@ Lms Books Library Style Start
     .lms-library-slider .swiper-container {max-width: 100%;}
     .book-library-sub-header .ask-msg {display: none;}
     .lms-books-listing .listing-card .img-holder img {box-shadow: none;}
-}
-@media screen and (max-width: 667px) {
-    .listing-card .btn-holder,
-    .book-percentage {position: initial;transform: none;margin-top: 20px;}
 }
 /*****************************
 Lms Books Library Style End
@@ -17432,10 +17507,11 @@ Product Tabs Slider Style Start
 .chart-filters ul {display: inline-flex; align-items: center; gap: 20px; margin: 0;}
 .chart-filters li a {font-size: 15px; color: #66667e; display: block; line-height: normal; padding: 12px 14px; font-weight: 500; border-radius: 5px 5px 0 0;}
 .chart-filters .filter-icon {margin-right: 5px;}
-.analytics-type li a {border: 1px dashed #ddd; text-align: center; padding: 20px 15px; min-width: 125px;}
+.analytics-type li a {border: 1px dashed #ddd; border-radius: 5px; text-align: center; padding: 15px 5px;}
 .chart-filters .analytics-type .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
-.chart-filters .analytics-type {width: 100%; margin: 0 0 25px; flex-wrap: wrap;}
-.analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: auto; height: auto;}
+.chart-filters .analytics-type {width: 100%; margin: 0; flex-wrap: wrap; gap: 10px;}
+.chart-filters .analytics-type li {width: 15.444%;}
+.analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: 30px;height: 30px;}
 .chart-filters > ul > li > a.active {background-color: rgba(0,0,0,0.1);color: #2c4a7e;}
 .graph-data-ul li,
 .analytics-data-ul li {position: relative;}
@@ -17477,7 +17553,20 @@ Product Tabs Slider Style Start
 .panel-content .grid-card {background-color: #fff; border: 2px solid #e4e4e4;border-bottom-width: 4px;border-radius: 10px;margin-bottom: 15px;display: flex;flex-wrap: wrap;align-items: flex-start;width: 100%;padding: 20px 95px 20px 15px;gap: 5px;transition: all .5s ease;position: relative;overflow: hidden;min-height: 100px;flex-direction: column;}
 .panel-content .grid-card .img-holder {margin-left: auto; position: absolute; right: -15px; bottom: -10px; transform: rotate(-20deg);height: 90px; width: 90px;}
 .panel-content .grid-card .img-holder img {border-radius: 0; object-fit: contain;}
-.panel-content .template-grid .text-holder {background-color: inherit; border: 0; padding: 0; min-height: auto; line-height: normal;}
+.panel-content .template-grid .text-holder {background-color: inherit;
+    border: 0;
+    padding: 0;
+    min-height: auto;
+    line-height: normal;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+.panel-content .template-grid .coin-counts img {
+    max-width: 20px;
+    max-height: 20px;
+    margin-top: 0;
+}
 .panel-content .template-grid .text-holder a {word-wrap: break-word;}
 .panel-content .grid-card:hover {border-color: #cecece;}
 .panel-content .grid-card .title-label,
@@ -17880,7 +17969,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* .panel-content h1 {font-size: 36px !important; line-height: 42px !important;} */
 .panel-content .products-top-header .banner-holder {margin-top: 0;}
 .panel-content .lms-text-section {padding: 25px !important;}
-.panel-content .spell-levels .panel-subheader {padding-right: 160px; margin-bottom: 100px;}
+.panel-content .spell-levels .panel-subheader {padding-right: 155px; margin-bottom: 100px;}
 .treasure-mission-layout .spell-levels .horizontal-list {margin: 0 -15px 220px 0; position: relative;}
 .panel-content .spell-levels .treasure-stage:last-child .horizontal-list {margin-bottom: 100px;}
 .treasure-mission-layout .spell-levels .horizontal-list li {display: inline-flex; width: auto; margin: 0 0 0 7.444%; width: 13.222%; box-sizing: border-box;}
@@ -17914,7 +18003,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .timestables-modes .spell-levels h5 {margin: 0 0 10px;}
 .treasure-mission-layout h3 {margin: 0 0 15px;}
 .timestables-back-btn,
-.login-back-btn {margin: 0 0 10px; display: inline-block; position: relative; }
+.login-back-btn {margin: 0 0 10px; display: inline-block; position: relative;color: var(--primary); }
 .timestables-back-btn:before,
 .login-back-btn:before {content: "\2190"; margin-right: 5px;}
 .timestables-retry-stage {background-color: #f8f9fa; box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .15), 0 3px 1px rgba(52, 52, 52, .075); padding: 10px 15px 10px 35px; display: inline-block; line-height: normal; border-radius: 5px; font-weight: 500; margin-right: 10px; position: relative;}
@@ -18120,6 +18209,14 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .store-stats .item-label {font-weight: 700;}
 .store-stats .iteme-numbers {display: inline-flex; align-items: center; padding-top: 5px; width: 100%; color: #999; line-height: normal;}
 .store-stats .iteme-numbers em {font-style: normal; font-size: 14px;}
+.panel-right-sidebar .store-stats {position: relative; overflow: hidden;}
+.panel-right-sidebar .store-stats li .store-item img {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    width: 70px;
+}
+.panel-right-sidebar .store-stats li .store-item {gap: 0;}
 /* Store Stats Style End */
 
 .plan-switch-holder {text-align: center; margin: 0 0 40px; display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap;}
@@ -18621,6 +18718,23 @@ Lms Responsive Style Start
     body .dashboard-banner-container {margin-top: 15px;}
     .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
 }
+@media screen and (min-width: 992px) and (max-width: 1300px) {
+    .stats-list ul li {
+        border-left: 0;
+        width: 100%;
+        padding: 0 0 15px;
+        margin: 0 0 15px;
+        text-align: left;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .listing-card .btn-holder {
+        right: 15px;
+    }
+    .school-zone-students [class*="col-"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
     .lms-contact-form-section .message-box{right: 0;}
@@ -18639,6 +18753,9 @@ Lms Responsive Style Start
     .mega-menu-body.tab-content {height: 350px; overflow: hidden; overflow-y: auto;}
     .home-banner .choose-sats .sats-box span {font-size: 20px;}
     .choose-sats .sats-box {padding: 20px;}
+    .result-layout-summary .sats-summary [class*="col-"] {border-bottom: 1px solid #e1e1e1;flex: 0 0 50%;max-width: 50%;}
+    .listing-card .read-btn .btn-icon {margin-right: 8px;}
+    .listing-card .read-btn, .book-btn {font-size: 12px; padding: 12px 15px; min-width: 150px;}
 }
 @media screen and (max-width: 992px) {
     .navbar-expand-lg .navbar-toggler,
@@ -18699,11 +18816,14 @@ Lms Responsive Style Start
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
     .topbar-right {flex-wrap: wrap; width: 100%;}
     body .lms-quiz-section {/*height: auto;*/}
+    .panel-sidebar .sidebar-logo {
+        display: none;
+    }
     .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .sats-listing-card tbody tr td:nth-child(2) {text-align: left; min-width: auto;}
     .rurera-list-btn {padding: 10px 15px; min-width: 100px; text-align: center;}
-    .panel-page-section .panel-sidebar {position: fixed !important; padding-top: 15px !important; padding-bottom: 15px !important; height: auto; width: 100%; border: none; max-height: 65px; z-index: 22;}
+    .panel-page-section .panel-sidebar {position: fixed !important; padding-top: 15px !important; padding-bottom: 15px !important; height: auto; width: 100%; border: none; max-height: 60px; z-index: 30;}
     .panel-page-section .questions-submit-btn {width: 82%;}
     .timestables-mode-content .heatmap-range-slider {margin-bottom: 0;}
     .heatmap-range-slider .range-value {flex-basis: 100%; width: 100%;}
@@ -18752,11 +18872,11 @@ Lms Responsive Style Start
     body .learning-page {padding-top: 0;}
     body .instruction-controls .instruction-text {min-width: auto; height: 450px;}
     body .read-quiz-content .quiz-topbar {position: relative;}
-    body .panel-sidebar .navbar-toggler {position: relative; display: block; border: 0; padding: 0;}
-    body .panel-sidebar .sidebar-logo {align-items: flex-start; position: relative; z-index: 1; display: inline-flex;}
+    body .panel-right-sidebar .navbar-toggler {position: relative; display: block; border: 0; padding: 0;}
+    body .panel-right-sidebar .sidebar-logo {align-items: flex-start; position: relative; z-index: 1; display: inline-flex;}
     body .sidebar-menu-holder {background-color: #fff; visibility: hidden; padding: 0; opacity: 0; position: fixed; top: 0; height: 100%; left: -150%; transition: left .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; z-index: 2; width: 100%;}
     body .sidebar-menu-holder.show {opacity: 1; visibility: visible; left: 0;}
-    body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0;padding: 0; position: absolute; top: 50%;right: 15px;z-index: 1;margin-top: 0;}
+    body .panel-sidebar .sidebar-menu-holder .navbar-toggler {border: 0;padding: 0; position: absolute; top: 50%;right: 15px;z-index: 1;margin-top: 0; display: block;}
     .panel-content .search-top-banner {padding: 25px !important;}
     .panel-content > .container > .row > [class*="col-"]:last-child {padding-left: 15px;}
     .panel-content > .container > .row > [class*="col-"]:first-child {padding-right: 15px;}
@@ -18773,18 +18893,113 @@ Lms Responsive Style Start
     .panel-content [class*="col-"]{position: initial;}
     .user-profile-icons .dropdown > a > img, .user-profile-icons img,
     .panel-right-sidebar .coin-counts img{width: 28px; height: 28px; margin-right: 0; margin-top: 0;}
-    .coin-counts strong, .user-profile-icons li strong {gap: 10px;}
     body .sidebar-logo img {max-width: 30px;}
     .sidebar-logo .sidebar-logo-text {display: none;}
     .navbar-toggler-icon {width: 1.6em;height: 1.5em;}
     .user-profile-icons .dropdown-menu-right {left: 0; right: auto;}
-    .panel-right-sidebar [class*="col-"] {display: none;}
+    .panel-right-sidebar [class*="col-"] {
+        display: none;
+    }
+    .panel-right-sidebar [class*="col-"]:has(.user-profile-icons) {
+        display: block;
+    }
+    .panel-content [class*="col-"].panel-right-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        z-index: 30;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .panel-content [class*="col-"].panel-right-sidebar .row {
+        width: 100%;
+    }
+    .panel-right-sidebar .user-profile-icons {
+        margin: 0;
+    }
+    .user-profile-icons .sidebar-no-mobile {
+        display: none;
+    }
+    .panel-sidebar-open .panel-page-section .panel-sidebar {z-index: 31;}
     body .panel-sidebar .sidebar-menu .logout-sidebar {display: flex;}
     .panel-sidebar .sidebar-mobile-user-profile {display: inline-block; margin: 0; width: 100%;}
     .panel-sidebar .nav-icons-or-start-live.navbar-order {display: none;}
-    .panel-page-section .panel-content {padding-top: 80px;}
     .panel-sidebar .container {display: flex; align-items: center; justify-content: space-around; gap: 15px;}
     .panel-sidebar .user-profile-icons ul {gap: 0; justify-content: space-around;}
+    .panel-content .panel-content-holder {max-width: 100%; flex: 0 0 100%;}
+    .result-layout-summary .sats-summary [class*="col-"] {border-bottom: 1px solid #e1e1e1;flex: 0 0 50%;max-width: 50%;}
+    .panel-content {padding-left: 0;}
+    .quiz-topbar [class*="col-"] {flex: 0 0 100%; max-width: 100%; text-align: center;}
+    .user-profile-icons ul .menu-button-mobile,
+    .user-profile-icons ul .sidebar-logo-mobile{display: flex;}
+    .panel-rightside-menu {margin-top: 15px;}
+    .user-profile-icons li strong {
+        padding: 6px 10px;
+        border-radius: 5px;
+    }
+    .user-profile-icons li.dropdown:hover strong {
+        background-color: #f1f1f1;
+    }
+    .user-profile-icons .dropdown {
+        position: inherit;
+    }
+    .user-profile-icons .dropdown-menu {
+        border-radius: 0;
+        width: 100%;
+        min-width: auto;
+        margin: 0;
+        transition: none;
+        text-align: center;
+    }
+    .user-coins-menu .dropdown-header {
+        display: inline-flex;
+        text-align: left;
+    }
+    .user-profile-icons .dropdown:hover .dropdown-menu {
+        margin-top: 0;
+        border-left: 0;
+        border-right: 0;
+        top: 70px;
+    }
+    .user-profile-icons .dropdown-menu:after, 
+    .user-profile-icons .dropdown-menu:before {
+        display: none;
+    }
+    .user-profile-icons li.dropdown strong:before, 
+    .user-profile-icons li.dropdown strong:after {
+        bottom: -22px;
+        top: auto;
+        content: "";
+        position: absolute;
+        right: 25px;
+        height: 15px;
+        width: 15px;
+        border-top: 1px solid #ddd;
+        border-left: 1px solid#ddd;
+        transform: rotate(45deg);
+        z-index: 3333;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .user-profile-icons li.dropdown strong:after {
+        background-color: #fff;
+        box-shadow: none;
+        border: 0;
+        bottom: -24px;
+    }
+    .user-profile-icons li.dropdown:hover strong:before, 
+    .user-profile-icons li.dropdown:hover strong:after {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -19017,7 +19232,21 @@ Lms Responsive Style Start
     .learning-start .learning-text p {font-size: 1rem !important;margin-bottom: 20px;}
     .panel-right-sidebar .product-card .font-16 {font-size: 16px !important;}
     .container-fluid.read-quiz-content {padding-left: 15px; padding-right: 15px;}
-    .panel-sidebar .sidebar-menu .sidenav-item a {font-size: 16px !important;} 
+    .panel-sidebar .sidebar-menu .sidenav-item a {font-size: 16px !important;}
+    .listing-card .btn-holder,
+    .book-percentage {position: initial;transform: none;margin-top: 20px;}
+    body .lms-quiz-section .question-area,
+    body .question-layout-block form.question-fields, 
+    body .question-fields .left-content {
+        min-height: auto;
+    }
+    .school-zone-students [class*="col-"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .student-block-text .user-name {
+        padding-right: 0;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -19196,6 +19425,7 @@ Lms Responsive Style Start
     .item-text {text-align: center;}
     .rewards-tier-box [class*="col-"] {padding: 0 0 20px;}
     .product-tabs .product-card {padding: 0;}
+    .result-layout-summary .sats-summary [class*="col-"] {flex: 0 0 100%; max-width: 100%;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -19218,4 +19448,8 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 100%; padding-top: 10px;}
     .panel-content .template-grid .text-holder a {display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 5px;}
     .panel-content .grid-card .title-label, .login-options .coming-soon {margin: 0;}
+    .school-zone-students [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }

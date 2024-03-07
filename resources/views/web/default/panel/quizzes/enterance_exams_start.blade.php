@@ -215,7 +215,7 @@ $timer_counter = $practice_time;
             </section>
 
 
-            <div class="row justify-content-center">
+            <div class="justify-content-center">
                 <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">

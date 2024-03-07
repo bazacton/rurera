@@ -10,10 +10,10 @@
 
 @section('content')
 <div class="timestables-mode-block">
-<a href="/timestables-practice" class="timestables-back-btn">Back</a>
+
 <div class="timestables-mode-content">
 <div class="section-title mb-20">
-    <h2 itemprop="title" class="font-22 mb-0">School Zone</h2>
+    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> School Zone</h2>
 </div>
 <ul class="tests-list school-zone-list mb-30">
     <li data-type="my-class" class="active">My Class</li>
@@ -35,15 +35,12 @@
                                 <div class="student-block mb-15">
                                     <img src="{{$studentObj->getAvatar()}}">
                                     <span class="student-block-text d-block font-18 font-weight-bold">
-                                        <span class="user-year-info font-15 font-weight-bold d-block mt-0">
-                                            {{isset( $studentObj->userYear->id) ? $studentObj->userYear->getTitleAttribute() : ''}}
-                                        </span>
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->full_name}}
                                         </span>
                                         <span class="student-rank font-14 font-weight-normal d-block">
-                                            <span>Ranking: Test Rank {{$studentObj->trophy_badge}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
-                                            <span>Ranking: Coins - {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
+                                            <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
+                                            <span>Coins: {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>
                                     </span>
                                 </div>
@@ -79,19 +76,16 @@
 
                         @foreach( $yearStudents as $studentObj)
                             @php $studentClass = ($studentObj->section_id == $selected_section)? '' : 'rurera-hide'; @endphp
-                            <div class="col-lg-4 col-md-6 col-12 sections-users-list section-{{$studentObj->section_id}} {{$studentClass}}">
+                            <div class="col-lg-4 col-md-6 col-12">
                                 <div class="student-block mb-15">
                                     <img src="{{$studentObj->getAvatar()}}">
                                     <span class="student-block-text d-block font-18 font-weight-bold">
-                                        <span class="user-year-info font-15 font-weight-bold d-block mt-0">
-                                            {{isset( $studentObj->userYear->id) ? $studentObj->userYear->getTitleAttribute() : ''}}
-                                        </span>
                                         <span class="user-name d-block mt-0">
                                             {{$studentObj->full_name}}
                                         </span>
                                         <span class="student-rank font-14 font-weight-normal d-block">
-                                            <span>Ranking: Test Rank {{$studentObj->trophy_badge}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
-                                            <span>Ranking: Coins - {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
+                                            <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
+                                            <span>Coins: {{$studentObj->getRewardPoints()}} <img src="/assets/default/svgs/stats-coins.svg" alt=""></span>
                                         </span>
                                     </span>
                                 </div>
@@ -111,6 +105,20 @@
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Ranking</h2></div>
             </div>
+            @if( (5 - $results_data->count()) > 0)
+                <div class="col-12">
+                    <div class="referral-withdraw mb-30">
+                      <div class="withdraw-card p-15 d-flex align-items-center flex-wrap">
+                          <div class="icon-box">
+                              <img src="/assets/default/svgs/shuttlecock.svg" alt="">
+                          </div>
+                              <div class="withdraw-text">
+                                  <h3 class="blog-grid-title font-18 font-weight-bold mb-5" itemprop="title">You need to play Timestables Trophy Mode {{(5 - $results_data->count())}} more games to display in leaderboard.</h3>
+                              </div>
+                      </div>
+                    </div>
+                  </div>
+            @endif
             <div class="col-12 col-lg-12 mx-auto">
                 <ul class="lms-performace-table leaderboard mt-30">
                     <li class="lms-performace-head leaderboard-title" style="background-color: #fff;">

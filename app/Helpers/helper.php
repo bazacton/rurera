@@ -8689,3 +8689,7 @@ function getAllowedUsers(){
         1160,
     );
 }
+
+function subscriptionCheckLink($subscription_check, $default_link){
+    return 'test'.$default_link;
+}

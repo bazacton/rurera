@@ -72,138 +72,9 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 panel-right-sidebar">
                         <div class="row">
-                            <div class="col-12 col-lg-12 mt-10">
-                                @if(auth()->check() && (auth()->user()->isUser()))
-                                <div class="user-profile-icons">
-                                    <ul>
-                                        <li class="dropdown dropdown-list-toggle">
-                                            <strong>
-                                                <img src="/assets/default/img/panel-sidebar/1.png" alt="">
-                                            @if(!empty($unReadNotifications) and count($unReadNotifications))
-                                            {{ count($unReadNotifications) }}
-                                        @else
-                                        0
-                                        @endif
-                                            </strong>
+                            <div class="col-12 col-lg-12">
 
-                                            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                                                <div class="dropdown-header">{{ trans('admin/main.notifications') }}
-                                                    <div class="float-right">
-                                                        @can('admin_notifications_markAllRead')
-                                                            <a href="{{ getAdminPanelUrl() }}/notifications/mark_all_read">{{ trans('admin/main.mark_all_read') }}</a>
-                                                        @endcan
-                                                    </div>
-                                                </div>
-
-                                                <div class="dropdown-list-content dropdown-list-icons">
-                                                    @foreach($unReadNotifications as $unreadNotification)
-                                                        <a href="{{ getAdminPanelUrl() }}/notifications" class="dropdown-item">
-                                                            <div class="dropdown-item-icon bg-info text-white d-flex align-items-center justify-content-center">
-                                                                <i class="far fa-user"></i>
-                                                            </div>
-                                                            <div class="dropdown-item-desc">
-                                                                {{ $unreadNotification->title }}
-                                                                <div class="time text-primary">{{ dateTimeFormat($unreadNotification->created_at,'Y M j | H:i') }}</div>
-                                                            </div>
-                                                        </a>
-                                                    @endforeach
-                                                </div>
-                                                <div class="dropdown-footer text-center">
-                                                    <a href="{{ getAdminPanelUrl() }}/notifications">{{ trans('admin/main.view_all') }} <i class="fas fa-chevron-right"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="assignments">
-                                            <strong>
-                                                <img src="/assets/default/img/panel-sidebar/2.png" alt="">
-                                                0
-                                            </strong>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="coin-counts">
-                                            <strong>
-                                                <img src="/assets/default/img/panel-sidebar/heart-red.png" alt="">
-                                                {{$authUser->user_life_lines}}
-                                            </strong>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="levels">
-                                            <strong>
-                                                <img src="/assets/default/img/panel-sidebar/coins.svg" alt="">
-                                                {{$authUser->getRewardPoints()}}
-                                            </strong>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="xs-w-100 d-flex align-items-center justify-content-between">
-                                                @if(!empty($authUser))
-                                                <!-- <div class="d-flex">
-                                                    <div class="border-left mx-5 mx-lg-15"></div>
-                                                </div> -->
-                                                @endif
-
-                                                @if(!empty($authUser))
-
-
-                                                <div class="dropdown">
-                                                    <a href="#!" class="navbar-user d-flex align-items-center dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                        <img src="{{ $authUser->getAvatar() }}" class="rounded-circle"
-                                                            alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
-                                                            alt="rounded circle" loading="eager" title="rounded circle">
-                                                    </a>
-
-                                                    <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
-                                                        <div class="dropdown-item user-nav-detail">
-                                                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
-                                                            alt="rounded circle" loading="eager" title="rounded circle">
-                                                            <span class="font-14 text-dark-blue user-name">{{ $authUser->full_name }}</span>
-                                                            <span class="font-14 text-dark-blue user-email">{{ $authUser->email }}</span>
-                                                            <a href="/panel" class="font-14 text-dark-blue user-manage-btn">Manage Account</a>
-                                                        </div>
-                                                        <div class="d-md-none border-bottom mb-20 pb-10 text-right">
-                                                            <i class="close-dropdown" data-feather="x" width="32" height="32" class="mr-10"></i>
-                                                        </div>
-
-
-                                                        @if( !empty( $profile_navs ) )
-                                                        <div class="user-nav-list">
-                                                        @foreach( $profile_navs as $profile_nav)
-
-                                                        <a class="dropdown-item " href="/panel/switch_user/{{$profile_nav['id']}}">
-                                                            <img src="{{ $profile_nav->getAvatar() }}" class="rounded-circle" alt="{{ $profile_nav['full_name'] }}" width="100%" height="auto" itemprop="image"
-                                                            alt="rounded circle" loading="eager" title="rounded circle">
-                                                            @php $full_name = (isset( $navData['is_parent'] ) && $navData['is_parent'] == true)? 'Parent' :  $profile_nav['full_name']; @endphp
-                                                            <span class="font-14 text-dark-blue user-list-name">{{ $full_name }}</span>
-                                                            <span class="font-14 text-dark-blue user-list-email">{{ $profile_nav['email'] }}</span>
-                                                        </a>
-
-                                                        @endforeach
-                                                        </div>
-                                                        @endif
-
-                                                        <a class="dropdown-item nav-logout" href="/logout">
-                                                            <img src="/assets/default/img/icons/sidebar/logout.svg" height="auto" itemprop="image"
-                                                                width="25" alt="nav-icon" title="nav-icon" loading="eager">
-                                                            <span class="font-14 text-dark-blue">{{ trans('panel.log_out') }}</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                @else
-                                                <div class="d-flex align-items-center ml-md-50">
-                                                    <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">Log in</a>
-                                                    <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Try for free</a>
-                                                </div>
-                                                @endif
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                @endif
+                                @include(getTemplate(). '.panel.includes.user_top_bar')
 
 
                                 @if(request()->is('custom_html')  || request()->is('panel/billing')  || request()->is('panel/change_password')  || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
@@ -221,16 +92,30 @@
                                     </div>
                                     <ul>
                                         <li>
-                                            <a href="/panel/setting"><span class="nav-icon"><img src="/assets/default/svgs/account-nav.svg" alt=""></span>Account Setting</a>
+                                            <a href="/panel/setting"><span class="nav-icon">
+                                                <img src="/assets/default/svgs/account-nav.svg" alt=""></span>
+                                                <span>Account Setting</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="/panel/rewards"><span class="nav-icon"><img src="/assets/default/svgs/reward-nav2.svg" alt=""></span>Reward Points</a>
+                                            <a href="/panel/rewards">
+                                                <span class="nav-icon">
+                                                    <img src="/assets/default/svgs/reward-nav2.svg" alt="">
+                                                </span>
+                                                <span>Reward Points</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="/panel/store/purchases"><span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>Shop Orders</a>
+                                            <a href="/panel/store/purchases">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>
+                                                <span>Shop Orders</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="/panel/notifications"><span class="nav-icon"><img src="/assets/default/svgs/notifications-nav.svg" alt=""></span>Notification</a>
+                                            <a href="/panel/notifications">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/notifications-nav.svg" alt=""></span>
+                                                <span>Notification</span>
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="#"><span class="nav-icon"><img src="/assets/default/svgs/school-nav.svg" alt=""></span>School link</a>
@@ -387,33 +272,33 @@
                                             <a href="/quests" class="view-all font-weight-bold font-15">View All</a>
                                         </h3>
                                         <ul>
-                                                @foreach( $authUser->getUserQuests() as $questObj)
-                                                    @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
+                                            @foreach( $authUser->getUserQuests() as $questObj)
+                                                @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
 
-                                                    $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
-                                                    $quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
-                                                    @endphp
-                                                    <li>
-                                                            <div class="quests-item">
-                                                                <div class="icon-box">
-                                                                    <img src="{{$quest_icon}}" alt="">
-                                                                </div>
-                                                                <div class="item-text">
-                                                                    <h5>{{$questObj->title}}</h5>
-                                                                    <div class="levels-progress horizontal">
-                                                                        <span class="progress-box">
-                                                                            <span class="progress-count" style="width: {{isset( $questUserData['completion_percentage'] )? $questUserData['completion_percentage'] : 0}}%;"></span>
-                                                                        </span>
-                                                                        <span class="progress-numbers">{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</span>
-                                                                    </div>
-                                                                    <span class="progress-icon">
-                                                                        <img src="/assets/default/img/quests-coin.png" alt="">
-                                                                        +{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
-                                                                    </span>
-                                                                </div>
+                                                $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
+                                                $quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
+                                                @endphp
+                                                <li>
+                                                    <div class="quests-item">
+                                                        <div class="icon-box">
+                                                            <img src="{{$quest_icon}}" alt="">
+                                                        </div>
+                                                        <div class="item-text">
+                                                            <h5>{{$questObj->title}}</h5>
+                                                            <div class="levels-progress horizontal">
+                                                                <span class="progress-box">
+                                                                    <span class="progress-count" style="width: {{isset( $questUserData['completion_percentage'] )? $questUserData['completion_percentage'] : 0}}%;"></span>
+                                                                </span>
+                                                                <span class="progress-numbers">{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</span>
                                                             </div>
-                                                        </li>
-                                                @endforeach
+                                                            <span class="progress-icon">
+                                                                <img src="/assets/default/img/quests-coin.png" alt="">
+                                                                +{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>

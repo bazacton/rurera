@@ -10,17 +10,37 @@
 
 @section('content')
 <div class="timestables-mode-block">
-<a href="/timestables-practice" class="timestables-back-btn">Back</a>
 <div class="timestables-mode-content">
 <div class="section-title mb-20">
-    <h2 itemprop="title" class="font-22 mb-0">Trophy Mode</h2>
+    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Trophy Mode</h2>
 </div>
+@if( (5 - $results_data->count()) > 0)
+<section class="border-bottom-4 border-radius-10 mb-5" >
+    <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="referral-withdraw mb-30">
+                      <div class="withdraw-card p-15 d-flex align-items-center flex-wrap">
+                          <div class="icon-box">
+                              <img src="/assets/default/svgs/shuttlecock.svg" alt="">
+                          </div>
+                              <div class="withdraw-text">
+                                  <h3 class="blog-grid-title font-18 font-weight-bold mb-5" itemprop="title">You need to play {{(5 - $results_data->count())}} more games to earn a Badge</h3>
+                              </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+    </div>
+</section>
+@endif
 <section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>
             </div>
+
             <div class="col-12 col-lg-12 mx-auto">
                 <form action="/timestables/generate_trophymode" method="post">
                     {{ csrf_field() }}
@@ -30,6 +50,30 @@
                         <button type="submit" class="questions-submit-btn btn"><span>Play</span></button>
                     </div>
                 </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="trophy-levels">
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Explorer')? 'class=active' : '' }}>Explorer</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Junior')? 'class=active' : '' }}>Junior</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Smarty')? 'class=active' : '' }}>Smarty</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Brainy')? 'class=active' : '' }}>Brainy</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Genius')? 'class=active' : '' }}>Genius</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Creative')? 'class=active' : '' }}>Creative</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Champion')? 'class=active' : '' }}>Champion</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Mastery')? 'class=active' : '' }}>Mastery</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Majesty')? 'class=active' : '' }}>Majesty</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Expert')? 'class=active' : '' }}>Expert</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Maestro')? 'class=active' : '' }}>Maestro</li>
+                </ul>
             </div>
 
         </div>

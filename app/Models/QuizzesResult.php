@@ -44,6 +44,11 @@ class QuizzesResult extends Model
         return $this->hasMany('App\Models\QuizzResultQuestions', 'quiz_result_id', 'id')->where('status', '=', 'correct');
     }
 
+    public function quizz_result_timestables_grouped()
+    {
+        return $this->hasMany('App\Models\QuizzResultQuestions', 'quiz_result_id', 'id');
+    }
+
     public function quizz_result_percentage()
     {
         $totalQuestions = $this->quizz_result_questions_list()->count();

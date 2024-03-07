@@ -16,7 +16,7 @@
 
                 <div class="col-12">
                     <div class="section-title text-left mb-20">
-                        <h2 class="mt-0 mb-10 font-22">Daily Quests</h2>
+                        <h2 class="mt-0 mb-30 font-22">Daily Quests</h2>
                     </div>
                 </div>
 @if( $quests->count() > 0 )

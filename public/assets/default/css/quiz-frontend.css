@@ -19,6 +19,9 @@
     overflow: hidden;
     padding-top: 100px;
 }
+.learning-page.type-practice.type-sats {
+    background-color: #fff;
+}
 .learning-page .learning-page {
     padding-top: 0;
 }

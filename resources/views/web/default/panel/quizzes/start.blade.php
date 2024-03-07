@@ -284,7 +284,7 @@ $timer_counter = $practice_time;
                     <div class="question-area-temp hide"></div>
 
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-3 col-md-12 col-sm-12 mt-50 panel-right-sidebar">
                     <div class="col-12 col-lg-12 mb-30">
                         <div class="quests-list">
                             <h3 class="font-19 font-weight-bold">

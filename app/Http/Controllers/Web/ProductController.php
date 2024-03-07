@@ -65,6 +65,7 @@ class ProductController extends Controller
         $pageRobot = getPageRobot('products_lists');
         $trending_toys = Product::where('status', 'active')->where('is_trending', 1)->orderByDesc('trending_at')->limit(10)->get();
         $shortlisted_products = isset( $user->shortlisted_products )? json_decode($user->shortlisted_products) : array();
+        $shortlisted_products = is_array($shortlisted_products)? $shortlisted_products : (array) $shortlisted_products;
         $shortlisted_toys = Product::where('status', 'active')->whereIN('id', $shortlisted_products)->orderByDesc('trending_at')->limit(10)->get();
 
         $data = [
@@ -475,6 +476,7 @@ class ProductController extends Controller
         $product_id = $request->get('product_id', 0);
         $action_type = $request->get('action_type');
         $shortlisted_products = isset( $user->shortlisted_products )? json_decode($user->shortlisted_products) : array();
+        $shortlisted_products = is_array($shortlisted_products)? $shortlisted_products : (array) $shortlisted_products;
         $return_label = 'Updated Successfully!';
         if( $action_type == 'add'){
             if( !in_array($product_id, $shortlisted_products)){

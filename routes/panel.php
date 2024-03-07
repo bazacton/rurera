@@ -410,6 +410,7 @@ Route::group([
     Route::group(['prefix' => 'analytics'], function () {
         Route::get('/', 'AnalyticsController@index');
         Route::get('/graph_data', 'AnalyticsController@graph_data');
+        Route::get('/{type}', 'AnalyticsController@index');
     });
 
     Route::group(['prefix' => 'results'], function () {

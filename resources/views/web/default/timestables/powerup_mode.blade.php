@@ -10,10 +10,10 @@
 
 @section('content')
 <div class="timestables-mode-block">
-<a href="/timestables-practice" class="timestables-back-btn">Back</a>
+
 <div class="timestables-mode-content">
 <div class="section-title mb-20">
-    <h2 itemprop="title" class="font-22 mb-0">Powerup Mode</h2>
+    <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Powerup Mode</h2>
 </div>
 <section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">

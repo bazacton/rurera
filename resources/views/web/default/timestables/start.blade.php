@@ -37,226 +37,219 @@ if( $duration_type == 'total_practice'){
 
     <section class="lms-quiz-section1 justify-content-start">
 
-
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="30">
 
-            <div class="row justify-content-center">
+            <div class="justify-content-center">
                 <div class="container">
                     <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12 mt-50 quiz-section-block">
-                    <div class="question-step quiz-complete" style="display:none">
-                        <div class="question-layout-block">
-                            <div class="left-content has-bg">
-                                <h2>&nbsp;</h2>
-                                <div id="leform-form-1"
-                                     class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
-                                     _data-parent="1"
-                                     _data-parent-col="0" style="display: block;">
-                                    <div class="question-layout">
+                        <div class="col-lg-8 col-md-12 col-sm-12 mt-50 quiz-section-block">
+                            <div class="question-step quiz-complete" style="display:none">
+                                <div class="question-layout-block">
+                                    <div class="left-content has-bg">
+                                        <h2>&nbsp;</h2>
+                                        <div id="leform-form-1"
+                                            class="leform-form leform-elements leform-form-input-medium leform-form-icon-inside leform-form-description-bottom ui-sortable"
+                                            _data-parent="1"
+                                            _data-parent-col="0" style="display: block;">
+                                            <div class="question-layout">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="start-counter"></div>
+
+                            <div class="learning-content start-btn-container hide" id="learningPageContent">
+                                <div class="learning-title">
+                                    <h3 class="mb-5"></h3>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center w-100">
+
+
+                                    <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
+                                        <div class="learning-content-box-icon">
+                                            <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
+                                        </div>
+
+                                        <p>Press Start button when you are ready!</p>
+
+                                        <a href="javascript:;" class="btn btn-primary btn-sm mt-15 start-timestables-quiz">Start</a>
+                                        <div class="learning-content-quiz"></div>
 
                                     </div>
+                                </div>
+
+                            </div>
+
+                            <div class="question-area-block quiz-first-question row mt-0" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
+
+                                <div class="col-12 col-lg-8 mx-auto">
+                                    <div class="spells-quiz-info">
+                                        <ul>
+                                            <li class="show-correct-answer">
+                                                <span class="tt_question_no">1</span> Of {{$total_questions}}
+                                            </li>
+                                            <li>
+                                                <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
+                                            </li>
+                                            <li class="total-points">
+                                                <span class="tt_points">0</span> Points
+                                            </li>
+                                        </ul>
+                                    </div> <br><br>
+
+                                    @if( is_array( $questions_list ))
+                                    @php $question_no = 1; @endphp
+
+                                    @foreach( $questions_list as $questionIndex => $questionObj)
+
+                                    @php $class = ($questionIndex == 0)? 'active' : 'hide'; @endphp
+
+
+                                    <div class="questions-block {{$class}}" data-id="{{$questionIndex}}" data-tconsumed="0">
+                                    <form action="javascript:;" class="question-form" method="post"
+                                                                        data-id="{{$questionIndex}}">
+                                        <div class="questions-status d-flex mb-15">
+                                        </div>
+                                        <div class="questions-arithmetic-box d-flex align-items-center">
+                                            <span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
+                                        <input type="text" data-from="{{$questionObj->from}}"
+                                                                                data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
+                                                                                class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
+                                            <div class="questions-controls">
+                                            <span class="time-count-seconds" style="display:none;">0</span>
+                                            <a href="javascript:;">
+                                                <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
+                                                <img src="/assets/default/svgs/mute.svg" class="mute_sound mute_unmute_sound hide" data-action="unmute_sound" alt="unmute svg">
+                                            </a>
+                                        </div>
+                                        </div>
+                                        <div class="questions-block-numbers">
+                                        <ul class="d-flex justify-content-center flex-wrap">
+                                            <li id="key-7" data-value="7"><span>7</span></li>
+                                                <li id="key-8" data-value="8"><span>8</span></li>
+                                                <li id="key-9" data-value="9"><span>9</span></li>
+                                                <li id="key-4" data-value="4"><span>4</span></li>
+                                                <li id="key-5" data-value="5"><span>5</span></li>
+                                                <li id="key-6" data-value="6"><span>6</span></li>
+                                                <li id="key-1" data-value="1"><span>1</span></li>
+                                                <li id="key-2" data-value="2"><span>2</span></li>
+                                                <li id="key-3" data-value="3"><span>3</span></li>
+                                                <li class="delete" data-value="delete"><span>Delete</span></li>
+                                                <li id="key-0" data-value="0"><span>0</span></li>
+                                                <li class="enter" data-value="enter"><span>Enter</span></li>
+                                        </ul>
+                                        </div>
+                                        </form>
+                                    </div>
+
+
+                                    @php $question_no++; @endphp
+                                    @endforeach
+
+                                    @endif
+
+                                </div>
+                                
+                                
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 mt-50 panel-right-sidebar">
+                            <div class="col-12 col-lg-12 mb-30">
+                                <div class="store-stats panel-border bg-white rounded-sm p-20">
+                                    <ul>
+                                        <li>
+                                        <div class="store-item">
+                                            <img src="/assets/default/svgs/stats-coins.svg" alt="">
+                                            <span class="item-label">
+                                                Current Balance
+                                                <span class="iteme-numbers">706</span>
+                                            </span>
+                                        </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12 mb-30 ">
+                                <div class="quests-list panel-border bg-white rounded-sm p-20">
+                                    <h3 class="font-19 font-weight-bold">
+                                        Daily Quests
+                                        <a href="#" class="view-all">View All</a>
+                                    </h3>
+                                    <ul>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/svgs/star-quests.svg" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Earn 10 XP</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 0%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 10</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +20
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/svgs/certificate.svg" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Score 90% or higher in 2 <br /> lessons</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 40%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 2</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +15
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="quests-item">
+                                                <div class="icon-box">
+                                                    <img src="/assets/default/svgs/clock.svg" alt="">
+                                                </div>
+                                                <div class="item-text">
+                                                    <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
+                                                    <div class="levels-progress horizontal">
+                                                        <span class="progress-box">
+                                                            <span class="progress-count" style="width: 20%;"></span>
+                                                        </span>
+                                                        <span class="progress-numbers">0 / 2</span>
+                                                    </div>
+                                                    <span class="progress-icon">
+                                                        <img src="/assets/default/img/quests-coin.png" alt="">
+                                                        +100
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
-                    <div class="start-counter"></div>
-
-                    <div class="learning-content start-btn-container hide" id="learningPageContent">
-                        <div class="learning-title">
-                            <h3 class="mb-5"></h3>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center w-100">
-
-
-                            <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
-                                <div class="learning-content-box-icon">
-                                    <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
-                                </div>
-
-                                <p>Press Start button when you are ready!</p>
-
-                                <a href="javascript:;" class="btn btn-primary btn-sm mt-15 start-timestables-quiz">Start</a>
-                                <div class="learning-content-quiz"></div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="question-area-block quiz-first-question" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}" style="display:none" data-quiz_result_id="{{$QuizzAttempts->quiz_result_id}}" data-attempt_id="{{$QuizzAttempts->id}}" data-total_questions="{{count($questions_list)}}">
-
-
-                        <div class="col-12 col-lg-8 mx-auto">
-                            <div class="spells-quiz-info">
-                                <ul>
-                                    <li class="show-correct-answer">
-                                        <span class="tt_question_no">1</span> Of {{$total_questions}}
-                                    </li>
-                                    <li>
-                                        <span class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</span>
-                                    </li>
-                                    <li class="total-points">
-                                        <span class="tt_points">0</span> Points
-                                    </li>
-                                </ul>
-                            </div> <br><br>
-
-                            @if( is_array( $questions_list ))
-                            @php $question_no = 1; @endphp
-
-                            @foreach( $questions_list as $questionIndex => $questionObj)
-
-                            @php $class = ($questionIndex == 0)? 'active' : 'hide'; @endphp
-
-
-                            <div class="questions-block {{$class}}" data-id="{{$questionIndex}}" data-tconsumed="0">
-                            <form action="javascript:;" class="question-form" method="post"
-                                                                  data-id="{{$questionIndex}}">
-                                <div class="questions-status d-flex mb-15">
-                                </div>
-                                <div class="questions-arithmetic-box d-flex align-items-center">
-                            		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
-                                   <input type="text" data-from="{{$questionObj->from}}"
-                                                                           data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
-                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
-                                    <div class="questions-controls">
-                                       <span class="time-count-seconds" style="display:none;">0</span>
-                                       <a href="javascript:;">
-                                           <img src="/assets/default/svgs/unmute.svg" class="unmute_sound mute_unmute_sound" data-action="mute_sound" alt="mute svg">
-                                           <img src="/assets/default/svgs/mute.svg" class="mute_sound mute_unmute_sound hide" data-action="unmute_sound" alt="unmute svg">
-                                       </a>
-                                   </div>
-                                </div>
-                                <div class="questions-block-numbers">
-                                   <ul class="d-flex justify-content-center flex-wrap">
-                                      <li id="key-7" data-value="7"><span>7</span></li>
-                            			<li id="key-8" data-value="8"><span>8</span></li>
-                            			<li id="key-9" data-value="9"><span>9</span></li>
-                            			<li id="key-4" data-value="4"><span>4</span></li>
-                            			<li id="key-5" data-value="5"><span>5</span></li>
-                            			<li id="key-6" data-value="6"><span>6</span></li>
-                            			<li id="key-1" data-value="1"><span>1</span></li>
-                            			<li id="key-2" data-value="2"><span>2</span></li>
-                            			<li id="key-3" data-value="3"><span>3</span></li>
-                            			<li class="delete" data-value="delete"><span>Delete</span></li>
-                            			<li id="key-0" data-value="0"><span>0</span></li>
-                            			<li class="enter" data-value="enter"><span>Enter</span></li>
-                                   </ul>
-                                </div>
-                            	</form>
-                             </div>
-
-
-                            @php $question_no++; @endphp
-                            @endforeach
-
-                            @endif
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-4 col-md-12 col-sm-12 mt-50 quiz-sidebar hide">
-                    <div class="col-12 col-lg-12 mb-30">
-                        <div class="store-stats">
-                            <ul>
-                                <li>
-                                <div class="store-item">
-                                    <img src="/assets/default/svgs/stats-coins.svg" alt="">
-                                    <span class="item-label">
-                                        Current Balance
-                                        <span class="iteme-numbers">706</span>
-                                    </span>
-                                </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-12 mb-30">
-                        <div class="quests-list">
-                            <h3 class="font-19 font-weight-bold">
-                                Daily Quests
-                                <a href="#" class="view-all">View All</a>
-                            </h3>
-                            <ul>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/svgs/star-quests.svg" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Earn 10 XP</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 0%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 10</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +20
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/svgs/certificate.svg" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Score 90% or higher in 2 <br /> lessons</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 40%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 2</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +15
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/svgs/clock.svg" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 20%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 2</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +100
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
+                    </div>  
                 </div>
             </div>
-                    
-                    
-                    
-                    
-                    
-                    
-            </div>
-        </div>
-    </section>
+        </section>
 
 
 </div>

@@ -1745,6 +1745,8 @@ class QuestionsAttemptController extends Controller
 
         $DailyQuestsController = new DailyQuestsController();
         $DailyQuestsController->questCompletionCheck($QuizzesResult);
+
+        $this->resultTimestablesAverage($QuizzesResult->id);
         
         
         if ($QuizzesResult->quiz_result_type == 'timestables' && $QuizzesResult->attempt_mode == 'trophy_mode') {
@@ -2730,5 +2732,121 @@ class QuestionsAttemptController extends Controller
             'questions_list' => $questions_list,
         );
     }
+
+
+    public function resultTimestablesAverage($result_id){
+        $user = getUser();
+        $user = User::find($user->id);
+
+        $timestables_data = json_decode($user->timestables_data);
+        $timestables_data = is_array($timestables_data) ? $timestables_data : $this->convertToArrayRecursive($timestables_data);
+        $timestables_data = is_array($timestables_data)? $timestables_data : array();
+        $locked_tables = json_decode($user->locked_tables);
+        $locked_tables = is_array($locked_tables) ? $locked_tables : $this->convertToArrayRecursive($locked_tables);
+        $locked_tables = is_array($locked_tables)? $locked_tables : array();
+
+        $resultObj = QuizzesResult::find($result_id);
+
+        $groupedResults = $resultObj->quizz_result_timestables_grouped->groupBy('parent_type_id');
+
+        // Define an array to store the processed data
+        $processedData = [];
+
+        foreach ($groupedResults as $parentTypeId => $group) {
+            // Count total records
+            $totalRecords = $group->count();
+
+            // Count correct and incorrect statuses
+            $correctCount = $group->where('status', 'correct')->count();
+            $incorrectCount = $group->where('status', 'incorrect')->count();
+
+            $totalTimeConsumed = $group->sum('time_consumed');
+
+            $totalTimeConsumed += $incorrectCount * 100;
+
+            $totalTimeConsumed = $totalTimeConsumed / 10;
+
+            // Calculate average time consumed in seconds
+            $averageTimeConsumed = $totalTimeConsumed / ($totalRecords); // Convert milliseconds to seconds
+
+            $averageTimeConsumed = round($averageTimeConsumed, 2);
+
+            // Store the processed data
+            $processedData[$parentTypeId] = [
+                'table_no'              => $parentTypeId,
+                'total_records'         => $totalRecords,
+                'corrected'             => $correctCount,
+                'average_time_consumed' => $averageTimeConsumed,
+            ];
+        }
+
+        $timestables_data = json_decode($user->timestables_data);
+        $timestables_data = is_array($timestables_data) ? $timestables_data : $this->convertToArrayRecursive($timestables_data);
+        $timestables_data_updated = $timestables_data;
+
+        $unlocked_tables = array();
+
+        if (!empty($processedData)) {
+            foreach ($processedData as $table_no => $tableData) {
+
+                $previous_total_records = isset($timestables_data[$table_no]['total_records']) ? $timestables_data[$table_no]['total_records'] : 0;
+                $new_total_records = isset($tableData['total_records']) ? $tableData['total_records'] : 0;
+
+                $previous_corrected = isset($timestables_data[$table_no]['corrected']) ? $timestables_data[$table_no]['corrected'] : 0;
+                $new_corrected = isset($tableData['corrected']) ? $tableData['corrected'] : 0;
+
+                $previous_average = isset($timestables_data[$table_no]['average_time_consumed']) ? $timestables_data[$table_no]['average_time_consumed'] : 0;
+                $new_average = isset($tableData['average_time_consumed']) ? $tableData['average_time_consumed'] : 0;
+
+                $total_sum = ($previous_total_records * $previous_average) + ($new_total_records * $new_average);
+
+                $total_records = $previous_total_records + $new_total_records;
+                $timestables_data_updated[$table_no]['total_records'] = $previous_total_records + $new_total_records;
+                $timestables_data_updated[$table_no]['corrected'] = $previous_corrected + $new_corrected;
+
+                $latest_average = $total_sum / $total_records;
+                // Calculate the total average
+                $timestables_data_updated[$table_no]['average_time_consumed'] = $latest_average;
+                if ($total_records < 5) {
+                    continue;
+                }
+                if ($latest_average <= 3) {
+                    if (!in_array($table_no, $locked_tables)) {
+                        $locked_tables[] = $table_no;
+                    }
+                }
+                if ($latest_average >= 3) {
+                    if (in_array($table_no, $locked_tables)) {
+                        $unlocked_tables[] = $table_no;
+                    }
+                }
+            }
+        }
+        $user_locked_tables = array_diff($locked_tables, $unlocked_tables);
+        $user_locked_tables = array_values($user_locked_tables);
+        $user_locked_tables = array_map('intval', $user_locked_tables);
+
+        //pre($timestables_data_updated, false);
+        $user->update(['timestables_data'=> json_encode($timestables_data_updated), 'locked_tables'=> json_encode($user_locked_tables, JSON_UNESCAPED_SLASHES)]);
+
+    }
+
+    public function convertToArrayRecursive($data) {
+        if (is_array($data)) {
+            foreach ($data as $key => $value) {
+                $data[$key] = $this->convertToArrayRecursive($value);
+            }
+            return $data;
+        } elseif (is_object($data)) {
+            $data = (array)$data;
+            foreach ($data as $key => $value) {
+                $data[$key] = $this->convertToArrayRecursive($value);
+            }
+            return $data;
+        } else {
+            return $data;
+        }
+    }
+
 
 }
