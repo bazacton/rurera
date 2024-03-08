@@ -3061,6 +3061,9 @@ a.badge-gray200:focus {
     border-radius: 0;
     border-bottom: 0;
     font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 #analyticsAccordion .card:nth-child(even) > .card-header {background-color: #fff;}
 #analyticsAccordion .card:nth-child(odd) .card-header {}
@@ -3102,10 +3105,18 @@ a.badge-gray200:focus {
     font-size: 14px;
     font-weight: 500;
 }
-#analyticsAccordion .card-header span {
-    display: inline-flex;
+#analyticsAccordion .card-header > span {
+    display: flex;
     align-items: center;
     gap: 8px;
+    width: 32.555%;
+    justify-content: flex-end;
+}
+#analyticsAccordion .card-header > span:nth-child(2) {
+    justify-content: center;
+}
+#analyticsAccordion .card-header > span:first-child {
+    justify-content: flex-start;
 }
 #analyticsAccordion .card-header img {
     max-width: 25px;
@@ -3114,6 +3125,23 @@ a.badge-gray200:focus {
 }
 #analyticsAccordion .card-header .analytics-cions-earned span {
     min-width: 35px;
+}
+.analytics-header .header-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 1.25rem .75rem;
+}
+.analytics-header .header-text > span {
+    width: 33.333%;
+    text-align: right;
+}
+.analytics-header .header-text > span:first-child {
+    text-align: left;
+}
+.analytics-header .header-text > span:nth-child(2) {
+    text-align: center;
 }
 .card-footer {
     padding: .75rem 1.25rem;
@@ -13062,6 +13090,7 @@ p {line-height: 1.5;}
     right: -15px;
     transition: none;
     margin: 0;
+    padding: 10px 15px;
 }
 .user-profile-icons .dropdown:hover .dropdown-menu {
     margin-top: 5px;
@@ -18683,6 +18712,21 @@ span.review-label {line-height: normal;}
 .dashboard-card.completed .icon-box {background-color: #89bf74;}
 body .panel-sidebar .sidebar-menu .logout-sidebar,
 .panel-sidebar .sidebar-mobile-user-profile {display: none;}
+li.disable-timetable label {
+    background: #efefef;
+    cursor: unset;
+    user-select: none;
+}
+.noselect {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none; 
+         -moz-user-select: none; 
+          -ms-user-select: none; 
+              user-select: none; 
+                                
+  }
+
 
 /*************************************
 Lms Responsive Style Start
@@ -18940,7 +18984,24 @@ Lms Responsive Style Start
     .quiz-topbar [class*="col-"] {flex: 0 0 100%; max-width: 100%; text-align: center;}
     .user-profile-icons ul .menu-button-mobile,
     .user-profile-icons ul .sidebar-logo-mobile{display: flex;}
-    .panel-rightside-menu {margin-top: 15px;}
+    body .panel-rightside-menu .user-info {
+        display: none;
+    }
+    body .panel-rightside-menu {
+        padding: 15px 0 8px;
+        border: 0;
+        margin: 0 !important;
+        text-align: center;
+    }
+    body .panel-rightside-menu li {
+        display: inline-block;
+    }
+    body .panel-rightside-menu li .menu-text {
+        display: none;
+    }
+    body .panel-rightside-menu li a {
+        padding: 0 10px;
+    }
     .user-profile-icons li strong {
         padding: 6px 10px;
         border-radius: 5px;
@@ -19172,7 +19233,7 @@ Lms Responsive Style Start
     .stats-list ul li {border-left: 0; width: 100%; padding: 0 0 15px; margin: 0 0 15px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1);}
     .stats-list ul li:last-child {border-bottom: 0; padding: 0; margin: 0;}
     .panel-content .spell-levels .panel-subheader {padding-right: 135px;}
-    .chart-filters .analytics-type li {flex-basis: 46%;}
+    .chart-filters .analytics-type li {width: 48%;}
     .time-card {padding: 15px;}
     .time-card .card-header {flex-wrap: wrap;}
     .time-nav ul {flex-wrap: wrap; justify-content: flex-start;}

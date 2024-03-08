@@ -8690,6 +8690,10 @@ function getAllowedUsers(){
     );
 }
 
-function subscriptionCheckLink($subscription_check, $default_link){
-    return 'test'.$default_link;
+function subscriptionCheckLink($subscription_check){
+    $response = '';
+    if (!auth()->subscription($subscription_check)) {
+        $response = 'subscription-required';
+    }
+    return $response;
 }

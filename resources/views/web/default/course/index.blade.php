@@ -109,7 +109,7 @@
                                             $topic_percentage_text .= $topic_percentage_flag;
                                             @endphp
                                             <li>
-                                                <a href="/{{$course->category->slug}}/{{$course->slug}}/{{$sub_chapter['sub_chapter_slug']}}">{{ $sub_chapter['title'] }} {!! $topic_percentage_text !!}</a>
+                                                <a href="/{{$course->category->slug}}/{{$course->slug}}/{{$sub_chapter['sub_chapter_slug']}}" class="{{ subscriptionCheckLink('courses') }}">{{ $sub_chapter['title'] }} {!! $topic_percentage_text !!}</a>
                                                 {{ user_assign_topic_template($sub_chapter['id'], 'practice', $childs, $parent_assigned_list) }}
                                             </li>
                                         @endif

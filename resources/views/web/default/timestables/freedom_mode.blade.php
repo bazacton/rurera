@@ -65,21 +65,21 @@
                     </div>
                     <div class="questions-select-number">
                         <ul class="d-flex justify-content-center flex-wrap mb-30">
-                        <li><input type="checkbox" value="10" name="question_values[]" id="ten" {{in_array(10,$locked_tables)? 'disabled' : ''}}  /> <label for="ten" >10</label></li>
-                        <li><input type="checkbox" value="2" name="question_values[]" id="two" {{in_array(2,$locked_tables)? 'disabled' : ''}} /> <label for="two">2</label></li>
-                        <li><input type="checkbox" value="5" name="question_values[]" id="five" {{in_array(5,$locked_tables)? 'disabled' : ''}} /> <label for="five" >5</label></li>
-                        <li><input type="checkbox" value="3" name="question_values[]" id="three" {{in_array(3,$locked_tables)? 'disabled' : ''}} /> <label for="three">3</label></li>
-                        <li><input type="checkbox" value="4" name="question_values[]" id="four" {{in_array(4,$locked_tables)? 'disabled' : ''}} /> <label for="four">4</label></li>
-                        <li><input type="checkbox" value="8" name="question_values[]" id="eight" {{in_array(8,$locked_tables)? 'disabled' : ''}} /> <label for="eight">8</label></li>
-                        <li><input type="checkbox" value="6" name="question_values[]" id="six" {{in_array(6,$locked_tables)? 'disabled' : ''}} /> <label for="six">6</label></li>
-                        <li><input type="checkbox" value="7" name="question_values[]" id="seven" {{in_array(7,$locked_tables)? 'disabled' : ''}} /> <label for="seven">7</label></li>
-                        <li><input type="checkbox" value="9" name="question_values[]" id="nine" {{in_array(9,$locked_tables)? 'disabled' : ''}} /> <label for="nine">9</label></li>
-                        <li><input type="checkbox" value="11" name="question_values[]" id="eleven" {{in_array(11,$locked_tables)? 'disabled' : ''}} /> <label for="eleven">11</label></li>
-                        <li><input type="checkbox" value="12" name="question_values[]" id="twelve" {{in_array(12,$locked_tables)? 'disabled' : ''}} /> <label for="twelve" >12</label></li>
-                        <li><input type="checkbox" value="13" name="question_values[]" id="thirteen" {{in_array(13,$locked_tables)? 'disabled' : ''}} /> <label for="thirteen" >13</label></li>
-                        <li><input type="checkbox" value="14" name="question_values[]" id="fourteen" {{in_array(14,$locked_tables)? 'disabled' : ''}} /> <label for="fourteen" >14</label></li>
-                        <li><input type="checkbox" value="15" name="question_values[]" id="fifteen" {{in_array(15,$locked_tables)? 'disabled' : ''}} /> <label for="fifteen" >15</label></li>
-                        <li><input type="checkbox" value="16" name="question_values[]" id="sixteen" {{in_array(16,$locked_tables)? 'disabled' : ''}} /> <label for="sixteen" >16</label></li>
+                        <li {{in_array(10,$locked_tables)? 'class=disable-timetable noselect' : ''}}><input type="checkbox" value="10" name="question_values[]" id="ten" {{in_array(10,$locked_tables)? 'disabled' : ''}}  /> <label for="ten" >10</label></li>
+                        <li {{in_array(2,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="2" name="question_values[]" id="two" {{in_array(2,$locked_tables)? 'disabled' : ''}} /> <label for="two">2</label></li>
+                        <li {{in_array(5,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="5" name="question_values[]" id="five" {{in_array(5,$locked_tables)? 'disabled' : ''}} /> <label for="five" >5</label></li>
+                        <li {{in_array(3,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="3" name="question_values[]" id="three" {{in_array(3,$locked_tables)? 'disabled' : ''}} /> <label for="three">3</label></li>
+                        <li {{in_array(4,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="4" name="question_values[]" id="four" {{in_array(4,$locked_tables)? 'disabled' : ''}} /> <label for="four">4</label></li>
+                        <li {{in_array(8,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="8" name="question_values[]" id="eight" {{in_array(8,$locked_tables)? 'disabled' : ''}} /> <label for="eight">8</label></li>
+                        <li {{in_array(6,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="6" name="question_values[]" id="six" {{in_array(6,$locked_tables)? 'disabled' : ''}} /> <label for="six">6</label></li>
+                        <li {{in_array(7,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="7" name="question_values[]" id="seven" {{in_array(7,$locked_tables)? 'disabled' : ''}} /> <label for="seven">7</label></li>
+                        <li {{in_array(9,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="9" name="question_values[]" id="nine" {{in_array(9,$locked_tables)? 'disabled' : ''}} /> <label for="nine">9</label></li>
+                        <li {{in_array(11,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="11" name="question_values[]" id="eleven" {{in_array(11,$locked_tables)? 'disabled' : ''}} /> <label for="eleven">11</label></li>
+                        <li {{in_array(12,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="12" name="question_values[]" id="twelve" {{in_array(12,$locked_tables)? 'disabled' : ''}} /> <label for="twelve" >12</label></li>
+                        <li {{in_array(13,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="13" name="question_values[]" id="thirteen" {{in_array(13,$locked_tables)? 'disabled' : ''}} /> <label for="thirteen" >13</label></li>
+                        <li {{in_array(14,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="14" name="question_values[]" id="fourteen" {{in_array(14,$locked_tables)? 'disabled' : ''}} /> <label for="fourteen" >14</label></li>
+                        <li {{in_array(15,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="15" name="question_values[]" id="fifteen" {{in_array(15,$locked_tables)? 'disabled' : ''}} /> <label for="fifteen" >15</label></li>
+                        <li {{in_array(16,$locked_tables)? 'class=disable-timetable noselect' : ''}} ><input type="checkbox" value="16" name="question_values[]" id="sixteen" {{in_array(16,$locked_tables)? 'disabled' : ''}} /> <label for="sixteen" >16</label></li>
                         </ul>
                     </div>
                     <div class="form-btn">
@@ -129,6 +129,15 @@
 
     </div>
 </div>
+<div class="modal fade disable-timetables-table" id="disable-timetables-table" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p class="noselect">It appears you've mastered the selected table, Additional practice in the freedom mode for that selected table is not required. If you wish to further focus on particular locked tables, just ask your teacher or parent to set up a special practice for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @push('scripts_bottom')
@@ -136,5 +145,9 @@
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
 <script src="/assets/default/vendors/apexcharts/apexcharts.min.js"></script>
 <script src="/assets/default/vendors/chartjs/chart.min.js"></script>
-
+<script>
+    $("body").on("click", ".disable-timetable", function (e) {
+        $(".disable-timetables-table").modal('show');
+    });
+</script>
 @endpush

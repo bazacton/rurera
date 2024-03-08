@@ -166,7 +166,13 @@
                 </div>
             </div>
         </div>
-
+        <div class="analytics-header">
+            <div class="header-text">
+                <span class="font-18 font-weight-bold">Date</span>
+                <span class="font-18 font-weight-bold">Avg Daily Mins</span>
+                <span class="font-18 font-weight-bold">Coins Earned</span>
+            </div>
+        </div>
         <div class="accordion" id="analyticsAccordion">
 
             @if( !empty( $analytics_data) )
@@ -252,6 +258,18 @@
             </div>
             @endforeach
 
+            @else
+                <div class="card">
+                    <div class="card-header collapsed mb-0" id="headingOne" type="button" data-toggle="collapse" data-target="#report_07_03_2024" aria-expanded="true" aria-controls="report_07_03_2024">
+                        <span>&nbsp;</span>
+                        <span class="analytics-timespend float-right">
+                            <span>No Records Found</span>
+                        </span>
+                        <span class="analytics-cions-earned float-right mr-10">
+                            &nbsp;
+                        </span>
+                    </div>
+                </div>
             @endif
 
         </div>

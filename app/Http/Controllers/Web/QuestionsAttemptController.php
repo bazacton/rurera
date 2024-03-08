@@ -2807,7 +2807,7 @@ class QuestionsAttemptController extends Controller
                 $latest_average = $total_sum / $total_records;
                 // Calculate the total average
                 $timestables_data_updated[$table_no]['average_time_consumed'] = $latest_average;
-                if ($total_records < 5) {
+                if ($total_records < 500) {
                     continue;
                 }
                 if ($latest_average <= 3) {

@@ -41,7 +41,7 @@
                                     </span>
                                 </div>
                             @else
-                                {!! subscriptionCheckLink('courses', '<a href="/'.$categoryObj->slug.'/'.$courseObj->slug.'" class="learning-btn">Start Learning</a>') !!}
+                                <a href="/'.$categoryObj->slug.'/'.$courseObj->slug.'" class="learning-btn">Start Learning</a>
                             @endif
                             <span class="subject-info">{{$courseObj->chapters->count()}} Units and {{$courseObj->webinar_sub_chapters->count()}} Lessons</span>
                         </div>
@@ -75,8 +75,11 @@
   </div>
 </div>
 
+
+
 @endsection
 
 @push('scripts_bottom')
+
 
 @endpush

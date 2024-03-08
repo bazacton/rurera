@@ -94,7 +94,7 @@
                                         <li>
                                             <a href="/panel/setting"><span class="nav-icon">
                                                 <img src="/assets/default/svgs/account-nav.svg" alt=""></span>
-                                                <span>Account Setting</span>
+                                                <span class="menu-text">Account Setting</span>
                                             </a>
                                         </li>
                                         <li>
@@ -102,33 +102,45 @@
                                                 <span class="nav-icon">
                                                     <img src="/assets/default/svgs/reward-nav2.svg" alt="">
                                                 </span>
-                                                <span>Reward Points</span>
+                                                <span class="menu-text">Reward Points</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/panel/store/purchases">
                                                 <span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>
-                                                <span>Shop Orders</span>
+                                                <span class="menu-text">Shop Orders</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/panel/notifications">
                                                 <span class="nav-icon"><img src="/assets/default/svgs/notifications-nav.svg" alt=""></span>
-                                                <span>Notification</span>
+                                                <span class="menu-text">Notification</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#"><span class="nav-icon"><img src="/assets/default/svgs/school-nav.svg" alt=""></span>School link</a>
+                                            <a href="#">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/school-nav.svg" alt=""></span>
+                                                <span class="menu-text">School link</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="/panel/support/tickets"><span class="nav-icon"><img src="/assets/default/svgs/support-nav.svg" alt=""></span>Support Desk</a>
+                                            <a href="/panel/support/tickets">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/support-nav.svg" alt=""></span>
+                                                <span class="menu-text">Support Desk</span>
+                                            </a>
                                         </li>
                                         @if(auth()->user()->isParent())
                                         <li>
-                                            <a href="/panel/billing"><span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>Billing</a>
+                                            <a href="/panel/billing">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/shop-nav.svg" alt=""></span>
+                                                <span class="menu-text">Billing</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="/panel/change_password"><span class="nav-icon"><img src="/assets/default/svgs/account-nav.svg" alt=""></span>Change Password</a>
+                                            <a href="/panel/change_password">
+                                                <span class="nav-icon"><img src="/assets/default/svgs/account-nav.svg" alt=""></span>
+                                                <span class="menu-text">Change Password</span>
+                                            </a>
                                         </li>
                                         @endif
                                     </ul>

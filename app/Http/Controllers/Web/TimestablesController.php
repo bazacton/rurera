@@ -39,7 +39,7 @@ class TimestablesController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
 
-        $results = QuizzesResult::where('status', '!=', 'waiting')->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->get();
+        $results = QuizzesResult::where('user_id', $user->id)->where('status', '!=', 'waiting')->where('quiz_result_type', 'timestables')->where('attempt_mode', 'freedom_mode')->get();
 
         if( $results->count() > 0 ){
             foreach( $results as $resultObj){
@@ -1581,6 +1581,7 @@ class TimestablesController extends Controller
         $attempts_values = array_reverse($attempts_values);
 
         $locked_tables = json_decode($user->locked_tables);
+        $locked_tables = is_array($locked_tables)? $locked_tables : (array) $locked_tables;
 
         return view('web.default.timestables.freedom_mode', ['results_data'    => $results_data, 'locked_tables'=>$locked_tables])->render();
     }

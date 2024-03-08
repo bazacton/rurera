@@ -283,6 +283,9 @@ class SatsController extends Controller
         if (!auth()->check()) {
             //return redirect('/login');
         }
+        if (!auth()->subscription('sats')) {
+            return view('web.default.quizzes.not_subscribed');
+        }
 
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/panel');

@@ -957,9 +957,9 @@ class WebinarController extends Controller
     public function start(Request $request, $subject_slug, $sub_chapter_slug)
     {
 
-        /*if (!auth()->subscription('courses')) {
+        if (!auth()->subscription('courses')) {
             return view('web.default.quizzes.not_subscribed');
-        }*/
+        }
 
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/panel');
