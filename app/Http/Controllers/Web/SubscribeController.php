@@ -233,7 +233,7 @@ class SubscribeController extends Controller
         $selected_package = $request->get('selected_package', null);
 
 
-        $childObj = User::create([
+        /*$childObj = User::create([
             'full_name'       => $first_name . ' ' . $last_name,
             //$data['full_name'],
             'role_name'       => 'user',
@@ -253,8 +253,8 @@ class SubscribeController extends Controller
             'user_life_lines' => 5,
             'first_name'      => $first_name,
             'last_name'       => $last_name,
-        ]);
-        //$childObj = User::find(1204);
+        ]);*/
+        $childObj = User::find(1204);
         $subscribes = Subscribe::all();
 
         $response_layout = view('web.default.subscriptions.packages', [
@@ -284,6 +284,23 @@ class SubscribeController extends Controller
         echo $response_layout;
         exit;
     }
+
+    public function packagesList(Request $request)
+    {
+        $user_id = $request->get('user_id', null);
+        $childObj = User::find($user_id);
+        $subscribes = Subscribe::all();
+
+        $response_layout = view('web.default.subscriptions.packages', [
+            'childObj'         => $childObj,
+            'subscribes'       => $subscribes,
+            'selected_package' => 0
+        ])->render();
+        echo $response_layout;
+        exit;
+    }
+
+
 
     public function pay(Request $request)
     {

@@ -1,6 +1,13 @@
 <div class="book-form-holder">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="packages-back-btn" data-user_id="{{$user_id}}">Back</div>
+        <div class="col-12 col-lg-12 col-md-12">
+           <ul class="tests-list payment-methods mb-30">
+               <li data-type="card-gateway" class="active"><img src="/assets/default/img/single.png" alt=""> Card</li>
+               <li data-type="googlepay-gateway"><img src="/assets/default/img/multi.png" alt=""> Google Pay</li>
+           </ul>
+       </div>
+        <div class="row justify-content-center card-gateway-fields conditional-fields">
             <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
                 <h2>The Final Step to Reading!</h2>
                 ${{$payment_amount}}
@@ -99,5 +106,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="row justify-content-center googlepay-gateway-fields conditional-fields rurera-hide">
+            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Sart Free Trial</a></div>
+        </div>
     </div>
 </div>
+<script>
+    $(document).on('click', '.payment-methods li', function (e) {
+        var gateway_type = $(this).attr('data-type');
+        $(".payment-methods li").removeClass('active');
+        $(this).addClass('active');
+        $(".conditional-fields").addClass('rurera-hide');
+        $('.'+gateway_type+"-fields").removeClass('rurera-hide');
+    });
+</script>

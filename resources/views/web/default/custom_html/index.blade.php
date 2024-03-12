@@ -82,6 +82,21 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="group-accordions" id="accordion">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">Group Details</button>
+                    </div>
+                    <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
+                        <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="card-body">
+                            <p itemprop="text">Yes, We are offering comprehensive content that follows all national curriculum standards, making it a valuable resource for schools.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-qualified">
+                    <span>Qualified</span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="cabinet-table text-center mb-50">

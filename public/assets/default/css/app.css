@@ -15866,6 +15866,88 @@ Lms Performace Table Style Start
     color: #878787;
     border-bottom: 1px solid #ddd;
 }
+.group-table .simple-table tbody td:first-child {
+    min-width: 100px;
+}
+.group-accordions .card {
+    border: 0;
+}
+.group-accordions .card-header {
+    border-radius: 0;
+    padding: 0;
+    border: 0;
+    background-color: inherit;
+}
+.group-accordions .card-header button {
+    padding: 0 20px 0 0;
+    font-size: 16px;
+    font-weight: 500;
+    height: auto;
+    color: var(--primary);
+    position: relative;
+}
+.group-accordions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.group-qualified span {
+    position: relative;
+    display: block;
+    padding: 0 0 0 16px;
+    font-size: 15px;
+}
+.group-qualified span:before {
+    background-color: var(--primary);
+    border-radius: 100%;
+    content:"";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+    height: 12px;
+    width: 12px;
+}
+.group-accordions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+.group-qualified span {
+    position: relative;
+    display: block;
+    padding: 0 0 0 16px;
+    font-size: 15px;
+}
+.group-qualified span:before {
+    background-color: var(--primary);
+    border-radius: 100%;
+    content:
+    "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -6px;
+    height: 12px;
+    width: 12px;
+}
+.group-accordions .card-header button:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    height: 10px;
+    width: 10px;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    transform: rotate(45deg);
+    margin-top: -2px;
+}
+.group-accordions .card-header button.collapsed:after {
+    border-width: 0 2px 2px 0;
+    margin-top: -8px;
+}
 /* .lms-performace-table>li.lms-performace-des.leaderboard-des .sr-no span {color: #878787;font-size: 20px;font-weight:500;display: block;} */
 .lms-performace-table>li.lms-performace-des.leaderboard-des div{white-space: normal;}
 .lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px; font-weight: 500; text-transform:capitalize;}
