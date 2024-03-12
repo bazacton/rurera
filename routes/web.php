@@ -60,6 +60,7 @@ Route::group(['namespace' => 'Auth' , 'middleware' => ['check_mobile_app' , 'sha
     Route::get('/facebook/redirect' , 'SocialiteController@redirectToFacebook');
     Route::get('/facebook/callback' , 'SocialiteController@handleFacebookCallback');
     Route::get('/reff/{code}' , 'ReferralController@referral');
+    Route::post('/signup-submit' , 'RegisterController@signupSubmit');
 });
 
 Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impersonate' , 'share' , 'check_maintenance']] , function () {
@@ -223,6 +224,9 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
             \UniSharp\LaravelFilemanager\Lfm::routes();
         });
 
+
+
+
         Route::group(['prefix' => 'reviews'] , function () {
             Route::post('/store' , 'WebinarReviewController@store');
             Route::post('/store-reply-comment' , 'WebinarReviewController@storeReplyComment');
@@ -286,7 +290,16 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::group(['prefix' => 'subscribes'] , function () {
         Route::get('/apply/{webinarSlug}' , 'SubscribeController@apply');
         Route::get('/apply/bundle/{bundleSlug}' , 'SubscribeController@bundleApply');
+        Route::get('/apply-subscription' , 'SubscribeController@applySubscription');
+        Route::post('/tenure-submit', 'SubscribeController@tenureSubmit');
+        Route::get('/autogenerte-username', 'SubscribeController@autoGenerateUsername');
+        Route::post('/register-child', 'SubscribeController@registerChild');
+        Route::post('/payment-form', 'SubscribeController@paymentForm');
+        Route::post('/pay', 'SubscribeController@pay');
+
+
     });
+
 
     Route::group(['prefix' => 'search'] , function () {
         Route::get('/' , 'SearchController@index');
@@ -621,6 +634,12 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::get('custom_html', 'TestsController@custom_html');
 
     Route::get('faqs', 'FaqsController@index');
+
+    Route::get('pricing', 'PricingController@index');
+
+
+
+
 
 
 

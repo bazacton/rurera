@@ -18,9 +18,7 @@
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
         <h1 class="section-title font-22">Members</h1>
         <div class="dropdown">
-
-        <button type="button" class="btn btn-sm btn-primary add-child-btn" data-toggle="modal"
-                data-target="#addChildModal"><img src="/assets/default/svgs/settings.svg"> Add Child
+        <button type="button" class="btn btn-sm btn-primary subscription-modal" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Child
         </button>
 
     </div>
@@ -69,6 +67,11 @@
                                         <a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn">
                                             <img src="/assets/default/img/default/user-switch.png">
                                         </a>
+                                        @if(!isset( $childObj->userSubscriptions->subscribe ) )
+                                        <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                            <img src="/assets/default/img/default/user-switch.png">
+                                        </a>
+                                        @endif
                                         <a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}">
                                             <img src="/assets/default/svgs/plus.svg"> Connect to Class
                                         </a>
@@ -628,6 +631,19 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-body">
+                <div class="tab-content subscription-content" id="nav-tabContent">
+
+                </div>
             </div>
         </div>
     </div>

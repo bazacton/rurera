@@ -84,20 +84,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $registerMethod = getGeneralSettings('register_method') ?? 'mobile';
+        $registerMethod = 'email';
 
-        if (!empty($data['mobile']) and !empty($data['country_code'])) {
+        /*if (!empty($data['mobile']) and !empty($data['country_code'])) {
             $data['mobile'] = ltrim($data['country_code'], '+') . ltrim($data['mobile'], '0');
-        }
+        }*/
 
         $rules = [
-            'country_code' => ($registerMethod == 'mobile') ? 'required' : 'nullable',
-            'mobile' => (($registerMethod == 'mobile') ? 'required' : 'nullable') . '|numeric|unique:users',
+            //'country_code' => ($registerMethod == 'mobile') ? 'required' : 'nullable',
+            //'mobile' => (($registerMethod == 'mobile') ? 'required' : 'nullable') . '|numeric|unique:users',
             'email' => (($registerMethod == 'email') ? 'required' : 'nullable') . '|email|max:255|unique:users',
-            'term' => 'required',
-            'full_name' => 'required|string|min:3',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required|same:password',
-            'referral_code' => 'nullable|exists:affiliates_codes,code'
+            //'term' => 'required',
+            //'full_name' => 'required|string|min:3',
+            'password' => 'required|string|min:6',
+            //'password_confirmation' => 'required|same:password',
+            //'referral_code' => 'nullable|exists:affiliates_codes,code'
         ];
 
         if (!empty(getGeneralSecuritySettings('captcha_for_register'))) {
@@ -248,5 +249,59 @@ class RegisterController extends Controller
                 ? new JsonResponse([], 201)
                 : redirect($this->redirectPath());
         }
+    }
+
+    public function signupSubmit(Request $request)
+    {
+        /*$first_name = $request->get('first_name', null);
+        $last_name = $request->get('last_name', null);
+        $email = $request->get('email', null);
+        $password = $request->get('password', null);
+        $this->validator($request->all())->validate();
+
+        $roleName = 'parent';
+        $roleId = 9;
+
+        $disableViewContentAfterUserRegister = getFeaturesSettings('disable_view_content_after_user_register');
+        $accessContent = !((!empty($disableViewContentAfterUserRegister) and $disableViewContentAfterUserRegister));
+
+        $referralSettings = getReferralSettings();
+        $usersAffiliateStatus = (!empty($referralSettings) and !empty($referralSettings['users_affiliate_status']));
+
+        $user = User::create([
+            'role_name'      => $roleName,
+            'role_id'        => $roleId,
+            'email'          => $email ?? null,
+            'full_name'      => $first_name . ' ' . $last_name,
+            'status'         => 'active',
+            'access_content' => $accessContent,
+            'password'       => Hash::make($password),
+            'affiliate'      => $usersAffiliateStatus,
+            'timezone'       => 'Asia/Karachi',
+            'created_at'     => time()
+        ]);
+
+        $enableRegistrationBonus = true;
+        $registrationBonusAmount = null;
+        $user->update([
+            'status' => User::$active,
+            'enable_registration_bonus' => $enableRegistrationBonus,
+            'registration_bonus_amount' => $registrationBonusAmount,
+        ]);*/
+
+        $user = User::find(1191);
+
+        //$this->guard()->login($user);
+
+
+
+        /*if ($response = $this->registered($request, $user)) {
+            return $response;
+        }*/
+
+        $csrf_token = csrf_token();
+        $response_layout = view('web.default.subscriptions.tenure_selection', ['csrf_token'=>$csrf_token])->render();
+        echo $response_layout;
+        exit;
     }
 }

@@ -1,4 +1,4 @@
-@extends('web.default.panel.layouts.panel_layout_full')
+@extends('web.default.panel.layouts.panel_layout')
 
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
@@ -268,4 +268,11 @@
     });
 
 </script>
+@if (!auth()->subscription('sats'))
+    <script>
+        if( $(".subscription-modal").length > 0){
+            $(".subscription-modal").modal('show');
+        }
+    </script>
+@endif
 @endpush

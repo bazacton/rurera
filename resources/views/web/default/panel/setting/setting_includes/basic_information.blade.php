@@ -73,6 +73,22 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         </div>
                     </div>
 
+                    <div class="form-group mb-30 mt-30">
+                        <label class="input-label">Gold Member:</label>
+
+                        <div class="d-flex align-items-center">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" name="gold_member" value="1" {{ (!empty($user->gold_member) and $user->gold_member == 1) ? 'checked="checked"' : ''}} id="gold" class="custom-control-input">
+                                <label class="custom-control-label font-14 cursor-pointer" for="gold">Yes</label>
+                            </div>
+
+                            <div class="custom-control custom-radio ml-15">
+                                <input type="radio" name="gold_member" value="0" id="notgold" {{ (empty($user->gold_member) || $user->gold_member != 1) ? 'checked="checked"' : ''}} class="custom-control-input">
+                                <label class="custom-control-label font-14 cursor-pointer" for="notgold">No</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group rurera-hide">
                         <div class="row">
                             <div class="col-12 col-lg-4">

@@ -11,7 +11,7 @@
 @section('content')
 <div class="timestables-mode-block">
 <div class="timestables-mode-content">
-<div class="section-title mb-20">
+<div class="section-title mb-30">
     <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a> Trophy Mode</h2>
 </div>
 @if( (5 - $results_data->count()) > 0)
@@ -62,17 +62,94 @@
         <div class="row">
             <div class="col-12">
                 <ul class="trophy-levels">
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Explorer')? 'class=active' : '' }}>Explorer</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Junior')? 'class=active' : '' }}>Junior</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Smarty')? 'class=active' : '' }}>Smarty</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Brainy')? 'class=active' : '' }}>Brainy</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Genius')? 'class=active' : '' }}>Genius</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Creative')? 'class=active' : '' }}>Creative</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Champion')? 'class=active' : '' }}>Champion</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Mastery')? 'class=active' : '' }}>Mastery</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Majesty')? 'class=active' : '' }}>Majesty</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Expert')? 'class=active' : '' }}>Expert</li>
-                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Maestro')? 'class=active' : '' }}>Maestro</li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Explorer')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Explorer</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Junior')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Junior</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Smarty')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Smarty</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Brainy')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Brainy</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Genius')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Genius</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Creative')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Creative</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-active-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Champion')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Champion</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Mastery')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Mastery</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Majesty')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Majesty</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Expert')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Expert</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <li {{(isset( auth()->user()->trophy_badge) && auth()->user()->trophy_badge == 'Maestro')? 'class=active' : '' }}>
+                        <a href="#">
+                            <span class="levels-text">Maestro</span>
+                            <span class="icon-box">
+                                <img src="/assets/default/img/trophy-levels-img.png" alt="">
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 

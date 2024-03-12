@@ -200,6 +200,10 @@ class UserController extends Controller
                     'user_timetables_levels' => ''
                 ]);
             }
+            $user->update([
+                'gold_member' => isset( $data['gold_member'] )? $data['gold_member'] : 0,
+            ]);
+
 
             if (!empty($data['user_preference'])) {
                 $user->update([

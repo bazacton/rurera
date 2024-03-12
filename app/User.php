@@ -3761,6 +3761,9 @@ class User extends Authenticatable
     public function subscription($slug)
     {
 
+        if( $this->gold_member == 1){
+            return true;
+        }
         $subscription_package = '';
         switch ($slug) {
             case "courses":

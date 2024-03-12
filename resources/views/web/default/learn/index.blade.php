@@ -41,7 +41,7 @@
                                     </span>
                                 </div>
                             @else
-                                <a href="/'.$categoryObj->slug.'/'.$courseObj->slug.'" class="learning-btn">Start Learning</a>
+                                <a href="/{{$categoryObj->slug}}/{{$courseObj->slug}}" class="learning-btn">Start Learning</a>
                             @endif
                             <span class="subject-info">{{$courseObj->chapters->count()}} Units and {{$courseObj->webinar_sub_chapters->count()}} Lessons</span>
                         </div>
@@ -80,6 +80,12 @@
 @endsection
 
 @push('scripts_bottom')
-
+@if (!auth()->subscription('courses'))
+    <script>
+        if( $(".subscription-modal").length > 0){
+            $(".subscription-modal").modal('show');
+        }
+    </script>
+@endif
 
 @endpush

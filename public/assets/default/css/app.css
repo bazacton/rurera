@@ -3111,9 +3111,11 @@ a.badge-gray200:focus {
     gap: 8px;
     width: 32.555%;
     justify-content: flex-end;
+    margin-right: 0 !important;
 }
 #analyticsAccordion .card-header > span:nth-child(2) {
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: -8px;
 }
 #analyticsAccordion .card-header > span:first-child {
     justify-content: flex-start;
@@ -3141,7 +3143,7 @@ a.badge-gray200:focus {
     text-align: left;
 }
 .analytics-header .header-text > span:nth-child(2) {
-    text-align: center;
+    text-align: left;
 }
 .card-footer {
     padding: .75rem 1.25rem;
@@ -3185,7 +3187,7 @@ a.badge-gray200:focus {
     border-bottom-left-radius: calc(.3125rem - 1px)
 }
 .card-deck .card {
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 @media (min-width:576px) {
     .card-deck {
@@ -15801,7 +15803,7 @@ Lms Performace Table Style Start
 .lms-performace-table>li.lms-performace-head div span {text-transform: uppercase;font-size: 15px;font-weight: 700;color: #878787;}
 .lms-performace-table>li.lms-performace-des .sr-no {border-right: 1px dashed #ddd;width: 6%;}
 .lms-performace-table>li.lms-performace-des div {display: table-cell;padding: 22px 10px;white-space: nowrap;text-align: center;}
-.lms-performace-table>li.lms-performace-des div span {font-size: 15px;color: #878787;margin: 0;font-weight: 500;margin: 0;}
+.lms-performace-table>li.lms-performace-des div span {font-size: 15px;color: #878787;margin: 0;font-weight: 500;margin: 0; white-space: break-spaces;}
 .lms-performace-table>li.lms-performace-des {padding: 0;border: 1px dashed #ddd;border-bottom: 0;}
 .lms-performace-table>li.lms-performace-des:last-child {border-bottom: 1px dashed #ddd;}
 .lms-performace-table>li.lms-performace-des .sr-no span {color: #000;}
@@ -15840,6 +15842,30 @@ Lms Performace Table Style Start
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn,
 .lms-performace-table>li.lms-performace-head.leaderboard-title div:last-child{width: 16%;text-align: left;}
 .leaderboard>li.lms-performace-des.leaderboard-des .coin-earn > .badge-btn{width: auto; padding: 0;}
+.school-table .simple-table thead {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+.school-table .simple-table td {
+    padding: 15px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #878787;
+    border-top: 1px solid #ddd;
+}
+.group-table .simple-table thead {
+    border: 0;
+}
+.group-table .simple-table thead th, 
+.group-table .simple-table.text-left thead tr th {padding: 0 10px 0 0;}
+.group-table .simple-table tbody td {
+    padding-left: 0;
+    padding-right: 10px;
+    font-size: 15px;
+    color: #878787;
+    border-bottom: 1px solid #ddd;
+}
 /* .lms-performace-table>li.lms-performace-des.leaderboard-des .sr-no span {color: #878787;font-size: 20px;font-weight:500;display: block;} */
 .lms-performace-table>li.lms-performace-des.leaderboard-des div{white-space: normal;}
 .lms-performace-table>li.lms-performace-head.leaderboard-title div span{font-size: 18px; font-weight: 500; text-transform:capitalize;}
@@ -16129,9 +16155,6 @@ Lms Books Library Style Start
 .gallery-slider-holder:before {background-color: rgba(0,0,0,0.9); content:""; position: absolute; left: 0; top: 0; height: 100%; width: 100%; z-index:2; pointer-events:none; }
 .lms-library-slider .swiper-container {max-width: 1000px; margin: 0 auto;}
 @media screen and (max-width: 767px) {
-    .lms-library-slider figure {text-align: center;}
-    .lms-books-listing .listing-card {text-align: center;}
-    .lms-books-listing .listing-card .img-holder {margin: 0 0 20px;}
     .progress-card {max-width: 100%;padding: 15px;flex-direction: column;}
     .progress-card .text-holder {padding: 15px 0 0;width: 100%;}
     .progress-card .btn-holder {position: initial;transform: none;margin-top: 15px;}
@@ -16895,7 +16918,6 @@ Sats Listing Style Start
 .test-info ul li {border-bottom: 1px solid #dddddf; display: flex; align-items: center; line-height: normal; padding: 8px 10px; flex-wrap: wrap; }
 .test-info ul li:last-child {border-bottom: 0;}
 .sats-listing-card .test-info ul li span {width: 50%; margin: 0; font-size: 15px; font-weight: 400;}
-.simple-table tbody tr:hover {background-color: #fff !important;}
 .sats-listing-card.medium .simple-table tbody tr:nth-child(even),
 .sats-listing-card.medium .simple-table tbody tr:nth-child(even):hover,
 .panel-section-card tbody tr:nth-child(even),
@@ -18353,48 +18375,17 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Rewards Style End */
 
 /* Question Inactivity Modal Style Start */
-.question_inactivity_modal .modal-content {
-    text-align: center;
-}
+.question_inactivity_modal .modal-dialog {margin-left: auto; margin-right: auto;}
+.question_inactivity_modal .modal-content {text-align: center;}
 .question_inactivity_modal .modal-content .continue-btn,
-.question_inactivity_modal .modal-content .leavenow-btn {
-    background-color: var(--primary);
-    color: #fff;
-    padding: 12px 30px;
-    display: inline-block;
-    border-radius: 5px;
-    min-width: 200px;
-    text-align: center;
-}
-.question_inactivity_modal .modal-content .leavenow-btn {
-    margin-bottom: 10px;
-}
-.question_inactivity_modal .modal-content p {
-    margin: 0 0 15px;
-    color: #999;
-}
-.question_inactivity_modal .inactivity-timer {
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    line-height: 30px;
-    border-radius: 100%;
-    background-color: var(--primary);
-    color: #fff;
-    text-align: center;
-}
-.question_inactivity_modal .modal-title h3 {
-    margin-bottom: 10px;
-}
-.question_inactivity_modal .modal-title {
-    margin-bottom: 15px;
-}
-.question_inactivity_modal .modal-dialog {
-    max-width: 300px;
-}
-.question_inactivity_modal .modal-body {
-    padding: 25px 15px;
-}
+.question_inactivity_modal .modal-content .leavenow-btn {background-color: var(--primary); color: #fff; padding: 12px 30px; display: inline-block; border-radius: 5px; min-width: 200px; text-align: center;}
+.question_inactivity_modal .modal-content .leavenow-btn {margin-bottom: 10px;}
+.question_inactivity_modal .modal-content p {margin: 0 0 15px; color: #999;}
+.question_inactivity_modal .inactivity-timer {height: 30px; width: 30px; display: inline-block; line-height: 30px; border-radius: 100%; background-color: var(--primary); color: #fff; text-align: center;}
+.question_inactivity_modal .modal-title h3 {margin-bottom: 10px; }
+.question_inactivity_modal .modal-title {margin-bottom: 15px;}
+.question_inactivity_modal .modal-dialog {max-width: 300px;}
+.question_inactivity_modal .modal-body {padding: 25px 15px;}
 /* Question Inactivity Modal Style End */
 .pocket-card {padding: 20px;}
 .user-pocket .card-header {background-color: inherit;}
@@ -18685,19 +18676,29 @@ span.review-label {line-height: normal;}
 
 /* Cabinet Table Style Start */
 .cabinet-table table {width: 100%;}
-.cabinet-table table th {background-color: #79b17a; border-right: 1px solid #ccc; padding: 15px 10px 15px; color: #121212;}
-.cabinet-table table h2 {color: #121212;}
+.cabinet-table table th {background-color: #f4f4f4; border-right: 1px solid rgba(0,0,0,0.07); padding: 15px 10px 15px;}
 .cabinet-table table tr:nth-child(odd),
-.cabinet-table table tr:nth-child(odd):hover {background-color: #afc5b9 !important;}
+.cabinet-table table tr:nth-child(odd):hover {background-color: #fff !important;}
 .cabinet-table table tr:nth-child(even),
-.cabinet-table table tr:nth-child(even):hover {background-color: #9aaf97 !important;}
-.cabinet-table table td {border-right: 1px solid #ccc; padding: 15px 10px 15px; }
-.cabinet-table table td:hover {background-color: #79b17a; transition-delay: 0s; transition-duration: 0.4s; transition-property: all; transition-timing-function: line;}
+.cabinet-table table tr:nth-child(even):hover {background-color: #f4f4f4 !important;}
+.cabinet-table table td {border-right: 1px solid rgba(0,0,0,0.07); padding: 15px 10px 15px; }
+.cabinet-table table th:last-child,
+.cabinet-table table td:last-child {border-right: 0;}
+.cabinet-table table td:hover {transition-delay: 0s; transition-duration: 0.4s; transition-property: all; transition-timing-function: line;}
 .cabinet-table table td img {height: 60px;}
 .cabinet-table table td img.img-lg {height: 110px;}
 .cabinet-table table td img.img-md {height: 70px;}
 .cabinet-table .time-number {padding-left: 20px; display: block;}
-.cabinet-table .time-number span {background: #4e8663; border-radius: 100%; color: #fff; height: 52px; width: 52px; line-height: 50px; text-shadow: 1px 1px 4px #ccc;}
+.cabinet-table .time-number span {border-radius: 100%;
+    height: 52px;
+    width: 52px;
+    line-height: 50px;
+    text-shadow: 1px 1px 4px #ccc;
+    background-color: #ddd;
+}
+.cabinet-table table td .cabinet-stars img {
+    filter: invert(0%) sepia(7%) saturate(1111%) hue-rotate(318deg) brightness(92%) contrast(73%);
+}
 /* Cabinet Table Style End */
 .summary-btns .summary-btn,
 .summary-btns a{border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-weight: 500; padding: 12px 15px; display: inline-block; line-height: normal; min-width: 120px; text-align: center; margin-right: 5px;}
@@ -18726,6 +18727,50 @@ li.disable-timetable label {
               user-select: none; 
                                 
   }
+  .trophy-levels li a {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+.trophy-levels {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+.trophy-levels .levels-text {
+    position: absolute;
+    top: -15px;
+    display: block;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    font-size: 14px;
+    font-weight: 700;
+    color: #d4d4d4;
+}
+.trophy-levels li.active .levels-text {
+    color: #af6e2e;
+}
+.trophy-levels .icon-box {
+    display: block;
+}
+.trophy-levels .icon-box img {
+    max-width: 90%;
+    object-fit: contain;
+}
+.trophy-levels a:hover .levels-text,
+.trophy-levels li.active .levels-text {
+    top: -22px;
+    opacity: 1;
+}
 
 
 /*************************************
@@ -18763,21 +18808,9 @@ Lms Responsive Style Start
     .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
-    .stats-list ul li {
-        border-left: 0;
-        width: 100%;
-        padding: 0 0 15px;
-        margin: 0 0 15px;
-        text-align: left;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    .listing-card .btn-holder {
-        right: 15px;
-    }
-    .school-zone-students [class*="col-"] {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
+    .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+    .listing-card .btn-holder {right: 15px;}
+    .school-zone-students [class*="col-"] {flex: 0 0 50%;max-width: 50%;}
 }
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
@@ -18941,37 +18974,12 @@ Lms Responsive Style Start
     .sidebar-logo .sidebar-logo-text {display: none;}
     .navbar-toggler-icon {width: 1.6em;height: 1.5em;}
     .user-profile-icons .dropdown-menu-right {left: 0; right: auto;}
-    .panel-right-sidebar [class*="col-"] {
-        display: none;
-    }
-    .panel-right-sidebar [class*="col-"]:has(.user-profile-icons) {
-        display: block;
-    }
-    .panel-content [class*="col-"].panel-right-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #fff;
-        min-height: 60px;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: center;
-        z-index: 30;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    .panel-content [class*="col-"].panel-right-sidebar .row {
-        width: 100%;
-    }
-    .panel-right-sidebar .user-profile-icons {
-        margin: 0;
-    }
-    .user-profile-icons .sidebar-no-mobile {
-        display: none;
-    }
+    .panel-right-sidebar [class*="col-"] {display: none;}
+    .panel-right-sidebar [class*="col-"]:has(.user-profile-icons) {display: block;}
+    .panel-content [class*="col-"].panel-right-sidebar {position: fixed; top: 0; left: 0; background-color: #fff; min-height: 60px; display: flex; align-items: center; width: 100%; justify-content: center; z-index: 30; padding-top: 15px; padding-bottom: 15px; flex: 0 0 100%; max-width: 100%; }
+    .panel-content [class*="col-"].panel-right-sidebar .row {width: 100%;}
+    .panel-right-sidebar .user-profile-icons {margin: 0;}
+    .user-profile-icons .sidebar-no-mobile {display: none;}
     .panel-sidebar-open .panel-page-section .panel-sidebar {z-index: 31;}
     body .panel-sidebar .sidebar-menu .logout-sidebar {display: flex;}
     .panel-sidebar .sidebar-mobile-user-profile {display: inline-block; margin: 0; width: 100%;}
@@ -18984,83 +18992,24 @@ Lms Responsive Style Start
     .quiz-topbar [class*="col-"] {flex: 0 0 100%; max-width: 100%; text-align: center;}
     .user-profile-icons ul .menu-button-mobile,
     .user-profile-icons ul .sidebar-logo-mobile{display: flex;}
-    body .panel-rightside-menu .user-info {
-        display: none;
-    }
-    body .panel-rightside-menu {
-        padding: 15px 0 8px;
-        border: 0;
-        margin: 0 !important;
-        text-align: center;
-    }
-    body .panel-rightside-menu li {
-        display: inline-block;
-    }
-    body .panel-rightside-menu li .menu-text {
-        display: none;
-    }
-    body .panel-rightside-menu li a {
-        padding: 0 10px;
-    }
-    .user-profile-icons li strong {
-        padding: 6px 10px;
-        border-radius: 5px;
-    }
-    .user-profile-icons li.dropdown:hover strong {
-        background-color: #f1f1f1;
-    }
-    .user-profile-icons .dropdown {
-        position: inherit;
-    }
-    .user-profile-icons .dropdown-menu {
-        border-radius: 0;
-        width: 100%;
-        min-width: auto;
-        margin: 0;
-        transition: none;
-        text-align: center;
-    }
-    .user-coins-menu .dropdown-header {
-        display: inline-flex;
-        text-align: left;
-    }
-    .user-profile-icons .dropdown:hover .dropdown-menu {
-        margin-top: 0;
-        border-left: 0;
-        border-right: 0;
-        top: 70px;
-    }
+    body .panel-rightside-menu .user-info {display: none;}
+    body .panel-rightside-menu {padding: 15px 0 8px; border: 0; margin: 15px 0 0 !important; border-top: 1px solid #ddd; border-radius: 0;}
+    body .panel-rightside-menu ul {display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between;}
+    body .panel-rightside-menu li a {padding: 0;}
+    body .panel-rightside-menu li .menu-text {display: none;}
+    .user-profile-icons li strong {padding: 6px 10px; border-radius: 5px;}
+    .user-profile-icons li.dropdown:hover strong {background-color: #f1f1f1;}
+    .user-profile-icons .dropdown {position: inherit;}
+    .user-profile-icons .dropdown-menu {border-radius: 0;width: 100%;min-width: auto;margin: 0;transition: none;text-align: center;}
+    .user-coins-menu .dropdown-header {display: inline-flex;text-align: left;}
+    .user-profile-icons .dropdown:hover .dropdown-menu {margin-top: 0;border-left: 0;border-right: 0;top: 70px;}
     .user-profile-icons .dropdown-menu:after, 
-    .user-profile-icons .dropdown-menu:before {
-        display: none;
-    }
+    .user-profile-icons .dropdown-menu:before {display: none;}
     .user-profile-icons li.dropdown strong:before, 
-    .user-profile-icons li.dropdown strong:after {
-        bottom: -22px;
-        top: auto;
-        content: "";
-        position: absolute;
-        right: 25px;
-        height: 15px;
-        width: 15px;
-        border-top: 1px solid #ddd;
-        border-left: 1px solid#ddd;
-        transform: rotate(45deg);
-        z-index: 3333;
-        opacity: 0;
-        visibility: hidden;
-    }
-    .user-profile-icons li.dropdown strong:after {
-        background-color: #fff;
-        box-shadow: none;
-        border: 0;
-        bottom: -24px;
-    }
+    .user-profile-icons li.dropdown strong:after {bottom: -22px; top: auto;content: "";position: absolute;right: 25px;height: 15px;width: 15px;border-top: 1px solid #ddd;border-left: 1px solid#ddd;transform: rotate(45deg);z-index: 3333;opacity: 0;visibility: hidden;}
+    .user-profile-icons li.dropdown strong:after {background-color: #fff;box-shadow: none;border: 0;bottom: -24px;}
     .user-profile-icons li.dropdown:hover strong:before, 
-    .user-profile-icons li.dropdown:hover strong:after {
-        visibility: visible;
-        opacity: 1;
-    }
+    .user-profile-icons li.dropdown:hover strong:after {visibility: visible;opacity: 1;}
 }
 
 @media screen and (max-width: 767px) {
@@ -19298,16 +19247,13 @@ Lms Responsive Style Start
     .book-percentage {position: initial;transform: none;margin-top: 20px;}
     body .lms-quiz-section .question-area,
     body .question-layout-block form.question-fields, 
-    body .question-fields .left-content {
-        min-height: auto;
-    }
-    .school-zone-students [class*="col-"] {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-    .student-block-text .user-name {
-        padding-right: 0;
-    }
+    body .question-fields .left-content {min-height: auto;}
+    .school-zone-students [class*="col-"] {flex: 0 0 50%; max-width: 50%;}
+    .student-block-text .user-name {padding-right: 0;}
+    .lms-books-listing .listing-card figure {justify-content: center;}
+    .listing-card .read-btn, .book-btn {min-width: 150px; font-size: 13px; padding: 15px 10px;}
+    .listing-card .read-btn .btn-icon {margin-right: 5px;}
+    .trophy-levels {justify-content: center;}
 }
 
 @media screen and (max-width: 640px) {
@@ -19487,6 +19433,17 @@ Lms Responsive Style Start
     .rewards-tier-box [class*="col-"] {padding: 0 0 20px;}
     .product-tabs .product-card {padding: 0;}
     .result-layout-summary .sats-summary [class*="col-"] {flex: 0 0 100%; max-width: 100%;}
+    .lms-library-slider figure {text-align: center;}
+    .lms-books-listing .listing-card {text-align: center;}
+    .lms-books-listing .listing-card .img-holder {margin: 0 0 20px;}
+    .listing-card .read-btn, .book-btn {
+        min-width: 206px;
+        font-size: 16px;
+        padding: 15px 25px;
+    }
+    .listing-card .read-btn .btn-icon {
+        margin-right: 12px;
+    }
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -19509,8 +19466,14 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 100%; padding-top: 10px;}
     .panel-content .template-grid .text-holder a {display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 5px;}
     .panel-content .grid-card .title-label, .login-options .coming-soon {margin: 0;}
-    .school-zone-students [class*="col-"] {
-        flex: 0 0 100%;
-        max-width: 100%;
+    .school-zone-students [class*="col-"] {flex: 0 0 100%; max-width: 100%;}
+    .user-profile-icons ul {gap: 2px;}
+    .user-profile-icons li strong {padding: 4px 5px;}
+    body .panel-content .container .row [class*="col-"].panel-right-sidebar {padding-left: 0; padding-right: 0;}
+    .analytics-header .header-text > span {font-size: 16px !important;}
+    .analytics-header .header-text,
+    #analyticsAccordion .card .card-header {padding-left: 0; padding-right: 0;}
+    .user-profile-icons .dropdown:hover .dropdown-menu {
+        top: 66px;
     }
 }

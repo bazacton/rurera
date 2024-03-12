@@ -35,7 +35,7 @@
                                 <div class="col-lg-12">
                                     <div class="listing-card">
                                         <div class="row">
-                                            <div class="col-12 col-lg-2 col-md-3">
+                                            <div class="col-12 col-lg-2 col-md-3 col-sm-3">
                                                 <div class="img-holder">
                                                     <figure>
                                                         <a href="/books/{{$bookData->book_slug}}" itemprop="url" class="{{ subscriptionCheckLink('bookshelf') }}">
@@ -45,7 +45,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-lg-6 col-md-5">
+                                            <div class="col-12 col-lg-6 col-md-5 col-sm-5">
                                                 <div class="text-holder">
                                                     <h3 itemprop="title" class="font-18 font-weight-bold mb-5"><a href="/books/{{$bookData->book_slug}}" class="{{ subscriptionCheckLink('bookshelf') }}" itemprop="url">{{$bookData->book_title}}</a>
                                                     </h3>
@@ -58,7 +58,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-4 col-md-4">
+                                            <div class="col-12 col-lg-4 col-md-4 col-sm-4">
                                                 <div class="btn-holder">
                                                     <a href="/books/{{$bookData->book_slug}}" class="read-btn {{ subscriptionCheckLink('bookshelf') }}" itemprop="url">
                                                                       <span class="btn-icon">
@@ -106,4 +106,11 @@
 @push('scripts_bottom')
 <script src="/assets/default/vendors/masonry/masonry.pkgd.min.js"></script>
 <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
+@if (!auth()->subscription('bookshelf'))
+    <script>
+        if( $(".subscription-modal").length > 0){
+            $(".subscription-modal").modal('show');
+        }
+    </script>
+@endif
 @endpush

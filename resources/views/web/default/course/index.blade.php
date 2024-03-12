@@ -283,4 +283,11 @@
 <script>
       feather.replace()
     </script>
+@if (!auth()->subscription('courses'))
+    <script>
+        if( $(".subscription-modal").length > 0){
+            $(".subscription-modal").modal('show');
+        }
+    </script>
+@endif
 @endpush

@@ -141,7 +141,7 @@
                                         <span class="d-block font-16 font-weight-normal pt-5">If your teacher has given you a PIN code to access Rurera Go, enter <br> it in the form below..</span>
                                     </label>
                                     <input type="hidden" class="login_pin_final" value="">
-                                    <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
+                                    <input type="password" class="login_pin focused_field" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
                                     <input type="password" class="login_pin" value="" maxlength="1" style="border: 1px solid #ddd;max-width: 50px;width: auto;display: inline-block;margin: 0 5px;border-radius: 2px;letter-spacing: 1px;font-family: auto;">
@@ -203,8 +203,12 @@
         $(".login-opt-type").addClass('rurera-hide');
         var login_type = $(this).attr('data-login_type');
         $("."+login_type).removeClass('rurera-hide');
+        if(login_type == 'login-with-pin') {
+            $(".focused_field").focus();
+        }
 
     });
+    var loginSubmitRequest = null;
 
     $(document).on('keyup change', '.login_pin_final', function (e) {
 
@@ -213,9 +217,14 @@
         var total_pin_count = $(this).val().length;
         if(total_pin_count == 6){
             rurera_loader($(".login-with-pin"), 'div');
-            jQuery.ajax({
+            loginSubmitRequest = jQuery.ajax({
                type: "POST",
                url: '/login_pin',
+                beforeSend: function () {
+                    if (loginSubmitRequest != null) {
+                        loginSubmitRequest.abort();
+                    }
+                },
                headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                },
@@ -226,6 +235,8 @@
                    }else{
                        thisObj.val('');
                        rurera_remove_loader($(".login-with-pin"), 'div');
+                       $(".login_pin").val('');
+                       $(".focused_field").focus();
                        Swal.fire({
                            icon: 'error',
                            html: '<h3 class="font-20 text-center text-dark-blue py-25">Incorrect Pin</h3>',
@@ -271,9 +282,14 @@
             rurera_loader($(".login-with-emoji"), 'div');
             var login_emoji = $(".emoji-password-field").val();
 
-            jQuery.ajax({
+            loginSubmitRequest = jQuery.ajax({
                type: "POST",
                url: '/login_emoji',
+                beforeSend: function () {
+                    if (loginSubmitRequest != null) {
+                        loginSubmitRequest.abort();
+                    }
+                },
                headers: {
                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                },
@@ -287,6 +303,7 @@
                        $(".emoji-passwords span:first").addClass('active');
                        $(".emoji-passwords span").html('');
                        rurera_remove_loader($(".login-with-emoji"), 'div');
+                       $(".login_pin").val('');
                        Swal.fire({
                            icon: 'error',
                            html: '<h3 class="font-20 text-center text-dark-blue py-25">Incorrect Emojis</h3>',
@@ -300,6 +317,10 @@
 
     });
     $(document).on('input keydown paste', ".login_pin", function (event) {
+        var keyCode = event.keyCode || event.which;
+        if ((keyCode < 48 || keyCode > 57) && keyCode != 8 && keyCode != 46 && (keyCode < 37 || keyCode > 40)) {
+            event.preventDefault();
+        }
         var $this = $(this);
         var value = $this.val();
 
