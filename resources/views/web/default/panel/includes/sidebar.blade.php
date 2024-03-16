@@ -83,7 +83,7 @@
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
                         </a>
-                        <a href="/learn" class="font-15">Learn <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
+                            <a href="/learn" class="font-15">Learn @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/timestables-practice">
@@ -107,7 +107,7 @@
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
                         </a>
-                        <a href="/books" class="font-15">Books <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
+                            <a href="/books" class="font-15">Books @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/tests">
@@ -115,7 +115,9 @@
                             <img src="/assets/default/img/sidebar/test.svg">
                         </span>
                     </a>
-                    <a href="/tests" class="font-15">Test <img src="/assets/default/svgs/crown.svg" class="crown-icon"></a>
+
+                    <a href="/tests" class="font-15">Test @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+
                 </li>
 
              <li class="sidenav-item {{ (request()->is('quests') or request()->is('quests/*')) ? 'sidenav-item-active' : '' }}">

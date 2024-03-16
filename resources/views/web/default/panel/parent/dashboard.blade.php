@@ -51,6 +51,7 @@
                                         <div class="col-5 ms-2">
                                             <h6 class="font-18 font-weight-bold"><a href="#">{{$childObj->full_name}}</a></h6>
                                             <small class="text-muted">
+                                                @php $package_id = 0; @endphp
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
@@ -68,8 +69,12 @@
                                             <img src="/assets/default/img/default/user-switch.png">
                                         </a>
                                         @if(!isset( $childObj->userSubscriptions->subscribe ) )
-                                        <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                            <img src="/assets/default/img/default/user-switch.png">
+                                        <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                            <img src="/assets/default/svgs/pay.svg">
+                                        </a>
+                                        @else
+                                        <a href="javascript:;" class="package-update-btn switch-user-btn subscription-modal" data-type="update_package" data-id="{{$childObj->id}}">
+                                            <img src="/assets/default/svgs/update-package.svg">
                                         </a>
                                         @endif
                                         <a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}">
@@ -639,10 +644,13 @@
 <div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
             <div class="modal-body">
+                <div class="container container-nosidebar">
                 <div class="tab-content subscription-content" id="nav-tabContent">
 
+                </div>
                 </div>
             </div>
         </div>

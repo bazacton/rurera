@@ -50,6 +50,9 @@ Lms Signs Style
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 /* .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;} */
 .lms-radio-select label:hover {background-color: rgba(0,0,0,0.02);}
+.lms-radio-select .field-holder.wrong label {
+    border-color: #ff4a4a;
+}
 /* .lms-radio-select label:after {
     content: "";
     position: absolute;
@@ -316,6 +319,15 @@ Lms Question List Style
 .input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0;}
+.question-result-layout .input-holder .input-simple {
+    width: 100%;
+}
+.leform-row.leform-element [class*="leform-col-"] {
+    float: none;
+    display: inline-block;
+    margin-right: -4px;
+    vertical-align: middle;
+}
 .input-holder.input_line,
 .lms-quiz-section .input-holder.input_line {border: 0; vertical-align: middle;}
 .input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd;}
@@ -572,6 +584,9 @@ Lms Quiz Wf Style Start
       border: 0 !important;
     }
 }
+.lms-quiz-section .leform-col-4 .input-holder {
+    width: 90% !important;
+}
 .input-holder textarea {padding: 10px; border: 0; border-radius: 8px; color: #000; outline: none; width: 100%;}
 .input-holder textarea::-webkit-input-placeholder {color: #000; }
 .input-holder textarea:-moz-placeholder {color: #000;}
@@ -641,7 +656,7 @@ Lms Quiz Wf Style Start
 .leform-element input.input-simple:focus::-webkit-input-placeholder {color: transparent;}
 .input-holder .input-label {position: absolute; left: 10px; top: 50%; transform: translateY(-50%);}
 .input_line {border-right: 0 !important; border-top: 0 !important; border-left: 0 !important; border-color: #000; border-radius: 0;}
-.input-holder .input-label.right {right: 15px;left: auto;}
+.input-holder .input-label.right {right: 10px;left: auto;}
 .input-holder input[type=number]::-webkit-inner-spin-button, 
 .input-holder input[type=number]::-webkit-outer-spin-button {opacity: 1;}
 table.table td .input-holder input[type=number]::-webkit-inner-spin-button, 
@@ -650,7 +665,7 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 .input-holder input.input_line[type=number]::-webkit-outer-spin-button{opacity: 0;}
 .note-editable .input-holder input[type="number"],
 .input-holder .input-label ~ input[type="number"] {text-align: right;}
-.input-holder .input-label ~ input.input-simple {padding: 0 25px; min-height: 38px;}
+.input-holder .input-label ~ input.input-simple {padding: 0 7px; min-height: 38px;}
 .input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 10px; text-align: left;}
 .input-holder .input-label.left ~ input[type="number"].input-simple {text-align: right;}
 input::-webkit-outer-spin-button,
@@ -980,6 +995,10 @@ input.large {width: 100%;}
 .column-4 .input-holder .medium{
     width: 100%;
     max-width: 100%;
+}
+.leform-col-3 input.small {
+    width: 100%;
+    text-align: center;
 }
 .quiz-input-group .field-holder {
     text-align: right;

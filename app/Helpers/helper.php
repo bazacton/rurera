@@ -6990,6 +6990,16 @@ function element_properties_meta($chapters)
                'label' => esc_html__('Label', 'leform'),
                'type'  => 'text'
            ),
+           'allowed_types'         => array(
+               'value' => '',
+               'label' => esc_html__('Allowed Types (e.g png, jpg)', 'leform'),
+               'type'  => 'text'
+           ),
+            'no_of_files'         => array(
+               'value' => '1',
+               'label' => esc_html__('No of Files', 'leform'),
+               'type'  => 'number'
+           ),
             'score'         => array(
                'value' => '',
                'label' => esc_html__('Score', 'leform'),

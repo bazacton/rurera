@@ -3280,8 +3280,8 @@ a.badge-gray200:focus {
 .form-control {
     display: block;
     width: 100%;
-    height: 2.5rem;
-    padding: .5rem 1rem;
+    /* height: 2.5rem; */
+    padding: 1rem 1rem;
     font-family: main-font-family;
     font-size: .75rem;
     font-weight: 400;
@@ -3293,6 +3293,11 @@ a.badge-gray200:focus {
     border-radius: .5rem;
     box-shadow: none;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.form-control option {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 50px;
 }
 @media (prefers-reduced-motion:reduce) {
     .form-control {
@@ -12868,6 +12873,10 @@ header .dropdown-menu {transform: translate3d(0, 54px, 0) !important;}
 .dropdown-menu.user-profile-dropdown .dropdown-item:active {background-color: inherit;}
 html.html-modal-open {overflow: hidden;touch-action: none;}
 .img-cover {width: 100%; height: 100%; overflow: hidden; -o-object-fit: cover; object-fit: cover; -o-object-position: 50% 50%; object-position: 50% 50%;}
+.top-navbar .navbar-brand img {
+    -o-object-fit: contain; 
+    object-fit: contain;
+}
 @media (max-width:767px) {
     .xs-w-100 {width: 100%;}
 }
@@ -15063,7 +15072,7 @@ Lms FAQS Style Start
 .lms-faqs .nav-tabs li:last-child a {border-top-right-radius: 8px; border-bottom-right-radius: 8px;}
 .lms-faqs .nav-tabs .nav-link.active {color: var(--primary); background-color:#eaeaea99;}
 .lms-faqs .nav-tabs li {margin: 0 1px; flex: 1 1;}
-.lms-faqs .card {border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 25px; padding: 0 0 25px;}
+.lms-faqs .card {background-color: inherit; border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 25px; padding: 0 0 25px;}
 .lms-faqs .card .card-header {background-color: inherit; padding: 0; border: 0;}
 .lms-faqs .card .card-header .btn-link {height: auto; padding: 0 35px 0 0; display: block; width: 100%; text-align: left; position: relative; transition: none;}
 .lms-faqs .card .card-header .btn-link h3 {font-weight: normal; color: inherit; font-size: inherit; }
@@ -16799,11 +16808,13 @@ Lms FAQS New Elements Style End
 /*************************************
 Lms Choose Membership Model Style Start
 *************************************/
-.lms-choose-membership .modal-dialog {max-width: 860px; margin-top: 10%;}
+.modal.lms-choose-membership {padding-left: 0 !important;}
+.lms-choose-membership .modal-dialog {max-width: 100%; margin: 0;}
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
-.lms-choose-membership .modal-content {position: relative;}
-.lms-choose-membership .modal-body{padding: 30px;}
+.lms-choose-membership .modal-dialog {height: 100%;}
+.lms-choose-membership .modal-content {background-color: #fafafa; border: 0; position: relative; box-shadow: none; border-radius: 0; height: 100%;}
+.lms-choose-membership .modal-body{background-color: #fafafa; padding: 30px;}
 .lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
 .lms-choose-membership .book-form {margin: 0 auto;}
 .lms-choose-membership .form-group{margin-bottom: 15px;}
@@ -16841,11 +16852,22 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .subscribe-plan-holder strong {padding: 0 100px;display: inline-block;line-height: 26px;color: var(--primary-hover);}
 .membership-steps-list li.active::before { background:#64c07d;}
 .membership-steps-list li.active a .icon-svg{background:#64c07d;}
-.lms-choose-membership .subscribe-plan .plan-feature li:after{display: none;}
+
 .lms-choose-membership .bg-none {background: transparent;color: var(--primary-hover);box-shadow: none;}
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
-.lms-choose-membership .close{color: var(--primary-hover);font-size: 3rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right; position: absolute; right: -10px; top: -15px; z-index: 1;}
+.lms-choose-membership .close{color: var(--primary-hover);font-size: 1rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right; position: absolute; right: 10px; top: 20px; z-index: 1;}
+.lms-choose-membership .close span {
+    font-size: 3rem;
+    vertical-align: middle;
+    line-height: normal;
+    display: inline-block;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+.lms-choose-membership .modal-logo {
+    padding: 30px 30px 0;
+}
 .membership-sub-header { position: relative; overflow: hidden;}
 .lms-choose-membership .form-separator {position: relative;overflow: hidden;text-align: center;margin: 30px 0;}
 .lms-choose-membership .form-separator span {display: inline-block;padding: 0 15px;font-size: 20px;color: #b5b8bf;position: relative;}
@@ -16868,6 +16890,12 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .form-group input[type="password"] {height: 48px; border: 1px solid #ddd; width: 100%; padding: 11px; border-radius: 6px;}
 .lms-choose-membership .form-group .btn-field {margin: 0; text-align: right; }
 .lms-choose-membership .form-group .btn-field button {width: auto; font-size: 18px; font-weight: 600; padding: 12px 30px; height: auto; margin: 0; line-height: normal; display: inline-block;}
+.lms-choose-membership .switch-label {
+    margin-right: 10px;
+}
+.lms-choose-membership .plan-switch {
+    margin-top: -2px;
+}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -17250,7 +17278,7 @@ Heatmap Table style Start
 .heatmap-select-option .select-field {margin-right: 10px; display: inline-flex; padding-left: 1px; border: 1px solid rgb(186, 195, 202); border-radius: 5px; overflow: hidden;}
 .heatmap-select-option strong {font-size: 18px; font-weight: 500; color: #333;}
 .heatmap-table {width: 100%;}
-.heatmap-table th, .heatmap-table td {text-align: center; vertical-align: middle; padding: 10px 15px;}
+.heatmap-table th, .heatmap-table td {text-align: center; vertical-align: middle; padding: 10px 12px;}
 .heatmap-table td {background-color: #fff; font-size:15px;}
 .heatmap-table .correct-fast {background-color: #60a747;}
 .heatmap-table tr td:first-child {background-color: transparent; padding: 0 15px; font-weight: 700; font-size:16px;}
@@ -18282,7 +18310,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .topics-accordion li {font-size: 14px;}
 .topics-accordion ul {display: flex; flex-direction: column; gap: 15px;}
 /* need help page style End */
-.start-counter {position: fixed; height: 100%; width: 100%; left: 0; top: 0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--primary);}
+.start-counter {background-color: #fff; position: fixed; height: 100%; width: 100%; left: 0; top: 0; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--primary);}
 
 /* Referrals Style Start */
 .referrals {background-color: #ddd; padding: 20px;}
@@ -18354,6 +18382,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 
 .plan-switch-holder {text-align: center; margin: 0 0 40px; display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap;}
 .plan-switch-option {display: flex; align-items: flex-start; justify-content: center; gap: 0;}
+.lms-choose-membership .plan-switch-option {justify-content: flex-start; padding: 10px 0;}
 .save-plan {margin: 20px 0 0 25px; position: relative;}
 .save-plan span {display: inline-block; position: relative; padding: 0 0 0 115px; color: #596bfd; margin: 0;}
 .save-plan span:before {content: ""; position: absolute; left: 0; top: -30px; width: 98px; height: 48px; background: url(/assets/default/img/save-shap.png) top left no-repeat;}
@@ -18855,6 +18884,184 @@ li.disable-timetable label {
 }
 
 
+.profile-menu > ul > li {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 20px;
+    margin: 0 0 20px;
+}
+.profile-menu .user-thumb {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.user-menu-text {
+    width: calc(100% - 42px);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: -4px;
+    padding-left: 15px;
+}
+
+.profile-menu .user-thumb a {
+    background-color: #ddd;
+    height: 100%;
+    width: 100%;
+    display: block;
+    border-radius: 100%;
+}
+
+.profile-dropdown {
+    position: relative;
+    padding-top: 5px;
+}
+
+.profile-dropdown ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 150px;
+    padding: 10px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: -10px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.profile-dropdown:hover ul {
+    opacity: 1;
+    visibility: visible;
+    margin: 0;
+}
+.profile-menu > ul > li .user-menu-text > a {
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+}
+.profile-dropdown ul li {
+    margin: 0 0 10px;
+}
+.profile-dropdown ul li:last-child {
+    margin-bottom: 0;
+}
+.profile-dropdown > a {
+    font-weight: 600;
+    color: var(--primary);
+    position: relative;
+}
+.profile-dropdown > a:after {
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 4px;
+    height: 0;
+    width: 0;
+    border: 5px solid var(--primary);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    transform: rotate(-135deg);
+}
+.profile-dropdown ul li a {
+    color: var(--primary);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Recent Reviews Style */
+.reviews-card {
+    border: 1px solid #ddd;
+    padding: 15px 10px;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 14px;
+}
+.reviews-top .user-img {
+    height: 42px;
+    width: 42px;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.recent-reviews-section [class*="col-lg"] {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.reviews-star .icon-box {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: green;
+    padding: 3px;
+    margin-right: 1px;
+}
+
+.reviews-star .icon-box img {
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.reviews-star {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.reviews-top {
+    margin: 0 0 10px;
+}
+
+.reviews-text a {
+    font-size: 12px;
+    font-weight: 600;
+    display: block;
+    line-height: normal;
+    margin: 0 0 8px;
+}
+
+.reviews-text p {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+    margin: 0;
+}
+
+.reviews-text a span {
+    font-size: 11px;
+    color: #777;
+}
+.reviews-top .user-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.reviews-top > a {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.recent-reviews-section [class*="col-"] {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.recent-reviews-section .row {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+
 /*************************************
 Lms Responsive Style Start
 *************************************/
@@ -18888,6 +19095,18 @@ Lms Responsive Style Start
     .panel-content .panel-right-sidebar {flex: 0 0 370px;max-width: 370px;}
     body .dashboard-banner-container {margin-top: 15px;}
     .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
+    .quiz-topbar [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-bottom: 10px;
+    }
+    body .topbar-right {
+        justify-content: space-between;
+    }
+    .question-number-holder {
+        z-index: 1 !important;
+    }
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -18977,6 +19196,9 @@ Lms Responsive Style Start
     body .lms-quiz-section {/*height: auto;*/}
     .panel-sidebar .sidebar-logo {
         display: none;
+    }
+    .question-number-holder {
+        z-index: 1 !important;
     }
     .dataTables_wrapper {max-width: 100%; width: 100%; overflow: hidden; overflow-x: auto;}
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}

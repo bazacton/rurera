@@ -1004,7 +1004,7 @@ function init_question_functions() {
         var qattempt_id = $(".question-area .question-step").attr('data-qattempt');
         var total_questions = $(".question-area").attr('data-total_questions');
 
-        $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions out of ' + total_questions + '. Are you sure you want to submit?');
+        $(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
 
 
         /*var thisObj = $(this);

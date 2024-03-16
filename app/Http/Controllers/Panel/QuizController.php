@@ -866,7 +866,29 @@ class QuizController extends Controller
                     ])->render();
                 }
 
+                if ($QuizzesResult->quiz_result_type == 'vocabulary') {
+                    $group_questions_layout = $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
 
+                    $question_response_layout .= view('web.default.panel.questions.question_layout', [
+                        'question'               => $questionObj,
+                        'prev_question'          => 0,
+                        'next_question'          => 0,
+                        'quizAttempt'            => $quizAttempt,
+                        'newQuestionResult'      => $QuizzResultQuestionObj,
+                        'question_no'            => $count,
+                        'quizResultObj'          => $QuizzesResult,
+                        'disable_submit'         => 'true',
+                        'disable_finish'         => 'true',
+                        'disable_prev'           => 'true',
+                        'disable_next'           => 'true',
+                        //'class'                  => 'disable-div',
+                        'layout_type'            => 'results',
+                        'group_questions_layout' => $group_questions_layout,
+                    ])->render();
+                }
+
+
+                //pre($QuizzResultQuestionObj);
                 if (!isset( $child_questions ) || $child_questions->count() == 0) {
                     $question_response_layout .= $QuestionsAttemptController->get_question_result_layout($QuizzResultQuestionObj->id);
                 }

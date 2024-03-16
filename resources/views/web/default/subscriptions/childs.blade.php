@@ -1,3 +1,4 @@
+@include('web.default.subscriptions.steps',['activeStep'=> 'student'])
 <div class="form-login-reading">
     <div class="container">
       <form class="child-register-form" method="post" action="javascript:;">
@@ -8,14 +9,7 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
           <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                  <div class="plan-switch-option">
-                          <span class="switch-label font-18">Auto Generate</span> &nbsp;&nbsp;
-                          <div class="plan-switch">
-                              <div class="custom-control custom-switch"><input type="checkbox" name="auto_generate" class="username-auto-generate custom-control-input" id="auto_generate"><label class="custom-control-label"  for="auto_generate"></label></div>
-                          </div>
-                  </div>
-              </div>
+
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
@@ -33,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-6 col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group">
                       <span class="fomr-label">Year Group</span>
                       <select class="form-control @error('category_id') is-invalid @enderror"
@@ -64,11 +58,19 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <h5>Students's account details</h5>
             </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="plan-switch-option">
+                        <span class="switch-label font-18">Auto Generate</span> &nbsp;&nbsp;
+                        <div class="plan-switch">
+                            <div class="custom-control custom-switch"><input type="checkbox" name="auto_generate" class="username-auto-generate custom-control-input" id="auto_generate"><label class="custom-control-label"  for="auto_generate"></label></div>
+                        </div>
+                </div>
+            </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
-                    <span class="fomr-label">User name</span>
+                    <span class="fomr-label">Username</span>
                     <div class="input-field">
-                        <input type="text" name="username" class="username-field" placeholder="User name">
+                        <input type="text" name="username" class="username-field" placeholder="Username">
                     </div>
                 </div>
                 <div class="usernames-suggestions">

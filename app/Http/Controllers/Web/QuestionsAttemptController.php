@@ -1852,7 +1852,6 @@ class QuestionsAttemptController extends Controller
                     case "text":
 
                         if (!empty($user_values)) {
-                            pre($user_values, false);
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
                                 $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
                                 $script .= view('web.default.panel.questions.question_script', [

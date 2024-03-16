@@ -29,6 +29,12 @@ class MembersController extends Controller
         $male_default_avatar = '{"avatar_settings":{"backs":"1","faceshape":"0","chinshadow":"0","facehighlight":"0","humanbody":"0","clothes":"0","hair":"1","ears":"0","eyebrows":"0","eyesback":"0","eyesiris":"0","eyesfront":"0","glasses":"0","mouth":"0","mustache":"0","beard":"0","nose":"0"},"avatar_color_settings":{"backs":"#000000","humanbody":"#f0c7b1","clothes":"#386e77","hair":"#2a232b","ears":"#f0c7b1","faceshape":"#f0c7b1","chinshadow":"#f0c7b1","facehighlight":"#f0c7b1","eyebrows":"#2a232b","eyesback":"#000000","eyesfront":"#000000","eyesiris":"#4e60a3","glasses":"#26120B","mustache":"#2a232b","beard":"#2a232b","mouth":"#da7c87","nose":"#f0c7b1"}}';
         $female_default_avatar = '{"avatar_settings":{"backs":"1","faceshape":"8","chinshadow":"8","facehighlight":"0","humanbody":"0","clothes":"8","hair":"7","ears":"3","eyebrows":"2","eyesback":"2","eyesiris":"2","eyesfront":"2","glasses":"0","mouth":"2","nose":"5"},"avatar_color_settings":{"backs":"#40c0cb","humanbody":"#ecc4b8","clothes":"#152c5e","hair":"#4e4341","ears":"#ecc4b8","faceshape":"#ecc4b8","chinshadow":"#ecc4b8","facehighlight":"#ecc4b8","eyebrows":"#4e4341","eyesback":"#000000","eyesfront":"#0f190c","eyesiris":"#4d3623","glasses":"#26120B","mustache":"#2a232b","beard":"#2a232b","mouth":"#c90433","nose":"#ecc4b8"}}';
 
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isParent()) {
+            return redirect('/panel');
+        }
         if (auth()->user()->isParent()) {
 
             $childs = User::where('role_id', 1)

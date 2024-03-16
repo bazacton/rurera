@@ -71,7 +71,6 @@ class AnalyticsController extends Controller
                                 $reading_analytics_data[$date_str][$readingObj->BooksPages->BookData->id]['book_slug'] = $readingObj->BooksPages->BookData->book_slug;
                             }
                         }
-
                     }
                 }
             }

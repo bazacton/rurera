@@ -51,6 +51,14 @@
 .field-group .marks {margin-left: 60px; font-size: 12px; color: #006600; letter-spacing: 1px;}
 .field-group .divide-numbers span { display: inline-block; vertical-align: middle; text-align: center;}
 .field-group .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0;}
+.lms-quiz-section span .divide-numbers:has(.input_box) .input_box {
+    margin: 0;
+    width: 100% !important;
+}
+.lms-quiz-section span .divide-numbers:has(.input_box) .divider {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 .field-group .input-group .divider {margin: 0;}
 .field-group .plus,
 .field-group .equal {font-weight: 700;}

@@ -84,7 +84,7 @@ $timer_counter = $practice_time;
         </script>
         @endif
 
-        <div class="container-fluid questions-data-block read-quiz-content"
+        <div class="container questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
             @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
 
@@ -216,7 +216,7 @@ $timer_counter = $practice_time;
 
 
             <div class="justify-content-center">
-                <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-12 col-md-12 col-sm-12 mt-50 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">

@@ -6,6 +6,55 @@
 
 @section('content')
 <section class="content-section mt-10">
+<div class="col-12 mb-30">
+    <div class="profile-menu">
+        <ul>
+            <li>
+                <div class="user-thumb">
+                    <a href="#"></a>
+                </div>
+                <div class="user-menu-text">
+                    <a href="#">Billy</a>
+                    <div class="profile-dropdown">
+                        <a href="#">Profile options</a>
+                        <ul>
+                            <li><a href="#">View reading log</a></li>
+                            <li><a href="#">Customize</a></li>
+                            <li><a href="#">Connect to class</a></li>
+                            <li><a href="#">Merge profile</a></li>
+                            <li><a href="#">Delete profile</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </li>
+            <li>
+                <div class="user-thumb">
+                    <a href="#"></a>
+                </div>
+                <div class="user-menu-text">
+                    <a href="#">Billy</a>
+                </div>
+            </li>
+            <li>
+                <div class="user-thumb">
+                    <a href="#"></a>
+                </div>
+                <div class="user-menu-text">
+                    <a href="#">Billy</a>
+                </div>
+            </li>
+            <li>
+                <div class="user-thumb">
+                    <a href="#"></a>
+                </div>
+                <div class="user-menu-text">
+                    <a href="#">Billy</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
     <div class="col-12 col-lg-12 col-md-12">
             <div class="section-title mb-30">
             <h2 itemprop="title" class="font-22 mb-0"><a href="/timestables-practice" class="timestables-back-btn"></a>National Competition</h2>
@@ -892,7 +941,7 @@
     <div class="panel-popup">
         <div class="popup-text">
             <h3 class="font-19 font-weight-bold">Haven't found an answer to your question
-                <span>Connect with us either on discord or email us</span>    
+                <span>Connect with us either on discord or email us</span>
             </h3>
             <div class="popup-controls">
                 <a href="#" class="discord-btn">Ask on Discord</a>

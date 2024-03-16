@@ -45,7 +45,7 @@
 
         <div class="d-flex align-items-center justify-content-between mt-45">
             <span class="font-16 font-weight-500 text-gray">{{ trans('financial.total_amount') }} {{ addCurrencyToPrice($total) }}</span>
-            <button type="button" id="paymentSubmit" disabled class="btn btn-sm btn-primary">{{ trans('public.start_payment') }}</button>
+            <button type="button" id="paymentSubmit" disabled class="btn btn-sm btn-primary">Sart Free Trial</button>
         </div>
     </form>
 

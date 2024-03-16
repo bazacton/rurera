@@ -318,7 +318,11 @@
     });
     $(document).on('input keydown paste', ".login_pin", function (event) {
         var keyCode = event.keyCode || event.which;
-        if ((keyCode < 48 || keyCode > 57) && keyCode != 8 && keyCode != 46 && (keyCode < 37 || keyCode > 40)) {
+        if (!((keyCode >= 48 && keyCode <= 57) || // Allow numeric keys
+              (keyCode >= 96 && keyCode <= 105) || // Allow numpad keys
+              keyCode == 8 || // Allow backspace
+              keyCode == 46 || // Allow delete
+              (keyCode >= 37 && keyCode <= 40))) { // Allow arrow keys
             event.preventDefault();
         }
         var $this = $(this);
