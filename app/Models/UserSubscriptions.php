@@ -22,11 +22,17 @@ class UserSubscriptions extends Model
         'is_bookshelf',
         'is_sats',
         'is_elevenplus',
+        'is_vocabulary',
         'status',
         'created_at',
         'expiry_at',
         'child_discount',
         'charged_amount',
+        'previous_packages',
+        'is_cancelled',
+        'cancelled_by',
+        'cancelled_at',
+        'next_package',
     ];
 
     public function subscribe()

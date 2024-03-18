@@ -438,6 +438,7 @@ class PaymentsController extends Controller
                         $UserSubscriptions->is_bookshelf = $subscribeObj->is_bookshelf;
                         $UserSubscriptions->is_sats = $subscribeObj->is_sats;
                         $UserSubscriptions->is_elevenplus = $subscribeObj->is_elevenplus;
+                        $UserSubscriptions->is_vocabulary = $subscribeObj->is_vocabulary;
                         $UserSubscriptions->status = 'active';
                         $UserSubscriptions->child_discount = $total_discount;
                         $UserSubscriptions->charged_amount = $packages_amount;

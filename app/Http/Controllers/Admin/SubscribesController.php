@@ -70,6 +70,8 @@ class SubscribesController extends Controller
             'is_sats'        => isset($data['is_sats']) ? $data['is_sats'] : 0,
             'is_elevenplus'  => isset($data['is_elevenplus']) ? $data['is_elevenplus'] : 0,
             'trial_period'  => isset($data['trial_period']) ? $data['trial_period'] : 0,
+            'is_vocabulary'  => isset($data['is_vocabulary']) ? $data['is_vocabulary'] : 0,
+
         ]);
 
         if (!empty($subscribe)) {
@@ -131,6 +133,7 @@ class SubscribesController extends Controller
             'is_sats'        => isset($data['is_sats']) ? $data['is_sats'] : 0,
             'is_elevenplus'  => isset($data['is_elevenplus']) ? $data['is_elevenplus'] : 0,
             'trial_period'  => isset($data['trial_period']) ? $data['trial_period'] : 0,
+            'is_vocabulary'  => isset($data['is_vocabulary']) ? $data['is_vocabulary'] : 0,
         ]);
 
         SubscribeTranslation::updateOrCreate([

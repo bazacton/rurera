@@ -3781,6 +3781,10 @@ class User extends Authenticatable
             case "11plus":
                 $subscription_package = 'is_elevenplus';
                 break;
+            case "vocabulary":
+                $subscription_package = 'is_vocabulary';
+                break;
+
         }
 
         $is_subscribed = UserSubscriptions::where('user_id', $this->id)

@@ -14063,6 +14063,12 @@ p {line-height: 1.5;}
 .user-reward-badges img {width: 32px; height: 32px;}
 .user-reward-badges.badges-lg .badges-item {border: none;}
 .user-reward-badges.badges-lg img {width: 128px; height: 128px;}
+.lms-setup-progress-section .subscribe-plan {
+    background-color: #fff;
+}
+.fade.lms-choose-membership {
+    transition: none;
+}
 @media (max-width:991px) {
     .user-reward-badges.badges-lg img {width: 60px; height: 60px;}
 }
@@ -17379,7 +17385,8 @@ Main Home style End
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
-.quiz-start-btn .rurera-button-loader {background-color: inherit;}
+.quiz-start-btn .rurera-button-loader,
+.lms-choose-membership .rurera-button-loader {background-color: inherit;}
 @-webkit-keyframes sk-bounce { 
     0%, 100% { -webkit-transform: scale(0); transform: scale(0); } 50% { -webkit-transform: scale(1); transform: scale(1);}
 }
@@ -18916,6 +18923,7 @@ li.disable-timetable label {
 .profile-dropdown {
     position: relative;
     padding-top: 5px;
+    display: inline-block;
 }
 
 .profile-dropdown ul {
@@ -18923,8 +18931,8 @@ li.disable-timetable label {
     top: 100%;
     left: 0;
     background-color: #fff;
-    min-width: 150px;
-    padding: 10px;
+    min-width: 180px;
+    padding: 15px;
     box-shadow: 0 0 3px rgba(0,0,0,0.1);
     border-radius: 8px;
     z-index: 1;
@@ -18975,6 +18983,157 @@ li.disable-timetable label {
     font-size: 15px;
     font-weight: 500;
 }
+.profile-dropdown .icon-box {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    margin-right: 8px;
+}
+.profile-dropdown .icon-box img {
+    max-width: 100%;
+}
+
+/*Year Tabs Style Start*/
+.Filter-lable {
+    margin-right: 10px;
+}
+.year-filters select {
+    border: 1px solid var(--primary);
+    font-weight: 500;
+    padding: 6px 5px;
+    line-height: normal;
+    min-width: 110px;
+    color: var(--primary);
+    border-radius: 0;
+}
+.year-filters select option {
+    border-radius: 0;
+}
+.years-tab {
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.years-tab .nav {
+    width: 35%;
+    flex-direction: column;
+}
+.years-tab .tab-content {
+    border-left: 1px solid #ddd;
+    width: calc(100% - 35%);
+}
+.years-tab .nav-link {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 15px;
+}
+.years-tab .nav-link.active {
+    background-color: #e9f0e9;
+}
+.years-accordion .card {
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+}
+.years-accordion .card .card-header {
+    background-color: inherit;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+}
+.years-accordion .card .card-header .btn-link {
+    background-color: #e9f0e9;
+    border-radius: 0;
+    border: 0;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+    padding: 12px 15px;
+    line-height: normal;
+    color: var(--primary);
+    text-decoration: none;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.years-accordion .card .card-header .btn-link.collapsed {
+    background-color: #fff;
+    color: #343434;
+}
+.years-accordion .card .card-header .btn-link:after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    height: 10px;
+    width: 10px;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-color: var(--primary);
+    transform: rotate(45deg);
+    margin-top: 0;
+}
+.years-accordion .card .card-header .btn-link.collapsed:after {
+    transform: rotate(-135deg);
+    margin-top: -5px;
+}
+.years-accordion .card .card-header .icon-box {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    margin-top: -10px;
+}
+.years-accordion .card .card-header .icon-box img {
+    max-width: 100%;
+}
+.years-accordion .year-num {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid var(--primary);
+    border-radius: 100%;
+    font-size: 14px;
+    margin-right: 10px;
+    color: #fff;
+    font-weight: 500;
+    background-color: var(--primary);
+}
+.years-accordion .card .card-header .btn-link.collapsed .year-num {
+    background-color: inherit;
+    color: var(--primary);
+}
+.years-accordion .card-body {
+    background-color: #e9f0e9;
+    padding-top: 0;
+}
+.years-accordion p {
+    font-size: 15px;
+    margin: 0 0 15px;
+}
+.year-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.year-tags a {
+    border: 2px solid var(--primary);
+    display: block;
+    line-height: normal;
+    font-size: 15px;
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
 
 /* Recent Reviews Style */
 .reviews-card {
@@ -19017,13 +19176,24 @@ li.disable-timetable label {
 .reviews-star {
     display: inline-block;
     vertical-align: middle;
-    padding-left: 10px;
 }
-
+.top-user-text {
+    width: calc(100% - 42px);
+    padding: 0 0 0 10px;
+    display: inline-flex;
+    flex-direction: column;
+}
+.top-user-text .author-name {
+    font-weight: 600;
+    display: block;
+    margin: 0 0 5px;
+}
 .reviews-top {
     margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
-
 .reviews-text a {
     font-size: 12px;
     font-weight: 600;
@@ -19060,6 +19230,35 @@ li.disable-timetable label {
 .recent-reviews-section .row {
     margin-left: -7px;
     margin-right: -7px;
+}
+
+
+.flexible-progress-bar li i {
+    height: 45px;
+    width: 45px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    font-size: 28px;
+    background-color: #fff;
+}
+.flexible-progress-bar li i:before {
+    position: relative;
+    font-style: normal;
+}
+.lms-choose-membership .flexible-progress-bar li.active .stepline,
+.lms-choose-membership .flexible-progress-bar li.complete .stepline {
+    background: var(--primary);
+}
+.lms-choose-membership .stepline {
+    height: 1px;
+}
+.lms-choose-membership .flexible-progress-bar li.complete i {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: #fff;
 }
 
 /*************************************

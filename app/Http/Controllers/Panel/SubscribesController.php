@@ -208,6 +208,7 @@ class SubscribesController extends Controller
             'is_bookshelf'    => $subscribeData->is_bookshelf,
             'is_sats'         => $subscribeData->is_sats,
             'is_elevenplus'   => $subscribeData->is_elevenplus,
+            'is_vocabulary'   => $subscribeData->is_vocabulary,
             "status"          => 'inactive',
             "created_at"      => time(),
             "expiry_at"       => $expiry_date,
@@ -451,6 +452,7 @@ class SubscribesController extends Controller
             $UserSubscriptions->is_bookshelf = $subscribeObj->is_bookshelf;
             $UserSubscriptions->is_sats = $subscribeObj->is_sats;
             $UserSubscriptions->is_elevenplus = $subscribeObj->is_elevenplus;
+            $UserSubscriptions->is_vocabulary = $subscribeObj->is_vocabulary;
             $UserSubscriptions->status = 'active';
             $UserSubscriptions->child_discount = 0;
             $UserSubscriptions->charged_amount = 0;

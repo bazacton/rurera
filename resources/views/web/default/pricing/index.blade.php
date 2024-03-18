@@ -40,7 +40,7 @@
                                             <span>{{ $subscribe->description }}</span>
                                         </div>
                                         <div class="d-flex align-items-start text-dark-charcoal mt-10 subscribe-price">
-                                            <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span><span class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / year</span>
+                                            <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span><span class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
                                         </div>
                                         <span class="plan-label d-block font-weight-500 pt-20">For Students</span>
                                         <ul class="mt-20 plan-feature">
@@ -48,6 +48,8 @@
                                             <li class="mt-10 {{$is_available}}">Courses</li>
                                             @php $is_available = ($subscribe->is_timestables > 0)? '' : 'subscribe-no'; @endphp
                                             <li class="mt-10 {{$is_available}}">Timestables</li>
+                                            @php $is_available = ($subscribe->is_vocabulary > 0)? '' : 'subscribe-no'; @endphp
+                                            <li class="mt-10 {{$is_available}}">Vocabulary</li>
                                             @php $is_available = ($subscribe->is_bookshelf > 0)? '' : 'subscribe-no'; @endphp
                                             <li class="mt-10 {{$is_available}}">Bookshelf</li>
                                             @php $is_available = ($subscribe->is_sats > 0)? '' : 'subscribe-no'; @endphp

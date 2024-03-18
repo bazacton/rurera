@@ -181,6 +181,9 @@
                                                     '';
                                                     $is_timestables_class = ($subscribe->is_timestables == 0)?
                                                     'subscribe-no' : '';
+                                                    $is_vocabulary_class = ($subscribe->is_vocabulary == 0)?
+                                                                                                        'subscribe-no' : '';
+
                                                     $is_bookshelf_class = ($subscribe->is_bookshelf == 0)?
                                                     'subscribe-no' : '';
                                                     $is_sats_class = ($subscribe->is_sats == 0)? 'subscribe-no' : '';
@@ -191,6 +194,8 @@
                                                     <li itemprop="list" class="mt-15 {{$is_course_class}}"><span>All Courses Access</span>
                                                     </li>
                                                     <li itemprop="list" class="mt-15 {{$is_timestables_class}}"><span>Timestables</span>
+                                                    </li>
+                                                    <li itemprop="list" class="mt-15 {{$is_vocabulary_class}}"><span>Vocabulary</span>
                                                     </li>
                                                     <li itemprop="list" class="mt-15 {{$is_bookshelf_class}}"><span>Bookshelf</span>
                                                     </li>

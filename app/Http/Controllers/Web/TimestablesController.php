@@ -1747,6 +1747,9 @@ class TimestablesController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
         $yearObj = $user->userYear;
         $classObj = $user->userClass;

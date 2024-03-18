@@ -737,6 +737,10 @@ function init_question_functions() {
             }
         });
     });
+    
+    $(document).on('click', '.question-number', function (e) {
+        $(this).closest('.question-layout-block').find('.question-dev-details').toggleClass('hide');
+    })
 
 
 

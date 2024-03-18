@@ -1,4 +1,12 @@
 @include('web.default.subscriptions.steps',['activeStep'=> 'payment'])
+<div class="selected-plan-data">
+    <h3>Selected Plan</h3>
+    <h3>{{$packageObj->title}}</h3>
+    <p>Text here</p>
+    <div class="package-price">{{ addCurrencyToPrice($packageObj->price) }} / month</div>
+    <div class="packages-back-btn" data-user_id="{{$user_id}}">Change Package</div>
+</div>
+
 <div class="book-form-holder">
     <div class="container">
         <div class="packages-back-btn" data-user_id="{{$user_id}}">Back</div>

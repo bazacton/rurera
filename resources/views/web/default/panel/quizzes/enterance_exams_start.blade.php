@@ -95,7 +95,7 @@ $timer_counter = $practice_time;
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - emteramce_exams_start</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
@@ -216,7 +216,7 @@ $timer_counter = $practice_time;
 
 
             <div class="justify-content-center">
-                <div class="col-lg-12 col-md-12 col-sm-12 mt-50 mx-auto">
+                <div class="col-lg-9 col-md-12 col-sm-12 mt-50 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -262,6 +262,7 @@ $timer_counter = $practice_time;
                     <div class="question-area-temp hide"></div>
 
                 </div>
+
             </div>
         </div>
     </section>

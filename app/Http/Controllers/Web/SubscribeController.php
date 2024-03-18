@@ -282,16 +282,39 @@ class SubscribeController extends Controller
         $subscribed_for = $request->get('subscribed_for', null);
         $subscribed_for = ($subscribed_for == true)? 12 : 1;
         $user_id = $request->get('user_id', null);
-
+        $childObj = User::find($user_id);
 
         $packageObj = Subscribe::find($selected_package);
         $payment_amount = $packageObj->price * $subscribed_for;
-        $response_layout = view('web.default.subscriptions.payment_form', [
-            'selected_package' => $selected_package,
-            'subscribed_for' => $subscribed_for,
-            'user_id' => $user_id,
-            'payment_amount'   => $payment_amount
-        ])->render();
+        $already_packaged = isset( $childObj->userSubscriptions->subscribe->price )? $childObj->userSubscriptions->subscribe->price : -1;
+        if( $packageObj->price < $already_packaged ){
+            $response_layout = view('web.default.subscriptions.finish', [
+                'selected_package' => $selected_package,
+                'subscribed_for'   => $subscribed_for,
+                'user_id'          => $user_id,
+                'packageObj'       => $packageObj,
+                'payment_amount'   => $payment_amount,
+                'custom_text'       => 'You will have continued access to the current package until its expiration. Upon renewal, you will be billed for the "'.$packageObj->title.'" package.',
+            ])->render();
+        }else {
+            if ($payment_amount > 0) {
+                $response_layout = view('web.default.subscriptions.payment_form', [
+                    'selected_package' => $selected_package,
+                    'subscribed_for'   => $subscribed_for,
+                    'user_id'          => $user_id,
+                    'packageObj'       => $packageObj,
+                    'payment_amount'   => $payment_amount
+                ])->render();
+            } else {
+                $response_layout = view('web.default.subscriptions.finish', [
+                    'selected_package' => $selected_package,
+                    'subscribed_for'   => $subscribed_for,
+                    'user_id'          => $user_id,
+                    'packageObj'       => $packageObj,
+                    'payment_amount'   => $payment_amount
+                ])->render();
+            }
+        }
         echo $response_layout;
         exit;
     }
@@ -521,6 +544,7 @@ class SubscribeController extends Controller
             'is_bookshelf'    => $subscribeData->is_bookshelf,
             'is_sats'         => $subscribeData->is_sats,
             'is_elevenplus'   => $subscribeData->is_elevenplus,
+            'is_vocabulary'   => $subscribeData->is_vocabulary,
             "status"          => 'inactive',
             "created_at"      => time(),
             "expiry_at"       => $expiry_date,

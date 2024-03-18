@@ -77,6 +77,7 @@
                         <span>Home</span>
                     </a>
                 </li>
+            @if(auth()->user()->isUser())
                     <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/learn">
                             <span class="sidenav-item-icon mr-20">
@@ -128,6 +129,7 @@
                 </a>
                 <a href="/quests" class="font-15">Quests</a>
             </li>
+            @endif
 
                 @if(auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
@@ -148,6 +150,7 @@
                     <a href="/panel/analytics" class="font-15">Analytics</a>
                 </li>
 
+            @if(auth()->user()->isUser())
                 <li class="sidenav-item {{ (request()->is('school-zone') or request()->is('school-zone/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/school-zone">
                         <span class="sidenav-item-icon mr-20">
@@ -156,6 +159,7 @@
                     </a>
                     <a href="/school-zone" class="font-15">School Zone</a>
                 </li>
+            @endif
                 <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/panel/setting">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">

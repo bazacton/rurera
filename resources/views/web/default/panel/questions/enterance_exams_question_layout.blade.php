@@ -52,7 +52,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                         @endif
                     </div>
                     @endif
-                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{$total_questions}} Questions ) @if($layout_type != 'results') Question ID: {{ $question->id }} @endif  Level: {{ $question->question_difficulty_level }} type: {{ $question->question_type }}</span>
+                    <span class="questions-total-holder d-block mb-30">( {{$question_no}}/{{$total_questions}} Questions ) <span class="question-dev-details hide">@if($layout_type != 'results') Question ID: {{ $question->id }} @endif  Level: {{ $question->question_difficulty_level }} type: {{ $question->question_type }}</span></span>
 
                         @if($layout_type != 'results')
                         <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>

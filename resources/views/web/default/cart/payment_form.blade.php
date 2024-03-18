@@ -1,7 +1,3 @@
-<section class="cart-banner position-relative text-center">
-    <h1 class="font-30 text-white font-weight-bold">{{ trans('cart.checkout') }}</h1>
-    <span class="payment-hint font-20 text-white d-block">{{$currency . $total . ' ' .  trans('cart.for_items',['count' => $count]) }}</span>
-</section>
 
 <section class="container mt-45">
     <h2 class="section-title">{{ trans('financial.select_a_payment_gateway') }}</h2>
@@ -27,7 +23,7 @@
             @endforeach
             @endif
 
-            <div class="col-6 col-lg-4 mb-40 charge-account-radio">
+            <div class="col-6 col-lg-4 mb-40 charge-account-radio hide">
                 <input type="radio" @if(empty($userCharge) or ($total> $userCharge)) disabled @endif name="gateway" id="offline" value="credit">
                 <label for="offline" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                     <img src="/assets/default/img/activity/pay.svg" width="120" height="60" alt="">
