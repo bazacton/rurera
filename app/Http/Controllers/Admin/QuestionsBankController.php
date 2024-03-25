@@ -2606,6 +2606,8 @@ class QuestionsBankController extends Controller
 
         $quiz_id = ($quiz_id > 0) ? $quiz_id : 0;
 
+        //pre($elements_data);
+
         $quiz = Quiz::find($quiz_id);
         $quizQuestion = $quistionObj->update([
             'quiz_id'                   => $quiz_id ,

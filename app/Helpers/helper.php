@@ -7776,6 +7776,10 @@ function getRewardTitle($rewardObj){
                 $reward_title = 'Timestables Assignment: '. $assignmentTitle;
             break;
 
+            case "quest":
+                $reward_title = 'Quest';
+            break;
+
 
         }
     }
@@ -8075,7 +8079,8 @@ function getTimeWithText($secondsString, $show_empty = true) {
     if ($m > 0) {
         $return_string .= ($m < 10 ? '0' . $m : $m) . "m ";
     }
-    $secondsString  = round($secondsString, 2);
+    //$secondsString  = round($secondsString, 2);
+    $secondsString  = round($secondsString);
 
     if( $secondsString > 0 || $show_empty == true) {
         $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);

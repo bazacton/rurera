@@ -42,8 +42,8 @@ if( $duration_type == 'total_practice'){
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="30">
 
-            <div class="justify-content-center">
-                <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="justify-content-center row">
+                <div class="col-lg-8 col-md-12 col-sm-12 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">

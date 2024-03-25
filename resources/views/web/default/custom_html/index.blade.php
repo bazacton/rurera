@@ -959,6 +959,82 @@
             </div>
         </div>
     </div>
+    <div class="spell-levels">
+        <div class="spell-levels-top">
+            <div class="spell-top-left">
+                <strong>Unit 3 : Grouping and identifying organisms</strong>
+                <a href="#" class="words-count simple"><img src="/assets/default/img/skills-icon.png" alt=""><span>80</span>skills</a>
+                <div class="levels-progress horizontal">
+                    <span class="progress-box">
+                        <span class="progress-count" style="width: 40%;"></span>
+                    </span>
+                    <span class="progress-numbers">04 / 08</span>
+                </div>
+            </div>
+            <div class="spell-top-right">
+                <span class="spell-top-img">
+                    <img src="/assets/default/img/spell-lelvel-top-img.png" alt="#">
+                </span>
+            </div>
+        </div>
+        <ul>
+            <li class="easy">
+                <div class="levels-progress circle">
+                    <span class="progress-box">
+                        <span class="progress-count"></span>
+                    </span>
+                </div>
+                <a href="#"><img src="/assets/default/img/panel-star.png" alt=""></a>
+            </li>
+            <li class="intermediate">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="treasure">
+                <a href="#"><img src="/assets/default/img/treasure.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                <div class="spell-tooltip">
+                    <div class="spell-tooltip-text">
+                        <strong>Atoms, elements and the Periodic Table</strong>
+                        <span>Complete all Topics above to unlock this!</span>
+                        <a href="#" class="locked-btn">Locked</a>
+                    </div>
+                </div>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="treasure">
+                <a href="#"><img src="/assets/default/img/treasure.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+                <div class="spell-tooltip">
+                    <div class="spell-tooltip-text">
+                        <strong>Atoms, elements and the Periodic Table</strong>
+                        <span>Complete all Topics above to unlock this!</span>
+                        <a href="#" class="locked-btn">Locked</a>
+                    </div>
+                </div>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/panel-lock.png" alt=""></a>
+            </li>
+            <li class="Hard">
+                <a href="#"><img src="/assets/default/img/treasure4.png" alt=""></a>
+            </li>
+        </ul>
+    </div>
 </section>
 <div class="modal fade lms-choose-membership" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">

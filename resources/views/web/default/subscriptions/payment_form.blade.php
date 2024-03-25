@@ -1,22 +1,31 @@
 @include('web.default.subscriptions.steps',['activeStep'=> 'payment'])
-<div class="selected-plan-data">
-    <h3>Selected Plan</h3>
-    <h3>{{$packageObj->title}}</h3>
-    <p>Text here</p>
-    <div class="package-price">{{ addCurrencyToPrice($packageObj->price) }} / month</div>
-    <div class="packages-back-btn" data-user_id="{{$user_id}}">Change Package</div>
+<div class="selected-plan-data pt-20 mb-30">
+    <div class="row">
+        <div class="col-12 col-lg-5 col-md-5">
+            <h3 class="font-30">Selected Plan</h3>
+        </div>
+        <div class="col-12 col-lg-7 col-md-7">
+            <div class="text-box">
+            <div class="package-price font-weight-500 mb-20"><strong>{{ addCurrencyToPrice($packageObj->price) }}</strong> / month</div>
+                <h3 class="mb-10 font-22">{{$packageObj->title}}</h3>
+                <p class="mb-10">Text here</p>
+                <div class="packages-back-btn font-weight-500 mb-15" data-user_id="{{$user_id}}">Change Package</div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="book-form-holder">
     <div class="container">
-        <div class="packages-back-btn" data-user_id="{{$user_id}}">Back</div>
+        <div class="packages-back-btn mb-15" data-user_id="{{$user_id}}">Back</div>
         <div class="col-12 col-lg-12 col-md-12">
            <ul class="tests-list payment-methods mb-30">
                <li data-type="card-gateway" class="active"><img src="/assets/default/img/single.png" alt=""> Card</li>
                <li data-type="googlepay-gateway" class="process-payment" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}"><img src="/assets/default/img/multi.png" alt=""> Google Pay</li>
            </ul>
        </div>
-        <div class="row justify-content-center card-gateway-fields conditional-fields">
+        <div class="row justify-content-center card-gateway-fields conditional-fields panel-border bg-white rounded-sm p-25">
             <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
                 <h2>The Final Step to Reading!</h2>
                 <p>No need to worry! We won't ask for payment until after your 7-day free trial ends.</p>
@@ -115,7 +124,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center googlepay-gateway-fields conditional-fields rurera-hide payment-content">
+        <div class="googlepay-gateway-fields conditional-fields rurera-hide payment-content panel-border bg-white rounded-sm p-25">
             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Sart Free Trial</a></div>
         </div>
     </div>

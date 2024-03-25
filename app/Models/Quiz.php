@@ -160,24 +160,42 @@ class Quiz extends Model implements TranslatableContract
 
         $quizObj = Quiz::find($id);
 
-        $quizResults = isset( $quizObj->parentResults )? $quizObj->parentResults : array();
+        $quiz_settings = isset( $quizObj->quiz_settings)? json_decode($quizObj->quiz_settings) : array();
+        $quiz_total_questions = 0;
+
+        $quiz_total_questions += isset($quiz_settings->Emerging->questions) ? $quiz_settings->Emerging->questions : 0;
+        $quiz_total_questions += isset($quiz_settings->Expected->questions) ? $quiz_settings->Expected->questions : 0;
+        $quiz_total_questions += isset($quiz_settings->Exceeding->questions) ? $quiz_settings->Exceeding->questions : 0;
+
+
+        $quizResults = isset( $quizObj->parentResults )? $quizObj->parentResults->last() : array();
+        $completion_count = isset( $quizObj->parentResults )? $quizObj->parentResults->where('is_completed',1)->count() : 0;
+        //pre($completion_count);
+        $resultObj = $quizResults;
         $quiz_percentage = 0;
         $total_questions_count = $total_correct_questions = 0;
 
-        if( !empty( $quizResults ) ){
-            foreach( $quizResults as $resultObj){
-                $total_questions = count(json_decode($resultObj->questions_list));
-                $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->where('user_id',$user->id)->count();
-                $total_questions_count += $total_questions;
-                $total_correct_questions += $correct_questions;
-                $percentage = ($correct_questions * 100)/$total_questions;
-                $quiz_percentage = ($quiz_percentage <= $percentage)? round($percentage) : $quiz_percentage;
+        if( isset( $resultObj->id ) ){
+            $total_questions = count(json_decode($resultObj->questions_list));
+            $correct_questions = $resultObj->quizz_result_questions_list->where('status','correct')->where('user_id',$user->id)->count();
+            $total_questions_count += $total_questions;
+            $total_correct_questions += $correct_questions;
+            $percentage = ($correct_questions * 100)/$quiz_total_questions;
+            $quiz_percentage = ($quiz_percentage <= $percentage)? round($percentage) : $quiz_percentage;
+            $quiz_percentage = ($quiz_percentage > 100)? 100 : $quiz_percentage;
+            $quiz_percentage = ($quiz_percentage < 0)? 0 : $quiz_percentage;
+            if( $quiz_percentage == 100){
+                $resultObj->update(['is_completed' => 1]);
             }
         }
+        //pre($total_questions_count, false);
+        //pre($total_correct_questions);
         if( $all_data == true){
             return array(
-                'total_questions_count' => $total_questions_count,
+                'topic_percentage' => $quiz_percentage,
+                'total_questions_count' => $quiz_total_questions,
                 'total_correct_questions' => $total_correct_questions,
+                'completion_count' => $completion_count,
             );
         }else {
             return $quiz_percentage;

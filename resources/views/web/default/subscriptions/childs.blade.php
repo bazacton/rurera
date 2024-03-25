@@ -1,5 +1,5 @@
 @include('web.default.subscriptions.steps',['activeStep'=> 'student'])
-<div class="form-login-reading">
+<div class="form-login-reading panel-border bg-white rounded-sm p-25">
     <div class="container">
       <form class="child-register-form" method="post" action="javascript:;">
           {{ csrf_field() }}

@@ -269,14 +269,18 @@
           @php $liClass = ( $activeStep == 'student')? 'active' : $liClass; @endphp
           <li class="{{$liClass}}">
             <span class="stepname">Student Information</span><br>
-            <i class="icon-brankic-number11"></i>
+            <i class="icon-box">
+                <img src="/assets/default/svgs/student-reading.svg" alt="">
+            </i>
             <div class="stepline"></div>
           </li>
            @php $liClass = ( $activeStep == 'payment' || $activeStep == 'finished')? 'complete' : ''; @endphp
            @php $liClass = ( $activeStep == 'packages')? 'active' : $liClass; @endphp
            <li class="{{$liClass}}">
             <span class="stepname">Choose Plan</span><br>
-            <i class="icon-brankic-number12"></i>
+            <i class="icon-box">
+                <img src="/assets/default/svgs/choose-plan.svg" alt="">
+            </i>
             <div class="stepline"></div>
           </li>
 
@@ -284,7 +288,9 @@
          @php $liClass = ( $activeStep == 'payment')? 'active' : $liClass; @endphp
          <li class="{{$liClass}}">
             <span class="stepname">Payment Options</span><br>
-            <i class="icon-brankic-number13"></i>
+            <i class="icon-box">
+                <img src="/assets/default/svgs/payment-method.svg" alt="">
+            </i>
             <div class="stepline"></div>
           </li>
 
@@ -292,7 +298,9 @@
          @php $liClass = ( $activeStep == 'finished')? 'active' : $liClass; @endphp
          <li class="{{$liClass}}">
             <span class="stepname">Finished</span><br>
-            <i class="icon-brankic-number14"></i>
+            <i class="icon-box">
+                <img src="/assets/default/svgs/finish.svg" alt="">
+            </i>
             <div class="stepline"></div>
           </li>
         </ul>

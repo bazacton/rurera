@@ -297,6 +297,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/payment-form', 'SubscribeController@paymentForm');
         Route::post('/pay', 'SubscribeController@pay');
         Route::get('/packages-list', 'SubscribeController@packagesList');
+        Route::post('/cancel-subscription', 'SubscribeController@cancelSubscription');
 
 
 

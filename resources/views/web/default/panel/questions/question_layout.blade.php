@@ -34,11 +34,11 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 $correctAnswers = $QuestionsAttemptController->get_question_correct_answers($question);
 $element_data = json_decode($question->elements_data);
 $layout_elements = json_decode($question->layout_elements);
+$correct_answers_string = '';
 if( !empty( $correctAnswers)){
     foreach( $correctAnswers as $correct_answer){
-        echo implode(',', $correct_answer).'<br>';
+        $correct_answers_string .= implode(',', $correct_answer);
     }
-    echo '<br>';
 }
 
 if( $layout_type == 'results'){
@@ -71,10 +71,12 @@ if( $layout_type == 'results'){
                         @endif
                     </div>
                     @endif
-                    <span class="questions-total-holder d-block mb-30 {{$question_number_holder_class}}">( {{$question_no}}/{{$total_questions}} Questions ) @if($layout_type != 'results') Question ID: {{ $question->id }} @endif  Level: {{ $question->question_difficulty_level }} type: {{ $question->question_type }}</span>
+                    <span class="difficulty-level">{{ $question->question_difficulty_level }}</span>
 
                         @if($layout_type != 'results')
-                        <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number">{{$question_no}}</span>
+                        @if($quiz_type != 'practice')
+                            <span class="question-number-holder" style="z-index: 999999999;"> <span class="question-number {{$question_number_holder_class}}">{{$question_no}}</span>
+                        @endif
                             @if( isset( $show_flag ) && $show_flag == true)
                             <span class="question-icon flag-question {{$flag_class}}"
                                   data-qresult_id="{{isset( $newQuestionResult->quiz_result_id )? $newQuestionResult->quiz_result_id : 0}}"
@@ -106,11 +108,14 @@ if( $layout_type == 'results'){
                             {!! $question_layout !!}
                         </div>
 
+                        Correct: {{$correct_answers_string}}
+                        <div class="validation-error"></div>
+
                     </div>
                     <div class="show-notifications"></div>
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
-                        @if( !isset( $disable_finish ) || $disable_finish != 'false')
+                        @if( !isset( $disable_finish ) || $disable_finish == 'false')
                         <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
@@ -138,9 +143,9 @@ if( $layout_type == 'results'){
                             </svg>
                         </a>
                         @else
-                        <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn rurera-hide" data-question_id="{{$prev_question}}">&nbsp;</a>
+                        <a href="javascript:;" id="prev-btn" class="{{$prev_class}} prev-btn rurera-hide" data-question_id="{{$prev_question}}"></a>
                         @endif
-                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
+                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn'; @endphp
                         @if( !isset( $disable_next ) || $disable_next == 'false')
                         <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}" data-actual_question_id="{{$question->id}}">
                             Next
@@ -155,7 +160,7 @@ if( $layout_type == 'results'){
                             </svg>
                         </a>
                         @else
-                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn rurera-hide" data-question_id="{{$next_question}}" data-actual_question_id="{{$question->id}}">&nbsp;</a>
+                        <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn rurera-hide" data-question_id="{{$next_question}}" data-actual_question_id="{{$question->id}}"></a>
                         @endif
                         @if( !isset( $disable_submit ) || $disable_submit == 'false')
                         <a href="javascript:;" id="question-submit-btn" class="question-submit-btn">

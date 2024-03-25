@@ -243,7 +243,7 @@ $timer_counter = $practice_time;
                         <div class="correct-in-row"></div>
                         <div class="quiz-questions-bar-holder">
                             <div class="quiz-questions-bar">
-                                <span class="bar-fill" style="width: 50%;"></span>
+                                <span class="bar-fill" style="width: 0%;"></span>
                             </div>
                             <span class="coin-numbers">
                                 <img src="/assets/default/img/quests-coin.png" alt="">
@@ -283,107 +283,6 @@ $timer_counter = $practice_time;
 
                     <div class="question-area-temp hide"></div>
 
-                </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 mt-50 panel-right-sidebar">
-                    <div class="col-12 col-lg-12 mb-30">
-                        <div class="quests-list">
-                            <h3 class="font-19 font-weight-bold">
-                                Daily Quests
-                                <a href="#" class="view-all">View All</a>
-                            </h3>
-                            <ul>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/svgs/star-quests.svg" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Earn 10 XP</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 0%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 10</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +20
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/img/score-img.png" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Score 90% or higher in 2 <br /> lessons</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 40%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 2</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +15
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="quests-item">
-                                        <div class="icon-box">
-                                            <img src="/assets/default/img/bird-icon.png" alt="">
-                                        </div>
-                                        <div class="item-text">
-                                            <h5>Get 10 in a row correct in 2 <br /> lessons</h5>
-                                            <div class="levels-progress horizontal">
-                                                <span class="progress-box">
-                                                    <span class="progress-count" style="width: 20%;"></span>
-                                                </span>
-                                                <span class="progress-numbers">0 / 2</span>
-                                            </div>
-                                            <span class="progress-icon">
-                                                <img src="/assets/default/img/quests-coin.png" alt="">
-                                                +100
-                                            </span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-12 mb-30">
-                        <div class="store-stats">
-                        <h2 itemprop="title" class="font-19 font-weight-bold mb-10">Store Stats</h2>
-                        <ul>
-                            <li>
-                            <div class="store-item">
-                                <span class="item-label">Owned Items:</span>
-                                <span class="iteme-numbers">
-                                91 <em>(1151 items total)</em>
-                                </span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Current Balance:</span>
-                                <span class="iteme-numbers">706</span>
-                            </div>
-                            </li>
-                            <li>
-                            <div class="store-item">
-                                <img src="/assets/default/img/stats-coins.png" alt="">
-                                <span class="item-label">Lifetime Spending:</span>
-                                <span class="iteme-numbers">0</span>
-                            </div>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
                 </div>
                 </div>
             </div>

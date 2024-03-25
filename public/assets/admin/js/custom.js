@@ -855,7 +855,7 @@ function rurera_validation_process(form_name) {
             }
         }
     }
-    var error_messages = ' test error message<br><br>';
+    var error_messages = '';
     if (has_empty.length > 0 && jQuery.inArray(true, has_empty) != -1) {
         array_length = alert_messages.length;
         for (i = 0; i < array_length; i++) {
@@ -865,11 +865,15 @@ function rurera_validation_process(form_name) {
             error_messages = error_messages + alert_messages[i];
         }
         //jQuery.growl.remove();
-        console.log(error_messages);
-        /*var error_message = jQuery.growl.error({
-            message: error_messages,
-            duration: 10000,
-        });*/
+
+        if( $('.validation-error').length > 0){
+            $('.validation-error').html(error_messages);
+        }else {
+            var error_message = jQuery.growl.error({
+                message: error_messages,
+                duration: 10000,
+            });
+        }
         return false;
     }
 }

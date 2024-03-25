@@ -82,6 +82,8 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                                 @endif
                             @endif
                             {!! $question_layout !!}
+
+                            <div class="validation-error"></div>
                         </div>
 
                     </div>
@@ -114,7 +116,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
                                 </g>
                             </svg>
                         </a>
-                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn1'; @endphp
+                        @php $next_class = (isset( $next_question ) && $next_question > 0)? '' : 'disable-btn'; @endphp
                         <a href="javascript:;" id="next-btn" class="{{$next_class}} next-btn" data-question_id="{{$next_question}}" data-actual_question_id="{{$next_question}}">
                             Next
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"

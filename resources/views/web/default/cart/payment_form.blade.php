@@ -14,11 +14,12 @@
                 <label for="{{ $paymentChannel->title }}" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                     <img src="{{ $paymentChannel->image }}" width="120" height="60" alt="">
 
-                    <p class="mt-30 mt-lg-50 font-weight-500 text-dark-blue">
-                        {{ trans('financial.pay_via') }}
-                        <span class="font-weight-bold font-14">{{ $paymentChannel->title }}</span>
-                    </p>
+
                 </label>
+                <p class="font-weight-500 text-dark-blue">
+                    {{ trans('financial.pay_via') }}
+                    <span class="font-weight-bold font-14">{{ $paymentChannel->title }}</span>
+                </p>
             </div>
             @endforeach
             @endif
@@ -28,13 +29,13 @@
                 <label for="offline" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                     <img src="/assets/default/img/activity/pay.svg" width="120" height="60" alt="">
 
-                    <p class="mt-30 mt-lg-50 font-weight-500 text-dark-blue">
-                        {{ trans('financial.account') }}
-                        <span class="font-weight-bold">{{ trans('financial.charge') }}</span>
-                    </p>
-
                     <span class="mt-5">{{ addCurrencyToPrice($userCharge) }}</span>
                 </label>
+
+                <p class="font-weight-500 text-dark-blue">
+                    {{ trans('financial.account') }}
+                    <span class="font-weight-bold">{{ trans('financial.charge') }}</span>
+                </p>
             </div>
         </div>
 

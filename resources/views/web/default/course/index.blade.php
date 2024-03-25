@@ -102,10 +102,19 @@
                                     <div class="lms-chapter-ul-outer"><ul>
                                         @foreach($sub_chapters[$chapter->id] as $sub_chapter)
                                         @if(!empty($sub_chapter))
-                                            @php $topic_percentage = Quiz::getQuizPercentage($sub_chapter['id']);
-                                            $topic_percentage_flag = ( $topic_percentage >= 95)? '<img src="/assets/default/svgs/completion-flag.svg">' : '';
-                                            $topic_percentage_flag = ( $topic_percentage == 100)? '<img src="/assets/default/svgs/completion-star.svg">' : $topic_percentage_flag;
-                                            $topic_percentage_text = ($topic_percentage > 0)? '('.$topic_percentage.')' : '';
+                                            @php $quizUserData = Quiz::getQuizPercentage($sub_chapter['id'], true);
+                                            $completion_count = isset( $quizUserData['completion_count'] )? $quizUserData['completion_count'] : 0;
+                                            $topic_percentage = isset( $quizUserData['topic_percentage'] )? $quizUserData['topic_percentage'] : 0;
+
+                                            $topic_percentage_flag = ( $topic_percentage >= 95 && $topic_percentage < 100)? '<img src="/assets/default/svgs/completion-flag.svg">' : '';
+                                            $topic_percentage_text = ($topic_percentage > 0 && $topic_percentage < 100)? '('.$topic_percentage.')' : '';
+
+                                            $completion_counter = 1;
+                                            while($completion_counter <= $completion_count){
+                                                $topic_percentage_text .= '<img src="/assets/default/svgs/completion-star.svg">';
+                                                $completion_counter++;
+                                            }
+
                                             $topic_percentage_text .= $topic_percentage_flag;
                                             @endphp
                                             <li>

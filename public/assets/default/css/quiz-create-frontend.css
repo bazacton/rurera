@@ -2514,7 +2514,11 @@
 .question-layout-block .leform-element {
     padding-left: 0;
     padding-right: 0;
+	padding-top: 0;
 	margin: 0;
+	font-size: 18px;
+	color: #5e5c5c;
+	font-weight: 500;
 }
 .leform-element::before {
 	display: table;
@@ -4188,6 +4192,13 @@ STYLE
 }
 .question-layout .leform-element-html p {
     margin-bottom: 0;
+}
+.leform-element-html .question-label span {
+	display: block;
+	padding-top: 5px;
+}
+.leform-element-html .question-label p {
+    margin-top: 0;
 }
 .question-layout .leform-element-html p:empty {
     display: none;

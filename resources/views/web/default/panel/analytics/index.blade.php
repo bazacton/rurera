@@ -24,14 +24,18 @@
 
     <div class="activities-container mt-10 p-20 p-lg-35 ">
         <div class="chart-filters p-0">
-            <ul class="analytics-type">
-                <li {{($type_selected == 'all')? 'class=active' : ''}}><a href="/panel/analytics" data-graph_type="all"><img src="/assets/default/img/sidebar/all.svg"> ALL</a></li>
-                <li {{($type_selected == 'learn')? 'class=active' : ''}}><a href="/panel/analytics/learn" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.svg"> LEARN</a></li>
-                <li {{($type_selected == 'timestables')? 'class=active' : ''}}><a href="/panel/analytics/timestables" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.svg"> TIMESTABLE</a></li>
-                <li {{($type_selected == 'vocabulary')? 'class=active' : ''}}><a href="/panel/analytics/vocabulary" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.svg"> WORD LISTS</a></li>
-                <li {{($type_selected == 'books')? 'class=active' : ''}}><a href="/panel/analytics/books" data-graph_type="books"><img src="/assets/default/img/sidebar/books.svg"> BOOKS</a></li>
-                <li {{($type_selected == 'tests')? 'class=active' : ''}}><a href="/panel/analytics/tests" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.svg"> TEST</a></li>
-            </ul>
+            <div class="filters-list">
+                <a href="#" class="filter-mobile-btn">Filters Dropdown</a>
+                <ul class="analytics-type">
+                    <li {{($type_selected == 'all')? 'class=active' : ''}}><a href="/panel/analytics" data-graph_type="all"><img src="/assets/default/img/sidebar/all.svg"> ALL</a></li>
+                    <li {{($type_selected == 'learn')? 'class=active' : ''}}><a href="/panel/analytics/learn" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.svg"> LEARN</a></li>
+                    <li {{($type_selected == 'timestables')? 'class=active' : ''}}><a href="/panel/analytics/timestables" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.svg"> TIMESTABLE</a></li>
+                    <li {{($type_selected == 'vocabulary')? 'class=active' : ''}}><a href="/panel/analytics/vocabulary" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.svg"> WORD LISTS</a></li>
+                    <li {{($type_selected == 'books')? 'class=active' : ''}}><a href="/panel/analytics/books" data-graph_type="books"><img src="/assets/default/img/sidebar/books.svg"> BOOKS</a></li>
+                    <li {{($type_selected == 'tests')? 'class=active' : ''}}><a href="/panel/analytics/tests" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.svg"> TEST</a></li>
+                </ul>
+            </div>
+
             @if(auth()->check() && (auth()->user()->isParent()))
 
             <div class="form-group">
@@ -126,7 +130,7 @@
                             <a href="#">
                                 <span>Sep</span>
                                 <em>10</em>
-                            </a>                    
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -184,7 +188,7 @@
                      data-target="#report_{{$date_str}}" aria-expanded="true" aria-controls="report_{{$date_str}}">
                     <span>{{ dateTimeFormat($report_date,'d F Y') }}</span>
                     <span class="analytics-timespend float-right">
-                        <img src="/assets/default/img/panel-sidebar/clock.svg" alt=""> 
+                        <img src="/assets/default/img/panel-sidebar/clock.svg" alt="">
                         <span>{{ isset( $analyticDataArray['practice_time'] )? getTimeWithText($analyticDataArray['practice_time']) : 0 }}</span>
                     </span>
                     <span class="analytics-cions-earned float-right mr-10">
@@ -223,27 +227,33 @@
 
                         if( $parent_type == 'book_read'){
                            $book_slug = isset( $analyticData['book_slug'] )? $analyticData['book_slug'] : '';
-                            $detail_link = 'books/'.$book_slug.'/activity';
+                            $detail_link = '/books/'.$book_slug.'/activity';
                         }
+                        $analytic_icon = '/assets/default/img/types/'.$parent_type.'.png';
+                        $analytic_icon =   isset( $analyticData['list_icon'] )? $analyticData['list_icon'] : $analytic_icon;
+
 
                         @endphp
 
 
                                 <li>
-                                    <div class="timeline-icon"><img src="/assets/default/img/types/{{$parent_type}}.png" width="26" height="26" alt=""></div>
+                                    <div class="timeline-icon"><img src="{{$analytic_icon}}" width="26" height="26" alt=""></div>
                                     <div class="timeline-text"><p><strong><a href="{{$detail_link}}">{{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}</a></strong><span class="info-time">{{ dateTimeFormat($start_time,'H:i') }}</span></p>
-                                    @if( $type != 'book_read')
-                                        <span class="analytic-item">Active practice: {{isset( $analyticData['practice_time'] )? getTimeWithText($analyticData['practice_time']) : 0}}</span>
-                                        <span class="analytic-item">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
-                                        <span class="analytic-item">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
-
+                                    @if( $type == 'book_read')
+                                            <span class="analytic-item">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
+                                            <span class="analytic-item">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>
+                                            <span class="analytic-item">&nbsp;</span>
+                                            <span class="analytic-item">&nbsp;</span>
+                                        @elseif( $type == 'quest')
+                                            <span class="analytic-item">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
                                         @else
-                                        <span class="analytic-item">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
-                                        <span class="analytic-item">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>
-                                        <span class="analytic-item">&nbsp;</span>
-                                        <span class="analytic-item">&nbsp;</span>
+                                            <span class="analytic-item">Active practice: {{isset( $analyticData['practice_time'] )? getTimeWithText($analyticData['practice_time']) : 0}}</span>
+                                            <span class="analytic-item">Questions answered: {{isset( $analyticData['question_answered'] )? $analyticData['question_answered'] : 0}}</span>
+                                            <span class="analytic-item">Coins earned: {{isset( $analyticData['coins_earned'] )? $analyticData['coins_earned'] : 0}}</span>
                                     @endif
-                                    <span class="analytics-more_details"><a href="{{$detail_link}}">More Details</a></span>
+                                    @if( $type != 'quest')
+                                        <span class="analytics-more_details"><a href="{{$detail_link}}">More Details</a></span>
+                                    @endif
                                     </div>
                                 </li>
 

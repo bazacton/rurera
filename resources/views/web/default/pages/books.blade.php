@@ -23,6 +23,19 @@
                 <div class="books-listing-holder">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="search-block">
+                                    <div class="top-search-form">
+
+                                        <div class="search-input bg-white p-10 flex-grow-1">
+                                            <form action="/books" method="get">
+                                                <div class="form-group d-flex align-items-center m-0">
+                                                    <input type="text" name="search" class="form-control border-0" value="{{ request()->get('search','') }}" placeholder="Search by Author, Title, or Keyword"/>
+                                                    <button type="submit" class="btn btn-primary rounded-pill">{{ trans('home.find') }}</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
                             <div class="row">
                                 @if( !empty( $books ))
                                 @foreach( $books as $book_category => $category_books)

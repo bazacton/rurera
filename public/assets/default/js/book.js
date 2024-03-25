@@ -2,7 +2,7 @@ $(document).on('click', '.book-info-link', function () {
     var thisObj = $(this);
     var info_type = $(this).attr('data-type');
     if( info_type == 'quiz') {
-        rurera_loader(thisObj, 'animation', 'Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz');
+        //rurera_loader(thisObj, 'animation', 'Sharpen your wits and get ready to unravel mind-bending questions and brain teasers in our upcoming quiz');
     }
     $("body").removeClass("menu-open");
     var info_id = $(this).attr('data-id');
@@ -13,7 +13,7 @@ $(document).on('click', '.book-info-link', function () {
         success: function (return_data) {
             $(".infolinks-data").html(return_data);
             if( info_type == 'quiz') {
-                rurera_remove_loader(thisObj, 'page');
+                //rurera_remove_loader(thisObj, 'page');
             }
 
 

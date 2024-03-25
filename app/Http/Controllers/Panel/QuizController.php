@@ -394,9 +394,11 @@ class QuizController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level);
+        //pre($questions_list_data_array);
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
+        $QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
 
         if (auth()->guest()) {
             $total_attempted_questions = QuizzResultQuestions::where('quiz_result_type', $quiz->quiz_type)->where('status', '!=', 'waiting')->where('user_id', 0)->where('user_ip', getUserIP())->count();
@@ -439,21 +441,26 @@ class QuizController extends Controller
             $show_all_questions = true;
 
 
-            $resultLogObj = $QuestionsAttemptController->createResultLog([
-                'parent_type_id'   => $quiz->id,
-                'quiz_result_type' => $quiz->quiz_type,
-                'questions_list'   => $questions_list,
-                'no_of_attempts'   => $quiz->attempt,
-                'other_data'       => $other_data,
-                'quiz_breakdown'   => $quiz_breakdown,
-                'quiz_level'       => $quiz_level,
-            ]);
+            if( $QuizzesResultID > 0){
+                $resultLogObj = QuizzesResult::find($QuizzesResultID);
+                $prev_active_question_id = $resultLogObj->active_question_id;
+            }else {
+                $resultLogObj = $QuestionsAttemptController->createResultLog([
+                    'parent_type_id'   => $quiz->id,
+                    'quiz_result_type' => $quiz->quiz_type,
+                    'questions_list'   => $questions_list,
+                    'no_of_attempts'   => $quiz->attempt,
+                    'other_data'       => $other_data,
+                    'quiz_breakdown'   => $quiz_breakdown,
+                    'quiz_level'       => $quiz_level,
+                ]);
 
-            $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
+                $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
 
-            if ($prev_active_question_id > 0) {
-                $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
-                $prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
+                if ($prev_active_question_id > 0) {
+                    $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
+                    $prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
+                }
             }
 
 
@@ -630,7 +637,6 @@ class QuizController extends Controller
                         $nextIndex = ($currentIndex < count($questions_list) - 1) ? $questions_list[$currentIndex + 1] : 0;
                         $resultsQuestionsData['prev_question'] = $previousIndex;
                         $resultsQuestionsData['next_question'] = $nextIndex;
-
                     }
 
 
@@ -816,7 +822,7 @@ class QuizController extends Controller
         $count = 1;
         if (!empty($QuizzResultQuestions)) {
             foreach ($QuizzResultQuestions as $QuizzResultQuestionObj) {
-                if( $QuizzResultQuestionObj->question_id != 9362){
+                if( $QuizzResultQuestionObj->id != 25884){
                     //continue;
                 }
                 if ($count == 1) {
@@ -860,7 +866,7 @@ class QuizController extends Controller
                         'disable_finish'         => 'true',
                         'disable_prev'           => 'true',
                         'disable_next'           => 'true',
-                        //'class'                  => 'disable-div',
+                        'class'                  => 'disable-div',
                         'layout_type'            => 'results',
                         'group_questions_layout' => $group_questions_layout,
                     ])->render();
@@ -902,11 +908,8 @@ class QuizController extends Controller
         }
         $questions_status_array = $QuestionsAttemptController->questions_status_array($QuizzesResult, $questions_list);
 
-        //pre('test');
         $data = [
             'pageTitle' => 'Answers',
-
-
             'quiz'                   => $quiz,
             'question'               => array(),
             'questions_list'         => $questions_list,

@@ -6,11 +6,10 @@
 
 @section('content')
     <section class="">
-
-        <div class="referral-holder">
-              <div class="section-title mb-20">
-                  <h2 itemprop="title" class="font-22 mb-0">Referral program</h2>
-              </div>
+        <div class="section-title mb-20">
+            <h2 itemprop="title" class="font-22 mb-0">Referral program</h2>
+        </div>
+        <div class="referral-holder panel-border bg-white rounded-sm px-25 pt-25">
               <div class="row">
                   <div class="col-12 col-lg-6">
                       <div class="referral-text mb-30">
@@ -32,21 +31,21 @@
                   <div class="col-12">
                       <div class="referral-price-lists mb-30">
                           <div class="row">
-                              <div class="col-12 col-lg-3 col-md-4">
+                              <div class="col-12 col-lg-4 col-md-4">
                                   <div class="referral-price-card text-center">
-                                      <span class="font-18 d-block mb-5" style="color: #624abc;">{{ trans('panel.referred_users') }}</span>
+                                      <span class="font-16 d-block mb-5" style="color: #624abc;">{{ trans('panel.referred_users') }}</span>
                                       <strong class="font-30">{{ $referredUsersCount }}</strong>
                                   </div>
                               </div>
-                              <div class="col-12 col-lg-3 col-md-4">
+                              <div class="col-12 col-lg-4 col-md-4">
                                   <div class="referral-price-card text-center">
-                                      <span class="font-18 d-block mb-5" style="color: #5fa66e;">Bonus</span>
+                                      <span class="font-16 d-block mb-5" style="color: #5fa66e;">Bonus</span>
                                       <strong class="font-30">{{ addCurrencyToPrice(round($registrationBonus, 2)) }}</strong>
                                   </div>
                               </div>
-                              <div class="col-12 col-lg-3 col-md-4">
+                              <div class="col-12 col-lg-4 col-md-4">
                                   <div class="referral-price-card text-center">
-                                      <span class="font-18 d-block mb-5" style="color: #d13b61;">{{ trans('panel.affiliate_bonus') }}</span>
+                                      <span class="font-16 d-block mb-5" style="color: #d13b61;">{{ trans('panel.affiliate_bonus') }}</span>
                                       <strong class="font-30">{{ addCurrencyToPrice(round($affiliateBonus, 2)) }}</strong>
                                   </div>
                               </div>
@@ -90,7 +89,7 @@
     <section class="mt-25">
         <h2 class="section-title">{{ trans('panel.earnings') }}</h2>
 
-        <div class="panel-section-card py-20 px-25 mt-20">
+        <div class="panel-section-card panel-border bg-white rounded-sm py-20 px-25 mt-20">
             <div class="row">
                 <div class="col-12 ">
                     <div class="table-responsive">

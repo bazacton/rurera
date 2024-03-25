@@ -850,7 +850,7 @@ class TimestablesController extends Controller
             12
         );
 
-        $tables_numbers = $user_timestables_no;
+        $tables_numbers = empty($user_timestables_no)? $tables_numbers : $user_timestables_no;
 
         $question_type = 'multiplication';
         $no_of_questions = 400;
@@ -1753,8 +1753,10 @@ class TimestablesController extends Controller
         $user = auth()->user();
         $yearObj = $user->userYear;
         $classObj = $user->userClass;
+        if( !isset( $classObj->id)){
+            return redirect('/panel');
+        }
         $classSections = $classObj->sections;
-
         $yearSections = $yearObj->yearSections;
 
         $yearStudents = User::where('role_id', 1)

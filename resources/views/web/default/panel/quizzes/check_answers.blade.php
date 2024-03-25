@@ -29,6 +29,10 @@ $rand_id = rand(99,9999);
         background: #ff4a4a;
         color: #fff !important;
     }
+    .field-holder.correct, .form-field.correct, .form-field.correct label, .field-holder.correct, .form-field.correct, .form-field.correct label, .editor-field.correct {
+        background: #70c17c;
+        color: #fff !important;
+    }
     .editor-field.correct{
         background: #70c17c !important;
     }

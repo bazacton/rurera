@@ -63,17 +63,21 @@ class DailyQuestsController extends Controller
         $todayStartTimestamp = Carbon::now()->startOfDay()->timestamp;
         $todayEndTimestamp = Carbon::now()->endOfDay()->timestamp;
 
-        $quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)
-            ->where('timestables_mode', $QuizzesResult->attempt_mode)
-            ->where('status', 'active')
-            ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
-            ->withCount([
-                'QuestRewardsCount as rewards_count' => function ($query) {
-                    $query->where('parent_type', '=', 'quest');
-                }
-            ])
-            ->having('rewards_count', '=', 0)
-            ->get();
+        $quests = $user->getUserQuests();
+
+        /*
+         * $quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)
+                     ->where('timestables_mode', $QuizzesResult->attempt_mode)
+                     ->where('status', 'active')
+                     ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
+                     ->withCount([
+                         'QuestRewardsCount as rewards_count' => function ($query) {
+                             $query->where('parent_type', '=', 'quest');
+                         }
+                     ])
+                     ->having('rewards_count', '=', 0)
+                     ->get();
+         */
 
         foreach ($quests as $questObj) {
 
@@ -138,79 +142,82 @@ class DailyQuestsController extends Controller
         }
 
 
+        //pre(date('Y-m-d 00:00:00'));
+        //pre(date('Y-m-d 00:00:00'), false);
+        //pre(date('Y-m-d 23:59:59'));
         $QuizzesResults->where('created_at' ,'>=', strtotime(date('Y-m-d 00:00:00')));
         $QuizzesResults->where('created_at' ,'<=', strtotime(date('Y-m-d 23:59:59')));
 
         $QuizzesResults = $QuizzesResults->get();
 
-        if( $quest_method == 'lessons_score'){
-            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($lessons_score) {
-                return $result->quizz_result_percentage() >= $lessons_score;
-            });
-        }
-
-        if( $quest_method == 'correct_answers'){
-            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($no_of_answers, $no_of_practices) {
-                if( $no_of_practices > 1) {
-                    return $result->quizz_result_points->count() >= $no_of_answers;
-                }else{
-                    return 1;
-                }
-            });
-        }
-
-        if( $quest_method == 'correct_answers_in_row'){
-            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($no_of_answers) {
-                return $this->checkConsecutiveValues($result->quizz_result_questions_list->pluck('status')->toArray(), 3, 'correct') >= $no_of_answers;
-            });
-        }
-
-        if( $quest_method == 'screen_time'){
-            $QuizzesResults = $QuizzesResults->filter(function ($result) use ($screen_time) {
-                return $result->sum('total_time_consumed') >= ($screen_time > 0)? ($screen_time/60) : 0;
-            });
-        }
-        //$QuizzesResults = $QuizzesResults->get();
-
-        /*if( $questObj->quest_topic_type == 'practice'){
-            pre($quest_method);
-            pre($QuizzesResults->count());
-        }*/
-
-        $completion_percentage = 0;
-        if( $QuizzesResults->count() >  0){
-            $completion_percentage = ($QuizzesResults->count() * 100) / $no_of_practices;
-        }
         $questScore = $questObj->no_of_coins;
         if ($questObj->coins_type == 'percentage') {
             $questScore = $questObj->coins_percentage.'x';
         }
 
-        $quest_bar_label = $completion_percentage.'%';
+        $total_time_consumed = $completion_percentage = 0;
+        $attemptPercentage = $attemptCorrect = $attemptInRowCorrect = array();
+        $quest_bar_label = '';
+
+        if( $quest_method == 'screen_time'){
+            $total_time_consumed = ($QuizzesResults->sum('total_time_consumed') > 0) ? ($QuizzesResults->sum('total_time_consumed') / 60) : 0;
+            $completion_percentage = ($total_time_consumed * 100) / $screen_time;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
+            $completion_percentage = ($completion_percentage > 100)? 100 : $completion_percentage;
+            $completion_percentage = ($completion_percentage < 0)? 0 : $completion_percentage;
+            $quest_bar_label = $completion_percentage.'%';
+        }
+
         if( $quest_method == 'lessons_score'){
-            $quest_bar_label = $QuizzesResults->count().' / '.$no_of_practices;
+            foreach( $QuizzesResults as $QuizzesResultObj) {
+                $attemptPercentage[$QuizzesResultObj->id] = $QuizzesResultObj->quizz_result_percentage();
+                $attemptCorrect[$QuizzesResultObj->id] = $QuizzesResultObj->quizz_result_points->count();
+            }
+            //pre($attemptPercentage);
+            $attemptedEligible = array_filter($attemptPercentage, function($value) use ($lessons_score) {
+                return $value >= $lessons_score;
+            });
+
+            $attempts_count = count($attemptedEligible);
+            $attempts_count = ($attempts_count > $no_of_practices)? $no_of_practices : $attempts_count;
+
+            $quest_bar_label = $attempts_count.' / '. $no_of_practices;
+            $completion_percentage = ($attempts_count * 100) / $no_of_practices;
+        }
+
+        if( $quest_method == 'correct_answers'){
+            foreach( $QuizzesResults as $QuizzesResultObj) {
+                $attemptCorrect[$QuizzesResultObj->id] = $QuizzesResultObj->quizz_result_points->count();
+            }
+            $totalCorrected = array_sum($attemptCorrect);
+            $completion_percentage = ($totalCorrected * 100) / $no_of_answers;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
+            $completion_percentage = ($completion_percentage > 100)? 100 : $completion_percentage;
+            $completion_percentage = ($completion_percentage < 0)? 0 : $completion_percentage;
+            $quest_bar_label = $completion_percentage.'%';
         }
 
         if( $quest_method == 'correct_answers_in_row'){
-            $quest_bar_label = $QuizzesResults->count().' / '.$no_of_practices;
-        }
 
-        if( $quest_method == 'correct_answers' && $no_of_practices == 1){
-            $corrected_answers = 0;
-            if( $QuizzesResults->count() > 0){
-                foreach( $QuizzesResults as $resultObj){
-                    $corrected_answers  =+ $resultObj->quizz_result_points->count();
-                }
+            foreach( $QuizzesResults as $QuizzesResultObj) {
+                $attemptInRowCorrect[$QuizzesResultObj->id] = $this->checkConsecutiveValues($QuizzesResultObj->quizz_result_questions_list->pluck('status')->toArray(), 3, 'correct');
             }
-            $completion_percentage = ($corrected_answers * 100) / $no_of_answers;
-            $completion_percentage = ( $completion_percentage > 100)? 100 : $completion_percentage;
-            $completion_percentage = ( $completion_percentage < 0)? 0 : $completion_percentage;
-            $quest_bar_label = $completion_percentage.'%';
-
+            $is_in_row = 1;
+            $attemptedEligible = array_filter($attemptInRowCorrect, function($value) use ($is_in_row) {
+                return $value >= $is_in_row;
+            });
+            $attempts_count = count($attemptedEligible);
+            $attempts_count = ($attempts_count > $no_of_practices)? $no_of_practices : $attempts_count;
+            $quest_bar_label = $attempts_count.' / '. $no_of_practices;
+            $completion_percentage = ($attempts_count * 100) / $no_of_practices;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
         }
 
-        $completion_percentage = ( $completion_percentage > 100)? 100 : $completion_percentage;
-        $completion_percentage = ( $completion_percentage < 0)? 0 : $completion_percentage;
+
+        $completion_percentage = ($completion_percentage > 100)? 100 : $completion_percentage;
+        $completion_percentage = ($completion_percentage < 0)? 0 : $completion_percentage;
+
+
 
         $response = array(
             'is_completed' => ($completion_percentage == 100)? true : false,

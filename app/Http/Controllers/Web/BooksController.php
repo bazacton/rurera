@@ -25,7 +25,19 @@ class BooksController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/panel');
         }
-        $books_data = Books::get();
+        $books_data = Books::where('id', '>', 0);
+        $search_keyword = $request->get('search', '');
+
+        if( $search_keyword != '') {
+            $books_data = $books_data->where('book_title', 'like', "%$search_keyword%")
+                ->orWhere('written_by', 'like', "%$search_keyword%")
+                ->orWhere('skill_set', 'like', "%$search_keyword%")
+                ->orWhere('interest_area', 'like', "%$search_keyword%")
+                ->orWhere('book_category', 'like', "%$search_keyword%")
+                ->orWhere('words_bank', 'like', "%$search_keyword%");
+        }
+
+        $books_data = $books_data->get();
         $books = array();
 
         if (!empty($books_data)) {
@@ -390,7 +402,6 @@ class BooksController extends Controller
      */
     public function update_reading(Request $request)
     {
-        pre('test');
         $user = auth()->user();
         $page_ids = $request->get('page_ids');
         $time_lapsed = $request->get('time_lapsed');

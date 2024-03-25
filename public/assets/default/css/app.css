@@ -3294,6 +3294,18 @@ a.badge-gray200:focus {
     box-shadow: none;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
+.lms-choose-membership .form-login-reading .form-control {
+    padding-left: 11px;
+    color: #b5b8bf;
+    font-size: 16px;
+    height: 48px;
+    padding: 0 10px;
+    outline: none;
+    border-color: #ddd;
+}
+.lms-choose-membership .form-login-reading .form-control option {
+    color: #343434;
+}
 .form-control option {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -14021,7 +14033,7 @@ p {line-height: 1.5;}
         opacity: .4;
     }
 }
-.charge-account-radio label {cursor: pointer; border: 3px solid transparent; box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .07); transition: all .3s ease;}
+.charge-account-radio label {cursor: pointer; border: 3px solid transparent; box-shadow: 0 12px 23px 0 rgba(62, 73, 84, .07); transition: all .3s ease; border: 3px solid var(--primary);}
 .charge-account-radio label:hover {border: 3px solid var(--primary); transition: all .3s ease; box-shadow: 0 10px 30px 0 rgba(67, 212, 119, .3); }
 .charge-account-radio input[type=radio] {visibility: hidden; display: none;}
 .charge-account-radio input[type=radio]:checked+label {box-shadow: 0 10px 30px 0 rgba(67, 212, 119, .3); border: 3px solid var(--primary); background-color: #fff; transition: all .3s ease;}
@@ -14065,6 +14077,10 @@ p {line-height: 1.5;}
 .user-reward-badges.badges-lg img {width: 128px; height: 128px;}
 .lms-setup-progress-section .subscribe-plan {
     background-color: #fff;
+}
+.lms-setup-progress-section .subscribe-plan.active {
+    border-color: #b8f1d0;
+    background-color: #f5fff9;
 }
 .fade.lms-choose-membership {
     transition: none;
@@ -16388,7 +16404,7 @@ Lms Activity-Timeline Style Start
 .lms-activity-timeline .element-title {margin: 0 0 25px;}
 .lms-activity-timeline .element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
 .lms-activity-timeline .element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; border: 1px dashed #eeeeee;}
-.timeline-text > span {font-size: 14px; font-weight: 500; color: #858585; position: relative; padding-right: 30px;}
+.timeline-text > span {font-size: 14px; font-weight: 500; color: #858585; position: relative; padding-right: 30px; display: inline-block;}
 .timeline-text > span:last-child {padding-right: 0;}
 .timeline-text > span:before {right: 10px; left: auto;}
 .timeline-text > span:last-child:before {display: none;}
@@ -16902,6 +16918,15 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .plan-switch {
     margin-top: -2px;
 }
+.child-register-form input:-webkit-autofill,
+.child-register-form  input:-webkit-autofill:focus {
+    background-color: inherit !important;
+    background-image: none !important;
+}
+.child-register-form input:-internal-autofill-selected {
+    background-color:  inherit !important;
+    background-image: none !important;
+}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -17383,6 +17408,7 @@ Main Home style End
 .rurera-button-loader .double-bounce1, 
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
+.rurera-processing:has(.rurera-button-loader) {position: inherit;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
 .quiz-start-btn .rurera-button-loader,
@@ -17677,7 +17703,7 @@ Product Tabs Slider Style Start
 .chart-filters .filter-icon {margin-right: 5px;}
 .analytics-type li a {border: 1px dashed #ddd; border-radius: 5px; text-align: center; padding: 15px 5px;}
 .chart-filters .analytics-type .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
-.chart-filters .analytics-type {width: 100%; margin: 0; flex-wrap: wrap; gap: 10px;}
+.chart-filters .analytics-type {width: 100%; margin: 0 0 15px; flex-wrap: wrap; gap: 10px;}
 .chart-filters .analytics-type li {width: 15.444%;}
 .analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: 30px;height: 30px;}
 .chart-filters > ul > li > a.active {background-color: rgba(0,0,0,0.1);color: #2c4a7e;}
@@ -17694,6 +17720,7 @@ Product Tabs Slider Style Start
 .graph-data-ul li.has-child > a:after,
 .analytics-data-ul li.has-child > a:after {content: ""; height: 7px; width: 7px; border: 1px solid #0f1338; position: absolute; top: 50%; margin-top: -11px; right: 0; border-top-color: transparent; border-left-color: transparent; transform: rotate(45deg);}
 .chart-filters h3 {padding: 0 0 18px;}
+.filters-list {width: 100%;}
 .chart-wraper .sats-summary {border-radius: 0; border: 0; margin: 0 0 25px; padding: 0 0 25px; border-bottom: 1px solid #ededed;}
 .chart-wraper .chart-holder {background-color: #fff; padding: 0;}
 .chart-summary-fields {background-color: #fff; padding: 30px;}
@@ -17750,7 +17777,20 @@ Product Tabs Slider Style Start
 .question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding-top: 30px; padding-left: 0;}
 .type-sats .question-layout-block form.question-fields {background-color: inherit; border: 0; padding: 0; border-radius: 0; margin-bottom: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
+.flipbook-quiz .difficulty-level {
+    padding-left: 80px;
+}
+body.quiz-open .flipbook-quiz {
+    transform: translateX(-10%) translateZ(0);
+}
+body .lms-quiz-section .flipbook-quiz {
+    width: 800px;
+}
 /* Lms Font End Display End */
+
+.filter-mobile-btn {
+    display: none;
+}
 
 /*Plphabet List Style Start*/
 .alphabet-list-holder {background-color: #fff; border: 1px solid #999; margin: 0 0 30px; display: flex; align-items: flex-start; flex-wrap: wrap;}
@@ -18190,13 +18230,16 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .inline-filters a .icon-box img {max-width: 100%; max-height: 100%;}
 .panel-content .inline-filters .active a svg g {stroke: #1b85fd; }
 .tests-list {width: 100%; display: flex; gap: 10px; padding: 0; flex-wrap: wrap;}
-.tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 20px; min-height: 100px; border-radius: 5px; min-width: 120px;}
+.tests-list li {font-size: 15px; cursor: pointer; border: 1px dashed #ddd; margin-bottom: -1px; display: inline-flex; flex-direction: column; gap: 5px; justify-content: center; align-items: center; padding: 0 5px; min-height: 100px; border-radius: 5px; min-width: 110px;}
 .tests-list li.active {background-color: #fff; border-color: var(--primary); color: var(--primary); border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
 .tests-list.school-zone-list li {min-height: 60px;}
 .tests-list img {width: 30px; height: 30px; object-fit: contain; }
 .panel-content .lms-jobs-form .input-field input[type="text"] {padding-right: 45px;}
 .panel-content .lms-jobs-form .input-field:before {content: ""; height: 25px; width: 25px; position: absolute; right: 15px; top: 50%; margin-top: -12px; background: url(/assets/default/svgs/search.svg) no-repeat;}
 .listing-search .has-border {border-bottom: 1px solid #e2e2e2; padding: 0 0 25px 0; }
+.tests-list.payment-methods {
+    margin: 0 -15px;
+}
 /* Trophy Levels Style Start */
 .trophy-levels .spell-levels li > a {height: 30px; width: 35px;}
 .trophy-levels .spell-levels li > a:before {display: none; }
@@ -18424,6 +18467,9 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 
 /* Quiz Status Bar Style */
 .quiz-status-bar {margin: 0 0 50px;}
+.container-fluid.read-quiz-content .quiz-status-bar {
+    margin-top: 18px;
+}
 .correct-in-row {color: #51cd00; font-weight: 500; text-transform: uppercase; }
 .quiz-questions-bar {background-color: #e5e5e5; height: 16px; border-radius: 20px; overflow: hidden; width: calc(100% - 60px);}
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; }
@@ -19134,14 +19180,78 @@ li.disable-timetable label {
     padding: 5px 15px;
     border-radius: 20px;
 }
+.selected-plan-data p {
+    color: #999;
+}
+.selected-plan-data .packages-back-btn {
+    color: var(--primary);
+    cursor: pointer;
+    margin-top: auto;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+}
+.selected-plan-data .text-box {
+    padding: 0;
+    text-align: center;
+    display: inline-flex;
+    min-width: 300px;
+    min-height: 450px;
+    flex-direction: column;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.selected-plan-data .package-price {
+    background-color: #fff;
+    min-height: 150px;
+    padding: 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 500;
+    color: #999;
+    border-bottom: 1px solid #ddd;
+}
 
+.selected-plan-data .package-price strong {
+    display: block;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: normal;
+    color: #343434;
+}
+
+.selected-plan-data .package-price strong span {
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    margin-right: 5px;
+    position: relative;
+    top: -5px;
+}
+
+.selected-plan-data .text-box h3 {
+    margin: auto 0;
+}
 /* Recent Reviews Style */
+.masonry-grid {
+    margin-left: -14px;
+}
+.recent-reviews-section .grid-item {
+    width: 20%;
+    padding: 0 0 0 14px;
+    margin-bottom: 14px;
+}
 .reviews-card {
     border: 1px solid #ddd;
     padding: 15px 10px;
     border-radius: 4px;
     background-color: #fff;
-    margin-bottom: 14px;
 }
 .reviews-top .user-img {
     height: 42px;
@@ -19203,7 +19313,6 @@ li.disable-timetable label {
 }
 
 .reviews-text p {
-    font-size: 12px;
     font-weight: 500;
     color: #666;
     margin: 0;
@@ -19239,7 +19348,7 @@ li.disable-timetable label {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 100%;
     font-size: 28px;
     background-color: #fff;
@@ -19253,13 +19362,231 @@ li.disable-timetable label {
     background: var(--primary);
 }
 .lms-choose-membership .stepline {
-    height: 1px;
+    height: 2px;
+    background-color: #ddd;
 }
-.lms-choose-membership .flexible-progress-bar li.complete i {
+.lms-choose-membership .flexible-progress-bar li.complete i,
+.lms-choose-membership .flexible-progress-bar li.active i {
     border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 0 0 3px #fff inset;
+}
+.lms-choose-membership .flexible-progress-bar li.complete img, 
+.lms-choose-membership .flexible-progress-bar li.active img {
+    filter: invert(28%) sepia(85%) saturate(1121%) hue-rotate(174deg) brightness(104%) contrast(105%);
+}
+
+body .flipbook-data {
+    height: 68%;
+    transform: scale(1.5);
+    margin-top: 280px;
+}
+.book-info-link img {
+    width: 85px !important;
+    object-fit: contain;
+    height: 85px !important;
+}
+.search-block .search-input {
+    border-radius: 15px;
+    background-color: #DFE6EE;
+}
+.search-block .search-input input[type=text] {
+    height: auto;
+    padding: 0.3rem 1rem 0.3rem 0.3rem;
+    background-color: inherit;
+}
+.search-block .icon-box img {
+    filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(187deg) brightness(87%) contrast(83%);
+}
+
+
+
+.class-connect-modal {
+    text-align: center;
+}
+
+.class-connect-modal .modal-header {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 0;
+    flex-wrap: wrap;
+}
+
+.class-connect-modal .modal-header .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+.class-connect-modal .modal-header strong {
+    font-size: 22px;
+    color: var(--primary);
+    width: 100%;
+}
+.class-connect-modal .user-details-block [class*="col-"] {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.class-connect-modal .user-details-block .form-label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 15px;
+}
+.class-connect-modal .user-details-block input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    font-size: 14px;
+}
+.class-connect-modal .user-details-block .class-code-submit {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px !important;
+    border-radius: 30px;
+}
+.class-connect-modal .modal-body {
+    padding-bottom: 30px;
+}
+
+.class-thumb-list ul {
+    margin: 0 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.class-thumb .media-box {
+    border: 1px solid #ddd;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    background-color: #f4f4f4;
+    padding: 5px;
+    box-shadow: 0 0 0 5px #fff inset;
+    margin: 0 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.class-thumb .media-box img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+.class-thumb .thumb-lable {
+    font-weight: 600;
+    text-transform: capitalize;
+    display: block;
+    line-height: normal;
+}
+.class-thumb .media-icon {
+    border: 4px solid #ddd;
+    height: 80px;
+    width: 80px;
+    vertical-align: middle;
+    border-radius: 100%;
+    margin: 0 0 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    position: relative;
+    background-color: #fff;
+    z-index: 1;
+}
+.class-thumb .media-icon img {
+    max-width: 100%;
+}
+.class-thumb-list li {
+    text-align: center;
+    overflow: hidden;
+}
+.class-thumb .media-icon:before, 
+.class-thumb .media-icon:after {
+    background-color: #ddd;
+    height: 4px;
+    width: 100%;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -2px;
+    z-index: -1;
+}
+.class-thumb .media-icon:after {
+    left: auto;
+    right: 100%;
+}
+
+.class-thumb-list li.school-box {
+    width: 50%;
+    padding: 0 10px;
+}
+
+.class-thumb-list p {
+    font-size: 15px;
+    margin: 0 0 20px;
+}
+.connect-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.connect-controls a {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 5px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    min-width: 172px;
+    text-align: center;
+    border-radius: 30px;
+}
+.connect-controls a:hover {
     background-color: var(--primary);
     color: #fff;
 }
+
+.class-connect-modal .modal-header .class-thumb {
+    height: 100px;
+    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    overflow: hidden;
+    padding: 4px;
+    margin: 0 0 15px;
+}
+.class-connect-modal .modal-header .class-thumb figure {
+    background-color: #f4f4f4;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.class-connect-modal .modal-header .class-thumb img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+#progbar {
+    margin-bottom: 15px;
+}
+.flexible-progress-bar li .icon-box img {
+    max-width: 50%;
+    filter: invert(98%) sepia(4%) saturate(4%) hue-rotate(264deg) brightness(107%) contrast(73%);
+}
+.googlepay-gateway-fields section.container {
+    margin-top: 0 !important;
+}
+
 
 /*************************************
 Lms Responsive Style Start
@@ -19294,23 +19621,30 @@ Lms Responsive Style Start
     .panel-content .panel-right-sidebar {flex: 0 0 370px;max-width: 370px;}
     body .dashboard-banner-container {margin-top: 15px;}
     .panel-sidebar .sidebar-menu .sidenav-item {justify-content: center;}
-    .quiz-topbar [class*="col-"] {
-        width: 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding-bottom: 10px;
-    }
     body .topbar-right {
         justify-content: space-between;
     }
     .question-number-holder {
         z-index: 1 !important;
     }
+    .close-btn-holder {
+        margin-left: auto;
+    }
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
     .listing-card .btn-holder {right: 15px;}
     .school-zone-students [class*="col-"] {flex: 0 0 50%;max-width: 50%;}
+    .quiz-topbar [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .quiz-topbar .close-btn-holder {
+        position: absolute;
+        top: -44px;
+        right: 15px;
+    }
 }
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .lms-explanation .lms-radio-btn-group li {width: 48%;}
@@ -19515,6 +19849,18 @@ Lms Responsive Style Start
     .user-profile-icons li.dropdown:hover strong:after {visibility: visible;opacity: 1;}
 }
 
+@media screen and (min-width: 767px) and (max-width: 992px) {
+    .panel-content .last-activity {margin-left: 0 !important;padding-top: 10px;}
+    .list-group-item .row {
+        justify-content: space-between;
+    }
+    .quiz-topbar .close-btn-holder {
+        position: absolute;
+        top: -40px;
+        right: 15px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .filters-container .lms-list-accordion {margin: 0 0 30px;}
     .find-instructor-section [class*="col-"]:first-child div.position-relative {margin-bottom: 30px;}
@@ -19700,7 +20046,16 @@ Lms Responsive Style Start
     .have-question-card .text-box {width: 100%; padding: 20px 0 0 0;}
     .db-members .card .list-group-item .row .col-auto:first-child {padding-left: 0;}
     .db-members .card .list-group-item .row .col-5 {flex: 0 0 85%; max-width: 85%; padding-bottom: 10px;}
-    .db-members .card .list-group-item {padding-left: 30px;}
+    .list-group-item .row {
+        gap: 10px;
+    }
+    .list-group-item .row [class*="col-"] {
+        padding: 0;
+    }
+    .list-group-item .switch-user-btn img {
+        margin: 0;
+    }
+    .db-members .card .list-group-item {padding-left: 25px;}
     .db-members .list-group-item .switch-user-btn,
     .db-form-tabs .list-group-item .connect-user-btn{margin-top: 5px;}
     .rewards-layout-box.column-3 .row {grid-template-columns: 1fr 1fr;}
@@ -19757,6 +20112,93 @@ Lms Responsive Style Start
     .listing-card .read-btn, .book-btn {min-width: 150px; font-size: 13px; padding: 15px 10px;}
     .listing-card .read-btn .btn-icon {margin-right: 5px;}
     .trophy-levels {justify-content: center;}
+    .filter-mobile-btn {
+        display: block;
+        background-color: #dddddd;
+        padding: 14px 20px 14px 15px;
+        line-height: normal;
+        border-radius: 5px;
+        position: relative;
+        font-size: 15px;
+    }
+    .filter-mobile-btn:after {
+        content: "";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        border-style: solid;
+        border-width: 5px;
+        border-left-color: transparent;
+        border-top-color: transparent;
+        transform: rotate(45deg) translateY(-50%);
+        margin-top: -2px;
+    }
+    .filters-list {
+        position: relative;
+        width: 50%;
+        padding-right: 8px;
+        margin-top: 12px;
+    }
+    .filters-list .analytics-type,
+    .filters-list .tests-list {
+        position: absolute;
+        width: 95%;
+        flex-direction: column;
+        left: 0;
+        top: 100%;
+        text-align: left;
+        background-color: #fff;
+        z-index: 1;
+        padding: 10px 15px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -ms-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        margin-top: 10px;
+    }
+    .filters-list .analytics-type.open,
+    .filters-list .tests-list.open {
+        visibility: visible;
+        opacity: 1;
+        margin-top: 0;
+    }
+    .filters-list .analytics-type li,
+    .filters-list .tests-list li {
+        width: 100%;
+    }
+    .filters-list .analytics-type li a img,
+    .filters-list .tests-list li img {
+        display: inline-block;
+        margin: 0px 5px 0 0;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+    }
+    .filters-list .analytics-type li a,
+    .filters-list .tests-list li {
+        padding: 5px 0;
+        text-align: left;
+        border: 0;
+    }
+    .filters-list .analytics-type .active a,
+    .filters-list .tests-list li.active {
+        box-shadow: none;
+        border: 0;
+    }
+    .filters-list .tests-list li {
+        flex-direction: row;
+        min-height: auto;
+        justify-content: flex-start;
+    }
+    .chart-filters .form-group {
+        width: 50%;
+        padding-left: 8px;
+    }
+    .listing-search .filters-list {margin-bottom: 15px;}
 }
 
 @media screen and (max-width: 640px) {
@@ -19864,6 +20306,11 @@ Lms Responsive Style Start
     .login-holder .login-options .social-login {flex-direction: column; gap: 0;}
     .login-holder .login-options span {margin-top: 10px;}
     .benefits-list ul li {width: 100%;}
+    .child-register-form [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 
@@ -19978,5 +20425,12 @@ Lms Responsive Style Start
     #analyticsAccordion .card .card-header {padding-left: 0; padding-right: 0;}
     .user-profile-icons .dropdown:hover .dropdown-menu {
         top: 66px;
+    }
+    .class-thumb-list li.school-box {
+        width: 30%;
+    }
+    .class-thumb .media-icon {
+        height: 80px;
+        width: 80px;
     }
 }

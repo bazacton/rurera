@@ -33,6 +33,7 @@ class UserSubscriptions extends Model
         'cancelled_by',
         'cancelled_at',
         'next_package',
+        'subscribe_for',
     ];
 
     public function subscribe()

@@ -18,6 +18,11 @@ class RewardAccounting extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public function quest()
+    {
+        return $this->belongsTo('App\Models\DailyQuests', 'parent_id', 'id');
+    }
+
     public static function makeRewardAccounting($userId, $score, $type, $itemId = null, $checkDuplicate = false, $status = self::ADDICTION)
     {
         if ($score and $score > 0) {

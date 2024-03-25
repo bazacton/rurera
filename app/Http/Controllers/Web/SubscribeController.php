@@ -280,7 +280,8 @@ class SubscribeController extends Controller
     {
         $selected_package = $request->get('selected_package', null);
         $subscribed_for = $request->get('subscribed_for', null);
-        $subscribed_for = ($subscribed_for == true)? 12 : 1;
+        $subscribed_for = ($subscribed_for > 0) ? $subscribed_for : 0;
+        $subscribed_for = ($subscribed_for == 12) ? $subscribed_for : 1;
         $user_id = $request->get('user_id', null);
         $childObj = User::find($user_id);
 
@@ -333,6 +334,21 @@ class SubscribeController extends Controller
         echo $response_layout;
         exit;
     }
+    
+    public function cancelSubscription(Request $request)
+    {
+        $user = auth()->user();
+        $child_id = $request->input('child_id');
+        $childObj = User::find($child_id);
+        $userSubscriptions = $childObj->userSubscriptions;
+
+        $userSubscriptions->update([
+           'is_cancelled' => 1,
+           'cancelled_by' => $user->id,
+           'cancelled_at' => time(),
+        ]);
+        exit;
+    }
 
 
 
@@ -341,13 +357,14 @@ class SubscribeController extends Controller
         $user = auth()->user();
         $subscribe_for = $request->input('subscribe_for');
         $subscribe_for = ($subscribe_for > 0) ? $subscribe_for : 0;
+        $subscribe_for = ($subscribe_for == 12) ? $subscribe_for : 1;
 
-        if( $subscribe_for == 0){
+        /*if( $subscribe_for == 0){
             $ParentsOrders = ParentsOrders::where('user_id', $user->id)
                ->where('status', 'active')
                ->first();
             $subscribe_for = isset($ParentsOrders->payment_frequency)? $ParentsOrders->payment_frequency : 1;
-        }
+        }*/
         $user_id = $request->input('user_id');
         $package_id = $request->input('selectedPackage');
         $childObj = User::find($user_id);
@@ -388,17 +405,50 @@ class SubscribeController extends Controller
             $childs_discounts = $charged_amounts_array = array();
 
             $subscribeObj = Subscribe::find($package_id);
+            $package_total_amount = $subscribeObj->price*$subscribe_for;
             $discount_percentage = 0;
             if ($child_count > 1) {
                 $discount_percentage = 5;
             }
-            $discount_amount = ($discount_percentage * $subscribeObj->price) / 100;
-            $packages_amount += ($subscribeObj->price - $discount_amount);
+            $discount_amount = ($discount_percentage * $package_total_amount) / 100;
+            $packages_amount += ($package_total_amount - $discount_amount);
             $total_discount += $discount_amount;
             $child_discount = $discount_amount;
-            $charged_amount = ($subscribeObj->price - $discount_amount);
+            $charged_amount = ($package_total_amount - $discount_amount);
+
+
 
             if (isset($ParentsOrders->id)) {
+                $package_created = $ParentsOrders->created_at;
+                $package_expiry = $ParentsOrders->expiry_at;
+
+                $expiry_date_date = date('d', $expiry_date);
+                $expiry_date_month = date('m', $expiry_date);
+                $expiry_date_year = date('Y', $expiry_date);
+                $previous_month_expiry = $expiry_date_year.'-'.str_pad(($expiry_date_month-1), 2, '0', STR_PAD_LEFT).'-'.$expiry_date_year;
+
+                $package_expiry_date = date('d', $package_expiry);
+                $expiry_date_final = date('Y-m', $expiry_date);
+                $expiry_date_final = $expiry_date_final.'-'.$package_expiry_date;
+                $expiry_date_final = strtotime($expiry_date_final);
+                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime($expiry_date_year.'-'.($expiry_date_month-1).'-'.$expiry_date_year) : $expiry_date_final;
+                $current_date = time();
+                $remaining_days = ($expiry_date_final - $current_date);
+                $remaining_days = round($remaining_days / (60 * 60 * 24));
+
+                $expiry_total_days = ($expiry_date - $current_date);
+                $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
+                $per_day_amount = ($packages_amount / $expiry_total_days);
+                //pre('Package total Days = '.$package_total_days, false);
+                //pre('Remaining Days = '.$remaining_days, false);
+                //pre('Per Day Amount = '.$per_day_amount, false);
+
+                //$per_day_amount = ($packages_amount / $package_total_days);
+                $packages_amount = ($remaining_days * $per_day_amount);
+            }
+
+
+            /*if (isset($ParentsOrders->id)) {
                 $package_created = $ParentsOrders->created_at;
                 $package_expiry = $ParentsOrders->expiry_at;
                 $current_date = time();
@@ -416,14 +466,14 @@ class SubscribeController extends Controller
 
                 //$per_day_amount = ($packages_amount / $package_total_days);
                 $packages_amount = ($remaining_days * $per_day_amount);
-            }
+            }*/
             $packages_amount = round($packages_amount, 2);
 
             $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
 
 
             $full_data['package_id'][] = $package_id;
-            $full_data['expiry_date'] = $expiry_date;
+            $full_data['expiry_date'] = $expiry_date_final;
 
 
             $financialSettings = getFinancialSettings();
@@ -446,11 +496,11 @@ class SubscribeController extends Controller
                     'payment_data'       => json_encode($full_data),
                     'payment_frequency'  => $subscribe_for,
                     "created_at"         => time(),
-                    'expiry_at'          => $expiry_date,
+                    'expiry_at'          => $expiry_date_final,
                 ]);
             } else {
                 $expiry_date = $ParentsOrders->expiry_at;
-                $full_data['expiry_date'] = $expiry_date;
+                $full_data['expiry_date'] = $expiry_date_final;
                 $payment_data = isset($ParentsOrders->payment_data) ? (array)json_decode($ParentsOrders->payment_data) : array();
                 $payment_data['students'] = array_merge($payment_data['students'], $full_data['students']);
                 $payment_data['package_id'] = array_merge($payment_data['package_id'], $full_data['package_id']);
@@ -547,9 +597,10 @@ class SubscribeController extends Controller
             'is_vocabulary'   => $subscribeData->is_vocabulary,
             "status"          => 'inactive',
             "created_at"      => time(),
-            "expiry_at"       => $expiry_date,
+            "expiry_at"       => $expiry_date_final,
             "child_discount"  => $child_discount,
             "charged_amount"  => $charged_amount,
+            "subscribe_for"  => $subscribe_for,
         ]);
 
         }

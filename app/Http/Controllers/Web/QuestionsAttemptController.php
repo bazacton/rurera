@@ -126,7 +126,7 @@ class QuestionsAttemptController extends Controller
 
             $questionObj = QuizzesQuestion::find($question_id);
 
-            if ($questionAttemptAllowed == true) {
+            if ($questionAttemptAllowed == true && isset( $questionObj->id)) {
                 $correct_answers = $this->get_question_correct_answers($questionObj);
 
                 $newQuestionResult = QuizzResultQuestions::create([
@@ -733,7 +733,7 @@ class QuestionsAttemptController extends Controller
 
         if ($is_complete == true) {
             $QuizzesResult = QuizzesResult::find($resultLogObj->id);
-            $QuizzesResult->update(['status' => 'passed']);
+            $QuizzesResult->update(['status' => 'passed', 'total_time_consumed' => $QuizzesResult->quizz_result_questions_list()->sum('time_consumed')]);
             $this->after_attempt_complete($QuizzesResult);
         }
 
@@ -1790,7 +1790,6 @@ class QuestionsAttemptController extends Controller
         $correct_answers = ($resultQuestionObj->correct_answer != '') ? json_decode($resultQuestionObj->correct_answer) : array();
         $user_answers = ($resultQuestionObj->user_answer != '') ? json_decode($resultQuestionObj->user_answer) : array();
 
-        //pre($user_answers, false);
         //pre($elements_data);
         $question_answers_array = array();
         if (!empty($elements_data)) {
@@ -1850,6 +1849,21 @@ class QuestionsAttemptController extends Controller
                         break;
 
                     case "text":
+
+                        if (!empty($user_values)) {
+                            foreach ($user_values as $user_selected_key => $user_selected_value) {
+                                $correct_value = isset($correct_values[$user_selected_key]) ? $correct_values[$user_selected_key] : '';
+                                $script .= view('web.default.panel.questions.question_script', [
+                                    'field_type'          => $field_type,
+                                    'field_key'           => $field_key,
+                                    'user_selected_key'   => $user_selected_key,
+                                    'user_selected_value' => $user_selected_value,
+                                    'correct_value'       => $correct_value,
+                                ])->render();
+                            }
+                        }
+
+                    default:
 
                         if (!empty($user_values)) {
                             foreach ($user_values as $user_selected_key => $user_selected_value) {
@@ -2555,6 +2569,7 @@ class QuestionsAttemptController extends Controller
             'iseb',
             'cat4'
         );
+        $QuizzesResultID = 0;
         $questions_list = array();
         if (!empty($quiz->quizQuestionsList)) {
             foreach ($quiz->quizQuestionsList as $questionlistData) {
@@ -2571,6 +2586,7 @@ class QuestionsAttemptController extends Controller
 
         if ($quiz->quiz_type == 'practice') {
             $questions_list_data_array = $this->get_course_practice_questions_list($quiz, $questions_list);
+            $QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
             $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
             $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
             $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -2588,6 +2604,7 @@ class QuestionsAttemptController extends Controller
             'questions_list' => $questions_list,
             'other_data'     => isset($other_data) ? $other_data : '',
             'quiz_breakdown' => isset($quiz_breakdown) ? $quiz_breakdown : '',
+            'QuizzesResultID' => $QuizzesResultID,
         );
 
     }
@@ -2648,11 +2665,18 @@ class QuestionsAttemptController extends Controller
         $user = getUser();
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
         $other_data = array();
-        if( isset( $newQuizStart->id)){
-            $other_data = json_decode($newQuizStart->other_data);
-        }
         $quiz_settings = json_decode($quiz->quiz_settings);
         $quiz_breakdown = $quiz->quiz_settings;
+        if( isset( $newQuizStart->id)){
+            $other_data = json_decode($newQuizStart->other_data);
+            $questions_list = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->pluck('question_id')->toArray();
+            return array(
+                'questions_list' => $questions_list,
+                'other_data'     => $newQuizStart->other_data,
+                'quiz_breakdown' => $quiz_breakdown,
+                'QuizzesResultID' => $newQuizStart->id,
+            );
+        }
 
         $questions_limit = array();
         $questions_limit['emerging'] = isset($quiz_settings->Emerging->questions) ? $quiz_settings->Emerging->questions : 0;
@@ -2667,6 +2691,16 @@ class QuestionsAttemptController extends Controller
         ];
 
         $questions_list_ids = $questions_list;
+
+
+        $attempted_questions_list = QuizzResultQuestions::whereIn('question_id', $questions_list_ids)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->pluck('question_id')->toArray();
+
+        $notattempted_questions_list = array_diff($questions_list_ids, $attempted_questions_list);
+
+        //working here
+        //pre($notattempted_questions_list);
+
+
         $questions_list = $practice_breakdown = array();
         if (!empty($difficulty_level_array)) {
             foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
@@ -2678,7 +2712,7 @@ class QuestionsAttemptController extends Controller
                     foreach ($breakdown_array as $question_type => $questions_count) {
                         $questions_count = isset( $other_data->{$difficulty_level_label}->{$question_type})? count($other_data->{$difficulty_level_label}->{$question_type}) : $questions_count;
                         //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
-                        $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                        $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->inRandomOrder()->limit($questions_count)->pluck('id')->toArray();
                         if (!empty($questions_array)) {
                             foreach ($questions_array as $questionID) {
 

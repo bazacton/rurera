@@ -198,6 +198,18 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 $(".coin-numbers span").html('+'+totalCorrectCount);
             }
 
+            var total_questions = $(".question-area").attr('data-total_questions');
+            if($(".quiz-questions-bar").length > 0){
+                var total_corrects = parseInt($(".quiz-corrects").html());
+                var total_incorrects = parseInt($(".quiz-incorrects").html());
+                var total_percentage = ((total_corrects) * 100) / parseInt(total_questions);
+                //total_percentage = (correctInRow == 0)? 0 : total_percentage;
+                $(".quiz-questions-bar .bar-fill").css('width', total_percentage+'%');
+            }
+            if($(".question-step.active .question-layout").length > 0) {
+                $(".question-step.active .question-layout").addClass('disable-div');
+            }
+
 
 
             if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
@@ -767,7 +779,7 @@ function init_question_functions() {
         $('#next-btn')[0].click();
     });
     $(document).on('click', '.question-next-btn', function (e) {
-        $(".quiz-status-bar").addClass('rurera-hide');
+        //$(".quiz-status-bar").addClass('rurera-hide');
         $('#next-btn')[0].click();
     });
 
@@ -930,11 +942,8 @@ function init_question_functions() {
         if($(".quiz-questions-bar").length > 0){
             var total_corrects = parseInt($(".quiz-corrects").html());
             var total_incorrects = parseInt($(".quiz-incorrects").html());
-            var total_percentage = ((total_corrects+total_incorrects) * 100) / parseInt(total_questions);
+            var total_percentage = ((total_corrects) * 100) / parseInt(total_questions);
             $(".quiz-questions-bar .bar-fill").css('width', total_percentage+'%');
-            console.log(total_percentage);
-
-
         }
 
         console.log('totalquestion------'+total_questions);
