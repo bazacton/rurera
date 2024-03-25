@@ -11,6 +11,12 @@ class NotificationsController extends Controller
 {
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
 
         $notifications = Notification::where(function ($query) use ($user) {

@@ -15,6 +15,12 @@ class SupportsController extends Controller
 {
     public function index(Request $request, $id = null)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
 
         $userWebinarsIds = $user->webinars->pluck('id')->toArray();
@@ -127,6 +133,13 @@ class SupportsController extends Controller
 
     public function tickets(Request $request, $id = null)
     {
+
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
 
         $query = Support::whereNotNull('department_id')

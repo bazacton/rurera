@@ -15,6 +15,12 @@ class AnalyticsController extends Controller
 {
     public function index(Request $request, $type = 'all')
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
         $user_id = $user->id;
         if (auth()->user()->isParent()) {

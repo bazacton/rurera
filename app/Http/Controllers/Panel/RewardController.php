@@ -11,6 +11,12 @@ class RewardController extends Controller
 {
     public function index()
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $rewardsSettings = getRewardsSettings();
 
         if (empty($rewardsSettings) or ($rewardsSettings and $rewardsSettings['status'] != '1')) {

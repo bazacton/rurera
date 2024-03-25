@@ -38,6 +38,12 @@ class UserController extends Controller
 {
     public function setting($step = 1)
     {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/panel');
+        }
         $user = auth()->user();
 
         if( isset( $_GET['qrcode'] ) ) {
