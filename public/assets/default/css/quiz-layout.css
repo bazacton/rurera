@@ -306,8 +306,9 @@ Lms Question List Style
 .question-textarea.quiz-group {padding-top: 0; margin-left: 0;}
 .question-layout-block form.question-fields,
 .question-fields .left-content {min-height: 680px; display: flex; flex-direction: column; height: 680px; overflow: hidden; overflow-y: auto; padding-right: 10px;}
+.read-quiz-content .left-content {overflow: hidden;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 70px; color: #adabab; }
-.question-layout-block form.question-fields .questions-nav-controls {background-color:#fff; margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 50%;margin-bottom: 10px !important; z-index: 1;}
+.question-layout-block form.question-fields .questions-nav-controls {background-color:#fff; margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 810px;margin-bottom: 10px !important; z-index: 1;}
 .question-fields .left-content::-webkit-scrollbar,
 .lms-sorting-fields::-webkit-scrollbar {
     width: 5px;

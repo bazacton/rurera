@@ -41,6 +41,10 @@
 }
 .read-quiz-content .left-content {
     width: 100%;
+    overflow: hidden;
+}
+.spell-question-area .question-layout-block form.question-fields {
+    overflow: hidden;
 }
 .leform-inline.leform-container {position: relative; background-color: #fff; border-radius: 0 5px 5px 5px; height: calc(100vh - 100px); overflow: hidden; overflow-y: auto;}
 .leform-element .field-group {display: inline-flex; align-items: center;}

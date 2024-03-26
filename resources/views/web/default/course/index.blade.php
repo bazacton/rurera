@@ -76,8 +76,32 @@
             <div class="col-12 lms-chapter-area">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="sidebar-nav mb-30">
-                            <h3 class="sidebar-title font-26 text-dark-charcoal"><a href="/learn" class="timestables-back-btn"></a> {{ $course->title }} Course Units</h3>
+                        <div class="sidebar-nav mb-30 mt-15">
+
+                            <div class="panel-stats" style="background:{{(isset( $course->learn_background_color ) && $course->learn_background_color != '')? $course->learn_background_color : '#ffff'}}">
+                                    <div class="stats-user">
+                                        <h1>{{ $course->title }}</h1>
+                                    </div>
+                                    @if(isset( $course->learn_icon ) && $course->learn_icon != '')
+                                        <div class="course-icon"><img src="{{$course->learn_icon}}"></div>
+                                    @endif
+                                    <div class="stats-list">
+                                        <ul>
+                                            <li>
+                                                <div class="list-box">
+                                                    <strong>{{$course->chapters->count()}}</strong>
+                                                    <span>Units</span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="list-box">
+                                                    <strong>{{$course->webinar_sub_chapters->count()}}</strong>
+                                                    <span>Lessons</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             <ul>
                                 @foreach($course->chapters as $chapter)
                                     @if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))

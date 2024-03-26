@@ -76,23 +76,29 @@
                                         <div class="col-auto ms-auto mr-md-3 last-activity profile-dropdown">
                                             <a href="#">Profile options</a>
                                             <ul>
-                                                <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn">Switch User</a></li>
-                                                <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}">Connect to Class</a></li>
+                                                <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
+                                                <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
                                                 @if(!isset( $childObj->userSubscriptions->subscribe ) )
-                                                <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                    Add Package
-                                                </a>
+                                                <li>
+                                                    <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                                        <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Add Package
+                                                    </a>
+                                                </li>
                                                 @else
-                                                <a href="javascript:;" class="package-update-btn switch-user-btn subscription-modal" data-type="update_package" data-id="{{$childObj->id}}">
-                                                    Update Package
-                                                </a>
+                                                <li>
+                                                    <a href="javascript:;" class="package-update-btn switch-user-btn subscription-modal" data-type="update_package" data-id="{{$childObj->id}}">
+                                                        <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Update Package
+                                                    </a>
+                                                </li>
                                                 @endif
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 0 )
-                                                <a href="javascript:;" class="package-payment-btn switch-user-btn cancel-subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                    Cancel Membership
-                                                </a>
+                                                <li>
+                                                    <a href="javascript:;" class="package-payment-btn switch-user-btn cancel-subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                                        Cancel Membership
+                                                    </a>
+                                                </li>
                                                 @endif
-                                                <li><a href="#">Unlink <Profile></Profile></a></li>
+                                                <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
                                             </ul>
                                         </div>
                                     </div> <!--[ row end ]-->

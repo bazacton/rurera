@@ -162,7 +162,7 @@ class DailyQuestsController extends Controller
         if( $quest_method == 'screen_time'){
             $total_time_consumed = ($QuizzesResults->sum('total_time_consumed') > 0) ? ($QuizzesResults->sum('total_time_consumed') / 60) : 0;
             $completion_percentage = ($total_time_consumed * 100) / $screen_time;
-            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 1) : 0;
             $completion_percentage = ($completion_percentage > 100)? 100 : $completion_percentage;
             $completion_percentage = ($completion_percentage < 0)? 0 : $completion_percentage;
             $quest_bar_label = $completion_percentage.'%';
@@ -191,7 +191,7 @@ class DailyQuestsController extends Controller
             }
             $totalCorrected = array_sum($attemptCorrect);
             $completion_percentage = ($totalCorrected * 100) / $no_of_answers;
-            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 1) : 0;
             $completion_percentage = ($completion_percentage > 100)? 100 : $completion_percentage;
             $completion_percentage = ($completion_percentage < 0)? 0 : $completion_percentage;
             $quest_bar_label = $completion_percentage.'%';
@@ -210,7 +210,7 @@ class DailyQuestsController extends Controller
             $attempts_count = ($attempts_count > $no_of_practices)? $no_of_practices : $attempts_count;
             $quest_bar_label = $attempts_count.' / '. $no_of_practices;
             $completion_percentage = ($attempts_count * 100) / $no_of_practices;
-            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 2) : 0;
+            $completion_percentage = ($completion_percentage > 0)? round($completion_percentage, 1) : 0;
         }
 
 

@@ -311,6 +311,43 @@
                                                 </div>
                                             </div>
 
+
+                                            <div class="form-group">
+                                                <label>Learn Background Color</label>
+                                                <div class="input-group colorpickerinput">
+                                                    <input type="text" name="learn_background_color" class="form-control"
+                                                           value="{{ !empty($webinar) ? $webinar->learn_background_color : '' }}">
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-fill-drip"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group mt-15">
+                                                <label class="input-label">Learn Icon</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <button type="button" class="input-group-text admin-file-manager" data-input="learn_icon" data-preview="holder">
+                                                            <i class="fa fa-upload"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" name="learn_icon" id="learn_icon" value="{{ !empty($webinar) ? $webinar->learn_icon : old('learn_icon') }}" class="form-control @error('learn_icon')  is-invalid @enderror"/>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="input-group-text admin-file-view" data-input="learn_icon">
+                                                            <i class="fa fa-eye"></i>
+                                                        </button>
+                                                    </div>
+                                                    @error('learn_icon')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
                                             <div class="form-group mt-25">
                                                 <label class="input-label">{{ trans('public.demo_video') }} ({{ trans('public.optional') }})</label>
 

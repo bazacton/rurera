@@ -27,7 +27,7 @@
                     @foreach( $quests as $questObj)
                         @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
 
-                        $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.png';
+                        $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
                         $quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
                         @endphp
                         <li>

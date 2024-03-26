@@ -374,7 +374,7 @@ $timer_counter = $practice_time;
 
         }, 1000);
 
-        $("body").on("click", ".question-submit-btn", function (e) {
+        $("body").on("click", ".question-submit-btn-testing", function (e) {
             var editor_field_value = '';
             var thisObj = $(this);
             var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();

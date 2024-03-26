@@ -45,6 +45,21 @@ var totalInCorrectCount = 0;
 $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn", function (e) {
 //$(document).on('click', '.question-submit-btn', function (e) {
     e.preventDefault();
+    if($('.spells-quiz-from').length > 0){
+        var editor_field_value = '';
+        var thisObj = $(this);
+        var thisValue = thisObj.closest('.spells-quiz-from').find('.editor-field').val();
+        thisObj.closest('.spells-quiz-from').find('.editor-field-inputs').each(function() {
+            editor_field_value += $(this).val();
+        });
+        thisObj.closest('.spells-quiz-from').find('.editor-field').val(editor_field_value);
+        timePaused = true;
+        if( thisValue == '' && editor_field_value != ''){
+            thisObj.closest('.spells-quiz-from').find('.question-submit-btn').click();
+        }
+    }
+
+
     var bypass_validation = $(".question-submit-btn").attr('data-bypass_validation');
     if( question_submit_process == true){
         return false;

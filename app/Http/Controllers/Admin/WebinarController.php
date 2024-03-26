@@ -738,6 +738,8 @@ class WebinarController extends Controller
             'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
             'custom_url'         => isset($data['custom_url']) ? $data['custom_url'] : '' ,
             'subject_type'         => isset($data['subject_type']) ? $data['subject_type'] : 'Course' ,
+            'learn_background_color'     => isset($data['learn_background_color']) ? $data['learn_background_color'] : '' ,
+            'learn_icon'     => isset($data['learn_icon']) ? $data['learn_icon'] : '' ,
 
 
         ]);
@@ -1049,6 +1051,8 @@ class WebinarController extends Controller
             'include_xml'         => isset($data['include_xml']) ? $data['include_xml'] : 0 ,
             'custom_url'         => isset($data['custom_url']) ? $data['custom_url'] : '' ,
             'subject_type'         => isset($data['subject_type']) ? $data['subject_type'] : 'Course' ,
+            'learn_background_color'     => isset($data['learn_background_color']) ? $data['learn_background_color'] : '' ,
+            'learn_icon'     => isset($data['learn_icon']) ? $data['learn_icon'] : '' ,
 
 
         ]);

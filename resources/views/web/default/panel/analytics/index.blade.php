@@ -229,7 +229,7 @@
                            $book_slug = isset( $analyticData['book_slug'] )? $analyticData['book_slug'] : '';
                             $detail_link = '/books/'.$book_slug.'/activity';
                         }
-                        $analytic_icon = '/assets/default/img/types/'.$parent_type.'.png';
+                        $analytic_icon = '/assets/default/img/types/'.$parent_type.'.svg';
                         $analytic_icon =   isset( $analyticData['list_icon'] )? $analyticData['list_icon'] : $analytic_icon;
 
 

@@ -18,9 +18,6 @@ class AnalyticsController extends Controller
         if (!auth()->check()) {
             return redirect('/login');
         }
-        if (!auth()->user()->isUser()) {
-            return redirect('/panel');
-        }
         $user = auth()->user();
         $user_id = $user->id;
         if (auth()->user()->isParent()) {
@@ -264,11 +261,13 @@ class AnalyticsController extends Controller
 
 
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['parent_type'] = 'quest';
-                                $analytics_data[$date_str]['data'][$userQuestObj->id]['topic_title'] = $questObj->title;
+                                $analytics_data[$date_str]['data'][$userQuestObj->id]['topic_title'] = 'Quest ('.$questObj->title.')';
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['coins_earned'] = $userQuestObj->score;
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['start_time'] = $userQuestObj->created_at;
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['type'] = 'quest';
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['list_icon'] = $quest_icon;
+                                $analytics_data[$date_str]['data'][$userQuestObj->id]['list_icon'] = '/assets/default/img/panel-sidebar/coins.svg';
+
                             }
 
                             //$analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['type'] = '';

@@ -13795,10 +13795,10 @@ p {line-height: 1.5;}
 .popular-post .popular-post-content {height: 75px; }
 .post-show p {color: #818894; margin-top: 15px;}
 .post-show img {border-radius: 15px; max-width: 100% !important;}
-.post-show h1,
+/* .post-show h1,
 .post-show h2,
 .post-show h3 {font-size: 20px; font-weight: 700; color: #171347; margin-top: 25px;}
-.post-show h2 {font-size: 24px;}
+.post-show h2 {font-size: 24px;} */
 .contact-info-modal .contact-avatar {width: 100px; max-width: 100px; height: 100px; border-radius: 50%;}
 .contact-info-modal .contact-avatar img {border-radius: 50%; }
 .contact-us-head {padding-top: 120px;}
@@ -14050,11 +14050,12 @@ p {line-height: 1.5;}
 .subscribe-plan.subscribe-highlight .plan-feature li:after {background-color: rgba(255,255,255,0.1); border-color: rgba(0,0,0,0.2);}
 .registration-package-statistics .registration-package-statistics-icon {width: 48px; height: 48px;}
 .subscribe-plan .subscribe-icon {position: relative; text-align: center;}
-.subscribe-plan .subscribe-icon img {transition: all .4s ease;}
+.subscribe-plan .subscribe-icon img {transition: all .4s ease; width: 50px; object-fit: contain;}
 .subscribe-plan h3 {text-align: center; color: #5a5865;}
 .subscribe-plan .subscribe-price {justify-content: center; flex-direction: column; align-items: center !important;}
 .subscribe-plan .subscribe-price .yearly-price {display: block; color: #aeaeb0; padding-top: 10px;}
-.subscribe-plan.current-plan button.btn {background-color: #def6e8; color: #48c784;}
+.subscribe-plan.current-plan button.btn {    background-color: #596bfd;
+    color: #fff;}
 .subscribe-plan .subscribe-price small {font-size: 18px; font-weight: 400; vertical-align: top;}
 .subscribe-plan .subscribe-price span {color: #7668e3; font-weight: 500;}
 .subscribe-plan:hover:not(.current-plan) {border-color: #7668e3;}
@@ -15094,12 +15095,12 @@ Lms FAQS Style Start
 .lms-faqs .nav-tabs li:last-child a {border-top-right-radius: 8px; border-bottom-right-radius: 8px;}
 .lms-faqs .nav-tabs .nav-link.active {color: var(--primary); background-color:#eaeaea99;}
 .lms-faqs .nav-tabs li {margin: 0 1px; flex: 1 1;}
-.lms-faqs .card {background-color: inherit; border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 25px; padding: 0 0 25px;}
+.lms-faqs .card {background-color: inherit; border: 0; border-radius: 0; border-bottom: 1px solid #e0dfdf; margin: 0 0 10px; padding: 0 0 10px;}
 .lms-faqs .card .card-header {background-color: inherit; padding: 0; border: 0;}
 .lms-faqs .card .card-header .btn-link {height: auto; padding: 0 35px 0 0; display: block; width: 100%; text-align: left; position: relative; transition: none;}
 .lms-faqs .card .card-header .btn-link h3 {font-weight: normal; color: inherit; font-size: inherit; }
 .lms-faqs .card .card-header .btn-link:before,
-.lms-faqs .card .card-header .btn-link:after {background-color: #2d3d4d; content: " "; display: block; position: absolute; right: 0; top: 50%; height: 2px; width: 20px; border-radius: 5px; transform: translateY(-50%) rotate(180deg); transition: transform .3s ease;}
+.lms-faqs .card .card-header .btn-link:after {background-color: #2d3d4d; content: " "; display: block; position: absolute; right: 10px; top: 50%; height: 2px; width: 20px; border-radius: 5px; transform: translateY(-50%) rotate(180deg); transition: transform .3s ease;}
 .lms-faqs .card .card-header .collapsed.btn-link:after {transform: translateY(-50%) rotate(90deg);}
 .accordion__icon--is-open:before {transform: translateY(-50%) rotate(180deg);}
 .lms-faqs .card .card-header .btn-link:focus,
@@ -16836,12 +16837,27 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .book-detail {text-align: center;}
 .lms-choose-membership .modal-dialog {height: 100%;}
 .lms-choose-membership .modal-content {background-color: #fafafa; border: 0; position: relative; box-shadow: none; border-radius: 0; height: 100%;}
-.lms-choose-membership .modal-body{background-color: #fafafa; padding: 30px;}
+.lms-choose-membership .modal-body{background-color: #fafafa; padding: 0 25px 0;}
 .lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
 .lms-choose-membership .book-form {margin: 0 auto;}
-.lms-choose-membership .form-group{margin-bottom: 15px;}
+.lms-choose-membership .form-group{margin-bottom: 15px; position: relative;}
 .lms-choose-membership .input-field {border: 0;border-radius: 0;background: none;padding: 0;height: auto;width: 100%;position: relative;}
-.lms-choose-membership .input-field input[type="text"] {background: #fff; border-radius: 6px;height: 46px;width: 100%;padding: 11px;border: 2px solid #b4bac8;color: #b5b8bf;}
+.lms-choose-membership .input-field input[type="text"],
+.lms-choose-membership .select-box select {background: #f3f3f3; border-radius: 6px;height: 52px;width: 100%;padding: 11px;border: 0;color: #b5b8bf;}
+.book-form label .icon-box {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+}
+.book-form label .icon-box img {
+    max-width: 100%;
+}
+.book-form .form-label {
+    display: block;
+    line-height: normal;
+    color: #999;
+    margin: 0 0 8px;
+}
 .lms-choose-membership .input-field input::-webkit-input-placeholder {color: #b5b8bf;}
 .lms-choose-membership .input-field input::-moz-placeholder {color: #b5b8bf;}
 .lms-choose-membership .input-field input:-ms-input-placeholder {color: #b5b8bf;}
@@ -16878,7 +16894,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .bg-none {background: transparent;color: var(--primary-hover);box-shadow: none;}
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
-.lms-choose-membership .close{color: var(--primary-hover);font-size: 1rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right; position: absolute; right: 10px; top: 20px; z-index: 1;}
+.lms-choose-membership .close{color: var(--primary-hover);font-size: 1rem;font-weight: 500;line-height: 32px;opacity: 1; padding: 20px; text-align: right; position: absolute; right: 10px; top: 0; z-index: 1;}
 .lms-choose-membership .close span {
     font-size: 3rem;
     vertical-align: middle;
@@ -16888,7 +16904,12 @@ Lms Choose Membership Model Style Start
     margin-left: 10px;
 }
 .lms-choose-membership .modal-logo {
-    padding: 30px 30px 0;
+    padding: 20px 25px 0;
+}
+.lms-choose-membership .modal-logo img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
 }
 .membership-sub-header { position: relative; overflow: hidden;}
 .lms-choose-membership .form-separator {position: relative;overflow: hidden;text-align: center;margin: 30px 0;}
@@ -16898,7 +16919,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .social-login {border-radius: 50px;border: 2px solid #b4bac8;font-size: 20px;font-weight: bold;color: #b5b8bf;}
 .lms-choose-membership .form-login-reading .input-field input[type="text"] {height: 48px;border: 1px solid #ddd;}
 .lms-choose-membership .error-message {font-size: 18px;color: #ee3565;font-weight: 500;}
-.lms-choose-membership .fomr-label {display: inline-block; margin: 0 0 8px; position: relative; line-height: normal;}
+.lms-choose-membership .fomr-label {display: inline-block; margin: 0 0 14px; position: relative; line-height: normal;}
 .lms-choose-membership .form-login-reading .input-field input.input-date,
 .lms-choose-membership .form-login-reading .input-field input.input-month{width: 60px; display: inline-block; margin-right: 10px;}
 .lms-choose-membership .form-login-reading .input-field input.input-year {width: 120px;}
@@ -17408,7 +17429,6 @@ Main Home style End
 .rurera-button-loader .double-bounce1, 
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
-.rurera-processing:has(.rurera-button-loader) {position: inherit;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
 .quiz-start-btn .rurera-button-loader,
@@ -17872,7 +17892,7 @@ body .lms-quiz-section .flipbook-quiz {
 .spells-quiz-info ul li span {display: inline-block; font-weight: 600; font-size: 20px;}
 .spells-quiz-info ul li .nub-of-sec {color: #7caf40; }
 .question-layout-block form.question-fields,
-.spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0;}
+.spell-question-area .question-layout-block form.question-fields {border: 1px solid #bac3ca; margin: 0 0 50px; border-radius: 5px; background-color: rgba(248,248,248,0.6); padding: 30px 30px 0; overflow: hidden;}
 .quiz-first-question .spells-quiz-info ul {gap: 0; border: 1px solid #f1f0f5; border-radius: 0;position: relative;z-index: 1;}
 .quiz-first-question .spells-quiz-info ul li {width: 33%; border-left-color: #f1f0f5; word-wrap: break-word;}
 .quiz-first-question .spells-quiz-info ul li .quiz-timer-counter {width: 100%;}
@@ -18130,7 +18150,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .levels-progress.horizontal .progress-box {background-color: #e5e5e5; height: 18px; border-radius: 50px; display: block; position: relative; overflow: hidden; min-width: 270px; max-width: 270px;}
 .levels-progress.horizontal {margin-top: 15px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; width: 100%; }
 .horizontal .progress-count {display: block; position: absolute; left: 0; top: 0; height: 100%; border-radius: 50px; background-color: gray; }
-.levels-progress .progress-numbers {color: #757575; font-weight: 600;}
+.levels-progress .progress-numbers {color: #cacaca; font-weight: 600;}
 /* .spell-tooltip {background-color: #f7f7f7; border: 1px solid #e5e5e5; border-radius: 12px; position: absolute; left: -20px; top: 100%; min-width: 300px; z-index: 2; padding: 20px; opacity: 0; visibility: hidden; transition: all .5s ease; margin-top: 15px;} */
 .spell-tooltip-text strong {display: block; color: #b0b0b0; margin: 0 0 10px; }
 .spell-tooltip-text span {color: #666;display: block; }
@@ -18276,7 +18296,20 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-subheader .info-modal-btn img {max-width: 100%; vertical-align: top; }
 .spell-levels .panel-subheader h2 {display: inline-block; vertical-align: middle;}
 .treasure-stage {width: 100%; display: inline-block; padding-left: 20px; }
-.panel-stats {background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe; background-position: 96% 100%; padding: 25px 20px; border-radius: 5px; margin: 0 0 25px;}
+.panel-stats {/*background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe; background-position: 96% 100%;*/ background-color: #ebf3fe; padding: 25px 20px; border-radius: 5px; margin: 0 0 30px; position: relative;}
+.panel-stats .course-icon {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    width: 230px;
+    height: 118px;
+}
+.panel-stats .course-icon img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0;
+}
 .stats-user {margin: 0 0 20px;}
 .stats-user > a {display: flex; align-items: center; gap: 10px;}
 .stats-user > a img {height: 32px; width: 32px; background-color: #ddd; border-radius: 100%;}
@@ -19003,6 +19036,10 @@ li.disable-timetable label {
 }
 .profile-dropdown ul li {
     margin: 0 0 10px;
+    padding-left: 0;
+}
+.profile-dropdown ul li:after {
+    display: none;
 }
 .profile-dropdown ul li:last-child {
     margin-bottom: 0;
@@ -19033,12 +19070,26 @@ li.disable-timetable label {
     height: 20px;
     width: 20px;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 5px;
 }
 .profile-dropdown .icon-box img {
     max-width: 100%;
+    border-radius: 0;
+    border: 0;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    height: 20px;
+    width: 20px;
+    min-width: auto;
+    min-height: auto;
+    filter: invert(26%) sepia(29%) saturate(7500%) hue-rotate(187deg) brightness(91%) contrast(98%);
 }
-
+.db-form-tabs .profile-dropdown ul li .connect-user-btn {
+    padding: 0;
+    border: 0;
+}
 /*Year Tabs Style Start*/
 .Filter-lable {
     margin-right: 10px;
@@ -19585,6 +19636,21 @@ body .flipbook-data {
 }
 .googlepay-gateway-fields section.container {
     margin-top: 0 !important;
+}
+
+.social-info-card .icon-box {
+    height: 45px;
+    width: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #cfe3f4;
+    padding: 8px;
+    border-radius: 3px;
+    margin: 0 0 15px;
+}
+.social-info-card .icon-box img {
+    max-width: 100%;
 }
 
 

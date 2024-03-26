@@ -77,6 +77,17 @@
                         <span>Home</span>
                     </a>
                 </li>
+            @if(auth()->user()->isParent())
+                <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/panel/members">
+                        <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                            <img src="/assets/default/img/sidebar/set-work.svg">
+                        </span>
+                    </a>
+                    <a href="/panel/members" class="font-15">Set Work</a>
+                </li>
+
+            @endif
             @if(auth()->user()->isUser())
                     <li class="sidenav-item {{ (request()->is('learn') or request()->is('learn/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/learn">
@@ -160,22 +171,16 @@
                     <a href="/school-zone" class="font-15">School Zone</a>
                 </li>
             @endif
-                <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/setting">
-                        <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                            <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
-                        </span>
-                    </a>
-                    <a href="/panel/setting" class="font-15">Profile</a>
-                </li>
-                 <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center" href="/panel/marketing/affiliates">
-                            <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/referrals.png">
-                            </span>
-                        </a>
-                        <a href="/panel/marketing/affiliates" class="font-15">Referrals</a>
-                    </li>
+            <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center" href="/panel/marketing/affiliates">
+                    <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                        <img src="/assets/default/img/sidebar/referrals.png">
+                    </span>
+                </a>
+                <a href="/panel/marketing/affiliates" class="font-15">Referrals</a>
+            </li>
+
+
             @if(auth()->user()->isParent())
                 <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/panel/members">
@@ -185,28 +190,29 @@
                     </a>
                     <a href="/panel/members" class="font-15">Members</a>
                 </li>
+
             @endif
 
-            @if(!auth()->user()->isUser())
-                <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }} dropdown show">
+            <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center" href="/panel/setting">
+                    <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                        <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
+                    </span>
+                </a>
+                <a href="/panel/setting" class="font-15">Profile</a>
+            </li>
 
-                    <a class="d-flex align-items-center">
-                        <span class="sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/more.svg">
-                        </span>
-                    </a>
-                    <a href="javascript:;" class="dropdown-toggle font-15" id="sub-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
-                    <div class="dropdown-menu" aria-labelledby="sub-dropdown">
-                        <ul>
-                            <li><a class="font-15" href="/faqs">FAQs</a></li>
-                            <li><a class="font-15" href="/custom_html">Custom HTML</a></li>
-                            <li><a class="font-15" href="/logout">Logout</a></li>
-                            <li><a class="font-15" href="#">More</a></li>
-                        </ul>
-                    </div>
-                </li>
-            @endif
-            <li class="sidenav-item logout-sidebar">
+            <li class="sidenav-item {{ (request()->is('logout') or request()->is('logout/*')) ? 'sidenav-item-active' : '' }}">
+                <a class="d-flex align-items-center" href="/logout">
+                    <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                        <img src="/assets/default/img/sidebar/logout.svg">
+                    </span>
+                </a>
+                <a href="/logout" class="font-15">Logout</a>
+            </li>
+
+
+            <li class="sidenav-item logout-sidebar rurera-hide">
                 <a class="d-flex align-items-center" href="/logout">
                     <span class="sidenav-item-icon mr-20">
                         <img src="/assets/default/img/icons/sidebar/logout.svg">
