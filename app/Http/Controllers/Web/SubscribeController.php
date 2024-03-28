@@ -15,6 +15,7 @@ use App\Models\Subscribe;
 use App\Models\SubscribeUse;
 use App\Models\UserSubscriptions;
 use App\Models\Webinar;
+use App\Models\UserParentLink;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -256,13 +257,22 @@ class SubscribeController extends Controller
             'verified'        => true,
             'created_at'      => time(),
             'parent_type'     => 'parent',
-            'parent_id'       => isset($user->id) ? $user->id : 0,
+            'parent_id'       => 0,
             'year_id'         => $year_id,
             'class_id'        => 0,
             'section_id'      => 0,
             'user_life_lines' => 5,
             'first_name'      => $first_name,
             'last_name'       => $last_name,
+        ]);
+
+        UserParentLink::create([
+            'user_id'         => $childObj->id,
+            'parent_id'       => isset($user->id) ? $user->id : 0,
+            'parent_type'     => 'parent',
+            'status'          => 'active',
+            'created_by'      => isset($user->id) ? $user->id : 0,
+            'created_at'      => time(),
         ]);
         //$childObj = User::find(1204);
         $subscribes = Subscribe::all();
@@ -346,6 +356,19 @@ class SubscribeController extends Controller
            'is_cancelled' => 1,
            'cancelled_by' => $user->id,
            'cancelled_at' => time(),
+        ]);
+        exit;
+    }
+
+    public function unlinkUser(Request $request)
+    {
+        $user = auth()->user();
+        $child_id = $request->input('child_id');
+        $userLinkObj = UserParentLink::where('user_id', $child_id)->where('parent_id', $user->id)->first();
+
+        $userLinkObj->update([
+           'status' => 'unlinked',
+           'last_updated' => time(),
         ]);
         exit;
     }

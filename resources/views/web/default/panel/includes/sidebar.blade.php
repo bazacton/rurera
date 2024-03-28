@@ -143,6 +143,14 @@
             @endif
 
                 @if(auth()->user()->isUser())
+                <li class="sidenav-item {{ (request()->is('games') or request()->is('games/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/games">
+                        <span class="sidenav-item-icon mr-20">
+                            <img src="/assets/default/img/sidebar/games.svg">
+                        </span>
+                    </a>
+                    <a href="/games" class="font-15">Games</a>
+                </li>
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/shop">
                         <span class="sidenav-item-icon mr-20">
@@ -210,17 +218,6 @@
                 </a>
                 <a href="/logout" class="font-15">Logout</a>
             </li>
-
-
-            <li class="sidenav-item logout-sidebar rurera-hide">
-                <a class="d-flex align-items-center" href="/logout">
-                    <span class="sidenav-item-icon mr-20">
-                        <img src="/assets/default/img/icons/sidebar/logout.svg">
-                    </span>
-                </a>
-                <a href="/logout" class="font-15">Log out</a>
-            </li>
-
 
 
 

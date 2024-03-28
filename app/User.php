@@ -3847,6 +3847,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\UserZoomApi', 'user_id', 'id');
     }
 
+    public function parentChilds()
+    {
+        return $this->hasMany('App\Models\UserParentLink', 'parent_id', 'id')->where('parent_type', 'parent');
+    }
+
 
     public function rates()
     {

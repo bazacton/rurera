@@ -101,8 +101,8 @@
     #progbar {
         position: relative;
         width: 100%;
-        background-color:;
         text-align: center;
+        margin-top: -50px;
     }
     .flexible-progress-bar {
         display: inline-block;

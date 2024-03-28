@@ -1,4 +1,4 @@
-@if(auth()->check() && (auth()->user()->isUser()))
+
 <div class="user-profile-icons">
     <ul>
         <li class="sidebar-logo-mobile">
@@ -7,6 +7,7 @@
                 <img src="/assets/default/img/sidebar/logo.svg"><span class="sidebar-logo-text"></span>
             </a>
         </li>
+        @if(auth()->check() && (auth()->user()->isUser()))
         <li class="dropdown dropdown-list-toggle">
             <strong>
                 <img src="/assets/default/img/panel-sidebar/1.png" alt="">
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </li>
+        @endif
 
         <li class="sidebar-no-mobile">
             <div class="xs-w-100 d-flex align-items-center justify-content-between">
@@ -140,4 +142,3 @@
         </li>
     </ul>
 </div>
-@endif

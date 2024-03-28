@@ -62,7 +62,7 @@
             @include(getTemplate(). '.panel.includes.sidebar')
         @endif
         <div class="panel-content">
-            <div class="container container-nosidebar">
+            <div class="container ">
                 <div class="row"> 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         @yield('content')

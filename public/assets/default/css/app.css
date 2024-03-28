@@ -16858,6 +16858,103 @@ Lms Choose Membership Model Style Start
     color: #999;
     margin: 0 0 8px;
 }
+.discount-code-block {
+    margin: 0 0 40px;
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 40px;
+}
+.discount-code-block > [class*="col-"] {
+    padding: 0;
+}
+.lms-choose-membership .payment-options-holder {
+    max-width: 80%;
+    margin: 0 auto;
+}
+.lms-choose-membership .discount-code-block input[type="text"] {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.lms-choose-membership .discount-code-block .nav-link {
+    width: auto;
+    background-color: inherit;
+    border-radius: 5px !important;
+    box-shadow: none;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    text-align: center;
+    height: 52px;
+    line-height: 30px;
+    position: relative;
+    margin-top: 30px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.lms-choose-membership .discount-code-block .nav-link:after {
+    content: "\2192";
+    display: inline-block;
+    font-weight: 500;
+    font-size: 24px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.lms-choose-membership .discount-code-block p {
+    margin: 0 0 10px;
+    color: var(--primary);
+    font-weight: 500;
+}
+.book-form .tests-list li {
+    width: 49%;
+    min-height: auto;
+    justify-content: center;
+    align-items: flex-start;
+    border: 0;
+    background-color: #f3f3f3;
+    height: 52px;
+    padding: 5px 10px;
+    color: #b5b8bf;
+    font-size: 14px;
+}
+.lms-choose-membership .book-form > .row,
+.lms-choose-membership .book-form > .row > [class*="col-"] .row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.lms-choose-membership .book-form > .row > [class*="col-"],
+.lms-choose-membership .book-form > .row > [class*="col-"] .row [class*="col-"] {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.book-form .tests-list.payment-methods {
+    gap: 16px;
+    flex-wrap: nowrap;
+}
+.book-form .tests-list li.active {
+    box-shadow: none;
+    background-color: var(--primary);
+    color: #fff;
+}
+.book-form .tests-list li img {
+    height: 18px;
+    width: 18px;  
+}
+.book-form .tests-list li img.google-icon {
+    height: 30px;
+    width: 30px;
+    margin-bottom: -10px;
+}
+.book-form .tests-list li.active img {
+    filter: invert(100%) sepia(1%) saturate(3424%) hue-rotate(181deg) brightness(110%) contrast(100%);
+}
+.book-form .tests-list li.active img.google-icon {
+    filter: none;
+}
+.card-gateway-fields-holder > .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.card-gateway-fields-holder > .row > .col-12 {
+    padding: 0;
+}
 .lms-choose-membership .input-field input::-webkit-input-placeholder {color: #b5b8bf;}
 .lms-choose-membership .input-field input::-moz-placeholder {color: #b5b8bf;}
 .lms-choose-membership .input-field input:-ms-input-placeholder {color: #b5b8bf;}
@@ -17429,6 +17526,7 @@ Main Home style End
 .rurera-button-loader .double-bounce1, 
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
+.rurera-processing:has(.rurera-button-loader) {position: relative;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
 .quiz-start-btn .rurera-button-loader,
@@ -18257,9 +18355,6 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .lms-jobs-form .input-field input[type="text"] {padding-right: 45px;}
 .panel-content .lms-jobs-form .input-field:before {content: ""; height: 25px; width: 25px; position: absolute; right: 15px; top: 50%; margin-top: -12px; background: url(/assets/default/svgs/search.svg) no-repeat;}
 .listing-search .has-border {border-bottom: 1px solid #e2e2e2; padding: 0 0 25px 0; }
-.tests-list.payment-methods {
-    margin: 0 -15px;
-}
 /* Trophy Levels Style Start */
 .trophy-levels .spell-levels li > a {height: 30px; width: 35px;}
 .trophy-levels .spell-levels li > a:before {display: none; }
@@ -19234,61 +19329,21 @@ li.disable-timetable label {
 .selected-plan-data p {
     color: #999;
 }
-.selected-plan-data .packages-back-btn {
-    color: var(--primary);
-    cursor: pointer;
-    margin-top: auto;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    background-color: #fff;
-}
-.selected-plan-data .text-box {
-    padding: 0;
-    text-align: center;
-    display: inline-flex;
-    min-width: 300px;
-    min-height: 450px;
-    flex-direction: column;
-    background-color: #f6f6f6;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
+.selected-plan-data {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 30px;
 }
 .selected-plan-data .package-price {
-    background-color: #fff;
-    min-height: 150px;
-    padding: 0 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 16px;
-    font-weight: 500;
     color: #999;
-    border-bottom: 1px solid #ddd;
 }
-
 .selected-plan-data .package-price strong {
-    display: block;
-    font-size: 36px;
-    font-weight: 500;
-    line-height: normal;
-    color: #343434;
-}
-
-.selected-plan-data .package-price strong span {
-    vertical-align: middle;
     font-weight: 400;
-    font-size: 22px;
-    line-height: 30px;
-    margin-right: 5px;
-    position: relative;
-    top: -5px;
+}
+.packages-back-btn {
+    color: var(--primary);
+    cursor: pointer;
 }
 
-.selected-plan-data .text-box h3 {
-    margin: auto 0;
-}
 /* Recent Reviews Style */
 .masonry-grid {
     margin-left: -14px;
@@ -19653,6 +19708,239 @@ body .flipbook-data {
     max-width: 100%;
 }
 
+/* Sentences Screens Style Start */
+body:has(.sentences-block) .top-navbar,
+body:has(.sentences-block) footer.footer.footer-home {
+    display: none;
+}
+.sentences-inner {
+    border: 4px solid #333;
+    border-radius: 10px;
+    position: relative;
+    height: calc(100vh - 20px);
+}
+.sentences-block .sentences-body {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.sentences-block {
+    background-color: #fcf7f0;
+    padding: 10px;
+}
+.sentences-block:not(.active) {
+    display: none;
+}
+.sentences-top {
+    min-height: 180px;
+}
+.sentences-top.auto-height {
+    min-height: auto;
+}
+.sentences-controls {
+    gap: 30px;
+}
+.sentences-top:has(.home-btn) {
+    margin-top: -15px;
+    padding-left: 50px;
+}
+.sentences-controls a {
+    background-color: #fff000;
+    border: 3px solid #333;
+    padding: 12px 15px;
+    line-height: normal;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px #fff inset;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.sentences-top h2 strong {
+    color: #e50606;
+}
+.sentences-select-option li {
+    display: inline-flex;
+    line-height: normal;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin-right: -4px;
+    padding: 0 5px 10px;
+    position: relative;
+}
+.sentences-select-option li label {
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: #f9e5ca;
+    box-shadow: 0 0 0 2px #fff inset;
+    padding: 10px 10px;
+    display: block;
+    line-height: normal;
+    min-width: 140px;
+    margin: 0;
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+}
+.sentences-select-option li label:after {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "\2713";
+    font-size: 16px;
+    color: #1c7d1c;
+    font-weight: 700;
+    opacity: 0;
+    visibility: hidden;
+}
+.sentences-select-option li input[type=checkbox]:checked + label:after {
+    visibility: visible;
+    opacity: 1;
+}
+.sentences-select-option li input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+}
+.sentences-select-option li input[type=checkbox]:checked + label {
+    background-color: #eaa74b;
+}
+.sentences-select-option li input[type=checkbox]:checked + label .icon-cross {
+    visibility: hidden;
+    opacity: 0;
+}
+.sentences-select-option li label .icon-check, 
+.sentences-select-option li label .icon-cross {
+    color: #1c7d1c;
+    font-weight: 700;
+    position: absolute;
+    right: 10px;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.sentences-select-option li label .icon-cross {
+    color: #c40b0b;
+}
+.sounds-block a {
+    background-color: #ffebd3;
+    border: 3px solid #333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 3px;
+    box-shadow: 0 0 0 3px #fff inset;
+}
+.sounds-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.sounds-block .icon-box {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
+.sounds-block .icon-box img {
+    max-width: 100%;
+}
+.sentences-controls a span {
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
+.sentences-controls a span img {
+    max-width: 100%;
+}
+.sounds-block a strong {
+    min-height: 100px;
+    font-size: 28px;
+    display: flex;
+    width: 100%;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    align-items: center;
+    justify-content: center;
+}
+.sounds-block a strong.wrong {
+    background-color: #e53434;
+}
+.sounds-block a strong.correct {
+    background-color: var(--primary);
+} 
+.sentences-input-field {
+    margin: 0 0 50px;
+}
+.sentences-input-field input[type="text"] {
+    height: 60px;
+    max-width: 400px;
+    min-width: 400px;
+    border: 3px solid #333;
+    border-radius: 5px;
+    padding: 0 15px;
+    text-align: center;
+    font-weight: 700;
+}
+.home-btn {
+    background-color: #ffc760;
+    height: 50px;
+    width: 50px;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px #fff inset;
+    border: 2px solid #333;
+}
+.home-btn img {
+    max-width: 100%;
+}
+.sentences-block .back-btn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    text-align: center;
+    background-color: #ffc760;
+    height: 50px;
+    width: 50px;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 0 2px #fff inset;
+    border: 2px solid #333;
+    line-height: 32px;
+    font-size: 36px;
+}
+
+/* Sentences Screens Style End */
+.game-card img {
+    max-width: 100%;
+}
+.game-card {
+    background-color: #fff000;
+    border: 1px solid #eddf00;
+    border-radius: 10px;
+    padding: 15px 15px 25px;
+    margin-bottom: 30px;
+}
+.game-card .icon-box {
+    border: 1px solid #eddf00;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: block;
+    overflow: hidden;
+}
+.game-banner img {
+    border-radius: 5px;
+    max-width: 100%;
+}
 
 /*************************************
 Lms Responsive Style Start
@@ -20111,12 +20399,15 @@ Lms Responsive Style Start
     .results-revenue-card .text-box,
     .have-question-card .text-box {width: 100%; padding: 20px 0 0 0;}
     .db-members .card .list-group-item .row .col-auto:first-child {padding-left: 0;}
-    .db-members .card .list-group-item .row .col-5 {flex: 0 0 85%; max-width: 85%; padding-bottom: 10px;}
+    .db-members .card .list-group-item .row .col-5 {flex: 0 0 35%; max-width: 35%; padding-bottom: 10px;}
     .list-group-item .row {
         gap: 10px;
     }
     .list-group-item .row [class*="col-"] {
         padding: 0;
+    }
+    .db-members .card .list-group-item .last-activity.profile-dropdown {
+        padding-right: 20px;
     }
     .list-group-item .switch-user-btn img {
         margin: 0;
@@ -20265,6 +20556,42 @@ Lms Responsive Style Start
         padding-left: 8px;
     }
     .listing-search .filters-list {margin-bottom: 15px;}
+    .sentences-inner {
+        padding-top: 70px !important;
+    }
+    .sentences-inner:has(.home-btn) {
+        padding-top: 25px !important;
+    }
+    .sentences-input-field input[type="text"] {
+        max-width: 100%;
+        min-width: auto;
+        width: 100%;
+    }
+    .sentences-top {
+        padding-top: 0 !important;
+        min-height: auto;
+        margin-bottom: 30px;
+    }
+    .sentences-select-option {
+        margin-bottom: 30px;
+    }
+    .sentences-controls {
+        gap: 10px;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+    }
+    .sentences-controls a {
+        min-width: auto;
+        width: 48%;
+    }
+    .lms-choose-membership .close {
+        font-size: 14px;
+    }
+    .lms-choose-membership .modal-logo img {
+        height: 35px;
+        width: 35px;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -20479,7 +20806,9 @@ Lms Responsive Style Start
     .spells-quiz-from .form-btn-field {display: flex;flex-direction: column-reverse; padding-left: 20px; padding-right: 20px;}
     .spell-levels li {align-items: flex-start;}
     .spell-levels li > a:before {height: 100%; margin-top: 14px;}
-    .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 100%; padding-top: 10px;}
+    .db-members .card .list-group-item .row .col-5 {flex: 0 0 35%; max-width: 35%;}
+    .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 45%; padding-top: 10px; text-align: right;}
+    .db-members .card .list-group-item .last-activity.profile-dropdown {text-align: left;}
     .panel-content .template-grid .text-holder a {display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 5px;}
     .panel-content .grid-card .title-label, .login-options .coming-soon {margin: 0;}
     .school-zone-students [class*="col-"] {flex: 0 0 100%; max-width: 100%;}
