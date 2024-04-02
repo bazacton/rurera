@@ -13738,7 +13738,7 @@ p {line-height: 1.5;}
 .login-password form {
     margin-bottom: 50px;
 }
-.login-password input[type="password"] {
+.login-password input[type="password"], .login-password input[type="text"] {
     border: 0;
     padding: 0;
     color: #eeeeee;
@@ -13749,7 +13749,7 @@ p {line-height: 1.5;}
     -webkit-text-security: none;
     font-size: 80px;
 }
-.login-password input[type="password"] {
+.login-password input[type="password"], .login-password input[type="text"] {
     -webkit-text-security: circle;
 }
 .login-card .login-option {

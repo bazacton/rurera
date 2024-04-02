@@ -729,6 +729,17 @@
                 <form name="edit-quest-modal" id="edit-quest-form">
 
                     <div class="form-group">
+                        <div class="date-tags">
+                            <a href="javasc">26-03-024 <span class="icon-box">&#x2716;</span></a>
+                            <a href="#">27-04-024 <span class="icon-box">&#x2716;</span></a>
+                            <a href="#">25-03-024 <span class="icon-box">&#x2716;</span></a>
+                            <a href="#">29-03-024 <span class="icon-box">&#x2716;</span></a>
+                            <a href="#">22-02-024 <span class="icon-box">&#x2716;</span></a>
+                            <a href="#">21-05-024 <span class="icon-box">&#x2716;</span></a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="input-label">Quest Dates</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -740,7 +751,7 @@
                             <input type="text" autocomplete="off"
                                    name="s"
                                    value=""
-                                   class="form-control practice-start-date rureramultidatespicker rurera-req-field"
+                                   class="form-control practice-start-date  rureradatepicker rurera-req-field" dataType="quest_date" min="{{date('Y-m-d', strtotime('+1 day'))}}"
                                    placeholder=""/>
                         </div>
                     </div>
@@ -768,32 +779,37 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        window.resetRureraMultiDatesPickerField = () => {
-
-            var tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            $('.rureramultidatespicker').datepicker({
-               multidate: true,
-               format: 'dd-mm-yyyy',
-                startDate: 'today',
-           });
-        };
-        resetRureraMultiDatesPickerField();
         $('body').on('click', '.edit-quest-btn', function (e) {
             var dates_string = $(this).attr('data-dates');
             var quest_id = $(this).attr('data-quest_id');
             $(".quest-id-field").val(quest_id);
-            $('.rureramultidatespicker').datepicker('destroy');
-            $(".rureramultidatespicker").val(dates_string);
-            resetRureraMultiDatesPickerField();
+
+            var dates_array = dates_string.split(',');
+            var date_tags = '';
+            dates_array.forEach(function(date){
+                date_tags += '<a href="javascript:;">'+date+' <span class="icon-box">&#x2716;</span><input type="hidden" class="edit-quest-dates" name="quest_dates[]" value="'+date+'"</a>';
+            });
+
+            $(".date-tags").html(date_tags);
+
+
+
             $(".edit-quest-modal").modal('show');
+        });
+
+        $('body').on('click', '.date-tags a', function (e) {
+            $(this).remove();
         });
 
         $('body').on('click', '.edit-quest-submit-btn', function (e) {
 
             rurera_loader($(".edit-quest-modal-div"), 'div');
             var quest_id = $('.quest-id-field').val();
-            var dates_string = $('.rureramultidatespicker').val();
+            var questDates = [];
+            $('input[name="quest_dates[]"]').each(function() {
+                questDates.push($(this).val());
+            });
+            var dates_string = questDates.join(',');
             jQuery.ajax({
                type: "POST",
                url: '/admin/daily_quests/update_dates',

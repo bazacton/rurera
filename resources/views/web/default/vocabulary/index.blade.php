@@ -31,6 +31,7 @@
 
                 <div class="col-12">
                     <div class="listing-search lms-jobs-form mb-20">
+                        <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                         <ul class="inline-filters">
                             @php $active = ($quiz_category == '')? 'active' :'' @endphp
                             <li class="{{$active}}"><a href="/spells"><span class="icon-box">

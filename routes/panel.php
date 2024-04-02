@@ -41,7 +41,7 @@ Route::group([
        Route::get('/', 'MembersController@change_password');
    });
 
-    Route::group(['prefix' => 'members'], function () {
+    Route::group(['prefix' => 'students'], function () {
         Route::get('/', 'MembersController@index');
     });
 
@@ -335,6 +335,7 @@ Route::group([
         Route::post('/update-user', 'UserController@updateUser');
         Route::post('/update-user-password', 'UserController@updateUserPassword');
         Route::post('/connect-user-class', 'UserController@connectUserClass');
+        Route::post('user-settings', 'UserController@userSettings');
 
     });
 

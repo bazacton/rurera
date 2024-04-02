@@ -327,15 +327,15 @@ $timer_counter = $practice_time;
   <div class="modal-content">
     <div class="modal-body">
       <div class="modal-box">
-        <div class="modal-title">
+        <div class="modal-title rurera-hide">
             <span class="inactivity-timer">30</span>
         </div>
-        <h3>Are you still there?</h3>
+        <h3>Session End</h3>
         <p>
-            Looks like you're inactive. Your session will be close and redirected in 2 minutes.
+            Looks like you're inactive. Your session has been closed.
         </p>
-        <a href="javascript:;" class="leavenow-btn" data-dismiss="modal" aria-label="Close">LEAVE NOW</a>
-       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">I'M STILL HERE</a>
+        <a href="javascript:;" class="leavenow-btn" data-dismiss="modal" aria-label="Close">Progress</a>
+       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Practice Again</a>
       </div>
     </div>
   </div>
@@ -405,9 +405,9 @@ $timer_counter = $practice_time;
                                 var inactivity_timer = parseInt($(".inactivity-timer").html() - 1);
                                 $(".inactivity-timer").html(inactivity_timer);
                                 if (parseInt(inactivity_timer) <= 0) {
-                                    $(".question_inactivity_modal").modal('hide');
+                                    //$(".question_inactivity_modal").modal('hide');
                                     $(".inactivity-timer").html(30);
-                                    $(".submit_quiz_final").click();
+                                    //$(".submit_quiz_final").click();
                                     clearInterval(InactivityInterval);
                                     InactivityInterval = null;
                                 }

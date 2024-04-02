@@ -4,7 +4,7 @@
 <style type="text/css">
     .frontend-field-error, .field-holder:has(.frontend-field-error),
     .form-field:has(.frontend-field-error), .input-holder:has(.frontend-field-error) {
-        border: 1px solid #dd4343;
+        border: 1px solid #dd4343 !important;
     }
 
     .hide {
@@ -16,7 +16,7 @@
 @section('content')
 <section class="member-card-header">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
-        <h1 class="section-title font-22">Members</h1>
+        <h1 class="section-title font-22">Students</h1>
         <div class="dropdown">
         <button type="button" class="btn btn-sm btn-primary subscription-modal" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Child
         </button>
@@ -37,7 +37,8 @@
                                  data-childs="{{$childs->count()}}">
 
                                 @if( !empty( $childs ) )
-                                @foreach($childs as $childObj)
+                                @foreach($childs as $childLinkObj)
+                                @php $childObj = $childLinkObj->user; @endphp
                                 @php $is_cancelled = (isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 1 )? 'cancelled-membership' : ''; @endphp
 
                                 <div class="list-group-item {{$is_cancelled}}">
@@ -94,11 +95,11 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 0 )
                                                 <li>
                                                     <a href="javascript:;" class="package-payment-btn switch-user-btn cancel-subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                        Cancel Membership
+                                                        <span class="icon-box"><img src="/assets/default/svgs/cancel.svg" alt=""></span> Cancel Membership
                                                     </a>
                                                 </li>
                                                 @endif
-                                                <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
+                                                <li><a href="javascript:;" class="package-payment-btn switch-user-btn unlink-modal" data-type="child_payment" data-id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
                                             </ul>
                                         </div>
                                     </div> <!--[ row end ]-->
@@ -654,7 +655,7 @@
                         <div class="col-12 col-lg-6 col-md-6">
                             <span class="form-label">Class Code</span>
                             <div class="input-field">
-                                <input type="text" name="class_code" placeholder="Class Code">
+                                <input type="text" name="class_code" class="rurera-req-field" placeholder="Class Code">
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
@@ -729,6 +730,24 @@
         </div>
     </div>
 </div>
+<div class="modal fade lms-choose-membership" id="unlinkModal" tabindex="-1" aria-labelledby="unlinkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            <div class="modal-body">
+                <div class="container container-nosidebar">
+                <div class="tab-content unlink-block" id="nav-tabContent">
+                        <h3>Data will be removed and may not be retrievable.</h3>
+                        <div class="row justify-content-center payment-content">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" class="nav-link btn-primary rounded-pill mb-25 unlink-btn" data-child_id="0">Proceed Unlink</a></div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts_bottom')
@@ -767,6 +786,7 @@
     $(document).on('click', '.childs-next-btn', function (e) {
 
         var formData = new FormData($(".childs-form")[0]);
+
         jQuery.ajax({
             type: "POST",
             processData: false,
@@ -815,8 +835,12 @@
 
     $(document).on('click', '.class-code-submit', function (e) {
         var thisObj = $(this);
-        rurera_loader(thisObj, 'div');
         var formData = new FormData($(".connect-to-class-form")[0]);
+        returnType = rurera_validation_process($(".connect-to-class-form"), 'growl');
+        if (returnType == false) {
+            return false;
+        }
+        rurera_loader(thisObj, 'div');
         jQuery.ajax({
             type: "POST",
             processData: false,

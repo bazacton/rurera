@@ -55,7 +55,7 @@
 
 <div id="panel_app">
 
-    
+
     <div class="panel-page-section">
         @if(auth()->check() && (auth()->user()->isUser()))
             @include(getTemplate(). '.includes.navbar')
@@ -66,7 +66,7 @@
         <div class="panel-content">
             <div class="container">
 
-                <div class="row"> 
+                <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-8 panel-content-holder">
                         @yield('content')
                     </div>
@@ -346,14 +346,14 @@
                             @endif
 
                         @endif
-                        
+
                         @if(request()->is('custom_html'))
                         <div class="col-12 col-lg-12">
                             <div class="mobile-app-card panel-shadow mb-30">
-                                <div class="card h-md-100" dir="ltr"> 
-                                    <div class="card-body d-flex flex-column flex-center">  
+                                <div class="card h-md-100" dir="ltr">
+                                    <div class="card-body d-flex flex-column flex-center">
                                         <div class="mb-2">
-                                            <h3 class="fw-semibold text-center">           
+                                            <h3 class="fw-semibold text-center">
                                                 Have you tried <br> new
                                                 <span> Mobile Application ?</span>
                                             </h3>
@@ -361,7 +361,7 @@
                                                 <img src="/assets/default/svgs/panel-app.svg" class="theme-dark-show w-200px" alt="">
                                             </div>
                                         </div>
-                                        <div class="button-controls"> 
+                                        <div class="button-controls">
                                             <a class="btn btn-sm btn-primary" data-target="#modal_create_app" data-toggle="modal">Try now</a>
                                             <a class="btn btn-sm btn-light" href="#">Learn more</a>
                                         </div>
@@ -374,11 +374,11 @@
                             <div class="facebook-card mb-30">
                                 <div class="card card-flush border-0 h-lg-100" data-theme="light" style="background-color: #7239EA">
                                     <div class="card-header">
-                                        <h3 class="card-title">            
+                                        <h3 class="card-title">
                                             <span class="card-label text-white">Facebook Campaign</span>
                                             <span class="badge badge-success">Active</span>
-                                        </h3>       
-                                        <div class="card-toolbar">            
+                                        </h3>
+                                        <div class="card-toolbar">
                                             <button class="btn" id="sidebar-dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#8594;</button>
                                             <div class="dropdown-menu" aria-labelledby="sidebar-dropdown1">
                                                 <div class="menu-item px-3">
@@ -410,7 +410,7 @@
                                                             <a href="#" class="menu-link px-3">
                                                                 Staff Group
                                                             </a>
-                                                        </div>           
+                                                        </div>
                                                         <div class="menu-item px-3">
                                                             <a href="#" class="menu-link px-3">
                                                                 Member Group
@@ -431,16 +431,16 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div>            
+                                            </div>
                                         </div>
                                     </div>
-                                <div class="card-body">  
+                                <div class="card-body">
                                     <div class="d-flex flex-wrap">
-                                        <div class="d-flex counted">                    
+                                        <div class="d-flex counted">
                                             <strong class="text-white">$4,368</strong>
                                             <span>New Followers</span>
                                         </div>
-                                        <div class="d-flex counted">                    
+                                        <div class="d-flex counted">
                                             <strong class="text-white">120,000</strong>
                                             <span>Followers Goal</span>
                                         </div>
@@ -460,7 +460,7 @@
                         <div class="col-12 col-lg-12">
                             <div class="key-statistics panel-shadow panel-border mb-30">
                                 <div class="key-header">
-                                    <h3 class="card-title align-items-start flex-column">            
+                                    <h3 class="card-title align-items-start flex-column">
                                         <span class="card-label fw-bold text-gray-900">Key Statistics</span>
                                         <span class="text-gray-500 mt-1 fw-semibold fs-6">Social activities overview</span>
                                     </h3>
@@ -740,7 +740,7 @@
                         <div class="col-12 col-lg-12">
                             <div class="notable-card panel-shadow panel-border">
                                 <div class="card-header">
-                                    <h3 class="card-title align-items-start flex-column">            
+                                    <h3 class="card-title align-items-start flex-column">
                                         <span class="card-label">Notable Channels</span>
                                         <span>Social networks overview</span>
                                     </h3>
@@ -830,6 +830,50 @@
 
     @include('web.default.includes.advertise_modal.index')
 </div>
+
+
+
+
+<div class="modal fade lms-choose-membership" id="userSettingsModal" tabindex="-1" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close <span aria-hidden="true">×</span></button>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="lms-form-wrapper mb-15">
+                        <div class="childs-block">
+                            <div class="child-item lms-choose-plan-selected">
+                                <div class="lms-jobs-form">
+                                    <form action="/panel/setting/user-settings" method="post" class="w-100 user-settings-form">
+                                        {{ csrf_field() }}
+                                        <div class="row user-details-block">
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <span class="form-label">Student Preference</span>
+                                                <div class="input-field">
+                                                    <select class="form-control" name="user_preference">
+                                                        <option value="">Preference</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary btn-block mt-50" style="background:#0272b6; color:#fff">Update
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>
 <script src="/assets/default/vendors/moment.min.js"></script>
@@ -850,7 +894,17 @@
     var deleteAlertSuccessHint = '{{ trans('public.deleteAlertSuccessHint') }}';
     var forbiddenRequestToastTitleLang = '{{ trans('public.forbidden_request_toast_lang') }}';
     var forbiddenRequestToastMsgLang = '{{ trans('public.forbidden_request_toast_msg_lang') }}';
+
+
+
 </script>
+@if(auth()->user()->isUser())
+    @if( !isset( $authUser->user_preference ) || $authUser->user_preference == 'none' || $authUser->user_preference == '')
+    <script>
+        $("#userSettingsModal").modal('show');
+    </script>
+    @endif
+@endif
 
 @if(session()->has('toast'))
     <script>
@@ -905,7 +959,7 @@
                             borderWidth: 0,
                             backgroundColor: '#417290',
                             borderColor: '#417290',
-                        },  
+                        },
                         {
                             label: '# of Points',
                             data: [20, 10, 5, 10, 10],
@@ -975,7 +1029,7 @@
             //var ctx = document.getElementById('chartBarHorizontal2').getContext('2d');
             //new Chart(ctx, options);
         </script>
-        <script>    
+        <script>
             /*var ctxPie = document.getElementById('pieChart');
             var pieChart = new Chart(ctxPie, {
                 type: 'pie',

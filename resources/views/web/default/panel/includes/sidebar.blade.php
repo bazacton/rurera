@@ -190,13 +190,13 @@
 
 
             @if(auth()->user()->isParent())
-                <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/members">
+                <li class="sidenav-item {{ (request()->is('panel/students') or request()->is('panel/students/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/panel/students">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/members.png">
                         </span>
                     </a>
-                    <a href="/panel/members" class="font-15">Members</a>
+                    <a href="/panel/students" class="font-15">Students</a>
                 </li>
 
             @endif

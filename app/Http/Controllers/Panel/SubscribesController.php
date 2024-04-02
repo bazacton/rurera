@@ -106,6 +106,7 @@ class SubscribesController extends Controller
         }
         $packages_amount = round($packages_amount, 2);
 
+
         $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
 
 

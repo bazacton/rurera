@@ -987,5 +987,26 @@ class UserController extends Controller
 
     }
 
+    /*
+     * Update User Class
+     */
+    public function userSettings(Request $request)
+    {
+        $user = auth()->user();
+        $user_preference = $request->input('user_preference');
+        $male_default_avatar = '{"avatar_settings":{"backs":"1","faceshape":"0","chinshadow":"0","facehighlight":"0","humanbody":"0","clothes":"0","hair":"1","ears":"0","eyebrows":"0","eyesback":"0","eyesiris":"0","eyesfront":"0","glasses":"0","mouth":"0","mustache":"0","beard":"0","nose":"0"},"avatar_color_settings":{"backs":"#000000","humanbody":"#f0c7b1","clothes":"#386e77","hair":"#2a232b","ears":"#f0c7b1","faceshape":"#f0c7b1","chinshadow":"#f0c7b1","facehighlight":"#f0c7b1","eyebrows":"#2a232b","eyesback":"#000000","eyesfront":"#000000","eyesiris":"#4e60a3","glasses":"#26120B","mustache":"#2a232b","beard":"#2a232b","mouth":"#da7c87","nose":"#f0c7b1"}}';
+        $female_default_avatar = '{"avatar_settings":{"backs":"1","faceshape":"0","chinshadow":"0","facehighlight":"0","humanbody":"0","clothes":"0","hair":"10","ears":"0","eyebrows":"0","eyesback":"0","eyesiris":"0","eyesfront":"0","glasses":"0","mouth":"2","nose":"0"},"avatar_color_settings":{"backs":"#ecf0f1","humanbody":"#f3d4cf","clothes":"#09aac5","hair":"#2a232b","ears":"#f3d4cf","faceshape":"#f3d4cf","chinshadow":"#f3d4cf","facehighlight":"#f3d4cf","eyebrows":"#2a232b","eyesback":"#000000","eyesfront":"#000000","eyesiris":"#4e60a3","glasses":"#26120B","mouth":"#ed2153","nose":"#f3d4cf"}}';
+
+        $user_avatar_settings = ($user_preference == 'female' )? $female_default_avatar : $male_default_avatar;
+        $avatar = ($user_preference == 'female' )? '/avatar/female-default.png' : '/avatar/male-default.png';
+        $user->update([
+            'avatar'                => $avatar,
+            'user_avatar_settings' => $user_avatar_settings,
+            'user_preference' => $user_preference,
+            'updated_at'   => time(),
+        ]);
+        return redirect('/panel/setting');
+    }
+
 
 }

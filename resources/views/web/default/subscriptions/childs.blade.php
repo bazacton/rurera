@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <span class="fomr-label">Student's first name</span>
                     <div class="input-field">
-                        <input type="text" class="user-first-name" placeholder="Name" name="first_name">
+                        <input type="text" class="user-first-name rurera-req-field" placeholder="Name" name="first_name">
                     </div>
                 </div>
             </div>
@@ -23,14 +23,14 @@
                 <div class="form-group">
                     <span class="fomr-label">Student's last name</span>
                     <div class="input-field">
-                        <input type="text" class="user-last-name" placeholder="Last name" name="last_name">
+                        <input type="text" class="user-last-name rurera-req-field" placeholder="Last name" name="last_name">
                     </div>
                 </div>
             </div>
             <div class="col-6 col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group">
                       <span class="fomr-label">Year Group</span>
-                      <select class="form-control @error('category_id') is-invalid @enderror"
+                      <select class="form-control @error('category_id') is-invalid @enderror rurera-req-field"
                               name="year_id">
                           <option {{ !empty($trend) ?
                           '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <span class="fomr-label">Username</span>
                     <div class="input-field">
-                        <input type="text" name="username" class="username-field" placeholder="Username">
+                        <input type="text" name="username" class="username-field rurera-req-field" placeholder="Username">
                     </div>
                 </div>
                 <div class="usernames-suggestions">
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <span class="fomr-label">Password</span>
                     <div class="input-field">
-                        <input type="password" class="password-field" name="password" placeholder="Create a password">
+                        <input type="password" class="password-field rurera-req-field" name="password" placeholder="Create a password">
                     </div>
                 </div>
                 <div class="password-suggestions">

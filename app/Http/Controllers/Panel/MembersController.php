@@ -211,7 +211,7 @@ class MembersController extends Controller
                        ->get();
             $subscribes = Subscribe::all();
             $data['subscribes'] = $subscribes ?? [];
-            $data['pageTitle'] = 'Members';
+            $data['pageTitle'] = 'Students';
             $data['categories'] = $categories;
             //pre($categories);
 

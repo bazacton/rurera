@@ -61,14 +61,17 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-12 col-md-12">
-                                    <ul class="tests-list mb-30">
-                                        <li data-type="all" class="active">All Tests</li>
-                                        <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt=""> SATs</li>
-                                        <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
-                                        <li data-type="iseb"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
-                                        <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
-                                        <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
-                                    </ul>
+                                    <div class="tests-list-holder mb-25">
+                                        <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
+                                        <ul class="tests-list mb-30">
+                                            <li data-type="all" class="active">All Tests</li>
+                                            <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt=""> SATs</li>
+                                            <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
+                                            <li data-type="iseb"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
+                                            <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
+                                            <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
+                                        </ul>
+                                    </div>
                                     <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
                                 </div>
                             </div>

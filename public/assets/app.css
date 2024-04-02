@@ -13372,13 +13372,7 @@ p {line-height: 1.5;}
 .login-logo {gap: 8px;}
 .login-logo img {max-width: 50px; object-fit: contain;}
 .login-logo .logo-text {color: #203c64; text-transform: uppercase;}
-.login-container .login-holder {background-color: #fff; border: 1px solid #ececec; border-radius: 8px; padding: 30px; margin-bottom: 15px; max-width: 1120px; min-width: 1120px; margin-left: 0; margin-right: 0;}
-.login-container .login-holder > [class*="col"] {
-    padding-right: 0;
-}
-.login-container .login-holder > [class*="col"]:last-child {
-    padding-right: 15px;
-}
+.login-container .login-holder {background-color: #fff; border: 1px solid #ececec; border-radius: 8px; padding: 30px; margin-bottom: 15px; max-width: 1120px; min-width: 1120px;}
 .login-holder .row {align-items: center;}
 .login-box {border: 1px dashed #dadada; border-radius: 5px; margin: 0 0 20px; padding: 20px;}
 .login-options .login-box:last-child {margin-bottom: 0;}
@@ -13404,25 +13398,17 @@ p {line-height: 1.5;}
 .login-password .form-group {display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 0;}
 .emoji-passwords .is_empty {background-color: #ddd; height: 25px; width: 25px; border-radius: 100%;}
 .login-password form {margin-bottom: 50px;}
-.login-password input[type="password"], .login-password input[type="text"] {border: 0; padding: 0; color: #eeeeee; letter-spacing: 18px; text-align: center; height: 40px; min-height: auto; -webkit-text-security: none; font-size: 80px;}
-.login-password input[type="password"], .login-password input[type="text"] {-webkit-text-security: circle; }
+.login-password input[type="password"] {border: 0; padding: 0; color: #eeeeee; letter-spacing: 18px; text-align: center; height: 40px; min-height: auto; -webkit-text-security: none; font-size: 80px;}
+.login-password input[type="password"] {-webkit-text-security: circle; }
 .login-card .login-option {display: inline-flex; width: 100%; margin-top: 30px; vertical-align: middle; align-items: center; gap: 8px; flex-wrap: wrap;}
 .login-card .login-option > span {font-size: 18px; font-weight: 500; margin-right: 10px;}
 .login-card .login-option .social-login {border: 1px solid #eee; gap: 0px; margin: 0; border-radius: 100%; padding: 6px; }
 .login-card .login-option .social-login img {height: 18px; width: 18px; }
 .login-controls {width: 50%; display: inline-block; margin-right: -4px; vertical-align: middle; padding-top: 20px; }
 .login-card .login-option div {margin-left: auto; }
-.emoji-icons {min-height: 300px; display: inline-block; margin: 0 auto; width: 100%; text-align: center;}
-.emoji-icons .emoji-icon {border-radius: 100%;
-    display: inline-block;
-    object-fit: contain;
-    width: 9%;
-    text-align: center;
-    padding: 0 2% 2%;}
-.emoji-icons .emoji-icon img {max-width: 100%;
-    height: 30px;
-    width: 30px;
-    object-fit: contain;}
+.emoji-icons {min-height: 300px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 0 auto; max-width: 610px; }
+.emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 43px; width: 43px; }
+.emoji-icons .emoji-icon img {max-width: 100%; }
 .login-password p {text-align: center; color: #5c78a8; font-size: 18px; }
 .login-password p a {color: #5c78a8;}
 .emoji-passwords {display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;}
@@ -13434,9 +13420,6 @@ p {line-height: 1.5;}
     .login-container {margin: 60px 0 70px;}
 }
 .login-card {padding: 0;}
-.login-card select.form-control {
-    padding: 0 10px;
-}
 .social-login {border: 1px dashed #dadada; border-radius: 5px; margin: 0 0 20px; padding: 20px; display: flex; align-items: center; gap: 25px;}
 .login-holder .login-options .social-login {min-height: 112px;}
 .social-login:hover {background-color: #f1f1f1; transition: all .3s ease;}
@@ -15747,7 +15730,7 @@ body:has(.container-nosidebar) {background-color: #fafafa;}
 .arrow.primera.bounceAlpha {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
 .round:hover .arrow {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
 .round:hover .arrow.primera {-webkit-animation-name: bounceAlpha; animation-name: bounceAlpha; -webkit-animation-duration: 1.4s; animation-duration: 1.4s; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-timing-function: linear; animation-timing-function: linear;}
-.scroll-btn {position: fixed;right: 15px;bottom: 15px;height: 40px;width: 40px;display: none;z-index: 1;}
+.scroll-btn {position: fixed;right: 30px;bottom: 15px;height: 40px;width: 40px;display: none;z-index: 1;}
 @media (max-width: 767px) {
     .lms-curriculums {margin: 0;}
     .list-description {margin: 0 0 15px;}
@@ -17909,7 +17892,7 @@ Product Tabs Slider Style Start
 .lms-quiz-section .quiz-topbar .timer-number,
 .timer-number, .lms-quiz-section .quiz-topbar p,
 .learning-page .quiz-topbar p{color: #333;}
-.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding: 15px}
+.question-layout-block form.question-fields .questions-nav-controls {border-top: 2px dashed #ddd; padding-top: 30px; padding-left: 0;}
 .type-sats .question-layout-block form.question-fields {background-color: inherit; border: 0; padding: 0; border-radius: 0; margin-bottom: 0;}
 .question-layout-block form.question-fields .questions-nav-controls .review-btn {left: 0;}
 .flipbook-quiz .difficulty-level {
@@ -18277,7 +18260,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels.levels-grouping li > a {background-color: inherit; height: 80px; width: 80px; box-shadow: none; padding: 0; }
 .spell-levels.levels-grouping {background-color: inherit;}
 .spell-levels.levels-grouping ul {justify-content: flex-start; flex-direction: column; align-items: flex-start;}
-.spell-levels li {display: flex; flex-wrap: wrap; padding: 0; margin: 0 0 58px; position: relative; width: 100%;}
+.spell-levels li {display: flex; align-items: center; flex-wrap: wrap; padding: 0; margin: 0 0 58px; position: relative; width: 100%;}
 .spell-levels li:last-child {margin-bottom: 15px;}
 .spell-levels li .spell-tooltip {position: relative; width: calc(100% - 80px); padding: 0 0 0 25px;}
 .levels-grouping li > a .thumb-box {display: inline-block;width: 100%; height: 100%; border-radius: 100%; background-color: #ddd; position: relative; z-index: 3;}
@@ -18356,7 +18339,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
 /* Spell Levels Style End */
-.panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
+.panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
@@ -18411,10 +18394,10 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-stats {/*background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe; background-position: 96% 100%;*/ background-color: #ebf3fe; padding: 25px 20px; border-radius: 5px; margin: 0 0 30px; position: relative; overflow: hidden;}
 .panel-stats .course-icon {
     position: absolute;
-    right: 25px;
+    right: -15px;
     bottom: 0;
-    width: 230px;
-    height: 118px;
+    width: 150px;
+    height: 80px;
     z-index: 0;
 }
 .stats-list {
@@ -19369,7 +19352,6 @@ li.disable-timetable label {
 /* Recent Reviews Style */
 .masonry-grid {
     margin-left: -14px;
-    width: 100% !important;
 }
 .recent-reviews-section .grid-item {
     width: 20%;
@@ -19504,6 +19486,7 @@ li.disable-timetable label {
 .lms-choose-membership .flexible-progress-bar li.active img {
     filter: invert(28%) sepia(85%) saturate(1121%) hue-rotate(174deg) brightness(104%) contrast(105%);
 }
+
 body .flipbook-data {
     height: 68%;
     transform: scale(1.5);
@@ -19513,9 +19496,6 @@ body .flipbook-data {
     width: 85px !important;
     object-fit: contain;
     height: 85px !important;
-}
-.books-listing-holder .search-block {
-    margin-bottom: 30px;
 }
 .search-block .search-input {
     border-radius: 15px;
@@ -19529,6 +19509,8 @@ body .flipbook-data {
 .search-block .icon-box img {
     filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(187deg) brightness(87%) contrast(83%);
 }
+
+
 
 .class-connect-modal {
     text-align: center;
@@ -19988,10 +19970,6 @@ body:has(.sentences-block) footer.footer.footer-home {
     max-width: 520px;
 }
 
-.single-question-preview form.question-fields .questions-nav-controls {
-    position: relative;
-    width: 100%;
-}
 
 /*************************************
 Lms Responsive Style Start
@@ -20079,10 +20057,6 @@ Lms Responsive Style Start
     .navbar-expand-lg .navbar-nav {flex-direction: column; margin-bottom: 20px;}
     .navbar-nav .nav-item:hover .sidenav-dropdown {top: 0;}
     .lms-mega-menu {display: none;}
-    .login-container .login-holder {
-        min-width: 100%;
-        max-width: 100%;
-    }
     .navbar-nav .has-mega-menu:hover .nav-link:after {display: none;}
     .navbar-nav .nav-item:hover .sidenav-dropdown li:last-child a {margin-bottom: 20px;}
     .navbar-nav .educator-menu {position: relative; border-right: 0;}
@@ -20105,14 +20079,7 @@ Lms Responsive Style Start
     .lms-contact-form .input-field {width: 100%;}
     .lms-contact-form-section .message-box{display: none;}
     .gallery-sub-header {flex-direction: column; padding-top: 30px !important;}
-    .gallery-sub-header .masonry-grid-gallery {position: relative; padding: 20px; width: 100%; transform: none; margin-bottom: 30px; margin-top: 30px;}
-    .gallery-sub-header .masonry-grid {
-        margin-left: 0;
-        width: 100% !important;
-    }
-    .gallery-sub-header .img-holder {
-        text-align: center;
-    }
+    .gallery-sub-header .masonry-grid-gallery {position: relative; padding: 20px; width: 100%; transform: none; margin-bottom: 30px;}
     .gallery-sub-header .simple .masonry-grid [class*="col-"] {width: 33.333%;}
     .masonry-grid-gallery.has-bg:before {top: 0; height: 100%; width: 100%; transform: none;}
     .choose-sats .sats-box {margin-bottom: 15px;}
@@ -20138,7 +20105,7 @@ Lms Responsive Style Start
     .mega-menu-nav a:after {display: none;}
     .lms-wave-shape-top::before {top: -1px;}
     .widget.widget-location {margin-bottom: 20px;}
-    .scroll-btn {z-index: 8;}
+    .scroll-btn {bottom: 100px; z-index: 8;}
     .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
     .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
     .topbar-right {flex-wrap: wrap; width: 100%;}
@@ -20221,13 +20188,6 @@ Lms Responsive Style Start
     .panel-right-sidebar .dropdown-menu.user-profile-dropdown.show {display: block;}
     .panel-right-sidebar [class*="col-"],
     .panel-content [class*="col-"]{position: initial;}
-    .db-members .card .list-group-item .last-activity.profile-dropdown {
-        position: relative;
-    }
-    .db-members .card .list-group-item .last-activity.profile-dropdown ul {
-        left: auto;
-        right: 0;
-    }
     .user-profile-icons .dropdown > a > img, .user-profile-icons img,
     .panel-right-sidebar .coin-counts img{width: 28px; height: 28px; margin-right: 0; margin-top: 0;}
     body .sidebar-logo img {max-width: 30px;}
@@ -20236,7 +20196,7 @@ Lms Responsive Style Start
     .user-profile-icons .dropdown-menu-right {left: 0; right: auto;}
     .panel-right-sidebar [class*="col-"] {display: none;}
     .panel-right-sidebar [class*="col-"]:has(.user-profile-icons) {display: block;}
-    .panel-content [class*="col-"].panel-right-sidebar {border-bottom: 1px solid #ddd; position: fixed; top: 0; left: 0; background-color: #fff; min-height: 60px; display: flex; align-items: center; width: 100%; justify-content: center; z-index: 30; padding-top: 15px; padding-bottom: 15px; flex: 0 0 100%; max-width: 100%; }
+    .panel-content [class*="col-"].panel-right-sidebar {position: fixed; top: 0; left: 0; background-color: #fff; min-height: 60px; display: flex; align-items: center; width: 100%; justify-content: center; z-index: 30; padding-top: 15px; padding-bottom: 15px; flex: 0 0 100%; max-width: 100%; }
     .panel-content [class*="col-"].panel-right-sidebar .row {width: 100%;}
     .panel-right-sidebar .user-profile-icons {margin: 0;}
     .user-profile-icons .sidebar-no-mobile {display: none;}
@@ -20270,14 +20230,6 @@ Lms Responsive Style Start
     .user-profile-icons li.dropdown strong:after {background-color: #fff;box-shadow: none;border: 0;bottom: -24px;}
     .user-profile-icons li.dropdown:hover strong:before, 
     .user-profile-icons li.dropdown:hover strong:after {visibility: visible;opacity: 1;}
-    body .question-layout-block form.question-fields .questions-nav-controls {left: 0; width: 100%; margin-bottom: 0 !important;}
-    .member-card-header {padding-top: 50px;}
-    body #progbar {
-        margin-top: 0;
-    }
-    .container-fluid.read-quiz-content .quiz-status-bar {
-        padding-top: 30px;
-    }
 }
 
 @media screen and (min-width: 767px) and (max-width: 992px) {
@@ -20308,12 +20260,6 @@ Lms Responsive Style Start
     .testimonial-tabs {flex-wrap: wrap;}
     .testimonial-tabs li a {font-size: 16px;}
     .performance-nav {flex-wrap: wrap;}
-    .login-help-box {
-        margin-top: 15px;
-    }
-    .login-with-smartbadge .login-holder, .login-with-emoji .login-holder, .login-with-pin .login-holder {
-        min-height: auto;
-    }
     .performance-nav li {margin-bottom: 10px; width: 48%;}
     .books-reading-holder [class*="col-"] {width: 50%;}
     .lms-books-reading .img-holder {text-align: center;}
@@ -20321,21 +20267,12 @@ Lms Responsive Style Start
     .search-books .img-holder {display: none;}
     .lms-search-books {margin-top: 0;}
     .search-books ul {flex-wrap: wrap;}
-    .login-container .login-holder > [class*="col"] > img {
-        display: none;
-    }
-    .pagination {
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-    .bootstrap-tagsinput .tag {display: inline-block; margin-bottom: 2px;}
     .search-books ul li {width: 50%; text-align: center; margin-top: 10px;}
     .find-instructor-testimonial .left {text-align: center; padding-left: 0;}
     .find-instructor-testimonial .find-instructor-circle {left: 50%; transform: translateX(-50%); width: 150px; height: 150px;}
     .find-instructor-circle + p {padding-top: 100px;}
     .find-instructor-testimonial .float-right {float: none !important; text-align: center;}
-    .find-instructor-testimonial .position-relative {text-align: center; margin-right: auto;}
-    .lms-have-question:before {width: 100%;}
+    .find-instructor-testimonial .position-relative {text-align: center;}
     .find-instructor-testimonial .right {padding-right: 0; padding-top: 70px;}
     .find-instructor-testimonial .right .find-instructor-circle {right: auto; left: 50%; top: 10px;}
     .about-sub-header .svg-container {display: none;}
@@ -20418,7 +20355,9 @@ Lms Responsive Style Start
     body .prev-next-controls .question-submit-btn {position: relative;}
     body .prev-next-controls {gap: 5px; flex-wrap: wrap;}
     body .prev-next-controls a {margin-right: 0;}
-    /* body .prev-next-controls .question-submit-btn {flex: 0 0 100%;margin-top: 10px;} */
+    .prev-next-controls a {flex: 0 0 49%;}
+    body .prev-next-controls .review-btn {flex: 0 0 100%; margin-bottom: 10px}
+    body .prev-next-controls .question-submit-btn {flex: 0 0 100%;margin-top: 10px;}
     body .question-review-required {top: -40px;}
     .lms-sorting-fields {overflow: hidden; overflow-x: auto;}
     body .match-question .stems li,
@@ -20454,11 +20393,12 @@ Lms Responsive Style Start
     body .quiz-topbar .quiz-top-info {padding: 0;}
     body .quiz-topbar .quiz-top-info:before, 
     body .quiz-topbar .quiz-top-info:after {display: none;}
+    body .prev-next-controls .review-btn {margin-top: 10px;}
     body .quiz-topbar .quiz-type-icon {margin: 0 0 15px;}
     body .instruction-text ul li {text-align: left;}
     body .topbar-right {justify-content: center;}
     body .quiz-timer .timer-number {min-width: auto; margin-left: 0;}
-    .treasure-stage {text-align: center; padding-left: 10px; padding-right: 10px;}
+    .treasure-stage {text-align: center; padding-left: 0;}
     .treasure-mission-layout .spell-levels .horizontal-list {display: inline-block !important;}
     .treasure-mission-layout .spell-levels .horizontal-list li {margin: 0 0 0 50px; width: auto;}
     .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 60%; margin-left: 8px;}
@@ -20560,9 +20500,8 @@ Lms Responsive Style Start
     .trophy-levels {justify-content: center;}
     .filter-mobile-btn {
         display: block;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        padding: 14px 25px 14px 10px;
+        background-color: #dddddd;
+        padding: 14px 20px 14px 15px;
         line-height: normal;
         border-radius: 5px;
         position: relative;
@@ -20587,9 +20526,7 @@ Lms Responsive Style Start
         margin-top: 12px;
     }
     .filters-list .analytics-type,
-    .filters-list .tests-list,
-    .panel-content .inline-filters,
-    .tests-list {
+    .filters-list .tests-list {
         position: absolute;
         width: 95%;
         flex-direction: column;
@@ -20609,70 +20546,43 @@ Lms Responsive Style Start
         transition: all 0.3s ease-out;
         margin-top: 10px;
     }
-    .panel-content .inline-filters,
-    .tests-list {
-        width: 100%;
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
     .filters-list .analytics-type.open,
-    .filters-list .tests-list.open,
-    .panel-content .inline-filters.open,
-    .tests-list.open {
+    .filters-list .tests-list.open {
         visibility: visible;
         opacity: 1;
         margin-top: 0;
     }
     .filters-list .analytics-type li,
-    .filters-list .tests-list li,
-    .panel-content .inline-filters li,
-    .tests-list li {
+    .filters-list .tests-list li {
         width: 100%;
     }
     .filters-list .analytics-type li a img,
-    .filters-list .tests-list li img,
-    .panel-content .inline-filters li img,
-    .tests-list li img {
+    .filters-list .tests-list li img {
         display: inline-block;
         margin: 0px 5px 0 0;
         vertical-align: middle;
         width: 20px;
         height: 20px;
     }
-    .tests-list li img {
-        height: 30px;
-        width: 30px;
-    }
     .filters-list .analytics-type li a,
-    .filters-list .tests-list li a{
+    .filters-list .tests-list li {
         padding: 5px 0;
         text-align: left;
         border: 0;
     }
     .filters-list .analytics-type .active a,
-    .filters-list .tests-list li.active,
-    .panel-content .inline-filters li.active a,
-    .tests-list li.active {
+    .filters-list .tests-list li.active {
         box-shadow: none;
         border: 0;
     }
-    .filters-list .tests-list li,
-    .panel-content .inline-filters li a,
-    .tests-list li {
+    .filters-list .tests-list li {
         flex-direction: row;
         min-height: auto;
         justify-content: flex-start;
-        border: 0;
     }
     .chart-filters .form-group {
         width: 50%;
         padding-left: 8px;
-    }
-    .tests-list {
-        gap: 15px;
-    }
-    .tests-list-holder {
-        position: relative;
     }
     .listing-search .filters-list {margin-bottom: 15px;}
     .sentences-inner {
@@ -20712,8 +20622,8 @@ Lms Responsive Style Start
         width: 35px;
     }
     body #progbar {
-        margin-bottom: 0;
-        padding-top: 25px;
+        margin-top: -35px;
+        padding: 0 180px 0 50px;
     }
     body .flexible-progress-bar {
         display: inline-flex;
@@ -20736,48 +20646,6 @@ Lms Responsive Style Start
     }
     .lms-choose-membership .modal-body .nav-link {
         width: 100%;
-    }
-    .panel-stats .course-icon {
-        right: -15px;
-        width: 180px;
-        height: 90px;
-    }
-    .spell-levels .treasure > a .thumb-box {width: 100%;height: 100%;}
-    .spell-levels .treasure > a .thumb-box img {
-        max-width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-    .read-quiz-content .spell-levels .treasure-stage .horizontal-list li > a:before {
-        margin-top: 0;
-        margin-left: 0;
-    }
-    .spell-levels .treasure-stage li > a {
-        height: 50px;
-        width: 48px;
-    }
-    .read-quiz-content .treasure-stage .horizontal-list {
-        flex-wrap: wrap;
-        gap: 25px;
-        justify-content: center !important;
-    }
-    .read-quiz-content .treasure-stage .horizontal-list li {
-        width: auto;
-    }
-    .rurera-list-btn {
-        min-width: 110px;
-    }
-    .input-holder, .lms-quiz-section .input-holder{
-        width: 100% !important;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-    .learning-page.type-vocabulary .question-layout-block {
-        padding-top: 15px;
-    }
-    body .learning-page.type-vocabulary .left-content {
-        height: auto;
-        min-height: auto;
     }
 }
 
@@ -20854,6 +20722,7 @@ Lms Responsive Style Start
     .treasure-mission-layout .spell-levels li > a {height: 43px; width: 45px;}
     .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li {margin-top: 30px;margin-left: 0;}
     .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li a:after {height: 50%;margin-top: 0;width: 2px;margin-left: -1px;}
+    .spell-levels .treasure > a .thumb-box {width: 100%;height: 100%;}
     .treasure-mission-layout .spell-levels .treasure > a .thumb-box img {max-width: 100%;height: auto;object-fit: contain;}
     .treasure-mission-layout .spell-levels .horizontal-list li {width: auto;margin: 0 0 0 20px;}
     .treasure-mission-layout .spell-levels .horizontal-list li img {height: 20px;object-fit: contain;}
@@ -20890,9 +20759,6 @@ Lms Responsive Style Start
         flex: 0 0 100%;
         max-width: 100%;
     }
-    .spell-levels-top .levels-progress.horizontal {
-        margin-bottom: 15px;
-    }
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 
@@ -20909,9 +20775,6 @@ Lms Responsive Style Start
     .lms-client-list .lms-client-logo {padding: 10px 15px;}
     .footer [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .sats-listing-card {text-align: center;}
-    .login-password input[type="password"] {
-        margin-bottom: 10px !important;
-    }
     .footer.footer-home .footer-copyright {text-align: center;}
     .footer .footer-copyright [class*="col-"] {max-width: 100%; flex: 0 0 100%;}
     .footer.footer-home .footer-logo {margin: 15px auto;}
@@ -20938,8 +20801,8 @@ Lms Responsive Style Start
     body .lms-quiz-section .question-area,
     body .question-layout-block form.question-fields, 
     body .question-fields .left-content {min-height: auto;}
-    /* body .prev-next-controls {flex-direction: column-reverse;}
-    body .prev-next-controls a {width: 100%;} */
+    body .prev-next-controls {flex-direction: column-reverse;}
+    body .prev-next-controls a {width: 100%;}
     body .lms-radio-img.rurera-in-row .lms-radio-select .field-holder {max-width: 100%;flex: 0 0 100%;}
     .spell-levels.levels-grouping ul {text-align: center; justify-content: center; align-items: center;}
     .spell-levels.levels-grouping li {justify-content: center; margin-bottom: 0; flex-direction: column;}
@@ -21002,7 +20865,7 @@ Lms Responsive Style Start
     .spell-levels li {align-items: flex-start;}
     .spell-levels li > a:before {height: 100%; margin-top: 14px;}
     .db-members .card .list-group-item .row .col-5 {flex: 0 0 35%; max-width: 35%;}
-    .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 45%; text-align: right;}
+    .db-members .card .list-group-item .last-activity {margin-left: 0 !important; padding-left: 0; flex: 0 0 45%; padding-top: 10px; text-align: right;}
     .db-members .card .list-group-item .last-activity.profile-dropdown {text-align: left;}
     .panel-content .template-grid .text-holder a {display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 5px;}
     .panel-content .grid-card .title-label, .login-options .coming-soon {margin: 0;}
@@ -21023,24 +20886,15 @@ Lms Responsive Style Start
         height: 80px;
         width: 80px;
     }
+    body #progbar {
+        margin-top: 0;
+        padding: 15px 0 0;
+    }
     .book-form .tests-list.payment-methods {
         flex-wrap: wrap;
     }
     .book-form .tests-list li {
         width: 100%;
         flex-basis: 100%;
-    }
-    .read-quiz-content .treasure-stage .horizontal-list {
-        gap: 20px;
-    }
-    .spell-levels .treasure-stage li > a {
-        height: 40px;
-        width: 38px;
-    }
-    .spell-levels .treasure-stage li > a img {
-        max-width: 50%;
-    }
-    .login-password form {
-        margin-bottom: 15px;
     }
 }

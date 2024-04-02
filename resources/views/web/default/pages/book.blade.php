@@ -424,10 +424,77 @@
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 
+
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <div class="modal-title rurera-hide">
+            <span class="inactivity-timer">30</span>
+        </div>
+        <h3>Session End</h3>
+        <p>
+            Looks like you're inactive. Your session has been closed.
+        </p>
+       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Continue Reading</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <script type="text/javascript">
     var startTime = new Date();
     var interval;
     var is_stopped = false;
+
+    var InactivityInterval = null;
+    var focusInterval = null;
+    var focusIntervalCount = 60;
+    var timerStop = false;
+
+    window.addEventListener('blur', function () {
+        if( focusInterval == null) {
+            focusInterval = setInterval(function () {
+                var focus_count = focusIntervalCount-1;
+                console.log('focusout--'+focus_count);
+                focusIntervalCount = focus_count;
+                if (focus_count <= 0) {
+                    timerStop = true;
+                    $(".question_inactivity_modal").modal('show');
+                    if( InactivityInterval == null) {
+                        InactivityInterval = setInterval(function () {
+                            var inactivity_timer = parseInt($(".inactivity-timer").html() - 1);
+                            $(".inactivity-timer").html(inactivity_timer);
+                            if (parseInt(inactivity_timer) <= 0) {
+                                //$(".question_inactivity_modal").modal('hide');
+                                $(".inactivity-timer").html(30);
+                                //$(".submit_quiz_final").click();
+                                clearInterval(InactivityInterval);
+                                InactivityInterval = null;
+                            }
+                        }, 1000);
+                    }
+                    focusIntervalCount = 60;
+                    clearInterval(focusInterval);
+                    focusInterval = null;
+                }
+            }, 1000);
+
+        }
+    });
+
+    $(document).on('click', '.continue-btn', function (e) {
+        timerStop = false;
+        focusIntervalCount = 60;
+        focusInterval = null;
+        $(".inactivity-timer").html(30);
+        clearInterval(InactivityInterval);
+        InactivityInterval = null;
+    });
+
+
 
     // Start the timer
     function startTimer() {
@@ -437,7 +504,7 @@
     // Update the displayed time and send to server
     function updateTime() {
         //loadedDiv
-        if( is_stopped == true){
+        if( is_stopped == true || timerStop == true){
             return;
         }
         $(".loadedDiv:visible").addClass('testing444');

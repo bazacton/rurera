@@ -401,6 +401,7 @@ class SubscribeController extends Controller
 
 
             $expiry_date = strtotime('+' . $subscribe_for . ' month', time());
+            $expiry_date_final = strtotime(date('Y-m', $expiry_date));
             $full_data['subscribe_for'] = $subscribe_for;
             $full_data['students'][] = $user_id;
 
