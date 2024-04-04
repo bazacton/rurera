@@ -67,6 +67,13 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         @yield('content')
                     </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 panel-right-sidebar full-width-sidebar">
+                    <div class="row">
+                        <div class="col-12 col-lg-12">
+                            @include(getTemplate(). '.panel.includes.user_top_bar')
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4666,3 +4666,23 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 
 }
 /*Responsive Style End*/
+
+.date-tags a {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 3px;
+    position: relative;
+    text-decoration: none;
+    outline: none;
+    color: #b8b0b0;
+}
+.date-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.date-tags a .icon-box {
+    color: #ff7272;
+    font-size: 14px;
+    margin-left: 2px;
+}

@@ -13404,8 +13404,8 @@ p {line-height: 1.5;}
 .login-password .form-group {display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 0;}
 .emoji-passwords .is_empty {background-color: #ddd; height: 25px; width: 25px; border-radius: 100%;}
 .login-password form {margin-bottom: 50px;}
-.login-password input[type="password"], .login-password input[type="text"] {border: 0; padding: 0; color: #eeeeee; letter-spacing: 18px; text-align: center; height: 40px; min-height: auto; -webkit-text-security: none; font-size: 80px;}
-.login-password input[type="password"], .login-password input[type="text"] {-webkit-text-security: circle; }
+.login-password input[type="password"] {border: 0; padding: 0; color: #eeeeee; letter-spacing: 18px; text-align: center; height: 40px; min-height: auto; -webkit-text-security: none; font-size: 80px;}
+.login-password input[type="password"] {-webkit-text-security: circle; }
 .login-card .login-option {display: inline-flex; width: 100%; margin-top: 30px; vertical-align: middle; align-items: center; gap: 8px; flex-wrap: wrap;}
 .login-card .login-option > span {font-size: 18px; font-weight: 500; margin-right: 10px;}
 .login-card .login-option .social-login {border: 1px solid #eee; gap: 0px; margin: 0; border-radius: 100%; padding: 6px; }
@@ -15561,11 +15561,11 @@ Custom Pagination Style End
 .panel-page-section .panel-sidebar .simplebar-wrapper,
 .panel-page-section .panel-sidebar .sidebar-menu {overflow: inherit;}
 .panel-page-section {background-color: #fafafc; padding-bottom: 50px;} */
-.panel-page-section .panel-content {/*width: 100%; padding: 0; margin-top: 40px;*/ background-color: #fafafa; height: 100%;}
+.panel-page-section .panel-content {/*width: 100%; padding: 0; margin-top: 40px;*/ background-color: #fff; height: 100%;}
 /* .panel-page-section .panel-sidebar .sidebar-menu.pt-10 {margin-top: -10px;} */
 body:has(.container-nosidebar) {height: 100%;}
 body:has(.panel-right-sidebar),
-body:has(.container-nosidebar) {background-color: #fafafa;}
+body:has(.container-nosidebar) {background-color: #fff;}
 /* Panel Sidebar And Panel Content Style End */
 /****************************************
  Sigup Pages Style Start
@@ -19947,14 +19947,14 @@ body:has(.sentences-block) footer.footer.footer-home {
     max-width: 100%;
 }
 .game-card {
-    background-color: #fff000;
-    border: 1px solid #eddf00;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px 15px 25px;
     margin-bottom: 30px;
 }
 .game-card .icon-box {
-    border: 1px solid #eddf00;
+    border: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
     display: block;
@@ -19965,32 +19965,143 @@ body:has(.sentences-block) footer.footer.footer-home {
     max-width: 100%;
 }
 
-.date-tags a {
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    border-radius: 3px;
-    position: relative;
-    text-decoration: none;
-    outline: none;
-    color: #b8b0b0;
-}
-.date-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-.date-tags a .icon-box {
-    color: #ff7272;
-    font-size: 14px;
-    margin-left: 2px;
-}
 .edit-quest-modal .modal-dialog {
     max-width: 520px;
 }
+.panel-right-sidebar.full-width-sidebar {
+    display: none;
+}
 
-.single-question-preview form.question-fields .questions-nav-controls {
+.info-card input[type=checkbox] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.info-card {
     position: relative;
-    width: 100%;
+}
+.info-card label {
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.info-card label .text-holder p a {
+    color: var(--primary);
+}
+.info-card label .icon-box {
+    height: 40px;
+    width: 40px;
+    background-color: #ddd;
+    display: inline-flex;
+    border-radius: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.info-card label .icon-box i {
+    opacity: 0;
+    visibility: hidden;
+    font-weight: 700;
+}
+.info-card input[type=checkbox]:checked + label .icon-box {
+    background-color: #39a622;
+}
+.info-card input[type=checkbox]:checked + label .icon-box i {
+    color: #fff;
+    visibility: visible;
+    opacity: 1;
+}
+.info-card label .text-holder {
+    width: calc(100% - 50px);
+}
+.user-social-info-holder .row {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+.user-social-info-holder .row [class*="col-"] {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+.info-card label .text-holder h5 {
+    margin: 0 0 5px;
+}
+.user-social-info-holder .levels-progress.horizontal .progress-box {
+    max-width: 100%;
+    width: 95%;
+}
+.user-social-info-holder .levels-progress.horizontal {
+    gap: 10px;
+}
+
+.user-checklist-holder li {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+}
+.checklist-box label {
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+}
+.checklist-box label .icon-box {
+    font-weight: 700;
+    margin-right: -4px;
+    width: 0;
+    display: inline-block;
+    height: 0;
+    font-size: 0;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.checklist-box input[type=checkbox] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.checklist-box label .text-box {
+    color: var(--primary);
+    font-weight: 700;
+}
+.checklist-box input[type=checkbox]:checked + label .text-box {
+    text-decoration: line-through;
+    color: #999;
+}
+.checklist-box input[type=checkbox]:checked + label .icon-box {
+    opacity: 1;
+    visibility: visible;
+    margin-right: 5px;
+    width: auto;
+    height: auto;
+    font-size: 16px;
+}
+.checklist-box input[type=checkbox]:checked + label .icon-box i {
+    color: var(--primary);
+}
+.checklist-box {
+    position: relative;
+}
+.user-checklist-holder li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.user-checklist {
+    position: relative;
+}
+.checklist-img-box {
+    position: absolute;
+    right: -25px;
+    bottom: -25px;
+}
+.user-checklist-holder {
+    overflow: hidden;
 }
 
 /*************************************
@@ -20082,6 +20193,9 @@ Lms Responsive Style Start
     .login-container .login-holder {
         min-width: 100%;
         max-width: 100%;
+    }
+    .panel-right-sidebar.full-width-sidebar {
+        display: block;
     }
     .navbar-nav .has-mega-menu:hover .nav-link:after {display: none;}
     .navbar-nav .nav-item:hover .sidenav-dropdown li:last-child a {margin-bottom: 20px;}

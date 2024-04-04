@@ -18,7 +18,7 @@
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
         <h1 class="section-title font-22">Students</h1>
         <div class="dropdown">
-        <button type="button" class="btn btn-sm btn-primary subscription-modal" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Child
+        <button type="button" class="btn btn-sm btn-primary subscription-modal" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Student
         </button>
 
     </div>

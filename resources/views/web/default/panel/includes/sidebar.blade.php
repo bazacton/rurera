@@ -78,13 +78,13 @@
                     </a>
                 </li>
             @if(auth()->user()->isParent())
-                <li class="sidenav-item {{ (request()->is('panel/members') or request()->is('panel/members/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/members">
+                <li class="sidenav-item {{ (request()->is('panel/set-work') or request()->is('panel/set-work/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/panel/set-work">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/set-work.svg">
                         </span>
                     </a>
-                    <a href="/panel/members" class="font-15">Set Work</a>
+                    <a href="/panel/set-work" class="font-15">Set Work</a>
                 </li>
 
             @endif

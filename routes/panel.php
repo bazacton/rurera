@@ -45,6 +45,13 @@ Route::group([
         Route::get('/', 'MembersController@index');
     });
 
+    Route::group(['prefix' => 'set-work'], function () {
+        Route::get('/', 'SetWorkController@index');
+        Route::get('/create', 'SetWorkController@create')->name('listSetWork');
+        Route::post('/store', 'SetWorkController@store');
+        Route::get('/{id}/progress', 'SetWorkController@progress');
+    });
+
 
     Route::group(['prefix' => 'webinars'], function () {
         Route::group(['middleware' => 'user.not.access'], function () {

@@ -391,6 +391,29 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/', 'GamesController@index');
     });
 
+    /*
+     * Common Functionalities
+     */
+    Route::group(['prefix' => 'common'], function () {
+        Route::get('/classes_by_year', 'CommonWebController@classes_by_year');
+        Route::get('/sections_by_class', 'CommonWebController@sections_by_class');
+        Route::get('/users_by_class', 'CommonWebController@users_by_class');
+        Route::get('/users_by_section', 'CommonWebController@users_by_section');
+        Route::get('/subjects_by_year', 'CommonWebController@subjects_by_year');
+        Route::get('/generate_audio', 'CommonWebController@generate_audio');
+        Route::get('/types_quiz_by_year', 'CommonWebController@types_quiz_by_year');
+        Route::get('/types_quiz_by_year_group', 'CommonWebController@types_quiz_by_year_group');
+        Route::get('/topics_subtopics_by_subject', 'CommonWebController@topics_subtopics_by_subject');
+        Route::get('/mock_topics_subtopics_by_subject', 'CommonWebController@mock_topics_subtopics_by_subject');
+
+        Route::get('/get_example_question', 'CommonWebController@get_example_question');
+        Route::get('/get_group_questions', 'CommonWebController@get_group_questions');
+        Route::get('/get_group_questions_options', 'CommonWebController@get_group_questions_options');
+        Route::get('/get_mock_subjects_by_year', 'CommonWebController@get_mock_subjects_by_year');
+
+
+    });
+
     Route::group(['prefix' => 'shop'] , function () {
         Route::get('/' , 'ProductController@searchLists');
         Route::get('/{slug}' , 'ProductController@show');
