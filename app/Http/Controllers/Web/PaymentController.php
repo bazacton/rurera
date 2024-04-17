@@ -103,7 +103,6 @@ class PaymentController extends Controller
         try {
             $channelManager = ChannelManager::makeChannel($paymentChannel);
             $redirect_url = $channelManager->paymentRequest($order);
-            pre($redirect_url, false);
 
 
             if (in_array($paymentChannel->class_name, PaymentChannel::$gatewayIgnoreRedirect)) {
@@ -314,7 +313,7 @@ class PaymentController extends Controller
             return view('web.default.cart.status_pay', $data);
         }
 
-        return redirect('/panel');
+        return redirect('/'.panelRoute());
     }
 
     private function handleMeetingReserveReward($user)

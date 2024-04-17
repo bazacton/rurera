@@ -104,7 +104,7 @@ class ParentController extends Controller
             'is_from_parent' => 1,
         ]);
         Auth::loginUsingId($user_id, true);
-        return redirect('/panel');
+        return redirect('/'.panelRoute());
     }
 
     public function CancelSubscription(Request $request){

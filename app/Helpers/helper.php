@@ -8712,3 +8712,14 @@ function subscriptionCheckLink($subscription_check){
     }
     return $response;
 }
+
+function panelRoute(){
+    $routeLink = 'panel';
+    if (auth()->check() && auth()->user()->isParent()) {
+        $routeLink = 'parent';
+    }
+    if (auth()->check() && auth()->user()->isTutor()) {
+        $routeLink = 'tutor';
+    }
+    return $routeLink;
+}

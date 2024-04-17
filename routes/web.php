@@ -684,7 +684,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => '{link}'] , function () {
         if (!Request::is('admin') && !Request::is('admin/*')) {
-            if (!Request::is('panel') && !Request::is('panel/*')) {
+            if (!Request::is('panel') && !Request::is('panel/*') && !Request::is('parent') && !Request::is('parent/*') && !Request::is('tutor') && !Request::is('tutor/*')) {
                 Route::get('/' , 'PagesController@index');
             }
         }

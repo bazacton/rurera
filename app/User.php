@@ -3507,6 +3507,11 @@ class User extends Authenticatable
         return $this->role_name === Role::$parent;
     }
 
+    public function isTutor()
+    {
+        return $this->role_name === Role::$tutor;
+    }
+
     public function hasPermission($section_name)
     {
         if (self::isAdmin()) {

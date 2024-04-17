@@ -23,7 +23,7 @@ class SpellsController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $user = getUser();
         $QuestionsAttemptController = new QuestionsAttemptController();
@@ -276,7 +276,7 @@ class SpellsController extends Controller
             //return redirect('/login');
         }
         if (auth()->check() && auth()->user()->isParent()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
 
         /*if (!auth()->subscription('vocabulary')) {

@@ -23,7 +23,7 @@
                             <div class="plan-switch">
                                 <div class="custom-control custom-switch"><input type="checkbox" {{$is_checked}} name="subscribed_for" class="custom-control-input subscribed_for-field" id="subscribed_for" value="12"/><label class="custom-control-label" for="subscribed_for"></label></div>
                             </div>
-                            <span class="switch-label">Pay Yearly</span>
+                            <span class="switch-label font-18">Pay Yearly</span>
                         </div>
                         <div class="save-plan"><span class="font-18 font-weight-500">Save 25%</span></div>
                     </div>

@@ -155,6 +155,10 @@ class AnalyticsController extends Controller
                     }
                 ])
                 ->get();
+
+            if ($childs->count() == 0) {
+                return redirect('/' . panelRoute() . '/students');
+            }
         }
 
 

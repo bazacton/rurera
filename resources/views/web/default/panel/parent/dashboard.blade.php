@@ -15,10 +15,10 @@
 
 @section('content')
 <section class="member-card-header">
-    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
+    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
         <h1 class="section-title font-22">Students</h1>
         <div class="dropdown">
-        <button type="button" class="btn btn-sm btn-primary subscription-modal" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Student
+        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Student
         </button>
 
     </div>
@@ -751,11 +751,15 @@
 @endsection
 
 @push('scripts_bottom')
+
 <script type="text/javascript">
+
+
 
     $(document).on('change', 'input[name="subscribe_for"]', function (e) {
         calculate_total_amount();
     });
+
 
 
     $(document).on('click', '.update-package', function (e) {

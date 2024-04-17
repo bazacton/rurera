@@ -28,7 +28,7 @@ class LearnController extends Controller
         }
 
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $allowedUsers = getAllowedUsers();
 

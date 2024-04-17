@@ -31,7 +31,7 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $user = auth()->user();
 
@@ -1748,13 +1748,13 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $user = auth()->user();
         $yearObj = $user->userYear;
         $classObj = $user->userClass;
         if( !isset( $classObj->id)){
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $classSections = $classObj->sections;
         $yearSections = $yearObj->yearSections;

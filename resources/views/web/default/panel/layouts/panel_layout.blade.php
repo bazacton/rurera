@@ -60,7 +60,7 @@
         @if(auth()->check() && (auth()->user()->isUser()))
             @include(getTemplate(). '.includes.navbar')
         @endif
-        @if(auth()->check() && (auth()->user()->isUser() || auth()->user()->isParent()))
+        @if(auth()->check() && (auth()->user()->isUser() || auth()->user()->isParent() || auth()->user()->isTutor()))
             @include(getTemplate(). '.panel.includes.sidebar')
         @endif
         <div class="panel-content">

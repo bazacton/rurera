@@ -122,7 +122,7 @@ class ElevenplusController extends Controller
         }
 
         if (auth()->check() && auth()->user()->isParent()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
 
         if (!auth()->subscription('11plus')) {

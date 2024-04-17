@@ -962,7 +962,7 @@ class WebinarController extends Controller
         }
 
         if (auth()->check() && auth()->user()->isParent()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
 
 

@@ -146,6 +146,9 @@ class DashboardController extends Controller
                     }
                 ])
                 ->get();
+            if( $childs->count() == 0){
+                return redirect('/'.panelRoute().'/students');
+            }
 
             $Sales = Sale::where('buyer_id', $user->id)->whereIn('type', array(
                 'subscribe',

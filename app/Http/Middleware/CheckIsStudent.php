@@ -17,7 +17,7 @@ class CheckIsStudent
     public function handle($request, Closure $next)
     {
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
     }
 }

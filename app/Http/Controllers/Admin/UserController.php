@@ -1315,7 +1315,7 @@ class UserController extends Controller
 
         session()->put(['impersonated' => $user->id]);
 
-        return redirect('/panel');
+        return redirect('/'.panelRoute());
     }
 
     public function exportExcelOrganizations(Request $request)

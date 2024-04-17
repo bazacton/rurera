@@ -621,6 +621,7 @@
     @endsection
 
     @push('scripts_bottom')
+
     <script src="/assets/default/vendors/swiper/swiper-bundle.min.js"></script>
     <script src="/assets/default/vendors/apexcharts/apexcharts.min.js"></script>
     <script src="/assets/default/vendors/chartjs/chart.min.js"></script>

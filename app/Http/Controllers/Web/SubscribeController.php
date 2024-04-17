@@ -118,6 +118,7 @@ class SubscribeController extends Controller
         if (!auth()->check()) {
             $response_layout = view('web.default.subscriptions.login_signup', [])->render();
         }
+        else{
         $user = auth()->user();
 
         $ParentsOrders = ParentsOrders::where('user_id', $user->id)
@@ -158,6 +159,7 @@ class SubscribeController extends Controller
                 'selected_package' => $selected_package,
                 'ParentsOrders' => $ParentsOrders
             ])->render();
+        }
         }
 
 

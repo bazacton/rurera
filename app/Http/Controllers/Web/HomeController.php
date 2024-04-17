@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
 
         if (auth()->check() && auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $homeSections = HomeSection::orderBy('order', 'asc')->get();
         $selectedSectionsName = $homeSections->pluck('name')->toArray();

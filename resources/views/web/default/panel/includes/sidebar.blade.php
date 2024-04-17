@@ -70,21 +70,21 @@
 
 
                 <li class="sidenav-item {{ (request()->is('panel')) ? 'sidenav-item-active' : '' }}">
-                    <a href="/panel" class="d-flex align-items-center font-15">
+                    <a href="/{{panelRoute()}}" class="d-flex align-items-center font-15">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/home.svg">
                         </span>
                         <span>Home</span>
                     </a>
                 </li>
-            @if(auth()->user()->isParent())
+            @if(auth()->user()->isParent() || auth()->user()->isTutor())
                 <li class="sidenav-item {{ (request()->is('panel/set-work') or request()->is('panel/set-work/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/set-work">
+                    <a class="d-flex align-items-center" href="/{{panelRoute()}}/set-work">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/set-work.svg">
                         </span>
                     </a>
-                    <a href="/panel/set-work" class="font-15">Set Work</a>
+                    <a href="/{{panelRoute()}}/set-work" class="font-15">Set Work</a>
                 </li>
 
             @endif
@@ -161,12 +161,12 @@
                 </li>
                 @endif
                 <li class="sidenav-item {{ (request()->is('panel/analytics') or request()->is('panel/analytics/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/analytics">
+                    <a class="d-flex align-items-center" href="/{{panelRoute()}}/analytics">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/grarph.svg">
                         </span>
                     </a>
-                    <a href="/panel/analytics" class="font-15">Analytics</a>
+                    <a href="/{{panelRoute()}}/analytics" class="font-15">Analytics</a>
                 </li>
 
             @if(auth()->user()->isUser())
@@ -180,34 +180,34 @@
                 </li>
             @endif
             <li class="sidenav-item {{ (request()->is('panel/marketing/affiliates') or request()->is('panel/marketing/affiliates/*')) ? 'sidenav-item-active' : '' }}">
-                <a class="d-flex align-items-center" href="/panel/marketing/affiliates">
+                <a class="d-flex align-items-center" href="/{{panelRoute()}}/marketing/affiliates">
                     <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                         <img src="/assets/default/img/sidebar/referrals.png">
                     </span>
                 </a>
-                <a href="/panel/marketing/affiliates" class="font-15">Referrals</a>
+                <a href="/{{panelRoute()}}/marketing/affiliates" class="font-15">Referrals</a>
             </li>
 
 
-            @if(auth()->user()->isParent())
+            @if(auth()->user()->isParent() || auth()->user()->isTutor())
                 <li class="sidenav-item {{ (request()->is('panel/students') or request()->is('panel/students/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/panel/students">
+                    <a class="d-flex align-items-center" href="/{{panelRoute()}}/students">
                         <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/members.png">
                         </span>
                     </a>
-                    <a href="/panel/students" class="font-15">Students</a>
+                    <a href="/{{panelRoute()}}/students" class="font-15">Students</a>
                 </li>
 
             @endif
 
             <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
-                <a class="d-flex align-items-center" href="/panel/setting">
+                <a class="d-flex align-items-center" href="/{{panelRoute()}}/setting">
                     <span class="sidenav-setting-icon sidenav-item-icon mr-20">
                         <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
                     </span>
                 </a>
-                <a href="/panel/setting" class="font-15">Profile</a>
+                <a href="/{{panelRoute()}}/setting" class="font-15">Profile</a>
             </li>
 
             <li class="sidenav-item {{ (request()->is('logout') or request()->is('logout/*')) ? 'sidenav-item-active' : '' }}">

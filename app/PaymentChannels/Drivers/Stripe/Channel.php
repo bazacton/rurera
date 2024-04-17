@@ -49,6 +49,18 @@ class Channel implements IChannel
         try {
             $checkout = Session::create([
                 'payment_method_types' => ['card'],
+                'mode'                 => 'setup',
+                'success_url'          => $this->makeCallbackUrl('success'),
+                'cancel_url'           => $this->makeCallbackUrl('cancel'),
+            ]);
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            echo "Error: " . $e->getMessage();
+            pre('---testing');
+        }
+        //pre('test');
+        /*try {
+            $checkout = Session::create([
+                'payment_method_types' => ['card'],
                 'line_items'           => [
                     [
                         'price_data' => [
@@ -66,10 +78,9 @@ class Channel implements IChannel
                 'cancel_url'           => $this->makeCallbackUrl('cancel'),
             ]);
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            // Handle Stripe API errors
             echo "Error: " . $e->getMessage();
             pre('---testing');
-        }
+        }*/
 
 
         /*$order->update([

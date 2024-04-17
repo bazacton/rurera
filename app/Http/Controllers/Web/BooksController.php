@@ -23,7 +23,7 @@ class BooksController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $books_data = Books::where('id', '>', 0);
         $search_keyword = $request->get('search', '');

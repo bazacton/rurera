@@ -8,17 +8,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::group([
-    'namespace'  => 'Panel',
-    'prefix'     => 'panel',
-    'middleware' => [
-        'check_mobile_app',
-        'impersonate',
-        'panel',
-        'share',
-        'check_maintenance'
-    ]
-], function () {
+
+$parentTutorRoutes = function () {
 
     Route::get('/', 'DashboardController@dashboard')->name('panel_dashboard');
 
@@ -46,8 +37,8 @@ Route::group([
     });
 
     Route::group(['prefix' => 'set-work'], function () {
-        Route::get('/', 'SetWorkController@index');
-        Route::get('/create', 'SetWorkController@create')->name('listSetWork');
+        Route::get('/', 'SetWorkController@index')->name('listSetWork');
+        Route::get('/create', 'SetWorkController@create');
         Route::post('/store', 'SetWorkController@store');
         Route::get('/{id}/progress', 'SetWorkController@progress');
     });
@@ -556,6 +547,42 @@ Route::group([
             Route::get('/', 'BlogCommentsController@index');
         });
     });
-});
+};
 
 
+Route::group([
+    'namespace'  => 'Panel',
+    'prefix'     => 'panel',
+    'middleware' => [
+        'check_mobile_app',
+        'impersonate',
+        'panel',
+        'share',
+        'check_maintenance'
+    ]
+], $parentTutorRoutes);
+
+
+Route::group([
+    'namespace'  => 'Panel',
+    'prefix'     => 'parent',
+    'middleware' => [
+        'check_mobile_app',
+        'impersonate',
+        'panel',
+        'share',
+        'check_maintenance'
+    ]
+], $parentTutorRoutes);
+
+Route::group([
+    'namespace'  => 'Panel',
+    'prefix'     => 'tutor',
+    'middleware' => [
+        'check_mobile_app',
+        'impersonate',
+        'panel',
+        'share',
+        'check_maintenance'
+    ]
+], $parentTutorRoutes);

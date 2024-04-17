@@ -15,7 +15,7 @@ class RewardController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isUser()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         $rewardsSettings = getRewardsSettings();
 

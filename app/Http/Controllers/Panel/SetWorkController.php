@@ -33,11 +33,28 @@ class SetWorkController extends Controller
     {
         $data['pageTitle'] = 'Assignments';
 
+        if (auth()->user()->isParent()) {
+            $childs = User::where('role_id', 1)
+                ->where('parent_type', 'parent')
+                ->where('parent_id', auth()->user()->id)
+                ->where('status', 'active')
+                ->with([
+                    'userSubscriptions' => function ($query) {
+                        $query->with(['subscribe']);
+                    }
+                ])
+                ->get();
+            if ($childs->count() == 0) {
+                return redirect('/' . panelRoute() . '/students');
+            }
+        }
+
         $query = StudentAssignments::query()->where('status', '!=', 'inactive');
         $query = $query->where('created_by', auth()->user()->id);
         $totalAssignments = deepClone($query)->count();
         $assignments = $query->paginate(100);
         $data['assignments'] = $assignments;
+
         return view(getTemplate() . '.panel.set_work.index', $data);
     }
 

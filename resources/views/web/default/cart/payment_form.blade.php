@@ -1,8 +1,10 @@
-
 <section class="container mt-45">
+    <p>Processing Payment....</p>
+</section>
+<section class="container mt-45 hide">
     <h2 class="section-title">{{ trans('financial.select_a_payment_gateway') }}</h2>
 
-    <form action="/payments/payment-request" method="post" class=" mt-25">
+    <form action="/payments/payment-request" method="post" class=" mt-25 gateway-payment-form">
         {{ csrf_field() }}
         <input type="hidden" name="order_id" value="{{ $order->id }}">
 
@@ -10,7 +12,7 @@
             @if(!empty($paymentChannels))
             @foreach($paymentChannels as $paymentChannel)
             <div class="col-6 col-lg-4 mb-40 charge-account-radio">
-                <input type="radio" name="gateway" id="{{ $paymentChannel->title }}" data-class="{{ $paymentChannel->class_name }}" value="{{ $paymentChannel->id }}">
+                <input type="radio" checked="checked" name="gateway" id="{{ $paymentChannel->title }}" data-class="{{ $paymentChannel->class_name }}" value="{{ $paymentChannel->id }}">
                 <label for="{{ $paymentChannel->title }}" class="rounded-sm p-20 p-lg-45 d-flex flex-column align-items-center justify-content-center">
                     <img src="{{ $paymentChannel->image }}" width="120" height="60" alt="">
 
@@ -65,3 +67,7 @@
     @endif
 </section>
 <script src="/assets/default/js/parts/payment.min.js"></script>
+
+<script>
+    $(".gateway-payment-form").submit();
+</script>

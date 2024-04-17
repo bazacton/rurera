@@ -155,7 +155,7 @@ class MembersController extends Controller
             return redirect('/login');
         }
         if (!auth()->user()->isParent()) {
-            return redirect('/panel');
+            return redirect('/'.panelRoute());
         }
         if (auth()->user()->isParent()) {
 
