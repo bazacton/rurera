@@ -21,13 +21,14 @@ class AnalyticsController extends Controller
         $user = auth()->user();
         $user_id = $user->id;
         if (auth()->user()->isParent()) {
+            $_GET['child'] = isset( $_GET['child'])? $_GET['child'] : 'all';
             $user_id = isset( $_GET['child'] )? $_GET['child'] : $user_id;
         }
-        $selected_child = 'Select Child';
+        $selected_child = 'Select Student';
         if(isset( $_GET['child'] )){
             $selected_child = User::find($_GET['child']);
             $selected_child = isset( $selected_child->id )? $selected_child->get_full_name() : '';
-            $selected_child = ($_GET['child'] == 'all')? 'All Childs' : $selected_child;
+            $selected_child = ($_GET['child'] == 'all')? 'All Students' : $selected_child;
         }
 
         $childs = array();
@@ -240,6 +241,7 @@ class AnalyticsController extends Controller
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['parent_type_id'] = $QuizzesAttemptObj->parent_type_id;
 
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['topic_title'] = $topic_title;
+                            $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['user'] = $QuizzesAttemptObj->user;
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['practice_time'] = $practice_time;
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['question_answered'] = $question_answered;
                             $analytics_data[$date_str]['data'][$QuizzesAttemptObj->id]['question_correct'] = $question_correct;
@@ -273,6 +275,7 @@ class AnalyticsController extends Controller
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['parent_type'] = 'quest';
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['topic_title'] = 'Quest ('.$questObj->title.')';
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['coins_earned'] = $userQuestObj->score;
+                                $analytics_data[$date_str]['data'][$userQuestObj->id]['user'] = $QuizzesAttemptObj->user;
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['start_time'] = $userQuestObj->created_at;
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['type'] = 'quest';
                                 $analytics_data[$date_str]['data'][$userQuestObj->id]['list_icon'] = $quest_icon;

@@ -19,7 +19,7 @@
             <div class="col-auto ms-auto last-activity profile-dropdown">
                 <a href="#" class="font-15 font-weight-normal">{{$selected_child}}</a>
                 <ul>
-                    <li><a href="/{{panelRoute()}}/analytics/?child=all" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> All Childs</a></li>
+                    <li><a href="/{{panelRoute()}}/analytics/?child=all" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> All Students</a></li>
                     @if( !empty( $childs ) )
                     @foreach($childs as $childLinkObj)
                     @php $childObj = $childLinkObj->user; @endphp
@@ -70,7 +70,7 @@
 
         </div>
 
-        <div class="time-card panel-border panel-shadow mb-30">
+        <div class="time-card panel-border panel-shadow mb-30 rurera-hide">
             <div class="card-header">
                 <h3 class="font-19 font-weight-bold">
                     What’s up Today
@@ -237,13 +237,21 @@
                         $analytic_icon = '/assets/default/img/types/'.$parent_type.'.svg';
                         $analytic_icon =   isset( $analyticData['list_icon'] )? $analyticData['list_icon'] : $analytic_icon;
 
+                        $by_user_label = '';
+                        if(auth()->check() && (auth()->user()->isParent() || auth()->user()->isTutor())){
+                            $userObj = isset( $analyticData['user'] )? $analyticData['user'] : array();
+                            if( isset( $userObj->id)){
+                                $by_user_label .= 'By <img src="'.$userObj->getAvatar().'" width="26" height="26"> ' . $userObj->get_full_name();
+                            }
+                        }
+
 
                         @endphp
 
 
                                 <li>
                                     <div class="timeline-icon"><img src="{{$analytic_icon}}" width="26" height="26" alt=""></div>
-                                    <div class="timeline-text"><p><strong><a href="{{$detail_link}}">{{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}</a></strong><span class="info-time">{{ dateTimeFormat($start_time,'H:i') }}</span></p>
+                                    <div class="timeline-text"><p><strong><a href="{{$detail_link}}">{{isset( $analyticData['topic_title'] )? $analyticData['topic_title'] : ''}}</a></strong> {!! $by_user_label !!} <span class="info-time">{{ dateTimeFormat($start_time,'H:i') }}</span></p>
                                     @if( $type == 'book_read')
                                             <span class="analytic-item">Reading Time: {{isset( $analyticData['read_time'] )? $analyticData['read_time'] : 0}} min</span>
                                             <span class="analytic-item">Pages Read: {{isset( $analyticData['pages_read'] )? $analyticData['pages_read'] : ''}}</span>

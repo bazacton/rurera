@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="container">
+                <div class="container subscription-content">
                     <div class="row">
                         <div class="col-12">
                             <form action="/panel/set-work/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}" method="Post" class="rurera-form-validation">
@@ -64,6 +64,16 @@
                                                             </label>
                                                             @endforeach
                                                     @endif
+                                                    <label class="card-radio">
+                                                        <a href="javascript:;" class="add-student-modal">
+                                                        <span class="radio-btn"><i class="las la-check"></i>
+                                                            <div class="card-icon">
+                                                                <img src="/assets/default/img/sidebar/members.png">
+                                                                <h3>+ Student</h3>
+                                                        </div>
+                                                    </span>
+                                                        </a>
+                                                    </label>
                                                     <input type="hidden" class="year_id_field" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]" value="0">
                                                 </div>
                                                 <div class="invalid-feedback"></div>
@@ -364,7 +374,7 @@
 
 
 
-                                        <div class="row">
+                                        <div class="row assignment_topic_type_fields practice_fields">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
                                                     <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
@@ -479,7 +489,7 @@
                                         </div>
 
 
-                                    <div class="form-group">
+                                    <div class="form-group assignment_topic_type_fields practice_fields">
                                         <label class="input-label">Practice Method</label>
                                         <div class="plan-switch-option" style="justify-content: left;">
                                                 <span class="switch-label font-18">Completion Target</span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -489,7 +499,7 @@
                                         </div>
                                     </div>
 
-                                        <div class="row">
+                                        <div class="row assignment_topic_type_fields practice_fields">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group assignment_method_check_fields target_improvements_fields">
                                                     <label class="input-label">Percentage of Correct Answers</label>
@@ -792,9 +802,12 @@
 
 
         $('body').on('click', '.mock-test-assign-btn', function (e) {
+            $(".mock-test-assign-btn").removeClass('active');
+            $(this).addClass('active');
         	var topic_id = $(this).attr('data-id');
         	var total_questions = $(this).attr('data-total_questions');
         	$(".topic_select_radio").val(topic_id);
+
         	$(".topic_select_radio").attr('data-total_questions', total_questions);
         	$(".topic_select_radio").click();
         });
@@ -830,6 +843,7 @@
             $(".max_questions").html('Max: ' + total_questions);
             $(".no_of_questions").attr('max', total_questions);
             $(".no_of_questions").val(current_questions);
+            console.log('assignment_topic_type_check');
             slider_fields_refresh();
             var year_id = $(".year_id_field").val();
             var quiz_type = $(".assignment_topic_type_check:checked").val();
@@ -1002,10 +1016,19 @@
             var current_value = $(this).val();
             //var total_questions = $(this).find('input[name="ajax[new][topic_id]"][value="' + current_value + '"]').attr('data-total_questions');
             var total_questions = $(this).attr('data-total_questions');
+            var assignment_topic_type_check = $(".assignment_topic_type_check:checked").val();
+            console.log(assignment_topic_type_check);
             $(".max_questions").html('Max: ' + total_questions);
             $(".no_of_questions").attr('max', total_questions);
-            //$( ".no_of_questions" ).val( $( "#slider-range-max" ).slider( "value" ) );
             $(".no_of_questions").val(0);
+            if(assignment_topic_type_check == 'vocabulary' || assignment_topic_type_check == 'sats' || assignment_topic_type_check == '11plus' || assignment_topic_type_check == 'independent_exams' || assignment_topic_type_check == 'iseb' || assignment_topic_type_check == 'cat4') {
+                var practice_time = $(".mock-test-assign-btn.active").attr('data-total_time');
+                $(".practice_interval").attr('min', practice_time);
+                $(".practice_interval").val(practice_time);
+                $(".no_of_questions").attr('min', total_questions);
+                $(".no_of_questions").val(total_questions);
+                slider_fields_refresh();
+            }
         });
 
         $('body').on('click', '.wizard-step', function (e) {
@@ -1055,6 +1078,34 @@
         $(".year_group_quiz_ajax_select").change();
 
 
+
+
+        $('body').on('click', '.add-student-modal', function (e) {
+            var action_type = 'child_register';
+            var action_id = 0;
+            selectedPackage = action_id;
+            //$(".subscription-content").html('');
+            //$("#subscriptionModal").modal('show');
+            rurera_loader($('.subscription-content'), 'div');
+            subscriptionRequest = jQuery.ajax({
+                type: "GET",
+                url: '/subscribes/apply-subscription',
+                async: true,
+                beforeSend: function () {
+                    if (subscriptionRequest != null) {
+                        subscriptionRequest.abort();
+                    }
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"action_type": action_type, "action_id": action_id},
+                success: function (return_data) {
+                    rurera_remove_loader($('.subscription-content'), 'div');
+                    $(".subscription-content").html(return_data);
+                }
+            });
+        });
 
         $('body').on('change', '.assignment-user-class', function (e) {
             var year_id = $(this).attr('data-year_id');

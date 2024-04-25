@@ -332,7 +332,7 @@ class CommonWebController extends Controller
                                                         </h4>
                                                     </td>
                                                     <td class="text-right">
-                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_questions="' . $count_questions . '" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
+                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_time="' . $rowObj->time . '" data-total_questions="' . $count_questions . '" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
                                                 </tr>';
                             }
                         }

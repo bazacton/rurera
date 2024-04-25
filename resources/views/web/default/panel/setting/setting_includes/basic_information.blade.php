@@ -240,6 +240,196 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                 </div>
             </div>
         </div>
+        <div class="col-12">
+            <div class="edit-profile">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="edit-profile-sidebar">
+                            <div class="user-info">
+                                <img src="/avatar/svgA44708602509147854.png" alt="" height="48" width="48">
+                                <span class="info-text">
+                                    Maya Rosselini
+                                    <small>Product Manager</small>
+                                </span>
+                            </div>
+                            <div class="edit-profile-menu">
+                                <ul>
+                                    <li><a href="#" class="active"><span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span> General</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/city-svgrepo-com.svg" alt=""></span>Experience</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/diamond-plan.svg" alt=""></span>Skills &amp; Tools</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/user-setting.svg" alt=""></span>Settings</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="edit-profile-content-holder">
+                            <div class="edit-profile-content panel-border bg-white rounded-sm px-20 pt-20">
+                                <div class="edit-profile-top">
+                                    <div class="top-heading">
+                                        <h5>
+                                            GENERAL INFO
+                                            <span>Edit your account's general information</span>
+                                        </h5>
+                                    </div>
+                                    <div class="edit-profile-controls">
+                                        <button>Cancel</button>
+                                        <button class="save-btn">Save</button>
+                                    </div>
+                                </div>
+                                <div class="edit-profile-body">
+                                    <div class="edit-profile-image">
+                                        <div class="edit-element-title">
+                                            <h6>
+                                                Profile picture
+                                                <span>This is how others will recognize you</span>
+                                            </h6>
+                                        </div>
+                                        <div class="profile-image">
+                                            <figure>
+                                                <img src="/avatar/svgA44708602509147854.png" height="96" width="96" alt="">
+                                                <a href="#" class="cancel-btn">✖</a>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="edit-element-title">
+                                                    <h6>
+                                                        Profile Info
+                                                        <span>Others diserve to know you more</span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="First name" value="Maya">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Job title" value="Rosselini">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Job title" value="Product Manager">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Location">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="input-field">
+                                                    <textarea placeholder="About you / Short bio..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="edit-element-title">
+                                                    <h6>
+                                                        Professional Info
+                                                        <span>This can help you to win some opportunities</span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="select-field">
+                                                    <select>
+                                                        <option value="Experience">Experience</option>
+                                                        <option value="0-2 years">0-2 years</option>
+                                                        <option value="2-5 years">2-5 years</option>
+                                                        <option value="5-10 years">5-10 years</option>
+                                                        <option value="10+ years">10+ years</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="select-field">
+                                                    <select>
+                                                        <option value="Experience">Is this your first job?</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="select-field">
+                                                    <select>
+                                                        <option value="Experience">Are you flexible?</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="select-field">
+                                                    <select>
+                                                        <option value="Experience">Do you work remotely?</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="edit-element-title">
+                                                    <h6>
+                                                        Social Profiles
+                                                        <span>This can help others finding you on social media</span>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6 col-md-6">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <input type="text" placeholder="Facebook URL">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12 col-lg-12">
             <div class="profile-image-holder p-25 mb-10">
                 <div class="form-group">

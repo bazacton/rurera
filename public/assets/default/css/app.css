@@ -16057,6 +16057,7 @@ Lms FAQS New Elements Style End
 Lms Choose Membership Model Style Start
 *************************************/
 .modal.lms-choose-membership {padding-left: 0 !important;}
+.modal.lms-choose-membership:has(.wizard-steps) {scrollbar-gutter: stable; width: 101%;}
 .lms-choose-membership .modal-dialog {max-width: 100%; margin: 0;}
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
@@ -16810,7 +16811,7 @@ Dashboard Form-Tabs Style Start
 .db-members .card .card-body {padding: 0;}
 .db-members .card .list-group-item {background-color: inherit; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 10px 15px; position: inherit;}
 .db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto;}
-.db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 16.6666666667%; max-width: 16.6666666667%;}
+.db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 18.6666666667%; max-width: 18.6666666667%;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
 .billing-card .list-group-item {padding: 0;}
 .db-notifications {max-width: 700px;}
@@ -17463,6 +17464,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .timestables-retry-stage:hover:before {filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg) brightness(106%) contrast(106%);}
 .rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
+.mock-test-assign-btn.active {border-color: var(--primary); color: var(--primary);}
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
@@ -18180,6 +18182,7 @@ address .info-list-label {color: #64748b;}
 /* User Detail Style End */
 
 /* Wizard-Steps Style Start */
+.lms-choose-membership .wizard-steps {margin-bottom: 30px;}
 .lms-choose-membership .panel-header {background-color: #fff; border-bottom: 4px solid #e2e8f0; position: relative; padding: 10px 20px; display: flex; align-items: center;}
 .lms-choose-membership .panel-header .modal-logo {border-right: 1px solid #ddd; padding: 0 15px 0 0; margin-right: 15px;}
 .lms-choose-membership .panel-header img {height: 40px; width: 40px; }
@@ -18189,7 +18192,7 @@ address .info-list-label {color: #64748b;}
 .wizard-pagination .next-btn {background-color: var(--primary); border-color: var(--primary); color: #fff;}
 .wizard-steps .populated-data .input-label {color: #343434;}
 .steps-counter {color: #64748b;}
-.practice-quiz-ajax-fields {margin-bottom: 30px; }
+.practice-quiz-ajax-fields {margin-bottom: 30px;}
 .disabled-btn {pointer-events: none;}
 .lms-choose-membership:has(.wizard-steps) .container, 
 .lms-choose-membership:has(.wizard-steps) .container > .row,
@@ -18198,6 +18201,183 @@ address .info-list-label {color: #64748b;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 /* Wizard-Steps Style End */
+
+/*Edit Profile Style Start*/
+.edit-profile .user-info img {
+    border-radius: 100%;
+    height: 48px;
+    width: 48px;
+    object-fit: fill;
+}
+.edit-profile .user-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 30px;
+}
+.edit-profile .info-text {
+    display: inline-flex;
+    flex-direction: column;
+    color: #000;
+    font-weight: 500;
+}
+.edit-profile .info-text small {
+    color: #94a3b8;
+}
+.edit-profile-menu .icon-box img {
+    height: 15px;
+    width: 15px;
+    filter: invert(72%) sepia(7%) saturate(861%) hue-rotate(176deg) brightness(89%) contrast(90%);
+}
+.edit-profile-menu li a {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #94a3b8;
+}
+.edit-profile-menu li a.active {
+    background-color: #8b5cf61a;
+    border-radius: 10px;
+}
+.edit-profile-content-holder {
+    padding-left: 30px;
+}
+.edit-profile-top {
+    margin: 0 0 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-heading h5 {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    margin: 0;
+}
+.top-heading h5 span {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 5px;
+}
+.edit-profile-controls button {
+    background-color: inherit;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    min-width: 96px;
+    text-align: center;
+    border-radius: 5px;
+}
+.edit-profile-controls .save-btn {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+.edit-profile-body {
+    max-width: 32rem;
+    margin: 0 auto;
+}
+.edit-profile-image .profile-image {
+    text-align: center;
+}
+.edit-element-title {
+    margin: 0 0 20px;
+}
+.edit-element-title h6 {
+    font-size: 16px;
+    font-weight: 500;
+}
+.edit-element-title h6 span {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: normal;
+    padding-top: 5px;
+}
+.profile-image img {
+    border-radius: 100%;
+    height: 96px;
+    width: 96px;
+    object-fit: cover;
+}
+.edit-profile-image .profile-image figure {
+    display: inline-flex;
+    position: relative;
+}
+.edit-profile-image .cancel-btn {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 100%;
+    color: #334155;
+    position: absolute;
+    right: -5px;
+    bottom: 5px;
+    height: 32px;
+    width: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+.edit-profile .form-group .icon-box img {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    margin-top: -9px;
+    height: 18px;
+    width: 18px;
+}
+.edit-profile .form-group .input-field input[type="text"],
+.edit-profile .select-field select{
+    border: 1px solid #ddd;
+    height: 40px;
+    padding: 0 0 0 35px;
+    border-radius: 5px;
+    width: 100%;
+}
+.edit-profile .form-group [class*="col-"] {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.edit-profile .form-group .row {
+    margin: 0 -8px;
+}
+.edit-profile .form-group .input-field {
+    margin-bottom: 16px;
+    border: 0;
+    padding: 0;
+    height: auto;
+    border-radius: 0;
+    position: relative;
+}
+.edit-profile .form-group .input-field textarea {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 10px;
+    height: 98px;
+    width: 100%;
+}
+.edit-profile .select-field select {
+    padding: 0 10px;
+    width: 100%;
+    color: #888;
+}
+.lms-choose-membership .edit-profile .form-group {
+    margin-bottom: 0;
+}
+.edit-profile {
+    margin: 0 0 50px;
+}
+.edit-profile .select-field {
+    margin-bottom: 16px;
+}
+/*Edit Profile Style End*/
 
 /*************************************
 Lms Responsive Style Start
@@ -18339,7 +18519,6 @@ Lms Responsive Style Start
     .sats-listing-card table, .lms-data-table .table { overflow: hidden;}
     .sats-listing-card tbody tr td:nth-child(2) {text-align: left; min-width: auto;}
     .rurera-list-btn {padding: 10px 15px; min-width: 100px; text-align: center;}
-    .rurera-list-btn.active {border-color: var(--primary); color: var(--primary);}
     .panel-page-section .panel-sidebar {position: fixed !important; padding-top: 15px !important; padding-bottom: 15px !important; height: auto; width: 100%; border: none; max-height: 60px; z-index: 30;}
     .panel-page-section .questions-submit-btn {width: 82%;}
     .timestables-mode-content .heatmap-range-slider {margin-bottom: 0;}
