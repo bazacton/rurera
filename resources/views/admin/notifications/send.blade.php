@@ -49,7 +49,7 @@
                                             data-placeholder="{{ trans('public.search_user') }}">
 
                                         @if(!empty($notification) and !empty($notification->user))
-                                            <option value="{{ $notification->user->id }}" selected>{{ $notification->user->full_name }}</option>
+                                            <option value="{{ $notification->user->id }}" selected>{{ $notification->user->get_full_name() }}</option>
                                         @endif
                                     </select>
                                     <div class="invalid-feedback">@error('user_id') {{ $message }} @enderror</div>

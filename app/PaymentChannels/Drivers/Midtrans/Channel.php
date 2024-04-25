@@ -37,7 +37,7 @@ class Channel implements IChannel
         );
 
         $customer_details = array(
-            'first_name' => $user->full_name,
+            'first_name' => $user->get_full_name(),
             'email' => $user->email ?? $generalSettings['site_email'],
             'phone' => $user->mobile,
         );

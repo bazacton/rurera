@@ -63,13 +63,13 @@
                                     <div class="col-12 col-md-6">
                                         <div class="d-flex align-items-center">
                                             <div class="topic-user-avatar rounded-circle">
-                                                <img src="{{ $topic->creator->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $topic->creator->full_name }}">
+                                                <img src="{{ $topic->creator->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $topic->creator->get_full_name() }}">
                                             </div>
                                             <div class="ml-10 mw-100">
                                                 <a href="{{ $topic->getPostsUrl() }}" class="">
                                                     <h4 class="font-16 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
                                                 </a>
-                                                <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $topic->creator->full_name }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
+                                                <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $topic->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -97,10 +97,10 @@
                                                 @if(!empty($topic->lastPost))
                                                     <div class="d-flex align-items-center">
                                                         <div class="topic-last-post-user-avatar rounded-circle">
-                                                            <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->full_name }}">
+                                                            <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->get_full_name() }}">
                                                         </div>
                                                         <div class="ml-10">
-                                                            <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->full_name }}</h4>
+                                                            <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
                                                             <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.in') }} {{ dateTimeFormat($topic->lastPost->created_at,'j M Y | H:i') }}</span>
                                                         </div>
                                                     </div>
@@ -139,11 +139,11 @@
                                 @if(!empty($topUser->all_posts))
                                     <div class="d-flex align-items-center mt-15">
                                         <div class="topics-right-side-user-avatar rounded-circle">
-                                            <img src="{{ $topUser->getAvatar(48) }}" class="img-cover rounded-circle" alt="{{ $topUser->full_name }}">
+                                            <img src="{{ $topUser->getAvatar(48) }}" class="img-cover rounded-circle" alt="{{ $topUser->get_full_name() }}">
                                         </div>
                                         <div class="ml-10">
                                             <a href="{{ $topUser->getProfileUrl() }}" class="d-block">
-                                                <span class="font-14 font-weight-500 text-secondary">{{ $topUser->full_name }}</span>
+                                                <span class="font-14 font-weight-500 text-secondary">{{ $topUser->get_full_name() }}</span>
                                             </a>
                                             <span class="d-block font-12 font-weight-500 text-gray">{{ trans('update.n_posts',['count' => $topUser->posts]) }} | {{ trans('update.n_topics',['count' => $topUser->topics]) }}</span>
                                         </div>
@@ -159,13 +159,13 @@
                         @foreach($popularTopics as $popularTopic)
                             <div class="d-flex align-items-center mt-15">
                                 <div class="topics-right-side-user-avatar rounded-circle">
-                                    <img src="{{ $popularTopic->creator->getAvatar(48) }}" class="img-cover rounded-circle" alt="{{ $popularTopic->creator->full_name }}">
+                                    <img src="{{ $popularTopic->creator->getAvatar(48) }}" class="img-cover rounded-circle" alt="{{ $popularTopic->creator->get_full_name() }}">
                                 </div>
                                 <div class="ml-10">
                                     <a href="{{ $popularTopic->getPostsUrl() }}" class="d-block">
                                         <span class="font-14 font-weight-500 text-secondary">{{ $popularTopic->title }}</span>
                                     </a>
-                                    <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.by') }} {{ $popularTopic->creator->full_name }} | {{ trans('update.n_posts',['count' => $popularTopic->posts_count]) }}</span>
+                                    <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.by') }} {{ $popularTopic->creator->get_full_name() }} | {{ trans('update.n_posts',['count' => $popularTopic->posts_count]) }}</span>
                                 </div>
                             </div>
                         @endforeach

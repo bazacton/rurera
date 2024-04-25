@@ -71,7 +71,7 @@ class CourseForumController extends Controller
 
         if ($user->id != $webinar->creator_id and $user->id != $webinar->teacher_id) {
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[c.title]' => $webinar->title,
             ];
 

@@ -29,7 +29,7 @@
 
             userInfo: {
                 email: "{{ $authUser->email }}",
-                displayName: "{{ $authUser->full_name }}",
+                displayName: "{{ $authUser->get_full_name() }}",
             }
         }
 

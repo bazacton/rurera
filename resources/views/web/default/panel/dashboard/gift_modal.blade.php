@@ -4,7 +4,7 @@
 
         <h4 class="font-16 font-weight-bold mt-15">{{ trans("update.you_got_a_gift_{$gift->getItemType()}") }}</h4>
         <p class="font-14 font-weight-500 text-gray mt-5">
-            {{ trans('update.user_send_item_to_you_as_a_gift',['user' => $gift->user->full_name, 'item_title' => $gift->getItemTitle()]) }}
+            {{ trans('update.user_send_item_to_you_as_a_gift',['user' => $gift->user->get_full_name(), 'item_title' => $gift->getItemTitle()]) }}
         </p>
     </div>
 

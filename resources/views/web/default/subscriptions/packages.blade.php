@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 col-lg-12">
                     <div class="element-title text-center mb-40">
-                        <h2 itemprop="title" class="font-40 text-dark-charcoal mb-0">Choose the right plan for {{isset($childObj->id)? $childObj->full_name : 'You'}}</h2>
+                        <h2 itemprop="title" class="font-40 text-dark-charcoal mb-0">Choose the right plan for {{isset($childObj->id)? $childObj->get_full_name() : 'You'}}</h2>
                         <p class="font-16">Choose a plan that's right for you.</p>
                     </div>
                 </div>

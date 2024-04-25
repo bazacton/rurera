@@ -2,19 +2,19 @@
 
     <div class="custom-dropdown navbar-auth-user-dropdown position-relative ml-50">
         <div class="custom-dropdown-toggle d-flex align-items-center navbar-user cursor-pointer">
-            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}">
-            <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->full_name }}</span>
+            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}">
+            <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->get_full_name() }}</span>
         </div>
 
         <div class="custom-dropdown-body pb-10">
 
             <div class="dropdown-user-avatar d-flex align-items-center p-15 m-15 mb-10 rounded-sm border">
                 <div class="size-40 rounded-circle position-relative">
-                    <img src="{{ $authUser->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $authUser->full_name }}">
+                    <img src="{{ $authUser->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $authUser->get_full_name() }}">
                 </div>
 
                 <div class="ml-5">
-                    <div class="font-14 font-weight-bold text-secondary">{{ $authUser->full_name }}</div>
+                    <div class="font-14 font-weight-bold text-secondary">{{ $authUser->get_full_name() }}</div>
                     <span class="mt-5 text-gray font-12">{{ $authUser->role->caption }}</span>
                 </div>
             </div>

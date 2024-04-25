@@ -130,7 +130,7 @@ class JobsController extends Controller
         foreach ($reserves as $reserve) {
             try {
                 $notifyOptions = [
-                    '[instructor.name]' => $reserve->meeting->creator->full_name,
+                    '[instructor.name]' => $reserve->meeting->creator->get_full_name(),
                     '[time.date]' => dateTimeFormat($reserve->start_at, 'j M Y , H:i'),
                 ];
 

@@ -180,6 +180,98 @@ $QuestionsAttemptController = new QuestionsAttemptController();
 @endpush
 
 @section('content')
+<section class="panel-border bg-white rounded-sm px-25 pt-25">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Assignment Title</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{$assignmentObj->title}}
+            </div>
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Type</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{get_topic_type($assignmentObj->assignment_type)}}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Practice Type</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{$assignmentObj->assignment_type}}
+            </div>
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Subjects / Topics / Tables</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                @if( $assignmentObj->assignment_type == 'timestables')
+                    {{ implode(', ', json_decode($assignmentObj->tables_no)) }}
+                @else
+
+                {{implode(',', $topics_response)}}
+                @endif
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Practice Start Date</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{ dateTimeFormat($assignmentObj->assignment_start_date, 'j M Y') }}
+            </div>
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Practice Due Date</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{ dateTimeFormat($assignmentObj->assignment_end_date, 'j M Y') }}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">No of Questions</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{ $assignmentObj->no_of_questions }}
+            </div>
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">No of Attempts</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                {{ $assignmentObj->no_of_attempts }}
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <label class="input-label font-15">Time Limit</label>
+            </div>
+            <div class="col-12 col-lg-3">
+                @if( $assignmentObj->duration_type == 'no_time_limit')
+                    No Time Limit
+                @endif
+                @if( $assignmentObj->duration_type == 'total_practice')
+                    {{getTimeWithText(($assignmentObj->practice_time*60), false)}}
+                @endif
+                @if( $assignmentObj->duration_type == 'per_question')
+                    {{getTimeWithText($assignmentObj->time_interval, false)}} Per Question
+                @endif
+
+
+            </div>
+        </div>
+    </div>
+</section>
 <section class="dashboard">
 
     <div class="db-form-tabs">
@@ -203,7 +295,7 @@ $QuestionsAttemptController = new QuestionsAttemptController();
                                         @foreach( $assignmentObj->students as $assignmentTopicObj)
                                         <tr>
                                             <td>
-                                                <span>{{$assignmentTopicObj->user->full_name}}</span>
+                                                <span>{{$assignmentTopicObj->user->get_full_name()}}</span>
                                             </td>
                                             <td>
                                                 @php $attempt_counter = 1; $counter = 1; @endphp

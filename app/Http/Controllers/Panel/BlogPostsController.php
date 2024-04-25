@@ -110,7 +110,7 @@ class BlogPostsController extends Controller
         }
 
         $notifyOptions = [
-            '[u.name]' => $user->full_name,
+            '[u.name]' => $user->get_full_name(),
             '[blog_title]' => $blog->title,
         ];
         sendNotification("new_user_blog_post", $notifyOptions, 1);

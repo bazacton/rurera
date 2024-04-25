@@ -55,7 +55,7 @@
                                                     data-search-option="except_user"
                                             >
                                                 @if(!empty($post))
-                                                    <option value="{{ $post->author->id }}" selected>{{ $post->author->full_name }}</option>
+                                                    <option value="{{ $post->author->id }}" selected>{{ $post->author->get_full_name() }}</option>
                                                 @else
                                                     <option selected disabled>{{ trans('update.select_a_user') }}</option>
                                                 @endif

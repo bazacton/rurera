@@ -66,7 +66,7 @@ class BundleReviewController extends Controller
 
                 $notifyOptions = [
                     '[item_title]' => $bundle->title,
-                    '[u.name]' => $user->full_name,
+                    '[u.name]' => $user->get_full_name(),
                     '[rate.count]' => $rates > 0 ? $rates / 4 : 0,
                     '[content_type]' => trans('update.bundle'),
                 ];

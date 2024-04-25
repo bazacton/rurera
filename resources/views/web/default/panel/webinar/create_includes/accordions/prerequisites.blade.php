@@ -1,7 +1,7 @@
 <li data-id="{{ !empty($prerequisite) ? $prerequisite->id :'' }}" class="accordion-row bg-white rounded-sm panel-shadow mt-20 py-15 py-lg-30 px-10 px-lg-20">
     <div class="d-flex align-items-center justify-content-between " role="tab" id="prerequisite_{{ !empty($prerequisite) ? $prerequisite->id :'record' }}">
         <div class="font-weight-bold text-dark-blue" href="#collapsePrerequisite{{ !empty($prerequisite) ? $prerequisite->id :'record' }}" aria-controls="collapsePrerequisite{{ !empty($prerequisite) ? $prerequisite->id :'record' }}" data-parent="#prerequisitesAccordion" role="button" data-toggle="collapse" aria-expanded="true">
-            <span>{{ (!empty($prerequisite) and !empty($prerequisite->prerequisiteWebinar)) ? $prerequisite->prerequisiteWebinar->title .' - '. $prerequisite->prerequisiteWebinar->teacher->full_name : trans('public.add_new_prerequisites') }}</span>
+            <span>{{ (!empty($prerequisite) and !empty($prerequisite->prerequisiteWebinar)) ? $prerequisite->prerequisiteWebinar->title .' - '. $prerequisite->prerequisiteWebinar->teacher->get_full_name() : trans('public.add_new_prerequisites') }}</span>
         </div>
 
         <div class="d-flex align-items-center">
@@ -33,7 +33,7 @@
                             <label class="input-label d-block">{{ trans('public.select_prerequisites') }}</label>
                             <select name="ajax[{{ !empty($prerequisite) ? $prerequisite->id : 'new' }}][prerequisite_id]" class="js-ajax-prerequisite_id @if(empty($prerequisite)) form-control @endif prerequisites-select2" data-webinar-id="{{  !empty($webinar) ? $webinar->id : '' }}" data-placeholder="{{ trans('public.search_prerequisites') }}">
                                 @if(!empty($prerequisite) and !empty($prerequisite->prerequisiteWebinar))
-                                    <option selected value="{{ $prerequisite->prerequisiteWebinar->id }}">{{ $prerequisite->prerequisiteWebinar->title .' - '. $prerequisite->prerequisiteWebinar->teacher->full_name }}</option>
+                                    <option selected value="{{ $prerequisite->prerequisiteWebinar->id }}">{{ $prerequisite->prerequisiteWebinar->title .' - '. $prerequisite->prerequisiteWebinar->teacher->get_full_name() }}</option>
                                 @endif
                             </select>
                             <div class="invalid-feedback"></div>

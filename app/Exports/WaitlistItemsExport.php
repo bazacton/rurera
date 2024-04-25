@@ -45,7 +45,7 @@ class WaitlistItemsExport implements FromCollection, WithHeadings, WithMapping
     {
 
         return [
-            !empty($waitlist->user) ? $waitlist->user->full_name : $waitlist->full_name,
+            !empty($waitlist->user) ? $waitlist->user->get_full_name() : $waitlist->get_full_name(),
             !empty($waitlist->user) ? $waitlist->user->email : $waitlist->email,
             !empty($waitlist->user) ? $waitlist->user->mobile : $waitlist->phone,
             !empty($waitlist->user) ? trans('update.registered') : trans('update.unregistered'),

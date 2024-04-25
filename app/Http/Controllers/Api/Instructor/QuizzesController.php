@@ -343,7 +343,7 @@ class QuizzesController extends Controller
                     if ($quizResult->status == QuizzesResult::$waiting) {
                         $notifyOptions = [
                             '[c.title]' => $quiz->webinar ? $quiz->webinar->title : '-',
-                            '[student.name]' => $user->full_name,
+                            '[student.name]' => $user->get_full_name(),
                             '[q.title]' => $quiz->title,
                         ];
                         sendNotification('waiting_quiz', $notifyOptions, $quiz->creator_id);

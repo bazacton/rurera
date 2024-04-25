@@ -21,6 +21,11 @@ class PagesController extends Controller
 {
     public function index(Request $request, $link)
     {
+
+        $redirect_url = redirectCheck();
+        if( $redirect_url != ''){
+            return redirect($redirect_url);
+        }
         $firstCharacter = substr($link, 0, 1);
         if ($firstCharacter !== '/') {
             $link = '/' . $link;

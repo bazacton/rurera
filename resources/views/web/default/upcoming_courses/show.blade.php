@@ -27,7 +27,7 @@
 
                         <div class="mt-15">
                             <span class="font-14">{{ trans('public.created_by') }}</span>
-                            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $upcomingCourse->teacher->full_name }}</a>
+                            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $upcomingCourse->teacher->get_full_name() }}</a>
                         </div>
 
                         <div class="mt-auto">
@@ -36,7 +36,7 @@
                                     <div class="d-flex align-items-center overlay-avatars">
                                         @foreach($followingUsers as $followingUser)
                                             <div class="overlay-avatars__item size-40 rounded-circle">
-                                                <img src="{{ $followingUser->user->getAvatar(40) }}" alt="{{ $followingUser->full_name }}" class="img-cover rounded-circle">
+                                                <img src="{{ $followingUser->user->getAvatar(40) }}" alt="{{ $followingUser->get_full_name() }}" class="img-cover rounded-circle">
                                             </div>
                                         @endforeach
 

@@ -47,7 +47,7 @@
                                     <tbody>
                                     @foreach($affiliates as $affiliate)
                                         <tr>
-                                            <td>{{ $affiliate->affiliateUser->full_name }}</td>
+                                            <td>{{ $affiliate->affiliateUser->get_full_name() }}</td>
 
                                             <td>
                                                 @if($affiliate->affiliateUser->isUser())

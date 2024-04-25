@@ -49,7 +49,7 @@ class OfflinePaymentsExport implements FromCollection, WithHeadings, WithMapping
     public function map($offlinePayment): array
     {
         return [
-            $offlinePayment->user->full_name,
+            $offlinePayment->user->get_full_name(),
             $offlinePayment->user->role->caption,
             $this->currency . '' . $offlinePayment->amount,
             $offlinePayment->bank,

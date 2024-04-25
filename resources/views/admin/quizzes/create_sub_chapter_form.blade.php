@@ -9,7 +9,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="">
                         <h2 class="section-title">{{ !empty($subChapter) ? (trans('public.edit').' ('. $subChapter->sub_chapter_title .')') : trans('quiz.sub_section') }}</h2>
-                        <p>{{ trans('admin/main.instructor') }}: {{ $creator->full_name }}</p>
+                        <p>{{ trans('admin/main.instructor') }}: {{ $creator->get_full_name() }}</p>
                     </div>
                 </div>
 

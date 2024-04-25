@@ -51,7 +51,7 @@ class FeatureWebinarsExport implements FromCollection, WithHeadings, WithMapping
             $feature->webinar->title,
             $feature->webinar->status,
             dateTimeFormat($feature->updated_at, 'Y M j | H:i'),
-            $feature->webinar->teacher->full_name,
+            $feature->webinar->teacher->get_full_name(),
             $feature->webinar->category->title,
             trans('admin/pages/webinars.page_' . $feature->page),
             ($feature->status == 'publish') ? trans('admin/main.published') : trans('admin/main.pending'),

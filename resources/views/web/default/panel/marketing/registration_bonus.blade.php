@@ -179,10 +179,10 @@
                                             <td class="text-left">
                                                 <div class="user-inline-avatar d-flex align-items-center">
                                                     <div class="avatar bg-gray200">
-                                                        <img src="{{ $user->getAvatar() }}" class="img-cover" alt="{{ $user->full_name }}">
+                                                        <img src="{{ $user->getAvatar() }}" class="img-cover" alt="{{ $user->get_full_name() }}">
                                                     </div>
                                                     <div class=" ml-5">
-                                                        <span class="d-block font-weight-500">{{ $user->full_name }}</span>
+                                                        <span class="d-block font-weight-500">{{ $user->get_full_name() }}</span>
                                                     </div>
                                                 </div>
                                             </td>

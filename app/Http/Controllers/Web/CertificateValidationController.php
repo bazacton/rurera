@@ -55,7 +55,7 @@ class CertificateValidationController extends Controller
             }
 
             $result = [
-                'student' => $certificate->student->full_name,
+                'student' => $certificate->student->get_full_name(),
                 'webinar_title' => $webinarTitle,
                 'date' => dateTimeFormat($certificate->created_at, 'j F Y'),
             ];

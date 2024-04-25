@@ -153,7 +153,7 @@
 
                                         @if(!empty($teachers) and $teachers->count() > 0)
                                             @foreach($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}" selected>{{ $teacher->full_name }}</option>
+                                                <option value="{{ $teacher->id }}" selected>{{ $teacher->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -169,7 +169,7 @@
 
                                         @if(!empty($students) and $students->count() > 0)
                                             @foreach($students as $student)
-                                                <option value="{{ $student->id }}" selected>{{ $student->full_name }}</option>
+                                                <option value="{{ $student->id }}" selected>{{ $student->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -214,11 +214,11 @@
                                             </td>
 
                                             <td class="text-left">
-                                                <a href="{{ $support->webinar->teacher->getProfileUrl() }}" target="_blank">{{ $support->webinar->teacher->full_name }}</a>
+                                                <a href="{{ $support->webinar->teacher->getProfileUrl() }}" target="_blank">{{ $support->webinar->teacher->get_full_name() }}</a>
                                             </td>
 
                                             <td class="text-left">
-                                                <a href="{{ $support->user->getProfileUrl() }}" target="_blank">{{ $support->user->full_name }}</a>
+                                                <a href="{{ $support->user->getProfileUrl() }}" target="_blank">{{ $support->user->get_full_name() }}</a>
                                             </td>
 
                                             <td>{{ dateTimeFormat($support->created_at,'j M Y | H:i') }}</td>

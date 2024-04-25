@@ -80,10 +80,10 @@
                             <td class="text-left">
                                 <div class="d-flex align-items-center">
                                     <figure class="avatar mr-2">
-                                        <img src="{{ $request->user->getAvatar() }}" alt="{{ $request->user->full_name }}">
+                                        <img src="{{ $request->user->getAvatar() }}" alt="{{ $request->user->get_full_name() }}">
                                     </figure>
                                     <div class="media-body ml-1">
-                                        <div class="mt-0 mb-1 font-weight-bold">{{ $request->user->full_name }}</div>
+                                        <div class="mt-0 mb-1 font-weight-bold">{{ $request->user->get_full_name() }}</div>
 
                                         @if($request->user->mobile)
                                             <div class="text-primary text-small font-600-bold">{{ $request->user->mobile }}</div>

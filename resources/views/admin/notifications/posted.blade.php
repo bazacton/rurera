@@ -43,11 +43,11 @@
                             @foreach($notifications as $notification)
                                 <tr>
                                     <td>{{ $notification->title }}</td>
-                                    <td class="text-center">{{ $notification->senderUser->full_name }}</td>
+                                    <td class="text-center">{{ $notification->senderUser->get_full_name() }}</td>
 
                                     <td class="text-center">
                                         @if(!empty($notification->user))
-                                            <span class="d-block">{{ $notification->user->full_name }}</span>
+                                            <span class="d-block">{{ $notification->user->get_full_name() }}</span>
                                             <span class="font-12 d-block">ID: {{ $notification->user->id }}</span>
                                         @else
                                             -

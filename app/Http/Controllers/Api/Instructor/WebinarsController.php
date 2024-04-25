@@ -942,7 +942,7 @@ class WebinarsController extends Controller
                 ->get();
 
             foreach ($webinars as $webinar) {
-                $webinar->title .= ' - ' . $webinar->teacher->full_name;
+                $webinar->title .= ' - ' . $webinar->teacher->get_full_name();
             }
             return response()->json($webinars, 200);
         }

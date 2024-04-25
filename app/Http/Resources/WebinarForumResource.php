@@ -20,7 +20,7 @@ class WebinarForumResource extends JsonResource
             'user' => [
                 'id' => $this->user->id,
                 'avatar' => url($this->user->getAvatar()),
-                'full_name' => $this->user->full_name,
+                'full_name' => $this->user->get_full_name(),
             ],
             'pin' => (bool)$this->pin,
             'description' => $this->description,
@@ -45,7 +45,7 @@ class WebinarForumResource extends JsonResource
                     'last_answer' => [
                         'description' => $last_answer->description,
                         'user' => [
-                            'full_name' => $last_answer->user->full_name,
+                            'full_name' => $last_answer->user->get_full_name(),
                             'avatar' => url($last_answer->user->getAvatar())
                         ]
                     ]

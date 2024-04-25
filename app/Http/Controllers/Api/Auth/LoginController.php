@@ -113,7 +113,7 @@ class LoginController extends Controller
         $profile_completion = [];
         $data  ['token'] = $token;
         $data['user_id'] = $user->id;
-        if (!$user->full_name) {
+        if (!$user->get_full_name()) {
             $profile_completion[] = 'full_name';
             $data['profile_completion'] = $profile_completion;
         }

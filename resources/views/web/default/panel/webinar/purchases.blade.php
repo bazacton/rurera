@@ -207,7 +207,7 @@
 
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                             <span class="stat-title">{{ trans('public.instructor') }}:</span>
-                                            <span class="stat-value">{{ $item->teacher->full_name }}</span>
+                                            <span class="stat-value">{{ $item->teacher->get_full_name() }}</span>
                                         </div>
 
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">

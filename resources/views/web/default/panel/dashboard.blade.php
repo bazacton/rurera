@@ -21,16 +21,9 @@
             @endif
         </div>
 
-        @if(!$authUser->financial_approval and !$authUser->isUser())
-            <div class="p-15 mt-20 p-lg-20 not-verified-alert font-weight-500 text-dark-blue rounded-sm panel-shadow">
-                {{ trans('panel.not_verified_alert') }}
-                <a href="/panel/setting/step/7" class="text-decoration-underline">{{ trans('panel.this_link') }}</a>.
-            </div>
-        @endif
-
         <div class="bg-white dashboard-banner-container position-relative px-15 px-ld-35 py-10 panel-shadow rounded-sm">
             <h2 class="font-30 text-primary line-height-1">
-                <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->full_name }},</span>
+                <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->get_full_name() }},</span>
                 <span class="font-16 text-secondary font-weight-bold">{{ trans('panel.have_event',['count' => !empty($unReadNotifications) ? count($unReadNotifications) : 0]) }}</span>
             </h2>
 

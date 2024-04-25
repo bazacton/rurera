@@ -34,7 +34,7 @@
                                 @foreach($authors as $authorsObj)
                                 <tr>
                                     <td>
-                                        <span>{{ $authorsObj->full_name }}</span>
+                                        <span>{{ $authorsObj->get_full_name() }}</span>
                                     </td>
                                     <td class="text-left">{{ $authorsObj->author_points }}</td>
                                     <td>

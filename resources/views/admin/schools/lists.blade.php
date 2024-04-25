@@ -72,7 +72,7 @@
                                     <td>
                                         <span>{{ $schoolData->title }}</span>
                                     </td>
-                                    <td class="text-left">{{ $schoolData->user->full_name }}</td>
+                                    <td class="text-left">{{ $schoolData->user->get_full_name() }}</td>
                                     <td class="text-left">{{ dateTimeFormat($schoolData->created_at, 'j M y | H:i') }}</td>
                                     <td>
                                         @can('admin_glossary_edit')

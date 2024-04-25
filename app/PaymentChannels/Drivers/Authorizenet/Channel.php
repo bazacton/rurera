@@ -58,7 +58,7 @@ class Channel implements IChannel
 
         if (!empty($order)) {
             $invoiceNumber = time() . $order->id;
-            $lastName = $user->full_name;
+            $lastName = $user->get_full_name();
             $address = $user->address;
             $amount = $order->total_amount;
             $country = $user->getRegionByTypeId($user->country_id);

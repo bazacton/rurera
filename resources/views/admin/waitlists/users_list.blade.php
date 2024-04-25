@@ -88,7 +88,7 @@
                         <tbody>
                         @foreach($waitlists as $waitlist)
                             <tr>
-                                <td class="text-left">{{ !empty($waitlist->user) ? $waitlist->user->full_name : $waitlist->full_name }}</td>
+                                <td class="text-left">{{ !empty($waitlist->user) ? $waitlist->user->get_full_name() : $waitlist->get_full_name() }}</td>
 
                                 <td>{{ !empty($waitlist->user) ? $waitlist->user->email : $waitlist->email }}</td>
 

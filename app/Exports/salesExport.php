@@ -64,7 +64,7 @@ class salesExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $sale->id,
-            !empty($sale->buyer) ? $sale->buyer->full_name : 'Deleted User',
+            !empty($sale->buyer) ? $sale->buyer->get_full_name() : 'Deleted User',
             !empty($sale->buyer) ? $sale->buyer->id : 'Deleted User',
             $sale->item_seller,
             $sale->seller_id,

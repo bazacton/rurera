@@ -52,7 +52,7 @@
                                 @foreach($joining_requests as $requestObj)
                                 <tr>
                                     <td>
-                                        <span>{{ $requestObj->student->full_name }}</span>
+                                        <span>{{ $requestObj->student->get_full_name() }}</span>
                                     </td>
                                     <td class="text-left">{{ $requestObj->section->sectionClass->title }}</td>
                                     <td class="text-left">{{ $requestObj->section->title }}</td>

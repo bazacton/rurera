@@ -1911,7 +1911,7 @@ class QuestionsAttemptController extends Controller
         $label_class = ($resultQuestionObj->status == 'incorrect') ? 'wrong' : 'correct';
 
         $user = getUser();
-        $full_name = isset($user->full_name) ? $user->full_name : 'Guest';
+        $full_name = isset($user->id) ? $user->get_full_name() : 'Guest';
         if (!empty($correct_answers)) {
             foreach ($correct_answers as $field_id => $correct_answer_array) {
                 if (!empty($correct_answer_array)) {
@@ -2049,7 +2049,7 @@ class QuestionsAttemptController extends Controller
         $label_class = 'correct';
 
         $user = getUser();
-        $full_name = isset($user->full_name) ? $user->full_name : 'Guest';
+        $full_name = isset($user->id) ? $user->get_full_name() : 'Guest';
         if (!empty($correct_answers)) {
             foreach ($correct_answers as $field_id => $correct_answer_array) {
                 if (!empty($correct_answer_array)) {
@@ -2209,7 +2209,10 @@ class QuestionsAttemptController extends Controller
             $user = getUser();
             $user_id = $user->id;
         }
-        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('user_id', $user_id)->where('status', '!=', 'waiting')->get();
+        $user_id = is_array( $user_id )? $user_id : array($user_id);
+        $QuizzResultQuestions = QuizzResultQuestions::where('quiz_result_type', $result_type)->where('status', '!=', 'waiting');
+        $QuizzResultQuestions   = $QuizzResultQuestions->whereIn('user_id', $user_id);
+        $QuizzResultQuestions = $QuizzResultQuestions->get();
         return $QuizzResultQuestions;
     }
 

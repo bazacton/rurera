@@ -114,8 +114,8 @@ class ReserveMeetingsController extends Controller
             ]);
 
             $notifyOptions = [
-                '[student.name]' => $ReserveMeeting->user->full_name,
-                '[instructor.name]' => $ReserveMeeting->meeting->creator->full_name,
+                '[student.name]' => $ReserveMeeting->user->get_full_name(),
+                '[instructor.name]' => $ReserveMeeting->meeting->creator->get_full_name(),
                 '[time.date]' => $ReserveMeeting->day,
             ];
             sendNotification('meeting_finished', $notifyOptions, $ReserveMeeting->user_id);

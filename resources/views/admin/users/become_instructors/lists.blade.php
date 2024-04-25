@@ -29,7 +29,7 @@
 
                                     @foreach($becomeInstructors as $become)
                                         <tr>
-                                            <td>{{ $become->user->full_name }}</td>
+                                            <td>{{ $become->user->get_full_name() }}</td>
 
                                             <td>
                                                 @if(!empty($become->registrationPackage))

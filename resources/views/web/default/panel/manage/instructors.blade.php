@@ -76,7 +76,7 @@
                                                     <img src="{{ $user->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block text-dark-blue font-weight-500">{{ $user->full_name }}</span>
+                                                    <span class="d-block text-dark-blue font-weight-500">{{ $user->get_full_name() }}</span>
                                                     <span class="mt-5 d-block font-12 {{ ($user->verified ? ' text-primary ' : ' text-warning ') }}">{{ trans('public.'.($user->verified ? 'verified' : 'not_verified')) }}</span>
                                                 </div>
                                             </div>

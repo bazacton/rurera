@@ -23,7 +23,7 @@ class AgoraController extends Controller
         $user = auth()->user();
 
         $channelName = 'channelName';
-        $accountName = $user->full_name;
+        $accountName = $user->get_full_name();
         $streamRole = $user->id == 903 ? 'host' : 'audience'; // host | audience
 
         $rtcToken = $this->getRTCToken($channelName);

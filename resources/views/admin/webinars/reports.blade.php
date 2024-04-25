@@ -31,7 +31,7 @@
                                         <tr>
                                             @if (!empty($report->user->id))
 
-                                            <td>{{ $report->user->id .' - '.$report->user->full_name }}</td>
+                                            <td>{{ $report->user->id .' - '.$report->user->get_full_name() }}</td>
 
                                             @else
 

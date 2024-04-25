@@ -26,7 +26,7 @@ class CourseNoticeboardResource extends JsonResource
               }),*/
             'creator' => [
                 'id' => $this->creator->id,
-                'full_name' => $this->creator->full_name,
+                'full_name' => $this->creator->get_full_name(),
                 'avatar' => $this->creator->getAvatar() ? url($this->creator->getAvatar()) : null,
             ]
 

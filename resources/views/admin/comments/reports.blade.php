@@ -28,7 +28,7 @@
                                     </tr>
                                     @foreach($reports as $report)
                                         <tr>
-                                            <td>{{ $report->user->id .' - '.$report->user->full_name }}</td>
+                                            <td>{{ $report->user->id .' - '.$report->user->get_full_name() }}</td>
                                             <td class="text-left" width="20%">
                                                 <a href="{{ $report->$itemRelation->getUrl() }}" target="_blank">
                                                     {{ $report->$itemRelation->title }}

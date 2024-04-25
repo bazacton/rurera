@@ -160,7 +160,7 @@
                                                     <img src="{{ $result->quiz->creator->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block">{{ $result->quiz->creator->full_name }}</span>
+                                                    <span class="d-block">{{ $result->quiz->creator->get_full_name() }}</span>
                                                     <span class="mt-5 font-12 text-gray d-block">{{ $result->quiz->creator->email }}</span>
                                                 </div>
                                             </div>

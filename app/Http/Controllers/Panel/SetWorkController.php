@@ -63,6 +63,19 @@ class SetWorkController extends Controller
        $user = getUser();
        $data['pageTitle'] = 'Create';
        $childs = $user->parentChilds->where('status', 'active');
+
+       $subscribedChilds = array();
+       if( $childs->count() > 0){
+           //userSubscriptions
+           foreach( $childs as $childLinkObj){
+               $userSubscriptions = $childLinkObj->user->userSubscriptions;
+               if( isset( $userSubscriptions->id)){
+                   $subscribedChilds[] = $childLinkObj->user->id;
+               }
+           }
+       }
+       $childs = $user->parentChilds->where('status', 'active')->whereIn('user_id', $subscribedChilds);
+
        $data['childs'] = $childs;
        return view(getTemplate() . '.panel.set_work.create', $data);
     }
@@ -194,6 +207,19 @@ class SetWorkController extends Controller
         $data['assignment_reviewer'] = isset( $data['assignment_reviewer'] )? $data['assignment_reviewer'] : array();
         $data['assignment_reviewer'] = is_array($data['assignment_reviewer'])? $data['assignment_reviewer'] : array( $data['assignment_reviewer'] );
 
+        $practice_time = isset($data['practice_time']) ? ($data['practice_time']) : 0;
+        $time_interval = isset($data['time_interval']) ? ($data['time_interval']) : 0;
+        $duration_type = isset($data['duration_type']) ? ($data['duration_type']) : '';
+        $duration_type = ( $practice_time == 0 && $time_interval == 0)? 'no_time_limit' : $duration_type;
+        $duration_type = ( $practice_time > 0 && $time_interval == 0)? 'total_practice' : $duration_type;
+        $duration_type = ( $time_interval > 0)? 'per_question' : $duration_type;
+
+        $target_percentage = isset($data['target_percentage']) ? $data['target_percentage'] : 0;
+        $target_average_time = isset($data['target_average_time']) ? $data['target_average_time'] : 0;
+        $assignment_method = isset($data['assignment_method']) ? $data['assignment_method'] : 'practice';
+        $assignment_method = ($target_percentage > 0 || $target_average_time > 0)? 'target_improvements' : 'practice';
+
+
         $StudentAssignments = StudentAssignments::create([
             'parent_id'                  => $user->id,
             'title'                      => isset($data['title']) ? $data['title'] : '',
@@ -201,7 +227,7 @@ class SetWorkController extends Controller
             'assignment_type'            => $assignment_topic_type,
             'tables_no'                  => isset($data['tables_no']) ? json_encode($data['tables_no']) : '',
             'no_of_questions'            => isset($data['no_of_questions']) ? $data['no_of_questions'] : '',
-            'duration_type'              => isset($data['duration_type']) ? ($data['duration_type']) : '',
+            'duration_type'              => $duration_type,
             'practice_time'              => isset($data['practice_time']) ? ($data['practice_time']) : 0,
             'time_interval'              => isset($data['time_interval']) ? ($data['time_interval']) : 0,
             'assignment_start_date'      => $assignment_start_date,
@@ -213,7 +239,7 @@ class SetWorkController extends Controller
             'target_average_time'        => isset($data['target_average_time']) ? $data['target_average_time'] : 0,
             'assignment_reviewer'        => isset($data['assignment_reviewer']) ? json_encode($data['assignment_reviewer']) : array(),
             'assignment_review_due_date' => isset($data['assignment_review_due_date']) ? strtotime($data['assignment_review_due_date']) : 0,
-            'assignment_method'          => isset($data['assignment_method']) ? $data['assignment_method'] : 'practice',
+            'assignment_method'          => $assignment_method,
             'status'                     => 'active',
             'created_by'                 => $user->id,
             'created_at'                 => time(),
@@ -239,16 +265,21 @@ class SetWorkController extends Controller
 
                 if (!empty($users_array)) {
                     foreach ($users_array as $user_id) {
-                        $UserAssignedTimestables = UserAssignedTopics::create([
-                            'assigned_to_id'        => $user_id,
-                            'assigned_by_id'        => $user->id,
-                            'student_assignment_id' => $StudentAssignments->id,
-                            'topic_id'              => $topic_id,
-                            'status'                => 'active',
-                            'created_at'            => time(),
-                            'start_at'              => $eventDate['start'],
-                            'deadline_date'         => $eventDate['end'],
-                        ]);
+                        if( !empty( $topic_ids ) ){
+                            foreach( $topic_ids as $topic_id){
+                                $UserAssignedTimestables = UserAssignedTopics::create([
+                                    'assigned_to_id'        => $user_id,
+                                    'assigned_by_id'        => $user->id,
+                                    'student_assignment_id' => $StudentAssignments->id,
+                                    'topic_id'              => $topic_id,
+                                    'status'                => 'active',
+                                    'created_at'            => time(),
+                                    'start_at'              => $eventDate['start'],
+                                    'deadline_date'         => $eventDate['end'],
+                                ]);
+                            }
+                        }
+
                     }
                 }
 
@@ -284,6 +315,18 @@ class SetWorkController extends Controller
             abort(404);
         }
 
+        $topics_response = array();
+
+        $topic_ids = isset( $assignmentObj->topic_ids )? json_decode($assignmentObj->topic_ids) : array();
+        if( !empty( $topic_ids )) {
+            $topics_array = Quiz::whereIn('id', $topic_ids)->get();
+            if( !empty( $topics_array ) ){
+                foreach( $topics_array as $topicObj){
+                    $topics_response[] = $topicObj->getTitleAttribute();
+                }
+            }
+        }
+
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
@@ -301,6 +344,7 @@ class SetWorkController extends Controller
             'assignmentObj' => $assignmentObj,
             'categories' => $categories,
             'sections'   => $sections,
+            'topics_response'   => $topics_response,
         ];
 
         return view(getTemplate() . '.panel.set_work.progress', $data);

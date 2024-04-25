@@ -64,9 +64,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualAddedBundle->bundle))
-                                            <p>{{ $manualAddedBundle->bundle->creator->full_name  }}</p>
+                                            <p>{{ $manualAddedBundle->bundle->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $manualAddedBundle->seller->full_name  }}</p>
+                                            <p>{{ $manualAddedBundle->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 
@@ -128,9 +128,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualDisabledBundle->bundle))
-                                            <p>{{ $manualDisabledBundle->bundle->creator->full_name  }}</p>
+                                            <p>{{ $manualDisabledBundle->bundle->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $manualDisabledBundle->seller->full_name  }}</p>
+                                            <p>{{ $manualDisabledBundle->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 
@@ -191,9 +191,9 @@
 
                                     <td width="25%">
                                         @if(!empty($purchasedBundle->bundle))
-                                            <p>{{ $purchasedBundle->bundle->creator->full_name  }}</p>
+                                            <p>{{ $purchasedBundle->bundle->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $purchasedBundle->seller->full_name  }}</p>
+                                            <p>{{ $purchasedBundle->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 

@@ -71,7 +71,7 @@
 
                         @if(!empty($userGroups) and $userGroups->count() > 0)
                             @foreach($userGroups as $userGroup)
-                                <option value="{{ $userGroup->user_id }}" selected>{{ $userGroup->user->full_name }}</option>
+                                <option value="{{ $userGroup->user_id }}" selected>{{ $userGroup->user->get_full_name() }}</option>
                             @endforeach
                         @endif
                     </select>

@@ -61,7 +61,7 @@
                 <label class="input-label d-block">{{ trans('admin/main.organization') }}</label>
 
                 <select name="organ_id" data-search-option="just_organization_role" class="form-control search-user-select2" data-placeholder="{{ trans('search_organization') }}">
-                    <option value="{{ $upcomingCourse->creator->id }}" selected>{{ $upcomingCourse->creator->full_name }}</option>
+                    <option value="{{ $upcomingCourse->creator->id }}" selected>{{ $upcomingCourse->creator->get_full_name() }}</option>
                 </select>
             </div>
         @endif
@@ -74,7 +74,7 @@
                     data-placeholder="{{ trans('public.select_a_teacher') }}"
             >
                 @if(!empty($upcomingCourse))
-                    <option value="{{ $upcomingCourse->teacher->id }}" selected>{{ $upcomingCourse->teacher->full_name }}</option>
+                    <option value="{{ $upcomingCourse->teacher->id }}" selected>{{ $upcomingCourse->teacher->get_full_name() }}</option>
                 @else
                     <option selected disabled>{{ trans('public.select_a_teacher') }}</option>
                 @endif

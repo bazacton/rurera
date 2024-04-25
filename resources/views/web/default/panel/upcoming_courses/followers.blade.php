@@ -23,10 +23,10 @@
                             @foreach($followers as $follower)
                                 <div class="d-flex align-items-center mt-20">
                                     <div class="size-50 rounded-circle">
-                                        <img src="{{ $follower->user->getAvatar(50) }}" alt="{{ $follower->user->full_name }}" class="img-cover rounded-circle">
+                                        <img src="{{ $follower->user->getAvatar(50) }}" alt="{{ $follower->user->get_full_name() }}" class="img-cover rounded-circle">
                                     </div>
                                     <div class="ml-10">
-                                        <h4 class="font-16 font-weight-500 text-dark-blue">{{ $follower->user->full_name }}</h4>
+                                        <h4 class="font-16 font-weight-500 text-dark-blue">{{ $follower->user->get_full_name() }}</h4>
                                         <p class="font-12 text-gray mt-5">{{ dateTimeFormat($follower->created_at, 'j M Y H:i') }}</p>
                                     </div>
                                 </div>

@@ -51,7 +51,7 @@ class ConsultantsExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $consultant->id,
-            $consultant->full_name,
+            $consultant->get_full_name(),
             $consultant->sales_count,
             $consultant->sales_amount,
             $consultant->pendingAppointments,

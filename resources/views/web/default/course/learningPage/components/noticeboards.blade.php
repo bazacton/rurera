@@ -10,7 +10,7 @@
 
                     <div class="ml-10">
                         <h3 class="font-14 font-weight-bold">{{ $noticeboard->title }}</h3>
-                        <span class="d-block font-12">{{ $noticeboard->creator->full_name }} {{ trans('public.in') }} {{ dateTimeFormat($noticeboard->created_at,'j M Y') }}</span>
+                        <span class="d-block font-12">{{ $noticeboard->creator->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($noticeboard->created_at,'j M Y') }}</span>
                     </div>
                 </div>
 

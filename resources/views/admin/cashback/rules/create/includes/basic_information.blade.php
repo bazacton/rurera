@@ -37,7 +37,7 @@
 
                 @if(!empty($rule) and !empty($rule->users))
                     @foreach($rule->users as $ruleUser)
-                        <option value="{{ $ruleUser->id }}" selected>{{ $ruleUser->full_name }}</option>
+                        <option value="{{ $ruleUser->id }}" selected>{{ $ruleUser->get_full_name() }}</option>
                     @endforeach
                 @endif
             </select>

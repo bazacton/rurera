@@ -37,7 +37,7 @@ class CartItemInfo
         $info['itemUrl'] = $webinar->getUrl();
         $info['title'] = $webinar->title;
         $info['profileUrl'] = $webinar->teacher->getProfileUrl();
-        $info['teacherName'] = $webinar->teacher->full_name;
+        $info['teacherName'] = $webinar->teacher->get_full_name();
         $info['rate'] = $webinar->getRate();
         $info['price'] = $webinar->price;
         $info['discountPrice'] = $webinar->getDiscount($cart->ticket) ? ($webinar->price - $webinar->getDiscount($cart->ticket)) : null;
@@ -53,7 +53,7 @@ class CartItemInfo
         $info['itemUrl'] = $bundle->getUrl();
         $info['title'] = $bundle->title;
         $info['profileUrl'] = $bundle->teacher->getProfileUrl();
-        $info['teacherName'] = $bundle->teacher->full_name;
+        $info['teacherName'] = $bundle->teacher->get_full_name();
         $info['rate'] = $bundle->getRate();
         $info['price'] = $bundle->price;
         $info['discountPrice'] = $bundle->getDiscount($cart->ticket) ? ($bundle->price - $bundle->getDiscount($cart->ticket)) : null;
@@ -69,7 +69,7 @@ class CartItemInfo
         $info['itemUrl'] = $product->getUrl();
         $info['title'] = $product->title;
         $info['profileUrl'] = $product->creator->getProfileUrl();
-        $info['teacherName'] = $product->creator->full_name;
+        $info['teacherName'] = $product->creator->get_full_name();
         $info['rate'] = $product->getRate();
         $info['quantity'] = $cart->productOrder ? $cart->productOrder->quantity : 1;
         $info['price'] = $product->price;
@@ -86,7 +86,7 @@ class CartItemInfo
         $info['itemUrl'] = null;
         $info['title'] = trans('meeting.reservation_appointment') . ' ' . ((!empty($cart->reserveMeeting->student_count) and $cart->reserveMeeting->student_count > 1) ? '(' . trans('update.reservation_appointment_student_count', ['count' => $cart->reserveMeeting->student_count]) . ')' : '');
         $info['profileUrl'] = $creator->getProfileUrl();
-        $info['teacherName'] = $creator->full_name;
+        $info['teacherName'] = $creator->get_full_name();
         $info['rate'] = $creator->rates();
         $info['price'] = $cart->reserveMeeting->paid_amount;
 

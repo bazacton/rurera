@@ -75,7 +75,7 @@ class InstallmentOverdueExport implements FromCollection, WithHeadings, WithMapp
 
 
         return [
-            $order->user->id . ' - ' . $order->user->full_name,
+            $order->user->id . ' - ' . $order->user->get_full_name(),
             $order->user->mobile,
             $order->user->email,
             $order->installment->title,

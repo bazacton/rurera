@@ -47,9 +47,9 @@
                                                 <span>{{ $result->quiz->title }}</span>
                                                 <small class="d-block text-left text-primary">({{ $result->quiz->webinar->title }})</small>
                                             </td>
-                                            <td class="text-left">{{ $result->user->full_name }}</td>
+                                            <td class="text-left">{{ $result->user->get_full_name() }}</td>
                                             <td class="text-left">
-                                                {{ $result->quiz->teacher->full_name }}
+                                                {{ $result->quiz->teacher->get_full_name() }}
                                             </td>
                                             <td class="text-center">
                                                 <span>{{ $result->user_grade }}</span>

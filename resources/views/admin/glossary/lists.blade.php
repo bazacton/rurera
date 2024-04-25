@@ -94,7 +94,7 @@
                                         <span>{{ $glossaryData->title }}</span>
                                     </td>
                                     <td class="text-left">{{ $glossaryData->category_title }}</td>
-                                    <td class="text-left">{{ $glossaryData->user->full_name }}</td>
+                                    <td class="text-left">{{ $glossaryData->user->get_full_name() }}</td>
                                     <td class="text-left">{{ dateTimeFormat($glossaryData->created_at, 'j M y | H:i') }}</td>
                                     <td>
                                         @can('admin_glossary_edit')

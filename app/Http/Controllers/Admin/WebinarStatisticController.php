@@ -149,7 +149,7 @@ class WebinarStatisticController extends Controller
         if (count($unregisteredGift) and $request->get('page', 1) == 1) {
             foreach ($unregisteredGift as $item) {
                 $newUser = new User();
-                $newUser->full_name = $item->name;
+                $newUser->get_full_name() = $item->name;
                 $newUser->email = $item->email;
 
                 $unregisteredUsers = $unregisteredUsers->push($newUser);

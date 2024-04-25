@@ -145,7 +145,7 @@
             <select name="partners[]" class="form-control panel-search-user-select2 @error('partners')  is-invalid @enderror" multiple="" data-search-option="just_teachers" data-placeholder="{{ trans('public.search_instructor') }}">
                 @if(!empty($webinar->webinarPartnerTeacher))
                     @foreach($webinar->webinarPartnerTeacher as $partnerTeacher)
-                        <option selected value="{{ $partnerTeacher->teacher->id }}">{{ $partnerTeacher->teacher->full_name }}</option>
+                        <option selected value="{{ $partnerTeacher->teacher->id }}">{{ $partnerTeacher->teacher->get_full_name() }}</option>
                     @endforeach
                 @endif
             </select>

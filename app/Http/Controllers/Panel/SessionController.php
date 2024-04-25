@@ -334,7 +334,7 @@ class SessionController extends Controller
             if ($user->id == $session->creator_id) {
                 $url = \Bigbluebutton::join([
                     'meetingID' => $session->id,
-                    'userName' => $user->full_name,
+                    'userName' => $user->get_full_name(),
                     'password' => $session->moderator_secret
                 ]);
 
@@ -348,7 +348,7 @@ class SessionController extends Controller
 
                     $url = \Bigbluebutton::join([
                         'meetingID' => $session->id,
-                        'userName' => $user->full_name,
+                        'userName' => $user->get_full_name(),
                         'password' => $session->api_secret
                     ]);
 

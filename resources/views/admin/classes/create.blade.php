@@ -329,7 +329,7 @@
                                                     @if( $teachers->count() > 0)
                                                         @foreach( $teachers as $teacherObj)
                                                             @php $selected = in_array($teacherObj->id, $section_teachers)? 'selected' : ''; @endphp
-                                                            <option value="{{$teacherObj->id}}" {{$selected}}>{{$teacherObj->full_name}}</option>
+                                                            <option value="{{$teacherObj->id}}" {{$selected}}>{{$teacherObj->get_full_name()}}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>

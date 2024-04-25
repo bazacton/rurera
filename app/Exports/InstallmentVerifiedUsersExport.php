@@ -48,7 +48,7 @@ class InstallmentVerifiedUsersExport implements FromCollection, WithHeadings, Wi
     {
 
         return [
-            $user->id . ' - ' . $user->full_name,
+            $user->id . ' - ' . $user->get_full_name(),
             $user->mobile,
             $user->email,
             dateTimeFormat($user->created_at, 'j M Y'),

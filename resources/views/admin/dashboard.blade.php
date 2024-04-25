@@ -14,7 +14,7 @@
             <div class="col-12 mb-4">
                 <div class="hero text-white hero-bg-image hero-bg" data-background="{{ !empty(getPageBackgroundSettings('admin_dashboard')) ? getPageBackgroundSettings('admin_dashboard') : '' }}">
                     <div class="hero-inner">
-                        <h2>{{trans('admin/main.welcome')}}, {{ $authUser->full_name }}!</h2>
+                        <h2>{{trans('admin/main.welcome')}}, {{ $authUser->get_full_name() }}!</h2>
 
                         <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between">
                             @can('admin_general_dashboard_quick_access_links')
@@ -349,7 +349,7 @@
                                         <img class="mr-3 rounded-circle" width="50" height="50" src="{{ $recentComment->user->getAvatar() }}" alt="avatar">
                                         <div class="media-body">
                                             <div class="float-right text-primary font-12">{{ dateTimeFormat($recentComment->created_at, 'j M Y | H:i') }}</div>
-                                            <div class="media-title">{{ $recentComment->user->full_name }}</div>
+                                            <div class="media-title">{{ $recentComment->user->get_full_name() }}</div>
                                             <span class="text-small text-muted">{{ nl2br(truncate($recentComment->comment, 150)) }}</span>
                                         </div>
                                     </li>
@@ -391,7 +391,7 @@
                                                 <h4>{{ $ticket->title }}</h4>
                                             </div>
                                             <div class="ticket-info">
-                                                <div>{{ $ticket->user->full_name }}</div>
+                                                <div>{{ $ticket->user->get_full_name() }}</div>
                                                 <div class="bullet"></div>
                                                 @if($ticket->status == 'replied' or $ticket->status == 'open')
                                                     <span class="text-warning  text-small font-600-bold">{{ trans('admin/main.pending_reply') }}</span>
@@ -434,7 +434,7 @@
                                             </div>
 
                                             <div class="ticket-info">
-                                                <div>{{ $webinar->teacher->full_name }}</div>
+                                                <div>{{ $webinar->teacher->get_full_name() }}</div>
                                                 <div class="bullet"></div>
                                                 @switch($webinar->status)
                                                     @case(\App\Models\Webinar::$active)
@@ -493,7 +493,7 @@
                                             </div>
 
                                             <div class="ticket-info">
-                                                <div>{{ $course->teacher->full_name }}</div>
+                                                <div>{{ $course->teacher->get_full_name() }}</div>
                                                 <div class="bullet"></div>
                                                 @switch($course->status)
                                                     @case(\App\Models\Webinar::$active)

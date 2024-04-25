@@ -56,7 +56,7 @@ class OrganizationsExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $user->id,
-            $user->full_name,
+            $user->get_full_name(),
             $user->mobile,
             $user->email,
             $user->classesSalesCount . '(' . $this->currency . $user->classesSalesSum . ')',

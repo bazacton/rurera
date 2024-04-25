@@ -69,7 +69,7 @@
 
                                         @if(!empty($users) and $users->count() > 0)
                                             @foreach($users as $user_filter)
-                                                <option value="{{ $user_filter->id }}" selected>{{ $user_filter->full_name }}</option>
+                                                <option value="{{ $user_filter->id }}" selected>{{ $user_filter->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -147,7 +147,7 @@
 
                                             <tr>
                                                 <td class="text-left">
-                                                    <span class="d-block">{{ $payout->user->full_name }}</span>
+                                                    <span class="d-block">{{ $payout->user->get_full_name() }}</span>
                                                 </td>
 
                                                 <td>{{ $payout->user->role->caption }}</td>

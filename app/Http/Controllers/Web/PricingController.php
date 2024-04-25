@@ -20,6 +20,17 @@ class PricingController extends Controller
     public function index(Request $request)
     {
 
+
+        $redirect_url = redirectCheck();
+        if( $redirect_url != ''){
+            return redirect($redirect_url);
+        }
+
+        //$login_pin = 897654;
+        //$is_loggedin = Auth::loginUsingPin($login_pin, true);
+        //return true;
+        //pre($is_loggedin);
+
         $page = Page::where('link', '/pricing')->where('status', 'publish')->first();
         $subscribes = Subscribe::all();
         $data = [

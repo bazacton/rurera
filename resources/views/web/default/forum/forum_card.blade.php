@@ -28,14 +28,14 @@
     <div class="col-8 col-md-4 mt-10 mt-md-0 forums-categories-card__last-post d-flex align-items-center">
         @if(!empty($forum->lastTopic))
             <div class="user-avatar rounded-circle">
-                <img src="{{ $forum->lastTopic->creator->getAvatar(39) }}" class="img-cover rounded-circle" alt="{{ $forum->lastTopic->creator->full_name }}">
+                <img src="{{ $forum->lastTopic->creator->getAvatar(39) }}" class="img-cover rounded-circle" alt="{{ $forum->lastTopic->creator->get_full_name() }}">
             </div>
 
             <div class="ml-5">
                 <a href="{{ $forum->lastTopic->getPostsUrl() }}" class="d-block">
                     <span class="font-12 font-weight-500 text-gray text-ellipsis">{{ truncate($forum->lastTopic->title,30) }}</span>
                 </a>
-                <div class="text-gray font-12"><span class="font-weight-bold">{{ $forum->lastTopic->creator->full_name }}</span> {{ trans('public.in') }} {{ dateTimeFormat($forum->lastTopic->created_at,'j M Y | H:i') }}</div>
+                <div class="text-gray font-12"><span class="font-weight-bold">{{ $forum->lastTopic->creator->get_full_name() }}</span> {{ trans('public.in') }} {{ dateTimeFormat($forum->lastTopic->created_at,'j M Y | H:i') }}</div>
             </div>
         @endif
     </div>

@@ -21,7 +21,7 @@ class CourseForumAnswerResource extends JsonResource
             'resolved' => (bool)$this->resolved,
             'user' => [
                 'id' => $this->user->id,
-                'full_name' => $this->user->full_name,
+                'full_name' => $this->user->get_full_name(),
                 'avatar' => url($this->user->getAvatar()),
                 'role_name' => $this->user->role_name
             ],

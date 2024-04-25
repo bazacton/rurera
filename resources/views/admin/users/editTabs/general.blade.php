@@ -339,7 +339,7 @@
                             data-placeholder="{{ trans('admin/main.search') }} {{ trans('admin/main.organization') }}">
 
                         @if(!empty($user) and !empty($user->organization))
-                        <option value="{{ $user->organization->id }}" selected>{{ $user->organization->full_name }}
+                        <option value="{{ $user->organization->id }}" selected>{{ $user->organization->get_full_name() }}
                         </option>
                         @endif
                     </select>

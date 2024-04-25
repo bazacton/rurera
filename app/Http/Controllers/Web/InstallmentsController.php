@@ -276,7 +276,7 @@ class InstallmentsController extends Controller
                 }
 
                 $notifyOptions = [
-                    '[u.name]' => $order->user->full_name,
+                    '[u.name]' => $order->user->get_full_name(),
                     '[installment_title]' => $installment->main_title,
                     '[time.date]' => dateTimeFormat(time(), 'j M Y - H:i'),
                     '[amount]' => handlePrice($itemPrice),

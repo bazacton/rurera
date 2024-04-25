@@ -48,7 +48,7 @@
                             trans('quiz.new_quiz') }}</h2>
 
                         @if(!empty($creator))
-                        <p>{{ trans('admin/main.instructor') }}: {{ $creator->full_name }}</p>
+                        <p>{{ trans('admin/main.instructor') }}: {{ $creator->get_full_name() }}</p>
                         @endif
                     </div>
                 </div>

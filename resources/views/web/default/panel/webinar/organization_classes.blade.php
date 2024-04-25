@@ -238,12 +238,12 @@
                                     @if($authUser->id != $webinar->teacher_id and $authUser->id != $webinar->creator_id)
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                             <span class="stat-title">{{ trans('webinars.teacher_name') }}:</span>
-                                            <span class="stat-value">{{ $webinar->teacher->full_name }}</span>
+                                            <span class="stat-value">{{ $webinar->teacher->get_full_name() }}</span>
                                         </div>
                                     @elseif($authUser->id == $webinar->teacher_id and $authUser->id != $webinar->creator_id and $webinar->creator->isOrganization())
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                             <span class="stat-title">{{ trans('webinars.organization_name') }}:</span>
-                                            <span class="stat-value">{{ $webinar->creator->full_name }}</span>
+                                            <span class="stat-value">{{ $webinar->creator->get_full_name() }}</span>
                                         </div>
                                     @endif
                                 </div>

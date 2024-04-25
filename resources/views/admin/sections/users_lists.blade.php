@@ -57,7 +57,7 @@
                                 @php $last_login = ($userObj->last_login > 0)? dateTimeFormat($userObj->last_login, 'j M y | H:i') : '-'; @endphp
                                 <tr>
                                     <td>
-                                        <span><label><input type="checkbox" class="form-control sections-users" value="{{ $userObj->id }}"></label>{{ $userObj->full_name }}</span>
+                                        <span><label><input type="checkbox" class="form-control sections-users" value="{{ $userObj->id }}"></label>{{ $userObj->get_full_name() }}</span>
                                     </td>
                                     <td class="text-left">{{ $userObj->getRewardPoints() }}</td>
                                     <td class="text-left">{{ ($userObj->getLastActivity() > 0)? dateTimeFormat($userObj->getLastActivity(), 'j M y | H:i') : $last_login }}</td>

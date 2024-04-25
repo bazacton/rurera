@@ -25,7 +25,7 @@
                 <select name="teacher_id" class="custom-select @error('teacher_id')  is-invalid @enderror">
                     <option {{ !empty($bundle) ? '' : 'selected' }} disabled>{{ trans('public.choose_instructor') }}</option>
                     @foreach($teachers as $teacher)
-                        <option value="{{ $teacher->id }}" {{ !empty($bundle) && $bundle->teacher_id === $teacher->id? 'selected' : '' }}>{{ $teacher->full_name }}</option>
+                        <option value="{{ $teacher->id }}" {{ !empty($bundle) && $bundle->teacher_id === $teacher->id? 'selected' : '' }}>{{ $teacher->get_full_name() }}</option>
                     @endforeach
                 </select>
 

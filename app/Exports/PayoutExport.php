@@ -57,7 +57,7 @@ class PayoutExport implements FromCollection, WithHeadings, WithMapping
 
 
         return [
-            $payout->user->full_name,
+            $payout->user->get_full_name(),
             $payout->user->role->caption,
             handlePrice($payout->amount),
             $bankTitle,

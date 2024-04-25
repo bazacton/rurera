@@ -27,11 +27,11 @@
                             <div class="list-group-item">
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        <a href="javascript:;" class="avatar"><img src="{{$switchUserObj->getAvatar()}}" alt="{{isset( $switchUserObj->full_name )? $switchUserObj->full_name : ''}}" class="avatar rounded-circle"></a>
+                                        <a href="javascript:;" class="avatar"><img src="{{$switchUserObj->getAvatar()}}" alt="{{isset( $switchUserObj->id )? $switchUserObj->get_full_name() : ''}}" class="avatar rounded-circle"></a>
                                     </div>
 
                                     <div class="col-5 ms-2">
-                                        <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $switchUserObj->full_name )? $switchUserObj->full_name : ''}}</a></h6>
+                                        <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $switchUserObj->id )? $switchUserObj->get_full_name() : ''}}</a></h6>
                                     </div>
                                     <div class="col-auto ms-auto mr-md-3 last-activity">
                                         <a href="javascript:;" class="switch-user-btn" data-toggle="modal" data-target="#switch_user_modal">
@@ -121,11 +121,11 @@
                         <div class="list-group-item">
                             <div class="row align-items-center">
                                 <div class="col-auto">
-                                    <a href="javascript:;" class="avatar"><img src="{{$childObj->getAvatar()}}" alt="{{isset( $childObj->full_name )? $childObj->full_name : ''}}" class="avatar rounded-circle"></a>
+                                    <a href="javascript:;" class="avatar"><img src="{{$childObj->getAvatar()}}" alt="{{isset( $childObj->id )? $childObj->get_full_name() : ''}}" class="avatar rounded-circle"></a>
                                 </div>
 
                                 <div class="col-5 ms-2">
-                                    <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $childObj->full_name )? $childObj->full_name : ''}}</a></h6>
+                                    <h6 class="font-19 font-weight-bold"><a href="javascript:;">{{isset( $childObj->id )? $childObj->get_full_name() : ''}}</a></h6>
                                 </div>
                                 <div class="col-auto ms-auto mr-md-3 last-activity">
                                     <a href="javascript:;" class="switch-user-btn switch-user-btn-event" data-user_id="{{$childObj->id}}">

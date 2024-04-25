@@ -234,7 +234,7 @@
                                 @foreach($getTopSellingAppointments as $getTopSellingAppointment)
                                     <tr>
                                         <td>{{ $getTopSellingAppointment->creator->id }}</td>
-                                        <td class="text-left">{{ $getTopSellingAppointment->creator->full_name }}</td>
+                                        <td class="text-left">{{ $getTopSellingAppointment->creator->get_full_name() }}</td>
                                         <td>{{ $getTopSellingAppointment->sales_count }}</td>
                                         <td>{{ handlePrice($getTopSellingAppointment->sales_amount) }}</td>
                                     </tr>
@@ -271,7 +271,7 @@
                                 @foreach($getTopSellingTeachers as $getTopSellingTeacher)
                                     <tr>
                                         <td>{{ $getTopSellingTeacher->id }}</td>
-                                        <td class="text-left">{{ $getTopSellingTeacher->full_name }}</td>
+                                        <td class="text-left">{{ $getTopSellingTeacher->get_full_name() }}</td>
                                         <td>{{ convertMinutesToHourAndMinute($getTopSellingTeacher->classes_durations) }} Hours</td>
                                         <td>{{ $getTopSellingTeacher->sales_count }}</td>
                                         <td>{{ handlePrice($getTopSellingTeacher->sales_amount) }}</td>
@@ -306,7 +306,7 @@
                                 @foreach($getTopSellingOrganizations as $getTopSellingOrganization)
                                     <tr>
                                         <td>{{ $getTopSellingOrganization->id }}</td>
-                                        <td class="text-left">{{ $getTopSellingOrganization->full_name }}</td>
+                                        <td class="text-left">{{ $getTopSellingOrganization->get_full_name() }}</td>
                                         <td>{{ convertMinutesToHourAndMinute($getTopSellingOrganization->classes_durations) }} Hours</td>
                                         <td>{{ $getTopSellingOrganization->sales_count }}</td>
                                         <td>{{ handlePrice($getTopSellingOrganization->sales_amount) }}</td>
@@ -344,7 +344,7 @@
                                 @foreach($getMostActiveStudents as $getMostActiveStudent)
                                     <tr>
                                         <td>{{ $getMostActiveStudent->id }}</td>
-                                        <td class="text-left">{{ $getMostActiveStudent->full_name }}</td>
+                                        <td class="text-left">{{ $getMostActiveStudent->get_full_name() }}</td>
                                         <td>{{ $getMostActiveStudent->purchased_classes }}</td>
                                         <td>{{ $getMostActiveStudent->reserved_appointments }}</td>
                                         <td>{{ handlePrice($getMostActiveStudent->total_cost) }}</td>

@@ -50,7 +50,7 @@ class QuizResultsExport implements FromCollection, WithHeadings, WithMapping
             $result->id,
             $result->quiz->title,
             $result->quiz->webinar->title,
-            $result->user->full_name,
+            $result->user->get_full_name(),
             $result->quiz->teacher->full_nam,
             $result->user_grade,
             dateTimeformat($result->created_at, 'j F Y'),

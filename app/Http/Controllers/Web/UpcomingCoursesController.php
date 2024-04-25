@@ -282,7 +282,7 @@ class UpcomingCoursesController extends Controller
                 ]);
 
                 $notifyOptions = [
-                    '[u.name]' => $user->full_name,
+                    '[u.name]' => $user->get_full_name(),
                     '[item_title]' => $upcomingCourse->title,
                 ];
                 sendNotification("upcoming_course_followed", $notifyOptions, $upcomingCourse->teacher_id);
@@ -361,7 +361,7 @@ class UpcomingCoursesController extends Controller
             ]);
 
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[content_type]' => trans('update.upcoming_course')
             ];
             sendNotification("new_report_item_for_admin", $notifyOptions, 1);

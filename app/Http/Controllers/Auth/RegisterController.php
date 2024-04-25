@@ -17,6 +17,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -183,7 +184,7 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         $notifyOptions = [
-            '[u.name]' => $user->full_name,
+            '[u.name]' => $user->get_full_name(),
             '[u.role]' => trans("update.role_{$user->role_name}"),
             '[time.date]' => dateTimeFormat($user->created_at, 'j M Y H:i'),
         ];
@@ -253,7 +254,7 @@ class RegisterController extends Controller
 
     public function signupSubmit(Request $request)
     {
-        /*$first_name = $request->get('first_name', null);
+        $first_name = $request->get('first_name', null);
         $last_name = $request->get('last_name', null);
         $email = $request->get('email', null);
         $password = $request->get('password', null);
@@ -287,11 +288,21 @@ class RegisterController extends Controller
             'status' => User::$active,
             'enable_registration_bonus' => $enableRegistrationBonus,
             'registration_bonus_amount' => $registrationBonusAmount,
-        ]);*/
+        ]);
 
-        $user = User::find(1191);
+        $user = User::find($user->id);
 
-        //$this->guard()->login($user);
+        $this->guard()->login($user);
+        Auth::loginUsingId($user->id, true);
+
+        $credentials = [
+            'email' => $email,
+            'password' => $password
+        ];
+
+        $this->guard()->attempt($credentials, true);
+        return redirect('/parent/students');
+        pre($credentials);
 
 
 
@@ -299,9 +310,9 @@ class RegisterController extends Controller
             return $response;
         }*/
 
-        $csrf_token = csrf_token();
-        $response_layout = view('web.default.subscriptions.tenure_selection', ['csrf_token'=>$csrf_token])->render();
-        echo $response_layout;
+        //$csrf_token = csrf_token();
+        //$response_layout = view('web.default.subscriptions.tenure_selection', ['csrf_token'=>$csrf_token])->render();
+        echo 'parent/';
         exit;
     }
 }

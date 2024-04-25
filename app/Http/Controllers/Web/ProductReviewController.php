@@ -63,7 +63,7 @@ class ProductReviewController extends Controller
 
                 $notifyOptions = [
                     '[p.title]' => $product->title,
-                    '[u.name]' => $user->full_name,
+                    '[u.name]' => $user->get_full_name(),
                     '[item_title]' => $product->title,
                     '[content_type]' => trans('update.product'),
                     '[rate.count]' => $rates > 0 ? $rates / 4 : 0,

@@ -45,14 +45,14 @@
                                                                 <address>
                                                                     <strong>{{ trans('quiz.student') }}:</strong>
                                                                     <br>
-                                                                    {{ $sale->buyer->full_name }}
+                                                                    {{ $sale->buyer->get_full_name() }}
                                                                     <br>
                                                                 </address>
 
                                                                 <address>
                                                                     <strong>{{ trans('home.organization') }}:</strong><br>
                                                                     @if($webinar->tracher_id != $webinar->creator_id)
-                                                                        {{ $webinar->creator->full_name }}
+                                                                        {{ $webinar->creator->get_full_name() }}
                                                                     @else
                                                                         -
                                                                     @endif
@@ -70,11 +70,11 @@
                                                             <div class="col-md-6">
                                                                 <address>
                                                                     <strong>{{ trans('home.teachers') }}:</strong><br>
-                                                                    {{ $webinar->teacher->full_name }} <br>
+                                                                    {{ $webinar->teacher->get_full_name() }} <br>
 
                                                                     @if(!empty($webinar->webinarPartnerTeacher) and count($webinar->webinarPartnerTeacher))
                                                                         @foreach($webinar->webinarPartnerTeacher as $partner)
-                                                                            {{ $partner->teacher->full_name }}
+                                                                            {{ $partner->teacher->get_full_name() }}
                                                                         @endforeach
                                                                     @endif
                                                                 </address>

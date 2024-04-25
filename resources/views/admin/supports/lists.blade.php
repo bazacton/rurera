@@ -185,7 +185,7 @@
                                     <td class="text-center">{{ (!empty($support->updated_at)) ? dateTimeFormat($support->updated_at,'j M Y | H:i') : '-' }}</td>
 
                                     <td class="text-left">
-                                        <a title="{{ $support->user->full_name }}" href="{{ $support->user->getProfileUrl() }}" target="_blank">{{ $support->user->full_name }}</a>
+                                        <a title="{{ $support->user->get_full_name() }}" href="{{ $support->user->getProfileUrl() }}" target="_blank">{{ $support->user->get_full_name() }}</a>
                                     </td>
 
                                     <td class="text-center">

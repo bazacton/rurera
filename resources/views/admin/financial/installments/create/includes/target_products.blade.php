@@ -86,7 +86,7 @@
 
                 @if(!empty($installment) and count($installment->instructors))
                     @foreach($installment->instructors as $instructor)
-                        <option value="{{ $instructor->id }}" selected>{{ $instructor->full_name }}</option>
+                        <option value="{{ $instructor->id }}" selected>{{ $instructor->get_full_name() }}</option>
                     @endforeach
                 @endif
             </select>
@@ -106,7 +106,7 @@
 
                 @if(!empty($installment) and count($installment->sellers))
                     @foreach($installment->sellers as $seller)
-                        <option value="{{ $seller->id }}" selected>{{ $seller->full_name }}</option>
+                        <option value="{{ $seller->id }}" selected>{{ $seller->get_full_name() }}</option>
                     @endforeach
                 @endif
             </select>

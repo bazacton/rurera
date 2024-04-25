@@ -26,7 +26,7 @@ class WebinarAssignmentHistoryResource extends JsonResource
             ]),
             'student' => [
                 'id' => $this->student->id,
-                'full_name' => $this->student->full_name,
+                'full_name' => $this->student->get_full_name(),
                 'email'=>$this->student->email ,
                 'avatar' => $this->student->getAvatar() ? url($this->student->getAvatar()) : null,
 

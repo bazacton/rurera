@@ -319,7 +319,7 @@ class SupportsController extends Controller
 
             $notifyOptions = [
                 '[c.title]' => $webinar->title,
-                '[u.name]' => $user->full_name
+                '[u.name]' => $user->get_full_name()
             ];
             sendNotification('support_message', $notifyOptions, $webinar->teacher_id);
         }

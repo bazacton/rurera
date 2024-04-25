@@ -99,7 +99,7 @@ class InstallmentPurchasesExport implements FromCollection, WithHeadings, WithMa
         }
 
         return [
-            $order->user->id . ' - ' . $order->user->full_name,
+            $order->user->id . ' - ' . $order->user->get_full_name(),
             $order->user->mobile,
             $order->user->email,
             $order->installment->title,

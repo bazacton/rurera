@@ -39,7 +39,7 @@ class Channel implements IChannel
             'customer' => [
                 'email' => $user->email ?? $generalSettings['site_email'],
                 "phonenumber" => $user->mobile,
-                "name" => $user->full_name
+                "name" => $user->get_full_name()
             ],
 
             "customizations" => [

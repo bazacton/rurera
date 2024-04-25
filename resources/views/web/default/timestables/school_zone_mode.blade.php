@@ -36,7 +36,7 @@
                                     <img src="{{$studentObj->getAvatar()}}">
                                     <span class="student-block-text d-block font-18 font-weight-bold">
                                         <span class="user-name d-block mt-0">
-                                            {{$studentObj->full_name}}
+                                            {{$studentObj->get_full_name()}}
                                         </span>
                                         <span class="student-rank font-14 font-weight-normal d-block">
                                             <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
@@ -81,7 +81,7 @@
                                     <img src="{{$studentObj->getAvatar()}}">
                                     <span class="student-block-text d-block font-18 font-weight-bold">
                                         <span class="user-name d-block mt-0">
-                                            {{$studentObj->full_name}}
+                                            {{$studentObj->get_full_name()}}
                                         </span>
                                         <span class="student-rank font-14 font-weight-normal d-block">
                                             <span>Ranking: {{($studentObj->trophy_badge != '')? $studentObj->trophy_badge : '-'}} <img src="/assets/default/svgs/trophy-rank.svg" alt=""></span>
@@ -135,7 +135,7 @@
                                 <div class="sr-no text-center"><span>{{$user_counter}}</span></div>
                                 <div class="score-des">
                                     <figure><img src="{{$leaderboardRow->getAvatar()}}" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                                    <span><a href="#">{{$leaderboardRow->full_name}}</a></span>
+                                    <span><a href="#">{{$leaderboardRow->get_full_name()}}</a></span>
                                 </div>
                                 <div class="level-up text-center"><span>{{$leaderboardRow->trophy_average}}</span></div>
                                 <div class="level-up text-center"><span>{{$leaderboardRow->trophy_badge}}</span></div>

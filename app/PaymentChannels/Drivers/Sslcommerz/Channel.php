@@ -33,7 +33,7 @@ class Channel implements IChannel
         $postData['value_c'] = $order->user_id;
 
         # CUSTOMER INFORMATION
-        $postData['cus_name'] = $user->full_name;
+        $postData['cus_name'] = $user->get_full_name();
         $postData['cus_add1'] = $user->address;
         $postData['cus_city'] = $user->getRegionByTypeId($user->city_id);
         $postData['cus_postcode'] = 123;

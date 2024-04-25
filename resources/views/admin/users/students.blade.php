@@ -138,7 +138,7 @@
                                 <select name="organization_id" data-plugin-selectTwo class="form-control populate">
                                     <option value="">{{ trans('admin/main.select_organization') }}</option>
                                     @foreach($organizations as $organization)
-                                        <option value="{{ $organization->id }}" @if(request()->get('organization_id') == $organization->id) selected @endif>{{ $organization->full_name }}</option>
+                                        <option value="{{ $organization->id }}" @if(request()->get('organization_id') == $organization->id) selected @endif>{{ $organization->get_full_name() }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -219,10 +219,10 @@
                             <td class="text-left">
                                 <div class="d-flex align-items-center">
                                     <figure class="avatar mr-2">
-                                        <img src="{{ $user->getAvatar() }}" alt="{{ $user->full_name }}">
+                                        <img src="{{ $user->getAvatar() }}" alt="{{ $user->get_full_name() }}">
                                     </figure>
                                     <div class="media-body ml-1">
-                                        <div class="mt-0 mb-1 font-weight-bold">{{ $user->full_name }}</div>
+                                        <div class="mt-0 mb-1 font-weight-bold">{{ $user->get_full_name() }}</div>
 
                                         @if($user->mobile)
                                             <div class="text-primary text-small font-600-bold">{{ $user->mobile }}</div>

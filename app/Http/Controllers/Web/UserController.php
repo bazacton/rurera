@@ -147,7 +147,7 @@ class UserController extends Controller
         }
 
         $data = [
-            'pageTitle'          => $user->full_name . ' ' . trans('public.profile'),
+            'pageTitle'          => $user->get_full_name() . ' ' . trans('public.profile'),
             'user'               => $user,
             'userBadges'         => $userBadges,
             'meeting'            => $meeting,

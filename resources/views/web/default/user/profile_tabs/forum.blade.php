@@ -6,13 +6,13 @@
                 <div class="col-12 col-md-6">
                     <div class="d-flex align-items-center">
                         <div class="topic-user-avatar rounded-circle">
-                            <img src="{{ $user->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $user->full_name }}">
+                            <img src="{{ $user->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $user->get_full_name() }}">
                         </div>
                         <div class="ml-10 mw-100">
                             <a href="{{ $topic->getPostsUrl() }}" class="">
                                 <h4 class="font-16 font-weight-bold text-secondary text-ellipsis">{{ $topic->title }}</h4>
                             </a>
-                            <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $user->full_name }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
+                            <span class="d-block font-14 text-gray">{{ trans('public.by') }} {{ $user->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at,'j M Y | H:i') }}</span>
                         </div>
                     </div>
                 </div>
@@ -40,10 +40,10 @@
                             @if(!empty($topic->lastPost))
                                 <div class="d-flex align-items-center">
                                     <div class="topic-last-post-user-avatar rounded-circle">
-                                        <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->full_name }}">
+                                        <img src="{{ $topic->lastPost->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $topic->lastPost->user->get_full_name() }}">
                                     </div>
                                     <div class="ml-10">
-                                        <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->full_name }}</h4>
+                                        <h4 class="font-14 font-weight-500 text-gray">{{ $topic->lastPost->user->get_full_name() }}</h4>
                                         <span class="d-block font-12 font-weight-500 text-gray">{{ trans('public.in') }} {{ dateTimeFormat($topic->lastPost->created_at,'j M Y | H:i') }}</span>
                                     </div>
                                 </div>

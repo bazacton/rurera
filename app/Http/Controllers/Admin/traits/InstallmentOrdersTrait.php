@@ -18,7 +18,7 @@ trait InstallmentOrdersTrait
         $topStats = $this->getDetailsTopStats($order->user);
 
         $data = [
-            'pageTitle' => trans('update.installment_verification') . ' - '.$order->user->full_name,
+            'pageTitle' => trans('update.installment_verification') . ' - '.$order->user->get_full_name(),
             'order' => $order,
             'payments' => $order->payments,
             'installment' => $order->installment,

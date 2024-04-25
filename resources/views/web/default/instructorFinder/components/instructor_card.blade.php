@@ -8,11 +8,11 @@
 
         <div class="col-12 col-md-8 d-flex">
             <div class="instructor-avatar rounded-circle">
-                <img src="{{ $instructor->getAvatar(70) }}" class="img-cover rounded-circle" alt="{{ $instructor->full_name }}">
+                <img src="{{ $instructor->getAvatar(70) }}" class="img-cover rounded-circle" alt="{{ $instructor->get_full_name() }}">
             </div>
 
             <div class="ml-20">
-                <h3 class="font-16 font-weight-bold text-secondary">{{ $instructor->full_name }}</h3>
+                <h3 class="font-16 font-weight-bold text-secondary">{{ $instructor->get_full_name() }}</h3>
 
                 <div>
                     <span class="d-block font-12 text-gray">{{ $instructor->bio }}</span>

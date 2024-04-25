@@ -112,7 +112,7 @@
 
                                 @if(!empty($teachers) and $teachers->count() > 0)
                                 @foreach($teachers as $teacher)
-                                <option value="{{ $teacher->id }}" selected>{{ $teacher->full_name }}</option>
+                                <option value="{{ $teacher->id }}" selected>{{ $teacher->get_full_name() }}</option>
                                 @endforeach
                                 @endif
                             </select>
@@ -190,7 +190,7 @@
                                         @endif
                                     </td>
 
-                                    <td class="text-left">{{ $quiz->creator->full_name }}</td>
+                                    <td class="text-left">{{ $quiz->creator->get_full_name() }}</td>
 
                                     <td class="text-center">
                                         {{ $quiz->quizQuestionsList->count() }}

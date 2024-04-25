@@ -206,10 +206,10 @@
                             <div class="assignment-attachments-post p-15 border rounded-sm mb-15">
                                 <div class="d-flex align-items-center">
                                     <div class="user-avatar rounded-circle">
-                                        <img src="{{ $message->sender->getAvatar(50) }}" class="img-cover rounded-circle" alt="{{ $message->sender->full_name }}">
+                                        <img src="{{ $message->sender->getAvatar(50) }}" class="img-cover rounded-circle" alt="{{ $message->sender->get_full_name() }}">
                                     </div>
                                     <div class="ml-10">
-                                        <h4 class="font-14 font-weight-500 text-dark-blue">{{ $message->sender->full_name }}</h4>
+                                        <h4 class="font-14 font-weight-500 text-dark-blue">{{ $message->sender->get_full_name() }}</h4>
                                         <span class="d-block font-12 text-gray">{{ dateTimeFormat($message->created_at, 'j M Y | H:i') }}</span>
                                     </div>
                                 </div>

@@ -182,7 +182,7 @@ class AuthorPermissionsController extends Controller {
                                                 foreach ($authors as $authorObj) {
                                                     $selected = in_array($authorObj->id, $sub_chapter_authors) ? 'selected' : '';
                                                     ?> 
-                                                    <option value="<?php echo $authorObj->id; ?>" <?php echo $selected; ?>><?php echo $authorObj->full_name; ?></option> 
+                                                    <option value="<?php echo $authorObj->id; ?>" <?php echo $selected; ?>><?php echo $authorObj->get_full_name(); ?></option>
                                                     <?php
                                                 }
                                             }

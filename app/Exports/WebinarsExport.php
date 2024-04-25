@@ -50,7 +50,7 @@ class WebinarsExport implements FromCollection, WithHeadings, WithMapping
             $webinar->id,
             $webinar->title,
             $webinar->type,
-            $webinar->teacher->full_name,
+            $webinar->teacher->get_full_name(),
             $webinar->sales->count(),
             $webinar->price,
             dateTimeFormat($webinar->created_at, 'j M Y | H:i'),

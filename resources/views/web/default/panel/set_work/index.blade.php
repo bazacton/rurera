@@ -14,13 +14,12 @@
 @endpush
 
 @section('content')
-<section class="member-card-header">
-    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
-        <h1 class="section-title font-22">Assignments</h1>
+<section class="member-card-header pb-50">
+    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
+        <h1 class="section-title font-22">Set Work</h1>
         <div class="dropdown">
-        <a class="btn btn-sm btn-primary subscription-modal" href="/panel/set-work/create" data-type="child_register"><img src="/assets/default/svgs/settings.svg"> Add Assignment
+        <a class="btn btn-sm btn-primary subscription-modal" href="/panel/set-work/create" data-type="child_register"><img src="/assets/default/svgs/add-con.svg"> Add Assignment
         </a>
-
     </div>
     </div>
 </section>
@@ -34,29 +33,37 @@
                         <div class="card-body">
                             <div class="list-group list-group-custom list-group-flush mb-0 totalChilds"
                                  data-childs="12">
-
                                 @if( !empty( $assignments ) )
                                 @foreach($assignments as $assignmentObj)
-
                                 <div class="list-group-item">
                                     <div class="row align-items-center">
-                                        <div class="col-5 ms-2">
-                                            <h6 class="font-18 font-weight-bold"><a href="#">{{$assignmentObj->title}}</a></h6>
+                                        <div class="col-auto col-lg-2">
+                                            <h6 class="listing-title font-14 font-weight-500">Assignment Title</h6>
+                                            <h6 class="font-16 font-weight-normal"><a href="#">{{$assignmentObj->title}}</a></h6>
                                         </div>
-
-                                        <div class="col-auto ms-auto mr-md-3 last-activity">
-                                            <span>{{ $assignmentObj->assignment_type }}</span><br>
-                                            <span>{{ implode(', ', json_decode($assignmentObj->tables_no)) }}</span><br>
-                                            <span>{{ $assignmentObj->no_of_questions }}</span><br>
+                                        <div class="col-auto">
+                                            <h6 class="listing-title font-14 font-weight-500">Assignment Student</h6>
+                                            <h6 class="font-16 font-weight-normal">
+                                                @if( $assignmentObj->students->count() > 0)
+                                                    @foreach($assignmentObj->students as $studentObj)
+                                                        {{$studentObj->user->get_full_name()}}
+                                                    @endforeach
+                                                @endif
+                                            </h6>
                                         </div>
-                                        <div class="col-auto ms-auto mr-md-3 last-activity">
-                                            <span>{{ dateTimeFormat($assignmentObj->assignment_start_date, 'j M Y H:i') }}</span>
+                                        <div class="col-auto">
+                                            <h6 class="listing-title font-14 font-weight-500">Type</h6>
+                                            <h6 class="font-16 font-weight-normal">
+                                                {{ get_topic_type($assignmentObj->assignment_type) }} ({{$assignmentObj->assignment_type}})
+                                            </h6>
                                         </div>
-                                        <div class="col-auto ms-auto mr-md-3 last-activity">
-                                            <span>{{ dateTimeFormat($assignmentObj->assignment_end_date, 'j M Y H:i') }}</span>
+                                        <div class="col-auto last-activity">
+                                            <h6 class="listing-title font-14 font-weight-500">Due Date</h6>
+                                            <span class="font-14 d-block">{{ dateTimeFormat($assignmentObj->assignment_end_date, 'j M Y') }}</span>
                                         </div>
-                                        <div class="col-auto ms-auto mr-md-3 last-activity profile-dropdown">
-                                            <a href="#">Options</a>
+                                        <div class="col-auto ms-auto last-activity profile-dropdown">
+                                            <h6 class="listing-title font-14 font-weight-500">Action</h6>
+                                            <a href="#" class="font-15 font-weight-normal">Options</a>
                                             <ul>
                                                 <li><a href="/panel/set-work/{{$assignmentObj->id}}/progress" class="switch-user-btn">Progress</a></li>
                                             </ul>

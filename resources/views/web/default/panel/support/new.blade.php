@@ -62,7 +62,7 @@
                         <option value="" selected disabled>{{ trans('panel.select_course') }}</option>
 
                         @foreach($webinars as $webinar)
-                            <option value="{{ $webinar->id }}">{{ $webinar->title }} - {{ $webinar->creator->full_name }}</option>
+                            <option value="{{ $webinar->id }}">{{ $webinar->title }} - {{ $webinar->creator->get_full_name() }}</option>
                         @endforeach
                     </select>
                     @error('webinar_id')

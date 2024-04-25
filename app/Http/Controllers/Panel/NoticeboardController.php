@@ -125,7 +125,7 @@ class NoticeboardController extends Controller
 
             $storeData = [
                 'type' => $data['type'],
-                'sender' => $user->full_name,
+                'sender' => $user->get_full_name(),
                 'title' => $data['title'],
                 'message' => $data['message'],
                 'created_at' => time()

@@ -45,7 +45,7 @@
                                                                 <address>
                                                                     <strong>{{ trans('admin/main.buyer') }}:</strong>
                                                                     <br>
-                                                                    {{ $buyer->full_name }}
+                                                                    {{ $buyer->get_full_name() }}
                                                                 </address>
                                                             </div>
                                                             <div class="col-md-6 text-md-right">
@@ -59,7 +59,7 @@
                                                             <div class="col-md-6">
                                                                 <address>
                                                                     <strong>{{ trans('admin/main.seller') }}:</strong><br>
-                                                                    {{ $seller->full_name }}
+                                                                    {{ $seller->get_full_name() }}
                                                                 </address>
                                                             </div>
 

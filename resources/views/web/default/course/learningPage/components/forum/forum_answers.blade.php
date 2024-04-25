@@ -1,7 +1,7 @@
 <section class="p-15 m-15 border rounded-lg">
     <h3 class="font-20 font-weight-bold text-secondary">{{ $courseForum->title }}</h3>
 
-    <span class="d-block font-14 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $courseForum->user->full_name }}</span> {{ trans('public.in') }} {{ dateTimeFormat($courseForum->created_at, 'j M Y | H:i') }}</span>
+    <span class="d-block font-14 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $courseForum->user->get_full_name() }}</span> {{ trans('public.in') }} {{ dateTimeFormat($courseForum->created_at, 'j M Y | H:i') }}</span>
 
     <div class="mt-15 ">
         <nav aria-label="breadcrumb">
@@ -34,9 +34,9 @@
                 <div class="col-12 col-md-3">
                     <div class="position-relative bg-info-light d-flex flex-column align-items-center justify-content-center rounded-lg w-100 h-100 p-20">
                         <div class="user-avatar rounded-circle">
-                            <img src="{{ $user->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $user->full_name }}">
+                            <img src="{{ $user->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $user->get_full_name() }}">
                         </div>
-                        <h4 class="font-14 text-secondary mt-15 font-weight-bold">{{ $user->full_name }}</h4>
+                        <h4 class="font-14 text-secondary mt-15 font-weight-bold">{{ $user->get_full_name() }}</h4>
 
                         <span class="px-10 py-5 mt-5 rounded-lg border bg-info-light text-center font-12 text-gray">
                         @if($user->isUser())

@@ -217,7 +217,7 @@ $QuestionsAttemptController = new QuestionsAttemptController();
                                         @foreach( $assignmentObj->students as $assignmentTopicObj)
                                             <tr>
                                                 <td>
-                                                    <span>{{$assignmentTopicObj->user->full_name}}</span>
+                                                    <span>{{$assignmentTopicObj->user->get_full_name()}}</span>
                                                 </td>
                                                 <td>
                                                     @php $attempt_counter = 1; $counter = 1; @endphp

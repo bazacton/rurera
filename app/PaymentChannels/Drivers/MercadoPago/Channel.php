@@ -43,7 +43,7 @@ class Channel implements IChannel
         Mercado::setAccessToken($this->access_token);
 
         $payer = new MercadoPagoPayer();
-        $payer->name = $user->full_name;
+        $payer->name = $user->get_full_name();
         $payer->email = $user->email;
         $payer->phone = array(
             "area_code" => "",

@@ -36,7 +36,7 @@
 
                         <div class="mt-15">
                             <span class="font-14">{{ trans('public.created_by') }}</span>
-                            <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $bundle->teacher->full_name }}</a>
+                            <a href="{{ $bundle->teacher->getProfileUrl() }}" target="_blank" class="text-decoration-underline text-white font-14 font-weight-500">{{ $bundle->teacher->get_full_name() }}</a>
                         </div>
                     </div>
 

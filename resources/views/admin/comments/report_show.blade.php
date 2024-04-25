@@ -35,7 +35,7 @@
                                             </tr>
 
                                             <tr>
-                                                <td>{{ $comment->user->id .' - '.$comment->user->full_name }}</td>
+                                                <td>{{ $comment->user->id .' - '.$comment->user->get_full_name() }}</td>
                                                 <td width="30%">{{ nl2br($comment->comment) }}</td>
                                                 <td>{{ dateTimeFormat($comment->created_at, 'j M Y | H:i') }}</td>
                                                 <td>
@@ -96,7 +96,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>{{ $report->user->id .' - '.$report->user->full_name }}</td>
+                                        <td>{{ $report->user->id .' - '.$report->user->get_full_name() }}</td>
                                         <td width="20%">{{ $report->$itemRelation->title }}</td>
                                         <td width="25%">{{ nl2br($report->message) }}</td>
                                         <td>{{ dateTimeFormat($report->created_at, 'j M Y | H:i') }}</td>

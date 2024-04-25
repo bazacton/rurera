@@ -440,7 +440,7 @@ class TimestablesController extends Controller
                 $date = strtotime($date);
                 if (!empty($times_tables_array)) {
                     foreach ($times_tables_array as $times_tablesObj) {
-                        $current_user_id = $times_tablesObj->user->full_name;//$times_tablesObj->user_id;
+                        $current_user_id = $times_tablesObj->user->get_full_name();//$times_tablesObj->user_id;
                         $results = json_decode($times_tablesObj->other_data);
 
                         if (!empty($results)) {
@@ -530,7 +530,7 @@ class TimestablesController extends Controller
                 $date = strtotime($date);
                 if (!empty($times_tables_array)) {
                     foreach ($times_tables_array as $times_tablesObj) {
-                        $current_user_id = $times_tablesObj->user->full_name;//$times_tablesObj->user_id;
+                        $current_user_id = $times_tablesObj->user->get_full_name();//$times_tablesObj->user_id;
                         $results = json_decode($times_tablesObj->other_data);
 
                         if (!empty($results)) {

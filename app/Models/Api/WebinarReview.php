@@ -11,7 +11,7 @@ class WebinarReview extends Model
             'id'=>$this->id ,
             'auth' => $this->auth,
             'user' => [
-                'full_name' => $this->creator->full_name,
+                'full_name' => $this->creator->get_full_name(),
                 'avatar' => url($this->creator->getAvatar()),
             ],
             'created_at' => $this->created_at,
@@ -27,7 +27,7 @@ class WebinarReview extends Model
                 return [
                     'id' => $this->id,
                     'user' => [
-                        'full_name' => $reply->user->full_name,
+                        'full_name' => $reply->user->get_full_name(),
                         'avatar' => url($reply->user->getAvatar()),
                     ],
                     'created_at' => $reply->created_at,

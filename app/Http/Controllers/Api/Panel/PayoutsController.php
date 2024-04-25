@@ -58,7 +58,7 @@ class PayoutsController extends Controller
             Payout::create([
                 'user_id' => $user->id,
                 'amount' => $getUserPayout,
-                'account_name' => $user->full_name,
+                'account_name' => $user->get_full_name(),
                 'account_number' => $user->iban,
                 'account_bank_name' => $user->account_type,
                 'status' => Payout::$waiting,
@@ -67,7 +67,7 @@ class PayoutsController extends Controller
 
             $notifyOptions = [
                 '[payout.amount]' => $getUserPayout,
-                '[u.name]' => $user->full_name
+                '[u.name]' => $user->get_full_name()
             ];
 
             sendNotification('payout_request', $notifyOptions, $user->id);

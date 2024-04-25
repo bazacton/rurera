@@ -94,7 +94,7 @@
 
                                     @if(!empty($students) and $students->count() > 0)
                                         @foreach($students as $student)
-                                            <option value="{{ $student->id }}" {{ (request()->get('student_id') == $student->id) ? 'selected' : '' }}>{{ $student->full_name }}</option>
+                                            <option value="{{ $student->id }}" {{ (request()->get('student_id') == $student->id) ? 'selected' : '' }}>{{ $student->get_full_name() }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -156,7 +156,7 @@
                                                     <img src="{{ $history->student->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block font-weight-500">{{ $history->student->full_name }}</span>
+                                                    <span class="d-block font-weight-500">{{ $history->student->get_full_name() }}</span>
                                                     <span class="mt-5 font-12 text-gray d-block">{{ $history->student->email }}</span>
                                                 </div>
                                             </div>

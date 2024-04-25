@@ -43,7 +43,7 @@
 
                                     @if(!empty($teachers) and $teachers->count() > 0)
                                         @foreach($teachers as $teacher)
-                                            <option value="{{ $teacher->id }}" selected>{{ $teacher->full_name }}</option>
+                                            <option value="{{ $teacher->id }}" selected>{{ $teacher->get_full_name() }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -59,7 +59,7 @@
 
                                     @if(!empty($students) and $students->count() > 0)
                                         @foreach($students as $student)
-                                            <option value="{{ $student->id }}" selected>{{ $student->full_name }}</option>
+                                            <option value="{{ $student->id }}" selected>{{ $student->get_full_name() }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -95,8 +95,8 @@
                                             <td class="text-left">
                                                 <span>{{ $certificate->webinar->title }}</span>
                                             </td>
-                                            <td class="text-left">{{ $certificate->student->full_name }}</td>
-                                            <td class="text-left">{{ $certificate->webinar->teacher->full_name }}</td>
+                                            <td class="text-left">{{ $certificate->student->get_full_name() }}</td>
+                                            <td class="text-left">{{ $certificate->webinar->teacher->get_full_name() }}</td>
 
                                             <td class="text-center">{{ dateTimeFormat($certificate->created_at, 'j M Y') }}</td>
 

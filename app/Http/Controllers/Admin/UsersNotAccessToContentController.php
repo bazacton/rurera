@@ -88,7 +88,7 @@ class UsersNotAccessToContentController extends Controller
 
         $toastData = [
             'title' => trans('public.request_success'),
-            'msg' => trans('update.content_access_was_enabled_for_the_user', ['user' => $user->full_name]),
+            'msg' => trans('update.content_access_was_enabled_for_the_user', ['user' => $user->get_full_name()]),
             'status' => 'success'
         ];
         return back()->with(['toast' => $toastData]);

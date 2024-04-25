@@ -181,7 +181,7 @@ class CommentsController extends Controller
 
                 $notifyOptions = [
                     '[c.title]' => $webinar->title,
-                    '[u.name]' => $commentedUser->full_name
+                    '[u.name]' => $commentedUser->get_full_name()
                 ];
                 sendNotification('new_comment', $notifyOptions, $webinar->teacher_id);
             } elseif ($comment->status == 'active' and !empty($comment->product_id)) {
@@ -190,7 +190,7 @@ class CommentsController extends Controller
 
                 $notifyOptions = [
                     '[p.title]' => $product->title,
-                    '[u.name]' => $commentedUser->full_name
+                    '[u.name]' => $commentedUser->get_full_name()
                 ];
                 sendNotification('product_new_comment', $notifyOptions, $product->creator_id);
             }

@@ -64,9 +64,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualAddedClass->webinar))
-                                            <p>{{ $manualAddedClass->webinar->creator->full_name  }}</p>
+                                            <p>{{ $manualAddedClass->webinar->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $manualAddedClass->seller->full_name  }}</p>
+                                            <p>{{ $manualAddedClass->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 
@@ -128,9 +128,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualDisabledClass->webinar))
-                                            <p>{{ $manualDisabledClass->webinar->creator->full_name  }}</p>
+                                            <p>{{ $manualDisabledClass->webinar->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $manualDisabledClass->seller->full_name  }}</p>
+                                            <p>{{ $manualDisabledClass->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 
@@ -191,9 +191,9 @@
 
                                     <td width="25%">
                                         @if(!empty($purchasedClass->webinar))
-                                            <p>{{ $purchasedClass->webinar->creator->full_name  }}</p>
+                                            <p>{{ $purchasedClass->webinar->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $purchasedClass->seller->full_name  }}</p>
+                                            <p>{{ $purchasedClass->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 

@@ -42,7 +42,7 @@ class Channel implements IChannel
             'billReturnUrl' => $this->makeCallbackUrl('return'),
             'billCallbackUrl' => $this->makeCallbackUrl('return'),
             'billExternalReferenceNo' => $order->id,
-            'billTo' => $user->full_name,
+            'billTo' => $user->get_full_name(),
             'billEmail' => $user->email,
             'billPhone' => $user->mobile,
             'billSplitPayment' => 0,

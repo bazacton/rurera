@@ -7649,7 +7649,7 @@ function user_assign_topic_template($topic_id, $topic_type, $childs, $parent_ass
             <div class="checkbox-field">
                 <input type="checkbox" name="child_ids[]" value="<?php echo $childObj->id; ?>"
                        id="child_<?php echo $topic_id.'_'.$childObj->id; ?>" <?php echo $is_checked; ?> class="child_ids">
-                <label for="child_<?php echo $topic_id.'_'.$childObj->id; ?>"><?php echo $childObj->full_name; ?></label>
+                <label for="child_<?php echo $topic_id.'_'.$childObj->id; ?>"><?php echo $childObj->get_full_name(); ?></label>
             </div>
             <?php } } ?>
 
@@ -7748,6 +7748,15 @@ function getTopicTitle($topic_id, $topic_type){
         }
     }
     return $topic_title;
+}
+
+
+function get_topic_type($type_slug){
+    $response = 'Practice';
+    if(in_array($type_slug, array('sats', '11plus','independent_exams','iseb','cat4'))){
+        $response = 'Mock Test';
+    }
+    return $response;
 }
 
 /*
@@ -8722,4 +8731,16 @@ function panelRoute(){
         $routeLink = 'tutor';
     }
     return $routeLink;
+}
+
+
+function redirectCheck(){
+    $redirect_url = '';
+    if (auth()->check() && (auth()->user()->isUser() || auth()->user()->isParent() || auth()->user()->isTutor())) {
+        $redirect_url = '/'.panelRoute();
+    }
+    if (auth()->check() && auth()->user()->isTeacher()) {
+        $redirect_url = '/admin';
+    }
+    return $redirect_url;
 }

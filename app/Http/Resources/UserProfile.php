@@ -16,7 +16,7 @@ class UserProfile extends JsonResource
     {
         return [
             'id' => $this->id,
-            'full_name' => $this->full_name,
+            'full_name' => $this->get_full_name(),
             'email' => $this->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

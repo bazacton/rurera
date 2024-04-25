@@ -62,9 +62,9 @@ class StoreOrdersExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $order->id,
-            !empty($order->buyer) ? $order->buyer->full_name : '',
+            !empty($order->buyer) ? $order->buyer->get_full_name() : '',
             !empty($order->buyer) ? $order->buyer->id : '',
-            !empty($order->seller) ? $order->seller->full_name : '',
+            !empty($order->seller) ? $order->seller->get_full_name() : '',
             !empty($order->seller) ? $order->seller->id : '',
             !empty($order->product) ? trans('update.product_type_' . $order->product->type) : '',
             $order->quantity,

@@ -277,7 +277,7 @@ class OrderController extends Controller
 
             $notifyOptions = [
                 '[p.title]' => $product->title,
-                '[u.name]' => $seller->full_name
+                '[u.name]' => $seller->get_full_name()
             ];
             sendNotification('product_tracking_code', $notifyOptions, $order->buyer_id);
         }

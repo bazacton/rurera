@@ -214,10 +214,10 @@ class CommonController extends Controller
             foreach ($users as $userObj) {
                 if ($return_type == 'option') {
                     $selected = ($user_id == $userObj->id) ? 'selected' : '';
-                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->full_name . '</option>';
+                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->get_full_name() . '</option>';
                 }
                 if ($return_type == 'list') {
-                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->full_name . '</a></li>';
+                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->get_full_name() . '</a></li>';
                 }
             }
         }
@@ -253,10 +253,10 @@ class CommonController extends Controller
             foreach ($users as $userObj) {
                 if ($return_type == 'option') {
                     $selected = ($user_id == $userObj->id) ? 'selected' : '';
-                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->full_name . '</option>';
+                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->get_full_name() . '</option>';
                 }
                 if ($return_type == 'list') {
-                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->full_name . '</a></li>';
+                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->get_full_name() . '</a></li>';
                 }
             }
         }

@@ -50,7 +50,7 @@ class RegistrationBonusExport implements FromCollection, WithHeadings, WithMappi
     {
         return [
             $user->id,
-            $user->full_name,
+            $user->get_full_name(),
             $user->mobile,
             $user->email,
             $user->role->caption,

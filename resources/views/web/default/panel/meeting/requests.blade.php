@@ -110,7 +110,7 @@
                                             <option value="all">{{ trans('webinars.all_students') }}</option>
 
                                             @foreach($usersReservedTimes as $student)
-                                                <option value="{{ $student->id }}" @if(request()->get('student_id') == $student->id) selected @endif>{{ $student->full_name }}</option>
+                                                <option value="{{ $student->id }}" @if(request()->get('student_id') == $student->id) selected @endif>{{ $student->get_full_name() }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -179,7 +179,7 @@
                                                     <img src="{{ $ReserveMeeting->user->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block font-weight-500">{{ $ReserveMeeting->user->full_name }}</span>
+                                                    <span class="d-block font-weight-500">{{ $ReserveMeeting->user->get_full_name() }}</span>
                                                     <span class="mt-5 font-12 text-gray d-block">{{ $ReserveMeeting->user->email }}</span>
                                                 </div>
                                             </div>

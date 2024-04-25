@@ -167,8 +167,8 @@ $navBtnText = $navbarButton->title;
                     <div class="dropdown">
                         <a href="#!" class="navbar-user d-flex align-items-center ml-50 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
-                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image" alt="rounded circle" loading="eager" title="rounded circle">
-                            <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->full_name }}</span>
+                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image" alt="rounded circle" loading="eager" title="rounded circle">
+                            <span class="font-16 user-name ml-10 text-dark-blue font-14">{{ $authUser->get_full_name() }}</span>
                         </a>
 
                         <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">

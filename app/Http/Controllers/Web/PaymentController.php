@@ -378,7 +378,7 @@ class PaymentController extends Controller
 
             /* Notification Options */
             $notifyOptions = [
-                '[u.name]' => $installmentOrder->user->full_name,
+                '[u.name]' => $installmentOrder->user->get_full_name(),
                 '[installment_title]' => $installmentOrder->installment->main_title,
                 '[time.date]' => dateTimeFormat(time(), 'j M Y - H:i'),
                 '[amount]' => handlePrice($installmentPayment->amount),

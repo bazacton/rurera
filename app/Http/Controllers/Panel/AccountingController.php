@@ -156,7 +156,7 @@ class AccountingController extends Controller
 
             $notifyOptions = [
                 '[amount]' => handlePrice($amount),
-                '[u.name]' => $userAuth->full_name
+                '[u.name]' => $userAuth->get_full_name()
             ];
             sendNotification('offline_payment_request', $notifyOptions, $userAuth->id);
             sendNotification('new_offline_payment_request', $notifyOptions, 1);
@@ -254,7 +254,7 @@ class AccountingController extends Controller
                     data-description="Rozerpay"
                     data-currency="' . currency() . '"
                     data-image="' . $generalSettings['logo'] . '"
-                    data-prefill.name="' . $order->user->full_name . '"
+                    data-prefill.name="' . $order->user->get_full_name() . '"
                     data-prefill.email="' . $order->user->email . '"
                     data-theme.color="#43d477">
             </script>

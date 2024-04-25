@@ -14,11 +14,11 @@
 @endpush
 
 @section('content')
-<section class="member-card-header">
+<section class="member-card-header pb-50">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
         <h1 class="section-title font-22">Students</h1>
         <div class="dropdown">
-        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0"><img src="/assets/default/svgs/settings.svg"> Add Student
+        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0"><img src="/assets/default/svgs/add-con.svg"> Add Student
         </button>
 
     </div>
@@ -44,38 +44,52 @@
                                 <div class="list-group-item {{$is_cancelled}}">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
+                                            <h6 class="listing-title font-14 font-weight-500">User</h6>
                                             <a href="javascript:;" class="avatar"><img
                                                         src="{{$childObj->getAvatar()}}"
-                                                        alt="{{$childObj->full_name}}"
+                                                        alt="{{$childObj->get_full_name()}}"
                                                         class="avatar rounded-circle"></a>
                                         </div>
 
-                                        <div class="col-5 ms-2">
-                                            <h6 class="font-18 font-weight-bold"><a href="#">{{$childObj->full_name}}</a></h6>
+                                        <div class="col-auto ms-2">
+                                            <h6 class="font-16 font-weight-normal"><a href="#">{{$childObj->get_full_name()}}</a></h6>
                                             <small class="text-muted">
+                                                {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
+                                            </small>
+                                        </div>
+                                        <div class="col-auto last-activity">
+                                            <h6 class="listing-title font-14 font-weight-500">Membership</h6>
+                                            <span class="font-14 d-block">
                                                 @php $package_id = 0;
 
                                                 @endphp
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
-                                                {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}<br>
                                                 Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
                                                 @endphp
-                                                - Expiry: {{ dateTimeFormat($expiry_at, 'j M Y') }}
+                                                <br>- Expiry: {{ dateTimeFormat($expiry_at, 'j M Y') }}
+                                                @else
+                                                    @if(!isset( $childObj->userSubscriptions->subscribe ) )
+                                                        <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
+                                                            + Add Membership
+                                                        </a>
+                                                    @endif
                                                 @endif
-                                            </small>
-                                        </div>
-
-                                        <div class="col-auto ms-auto mr-md-3 last-activity">
-                                            <span><strong>{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : 'No Activity' }}</strong>
-                                            <br>Last Activity
                                             </span>
                                         </div>
-                                        <div class="col-auto ms-auto mr-md-3 last-activity profile-dropdown">
-                                            <a href="#">Profile options</a>
+
+                                        <div class="col-auto last-activity">
+                                            <h6 class="listing-title font-14 font-weight-500">Last Activity</h6>
+                                            <span class="font-14 d-block"><strong class="font-16 font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
+                                                {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
+                                            </span>
+                                        </div>
+                                        <div class="col-auto ms-auto last-activity profile-dropdown">
+                                            <h6 class="listing-title font-14 font-weight-500">Action</h6>
+                                            <a href="#" class="font-15 font-weight-normal">Settings</a>
                                             <ul>
                                                 <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
                                                 <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
@@ -700,8 +714,10 @@
 <div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            <div class="panel-header">
+                <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            </div>
             <div class="modal-body">
                 <div class="container container-nosidebar">
                 <div class="tab-content subscription-content" id="nav-tabContent">
@@ -730,11 +746,15 @@
         </div>
     </div>
 </div>
-<div class="modal fade lms-choose-membership" id="unlinkModal" tabindex="-1" aria-labelledby="unlinkModalLabel" aria-hidden="true">
+
+<div class="modal fade class-connect-modal" id="unlinkModal" tabindex="-1" aria-labelledby="unlinkModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            <div class="modal-header">
+                <strong>Unlink Student</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+            </div>
             <div class="modal-body">
                 <div class="container container-nosidebar">
                 <div class="tab-content unlink-block" id="nav-tabContent">

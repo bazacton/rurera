@@ -36,16 +36,19 @@ class SocialiteController extends Controller
                 ->first();
 
             if (empty($user)) {
+                $roleName = 'parent';
+                $roleId = 9;
                 $user = User::create([
                     'full_name' => $account->name,
                     'email' => $account->email,
                     'google_id' => $account->id,
-                    'role_id' => Role::getUserRoleId(),
-                    'role_name' => Role::$user,
+                    'role_id' => $roleId,
+                    'role_name' => $roleName,
                     'status' => User::$active,
                     'verified' => true,
                     'created_at' => time(),
-                    'password' => null
+                    'password' => null,
+                    'timezone'       => 'Asia/Karachi',
                 ]);
             }
 

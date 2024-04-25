@@ -23,11 +23,34 @@ class AnalyticsController extends Controller
         if (auth()->user()->isParent()) {
             $user_id = isset( $_GET['child'] )? $_GET['child'] : $user_id;
         }
+        $selected_child = 'Select Child';
+        if(isset( $_GET['child'] )){
+            $selected_child = User::find($_GET['child']);
+            $selected_child = isset( $selected_child->id )? $selected_child->get_full_name() : '';
+            $selected_child = ($_GET['child'] == 'all')? 'All Childs' : $selected_child;
+        }
+
+        $childs = array();
+        if (auth()->user()->isParent()) {
+
+            $childs = $user->parentChilds->where('status', 'active');
+
+            if ($childs->count() == 0) {
+                return redirect('/' . panelRoute() . '/students');
+            }
+        }
+
+        $childs_ids = $childs->pluck('id')->toArray();
+
+        $user_id = ( $user_id == 'all')? $childs_ids : $user_id;
+
+        $user_id = is_array($user_id )? $user_id : array($user_id);
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $summary_type = '11plus';
         $QuizzResultQuestionsObj = $QuestionsAttemptController->prepare_graph_data($summary_type, $user_id);
+
 
         $graphs_array = array();
 
@@ -55,7 +78,7 @@ class AnalyticsController extends Controller
             }
         }
 
-        $BooksUserReading = BooksUserReading::where('user_id', $user_id)->where('status', 'active')->with([
+        $BooksUserReading = BooksUserReading::whereIn('user_id', $user_id)->where('status', 'active')->with([
             'BooksPages.BookData',
         ])->orderBy('created_at', 'desc')->get();
 
@@ -128,7 +151,7 @@ class AnalyticsController extends Controller
 
 
 
-        $QuizzesAttempts = QuizzAttempts::where('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
+        $QuizzesAttempts = QuizzAttempts::whereIn('user_id', $user_id)->whereIn('attempt_type', $types_array)->with([
             'timeConsumed',
             'endSession' => function ($query) {
                 $query->orderBy('id', 'desc');
@@ -142,24 +165,7 @@ class AnalyticsController extends Controller
         $QuizzesAttempts = $QuizzesAttempts->groupBy(function ($QuizzesAttemptsQuery) {
             return date('d_m_Y', $QuizzesAttemptsQuery->created_at);
         });
-        $childs = array();
-        if (auth()->user()->isParent()) {
 
-            $childs = User::where('role_id', 1)
-                ->where('parent_type', 'parent')
-                ->where('parent_id', $user->id)
-                ->where('status', 'active')
-                ->with([
-                    'userSubscriptions' => function ($query) {
-                        $query->with(['subscribe']);
-                    }
-                ])
-                ->get();
-
-            if ($childs->count() == 0) {
-                return redirect('/' . panelRoute() . '/students');
-            }
-        }
 
 
         $analytics_data = array();
@@ -293,6 +299,7 @@ class AnalyticsController extends Controller
         $data['custom_dates'] = $custom_dates;
         $data['summary_type'] = $summary_type;
         $data['childs'] = $childs;
+        $data['selected_child'] = $selected_child;
         $data['type_selected'] = $type_selected;
         $data['QuestionsAttemptController'] = $QuestionsAttemptController;
         return view('web.default.panel.analytics.index', $data);

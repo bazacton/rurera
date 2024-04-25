@@ -48,7 +48,7 @@ class QuizzesAdminExport implements FromCollection, WithHeadings, WithMapping
         return [
             $quiz->id,
             $quiz_name,
-            $quiz->teacher->full_name,
+            $quiz->teacher->get_full_name(),
             $quiz->quizQuestions->count(),
             $quiz->quizResults->pluck('user_id')->count(),
             $quiz->quizResults->avg('user_grade'),

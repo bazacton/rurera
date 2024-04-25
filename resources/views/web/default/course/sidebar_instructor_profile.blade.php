@@ -5,7 +5,7 @@
     @endif
 
     <div class="teacher-avatar mt-5">
-        <img src="{{ $courseTeacher->getAvatar(100) }}" class="img-cover" alt="{{ $courseTeacher->full_name }}">
+        <img src="{{ $courseTeacher->getAvatar(100) }}" class="img-cover" alt="{{ $courseTeacher->get_full_name() }}">
 
         @if($courseTeacher->offline)
             <span class="user-circle-badge unavailable d-flex align-items-center justify-content-center">
@@ -17,7 +17,7 @@
             </span>
         @endif
     </div>
-    <h3 class="mt-10 font-16 font-weight-bold text-secondary">{{ $courseTeacher->full_name }}</h3>
+    <h3 class="mt-10 font-16 font-weight-bold text-secondary">{{ $courseTeacher->get_full_name() }}</h3>
     <span class="mt-5 font-14 font-weight-500 text-gray text-center">{{ $courseTeacher->bio }}</span>
 
     @include('web.default.includes.webinar.rate',['rate' => $courseTeacher->rates()])

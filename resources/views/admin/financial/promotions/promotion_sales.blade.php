@@ -28,7 +28,7 @@
                                     @foreach($promotionSales as $promotionSale)
                                         <tr>
                                             <td class="text-center">{{ !empty($promotionSale->promotion) ? $promotionSale->promotion->title : trans('update.deleted_promotion') }}</td>
-                                            <td class="text-left">{{ !empty($promotionSale->buyer) ? $promotionSale->buyer->full_name : trans('update.deleted_user') }}</td>
+                                            <td class="text-left">{{ !empty($promotionSale->buyer) ? $promotionSale->buyer->get_full_name() : trans('update.deleted_user') }}</td>
                                             <td class="text-left">
                                                 @if(!empty($promotionSale->webinar))
                                                     <a href="{{ $promotionSale->webinar->getUrl() }}" target="_blank">{{ $promotionSale->webinar->title }}</a>

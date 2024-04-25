@@ -150,7 +150,7 @@
 
                                         @if(!empty($teachers) and $teachers->count() > 0)
                                             @foreach($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}" selected>{{ $teacher->full_name }}</option>
+                                                <option value="{{ $teacher->id }}" selected>{{ $teacher->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -166,7 +166,7 @@
 
                                         @if(!empty($students) and $students->count() > 0)
                                             @foreach($students as $student)
-                                                <option value="{{ $student->id }}" selected>{{ $student->full_name }}</option>
+                                                <option value="{{ $student->id }}" selected>{{ $student->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -217,7 +217,7 @@
                                             <td>{{ $sale->id }}</td>
 
                                             <td class="text-left">
-                                                {{ !empty($sale->buyer) ? $sale->buyer->full_name : '' }}
+                                                {{ !empty($sale->buyer) ? $sale->buyer->get_full_name() : '' }}
                                                 <div class="text-primary text-small font-600-bold">ID : {{  !empty($sale->buyer) ? $sale->buyer->id : '' }}</div>
                                             </td>
 

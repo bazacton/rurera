@@ -7,10 +7,10 @@
         <div class="col-12 col-md-3">
             <div class="position-relative bg-info-light d-flex flex-column align-items-center justify-content-start rounded-lg w-100 h-100 p-20">
                 <div class="user-avatar rounded-circle {{ ($cardUser->id == $topic->creator_id) ? 'green-ring' : '' }}">
-                    <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->full_name }}">
+                    <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->get_full_name() }}">
                 </div>
                 <a href="{{ $cardUser->getProfileUrl() }}" target="_blank">
-                    <h4 class="js-post-user-name font-14 text-secondary mt-15 font-weight-bold w-100 text-center">{{ $cardUser->full_name }}</h4>
+                    <h4 class="js-post-user-name font-14 text-secondary mt-15 font-weight-bold w-100 text-center">{{ $cardUser->get_full_name() }}</h4>
                 </a>
 
                 <span class="px-10 py-5 mt-5 rounded-lg border bg-info-light text-center font-12 text-gray">
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="ml-10">
                                     <span class="d-block font-12 text-gray">{{ trans('update.reply_to') }}</span>
-                                    <span class="font-12 font-weight-bold text-gray">{{ $post->parent->user->full_name }}</span>
+                                    <span class="font-12 font-weight-bold text-gray">{{ $post->parent->user->get_full_name() }}</span>
                                 </div>
                             </div>
 

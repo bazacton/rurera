@@ -72,7 +72,7 @@
                                     <td>
                                         <span>{{ $bookData->book_title }}</span>
                                     </td>
-                                    <td class="text-left">{{ $bookData->user->full_name }}</td>
+                                    <td class="text-left">{{ $bookData->user->get_full_name() }}</td>
                                     <td class="text-left">{{ dateTimeFormat($bookData->created_at, 'j M y | H:i') }}</td>
                                     <td>
                                         @can('admin_glossary_edit')

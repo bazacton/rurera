@@ -29,7 +29,7 @@ class MakeCertificate
                 $template->body,
                 $quiz->webinar ? $quiz->webinar->title : '-',
                 $quizResult->user_grade,
-                $quiz->webinar->teacher->full_name,
+                $quiz->webinar->teacher->get_full_name(),
                 $quiz->webinar->duration);
 
             /*$data = [
@@ -77,7 +77,7 @@ class MakeCertificate
 
     private function makeBody($userCertificate, $user, $body, $courseTitle = null, $userGrade = null, $teacherFullName = null, $duration = null)
     {
-        $body = str_replace('[student]', $user->full_name, $body);
+        $body = str_replace('[student]', $user->get_full_name(), $body);
         $body = str_replace('[course]', $courseTitle, $body);
         $body = str_replace('[grade]', $userGrade, $body);
         $body = str_replace('[certificate_id]', $userCertificate->id, $body);
@@ -132,7 +132,7 @@ class MakeCertificate
                 $template->body,
                 $course->title,
                 null,
-                $course->teacher->full_name,
+                $course->teacher->get_full_name(),
                 $course->duration);
 
             /*$data = [

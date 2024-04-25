@@ -71,7 +71,7 @@ class CashbackTransactionsExport implements FromCollection, WithHeadings, WithMa
         }
 
         return [
-            $transaction->user->full_name,
+            $transaction->user->get_full_name(),
             $product,
             $targetType,
             $transaction->description,

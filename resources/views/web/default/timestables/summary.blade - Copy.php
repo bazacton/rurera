@@ -78,7 +78,7 @@
                     </div>
                     <div class="heatmap-heading mb-30 pl-15">
                         <h2 class="font-weight-normal m-0 font-18">Heatmap</h2>
-                        <span>How quickly {{ $authUser->full_name }} correctly answers each indivdual questions</span>
+                        <span>How quickly {{ $authUser->get_full_name() }} correctly answers each indivdual questions</span>
                     </div>
                     <div class="heatmap-select-option">
                         <div class="select-field">
@@ -87,7 +87,7 @@
                             <input type="radio" id="select-two" name="heatmap">
                             <label for="select-two" class="border-right-0 heatmap-type" data-type_limit="20"> 2-20<span>&#215;</span> </label>
                         </div>
-                        <strong>{{ $authUser->full_name }} Heatmap as of July 2023</strong>
+                        <strong>{{ $authUser->get_full_name() }} Heatmap as of July 2023</strong>
                         <a href="#" class="heatmap-download-btn"> <img src="../assets/default/img/download.png"
                                                                     alt="download button"> </a>
                     </div>

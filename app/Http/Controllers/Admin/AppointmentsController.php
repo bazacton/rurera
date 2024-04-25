@@ -168,8 +168,8 @@ class AppointmentsController extends Controller
             ];
 
             $data = [
-                'consultant' => $appointment->meeting->creator->full_name,
-                'reservatore' => $appointment->user->full_name,
+                'consultant' => $appointment->meeting->creator->get_full_name(),
+                'reservatore' => $appointment->user->get_full_name(),
                 'title' => $notificationTemplate->title,
                 'content' => str_replace(array_keys($notifyOptions), array_values($notifyOptions), $notificationTemplate->template)
             ];

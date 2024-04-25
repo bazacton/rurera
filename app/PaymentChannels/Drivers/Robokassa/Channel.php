@@ -41,7 +41,7 @@ class Channel implements IChannel
         // Example card (actually customer) data
         $card = [
             'email' => $user->email ?? $generalSettings['site_email'],
-            'billingFirstName' => $user->full_name,
+            'billingFirstName' => $user->get_full_name(),
             'billingLastName' => '',
             'billingPhone' => $user->mobile,
             'billingCompany' => $generalSettings['site_name'],

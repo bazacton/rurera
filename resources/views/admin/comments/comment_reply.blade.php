@@ -42,7 +42,7 @@
                                             </tr>
                                             @foreach($comment->replies as $reply)
                                                 <tr>
-                                                    <td>{{ $reply->user->id .' - '.$reply->user->full_name }}</td>
+                                                    <td>{{ $reply->user->id .' - '.$reply->user->get_full_name() }}</td>
                                                     <td>
                                                         <button type="button" class="js-show-description btn btn-outline-primary">{{ trans('admin/main.show') }}</button>
                                                         <input type="hidden" value="{{ nl2br($reply->comment) }}">

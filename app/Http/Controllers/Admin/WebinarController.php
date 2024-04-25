@@ -1413,7 +1413,7 @@ class WebinarController extends Controller
                             $students[$key] = $receipt;
                         } else { /* Gift recipient who has not registered yet */
                             $newUser = new User();
-                            $newUser->full_name = $gift->name;
+                            $newUser->get_full_name() = $gift->name;
                             $newUser->email = $gift->email;
                             $newUser->rates = 0;
                             $newUser->access_to_purchased_item = $student->access_to_purchased_item;

@@ -60,9 +60,9 @@
 
                 <div class="rounded-lg shadow-sm mt-35 p-20 course-teacher-card d-flex align-items-center flex-column">
                     <div class="teacher-avatar mt-5">
-                        <img src="{{ $course->teacher->getAvatar(100) }}" class="img-cover" alt="{{ $course->teacher->full_name }}">
+                        <img src="{{ $course->teacher->getAvatar(100) }}" class="img-cover" alt="{{ $course->teacher->get_full_name() }}">
                     </div>
-                    <h3 class="mt-10 font-20 font-weight-bold text-secondary">{{ $course->teacher->full_name }}</h3>
+                    <h3 class="mt-10 font-20 font-weight-bold text-secondary">{{ $course->teacher->get_full_name() }}</h3>
                     <span class="mt-5 font-weight-500 text-gray">{{ trans('product.product_designer') }}</span>
 
                     @include('web.default.includes.webinar.rate',['rate' => $course->teacher->rates()])

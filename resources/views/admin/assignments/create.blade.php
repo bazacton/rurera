@@ -803,7 +803,7 @@
                                                             class="form-control select2" multiple="multiple">
                                                         @if( !empty( $teachers ) )
                                                         @foreach( $teachers as $teacherObj)
-                                                        <option value="{{$teacherObj->id}}">{{$teacherObj->full_name}}</option>
+                                                        <option value="{{$teacherObj->id}}">{{$teacherObj->get_full_name()}}</option>
                                                         @endforeach
                                                         @endif
                                                     </select>
@@ -890,7 +890,7 @@
                                                             <li data-user_id="{{$userObj->id}}">
                                                                 <span><input type="checkbox" id="select_user{{$userObj->id}}" value="{{$userObj->id}}"
                                                                              name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"><label
-                                                                            for="select_user{{$userObj->id}}">{{$userObj->full_name}}</label></span>
+                                                                            for="select_user{{$userObj->id}}">{{$userObj->get_full_name()}}</label></span>
                                                             </li>
                                                             @endforeach
                                                         </ul>

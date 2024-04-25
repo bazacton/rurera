@@ -8,31 +8,10 @@
 
 @section('content')
 <section class="">
-    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-column flex-md-row">
-
-        @if(!$authUser->isUser())
-        <div class="d-flex align-items-center flex-row-reverse flex-md-row justify-content-start justify-content-md-center mt-20 mt-md-0">
-            <label class="mb-0 mr-10 cursor-pointer text-gray font-14 font-weight-500" for="iNotAvailable">{{
-                trans('panel.i_not_available') }}</label>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" name="disabled" @if($authUser->offline) checked @endif
-                class="custom-control-input" id="iNotAvailable">
-                <label class="custom-control-label" for="iNotAvailable"></label>
-            </div>
-        </div>
-        @endif
-    </div>
-
-    @if(!$authUser->financial_approval and !$authUser->isUser())
-    <div class="p-15 mt-20 p-lg-20 not-verified-alert font-weight-500 text-dark-blue rounded-sm panel-shadow">
-        {{ trans('panel.not_verified_alert') }}
-        <a href="/panel/setting/step/7" class="text-decoration-underline">{{ trans('panel.this_link') }}</a>.
-    </div>
-    @endif
 
     <div class="bg-white dashboard-banner-container position-relative px-15 px-ld-35 py-10 panel-shadow panel-border rounded-sm">
         <h2 class="font-30 text-primary line-height-1">
-            <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->full_name }},</span>
+            <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->get_full_name() }},</span>
             <span class="font-16 text-secondary font-weight-bold">{{ trans('panel.have_event',['count' => !empty($unReadNotifications) ? count($unReadNotifications) : 0]) }}</span>
         </h2>
 
@@ -154,6 +133,7 @@
     </div>
 </div>
 <div class="dashboard">
+    @if(auth()->check() && (auth()->user()->isUser()))
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
             <div class="assignments-table panel-border">
@@ -210,7 +190,8 @@
             </div>
         </div>
     </div>
-
+    @endif
+    @if(auth()->check() && (auth()->user()->isUser()))
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
             <section class="product-tabs-section panel-border">
@@ -419,6 +400,7 @@
             </section>-->
         </div>
     </div>
+    @endif
 
     <!-- <div class="row">
         <div class="col-12 col-lg-3 mt-35">

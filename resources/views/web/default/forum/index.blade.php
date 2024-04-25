@@ -90,7 +90,7 @@
                                 <div class="forums-featured-card-users-avatar d-flex align-items-center mr-10">
                                     @foreach($featuredTopic->usersAvatars as $userAvatar)
                                         <div class="user-avatar-card rounded-circle">
-                                            <img src="{{ $userAvatar->getAvatar(32) }}" class="img-cover rounded-circle" alt="{{ $userAvatar->full_name }}">
+                                            <img src="{{ $userAvatar->getAvatar(32) }}" class="img-cover rounded-circle" alt="{{ $userAvatar->get_full_name() }}">
                                         </div>
                                     @endforeach
 
@@ -101,7 +101,7 @@
                             @endif
 
                             <div class="d-flex align-items-center">
-                                <div class="text-gray font-12">{{ trans('public.created_by') }} <span class="font-weight-bold">{{ $featuredTopic->topic->creator->full_name }}</span></div>
+                                <div class="text-gray font-12">{{ trans('public.created_by') }} <span class="font-weight-bold">{{ $featuredTopic->topic->creator->get_full_name() }}</span></div>
 
                                 <div class="text-gray font-12 ml-5 pl-5 border-left">{{ trans('update.n_posts',['count' => $featuredTopic->topic->posts_count]) }}</div>
                             </div>

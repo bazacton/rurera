@@ -71,7 +71,7 @@
 
                                         @if(!empty($users) and $users->count() > 0)
                                             @foreach($users as $user)
-                                                <option value="{{ $user->id }}" selected>{{ $user->full_name }}</option>
+                                                <option value="{{ $user->id }}" selected>{{ $user->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -139,7 +139,7 @@
                                                 @if($discount->user_type == 'all_users')
                                                     <span class="text-primary">{{ trans('admin/main.all_users') }}</span>
                                                 @elseif(!empty($discount->discountUsers) and !empty($discount->discountUsers->user))
-                                                    <span class="">{{ $discount->discountUsers->user->full_name }}</span>
+                                                    <span class="">{{ $discount->discountUsers->user->get_full_name() }}</span>
                                                 @endif
                                             </td>
 

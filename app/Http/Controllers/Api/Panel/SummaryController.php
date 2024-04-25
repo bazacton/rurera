@@ -28,7 +28,7 @@ class SummaryController extends Controller
         $data['total_points'] = $user->total_points;
         $data['available_points'] = $user->available_points;
         $data['role_name'] = $user->role_name;
-        $data['full_name'] = $user->full_name;
+        $data['full_name'] = $user->get_full_name();
         $data['financial_approval'] = $user->financial_approval;
         // $nextBadge = $user->getBadges(true, true);
 

@@ -39,7 +39,7 @@
             <a href="{{ $quiz->webinar->getUrl() }}" target="_blank" class="text-gray">{{ $quiz->webinar->title }}</a>
             | {{ trans('public.by') }}
             <span class="font-weight-bold">
-                <a href="{{ $quiz->creator->getProfileUrl() }}" target="_blank" class="font-14"> {{ $quiz->creator->full_name }}</a>
+                <a href="{{ $quiz->creator->getProfileUrl() }}" target="_blank" class="font-14"> {{ $quiz->creator->get_full_name() }}</a>
             </span>
         </p>
 

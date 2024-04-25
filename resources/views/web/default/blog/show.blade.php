@@ -14,9 +14,9 @@
                             <span class="lms-blog-author-img"><img src="{{ $post->author->getAvatar(100) }}" class="img-cover" alt=""></span>
                             {{ trans('public.created_by') }}
                                 @if($post->author->isTeacher())
-                                    <a href="{{ $post->author->getProfileUrl() }}" target="_blank" >{{ $post->author->full_name }}</a>
-                                @elseif(!empty($post->author->full_name))
-                                    <span>{{ $post->author->full_name }}</span>
+                                    <a href="{{ $post->author->getProfileUrl() }}" target="_blank" >{{ $post->author->get_full_name() }}</a>
+                                @elseif(!empty($post->author->get_full_name()))
+                                    <span>{{ $post->author->get_full_name() }}</span>
                                 @endif
                                 
                         </span>

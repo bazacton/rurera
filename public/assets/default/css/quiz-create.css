@@ -2020,90 +2020,28 @@
 }
 /* Context Menu end */
 
-.leform-admin {
-	font-family: arial;
-	margin: 0 0 20px 0;
-	position: relative;
-	font-size: 17px;
-}
-.leform-admin>h2, .leform-admin>h1 {
-	font-size: 23px;
-	font-weight: 400;
-	margin: 0;
-	padding: 9px 0 4px;
-	line-height: 29px;
-	margin-bottom: 20px !important;
-}
-#uap-body .leform-admin>h2, #uap-body .leform-admin>h1 {
-	padding: 0;
-}
-#uap-body .wp-picker-container+em {
-	display: block;
-}
-.leform-admin-editor * {
-	box-sizing: border-box;
-}
-.leform-header {
-	background: #444;
-	height: 56px;
-	line-height: 56px;
-}
-.leform-header:empty {
-    display: none;
-}
+.leform-admin {font-family: arial;margin: 0 0 20px 0;position: relative;font-size: 17px;}
+.leform-admin>h2, .leform-admin>h1 {font-size: 23px;font-weight: 400;margin: 0;	padding: 9px 0 4px;	line-height: 29px;margin-bottom: 20px !important;}
+#uap-body .leform-admin>h2, #uap-body .leform-admin>h1 {padding: 0;}
+#uap-body .wp-picker-container+em {display: block;}
+.leform-admin-editor * {box-sizing: border-box;}
+.leform-header {background: #444;height: 56px;	line-height: 56px;}
+.leform-header:empty {   display: none;}
 .leform-header-settings,
 .leform-header-using,
-.leform-header-preview {
-	display: inline-block;
-	float: left;
-	width: 56px;
-	height: 56px;
-}
+.leform-header-preview {display: inline-block;float: left;width: 56px;height: 56px;}
 .leform-header-using,
-.leform-header-preview {
-	float: right;
-}
+.leform-header-preview {float: right;}
 .leform-header-settings>span,
 .leform-header-using>span,
-.leform-header-preview>span {
-	display: inline-block;
-	width: 56px;
-	cursor: pointer;
-	color: #fff;
-	text-align: center;
-	font-size: 20px;
-	background: transparent;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
+.leform-header-preview>span {display: inline-block;width: 56px;cursor: pointer;color: #fff;text-align: center;	font-size: 20px;background: transparent;transition-duration: .3s;-webkit-transition-duration: .3s;}
 .leform-header-settings>span:hover,
 .leform-header-using>span:hover,
-.leform-header-preview>span:hover {
-	background: #169F85;
-}
-.leform-header-save {
-	display: inline-block;
-	float: right;
-	height: 56px;
-}
-.leform-header-save>span {
-	display: inline-block;
-	cursor: pointer;
-	color: #fff;
-	text-align: center;
-	font-size: 16px;
-	background: #26B99A;
-	padding: 0 1.5em;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-header-save>span>i {
-	width: 1em;
-	margin-right: 0.5em;
-}
-.leform-header-save>span:hover {
-	background: #169F85;
-}
+.leform-header-preview>span:hover {background: #169F85;}
+.leform-header-save {display: inline-block;	float: right;height: 56px;}
+.leform-header-save>span {display: inline-block;cursor: pointer;color: #fff;text-align: center;font-size: 16px;background: #26B99A;padding: 0 1.5em;transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-header-save>span>i {width: 1em;	margin-right: 0.5em;}
+.leform-header-save>span:hover {background: #169F85;}
 /*
 .leform-canvas-items {
 	white-space: nowrap;
@@ -2130,500 +2068,95 @@
 	overflow: hidden;
 }
 */
-.leform-toolbar {
-	background: #fff;
-	border-bottom: 1px solid #d4d4d4;
-	border-left: 1px solid #d4d4d4;
-	border-right: 1px solid #d4d4d4;
-}
-.leform-toolbar-list {
-	white-space: nowrap;
-	/*overflow: hidden;*/
-	height: auto;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-.leform-toolbar-list::after {
-	display: table;
-	content: ' ';
-	clear: both;
-}
-.leform-toolbar-list>li {
-	position: relative;
-	height: 38px;
-	width: 34px;
-	line-height: 38px;
-	margin: 0;
-	padding: 0;
-	float: left;
-}
-.leform-toolbar-list>li>a {
-	text-align: center;
-	height: 38px;
-	width: 34px;
-	line-height: 38px;
-	cursor: pointer;
-	font-size: 15px;
-	letter-spacing: normal;
-	background-color: transparent;
-	color: #2f353b;
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	box-shadow: none;
-	outline: none;
-	border: none;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-}
+.leform-toolbar {background: #fff;	border-bottom: 1px solid #d4d4d4;border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;}
+.leform-toolbar-list {white-space: nowrap;/*overflow: hidden;*/	height: auto;margin: 0;	padding: 0;	list-style-type: none;}
+.leform-toolbar-list::after {display: table;content: ' ';clear: both;}
+.leform-toolbar-list>li {position: relative;height: 38px;width: 34px;line-height: 38px;	margin: 0;padding: 0;float: left;}
+.leform-toolbar-list>li>a {text-align: center; height: 38px; width: 34px;line-height: 38px;cursor: pointer;	font-size: 15px;letter-spacing: normal;background-color: transparent;color: #2f353b;margin: 0;padding: 0;text-decoration: none;box-shadow: none;outline: none;border: none;transition-duration: .3s;-webkit-transition-duration: .3s;display: inline-flex;	justify-content: center;align-items: center;}
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .ion, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fas, 
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .far, .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fal, 
 .leform-toolbar-list a:not(.btn-social-icon):not(.btn-social):not(.page-link) .fab {margin-left: 0;}
-.leform-toolbar-list>li>a:hover {
-	color: #169F85;
-	background: #f8f8f8;
-}
-.leform-toolbar-list>li>ul {
-	position: absolute;
-	z-index: 99;
-	top: 38px;
-	left: 0px;
-	display: none;
-	background: #fff;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	width: 120px;
-	box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);
-	white-space: nowrap;
-	overflow: hidden;
-	height: auto;
-	margin: 0;
-	padding: 0;
-}
-.leform-toolbar-list>li:hover>ul {
-	display: block;
-}
-.leform-toolbar-list>li>ul>li {
-	text-align: left;
-	position: relative;
-	height: 32px;
-	display: block;
-	line-height: 32px;
-	margin: 0;
-	padding: 0;
-}
-.leform-toolbar-list>li>ul>li>a {
-	text-align: left;
-	height: 32px;
-	display: block;
-	line-height: 32px;
-	letter-spacing: normal;
-	background-color: transparent;
-	font-family: arial;
-	color: #2f353b;
-	font-size: 13px;
-	margin: 0;
-	padding: 0 10px;
-	text-decoration: none !important;
-	box-shadow: none !important;
-	outline: none !important;
-	border: none !important;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-
-}
-.leform-toolbar-list>li>ul>li>a:hover {
-	color: #169F85;
-	background: #f8f8f8;
-}
-.leform-toolbar-tooltip {
-	font-size: 14px !important;
-/*	text-transform: uppercase;*/
-	z-index: 99999 !important;
-}
-.leform-pages-bar {
-	height: auto;
-	line-height: 48px;
-	background: #f4f4f4;
-	border-left: 1px solid #d4d4d4;
-	border-right: 1px solid #d4d4d4;
-	border-bottom: 1px solid #d4d4d4;
-	overflow: hidden;
-}
-.leform-pages-bar-items {
-	height: auto;
-	margin: -1px 0 0 0;
-	padding: 0;
-	list-style-type: none;
-}
-.leform-pages-bar-items::after {
-	display: table;
-	content: ' ';
-	clear: both;
-}
-.leform-pages-bar-items>li {
-	position: relative;
-	height: 48px;
-	line-height: 48px;
-	margin: 1px 0 0 0;
-	padding: 0;
-	outline: 1px solid #d4d4d4;
-	outline-offset: 0px;
-	background: #f4f4f4;
-	float: left;
-	cursor: default;
-	transition-property: background;
-	-webkit-transition-property: background;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	white-space: nowrap;
-	min-width: 80px;
-}
-.leform-pages-bar-items>li:hover {
-	background: #f0f0f0;
-}
-.leform-pages-bar-item-placeholder {
-	border-right: 1px solid #d4d4d4;
-}
-.leform-pages-bar-item-helper {
-	border: 1px solid #d4d4d4 !important;
-}
-.leform-pages-bar-items>li label {
-	line-height: inherit;
-	display: block;
-	vertical-align: top;
-	overflow: hidden;
-	max-width: 160px;
-	cursor: pointer;
-	margin-bottom: 0;
-	font-weight: 400;
-	padding: 0 1em;
-	text-align: center;
-}
-.leform-pages-bar-items>li span {
-	display: inline-block;
-	line-height: 48px;
-	height: 43px;
-	vertical-align: top;
-	transition-property: width;
-	-webkit-transition-property: width;
-	transition-duration: .2s;
-	-webkit-transition-duration: .2s;
-	overflow: hidden;
-	width: 0;
-	text-align: right;
-	cursor: pointer;
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 0;
-	background: rgba(240,240,240,0.7);
-}
+.leform-toolbar-list>li>a:hover {color: #169F85;background: #f8f8f8;}
+.leform-toolbar-list>li>ul {position: absolute;z-index: 99;top: 38px;left: 0px;display: none;background: #fff;border: 1px solid #ccc;	box-sizing: border-box;	width: 120px;box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);white-space: nowrap;overflow: hidden;height: auto;margin: 0;padding: 0;}
+.leform-toolbar-list>li:hover>ul {display: block;}
+.leform-toolbar-list>li>ul>li {text-align: left;position: relative;	height: 32px;display: block;line-height: 32px;margin: 0;padding: 0;}
+.leform-toolbar-list>li>ul>li>a {text-align: left;height: 32px;	display: block;	line-height: 32px;letter-spacing: normal;background-color: transparent;font-family: arial;color: #2f353b;font-size: 13px;margin: 0;padding: 0 10px;text-decoration: none !important;box-shadow: none !important;outline: none !important;border: none !important;transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-toolbar-list>li>ul>li>a:hover {color: #169F85;	background: #f8f8f8;}
+.leform-toolbar-tooltip {font-size: 14px !important;/*	text-transform: uppercase;*/z-index: 99999 !important;}
+.leform-pages-bar {height: auto; line-height: 48px;	background: #f4f4f4;border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;border-bottom: 1px solid #d4d4d4;overflow: hidden;}
+.leform-pages-bar-items {height: auto;margin: -1px 0 0 0;padding: 0;list-style-type: none;}
+.leform-pages-bar-items::after {display: table;	content: ' ';clear: both;}
+.leform-pages-bar-items>li {position: relative;	height: 48px;line-height: 48px;	margin: 1px 0 0 0;padding: 0;outline: 1px solid #d4d4d4;outline-offset: 0px;background: #f4f4f4;float: left;cursor: default;transition-property: background;-webkit-transition-property: background;transition-duration: .3s;-webkit-transition-duration: .3s;white-space: nowrap;min-width: 80px;}
+.leform-pages-bar-items>li:hover {background: #f0f0f0;}
+.leform-pages-bar-item-placeholder {border-right: 1px solid #d4d4d4;}
+.leform-pages-bar-item-helper {border: 1px solid #d4d4d4 !important;}
+.leform-pages-bar-items>li label {line-height: inherit;	display: block;	vertical-align: top;overflow: hidden;max-width: 160px;cursor: pointer;margin-bottom: 0;	font-weight: 400;padding: 0 1em;text-align: center;}
+.leform-pages-bar-items>li span {display: inline-block;	line-height: 48px;height: 43px;	vertical-align: top;transition-property: width;	-webkit-transition-property: width;	transition-duration: .2s;-webkit-transition-duration: .2s;overflow: hidden;	width: 0;text-align: right;	cursor: pointer;position: absolute;	right: 0;top: 0;padding: 0;	background: rgba(240,240,240,0.7);}
 .leform-pages-bar-items>li.leform-pages-bar-item-active,
-.leform-pages-bar-items>li.leform-pages-bar-item-active.leform-pages-bar-item-confirmation {
-	border-bottom: 3px solid #169F85;
-}
+.leform-pages-bar-items>li.leform-pages-bar-item-active.leform-pages-bar-item-confirmation {border-bottom: 3px solid #169F85;}
 .leform-pages-bar-items>li.leform-pages-bar-item-helper span,
 /*.leform-pages-bar-items>li.leform-pages-bar-item-active span,*/
-.leform-pages-bar-items>li:hover span {
-	width: 56px;
-}
+.leform-pages-bar-items>li:hover span {width: 56px;}
 .leform-pages-bar-items>li.leform-pages-bar-item-helper.leform-pages-bar-item-confirmation span,
 /*.leform-pages-bar-items>li.leform-pages-bar-item-active.leform-pages-bar-item-confirmation span,*/
-.leform-pages-bar-items>li.leform-pages-bar-item-confirmation:hover span {
-	width: 32px;
-}
-.leform-pages-bar-items>li span a, .leform-pages-bar-items>li span a:visited {
-	display: inline-block;
-	font-size: 20px;
-	margin: 0 0.2em;
-	color: #666;
-	outline: none !important;
-	border: none !important;
-	box-shadow: none !important;
-	text-decoration: none !important;
-}
-.leform-pages-bar-items>li span a:hover i, .leform-pages-bar-items>li span a:active i {
-	color: #169F85;
-}
-.leform-pages-bar-items>li span a i {
-	line-height: inherit;
-	vertical-align: top;
-	transition-property: color;
-	-webkit-transition-property: color;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-pages-bar-items>li span a:hover i.fa-trash, .leform-pages-bar-items>li span a:active i.fa-trash {
-	color: #E04000;
-}
-.leform-pages-bar-items>li span a i.fa-trash{
-	font-size: 16px;
-}
-.leform-pages-bar-item-delete-disabled i {
-	color: #ccc !important;
-	cursor: default !important;
-}
-.leform-builder {
-	/* background: #f8f8f8 url(../img/quiz/builder-bg-light-2.png) 0 0 repeat; */
-	background-color: #fff;
-	padding: 20px 20px 60px 20px;
-	border-bottom: 1px solid #d4d4d4;
-	border-left: 1px solid #d4d4d4;
-	border-right: 1px solid #d4d4d4;
-	min-height: -webkit-fill-available;
-    border-radius: 3px;
-	padding-top: 118px !important;
-}
-.leform-form {
-	position: relative;
-	max-width: 960px;
-	width: 96%;
-	margin: 0px auto;
-	display: none;
-}
-.leform-elements {
-	min-height: 60px;
-}
-.leform-element {
-	width: 100%;
-	outline: 1px dashed #f3f1f1 !important;
-	height: auto !important;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 10px;
-	display: block !important;
-	visibility: visible !important;
-	opacity: 1 !important;
-}
-.leform-element:hover {
-	outline: 2px solid #26B99A !important;
-}
-.leform-element::before {
-	display: table;
-	content: ' ';
-}
-.leform-element::after {
-	clear: both;
-	display: table;
-	content: ' ';
-}
-.leform-element-cover {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	display: none;
-}
-div.leform-element-checkbox-container div.leform-element-cover {
-	display: none !important;
-}
-.leform-element-placeholder {
-	background: transparent;
-	border-radius: 3px;
-	border: 1px dashed #26B99A;
-	background-color: #26B99A;
-	opacity: 0.2;
-	height: 40px;
-}
-.leform-element-helper {
-	height: 40px !important;
-	width: 160px !important;
-	overflow: hidden !important;
-}
-.leform-element-helper .leform-element-cover {
-	display: block;
-	background: white;
-}
-.leform-col {
-	padding: 10px 10px !important;
-	float: left;
-	outline: 1px dashed #ccc;
-}
-.leform-col .leform-element:first-of-type {
-	margin-top: 0;
-}
-.leform-col .leform-element:last-of-type {
-	margin-bottom: 0;
-}
-.leform-col-1 {
-	width: 8.33333333%;
-}
-.leform-col-2 {
-	width: 16.66666666%;
-}
-.leform-col-3 {
-	width: 25%;
-}
-.leform-col-4 {
-	width: 33.33333333%;
-}
-.leform-col-5 {
-	width: 41.66666666%;
-}
-.leform-col-6 {
-	width: 50%;
-}
-.leform-col-7 {
-	width: 58.33333333%;
-}
-.leform-col-8 {
-	width: 66.66666666%;
-}
-.leform-col-9 {
-	width: 75%;
-}
-.leform-col-10 {
-	width: 83.33333333%;
-}
-.leform-col-11 {
-	width: 91.66666666%;
-}
-.leform-col-12 {
-	width: 100%;
-}
-
-#leform-global-message {
-	position: fixed;
-	top: 50px;
-	right: 10px;
-	display: none;
-	z-index: 9999999;
-	padding: 1em 1.5em;
-	border-radius: 3px;
-	font-size: 15px;
-	line-height: 1.4;
-	vertical-align: middle;
-	font-weight: 400;
-	box-shadow: 2px 2px 10px -6px #000000;
-}
-#uap-body #leform-global-message {
-	top: 16px !important;
-}
-.leform-global-message-info {
-	color: #fff;
-	background: #5bc0de;
-}
-.leform-global-message-success {
-	color: #fff;
-	background: #5cb85c;
-}
-.leform-global-message-danger {
-	color: #fff;
-	background: #d9534f;
-}
-.leform-top-forms {
-	overflow: hidden;
-	height: 100%;
-}
-.leform-top-form-left {
-	float: left;
-}
-.leform-top-form-right {
-	float: right;
-}
-.leform-filter-form {
-	margin-bottom: 10px;
-}
-.leform-filter-form .button-secondary {
-	height: 32px;
-	font-size: 14px;
-	box-shadow: none !important;
-	outline: none !important;
-	padding: 0 1em;
-}
+.leform-pages-bar-items>li.leform-pages-bar-item-confirmation:hover span {width: 32px;}
+.leform-pages-bar-items>li span a, .leform-pages-bar-items>li span a:visited {display: inline-block;font-size: 20px;margin: 0 0.2em;color: #666;outline: none !important;border: none !important;box-shadow: none !important;text-decoration: none !important;}
+.leform-pages-bar-items>li span a:hover i, .leform-pages-bar-items>li span a:active i {color: #169F85;}
+.leform-pages-bar-items>li span a i {line-height: inherit;vertical-align: top;transition-property: color;-webkit-transition-property: color;transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-pages-bar-items>li span a:hover i.fa-trash, .leform-pages-bar-items>li span a:active i.fa-trash {color: #E04000;}
+.leform-pages-bar-items>li span a i.fa-trash{font-size: 16px;}
+.leform-pages-bar-item-delete-disabled i {color: #ccc !important;cursor: default !important;}
+.leform-builder {/* background: #f8f8f8 url(../img/quiz/builder-bg-light-2.png) 0 0 repeat; */background-color: #fff;padding: 20px 20px 60px 20px;border-bottom: 1px solid #d4d4d4;border-left: 1px solid #d4d4d4;border-right: 1px solid #d4d4d4;min-height: -webkit-fill-available;border-radius: 3px;padding-top: 118px !important;}
+.leform-form {position: relative;max-width: 960px;width: 96%;margin: 0px auto;display: none;}
+.leform-elements {min-height: 60px;}
+.leform-element {width: 100%;outline: 1px dashed #f3f1f1 !important;height: auto !important;margin-top: 10px;margin-bottom: 10px;padding: 10px;display: block !important;visibility: visible !important;opacity: 1 !important;}
+.leform-element:hover {outline: 2px solid #26B99A !important;}
+.leform-element::before {display: table;content: ' ';}
+.leform-element::after {clear: both;display: table;	content: ' ';}
+.leform-element-cover {position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 100%;height: 100%;transition-duration: .3s;-webkit-transition-duration: .3s;display: none;}
+div.leform-element-checkbox-container div.leform-element-cover {display: none !important;}
+.leform-element-placeholder {background: transparent;border-radius: 3px;border: 1px dashed #26B99A;background-color: #26B99A;	opacity: 0.2;height: 40px;}
+.leform-element-helper {height: 40px !important;width: 160px !important;overflow: hidden !important;}
+.leform-element-helper .leform-element-cover {display: block;background: white;}
+.leform-col {padding: 10px 10px !important;float: left;	outline: 1px dashed #ccc;}
+.leform-col .leform-element:first-of-type {	margin-top: 0;}
+.leform-col .leform-element:last-of-type {margin-bottom: 0;}
+.leform-col-1 {width: 8.33333333%;}
+.leform-col-2 {width: 16.66666666%;}
+.leform-col-3 {width: 25%;}
+.leform-col-4 {width: 33.33333333%;}
+.leform-col-5 {width: 41.66666666%;}
+.leform-col-6 {width: 50%;}
+.leform-col-7 {width: 58.33333333%;}
+.leform-col-8 {width: 66.66666666%;}
+.leform-col-9 {width: 75%;}
+.leform-col-10 {width: 83.33333333%;}
+.leform-col-11 {width: 91.66666666%;}
+.leform-col-12 {width: 100%;}
+#leform-global-message {position: fixed; top: 50px;	right: 10px;display: none;z-index: 9999999;	padding: 1em 1.5em;	border-radius: 3px;	font-size: 15px;line-height: 1.4;vertical-align: middle;font-weight: 400;box-shadow: 2px 2px 10px -6px #000000;}
+#uap-body #leform-global-message {top: 16px !important;}
+.leform-global-message-info {color: #fff;background: #5bc0de;}
+.leform-global-message-success {color: #fff;background: #5cb85c;}
+.leform-global-message-danger {color: #fff;background: #d9534f;}
+.leform-top-forms {overflow: hidden;height: 100%;}
+.leform-top-form-left {float: left;}
+.leform-top-form-right {float: right;}
+.leform-filter-form {margin-bottom: 10px;}
+.leform-filter-form .button-secondary {height: 32px;font-size: 14px;box-shadow: none !important;outline: none !important;padding: 0 1em;}
 .leform-filter-form input[type="text"], .leform-filter-form select, .leform_records input[type="text"], 
-.leform input[type="text"], .leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {
-	font-size: 14px;
-	font-weight: normal;
-	border-radius: 2px;
-	padding: 0.5em 0.8em;
-	border: 1px solid #CCC;
-	border-spacing: 0;
-	font-family: arial, verdana;
-	box-sizing: border-box;
-	margin: 0;
-	background-color: #FFF;
-	height: auto;
-	min-width: 0px;
-	max-width: 100%;
-	box-shadow: none;
-}
-.leform-filter-form input[type="text"], .leform_records input[type="text"], .leform input[type="text"], .leform input[type="email"], .leform input[type="password"] {
-	line-height: 1;
-}
-.leform textarea {
-	height: 120px;
-}
-.leform select {
-	line-height: 1;
-	padding-right: 2em;
-}
-.leform-record-details {
-	padding: 10px 20px;
-}
-.leform-record-details h3 {
-	padding: 0 0.8em;
-	margin: 10px 0;
-	color: #fff;
-	display: inline-block;
-	background: #444;
-	line-height: 2.0em;
-	font-weight: 400;
-	vertical-align: middle;
-	font-size: 18px;
-}
-.leform-record-details h4 {
-	padding: 0 0.8em;
-	margin: 10px 2px;
-	color: #fff;
-	display: inline-block;
-	background: #999;
-	line-height: 2.0em;
-	font-weight: 400;
-	vertical-align: middle;
-	font-size: 16px;
-}
-.leform-record-details-table {
-	width: 100%;
-}
-.leform-record-details-table tr td {
-	vertical-align: top;
-	font-size: 15px;
-	padding: 0.4em 0.8em;
-	min-height: 28px;
-}
-.leform-record-details-table tr:nth-child(odd) {
-	background-color: #f9f9f9;
-}
-.leform-record-details-table-name {
-	width: 300px;
-	max-width: 33%;
-	font-weight: bold;
-}
-.leform-record-details-table-value {
-	position: relative;
-	padding-right: 96px !important;
-}
-.leform-admin-popup .leform-record-details-table-value .leform-record-details-toolbar {
-	display: none;
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	right: 0;
-	transition-property: opacity;
-	transition-duration: 300ms;
-	color: #a0a0a0;
-}
+.leform input[type="text"], .leform input[type="email"], .leform input[type="password"], .leform select, .leform textarea {font-size: 14px;font-weight: normal;border-radius: 2px;padding: 0.5em 0.8em;border: 1px solid #CCC;border-spacing: 0;font-family: arial, verdana;box-sizing: border-box;margin: 0;background-color: #FFF;height: auto;min-width: 0px;max-width: 100%;box-shadow: none;}
+.leform-filter-form input[type="text"], .leform_records input[type="text"], .leform input[type="text"], .leform input[type="email"], .leform input[type="password"] {line-height: 1;}
+.leform textarea {height: 120px;}
+.leform select {line-height: 1;	padding-right: 2em;}
+.leform-record-details {padding: 10px 20px;}
+.leform-record-details h3 {padding: 0 0.8em;margin: 10px 0;	color: #fff;display: inline-block;	background: #444;line-height: 2.0em;font-weight: 400;vertical-align: middle;font-size: 18px;}
+.leform-record-details h4 {padding: 0 0.8em;margin: 10px 2px;color: #fff;display: inline-block;background: #999;line-height: 2.0em;font-weight: 400;vertical-align: middle;font-size: 16px;}
+.leform-record-details-table {width: 100%;}
+.leform-record-details-table tr td {vertical-align: top;font-size: 15px;padding: 0.4em 0.8em;min-height: 28px;}
+.leform-record-details-table tr:nth-child(odd) {background-color: #f9f9f9;}
+.leform-record-details-table-name {width: 300px;max-width: 33%;	font-weight: bold;}
+.leform-record-details-table-value {position: relative;	padding-right: 96px !important;}
+.leform-admin-popup .leform-record-details-table-value .leform-record-details-toolbar {display: none;opacity: 0;position: absolute;	top: 0;	right: 0;transition-property: opacity;transition-duration: 300ms;color: #a0a0a0;}
 .leform-admin-popup .leform-record-details-table-value:hover .leform-record-details-toolbar {
 	display: block;
 	opacity: 1;
@@ -3263,7 +2796,6 @@ a.leform-integrations-custom-remove:active {
 .leform-integrations-content .leform-properties-pure input+label+label {
 	margin-left: 0.7em;
 }
-
 .leform-widget-label {
 	clear: right;
 	min-width: 40%;
@@ -3318,359 +2850,61 @@ a.leform-integrations-custom-remove:active {
 	height: 26px !important;
 }
 /* Table List - begin */
-.leform-table-list-buttons {
-	text-align: right;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	float: right;
-	position: relative;
-}
-.leform-pageswitcher {
-	margin-right: 200px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	float: left;
-}
-.leform-table-list-pages>span>a {
-	display: inline-block;
-	line-height: 25px;
-	border: 1px solid #ccc;
-	text-align: center;
-	min-width: 20px;
-	border-radius: 3px;
-	text-decoration: none !important;
-	color: #23282d;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-	outline: none !important;
-	box-shadow: none !important;
-	font-size: 13px;
-	padding: 0 0.2em;
-}
-.leform-table-list-pages>span>a:hover {
-	color: #fff !important;
-	background: #169F85 !important;
-	border: 1px solid #169F85 !important;
-}
-.leform-table-list-pages>span>a.leform-table-list-page-active {
-	color: #fff;
-	background: #26B99A;
-	border: 1px solid #26B99A;
-}
-.leform-table-list {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 10px;
-	border: 1px solid #e5e5e5;
-	box-shadow: 0 1px 1px rgba(0,0,0,.04);
-	background: #fff;
-}
-.leform-table-list tr:nth-child(even) {
-	background-color: #f9f9f9;
-}
-.leform-table-list th {
-	font-size: 14px;
-	text-align: left;
-	font-weight: 400;
-	border-bottom: 1px solid #e1e1e1;
-	vertical-align: middle;
-	padding: 0.5em 1em 0.5em 1em;
-}
-.leform-table-list td {
-	font-size: 14px;
-	text-align: left;
-	font-weight: 400;
-	vertical-align: middle;
-	padding: 0.7em 1em 0.7em 1em;
-}
-.leform-table-list .leform-table-list-column-shortcode div {
-	display: block;
-	margin-right: 32px;
-	height: 32px;
-}
-.leform-table-list .leform-table-list-column-shortcode input, .leform-using-page input[type="text"] {
-	font-family: courier;
-	font-size: 12px;
-	line-height: 1em;
-	border: 1px solid #ccc !important;
-	outline: none !important;
-	box-shadow: none !important;
-	border-radius: 3px;
-	height: 100%;
-	width: 100%;
-	padding: 0.7em 0.8em;
-	border-spacing: 0;
-	box-sizing: border-box;
-	margin: 0;
-	background-color: #eee;
-	color: #32373c;
-}
-.leform-table-list .leform-table-list-column-shortcode span {
-	float: right;
-	display: block;
-	width: 32px;
-	line-height: 32px;
-	font-size: 18px;
-	text-align: center;
-	color: #888;
-	cursor: pointer;
-	transition: color 0.3s;
-	-webkit-transition: color 0.3s;
-}
-.leform-table-list .leform-table-list-column-shortcode span:hover {
-	color: #26B99A;
-}
-.leform-table-list .leform-table-list-column-shortcode span:active {
-	transform: translateY(2px);
-	-webkit-transform: translateY(2px);
-}
-.leform-table-list .leform-table-list-column-shortcode span i {
-	vertical-align: middle;
-}
-.leform-table-list a {
-	border: none !important;
-	outline: none !important;
-	box-shadow: none !important;
-}
-.leform-table-list-created {
-	font-size: 12px;
-	line-height: 1.4;
-	color: #ccc;
-	display: block;
-	font-style: italic;
-	cursor: default;
-}
-.leform-table-list-actions {
-	position: relative;
-	text-align: right;
-}
-.leform-table-list-actions>span {
-	display: inline-block;
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 21px;
-	color: #888;
-	cursor: pointer;
-	border: 1px solid transparent;
-	text-align: center;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-table-list-actions:hover>span {
-	color: #fff;
-	background: #26B99A;
-	border: 1px solid #169F85;
-}
-.leform-table-list-menu {
-	position: absolute;
-	z-index: 9999999;
-	top: 31px;
-	right: 0px;
-	display: none;
-	background: #fff;
-	border: 1px solid #c0c0c0;
-	box-sizing: border-box;
-	width: 200px;
-	box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);
-}
-.leform-table-list-actions:hover .leform-table-list-menu {
-	display: block;
-}
-.leform-table-list-menu ul {
-	white-space: nowrap;
-	overflow: hidden;
-	display: block;
-	height: auto;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.leform-table-list-menu ul li {
-	text-align: left;
-	position: relative;
-	height: 32px;
-	display: block;
-	line-height: 32px;
-	letter-spacing: normal;
-	background-color: transparent;
-	font-family: arial;
-	color: #2f353b;
-	font-size: 13px;
-	margin: 0;
-}
-.leform-table-list-menu ul li.leform-table-list-menu-line {
-	height: 1px;
-	display: block;
-	line-height: 1px;
-	background-color: #e0e0e0;
-	margin: 0;
-}
-.leform-table-list-menu ul li a {
-	display: block;
-	color: #2f353b;
-	cursor: pointer !important;
-	text-decoration: none !important;
-	box-shadow: none !important;
-	outline: none !important;
-	padding: 0 1em;
-}
-.leform-table-list-menu ul li:hover a {
-	color: #169F85;
-	background: #f8f8f8;
-}
-.leform-table-list-menu ul li a i {
-	width: 1em;
-	margin-right: 0.5em;
-}
-.leform-column-settings {
-	position: relative;
-	text-align: right;
-}
-.leform-column-settings>span {
-	display: inline-block;
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 18px;
-	color: #888;
-	cursor: pointer;
-	border: 1px solid transparent;
-	border-radius: 3px;
-	text-align: center;
-	transition-duration: .3s;
-	-webkit-transition-duration: .3s;
-}
-.leform-column-settings:hover>span {
-	background: rgba(0,0,0,0.05);
-	border: 1px solid rgba(0,0,0,0.2);
-}
-.leform-column-menu {
-	position: absolute;
-	z-index: 9999999;
-	top: 31px;
-	right: 0px;
-	display: none;
-	background: #fff;
-	border: 1px solid #c0c0c0;
-	box-sizing: border-box;
-	width: 200px;
-	box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);
-}
-.leform-column-settings:hover .leform-column-menu {
-	display: block;
-}
-.leform-column-menu ul {
-	white-space: nowrap;
-	overflow: hidden;
-	display: block;
-	height: auto;
-	list-style: none;
-	margin: 0;
-	padding: 0.5em 0em;
-}
-.leform-column-menu ul li {
-	text-align: left;
-	position: relative;
-	height: 32px;
-	display: block;
-	line-height: 32px;
-	letter-spacing: normal;
-	background-color: transparent;
-	font-family: arial;
-	color: #2f353b;
-	font-size: 13px;
-	margin: 0;
-	padding: 0 1em;
-}
-.leform-column-menu ul li.leform-column-menu-line {
-	height: 1px;
-	display: block;
-	line-height: 1px;
-	background-color: #e0e0e0;
-	margin: 0;
-}
-.leform-column-menu ul li input+label+label {
-	display: inline-block;
-	margin-left: 0.5em;
-}
-.leform-column-menu ul li a {
-	display: block;
-	color: #2f353b;
-	cursor: pointer !important;
-	text-decoration: none !important;
-	box-shadow: none !important;
-	outline: none !important;
-	padding: 0 1em;
-}
-.leform-column-menu ul li:hover a {
-	color: #169F85;
-	background: #f8f8f8;
-}
-.leform-column-menu ul li a i {
-	width: 1em;
-	margin-right: 0.5em;
-}
+.leform-table-list-buttons {text-align: right;margin-bottom: 10px;margin-top: 10px;	float: right;position: relative;}
+.leform-pageswitcher {margin-right: 200px;margin-top: 10px;margin-bottom: 10px;float: left;}
+.leform-table-list-pages>span>a {display: inline-block;line-height: 25px;border: 1px solid #ccc;text-align: center;min-width: 20px;border-radius: 3px;text-decoration: none !important;color: #23282d;-webkit-touch-callout: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;transition-duration: .3s;-webkit-transition-duration: .3s;outline: none !important;box-shadow: none !important;font-size: 13px;padding: 0 0.2em;}
+.leform-table-list-pages>span>a:hover {color: #fff !important;	background: #169F85 !important;border: 1px solid #169F85 !important;}
+.leform-table-list-pages>span>a.leform-table-list-page-active {color: #fff;background: #26B99A;border: 1px solid #26B99A;}
+.leform-table-list {width: 100%;border-collapse: collapse;margin-top: 10px;	border: 1px solid #e5e5e5;	box-shadow: 0 1px 1px rgba(0,0,0,.04);	background: #fff;}
+.leform-table-list tr:nth-child(even) {background-color: #f9f9f9;}
+.leform-table-list th {font-size: 14px;text-align: left;font-weight: 400;border-bottom: 1px solid #e1e1e1;	vertical-align: middle;	padding: 0.5em 1em 0.5em 1em;}
+.leform-table-list td {font-size: 14px;text-align: left;font-weight: 400;vertical-align: middle;padding: 0.7em 1em 0.7em 1em;}
+.leform-table-list .leform-table-list-column-shortcode div {display: block;	margin-right: 32px; height: 32px;}
+.leform-table-list .leform-table-list-column-shortcode input, .leform-using-page input[type="text"] {font-family: courier;font-size: 12px;line-height: 1em;border: 1px solid #ccc !important;outline: none !important;box-shadow: none !important;border-radius: 3px;height: 100%;width: 100%;padding: 0.7em 0.8em;border-spacing: 0;box-sizing: border-box;margin: 0;background-color: #eee;color: #32373c;}
+.leform-table-list .leform-table-list-column-shortcode span {float: right;display: block;width: 32px;line-height: 32px;	font-size: 18px;text-align: center;color: #888;cursor: pointer;transition: color 0.3s;-webkit-transition: color 0.3s;}
+.leform-table-list .leform-table-list-column-shortcode span:hover {color: #26B99A;}
+.leform-table-list .leform-table-list-column-shortcode span:active {transform: translateY(2px);	-webkit-transform: translateY(2px);}
+.leform-table-list .leform-table-list-column-shortcode span i {vertical-align: middle;}
+.leform-table-list a {border: none !important;outline: none !important;box-shadow: none !important;}
+.leform-table-list-created {font-size: 12px;line-height: 1.4;color: #ccc;display: block;font-style: italic;cursor: default;}
+.leform-table-list-actions {position: relative;text-align: right;}
+.leform-table-list-actions>span {display: inline-block; width: 32px; height: 32px;line-height: 32px;font-size: 21px;color: #888;cursor: pointer;border: 1px solid transparent;	text-align: center;	transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-table-list-actions:hover>span {color: #fff;background: #26B99A;border: 1px solid #169F85;}
+.leform-table-list-menu {position: absolute;z-index: 9999999;top: 31px;	right: 0px;	display: none;background: #fff;border: 1px solid #c0c0c0;	box-sizing: border-box;	width: 200px;box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);}
+.leform-table-list-actions:hover .leform-table-list-menu {display: block;}
+.leform-table-list-menu ul {white-space: nowrap; overflow: hidden; display: block;height: auto;list-style: none;margin: 0;padding: 0;}
+.leform-table-list-menu ul li {text-align: left;position: relative;	height: 32px;display: block;line-height: 32px;letter-spacing: normal;background-color: transparent;	font-family: arial;	color: #2f353b;font-size: 13px;margin: 0;}
+.leform-table-list-menu ul li.leform-table-list-menu-line {height: 1px;	display: block;	line-height: 1px;background-color: #e0e0e0;margin: 0;}
+.leform-table-list-menu ul li a {display: block;color: #2f353b;cursor: pointer !important;text-decoration: none !important;box-shadow: none !important;outline: none !important;padding: 0 1em;}
+.leform-table-list-menu ul li:hover a {color: #169F85;	background: #f8f8f8;}
+.leform-table-list-menu ul li a i {width: 1em;margin-right: 0.5em;}
+.leform-column-settings {position: relative;text-align: right;}
+.leform-column-settings>span {display: inline-block;width: 32px;height: 32px;line-height: 32px;	font-size: 18px;color: #888;cursor: pointer;border: 1px solid transparent;	border-radius: 3px;	text-align: center;	transition-duration: .3s;-webkit-transition-duration: .3s;}
+.leform-column-settings:hover>span {background: rgba(0,0,0,0.05);border: 1px solid rgba(0,0,0,0.2);}
+.leform-column-menu {position: absolute;z-index: 9999999;top: 31px;	right: 0px;	display: none;background: #fff;border: 1px solid #c0c0c0;	box-sizing: border-box;	width: 200px;box-shadow: 2px 2px 10px -5px rgba(0,0,0,0.9);}
+.leform-column-settings:hover .leform-column-menu {display: block;}
+.leform-column-menu ul {white-space: nowrap;overflow: hidden;display: block;height: auto;list-style: none;margin: 0;padding: 0.5em 0em;}
+.leform-column-menu ul li {text-align: left;position: relative;height: 32px;display: block;	line-height: 32px;letter-spacing: normal;background-color: transparent;	font-family: arial;	color: #2f353b;font-size: 13px;margin: 0;padding: 0 1em;}
+.leform-column-menu ul li.leform-column-menu-line {height: 1px;	display: block;	line-height: 1px;background-color: #e0e0e0;margin: 0;}
+.leform-column-menu ul li input+label+label {display: inline-block;	margin-left: 0.5em;}
+.leform-column-menu ul li a {display: block;color: #2f353b;cursor: pointer !important;	text-decoration: none !important;box-shadow: none !important;outline: none !important;padding: 0 1em;}
+.leform-column-menu ul li:hover a {color: #169F85;background: #f8f8f8;}
+.leform-column-menu ul li a i {width: 1em;margin-right: 0.5em;}
 /* Table List - end */
 
-.leform-badge {
-	display: inline-block;
-	padding: 0px 5px;
-	margin: 0 0.5em;
-	font-size: 11px;
-	font-family: arial;
-	text-transform: uppercase;
-	line-height: 1.6;
-	color: #FFFFFF;
-}
-.leform-badge-danger {
-	background-color: #C02020;
-}
-.leform-badge-info {
-	background-color: #5DB0BF;
-}
-.leform-badge-success {
-	background-color: #208020;
-}
-#leform-import-form, #leform-import-style-form {
-	display: none;
-}
-#leform-import-style-iframe {
-	display: none;
-}
-#leform-preview-overlay {
-	z-index: 100000;
-}
-#leform-preview {
-	z-index: 100001;
-	transition-property: transform, width;
-	transition-timing-function: ease-in-out;
-	transition-duration: 300ms;
-}
-#leform-preview .leform-admin-popup-content {
-	overflow-y: hidden;
-}
-#leform-preview-iframe {
-	width: 100%;
-	border: none;
-	margin: 0;
-	display: block !important;
-}
-.leform-using-page li {
-	margin-bottom: 10px;
-}
-.leform-error {
-	background: #dd3d36 !important;
-	color: #FFF !important;
-}
-.leform-error a, .leform-error-plugins-list a {
-	color: #FFF !important;
-	text-decoration: underline;
-}
+.leform-badge {display: inline-block; padding: 0px 5px; margin: 0 0.5em;font-size: 11px;font-family: arial;	text-transform: uppercase;line-height: 1.6;	color: #FFFFFF;}
+.leform-badge-danger {background-color: #C02020;}
+.leform-badge-info {background-color: #5DB0BF;}
+.leform-badge-success {background-color: #208020;}
+#leform-import-form, #leform-import-style-form {display: none;}
+#leform-import-style-iframe {display: none;}
+#leform-preview-overlay {z-index: 100000;}
+#leform-preview {z-index: 100001;transition-property: transform, width;	transition-timing-function: ease-in-out;transition-duration: 300ms;}
+#leform-preview .leform-admin-popup-content {overflow-y: hidden;}
+#leform-preview-iframe {width: 100%;border: none;margin: 0;	display: block !important;}
+.leform-using-page li {margin-bottom: 10px;}
+.leform-error {background: #dd3d36 !important;	color: #FFF !important;}
+.leform-error a, .leform-error-plugins-list a {color: #FFF !important;	text-decoration: underline;}
 @-webkit-keyframes leform-error-animated {
 	0%, 50%, 100% {opacity: 1;}
 	25%, 75% {opacity: 0.5;}
@@ -3691,151 +2925,31 @@ a.leform-integrations-custom-remove:active {
 }
 
 /* Gutenberg Blocks - begin */
-.editor-block-list-item-leform-form .block-editor-block-icon {
-	background: url(images/icon.png) 0 0 no-repeat;
-	background-size: contain;
-}
-.leform-block-form {
-	display: flex;
-	flex-direction: row;
-	padding: 20px;
-	border: 2px dashed green;
-	border-radius: 8px;
-}
-.leform-block-form-label-icon {
-	display: flex;
-	vertical-align: top;
-	cursor: default;
-	line-height: 36px;
-	height: 36px;
-	width: 40px;
-	background: url(images/icon.png) 0 0 no-repeat;
-	background-size: contain;
-}
-.leform-block-form-label {
-	vertical-align: top;
-	line-height: 32px;
-	display: flex;
-	margin-top: 4px;
-	font-size: 14px;
-	margin: 4px 8px 0 8px;
-	white-space: nowrap;
-}
-select.leform-block-form-value {
-	vertical-align: top;
-	line-height: 36px !important;
-	display: flex;
-	width: 100%;
-	font-size: 14px !important;
-	height: 36px;
-}
+.editor-block-list-item-leform-form .block-editor-block-icon {background: url(images/icon.png) 0 0 no-repeat;background-size: contain;}
+.leform-block-form {display: flex;flex-direction: row;padding: 20px;border: 2px dashed green;border-radius: 8px;}
+.leform-block-form-label-icon {display: flex;vertical-align: top;cursor: default;line-height: 36px;height: 36px;width: 40px;background: url(images/icon.png) 0 0 no-repeat;	background-size: contain;}
+.leform-block-form-label {vertical-align: top;line-height: 32px;display: flex;margin-top: 4px;font-size: 14px;margin: 4px 8px 0 8px;white-space: nowrap;}
+select.leform-block-form-value {vertical-align: top;line-height: 36px !important;display: flex;	width: 100%;font-size: 14px !important;height: 36px;}
 /* Gutenberg Blocks - end */
 
 /* Field Analytics - begin */
-.leform-field-analytics-noform {
-	text-align: center;
-	margin-top: 60px;
-}
-.leform-field-analytics-columns>div {
-	float: left;
-	box-sizing: border-box;
-	width: 49%;
-	padding: 10px;
-}
-.leform-field-analytics-chart-box {
-	margin-bottom: 32px;
-}
+.leform-field-analytics-noform {text-align: center;	margin-top: 60px;}
+.leform-field-analytics-columns>div {float: left;box-sizing: border-box;width: 49%;	padding: 10px;}
+.leform-field-analytics-chart-box {margin-bottom: 32px;}
 /* Field Analytics - end */
 
 /* Get Started - begin */
-.leform-gettingstarted-overlay {
-	position: fixed;
-	z-index: 1000000;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	height: 100%;
-	width: 100%;
-	background-position: center center;
-	background: rgba(0,0,0,0.9);
-	display: none;
-}
-.leform-gettingstarted-highlight {
-	display: block;
-	position: relative;
-	z-index: 1000001;
-	overflow: visible;
-}
-.leform-gettingstarted-highlight::after {
-	content: ' ';
-	position: absolute;
-	z-index: 1000002;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	height: 100%;
-	width: 100%;
-}
-.leform-gettingstarted-bubble {
-	box-sizing: border-box;
-	position: absolute;
-	z-index: 1000003;
-	line-height: 1.4;
-	text-align: center !important;
-	display: none;
-}
-.leform-gettingstarted-bubble p {
-	font-size: 18px;
-	font-weight: 100;
-	font-family: arial;
-	color: #ffffff;
-	padding: 0;
-	margin: 0;
-	text-align: left;
-	text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-}
-.leform-gettingstarted-bubble-bottom-left {
-	background: transparent url(images/arrow-bottom-left.png) 0px 0px no-repeat;
-	padding: 50px 0 0 90px;
-	left: 0;
-}
-.leform-gettingstarted-bubble-bottom-right {
-	background: transparent url(images/arrow-bottom-right.png) 100% 0px no-repeat;
-	padding: 50px 90px 0 0;
-	right: 0;
-}
-.leform-gettingstarted-bubble-left {
-	background: transparent url(images/arrow-left.png) 0px 0px no-repeat;
-	padding: 30px 0 0 120px;
-	left: 0;
-}
-.leform-gettingstarted-bubble span {
-	font-size: 18px;
-	font-weight: 100;
-	font-family: arial;
-	color: #ffffff;
-	cursor: pointer;
-	display: inline-block;
-	padding: 8px 30px;
-	line-height: 1.4;
-	border: 2px solid #ffffff;
-	border-radius: 5px;
-	margin-top: 10px;
-	transition-property: background, color;
-	transition-duration: 0.3s;
-	text-shadow: none;
-}
-.leform-gettingstarted-bubble span:hover {
-	background: #ffffff;
-	color: #000000;
-	text-shadow: none;
-}
-.leform-signature-view {
-	background: transparent url(images/builder-bg-light-2.png) 0 0 repeat;
-	max-width: 100%;
-}
+.leform-gettingstarted-overlay {position: fixed; z-index: 1000000; top: 0px; left: 0px;	right: 0px;	bottom: 0px;height: 100%;width: 100%;background-position: center center;background: rgba(0,0,0,0.9);display: none;}
+.leform-gettingstarted-highlight {display: block;position: relative;z-index: 1000001;overflow: visible;}
+.leform-gettingstarted-highlight::after {content: ' '; position: absolute;z-index: 1000002;top: 0px;left: 0px;right: 0px;bottom: 0px;height: 100%;width: 100%;}
+.leform-gettingstarted-bubble {box-sizing: border-box;position: absolute;z-index: 1000003;line-height: 1.4;	text-align: center !important;display: none;}
+.leform-gettingstarted-bubble p {font-size: 18px;font-weight: 100;font-family: arial;color: #ffffff;padding: 0;margin: 0;text-align: left;	text-shadow: 1px 1px 2px rgba(0,0,0,0.8);}
+.leform-gettingstarted-bubble-bottom-left {background: transparent url(images/arrow-bottom-left.png) 0px 0px no-repeat;	padding: 50px 0 0 90px;left: 0;}
+.leform-gettingstarted-bubble-bottom-right {background: transparent url(images/arrow-bottom-right.png) 100% 0px no-repeat;padding: 50px 90px 0 0;right: 0;}
+.leform-gettingstarted-bubble-left {background: transparent url(images/arrow-left.png) 0px 0px no-repeat;padding: 30px 0 0 120px;left: 0;}
+.leform-gettingstarted-bubble span {font-size: 18px; font-weight: 100;font-family: arial;color: #ffffff;cursor: pointer;display: inline-block;	padding: 8px 30px;line-height: 1.4;	border: 2px solid #ffffff;border-radius: 5px;margin-top: 10px;transition-property: background, color;transition-duration: 0.3s;text-shadow: none;}
+.leform-gettingstarted-bubble span:hover {background: #ffffff;	color: #000000;text-shadow: none;}
+.leform-signature-view {background: transparent url(images/builder-bg-light-2.png) 0 0 repeat;max-width: 100%;}
 .leform-admin .ui-slider { position: relative; text-align: left; border-radius: 4px;}
 .leform-admin .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; border-radius: 4px;}
 .leform-admin .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
@@ -3849,378 +2963,90 @@ select.leform-block-form-value {
 .leform-admin .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
 .leform-admin .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
 .leform-admin .ui-slider-vertical .ui-slider-range-max { top: 0; }
-.leform-number-icon:before {
-	content: "42";
-	font-size: 100%;
-	font-family: verdana;
-}
+.leform-number-icon:before {content: "42";font-size: 100%;font-family: verdana;}
 .leform-numspinner-minus,
-.leform-numspinner-plus {
-	cursor: pointer;
-}
+.leform-numspinner-plus {cursor: pointer;}
 .leform-numspinner-minus:before,
-.leform-numspinner-plus:before {
-	font-size: 12px;
-}
-.leform-tile-icon:before {
-	display: inline-block;
-	content: "tile";
-	font-size: 70%;
-	font-family: verdana;
-	border: 1px solid #444;
-	border-radius: 3px;
-	line-height: 1;
-	padding: 0.1em 0.3em;
-	vertical-align: middle;
-	box-shadow: 0 0 1px 1px rgba(0,0,0,0.05);
-}
-.leform-email-validator-options {
-	display: none;
-}
-.leform-toolbars {
-	position: absolute;
-	left: 0;
-	right: 0;
-	width: 100% !important;
-} 
-.leform-form-editor {
-	position: relative;
-}
-html.leform-toolbars-fixed .leform-toolbars {
-	position: fixed;
-	z-index: 1000;
-	top: 0;
-	left: unset !important;
-	right: unset !important;
-	width: 757.5px !important;
-}
-html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {
-	top: 32px;
-}
-html.wp-toolbar .leform-toolbar-tooltipster {
-	margin-top: -32px;
-}
-html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
-	margin-top: 0;
-}
+.leform-numspinner-plus:before {font-size: 12px;}
+.leform-tile-icon:before {display: inline-block;content: "tile";font-size: 70%;font-family: verdana;border: 1px solid #444;border-radius: 3px;line-height: 1;padding: 0.1em 0.3em;vertical-align: middle;box-shadow: 0 0 1px 1px rgba(0,0,0,0.05);}
+.leform-email-validator-options {display: none;}
+.leform-toolbars {position: absolute;left: 0;right: 0;width: 100% !important;} 
+.leform-form-editor {position: relative;}
+html.leform-toolbars-fixed .leform-toolbars {position: fixed;z-index: 1000;top: 0;left: unset !important;right: unset !important;width: 757.5px !important;}
+html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {top: 32px;}
+html.wp-toolbar .leform-toolbar-tooltipster {margin-top: -32px;}
+html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0;}
 @media screen and (max-width: 782px) {
-	html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {
-		top: 46px;
-	}
-	html.wp-toolbar .leform-toolbar-tooltipster {
-		margin-top: -46px;
-	}
-	html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {
-		margin-top: 0;
-	}
+	html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {top: 46px;}
+	html.wp-toolbar .leform-toolbar-tooltipster {margin-top: -46px;	}
+	html.wp-toolbar.leform-toolbars-fixed .leform-toolbar-tooltipster {margin-top: 0;}
 }
 @media screen and (max-width: 600px) {
-	html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {
-		top: 0px;
-	}
-	html.wp-toolbar .leform-toolbar-tooltipster {
-		margin-top: 0px;
-	}
+	html.wp-toolbar.leform-toolbars-fixed .leform-toolbars {top: 0px;}
+	html.wp-toolbar .leform-toolbar-tooltipster {margin-top: 0px;}
 }
-
-.jqte{
-    margin-bottom:0px;
-}
-.field-options {
-    background: #d4e9da;
-    padding: 10px;
-    width: 100%;
-    float: left;
-}
-.lms-quiz-create .leform-properties-item .field-options {
-    padding: 0;
-}
-.lms-quiz-create .leform-properties-item .field-options .text-field-options {
-    padding: 10px;
-}
-.lms-quiz-create .leform-properties-item .quiz-form-control {
-    margin-bottom: 10px;
-}
-.leform-properties-content.leform-wysiwyg {
-    display: block;
-    clear:both;
-}
-.editor-add-field {
-    cursor: pointer;
-}
-.quiz-form-control {
-    width: 100%;
-    float: left;
-    position: relative;
-}
+.jqte{margin-bottom:0px;}
+.field-options {background: #d4e9da; padding: 10px; width: 100%; float: left;}
+.lms-quiz-create .leform-properties-item .field-options {padding: 0;}
+.lms-quiz-create .leform-properties-item .field-options .text-field-options {padding: 10px;}
+.lms-quiz-create .leform-properties-item .quiz-form-control {margin-bottom: 10px;}
+.leform-properties-content.leform-wysiwyg {display: block; clear:both;}
+.editor-add-field {cursor: pointer;}
+.quiz-form-control {width: 100%; float: left; position: relative;}
 .field-options-all{display:none;}
-.repeater-class {
-    float: right;
-    cursor: pointer;
-    padding: 5px 10px 0 10px;
-}
-.remove-repeater-field {
-    top: 12px;
-    position: absolute;
-    right: 16px;
-}
+.repeater-class {float: right; cursor: pointer; padding: 5px 10px 0 10px;}
+.remove-repeater-field {top: 12px; position: absolute; right: 16px;}
 .fields-layout-options{display:none;}
-.content-data{
-    height: 150px;
-    border: 1px solid #ccc;
-    overflow: auto;
-    padding: 10px !important;
-}
-.content-data input[type="text"],.content-data input[type="email"],.content-data input[type="password"].content-data, select,.content-data textarea{
-    height: 30px;
-    padding: 0px;
-    cursor: pointer;
-}
-.content-data .field-group{
-    display: inline-block !important;
-    text-align: center;
-    vertical-align: -1em;
-    padding: 0 0.2em;
-}
-.content-data *[contenteditable="true"] {
-  background-color: rgba(217, 245, 255,0.5);
-}
-.content-data *[contenteditable="true"]:empty {
-    content: "c";
-    padding: 0 5px;
-}
+.content-data{height: 150px; border: 1px solid #ccc; overflow: auto; padding: 10px !important;}
+.content-data input[type="text"],.content-data input[type="email"],
+.content-data input[type="password"].content-data, select,.content-data textarea{height: 30px; padding: 0px; cursor: pointer;}
+.content-data .field-group{display: inline-block !important; text-align: center; vertical-align: -1em; padding: 0 0.2em;}
+.content-data *[contenteditable="true"] {background-color: rgba(217, 245, 255,0.5);}
+.content-data *[contenteditable="true"]:empty {content: "c"; padding: 0 5px;}
 .hide{display:none}
-.field_extra_small{
-    width: 22% !important;
-}
-.field_small{
-    width: 40% !important;
-}
-.field_medium {
-    width: 75% !important;
-}
-.field_large {
-    width: 100% !important;
-}
+.field_extra_small{width: 22% !important; }
+.field_small{width: 40% !important;}
+.field_medium {width: 75% !important;}
+.field_large {width: 100% !important;}
 /****************************
 STYLE
 ****************************/
 
 .lms-root-block,
-.lms-root-block .lms-root-block {
-  display: -moz-inline-box;
-  display: inline-block;
-  padding: 2px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  white-space: nowrap;
-  overflow: hidden;
-  vertical-align: middle;
-}
-.lms-root-block {
-  font-variant: normal;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 115%;
-  line-height: 1;
-  display: -moz-inline-box;
-  display: inline-block;
-}
+.lms-root-block .lms-root-block {display: -moz-inline-box; display: inline-block; padding: 2px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; white-space: nowrap;overflow: hidden;vertical-align: middle;}
+.lms-root-block {font-variant: normal; font-weight: normal; font-style: normal; font-size: 115%; line-height: 1; display: -moz-inline-box; display: inline-block;}
 .lms-root-block .lms-non-leaf,
-.lms-root-block .lms-scaled {
-  display: -moz-inline-box;
-  display: inline-block;
-}
-.lms-root-block * {
-  font-size: inherit;
-  line-height: inherit;
-  margin: 0;
-  padding: 0;
-  border-color: black;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  box-sizing: border-box;
-}
-.lms-root-block sup.lms-nthroot {
-  font-size: 80%;
-  vertical-align: 0.8em;
-  margin-right: -0.6em;
-  margin-left: .2em;
-  min-width: .5em;
-}
-.lms-root-block .lms-sqrt-stem {
-  border-top: 1px solid;
-  margin-top: 1px;
-  padding-left: .15em;
-  padding-right: .2em;
-  margin-right: .1em;
-  padding-top: 1px;
-  display: inline-block;
-  font-size: 15px;
-}
-.lms-root-block .lms-sqrt-stem:after {
-    content: "c";
-    visibility: hidden;
-}
-.lms-scaled.lms-sqrt-prefix {
-    transform: scale(1, 0.95);
-}
-.divide-numbers {
-    display: inline-block;
-    font-size: 15px;
-    color: #000;
-}
-.divide-numbers span {
-    display: block;
-    text-align: center;
-}
-.divide-numbers .divider {
-    height: 2px;
-    background-color: #000;
-    display: block;
-    line-height: normal;
-    margin: 2px 0;
-}
-.lms-hide{
-	display:none !important
-}
-.leform-form-editor input[type=checkbox] {
-    margin-right: 5px;
-}
-.leform-form-editor input[type="text"] {
-    margin-bottom: 5px;
-	outline: none;
-}
-.leform-form-editor p {
-    margin-bottom: 0;
-}
-.leform-builder .leform-element-html h2 {
-    font-weight: 700;
-    font-size: 2rem;
-    margin: 0;
-}
-.patterns-modal .modal {
-    padding-right: 0 !important;
-}
-.patterns-modal .modal-dialog {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-.patterns-modal .modal-content {
-	border-radius: 0;
-}
-.patterns-modal .modal-header {
-	background-color: #f2f3f5;
-    align-items: center;
-    padding: 10px 0 0;
-}
-.patterns-modal .modal-header h3 {
-    margin: 0;
-    padding: 15px 30px;
-    color: #333;
-}
-.patterns-modal .modal-header span {
-    display: block;
-    font-size: 14px;
-    font-weight: 400;
-    color: #999;
-    padding-top: 5px;
-}
-.patterns-modal .modal-header button.close {
-    padding: 20px 22px;
-    margin: 0;
-    opacity: 1;
-	outline: none;
-}
-.patterns-modal .modal-header button.close span {
-    color: #333;
-    font-size: 30px;
-}
-.patterns-modal .modal-body {
-    padding: 30px 30px 0;
-    background-color: #f2f3f5;
-}
-.patterns-modal .media-holder {
-    background-color: #fff;
-    box-shadow: 0 0 12px rgba(0,0,0,0.05);
-    padding: 30px;
-    margin: 0 0 30px;
-    text-align: center;
-    border-radius: 5px;
-	cursor: pointer;
-	position: relative;
-}
-.patterns-modal .media-holder:before{
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(36, 134, 34, 0.05);
-    content: "";
-    display:flex;
-    color: var(--primary);
-    align-items: center;
-    justify-content: center;
-	transition: all .5s;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
-	opacity: 0;
-	visibility: hidden;
-	z-index: 1;
-	pointer-events: none;
-}
-.patterns-modal .media-holder:after {
-    content: "+";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    color: #fff;
-    height: 80px;
-    width: 80px;
-    background-color: rgba(36, 134, 34, 0.6);
-    border-radius: 100%;
-    margin: -60px 0 0 -40px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all .8s;
-    -webkit-transition: all .8s;
-    -o-transition: all .8s;
-}
+.lms-root-block .lms-scaled {display: -moz-inline-box; display: inline-block;}
+.lms-root-block * {font-size: inherit; line-height: inherit; margin: 0; padding: 0; border-color: black; -webkit-user-select: none; -moz-user-select: none; user-select: none; box-sizing: border-box;}
+.lms-root-block sup.lms-nthroot { font-size: 80%; vertical-align: 0.8em; margin-right: -0.6em; margin-left: .2em; min-width: .5em;}
+.lms-root-block .lms-sqrt-stem { border-top: 1px solid; margin-top: 1px; padding-left: .15em; padding-right: .2em; margin-right: .1em; padding-top: 1px; display: inline-block; font-size: 15px;}
+.lms-root-block .lms-sqrt-stem:after {content: "c"; visibility: hidden;}
+.lms-scaled.lms-sqrt-prefix {transform: scale(1, 0.95);}
+.divide-numbers {display: inline-block; font-size: 15px; color: #000;}
+.divide-numbers span {display: block; text-align: center; }
+.divide-numbers .divider {height: 2px; background-color: #000; display: block; line-height: normal; margin: 2px 0;}
+.lms-hide{display:none !important}
+.leform-form-editor input[type=checkbox] {margin-right: 5px;}
+.leform-form-editor input[type="text"] {margin-bottom: 5px;	outline: none;}
+.leform-form-editor p {margin-bottom: 0;}
+.leform-builder .leform-element-html h2 {font-weight: 700; font-size: 2rem; margin: 0;}
+.patterns-modal .modal {padding-right: 0 !important;}
+.patterns-modal .modal-dialog {width: 100%; max-width: 100%; margin: 0 auto;}
+.patterns-modal .modal-content {border-radius: 0;}
+.patterns-modal .modal-header {	background-color: #f2f3f5; align-items: center; padding: 10px 0 0;}
+.patterns-modal .modal-header h3 {margin: 0; padding: 15px 30px; color: #333;}
+.patterns-modal .modal-header span {display: block; font-size: 14px; font-weight: 400; color: #999; padding-top: 5px;}
+.patterns-modal .modal-header button.close {padding: 20px 22px; margin: 0; opacity: 1; outline: none;}
+.patterns-modal .modal-header button.close span {color: #333; font-size: 30px;}
+.patterns-modal .modal-body {padding: 30px 30px 0; background-color: #f2f3f5;}
+.patterns-modal .media-holder {background-color: #fff; box-shadow: 0 0 12px rgba(0,0,0,0.05); padding: 30px; margin: 0 0 30px; text-align: center; border-radius: 5px;cursor: pointer;position: relative;}
+.patterns-modal .media-holder:before{position: absolute; left: 0; top: 0; height: 100%; width: 100%; background-color: rgba(36, 134, 34, 0.05); content: ""; display:flex; color: var(--primary); align-items: center; justify-content: center;transition: all .5s;-webkit-transition: all .5s;-o-transition: all .5s;	opacity: 0;	visibility: hidden;	z-index: 1;	pointer-events: none;}
+.patterns-modal .media-holder:after { content: "+"; position: absolute; left: 50%; top: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #fff; height: 80px; width: 80px; background-color: rgba(36, 134, 34, 0.6); border-radius: 100%; margin: -60px 0 0 -40px; opacity: 0; visibility: hidden; transition: all .8s; -webkit-transition: all .8s; -o-transition: all .8s;}
 .patterns-modal .media-holder:hover:before,
-.patterns-modal .media-holder:hover:after {
-	opacity: 1;
-	visibility: visible;
-}
-.patterns-modal .media-holder:hover:after {
-	margin-top: -40px;
-}
-.patterns-modal .media-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid #eee;
-    margin: 30px 0 0;
-    padding:25px 30px 0;
-}
-.patterns-modal .media-title h4 {
-    margin: 0;
-	font-size: 1.25rem;
-}
+.patterns-modal .media-holder:hover:after {opacity: 1;visibility: visible;}
+.patterns-modal .media-holder:hover:after {margin-top: -40px;}
+.patterns-modal .media-title {display: flex; align-items: center; justify-content: center; border-top: 1px solid #eee; margin: 30px 0 0; padding:25px 30px 0;}
+.patterns-modal .media-title h4 {margin: 0;	font-size: 1.25rem;}
 .patterns-modal .media-holder h4 a {font-weight: 600;color: #333;}
-.patterns-modal .media-holder figure {
-    margin: 0;
-	padding: 0;
-	position: relative;
-}
-.patterns-modal .media-holder figure img {
-    max-width: 100%;
-	object-fit: contain;
-}
+.patterns-modal .media-holder figure {margin: 0;padding: 0;position: relative;}
+.patterns-modal .media-holder figure img {max-width: 100%;object-fit: contain;}

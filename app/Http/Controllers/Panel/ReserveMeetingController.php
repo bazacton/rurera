@@ -228,8 +228,8 @@ class ReserveMeetingController extends Controller
             ]);
 
             $notifyOptions = [
-                '[student.name]' => $ReserveMeeting->user->full_name,
-                '[instructor.name]' => $ReserveMeeting->meeting->creator->full_name,
+                '[student.name]' => $ReserveMeeting->user->get_full_name(),
+                '[instructor.name]' => $ReserveMeeting->meeting->creator->get_full_name(),
                 '[time.date]' => $ReserveMeeting->day,
             ];
             sendNotification('meeting_finished', $notifyOptions, $ReserveMeeting->user_id);
@@ -267,7 +267,7 @@ class ReserveMeetingController extends Controller
 
             $notifyOptions = [
                 '[link]' => $link,
-                '[instructor.name]' => $ReserveMeeting->meeting->creator->full_name,
+                '[instructor.name]' => $ReserveMeeting->meeting->creator->get_full_name(),
                 '[time.date]' => $ReserveMeeting->day,
             ];
             sendNotification('new_appointment_link', $notifyOptions, $ReserveMeeting->user_id);
@@ -344,7 +344,7 @@ class ReserveMeetingController extends Controller
 
                 $notifyOptions = [
                     '[link]' => $session->getJoinLink(),
-                    '[instructor.name]' => $user->full_name,
+                    '[instructor.name]' => $user->get_full_name(),
                     '[time.date]' => dateTimeFormat($session->date, 'j M Y H:i'),
                 ];
                 sendNotification('new_appointment_session', $notifyOptions, $ReserveMeeting->user_id);

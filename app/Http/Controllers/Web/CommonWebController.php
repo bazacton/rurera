@@ -214,10 +214,10 @@ class CommonWebController extends Controller
             foreach ($users as $userObj) {
                 if ($return_type == 'option') {
                     $selected = ($user_id == $userObj->id) ? 'selected' : '';
-                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->full_name . '</option>';
+                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->get_full_name() . '</option>';
                 }
                 if ($return_type == 'list') {
-                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->full_name . '</a></li>';
+                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->get_full_name() . '</a></li>';
                 }
             }
         }
@@ -253,10 +253,10 @@ class CommonWebController extends Controller
             foreach ($users as $userObj) {
                 if ($return_type == 'option') {
                     $selected = ($user_id == $userObj->id) ? 'selected' : '';
-                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->full_name . '</option>';
+                    $response .= '<option value="' . $userObj->id . '" ' . $selected . '>' . $userObj->get_full_name() . '</option>';
                 }
                 if ($return_type == 'list') {
-                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->full_name . '</a></li>';
+                    $response .= '<li data-user_id="' . $userObj->id . '"><a href="javascript:;" data-user_id="' . $userObj->id . '">' . $userObj->get_full_name() . '</a></li>';
                 }
             }
         }
@@ -279,7 +279,7 @@ class CommonWebController extends Controller
 
         $subjects = $subjects_query->get();
 
-        $response = '<option value="">Select Subject</option>';
+        $response = '<option value="">Select a Subject</option>';
         if (!empty($subjects)) {
             foreach ($subjects as $subjectObj) {
                 $selected = ($subject_id == $subjectObj->id) ? 'selected' : '';
@@ -297,6 +297,8 @@ class CommonWebController extends Controller
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
         $quiz_type = $request->get('quiz_type', null);
+        $is_frontend = $request->get('is_frontend', null);
+
 
         if ($quiz_type == 'practice') {
 
@@ -311,21 +313,49 @@ class CommonWebController extends Controller
             $results = $resultsQuery->get();
 
 
-            $response = '<div class="form-group">
+            if( $is_frontend == 'yes'){
+
+                $response = '<div class="sats-listing-card medium">
+                                <table class="simple-table">
+                                    <tbody> <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
+                        if (!empty($results)) {
+                            foreach ($results as $rowObj) {
+                                $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
+                                $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
+
+                                    $response .= '<tr>
+                                                    <td>
+                                                        <img src="'.$quiz_image.'" alt="">
+                                                        <h4 class="font-19 font-weight-bold"><a href="/sats/'.$rowObj->quiz_slug.'" class="">' . $rowObj->getTitleAttribute() . '</a>
+                                                            <br> <span class="sub_label">'.$count_questions.' Question(s),</span> <span class="sub_label">Time:'.getTimeWithText(($rowObj->time*60), false).' ,</span> <span class="sub_label">'.getQuizTypeTitle($rowObj->quiz_type).'</span>
+                                                
+                                                        </h4>
+                                                    </td>
+                                                    <td class="text-right">
+                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_questions="' . $count_questions . '" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
+                                                </tr>';
+                            }
+                        }
+
+                $response .= '</tbody></table></div>';
+            }else {
+
+                $response = '<div class="form-group">
                         <label class="input-label">Select Topic</label>
                         <div class="input-group">
                             <select name="ajax[new][topic_id]"
                                     class="form-control select2 topic_selection">';
 
-            $response .= '<option value="">Select Topic</option>';
-            if (!empty($results)) {
-                foreach ($results as $rowObj) {
-                    $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
-                    $selected = '';
-                    $response .= '<option data-total_questions="' . $count_questions . '" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+                $response .= '<option value="">Select Topic</option>';
+                if (!empty($results)) {
+                    foreach ($results as $rowObj) {
+                        $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
+                        $selected = '';
+                        $response .= '<option data-total_questions="' . $count_questions . '" value="' . $rowObj->id . '" ' . $selected . '>' . $rowObj->getTitleAttribute() . '</option>';
+                    }
                 }
+                $response .= '</select></div></div>';
             }
-            $response .= '</select></div></div>';
         }
 
         echo $response;
@@ -462,7 +492,6 @@ class CommonWebController extends Controller
             }
         }
         $response = '<div class="form-group">
-                <label class="input-label">Subject</label>
                 <div class="input-group">
                     <div class="radio-buttons">
                         ' . $subjects_response . '

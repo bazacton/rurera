@@ -90,7 +90,7 @@ class BlogController extends Controller
                 'comments' => $blog->comments->map(function ($item) {
                     return [
                         'user' => [
-                            'full_name' => $item->user->full_name,
+                            'full_name' => $item->user->get_full_name(),
                             'avatar' => url($item->user->getAvatar()),
                         ],
                         'create_at' => $item->created_at,
@@ -98,7 +98,7 @@ class BlogController extends Controller
                         'replies' => $item->replies->map(function ($reply) {
                             return [
                                 'user' => [
-                                    'full_name' => $reply->user->full_name,
+                                    'full_name' => $reply->user->get_full_name(),
                                     'avatar' => url($reply->user->getAvatar()),
                                 ],
                                 'create_at' => $reply->created_at,

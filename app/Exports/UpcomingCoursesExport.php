@@ -50,7 +50,7 @@ class UpcomingCoursesExport implements FromCollection, WithHeadings, WithMapping
         return [
             $upcomingCourse->id,
             $upcomingCourse->title,
-            $upcomingCourse->teacher->full_name,
+            $upcomingCourse->teacher->get_full_name(),
             $upcomingCourse->type,
             $upcomingCourse->price,
             $upcomingCourse->followers_count,

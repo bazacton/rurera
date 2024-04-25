@@ -160,7 +160,7 @@ class MyPurchaseController extends Controller
 
             $notifyOptions = [
                 '[p.title]' => $product->title,
-                '[u.name]' => $buyer->full_name
+                '[u.name]' => $buyer->get_full_name()
             ];
             sendNotification('product_receive_shipment', $notifyOptions, $order->seller_id);
 

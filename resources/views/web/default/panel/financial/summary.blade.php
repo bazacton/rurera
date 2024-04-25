@@ -52,7 +52,7 @@
                                                 @if(!empty($accounting->webinar_id) and !empty($accounting->webinar))
                                                         {{ $accounting->webinar->id }}
                                                     @elseif(!empty($accounting->meeting_time_id) and !empty($accounting->meetingTime))
-                                                        {{ $accounting->meetingTime->meeting->creator->full_name }}
+                                                        {{ $accounting->meetingTime->meeting->creator->get_full_name() }}
                                                     @elseif(!empty($accounting->subscribe_id) and !empty($accounting->subscribe))
                                                         {{ $accounting->subscribe->id }}
                                                     @elseif(!empty($accounting->promotion_id) and !empty($accounting->promotion))

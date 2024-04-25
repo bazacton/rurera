@@ -269,9 +269,9 @@ class AssignmentController extends Controller
         }
 
         $notifyOptions = [
-            '[instructor.name]' => $assignmentHistory->instructor->full_name,
+            '[instructor.name]' => $assignmentHistory->instructor->get_full_name(),
             '[c.title]' => $webinar->title,
-            '[student.name]' => $assignmentHistory->student->full_name,
+            '[student.name]' => $assignmentHistory->student->get_full_name(),
             '[assignment_grade]' => $assignmentHistory->grade,
         ];
 

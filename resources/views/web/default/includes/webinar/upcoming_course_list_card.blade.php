@@ -29,9 +29,9 @@
 
         <div class="user-inline-avatar d-flex align-items-center mt-10">
             <div class="avatar bg-gray200">
-                <img src="{{ $upcomingCourse->teacher->getAvatar() }}" class="img-cover" alt="{{ $upcomingCourse->teacher->full_name }}">
+                <img src="{{ $upcomingCourse->teacher->getAvatar() }}" class="img-cover" alt="{{ $upcomingCourse->teacher->get_full_name() }}">
             </div>
-            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $upcomingCourse->teacher->full_name }}</a>
+            <a href="{{ $upcomingCourse->teacher->getProfileUrl() }}" target="_blank" class="user-name ml-5 font-14">{{ $upcomingCourse->teacher->get_full_name() }}</a>
         </div>
 
 

@@ -28,7 +28,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label class="input-label" for="full_name">Full Name:</label>
-                        <input name="full_name" type="text" class="form-control rurera-req-field" value="{{$userData->full_name}}" id="full_name">
+                        <input name="full_name" type="text" class="form-control rurera-req-field" value="{{$userData->get_full_name()}}" id="full_name">
                     </div>
 
                     <div class="form-group">

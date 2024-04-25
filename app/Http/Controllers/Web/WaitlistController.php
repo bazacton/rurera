@@ -55,7 +55,7 @@ class WaitlistController extends Controller
 
             $notifyOptions = [
                 '[c.title]' => $webinar->title,
-                '[u.name]' => !empty($fullName) ? $fullName : (!empty($user) ? $user->full_name : 'User'),
+                '[u.name]' => !empty($fullName) ? $fullName : (!empty($user) ? $user->get_full_name() : 'User'),
             ];
 
             sendNotification("waitlist_submission_for_admin", $notifyOptions, 1);

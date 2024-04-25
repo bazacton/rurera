@@ -114,7 +114,7 @@ class Affiliate extends Model
 
 
                 $notifyOptions = [
-                    '[u.name]' => $user->full_name,
+                    '[u.name]' => $user->get_full_name(),
                     '[time.date]' => dateTimeFormat(time(), 'j M Y')
                 ];
                 sendNotification("new_referral_user", $notifyOptions, $affiliateUser->id);

@@ -81,21 +81,21 @@
 
                 @if(!empty($authUser))
 
-
+                @if(auth()->check() && (auth()->user()->isUser()))
                 <div class="dropdown">
                     <a href="#!" class="navbar-user d-flex align-items-center dropdown-toggle" type="button"
                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
                         <img src="{{ $authUser->getAvatar() }}" class="rounded-circle"
-                             alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                             alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
                              alt="rounded circle" loading="eager" title="rounded circle">
                     </a>
 
                     <div class="dropdown-menu user-profile-dropdown" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-item user-nav-detail">
-                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                            <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
-                            <span class="font-14 text-dark-blue user-name">{{ $authUser->full_name }}</span>
+                            <span class="font-14 text-dark-blue user-name">{{ $authUser->get_full_name() }}</span>
                             <span class="font-14 text-dark-blue user-email">{{ $authUser->email }}</span>
                             <a href="/panel/setting" class="font-14 text-dark-blue user-manage-btn">Manage Account</a>
                         </div>
@@ -127,6 +127,8 @@
                         </a>
                     </div>
                 </div>
+
+                @endif
                 @else
                 <div class="d-flex align-items-center ml-md-50">
                     <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">Log in</a>

@@ -13,7 +13,7 @@
                         <h4 class="text-primary">{{ $support->title }}</h4>
                     </div>
                     <div class="ticket-info">
-                        <div class="font-weight-bold">{{ $support->user->full_name }}</div>
+                        <div class="font-weight-bold">{{ $support->user->get_full_name() }}</div>
                         <div class="bullet"></div>
                         <div class="font-weight-bold">
                             @if($support->status == 'open')
@@ -51,7 +51,7 @@
 
                                     <div class="chat-details">
 
-                                        <div class="chat-time">{{ !empty($conversations->sender_id) ? $conversations->sender->full_name : $conversations->supporter->full_name }}</div>
+                                        <div class="chat-time">{{ !empty($conversations->sender_id) ? $conversations->sender->get_full_name() : $conversations->supporter->get_full_name() }}</div>
 
                                         <div class="chat-text">{{ nl2br($conversations->message) }}</div>
                                         <div class="chat-time">

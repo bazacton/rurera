@@ -20,7 +20,7 @@ class CertificatesController extends Controller
 
         if (!empty($certificate)) {
             $result = [
-                'student' => $certificate->student->full_name,
+                'student' => $certificate->student->get_full_name(),
                 'webinar_title' => $certificate->quiz->webinar->title,
                 'date' => dateTimeFormat($certificate->created_at, 'j F Y'),
             ];

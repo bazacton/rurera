@@ -147,7 +147,7 @@ class CommentsController extends Controller
             $webinar = Webinar::FindOrFail($item_id);
             $notifyOptions = [
                 '[c.title]' => $webinar->title,
-                '[u.name]' => $user->full_name
+                '[u.name]' => $user->get_full_name()
             ];
             sendNotification('new_comment', $notifyOptions, 1);
         } elseif ($item_name == 'product_id') {
@@ -155,7 +155,7 @@ class CommentsController extends Controller
 
             $notifyOptions = [
                 '[p.title]' => $product->title,
-                '[u.name]' => $user->full_name
+                '[u.name]' => $user->get_full_name()
             ];
             sendNotification('product_new_comment', $notifyOptions, 1);
         } elseif ($item_name == 'blog_id') {
@@ -164,7 +164,7 @@ class CommentsController extends Controller
             if (!empty($blog) and !$blog->author->isAdmin()) {
                 $notifyOptions = [
                     '[blog_title]' => $blog->title,
-                    '[u.name]' => $user->full_name
+                    '[u.name]' => $user->get_full_name()
                 ];
                 sendNotification('new_comment_for_instructor_blog_post', $notifyOptions, $blog->author->id);
 

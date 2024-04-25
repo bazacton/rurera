@@ -45,7 +45,7 @@ class Channel implements IChannel
                 "send_email" => false,
                 "email" => $user->email,
                 "phone" => $user->mobile,
-                "buyer_name" => $user->full_name,
+                "buyer_name" => $user->get_full_name(),
                 "redirect_url" => $this->makeCallbackUrl()
             ]);
 

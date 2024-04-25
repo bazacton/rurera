@@ -106,7 +106,7 @@
                                             <option value="all">{{ trans('public.all') }}</option>
 
                                             @foreach($allStudents as $student)
-                                                <option value="{{ $student->id }}" @if(request()->get('user_id') == $student->id) selected @endif>{{ $student->full_name }}</option>
+                                                <option value="{{ $student->id }}" @if(request()->get('user_id') == $student->id) selected @endif>{{ $student->get_full_name() }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -175,7 +175,7 @@
                                                     <img src="{{ $result->user->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block">{{ $result->user->full_name }}</span>
+                                                    <span class="d-block">{{ $result->user->get_full_name() }}</span>
                                                     <span class="mt-5 font-12 text-gray d-block">{{ $result->user->email }}</span>
                                                 </div>
                                             </div>

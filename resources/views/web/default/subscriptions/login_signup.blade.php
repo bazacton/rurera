@@ -1,40 +1,49 @@
+<link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
+<style type="text/css">
+    .frontend-field-error, .field-holder:has(.frontend-field-error),
+    .form-field:has(.frontend-field-error), .input-holder:has(.frontend-field-error) {
+        border: 1px solid #dd4343 !important;
+    }
+</style>
 <div class="form-login-reading">
     <div class="container">
-        <form class="signup-form" method="post" action="javascript:;">
+        <form class="signup-form" method="post" action="/signup-submit" autoComplete='off'>
+            {{ csrf_field() }}
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center mb-30"><h2>Start Reading Today</h2></div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 mx-auto row">
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <a href="/google" target="_blank" class="social-login d-flex p-10">
-                                <img src="/assets/default/svgs/google-pay.svg" class="mr-auto google-icon mb-0" height="24" width="24" alt=" google svg"/>
-                                <span class="flex-grow-1 font-16 font-weight-normal">Login with Google account</span>
+                            <a href="/google" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center">
+                                <img src="/assets/default/img/auth/google.svg" class="mr-auto" alt=" google svg">
+                                <span class="flex-grow-1">Login with Google account</span>
                             </a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <a href="#" target="_blank" class="social-login d-flex p-10">
-                                <img src="/assets/default/img/auth/facebook.svg" height="24" width="24" class="mr-auto" alt="facebook svg"/>
-                                <span class="flex-grow-1 font-16 font-weight-normal">Login with Facebook account</span>
+                            <a href="/facebook/redirect" target="_blank" class="social-login mt-20 p-10 text-center d-flex align-items-center justify-content-center ">
+                                <img src="/assets/default/img/auth/facebook.svg" class="mr-auto" alt="facebook svg">
+                                <span class="flex-grow-1">Login with Facebook account</span>
                             </a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <div class="input-field"><input type="text" name="first_name" placeholder="First Name"/></div>
+
+                            <div class="input-field"><input type="text" name="first_name" disabled class="rurera-req-field" placeholder="First Name"/></div>
                         </div>
                         <div class="form-group">
-                            <div class="input-field"><input type="text" name="last_name" placeholder="Last Name"/></div>
+                            <div class="input-field"><input type="text" name="last_name" disabled class="rurera-req-field" placeholder="Last Name"/></div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
-                            <div class="input-field"><input type="text" name="email" placeholder="Email Address"/></div>
+                            <div class="input-field"><input type="text" autocomplete="new-password" name="email" disabled class="rurera-req-field" placeholder="Email Address"/></div>
                         </div>
                         <div class="form-group">
-                            <div class="input-field mb-15"><input type="text" name="password" placeholder="password" class="password-field"/></div>
-                            <button id="generateBtn">Generate Password</button>
+                            <div class="input-field mb-15"><input type="password" name="password" disabled placeholder="password" class="rurera-req-field password-field"/></div>
+                            <button id="generateBtn" class="rurera-hide">Generate Password</button>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -56,3 +65,14 @@
         </form>
     </div>
 </div>
+
+<script src="/assets/default/js/question-layout.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
+<script>
+$(document).on('click', 'body', function (e) {
+    $(".rurera-req-field").removeAttr('disabled');
+});
+$( window ).on( "load", function() {
+    $('body').click();
+});
+</script>

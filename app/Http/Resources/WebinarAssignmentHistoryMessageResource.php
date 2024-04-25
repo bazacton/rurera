@@ -18,13 +18,13 @@ class WebinarAssignmentHistoryMessageResource extends JsonResource
             'id' => $this->id,
             'sender' => ($this->sender->id == apiAuth()->id) ?
                 ['id' => $this->sender->id,
-                    'full_name' => $this->sender->full_name,
+                    'full_name' => $this->sender->get_full_name(),
                     'avatar' => $this->sender->getAvatar() ? url($this->sender->getAvatar()) : null,
                 ] : null,
 
             'supporter' => ($this->sender->id != apiAuth()->id) ?
                 ['id' => $this->sender->id,
-                    'full_name' => $this->sender->full_name,
+                    'full_name' => $this->sender->get_full_name(),
                     'avatar' => $this->sender->getAvatar() ? url($this->sender->getAvatar()) : null,
                 ] : null,
 

@@ -29,8 +29,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        if (auth()->check() && auth()->user()->isUser()) {
-            return redirect('/'.panelRoute());
+        $redirect_url = redirectCheck();
+        if( $redirect_url != ''){
+            return redirect($redirect_url);
         }
         $homeSections = HomeSection::orderBy('order', 'asc')->get();
         $selectedSectionsName = $homeSections->pluck('name')->toArray();

@@ -164,7 +164,7 @@
                                     <a href="{{ $review->product->getUrl() }}" target="_blank">{{ $review->product->title }}</a>
                                 </td>
 
-                                <td class="text-left">{{ $review->creator->full_name }}</td>
+                                <td class="text-left">{{ $review->creator->get_full_name() }}</td>
 
                                 <td>
                                     <button type="button" class="js-show-description btn btn-outline-primary">{{ trans('admin/main.show') }}</button>

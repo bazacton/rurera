@@ -86,7 +86,7 @@ class Gift extends Model
             $receipt = $this->receipt;
 
             $notifyOptions = [
-                '[u.name]' => $this->user->full_name,
+                '[u.name]' => $this->user->get_full_name(),
                 '[gift_title]' => $this->getItemTitle(),
                 '[gift_type]' => $this->getItemType(),
                 '[amount]' => (!empty($amount) and $amount > 0) ? handlePrice($amount) : trans('public.free'),
@@ -127,7 +127,7 @@ class Gift extends Model
 
         $notifyOptions = [
             '[u.name]' => $this->name,
-            '[u.name.2]' => $sender->full_name,
+            '[u.name.2]' => $sender->get_full_name(),
             '[u.email]' => $this->email,
             '[gift_title]' => $this->getItemTitle(),
             '[gift_type]' => $this->getItemType(),

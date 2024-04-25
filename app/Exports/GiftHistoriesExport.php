@@ -59,10 +59,10 @@ class GiftHistoriesExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $gift->getItemTitle(),
-            $gift->user->full_name,
+            $gift->user->get_full_name(),
             $gift->user->mobile,
             $gift->user->email,
-            !empty($gift->receipt) ? $gift->receipt->full_name : $gift->name,
+            !empty($gift->receipt) ? $gift->receipt->get_full_name() : $gift->name,
             $gift->email,
             !empty($gift->receipt) ? trans('update.registered') : trans('update.unregistered'),
             $gift->description,

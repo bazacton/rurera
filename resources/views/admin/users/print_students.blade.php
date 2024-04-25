@@ -84,7 +84,7 @@
             <div class="student-profile-holder">
                 <div class="profile-inner">
                     <div class="profile-header">
-                        <h3>{{$studentObj->full_name}}</h3>
+                        <h3>{{$studentObj->get_full_name()}}</h3>
                         <a href="#" class="student-qrCode"><img src="/store/1/default_images/qr-code.png" alt=""></a>
                     </div>
                     <div class="student-info">

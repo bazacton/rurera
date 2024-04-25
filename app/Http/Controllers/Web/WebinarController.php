@@ -736,7 +736,7 @@ class WebinarController extends Controller
                 ]);
 
                 $notifyOptions = [
-                    '[u.name]'    => $user->full_name,
+                    '[u.name]'    => $user->get_full_name(),
                     '[c.title]'   => $course->title,
                     '[amount]'    => trans('public.free'),
                     '[time.date]' => dateTimeFormat(time(), 'j M Y H:i'),
@@ -792,7 +792,7 @@ class WebinarController extends Controller
                 ]);
 
                 $notifyOptions = [
-                    '[u.name]'       => $user->full_name,
+                    '[u.name]'       => $user->get_full_name(),
                     '[content_type]' => trans('product.course')
                 ];
                 sendNotification("new_report_item_for_admin", $notifyOptions, 1);

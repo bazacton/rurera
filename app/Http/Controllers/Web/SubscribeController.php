@@ -223,7 +223,7 @@ class SubscribeController extends Controller
 
         if (!empty($usernameSuggestions)) {
             foreach ($usernameSuggestions as $username_suggestion) {
-                $response_layout .= '<span data-label="' . $username_suggestion . '">' . $username_suggestion . '</span><br>';
+                $response_layout .= '<span data-label="' . $username_suggestion . '"><a href="javascript:;">' . $username_suggestion . '</a></span><br>';
             }
         }
         $response_layout .= '';
@@ -457,10 +457,11 @@ class SubscribeController extends Controller
                 $expiry_date_final = date('Y-m', $expiry_date);
                 $expiry_date_final = $expiry_date_final.'-'.$package_expiry_date;
                 $expiry_date_final = strtotime($expiry_date_final);
-                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime($expiry_date_year.'-'.($expiry_date_month-1).'-'.$expiry_date_year) : $expiry_date_final;
+                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime($expiry_date_year.'-'.($expiry_date_month).'-'.$expiry_date_date) : $expiry_date_final;
                 $current_date = time();
                 $remaining_days = ($expiry_date_final - $current_date);
                 $remaining_days = round($remaining_days / (60 * 60 * 24));
+
 
                 $expiry_total_days = ($expiry_date - $current_date);
                 $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));

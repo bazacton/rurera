@@ -171,7 +171,7 @@
 
                                         @if(!empty($users) and $users->count() > 0)
                                             @foreach($users as $user)
-                                                <option value="{{ $user->id }}" selected>{{ $user->full_name }}</option>
+                                                <option value="{{ $user->id }}" selected>{{ $user->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -223,7 +223,7 @@
                                             </td>
                                             <td>{{ dateTimeFormat($comment->created_at, 'j M Y | H:i') }}</td>
                                             <td class="text-left">
-                                                <a href="{{ $comment->user->getProfileUrl() }}" target="_blank" class="">{{ $comment->user->full_name }}</a>
+                                                <a href="{{ $comment->user->getProfileUrl() }}" target="_blank" class="">{{ $comment->user->get_full_name() }}</a>
                                             </td>
 
                                             <td class="text-left">

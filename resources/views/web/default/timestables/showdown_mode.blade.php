@@ -68,7 +68,7 @@
                                 <div class="sr-no text-center"><span>{{$user_counter}}</span></div>
                                 <div class="score-des">
                                     <figure><img src="{{$leaderboardRow->user->getAvatar()}}" alt="avatar" title="avatar" width="100%" height="auto" itemprop="image" loading="eager"></figure>
-                                    <span><a href="#">{{$leaderboardRow->user->full_name}}</a></span>
+                                    <span><a href="#">{{$leaderboardRow->user->get_full_name()}}</a></span>
                                 </div>
                                 <div class="level-up text-center"><span>{{$leaderboardRow->showdown_correct}}</span></div>
                                 <div class="time-sepen text-center"><span>{{getTimeWithText($leaderboardRow->showdown_time_consumed)}}</span></div>

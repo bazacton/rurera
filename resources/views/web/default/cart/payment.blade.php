@@ -66,7 +66,7 @@
                         data-description="Rozerpay"
                         data-currency="{{ currency() }}"
                         data-image="{{ $generalSettings['logo'] }}"
-                        data-prefill.name="{{ $order->user->full_name }}"
+                        data-prefill.name="{{ $order->user->get_full_name() }}"
                         data-prefill.email="{{ $order->user->email }}"
                         data-theme.color="#43d477">
                 </script>

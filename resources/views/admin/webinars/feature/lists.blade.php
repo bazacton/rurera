@@ -117,7 +117,7 @@
                                             <td class="text-center">{{ trans('admin/main.'.$feature->webinar->status) }}</td>
 
                                             <td class="text-center">{{ dateTimeFormat($feature->updated_at, 'j M Y | H:i') }}</td>
-                                            <td class="text-center">{{ $feature->webinar->teacher->full_name }}</td>
+                                            <td class="text-center">{{ $feature->webinar->teacher->get_full_name() }}</td>
                                             <td class="text-center">{{ $feature->webinar->category->title }}</td>
                                             <td class="text-center">{{ trans('admin/main.page_'.$feature->page) }}</td>
                                             <td class="text-center">

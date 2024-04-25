@@ -45,12 +45,12 @@
                                         <div class="col-auto">
                                             <a href="javascript:;" class="avatar"><img
                                                         src="{{$childObj->getAvatar()}}"
-                                                        alt="{{$childObj->full_name}}"
+                                                        alt="{{$childObj->get_full_name()}}"
                                                         class="avatar rounded-circle"></a>
                                         </div>
 
                                         <div class="col-5 ms-2">
-                                            <h6 class="font-18 font-weight-bold"><a href="#">{{$childObj->full_name}}</a></h6>
+                                            <h6 class="font-18 font-weight-bold"><a href="#">{{$childObj->get_full_name()}}</a></h6>
                                             <small class="text-muted">
                                                 @php $package_id = 0;
 

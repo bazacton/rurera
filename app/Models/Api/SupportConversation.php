@@ -10,12 +10,12 @@ class SupportConversation extends Model{
             'message' => $this->message,
             'sender' =>($this->sender_id) ?[
                 'id' => $this->sender->id,
-                'full_name' => $this->sender->full_name,
+                'full_name' => $this->sender->get_full_name(),
                 'avatar' => url($this->sender->getAvatar()),
             ]:null ,
             'supporter' => ($this->supporter_id) ? [
                 'id' => $this->supporter->id,
-                'full_name' => $this->supporter->full_name,
+                'full_name' => $this->supporter->get_full_name(),
                 'avatar' => url($this->supporter->getAvatar()),
             ] : null,
         

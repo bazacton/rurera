@@ -632,8 +632,8 @@ class UserController extends Controller
 
 
             $notifyOptions = [
-                '[organization.name]' => $organization->full_name,
-                '[u.name]'            => $user->full_name,
+                '[organization.name]' => $organization->get_full_name(),
+                '[u.name]'            => $user->get_full_name(),
                 '[u.role]'            => trans("update.role_{$user->role_name}"),
             ];
             sendNotification('new_user_item_rating', $notifyOptions, 1);
@@ -800,7 +800,7 @@ class UserController extends Controller
             return response()->json([
                 'code'        => 200,
                 'avatar'      => $user->getAvatar(),
-                'name'        => $user->full_name,
+                'name'        => $user->get_full_name(),
                 'email'       => !empty($user->email) ? $user->email : '-',
                 'phone'       => !empty($user->mobile) ? $user->mobile : '-',
                 'description' => $description,

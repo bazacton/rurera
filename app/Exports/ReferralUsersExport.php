@@ -60,7 +60,7 @@ class ReferralUsersExport implements FromCollection, WithHeadings, WithMapping
 
 
         return [
-            $referral->affiliateUser->full_name,
+            $referral->affiliateUser->get_full_name(),
             $userType,
             !empty($referral->affiliateUser->getUserGroup()) ? $referral->affiliateUser->getUserGroup()->name : '-',
             !empty($referral->affiliateUser->affiliateCode) ? $referral->affiliateUser->affiliateCode->code : '',

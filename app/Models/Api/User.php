@@ -30,7 +30,7 @@ class User extends Model implements JWTSubject
     {
         return [
             'id' => $this->id,
-            'full_name' => $this->full_name,
+            'full_name' => $this->get_full_name(),
             'role_name' => $this->role_name,
             'bio' => $this->bio,
             'offline' => $this->offline,

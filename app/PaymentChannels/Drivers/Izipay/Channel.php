@@ -51,7 +51,7 @@ class Channel implements IChannel
                 "amount" => (int)($order->total_amount * 100), // https://docs.lyra.com/en/rest/V4.0/api/playground/Charge/CreatePayment#amount
                 "currency" => $this->currency, // worked by this currency => PEN
                 "orderId" => $order->id,
-                'name' => $order->user->full_name,
+                'name' => $order->user->get_full_name(),
                 "customer" => [
                     "reference" => $order->user->id,
                     "email" => $order->user->email,

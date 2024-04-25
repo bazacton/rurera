@@ -80,7 +80,7 @@ class InstallmentOverdueHistoriesExport implements FromCollection, WithHeadings,
         $days = round(($time - $order->overdue_date) / 86400);
 
         return [
-            $order->user->id . ' - ' . $order->user->full_name,
+            $order->user->id . ' - ' . $order->user->get_full_name(),
             $order->user->mobile,
             $order->user->email,
             $order->installment->title,

@@ -57,7 +57,7 @@
                                                     data-search-option="for_user_group"
                                                     data-placeholder="{{ trans('public.search_user') }}">
                                                 @if(!empty($toUser))
-                                                    <option value="{{ $toUser->id }}">{{ $toUser->full_name }}</option>
+                                                    <option value="{{ $toUser->id }}">{{ $toUser->get_full_name() }}</option>
                                                 @endif
                                             </select>
                                         </div>

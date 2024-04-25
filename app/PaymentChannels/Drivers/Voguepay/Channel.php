@@ -42,7 +42,7 @@ class Channel implements IChannel
             'total_amount' => $order->total_amount,
             'currency' => $this->currency,
             'userData' => [
-                'name' => $user->full_name,
+                'name' => $user->get_full_name(),
                 'address' => $user->address,
                 'city' => $user->getRegionByTypeId($user->city_id),
                 'postcode' => 123,

@@ -61,7 +61,7 @@
                                         <option value="">{{ trans('admin/main.all_authors') }}</option>
 
                                         @foreach($authors as $author)
-                                            <option value="{{ $author->id }}" @if(request()->get('author_id') == $author->id) selected="selected" @endif>{{ $author->full_name }}</option>
+                                            <option value="{{ $author->id }}" @if(request()->get('author_id') == $author->id) selected="selected" @endif>{{ $author->get_full_name() }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -121,8 +121,8 @@
                                                 <a href="{{ $post->getUrl() }}" target="_blank">{{ $post->title }}</a>
                                             </td>
                                             <td>{{ $post->category->title }}</td>
-                                            @if(!empty($post->author->full_name))
-                                            <td>{{ $post->author->full_name }}</td>
+                                            @if(!empty($post->author->get_full_name()))
+                                            <td>{{ $post->author->get_full_name() }}</td>
                                             @else
                                             <td class="text-danger">Deleted</td>
                                             @endif

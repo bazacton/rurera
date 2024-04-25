@@ -43,7 +43,7 @@ class CashbackHistoryExport implements FromCollection, WithHeadings, WithMapping
     public function map($transaction): array
     {
         return [
-            $transaction->user->full_name,
+            $transaction->user->get_full_name(),
             handlePrice($transaction->purchase_amount),
             handlePrice($transaction->total_cashback),
             dateTimeFormat($transaction->last_cashback, 'j M Y'),

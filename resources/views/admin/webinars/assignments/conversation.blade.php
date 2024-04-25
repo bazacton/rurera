@@ -32,7 +32,7 @@
 
                                     <div class="chat-details">
 
-                                        <div class="chat-time">{{ $conversation->sender->full_name }}</div>
+                                        <div class="chat-time">{{ $conversation->sender->get_full_name() }}</div>
 
                                         <div class="chat-text">{!! $conversation->message !!}</div>
                                         <div class="chat-time">

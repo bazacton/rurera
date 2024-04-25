@@ -49,8 +49,8 @@ class ReferralHistoryExport implements FromCollection, WithHeadings, WithMapping
         $currency = $this->currency;
 
         return [
-            $referral->affiliateUser->full_name,
-            $referral->referredUser->full_name,
+            $referral->affiliateUser->get_full_name(),
+            $referral->referredUser->get_full_name(),
             $currency . $referral->getAffiliateRegistrationAmountsOfEachReferral(),
             $currency . $referral->getTotalAffiliateCommissionOfEachReferral(),
             $currency . $referral->getReferredAmount(),

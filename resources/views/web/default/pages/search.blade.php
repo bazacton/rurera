@@ -68,10 +68,10 @@
                             <div class="col-6 col-md-3 col-lg-2 mt-30">
                                 <div class="user-search-card text-center d-flex flex-column align-items-center justify-content-center">
                                     <div class="user-avatar">
-                                        <img src="{{ $teacher->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $teacher->full_name }}">
+                                        <img src="{{ $teacher->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $teacher->get_full_name() }}">
                                     </div>
                                     <a href="{{ $teacher->getProfileUrl() }}">
-                                        <h4 class="font-16 font-weight-bold text-dark-blue mt-10">{{ $teacher->full_name }}</h4>
+                                        <h4 class="font-16 font-weight-bold text-dark-blue mt-10">{{ $teacher->get_full_name() }}</h4>
                                         <span class="d-block font-14 text-gray mt-5">{{ $teacher->bio }}</span>
                                     </a>
                                 </div>
@@ -91,10 +91,10 @@
                             <div class="col-md-6 col-lg-3 mt-30">
                                 <a href="{{ $organization->getProfileUrl() }}" class="home-organizations-card d-flex flex-column align-items-center justify-content-center">
                                     <div class="home-organizations-avatar">
-                                        <img src="{{ $organization->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $organization->full_name }}">
+                                        <img src="{{ $organization->getAvatar() }}" class="img-cover rounded-circle" alt="{{ $organization->get_full_name() }}">
                                     </div>
                                     <div class="mt-25 d-flex flex-column align-items-center justify-content-center">
-                                        <h3 class="home-organizations-title">{{ $organization->full_name }}</h3>
+                                        <h3 class="home-organizations-title">{{ $organization->get_full_name() }}</h3>
                                         <p class="home-organizations-desc mt-10">{{ $organization->bio }}</p>
                                         <span class="home-organizations-badge badge mt-15">{{ $organization->getActiveWebinars(true) }} {{ trans('product.courses') }}</span>
                                     </div>

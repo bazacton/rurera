@@ -37,7 +37,7 @@ class Channel implements IChannel
             'order_id' => $order->id,
             'currency' => $this->currency,
             'amount' => $order->total_amount,
-            'first_name' => $user->full_name,
+            'first_name' => $user->get_full_name(),
             'last_name' => '',
             'email' => $user->email,
             'phone' => $user->mobile,

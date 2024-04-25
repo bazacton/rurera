@@ -71,8 +71,8 @@ class WebinarReviewController extends Controller
                 $notifyOptions = [
                     '[c.title]' => $webinar->title,
                     '[item_title]' => $webinar->title,
-                    '[student.name]' => $user->full_name,
-                    '[u.name]' => $user->full_name,
+                    '[student.name]' => $user->get_full_name(),
+                    '[u.name]' => $user->get_full_name(),
                     '[rate.count]' => $rates > 0 ? $rates / 4 : 0,
                     '[content_type]' => trans('admin/main.course'),
                 ];

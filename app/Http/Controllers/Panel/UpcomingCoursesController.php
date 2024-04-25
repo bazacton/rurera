@@ -124,7 +124,7 @@ class UpcomingCoursesController extends Controller
             ]);
 
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[item_title]' => $upcomingCourse->title,
             ];
             sendNotification("upcoming_course_submission", $notifyOptions, $user->id);

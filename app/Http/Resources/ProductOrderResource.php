@@ -19,14 +19,14 @@ class ProductOrderResource extends JsonResource
             'quantity' => $this->quantity,
             'buyer' => $this->buyer ? [
                 'id' => $this->buyer->id,
-                'full_name' => $this->buyer->full_name,
+                'full_name' => $this->buyer->get_full_name(),
                 'email' => $this->buyer->email,
                 'avator' => $this->buyer->getAvatar(),
 
             ] : null,
             'seller' => $this->seller ? [
                 'id' => $this->seller->id,
-                'full_name' => $this->seller->full_name,
+                'full_name' => $this->seller->get_full_name(),
                 'email' => $this->seller->email,
                 'avator' => $this->seller->getAvatar(),
 

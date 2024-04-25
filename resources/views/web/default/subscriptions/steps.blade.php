@@ -102,7 +102,6 @@
         position: relative;
         width: 100%;
         text-align: center;
-        margin-top: -50px;
     }
     .flexible-progress-bar {
         display: inline-block;

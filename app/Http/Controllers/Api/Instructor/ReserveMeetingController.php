@@ -40,7 +40,7 @@ class ReserveMeetingController extends Controller
 
             $notifyOptions = [
                 '[link]' => $link,
-                '[instructor.name]' => $ReserveMeeting->meeting->creator->full_name,
+                '[instructor.name]' => $ReserveMeeting->meeting->creator->get_full_name(),
                 '[time.date]' => $ReserveMeeting->day,
             ];
             sendNotification('new_appointment_link', $notifyOptions, $ReserveMeeting->user_id);

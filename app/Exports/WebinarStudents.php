@@ -43,7 +43,7 @@ class WebinarStudents implements FromCollection, WithHeadings, WithMapping
     public function map($sale): array
     {
         return [
-            $sale->buyer->full_name,
+            $sale->buyer->get_full_name(),
             $sale->buyer->email,
             $sale->buyer->mobile,
             dateTimeFormat($sale->created_at, 'j M Y | H:i')

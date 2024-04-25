@@ -140,17 +140,17 @@ class ReceiptCustomerTest extends TestCase
 
         self::assertNull($instance->getFullName());
         self::assertNull($instance->fullName);
-        self::assertNull($instance->full_name);
+        self::assertNull($instance->get_full_name());
 
         $instance->setFullName($value);
         if ($value === null || $value === '') {
             self::assertNull($instance->getFullName());
             self::assertNull($instance->fullName);
-            self::assertNull($instance->full_name);
+            self::assertNull($instance->get_full_name());
         } else {
             self::assertEquals($value, $instance->getFullName());
             self::assertEquals($value, $instance->fullName);
-            self::assertEquals($value, $instance->full_name);
+            self::assertEquals($value, $instance->get_full_name());
         }
     }
 
@@ -164,17 +164,17 @@ class ReceiptCustomerTest extends TestCase
 
         self::assertNull($instance->getFullName());
         self::assertNull($instance->fullName);
-        self::assertNull($instance->full_name);
+        self::assertNull($instance->get_full_name());
 
         $instance->fullName = $value;
         if ($value === null || $value === '') {
             self::assertNull($instance->getFullName());
             self::assertNull($instance->fullName);
-            self::assertNull($instance->full_name);
+            self::assertNull($instance->get_full_name());
         } else {
             self::assertEquals($value, $instance->getFullName());
             self::assertEquals($value, $instance->fullName);
-            self::assertEquals($value, $instance->full_name);
+            self::assertEquals($value, $instance->get_full_name());
         }
     }
 
@@ -188,17 +188,17 @@ class ReceiptCustomerTest extends TestCase
 
         self::assertNull($instance->getFullName());
         self::assertNull($instance->fullName);
-        self::assertNull($instance->full_name);
+        self::assertNull($instance->get_full_name());
 
-        $instance->full_name = $value;
+        $instance->get_full_name() = $value;
         if ($value === null || $value === '') {
             self::assertNull($instance->getFullName());
             self::assertNull($instance->fullName);
-            self::assertNull($instance->full_name);
+            self::assertNull($instance->get_full_name());
         } else {
             self::assertEquals($value, $instance->getFullName());
             self::assertEquals($value, $instance->fullName);
-            self::assertEquals($value, $instance->full_name);
+            self::assertEquals($value, $instance->get_full_name());
         }
     }
 

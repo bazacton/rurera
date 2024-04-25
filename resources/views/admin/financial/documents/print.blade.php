@@ -80,7 +80,7 @@
 
         <div class="print-5">
             <span>{{ trans('public.created_by') }}:</span>&nbsp;
-            <label>{{ !empty($document->creator_id) ? $document->creator->full_name : 'Automatic' }}</label>
+            <label>{{ !empty($document->creator_id) ? $document->creator->get_full_name() : 'Automatic' }}</label>
         </div>
     </div>
 

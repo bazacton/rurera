@@ -31,9 +31,9 @@
                         data-placeholder="{{ trans('public.search_user') }}">
 
                     @if(!empty($product))
-                        <option value="{{ $product->creator->id }}" selected>{{ $product->creator->full_name }}</option>
+                        <option value="{{ $product->creator->id }}" selected>{{ $product->creator->get_full_name() }}</option>
                     @elseif(!empty(request()->get('in_house_product')))
-                        <option value="{{ $authUser->id }}" selected>{{ $authUser->full_name }}</option>
+                        <option value="{{ $authUser->id }}" selected>{{ $authUser->get_full_name() }}</option>
                     @endif
                 </select>
 

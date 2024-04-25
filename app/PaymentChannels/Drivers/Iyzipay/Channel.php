@@ -66,7 +66,7 @@ class Channel implements IChannel
 
         $IBuyer = new Buyer();
         $IBuyer->setId($user->id);
-        $IBuyer->setName($user->full_name);
+        $IBuyer->setName($user->get_full_name());
         $IBuyer->setSurname('buyer');
         $IBuyer->setGsmNumber($user->mobile);
         $IBuyer->setEmail($user->email ?? $generalSettings['site_email']);
@@ -81,7 +81,7 @@ class Channel implements IChannel
         $IForm->setBuyer($IBuyer);
 
         $IShipping = new Address();
-        $IShipping->setContactName($user->full_name);
+        $IShipping->setContactName($user->get_full_name());
         $IShipping->setCity($user->address ?? 'no address');
         $IShipping->setCountry($user->address ?? 'no address');
         $IShipping->setAddress($user->address ?? 'no address');
@@ -89,7 +89,7 @@ class Channel implements IChannel
         $IForm->setShippingAddress($IShipping);
 
         $IBilling = new Address();
-        $IBilling->setContactName($user->full_name);
+        $IBilling->setContactName($user->get_full_name());
         $IBilling->setCity($user->address ?? 'no address');
         $IBilling->setCountry($user->address ?? 'no address');
         $IBilling->setAddress($user->address ?? 'no address');

@@ -1235,7 +1235,7 @@
                                                             <li data-user_id="{{$userObj->id}}">
                                                                 <span><input type="checkbox" id="select_user{{$userObj->id}}" value="{{$userObj->id}}"
                                                                              name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"><label
-                                                                            for="select_user{{$userObj->id}}">{{$userObj->full_name}}</label></span>
+                                                                            for="select_user{{$userObj->id}}">{{$userObj->get_full_name()}}</label></span>
                                                             </li>
                                                             @endforeach
                                                         </ul>

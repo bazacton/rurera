@@ -264,7 +264,7 @@ class WebinarController extends Controller
 
                 'duration' => $webinar->duration,
                 'teacher' => [
-                    'full_name' => $webinar->teacher->full_name,
+                    'full_name' => $webinar->teacher->get_full_name(),
                     'avatar' => $webinar->teacher->getAvatar(),
                     'rate' => $webinar->teacher->rates(),
                 ],
@@ -318,7 +318,7 @@ class WebinarController extends Controller
 
                 'duration' => $webinar->duration,
                 'teacher' => [
-                    'full_name' => $webinar->teacher->full_name,
+                    'full_name' => $webinar->teacher->get_full_name(),
                     'avatar' => $webinar->teacher->getAvatar(),
                     'rate' => $webinar->teacher->rates(),
                 ],
@@ -363,7 +363,7 @@ class WebinarController extends Controller
                 'reviews' => $webinar->reviews->map(function ($review) {
                     return [
                         'user' => [
-                            'full_name' => $review->creator->full_name,
+                            'full_name' => $review->creator->get_full_name(),
                             'avatar' => $review->creator->getAvatar(),
                         ],
                         'create_at' => $review->created_at,
@@ -371,7 +371,7 @@ class WebinarController extends Controller
                         'replies' => $review->comments->map(function ($reply) {
                             return [
                                 'user' => [
-                                    'full_name' => $reply->user->full_name,
+                                    'full_name' => $reply->user->get_full_name(),
                                     'avatar' => $reply->user->getAvatar(),
                                 ],
                                 'create_at' => $reply->created_at,
@@ -386,7 +386,7 @@ class WebinarController extends Controller
                 'comments' => $webinar->comments->map(function ($item) {
                     return [
                         'user' => [
-                            'full_name' => $item->user->full_name,
+                            'full_name' => $item->user->get_full_name(),
                             'avatar' => $item->user->getAvatar(),
                         ],
                         'create_at' => $item->created_at,
@@ -394,7 +394,7 @@ class WebinarController extends Controller
                         'replies' => $item->replies->map(function ($reply) {
                             return [
                                 'user' => [
-                                    'full_name' => $reply->user->full_name,
+                                    'full_name' => $reply->user->get_full_name(),
                                     'avatar' => $reply->user->getAvatar(),
                                 ],
                                 'create_at' => $reply->created_at,

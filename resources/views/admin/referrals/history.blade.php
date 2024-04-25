@@ -109,9 +109,9 @@
                                     <tbody>
                                     @foreach($affiliates as $affiliate)
                                         <tr>
-                                            <td>{{ $affiliate->affiliateUser->full_name }}</td>
+                                            <td>{{ $affiliate->affiliateUser->get_full_name() }}</td>
 
-                                            <td>{{ $affiliate->referredUser->full_name }}</td>
+                                            <td>{{ $affiliate->referredUser->get_full_name() }}</td>
 
                                             <td>{{ handlePrice($affiliate->getAffiliateRegistrationAmountsOfEachReferral()) }}</td>
 

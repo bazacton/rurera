@@ -76,14 +76,14 @@
                 <div class="col-12 col-lg-6">
                     <div class="d-flex align-items-start">
                         <div class="question-user-avatar">
-                            <img src="{{ $forum->user->getAvatar(64) }}" class="img-cover rounded-circle" alt="{{ $forum->user->full_name }}">
+                            <img src="{{ $forum->user->getAvatar(64) }}" class="img-cover rounded-circle" alt="{{ $forum->user->get_full_name() }}">
                         </div>
                         <div class="ml-10">
                             <a href="{{ $course->getForumPageUrl() }}/{{ $forum->id }}/answers" class="">
                                 <h4 class="font-16 font-weight-bold text-dark-blue">{{ $forum->title }}</h4>
                             </a>
 
-                            <span class="d-block font-12 text-gray mt-5">{{ trans('public.by') }} {{ $forum->user->full_name }} {{ trans('public.in') }} {{ dateTimeFormat($forum->created_at, 'j M Y | H:i') }}</span>
+                            <span class="d-block font-12 text-gray mt-5">{{ trans('public.by') }} {{ $forum->user->get_full_name() }} {{ trans('public.in') }} {{ dateTimeFormat($forum->created_at, 'j M Y | H:i') }}</span>
 
                             <p class="d-block font-14 text-gray mt-10">{!! nl2br($forum->description) !!}</p>
                         </div>
@@ -110,7 +110,7 @@
                                     @if(!empty($forum->usersAvatars))
                                         @foreach($forum->usersAvatars as $userAvatar)
                                             <div class="user-avatar-card rounded-circle">
-                                                <img src="{{ $userAvatar->getAvatar(32) }}" class="img-cover rounded-circle" alt="{{ $userAvatar->full_name }}">
+                                                <img src="{{ $userAvatar->getAvatar(32) }}" class="img-cover rounded-circle" alt="{{ $userAvatar->get_full_name() }}">
                                             </div>
                                         @endforeach
                                     @endif
@@ -132,10 +132,10 @@
 
                             <div class="d-flex align-items-start mt-20">
                                 <div class="last-answer-user-avatar">
-                                    <img src="{{ $forum->lastAnswer->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $forum->lastAnswer->user->full_name }}">
+                                    <img src="{{ $forum->lastAnswer->user->getAvatar(30) }}" class="img-cover rounded-circle" alt="{{ $forum->lastAnswer->user->get_full_name() }}">
                                 </div>
                                 <div class="ml-10">
-                                    <h4 class="font-14 text-dark font-weight-bold">{{ $forum->lastAnswer->user->full_name }}</h4>
+                                    <h4 class="font-14 text-dark font-weight-bold">{{ $forum->lastAnswer->user->get_full_name() }}</h4>
                                     <p class="font-12 font-weight-500 text-gray mt-5">{!! truncate($forum->lastAnswer->description, 160) !!}</p>
                                 </div>
                             </div>

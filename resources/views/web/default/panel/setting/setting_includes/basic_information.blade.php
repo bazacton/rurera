@@ -13,6 +13,233 @@ $avatar_color_settings = json_encode($avatar_color_settings);
     <div class="row mt-20">
 
 
+        <div class="col-12">
+            <div class="user-detail mb-50">
+                <div class="detail-header mb-25 pb-25">
+                    <div class="info-media d-flex align-items-center flex-wrap">
+                        <span class="media-box">
+                            <img src="/avatar/svgA04347573086307288.png" alt="">
+                        </span>
+                        <h2 class="info-title font-weight-500">
+                            Kendra Wilsoz
+                            <span class="d-block font-weight-normal font-14">kendraw@gmail.com</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="detail-body">
+                    <div class="row mb-50">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="info-text">
+                                <h3 class="font-18 font-weight-500 mb-5">General info</h3>
+                                <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                            <div class="edit-info-list">
+                                <h4 class="font-14 font-weight-500 pb-15 px-15">About you</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Legal name
+                                                <strong class="d-block font-weight-500">Kendra Wilson</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Preferred name
+                                                <strong class="d-block font-weight-500">Kendra Wilson</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Email address
+                                                <strong class="d-block font-weight-500">kendraw@gmail.com</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-50">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="info-text">
+                                <h3 class="font-18 font-weight-500 mb-5">Personal info</h3>
+                                <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                            <div class="edit-info-list">
+                                <h4 class="font-14 font-weight-500 pb-15 px-15">Additional info</h4>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Date of birth
+                                                <strong class="d-block font-weight-500">12/10/1988</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Phone number
+                                                <strong class="d-block font-weight-500">+1 (612) 429-3263</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Gender
+                                                <strong class="d-block font-weight-500">Female</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                Family status
+                                                <strong class="d-block font-weight-500">Married</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-50">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="info-text">
+                                <h3 class="font-18 font-weight-500 mb-5">Mailing address</h3>
+                                <span class="font-14">We'll send physical cards as well as gifts and special offers to this address</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                            <div class="edit-info-list">
+                                <h4 class="font-15 font-weight-500 pb-15">Acme LLC</h4>
+                                <ul>
+                                    <li>
+                                        <address class="mb-10">
+                                            <span class="d-block info-list-label font-14 mb-5">28, Railroad Highway</span>
+                                            <span class="d-block info-list-label font-14 mb-5">Parkston road, Block 2, Suite G23</span>
+                                            <span class="d-block info-list-label font-14 mb-5">Los Angeles, CA 92841</span>
+                                            <span class="d-block info-list-label font-14 mb-5">United States</span>
+                                        </address>
+                                        <a href="#" class="edtit-btn d-inline-flex align-items-center font-weight-500 font-15">Edit address <span class="font-16">&#8594;</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-50">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="info-text">
+                                <h3 class="font-18 font-weight-500 mb-5">Legal address</h3>
+                                <span class="font-14">This is the billing address for your cards and will appear on your documents</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                            <div class="edit-info-list">
+                                <h4 class="font-15 font-weight-500 pb-15">Acme LLC</h4>
+                                <ul>
+                                    <li>
+                                        <address class="mb-10">
+                                            <span class="d-block info-list-label font-14 mb-5">28, Railroad Highway</span>
+                                            <span class="d-block info-list-label font-14 mb-5">Parkston road, Block 2, Suite G23</span>
+                                            <span class="d-block info-list-label font-14 mb-5">Los Angeles, CA 92841</span>
+                                            <span class="d-block info-list-label font-14 mb-5">United States</span>
+                                        </address>
+                                        <a href="#" class="edtit-btn d-inline-flex align-items-center font-weight-500 font-15">Edit address <span class="font-16">&#8594;</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="info-text">
+                                <h3 class="font-18 font-weight-500 mb-5">Main Card</h3>
+                                <span class="font-14">This is your company main credit card. You can use it to pay for any type of expenses</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                            <div class="edit-info-list">
+                                <ul>
+                                    <li>
+                                        <div class="payment-card-holder mb-15">
+                                            <div class="payment-card bg-white py-15 px-20 d-inline-block">
+                                                <div class="card-top d-flex align-items-center flex-wrap justify-content-between mb-15">
+                                                    <span class="card-type-lebel d-inline-block pl-15">Mastercard</span>
+                                                    <div class="card-circle">
+                                                        <span class="circle-pink d-inline-block"></span>
+                                                        <span class="circle-yellow d-inline-block"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="payment-card-body">
+                                                    <span class="card-type-icon d-block mb-15">
+                                                        <img src="/assets/default/svgs/card-chip.svg" alt="" height="32" width="44">
+                                                    </span>
+                                                    <div class="user-card-info d-flex align-items-center flex-wrap justify-content-between">
+                                                        <div class="card-info-text">
+                                                            <span class="user-name d-block font-15">Kendra Wilson</span>
+                                                            <span class="card-number d-block font-14">&#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; &#x2022; 4728</span>
+                                                            <div class="card-exp">
+                                                                <span class="d-inline-block font-14">EXP</span>
+                                                                <span class="d-inline-block font-14">&#x2022; &#x2022;/&#x2022; &#x2022;</span>
+                                                                <span class="d-inline-block font-14">CVC</span>
+                                                                <span class="d-inline-block font-14">&#x2022; &#x2022; &#x2022;</span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="card-info-icon">
+                                                            <img src="/assets/default/svgs/card-info.svg" alt="" height="40" width="40">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="edtit-btn d-inline-flex align-items-center font-weight-500 font-15">Manage your cards <span class="font-16">&#8594;</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12 col-lg-12">
             <div class="profile-image-holder p-25 mb-10">
                 <div class="form-group">

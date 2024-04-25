@@ -24,7 +24,7 @@ class Channel implements IChannel
     public function paymentRequest(Order $order)
     {
         $customer = Customer::make()
-            ->firstName($order->user->full_name)
+            ->firstName($order->user->get_full_name())
             ->email(!empty($order->user->email) ? $order->user->email : 'john@example.com');
 
         $attributes = Attributes::make()

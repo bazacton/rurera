@@ -90,7 +90,7 @@
                                                 <div class="avatar bg-gray200">
                                                     <img src="{{ $comment->user->getAvatar() }}" class="img-cover" alt="">
                                                 </div>
-                                                <span class="user-name ml-5 text-dark-blue font-weight-500">{{ $comment->user->full_name }}</span>
+                                                <span class="user-name ml-5 text-dark-blue font-weight-500">{{ $comment->user->get_full_name() }}</span>
                                             </div>
                                         </th>
                                         <td class=" text-left align-middle" width="35%">

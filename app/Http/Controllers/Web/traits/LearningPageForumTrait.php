@@ -131,7 +131,7 @@ trait LearningPageForumTrait
 
         if ($user->id != $course->creator_id and $user->id != $course->teacher_id) {
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[c.title]' => $course->title,
             ];
 
@@ -366,7 +366,7 @@ trait LearningPageForumTrait
 
             if ($user->id != $courseForum->user_id) {
                 $notifyOptions = [
-                    '[u.name]' => $user->full_name,
+                    '[u.name]' => $user->get_full_name(),
                     '[c.title]' => $course->title,
                 ];
 

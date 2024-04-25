@@ -1,5 +1,5 @@
 @include('web.default.subscriptions.steps',['activeStep'=> 'student'])
-<div class="form-login-reading panel-border bg-white rounded-sm p-25">
+<div class="form-login-reading">
     <div class="container">
       <form class="child-register-form" method="post" action="javascript:;">
           {{ csrf_field() }}
@@ -58,19 +58,12 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                 <h5>Students's account details</h5>
             </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="plan-switch-option">
-                        <span class="switch-label font-18">Auto Generate</span> &nbsp;&nbsp;
-                        <div class="plan-switch">
-                            <div class="custom-control custom-switch"><input type="checkbox" name="auto_generate" class="username-auto-generate custom-control-input" id="auto_generate"><label class="custom-control-label"  for="auto_generate"></label></div>
-                        </div>
-                </div>
-            </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <span class="fomr-label">Username</span>
                     <div class="input-field">
                         <input type="text" name="username" class="username-field rurera-req-field" placeholder="Username">
+                        <a href="javascript:;" class="username-auto-generate">Generate</a>
                     </div>
                 </div>
                 <div class="usernames-suggestions">
@@ -80,7 +73,8 @@
                 <div class="form-group">
                     <span class="fomr-label">Password</span>
                     <div class="input-field">
-                        <input type="password" class="password-field rurera-req-field" name="password" placeholder="Create a password">
+                        <input type="text" class="password-field rurera-req-field" name="password" placeholder="Create a password">
+                        <a href="javascript:;" class="generatePassword" data-input_class="password-field">Generate</a>
                     </div>
                 </div>
                 <div class="password-suggestions">

@@ -169,7 +169,7 @@
                                     @endif
                                 </td>
 
-                                <td class="text-left">{{ $review->creator->full_name }}</td>
+                                <td class="text-left">{{ $review->creator->get_full_name() }}</td>
 
                                 <td class="">
                                     @if(!empty($review->webinar_id))

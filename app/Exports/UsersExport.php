@@ -48,7 +48,7 @@ class UsersExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $user->id,
-            $user->full_name,
+            $user->get_full_name(),
             $user->email,
             $user->mobile,
             $user->role->name,

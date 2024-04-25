@@ -36,7 +36,7 @@
 
                                     @if(!empty($teachers) and $teachers->count() > 0)
                                         @foreach($teachers as $teacher)
-                                            <option value="{{ $teacher->id }}" selected>{{ $teacher->full_name }}</option>
+                                            <option value="{{ $teacher->id }}" selected>{{ $teacher->get_full_name() }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -52,7 +52,7 @@
 
                                     @if(!empty($students) and $students->count() > 0)
                                         @foreach($students as $student)
-                                            <option value="{{ $student->id }}" selected>{{ $student->full_name }}</option>
+                                            <option value="{{ $student->id }}" selected>{{ $student->get_full_name() }}</option>
                                         @endforeach
                                     @endif
                                 </select>
@@ -98,8 +98,8 @@
                                                 <span>{{ $certificate->quiz->title }}</span>
                                                 <small class="d-block text-left">{{ !empty($certificate->quiz->webinar) ? $certificate->quiz->webinar->title : trans('update.delete_item') }})</small>
                                             </td>
-                                            <td class="text-left">{{ $certificate->student->full_name }}</td>
-                                            <td class="text-left">{{ $certificate->quiz->teacher->full_name }}</td>
+                                            <td class="text-left">{{ $certificate->student->get_full_name() }}</td>
+                                            <td class="text-left">{{ $certificate->quiz->teacher->get_full_name() }}</td>
                                             <td class="text-center">{{ $certificate->quizzesResult->user_grade }}</td>
                                             <td class="text-center">{{ dateTimeFormat($certificate->created_at, 'j M Y') }}</td>
                                             <td>

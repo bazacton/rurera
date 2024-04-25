@@ -54,7 +54,7 @@
                                         @if( request()->get('user',null))
                                             @foreach(request()->get('user') as $userId)
                                                 <option value="{{ $userId }}"
-                                                        selected="selected">{{ $users[$userId]->full_name }}</option>
+                                                        selected="selected">{{ $users[$userId]->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -195,7 +195,7 @@
                                                 <td class="text-left">
                                                     @if(!empty($document->user))
                                                         <a href="{{ getAdminPanelUrl() }}/users/{{ $document->user_id }}/edit" target="_blank"
-                                                           class="">{{ $document->user->full_name }}</a>
+                                                           class="">{{ $document->user->get_full_name() }}</a>
                                                     @endif
                                                 </td>
 

@@ -150,7 +150,7 @@
                                     @if($authUser->id == $bundle->teacher_id and $authUser->id != $bundle->creator_id and $bundle->creator->isOrganization())
                                         <div class="d-flex align-items-start flex-column mt-20 mr-15">
                                             <span class="stat-title">{{ trans('webinars.organization_name') }}:</span>
-                                            <span class="stat-value">{{ $bundle->creator->full_name }}</span>
+                                            <span class="stat-value">{{ $bundle->creator->get_full_name() }}</span>
                                         </div>
                                     @endif
                                 </div>

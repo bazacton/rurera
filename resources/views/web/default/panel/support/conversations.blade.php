@@ -66,7 +66,7 @@
                                                         <img src="{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->getAvatar() : $support->user->getAvatar() }}" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block font-14 text-dark-blue font-weight-500">{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->full_name : $support->user->full_name }}</span>
+                                                        <span class="d-block font-14 text-dark-blue font-weight-500">{{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? $support->webinar->teacher->get_full_name() : $support->user->get_full_name() }}</span>
                                                         <span class="mt-1 font-12 text-gray d-block">
                                                             {{ (!empty($support->webinar) and $support->webinar->teacher_id != $authUser->id) ? trans('panel.teacher') : ( ($support->user->isUser()) ? trans('quiz.student') : trans('panel.staff')) }}
                                                         </span>
@@ -136,7 +136,7 @@
                                                         <img src="{{ (!empty($conversations->supporter)) ? $conversations->supporter->getAvatar() : $conversations->sender->getAvatar() }}" class="img-cover" alt="">
                                                     </div>
                                                     <div class="ml-10">
-                                                        <span class="d-block text-dark-blue font-14 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->full_name : $conversations->sender->full_name }}</span>
+                                                        <span class="d-block text-dark-blue font-14 font-weight-500">{{ (!empty($conversations->supporter)) ? $conversations->supporter->get_full_name() : $conversations->sender->get_full_name() }}</span>
                                                         <span class="mt-1 font-12 text-gray d-block">{{ (!empty($conversations->supporter)) ? trans('panel.staff') : $conversations->sender->role_name }}</span>
                                                     </div>
                                                 </div>

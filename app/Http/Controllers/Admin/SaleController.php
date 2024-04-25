@@ -98,13 +98,13 @@ class SaleController extends Controller
 
             $sale->item_title = $item ? $item->title : trans('update.deleted_item');
             $sale->item_id = $item ? $item->id : '';
-            $sale->item_seller = ($item and $item->creator) ? $item->creator->full_name : trans('update.deleted_item');
+            $sale->item_seller = ($item and $item->creator) ? $item->creator->get_full_name() : trans('update.deleted_item');
             $sale->seller_id = ($item and $item->creator) ? $item->creator->id : '';
             $sale->sale_type = ($item and $item->creator) ? $item->creator->id : '';
         } elseif (!empty($sale->meeting_id)) {
             $sale->item_title = trans('panel.meeting');
             $sale->item_id = $sale->meeting_id;
-            $sale->item_seller = ($sale->meeting and $sale->meeting->creator) ? $sale->meeting->creator->full_name : trans('update.deleted_item');
+            $sale->item_seller = ($sale->meeting and $sale->meeting->creator) ? $sale->meeting->creator->get_full_name() : trans('update.deleted_item');
             $sale->seller_id = ($sale->meeting and $sale->meeting->creator) ? $sale->meeting->creator->id : '';
         } elseif (!empty($sale->subscribe_id)) {
             $sale->item_title = !empty($sale->subscribe) ? $sale->subscribe->title : trans('update.deleted_subscribe');
@@ -127,7 +127,7 @@ class SaleController extends Controller
 
             $sale->item_title = $gift->getItemTitle();
             $sale->item_id = $item->id;
-            $sale->item_seller = $item->creator->full_name;
+            $sale->item_seller = $item->creator->get_full_name();
             $sale->seller_id = $item->creator_id;
         } elseif (!empty($sale->installment_payment_id) and !empty($sale->installmentOrderPayment)) {
             $installmentOrderPayment = $sale->installmentOrderPayment;
@@ -136,7 +136,7 @@ class SaleController extends Controller
 
             $sale->item_title = !empty($installmentItem) ? $installmentItem->title : '--';
             $sale->item_id = !empty($installmentItem) ? $installmentItem->id : '--';
-            $sale->item_seller = !empty($installmentItem) ? $installmentItem->creator->full_name : '--';
+            $sale->item_seller = !empty($installmentItem) ? $installmentItem->creator->get_full_name() : '--';
             $sale->seller_id = !empty($installmentItem) ? $installmentItem->creator->id : '--';
         } else {
             $sale->item_title = '---';

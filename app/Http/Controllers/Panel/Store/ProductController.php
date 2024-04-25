@@ -167,7 +167,7 @@ class ProductController extends Controller
         }
 
         $notifyOptions = [
-            '[u.name]' => $user->full_name,
+            '[u.name]' => $user->get_full_name(),
             '[item_title]' => $product->title,
             '[content_type]' => trans('update.product'),
         ];
@@ -410,7 +410,7 @@ class ProductController extends Controller
 
         if (!$getNextStep and !$isDraft and !$productRulesRequired) {
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[item_title]' => $product->title,
                 '[content_type]' => trans('update.product'),
             ];

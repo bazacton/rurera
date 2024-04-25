@@ -341,7 +341,7 @@ class ForumController extends Controller
 
 
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[topic_title]' => $topic->title,
                 '[forum_title]' => $forum->title,
             ];
@@ -693,7 +693,7 @@ class ForumController extends Controller
 
                     $notifyOptions = [
                         '[topic_title]' => $topic->title,
-                        '[u.name]' => $user->full_name
+                        '[u.name]' => $user->get_full_name()
                     ];
                     sendNotification('send_post_in_topic', $notifyOptions, $topic->creator_id);
 
@@ -738,7 +738,7 @@ class ForumController extends Controller
             ]);
 
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[content_type]' => trans('public.' . $data['item_type'])
             ];
             sendNotification("new_report_item_for_admin", $notifyOptions, 1);

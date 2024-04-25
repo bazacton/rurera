@@ -30,7 +30,7 @@
                                     @foreach($reports as $report)
                                         <tr>
                                             @if (!empty($report->user))
-                                                <td>{{ $report->user->id .' - '.$report->user->full_name }}</td>
+                                                <td>{{ $report->user->id .' - '.$report->user->get_full_name() }}</td>
                                             @else
                                                 <td class="text-danger">Deleted User</td>
                                             @endif

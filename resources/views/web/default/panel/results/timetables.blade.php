@@ -223,7 +223,7 @@ $rand_id = rand(99,9999);
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label" for="radio2"><span>{{$rowObj->correct_answer}}</span></label></li>
                                             </ul>
-                                            <span class="list-title">{{isset( auth()->user()->full_name )? auth()->user()->full_name : 'Guest'}} answered:</span>
+                                            <span class="list-title">{{isset( auth()->user()->get_full_name() )? auth()->user()->get_full_name() : 'Guest'}} answered:</span>
                                             <ul class="lms-radio-btn-group lms-user-answer-block">
                                                 <li><label class="lms-question-label correct" for="radio2"><span>{{$rowObj->answer}}</span></label></li>
                                             </ul>

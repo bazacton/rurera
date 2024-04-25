@@ -22,7 +22,7 @@ class BlogResource extends JsonResource
             'category_title' => $this->category->title ?? null,
             'status' => $this->status,
             'author' => [
-                'full_name' => $this->author->full_name
+                'full_name' => $this->author->get_full_name()
             ],
             'url' => url($this->getUrl()),
             'comments_count' => $this->comments->count(),

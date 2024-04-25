@@ -161,7 +161,7 @@ class BundlesController extends Controller
         }
 
         $notifyOptions = [
-            '[u.name]' => $user->full_name,
+            '[u.name]' => $user->get_full_name(),
             '[item_title]' => $bundle->title,
             '[content_type]' => trans('update.bundle'),
         ];
@@ -425,7 +425,7 @@ class BundlesController extends Controller
 
         if (!$getNextStep and !$isDraft and !$bundleRulesRequired) {
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[item_title]' => $bundle->title,
                 '[content_type]' => trans('update.bundle'),
             ];

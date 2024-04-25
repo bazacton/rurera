@@ -3,7 +3,7 @@
     <div class="mt-20 product-show__profile-info-box profile-info-box d-flex align-items-start justify-content-between">
         <div class="user-details d-flex align-items-center">
             <div class="user-profile-avatar">
-                <img src="{{ $seller->getAvatar(190) }}" class="img-cover" alt="{{ $seller->full_name }}"/>
+                <img src="{{ $seller->getAvatar(190) }}" class="img-cover" alt="{{ $seller->get_full_name() }}"/>
 
                 @if($seller->offline)
                     <span class="user-circle-badge unavailable d-flex align-items-center justify-content-center">
@@ -16,7 +16,7 @@
                 @endif
             </div>
             <div class="ml-20 ml-lg-40">
-                <h1 class="font-24 font-weight-bold text-dark-blue">{{ $seller->full_name }}</h1>
+                <h1 class="font-24 font-weight-bold text-dark-blue">{{ $seller->get_full_name() }}</h1>
                 <span class="text-gray">{{ $seller->headline }}</span>
 
                 <div class="stars-card d-flex align-items-center mt-5">

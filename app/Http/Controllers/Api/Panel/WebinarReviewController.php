@@ -79,7 +79,7 @@ class WebinarReviewController extends Controller
 
         $notifyOptions = [
             '[c.title]' => $webinar->title,
-            '[student.name]' => $user->full_name,
+            '[student.name]' => $user->get_full_name(),
             '[rate.count]' => $rates / 4
         ];
         sendNotification('new_rating', $notifyOptions, $webinar->teacher_id);

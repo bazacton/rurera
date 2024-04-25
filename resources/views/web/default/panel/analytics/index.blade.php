@@ -1,4 +1,4 @@
-@extends('web.default.panel.layouts.panel_layout')
+@extends('web.default.panel.layouts.panel_layout_full')
 @push('styles_top')
 <script src="/assets/default/vendors/charts/chart.js"></script>
 <link rel="stylesheet" href="/assets/default/vendors/daterangepicker/daterangepicker.min.css">
@@ -11,9 +11,29 @@
 @endpush
 
 @section('content')
-<div class="section-title mb-40">
-    <h2 itemprop="title" class="font-22 mb-0">Analytics</h2>
-</div>
+<section class="member-card-header pb-40">
+    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
+        <h1 class="section-title font-22">Analytics</h1>
+        <div class="dropdown db-members">
+            @if(auth()->check() && (auth()->user()->isParent()))
+            <div class="col-auto ms-auto last-activity profile-dropdown">
+                <a href="#" class="font-15 font-weight-normal">{{$selected_child}}</a>
+                <ul>
+                    <li><a href="/{{panelRoute()}}/analytics/?child=all" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> All Childs</a></li>
+                    @if( !empty( $childs ) )
+                    @foreach($childs as $childLinkObj)
+                    @php $childObj = $childLinkObj->user; @endphp
+                        <li><a href="/{{panelRoute()}}/analytics/?child={{ $childObj->id }}" class="switch-user-btn"><span class="icon-box"><img src="{{$childObj->getAvatar()}}" alt=""></span> {{ $childObj->get_full_name() }}</a></li>
+                    @endforeach
+                    @endif
+                </ul>
+            </div>
+            @endif
+    </div>
+    </div>
+</section>
+
+
 <section class="page-section analytics-graph-data hide">
     @include('web.default.panel.analytics.graph_data',['show_types'=> true, 'graphs_array' => $graphs_array,
     'summary_type' => $summary_type,
@@ -27,32 +47,17 @@
             <div class="filters-list">
                 <a href="#" class="filter-mobile-btn">Filters Dropdown</a>
                 <ul class="analytics-type">
-                    <li {{($type_selected == 'all')? 'class=active' : ''}}><a href="/panel/analytics" data-graph_type="all"><img src="/assets/default/img/sidebar/all.svg"> ALL</a></li>
-                    <li {{($type_selected == 'learn')? 'class=active' : ''}}><a href="/panel/analytics/learn" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.svg"> LEARN</a></li>
-                    <li {{($type_selected == 'timestables')? 'class=active' : ''}}><a href="/panel/analytics/timestables" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.svg"> TIMESTABLE</a></li>
-                    <li {{($type_selected == 'vocabulary')? 'class=active' : ''}}><a href="/panel/analytics/vocabulary" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.svg"> WORD LISTS</a></li>
-                    <li {{($type_selected == 'books')? 'class=active' : ''}}><a href="/panel/analytics/books" data-graph_type="books"><img src="/assets/default/img/sidebar/books.svg"> BOOKS</a></li>
-                    <li {{($type_selected == 'tests')? 'class=active' : ''}}><a href="/panel/analytics/tests" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.svg"> TEST</a></li>
+                    @php $link_append = (isset($_GET['child'])) ? '?child='.$_GET['child'] : ''; @endphp
+                    <li {{($type_selected == 'all')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics{{$link_append}}" data-graph_type="all"><img src="/assets/default/img/sidebar/all.svg"> ALL</a></li>
+                    <li {{($type_selected == 'learn')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics/learn{{$link_append}}" data-graph_type="learn"><img src="/assets/default/img/sidebar/learn.svg"> LEARN</a></li>
+                    <li {{($type_selected == 'timestables')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics/timestables{{$link_append}}" data-graph_type="timestables"><img src="/assets/default/img/sidebar/timestable.svg"> TIMESTABLE</a></li>
+                    <li {{($type_selected == 'vocabulary')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics/vocabulary{{$link_append}}" data-graph_type="word_lists"><img src="/assets/default/img/sidebar/spell.svg"> WORD LISTS</a></li>
+                    <li {{($type_selected == 'books')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics/books{{$link_append}}" data-graph_type="books"><img src="/assets/default/img/sidebar/books.svg"> BOOKS</a></li>
+                    <li {{($type_selected == 'tests')? 'class=active' : ''}}><a href="/{{panelRoute()}}/analytics/tests{{$link_append}}" data-graph_type="tests"><img src="/assets/default/img/sidebar/test.svg"> TEST</a></li>
                 </ul>
             </div>
 
-            @if(auth()->check() && (auth()->user()->isParent()))
 
-            <div class="form-group">
-                <label class="input-label">Select Child</label>
-
-                <form action="/panel/analytics/" method="get" class="child-analytics-form">
-                    <select name="child" class="form-control child-analytics">
-                        <option value="">Select Child</option>
-                    @if( !empty( $childs ) )
-                        @foreach($childs as $childObj)
-                                <option value="{{ $childObj->id }}">{{ $childObj->full_name }}</option>
-                        @endforeach
-                    </select>
-                    </form>
-                </div>
-            @endif
-            @endif
 
             <ul class="analytics-data-ul">
                 <li><a href="javascript:;" class=" hide graph_Custom" data-graph_id="graph_id_Custom">September 20, 2023 -
@@ -65,7 +70,7 @@
 
         </div>
 
-        <div class="time-card panel-border panel-shadow mb-30 rurera-hide">
+        <div class="time-card panel-border panel-shadow mb-30">
             <div class="card-header">
                 <h3 class="font-19 font-weight-bold">
                     What’s up Today

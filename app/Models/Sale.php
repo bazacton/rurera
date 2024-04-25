@@ -191,7 +191,7 @@ class Sale extends Model
 
             $notifyOptions = [
                 '[amount]' => handlePrice($orderItem->amount),
-                '[u.name]' => $orderItem->user->full_name,
+                '[u.name]' => $orderItem->user->get_full_name(),
                 '[time.date]' => $reserveMeeting->day . ' ' . $reserveMeeting->time,
             ];
             sendNotification('new_appointment', $notifyOptions, $orderItem->user_id);
@@ -200,7 +200,7 @@ class Sale extends Model
             $notifyOptions = [
                 '[p.title]' => $title,
                 '[amount]' => handlePrice($orderItem->total_amount),
-                '[u.name]' => $orderItem->user->full_name,
+                '[u.name]' => $orderItem->user->get_full_name(),
             ];
 
             sendNotification('product_new_sale', $notifyOptions, $seller_id);
@@ -219,7 +219,7 @@ class Sale extends Model
 
         if (!empty($orderItem->webinar_id)) {
             $notifyOptions = [
-                '[u.name]' => $orderItem->user->full_name,
+                '[u.name]' => $orderItem->user->get_full_name(),
                 '[c.title]' => $title,
                 '[amount]' => handlePrice($orderItem->total_amount),
                 '[time.date]' => dateTimeFormat(time(), 'j M Y H:i'),
@@ -229,7 +229,7 @@ class Sale extends Model
 
         if (!empty($orderItem->subscribe_id)) {
             $notifyOptions = [
-                '[u.name]' => $orderItem->user->full_name,
+                '[u.name]' => $orderItem->user->get_full_name(),
                 '[item_title]' => $orderItem->subscribe->title,
                 '[amount]' => handlePrice($orderItem->total_amount),
             ];

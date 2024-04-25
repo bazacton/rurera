@@ -10,7 +10,7 @@
             <div class="flex-grow-1">
                 <h2 class="font-20 font-weight-bold text-secondary">{{ $topic->title }}</h2>
 
-                <span class="d-block font-14 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $topic->creator->full_name }}</span> {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at, 'j M Y | H:i') }}</span>
+                <span class="d-block font-14 font-weight-500 text-gray mt-5">{{ trans('public.by') }} <span class="font-weight-bold">{{ $topic->creator->get_full_name() }}</span> {{ trans('public.in') }} {{ dateTimeFormat($topic->created_at, 'j M Y | H:i') }}</span>
 
                 <div class="mt-15 ">
                     <nav aria-label="breadcrumb">

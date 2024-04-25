@@ -69,7 +69,7 @@ class RegisterController extends Controller
             $checkConfirmed = $verificationController->checkConfirmed($userCase, $username, $data[$username]);
 
             if ($checkConfirmed['status'] == 'verified') {
-                if ($userCase->full_name) {
+                if ($userCase->get_full_name()) {
                     return apiResponse2(0, 'already_registered', trans('api.auth.already_registered'));
                 } else {
                     $userCase->update(['password' => Hash::make($data['password'])]);

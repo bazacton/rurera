@@ -354,7 +354,7 @@ class WebinarController extends Controller
 
 
         $notifyOptions = [
-            '[u.name]' => $user->full_name,
+            '[u.name]' => $user->get_full_name(),
             '[item_title]' => $webinar->title,
             '[content_type]' => trans('admin/main.course'),
         ];
@@ -742,7 +742,7 @@ class WebinarController extends Controller
             sendNotification('course_created', ['[c.title]' => $webinar->title], $user->id);
 
             $notifyOptions = [
-                '[u.name]' => $user->full_name,
+                '[u.name]' => $user->get_full_name(),
                 '[item_title]' => $webinar->title,
                 '[content_type]' => trans('admin/main.course'),
             ];
@@ -890,7 +890,7 @@ class WebinarController extends Controller
                             $sale->buyer = $receipt;
                         } else { /* Gift recipient who has not registered yet */
                             $newUser = new User();
-                            $newUser->full_name = $gift->name;
+                            $newUser->get_full_name() = $gift->name;
                             $newUser->email = $gift->email;
 
                             $sale->buyer = $newUser;
@@ -936,7 +936,7 @@ class WebinarController extends Controller
                 ->get();
 
             foreach ($webinars as $webinar) {
-                $webinar->title .= ' - ' . $webinar->teacher->full_name;
+                $webinar->title .= ' - ' . $webinar->teacher->get_full_name();
             }
             return response()->json($webinars, 200);
         }
@@ -1003,7 +1003,7 @@ class WebinarController extends Controller
             if (!empty($sale->gift_id)) {
                 $gift = $sale->gift;
 
-                $sale->gift_recipient = !empty($gift->receipt) ? $gift->receipt->full_name : $gift->name;
+                $sale->gift_recipient = !empty($gift->receipt) ? $gift->receipt->get_full_name() : $gift->name;
             }
 
             $webinar = Webinar::where('status', 'active')
@@ -1133,8 +1133,8 @@ class WebinarController extends Controller
                 $sale->webinar = !empty($gift->webinar_id) ? $gift->webinar : null;
                 $sale->bundle = !empty($gift->bundle_id) ? $gift->bundle : null;
 
-                $sale->gift_recipient = !empty($gift->receipt) ? $gift->receipt->full_name : $gift->name;
-                $sale->gift_sender = $sale->buyer->full_name;
+                $sale->gift_recipient = !empty($gift->receipt) ? $gift->receipt->get_full_name() : $gift->name;
+                $sale->gift_sender = $sale->buyer->get_full_name();
                 $sale->gift_date = $gift->date;;
 
                 $giftPurchasedCount += 1;

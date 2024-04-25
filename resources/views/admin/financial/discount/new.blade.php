@@ -114,7 +114,7 @@
 
                                         @if(!empty($userDiscounts) && $userDiscounts->count() > 0)
                                             @foreach($userDiscounts as $userDiscount)
-                                                <option value="{{ $userDiscount->user_id }}" selected>{{ $userDiscount->user->full_name }}</option>
+                                                <option value="{{ $userDiscount->user_id }}" selected>{{ $userDiscount->user->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>

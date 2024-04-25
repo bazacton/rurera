@@ -175,7 +175,7 @@
                                                     <label class="input-label d-block">{{ trans('admin/main.organization') }}</label>
 
                                                     <select name="organ_id" data-search-option="just_organization_role" class="form-control search-user-select2" data-placeholder="{{ trans('search_organization') }}">
-                                                        <option value="{{ $webinar->creator->id }}" selected>{{ $webinar->creator->full_name }}</option>
+                                                        <option value="{{ $webinar->creator->id }}" selected>{{ $webinar->creator->get_full_name() }}</option>
                                                     </select>
                                                 </div>
                                             @endif
@@ -188,7 +188,7 @@
                                                         data-placeholder="{{ trans('public.select_a_teacher') }}"
                                                 >
                                                     @if(!empty($webinar))
-                                                        <option value="{{ $webinar->teacher->id }}" selected>{{ $webinar->teacher->full_name }}</option>
+                                                        <option value="{{ $webinar->teacher->id }}" selected>{{ $webinar->teacher->get_full_name() }}</option>
                                                     @else
                                                         <option selected disabled>{{ trans('public.select_a_teacher') }}</option>
                                                     @endif
@@ -603,7 +603,7 @@
                                                     @if(!empty($webinarPartnerTeacher))
                                                         @foreach($webinarPartnerTeacher as $partner)
                                                             @if(!empty($partner) and $partner->teacher)
-                                                                <option value="{{ $partner->teacher->id }}" selected>{{ $partner->teacher->full_name }}</option>
+                                                                <option value="{{ $partner->teacher->id }}" selected>{{ $partner->teacher->get_full_name() }}</option>
                                                             @endif
                                                         @endforeach
                                                     @else
@@ -757,7 +757,7 @@
                                                                 @if(!empty($prerequisite->prerequisiteWebinar->title))
                                                                     <tr>
                                                                         <th>{{ $prerequisite->prerequisiteWebinar->title }}</th>
-                                                                        <td class="text-left">{{ $prerequisite->prerequisiteWebinar->teacher->full_name }}</td>
+                                                                        <td class="text-left">{{ $prerequisite->prerequisiteWebinar->teacher->get_full_name() }}</td>
                                                                         <td>{{  handlePrice($prerequisite->prerequisiteWebinar->price) }}</td>
                                                                         <td>{{ dateTimeFormat($prerequisite->prerequisiteWebinar->created_at,'j F Y | H:i') }}</td>
                                                                         <td>{{ $prerequisite->required ? trans('public.yes') : trans('public.no') }}</td>

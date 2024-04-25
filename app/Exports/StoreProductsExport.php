@@ -72,7 +72,7 @@ class StoreProductsExport implements FromCollection, WithHeadings, WithMapping
         return [
             $product->id,
             !empty($product->category) ? $product->category->title : '',
-            !empty($product->creator) ? $product->creator->full_name : '',
+            !empty($product->creator) ? $product->creator->get_full_name() : '',
             trans('update.' . $product->type),
             ($getAvailability == 99999) ? trans('update.unlimited') : $getAvailability,
             !empty($product->price) ? handlePrice($product->price) : '-',

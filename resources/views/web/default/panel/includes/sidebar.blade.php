@@ -198,13 +198,21 @@
                     </a>
                     <a href="/{{panelRoute()}}/students" class="font-15">Students</a>
                 </li>
+                <li class="sidenav-item {{ (request()->is('panel/financial/summary') or request()->is('panel/financial/summary/*')) ? 'sidenav-item-active' : '' }}">
+                    <a class="d-flex align-items-center" href="/{{panelRoute()}}/financial/summary">
+                        <span class="sidenav-setting-icon sidenav-item-icon mr-20">
+                            <img src="/assets/default/img/sidebar/members.png">
+                        </span>
+                    </a>
+                    <a href="/{{panelRoute()}}/financial/summary" class="font-15">Transactions</a>
+                </li>
 
             @endif
 
             <li class="sidenav-item {{ (request()->is('panel/setting') or request()->is('panel/setting/*')) ? 'sidenav-item-active' : '' }}">
                 <a class="d-flex align-items-center" href="/{{panelRoute()}}/setting">
                     <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                        <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" class="img-circle">
+                        <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->get_full_name() }}" class="img-circle">
                     </span>
                 </a>
                 <a href="/{{panelRoute()}}/setting" class="font-15">Profile</a>

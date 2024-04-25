@@ -204,10 +204,10 @@
                             <td class="text-left">
                                 <div class="d-flex align-items-center">
                                     <figure class="avatar mr-2">
-                                        <img src="{{ $student->getAvatar() }}" alt="{{ $student->full_name }}">
+                                        <img src="{{ $student->getAvatar() }}" alt="{{ $student->get_full_name() }}">
                                     </figure>
                                     <div class="media-body ml-1">
-                                        <div class="mt-0 mb-1 font-weight-bold">{{ $student->full_name }}</div>
+                                        <div class="mt-0 mb-1 font-weight-bold">{{ $student->get_full_name() }}</div>
 
                                         @if($student->mobile)
                                             <div class="text-primary text-small font-600-bold">{{ $student->mobile }}</div>

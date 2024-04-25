@@ -39,7 +39,7 @@
                                                 <a href="{{ $topic->getPostsUrl() }}" target="_blank" class="">
                                                     <div class=" ml-5">
                                                         <span class="d-block font-16 font-weight-500 text-dark-blue">{{ $topic->title }}</span>
-                                                        <span class="font-12 text-gray mt-5">{{ trans('public.by') }} {{ $topic->creator->full_name }}</span>
+                                                        <span class="font-12 text-gray mt-5">{{ trans('public.by') }} {{ $topic->creator->get_full_name() }}</span>
                                                     </div>
                                                 </a>
                                             </div>

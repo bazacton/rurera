@@ -60,7 +60,7 @@ class Channel implements IChannel
                 'callBackUrl' => $this->makeCallbackUrl($order, 'back'),
                 'clientEmail' => $user->email,
                 'clientMobile' => $user->mobile,
-                'clientName' => $user->full_name,
+                'clientName' => $user->get_full_name(),
                 'note' => 'This invoice is for client Cart.',
                 'orderNumber' => $order->id,
                 'products' => $products,

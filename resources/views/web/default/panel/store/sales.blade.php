@@ -96,7 +96,7 @@
                                     <option value="all">{{ trans('public.all') }}</option>
 
                                     @foreach($customers as $customer)
-                                        <option value="{{ $customer->id }}" @if(request()->get('customer_id',null) == $customer->id) selected @endif>{{ $customer->full_name }}</option>
+                                        <option value="{{ $customer->id }}" @if(request()->get('customer_id',null) == $customer->id) selected @endif>{{ $customer->get_full_name() }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -177,7 +177,7 @@
                                                     <img src="{{ !empty($order->buyer) ? $order->buyer->getAvatar() : '' }}" class="img-cover" alt="">
                                                 </div>
                                                 <div class=" ml-5">
-                                                    <span class="d-block">{{ !empty($order->buyer) ? $order->buyer->full_name : '' }}</span>
+                                                    <span class="d-block">{{ !empty($order->buyer) ? $order->buyer->get_full_name() : '' }}</span>
                                                     <span class="mt-5 font-12 text-gray d-block">{{ !empty($order->buyer) ? $order->buyer->email : '' }}</span>
                                                 </div>
                                             </div>

@@ -7,9 +7,9 @@
         <div class="col-12 col-md-3">
             <div class="position-relative bg-info-light d-flex flex-column align-items-center justify-content-center rounded-lg w-100 h-100 p-20">
                 <div class="user-avatar rounded-circle {{ (!empty($answer) and $cardUser->isTeacher()) ? 'is-instructor' : '' }}">
-                    <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->full_name }}">
+                    <img src="{{ $cardUser->getAvatar(72) }}" class="img-cover rounded-circle" alt="{{ $cardUser->get_full_name() }}">
                 </div>
-                <h4 class="font-14 text-secondary mt-15 font-weight-bold">{{ $cardUser->full_name }}</h4>
+                <h4 class="font-14 text-secondary mt-15 font-weight-bold">{{ $cardUser->get_full_name() }}</h4>
 
                 <span class="px-10 py-5 mt-5 rounded-lg border bg-info-light text-center font-12 text-gray">
                     @if($cardUser->isUser())

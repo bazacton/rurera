@@ -44,7 +44,7 @@ class CommentsController extends Controller
             $webinar = Webinar::FindOrFail($item_id);
             $notifyOptions = [
                 '[c.title]' => $webinar->title,
-                '[u.name]' => $user->full_name
+                '[u.name]' => $user->get_full_name()
             ];
             sendNotification('new_comment', $notifyOptions, 1);
         }

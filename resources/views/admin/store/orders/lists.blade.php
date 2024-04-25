@@ -143,7 +143,7 @@
 
                                         @if(!empty($sellers) and $sellers->count() > 0)
                                             @foreach($sellers as $seller)
-                                                <option value="{{ $seller->id }}" selected>{{ $seller->full_name }}</option>
+                                                <option value="{{ $seller->id }}" selected>{{ $seller->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -159,7 +159,7 @@
 
                                         @if(!empty($customers) and $customers->count() > 0)
                                             @foreach($customers as $customer)
-                                                <option value="{{ $customer->id }}" selected>{{ $customer->full_name }}</option>
+                                                <option value="{{ $customer->id }}" selected>{{ $customer->get_full_name() }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -211,17 +211,17 @@
 
                                             <td class="text-left">
                                                 @if(!empty($order->buyer))
-                                                    {{ $order->buyer->full_name  }}
+                                                    {{ $order->buyer->get_full_name()  }}
                                                     <div class="text-primary text-small font-600-bold">ID : {{  $order->buyer->id }}</div>
                                                 @elseif(!empty($order->gift) and !empty($order->gift))
-                                                    {{ $order->gift->user->full_name }}
+                                                    {{ $order->gift->user->get_full_name() }}
                                                     <div class="text-primary text-small font-600-bold">ID : {{  $order->gift->user_id }}</div>
                                                     <span class="d-block mt-1 text-muted font-12">{!! trans('update.a_gift_for_name_on_date',['name' => $order->gift->name, 'date' => (!empty($order->gift->date) ? dateTimeFormat($order->gift->date, 'j M Y H:i') : trans('update.instantly'))]) !!}</span>
                                                 @endif
                                             </td>
 
                                             <td class="text-left">
-                                                {{ !empty($order->seller) ? $order->seller->full_name : '' }}
+                                                {{ !empty($order->seller) ? $order->seller->get_full_name() : '' }}
                                                 <div class="text-primary text-small font-600-bold">ID : {{  !empty($order->seller) ? $order->seller->id : '' }}</div>
                                             </td>
 

@@ -20,7 +20,7 @@
                         <div class="plan-switch-option">
                             <span class="switch-label font-18">Pay Monthly</span>
                             <div class="plan-switch">
-                                <div class="custom-control custom-switch"><input type="checkbox" name="disabled" class="custom-control-input" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
+                                <div class="custom-control custom-switch"><input type="checkbox" name="disabled" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
                             </div>
                             <span class="switch-label">Pay Yearly</span>
                         </div>
@@ -40,7 +40,7 @@
                                             <span>{{ $subscribe->description }}</span>
                                         </div>
                                         <div class="d-flex align-items-start text-dark-charcoal mt-10 subscribe-price">
-                                            <span itemprop="price" class="font-36 line-height-1">{{ addCurrencyToPrice($subscribe->price) }}</span><span class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
+                                            <span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
                                         </div>
                                         <span class="plan-label d-block font-weight-500 pt-20">For Students</span>
                                         <ul class="mt-20 plan-feature">
@@ -572,7 +572,38 @@
 @push('scripts_bottom')
 
 
-<script>
+<script type="text/javascript">
+
+    $(document).on('change', '.subscribed_for-field', function (e) {
+        var package_month = 1;
+        var package_discount = 0;
+        if($(this).is(':checked')) {
+            package_month = 12;
+            package_discount = 25;
+        }
+        console.log(package_month);
+        $(".packages-prices").each(function(){
+           var package_price = $(this).attr('data-package_price');
+            var package_price_org = package_price;
+           var discount_price = parseInt(package_price)*package_discount / 100;
+           var package_price = parseInt(package_price)-discount_price;
+           //var package_price = parseInt(package_price)*package_month;
+           package_price_label = '$'+package_price;
+           if( package_month == 12) {
+               var yearly_price = package_price * 12;
+               $(this).closest('.subscribe-price').find('.yearly-price').html('$' + yearly_price + ' billed yearly');
+           }else{
+               var without_discount = package_price_org*12;
+               var discount_price = parseInt(package_price)*25 / 100;
+               var yearly_price = parseInt(package_price_org)-discount_price;
+               yearly_price = without_discount-(yearly_price*12);
+               $(this).closest('.subscribe-price').find('.yearly-price').html('Save $'+yearly_price+' with a yearly plan');
+           }
+
+
+           $(this).html(package_price_label+'/mo');
+        });
+    });
 </script>
 @endpush
 

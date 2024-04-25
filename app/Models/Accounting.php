@@ -507,7 +507,7 @@ class Accounting extends Model
         RewardAccounting::makeRewardAccounting($order->user_id, $chargeWalletReward, Reward::CHARGE_WALLET);
 
         $notifyOptions = [
-            '[u.name]' => $order->user->full_name,
+            '[u.name]' => $order->user->get_full_name(),
             '[amount]' => handlePrice($order->total_amount),
         ];
         sendNotification('user_wallet_charge', $notifyOptions, 1);
@@ -526,7 +526,7 @@ class Accounting extends Model
         self::createAccountingSystemForSubscribe($orderItem);
 
         $notifyOptions = [
-            '[u.name]' => $orderItem->user->full_name,
+            '[u.name]' => $orderItem->user->get_full_name(),
             '[s.p.name]' => $orderItem->subscribe->title,
         ];
 
@@ -581,7 +581,7 @@ class Accounting extends Model
         $registrationPackageExpire = time() + ($registrationPackage->days * 24 * 60 * 60);
 
         $notifyOptions = [
-            '[u.name]' => $orderItem->user->full_name,
+            '[u.name]' => $orderItem->user->get_full_name(),
             '[item_title]' => $registrationPackage->title,
             '[amount]' => handlePrice($orderItem->total_amount),
             '[time.date]' => dateTimeFormat($registrationPackageExpire, 'j M Y')

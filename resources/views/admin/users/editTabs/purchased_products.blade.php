@@ -64,9 +64,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualAddedProduct->productOrder->product))
-                                            <p>{{ $manualAddedProduct->productOrder->product->creator->full_name  }}</p>
+                                            <p>{{ $manualAddedProduct->productOrder->product->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ !empty($manualAddedProduct->seller) ? $manualAddedProduct->seller->full_name : trans('update.deleted_seller')  }}</p>
+                                            <p>{{ !empty($manualAddedProduct->seller) ? $manualAddedProduct->seller->get_full_name() : trans('update.deleted_seller')  }}</p>
                                         @endif
                                     </td>
 
@@ -128,9 +128,9 @@
 
                                     <td width="25%">
                                         @if(!empty($manualDisabledProduct->productOrder->product))
-                                            <p>{{ $manualDisabledProduct->productOrder->product->creator->full_name  }}</p>
+                                            <p>{{ $manualDisabledProduct->productOrder->product->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ $manualDisabledProduct->seller->full_name  }}</p>
+                                            <p>{{ $manualDisabledProduct->seller->get_full_name()  }}</p>
                                         @endif
                                     </td>
 
@@ -189,9 +189,9 @@
 
                                     <td width="25%">
                                         @if(!empty($purchasedProduct->productOrder->product))
-                                            <p>{{ $purchasedProduct->productOrder->product->creator->full_name  }}</p>
+                                            <p>{{ $purchasedProduct->productOrder->product->creator->get_full_name()  }}</p>
                                         @else
-                                            <p>{{ !empty($purchasedProduct->seller) ? $purchasedProduct->seller->full_name : trans('update.deleted_seller')  }}</p>
+                                            <p>{{ !empty($purchasedProduct->seller) ? $purchasedProduct->seller->get_full_name() : trans('update.deleted_seller')  }}</p>
                                         @endif
                                     </td>
 

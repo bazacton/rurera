@@ -47,6 +47,9 @@
 @if(auth()->check() && auth()->user()->isParent())
     @php $bodyClass = 'parent-panel'; @endphp
 @endif
+@if(auth()->check() && auth()->user()->isTutor())
+    @php $bodyClass = 'tutor-panel'; @endphp
+@endif
 <body class="menu-closed @if($isRtl) rtl @endif {{$bodyClass}}">
 
 @php
@@ -82,10 +85,10 @@
                                     <div class="user-info">
                                         <a href="#">
 
-                                            <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->full_name }}" width="100%" height="auto" itemprop="image"
+                                            <img src="{{ $authUser->getAvatar() }}" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
                                                                                                         alt="User Avatar" loading="eager" title="User Avatar">
                                             <span>
-                                                <strong>{{ $authUser->full_name }}</strong>
+                                                <strong>{{ $authUser->get_full_name() }}</strong>
                                                 <span>View Your Profile</span>
                                             </span>
                                         </a>
@@ -148,61 +151,59 @@
                                 @endif
                             </div>
 
-                            @if(auth()->user()->isParent())
-                            @if(request()->is('panel') || request()->is('custom_html') || request()->is('panel/marketing/affiliates'))
-                                <div class="col-12 col-lg-12 mb-30">
-                                    <div class="referrals panel-border panel-shadow rounded-sm">
-                                        <div class="referral-card">
-                                            <h3 class="font-19 font-weight-bold">Link your students and <br /> start earning!</h3>
-                                            <p>
-                                                To link your clients, enter their email below. <br />
-                                                If they don't yet use Atom, they'll get 10% <br />
-                                                off their first month, and <strong>you will earn 15% <br /> of their subscription payment every month. </strong>
-                                            </p>
-                                            <div class="referral-form">
-                                                <form>
-                                                    <label>Parent's email</label>
-                                                    <div class="form-feild">
-                                                        <input type="text" placeholder="parent@mail.com">
-                                                        <button type="submit">Invite</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="referral-invites">
-                                                <div class="heading">
-                                                    <h3 class="font-19 font-weight-bold">Track your invites</h3>
-                                                    <a href="#">See all <span>&#8594;</span></a>
+                            @if(auth()->user()->isParent() || auth()->user()->isTutor())
+                            <div class="col-12 col-lg-12 mb-30">
+                                <div class="referrals panel-border panel-shadow rounded-sm">
+                                    <div class="referral-card">
+                                        <h3 class="font-19 font-weight-bold">Link your students and <br /> start earning!</h3>
+                                        <p>
+                                            To link your clients, enter their email below. <br />
+                                            If they don't yet use Atom, they'll get 10% <br />
+                                            off their first month, and <strong>you will earn 15% <br /> of their subscription payment every month. </strong>
+                                        </p>
+                                        <div class="referral-form">
+                                            <form>
+                                                <label>Parent's email</label>
+                                                <div class="form-feild">
+                                                    <input type="text" placeholder="parent@mail.com">
+                                                    <button type="submit">Invite</button>
                                                 </div>
-                                                <ul>
-                                                    <li>
-                                                        <strong>0</strong>
-                                                        <span>Total users earning</span>
-                                                    </li>
-                                                    <li>
-                                                                                <strong>1</strong>
-                                                                                <span>Pending invites</span>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    <div class="referral-payment">
-                                                                        <div class="heading">
-                                                                            <h3 class="font-19 font-weight-bold">Your wallet</h3>
-                                                                            <a href="#">Go to referrals <span>&#8594;</span></a>
-                                                                        </div>
-                                                                        <p>
-                                                                            <span class="icon-box">
-                                                                                <img src="/assets/default/svgs/wallet.svg" alt="">
-                                                                            </span>
-                                                                            <strong>
-                                                                                £0.00
-                                                                                <em>Pending payment</em>
-                                                                            </strong>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endif
+                                            </form>
+                                        </div>
+                                        <div class="referral-invites">
+                                            <div class="heading">
+                                                <h3 class="font-19 font-weight-bold">Track your invites</h3>
+                                                <a href="#">See all <span>&#8594;</span></a>
+                                            </div>
+                                            <ul>
+                                                <li>
+                                                    <strong>0</strong>
+                                                    <span>Total users earning</span>
+                                                </li>
+                                                <li>
+                                                            <strong>1</strong>
+                                                            <span>Pending invites</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="referral-payment">
+                                                    <div class="heading">
+                                                        <h3 class="font-19 font-weight-bold">Your wallet</h3>
+                                                        <a href="#">Go to referrals <span>&#8594;</span></a>
+                                                    </div>
+                                                    <p>
+                                                        <span class="icon-box">
+                                                            <img src="/assets/default/svgs/wallet.svg" alt="">
+                                                        </span>
+                                                        <strong>
+                                                            £0.00
+                                                            <em>Pending payment</em>
+                                                        </strong>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
                         @if(request()->is('custom_html') || request()->is('panel') || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
                         <div class="col-12 col-lg-12 mb-30">
                             <div class="user-pocket">
@@ -261,6 +262,7 @@
                         </div>
                             @endif
                         @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
+                        @if(auth()->user()->isUser())
                         <div class="col-12 col-lg-12 mb-30">
                             <div class="store-stats panel-border bg-white rounded-sm p-20">
                                 <ul>
@@ -314,6 +316,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                            @endif
                             @endif
                             @if(request()->is('shop'))
 

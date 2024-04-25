@@ -72,7 +72,7 @@ class CommentResource extends JsonResource
                     'id' => $reply->id,
                     'comment_user_type' => $reply->comment_user_type,
                     'user' => [
-                        'full_name' => $this->user->full_name,
+                        'full_name' => $this->user->get_full_name(),
                         'avatar' => url($this->user->getAvatar()),
                     ],
                     'create_at' => $reply->created_at,
