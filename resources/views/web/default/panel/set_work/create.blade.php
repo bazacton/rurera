@@ -243,7 +243,7 @@
 
 
                                         <div class="form-section assignment_topic_type_fields vocabulary_fields mb-20">
-                                            <h2 class="section-title font-24">Vocabulary</h2>
+                                            <h2 class="section-title font-24">Select List</h2>
                                         </div>
 
                                         <div class="form-section assignment_topic_type_fields timestables_fields mb-20">
@@ -313,7 +313,7 @@
                                             <h2 class="section-title font-30">General information</h2>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
                                                     <label class="input-label">Practice Title</label>
                                                     <input type="text"
@@ -323,7 +323,7 @@
                                                         placeholder=""/>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
                                                     <label class="input-label">Practice Start Date</label>
                                                     <div class="input-group">
@@ -341,7 +341,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-4">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
                                                     <label class="input-label">Practice Due Date</label>
                                                     <div class="input-group">
@@ -1152,6 +1152,33 @@
         $('body').on('apply.daterangepicker', '.practice-due-date', function (ev, picker) {
             $(".reviewer-date").attr('min', picker.startDate.format('YYYY-MM-DD'));
             resetRureraDatePickers();
+        });
+
+
+        $('body').on('click', '.vocabulary-ul li a', function (e) {
+            rurera_loader($(".simple-table tbody"), 'div');
+            $(".vocabulary-ul li").removeAttr('class');
+            $(this).closest('li').addClass('active');
+            var year_id = $(".year_id_field").val();
+            var quiz_category = $(this).attr('data-category');
+            searchRequest = jQuery.ajax({
+                type: "GET",
+                url: '/spells/search',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (searchRequest != null) {
+                        searchRequest.abort();
+                    }
+                },
+                data: {"quiz_category": quiz_category, "is_assignment": 'yes',  "year_id": year_id},
+                success: function (return_data) {
+                    rurera_remove_loader($(".simple-table tbody"), 'div');
+                    $(".simple-table tbody").html(return_data);
+                }
+            });
+
         });
 
         $('body').on('click', '.tests-list li', function (e) {

@@ -319,4 +319,35 @@ class SpellsController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        $year_id = $request->get('year_id', '');
+        $quiz_category = $request->get('quiz_category', '');
+        $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
+        if ($year_id != '') {
+            $query->where('year_id', $year_id);
+        }
+        if ($quiz_category != '' && $quiz_category != 'all') {
+            $query->where('quiz_category', $quiz_category);
+        }
+
+        $spellsData = $query->paginate(200);
+        $QuestionsAttemptController = new QuestionsAttemptController();
+        $counter = 0;
+        $response_layout = '';
+        if (!empty($spellsData)) {
+            foreach ($spellsData as $rowObj) {
+                $view_file = 'single_item_assignment';
+                $response_layout .= view('web.default.tests.'.$view_file, [
+                    'rowObj'                     => $rowObj,
+                    'QuestionsAttemptController' => $QuestionsAttemptController,
+                    'counter'                    => $counter
+                ])->render();
+            }
+        }
+        echo $response_layout;
+        exit;
+    }
+
+
 }

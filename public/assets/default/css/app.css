@@ -16857,6 +16857,7 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .list-group-item .package-payment-btn img {min-height: auto; min-width: auto; max-width: 22px; max-height: 22px; padding: 4px; vertical-align: middle; margin-right: 5px;}
 .db-members .card .list-group-item .detail-btn {padding-right: 15px;}
 .db-form-tabs .list-group-item h6 span {color: #334155;}
+.db-members table {margin: 0;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -18839,6 +18840,7 @@ Lms Responsive Style Start
     .db-form-tabs .list-group-item h6 a,
     .db-form-tabs .list-group-item h6 span,
     .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
+    .populated-data .questions-select-number label {min-height: 45px; padding: 0 15px;}
 }
 
 @media screen and (max-width: 640px) {
@@ -18947,6 +18949,7 @@ Lms Responsive Style Start
     .benefits-list ul li {width: 100%;}
     .child-register-form [class*="col-"] {width: 100%; flex: 0 0 100%; max-width: 100%;}
     .spell-levels-top .levels-progress.horizontal {margin-bottom: 15px;}
+    .mock-test-assign-btn {padding: 10px;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 

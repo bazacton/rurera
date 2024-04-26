@@ -313,6 +313,19 @@ class CommonWebController extends Controller
 
             $results = $resultsQuery->get();
 
+            if( $quiz_type == 'vocabulary'){
+                $response .= '<div class="col-12">
+                                    <div class="listing-search lms-jobs-form mb-20">
+                                        <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
+                                        <ul class="inline-filters vocabulary-ul">
+                                            <li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists</a></li>
+                                            <li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists</a></li>
+                                            <li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee</a></li>
+                                        </ul>
+                                    </div>
+                                </div>';
+            }
+
 
             if( $is_frontend == 'yes'){
 
