@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\QuestionsAttemptController;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\Category;
 use App\Models\Classes;
@@ -64,19 +65,29 @@ class SetWorkController extends Controller
        $data['pageTitle'] = 'Create';
        $childs = $user->parentChilds->where('status', 'active');
 
-       $subscribedChilds = array();
+       $subscribedChilds = $subscribedChildsYears = array();
        if( $childs->count() > 0){
            //userSubscriptions
            foreach( $childs as $childLinkObj){
                $userSubscriptions = $childLinkObj->user->userSubscriptions;
                if( isset( $userSubscriptions->id)){
                    $subscribedChilds[] = $childLinkObj->user->id;
+                   $subscribedChildsYears[] = $childLinkObj->user->year_id;
                }
            }
        }
        $childs = $user->parentChilds->where('status', 'active')->whereIn('user_id', $subscribedChilds);
 
+
+
+       $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
+       $query->whereIn('year_id', $subscribedChildsYears);
+       $sats = $query->paginate(100);
+       $QuestionsAttemptController = new QuestionsAttemptController();
+
        $data['childs'] = $childs;
+       $data['QuestionsAttemptController'] = $QuestionsAttemptController;
+       $data['sats'] = $sats;
        return view(getTemplate() . '.panel.set_work.create', $data);
     }
 

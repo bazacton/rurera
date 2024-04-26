@@ -16762,7 +16762,7 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .card-footer {border-top: 1px dashed #e9ecef; background-color: #fff; padding: 1.25rem; }
 .db-form-tabs .alert-danger {background-color: #f8d7da; color: #842029; border: 1px dashed #f5c2c7;}
 .db-form-tabs .card-header {background-color: #fff; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: start; border-bottom: 0; border-radius: 0.75rem;}
-.db-form-tabs .list-group-item img {max-width: 38px; max-height: 38px; background-color: #f0f0f0; min-width: 38px; min-height: 38px; border-radius: 50%;}
+.db-form-tabs .list-group-item img {max-width: 38px; max-height: 38px; min-width: 38px; min-height: 38px; object-fit: contain;}
 .db-form-tabs .billing-card .list-group-item img {border-radius: 3px; min-height: auto; max-height: inherit;}
 .db-form-tabs .db-security .list-group-item img {border-radius: 0; min-width: auto; background-color: inherit; min-height: auto; filter: invert(30%) sepia(20%) saturate(253%) hue-rotate(169deg) brightness(94%) contrast(91%);}
 .db-form-tabs .list-group-item .btn-white:hover {background-color: var(--primary);}
@@ -16811,7 +16811,7 @@ Dashboard Form-Tabs Style Start
 .db-members .card .card-body {padding: 0;}
 .db-members .card .list-group-item {background-color: inherit; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 10px 15px; position: inherit;}
 .db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto;}
-.db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 18.6666666667%; max-width: 18.6666666667%;}
+.db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 25%; max-width: 25%;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
 .billing-card .list-group-item {padding: 0;}
 .db-notifications {max-width: 700px;}
@@ -16833,12 +16833,15 @@ Dashboard Form-Tabs Style Start
 .member-card-header .btn img {width: 18px; height: 18px; filter: invert(100%) sepia(0%) saturate(7472%) hue-rotate(114deg) brightness(109%) contrast(97%); margin-right: 6px;}
 .db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
 .db-members .list-group {gap: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; position: relative;}
-.db-members .profile-dropdown > a {background-color: #e2e8f0; border: 0; padding: 8px 30px 8px 15px; border-radius: 3px; color: #64748b;}
+.db-members .profile-dropdown > a,
+.db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 8px 30px 8px 15px; border-radius: 3px; color: #64748b;}
 .db-members .profile-dropdown > a:after {right: 12px; top: 50%; margin-top: -5px; border-width: 4px; border-top-color: #64748b; border-left-color: #64748b;}
 .db-members .profile-dropdown ul {right: -5px; left: auto;}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
 .db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%;}
-.db-members .card .list-group-item .profile-dropdown {width: auto;}
+.db-members .card .list-group-item [class*="col-"].activity-date {width: 50%; }
+.db-members .card .list-group-item .profile-dropdown,
+.db-members .card .list-group-item .action-activity {width: auto;}
 /* .db-members .card .list-group-item:nth-child(odd) {background-color: inherit;} */
 .lms-choose-plan-selected .lms-jobs-form .input-field {margin: 0 0 15px;}
 .member-card-header {border-bottom: 0;padding: 0 0 25px;}
@@ -16852,6 +16855,8 @@ Dashboard Form-Tabs Style Start
 .db-members .card .list-group-item:first-child .listing-title {display: block;}
 .db-form-tabs .list-group-item .package-payment-btn {color: var(--primary);}
 .db-form-tabs .list-group-item .package-payment-btn img {min-height: auto; min-width: auto; max-width: 22px; max-height: 22px; padding: 4px; vertical-align: middle; margin-right: 5px;}
+.db-members .card .list-group-item .detail-btn {padding-right: 15px;}
+.db-form-tabs .list-group-item h6 span {color: #334155;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -18186,7 +18191,7 @@ address .info-list-label {color: #64748b;}
 .lms-choose-membership .panel-header {background-color: #fff; border-bottom: 4px solid #e2e8f0; position: relative; padding: 10px 20px; display: flex; align-items: center;}
 .lms-choose-membership .panel-header .modal-logo {border-right: 1px solid #ddd; padding: 0 15px 0 0; margin-right: 15px;}
 .lms-choose-membership .panel-header img {height: 40px; width: 40px; }
-.wizard-pagination {background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 15px; display: flex; align-items: center; gap: 10px; margin-top: auto; position: relative; max-width: 304px; bottom: 1.5rem; margin-left: auto; margin-right: auto;}
+.wizard-pagination {background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 15px; display: flex; align-items: center; gap: 10px; margin-top: auto; position: fixed; left: 0; right: 0; position: fixed; max-width: 304px; bottom: 1.5rem; margin-left: auto; margin-right: auto;}
 .wizard-pagination .previous-btn,
 .wizard-pagination .next-btn {border: 1px solid #ddd; border-radius: 12px; color: #334155; display: inline-block; padding: 8px 20px; cursor: pointer; width: 100%; text-align: center;}
 .wizard-pagination .next-btn {background-color: var(--primary); border-color: var(--primary); color: #fff;}
@@ -18203,180 +18208,42 @@ address .info-list-label {color: #64748b;}
 /* Wizard-Steps Style End */
 
 /*Edit Profile Style Start*/
-.edit-profile .user-info img {
-    border-radius: 100%;
-    height: 48px;
-    width: 48px;
-    object-fit: fill;
-}
-.edit-profile .user-info {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 0 30px;
-}
-.edit-profile .info-text {
-    display: inline-flex;
-    flex-direction: column;
-    color: #000;
-    font-weight: 500;
-}
-.edit-profile .info-text small {
-    color: #94a3b8;
-}
-.edit-profile-menu .icon-box img {
-    height: 15px;
-    width: 15px;
-    filter: invert(72%) sepia(7%) saturate(861%) hue-rotate(176deg) brightness(89%) contrast(90%);
-}
-.edit-profile-menu li a {
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #94a3b8;
-}
-.edit-profile-menu li a.active {
-    background-color: #8b5cf61a;
-    border-radius: 10px;
-}
-.edit-profile-content-holder {
-    padding-left: 30px;
-}
-.edit-profile-top {
-    margin: 0 0 50px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
-.top-heading h5 {
-    font-size: 14px;
-    color: #000;
-    font-weight: 500;
-    margin: 0;
-}
-.top-heading h5 span {
-    display: block;
-    font-size: 12px;
-    color: #94a3b8;
-    font-weight: 400;
-    line-height: normal;
-    padding-top: 5px;
-}
-.edit-profile-controls button {
-    background-color: inherit;
-    border: 1px solid #ddd;
-    padding: 8px 20px;
-    min-width: 96px;
-    text-align: center;
-    border-radius: 5px;
-}
-.edit-profile-controls .save-btn {
-    background-color: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-}
-.edit-profile-body {
-    max-width: 32rem;
-    margin: 0 auto;
-}
-.edit-profile-image .profile-image {
-    text-align: center;
-}
-.edit-element-title {
-    margin: 0 0 20px;
-}
-.edit-element-title h6 {
-    font-size: 16px;
-    font-weight: 500;
-}
-.edit-element-title h6 span {
-    display: block;
-    font-size: 12px;
-    color: #94a3b8;
-    font-weight: 400;
-    line-height: normal;
-    padding-top: 5px;
-}
-.profile-image img {
-    border-radius: 100%;
-    height: 96px;
-    width: 96px;
-    object-fit: cover;
-}
-.edit-profile-image .profile-image figure {
-    display: inline-flex;
-    position: relative;
-}
-.edit-profile-image .cancel-btn {
-    background-color: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 100%;
-    color: #334155;
-    position: absolute;
-    right: -5px;
-    bottom: 5px;
-    height: 32px;
-    width: 32px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-.edit-profile .form-group .icon-box img {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    margin-top: -9px;
-    height: 18px;
-    width: 18px;
-}
+.edit-profile .user-info img {border-radius: 100%; height: 48px; width: 48px; object-fit: fill; }
+.edit-profile .user-info {display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 30px; }
+.edit-profile .info-text {display: inline-flex; flex-direction: column; color: #000; font-weight: 500;}
+.edit-profile .info-text small {color: #94a3b8;}
+.edit-profile-menu li a .icon-box {line-height: 10px; display: inline-block;}
+.edit-profile-menu .icon-box img {height: 15px; width: 15px; filter: invert(72%) sepia(7%) saturate(861%) hue-rotate(176deg) brightness(89%) contrast(90%);}
+.edit-profile-menu li a {padding: 12px 15px; display: flex; align-items: center; gap: 8px; color: #94a3b8;}
+.edit-profile-menu li a.active {background-color: #8b5cf61a; border-radius: 10px; color: #8b5cf6;}
+.edit-profile-menu li a.active .icon-box img {filter: invert(42%) sepia(28%) saturate(7499%) hue-rotate(238deg) brightness(100%) contrast(94%);}
+.edit-profile-content-holder {padding-left: 30px; }
+.edit-profile-top {margin: 0 0 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.top-heading h5 {font-size: 14px; color: #000; font-weight: 500; margin: 0; }
+.top-heading h5 span {display: block; font-size: 12px; color: #94a3b8; font-weight: 400; line-height: normal; padding-top: 5px;}
+.edit-profile-controls button {background-color: inherit; border: 1px solid #ddd; padding: 8px 20px; min-width: 96px; text-align: center; border-radius: 5px;}
+.edit-profile-controls .save-btn {background-color: var(--primary); color: #fff; border-color: var(--primary);}
+.edit-profile-body {max-width: 32rem; margin: 0 auto;}
+.edit-profile-image .profile-image {text-align: center;}
+.edit-element-title {margin: 0 0 20px;}
+.edit-element-title h6 {font-size: 16px; font-weight: 500;}
+.edit-element-title h6 span {display: block;font-size: 12px;color: #94a3b8;font-weight: 400; line-height: normal;padding-top: 5px;}
+.profile-image img {border-radius: 100%; height: 96px; width: 96px; object-fit: cover;}
+.edit-profile-image .profile-image figure {display: inline-flex; position: relative;}
+.edit-profile-image .cancel-btn {background-color: #fff; border: 1px solid #e2e8f0; border-radius: 100%;color: #334155; position: absolute;right: -5px; bottom: 5px; height: 32px; width: 32px;display: inline-flex;align-items: center; justify-content: center;font-size: 14px;}
+.edit-profile .form-group .icon-box img {position: absolute; top: 50%;left: 10px; margin-top: -9px; height: 18px; width: 18px;filter: invert(73%) sepia(10%) saturate(638%) hue-rotate(175deg) brightness(88%) contrast(82%);}
 .edit-profile .form-group .input-field input[type="text"],
-.edit-profile .select-field select{
-    border: 1px solid #ddd;
-    height: 40px;
-    padding: 0 0 0 35px;
-    border-radius: 5px;
-    width: 100%;
-}
-.edit-profile .form-group [class*="col-"] {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-.edit-profile .form-group .row {
-    margin: 0 -8px;
-}
-.edit-profile .form-group .input-field {
-    margin-bottom: 16px;
-    border: 0;
-    padding: 0;
-    height: auto;
-    border-radius: 0;
-    position: relative;
-}
-.edit-profile .form-group .input-field textarea {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px 10px;
-    height: 98px;
-    width: 100%;
-}
-.edit-profile .select-field select {
-    padding: 0 10px;
-    width: 100%;
-    color: #888;
-}
-.lms-choose-membership .edit-profile .form-group {
-    margin-bottom: 0;
-}
-.edit-profile {
-    margin: 0 0 50px;
-}
-.edit-profile .select-field {
-    margin-bottom: 16px;
-}
+.edit-profile .select-field select{border: 1px solid #ddd; height: 40px; padding: 0 0 0 35px; border-radius: 5px; width: 100%;}
+.edit-profile .form-group [class*="col-"] {padding-left: 8px; padding-right: 8px;}
+.edit-profile .form-group .row {margin: 0 -8px;}
+.edit-profile .form-group .input-field { margin-bottom: 16px; border: 0; padding: 0; height: auto; border-radius: 0; position: relative;}
+.edit-profile .form-group .input-field textarea {border: 1px solid #ddd; border-radius: 5px; padding: 10px 10px; height: 98px; width: 100%;}
+.edit-profile .select-field select {padding: 0 10px; width: 100%; color: #888; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
+.lms-choose-membership .edit-profile .form-group {margin-bottom: 0;}
+.edit-profile {margin: 0 0 50px;}
+.edit-profile .select-field {margin-bottom: 16px; position: relative;}
+.edit-profile .select-field:after {content: "\203A"; position: absolute; right: 0; top: 0; height: 40px; width: 40px; text-align: center; line-height: 40px; font-size: 24px; color: #94a3b8; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); pointer-events: none;}
+.edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 /*Edit Profile Style End*/
 
 /*************************************
@@ -18837,7 +18704,7 @@ Lms Responsive Style Start
     .db-members .list-group-item .row {flex-wrap: wrap;}
     .list-group-item .row [class*="col-"] {padding: 0;}
     .list-group-item .switch-user-btn img {margin: 0;}
-    .db-members .card .list-group-item {padding: 10px 30px 6px;}
+    .db-members .card .list-group-item {padding: 15px 30px 10px;}
     .db-members .list-group-item .switch-user-btn,
     .db-form-tabs .list-group-item .connect-user-btn{margin-top: 5px;}
     .rewards-layout-box.column-3 .row {grid-template-columns: 1fr 1fr;}
@@ -18963,8 +18830,15 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .row .col-auto:first-child .listing-title {display: none;}
     .db-members .card .list-group-item [class*="col-"] {width: 100%; display: flex; align-items: center; justify-content: space-between; flex-direction: row; position: relative;}
     .db-members .card .list-group-item .col-2 {flex: 0 0 auto; max-width: none; width: auto; gap: 10px;}
-    .db-members .card .list-group-item .row .col-auto:first-child {width: auto;}
+    .db-members .card .list-group-item .row .col-auto:first-child {width: auto;  flex: 0 0 auto;}
+    .db-members .card .list-group-item [class*="col-"].ms-2 {flex-direction: column; align-items: flex-start;width: auto;}
     .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 100%; max-width: 100%;}
+    .wizard-steps .radio-buttons {justify-content: flex-start !important;}
+    .db-form-tabs h6,
+    .db-form-tabs .list-group-item h6 span {font-weight: 500 !important;}
+    .db-form-tabs .list-group-item h6 a,
+    .db-form-tabs .list-group-item h6 span,
+    .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
 }
 
 @media screen and (max-width: 640px) {
@@ -19156,7 +19030,6 @@ Lms Responsive Style Start
     .chart-filters .form-group:has(select) .input-label {display: none;}
     .chart-filters .filters-list {margin-bottom: 0; margin-top: 0;}
     .form-control.child-analytics {height: 49px; border-radius: 5px; border: 1px solid #ddd;}
-    .db-form-tabs h6 {font-size: 16px !important;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

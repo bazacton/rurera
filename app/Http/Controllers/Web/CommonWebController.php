@@ -298,6 +298,7 @@ class CommonWebController extends Controller
         $year_id = $request->get('year_id', null);
         $quiz_type = $request->get('quiz_type', null);
         $is_frontend = $request->get('is_frontend', null);
+        $response = '';
 
 
         if ($quiz_type == 'practice') {
@@ -315,7 +316,7 @@ class CommonWebController extends Controller
 
             if( $is_frontend == 'yes'){
 
-                $response = '<div class="sats-listing-card medium">
+                $response .= '<div class="sats-listing-card medium">
                                 <table class="simple-table">
                                     <tbody> <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
                         if (!empty($results)) {
@@ -375,7 +376,9 @@ class CommonWebController extends Controller
             $chapters = $courseObj->chapters;
         }
 
-        $response = '<div class="row">';
+        $response = '<div class="form-section mb-20 text-center">
+                                <h2 class="section-title font-24">Select Topics</h2>
+                            </div><div class="row">';
         if (!empty($chapters)) {
             foreach ($chapters as $chapterObj) {
                 $subChapters = $chapterObj->subChapters;

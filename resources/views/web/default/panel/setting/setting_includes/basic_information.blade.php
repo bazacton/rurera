@@ -254,17 +254,17 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                             </div>
                             <div class="edit-profile-menu">
                                 <ul>
-                                    <li><a href="#" class="active"><span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span> General</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/city-svgrepo-com.svg" alt=""></span>Experience</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/diamond-plan.svg" alt=""></span>Skills &amp; Tools</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/user-setting.svg" alt=""></span>Settings</a></li>
+                                    <li><a href="#" class="active"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span> General</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-home.svg" alt=""></span>Experience</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-diamond.svg" alt=""></span>Skills &amp; Tools</a></li>
+                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-setting.svg" alt=""></span>Settings</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8 col-12">
                         <div class="edit-profile-content-holder">
-                            <div class="edit-profile-content panel-border bg-white rounded-sm px-20 pt-20">
+                            <div class="edit-profile-content panel-border bg-white rounded-sm p-25">
                                 <div class="edit-profile-top">
                                     <div class="top-heading">
                                         <h5>
@@ -304,25 +304,25 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" placeholder="First name" value="Maya">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" placeholder="Job title" value="Rosselini">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/baig-form.svg" alt=""></span>
                                                     <input type="text" placeholder="Job title" value="Product Manager">
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/location-form.svg" alt=""></span>
                                                     <input type="text" placeholder="Location">
                                                 </div>
                                             </div>
@@ -387,38 +387,38 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-facebook.svg" alt=""></span>
                                                     <input type="text" placeholder="Facebook URL">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-twitter.svg" alt=""></span>
+                                                    <input type="text" placeholder="Twitter URL">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-dribbel.svg" alt=""></span>
+                                                    <input type="text" placeholder="Dribbel URL">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-instagram.svg" alt=""></span>
+                                                    <input type="text" placeholder="Instagram URL">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-github.svg" alt=""></span>
+                                                    <input type="text" placeholder="Github URL">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/user-account.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-gitlab.svg" alt=""></span>
+                                                    <input type="text" placeholder="Gitlab URL">
                                                 </div>
                                             </div>
                                         </div>

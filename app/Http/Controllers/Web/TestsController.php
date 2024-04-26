@@ -112,6 +112,7 @@ class TestsController extends Controller
         abort(404);
     }
 
+
     public function search_tests(Request $request)
     {
         $user = getUser();
@@ -119,6 +120,8 @@ class TestsController extends Controller
         $counter = 0;
         $search_keyword = $request->get('search_keyword', '');
         $quiz_type = $request->get('quiz_type', '');
+        $is_assignment = $request->get('is_assignment', '');
+        $year_id = $request->get('year_id', '');
 
         $switch_user = $user->selected_user;
 
@@ -134,12 +137,16 @@ class TestsController extends Controller
             $query->whereTranslationLike('title', '%' . $search_keyword . '%')->orWhere('quiz_type', 'like', "%$search_keyword%");
         }
 
-        if( $switch_user > 0){
-            $switchUserObj = User::find($switch_user);
-            $query->where('year_id', $switchUserObj->year_id);
-        }
-        if (auth()->check() && auth()->user()->isUser()) {
-            $query->where('year_id', $user->year_id);
+        if( $is_assignment == 'yes'){
+            $query->where('year_id', $year_id);
+        }else {
+            if ($switch_user > 0) {
+                $switchUserObj = User::find($switch_user);
+                $query->where('year_id', $switchUserObj->year_id);
+            }
+            if (auth()->check() && auth()->user()->isUser()) {
+                $query->where('year_id', $user->year_id);
+            }
         }
 
 
@@ -148,7 +155,8 @@ class TestsController extends Controller
         $response_layout = '';
         if (!empty($tests)) {
             foreach ($tests as $rowObj) {
-                $response_layout .= view('web.default.tests.single_item', [
+                $view_file = ( $is_assignment == 'yes')? 'single_item_assignment' : 'single_item';
+                $response_layout .= view('web.default.tests.'.$view_file, [
                     'rowObj'                     => $rowObj,
                     'QuestionsAttemptController' => $QuestionsAttemptController,
                     'counter'                    => $counter

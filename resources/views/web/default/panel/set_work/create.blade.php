@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="container subscription-content">
+                <div class="container set-work-container">
                     <div class="row">
                         <div class="col-12">
                             <form action="/panel/set-work/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}" method="Post" class="rurera-form-validation">
@@ -117,6 +117,47 @@
                                 </div>
                                 <div class="wizard-steps" data-step_id="2">
 
+                                    <div class="row align-items-center assignment_type_check_fields mock_test_fields">
+                                        <div class="col-12 col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <div class="input-field">
+                                                    <input type="text" class="search-tests">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12">
+                                            <div class="tests-list-holder mb-25">
+                                                <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
+                                                <ul class="tests-list mb-30">
+                                                    <input type="radio" class="rurera-hide assignment_topic_type_check assignment_topic_type_mock" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]" value="">
+                                                    <li data-type="all" class="active">All Tests</li>
+                                                    <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
+                                                    <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
+                                                    <li data-type="iseb"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
+                                                    <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
+                                                    <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
+                                        </div>
+
+                                        <div class="sats-listing-card medium">
+                                            <table class="simple-table">
+                                                <tbody>
+                                                <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">
+                                                @if( !empty( $sats))
+                                                @php $counter = 0; @endphp
+                                                    @foreach( $sats as $rowObj)
+                                                        @include('web.default.tests.single_item_assignment',['rowObj' => $rowObj])
+                                                    @endforeach
+                                                @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="years-group populated-data">
                                         <div class="form-section mb-20 text-center">
                                             <h2 class="section-title font-24">Select Practice Type</h2>
@@ -137,63 +178,7 @@
                                                         </div>
                                                     </span>
                                                     </label>
-                                                    <label class="card-radio assignment_type_check_fields mock_test_fields " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="sats">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/sats.png">
-                                                                <h3>SATs</h3>
-                                                        </div>
-                                                    </span>
-                                                    </label>
-                                                    <label class="card-radio assignment_type_check_fields mock_test_fields " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="11plus">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/11plus.png">
-                                                                <h3>11 Plus</h3>
-                                                        </div>
-
-                                                    </span>
-                                                    </label>
-
-                                                    <label class="card-radio assignment_type_check_fields mock_test_fields " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="independent_exams">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/independent-exams.png">
-                                                                <h3>Independent Exams</h3>
-                                                        </div>
-
-                                                        </span>
-                                                    </label>
-
-                                                    <label class="card-radio assignment_type_check_fields mock_test_fields " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="iseb">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/iseb.png">
-                                                                <h3>ISEB</h3>
-                                                        </div>
-
-                                                        </span>
-                                                    </label>
-
-                                                    <label class="card-radio assignment_type_check_fields mock_test_fields " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="cat4">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/cat4.png">
-                                                                <h3>CAT 4</h3>
-                                                        </div>
-                                                        </span>
-                                                    </label>
-
+                                                   
                                                     <label class="card-radio assignment_type_check_fields practice_test_fields " data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
                                                             class="assignment_topic_type_check" value="vocabulary">
@@ -805,6 +790,9 @@
             $(".mock-test-assign-btn").removeClass('active');
             $(this).addClass('active');
         	var topic_id = $(this).attr('data-id');
+            var topic_type = $(this).attr('data-topic_type');
+            $(".assignment_topic_type_mock").val(topic_type);
+            $(".assignment_topic_type_mock").prop('checked', true);
         	var total_questions = $(this).attr('data-total_questions');
         	$(".topic_select_radio").val(topic_id);
 
@@ -1084,6 +1072,7 @@
             var action_type = 'child_register';
             var action_id = 0;
             selectedPackage = action_id;
+            $(".set-work-container").addClass('subscription-content');
             //$(".subscription-content").html('');
             //$("#subscriptionModal").modal('show');
             rurera_loader($('.subscription-content'), 'div');
@@ -1113,6 +1102,32 @@
             $(".year_id_field").val(year_id);
 
         });
+
+        var searchRequest = null;
+        $('body').on('click', '.mock_test_fields-bkkkk', function (e) {
+            var quiz_type = $(this).attr('data-type');
+
+            searchRequest = jQuery.ajax({
+                type: "GET",
+                url: '/tests/search_tests',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (searchRequest != null) {
+                        searchRequest.abort();
+                    }
+                },
+                data: {"quiz_type": quiz_type},
+                success: function (return_data) {
+                    console.log(return_data);
+                }
+            });
+
+        });
+
+
+
         $(".assignment-user-class").change();
         $('body').on('change', '.topic-section-parent', function (e) {
             let $this = $(this);
@@ -1137,6 +1152,61 @@
         $('body').on('apply.daterangepicker', '.practice-due-date', function (ev, picker) {
             $(".reviewer-date").attr('min', picker.startDate.format('YYYY-MM-DD'));
             resetRureraDatePickers();
+        });
+
+        $('body').on('click', '.tests-list li', function (e) {
+            rurera_loader($(".simple-table tbody"), 'div');
+            $(".tests-list li").removeAttr('class');
+            $(this).addClass('active');
+            var year_id = $(".year_id_field").val();
+            var quiz_type = $(this).attr('data-type');
+            $(".assignment_topic_type_mock").val(quiz_type);
+            $(".assignment_topic_type_mock").prop('checked', true);
+            searchRequest = jQuery.ajax({
+                type: "GET",
+                url: '/tests/search_tests',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (searchRequest != null) {
+                        searchRequest.abort();
+                    }
+                },
+                data: {"quiz_type": quiz_type, "is_assignment": 'yes',  "year_id": year_id},
+                success: function (return_data) {
+                    rurera_remove_loader($(".simple-table tbody"), 'div');
+                    $(".simple-table tbody").html(return_data);
+                }
+            });
+
+        });
+
+        var searchRequest = null;
+        $('body').on('keyup', '.search-tests', function (e) {
+            rurera_loader($(".simple-table tbody"), 'div');
+            var year_id = $(".year_id_field").val();
+            var search_keyword = $(this).val();
+            searchRequest = jQuery.ajax({
+                type: "GET",
+                url: '/tests/search_tests',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (searchRequest != null) {
+                        searchRequest.abort();
+                    }
+                },
+                data: {"search_keyword": search_keyword, "is_assignment": 'yes',  "year_id": year_id},
+                success: function (return_data) {
+                    rurera_remove_loader($(".simple-table tbody"), 'div');
+                    if (return_data != '') {
+                        $(".simple-table tbody").html(return_data);
+                    }
+                }
+            });
+
         });
 
     });

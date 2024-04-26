@@ -89,7 +89,7 @@
                                         </div>
                                         <div class="col-auto ms-auto last-activity profile-dropdown">
                                             <h6 class="listing-title font-14 font-weight-500">Action</h6>
-                                            <a href="#" class="font-15 font-weight-normal">Settings</a>
+                                            <a href="javascript:;" class="font-15 font-weight-normal">Settings</a>
                                             <ul>
                                                 <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
                                                 <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
