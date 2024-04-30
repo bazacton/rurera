@@ -114,6 +114,7 @@
                                                 </li>
                                                 @endif
                                                 <li><a href="javascript:;" class="package-payment-btn switch-user-btn unlink-modal" data-type="child_payment" data-id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
+                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
                                             </ul>
                                         </div>
                                     </div> <!--[ row end ]-->
@@ -711,6 +712,61 @@
     </div>
 </div>
 
+<div class="modal fade edit-user-modal lms-choose-membership" id="edit-user-modal" tabindex="-1"
+     aria-labelledby="edit-user-modallabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel-header">
+                <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="child-edit-form" method="post" action="javascript:;">
+                      <input type="hidden" name="_token" value="EdmGQfML5PDWPnmz0XgE09aPmUlG4e4XL2ozqb2k">
+                  <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-10">
+                      <h2 class="font-22">Student's details</h2>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
+                      <div class="row">
+
+
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <span class="fomr-label">Student's first name</span>
+                                <div class="input-field">
+                                    <input type="text" class="user-edit-first-name rurera-req-field" placeholder="Name" name="first_name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <span class="fomr-label">Student's last name</span>
+                                <div class="input-field">
+                                    <input type="text" class="user-edit-last-name rurera-req-field" placeholder="Last name" name="last_name">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" class="user-edit-id" name="user_id" value="0">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group mt-30">
+                                <div class="btn-field">
+                                    <button type="submit" class="nav-link">Update student's profile</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                    </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -896,6 +952,16 @@
         $(".connect_user_id").val(user_id);
 
     });
+
+    $(document).on('click', '.edit-user-btn', function (e) {
+        var first_name = $(this).attr('data-first_name');
+        var last_name = $(this).attr('data-last_name');
+        var user_id = $(this).attr('data-user_id');
+        $(".user-edit-first-name").val(first_name);
+        $(".user-edit-last-name").val(last_name);
+        $(".user-edit-id").val(user_id);
+    });
+
 
 
     $(document).on('click', '.subscribe-plans', function (e) {

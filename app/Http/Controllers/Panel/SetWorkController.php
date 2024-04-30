@@ -49,11 +49,11 @@ class SetWorkController extends Controller
                 return redirect('/' . panelRoute() . '/students');
             }
         }
-
-        $query = StudentAssignments::query()->where('status', '!=', 'inactive');
+        //StudentAssignments::RunCron();
+        $query = StudentAssignments::query()->where('status', '=', 'active');
         $query = $query->where('created_by', auth()->user()->id);
         $totalAssignments = deepClone($query)->count();
-        $assignments = $query->paginate(100);
+        $assignments = $query->paginate(2);
         $data['assignments'] = $assignments;
 
         return view(getTemplate() . '.panel.set_work.index', $data);
@@ -76,7 +76,19 @@ class SetWorkController extends Controller
                }
            }
        }
-       $childs = $user->parentChilds->where('status', 'active')->whereIn('user_id', $subscribedChilds);
+       //$childs = $user->parentChilds->where('status', 'active')->whereIn('user_id', $subscribedChilds);
+       //$childs = $user->parentChilds->where('status', 'active');
+        $childs = $user->parentChilds->where('status', 'active')->sortBy(function ($child) {
+            if( isset( $child->user->userSubscriptions->id )){
+                return 0;
+            }else{
+                return 1;
+            }
+            //return $child->user->userSubscriptions->count();
+        });
+
+       //pre($childs);
+
 
 
 
@@ -89,6 +101,27 @@ class SetWorkController extends Controller
        $data['QuestionsAttemptController'] = $QuestionsAttemptController;
        $data['sats'] = $sats;
        return view(getTemplate() . '.panel.set_work.create', $data);
+    }
+
+    public function search(Request $request)
+    {
+        $assignment_status = $request->get('assignment_status');
+
+        $query = StudentAssignments::query()->where('status', '=', $assignment_status);
+        $query = $query->where('created_by', auth()->user()->id);
+        $totalAssignments = deepClone($query)->count();
+        $assignments = $query->paginate(2);
+
+        $response = '';
+        if ($assignments->count() > 0){
+            foreach ($assignments as $assignmentObj) {
+                $response .= view('web.default.panel.set_work.list_item', ['assignmentObj' => $assignmentObj])->render();
+            }
+        }else{
+            $response   .= view('web.default.default.list_no_record')->render();
+        }
+        $response   .= '<div class="rurera-pagination">'.$assignments->links().'</div>';
+        echo $response;exit;
     }
 
     public function store(Request $request)

@@ -11,12 +11,12 @@
 @endpush
 
 @section('content')
-<section class="member-card-header pb-40">
+<section class="member-card-header pb-20">
     <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
         <h1 class="section-title font-22">Analytics</h1>
         <div class="dropdown db-members">
             @if(auth()->check() && (auth()->user()->isParent()))
-            <div class="col-auto ms-auto last-activity profile-dropdown">
+            <div class="ms-auto last-activity profile-dropdown">
                 <a href="#" class="font-15 font-weight-normal">{{$selected_child}}</a>
                 <ul>
                     <li><a href="/{{panelRoute()}}/analytics/?child=all" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> All Students</a></li>

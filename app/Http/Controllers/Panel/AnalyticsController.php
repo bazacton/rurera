@@ -41,11 +41,14 @@ class AnalyticsController extends Controller
             }
         }
 
-        $childs_ids = $childs->pluck('id')->toArray();
+        $childs_ids = $childs->pluck('user_id')->toArray();
 
         $user_id = ( $user_id == 'all')? $childs_ids : $user_id;
 
         $user_id = is_array($user_id )? $user_id : array($user_id);
+
+
+        //pre($user_id);
 
 
         $QuestionsAttemptController = new QuestionsAttemptController();

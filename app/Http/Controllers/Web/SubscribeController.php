@@ -235,6 +235,21 @@ class SubscribeController extends Controller
         exit;
     }
 
+    public function editChild(Request $request)
+    {
+       $first_name = $request->get('first_name', null);
+       $last_name = $request->get('last_name', null);
+       $user_id = $request->get('user_id', null);
+       $studentUser = User::find($user_id);
+       if (auth()->check() && auth()->user()->isParent()) {
+           $studentUser->update([
+               'first_name_parent' => $first_name,
+               'last_name_parent' => $last_name,
+               'full_name_parent' => $first_name.' '.$last_name,
+           ]);
+       }
+       exit;
+    }
     public function registerChild(Request $request)
     {
         $user = auth()->user();

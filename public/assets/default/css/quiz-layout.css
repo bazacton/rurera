@@ -1893,7 +1893,10 @@ span.seperator_line {border:3px solid; border-color:#000; width: 50px; display: 
     padding-right: 0;
 } */
 #question_preview .question-layout {padding-left: 100px;}
-#question_preview .left-content {border: 1px solid #eee; padding: 30px; position: relative;}
+#question_preview .question-fields {
+    overflow: inherit;
+}
+#question_preview .left-content {border: 1px solid #eee; padding: 30px; position: relative; width: 100%;    overflow: inherit;}
 #question_preview .marks {right: 30px; top: 20px; bottom: auto;}
 #question_preview .prev-next-controls {border-top: 1px solid #eee; padding-top: 30px; padding-left: 0;}
 #question_preview .prev-next-controls .review-btn {left: 0;}

@@ -1,4 +1,4 @@
-@extends(getTemplate() .'.panel.layouts.panel_layout')
+@extends(getTemplate() .'.panel.layouts.panel_layout_full')
 
 
 @section('content')
@@ -6,18 +6,18 @@
         <section>
             <h2 class="section-title">{{ trans('financial.financial_documents') }}</h2>
 
-            <div class="panel-section-card py-20 px-25 mt-20">
+            <div class="panel-section-card py-20">
                 <div class="row">
-                    <div class="col-12 ">
-                        <div class="table-responsive">
+                    <div class="col-12">
+                        <div class="table-responsive transactions-table">
                             <table class="table text-center custom-table">
                                 <thead>
                                 <tr>
-                                    <th>{{ trans('public.title') }}</th>
-                                    <th>{{ trans('public.description') }}</th>
-                                    <th class="text-center">{{ trans('panel.amount') }} ({{ $currency }})</th>
-                                    <th class="text-center">{{ trans('public.creator') }}</th>
-                                    <th class="text-center">{{ trans('public.date') }}</th>
+                                    <th class="font-14 font-weight-500">{{ trans('public.title') }}</th>
+                                    <th class="font-14 font-weight-500">{{ trans('public.description') }}</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('panel.amount') }} ({{ $currency }})</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('public.creator') }}</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('public.date') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -66,20 +66,20 @@
                                             </div>
                                         </td>
                                         <td class="text-left align-middle">
-                                            <span class="font-weight-500 text-gray">{{ $accounting->description }}</span>
+                                            <span class="font-weight-500 font-14 text-gray">{{ $accounting->description }}</span>
                                         </td>
                                         <td class="text-center align-middle">
                                             @switch($accounting->type)
                                                 @case(\App\Models\Accounting::$addiction)
-                                                <span class="font-16 font-weight-bold text-primary">+{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-weight-500 font-14 text-primary">+{{ handlePriceFormat($accounting->amount) }}</span>
                                                 @break;
                                                 @case(\App\Models\Accounting::$deduction)
-                                                <span class="font-16 font-weight-bold text-danger">-{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-weight-500 font-14 text-danger">-{{ handlePriceFormat($accounting->amount) }}</span>
                                                 @break;
                                             @endswitch
                                         </td>
-                                        <td class="text-center align-middle">{{ trans('public.'.$accounting->store_type) }}</td>
-                                        <td class="text-center align-middle">
+                                        <td class="text-center align-middle font-weight-500 font-14">{{ trans('public.'.$accounting->store_type) }}</td>
+                                        <td class="text-center align-middle font-weight-500 font-14">
                                             <span>{{ dateTimeFormat($accounting->created_at, 'j M Y') }}</span>
                                         </td>
                                     </tr>

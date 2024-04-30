@@ -43,5 +43,29 @@ class StudentAssignments extends Model
         return $this->hasMany('App\Models\UserAssignedTopics', 'student_assignment_id', 'id');
     }
 
+    static function RunCron(){
+        $StudentAssignments = StudentAssignments::query()->where('status', 'active')->get();
+
+        if( $StudentAssignments->count() > 0){
+            foreach( $StudentAssignments as $StudentAssignmentObj){
+                $status = 'active';
+                $non_completed_count = $StudentAssignmentObj->students->where('status', '!=', 'completed')->count();
+                $status = ($non_completed_count == 0)? 'completed' : $status;
+
+                if( $StudentAssignmentObj->assignment_end_date < time()){
+                    $status = 'expired';
+                }
+
+                if( $status != 'active'){
+                    $StudentAssignmentObj->update([
+                        'status' => $status,
+                        'updated_at' => time(),
+                    ]);
+                }
+            }
+        }
+        pre('test');
+    }
+
 
 }

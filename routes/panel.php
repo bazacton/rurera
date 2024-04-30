@@ -41,6 +41,7 @@ $parentTutorRoutes = function () {
         Route::get('/create', 'SetWorkController@create');
         Route::post('/store', 'SetWorkController@store');
         Route::get('/{id}/progress', 'SetWorkController@progress');
+        Route::get('/search', 'SetWorkController@search');
     });
 
 

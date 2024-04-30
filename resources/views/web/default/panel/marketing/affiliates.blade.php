@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="">
-        <div class="section-title mb-20">
+        <div class="section-title mb-30">
             <h2 itemprop="title" class="font-22 mb-0">Referral program</h2>
         </div>
         <div class="referral-holder panel-border bg-white rounded-sm px-25 pt-25">

@@ -10,7 +10,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 <section>
     <h2 class="section-title">{{ trans('financial.account') }}</h2>
 
-    <div class="row mt-20">
+    <div class="row mt-30">
 
 
         <div class="col-12">

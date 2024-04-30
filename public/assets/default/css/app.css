@@ -12074,7 +12074,7 @@ body {
     font-size: .75rem;
 }
 .font-weight-500 {
-    font-weight: 500;
+    font-weight: 500 !important;
 }
 @media (max-width:767px) {
     .h2,
@@ -13787,6 +13787,37 @@ p {line-height: 1.5;}
 @media (max-width:991px) {
     .table-responsive {overflow-x: auto;}
 }
+.transactions-table tbody {
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #ececec;
+}
+.panel-section-card .transactions-table tbody tr:nth-child(even) {
+    background-color: inherit !important;
+}
+.panel-section-card .transactions-table .custom-table thead th {
+    color: #94a3b8;
+}
+.transactions-table table {
+    border-style: hidden;
+}
+.transactions-table tbody tr td {background-color: #fff;}
+
+.transactions-table tbody tr:first-child td:first-child {
+    border-radius: 10px 0 0 0;
+}
+.transactions-table tbody tr:first-child td:last-child {
+    border-radius: 0 10px 0 0;
+}
+.transactions-table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+.transactions-table tbody tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+.transactions-table tbody tr td:first-child {
+    padding-left: 25px;
+    padding-right: 25px;
+}
 .table td,
 .table th {border-top: none !important; text-align: center; vertical-align: middle;}
 .table-actions.dropdown .dropdown-toggle:after {display: none;}
@@ -14014,13 +14045,7 @@ body .lms-chapter-area .lms-chapter-ul >li ul li a {vertical-align: top; padding
 .sidebar-nav {margin-bottom: 20px;}
 .sidebar-nav ul {margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap;overflow: hidden;}
 /* .sidebar-nav ul li.active a,
-.sidebar-nav ul li:hover a {
-    background-color: #146ebe;
-    color: #fff;
-    border-radius: 6px;
-    padding-left: 12px;
-    margin-left: -12px;
-} */
+.sidebar-nav ul li:hover a { background-color: #146ebe; color: #fff; border-radius: 6px; padding-left: 12px; margin-left: -12px; } */
 .sidebar-nav ul li {line-height: normal; margin: 0;}
 .sidebar-nav ul li a {font-size: 15px; font-weight: 600; color: var(--primary); padding: 0 25px 12px 0; display: block; transition: all 0.3s ease-in-out; position: relative;}
 .sidebar-nav ul li a:hover {color: #333;}
@@ -14373,13 +14398,10 @@ Lms FAQS Style Start
 .cart-banner.pages-sub-header {padding-bottom: 50px; }
 .cart-banner.pages-sub-header.ebook-header {padding: 70px 0 40px 0; background: #f0f1f3;}
 .pages-sub-header .lms-subtitle {text-transform: capitalize;}
-/* .pages-sub-header p {
-    font-size: 19px;
-    padding: 0;
-}
-.pages-sub-header h1 {
-    margin-bottom: 32px;
-} */
+/* 
+.pages-sub-header p {font-size: 19px; padding: 0;}
+.pages-sub-header h1 {margin-bottom: 32px; } 
+*/
 .lms-faqs {max-width: 930px; margin: 0 auto;}
 .pages-sub-header~section .lms-faqs {margin-top: -170px;}
 .accordion-section-title {border-bottom: 1px solid #6c6c6c; padding: 0 0 25px; margin: 0 0 30px;}
@@ -14849,17 +14871,9 @@ body:has(.panel-right-sidebar),
 body:has(.container-nosidebar) {background-color: #fff;}
 body.parent-panel,
 body.parent-panel .panel-content{background-color: #f8f8f8;}
-.parent-panel .card-body {
-    padding: 0;
-}
-.parent-panel .card {
-    background-color: initial;
-    border: 0;
-}
-.wizard-steps .card .card-body {
-    padding: 20px 25px;
-    background-color: #fff;
-}
+.parent-panel .card-body {padding: 0;}
+.parent-panel .card {background-color: initial; border: 0;}
+.wizard-steps .card .card-body {padding: 20px 25px; background-color: #fff;}
 .note-editor .note-editing-area .note-editable,
 body .range-slider_thumb {background-color: #fff;}
 /* Panel Sidebar And Panel Content Style End */
@@ -15236,13 +15250,8 @@ Lms Performace Table Style Start
 .panel-content .lms-performace-table>li.lms-performace-des div {padding: 12px 20px;}
 .lms-performace-table>li.lms-performace-des.active {background-color: #e5e5e5;}
 .panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-head div:first-child,
-.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no {
-    width: 25%;
-}
-.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no span {
-    font-size: 16px;
-    font-weight: 400;
-}
+.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no { width: 25%; }
+.panel-content .school-zone-data.leaderboard-data .leaderboard>li.lms-performace-des .sr-no span { font-size: 16px; font-weight: 400; }
 /*****************************
 Lms Performace Table Style End
 ******************************/
@@ -16310,25 +16319,12 @@ Sats Listing Style Start
 .panel-section-card tbody tr:nth-child(odd),
 .sats-listing-card.medium .simple-table tbody tr:hover {background-color: inherit !important;}
 /* .panel-content .sats-listing-card.medium {height: 338px; overflow-y: auto; padding-bottom: 0;}
-.panel-content .sats-listing-card.medium::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-	border-radius: 0;
-	background-color: #F5F5F5;
-}
+.panel-content .sats-listing-card.medium::-webkit-scrollbar-track {	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2); border-radius: 0; background-color: #F5F5F5; }
 
-.panel-content .sats-listing-card.medium::-webkit-scrollbar
-{
-	width: 8px;
-	background-color: #F5F5F5;
-}
+.panel-content .sats-listing-card.medium::-webkit-scrollbar { width: 8px; background-color: #F5F5F5; }
 
-.panel-content .sats-listing-card.medium::-webkit-scrollbar-thumb
-{
-	border-radius: 0;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
-	background-color: #ccc;
-} */
+.panel-content .sats-listing-card.medium::-webkit-scrollbar-thumb { border-radius: 0; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);	background-color: #ccc; } 
+*/
 
 /*************************************
 Sats Listing Style End
@@ -16809,7 +16805,7 @@ Dashboard Form-Tabs Style Start
 .db-members .card {background-color: inherit; box-shadow: none; border: 0; }
 .db-members .card .card-header {padding: 15px 20px !important; margin: 0; align-items: center; border-radius: 0; border-bottom: 1px solid #e2e8f0;}
 .db-members .card .card-body {padding: 0;}
-.db-members .card .list-group-item {background-color: inherit; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 10px 15px; position: inherit;}
+.db-members .card .list-group-item {background-color: inherit; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 20px 25px; position: inherit;}
 .db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto;}
 .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 25%; max-width: 25%;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
@@ -16823,7 +16819,8 @@ Dashboard Form-Tabs Style Start
 .dashboard .lms-jobs-form {border: 0; }
 .panel-content .dashboard .lms-jobs-form .input-field:before {display: none;}
 .db-members .card .card-header button,
-.member-card-header .btn {background-color: var(--primary); box-shadow: none; border: 0; padding: 10px 20px; color: #fff; font-weight: 400; height: auto; border-radius: 20px;}
+.member-card-header .btn, .member-card-header .db-members .profile-dropdown > a {background-color: var(--primary); box-shadow: none; border: 0; padding: 10px 20px; color: #fff; font-weight: 400; height: auto; border-radius: 20px;}
+.member-card-header .db-members .profile-dropdown a:after {display: none;}
 /* .member-card-header .btn-primary:not(:disabled):not(.disabled):active,
 .member-card-header .btn-primary:not(:disabled):not(.disabled):focus{background-color: inherit; color: var(--primary);} */
 .db-form-tabs .list-group-item h6 a {color: #334155; line-height: 22px; display: block;}
@@ -16834,7 +16831,7 @@ Dashboard Form-Tabs Style Start
 .db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
 .db-members .list-group {gap: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; position: relative;}
 .db-members .profile-dropdown > a,
-.db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 8px 30px 8px 15px; border-radius: 3px; color: #64748b;}
+.db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 10px 30px 10px 15px; border-radius: 3px; color: #64748b;}
 .db-members .profile-dropdown > a:after {right: 12px; top: 50%; margin-top: -5px; border-width: 4px; border-top-color: #64748b; border-left-color: #64748b;}
 .db-members .profile-dropdown ul {right: -5px; left: auto;}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
@@ -16858,6 +16855,7 @@ Dashboard Form-Tabs Style Start
 .db-members .card .list-group-item .detail-btn {padding-right: 15px;}
 .db-form-tabs .list-group-item h6 span {color: #334155;}
 .db-members table {margin: 0;}
+.db-form-tabs .profile-dropdown .icon-box img {padding: 0; margin-right: 0; max-height: none;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -16974,7 +16972,7 @@ Product Tabs Slider Style Start
 .analytics-type li a {border: 1px dashed #ddd; border-radius: 5px; text-align: center; padding: 15px 5px;}
 .chart-filters .analytics-type .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset;}
 .chart-filters .analytics-type {width: 100%; margin: 0 0 15px; flex-wrap: wrap; gap: 10px;}
-.chart-filters .analytics-type li {width: 15.444%;}
+.chart-filters .analytics-type li {width: 15.888%;}
 .analytics-type li a img {margin: 0 auto 10px; display: block; object-fit: contain; max-width: 100%; width: 30px;height: 30px;}
 .chart-filters > ul > li > a.active {background-color: rgba(0,0,0,0.1);color: #2c4a7e;}
 .graph-data-ul li,
@@ -17470,10 +17468,11 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .timestables-retry-stage:hover:before {filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg) brightness(106%) contrast(106%);}
 .rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
-.mock-test-assign-btn.active {border-color: var(--primary); color: var(--primary);}
+.mock-test-assign-btn.active,
+.vocabulary-assign-btn.active {border-color: var(--primary); color: var(--primary);}
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
-.panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
+.panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
 .panel-content .inline-filters a .icon-box {width: 25px; height: 25px;}
@@ -17973,6 +17972,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .profile-dropdown {position: relative; padding-top: 5px; display: inline-block;}
 .profile-dropdown ul {position: absolute; top: 100%; left: 0; background-color: #fff; min-width: 180px; padding: 15px; box-shadow: 0 0 3px rgba(0,0,0,0.1); border-radius: 8px; z-index: 1; opacity: 0; visibility: hidden; margin-top: -10px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .profile-dropdown:hover ul {opacity: 1; visibility: visible; margin: 0;}
+.member-card-header:hover .db-members .profile-dropdown ul {margin-top: 15px;}
 .profile-menu > ul > li .user-menu-text > a {font-weight: 600; font-size: 18px; display: block;}
 .profile-dropdown ul li {margin: 0 0 15px; padding-left: 0; }
 .profile-dropdown ul li:after {display: none;}
@@ -17983,6 +17983,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .profile-dropdown .icon-box {height: 20px; width: 20px; display: inline-block; margin-right: 5px; }
 .profile-dropdown .icon-box img {max-width: 100%; border-radius: 0; border: 0; max-height: none; margin: 0; padding: 0; background-color: inherit; height: 20px; width: 20px; min-width: auto; min-height: auto; filter: invert(26%) sepia(29%) saturate(7500%) hue-rotate(187deg) brightness(91%) contrast(98%);}
 .db-form-tabs .profile-dropdown ul li .connect-user-btn {padding: 0; border: 0; }
+.profile-dropdown .icon-box img[src$='.png'] {filter: none;}
 /*Year Tabs Style Start*/
 .Filter-lable {margin-right: 10px;}
 .year-filters select {border: 1px solid var(--primary); font-weight: 500; padding: 6px 5px; line-height: normal; min-width: 110px; color: var(--primary); border-radius: 0;}
@@ -18057,9 +18058,7 @@ body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
 .class-connect-modal .input-field:has(.frontend-field-error) input[type="text"] {border-radius: 5px; padding: 0 10px; }
 .class-connect-modal .user-details-block .class-code-submit {width: auto; margin-left: auto; margin-right: auto; margin-top: 20px !important; border-radius: 30px; }
 .class-connect-modal .modal-body {padding-top: 0;}
-.class-connect-modal .modal-body h3 {
-    margin-bottom: 15px;
-}
+.class-connect-modal .modal-body h3 {margin-bottom: 15px;}
 .class-thumb-list ul {margin: 0 0 25px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
 .class-thumb .media-box {border: 1px solid #ddd; height: 100px; width: 100px; border-radius: 100%; background-color: #f4f4f4; padding: 5px; box-shadow: 0 0 0 5px #fff inset; margin: 0 0 10px; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; }
 .class-thumb .media-box img {height: 100%; width: 100%; object-fit: contain; }
@@ -18206,6 +18205,27 @@ address .info-list-label {color: #64748b;}
 .lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
+.db-members .rurera-tabs-frontend {gap: 30px;}
+.db-members .rurera-tabs-frontend li {color: #6c6b71; font-size: 15px; cursor: pointer; border-bottom: 3px solid transparent;}
+.db-members .rurera-tabs-frontend li.active {border-bottom-color: var(--primary);}
+.wizard-steps .sats-listing-card tbody tr td {border: 0; }
+.wizard-steps .sats-listing-card tbody tr {border-top: 1px solid #ececec;}
+.sats-listing-card.medium .total-tests {
+    padding: 0 0 30px;
+}
+.sats-listing-card.medium table .total-tests {
+    padding-bottom: 10px;
+}
+.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(even) {
+    background-color: inherit !important;
+}
+.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(odd) {
+    background-color: #fff !important;
+}
+.wizard-steps .tests-list {
+    justify-content: center;
+    margin-top: 20px;
+}
 /* Wizard-Steps Style End */
 
 /*Edit Profile Style Start*/
@@ -18246,6 +18266,7 @@ address .info-list-label {color: #64748b;}
 .edit-profile .select-field:after {content: "\203A"; position: absolute; right: 0; top: 0; height: 40px; width: 40px; text-align: center; line-height: 40px; font-size: 24px; color: #94a3b8; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); pointer-events: none;}
 .edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 /*Edit Profile Style End*/
+.container.set-work-container {margin-bottom: 100px;}
 
 /*************************************
 Lms Responsive Style Start
@@ -18826,6 +18847,8 @@ Lms Responsive Style Start
     body .radio-buttons .card-radio {width: 31%;}
     .col-6:has(.range-slider) {flex: 0 0 100%; max-width: 100%;}
     .practice-quiz-topics-list .col-4 {flex: 0 0 100%; max-width: 100%;}
+    .wizard-steps .radio-buttons .card-radio {min-height: auto;}
+    .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
     .user-detail .info-text {margin-bottom: 20px;}
     .db-members .card .list-group-item .listing-title {display: inline-block; position: initial;}
     .db-members .card .list-group-item .row .col-auto:first-child .listing-title {display: none;}

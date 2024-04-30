@@ -314,28 +314,38 @@ class CommonWebController extends Controller
             $results = $resultsQuery->get();
 
             if( $quiz_type == 'vocabulary'){
-                $response .= '<div class="col-12">
-                                    <div class="listing-search lms-jobs-form mb-20">
+                $response .= '<div class="listing-search lms-jobs-form mb-20">
                                         <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                         <ul class="inline-filters vocabulary-ul">
                                             <li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists</a></li>
                                             <li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists</a></li>
                                             <li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee</a></li>
                                         </ul>
-                                    </div>
-                                </div>';
+                                    </div>';
             }
 
 
             if( $is_frontend == 'yes'){
 
+                if( $results->count() > 0){
                 $response .= '<div class="sats-listing-card medium">
                                 <table class="simple-table">
-                                    <tbody> <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
+                                    <tbody> ';
+                        if( $quiz_type != 'vocabulary') {
+                            $response .= '<input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
+
+                        }else{
+                            $response .='<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
+                        }
                         if (!empty($results)) {
                             foreach ($results as $rowObj) {
                                 $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
                                 $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
+                                $assign_btn_class = 'mock-test-assign-btn';
+                                if( $quiz_type == 'vocabulary') {
+                                    $response .= '<input type="checkbox" data-total_questions="'.$count_questions.'"  name="ajax[new][topic_ids][]" class="rurera-hide vocabulary-topic-selection topic_selection topic_select_radio" value="'.$rowObj->id.'">';
+                                    $assign_btn_class = 'vocabulary-assign-btn';
+                                }
 
                                     $response .= '<tr>
                                                     <td>
@@ -346,12 +356,13 @@ class CommonWebController extends Controller
                                                         </h4>
                                                     </td>
                                                     <td class="text-right">
-                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_time="' . $rowObj->time . '" data-total_questions="' . $count_questions . '" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
+                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_time="' . $rowObj->time . '" data-total_questions="' . $count_questions . '" class="rurera-list-btn '.$assign_btn_class.'  " data-next_step="4">Assign Test</a></td>
                                                 </tr>';
                             }
                         }
 
                 $response .= '</tbody></table></div>';
+                        }
             }else {
 
                 $response = '<div class="form-group">
@@ -491,12 +502,16 @@ class CommonWebController extends Controller
         $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
 
         $subjects_response = '';
+        $counter = 0;
         if (!empty($courses)) {
             foreach ($courses as $courseObj) {
+                $counter++;
+                $active_class = ($counter == 1)? 'active-subject' : '';
+                $is_checked = ($counter == 1)? 'checked' : '';
                 $subjects_response .= '
-                                        <label class="card-radio">
+                                        <label class="card-radio '.$active_class.'">
                                             <input type="radio" name="ajax[new][subject]"
-                                                   class="assignment_subject_check" value="' . $courseObj->id . '">
+                                                   class="assignment_subject_check" value="' . $courseObj->id . '" '.$is_checked.'>
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
                                                             ' . $courseObj->icon_code . '

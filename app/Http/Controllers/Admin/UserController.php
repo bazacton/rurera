@@ -1007,7 +1007,7 @@ class UserController extends Controller
         $last_name = !empty($data['last_name']) ? $data['last_name'] : null;
         $full_name = $first_name.' '.$last_name;
 
-        $user->get_full_name() = $full_name;//!empty($data['full_name']) ? $data['full_name'] : null;
+        $user->full_name = $full_name;//!empty($data['full_name']) ? $data['full_name'] : null;
         $user->role_name = $role->name;
         $user->role_id = $role->id;
         $user->timezone = $data['timezone'] ?? null;

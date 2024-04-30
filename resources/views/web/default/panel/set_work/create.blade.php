@@ -4,9 +4,11 @@
 <link rel="stylesheet" href="/assets/default/css/assignments.css">
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
 <link rel="stylesheet" href="/assets/admin/vendor/daterangepicker/daterangepicker.min.css">
+<link rel="stylesheet" href="/assets/vendors/jquerygrowl/jquery.growl.css">
 <style>
     .wizard-steps{display:none;}
     .wizard-steps.active{display:block;}
+    .show-after-ajax{display:none;}
 </style>
 @endpush
 
@@ -50,29 +52,49 @@
                                                     @if( !empty( $childs ) )
                                                     @php $child_count = 0; @endphp
                                                             @foreach($childs as $childLinkObj)
-                                                            @php $childObj = $childLinkObj->user; $child_count++; @endphp
-                                                            @php $selected_child = ($child_count == 1)? 'checked' : ''; @endphp
+                                                            @php $childObj = $childLinkObj->user; @endphp
+                                                            @php
+                                                            $userSubscriptions = $childObj->userSubscriptions;
+                                                            $is_user_subscribed = isset( $userSubscriptions->id )? true : false;
+                                                            if($is_user_subscribed == true){
+                                                                $child_count++;
+                                                            }
+                                                            $selected_child = ($child_count == 1)? 'checked' : '';
+                                                            @endphp
                                                             <label class="card-radio">
-                                                                <input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
-                                                                        value="{{$childObj->id}}" class="assignment-user-class" {{$selected_child}}>
-                                                                <span class="radio-btn"><i class="las la-check"></i>
-                                                                    <div class="card-icon">
-                                                                    <img src="{{ $childObj->getAvatar() }}">
-                                                                        <h3>{{$childObj->get_full_name()}}</h3>
-                                                                </div>
-                                                            </span>
+                                                                @if( $is_user_subscribed == true)
+                                                                    <input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
+                                                                            value="{{$childObj->id}}" class="assignment-user-class" {{$selected_child}}>
+                                                                    <span class="radio-btn"><i class="las la-check"></i>
+                                                                        <div class="card-icon">
+                                                                        <img src="{{ $childObj->getAvatar() }}">
+                                                                            <h3>{{$childObj->get_full_name()}}</h3>
+                                                                        </div>
+                                                                    </span>
+                                                                @else
+                                                                <a href="javascript:;" class="subscription-modal " data-type="update_package" data-id="{{$childObj->id}}">
+                                                                    <span class="radio-btn disabled-style"><i class="las la-check"></i>
+                                                                        <div class="card-icon">
+                                                                        <img src="{{ $childObj->getAvatar() }}">
+                                                                            <h3>{{$childObj->get_full_name()}}</h3>
+                                                                            <span>Buy Membership</span>
+                                                                        </div>
+                                                                    </span>
+                                                                </a>
+                                                                @endif
                                                             </label>
                                                             @endforeach
                                                     @endif
-                                                    <label class="card-radio">
-                                                        <a href="javascript:;" class="add-student-modal">
+                                                    <label class="card-radio add-student-btn">
+                                                        <a href="javascript:;" class="subscription-modal add-student-modal" data-type="child_register" data-id="0" >
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
-                                                                <img src="/assets/default/img/sidebar/members.png">
-                                                                <h3>+ Student</h3>
+                                                                <img src="/assets/default/svgs/add-con.svg">
+                                                                <h3>Student</h3>
                                                         </div>
                                                     </span>
                                                         </a>
+
                                                     </label>
                                                     <input type="hidden" class="year_id_field" name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][year_id]" value="0">
                                                 </div>
@@ -118,10 +140,11 @@
                                 <div class="wizard-steps" data-step_id="2">
 
                                     <div class="row align-items-center assignment_type_check_fields mock_test_fields">
+
                                         <div class="col-12 col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <div class="input-field">
-                                                    <input type="text" class="search-tests">
+                                                    <input type="text" class="search-tests" placeholder="Search Mock Test">
                                                 </div>
                                             </div>
                                         </div>
@@ -138,27 +161,33 @@
                                                     <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                                 </ul>
                                             </div>
+                                            <div class="form-section mb-20 text-center">
+                                                <h2 class="section-title font-24">Select a Topic</h2>
+                                            </div>
                                             <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
                                         </div>
 
-                                        <div class="sats-listing-card medium">
-                                            <table class="simple-table">
-                                                <tbody>
-                                                <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">
-                                                @if( !empty( $sats))
-                                                @php $counter = 0; @endphp
-                                                    @foreach( $sats as $rowObj)
-                                                        @include('web.default.tests.single_item_assignment',['rowObj' => $rowObj])
-                                                    @endforeach
-                                                @endif
-                                                </tbody>
-                                            </table>
+
+                                        <div class="col-12 col-lg-12 col-md-12">
+                                            <div class="sats-listing-card medium mt-30">
+                                                <table class="simple-table">
+                                                    <tbody>
+                                                    <input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">
+                                                    @if( !empty( $sats))
+                                                    @php $counter = 0; @endphp
+                                                        @foreach( $sats as $rowObj)
+                                                            @include('web.default.tests.single_item_assignment',['rowObj' => $rowObj])
+                                                        @endforeach
+                                                    @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
 
 
 
-                                    <div class="years-group populated-data">
+                                    <div class="years-group populated-data assignment_type_check_fields practice_test_fields">
                                         <div class="form-section mb-20 text-center">
                                             <h2 class="section-title font-24">Select Practice Type</h2>
                                         </div>
@@ -168,9 +197,9 @@
                                             <div class="input-group">
 
                                                 <div class="radio-buttons justify-content-center">
-                                                    <label class="card-radio assignment_type_check_fields practice_test_fields " data-next_step="3">
+                                                    <label class="card-radio assignment_type_check_fields practice_test_fields practice-item-active" data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="practice">
+                                                            class="assignment_topic_type_check " value="practice">
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
                                                             <img src="/assets/default/img/assignment-logo/practice.png">
@@ -209,48 +238,48 @@
                                     </div>
 
 
-                                    <div class="years-group populated-data">
+                                    <div class="years-group populated-data assignment_type_check_fields practice_test_fields">
 
 
-                                        <div class="form-section assignment_topic_type_fields practice_fields mb-20 text-center">
+                                        <div class="form-section assignment_topic_type_fields practice_fields mb-20 text-center ajax-title show-after-ajax">
                                             <h2 class="section-title font-24">Select a Subject</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields sats_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields sats_fields mb-20 text-center">
                                             <h2 class="section-title font-24">Sats</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields 11plus_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields 11plus_fields mb-20 text-center">
                                             <h2 class="section-title font-24">11 Plus</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields independent_exams_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields independent_exams_fields mb-20 text-center">
                                             <h2 class="section-title font-24">Independent Exams</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields iseb_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields iseb_fields mb-20 text-center">
                                             <h2 class="section-title font-24">ISEB</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields cat4_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields cat4_fields mb-20 text-center">
                                             <h2 class="section-title font-24">CAT 4</h2>
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields vocabulary_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields vocabulary_fields mb-20 text-center ajax-title show-after-ajax">
                                             <h2 class="section-title font-24">Select List</h2>
                                         </div>
 
-                                        <div class="form-section assignment_topic_type_fields timestables_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields timestables_fields mb-20 text-center ajax-title show-after-ajax">
                                             <h2 class="section-title font-24">Times Tables</h2>
                                         </div>
 
-                                        <div class="form-section assignment_topic_type_fields assignment_fields mb-20">
+                                        <div class="form-section assignment_topic_type_fields assignment_fields mb-20 text-center ajax-title show-after-ajax">
                                             <h2 class="section-title font-24">Custom Assignment</h2>
                                         </div>
 
@@ -261,8 +290,8 @@
                                         @endphp
 
 
-                                        <div class="form-group assignment_topic_type_fields timestables_fields">
-                                            <div class="questions-select-number">
+                                        <div class="form-group assignment_topic_type_fields timestables_fields ajax-title show-after-ajax">
+                                            <div class="questions-select-number mx-auto">
                                                 <ul class="d-flex justify-content-center flex-wrap mb-30">
                                                     <li><input type="checkbox" value="10" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(10,$tables_no)?
                                                         'checked' : ''}} id="tables_ten" /> <label for="tables_ten">10</label></li>
@@ -359,7 +388,7 @@
 
 
 
-                                        <div class="row assignment_topic_type_fields practice_fields">
+                                        <div class="row assignment_topic_type_fields practice_fields vocabulary_fields1">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
                                                     <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
@@ -566,6 +595,23 @@
     </div>
 </div>
 
+<div class="modal fade lms-choose-membership" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel-header">
+                <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container container-nosidebar">
+                <div class="tab-content subscription-content" id="nav-tabContent">
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <section class="section">
@@ -590,6 +636,7 @@
 <script src="/assets/default/js/admin/filters.min.js"></script>
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script src="/assets/admin/vendor/daterangepicker/daterangepicker.min.js"></script>
+<script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script type="text/javascript">
 
     $("#assignmentCreateModal").modal('show');
@@ -620,7 +667,8 @@
         $('body').on('click', '.year-group-select', function (e) {
             var thisObj = $('.populated-content-area');
             var year_id = $(this).attr('data-year_id');
-            $(".year_id_field").val(year_id);
+            //$(".year_id_field").val(year_id);
+            $(".ajax-title").addClass('show-after-ajax');
             rurera_loader(thisObj, 'div');
             jQuery.ajax({
                 type: "GET",
@@ -634,6 +682,7 @@
                     rurera_remove_loader(thisObj, 'button');
                     if (return_data != '') {
                         $(".populated-content-area").append(return_data);
+                        $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
                         subjects_callback();
                     }
                 }
@@ -667,8 +716,6 @@
             });
         }
         subjects_callback();
-
-
         var questions_callback = function () {
             $('body').on('click', '.subchapter-group-select li', function (e) {
                 var thisObj = $('.populated-content-area');
@@ -800,6 +847,19 @@
         	$(".topic_select_radio").click();
         });
 
+        $('body').on('click', '.vocabulary-assign-btn', function (e) {
+            $(this).toggleClass('active');
+            var topic_id = $(this).attr('data-id');
+            var topic_type = $(this).attr('data-topic_type');
+            $(".assignment_topic_type_mock").val(topic_type);
+            $('.vocabulary-topic-selection[name="ajax[new][topic_ids][]"][value="'+topic_id+'"]').prop('checked', function(i, oldVal) {
+                return !oldVal;
+            });
+            var total_questions = $(this).attr('data-total_questions');
+        });
+
+
+
         $('body').on('click', '.wizard-pagination1 .previous-btn', function (e) {
         	var next_step = $(this).attr('data-next_step');
         	prev_step = parseInt(next_step) - 1;
@@ -816,6 +876,9 @@
 
         $('body').on('change', '.assignment_topic_type_check', function (e) {
             var current_value = $(this).val();
+            $(".ajax-title").addClass('show-after-ajax');
+            $(".practice-quiz-ajax-fields").html('');
+            $(".practice-quiz-topics-list").html('');
             $(".assignment_topic_type_fields").addClass('rurera-hide');
             $('.' + current_value + '_fields').removeClass('rurera-hide');
             var total_questions = 0;
@@ -834,47 +897,59 @@
             console.log('assignment_topic_type_check');
             slider_fields_refresh();
             var year_id = $(".year_id_field").val();
-            var quiz_type = $(".assignment_topic_type_check:checked").val();
-            var thisObj = $(this);//$(".quiz-ajax-fields");
-            $(".yeargroup-ajax-fields").html('');
-            rurera_loader(thisObj, 'button');
-            jQuery.ajax({
-                type: "GET",
-                url: '/common/types_quiz_by_year',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {"quiz_type": quiz_type, "year_id": year_id, "is_frontend": 'yes'},
-                success: function (return_data) {
-                    if (quiz_type == 'practice') {
-                        $(".practice-quiz-ajax-fields").html(return_data);
-                    } else {
-                        //$(".quiz-ajax-fields").html(return_data);
-                        $(".practice-quiz-ajax-fields").html(return_data);
-                    }
-                    rurera_remove_loader(thisObj, 'button');
-                }
-            });
 
+            if( year_id > 0) {
+                var quiz_type = $(".assignment_topic_type_check:checked").val();
+                var thisObj = $(this);//$(".quiz-ajax-fields");
+                $(".yeargroup-ajax-fields").html('');
+                rurera_loader(thisObj, 'button');
+                jQuery.ajax({
+                    type: "GET",
+                    url: '/common/types_quiz_by_year',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {"quiz_type": quiz_type, "year_id": year_id, "is_frontend": 'yes'},
+                    success: function (return_data) {
+                        if (quiz_type == 'practice') {
+                            $(".practice-quiz-ajax-fields").html(return_data);
+                            $(".active-subject").find('input').prop('checked', true).change();
+                        } else {
+                            //$(".quiz-ajax-fields").html(return_data);
+                            $(".practice-quiz-ajax-fields").html(return_data);
+                        }
+                        $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
+                        rurera_remove_loader(thisObj, 'button');
+                    }
+                });
+            }else{
+                $(".assignment-user-class:checked").change();
+            }
 
         });
 
         $('body').on('change', '.assignment_method_check', function (e) {
             var current_value = $('.assignment_method_check:checked').val();
-            console.log(current_value);
+            $(".practice-quiz-ajax-fields").html('');
+
             $(".assignment_method_check_fields").addClass('rurera-hide');
             $('.assignment_method_check_fields.' + current_value + '_fields').removeClass('rurera-hide');
         });
         $('body').on('change', '.assignment_type_check', function (e) {
+            $(".practice-quiz-ajax-fields").html('');
             var current_value = $(this).val();
             $(".assignment_type_check_fields").addClass('rurera-hide');
             $('.assignment_type_check_fields.' + current_value + '_fields').removeClass('rurera-hide');
+            if( current_value == 'practice_test'){
+                $(".practice-item-active").click();
+            }
         });
 
 
 
         $('body').on('change', '.year_quiz_ajax_select12', function (e) {
             var year_id = $(this).val();
+            $(".ajax-title").addClass('show-after-ajax');
             var quiz_type = $(".assignment_topic_type_check:checked").val();
             var thisObj = $(this);//$(".quiz-ajax-fields");
             $(".yeargroup-ajax-fields").html('');
@@ -892,13 +967,16 @@
                     } else {
                         $(".quiz-ajax-fields").html(return_data);
                     }
+                    $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
                     rurera_remove_loader(thisObj, 'button');
+                    //$(".topic-item-active").click();
                 }
             });
         });
 
         $('body').on('change', '.year_group_quiz_ajax_select', function (e) {
             var year_group = $(this).val();
+            $(".ajax-title").addClass('show-after-ajax');
             var quiz_type = $(".assignment_topic_type_check:checked").val();
             var thisObj = $(this);//$(".yeargroup-ajax-fields");
             $(".practice-quiz-ajax-fields").html('');
@@ -913,12 +991,18 @@
                 data: {"quiz_type": quiz_type, "year_group": year_group},
                 success: function (return_data) {
                     $(".yeargroup-ajax-fields").html(return_data);
+                    $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
                     rurera_remove_loader(thisObj, 'button');
                 }
             });
         });
 
         $('body').on('change', '.assignment_subject_check', function (e) {
+            //console.log($(".assignment_type_check:checked").val());
+            if( $(".assignment_type_check:checked").val() != 'practice_test' ){
+                $(".practice-quiz-topics-list").html('');
+                return false;
+            }
             var subject_id = $(this).val();
             var thisObj = $(this);
             rurera_loader($(".practice-quiz-topics-list"), 'div');
@@ -1023,6 +1107,46 @@
             $(".previous-btn").removeClass('disabled-btn');
             $(".next-btn").removeClass('disabled-btn');
             var next_step = $(this).attr('data-next_step');
+
+            if( next_step == 2){
+
+                //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
+                if ($('.assignment-user-class:checked').length < 1 || $('.assignment_type_check:checked').length < 1) {
+                    jQuery.growl.error({
+                        message: 'Please select all fields',
+                        duration: 10000,
+                    });
+                    return false;
+                }
+            }
+
+            if( next_step == 3){
+                if( $(".topics_multi_selection").length > 0) {
+                    //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
+                    if ($('.topics_multi_selection:checked').length < 1 || $('.topics_multi_selection:checked').length < 1) {
+                        jQuery.growl.error({
+                            message: 'Please select atleast one topic',
+                            duration: 10000,
+                        });
+                        return false;
+                    }
+                }
+                if( $(".topic_selection").length > 0) {
+                    //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
+                    if ($('.topic_selection:checked').length < 1 || $('.topic_selection:checked').length < 1) {
+                        jQuery.growl.error({
+                            message: 'Please select atleast one topic',
+                            duration: 10000,
+                        });
+                        return false;
+                    }
+                }
+
+            }
+
+
+
+
             var prev_step = parseInt(next_step) - 1;
             var next_step_counter = parseInt(next_step) + 1;
             var prev_step_counter = prev_step;
@@ -1037,6 +1161,11 @@
             $('.wizard-steps[data-step_id="'+next_step+'"]').addClass('active');
             $(".wizard-pagination .previous-btn").attr('data-next_step', prev_step_counter);
             $(".wizard-pagination .next-btn").attr('data-next_step', next_step_counter);
+            if( next_step == 2){
+                $(".practice-item-active").find('input').prop('checked', true).change();
+
+            }
+            
         });
 
 
@@ -1055,20 +1184,21 @@
 
 
         $(".conditional_check").change();
+        $(".assignment-user-class:checked").change();
         $(".duration_conditional_check:checked").change();
         $(".assignment_topic_type_fields").addClass('rurera-hide');
         $(".assignment_method_check_fields").addClass('rurera-hide');
 
         $(".assignment_topic_type_check:checked").change();
         $(".assignment_method_check:checked").change();
-        $(".assignment_type_check:checked").change();
         $(".year_quiz_ajax_select").change();
         $(".year_group_quiz_ajax_select").change();
+        $(".assignment_type_check:checked").change();
 
 
 
 
-        $('body').on('click', '.add-student-modal', function (e) {
+        $('body').on('click', '.add-student-modal-bkk', function (e) {
             var action_type = 'child_register';
             var action_id = 0;
             selectedPackage = action_id;
@@ -1096,11 +1226,40 @@
             });
         });
 
+        $('body').on('click', '.update-student-modal', function (e) {
+            var action_type = 'child_payment';
+            var action_id = $(this).attr('data-action_id');
+            selectedPackage = action_id;
+            $(".set-work-container").addClass('subscription-content');
+            //$(".subscription-content").html('');
+            //$("#subscriptionModal").modal('show');
+            rurera_loader($('.subscription-content'), 'div');
+            subscriptionRequest = jQuery.ajax({
+                type: "GET",
+                url: '/subscribes/apply-subscription',
+                async: true,
+                beforeSend: function () {
+                    if (subscriptionRequest != null) {
+                        subscriptionRequest.abort();
+                    }
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {"action_type": action_type, "action_id": action_id},
+                success: function (return_data) {
+                    rurera_remove_loader($('.subscription-content'), 'div');
+                    $(".subscription-content").html(return_data);
+                }
+            });
+        });
+
+
         $('body').on('change', '.assignment-user-class', function (e) {
             var year_id = $(this).attr('data-year_id');
-            console.log(year_id);
+            console.log('testing year_id');
             $(".year_id_field").val(year_id);
-
+            $(".assignment_topic_type_check:checked").change();
         });
 
         var searchRequest = null;
@@ -1125,10 +1284,6 @@
             });
 
         });
-
-
-
-        $(".assignment-user-class").change();
         $('body').on('change', '.topic-section-parent', function (e) {
             let $this = $(this);
             let parent = $this.parent().closest('.section-box');
@@ -1174,6 +1329,7 @@
                 },
                 data: {"quiz_category": quiz_category, "is_assignment": 'yes',  "year_id": year_id},
                 success: function (return_data) {
+                    $(".total-tests").remove();
                     rurera_remove_loader($(".simple-table tbody"), 'div');
                     $(".simple-table tbody").html(return_data);
                 }

@@ -334,7 +334,7 @@ class SpellsController extends Controller
         $spellsData = $query->paginate(200);
         $QuestionsAttemptController = new QuestionsAttemptController();
         $counter = 0;
-        $response_layout = '';
+        $response_layout = '<h4 class="total-tests has-border font-22 mt-20 mb-20">Total Lists: '.$spellsData->count().'</h4>';
         if (!empty($spellsData)) {
             foreach ($spellsData as $rowObj) {
                 $view_file = 'single_item_assignment';

@@ -294,6 +294,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/tenure-submit', 'SubscribeController@tenureSubmit');
         Route::get('/autogenerte-username', 'SubscribeController@autoGenerateUsername');
         Route::post('/register-child', 'SubscribeController@registerChild');
+        Route::post('/edit-child', 'SubscribeController@editChild');
         Route::post('/payment-form', 'SubscribeController@paymentForm');
         Route::post('/pay', 'SubscribeController@pay');
         Route::get('/packages-list', 'SubscribeController@packagesList');

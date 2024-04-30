@@ -3560,6 +3560,26 @@ class User extends Authenticatable
        return $full_name;
     }
 
+    public function get_first_name()
+    {
+       $first_name = $this->first_name;
+       if (auth()->check() && auth()->user()->isParent()) {
+           $first_name = $this->first_name_parent;
+       }
+       $first_name = ($first_name != '')? $first_name : $this->first_name;
+       return $first_name;
+    }
+
+    public function get_last_name()
+    {
+       $last_name = $this->last_name;
+       if (auth()->check() && auth()->user()->isParent()) {
+           $last_name = $this->last_name_parent;
+       }
+        $last_name = ($last_name != '')? $last_name : $this->last_name;
+       return $last_name;
+    }
+
     public function getCover()
     {
         if (!empty($this->cover_img)) {
