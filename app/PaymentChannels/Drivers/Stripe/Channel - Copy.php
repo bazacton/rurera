@@ -39,8 +39,6 @@ class Channel implements IChannel
         $generalSettings = getGeneralSettings();
         $currency = currency();
         $currency = 'USD';
-        $payment_data = isset( $order->payment_data )? json_decode($order->payment_data) : (object) array();
-        $remaining_days  = isset( $payment_data->remaining_days )? $payment_data->remaining_days : 30;
 
         Stripe::setApiKey($this->api_secret);
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
@@ -48,12 +46,10 @@ class Channel implements IChannel
         });
 
         $subscription_data = array();
-
-        if( $subscribed_childs == 0){
-            $subscription_data['trial_period_days'] = 7;
-            //$subscription_data['billing_cycle_anchor'] = strtotime('+30 days');
-        }else{
-            $subscription_data['billing_cycle_anchor'] = strtotime('+'.$remaining_days.' days');
+        //$subscription_data['billing_cycle_anchor'] = strtotime('+30 days');
+        if( $subscribed_childs > 0){
+            //$subscription_data['trial_period_days'] = 7;
+            $subscription_data['billing_cycle_anchor'] = strtotime('+30 days');
         }
 
 
@@ -108,10 +104,105 @@ class Channel implements IChannel
             // Optionally, you can do something with the checkout session object returned
             $sessionId = $checkout->id;
 
+            session()->put($this->order_session_key, $order->id);
+
+            $Html = '<script src="https://js.stripe.com/v3/"></script>';
+            $Html .= '<script type="text/javascript">let stripe = Stripe("' . $this->api_key . '");';
+            $Html .= 'stripe.redirectToCheckout({ sessionId: "' . $checkout->id . '" }); </script>';
+
+            echo $Html;
         } catch (\Stripe\Exception\ApiErrorException $e) {
             // Handle error
             echo 'Error: ' . $e->getMessage();
         }
+        exit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        try {
+            $subscription = Subscription::create([
+                'customer' => 'cus_NKVfMJztmOk7s9',
+                'items' => [
+                    [
+                        'price' => 'price_1PBYlqFe1936RR55VNrE7Nf6', // Replace with the ID of your Stripe product price
+                    ],
+                ],
+                'trial_period_days' => 7, // Replace with the number of trial days you want to offer
+                'billing_cycle_anchor' => time() + (37 * 24 * 3600), // Start billing tomorrow
+                'payment_behavior' => 'default_incomplete',
+                'expand' => ['latest_invoice.payment_intent'],
+                // Optional parameters can be added here
+            ]);
+
+            // Optionally, you can do something with the subscription object returned
+            $subscriptionID = $subscription->id;
+
+            // Retrieve the payment intent to handle payment
+            $paymentIntent = $subscription->latest_invoice->payment_intent;
+            pre($subscription);
+
+            // Redirect to the payment confirmation page
+            //header("Location: /confirm_payment.php?payment_intent_id=" . $paymentIntent->id);
+            //exit;
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            // Handle error
+            echo 'Error: ' . $e->getMessage();
+        }
+
+
+
+
+
+        //pre('test');
+        /*try {
+            $checkout = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items'           => [
+                    [
+                        'price_data' => [
+                            'currency'            => $currency,
+                            'unit_amount_decimal' => $price * 100,
+                            'product_data'        => [
+                                'name' => 'Rurera payment',
+                            ],
+                        ],
+                        'quantity'   => 1,
+                    ]
+                ],
+                'mode'                 => 'payment',
+                'success_url'          => $this->makeCallbackUrl('success'),
+                'cancel_url'           => $this->makeCallbackUrl('cancel'),
+            ]);
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            echo "Error: " . $e->getMessage();
+            pre('---testing');
+        }
+
+
+        $order->update([
+            'reference_id' => $checkout->id,
+        ]);*/
 
         session()->put($this->order_session_key, $order->id);
 

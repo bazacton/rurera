@@ -310,45 +310,20 @@ Lms Question List Style
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 70px; color: #adabab; }
 .question-layout-block form.question-fields .questions-nav-controls {background-color:#fff; margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 810px;margin-bottom: 10px !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
-.assignment-questions-preview form.question-fields .questions-nav-controls {
-    position: relative;
-    width: 100%;
-}
+.assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
 .question-fields .left-content::-webkit-scrollbar,
 .lms-sorting-fields::-webkit-scrollbar,
-.learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {
-    width: 5px;
-    background-color: #F5F5F5;
-}
-.learning-page.type-sats .left-content {
-    overflow-y: auto;
-    height: 490px;
-    min-height: 490px;
-}
-.learning-page.type-practice .left-content {
-    height: auto;
-    min-height: auto;
-}
-.learning-page.type-practice .left-content .leform-elements {
-    height: 400px;
-    overflow: hidden;
-    overflow-y: auto;
-    padding-right: 5px;
-}
-.learning-page.type-vocabulary .left-content {
-    overflow: hidden;
-    padding-right: 0;
-}
+.learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {width: 5px; background-color: #F5F5F5;}
+.learning-page.type-sats .left-content {overflow-y: auto; height: 490px; position: relative; }
+.learning-page.type-practice .left-content {height: auto; min-height: auto; }
+.learning-page.type-practice .left-content .leform-elements {height: 400px; overflow: hidden; overflow-y: auto; padding-right: 5px;}
+.learning-page.type-vocabulary .left-content {overflow: hidden; padding-right: 0;}
 .question-fields .left-content::-webkit-scrollbar-track,
 .lms-sorting-fields::-webkit-scrollbar-trackt,
-.learning-page.type-practice .leform-elements::-webkit-scrollbar-trackt {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
+.learning-page.type-practice .leform-elements::-webkit-scrollbar-trackt {-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
 .question-fields .left-content::-webkit-scrollbar-thumb,
 .lms-sorting-fields::-webkit-scrollbar-thumb,
-.learning-page.type-practice .leform-elements::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-}
+.learning-page.type-practice .leform-elements::-webkit-scrollbar-thumb {background-color: darkgrey;}
 .question-textarea p {line-height: 35px;}
 .question-layout,
 .question-textarea p {/* font-size: 16px; color: #000; font-weight: 400;*/}
@@ -365,15 +340,8 @@ Lms Question List Style
 .input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
 .input-holder input.input-simple {border: 0;}
-.question-result-layout .input-holder .input-simple {
-    width: 100%;
-}
-.leform-row.leform-element [class*="leform-col-"] {
-    float: none;
-    display: inline-block;
-    margin-right: -4px;
-    vertical-align: middle;
-}
+.question-result-layout .input-holder .input-simple {width: 100%; }
+.leform-row.leform-element [class*="leform-col-"] {float: none; display: inline-block; margin-right: -4px; vertical-align: middle;}
 .input-holder.input_line,
 .lms-quiz-section .input-holder.input_line {border: 0; vertical-align: middle;}
 .input-holder input.input_line {background-color: transparent; border-radius: 0; height: auto; min-height: auto; padding: 0 !important; text-align: left; border-bottom: 2px dotted #ddd;}
@@ -382,17 +350,7 @@ Lms Question List Style
 .question-layout .input-group .admin-file-view {background-color: #fff !important; border: 1px solid #eee !important;}
 .question-layout .input-group .admin-file-manager i,
 .question-layout .input-group .admin-file-view i {font-size: 16px; font-style: normal; font-weight: 900 !important; font-family: "Font Awesome 5 Free" !important;}
-.question-layout .input-group .admin-file-manager .fa-chevron-up:before {
-    content: "";
-    border-style: solid;
-    border-width: 1px 0 0 1px;
-    border-color: #ccc;
-    display: inline-block;
-    height: 10px;
-    width: 10px;
-    transform: rotate(45deg);
-    vertical-align: middle;
-}
+.question-layout .input-group .admin-file-manager .fa-chevron-up:before {content: ""; border-style: solid; border-width: 1px 0 0 1px; border-color: #ccc; display: inline-block; height: 10px; width: 10px; transform: rotate(45deg); vertical-align: middle;}
 /**********************************
 Lms Question List Style 
 **********************************/
@@ -557,7 +515,7 @@ Lms Quiz Wf Style Start
 .question-label {position: relative;}
 /* .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;} */
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: calc(100% - 66px);position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 32px;}
+.lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 32px;}
 .question-label:after,
 /* .lms-quiz-section .question-label:after {
     content: "";

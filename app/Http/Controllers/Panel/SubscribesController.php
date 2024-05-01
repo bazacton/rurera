@@ -87,6 +87,7 @@ class SubscribesController extends Controller
         $total_discount += $discount_amount;
         $child_discount = $discount_amount;
         $charged_amount = ($subscribeObj->price - $discount_amount);
+        $remaining_days = 30;
 
         if (isset($ParentsOrders->id)) {
             $package_created = $ParentsOrders->created_at;
@@ -109,9 +110,18 @@ class SubscribesController extends Controller
 
         $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
 
+        $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+            return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+        });
+
+        if( $subscribed_childs == 0) {
+            $expiry_date = strtotime('+7 days', $expiry_date);
+        }
+
 
         $full_data['package_id'][] = $package_id;
         $full_data['expiry_date'] = $expiry_date;
+        $full_data['remaining_days'] = $remaining_days;
 
 
         $financialSettings = getFinancialSettings();

@@ -82,6 +82,11 @@ $rand_id = rand(999,99999);
                                    href="#glossary_solution" role="tab"
                                    aria-controls="glossary_solution" aria-selected="true"><span class="tab-title">Glossary & Solution</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="review_required_tab-tab" data-toggle="tab"
+                                   href="#review_required_tab" role="tab"
+                                   aria-controls="review_required_tab" aria-selected="true"><span class="tab-title">Comments for Reviewer</span></a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="question_preview-tab" data-toggle="tab"
@@ -697,8 +702,8 @@ $rand_id = rand(999,99999);
 
                                                     <div class="col-12">
                                                         <div class="search-fields-block"
-                                                             style="background: #efefef;padding: 10px;">
-                                                            <div class="col-md-12">
+                                                             style="background: #efefef;padding: 10px;"><div class="row">
+                                                            <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Year / Grade *</label>
                                                                     <select name="category_id" data-plugin-selectTwo
@@ -731,7 +736,7 @@ $rand_id = rand(999,99999);
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12">
+                                                            <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Subject *</label>
                                                                     <select name="course_id"
@@ -742,7 +747,7 @@ $rand_id = rand(999,99999);
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-12">
+                                                            <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Topic</label>
                                                                     <select id="chapter_id"
@@ -754,7 +759,7 @@ $rand_id = rand(999,99999);
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-12">
+                                                            <div class="col-6">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Sub Topic</label>
                                                                     <select id="chapter_id"
@@ -783,8 +788,9 @@ $rand_id = rand(999,99999);
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Question Reference</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -800,7 +806,7 @@ $rand_id = rand(999,99999);
                                                     </div>
 
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Score</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -815,7 +821,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Average Time</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -830,7 +836,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Example Question</label>
                                                             <select name="example_question" id="example_question" data-search-option="questions_ids"
@@ -838,7 +844,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Question Type</label>
                                                             <select name="question_type" class="custom-select ">
@@ -855,7 +861,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label class="input-label">Difficulty Level</label>
                                                             <select name="difficulty_level" class="custom-select ">
@@ -877,33 +883,10 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
-                                                        <div class="form-group custom-switches-stacked">
-                                                            <label class="custom-switch pl-0">
-                                                                <input type="hidden" name="review_required" value="disable">
-                                                                <input type="checkbox"
-                                                                       name="review_required"
-                                                                       id="review_required" value="1"
-                                                                       class="custom-switch-input"/>
-                                                                <span class="custom-switch-indicator"></span>
-                                                                <label class="custom-switch-description mb-0 cursor-pointer"
-                                                                       for="review_required">Review Required</label>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+
 
                                                 </div>
                                             </div>
-
-                                            @if(auth()->user()->isTeacher())
-                                            <div class="col-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label class="input-label">Comments for Reviewer</label>
-                                                    <textarea class="note-codable summernote" id="comments_for_reviewer"
-                                                              name="comments_for_reviewer" aria-multiline="true"></textarea>
-                                                </div>
-                                            </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -948,6 +931,41 @@ $rand_id = rand(999,99999);
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane mt-3 fade" id="review_required_tab" role="tabpanel"
+                                                     aria-labelledby="review_required_tab-tab">
+
+
+                            <div class="col-12 col-md-12">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="form-group custom-switches-stacked">
+                                            <label class="custom-switch pl-0">
+                                                <input type="hidden" name="review_required" value="disable">
+                                                <input type="checkbox"
+                                                       name="review_required"
+                                                       id="review_required" value="1"
+                                                       class="custom-switch-input"/>
+                                                <span class="custom-switch-indicator"></span>
+                                                <label class="custom-switch-description mb-0 cursor-pointer"
+                                                       for="review_required">Review Required</label>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    @if(auth()->user()->isTeacher())
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <label class="input-label">Comments for Reviewer</label>
+                                            <textarea class="note-codable summernote" id="comments_for_reviewer"
+                                                      name="comments_for_reviewer" aria-multiline="true"></textarea>
+                                        </div>
+                                    </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
 
                             <div class="tab-pane mt-3 fade" id="question_preview" role="tabpanel"
                                  aria-labelledby="question_preview-tab">

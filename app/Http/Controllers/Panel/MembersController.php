@@ -170,7 +170,16 @@ class MembersController extends Controller
                 ])
                 ->get();*/
 
-            $childs = $user->parentChilds->where('status', 'active');
+            //$childs = $user->parentChilds->where('status', 'active');
+
+            $childs = $user->parentChilds->where('status', 'active')->sortBy(function ($child) {
+                if( isset( $child->user->userSubscriptions->id )){
+                    return 0;
+                }else{
+                    return 1;
+                }
+                //return $child->user->userSubscriptions->count();
+            });
 
 
             $Sales = Sale::where('buyer_id', $user->id)->whereIn('type', array(
@@ -253,6 +262,88 @@ class MembersController extends Controller
            return view(getTemplate() . '.panel.parent.change_password', $data);
 
         }
+    }
+
+
+
+    public function printCard(Request $request, $user_id)
+    {
+        $userObj = auth()->user();
+
+        $users = array();
+
+        $childs = $userObj->parentChilds->where('status', 'active')->pluck('user_id')->toArray();
+        if( !in_array($user_id, $childs)){
+            exit;
+        }
+        $users = User::where('id', $user_id);
+        $users = $users->get();
+        if( !empty( $users ) ){
+            foreach( $users as $studentObj){
+                if( $studentObj->login_emoji == ''){
+                    $studentObj = $this->generateEmoji($studentObj);
+                }
+                if( $studentObj->login_pin == ''){
+                    $studentObj = $this->generatePin($studentObj);
+                }
+            }
+        }
+        $data = [
+            'pageTitle' => 'Students',
+            'users' => $users,
+        ];
+
+        return view('web.default.user.print_students', $data);
+    }
+
+
+    public function generateEmoji($user)
+    {
+        $emojisList = emojisList();
+        $UsedEmojisList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_emoji', '!=', '')->pluck('login_emoji')->toArray();
+        do {
+            // Shuffle the emojis list
+            shuffle($emojisList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,60);
+            $generatedIndexes = array_slice($emojisList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedEmojisList));
+
+        $user->update([
+            'login_emoji' => $generatedString
+        ]);
+        return $user;
+    }
+
+    public function generatePin($user)
+    {
+        $loginList = array(0,1,2,3,4,5,6,7,8,9);
+
+        $UsedLoginList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_pin', '!=', '')->pluck('login_pin')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($loginList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(1,6);
+            $generatedIndexes = array_slice($loginList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedLoginList) || strlen($generatedString) < 6);
+
+        $user->update([
+            'login_pin' => $generatedString
+        ]);
+        return $user;
+
     }
 
 

@@ -15,7 +15,7 @@
 
 @section('content')
 <section class="member-card-header pb-20">
-    <div class="d-flex align-items-start align-items-md-center justify-content-between flex-md-row">
+    <div class="d-flex align-items-center justify-content-between flex-md-row">
         <h1 class="section-title font-22">Set Work</h1>
         <div class="dropdown">
         <a class="btn btn-sm btn-primary subscription-modal" href="/panel/set-work/create" data-type="child_register"><img src="/assets/default/svgs/add-con.svg"> Add Work
@@ -38,14 +38,25 @@
                                 <li class="font-weight-500 pb-10" data-type="expired">Overdue</li>
                             </ul>
 
-                            <div class="list-group list-group-custom set-work-content list-group-flush mb-30 totalChilds"
+                            <div class="list-group list-group-custom set-work-content list-group-flush totalChilds"
                                  data-childs="12">
-                                @if( !empty( $assignments ) )
+                                <div class="rurera-tables-list mb-30">
+                                @if( $assignments->count() > 0 )
                                 @foreach($assignments as $assignmentObj)
-                                @include('web.default.panel.set_work.list_item',['assignmentObj' => $assignmentObj])
+                                    @include('web.default.panel.set_work.list_item',['assignmentObj' => $assignmentObj])
                                 @endforeach
+                                @else
+                                    @php $no_records_data = '<div class="no-record-found-head mb-20">
+                                            <ul class="d-flex align-items-center justify-content-between">
+                                                <li><h6 class="listing-title font-14 font-weight-500">Title</h6></li>
+                                                <li><h6 class="listing-title font-14 font-weight-500">Student</h6></li>
+                                                <li><h6 class="listing-title font-14 font-weight-500">Type</h6></li>
+                                                <li><h6 class="listing-title font-14 font-weight-500">Action</h6></li>
+                                            </ul>
+                                    </div>'; @endphp
+                                    @include('web.default.default.list_no_record',['no_records_data' => $no_records_data])
                                 @endif
-
+                                </div>
 
                                 <div class="rurera-pagination">
                                     {{ $assignments->links() }}

@@ -32,6 +32,11 @@
         <div class="col-auto ms-auto last-activity action-activity">
             <h6 class="listing-title font-14 font-weight-500">Action</h6>
             <a href="/panel/set-work/{{$assignmentObj->id}}/progress" class="detail-btn">Details</a>
+            @php $completed_count = $assignmentObj->students->where('status', 'completed')->count(); @endphp
+            @if( $completed_count == 0 && $assignmentObj->status == 'active')
+            <a href="/panel/set-work/{{$assignmentObj->id}}/remove" class="remove-btn"><img src="/assets/default/svgs/delete-menu.svg"></a>
+            @endif
+
         </div>
     </div> <!--[ row end ]-->
 </div>

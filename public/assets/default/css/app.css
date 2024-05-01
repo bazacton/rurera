@@ -13787,37 +13787,16 @@ p {line-height: 1.5;}
 @media (max-width:991px) {
     .table-responsive {overflow-x: auto;}
 }
-.transactions-table tbody {
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px #ececec;
-}
-.panel-section-card .transactions-table tbody tr:nth-child(even) {
-    background-color: inherit !important;
-}
-.panel-section-card .transactions-table .custom-table thead th {
-    color: #94a3b8;
-}
-.transactions-table table {
-    border-style: hidden;
-}
+.transactions-table tbody {border-radius: 10px; box-shadow: 0 0 0 1px #ececec;}
+.panel-section-card .transactions-table tbody tr:nth-child(even) {background-color: inherit !important;}
+.panel-section-card .transactions-table .custom-table thead th {color: #94a3b8; text-transform: uppercase;}
+.transactions-table table {border-style: hidden;}
 .transactions-table tbody tr td {background-color: #fff;}
-
-.transactions-table tbody tr:first-child td:first-child {
-    border-radius: 10px 0 0 0;
-}
-.transactions-table tbody tr:first-child td:last-child {
-    border-radius: 0 10px 0 0;
-}
-.transactions-table tbody tr:last-child td:first-child {
-    border-radius: 0 0 0 10px;
-}
-.transactions-table tbody tr:last-child td:last-child {
-    border-radius: 0 0 10px 0;
-}
-.transactions-table tbody tr td:first-child {
-    padding-left: 25px;
-    padding-right: 25px;
-}
+.transactions-table tbody tr:first-child td:first-child {border-radius: 10px 0 0 0;}
+.transactions-table tbody tr:first-child td:last-child {border-radius: 0 10px 0 0;}
+.transactions-table tbody tr:last-child td:first-child {border-radius: 0 0 0 10px;}
+.transactions-table tbody tr:last-child td:last-child {border-radius: 0 0 10px 0;}
+.transactions-table tbody tr td:first-child {padding-left: 25px; padding-right: 25px;}
 .table td,
 .table th {border-top: none !important; text-align: center; vertical-align: middle;}
 .table-actions.dropdown .dropdown-toggle:after {display: none;}
@@ -16805,8 +16784,8 @@ Dashboard Form-Tabs Style Start
 .db-members .card {background-color: inherit; box-shadow: none; border: 0; }
 .db-members .card .card-header {padding: 15px 20px !important; margin: 0; align-items: center; border-radius: 0; border-bottom: 1px solid #e2e8f0;}
 .db-members .card .card-body {padding: 0;}
-.db-members .card .list-group-item {background-color: inherit; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 20px 25px; position: inherit;}
-.db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto;}
+.db-members .card .list-group-item {background-color: inherit; border: 0; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 20px 25px; position: inherit;}
+.db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto; min-width: auto;}
 .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 25%; max-width: 25%;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
 .billing-card .list-group-item {padding: 0;}
@@ -16821,6 +16800,8 @@ Dashboard Form-Tabs Style Start
 .db-members .card .card-header button,
 .member-card-header .btn, .member-card-header .db-members .profile-dropdown > a {background-color: var(--primary); box-shadow: none; border: 0; padding: 10px 20px; color: #fff; font-weight: 400; height: auto; border-radius: 20px;}
 .member-card-header .db-members .profile-dropdown a:after {display: none;}
+.member-card-header .db-members .profile-dropdown > a {position: relative; padding-right: 35px;}
+.member-card-header .db-members .profile-dropdown > a:before {content: ""; position: absolute; border: 2px solid #fff; height: 8px; width: 8px; border-top: 0; border-left: 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); top: 50%; margin-top: -5px; right: 18px;}
 /* .member-card-header .btn-primary:not(:disabled):not(.disabled):active,
 .member-card-header .btn-primary:not(:disabled):not(.disabled):focus{background-color: inherit; color: var(--primary);} */
 .db-form-tabs .list-group-item h6 a {color: #334155; line-height: 22px; display: block;}
@@ -16829,16 +16810,23 @@ Dashboard Form-Tabs Style Start
 .db-members .card .card-header button img,
 .member-card-header .btn img {width: 18px; height: 18px; filter: invert(100%) sepia(0%) saturate(7472%) hue-rotate(114deg) brightness(109%) contrast(97%); margin-right: 6px;}
 .db-members .card .list-group-item:nth-child(even) {background-color: #fff;}
+.db-members .list-group .rurera-tables-list,
 .db-members .list-group {gap: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; position: relative;}
+.db-members .list-group:has(.rurera-tables-list) {background-color: inherit; border: 0;}
 .db-members .profile-dropdown > a,
 .db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 10px 30px 10px 15px; border-radius: 3px; color: #64748b;}
 .db-members .profile-dropdown > a:after {right: 12px; top: 50%; margin-top: -5px; border-width: 4px; border-top-color: #64748b; border-left-color: #64748b;}
 .db-members .profile-dropdown ul {right: -5px; left: auto;}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
-.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%;}
+.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 150px;}
 .db-members .card .list-group-item [class*="col-"].activity-date {width: 50%; }
 .db-members .card .list-group-item .profile-dropdown,
-.db-members .card .list-group-item .action-activity {width: auto;}
+.db-members .card .list-group-item .action-activity {width: auto; min-width: auto;}
+.db-members .card .list-group-item .action-activity {display: inline-flex; align-items: center; position: relative;}
+.db-members .card .list-group-item .action-activity .listing-title {top: -60px; width: 100%; text-align: right; padding-right: 30px;}
+.action-activity .remove-btn {background-color: #ffdfe3; height: 40px; width: 40px; text-align: center; border: 1px solid #d84356; display: inline-flex; align-items: center; justify-content: center; border-radius: 3px; margin-left: 10px;}
+.db-form-tabs .list-group-item .remove-btn img,
+.action-activity .remove-btn img {max-height: 18px;max-width: 18px;min-height: 18px;min-width: 18px;filter: invert(46%) sepia(74%) saturate(4289%) hue-rotate(328deg) brightness(89%) contrast(90%);}
 /* .db-members .card .list-group-item:nth-child(odd) {background-color: inherit;} */
 .lms-choose-plan-selected .lms-jobs-form .input-field {margin: 0 0 15px;}
 .member-card-header {border-bottom: 0;padding: 0 0 25px;}
@@ -16849,6 +16837,7 @@ Dashboard Form-Tabs Style Start
 .list-group-item .switch-user-btn img {border: 1px solid var(--primary); background-color: #61616b; min-width: auto; min-height: auto; padding: 5px; margin-right: 15px; filter: invert(99%) sepia(2%) saturate(2%) hue-rotate(230deg) brightness(117%) contrast(100%);}
 .db-form-tabs .list-group-item a.connect-user-btn img {background-color: inherit; width: 25px; height: 25px; min-width: auto; min-height: auto;}
 .db-members .card .list-group-item .listing-title {color: #94a3b8; position: absolute;top: -40px; text-transform: uppercase; pointer-events: none; display: none;}
+.no-record-found-head li .listing-title {color: #94a3b8;text-transform: uppercase;}
 .db-members .card .list-group-item:first-child .listing-title {display: block;}
 .db-form-tabs .list-group-item .package-payment-btn {color: var(--primary);}
 .db-form-tabs .list-group-item .package-payment-btn img {min-height: auto; min-width: auto; max-width: 22px; max-height: 22px; padding: 4px; vertical-align: middle; margin-right: 5px;}
@@ -16856,6 +16845,14 @@ Dashboard Form-Tabs Style Start
 .db-form-tabs .list-group-item h6 span {color: #334155;}
 .db-members table {margin: 0;}
 .db-form-tabs .profile-dropdown .icon-box img {padding: 0; margin-right: 0; max-height: none;}
+.list-group-custom .rurera-pagination li {padding-left: 0; }
+.list-group-custom .rurera-pagination li:after {display: none;}
+.db-members:has(.no-record-found) .rurera-tabs-frontend {padding-bottom: 25px !important;}
+.no-record-found-head li {list-style: none; padding: 0 20px; }
+.no-record-found-head li:after {display: none;}
+.db-members:has(.no-record-found) .list-group .rurera-tables-list {background-color: inherit; border: 0; }
+.no-record-found .rurera-no-records {background-color: #fff; border: 1px solid #ddd; border-radius: 10px; display: block; padding: 15px;}
+.db-members .rurera-button-loader {background-color: #fff; z-index: 3;}
 /*************************************
 Dashboard Form-Tabs Style End
 *************************************/
@@ -17521,7 +17518,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-breadcrumbs li:first-child a:before {display: none;}
 .panel-subheader .info-modal-btn {height: 20px; width: 20px; display: inline-block; cursor: pointer; line-height: 20px; margin-left: 5px; vertical-align: middle;}
 .panel-subheader .info-modal-btn img {max-width: 100%; vertical-align: top; }
-.spell-levels .panel-subheader h2 {display: inline-block; vertical-align: middle;}
+.spell-levels .panel-subheader h2 {display: inline-block; vertical-align: middle; margin-bottom: 0;}
 .treasure-stage {width: 100%; display: inline-block; padding-left: 20px; }
 .panel-stats {/*background: url(/assets/default/img/stats-bg1.png) no-repeat right bottom #ebf3fe; background-position: 96% 100%;*/ background-color: #ebf3fe; padding: 25px 20px; border-radius: 5px; margin: 0 0 30px; position: relative; overflow: hidden;}
 .panel-stats .course-icon {position: absolute; right: 25px; bottom: 0; width: 230px; height: 118px; z-index: 0;}
@@ -18206,26 +18203,19 @@ address .info-list-label {color: #64748b;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .db-members .rurera-tabs-frontend {gap: 30px;}
-.db-members .rurera-tabs-frontend li {color: #6c6b71; font-size: 15px; cursor: pointer; border-bottom: 3px solid transparent;}
+.db-members .rurera-tabs-frontend li {color: #6c6b71; font-size: 15px; cursor: pointer; border-bottom: 3px solid transparent; padding-bottom: 10px;}
 .db-members .rurera-tabs-frontend li.active {border-bottom-color: var(--primary);}
 .wizard-steps .sats-listing-card tbody tr td {border: 0; }
 .wizard-steps .sats-listing-card tbody tr {border-top: 1px solid #ececec;}
-.sats-listing-card.medium .total-tests {
-    padding: 0 0 30px;
-}
-.sats-listing-card.medium table .total-tests {
-    padding-bottom: 10px;
-}
-.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(even) {
-    background-color: inherit !important;
-}
-.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(odd) {
-    background-color: #fff !important;
-}
-.wizard-steps .tests-list {
-    justify-content: center;
-    margin-top: 20px;
-}
+.sats-listing-card.medium .total-tests {padding: 0 0 30px;}
+.sats-listing-card.medium table .total-tests {padding-bottom: 10px;}
+.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(even) {background-color: inherit !important;}
+.sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(odd) {background-color: #fff !important;}
+.wizard-steps .tests-list {justify-content: center; margin-top: 20px;}
+.set-work-tags {margin: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;}
+.set-work-tags li {cursor: pointer;}
+.set-work-tags li:not(.clear-tags) {color: #666; border: 1px solid #e6e3e3; background-color: #efefef; padding: 5px 10px; border-radius: 5px;}
+.set-work-tags .clear-tags {color: var(--primary); font-weight: 500; text-decoration: underline;}
 /* Wizard-Steps Style End */
 
 /*Edit Profile Style Start*/
@@ -18521,14 +18511,20 @@ Lms Responsive Style Start
     .user-profile-icons li.dropdown:hover strong:before, 
     .user-profile-icons li.dropdown:hover strong:after {visibility: visible;opacity: 1;}
     body .question-layout-block form.question-fields .questions-nav-controls {left: 0; width: 100%; margin-bottom: 0 !important;}
-    .member-card-header {/*padding-top: 50px;*/}
+    .member-card-header {/*padding-top: 50px;*/ padding-bottom: 20px !important;}
     body #progbar {margin-top: 0;}
     .container-fluid.read-quiz-content .quiz-status-bar {padding-top: 30px;}
+    .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
+    body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
+    .db-members .list-group .rurera-tables-list,
     .db-members .list-group {width: 1100px;}
+    .db-members .list-group:has(.rurera-tables-list) {width: 100%;}
+    .db-members .card .card-body .list-group:has(.rurera-tables-list) {padding: 35px 0 0; overflow: hidden; overflow-x: auto;}
     .db-members .card .card-body {padding: 35px 0 0; overflow: hidden; overflow-x: auto;}
+    .db-members .card .card-body:has(.rurera-tables-list) {padding-top: 0;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 992px) {
@@ -18588,7 +18584,7 @@ Lms Responsive Style Start
     .topbar-right .quiz-timer {position: initial; padding-top: 10px;}
     .topbar-right .timer-number {margin-right: 20px; margin-left: 0;}
     .quiz-pagination .swiper-container ul {justify-content: center;}
-    .topbar-right .quiz-pagination {padding-right: 15px; padding-left: 15px;}
+    .topbar-right .quiz-pagination {padding-right: 15px; padding-left: 15px; display: none;}
     .lms-quiz-section .img-holder img {max-width: 100%;}
     .lms-quiz-section .read-quiz-info {max-width: 95%;min-width: 95%;left: -395px;padding-top: 0 !important;z-index: 1;}
     .lms-quiz-section .quiz-toggle-btn {top: 80%;}
@@ -18644,7 +18640,7 @@ Lms Responsive Style Start
     .spells-topbar .view-btn {min-width: 150px; text-align: center;}
     body .read-quiz-content > .row > [class*="col-"] {max-width: 100%;}
     body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 48%;flex: 0 0 48%;}
-    .lms-quiz-section .questions-data-block {max-width: 100%;}
+    .lms-quiz-section .questions-data-block {max-width: 100%; padding: 0;}
     .quiz-pagination .swiper-container ul {flex-wrap: wrap; transform: none !important;}
     body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 60px;}
     .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
@@ -18789,7 +18785,7 @@ Lms Responsive Style Start
     .filters-list .analytics-type,
     .filters-list .tests-list,
     .panel-content .inline-filters,
-    .tests-list {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px;}
+    .tests-list {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px; align-items: flex-start;}
     .panel-content .inline-filters,
     .tests-list {width: 100%; padding-top: 15px; padding-bottom: 15px;}
     .filters-list .analytics-type.open,
@@ -18818,6 +18814,9 @@ Lms Responsive Style Start
     .tests-list {gap: 15px;}
     .tests-list-holder {position: relative;}
     .listing-search .filters-list {margin-bottom: 15px;}
+    .timestables-modes .tests-list {visibility: visible; opacity: 1; position: initial; flex-direction: row; padding: 0; box-shadow: none;}
+    .timestables-modes .tests-list li {flex-direction: column; width: auto; flex-basis: auto; border: 1px dashed #ddd; min-height: 100px; align-items: center; justify-content: center;}
+    .timestables-modes .tests-list li.active {box-shadow: 0 -4px 0 0 #1b85fd inset;}
     .sentences-inner {padding-top: 70px !important;}
     .sentences-inner:has(.home-btn) {padding-top: 25px !important;}
     .sentences-input-field input[type="text"] {max-width: 100%; min-width: auto; width: 100%;}
@@ -18840,18 +18839,21 @@ Lms Responsive Style Start
     .spell-levels .treasure-stage li > a {height: 50px; width: 48px;}
     .read-quiz-content .treasure-stage .horizontal-list {flex-wrap: wrap; gap: 25px; justify-content: center !important;}
     .read-quiz-content .treasure-stage .horizontal-list li {width: auto;}
-    .rurera-list-btn {min-width: 110px;}
+    .rurera-list-btn {min-width: 120px;}
+    body .add-student-modal .radio-btn {height: 100%;}
     .input-holder, .lms-quiz-section .input-holder{width: 100% !important; margin-top: 5px; margin-bottom: 5px;}
     .learning-page.type-vocabulary .question-layout-block {padding-top: 15px;}
     body .learning-page.type-vocabulary .left-content {height: auto; min-height: auto;}
     body .radio-buttons .card-radio {width: 31%;}
     .col-6:has(.range-slider) {flex: 0 0 100%; max-width: 100%;}
     .practice-quiz-topics-list .col-4 {flex: 0 0 100%; max-width: 100%;}
-    .wizard-steps .radio-buttons .card-radio {min-height: auto;}
+    body .wizard-steps .radio-buttons .card-radio {min-height: auto;}
     .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
     .user-detail .info-text {margin-bottom: 20px;}
     .db-members .card .list-group-item .listing-title {display: inline-block; position: initial;}
     .db-members .card .list-group-item .row .col-auto:first-child .listing-title {display: none;}
+    .db-members .card .list-group-item .action-activity .listing-title {text-align: left; width: auto; padding-right: 0;}
+    .db-members .card .list-group-item .detail-btn {margin-left: auto;}
     .db-members .card .list-group-item [class*="col-"] {width: 100%; display: flex; align-items: center; justify-content: space-between; flex-direction: row; position: relative;}
     .db-members .card .list-group-item .col-2 {flex: 0 0 auto; max-width: none; width: auto; gap: 10px;}
     .db-members .card .list-group-item .row .col-auto:first-child {width: auto;  flex: 0 0 auto;}
@@ -18864,6 +18866,9 @@ Lms Responsive Style Start
     .db-form-tabs .list-group-item h6 span,
     .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
     .populated-data .questions-select-number label {min-height: 45px; padding: 0 15px;}
+    body .populated-data .questions-select-number {max-width: 100%;}
+    body .populated-data .questions-select-number ul {margin-left: 0;}
+    body .populated-data .questions-select-number li {flex-basis: 31%;}
 }
 
 @media screen and (max-width: 640px) {
@@ -18963,7 +18968,8 @@ Lms Responsive Style Start
     body .panel-content .lms-performace-table>li.lms-performace-des div span a {padding-top: 5px; align-items: center; justify-content: center;}
     body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul {column-count: 1;}
     body .lms-chapter-area .lms-chapter-ul .lms-chapter-ul-outer>ul>li:last-child {margin-bottom: 0;}
-    .withdraw-card {flex-direction: column; text-align: center;}
+    .withdraw-card {gap: 10px;}
+    .withdraw-text {flex: 0 0 85%;}
     .withdraw-btn-holder {margin-left: 0;flex: auto;}
     .login-card .login-option div {margin-left: 0;}
     .login-controls {width: 100%;}

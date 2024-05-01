@@ -35,6 +35,10 @@
                             <form action="/panel/set-work/{{ !empty($assignment) ? $assignment->id.'/update' : 'store' }}" method="Post" class="rurera-form-validation">
                                 {{ csrf_field() }}
 
+                                <ul class="set-work-tags text-center">
+
+                                </ul>
+
                                 <div class="wizard-steps active" data-step_id="1">
                                     <div class="wizard-steps-heading mb-30 text-center">
                                         <h3 class="font-24 mb-5">Set Work</h3>
@@ -64,7 +68,7 @@
                                                             <label class="card-radio">
                                                                 @if( $is_user_subscribed == true)
                                                                     <input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
-                                                                            value="{{$childObj->id}}" class="assignment-user-class" {{$selected_child}}>
+                                                                            value="{{$childObj->id}}" class="assignment-user-class" data-tag_title="{{$childObj->get_full_name()}}" {{$selected_child}}>
                                                                     <span class="radio-btn"><i class="las la-check"></i>
                                                                         <div class="card-icon">
                                                                         <img src="{{ $childObj->getAvatar() }}">
@@ -113,7 +117,7 @@
                                             <div class="radio-buttons justify-content-center mb-50">
                                                 <label class="card-radio">
                                                     <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_type_check]"
-                                                        class="assignment_type_check" value="practice_test" checked>
+                                                        class="assignment_type_check" value="practice_test" data-tag_title="Set Practice" checked>
                                                     <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
                                                                     <h3>Set Practice</h3>
@@ -123,7 +127,7 @@
                                                 </label>
                                                 <label class="card-radio">
                                                     <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_type_check]"
-                                                        class="assignment_type_check" value="mock_test">
+                                                        class="assignment_type_check" value="mock_test" data-tag_title="Set Mock Test">
                                                     <span class="radio-btn"><i class="las la-check"></i>
                                                                 <div class="card-icon">
                                                                     <h3>Set Mock Test</h3>
@@ -153,12 +157,12 @@
                                                 <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                                 <ul class="tests-list mb-30">
                                                     <input type="radio" class="rurera-hide assignment_topic_type_check assignment_topic_type_mock" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]" value="">
-                                                    <li data-type="all" class="active">All Tests</li>
-                                                    <li data-type="sats"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
-                                                    <li data-type="11plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
-                                                    <li data-type="iseb"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
-                                                    <li data-type="cat4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
-                                                    <li data-type="independent_exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
+                                                    <li data-type="all" class="active" data-tag_title="All Tests">All Tests</li>
+                                                    <li data-type="sats" data-tag_title="SATs"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
+                                                    <li data-type="11plus" data-tag_title="11Plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
+                                                    <li data-type="iseb" data-tag_title="ISEB"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
+                                                    <li data-type="cat4" data-tag_title="CAT 4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
+                                                    <li data-type="independent_exams" data-tag_title="Independent Exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                                 </ul>
                                             </div>
                                             <div class="form-section mb-20 text-center">
@@ -199,7 +203,7 @@
                                                 <div class="radio-buttons justify-content-center">
                                                     <label class="card-radio assignment_type_check_fields practice_test_fields practice-item-active" data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check " value="practice">
+                                                            class="assignment_topic_type_check " value="practice" data-tag_title="Courses">
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
                                                             <img src="/assets/default/img/assignment-logo/practice.png">
@@ -210,7 +214,7 @@
                                                    
                                                     <label class="card-radio assignment_type_check_fields practice_test_fields " data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="vocabulary">
+                                                            class="assignment_topic_type_check" value="vocabulary" data-tag_title="Vocabulary">
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
                                                                 <img src="/assets/default/img/assignment-logo/vocabulary.png">
@@ -222,7 +226,7 @@
 
                                                     <label class="card-radio assignment_type_check_fields practice_test_fields " data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="timestables">
+                                                            class="assignment_topic_type_check" value="timestables" data-tag_title="Timestables">
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
                                                                 <img src="/assets/default/img/assignment-logo/timestables.png">
@@ -584,6 +588,9 @@
                                     <div class="next-btn wizard-step" data-next_step="2">Continue</div>
                                 </div>
 
+                                <div class="rurera-hide wizard-step clear-all-btn" data-next_step="1">Clear all</div>
+
+
 
 
                             </form>
@@ -845,6 +852,8 @@
 
         	$(".topic_select_radio").attr('data-total_questions', total_questions);
         	$(".topic_select_radio").click();
+
+            refresh_tags();
         });
 
         $('body').on('click', '.vocabulary-assign-btn', function (e) {
@@ -874,6 +883,7 @@
         	$(".wizard-pagination .next-btn").attr('data-next_step', next_step_count);
         });
 
+        typeCheckRequest = null;
         $('body').on('change', '.assignment_topic_type_check', function (e) {
             var current_value = $(this).val();
             $(".ajax-title").addClass('show-after-ajax');
@@ -896,18 +906,25 @@
             $(".no_of_questions").val(current_questions);
             console.log('assignment_topic_type_check');
             slider_fields_refresh();
+            refresh_tags();
             var year_id = $(".year_id_field").val();
 
             if( year_id > 0) {
                 var quiz_type = $(".assignment_topic_type_check:checked").val();
                 var thisObj = $(this);//$(".quiz-ajax-fields");
                 $(".yeargroup-ajax-fields").html('');
-                rurera_loader(thisObj, 'button');
-                jQuery.ajax({
+                rurera_loader(thisObj.closest('label'), 'div');
+                typeCheckRequest = jQuery.ajax({
                     type: "GET",
                     url: '/common/types_quiz_by_year',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function () {
+                        if (typeCheckRequest != null) {
+                            //rurera_remove_loader(thisObj.closest('label'), 'div');
+                            //typeCheckRequest.abort();
+                        }
                     },
                     data: {"quiz_type": quiz_type, "year_id": year_id, "is_frontend": 'yes'},
                     success: function (return_data) {
@@ -919,7 +936,7 @@
                             $(".practice-quiz-ajax-fields").html(return_data);
                         }
                         $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
-                        rurera_remove_loader(thisObj, 'button');
+                        rurera_remove_loader(thisObj.closest('label'), 'div');
                     }
                 });
             }else{
@@ -943,6 +960,7 @@
             if( current_value == 'practice_test'){
                 $(".practice-item-active").click();
             }
+            refresh_tags();
         });
 
 
@@ -1003,9 +1021,11 @@
                 $(".practice-quiz-topics-list").html('');
                 return false;
             }
+            //$(this).prop('checked', true);
             var subject_id = $(this).val();
             var thisObj = $(this);
             rurera_loader($(".practice-quiz-topics-list"), 'div');
+            refresh_tags();
             jQuery.ajax({
                 type: "GET",
                 url: '/common/topics_subtopics_by_subject',
@@ -1146,7 +1166,6 @@
 
 
 
-
             var prev_step = parseInt(next_step) - 1;
             var next_step_counter = parseInt(next_step) + 1;
             var prev_step_counter = prev_step;
@@ -1165,7 +1184,7 @@
                 $(".practice-item-active").find('input').prop('checked', true).change();
 
             }
-            
+            refresh_tags();
         });
 
 
@@ -1310,6 +1329,47 @@
         });
 
 
+        function refresh_tags() {
+            $(".set-work-tags").html('');
+            if ($(".assignment-user-class:checked").length > 0) {
+                var current_step = $(".wizard-steps.active").attr('data-step_id');
+                var tag_title = $(".assignment-user-class:checked").attr('data-tag_title');
+                $(".set-work-tags").append('<li>' + tag_title + '</li>');
+                var tag_title = $(".assignment_type_check:checked").attr('data-tag_title');
+                var practice_type = $(".assignment_type_check:checked").val();
+                $(".set-work-tags").append('<li>' + tag_title + '</li>');
+
+                if( current_step > 1) {
+                    if (practice_type == 'mock_test') {
+                        tag_title = $(".tests-list li.active").attr('data-tag_title');
+                        $(".set-work-tags").append('<li>' + tag_title + '</li>');
+                    } else {
+                        var tag_title = $(".assignment_topic_type_check:checked").attr('data-tag_title');
+                        $(".set-work-tags").append('<li>' + tag_title + '</li>');
+                    }
+                    var tag_title = $(".mock-test-assign-btn.active").attr('data-tag_title');
+                    if( tag_title != '' && tag_title != 'undefined' && tag_title != undefined) {
+                        $(".set-work-tags").append('<li>' + tag_title + '</li>');
+                    }
+
+                    var tag_title = $(".assignment_subject_check:checked").attr('data-tag_title');
+                    if( tag_title != '' && tag_title != 'undefined' && tag_title != undefined) {
+                        $(".set-work-tags").append('<li>' + tag_title + '</li>');
+                    }
+
+
+                }
+                $(".set-work-tags").append('<li class="clear-tags">Clear All</li>');
+            }
+        }
+        refresh_tags();
+
+        $('body').on('click', '.clear-tags', function (e) {
+
+            $(".clear-all-btn").click();
+        });
+
+
         $('body').on('click', '.vocabulary-ul li a', function (e) {
             rurera_loader($(".simple-table tbody"), 'div');
             $(".vocabulary-ul li").removeAttr('class');
@@ -1345,6 +1405,7 @@
             var quiz_type = $(this).attr('data-type');
             $(".assignment_topic_type_mock").val(quiz_type);
             $(".assignment_topic_type_mock").prop('checked', true);
+            refresh_tags();
             searchRequest = jQuery.ajax({
                 type: "GET",
                 url: '/tests/search_tests',

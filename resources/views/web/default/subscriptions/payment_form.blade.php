@@ -43,7 +43,9 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
             <div class="row mb-10">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                     <h3>The Final Step to Reading!</h3>
+                    @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
                     <p>No need to worry! We won't ask for payment until after your 7-day free trial ends.</p>
+                    @endif
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="book-form mt-30">
@@ -51,7 +53,7 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
                             <div class="col-12 col-lg-12 col-md-12">
                                 <ul class="tests-list payment-methods mb-15">
                                     <li data-type="card-gateway" class="active"><img src="/assets/default/svgs/card-credit.svg" alt=""> Card</li>
-                                    <li data-type="googlepay-gateway" class="process-payment" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}"><img src="/assets/default/svgs/stripe-pay.svg" class="google-icon" alt=""> Pay with Stipe</li>
+                                    <li data-type="googlepay-gateway" class="process-payment1" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}"><img src="/assets/default/svgs/stripe-pay.svg" class="google-icon" alt=""> Pay with Stipe</li>
                                 </ul>
                             </div>
                             <div class="card-gateway-fields conditional-fields row">
@@ -162,11 +164,13 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
                                 </div>
 
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
                                 <p class="mb-25">
                                     Once your 7-day free trial is over, we will automatically charge your chosen payment method ${{$payment_amount}} every month until you decide to cancel. You have the freedom to
                                     cancel at any time.
                                     Keep in mind that there may be sales tax added. For instructions on how to cancel, please refer to the provided guidelines
                                 </p>
+                                @endif
                             </div>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Sart Free Trial</a></div>
                             <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
@@ -192,7 +196,14 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
                             </div>
 
                             <div class="googlepay-gateway-fields conditional-fields rurera-hide payment-content p-25">
-                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Sart Free Trial</a></div>
+                                @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
+                                <p class="mb-25">
+                                    Once your 7-day free trial is over, we will automatically charge your chosen payment method $5 every month until you decide to cancel. You have the freedom to
+                                    cancel at any time.
+                                    Keep in mind that there may be sales tax added. For instructions on how to cancel, please refer to the provided guidelines
+                                </p>
+                                @endif
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Take me to Stripe Site</a></div>
                             </div>
                         </div>
                     </div>

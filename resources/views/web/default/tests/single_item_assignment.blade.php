@@ -21,6 +21,6 @@ $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuesti
     </td>
     <td class="text-right">
 
-        <a href="javascript:;" data-id="{{$rowObj->id}}" data-topic_type="{{$rowObj->quiz_type}}" data-total_time="{{$rowObj->time}}" data-total_questions="{{$count_questions}}" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
+        <a href="javascript:;" data-id="{{$rowObj->id}}" data-topic_type="{{$rowObj->quiz_type}}" data-total_time="{{$rowObj->time}}" data-total_questions="{{$count_questions}}" data-tag_title="{{$rowObj->getTitleAttribute()}}" class="rurera-list-btn mock-test-assign-btn  " data-next_step="4">Assign Test</a></td>
     </td>
 </tr>

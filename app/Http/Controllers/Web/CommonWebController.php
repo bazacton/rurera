@@ -356,7 +356,7 @@ class CommonWebController extends Controller
                                                         </h4>
                                                     </td>
                                                     <td class="text-right">
-                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_time="' . $rowObj->time . '" data-total_questions="' . $count_questions . '" class="rurera-list-btn '.$assign_btn_class.'  " data-next_step="4">Assign Test</a></td>
+                                                     <a href="javascript:;" data-id="'.$rowObj->id.'" data-total_time="' . $rowObj->time . '" data-total_questions="' . $count_questions . '" data-tag_title="'.$rowObj->getTitleAttribute().'" class="rurera-list-btn '.$assign_btn_class.'  " data-next_step="4">Assign Test</a></td>
                                                 </tr>';
                             }
                         }
@@ -511,7 +511,7 @@ class CommonWebController extends Controller
                 $subjects_response .= '
                                         <label class="card-radio '.$active_class.'">
                                             <input type="radio" name="ajax[new][subject]"
-                                                   class="assignment_subject_check" value="' . $courseObj->id . '" '.$is_checked.'>
+                                                   class="assignment_subject_check" data-tag_title="' . $courseObj->getTitleAttribute() . '" value="' . $courseObj->id . '" '.$is_checked.'>
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
                                                             ' . $courseObj->icon_code . '

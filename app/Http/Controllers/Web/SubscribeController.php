@@ -305,6 +305,10 @@ class SubscribeController extends Controller
 
     public function paymentForm(Request $request)
     {
+        $user = getUser();
+        $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+            return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+        });
         $selected_package = $request->get('selected_package', null);
         $subscribed_for = $request->get('subscribed_for', null);
         $subscribed_for = ($subscribed_for > 0) ? $subscribed_for : 0;
@@ -331,7 +335,8 @@ class SubscribeController extends Controller
                     'subscribed_for'   => $subscribed_for,
                     'user_id'          => $user_id,
                     'packageObj'       => $packageObj,
-                    'payment_amount'   => $payment_amount
+                    'payment_amount'   => $payment_amount,
+                    'subscribed_childs' => $subscribed_childs,
                 ])->render();
             } else {
                 $response_layout = view('web.default.subscriptions.finish', [
@@ -456,6 +461,7 @@ class SubscribeController extends Controller
             $total_discount += $discount_amount;
             $child_discount = $discount_amount;
             $charged_amount = ($package_total_amount - $discount_amount);
+            $remaining_days = 30;
 
 
 
@@ -472,50 +478,31 @@ class SubscribeController extends Controller
                 $expiry_date_final = date('Y-m', $expiry_date);
                 $expiry_date_final = $expiry_date_final.'-'.$package_expiry_date;
                 $expiry_date_final = strtotime($expiry_date_final);
-                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime($expiry_date_year.'-'.($expiry_date_month).'-'.$expiry_date_date) : $expiry_date_final;
+                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime('-1 month', $expiry_date_final) : $expiry_date_final;
                 $current_date = time();
                 $remaining_days = ($expiry_date_final - $current_date);
                 $remaining_days = round($remaining_days / (60 * 60 * 24));
-
-
                 $expiry_total_days = ($expiry_date - $current_date);
                 $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
                 $per_day_amount = ($packages_amount / $expiry_total_days);
-                //pre('Package total Days = '.$package_total_days, false);
-                //pre('Remaining Days = '.$remaining_days, false);
-                //pre('Per Day Amount = '.$per_day_amount, false);
-
-                //$per_day_amount = ($packages_amount / $package_total_days);
                 $packages_amount = ($remaining_days * $per_day_amount);
             }
-
-
-            /*if (isset($ParentsOrders->id)) {
-                $package_created = $ParentsOrders->created_at;
-                $package_expiry = $ParentsOrders->expiry_at;
-                $current_date = time();
-                $package_total_days = ($package_expiry - $package_created);
-                $package_total_days = round($package_total_days / (60 * 60 * 24));
-                $remaining_days = ($package_expiry - $current_date);
-                $remaining_days = round($remaining_days / (60 * 60 * 24));
-
-                $expiry_total_days = ($expiry_date - $current_date);
-                $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
-                $per_day_amount = ($packages_amount / $expiry_total_days);
-                //pre('Package total Days = '.$package_total_days, false);
-                //pre('Remaining Days = '.$remaining_days, false);
-                //pre('Per Day Amount = '.$per_day_amount, false);
-
-                //$per_day_amount = ($packages_amount / $package_total_days);
-                $packages_amount = ($remaining_days * $per_day_amount);
-            }*/
             $packages_amount = round($packages_amount, 2);
 
             $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
 
+            $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+                return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+            });
+
+            if( $subscribed_childs == 0) {
+                $expiry_date_final = strtotime('+7 days', $expiry_date_final);
+            }
+
 
             $full_data['package_id'][] = $package_id;
             $full_data['expiry_date'] = $expiry_date_final;
+            $full_data['remaining_days'] = $remaining_days;
 
 
             $financialSettings = getFinancialSettings();

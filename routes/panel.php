@@ -34,6 +34,7 @@ $parentTutorRoutes = function () {
 
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', 'MembersController@index');
+        Route::get('/print-card/{id}', 'MembersController@printCard');
     });
 
     Route::group(['prefix' => 'set-work'], function () {
@@ -41,6 +42,7 @@ $parentTutorRoutes = function () {
         Route::get('/create', 'SetWorkController@create');
         Route::post('/store', 'SetWorkController@store');
         Route::get('/{id}/progress', 'SetWorkController@progress');
+        Route::get('/{id}/remove', 'SetWorkController@remove');
         Route::get('/search', 'SetWorkController@search');
     });
 

@@ -112,15 +112,23 @@ class SetWorkController extends Controller
         $totalAssignments = deepClone($query)->count();
         $assignments = $query->paginate(2);
 
-        $response = '';
+        $response = '<div class="rurera-tables-list mb-30 ">';
         if ($assignments->count() > 0){
             foreach ($assignments as $assignmentObj) {
                 $response .= view('web.default.panel.set_work.list_item', ['assignmentObj' => $assignmentObj])->render();
             }
         }else{
-            $response   .= view('web.default.default.list_no_record')->render();
+            $no_records_data = '<div class="no-record-found-head mb-20">
+                    <ul class="d-flex align-items-center justify-content-between">
+                        <li><h6 class="listing-title font-14 font-weight-500">Title</h6></li>
+                        <li><h6 class="listing-title font-14 font-weight-500">Student</h6></li>
+                        <li><h6 class="listing-title font-14 font-weight-500">Type</h6></li>
+                        <li><h6 class="listing-title font-14 font-weight-500">Action</h6></li>
+                    </ul>
+            </div>';
+            $response   .= view('web.default.default.list_no_record', ['no_records_data' => $no_records_data])->render();
         }
-        $response   .= '<div class="rurera-pagination">'.$assignments->links().'</div>';
+        $response   .= '</div><div class="rurera-pagination">'.$assignments->links().'</div>';
         echo $response;exit;
     }
 
@@ -393,5 +401,25 @@ class SetWorkController extends Controller
 
         return view(getTemplate() . '.panel.set_work.progress', $data);
     }
+
+    public function remove(Request $request, $id)
+    {
+
+        $assignmentObj = StudentAssignments::query()->where('id', $id)->first();
+        $completed_count = $assignmentObj->students->where('status', 'completed')->count();
+        if( $completed_count == 0){
+            $assignmentObj->update([
+                'status' => 'inactive',
+                'updated_at' => time(),
+            ]);
+            $assignedAssignments = UserAssignedTopics::query()->where('status', 'active')->where('student_assignment_id', $assignmentObj->id)->update([
+                    'status' => 'inactive',
+                    'updated_at' => time(),
+                ]
+            );
+        }
+        return redirect('/' . panelRoute() . '/set-work');
+    }
+
 
 }

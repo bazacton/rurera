@@ -1,6 +1,3 @@
-<section class="container mt-45">
-    <p>Processing Payment....</p>
-</section>
 <section class="container mt-45 hide">
     <h2 class="section-title">{{ trans('financial.select_a_payment_gateway') }}</h2>
 
