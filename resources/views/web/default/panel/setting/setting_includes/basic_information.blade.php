@@ -241,64 +241,80 @@ $avatar_color_settings = json_encode($avatar_color_settings);
             </div>
         </div>
         <div class="col-12">
-            <div class="edit-profile">
+            <div class="edit-profile mb-50">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="edit-profile-sidebar">
-                            <div class="user-info">
+                            <div class="user-info d-flex align-items-center flex-wrap mb-30">
                                 <img src="/avatar/svgA44708602509147854.png" alt="" height="48" width="48">
-                                <span class="info-text">
+                                <span class="info-text d-inline-flex flex-column font-weight-500">
                                     Maya Rosselini
                                     <small>Product Manager</small>
                                 </span>
                             </div>
                             <div class="edit-profile-menu">
-                                <ul>
-                                    <li><a href="#" class="active"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span> General</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-home.svg" alt=""></span>Experience</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-diamond.svg" alt=""></span>Skills &amp; Tools</a></li>
-                                    <li><a href="#"><span class="icon-box"><img src="/assets/default/svgs/edit-menu-setting.svg" alt=""></span>Settings</a></li>
+                                <ul class="nav flex-column" id="myTab" role="tablist">
+                                    <li>
+                                        <a class="nav-link active d-flex align-items-center" id="edit-profile-tab" data-toggle="tab" href="#edit-profile" role="tab" aria-controls="edit-profile" aria-selected="true">
+                                            <span class="icon-box d-inline-block"><img src="/assets/default/svgs/edit-menu-user.svg" height="15" width="15" alt=""></span> General
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link d-flex align-items-center" id="edit-experience-tab" data-toggle="tab" href="#edit-experience" role="tab" aria-controls="edit-experience" aria-selected="false">
+                                            <span class="icon-box d-inline-block"><img src="/assets/default/svgs/edit-menu-home.svg" height="15" width="15" alt=""></span>Experience
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link d-flex align-items-center" id="edit-skills-tab" data-toggle="tab" href="#edit-skills" role="tab" aria-controls="edit-skills" aria-selected="false">
+                                            <span class="icon-box d-inline-block"><img src="/assets/default/svgs/edit-menu-diamond.svg" height="15" width="15" alt=""></span>Skills &amp; Tools
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link d-flex align-items-center" id="edit-settings-tab" data-toggle="tab" href="#edit-settings" role="tab" aria-controls="edit-settings" aria-selected="false">
+                                            <span class="icon-box d-inline-block"><img src="/assets/default/svgs/edit-menu-setting.svg" height="15" width="15" alt=""></span>Settings
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-8 col-12">
-                        <div class="edit-profile-content-holder">
-                            <div class="edit-profile-content panel-border bg-white rounded-sm p-25">
-                                <div class="edit-profile-top">
+                        <div class="edit-profile-content-holder tab-content" id="myTabContent">
+                            <div class="edit-profile-content panel-border bg-white rounded-sm p-25 tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
+                                <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
                                     <div class="top-heading">
-                                        <h5>
+                                        <h5 class="font-14 font-weight-500">
                                             GENERAL INFO
-                                            <span>Edit your account's general information</span>
+                                            <span class="d-block pt-5 font-12">Edit your account's general information</span>
                                         </h5>
                                     </div>
                                     <div class="edit-profile-controls">
-                                        <button>Cancel</button>
-                                        <button class="save-btn">Save</button>
+                                        <button class="text-center">Cancel</button>
+                                        <button class="save-btn text-center">Save</button>
                                     </div>
                                 </div>
                                 <div class="edit-profile-body">
                                     <div class="edit-profile-image">
-                                        <div class="edit-element-title">
-                                            <h6>
+                                        <div class="edit-element-title mb-20">
+                                            <h6 class="font-weight-500">
                                                 Profile picture
-                                                <span>This is how others will recognize you</span>
+                                                <span class="d-block pt-5 font-12">This is how others will recognize you</span>
                                             </h6>
                                         </div>
-                                        <div class="profile-image">
-                                            <figure>
+                                        <div class="profile-image text-center">
+                                            <figure class="d-inline-flex position-relative">
                                                 <img src="/avatar/svgA44708602509147854.png" height="96" width="96" alt="">
-                                                <a href="#" class="cancel-btn">✖</a>
+                                                <a href="#" class="cancel-btn d-inline-flex align-items-center justify-content-center font-14 bg-white">✖</a>
                                             </figure>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <div class="edit-element-title">
-                                                    <h6>
+                                                <div class="edit-element-title mb-20">
+                                                    <h6 class="font-weight-500">
                                                         Profile Info
-                                                        <span>Others diserve to know you more</span>
+                                                        <span class="d-block pt-5 font-12">Others diserve to know you more</span>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -332,10 +348,10 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="edit-element-title">
-                                                    <h6>
+                                                <div class="edit-element-title mb-20">
+                                                    <h6 class="font-weight-500">
                                                         Professional Info
-                                                        <span>This can help you to win some opportunities</span>
+                                                        <span class="d-block pt-5 font-12">This can help you to win some opportunities</span>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -378,10 +394,10 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="edit-element-title">
-                                                    <h6>
+                                                <div class="edit-element-title mb-20">
+                                                    <h6 class="font-weight-500">
                                                         Social Profiles
-                                                        <span>This can help others finding you on social media</span>
+                                                        <span class="d-block pt-5 font-12">This can help others finding you on social media</span>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -425,6 +441,9 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="edit-experience" role="tabpanel" aria-labelledby="edit-experience-tab">Experience</div>
+                            <div class="tab-pane fade" id="edit-skills" role="tabpanel" aria-labelledby="edit-skills-tab">Skills</div>
+                            <div class="tab-pane fade" id="edit-settings" role="tabpanel" aria-labelledby="edit-settings-tab">Settings</div>
                         </div>
                     </div>
                 </div>

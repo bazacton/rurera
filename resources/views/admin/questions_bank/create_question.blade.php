@@ -28,19 +28,15 @@ $rand_id = rand(999,99999);
     .image-field, .image-field-box {
         width: fit-content;
     }
-
     .image-field img, .containment-wrapper {
         position: relative !important;
     }
-
     .image-field-box {
         position: absolute !important;
     }
-
     /*.draggable3 {
         width: 150px;
     }*/
-
     .spreadsheet-area {
         border: 1px solid #efefef;
         padding: 10px;
@@ -56,7 +52,6 @@ $rand_id = rand(999,99999);
     nav.navbar.navbar-expand-lg.main-navbar {
         display: none;
     }
-
 </style>
 @endpush
 
@@ -703,7 +698,7 @@ $rand_id = rand(999,99999);
                                                     <div class="col-12">
                                                         <div class="search-fields-block"
                                                              style="background: #efefef;padding: 10px;"><div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Year / Grade *</label>
                                                                     <select name="category_id" data-plugin-selectTwo
@@ -736,7 +731,7 @@ $rand_id = rand(999,99999);
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Subject *</label>
                                                                     <select name="course_id"
@@ -747,7 +742,7 @@ $rand_id = rand(999,99999);
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6">
+                                                            <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Topic</label>
                                                                     <select id="chapter_id"
@@ -759,7 +754,7 @@ $rand_id = rand(999,99999);
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-6">
+                                                            <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Sub Topic</label>
                                                                     <select id="chapter_id"
@@ -790,7 +785,7 @@ $rand_id = rand(999,99999);
                                                     </div>
                                                     </div>
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Question Reference</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -806,7 +801,7 @@ $rand_id = rand(999,99999);
                                                     </div>
 
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Score</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -821,7 +816,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Average Time</label>
                                                             <input type="text" value="{{ old('title') }}"
@@ -836,7 +831,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Example Question</label>
                                                             <select name="example_question" id="example_question" data-search-option="questions_ids"
@@ -844,7 +839,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Question Type</label>
                                                             <select name="question_type" class="custom-select ">
@@ -861,7 +856,7 @@ $rand_id = rand(999,99999);
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-md-6 col-12">
                                                         <div class="form-group">
                                                             <label class="input-label">Difficulty Level</label>
                                                             <select name="difficulty_level" class="custom-select ">

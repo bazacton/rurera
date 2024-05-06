@@ -383,9 +383,7 @@ class CustomQuizController extends Controller
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
 
-
         $topics_subtopics_layout = $this->topics_subtopics_by_subject($request, $quiz->subject_id, false, $quiz->topic_id, $quiz->subtopic_id);
-
 
         $data = [
             'pageTitle'               => trans('public.edit') . ' ' . $quiz->title,
@@ -868,6 +866,9 @@ class CustomQuizController extends Controller
         $question_count = 1;
 
         foreach ($questions_ids as $question_id) {
+            if( $question_id == 'undefined'){
+                continue;
+            }
             $questionObj = QuizzesQuestion::find($question_id);
             $question_class = ($question_count == 1) ? '' : 'rurera-hide';
             $question_response_layout .= '<div data-question_id="' . $question_id . '" class="question-block ' . $question_class . '">';

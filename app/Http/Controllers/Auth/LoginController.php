@@ -161,6 +161,14 @@ class LoginController extends Controller
             'username' => $request->get('username'),
             'password' => $request->get('password')
         ];
+        if (filter_var($request->get('username'), FILTER_VALIDATE_EMAIL)) {
+            $credentials = [
+                'email' => $request->get('username'),
+                'password' => $request->get('password')
+            ];
+        }
+
+        //pre($credentials);
         $remember = true;
 
         /*if (!empty($request->get('remember')) and $request->get('remember') == true) {

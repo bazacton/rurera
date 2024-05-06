@@ -210,7 +210,7 @@ class DashboardController extends Controller
             $assignmentsQuery->where('deadline_date', '>=', time());
         }
         if ($fetch_type == 'previous') {
-            $assignmentsQuery->where('status', 'completeds');
+            $assignmentsQuery->where('status', 'completed');
             //$assignmentsQuery->where('start_at', '<', strtotime(date('Y-m-d')));
             //$assignmentsQuery->where('deadline_date', '>=', time());
         }

@@ -21,7 +21,7 @@ $rand_id = rand(99,9999);
     }
 
 </style>
-
+@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : ''; @endphp
 @php $timer_counter = 0;
 if( $duration_type == 'per_question'){
 $timer_counter = $time_interval;
@@ -96,11 +96,41 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - assignment_practice_start</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - assignment_start</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
+                                @if( isset( $show_pagination) && $show_pagination == 'yes')
+                                <div class="quiz-pagination">
+                                    <div class="swiper-container">
+                                    <ul class="swiper-wrapper">
+                                        @if( !empty( $questions_list ) )
+                                        @php $question_count = 1; @endphp
+                                        @foreach( $questions_list as $question_id)
+                                        @php $is_flagged = false;
+                                        $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                        ($newQuizStart->flagged_questions) : array();
+                                        @endphp
+                                        @if( is_array( $flagged_questions ) && in_array( $question_id,
+                                        $flagged_questions))
+                                        @php $is_flagged = true;
+                                        @endphp
+                                        @endif
+                                        @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                        <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                'has-flag' : ''}} {{$question_status_class}}"><a
+                                                href="javascript:;">
+                                                {{$question_count}}</a></li>
+                                        @php $question_count++; @endphp
+                                        @endforeach
+                                        @endif
+                                    </ul>
+                                    </div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                                @endif
                                 <div class="quiz-timer">
                                     <span class="timer-number"><div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div></span>
                                 </div>
@@ -208,10 +238,7 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                     @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
                     <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
                     <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}"
-                                             data-active_question_id="{{$active_actual_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
-                        @if( $active_actual_question_id > 0 )
-                        <a href="javascript:;" id="next-btn1" class="next-btn rurera-hide active-question-btn" data-question_id="{{$active_actual_question_id}}" data-actual_question_id="{{$active_actual_question_id}}">&nbsp;</a>
-                        @endif
+                                             data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -367,22 +394,24 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
         }
 
     function getTime(secondsString) {
-            var h = Math.floor(secondsString / 3600); //Get whole hours
-            secondsString -= h * 3600;
-            var m = Math.floor(secondsString / 60); //Get remaining minutes
-            secondsString -= m * 60;
+        var h = Math.floor(secondsString / 3600); //Get whole hours
+        secondsString -= h * 3600;
+        var m = Math.floor(secondsString / 60); //Get remaining minutes
+        secondsString -= m * 60;
 
-            var return_string = '';
-            if( h > 0) {
-                var return_string = return_string + h + "h ";
-            }
-            //if( m > 0 || h > 0) {
-                var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
-            //}
-            var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
-            return_string = return_string + 's';
-
-            return return_string;
+        
+        var return_string = '';
+        if( h > 0) {
+            var return_string = return_string + h + "h ";
         }
+        var quiz_type = '{{$quiz_type}}';
+        if( (m > 0 || h > 0) || quiz_type != 'vocabulary') {
+            var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
+        }
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+        return_string = return_string + 's';
+
+        return return_string;
+    }
 
 </script>

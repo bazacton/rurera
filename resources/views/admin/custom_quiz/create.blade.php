@@ -298,6 +298,7 @@
         var currentRequest = null;
         var question_search = function () {
             $('body').on('keyup', '.search-questions', function (e) {
+                console.log('search-questions');
                 var input, filter, ul, li, a, i, txtValue;
                 var search_question_bank = $('.search_question_bank').is(":checked");
                 if (search_question_bank == false) {
@@ -319,6 +320,8 @@
                     var thisObj = $('.questions-populate-area');
                     var year_id = $(".year_id_field").val();
                     var subject_id = $(".subject_id_field").val();
+                    console.log(year_id);
+                    console.log(subject_id);
                     rurera_loader(thisObj, 'div');
 
                     currentRequest = jQuery.ajax({

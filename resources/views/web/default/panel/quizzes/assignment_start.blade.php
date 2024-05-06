@@ -15,22 +15,21 @@ $rand_id = rand(99,9999);
         background: #ff4a4a;
         color: #fff;
     }
-
-    .rurera-hide {
-        display: none;
+    .rurera-hide{
+        display:none;
     }
 
 </style>
-@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : ''; @endphp
-@php $timer_counter = 0;
+@php $quiz_type = isset( $quiz->quiz_type )? $quiz->quiz_type : '';
+$duration_type = isset( $duration_type )? $duration_type : 'no_time_limit';
+
+$timer_counter = 0;
 if( $duration_type == 'per_question'){
 $timer_counter = $time_interval;
 }
 if( $duration_type == 'total_practice'){
 $timer_counter = $practice_time;
 }
-$section_class = 'lms-quiz-section';
-$section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $section_class;
 @endphp
 <div class="content-section">
 
@@ -85,7 +84,7 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
         </script>
         @endif
 
-        <div class="container-fluid questions-data-block read-quiz-content"
+        <div class="container questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
             @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
 
@@ -96,43 +95,42 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
-                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}} - assignment_start</p>
+                            <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                @if( isset( $show_pagination) && $show_pagination == 'yes')
-                                <div class="quiz-pagination">
-                                    <div class="swiper-container">
-                                    <ul class="swiper-wrapper">
-                                        @if( !empty( $questions_list ) )
-                                        @php $question_count = 1; @endphp
-                                        @foreach( $questions_list as $question_id)
-                                        @php $is_flagged = false;
-                                        $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
-                                        ($newQuizStart->flagged_questions) : array();
-                                        @endphp
-                                        @if( is_array( $flagged_questions ) && in_array( $question_id,
-                                        $flagged_questions))
-                                        @php $is_flagged = true;
-                                        @endphp
-                                        @endif
-                                        @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                        <li data-question_id="{{$question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                                'has-flag' : ''}} {{$question_status_class}}"><a
-                                                href="javascript:;">
-                                                {{$question_count}}</a></li>
-                                        @php $question_count++; @endphp
-                                        @endforeach
-                                        @endif
-                                    </ul>
-                                    </div>
-                                    <div class="swiper-button-prev"></div>
-                                    <div class="swiper-button-next"></div>
-                                </div>
-                                @endif
+                                   <div class="quiz-pagination">
+                                       <div class="swiper-container">
+                                       <ul class="swiper-wrapper">
+                                           @if( !empty( $questions_list ) )
+                                           @php $question_count = 1; @endphp
+                                           @foreach( $questions_list as $question_id)
+                                           @php $is_flagged = false;
+                                           $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                           ($newQuizStart->flagged_questions) : array();
+                                           $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
+                                           @endphp
+                                           @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
+                                           $flagged_questions))
+                                           @php $is_flagged = true;
+                                           @endphp
+                                           @endif
+                                           @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                           <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                   'has-flag' : ''}} {{$question_status_class}}"><a
+                                                   href="javascript:;">
+                                                   {{$question_count}}</a></li>
+                                           @php $question_count++; @endphp
+                                           @endforeach
+                                           @endif
+                                       </ul>
+                                       </div>
+                                       <div class="swiper-button-prev"></div>
+                                       <div class="swiper-button-next"></div>
+                                   </div>
                                 <div class="quiz-timer">
-                                    <span class="timer-number"><div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{($practice_time*60)}}">0s</div></span>
                                 </div>
                                 <div class="instruction-controls">
                                     <div class="font-setting">
@@ -218,7 +216,7 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
 
 
             <div class="justify-content-center">
-                <div class="col-lg-8 col-md-12 col-sm-12 mt-50">
+                <div class="col-lg-9 col-md-12 col-sm-12 mt-50 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -235,10 +233,8 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
 
                         </div>
                     </div>
-                    @php $timer_hide = (isset( $timer_hide) && $timer_hide == true)? 'rurera-hide' : ''; @endphp
-                    <div class="quiz-timer-counter {{$timer_hide}}" data-time_counter="{{$timer_counter}}">{{getTime($timer_counter)}}</div>
-                    <div class="question-area-block" data-duration_type="{{$duration_type}}" data-time_interval="{{$time_interval}}" data-practice_time="{{$practice_time}}"
-                                             data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+
+                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -266,6 +262,7 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                     <div class="question-area-temp hide"></div>
 
                 </div>
+
             </div>
         </div>
     </section>
@@ -275,51 +272,51 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
 
 @if($quiz->quiz_type == 'vocabulary')
 <div class="question-status-modal">
-    <div class="modal fade question_status_modal" id="question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="modal-box">
-                        <div class="modal-title">
-                            <h3>Incorrect!</h3>
-                            <span class="inc" style="text-decoration: line-through;">are</span>
-                            <span class="cor">are</span>
-                        </div>
-                        <p>
-                            <span>verb</span> when more than one person is being something
-                        </p>
-                        <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
-                    </div>
-                </div>
+  <div class="modal fade question_status_modal" id="question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-box">
+            <div class="modal-title">
+              <h3>Incorrect!</h3>
+              <span class="inc" style="text-decoration: line-through;">are</span>
+              <span class="cor">are</span>
             </div>
+            <p>
+              <span>verb</span> when more than one person is being something
+            </p>
+            <a href="javascript:;" class="confirm-btn" data-dismiss="modal" aria-label="Close">Okay</a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 @endif
 
 <div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <div class="modal-body">
-                <p></p>
-                <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab"
-                   aria-controls="home" aria-selected="true"> Submit </a>
-            </div>
-        </div>
-    </div>
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p></p>
+               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
+           </div>
+       </div>
+   </div>
 </div>
 <div class="modal fade validation_error" id="validation_error" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <div class="modal-body">
-                <p>Please fill all the required fields before submitting.</p>
-            </div>
-        </div>
-    </div>
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+               <p>Please fill all the required fields before submitting.</p>
+           </div>
+       </div>
+   </div>
 </div>
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
+
 
 
 <script>
@@ -329,77 +326,60 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
 
+
     var Quizintervals = null;
 
-    var duration_type = $(".question-area-block").attr('data-duration_type');
-    var time_interval = $(".question-area-block").attr('data-time_interval');
-    var practice_time = $(".question-area-block").attr('data-practice_time');
+    var duration_type = '{{$duration_type}}';
 
+    function quiz_default_functions() {
 
-        function quiz_default_functions() {
-            $("body").on("click", ".question-submit-btn", function (e) {
-                if (duration_type == 'per_question') {
-                    clearInterval(Quizintervals);
-                }
-            });
+        var active_question_id = $(".question-area-block").attr('data-active_question_id');
+       $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
 
-            Quizintervals = setInterval(function () {
-                var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-                if (duration_type == 'no_time_limit') {
-                    quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-                } else {
-                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                }
-                $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-                if ($('.nub-of-sec').length > 0) {
-                    $('.nub-of-sec').html(getTime(quiz_timer_counter));
-                }
-                $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-                if (duration_type == 'per_question') {
-                    if (parseInt(quiz_timer_counter) == 0) {
-                        clearInterval(Quizintervals);
-                        $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                        $('#question-submit-btn')[0].click();
-                    }
-                }
-                if (duration_type == 'total_practice') {
-                    if (parseInt(quiz_timer_counter) == 0) {
-                        clearInterval(Quizintervals);
-                        $(".review-btn").click();
-                        if ($('.question-review-btn').length > 0) {
-                            $('.question-review-btn').click();
-                        }
-                    }
-                }
+        Quizintervals = setInterval(function () {
+            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+            if (duration_type == 'no_time_limit') {
+                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+            } else {
+                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+            }
+            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+            if ($('.nub-of-sec').length > 0) {
+                $('.nub-of-sec').html(getTime(quiz_timer_counter));
+            }
+            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+            if( quiz_timer_counter == 0){
+                clearInterval(Quizintervals);
+                rurera_loader($(".lms-quiz-section"), 'div');
+                $(".submit_quiz_final").click();
+            }
 
-            }, 1000);
+        }, 1000);
 
-            $("body").on("click", ".increasetext", function (e) {
-                curSize = parseInt($('.learning-page').css('font-size')) + 2;
-                if (curSize <= 32)
-                    $('.learning-page').css('font-size', curSize);
-            });
-
-            $("body").on("click", ".resettext", function (e) {
-                if (curSize != 16)
-                $('.learning-page').css('font-size', 18);
-            });
-
-            $("body").on("click", ".decreasetext", function (e) {
-                curSize = parseInt($('.learning-page').css('font-size')) - 2;
-                if (curSize >= 16)
+        $("body").on("click", ".increasetext", function (e) {
+            curSize = parseInt($('.learning-page').css('font-size')) + 2;
+            if (curSize <= 32)
                 $('.learning-page').css('font-size', curSize);
-            });
+        });
 
-        }
+        $("body").on("click", ".resettext", function (e) {
+            if (curSize != 16)
+            $('.learning-page').css('font-size', 18);
+        });
+
+        $("body").on("click", ".decreasetext", function (e) {
+            curSize = parseInt($('.learning-page').css('font-size')) - 2;
+            if (curSize >= 16)
+            $('.learning-page').css('font-size', curSize);
+        });
+
+    }
 
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours
         secondsString -= h * 3600;
         var m = Math.floor(secondsString / 60); //Get remaining minutes
         secondsString -= m * 60;
-
-        
         var return_string = '';
         if( h > 0) {
             var return_string = return_string + h + "h ";

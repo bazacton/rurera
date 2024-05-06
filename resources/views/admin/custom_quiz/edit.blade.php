@@ -49,6 +49,10 @@
         <div class="section-body" style="margin-top: 50px;">
             <div class="row col-12 col-md-12 col-lg-12">
 
+                <input type="hidden" class="year_id_field" value="{{isset( $assignment->year_id )? $assignment->year_id : 0}}">
+                <input type="hidden" class="subject_id_field" value="{{isset( $assignment->subject_id )? $assignment->subject_id : 0}}">
+
+
                 <ul class="col-10 col-md-10 col-lg-10 admin-rurera-tabs nav nav-pills" id="assignment_tabs" role="tablist">
                     @php $tab_active_class = ($assignment->subtopic_id > 0)? '' : 'active'; @endphp
                     <li class="nav-item">
@@ -109,7 +113,7 @@
                                 <div class="tab-pane mt-3 fade {{$show_class}}" id="questions" role="tabpanel"
                                      aria-labelledby="questions-tab">
                                     <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-4 selected-questions-group">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-4 selected-questions-group questions-group-select1">
 
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-8 single-question-preview">
@@ -124,7 +128,7 @@
 
                                     <div class="row col-lg-12 col-md-12 col-sm-12 col-12">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-4">
-                                            <ul class="questions-list">
+                                            <ul class="questions-list ">
 
                                                 @if( !empty( $assignment->quizQuestionsList))
                                                 @foreach( $assignment->quizQuestionsList as $questionObj)
