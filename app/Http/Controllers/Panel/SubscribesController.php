@@ -132,6 +132,7 @@ class SubscribesController extends Controller
         $full_data['amount'] = $amount;
         $full_data['tax'] = $tax;
 
+
         $taxPrice = $tax ? $amount * $tax / 100 : 0;
 
 

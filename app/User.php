@@ -3789,7 +3789,7 @@ class User extends Authenticatable
 
     public function userSubscriptions()
     {
-        return $this->hasOne('App\Models\UserSubscriptions', 'user_id', 'id')->where('status', 'active');
+        return $this->hasOne('App\Models\UserSubscriptions', 'user_id', 'id')->where('status', 'active')->orderBy('id', 'DESC');
     }
 
 

@@ -50,6 +50,8 @@ class SocialiteController extends Controller
                     'password' => null,
                     'timezone'       => 'Asia/Karachi',
                 ]);
+            }else{
+                return redirect('/login?email=true');
             }
 
             $user->update([
@@ -58,7 +60,7 @@ class SocialiteController extends Controller
 
             Auth::login($user);
 
-            return redirect('/');
+            return redirect('/11plus?google-login=true');
         } catch (Exception $e) {
             $toastData = [
                 'title' => trans('public.request_failed'),

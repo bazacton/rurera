@@ -949,8 +949,8 @@ class UserController extends Controller
         $class_code = $request->input('class_code');
         $userObj = User::find($connect_user_id);
         $classObj = Classes::where('class_code', $class_code)->first();
-        $parentClassObj = Classes::where('id', $classObj->parent_id)->first();
         if( isset( $classObj->id ) ) {
+            $parentClassObj = Classes::where('id', $classObj->parent_id)->first();
 
             JoinRequests::create([
                 'user_id'    => $connect_user_id,

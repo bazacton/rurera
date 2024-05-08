@@ -52,7 +52,7 @@
 .wizard-steps .radio-btn .card-icon span {display: block; margin: 0 0 -22px; opacity: 0; visibility: hidden; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; font-size: 13px; color: #ccc; margin-top: 5px; font-weight: 500;}
 .wizard-steps .card-icon {position: relative; }
 .wizard-steps .radio-btn:hover .card-icon span {opacity: 1; visibility: visible; margin: 5px 0 0; }
-.add-student-modal .radio-btn {min-height: 144px; }
+.add-student-modal .radio-btn {min-height: 140px; }
 .wizard-steps .radio-buttons .card-radio {min-height: 165px;}
 /*Range Slider Style Start*/
 .range-slider {position: relative; width: 100%;	height: auto; min-height: 80px;}

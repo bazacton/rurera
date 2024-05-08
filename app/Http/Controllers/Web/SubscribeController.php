@@ -160,6 +160,20 @@ class SubscribeController extends Controller
                 'ParentsOrders' => $ParentsOrders
             ])->render();
         }
+
+        if ($action_type == 'update_package_confirm') {
+            $childObj = User::find($action_id);
+            $subscribes = Subscribe::all();
+            $selected_package = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_id :0;
+
+            $response_layout = view('web.default.subscriptions.packages', [
+                'update_package_confirm' => true,
+                'childObj'         => $childObj,
+                'subscribes'       => $subscribes,
+                'selected_package' => $selected_package,
+                'ParentsOrders' => $ParentsOrders
+            ])->render();
+        }
         }
 
 
@@ -259,6 +273,7 @@ class SubscribeController extends Controller
         $username = $request->get('username', null);
         $password = $request->get('password', null);
         $selected_package = $request->get('selected_package', null);
+        $test_prep_school = $request->get('test_prep_school', null);
 
 
         $childObj = User::create([
@@ -281,6 +296,7 @@ class SubscribeController extends Controller
             'user_life_lines' => 5,
             'first_name'      => $first_name,
             'last_name'       => $last_name,
+            'prep_school'       => $test_prep_school,
         ]);
 
         UserParentLink::create([
@@ -414,6 +430,26 @@ class SubscribeController extends Controller
         $package_id = $request->input('selectedPackage');
         $childObj = User::find($user_id);
         $userPackageObj = $childObj->userSubscriptions;
+        $userSubsribedPackageObj = (object) array();
+        $packageDiscountAmount = 0;
+        $discount_amount = 0;
+        $discount_label = '';
+        if( isset( $childObj->userSubscriptions->id)) {
+            $subscribedPackageCreated = $childObj->userSubscriptions->created_at;
+            $subscribedPackageExpiry = $childObj->userSubscriptions->expiry_at;
+            $userSubsribedPackageObj = $childObj->userSubscriptions->subscribe;
+            $packageTotalDays   =  ($subscribedPackageExpiry - $subscribedPackageCreated);
+            $packageTotalDays = round($packageTotalDays / (60 * 60 * 24));
+            $packageRemainingDays =  ($subscribedPackageExpiry - time());
+            $packageRemainingDays = round($packageRemainingDays / (60 * 60 * 24));
+            $packagePrice = $userSubsribedPackageObj->price;
+            $packagePerDayPrice = $packagePrice / $packageTotalDays;
+            $packageDiscountAmount = ($packagePerDayPrice * $packageRemainingDays);
+            $packageDiscountAmount = round($packageDiscountAmount, 2);
+            $discount_label = 'Package Upgrade';
+            $full_data['discount_label'] = $discount_label;
+            $full_data['discount_amount'] = $packageDiscountAmount;
+        }
 
         $ParentsOrders = ParentsOrders::where('user_id', $user->id)->where('status', '!=', 'inactive')->first();
         $order = Order::where('user_id', $user->id)->where('status', 'pending')->where('package_id', $package_id)->where('student_id', $user_id)->where('order_type', 'subscribe')->orderBy('id', 'DESC')->first();
@@ -423,7 +459,7 @@ class SubscribeController extends Controller
 
 
             $expiry_date = strtotime('+' . $subscribe_for . ' month', time());
-            $expiry_date_final = strtotime(date('Y-m', $expiry_date));
+            $expiry_date_final = strtotime(date('Y-m-d', $expiry_date));
             $full_data['subscribe_for'] = $subscribe_for;
             $full_data['students'][] = $user_id;
 
@@ -464,8 +500,7 @@ class SubscribeController extends Controller
             $remaining_days = 30;
 
 
-
-            if (isset($ParentsOrders->id)) {
+            /*if (isset($ParentsOrders->id)) {
                 $package_created = $ParentsOrders->created_at;
                 $package_expiry = $ParentsOrders->expiry_at;
 
@@ -486,7 +521,8 @@ class SubscribeController extends Controller
                 $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
                 $per_day_amount = ($packages_amount / $expiry_total_days);
                 $packages_amount = ($remaining_days * $per_day_amount);
-            }
+            }*/
+
             $packages_amount = round($packages_amount, 2);
 
             $activeSubscribe = Subscribe::getActiveSubscribe($user->id);
@@ -510,10 +546,12 @@ class SubscribeController extends Controller
 
 
             $amount = $packages_amount;
+            $transaction_amount = $amount - $packageDiscountAmount;
             $full_data['amount'] = $amount;
+            $full_data['transaction_amount'] = $transaction_amount;
             $full_data['tax'] = $tax;
 
-            $taxPrice = $tax ? $amount * $tax / 100 : 0;
+            $taxPrice = $tax ? $transaction_amount * $tax / 100 : 0;
 
 
             if (!isset($ParentsOrders->id)) {
@@ -521,24 +559,27 @@ class SubscribeController extends Controller
                     "user_id"            => $user->id,
                     'order_amount'       => $amount,
                     'order_tax'          => $taxPrice,
-                    'transaction_amount' => round($amount + $taxPrice, 2),
+                    'transaction_amount' => round($transaction_amount + $taxPrice, 2),
                     'payment_data'       => json_encode($full_data),
                     'payment_frequency'  => $subscribe_for,
                     "created_at"         => time(),
                     'expiry_at'          => $expiry_date_final,
                 ]);
             } else {
-                $expiry_date = $ParentsOrders->expiry_at;
+                $expiry_date = $expiry_date_final;
                 $full_data['expiry_date'] = $expiry_date_final;
                 $payment_data = isset($ParentsOrders->payment_data) ? (array)json_decode($ParentsOrders->payment_data) : array();
                 $payment_data['students'] = array_merge($payment_data['students'], $full_data['students']);
                 $payment_data['package_id'] = array_merge($payment_data['package_id'], $full_data['package_id']);
                 $payment_data['amount'] += $amount;
+                $payment_data['transaction_amount'] = isset( $payment_data['transaction_amount'] )? $payment_data['transaction_amount'] : 0;
+                $payment_data['transaction_amount'] += $transaction_amount;
                 $parentOrdersData = [
                     'order_amount'       => $ParentsOrders->order_amount + $amount,
                     'order_tax'          => $ParentsOrders->order_tax + $taxPrice,
-                    'transaction_amount' => $ParentsOrders->transaction_amount + round($amount + $taxPrice, 2),
+                    'transaction_amount' => $ParentsOrders->transaction_amount + round($transaction_amount + $taxPrice, 2),
                     'payment_data'       => json_encode($payment_data),
+                    'expiry_at'          => $expiry_date_final,
                 ];
                 $ParentsOrders->update($parentOrdersData);
             }
@@ -549,13 +590,6 @@ class SubscribeController extends Controller
             $user->update([
                 'payment_frequency' => $ParentsOrders->payment_frequency
             ]);
-
-            if (isset($userPackageObj->id)) {
-
-                $userPackageObj->update([
-                    'status' => 'inactive'
-                ]);
-            }
 
 
             if ($activeSubscribe) {
@@ -650,6 +684,8 @@ class SubscribeController extends Controller
                 'total'           => $order->total_amount,
                 'order'           => $order,
                 'count'           => 1,
+                'discount_label' => $discount_label,
+                'discount_amount' => $discount_amount,
                 'userCharge'      => $user->getAccountingCharge(),
                 'razorpay'        => $razorpay
             ];

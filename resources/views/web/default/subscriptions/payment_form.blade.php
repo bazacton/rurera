@@ -42,10 +42,10 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
             <h2 class="font-22 mb-15">Payment details</h2>
             <div class="row mb-10">
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
-                    <h3>The Final Step to Reading!</h3>
                     @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
                     <p>No need to worry! We won't ask for payment until after your 7-day free trial ends.</p>
                     @endif
+                    <p>By giving your card information, you let rurera.com charge from your card for future payments as per their <a href="/terms-and-conditions">terms and conditions</a>.</p>
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="book-form mt-30">

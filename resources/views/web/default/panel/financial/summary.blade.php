@@ -2,7 +2,6 @@
 
 
 @section('content')
-    @if($accountings->count() > 0)
         <section>
             <h2 class="section-title">{{ trans('financial.financial_documents') }}</h2>
 
@@ -22,6 +21,7 @@
                                 </thead>
                                 <tbody>
 
+                                @if($accountings->count() > 0)
                                 @foreach($accountings as $accounting)
                                     <tr>
                                         <td class="text-left">
@@ -84,6 +84,11 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @else
+                                <tr class="no-record-found">
+                                    <td class="text-left" colspan="5">No Records Found</td>
+                                </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -92,15 +97,6 @@
             </div>
 
         </section>
-    @else
-
-
-        @include(getTemplate() . '.includes.no-result',[
-            'file_name' => 'financial.png',
-            'title' => trans('financial.financial_summary_no_result'),
-            'hint' => nl2br(trans('financial.financial_summary_no_result_hint')),
-        ])
-    @endif
     <div class="my-30">
         {{ $accountings->appends(request()->input())->links('vendor.pagination.panel') }}
     </div>

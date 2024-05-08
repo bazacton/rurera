@@ -66,7 +66,7 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
-                                                Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
+                                                Membership: {{$childObj->userSubscriptions->id}} -- {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
                                                 @endphp
@@ -647,8 +647,7 @@
     </div>
 </div>
 
-<div class="modal fade class-connect-modal" id="class-connect-modal" tabindex="-1"
-     aria-labelledby="class-connect-modallabel" aria-hidden="true">
+<div class="modal fade class-connect-modal" id="class-connect-modal" tabindex="-1" aria-labelledby="class-connect-modallabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -662,23 +661,7 @@
                             aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-
-                <form action="#" method="post" class="w-100 connect-to-class-form">
-
-                    {{ csrf_field() }}
-                    <input type="hidden" name="user_id" class="connect_user_id">
-                    <div class="row user-details-block">
-                        <div class="col-12 col-lg-6 col-md-6">
-                            <span class="form-label">Class Code</span>
-                            <div class="input-field">
-                                <input type="text" name="class_code" class="rurera-req-field" placeholder="Class Code">
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
-                        </button>
-                    </div>
-                </form>
-                <div class="class-thumb-list">
+                <div class="class-thumb-list connect-class-steps" data-id="1">
                     <ul>
                         <li>
                             <div class="class-thumb">
@@ -704,10 +687,27 @@
                     </ul>
                     <p>Connect to your child's class to receiv Lesson recommendations and to see what your child is learning in school.</p>
                     <div class="connect-controls">
-                        <a href="#">Never Mind</a>
-                        <a href="#">Find Your School</a>
+                        <a href="javascript:;" data-dismiss="modal" aria-label="Close">Never Mind</a>
+                        <a href="javascript:;" class="connect-next-step">Find Your School</a>
                     </div>
                 </div>
+
+                <form action="#" method="post" class="w-100 connect-to-class-form connect-class-steps rurera-hide" data-id="2">
+
+                    {{ csrf_field() }}
+                    <input type="hidden" name="user_id" class="connect_user_id">
+                    <div class="row user-details-block">
+                        <div class="col-12 col-lg-6 col-md-6">
+                            <span class="form-label">Class Code</span>
+                            <div class="input-field">
+                                <input type="text" name="class_code" class="rurera-req-field" placeholder="Class Code">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
+                        </button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -725,38 +725,38 @@
                 <div class="modal-body pt-50">
                     <form class="child-edit-form" method="post" action="javascript:;">
                         {{ csrf_field() }}
+                        <div class="bg-white panel-border p-25 rounded-sm mt-30 mx-auto w-80">
                     <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-30 text-center">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-31 mb-10">
                         <h2 class="font-22">Student's details</h2>
                         </div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
-                        <div class="row">
-
-
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <span class="fomr-label">Student's first name</span>
-                                    <div class="input-field">
-                                        <input type="text" class="user-edit-first-name rurera-req-field" placeholder="Name" name="first_name">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <span class="fomr-label">Student's first name</span>
+                                        <div class="input-field">
+                                            <input type="text" class="user-edit-first-name rurera-req-field" placeholder="Name" name="first_name">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <span class="fomr-label">Student's last name</span>
-                                    <div class="input-field">
-                                        <input type="text" class="user-edit-last-name rurera-req-field" placeholder="Last name" name="last_name">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <span class="fomr-label">Student's last name</span>
+                                        <div class="input-field">
+                                            <input type="text" class="user-edit-last-name rurera-req-field" placeholder="Last name" name="last_name">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <input type="hidden" class="user-edit-id" name="user_id" value="0">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="form-group mt-30">
-                                    <div class="btn-field">
-                                        <button type="submit" class="nav-link">Update student's profile</button>
+                                <input type="hidden" class="user-edit-id" name="user_id" value="0">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group mt-10 mb-0">
+                                        <div class="btn-field">
+                                            <button type="submit" class="nav-link">Update student's profile</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -850,6 +850,17 @@
     });
 
 
+    $(document).on('click', '.connect-next-step', function (e) {
+        var step_id = $(this).closest(".connect-class-steps").attr('data-id');
+        $(".connect-class-steps").addClass('rurera-hide');
+        if( step_id == 1){
+            $('.connect-class-steps[data-id="2"]').removeClass('rurera-hide');
+        }
+    });
+
+
+
+
     $(document).on('click', '.package_label', function (e) {
         var current_index = $(".package_label").index($(this));
         $(this).closest('.field-btn').find('.package_id').attr('data-current_index', current_index);
@@ -934,7 +945,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (return_data) {
-                rurera_remove_loader(thisObj, 'button');
+                rurera_remove_loader(thisObj, 'div');
                 $("#class-connect-modal").modal('hide');
                 Swal.fire({
                   icon: return_data.status,
@@ -950,6 +961,8 @@
 
 
     $(document).on('click', '.connect-user-btn', function (e) {
+        $('.connect-class-steps').addClass('rurera-hide');
+        $('.connect-class-steps[data-id="1"]').removeClass('rurera-hide');
         var user_id = $(this).attr('data-user_id');
         $(".connect_user_id").val(user_id);
 

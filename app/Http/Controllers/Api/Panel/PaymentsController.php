@@ -178,6 +178,21 @@ class PaymentsController extends Controller
                     $this->setPaymentAccounting($order);
 
                     $order->update(['status' => Order::$paid]);
+                    
+                    
+                    
+                    $payment_data = isset( $order->payment_data )? json_decode($order->payment_data) : (object) array();
+                    $students   = isset( $payment_data->students )? $payment_data->students : array();
+                    $students = isset( $students[0] )? $students[0] : 0;
+                    $childObj = User::find($students);
+                    $userPackageObj = $childObj->userSubscriptions;
+                    if (isset($userPackageObj->id)) {
+                        $userPackageObj->update([
+                            'status' => 'inactive'
+                        ]);
+                    }
+                    
+                    
                     UserSubscriptions::where('order_id', $order->id)->update([
                         'status' => 'active'
                     ]);

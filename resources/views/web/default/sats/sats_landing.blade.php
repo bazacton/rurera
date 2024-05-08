@@ -770,7 +770,7 @@
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header" id="headingonsix">
-                                    <button class="btn btn-link font-22 font-weight-normal" data-toggle="collapse" data-target="#collapsesix"
+                                    <button class="btn btn-link font-20 font-weight-normal" data-toggle="collapse" data-target="#collapsesix"
                                             aria-expanded="true" aria-controls="collapsesix"><h3>What are SATs exam in the UK?</h3>
                                     </button>
                                 </div>
@@ -786,7 +786,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                         <h3>What are SATs exam for?</h3>
                                     </button>
                                 </div>
@@ -800,7 +800,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingseven">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What subjects are assessed in SATs exam?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What subjects are assessed in SATs exam?</h3></button>
                                 </div>
                                 <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
                                     <div class="card-body">
@@ -812,7 +812,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading8">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are SATs resources and how they help for KS1 , KS2 SATs?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are SATs resources and how they help for KS1 , KS2 SATs?</h3></button>
                                 </div>
                                 <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
                                     <div class="card-body">
@@ -822,7 +822,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading9">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>Do SATs exam have pass or fail grades?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>Do SATs exam have pass or fail grades?</h3></button>
                                 </div>
                                 <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
                                     <div class="card-body">
@@ -834,7 +834,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading10">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10"><h3>Are SATs compulsory?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10"><h3>Are SATs compulsory?</h3></button>
                                 </div>
                                 <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
                                     <div class="card-body">
@@ -846,7 +846,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading11">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11"><h3>Are SATs quizzes helpful for preparing for the exams?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11"><h3>Are SATs quizzes helpful for preparing for the exams?</h3></button>
                                 </div>
                                 <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
                                     <div class="card-body">
@@ -856,7 +856,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-header" id="heading12">
-                                    <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12"><h3>Can parents help their children prepare for KS1 and KS2 SATs?</h3></button>
+                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12"><h3>Can parents help their children prepare for KS1 and KS2 SATs?</h3></button>
                                 </div>
                                 <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
                                     <div class="card-body">

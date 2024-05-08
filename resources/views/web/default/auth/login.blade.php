@@ -22,7 +22,9 @@
         -webkit-text-security: disc;
     }
 </style>
-
+@if( isset($_GET['email'] ) && $_GET['email'] == 'true')
+    <script>window.opener.postMessage('You already have an account with us. Please <a href="/login">Login</a> to access.', window.location.origin);window.close();</script>
+@endif
 @section('content')
     <div class="container d-flex flex-column justify-content-center align-items-center">
         <div class="text-center mb-30 mt-50">
@@ -47,6 +49,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="login-card">
+
                                 <h1 class="font-24 font-weight-bold">{{ trans('auth.login_h1') }}</h1>
                                 <form method="Post" action="/login" class="mt-20">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -386,6 +389,10 @@
             $(".login_pin_final").change();
         }
     });
+    function sendResponseToParent() {
+            // Access the parent window and post a message
+            window.opener.postMessage("Response from popup", window.location.origin);
+        }
 
 </script>
 @endpush

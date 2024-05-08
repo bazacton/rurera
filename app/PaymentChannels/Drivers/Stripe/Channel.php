@@ -8,6 +8,7 @@ use App\PaymentChannels\IChannel;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Stripe\Subscription;
+use Stripe\Coupon;
 use Stripe\Customer;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
@@ -41,6 +42,8 @@ class Channel implements IChannel
         $currency = 'USD';
         $payment_data = isset( $order->payment_data )? json_decode($order->payment_data) : (object) array();
         $remaining_days  = isset( $payment_data->remaining_days )? $payment_data->remaining_days : 30;
+        $discount_amount = isset( $payment_data->discount_amount )? $payment_data->discount_amount : 0;
+
 
         Stripe::setApiKey($this->api_secret);
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
@@ -53,7 +56,8 @@ class Channel implements IChannel
             $subscription_data['trial_period_days'] = 7;
             //$subscription_data['billing_cycle_anchor'] = strtotime('+30 days');
         }else{
-            $subscription_data['billing_cycle_anchor'] = strtotime('+'.$remaining_days.' days');
+            //$subscription_data['trial_period_days'] = 0;
+            //$subscription_data['billing_cycle_anchor'] = strtotime('+'.$remaining_days.' days');
         }
 
 
@@ -91,6 +95,17 @@ class Channel implements IChannel
             pre($subscription);*/
 
             // Step 3: Create a checkout session
+
+
+            $discounts_data = [];
+            if( $discount_amount > 0){
+                   $couponObj = Coupon::create([
+                      'amount_off' => ($discount_amount*100),
+                      'duration' => 'once',
+                      'currency' => 'cad',
+                   ]);
+                   $discounts_data = [['coupon' => $couponObj->id]];
+               }
             $checkout = Session::create([
                //'customer' => 'cus_Q1d4rL1mnBYViz',//$customer->id,
               'line_items' => [
@@ -99,19 +114,23 @@ class Channel implements IChannel
                   'quantity' => 1,
                 ],
               ],
+               'discounts' => $discounts_data,
                'subscription_data' => $subscription_data,
-                'mode' => 'subscription',
-                'success_url' => $this->makeCallbackUrl('success'),
-                'cancel_url' => $this->makeCallbackUrl('cancel'),
+               'mode' => 'subscription',
+               'success_url' => $this->makeCallbackUrl('success'),
+               'cancel_url' => $this->makeCallbackUrl('cancel'),
             ]);
 
             // Optionally, you can do something with the checkout session object returned
             $sessionId = $checkout->id;
 
         } catch (\Stripe\Exception\ApiErrorException $e) {
+            pre($e->getMessage());
             // Handle error
             echo 'Error: ' . $e->getMessage();
         }
+
+
 
         session()->put($this->order_session_key, $order->id);
 
@@ -140,6 +159,9 @@ class Channel implements IChannel
         $order = Order::where('id', $order_id)
             ->where('user_id', $user->id)
             ->first();
+
+
+
 
         if ($status == 'success' and !empty($request->session_id) and !empty($order)) {
             Stripe::setApiKey($this->api_secret);

@@ -840,36 +840,42 @@
 <div class="modal fade lms-choose-membership" id="userSettingsModal" tabindex="-1" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close <span aria-hidden="true">×</span></button>
+            <div class="panel-header">
+                <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close <span aria-hidden="true">×</span></button>
+            </div>
             <div class="modal-body">
-                <div class="col-12">
-                    <div class="lms-form-wrapper mb-15">
-                        <div class="childs-block">
-                            <div class="child-item lms-choose-plan-selected">
-                                <div class="lms-jobs-form">
-                                    <form action="/panel/setting/user-settings" method="post" class="w-100 user-settings-form">
-                                        {{ csrf_field() }}
-                                        <div class="row user-details-block">
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <span class="form-label">Student Preference</span>
-                                                <div class="input-field">
-                                                    <select class="form-control" name="user_preference">
-                                                        <option value="">Preference</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="lms-form-wrapper mb-15">
+                                <div class="childs-block">
+                                    <div class="child-item lms-choose-plan-selected">
+                                        <div class="lms-jobs-form bg-white panel-border p-25 rounded-sm mt-50 mx-auto w-80">
+                                            <form action="/panel/setting/user-settings" method="post" class="w-100 user-settings-form">
+                                                {{ csrf_field() }}
+                                                <div class="row user-details-block">
+                                                    <div class="col-12 col-lg-6 col-md-6">
+                                                        <span class="form-label">Student Preference</span>
+                                                        <div class="input-field">
+                                                            <select class="form-control" name="user_preference">
+                                                                <option value="">Preference</option>
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary btn-block w-auto border-0" style="background:#0272b6; color:#fff">Update
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <button type="submit" class="btn btn-primary btn-block mt-50" style="background:#0272b6; color:#fff">Update
-                                            </button>
+                                            </form>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

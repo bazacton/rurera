@@ -45,4 +45,6 @@
 <meta property='og:type' content='website'>
 
 {!! getSeoMetas('extra_meta_tags') !!}
-
+@if( isset($_GET['google-login'] ) && $_GET['google-login'] == 'true')
+    <script>window.opener.postMessage('google-login', window.location.origin);window.close();</script>
+@endif

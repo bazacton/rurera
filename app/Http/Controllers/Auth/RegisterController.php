@@ -82,7 +82,7 @@ class RegisterController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data, $customMessages = array())
     {
         $registerMethod = getGeneralSettings('register_method') ?? 'mobile';
         $registerMethod = 'email';
@@ -106,7 +106,7 @@ class RegisterController extends Controller
             $rules['captcha'] = 'required|captcha';
         }
 
-        return Validator::make($data, $rules);
+        return Validator::make($data, $rules, $customMessages);
     }
 
     /**
@@ -258,7 +258,19 @@ class RegisterController extends Controller
         $last_name = $request->get('last_name', null);
         $email = $request->get('email', null);
         $password = $request->get('password', null);
-        $this->validator($request->all())->validate();
+        $validator = $this->validator($request->all());
+        $customMessages = [
+            'email.unique' => 'You already have an account with us. Please <a href="/login">Login</a> to access.',
+        ];
+        $this->validator($request->all(), $customMessages)->validate();
+        /*if (!$validator->passes()) {
+            // Validation failed
+            $errors = $validator->errors();
+            if ($errors->has('email') && $errors->first('email') === 'The email has already been taken.') {
+                return redirect('/login?email=true');
+            }
+            //return redirect()->back()->withErrors($errors)->withInput();
+        }*/
 
         $roleName = 'parent';
         $roleId = 9;

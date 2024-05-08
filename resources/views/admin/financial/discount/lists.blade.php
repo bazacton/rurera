@@ -112,7 +112,6 @@
                                         <th width="150">{{ trans('admin/main.title') }}</th>
                                         <th width="150">{{ trans('admin/main.type') }}</th>
                                         <th class="text-left" width="150">{{ trans('admin/main.code') }}</th>
-                                        <th class="text-left" width="150">{{ trans('admin/main.user') }}</th>
                                         <th width="250">{{ trans('admin/main.created_date') }}</th>
                                         <th width="250">{{ trans('admin/main.ext_date') }}</th>
                                         <th width="150">{{ trans('admin/main.usable_times') }}</th>
@@ -135,13 +134,6 @@
                                                 @endif
                                             </td>
                                             <td class="text-left">{{ $discount->code }}</td>
-                                            <td class="text-left">
-                                                @if($discount->user_type == 'all_users')
-                                                    <span class="text-primary">{{ trans('admin/main.all_users') }}</span>
-                                                @elseif(!empty($discount->discountUsers) and !empty($discount->discountUsers->user))
-                                                    <span class="">{{ $discount->discountUsers->user->get_full_name() }}</span>
-                                                @endif
-                                            </td>
 
                                             <td>{{  dateTimeFormat($discount->created_at, 'Y M d') }}</td>
 

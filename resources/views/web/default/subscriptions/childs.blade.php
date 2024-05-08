@@ -3,6 +3,7 @@
     <div class="container">
       <form class="child-register-form" method="post" action="javascript:;">
           {{ csrf_field() }}
+      <div class="bg-white panel-border p-25 rounded-sm mt-30 mx-auto w-80">
       <div class="row">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-10">
           <h2 class="font-22">Student's details</h2>
@@ -15,7 +16,7 @@
                 <div class="form-group">
                     <span class="fomr-label">Student's first name</span>
                     <div class="input-field">
-                        <input type="text" class="user-first-name rurera-req-field" placeholder="Name" name="first_name">
+                        <input type="text" class="user-first-name rurera-req-field" placeholder="First Name" name="first_name">
                     </div>
                 </div>
             </div>
@@ -33,7 +34,7 @@
                       <select class="form-control @error('category_id') is-invalid @enderror rurera-req-field"
                               name="year_id">
                           <option {{ !empty($trend) ?
-                          '' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
+                          '' : 'selected' }} disabled>Choose Year Group</option>
 
                           @foreach($categories as $category)
                           @if(!empty($category->subCategories) and count($category->subCategories))
@@ -55,15 +56,28 @@
                       </select>
                   </div>
           </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                <h5>Students's account details</h5>
+
+
+
+
+          <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <span class="fomr-label">Test Prep School Choice</span>
+                        <select class="form-control rurera-req-field"
+                                name="test_prep_school">
+                            <option value="Not sure" selected>Not sure</option>
+                            <option value="Independent schools">Independent schools</option>
+                            <option value="Grammar schools">Grammar schools</option>
+                            <option value="Independent & grammar schools">Independent & grammar schools</option>
+                        </select>
+                    </div>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                     <span class="fomr-label">Username</span>
                     <div class="input-field">
                         <input type="text" name="username" class="username-field rurera-req-field" placeholder="Username">
-                        <a href="javascript:;" class="username-auto-generate">Generate</a>
+                        <a href="javascript:;" class="username-auto-generate rurera-hide">Generate</a>
                     </div>
                 </div>
                 <div class="usernames-suggestions">
@@ -102,6 +116,7 @@
             </div>
           </div>
         </div>
+          </div>
         </form>
       </div>
     </div>

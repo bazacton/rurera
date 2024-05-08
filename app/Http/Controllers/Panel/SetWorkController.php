@@ -34,7 +34,7 @@ class SetWorkController extends Controller
     {
         $data['pageTitle'] = 'Assignments';
 
-        if (auth()->user()->isParent()) {
+        /*if (auth()->user()->isParent()) {
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', auth()->user()->id)
@@ -48,7 +48,7 @@ class SetWorkController extends Controller
             if ($childs->count() == 0) {
                 return redirect('/' . panelRoute() . '/students');
             }
-        }
+        }*/
         //StudentAssignments::RunCron();
         $query = StudentAssignments::query()->where('status', '=', 'active');
         $query = $query->where('created_by', auth()->user()->id);

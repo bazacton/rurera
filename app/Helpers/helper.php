@@ -2193,6 +2193,12 @@ function convertPriceToDefaultCurrency($price, $userCurrencyItem = null)
     return $price;
 }
 
+function getCurrencySign(){
+    $userCurrencyItem = getUserCurrencyItem();
+    $currency = currencySign($userCurrencyItem->currency);
+    return $currency;
+}
+
 function addCurrencyToPrice($price, $userCurrencyItem = null, $currecty_type = '')
 {
     if (empty($userCurrencyItem)) {

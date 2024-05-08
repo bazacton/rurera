@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="years-group populated-data">
                                         <div class="form-section mb-20 text-center">
-                                            <h2 class="section-title font-24">Select Students to Set Practice</h2>
+                                            <h2 class="section-title font-24">Select Student to Set Practice</h2>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -76,7 +76,7 @@
                                                                         </div>
                                                                     </span>
                                                                 @else
-                                                                <a href="javascript:;" class="subscription-modal " data-type="update_package" data-id="{{$childObj->id}}">
+                                                                <a href="javascript:;" class="subscription-modal " data-type="update_package_confirm" data-id="{{$childObj->id}}">
                                                                     <span class="radio-btn disabled-style"><i class="las la-check"></i>
                                                                         <div class="card-icon">
                                                                         <img src="{{ $childObj->getAvatar() }}">
@@ -1458,3 +1458,40 @@
 </script>
 @endpush
 
+
+<script type="text/javascript">
+
+    $(document).on('change', '.subscribed_for-field', function (e) {
+        var package_month = 1;
+        var package_discount = 0;
+        if($(this).is(':checked')) {
+            package_month = 12;
+            package_discount = 25;
+        }
+        var currency_sign = $(".lms-membership-section").attr('data-currency_sign');
+        console.log(package_month);
+        $(".packages-prices").each(function(){
+           var package_price = $(this).attr('data-package_price');
+            var package_price_org = package_price;
+           var discount_price = parseFloat(parseFloat(package_price))*package_discount / 100;
+           var package_price = parseFloat(parseFloat(package_price))-discount_price;
+           //var package_price = parseInt(package_price)*package_month;
+           package_price_label = currency_sign+parseFloat(parseFloat(package_price).toFixed(2));
+           if( package_month == 12) {
+               var yearly_price = package_price * 12;
+               yearly_price = parseFloat(parseFloat(yearly_price).toFixed(2));
+               $(this).closest('.subscribe-price').find('.yearly-price').html(currency_sign + yearly_price + ' billed yearly');
+           }else{
+               var without_discount = package_price_org*12;
+               var discount_price = parseFloat(parseFloat(package_price))*25 / 100;
+               var yearly_price = parseFloat(parseFloat(package_price_org))-discount_price;
+               yearly_price = without_discount-(yearly_price*12);
+               yearly_price = parseFloat(parseFloat(yearly_price).toFixed(2));
+               $(this).closest('.subscribe-price').find('.yearly-price').html('Save '+currency_sign+yearly_price+' with a yearly plan');
+           }
+
+
+           $(this).html(package_price_label+'/mo');
+        });
+    });
+</script>
