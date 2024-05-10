@@ -65,6 +65,11 @@
                                                             }
                                                             $selected_child = ($child_count == 1)? 'checked' : '';
                                                             @endphp
+                                                            <input type="hidden" class="user-permissions" data-type="sats" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('sats')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="11plus" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="iseb" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="cat4" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="independent_exams" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
                                                             <label class="card-radio">
                                                                 @if( $is_user_subscribed == true)
                                                                     <input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
@@ -157,12 +162,12 @@
                                                 <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                                 <ul class="tests-list mb-30">
                                                     <input type="radio" class="rurera-hide assignment_topic_type_check assignment_topic_type_mock" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]" value="">
-                                                    <li data-type="all" class="active" data-tag_title="All Tests">All Tests</li>
-                                                    <li data-type="sats" data-tag_title="SATs"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
-                                                    <li data-type="11plus" data-tag_title="11Plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
-                                                    <li data-type="iseb" data-tag_title="ISEB"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
-                                                    <li data-type="cat4" data-tag_title="CAT 4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
-                                                    <li data-type="independent_exams" data-tag_title="Independent Exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
+                                                    <li data-type="all" data-test_type="all" class="active" data-tag_title="All Tests">All Tests</li>
+                                                    <li data-type="sats" data-test_type="sats" data-tag_title="SATS"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
+                                                    <li data-type="11plus" data-test_type="11plus" data-tag_title="11Plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
+                                                    <li data-type="iseb" data-test_type="iseb" data-tag_title="ISEB"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
+                                                    <li data-type="cat4" data-test_type="cat4" data-tag_title="CAT 4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
+                                                    <li data-type="independent_exams" data-test_type="independent_exams" data-tag_title="Independent Exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                                 </ul>
                                             </div>
                                             <div class="form-section mb-20 text-center">
@@ -185,6 +190,7 @@
                                                     @endif
                                                     </tbody>
                                                 </table>
+                                                <div class="sats-listing-empty rurera-hidden"><p>No Records Found</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1274,11 +1280,57 @@
         });
 
 
+        var userRequest = null;
         $('body').on('change', '.assignment-user-class', function (e) {
             var year_id = $(this).attr('data-year_id');
-            console.log('testing year_id');
             $(".year_id_field").val(year_id);
             $(".assignment_topic_type_check:checked").change();
+            var user_id = $(this).val();
+
+
+            $(".sats-listing-empty").addClass('rurera-hide');
+            $('.sats-listing-card tr').removeClass('rurera-hide');
+            $('.user-permissions[data-user_id="'+user_id+'"]').each(function(){
+                var data_type = $(this).attr('data-type');
+                var is_permission = $(this).val();
+                if( is_permission == true) {
+                    $('.tests-list li[data-test_type="' + data_type + '"]').addClass('disabled-style');
+                    $('.tests-list li[data-test_type="' + data_type + '"]').addClass('subscription-modal');
+                    $('.tests-list li[data-test_type="' + data_type + '"]').attr('data-reason', 'module_access');
+                    $('.tests-list li[data-test_type="' + data_type + '"]').attr('data-type', 'update_package_confirm');
+                    $('.tests-list li[data-test_type="' + data_type + '"]').attr('data-id', user_id);
+                    $('.sats-listing-card tr[data-assignment_type="'+data_type+'"]').addClass('rurera-hide');
+                }
+
+            });
+
+            $(".total-tests").html($('.sats-listing-card tr').not('.rurera-hide').length);
+            if($('.sats-listing-card tr').not('.rurera-hide').length == 0){
+                $(".sats-listing-empty").removeClass('rurera-hide');
+            }
+
+
+            /*
+            userRequest = jQuery.ajax({
+                type: "GET",
+                url: '/tests/search_tests',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                beforeSend: function () {
+                    if (userRequest != null) {
+                        userRequest.abort();
+                    }
+                },
+                data: {"quiz_type": 'all', "is_assignment": 'yes',  "year_id": year_id},
+                success: function (return_data) {
+                    rurera_remove_loader($(".simple-table tbody"), 'div');
+                    $(".simple-table tbody").html(return_data);
+                }
+            });
+            */
+
+
         });
 
         var searchRequest = null;
@@ -1398,8 +1450,11 @@
         });
 
         $('body').on('click', '.tests-list li', function (e) {
+            if( $(this).hasClass('subscription-modal')){
+                return;
+            }
             rurera_loader($(".simple-table tbody"), 'div');
-            $(".tests-list li").removeAttr('class');
+            $(".tests-list li").removeClass('active');
             $(this).addClass('active');
             var year_id = $(".year_id_field").val();
             var quiz_type = $(this).attr('data-type');

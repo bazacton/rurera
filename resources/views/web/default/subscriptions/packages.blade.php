@@ -8,6 +8,11 @@
             <div class="row">
                 <div class="col-12 col-lg-12">
                     <div class="element-title text-center mb-40">
+                        @if(isset($action_reason))
+                            @if( $action_reason == 'module_access')
+                                <p class="font-16">Subscribed package for {{isset($childObj->id)? $childObj->get_full_name() : ''}} dont have access to this module.</p>
+                            @endif
+                        @endif
                         <p class="font-16">Do you want to update the package for student {{isset($childObj->id)? $childObj->get_full_name() : ''}}?</p>
                         <div class="package-controls">
                             <a href="javascript:;" data-dismiss="modal" aria-label="Close">Never Mind</a>

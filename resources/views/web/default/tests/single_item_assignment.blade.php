@@ -11,7 +11,7 @@ $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
 $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
 $count_questions = isset($rowObj->quizQuestionsList) ? count($rowObj->quizQuestionsList) : 0;
 @endphp
-<tr>
+<tr data-assignment_type="{{$rowObj->quiz_type}}">
 
     <td>
         <img src="{{$quiz_image}}" alt="">

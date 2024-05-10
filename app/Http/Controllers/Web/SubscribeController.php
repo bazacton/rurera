@@ -114,6 +114,7 @@ class SubscribeController extends Controller
     {
         $action_type = $request->get('action_type', null);
         $action_id = $request->get('action_id', null);
+        $action_reason = $request->get('action_reason', '');
 
         if (!auth()->check()) {
             $response_layout = view('web.default.subscriptions.login_signup', [])->render();
@@ -171,7 +172,8 @@ class SubscribeController extends Controller
                 'childObj'         => $childObj,
                 'subscribes'       => $subscribes,
                 'selected_package' => $selected_package,
-                'ParentsOrders' => $ParentsOrders
+                'ParentsOrders' => $ParentsOrders,
+                'action_reason' => $action_reason
             ])->render();
         }
         }

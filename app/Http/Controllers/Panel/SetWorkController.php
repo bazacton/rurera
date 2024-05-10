@@ -90,8 +90,6 @@ class SetWorkController extends Controller
        //pre($childs);
 
 
-
-
        $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
        $query->whereIn('year_id', $subscribedChildsYears);
        $sats = $query->paginate(100);
