@@ -152,7 +152,7 @@
                          aria-labelledby="homeworks-tab">
                         <div class="assignments-list">
                             <ul>
-                                @if( !empty( $assignmentsArray ) )
+                                @if( $assignmentsArray->count() > 0 )
                                 @foreach( $assignmentsArray as $assignmentObj)
                                 @php
                                 $assignmentTitle = $assignmentObj->StudentAssignmentData->title;
@@ -175,6 +175,10 @@
                                     </div>
                                 </li>
                                 @endforeach
+                                @else
+                                <li>
+                                    No assigned assignments at the moment
+                                </li>
                                 @endif
                             </ul>
                         </div>

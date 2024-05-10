@@ -11,6 +11,7 @@
         display: none;
     }
 </style>
+<script src="https://js.stripe.com/v3/"></script>
 @endpush
 
 @section('content')
@@ -114,7 +115,7 @@
                                                 </li>
                                                 @endif
                                                 <li><a href="javascript:;" class="package-payment-btn switch-user-btn unlink-modal" data-type="child_payment" data-id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
-                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
+                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-prep_school="{{$childObj->prep_school}}" data-year_id="{{$childObj->year_id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
                                                 <li><a href="/panel/students/print-card/{{$childObj->id}}" target="_blank"><span class="icon-box"><img src="/assets/default/svgs/printer-activity.svg" alt=""></span> Print Login Card <Profile></Profile></a></li>
                                             </ul>
                                         </div>
@@ -748,14 +749,62 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" class="user-edit-id" name="user_id" value="0">
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="form-group mt-10 mb-0">
-                                        <div class="btn-field">
-                                            <button type="submit" class="nav-link">Update student's profile</button>
+
+                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+                                      <div class="form-group">
+                                          <span class="fomr-label">Year Group</span>
+                                          <select class="form-control @error('category_id') is-invalid @enderror rurera-req-field"
+                                                  name="year_id">
+                                              <option {{ !empty($trend) ?
+                                              '' : 'selected' }} disabled>Choose Year Group</option>
+
+                                              @foreach($categories as $category)
+                                              @if(!empty($category->subCategories) and count($category->subCategories))
+                                              <optgroup label="{{  $category->title }}">
+                                                  @foreach($category->subCategories as $subCategory)
+                                                  <option value="{{ $subCategory->id }}" @if(!empty($class) and $class->
+                                                      category_id == $subCategory->id) selected="selected" @endif>{{
+                                                      $subCategory->title }}
+                                                  </option>
+                                                  @endforeach
+                                              </optgroup>
+                                              @else
+                                              <option value="{{ $category->id }}" class="font-weight-bold" @if(!empty($class)
+                                                      and $class->category_id == $category->id) selected="selected" @endif>{{
+                                                  $category->title }}
+                                              </option>
+                                              @endif
+                                              @endforeach
+                                          </select>
+                                      </div>
+                                  </div>
+                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <span class="fomr-label">Test Prep School Choice</span>
+                                            <select class="form-control rurera-req-field"
+                                                    name="test_prep_school">
+                                                <option value="Not sure" selected>Not sure</option>
+                                                <option value="Independent schools">Independent schools</option>
+                                                <option value="Grammar schools">Grammar schools</option>
+                                                <option value="Independent & grammar schools">Independent & grammar schools</option>
+                                            </select>
                                         </div>
                                     </div>
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+                                    <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
                                 </div>
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+                                    <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;">Generate Pin</a>
+                                </div>
+
+                                    <input type="hidden" class="user-edit-id" name="user_id" value="0">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="form-group mt-20 mb-0">
+                                            <div class="btn-field">
+                                                <button type="submit" class="nav-link">Update student's profile</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -838,8 +887,58 @@
         calculate_total_amount();
     });
 
+    $(document).on('click', '.regenerate-emoji', function (e) {
+        rurera_loader($(".child-edit-form"), 'div');
+        var login_emoji = $(".emoji-password-field").val();
+        var user_id = $(this).attr('data-user_id');
+
+        jQuery.ajax({
+           type: "POST",
+           url: '/panel/users/generate-emoji',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {'login_emoji':login_emoji, 'user_id':user_id},
+           success: function (return_data) {
+               rurera_remove_loader($(".child-edit-form"), 'div');
+               Swal.fire({
+                  icon: 'success',
+                  html: return_data,
+                  showCloseButton: true,
+                   allowOutsideClick: false,
+                   allowEscapeKey: false,
+                  showConfirmButton: !1
+              });
+           }
+       });
+
+    });
 
 
+    $(document).on('click', '.regenerate-pin', function (e) {
+        rurera_loader($(".child-edit-form"), 'div');
+        var user_id = $(this).attr('data-user_id');
+        jQuery.ajax({
+           type: "POST",
+           url: '/panel/users/generate-pin',
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           },
+           data: {'user_id':user_id},
+           success: function (return_data) {
+               rurera_remove_loader($(".child-edit-form"), 'div');
+               Swal.fire({
+                  icon: 'success',
+                  html: return_data,
+                  showCloseButton: true,
+                   allowOutsideClick: false,
+                   allowEscapeKey: false,
+                  showConfirmButton: !1
+              });
+           }
+       });
+
+    });
     $(document).on('click', '.update-package', function (e) {
         var package_id = $(this).attr('data-package_id');
         var child_id = $(this).attr('data-child');
@@ -972,9 +1071,15 @@
         var first_name = $(this).attr('data-first_name');
         var last_name = $(this).attr('data-last_name');
         var user_id = $(this).attr('data-user_id');
+        var year_id = $(this).attr('data-year_id');
+        var prep_school = $(this).attr('data-prep_school');
         $(".user-edit-first-name").val(first_name);
         $(".user-edit-last-name").val(last_name);
         $(".user-edit-id").val(user_id);
+        $(".regenerate-emoji").attr('data-user_id', user_id);
+        $(".regenerate-pin").attr('data-user_id', user_id);
+        $('select[name="year_id"] option[value="'+year_id+'"]').prop('selected', true);
+        $('select[name="test_prep_school"] option[value="'+prep_school+'"]').prop('selected', true);
     });
 
 

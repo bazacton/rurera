@@ -2,6 +2,64 @@
 @php $subscribed_for_months = (isset( $subscribed_for ) && $subscribed_for == 12)? 12 : 1;
 $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
 @endphp
+<style>
+
+
+.hidden {
+  display: none;
+}
+
+#payment-message {
+  color: rgb(105, 115, 134);
+  font-size: 16px;
+  line-height: 20px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+#payment-element {
+  margin-bottom: 24px;
+}
+
+/* Buttons and links */
+button {
+    border: 0;
+    padding: 12px 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+    width: 100%;
+}
+button:hover {
+  filter: contrast(115%);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>
 
 <div class="payment-options-holder panel-border bg-white rounded-sm p-25 mb-40 mt-30">
     <div class="selected-plan-data mb-40">
@@ -46,6 +104,18 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
                     <p>No need to worry! We won't ask for payment until after your 7-day free trial ends.</p>
                     @endif
                     <p>By giving your card information, you let rurera.com charge from your card for future payments as per their <a href="/terms-and-conditions">terms and conditions</a>.</p>
+                </div>
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <form id="payment-form">
+                      <div id="payment-element">
+                        <!--Stripe.js injects the Payment Element-->
+                      </div>
+                      <button id="submit" class="btn-primary mb-25">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="button-text">Pay now</span>
+                      </button>
+                      <div id="payment-message" class="hidden"></div>
+                    </form>
                 </div>
                 <div class="col-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="book-form mt-30">
@@ -203,6 +273,17 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
                                     Keep in mind that there may be sales tax added. For instructions on how to cancel, please refer to the provided guidelines
                                 </p>
                                 @endif
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Take me to Stripe Site</a></div>
                             </div>
                         </div>
@@ -227,4 +308,152 @@ $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
         $('.'+gateway_type+"-fields").removeClass('rurera-hide');
     });
 
+    // This is your test publishable API key.
+    const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+
+    // The items the customer wants to buy
+    const items = [{ id: "xl-tshirt" }];
+
+    let elements;
+
+    initialize();
+    checkStatus();
+
+    document
+      .querySelector("#payment-form")
+      .addEventListener("submit", handleSubmit);
+
+    // Fetches a payment intent and captures the client secret
+    async function initialize() {
+       const { clientSecret } = await fetch("/subscribes/payment-secret", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        body: JSON.stringify({ items }),
+      }).then((r) => r.json());
+
+      elements = stripe.elements({ clientSecret });
+
+      const paymentElementOptions = {
+        layout: "tabs",
+        payment_methods: [
+          {
+            type: "card",
+            card: {
+              iconStyle: "default",
+              hideIcon: false,
+              style: {
+                base: {
+                  iconColor: "#666EE8",
+                  color: "#31325F",
+                  fontWeight: 400,
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "16px",
+                  fontSmoothing: "antialiased",
+                  "::placeholder": {
+                    color: "#CFD7E0",
+                  },
+                },
+              },
+            },
+          },
+          {
+            type: "google_pay",
+            style: {
+              base: {
+                color: "#31325F",
+                fontSize: "16px",
+                "::placeholder": {
+                  color: "#CFD7E0",
+                },
+              },
+            },
+          },
+        ],
+      };
+
+      const paymentElement = elements.create("payment", paymentElementOptions);
+      paymentElement.mount("#payment-element");
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      setLoading(true);
+
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          // Make sure to change this to your payment completion page
+          return_url: "http://localhost/stripe-checkout/public/checkout.html",
+        },
+      });
+
+      // This point will only be reached if there is an immediate error when
+      // confirming the payment. Otherwise, your customer will be redirected to
+      // your `return_url`. For some payment methods like iDEAL, your customer will
+      // be redirected to an intermediate site first to authorize the payment, then
+      // redirected to the `return_url`.
+      if (error.type === "card_error" || error.type === "validation_error") {
+        showMessage(error.message);
+      } else {
+        showMessage("An unexpected error occurred.");
+      }
+
+      setLoading(false);
+    }
+
+    // Fetches the payment intent status after payment submission
+    async function checkStatus() {
+      const clientSecret = new URLSearchParams(window.location.search).get(
+        "payment_intent_client_secret"
+      );
+
+      if (!clientSecret) {
+        return;
+      }
+
+      const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+      switch (paymentIntent.status) {
+        case "succeeded":
+          showMessage("Payment succeeded!");
+          break;
+        case "processing":
+          showMessage("Your payment is processing.");
+          break;
+        case "requires_payment_method":
+          showMessage("Your payment was not successful, please try again.");
+          break;
+        default:
+          showMessage("Something went wrong.");
+          break;
+      }
+    }
+
+    // ------- UI helpers -------
+
+    function showMessage(messageText) {
+      const messageContainer = document.querySelector("#payment-message");
+
+      messageContainer.classList.remove("hidden");
+      messageContainer.textContent = messageText;
+
+      setTimeout(function () {
+        messageContainer.classList.add("hidden");
+        messageContainer.textContent = "";
+      }, 4000);
+    }
+
+    // Show a spinner on payment submission
+    function setLoading(isLoading) {
+      if (isLoading) {
+        // Disable the button and show a spinner
+        document.querySelector("#submit").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#button-text").classList.add("hidden");
+      } else {
+        document.querySelector("#submit").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#button-text").classList.remove("hidden");
+      }
+    }
 </script>

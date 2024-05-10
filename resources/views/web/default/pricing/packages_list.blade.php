@@ -6,7 +6,7 @@
         <div class="subscribe-title">
             <h3 itemprop="title" class="font-24 font-weight-500">{{ $subscribe->title }}</h3>
         </div>
-        <div class="d-flex align-items-start text-dark-charcoal mt-10 subscribe-price">
+        <div class="d-flex align-items-start text-dark-charcoal mb-20 subscribe-price">
             <span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
                     class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
         </div>

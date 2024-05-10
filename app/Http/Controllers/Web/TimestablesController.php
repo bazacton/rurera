@@ -1754,7 +1754,8 @@ class TimestablesController extends Controller
         $yearObj = $user->userYear;
         $classObj = $user->userClass;
         if( !isset( $classObj->id)){
-            return redirect('/'.panelRoute());
+            $rendered_view = view('web.default.timestables.no_class_assigned', [])->render();
+            return $rendered_view;
         }
         $classSections = $classObj->sections;
         $yearSections = $yearObj->yearSections;

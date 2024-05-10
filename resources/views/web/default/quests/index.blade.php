@@ -19,11 +19,11 @@
                         <h2 class="mt-0 mb-30 font-22">Daily Quests</h2>
                     </div>
                 </div>
-@if( $quests->count() > 0 )
     <div class="col-12 col-lg-12 mb-30">
+        @if( $quests->count() > 0 )
         <div class="quests-list panel-border bg-white rounded-sm p-30">
-
             <ul>
+
                     @foreach( $quests as $questObj)
                         @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
 
@@ -52,9 +52,20 @@
                             </li>
                     @endforeach
             </ul>
+
         </div>
+        @else
+                            @php $no_records_data = '<div class="no-record-found-head mb-20">
+                                    <ul class="d-flex align-items-center justify-content-between">
+                                        <li><h6 class="listing-title font-14 font-weight-500">Title</h6></li>
+                                        <li><h6 class="listing-title font-14 font-weight-500">Progress</h6></li>
+                                        <li><h6 class="listing-title font-14 font-weight-500">Score</h6></li>
+                                    </ul>
+                            </div>'; @endphp
+                            @include('web.default.default.list_no_record',['no_records_data' => $no_records_data])
+                            @endif
     </div>
-@endif
+
             </div>
         </div>
     </section>

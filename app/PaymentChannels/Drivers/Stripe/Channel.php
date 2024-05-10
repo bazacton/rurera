@@ -10,6 +10,8 @@ use Stripe\Checkout\Session;
 use Stripe\Subscription;
 use Stripe\Coupon;
 use Stripe\Customer;
+use Stripe\PaymentIntent;
+use Stripe\SetupIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
 
@@ -31,6 +33,78 @@ class Channel implements IChannel
         $this->api_secret = env('STRIPE_SECRET');
 
         $this->order_session_key = 'strip.payments.order_id';
+    }
+
+    public function orderPaymentRequest(Order $order)
+    {
+        Stripe::setApiKey($this->api_secret);
+
+
+        $SetupIntent = SetupIntent::create(['payment_method_types' => ['card']]);
+        $output = [
+            'clientSecret' => $SetupIntent->client_secret,
+        ];
+        return $output;
+
+
+        /*$paymentIntent = PaymentIntent::create([
+            'customer' => 'CUSTOMER_ID', // Optionally, if you have a customer
+            'payment_method_types' => ['card'],
+            'amount' => 1000, // Optionally, specify the amount (in cents) for the first invoice
+            'currency' => 'usd', // Specify the currency
+            'description' => 'Subscription Payment', // Optional description
+            'confirm' => true, // Confirm the PaymentIntent immediately
+            'confirmation_method' => 'automatic', // Confirmation method
+            'setup_future_usage' => 'off_session', // Usage beyond this payment
+            'application_fee_amount' => 0, // Optional application fee
+            'metadata' => ['key' => 'value'], // Optional metadata
+            'statement_descriptor' => 'Custom Descriptor', // Optional statement descriptor
+            'receipt_email' => 'customer@example.com', // Optional receipt email
+            'payment_method' => 'pm_card_visa', // Optionally, if you have a saved payment method
+            'off_session' => true, // Or set to false if you need it to be on session
+            'confirm' => true, // Confirm the PaymentIntent immediately
+            'payment_method_options' => [
+                'card' => [
+                    'request_three_d_secure' => 'automatic'
+                ]
+            ],
+            'subscription_data' => [
+                'items' => [
+                    [
+                        'price' => 'price_1PBYlqFe1936RR55VNrE7Nf6',
+                        'quantity' => 1,
+                    ]
+                ]
+            ],
+        ]);
+
+        pre($paymentIntent);*/
+
+        $checkout = Session::create([
+           //'customer' => 'cus_Q1d4rL1mnBYViz',//$customer->id,
+          'line_items' => [
+            [
+              'price' => 'price_1PEYLnFe1936RR55Euqi8htC',//'price_1PBYlqFe1936RR55VNrE7Nf6',
+              'quantity' => 1,
+            ],
+          ],
+           'discounts' => [],
+           'subscription_data' => [],
+           'mode' => 'payment',
+           'ui_mode' => 'embedded',
+           'return_url' => $this->makeCallbackUrl('success'),
+           //'success_url' => $this->makeCallbackUrl('success'),
+           //'cancel_url' => $this->makeCallbackUrl('cancel'),
+        ]);
+        $checkoutSession = Session::retrieve($checkout->id);
+        $client_secret = $checkoutSession->client_secret;
+
+        // Now retrieve the PaymentIntent
+        //$paymentIntent = PaymentIntent::retrieve($paymentIntentId);
+        $output = [
+            'clientSecret' => $client_secret,
+        ];
+        return $output;
     }
 
     public function paymentRequest(Order $order)

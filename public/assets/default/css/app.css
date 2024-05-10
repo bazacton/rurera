@@ -1283,9 +1283,12 @@ a.badge-gray200:focus {outline: 0; box-shadow: 0 0 0 .2rem hsla(0, 0%, 94.5%, .5
 .accordion>.card:not(:first-of-type) {border-top-left-radius: 0; border-top-right-radius: 0;}
 .accordion>.card>.card-header {border-radius: 0; margin-bottom: -1px;}
 .form-control {display: block; width: 100%; /* height: 2.5rem; */ padding: 1rem 1rem; font-family: main-font-family; font-size: .75rem; font-weight: 400; line-height: 1.25; color: #343434; background-color: #fff; background-clip: padding-box; border: 1px solid #ececec; border-radius: .5rem;box-shadow: none;transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;}
-.lms-choose-membership .form-login-reading .form-control {background-color: #fff; padding-left: 11px; color: #b5b8bf; font-size: 16px; height: 48px; padding: 0 10px; outline: none;border-color: #ddd;}
+.lms-choose-membership .form-login-reading .form-control {background-color: #fff; color: #b5b8bf; font-size: inherit; height: 48px; padding: 0 10px; border-color: #ddd; border-radius: 6px;}
 .lms-choose-membership .form-login-reading .form-control option {color: #343434; }
+.form-group .rurera-error-msg {position: absolute; top: -22px; right: 0;}
+.form-group:has(select) .rurera-error-msg {top: 2px;}
 .form-control option {padding-top: 10px; padding-bottom: 10px; line-height: 50px;}
+.rurera-error-msg {color: #ffa3a3; font-size: 14px;}
 @media (prefers-reduced-motion:reduce) {
     .form-control {transition: none;}
 }
@@ -9071,7 +9074,9 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .form-group{margin-bottom: 15px; position: relative;}
 .lms-choose-membership .input-field {border: 0;border-radius: 0;background: none;padding: 0;height: auto;width: 100%;position: relative;}
 .lms-choose-membership .input-field input[type="text"],
-.lms-choose-membership .select-box select {background: #fff; border-radius: 6px;height: 52px;width: 100%;padding: 11px;border: 1px solid #ddd;color: #b5b8bf;}
+.lms-choose-membership .select-box select,
+.edit-user-modal select.form-control {background: #fff; border-radius: 6px;height: 52px;width: 100%;padding: 11px;border: 1px solid #ddd;color: #b5b8bf;}
+.edit-user-modal select.form-control {font-size: inherit; padding-left: 10px;}
 .book-form label .icon-box {height: 18px; width: 18px; display: inline-block; }
 .book-form label .icon-box img {max-width: 100%;}
 .book-form .form-label {display: block; line-height: normal; color: #999; margin: 0 0 8px; }
@@ -9165,8 +9170,9 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .select-field input[type=radio]:checked ~ label:before {box-shadow: 0 0 0 5px #ddd inset; }
 .lms-choose-membership .form-group input[type="password"] {background-color: #fff; height: 48px; border: 1px solid #ddd; width: 100%; padding: 11px; border-radius: 6px;}
 .lms-choose-membership .form-group .btn-field {margin: 0; text-align: right; }
-.lms-choose-membership .form-group .btn-field button {width: auto; font-size: 18px; font-weight: 600; padding: 12px 30px; height: auto; margin: 0; line-height: normal; display: inline-block;}
+.lms-choose-membership .form-group .btn-field button {background-color: var(--primary); width: auto; padding: 12px 30px; height: auto; margin: 0; line-height: normal; display: inline-block;}
 .lms-choose-membership .plan-switch {margin-top: -2px;}
+.regenerate-emoji, .regenerate-pin {line-height: 48px; box-shadow: none; border-radius: 5px;}
 .child-register-form input:-webkit-autofill,
 .child-register-form  input:-webkit-autofill:focus {background-color: inherit !important; background-image: none !important;}
 .child-register-form input:-internal-autofill-selected {background-color:  inherit !important; background-image: none !important;}
@@ -10687,7 +10693,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .plan-switch-holder {text-align: center; margin: 0 0 50px; display: inline-flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; position: relative;}
 .plan-switch-option {display: flex; align-items: center; justify-content: center; gap: 0;}
 .lms-choose-membership .plan-switch-option {justify-content: flex-start; padding: 10px 0;}
-.save-plan {margin: 20px 0 0 -10px; position: absolute; left: 100%; width: 100%;}
+.save-plan {margin: 30px 0 0 -10px; position: absolute; left: 100%; width: 100%;}
 .save-plan span {display: inline-block; position: relative; padding: 0 0 0 115px; color: #596bfd; margin: 0;}
 .save-plan span:before {content: ""; position: absolute; left: 0; top: -30px; width: 98px; height: 48px; background: url(/assets/default/img/save-shap.png) top left no-repeat;}
 .plan-switch .custom-switch {padding: 0; min-height: 30px; min-width: 60px;}
@@ -11049,7 +11055,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .lms-choose-membership .flexible-progress-bar li.complete i,
 .lms-choose-membership .flexible-progress-bar li.active i {border-color: var(--primary); color: #fff; box-shadow: 0 0 0 3px #fff inset; }
 .lms-choose-membership .flexible-progress-bar li.complete img, 
-.lms-choose-membership .flexible-progress-bar li.active img {filter: invert(28%) sepia(85%) saturate(1121%) hue-rotate(174deg) brightness(104%) contrast(105%);}
+.lms-choose-membership .flexible-progress-bar li.active img {filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
 body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
 .book-info-link img {width: 85px !important; object-fit: contain; height: 85px !important;}
 .books-listing-holder .search-block {margin-bottom: 30px; }
@@ -11200,10 +11206,13 @@ address .info-list-label {color: #64748b;}
 .lms-choose-membership .panel-header {background-color: #fff; border-bottom: 4px solid #e2e8f0; position: relative; padding: 10px 20px; display: flex; align-items: center;}
 .lms-choose-membership .panel-header .modal-logo {border-right: 1px solid #ddd; padding: 0 15px 0 0; margin-right: 15px;}
 .lms-choose-membership .panel-header img {height: 40px; width: 40px; }
-.wizard-pagination {background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 15px; display: flex; align-items: center; gap: 10px; margin-top: auto; position: fixed; left: 0; right: 0; position: fixed; max-width: 304px; bottom: 1.5rem; margin-left: auto; margin-right: auto;}
+.wizard-pagination,
+.lms-setup-progress-section .package-controls {background-color: #fff; border: 1px solid #ddd; border-radius: 5px; padding: 15px; display: flex; align-items: center; gap: 10px; margin-top: auto; position: fixed; left: 0; right: 0; position: fixed; max-width: 304px; bottom: 1.5rem; margin-left: auto; margin-right: auto;}
 .wizard-pagination .previous-btn,
-.wizard-pagination .next-btn {border: 1px solid #ddd; border-radius: 12px; color: #334155; display: inline-block; padding: 8px 20px; cursor: pointer; width: 100%; text-align: center;}
-.wizard-pagination .next-btn {background-color: var(--primary); border-color: var(--primary); color: #fff;}
+.wizard-pagination .next-btn,
+.lms-setup-progress-section .package-controls a {border: 1px solid #ddd; border-radius: 6px; color: #334155; display: inline-block; padding: 8px 20px; cursor: pointer; width: 100%; text-align: center;}
+.wizard-pagination .next-btn,
+.lms-setup-progress-section .package-controls .package-confirm-btn {background-color: var(--primary); border-color: var(--primary); color: #fff;}
 .wizard-steps .populated-data .input-label {color: #343434;}
 .steps-counter {color: #64748b;}
 .practice-quiz-ajax-fields {margin-bottom: 30px;}

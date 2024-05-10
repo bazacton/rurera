@@ -53,7 +53,7 @@ class SetWorkController extends Controller
         $query = StudentAssignments::query()->where('status', '=', 'active');
         $query = $query->where('created_by', auth()->user()->id);
         $totalAssignments = deepClone($query)->count();
-        $assignments = $query->paginate(2);
+        $assignments = $query->paginate(20);
         $data['assignments'] = $assignments;
 
         return view(getTemplate() . '.panel.set_work.index', $data);

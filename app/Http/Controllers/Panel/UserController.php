@@ -276,7 +276,12 @@ class UserController extends Controller
 
         } while (in_array($generatedString, $UsedEmojisList));
 
-        $user = auth()->user();
+        $user_id = $request->input('user_id');
+        if( $user_id > 0) {
+            $user = User::find($user_id);
+        }else{
+            $user = auth()->user();
+        }
         $user->update([
             'login_emoji' => $generatedString
         ]);
@@ -311,7 +316,12 @@ class UserController extends Controller
 
         } while (in_array($generatedString, $UsedLoginList));
 
-        $user = auth()->user();
+        $user_id = $request->input('user_id');
+        if( $user_id > 0) {
+            $user = User::find($user_id);
+        }else{
+            $user = auth()->user();
+        }
         $user->update([
             'login_pin' => $generatedString
         ]);

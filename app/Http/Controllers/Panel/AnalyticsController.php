@@ -31,7 +31,7 @@ class AnalyticsController extends Controller
             $selected_child = ($_GET['child'] == 'all')? 'All Students' : $selected_child;
         }
 
-        $childs = array();
+        $childs = $childs_ids = array();
         if (auth()->user()->isParent()) {
 
             $childs = $user->parentChilds->where('status', 'active');
@@ -39,9 +39,9 @@ class AnalyticsController extends Controller
             if ($childs->count() == 0) {
                 return redirect('/' . panelRoute() . '/students');
             }
-        }
 
-        $childs_ids = $childs->pluck('user_id')->toArray();
+            $childs_ids = $childs->pluck('user_id')->toArray();
+        }
 
         $user_id = ( $user_id == 'all')? $childs_ids : $user_id;
 

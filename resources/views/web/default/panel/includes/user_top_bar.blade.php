@@ -49,7 +49,7 @@
             <div class="assignments">
                 <strong>
                     <img src="/assets/default/img/panel-sidebar/2.png" alt="">
-                    0
+                    {{getTimeWithText(120, false)}}
                 </strong>
             </div>
         </li>

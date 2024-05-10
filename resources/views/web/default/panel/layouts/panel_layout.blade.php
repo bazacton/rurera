@@ -151,7 +151,7 @@
                                 @endif
                             </div>
 
-                            @if(auth()->user()->isParent() || auth()->user()->isTutor())
+                            @if(request()->is('panel/marketing/affiliates') || auth()->user()->isParent() || auth()->user()->isTutor())
                             <div class="col-12 col-lg-12 mb-30 mt-25">
                                 <div class="referrals panel-border panel-shadow rounded-sm">
                                     <div class="referral-card">
