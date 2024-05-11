@@ -12125,3 +12125,6 @@ Lms Responsive Style Start
     .edit-profile-top {gap: 15px;}
 }
 .disabled-style{opacity: 0.5;}
+.preference_field option:disabled {
+    color: #efefef;
+}

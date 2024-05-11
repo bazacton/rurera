@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Classes;
+use App\Models\Schools;
 use App\Models\JoinRequests;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
@@ -75,6 +76,10 @@ class UserController extends Controller
         $categories = Category::where('parent_id', null)
             ->with('subCategories')
             ->get();
+
+
+
+        $schools = Schools::where('status', 'active')->get();
 
         $userMetas = $user->userMetas;
 
@@ -146,6 +151,8 @@ class UserController extends Controller
             'cities'        => $cities,
             'districts'     => $districts,
             'userBanks'     => $userBanks,
+            'schools'     => $schools,
+
         ];
 
         return view(getTemplate() . '.panel.setting.index', $data);
@@ -156,7 +163,7 @@ class UserController extends Controller
         $data = $request->all();
         $user = auth()->user();
 
-        $step = $data['step'] ?? 1;
+        $step = $data['step'] ?? 1;;
         $rules = [
             'identity_scan' => 'required_with:account_type',
             'bio'           => 'nullable|string|min:3|max:48',
@@ -178,12 +185,6 @@ class UserController extends Controller
         if (!empty($user)) {
 
             $updateData = [];
-
-
-            $updateData = [
-                'display_name' => $data['display_name'],
-
-            ];
             if (!empty($data['profile_image'])) {
                 $profileImage = $this->createImage($user, $data['profile_image']);
                 $updateData['avatar'] = $profileImage;
@@ -204,6 +205,12 @@ class UserController extends Controller
                 ]);
             }
             $user->update([
+                'school_preference_1' => isset( $data['school_preference_1'] )? $data['school_preference_1'] : 0,
+                'school_preference_2' => isset( $data['school_preference_2'] )? $data['school_preference_2'] : 0,
+                'school_preference_3' => isset( $data['school_preference_3'] )? $data['school_preference_3'] : 0,
+                'first_name' => isset( $data['first_name'] )? $data['first_name'] : '',
+                'last_name' => isset( $data['last_name'] )? $data['last_name'] : '',
+                'full_name' => isset( $data['first_name'] )? $data['first_name'].' '.$data['last_name'] : '',
                 'gold_member' => isset( $data['gold_member'] )? $data['gold_member'] : 0,
             ]);
 

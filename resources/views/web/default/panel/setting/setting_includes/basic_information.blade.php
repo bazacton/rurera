@@ -13,7 +13,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
     <div class="row mt-30">
 
 
-        <div class="col-12">
+        <div class="col-12 user-profile-block">
             <div class="user-detail mb-50">
                 <div class="detail-header mb-25 pb-25">
                     <div class="info-media d-flex align-items-center flex-wrap">
@@ -38,7 +38,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                 <h4 class="font-14 font-weight-500 pb-15 px-15">About you</h4>
                                 <ul>
                                     <li>
-                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 Legal name
                                                 <strong class="d-block font-weight-500">{{$user->get_full_name()}}</strong>
@@ -65,7 +65,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                 <h4 class="font-14 font-weight-500 pb-15 px-15">Additional info</h4>
                                 <ul>
                                     <li>
-                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 Date of birth
                                                 <strong class="d-block font-weight-500">12/10/1988</strong>
@@ -77,10 +77,46 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="d-flex align-items-center justify-content-between p-15">
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 Gender
                                                 <strong class="d-block font-weight-500">{{$user->user_preference}}</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                School Preference 1
+                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce1->title}}</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                School Preference 2
+                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce2->title}}</strong>
+                                            </span>
+                                            <span class="edit-icon d-inline-flex align-items-center">
+                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <em class="font-weight-500">Edit</em>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
+                                            <span class="info-list-label font-14">
+                                                School Preference 3
+                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce3->title}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -95,16 +131,15 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 user-edit-profile rurera-hide">
             <div class="edit-profile mb-50">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="edit-profile-sidebar">
                             <div class="user-info d-flex align-items-center flex-wrap mb-30">
-                                <img src="/avatar/svgA44708602509147854.png" alt="" height="48" width="48">
+                                <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" height="48" width="48">
                                 <span class="info-text d-inline-flex flex-column font-weight-500">
-                                    Maya Rosselini
-                                    <small>Product Manager</small>
+                                    {{$user->get_full_name()}}
                                 </span>
                             </div>
                             <div class="edit-profile-menu">
@@ -144,8 +179,8 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         </h5>
                                     </div>
                                     <div class="edit-profile-controls">
-                                        <button class="text-center">Cancel</button>
-                                        <button class="save-btn text-center">Save</button>
+                                        <a href="javascript:;" class="text-center cancel-edit-button">Cancel</a>
+                                        <button type="button" id="saveData" class="save-btn text-center ">Save</button>
                                     </div>
                                 </div>
                                 <div class="edit-profile-body">
@@ -158,8 +193,8 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         </div>
                                         <div class="profile-image text-center">
                                             <figure class="d-inline-flex position-relative">
-                                                <img src="/avatar/svgA44708602509147854.png" height="96" width="96" alt="">
-                                                <a href="#" class="cancel-btn d-inline-flex align-items-center justify-content-center font-14 bg-white">✖</a>
+                                                <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" height="96" width="96" alt="">
+                                                <a href="javascript:;" class="profile-image-btn cancel-btn d-inline-flex align-items-center justify-content-center font-14 bg-white"><img src="/assets/default/svgs/edit-2.svg" alt="" style="width:18px; height:18px"></a>
                                             </figure>
                                         </div>
                                     </div>
@@ -176,120 +211,63 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" placeholder="First name" value="Maya">
+                                                    <input type="text" name="first_name" placeholder="First name" value="{{$user->first_name}}">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" placeholder="Job title" value="Rosselini">
+                                                    <input type="text" name="last_name" placeholder="Job title" value="{{$user->last_name}}">
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/baig-form.svg" alt=""></span>
-                                                    <input type="text" placeholder="Job title" value="Product Manager">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/location-form.svg" alt=""></span>
-                                                    <input type="text" placeholder="Location">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="input-field">
-                                                    <textarea placeholder="About you / Short bio..."></textarea>
+                                                <label>Your Preference</label>
+                                                <div class="select-field">
+                                                    <select name="user_preference">
+                                                        <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
+                                                        <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="edit-element-title mb-20">
                                                     <h6 class="font-weight-500">
-                                                        Professional Info
+                                                        School Preference
                                                         <span class="d-block pt-5 font-12">This can help you to win some opportunities</span>
                                                     </h6>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
+                                                <label>Preference 1</label>
                                                 <div class="select-field">
-                                                    <select>
-                                                        <option value="Experience">Experience</option>
-                                                        <option value="0-2 years">0-2 years</option>
-                                                        <option value="2-5 years">2-5 years</option>
-                                                        <option value="5-10 years">5-10 years</option>
-                                                        <option value="10+ years">10+ years</option>
+                                                    <select name="school_preference_1" class="preference_field">
+                                                        <option value="">Select Preference</option>
+                                                        @foreach( $schools as $schoolObj)
+                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_1 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
+                                                <label>Preference 2</label>
                                                 <div class="select-field">
-                                                    <select>
-                                                        <option value="Experience">Is this your first job?</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                    <select name="school_preference_2" class="preference_field">
+                                                        <option value="">Select Preference</option>
+                                                        @foreach( $schools as $schoolObj)
+                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_2 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 col-md-6">
+                                                <label>Preference 3</label>
                                                 <div class="select-field">
-                                                    <select>
-                                                        <option value="Experience">Are you flexible?</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
+                                                    <select name="school_preference_3" class="preference_field">
+                                                        <option value="">Select Preference</option>
+                                                        @foreach( $schools as $schoolObj)
+                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_3 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
+                                                        @endforeach
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="select-field">
-                                                    <select>
-                                                        <option value="Experience">Do you work remotely?</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="edit-element-title mb-20">
-                                                    <h6 class="font-weight-500">
-                                                        Social Profiles
-                                                        <span class="d-block pt-5 font-12">This can help others finding you on social media</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-facebook.svg" alt=""></span>
-                                                    <input type="text" placeholder="Facebook URL">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-twitter.svg" alt=""></span>
-                                                    <input type="text" placeholder="Twitter URL">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-dribbel.svg" alt=""></span>
-                                                    <input type="text" placeholder="Dribbel URL">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-instagram.svg" alt=""></span>
-                                                    <input type="text" placeholder="Instagram URL">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-github.svg" alt=""></span>
-                                                    <input type="text" placeholder="Github URL">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-gitlab.svg" alt=""></span>
-                                                    <input type="text" placeholder="Gitlab URL">
                                                 </div>
                                             </div>
                                         </div>
@@ -303,119 +281,6 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-12">
-            <div class="profile-image-holder p-25 mb-10">
-                <div class="form-group">
-                        <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <label class="input-label font-15">{{ trans('auth.profile_image') }}</label>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" id="profileImagePreview" width="150" height="150" class="mb-15 d-block">
-                                <button id="selectAvatarBtn" type="button" class="btn btn-sm btn-secondary profile-image-btn">
-                                    <i data-feather="arrow-up" width="18" height="18" class="text-white mr-10"></i>
-                                    Update Profile Picture
-                                </button>
-
-                                <div class="input-group">
-                                    <input type="hidden" name="profile_image" id="profile_image" class="form-control @error('profile_image')  is-invalid @enderror"/>
-                                    @error('profile_image')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <label class="input-label font-15">Display Name</label>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <input type="text" name="display_name" value="{{ (!empty($user) and empty($new_user)) ? $user->display_name : old('display_name') }}" class="form-control @error('display_name')  is-invalid @enderror" placeholder=""/>
-                                @error('display_name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <label class="input-label font-15">Your Preference</label>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <select class="form-control" name="user_preference">
-                                    <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
-                                    <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
-                                </select>
-                                @error('display_name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-30 mt-30">
-                        <label class="input-label">Gold Member:</label>
-
-                        <div class="d-flex align-items-center">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" name="gold_member" value="1" {{ (!empty($user->gold_member) and $user->gold_member == 1) ? 'checked="checked"' : ''}} id="gold" class="custom-control-input">
-                                <label class="custom-control-label font-14 cursor-pointer" for="gold">Yes</label>
-                            </div>
-
-                            <div class="custom-control custom-radio ml-15">
-                                <input type="radio" name="gold_member" value="0" id="notgold" {{ (empty($user->gold_member) || $user->gold_member != 1) ? 'checked="checked"' : ''}} class="custom-control-input">
-                                <label class="custom-control-label font-14 cursor-pointer" for="notgold">No</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group rurera-hide">
-                        <div class="row">
-                            <div class="col-12 col-lg-4">
-                                <label class="input-label font-15">Secret Word</label>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <input type="password" name="secret_word" value="{{ old('secret_word') }}" class="form-control @error('secret_word')  is-invalid @enderror" placeholder=""/>
-                                @error('secret_word')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group rurera-hide">
-                        <div class="row">
-                            <div class="col-12 col-lg-4"></div>
-                            <div class="col-12 col-lg-8">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
-                                    </div>
-                                    <div class="col-12 col-lg-6">
-                                        <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;">Generate Pin</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
 
 </section>
@@ -519,6 +384,35 @@ $(document).ready(function () {
             imageClicked = true;
         }
     });
+
+
+    $(document).on('click', '.edit-profile-btn', function (e) {
+        $(".user-profile-block").addClass('rurera-hide');
+        $(".user-edit-profile").removeClass('rurera-hide');
+    });
+
+    $(document).on('click', '.cancel-edit-button', function (e) {
+        $(".user-profile-block").removeClass('rurera-hide');
+        $(".user-edit-profile").addClass('rurera-hide');
+    });
+
+    function refresh_preference_field() {
+        $('.preference_field option').removeAttr('disabled');
+        $('.preference_field').each(function () {
+            var current_value = $(this).val();
+            if( current_value != '') {
+                $('.preference_field option[value="' + current_value + '"]').attr('disabled', 'disabled');
+                $(this).find('option[value="' + current_value + '"]').removeAttr('disabled');
+            }
+        });
+    }
+
+    $(document).on('change', '.preference_field', function (e) {
+        refresh_preference_field();
+    });
+    refresh_preference_field();
+
+
 
 
 

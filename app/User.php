@@ -3844,6 +3844,21 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Category', 'id', 'year_id');
     }
 
+    public function userSchoolPreffernce1()
+    {
+        return $this->hasOne('App\Models\Schools', 'id', 'school_preference_1');
+    }
+
+    public function userSchoolPreffernce2()
+    {
+        return $this->hasOne('App\Models\Schools', 'id', 'school_preference_2');
+    }
+
+    public function userSchoolPreffernce3()
+    {
+        return $this->hasOne('App\Models\Schools', 'id', 'school_preference_3');
+    }
+
     public function userClass()
     {
         return $this->hasOne('App\Models\Classes', 'id', 'class_id');

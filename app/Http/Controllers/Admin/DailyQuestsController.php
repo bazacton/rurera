@@ -289,7 +289,7 @@ class DailyQuestsController extends Controller
             return strtotime(trim($date));
         }, $quest_dates);
         $quest_dates = json_encode($quest_dates, JSON_UNESCAPED_SLASHES);
-        $quest_users = json_encode($users_array, JSON_UNESCAPED_SLASHES);
+        $quest_users = json_encode($users_array, JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
         $section_id = array_map('intval', $section_id);
         $section_id = json_encode($section_id, JSON_UNESCAPED_SLASHES);
 

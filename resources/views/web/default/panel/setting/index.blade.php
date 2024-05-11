@@ -36,9 +36,7 @@
 
     <div class="create-webinar-footer d-flex align-items-center justify-content-between mt-20 pt-15 border-top">
 
-        <div class="d-flex align-items-center">
-            <button type="button" id="saveData" class="btn btn-sm btn-primary ml-15">{{ trans('public.save') }}</button>
-        </div>
+
     </div>
 @endsection
 

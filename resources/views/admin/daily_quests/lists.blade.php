@@ -728,8 +728,8 @@
             <div class="modal-body ">
                 <form name="edit-quest-modal" id="edit-quest-form">
 
-                    <div class="form-group">
-                        <div class="date-tags">
+                    <div class="form-group rurera-hide">
+                        <div class="date-tags ">
                             <a href="javasc">26-03-024 <span class="icon-box">&#x2716;</span></a>
                             <a href="#">27-04-024 <span class="icon-box">&#x2716;</span></a>
                             <a href="#">25-03-024 <span class="icon-box">&#x2716;</span></a>
@@ -751,7 +751,7 @@
                             <input type="text" autocomplete="off"
                                    name="s"
                                    value=""
-                                   class="form-control practice-start-date  rureradatepicker rurera-req-field" dataType="quest_date" min="{{date('Y-m-d', strtotime('+1 day'))}}"
+                                   class="form-control practice-start-date  rureramultidatespicker rureradatepicker1 rurera-req-field" dataType="quest_date" min="{{date('Y-m-d')}}"
                                    placeholder=""/>
                         </div>
                     </div>
@@ -779,10 +779,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+
+
+
         $('body').on('click', '.edit-quest-btn', function (e) {
             var dates_string = $(this).attr('data-dates');
             var quest_id = $(this).attr('data-quest_id');
             $(".quest-id-field").val(quest_id);
+            $(".practice-start-date").val(dates_string);
+            
 
             var dates_array = dates_string.split(',');
             var date_tags = '';
@@ -795,6 +800,12 @@
 
 
             $(".edit-quest-modal").modal('show');
+            $(".practice-start-date").focus();
+            $('.rureramultidatespicker').datepicker({
+                       multidate: true,
+                       format: 'dd-mm-yyyy',
+                       startDate: 'today',
+                   });
         });
 
         $('body').on('click', '.date-tags a', function (e) {
@@ -810,6 +821,7 @@
                 questDates.push($(this).val());
             });
             var dates_string = questDates.join(',');
+            var dates_string = $(".practice-start-date").val();
             jQuery.ajax({
                type: "POST",
                url: '/admin/daily_quests/update_dates',

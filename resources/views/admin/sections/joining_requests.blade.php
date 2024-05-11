@@ -54,7 +54,7 @@
                                     <td>
                                         <span>{{ $requestObj->student->get_full_name() }}</span>
                                     </td>
-                                    <td class="text-left">{{ $requestObj->section->sectionClass->title }}</td>
+                                    <td class="text-left">{{ isset( $requestObj->section->sectionClass->title)? $requestObj->section->sectionClass->title : '' }}</td>
                                     <td class="text-left">{{ $requestObj->section->title }}</td>
                                     <td>
                                         <a href="javascript:;" class="btn-transparent btn-sm text-primary request-action" data-action_type="approved" data-request_id="{{$requestObj->id}}">
