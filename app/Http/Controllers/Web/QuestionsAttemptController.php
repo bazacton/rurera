@@ -983,8 +983,11 @@ class QuestionsAttemptController extends Controller
                 'full_data'  => $full_data,
                 'updated_at' => time(),
             ]);
+            $this->afterQuestionCorrect($parent_type);
 
         } else {
+
+
             RewardAccounting::create([
                 'user_id'       => $user->id,
                 'item_id'       => 0,
@@ -999,6 +1002,8 @@ class QuestionsAttemptController extends Controller
                 'assignment_id' => $assignment_id,
                 'result_id'     => $QuizzResultQuestions->quiz_result_id,
             ]);
+            
+            $this->afterQuestionCorrect($parent_type);
         }
 
     }
@@ -2882,6 +2887,13 @@ class QuestionsAttemptController extends Controller
         } else {
             return $data;
         }
+    }
+    
+    public function afterQuestionCorrect($parent_type){
+        $user = auth()->user();
+        $current_game_time = $user->game_time;
+        $alloted_game_time = gameTime($parent_type);
+        $user->update(['game_time'=> $current_game_time+$alloted_game_time]);
     }
 
 

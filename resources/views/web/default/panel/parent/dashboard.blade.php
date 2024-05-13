@@ -67,7 +67,7 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
-                                                Membership: {{$childObj->userSubscriptions->id}} -- {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
+                                                Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
                                                 @endphp

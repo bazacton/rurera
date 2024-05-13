@@ -301,6 +301,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/packages-list', 'SubscribeController@packagesList');
         Route::post('/cancel-subscription', 'SubscribeController@cancelSubscription');
         Route::post('/unlink-user', 'SubscribeController@unlinkUser');
+        Route::post('/update-game-time', 'SubscribeController@updateGameTime');
+        
 
     });
 
@@ -391,6 +393,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'games'] , function () {
         Route::get('/', 'GamesController@index');
+        Route::get('/word-scramble', 'GamesController@WordScramble');
     });
 
     /*

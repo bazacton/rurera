@@ -99,6 +99,39 @@
             document.getElementById(player_id).pause();
         }
     });
+    $(document).on('click', '.phonics-btn', function (e) {
+        var player_id = $(this).attr('data-id');
+        var audio_elements = $(this).find('.player-box-audio');
+        console.log(player_id);
+        var current_index = 0;
+
+        // Function to play next audio with delay
+        function playNextWithDelay() {
+            if (current_index < audio_elements.length) {
+                // Play the current audio
+                console.log(audio_elements);
+                audio_elements[current_index].play();
+
+                // Increment index for the next audio
+                current_index++;
+
+                // Call recursively with a delay of 1 second
+                setTimeout(playNextWithDelay, 1000);
+            }
+        }
+
+        // Toggle pause class
+        $(this).toggleClass("pause");
+
+        // Check if paused or not
+        if ($(this).hasClass('pause')) {
+            // Start playing the sequence
+            playNextWithDelay();
+        } else {
+            // Pause the current audio
+            audio_elements[current_index - 1].pause();
+        }
+    });
 
 
 </script>

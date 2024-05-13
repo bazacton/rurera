@@ -10655,7 +10655,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-page-section .timestables-mode-content .form-btn {margin-bottom: 25px;}
 
 /* Quests Style Start  */
-.quests-item {display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+.quests-item {display: flex; align-items: center; flex-wrap: wrap; gap: 5px; width: 100%; }
 .quests-item .icon-box {margin-right: 10px; text-align: center; width: 52px; }
 .quests-item .item-text {width: calc(100% - 70px); text-align: left;}
 .quests-list h3 {display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 0 0 25px; }
@@ -10675,6 +10675,21 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content-holder .quests-item .progress-numbers {font-size: 16px; line-height: 16px;}
 .panel-content-holder .quests-list li {border-bottom: 1px solid #ddd; padding: 0 0 25px; margin-bottom: 25px;}
 .panel-content-holder .quests-list li:last-child {padding: 0; border: 0; margin: 0;}
+.quests-list.quests-learning li {margin: 0 0 20px;border-radius: 8px;border: 1px solid #ddd;}
+.quests-list.quests-learning li:last-child {padding: 20px; border: 1px solid #ddd;}
+.quests-list.quests-learning li:has(.quests-control) .quests-item {width: 65%; gap: 20px; }
+.quests-control a {background-color: var(--primary); color: #fff; padding: 8px 35px; border-radius: 5px; font-weight: 500;}
+.quests-learning .quests-item .item-text .levels-progress.horizontal .progress-box {border-radius: 3px;}
+.panel-content-holder .quests-learning .progress-icon {width: auto; margin-left: -2px;}
+.panel-content-holder .quests-learning .progress-icon.circle {border-radius: 100%; height: 45px; width: 45px;}
+.quests-learning .progress-icon .check-icon {height: 35px; width: 35px;}
+.quests-learning .bg-success .progress-icon,
+.quests-learning .bg-success .progress-box {background-color: #4fbf5d;}
+.quests-learning .bg-warning .progress-icon,
+.quests-learning .bg-warning .progress-box {background-color: #ffca00;}
+.quests-learning .bg-danger .progress-icon,
+.quests-learning .bg-danger .progress-box {background-color: #ffebed;}
+.panel-content-holder .quests-item:has(.progress-icon.circle) .item-text .levels-progress.horizontal {width: calc(100% - 50px);}
 /* Quests Style End */
 
 /* Store Stats Style Start */
@@ -11350,8 +11365,7 @@ Lms Responsive Style Start
     .navbar-nav .nav-item:hover .sidenav-dropdown {top: 0;}
     .lms-mega-menu {display: none;}
     body .radio-buttons .card-radio {width: 23%;}
-    .rurera-form-validation .col-sm-4 {flex: 0 0 100%;
-        max-width: 100%;}
+    .rurera-form-validation .col-sm-4 {flex: 0 0 100%; max-width: 100%;}
     .login-container .login-holder {min-width: 100%; max-width: 100%;}
     .panel-right-sidebar.full-width-sidebar {display: block;}
     .navbar-nav .has-mega-menu:hover .nav-link:after {display: none;}

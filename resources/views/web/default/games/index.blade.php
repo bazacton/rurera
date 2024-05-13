@@ -46,6 +46,14 @@
         </div>
         <div class="col-12 col-md-6 col-sm-6 col-lg-4">
             <div class="game-card">
+                <a href="/games/word-scramble">
+                <span class="icon-box"><img src="/assets/default/img/games/word-scramble.jpg" style="height: 190px;width: 100%;"></span>
+                <h5>Word Scramble</h5>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-sm-6 col-lg-4">
+            <div class="game-card">
                 <span class="icon-box"><img src="/assets/default/img/games/my-swashbuckle-adventure.jpg"></span>
                 <h5><a href="#">My Swashbuckle Adventure</a></h5>
             </div>

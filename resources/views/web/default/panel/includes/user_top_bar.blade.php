@@ -49,7 +49,7 @@
             <div class="assignments">
                 <strong>
                     <img src="/assets/default/img/panel-sidebar/2.png" alt="">
-                    {{getTimeWithText(120, false)}}
+                    {{getTimeWithText($authUser->game_time, false)}}
                 </strong>
             </div>
         </li>

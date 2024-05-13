@@ -417,6 +417,17 @@ class SubscribeController extends Controller
         exit;
     }
 
+    public function updateGameTime(Request $request)
+    {
+        $user = auth()->user();
+        $updated_game_time = $request->input('updated_game_time');
+        $user->update([
+           'game_time' => $updated_game_time,
+        ]);
+        exit;
+    }
+
+
     public function paymentIntent_bk(Request $request)
     {
 

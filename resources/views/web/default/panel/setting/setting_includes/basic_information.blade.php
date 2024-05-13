@@ -92,7 +92,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 School Preference 1
-                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce1->title}}</strong>
+                                                <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -104,7 +104,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 School Preference 2
-                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce2->title}}</strong>
+                                                <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce2->title )? $user->userSchoolPreffernce2->title : '-'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -116,7 +116,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 School Preference 3
-                                                <strong class="d-block font-weight-500">{{$user->userSchoolPreffernce3->title}}</strong>
+                                                <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce3->title )? $user->userSchoolPreffernce3->title : '-'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">

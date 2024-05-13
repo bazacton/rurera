@@ -155,11 +155,24 @@ class SpellsController extends Controller
                 pre('<br><br><br>', false);*/
                 $audio_sentense = str_replace($audio_text, '<strong>' . $audio_text . '</strong>', $audio_sentense);
                 $audio_sentense = str_replace(strtolower($audio_text), '<strong>' . strtolower($audio_text) . '</strong>', $audio_sentense);
+
+                $phonics_text = $phonics_sounds = '';
+                $phonics_array = get_words_phonics($audio_text);
+                $phonics_counter = 1;
+                if( !empty( $phonics_array ) ){
+                    foreach( $phonics_array as $phonic_data){
+                        $phonics_text .= isset( $phonic_data['letter'] )? $phonic_data['letter'].'  ': '';
+                        $phonicSound = isset( $phonic_data['sound'] )? $phonic_data['sound'] : '';
+                        $phonics_sounds .= '<audio class="player-box-audio" id="player-phonics-' . $SingleQuestionData->id . '-'.$phonics_counter.'" src="/phonics/'.$phonicSound.'"></audio>';
+                        $phonics_counter++;
+                    }
+                }
                 $words_list[] = array(
                     'audio_text'      => $audio_text,
                     'audio_sentense'  => $audio_sentense,
                     'audio_file'      => $audio_file,
                     'word_audio_file' => $word_audio_file,
+                    'phonics'      => $phonics_text,
                 );
 
                 $words_response .= '<tr>
@@ -172,7 +185,16 @@ class SpellsController extends Controller
                    </div>
                    </a>
                    </td>
-                   <td>' . $audio_text . '</td>
+                   <td>' . $audio_text . '<br>
+                   '.$phonics_text.'
+                   <a href="javascript:;" class="phonics-btn" data-id="player-phonics-' . $SingleQuestionData->id . '">
+                                          <img class="play-icon" src="/assets/default/svgs/play-circle.svg" alt="" height="20" width="20">
+                                          <img class="pause-icon" src="/assets/default/svgs/pause-circle.svg" alt="" height="20" width="20">
+                                      <div class="player-box">
+                                      '.$phonics_sounds.'
+                                      </div>
+                                      </a>
+                   </td>
                    <td>
                   <p>' . $audio_defination . '</p>
                   </td>

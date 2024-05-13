@@ -398,7 +398,7 @@
 
 
 
-                                        <div class="row assignment_topic_type_fields practice_fields vocabulary_fields1">
+                                        <div class="row assignment_topic_type_fields practice_fields vocabulary_fields">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
                                                     <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
@@ -865,12 +865,16 @@
         $('body').on('click', '.vocabulary-assign-btn', function (e) {
             $(this).toggleClass('active');
             var topic_id = $(this).attr('data-id');
+            console.log('topic_id: '+topic_id);
             var topic_type = $(this).attr('data-topic_type');
             $(".assignment_topic_type_mock").val(topic_type);
-            $('.vocabulary-topic-selection[name="ajax[new][topic_ids][]"][value="'+topic_id+'"]').prop('checked', function(i, oldVal) {
+            /*$('.vocabulary-topic-selection[name="ajax[new][topic_ids][]"][value="'+topic_id+'"]').prop('checked', function(i, oldVal) {
                 return !oldVal;
-            });
+            });*/
+            $('.vocabulary-topic-selection[name="ajax[new][topic_ids][]"][value="'+topic_id+'"]').prop('checked', true).change();
             var total_questions = $(this).attr('data-total_questions');
+            $(".no_of_questions").attr('max', total_questions);
+            $(".no_of_questions").val(total_questions);
         });
 
 
@@ -946,7 +950,7 @@
                     }
                 });
             }else{
-                //$(".assignment-user-class:checked").change();
+                $(".assignment-user-class:checked").change();
             }
 
         });
@@ -1147,6 +1151,18 @@
             }
 
             if( next_step == 3){
+                var quiz_type = $(".assignment_topic_type_check:checked").val();
+                if(quiz_type != 'timestables'){
+                if( $(".topic_selection").length > 0) {
+                    //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
+                    if ($('.topic_selection:checked').length < 1 || $('.topic_selection:checked').length < 1) {
+                        jQuery.growl.error({
+                            message: 'Please select atleast one topic',
+                            duration: 10000,
+                        });
+                        return false;
+                    }
+                }else{
                 if( $(".topics_multi_selection").length > 0) {
                     //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
                     if ($('.topics_multi_selection:checked').length < 1 || $('.topics_multi_selection:checked').length < 1) {
@@ -1157,16 +1173,9 @@
                         return false;
                     }
                 }
-                if( $(".topic_selection").length > 0) {
-                    //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
-                    if ($('.topic_selection:checked').length < 1 || $('.topic_selection:checked').length < 1) {
-                        jQuery.growl.error({
-                            message: 'Please select atleast one topic',
-                            duration: 10000,
-                        });
-                        return false;
-                    }
                 }
+                }
+
 
             }
 

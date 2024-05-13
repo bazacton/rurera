@@ -41,5 +41,32 @@ class GamesController extends Controller
         abort(404);
     }
 
+    public function WordScramble()
+    {
+
+        $user = getUser();
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+
+        if (!auth()->user()->isUser()) {
+            return redirect('/'.panelRoute());
+        }
+
+        if( $user->game_time > 0) {
+
+            $data = [
+                'pageTitle'       => 'Word Scramble',
+                'pageDescription' => isset($page->seo_description) ? $page->seo_description : '',
+                'pageRobot'       => isset($page->robot) ? 'index, follow, all' : 'NOODP, nofollow, noindex',
+            ];
+            return view('web.default.games.word_scramble', $data);
+        }else{
+            return view('web.default.games.no_game_time', []);
+        }
+
+        abort(404);
+    }
+
 
 }

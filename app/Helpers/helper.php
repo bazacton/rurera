@@ -8750,3 +8750,258 @@ function redirectCheck(){
     }
     return $redirect_url;
 }
+
+
+function gameTime($type = ''){
+    // Seconds
+    $gameTime = array(
+        '11plus' => 10,
+        'sats' => 10,
+        'independent_exams' => 10,
+        'iseb' => 10,
+        'cat4' => 10,
+        'challenge' => 10,
+        'vocabulary' => 10,
+        'timestables' => 10,
+    );
+    $response = (isset( $gameTime[$type] ) && $gameTime[$type] != '')? $gameTime[$type] : 0;
+    return $response;
+}
+
+function get_words_phonics($user_input){
+    $user_input = strtolower($user_input);
+    $words_list = array(
+        'a' => array(
+            'sound' => 'a.mp3',
+            'letters_list' => array('a')
+        ),
+        'ai' => array(
+            'sound' => 'ai.mp3',
+            'letters_list' => array('a', 'ai', 'ay', 'a-e', 'ey','ei','eigh', 'aigh')
+        ),
+        'ar' => array(
+            'sound' => 'ar.mp3',
+            'letters_list' => array('ar', 'a', 'al', 'are', 'au','ear')
+        ),
+        'air' => array(
+            'sound' => 'air.mp3',
+            'letters_list' => array('air', 'are', 'ear', 'ere')
+        ),
+        'b' => array(
+            'sound' => 'b.mp3',
+            'letters_list' => array('b','bb')
+        ),
+        'ch' => array(
+            'sound' => 'ch.mp3',
+            'letters_list' => array('ch','tch','t')
+        ),
+        'd' => array(
+            'sound' => 'd.mp3',
+            'letters_list' => array('d','dd','-ed')
+        ),
+        'e' => array(
+            'sound' => 'e.mp3',
+            'letters_list' => array('e','ea','ie','eo','a')
+        ),
+        'ee' => array(
+            'sound' => 'ee.mp3',
+            'letters_list' => array('ee','ea','e','ie','e-e','ei')
+        ),
+        'ear' => array(
+            'sound' => 'ear.mp3',
+            'letters_list' => array('ear','eer','ere','ier')
+        ),
+        'f' => array(
+            'sound' => 'f.mp3',
+            'letters_list' => array('f', 'ff', 'ph', 'gh')
+        ),
+        'g' => array(
+            'sound' => 'g.mp3',
+            'letters_list' => array('g', 'gg', 'gu', 'gh', 'gue')
+        ),
+        'gz' => array(
+            'sound' => 'gz.mp3',
+            'letters_list' => array('x')
+        ),
+        'h' => array(
+            'sound' => 'h.mp3',
+            'letters_list' => array('h','wh')
+        ),
+        'i' => array(
+            'sound' => 'i.mp3',
+            'letters_list' => array('i','y', 'o', 'u', 'e')
+        ),
+        'igh' => array(
+            'sound' => 'igh.mp3',
+            'letters_list' => array('igh', 'ie', 'y', 'i-e', 'i', 'eigh', 'eye', 'I', 'ye', 'y-e')
+        ),
+        'j' => array(
+            'sound' => 'j.mp3',
+            'letters_list' => array('j', 'gi', 'gy', 'ge-', '-ge', 'dge', 'gg')
+        ),
+        'k' => array(
+            'sound' => 'k.mp3',
+            'letters_list' => array('c', 'k', 'ck', 'ch', 'qu')
+        ),
+        'ks' => array(
+            'sound' => 'ks.mp3',
+            'letters_list' => array('x')
+        ),
+        'kw' => array(
+            'sound' => 'kw.mp3',
+            'letters_list' => array('qu')
+        ),
+        'l' => array(
+            'sound' => 'l.mp3',
+            'letters_list' => array('l', 'll', 'le')
+        ),
+        'm' => array(
+            'sound' => 'm.mp3',
+            'letters_list' => array('m', 'mm', 'mb', 'mn')
+        ),
+        'n' => array(
+            'sound' => 'n.mp3',
+            'letters_list' => array('n', 'nn', 'gn', 'kn')
+        ),
+        'ng' => array(
+            'sound' => 'ng.mp3',
+            'letters_list' => array('ng')
+        ),
+        'o' => array(
+            'sound' => 'o.mp3',
+            'letters_list' => array('o', 'a')
+        ),
+        'oa' => array(
+            'sound' => 'oa.mp3',
+            'letters_list' => array('oa', 'ow', 'oe', 'o', 'o-e', 'ough', 'ol')
+        ),
+        'oo' => array(
+            'sound' => 'oo.mp3',
+            'letters_list' => array('oo', 'ew', 'ue', 'o', 'ou', 'ough', 'ui','oul')
+        ),
+        'or' => array(
+            'sound' => 'or.mp3',
+            'letters_list' => array('or', 'aw', 'au', 'ore', 'al', 'augh', 'ough', 'our', 'oor', 'oa', 'ure', 'ar', 'a')
+        ),
+        'oi' => array(
+            'sound' => 'oi.mp3',
+            'letters_list' => array('oi', 'oy')
+        ),
+        'ow' => array(
+            'sound' => 'ow.mp3',
+            'letters_list' => array('ow', 'ou', 'ough')
+        ),
+        'p' => array(
+            'sound' => 'p.mp3',
+            'letters_list' => array('p', 'pp')
+        ),
+        'r' => array(
+            'sound' => 'r.mp3',
+            'letters_list' => array('r', 'rr', 'wr', 'rh')
+        ),
+        's' => array(
+            'sound' => 's.mp3',
+            'letters_list' => array('s', 'ss', 'c', 'sc', 'st')
+        ),
+        'sh' => array(
+            'sound' => 'sh.mp3',
+            'letters_list' => array('sh', 's', 'ssi', 'ti', 'ci','ch', 'ce')
+        ),
+        't' => array(
+            'sound' => 't.mp3',
+            'letters_list' => array('t', 'tt', '-ed', 'th', 'bt')
+        ),
+        'th' => array(
+            'sound' => 'th.mp3',
+            'letters_list' => array('th','the')
+        ),
+        'u' => array(
+            'sound' => 'u.mp3',
+            'letters_list' => array('u', 'o', 'ou', 'oe', 'oo')
+        ),
+        'ur' => array(
+            'sound' => 'ur.mp3',
+            'letters_list' => array('ur', 'er', 'ir', 'or', 'ear', 'our', 'ere')
+        ),
+        'v' => array(
+            'sound' => 'v.mp3',
+            'letters_list' => array('v', 'f', 've')
+        ),
+        'w' => array(
+            'sound' => 'w.mp3',
+            'letters_list' => array('w', 'u', 'wh')
+        ),
+        'y' => array(
+            'sound' => 'y.mp3',
+            'letters_list' => array('y', 'i')
+        ),
+        'yoo' => array(
+            'sound' => 'yoo.mp3',
+            'letters_list' => array('ue', 'ew', 'u', 'u-e', 'eu')
+        ),
+        'yure' => array(
+            'sound' => 'yure.mp3',
+            'letters_list' => array('ure')
+        ),
+        'z' => array(
+            'sound' => 'z.mp3',
+            'letters_list' => array('z', 'zz', 's', 'se', 'ze', 'ss', 'x')
+        ),
+        'zh' => array(
+            'sound' => 'zh.mp3',
+            'letters_list' => array('si', 'ge')
+        ),
+    );
+
+
+    $letters_list = array();
+    foreach( $words_list as $word_key => $wordsArray){
+        foreach($wordsArray['letters_list'] as $letter){
+            $letters_list[] = array(
+                'word' => $word_key,
+                'letter' => $letter,
+                'sound' => $wordsArray['sound'],
+            );
+        }
+    }
+
+    $matching_items = array();
+    $remaining_input = $user_input;
+
+    while (!empty($remaining_input)) {
+        $found_match = false;
+
+        // Check if the remaining input matches any word exactly
+        if (isset($words_list[$remaining_input])) {
+            $matching_items[] = array(
+                'word' => $remaining_input,
+                'letter' => $remaining_input,
+                'sound' => $words_list[$remaining_input]['sound']
+            );
+            $remaining_input = ''; // Clear remaining input as it's completely matched
+            $found_match = true;
+        }
+
+        // If no exact match, loop through the remaining input gradually reducing its length
+        for ($i = strlen($remaining_input); $i >= 1; $i--) {
+            $substring = substr($remaining_input, 0, $i);
+
+            // Check if the substring exists in the generated letters list
+            foreach ($letters_list as $item) {
+                if ($item['letter'] === $substring) {
+                    $matching_items[] = $item;
+                    // Update the remaining input for the next iteration
+                    $remaining_input = substr($remaining_input, $i);
+                    $found_match = true;
+                    break 2; // Break both inner and outer loops
+                }
+            }
+        }
+
+        // If no match is found, break the loop
+        if (!$found_match) {
+            break;
+        }
+    }
+    return $matching_items;
+}
