@@ -47,4 +47,9 @@ class Order extends Model
     {
         return $this->hasMany('App\Models\OrderItem', 'order_id', 'id');
     }
+
+    public function package()
+    {
+        return $this->hasOne('App\Models\Subscribe', 'id', 'package_id');
+    }
 }

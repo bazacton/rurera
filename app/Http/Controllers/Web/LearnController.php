@@ -32,7 +32,7 @@ class LearnController extends Controller
         }
         $allowedUsers = getAllowedUsers();
 
-        $categoryObj = Category::where('id', 616)->first();
+        $categoryObj = Category::where('id', $user->year_id)->first();
         $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->get();
 
         $page = Page::where('link', '/learn')->where('status', 'publish')->first();

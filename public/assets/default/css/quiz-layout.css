@@ -150,6 +150,9 @@ Rurera Col Style
 Lms Form Fields Style 
 ************************/
 .question-step {position: relative; }
+.question-step:has(.prev-next-controls){
+    padding-bottom: 80px;
+}
 .lms-content-holder h2 {margin: 0 0 15px; font-size: 22px; font-weight: 500; color: #000; display: flex; align-items: center; flex-wrap: wrap;}
 .lms-content-holder .icon-img {margin-left: 25px;}
 .lms-content-holder h3 {margin: 0 0 10px; font-size: 18px;}
@@ -308,13 +311,13 @@ Lms Question List Style
 .question-fields .left-content {display: flex; flex-direction: column; /*min-height: 680px; height: 680px;*/ overflow: hidden; overflow-y: auto; padding-right: 10px;}
 .read-quiz-content .left-content {overflow: hidden;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 70px; color: #adabab; }
-.question-layout-block form.question-fields .questions-nav-controls {background-color:#fff; margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 810px;margin-bottom: 10px !important; z-index: 2;}
+.question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.8); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 880px;margin-bottom: 0 !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
 .assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
 .question-fields .left-content::-webkit-scrollbar,
 .lms-sorting-fields::-webkit-scrollbar,
 .learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {width: 5px; background-color: #F5F5F5;}
-.learning-page.type-sats .left-content {overflow-y: auto; height: 490px; position: relative; }
+.learning-page.type-sats .left-content {/*overflow-y: auto; height: 490px;*/ position: relative; }
 .learning-page.type-practice .left-content {height: auto; min-height: auto; }
 .learning-page.type-practice .left-content .leform-elements {height: 400px; overflow: hidden; overflow-y: auto; padding-right: 5px;}
 .learning-page.type-vocabulary .left-content {overflow: hidden; padding-right: 0;}

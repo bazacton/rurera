@@ -149,6 +149,13 @@
       'Rave' => 'KingFlamez\\Rave\\Facades\\Rave',
     ),
   ),
+  'laravel/cashier' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Cashier\\CashierServiceProvider',
+    ),
+  ),
   'laravel/socialite' => 
   array (
     'providers' => 

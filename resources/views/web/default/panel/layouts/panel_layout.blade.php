@@ -150,6 +150,25 @@
                                 </div>
                                 @endif
                             </div>
+							
+							@if(auth()->user()->isUser())
+							<div class="col-12 col-lg-12 mb-30">
+								<div class="store-stats panel-border bg-white rounded-sm p-20">
+									<ul>
+										<li>
+										<div class="store-item">
+											<img src="/assets/default/svgs/stats-coins.svg" alt="">
+											<span class="item-label">
+												Current Balance
+												<span class="iteme-numbers">{{$authUser->getRewardPoints()}}</span>
+											</span>
+										</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+                            
+                            @endif
 
                             @if(request()->is('panel/marketing/affiliates') || auth()->user()->isParent() || auth()->user()->isTutor())
                             <div class="col-12 col-lg-12 mb-30 mt-25">
@@ -261,24 +280,8 @@
                             </div>
                         </div>
                             @endif
-                        @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
-                        @if(auth()->user()->isUser())
-                        <div class="col-12 col-lg-12 mb-30">
-                            <div class="store-stats panel-border bg-white rounded-sm p-20">
-                                <ul>
-                                    <li>
-                                    <div class="store-item">
-                                        <img src="/assets/default/svgs/stats-coins.svg" alt="">
-                                        <span class="item-label">
-                                            Current Balance
-                                            <span class="iteme-numbers">{{$authUser->getRewardPoints()}}</span>
-                                        </span>
-                                    </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                            @if( $authUser->getUserQuests()->count() > 0 )
+							@if(auth()->user()->isUser())
+						@if( $authUser->getUserQuests()->count() > 0 )
                                 <div class="col-12 col-lg-12 mb-30">
                                     <div class="quests-list panel-border bg-white rounded-sm p-20">
                                         <h3 class="font-19 font-weight-bold">
@@ -316,8 +319,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                            @endif
-                            @endif
+                            @endif	
+							@endif	
+							
+                        @if(!request()->is('panel') && !request()->is('panel/setting') && !request()->is('panel/rewards') && !request()->is('panel/marketing/affiliates') && !request()->is('panel/store/purchases') && !request()->is('panel/notifications') && !request()->is('panel/support/tickets'))
+							
                             @if(request()->is('shop'))
 
 

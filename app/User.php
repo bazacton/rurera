@@ -32,10 +32,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable; 
+    use Billable;
 
     static $active = 'active';
     static $pending = 'pending';
@@ -3821,9 +3823,9 @@ class User extends Authenticatable
                 break;
 
         }
-        $is_subscribed = UserSubscriptions::where('user_id', $this->id)
-            ->where('status', 'active')->where($subscription_package, 1)->count();
+        //$is_subscribed = UserSubscriptions::where('user_id', $this->id)->where('status', 'active')->where($subscription_package, 1)->count();
 
+		$is_subscribed = 1;
         $is_subscribed = ($is_subscribed > 0) ? true : false;
         return $is_subscribed;
     }
@@ -3842,6 +3844,12 @@ class User extends Authenticatable
     public function userYear()
     {
         return $this->hasOne('App\Models\Category', 'id', 'year_id');
+    }
+	
+
+    public function userSchool()
+    {
+        return $this->hasOne('App\Models\Schools', 'id', 'school_id');
     }
 
     public function userSchoolPreffernce1()

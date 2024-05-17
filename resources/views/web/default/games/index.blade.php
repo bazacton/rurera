@@ -39,11 +39,6 @@
 
 <div class="dashboard-games-holder">
     <div class="row mt-35">
-        <div class="col-12">
-            <div class="game-banner mb-30">
-                <img src="/assets/default/img/gm-banner1.jpg" alt="">
-            </div>
-        </div>
         <div class="col-12 col-md-6 col-sm-6 col-lg-4">
             <div class="game-card">
                 <a href="/games/word-scramble">

@@ -6808,6 +6808,12 @@ p {line-height: 1.5;}
 .custom-table tbody td:first-child {padding-left: .75rem;}
 .table-responsive {overflow: visible;}
 .custom-table.simple-table {margin-bottom: 0;}
+.rewards-table .simple-table thead {border-bottom-width: 0; }
+.panel-section-card .rewards-table .custom-table thead th {color: #94a3b8; text-transform: uppercase;}
+.rewards-table .simple-table tbody {border-radius: 6px; box-shadow: 0 0 0 1px #ddd;}
+.rewards-table .simple-table tbody td {border-radius: 10px; background-color: inherit; margin-bottom: -1px; border: 0;}
+.rewards-table .simple-table tbody tr {border-bottom: 1px solid #ddd;}
+.rewards-table .simple-table tbody tr:last-child {border-bottom: 0;}
 @media (max-width:991px) {
     .table-responsive {overflow-x: auto;}
 }
@@ -7797,9 +7803,10 @@ Custom Pagination Style End
 .categories-element-title p {margin: 5px 0 0; color: #000; }
 .categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
 /* .categories-element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; background: #7f7f7f;} */
-.subjects-heading {border-bottom: 1px solid #ddd; margin: 0 0 25px; padding: 0 0 20px; }
+.subjects-heading {border-bottom: 1px solid #ddd; margin: 0 0 25px; padding: 0 0 25px; }
 .categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
-.categories-card.medium .categories-icon {min-height: 82px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset; min-width: 70px; }
+.categories-card.medium .categories-icon {min-height: 80px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset; min-width: 70px; max-width: 70px; padding: 15px;}
+.categories-card.medium .categories-icon svg {width: 40px; height: 40px;}
 .categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
 .categories-card.medium .categories-text .categories-title {padding: 0; text-align: left; margin: 0 0 12px; }
 .categories-card.medium .categories-text .levels-progress.horizontal {position: relative; margin: 0 0 12px; width: 100%;}
@@ -7828,6 +7835,19 @@ Custom Pagination Style End
 .count-number-verticle .count-number-btn:before {content: ""; height: 25px; width: 25px; position: absolute; left: -12px; top: 50%; margin-top: -12px; background-color: #fff; transform: rotate(45deg);}
 .count-number-verticle li:first-child .count-number-btn {border-radius: 10px 10px 0 0;}
 .count-number-verticle li:last-child .count-number-btn {border-radius: 0 0 10px 10px;}
+.current-topics-detail {border-radius: 5 5px 0 0;}
+.topics-table thead th {background-color: var(--primary);}
+.topics-table thead th:first-child {border-radius: 5px 0 0 0;}
+.topics-table thead th:last-child {border-radius: 0 5px 0 0;}
+.topics-table tbody tr {border-bottom: 1px solid #ddd;}
+.topics-table tbody td label {color: #777;}
+.topics-table .checkbox-field input[type=checkbox] {height: 15px; width: 15px; vertical-align: middle; margin-right: 5px;}
+.topics-table tbody tr:last-child {border: 0;}
+.topics-table .video-btn, 
+.topics-table .file-btn {color: var(--primary);}
+.topics-table .icon-box {margin-right: 5px;}
+.topics-table .video-btn img, 
+.topics-table .file-btn img {height: 18px; width: 18px; filter: invert(42%) sepia(90%) saturate(3527%) hue-rotate(222deg) brightness(101%) contrast(98%);}
 @media (max-width:991px) {
     .lms-chapter-area {flex-wrap: wrap;}
     .count-number-boxes .count-number-card:nth-child(3) {padding-left: 15px; border-left: 0;}
@@ -9061,7 +9081,8 @@ Lms FAQS New Elements Style End
 Lms Choose Membership Model Style Start
 *************************************/
 .modal.lms-choose-membership {padding-left: 0 !important; padding-right: 0 !important;}
-.modal.lms-choose-membership:has(.wizard-steps) {scrollbar-gutter: stable; width: 101%;}
+.modal.lms-choose-membership:has(.wizard-steps) {overflow: hidden;}
+.modal.lms-choose-membership:has(.wizard-steps) .modal-body {padding-left: 0; padding-right: 0; padding-top: 30px; overflow: hidden; overflow-y: auto;}
 .lms-choose-membership .modal-dialog {max-width: 100%; margin: 0;}
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
@@ -9099,7 +9120,8 @@ Lms Choose Membership Model Style Start
 .book-form .tests-list li img {height: 18px; width: 18px;}
 .book-form .tests-list li img.google-icon,
 .lms-choose-membership .social-login img.google-icon {height: 30px; width: 30px; margin-bottom: -10px; }
-.book-form .tests-list li.active img {filter: invert(100%) sepia(1%) saturate(3424%) hue-rotate(181deg) brightness(110%) contrast(100%);}
+.book-form .tests-list li.active img,
+.card-gateway-fields-holder .book-form .tests-list li.active img.google-icon {filter: invert(100%) sepia(1%) saturate(3424%) hue-rotate(181deg) brightness(110%) contrast(100%);}
 .book-form .tests-list li.active img.google-icon {filter: none;}
 .card-gateway-fields-holder > .row {margin-left: 0; margin-right: 0;}
 .card-gateway-fields-holder > .row > .col-12 {padding: 0;}
@@ -9112,7 +9134,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .input-field.input-card .icon-svg .st0{fill:#b5b8bf;}
 .lms-choose-membership .input-field.input-card input[type="text"] {padding-left: 50px;}
 .lms-choose-membership .book-form p {font-size: 14px;}
-.lms-choose-membership .book-form p a {font-weight: 600; padding: 0 5px;color: var(--primary-hover);}
+.lms-choose-membership .book-form p a {font-weight: 600; padding: 0 5px;color: var(--primary);}
 .lms-choose-membership .subscription span {font-size: 16px;font-weight: 600;}
 .lms-choose-membership .subscription span a { font-weight: bold;color: var(--primary-hover);padding-left: 6px;text-transform: capitalize;}
 .lms-choose-membership .book-form .secure-server {display: flex;justify-content: center;align-items: center;}
@@ -9139,7 +9161,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
 .lms-choose-membership .panel-header .close,
-.lms-choose-membership .close {color: var(--primary);font-size: 1rem; font-weight: 500; opacity: 1; text-align: right; position: absolute; z-index: 1; padding: 5px 10px 2px; top: 50%; right: 20px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-shadow: none; border-radius: 5px; border: 1px solid var(--primary); margin-top: 0;}
+.lms-choose-membership .close {color: var(--primary);font-size: 1rem; font-weight: 500; opacity: 1; text-align: right; position: absolute; z-index: 1; padding: 5px 10px 2px; top: 50%; right: 20px; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); text-shadow: none; border-radius: 5px; border: 1px solid var(--primary); margin-top: 0; width: auto;}
 .lms-choose-membership .close {transform: none;margin-top: 15px;top: 0;}
 .lms-choose-membership .close span {font-size: 1.8rem; vertical-align: middle; display: inline-block; margin-top: -5px; line-height: 30px;}
 .lms-choose-membership .panel-header .close a,
@@ -9869,6 +9891,7 @@ Dashboard Form-Tabs Style Start
 .list-group-custom .rurera-pagination li {padding-left: 0; }
 .list-group-custom .rurera-pagination li:after {display: none;}
 .db-members:has(.no-record-found) .rurera-tabs-frontend {padding-bottom: 20px !important;}
+.no-record-found-head ul {flex-wrap: wrap;}
 .no-record-found-head li {list-style: none; padding: 0 25px; }
 .no-record-found-head li:after {display: none;}
 .db-members:has(.no-record-found) .list-group .rurera-tables-list {background-color: inherit; border: 0; }
@@ -10488,6 +10511,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center;}
+.panel-content .listing-search .inline-filters {justify-content: flex-start;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
 .panel-content .inline-filters a .icon-box {width: 25px; height: 25px;}
@@ -11074,6 +11098,8 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
 .book-info-link img {width: 85px !important; object-fit: contain; height: 85px !important;}
 .books-listing-holder .search-block {margin-bottom: 30px; }
+.search-block .search-input .form-group {border: 1px solid #ddd; padding: 10px 20px 10px 15px; border-radius: 10px;}
+.search-block .search-input .form-group .btn {height: 42px; padding: 0 40px; box-shadow: none; }
 .search-block .search-input {border-radius: 15px; background-color: #DFE6EE; }
 .search-block .search-input input[type=text] {height: auto; padding: 0.3rem 1rem 0.3rem 0.3rem; background-color: inherit;}
 .search-block .icon-box img {filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(187deg) brightness(87%) contrast(83%);}
@@ -11233,9 +11259,8 @@ address .info-list-label {color: #64748b;}
 .practice-quiz-ajax-fields {margin-bottom: 30px;}
 .disabled-btn {pointer-events: none;}
 .lms-choose-membership:has(.wizard-steps) .container, 
-.lms-choose-membership:has(.wizard-steps) .container > .row,
-.lms-choose-membership:has(.wizard-steps) form{height: 100%;}
-.lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column;}
+.lms-choose-membership:has(.wizard-steps) .container > .row {height: 100%;}
+.lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column; padding-bottom: 80px;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .db-members .rurera-tabs-frontend {gap: 30px;}
@@ -11289,6 +11314,20 @@ address .info-list-label {color: #64748b;}
 .edit-profile-content-holder .tab-pane {min-height: 400px;}
 /*Edit Profile Style End*/
 .container.set-work-container {margin-bottom: 100px;}
+.sorting-filter {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.sorting-filter a img {
+    height: 20px;
+    width: 20px;
+    filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);
+}
+.sorting-filter a.active img {
+    filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);
+}
 
 /*************************************
 Lms Responsive Style Start
@@ -11745,6 +11784,8 @@ Lms Responsive Style Start
     .sats-listing-card table:not(thead) td {text-align: left;}
     .sats-listing-card table:not(thead) td h4 {text-align: left; width: 100%;}
     .sats-listing-card table:not(thead) td img {margin: 0 0 10px;}
+    .wizard-steps .sats-listing-card tbody tr td {display: block; padding-bottom: 15px;}
+    .wizard-steps .sats-listing-card tbody tr td:has(.mock-test-assign-btn) {padding-top: 0; padding-bottom: 20px; display: inline-block;}
     .results-info {width: auto;}
     .results-revenue-card .text-box,
     .have-question-card .text-box {width: 100%; padding: 20px 0 0 0;}
@@ -11873,7 +11914,6 @@ Lms Responsive Style Start
     .read-quiz-content .treasure-stage .horizontal-list {flex-wrap: wrap; gap: 25px; justify-content: center !important;}
     .read-quiz-content .treasure-stage .horizontal-list li {width: auto;}
     .rurera-list-btn {min-width: 120px;}
-    body .add-student-modal .radio-btn {height: 100%;}
     .input-holder, .lms-quiz-section .input-holder{width: 100% !important; margin-top: 5px; margin-bottom: 5px;}
     .learning-page.type-vocabulary .question-layout-block {padding-top: 15px;}
     body .learning-page.type-vocabulary .left-content {height: auto; min-height: auto;}
@@ -11906,6 +11946,14 @@ Lms Responsive Style Start
     .save-plan {margin: 40px 0 0 0; width: 45%; right: -50px; left: auto;}
     .save-plan span:before {width: 35px; height: 20px; top: 0; background-size: 100%; transform: rotate(45deg);}
     .save-plan span {padding-left: 35px;}
+    .table-responsive.rewards-table {overflow: hidden; border: 1px solid #ddd; border-radius: 6px;}
+    .table-responsive.rewards-table thead {position: absolute; width: 0; height: 0; overflow: hidden; clip: rect(0 0 0 0);}
+    .rewards-table .simple-table tbody {box-shadow: none;}
+    .table-responsive.rewards-table table td::before {content: attr(data-label); font-weight: 500; font-size: 14px; color: #94a3b8; text-transform: uppercase;}
+    .rewards-table .custom-table tbody td {display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding-left: .75rem; padding-right: .75rem;}
+    .form-login-reading form .w-80,
+    .child-edit-form .w-80 {width: 100% !important;}
+    .no-record-found-head li {padding: 0 10px;}
 }
 
 @media screen and (max-width: 640px) {
@@ -12016,6 +12064,11 @@ Lms Responsive Style Start
     .child-register-form [class*="col-"] {width: 100%; flex: 0 0 100%; max-width: 100%;}
     .spell-levels-top .levels-progress.horizontal {margin-bottom: 15px;}
     .mock-test-assign-btn {padding: 10px;}
+    .child-edit-form .col-6 {flex: 0 0 100%; max-width: 100%;}
+    .sats-listing-card tbody tr {position: relative;}
+    .sats-listing-card tbody tr td {display: block;}
+    .sats-listing-card tbody tr td:last-child {padding: 0; border: 0;}
+    .sats-listing-card tbody tr td .rurera-list-btn {position: absolute; right: 0; top: 26px;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 

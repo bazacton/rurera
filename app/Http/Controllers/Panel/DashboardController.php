@@ -40,6 +40,8 @@ class DashboardController extends Controller
             'pageTitle' => trans('panel.dashboard'),
             'nextBadge' => $nextBadge
         ];
+		
+		
 
         if (!$user->isUser()) {
 

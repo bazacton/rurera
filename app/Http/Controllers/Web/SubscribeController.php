@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Web;
+use Stripe\Stripe;
 use App\PaymentChannels\Drivers\Stripe\Channel;
+use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Models\Accounting;
 use App\Models\Bundle;
@@ -352,6 +355,23 @@ class SubscribeController extends Controller
             ])->render();
         }else {
             if ($payment_amount > 0) {
+
+				//pm_1PGbPEFe1936RR55spDJda1N    -- Payment method
+				
+				$planId = 'price_1PBYlqFe1936RR55VNrE7Nf6';
+
+				$paymentMethod = $childObj->defaultPaymentMethod();
+				$paymentMethodsID = isset( $paymentMethod->id )? $paymentMethod->id : 0;
+				$stripeCustomer = $childObj->createOrGetStripeCustomer();
+				
+				if($paymentMethodsID == 0){
+					$paymentMethodsID = $childObj->payment_method;
+				}
+				
+				//$newSubscription = $user->newSubscription('default', $planId)->create($paymentMethodsID);
+				//pre($newSubscription);
+				
+				
                 $response_layout = view('web.default.subscriptions.payment_form', [
                     'selected_package' => $selected_package,
                     'subscribed_for'   => $subscribed_for,
@@ -359,6 +379,7 @@ class SubscribeController extends Controller
                     'packageObj'       => $packageObj,
                     'payment_amount'   => $payment_amount,
                     'subscribed_childs' => $subscribed_childs,
+					'intent' => $childObj->createSetupIntent()
                 ])->render();
             } else {
                 $response_layout = view('web.default.subscriptions.finish', [
@@ -426,16 +447,19 @@ class SubscribeController extends Controller
         ]);
         exit;
     }
-
-
-    public function paymentIntent_bk(Request $request)
+	
+	
+    public function paymentIntent(Request $request)
     {
 
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
-
+		
         $paymentIntent = $stripe->paymentIntents->create([
             'amount' => 1400,
             'currency' => 'cad',
+			'automatic_payment_methods' => [
+				'enabled' => true,
+			],
         ]);
         $output = [
            'clientSecret' => $paymentIntent->client_secret,
@@ -445,7 +469,7 @@ class SubscribeController extends Controller
        exit;
     }
 
-    public function paymentIntent(Request $request)
+    public function paymentIntent_bbk(Request $request)
     {
         $paymentChannel = new PaymentChannel();
         $StripeChannel = new Channel($paymentChannel);
@@ -770,6 +794,10 @@ class SubscribeController extends Controller
         $user_id = $request->input('user_id');
         $package_id = $request->input('selectedPackage');
         $childObj = User::find($user_id);
+		
+		
+		
+		
         $userPackageObj = $childObj->userSubscriptions;
         $userSubsribedPackageObj = (object) array();
         $packageDiscountAmount = 0;
@@ -840,29 +868,6 @@ class SubscribeController extends Controller
             $charged_amount = ($package_total_amount - $discount_amount);
             $remaining_days = 30;
 
-
-            /*if (isset($ParentsOrders->id)) {
-                $package_created = $ParentsOrders->created_at;
-                $package_expiry = $ParentsOrders->expiry_at;
-
-                $expiry_date_date = date('d', $expiry_date);
-                $expiry_date_month = date('m', $expiry_date);
-                $expiry_date_year = date('Y', $expiry_date);
-                $previous_month_expiry = $expiry_date_year.'-'.str_pad(($expiry_date_month-1), 2, '0', STR_PAD_LEFT).'-'.$expiry_date_year;
-
-                $package_expiry_date = date('d', $package_expiry);
-                $expiry_date_final = date('Y-m', $expiry_date);
-                $expiry_date_final = $expiry_date_final.'-'.$package_expiry_date;
-                $expiry_date_final = strtotime($expiry_date_final);
-                $expiry_date_final = ($expiry_date_final > $expiry_date)? strtotime('-1 month', $expiry_date_final) : $expiry_date_final;
-                $current_date = time();
-                $remaining_days = ($expiry_date_final - $current_date);
-                $remaining_days = round($remaining_days / (60 * 60 * 24));
-                $expiry_total_days = ($expiry_date - $current_date);
-                $expiry_total_days = round($expiry_total_days / (60 * 60 * 24));
-                $per_day_amount = ($packages_amount / $expiry_total_days);
-                $packages_amount = ($remaining_days * $per_day_amount);
-            }*/
 
             $packages_amount = round($packages_amount, 2);
 
@@ -1045,6 +1050,161 @@ class SubscribeController extends Controller
         }
         echo $response_layout;
         exit;
+    }
+
+
+    public function paymentformTest_bk(Request $request)
+    {
+
+        $user = auth()->user();
+        $paymentMethods = $user->paymentMethods();
+
+        $newSubscription = $user->newSubscription('default', 'price_1PBYlqFe1936RR55VNrE7Nf6')->create('pm_1PGJvAFe1936RR55AV1RJSV9');
+        pre($newSubscription);
+
+        Route::get('/subscription-checkout', function (Request $request, $user) {
+            return $user->newSubscription('default', 'price_1PBYlqFe1936RR55VNrE7Nf6')
+                ->trialDays(5)
+                ->allowPromotionCodes()
+                ->checkout([
+                    'success_url' => route('packages-list'),
+                    'cancel_url' => route('packages-list'),
+                ]);
+        });
+        //  pre($paymentMethods);
+        //$stripeCustomer = $user->createAsStripeCustomer();
+
+
+
+
+        //pre($paymentMethods);
+
+
+        /*Route::post('/user/subscribe', function (Request $request) {
+            $request->user()->newSubscription(
+                'default', 'price_monthly'
+            )->create($request->paymentMethodId);
+        });
+
+
+
+        pre('test');
+        return view('web.default.subscriptions.form_test', [
+            'intent' => $user->createSetupIntent()
+        ]);*/
+        //return view('web.default.subscriptions.form_test', $data);
+
+        abort(404);
+    }
+
+	 public function paymentformTest_iii(Request $request)
+    {
+		$stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+		Stripe::setApiKey(env('STRIPE_SECRET'));
+		
+		$priceId = 'price_1PBYlqFe1936RR55VNrE7Nf6'; // Replace with your Stripe price ID for the subscription
+		
+        $session = Session::create([
+		'success_url' => 'https://example.com/success',
+            'payment_method_types' => ['paypal'],
+            'line_items' => [
+				[
+				  'price' => $priceId,
+				  'quantity' => 1,
+				],
+			  ],
+            'mode' => 'subscription',
+        ]);
+
+		
+		return view('web.default.subscriptions.form_test', [
+                'sessionId' => json_encode(['sessionId' => $session->id])
+            ])->render();
+	}
+
+    public function paymentformTest(Request $request)
+    {
+		
+		$user_id = 1267;
+		$user = User::find($user_id);
+		$stripeCustomer = $user->createOrGetStripeCustomer();
+		$paymentMethods = $user->paymentMethods();
+		pre($user->onTrial());
+		
+		
+		$paymentMethod = $user->defaultPaymentMethod();
+		if( $paymentMethod == '' || empty( $paymentMethod )){
+			$paymentMethodUsed = $paymentMethods->first();
+			if($paymentMethodUsed->id != ''){
+				$user->updateDefaultPaymentMethod($paymentMethodUsed->id);
+			}
+		}
+		pre('test');
+
+        //pm_1PGbPEFe1936RR55spDJda1N    -- Payment method
+		
+		
+		$planId = 'price_1PBYlqFe1936RR55VNrE7Nf6';
+		
+		
+		
+        $priceId = 'price_1PBYlqFe1936RR55VNrE7Nf6'; // Replace with your Stripe price ID
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'Your Product Name',
+                    ],
+                    'unit_amount' => 1000, // Amount in cents
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('checkout.success'),
+            'cancel_url' => route('checkout.cancelled'),
+        ]);
+
+        return response()->json(['sessionId' => $session->id]);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+        $user = User::find($user_id);
+		
+		 $paymentIntent = $user->pay(1400);
+		 pre($paymentIntent);
+		
+		$stripeCustomer = $user->asStripeCustomer();
+
+		//pre($stripeCustomer);
+        $paymentMethod = $user->defaultPaymentMethod();
+		$paymentMethodsID = isset( $paymentMethod->id )? $paymentMethod->id : 0;
+		$stripeCustomer = $user->createOrGetStripeCustomer();
+		
+		if($paymentMethodsID == 0){
+			$paymentMethodsID = $user->payment_method;
+		}
+		
+		//$newSubscription = $user->newSubscription('default', $planId)->create($paymentMethodsID);
+		//pre($newSubscription);
+		
+
+        return view('web.default.subscriptions.form_test', [
+            'intent' => $user->createSetupIntent()
+        ]);
+
+        abort(404);
     }
 
 

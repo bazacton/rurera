@@ -33,6 +33,7 @@ class PaymentController extends Controller
         $this->validate($request, [
             'gateway' => 'required'
         ]);
+		
 
         $user = auth()->user();
         $gateway = $request->input('gateway');
@@ -108,6 +109,8 @@ class PaymentController extends Controller
             if (in_array($paymentChannel->class_name, PaymentChannel::$gatewayIgnoreRedirect)) {
                 return $redirect_url;
             }
+
+			echo Redirect::away($redirect_url);exit;
 
             return Redirect::away($redirect_url);
 

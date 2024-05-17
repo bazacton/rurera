@@ -1,8 +1,11 @@
 
 <section class="container mt-45 hide">
     <h2 class="section-title">{{ trans('financial.select_a_payment_gateway') }}</h2>
+	
+	
 
     <form action="/payments/payment-request" method="post" class=" mt-25 gateway-payment-form">
+	
         {{ csrf_field() }}
         <input type="hidden" name="order_id" value="{{ $order->id }}">
 
@@ -68,4 +71,5 @@
 
 <script>
     $(".gateway-payment-form").submit();
+	
 </script>

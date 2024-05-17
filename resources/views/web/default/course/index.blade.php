@@ -111,6 +111,100 @@
                             </ul>
                         </div>
                     </div>
+                    
+                    
+                    
+                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="current-topics-detail bg-white mb-30">
+        <div class="topics-table-group">
+		
+			@foreach($course->chapters as $chapter)
+				@if((!empty($chapter->chapterItems) and count($chapter->chapterItems)) or (!empty($chapter->quizzes) and count($chapter->quizzes)))
+				
+					<div class="topics-table">
+						<table class="w-100">
+							<thead>
+								<tr>
+									<th class="text-white text-left p-15">{{ $chapter->title }}</th>
+									<th class="text-white text-left p-15">Mastery Level</th>
+									<th class="text-white text-left p-15">Last Seen</th>
+									<th class="text-white text-left p-15">Rersources</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								@if(!empty($sub_chapters[$chapter->id]) and count($sub_chapters[$chapter->id]))
+									@foreach($sub_chapters[$chapter->id] as $sub_chapter)
+                                        @if(!empty($sub_chapter))
+                                            @php $quizUserData = Quiz::getQuizPercentage($sub_chapter['id'], true);
+                                            $completion_count = isset( $quizUserData['completion_count'] )? $quizUserData['completion_count'] : 0;
+                                            $topic_percentage = isset( $quizUserData['topic_percentage'] )? $quizUserData['topic_percentage'] : 0;
+
+                                            $topic_percentage_flag = ( $topic_percentage >= 95 && $topic_percentage < 100)? '<img src="/assets/default/svgs/completion-flag.svg">' : '';
+                                            $topic_percentage_text = ($topic_percentage > 0 && $topic_percentage < 100)? '('.$topic_percentage.')' : '';
+
+                                            $completion_counter = 1;
+                                            while($completion_counter <= $completion_count){
+                                                $topic_percentage_text .= '<img src="/assets/default/svgs/completion-star.svg">';
+                                                $completion_counter++;
+                                            }
+
+                                            $topic_percentage_text .= $topic_percentage_flag;
+                                            @endphp
+											
+											<tr>
+												<td data-label="{{ $chapter->title }}" class="p-15">
+													<div class="checkbox-field mb-0">
+														<label for="{{$sub_chapter['sub_chapter_slug']}}" class="m-0 font-weight-bold">{{ $sub_chapter['title'] }} {!! $topic_percentage_text !!}</label>
+													</div>
+												</td>
+												<td data-label="Mastery Level" class="p-15">
+													<span>Not enough data</span>
+												</td>
+												<td data-label="Last Seen" class="p-15">
+													<span>-</span>
+												</td>
+												<td data-label="Rersources" class="p-15">
+													<a href="#" class="video-btn mr-10">
+														<span class="icon-box">
+															<img src="/assets/default/svgs/play-video.svg" alt="">
+														</span>
+														<strong>Video</strong>
+													</a>
+													<a href="#" class="file-btn">
+														<span class="icon-box">
+															<img src="/assets/default/svgs/filesheet.svg" alt="">
+														</span>
+														<strong>Helpsheet</strong>
+													</a>
+												</td>
+											</tr>
+											
+										@endif
+									@endforeach
+									
+									
+									
+								@endif
+								
+							</tbody>
+						</table>
+					</div>
+				@endif
+			@endforeach
+        </div>
+    </div>
+</div>
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="accordion-content-wrapper" id="chaptersAccordion" role="tablist"
                             aria-multiselectable="true">

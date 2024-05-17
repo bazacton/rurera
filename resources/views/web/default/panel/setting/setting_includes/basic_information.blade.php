@@ -27,13 +27,13 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                 </div>
                 <div class="detail-body">
                     <div class="row mb-50">
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="rurera-hide col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="info-text">
                                 <h3 class="font-18 font-weight-500 mb-5">General info</h3>
                                 <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="edit-info-list">
                                 <h4 class="font-14 font-weight-500 pb-15 px-15">About you</h4>
                                 <ul>
@@ -54,13 +54,13 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                         </div>
                     </div>
                     <div class="row mb-50">
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                        <div class="rurera-hide col-lg-4 col-md-4 col-sm-12 col-12">
                             <div class="info-text">
                                 <h3 class="font-18 font-weight-500 mb-5">Personal info</h3>
                                 <span class="font-14">Some information we need to know about you, and to process legal matters.</span>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="edit-info-list">
                                 <h4 class="font-14 font-weight-500 pb-15 px-15">Additional info</h4>
                                 <ul>

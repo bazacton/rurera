@@ -168,8 +168,8 @@ class Quiz extends Model implements TranslatableContract
         $quiz_total_questions += isset($quiz_settings->Exceeding->questions) ? $quiz_settings->Exceeding->questions : 0;
 
 
-        $quizResults = isset( $quizObj->parentResults )? $quizObj->parentResults->last() : array();
-        $completion_count = isset( $quizObj->parentResults )? $quizObj->parentResults->where('is_completed',1)->count() : 0;
+        $quizResults = isset( $quizObj->parentResults )? $quizObj->parentResults->where('user_id',$user->id)->last() : array();
+        $completion_count = isset( $quizObj->parentResults )? $quizObj->parentResults->where('user_id',$user->id)->where('is_completed',1)->count() : 0;
         //pre($completion_count);
         $resultObj = $quizResults;
         $quiz_percentage = 0;

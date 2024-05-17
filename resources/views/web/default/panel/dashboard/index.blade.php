@@ -132,8 +132,105 @@
         </div>
     </div>
 </div>
+
+<div class="quests-list quests-learning">
+	<div class="section-title text-left mb-30">
+		<h2 class="font-22">Learning Journeys</h2>
+	</div>
+	<ul>
+		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
+			<div class="quests-item">
+				<div class="icon-box">
+					<img src="/assets/default/img/types/timestables.svg" alt="">
+				</div>
+				<div class="item-text">
+					<h5 class="font-18 font-weight-bold">English</h5>
+					<div class="levels-progress horizontal">
+						<span class="progress-box">
+							<span class="progress-count" style="width: 0%;"></span>
+						</span>
+					</div>
+					<span class="progress-icon font-16 font-weight-normal">
+						<img src="/assets/default/img/quests-coin.png" alt="">
+						+20
+					</span>
+					<span class="progress-info d-block pt-5">
+						<strong>0/38</strong> correct questions this week
+					</span>
+				</div>
+			</div>
+		</li>
+		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-success">
+			<div class="quests-item">
+				<div class="icon-box">
+					<img src="/assets/default/img/types/timestables.svg" alt="">
+				</div>
+				<div class="item-text">
+					<h5 class="font-18 font-weight-bold">Verbal Reasoning</h5>
+					<div class="levels-progress horizontal">
+						<span class="progress-box">
+							<span class="progress-count" style="width: 0%;"></span>
+						</span>
+					</div>
+					<span class="progress-icon circle">
+						<img src="/assets/default/svgs/check-border.svg" alt="" class="check-icon">
+					</span>
+					<span class="progress-info d-block pt-5">
+						<strong>76/29</strong> correct questions this week
+					</span>
+				</div>
+			</div>
+		</li>
+		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20">
+			<div class="quests-item">
+				<div class="icon-box">
+					<img src="/assets/default/img/types/timestables.svg" alt="">
+				</div>
+				<div class="item-text">
+					<h5 class="font-18 font-weight-bold">Maths</h5>
+					<div class="levels-progress horizontal">
+						<span class="progress-box">
+							<span class="progress-count" style="width: 0%;"></span>
+						</span>
+					</div>
+					<span class="progress-icon font-16 font-weight-normal">
+						<img src="/assets/default/img/quests-coin.png" alt="">
+						+20
+					</span>
+					<span class="progress-info d-block pt-5">
+						<strong>0/39</strong> correct questions this week
+					</span>
+				</div>
+			</div>
+		</li>
+		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-0 bg-warning">
+			<div class="quests-item">
+				<div class="icon-box">
+					<img src="/assets/default/img/types/timestables.svg" alt="">
+				</div>
+				<div class="item-text">
+					<h5 class="font-18 font-weight-bold">Non-Verbal Reasoning</h5>
+					<div class="levels-progress horizontal">
+						<span class="progress-box">
+							<span class="progress-count" style="width: 0%;"></span>
+						</span>
+					</div>
+					<span class="progress-icon circle">
+						<img src="/assets/default/svgs/check-border.svg" alt="" class="check-icon">
+					</span>
+					<span class="progress-info d-block pt-5">
+						<strong>58/29</strong> correct questions this week
+					</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
 <div class="dashboard">
     @if(auth()->check() && (auth()->user()->isUser()))
+	<div class="section-title text-left mt-30">
+		<h2 class="font-22">Tasks List</h2>
+	</div>
     <div class="row">
         <div class="col-12 col-lg-12 mt-35">
             <div class="assignments-table panel-border">
@@ -196,7 +293,7 @@
     </div>
     @endif
     @if(auth()->check() && (auth()->user()->isUser()))
-    <div class="row">
+    <div class="row rurera-hide">
         <div class="col-12 col-lg-12 mt-35">
             <section class="product-tabs-section panel-border">
                 <div class="container">

@@ -35,6 +35,7 @@
         "joisarjignesh/bigbluebutton": "^2.3",
         "jorenvanhocht/laravel-share": "^4.0",
         "kingflamez/laravelrave": "^4.2",
+        "laravel/cashier": "^12.17",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",

@@ -26,7 +26,7 @@
                                     <tr>
                                         <td class="text-left">
                                             <div class="d-flex flex-column">
-                                            <span class="font-14 font-weight-500">
+                                            <span class="font-16 font-weight-normal">
                                                 @if(!empty($accounting->webinar_id) and !empty($accounting->webinar))
                                                     {{ $accounting->webinar->title }}
                                                 @elseif(!empty($accounting->meeting_time_id))
@@ -48,7 +48,7 @@
                                                 @endif
                                             </span>
 
-                                                <span class="font-12 text-gray">
+                                                <span class="font-16 font-weight-normal">
                                                 @if(!empty($accounting->webinar_id) and !empty($accounting->webinar))
                                                         {{ $accounting->webinar->id }}
                                                     @elseif(!empty($accounting->meeting_time_id) and !empty($accounting->meetingTime))
@@ -66,27 +66,27 @@
                                             </div>
                                         </td>
                                         <td class="text-left align-middle">
-                                            <span class="font-weight-500 font-14 text-gray">{{ $accounting->description }}</span>
+                                            <span class="font-16 font-weight-normal">{{ $accounting->description }}</span>
                                         </td>
                                         <td class="text-center align-middle">
                                             @switch($accounting->type)
                                                 @case(\App\Models\Accounting::$addiction)
-                                                <span class="font-weight-500 font-14 text-primary">+{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-16 font-weight-normal">+{{ handlePriceFormat($accounting->amount) }}</span>
                                                 @break;
                                                 @case(\App\Models\Accounting::$deduction)
-                                                <span class="font-weight-500 font-14 text-danger">-{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-16 font-weight-normal">-{{ handlePriceFormat($accounting->amount) }}</span>
                                                 @break;
                                             @endswitch
                                         </td>
-                                        <td class="text-center align-middle font-weight-500 font-14">{{ trans('public.'.$accounting->store_type) }}</td>
-                                        <td class="text-center align-middle font-weight-500 font-14">
+                                        <td class="text-center align-middle font-16 font-weight-normal">{{ trans('public.'.$accounting->store_type) }}</td>
+                                        <td class="text-center align-middle font-16 font-weight-normal text-gray">
                                             <span>{{ dateTimeFormat($accounting->created_at, 'j M Y') }}</span>
                                         </td>
                                     </tr>
                                 @endforeach
                                 @else
                                 <tr class="no-record-found">
-                                    <td class="text-left" colspan="5">No Records Found</td>
+                                    <td class="text-left font-16 font-weight-normal" colspan="5">No Records Found</td>
                                 </tr>
                                 @endif
                                 </tbody>

@@ -14,6 +14,7 @@ use Stripe\PaymentIntent;
 use Stripe\SetupIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
+use App\User;
 
 class Channel implements IChannel
 {
@@ -112,27 +113,39 @@ class Channel implements IChannel
         $user = getUser();
         $price = $order->total_amount;
         $generalSettings = getGeneralSettings();
+		$student_id = $order->student_id;
+		$studentObj = User::find($student_id);
         $currency = currency();
         $currency = 'USD';
         $payment_data = isset( $order->payment_data )? json_decode($order->payment_data) : (object) array();
         $remaining_days  = isset( $payment_data->remaining_days )? $payment_data->remaining_days : 30;
         $discount_amount = isset( $payment_data->discount_amount )? $payment_data->discount_amount : 0;
+		$subscribe_for  = isset( $payment_data->subscribe_for )? $payment_data->subscribe_for : 1;
+		$package_price_id = ($subscribe_for > 1)? $order->package->stripe_price_yearly : $order->package->stripe_price_monthly;
+		
+		//pre($payment_data, false);
+		//pre($order);
+		
+		
 
 
         Stripe::setApiKey($this->api_secret);
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
             return isset( $child->user->userSubscriptions->id) ? 1 : 0;
         });
+		$trial_days = 0;
 
         $subscription_data = array();
 
         if( $subscribed_childs == 0){
             $subscription_data['trial_period_days'] = 7;
+			$trial_days = 7;
             //$subscription_data['billing_cycle_anchor'] = strtotime('+30 days');
         }else{
             //$subscription_data['trial_period_days'] = 0;
             //$subscription_data['billing_cycle_anchor'] = strtotime('+'.$remaining_days.' days');
         }
+		$trial_days = 2;
 
 
         /*try {
@@ -147,6 +160,46 @@ class Channel implements IChannel
 
 
         try {
+			
+			if( $discount_amount > 0){
+			   $couponObj = Coupon::create([
+				  'amount_off' => ($discount_amount*100),
+				  'duration' => 'once',
+				  'currency' => 'gbp',
+			   ]);
+			}
+			
+			$stripeCustomer = $studentObj->createOrGetStripeCustomer();
+			$checkout = $studentObj->newSubscription('default', $package_price_id);
+			if( $trial_days > 0){
+				$checkout = $checkout->trialDays($trial_days);
+			}
+			if( $discount_amount > 0){
+				$checkout = $checkout->withCoupon($couponObj->id);
+			}
+			$checkout = $checkout->checkout([
+				'success_url' => $this->makeCallbackUrl('success'),
+				'cancel_url' => $this->makeCallbackUrl('cancel'),
+			]);
+			
+			pre($checkout);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
             // Step 1: Create a customer
             /*$customer = Customer::create([
                 'email' => 'baz.chimpstudio1@gmail.com', // Replace with the customer's email
@@ -171,7 +224,7 @@ class Channel implements IChannel
             // Step 3: Create a checkout session
 
 
-            $discounts_data = [];
+            /*$discounts_data = [];
             if( $discount_amount > 0){
                    $couponObj = Coupon::create([
                       'amount_off' => ($discount_amount*100),
@@ -181,7 +234,6 @@ class Channel implements IChannel
                    $discounts_data = [['coupon' => $couponObj->id]];
                }
             $checkout = Session::create([
-               //'customer' => 'cus_Q1d4rL1mnBYViz',//$customer->id,
               'line_items' => [
                 [
                   'price' => 'price_1PBYlqFe1936RR55VNrE7Nf6',
@@ -193,7 +245,7 @@ class Channel implements IChannel
                'mode' => 'subscription',
                'success_url' => $this->makeCallbackUrl('success'),
                'cancel_url' => $this->makeCallbackUrl('cancel'),
-            ]);
+            ]);*/
 
             // Optionally, you can do something with the checkout session object returned
             $sessionId = $checkout->id;
@@ -211,6 +263,7 @@ class Channel implements IChannel
         $Html = '<script src="https://js.stripe.com/v3/"></script>';
         $Html .= '<script type="text/javascript">let stripe = Stripe("' . $this->api_key . '");';
         $Html .= 'stripe.redirectToCheckout({ sessionId: "' . $checkout->id . '" }); </script>';
+		
 
         echo $Html;
     }
@@ -243,6 +296,11 @@ class Channel implements IChannel
             $session = Session::retrieve($request->session_id);
 
             if (!empty($session) and $session->payment_status == 'paid') {
+				
+				
+				
+				
+				
                 $order->update([
                     'status' => Order::$paying
                 ]);

@@ -41,7 +41,7 @@
                                 <div class="plan-switch-option">
                                     <span class="switch-label">Pay Monthly</span>
                                     <div class="plan-switch">
-                                        <div class="custom-control custom-switch"><input type="checkbox" name="disabled" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
+                                        <div class="custom-control custom-switch"><input type="checkbox" name="subscribed_for" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
                                     </div>
                                     <span class="switch-label">Pay Yearly</span>
                                 </div>

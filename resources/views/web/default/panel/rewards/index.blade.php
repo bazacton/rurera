@@ -42,15 +42,15 @@
 
             <div class="panel-section-card mt-20">
                 <div class="row">
-                    <div class="col-12 ">
-                        <div class="table-responsive">
+                    <div class="col-12">
+                        <div class="table-responsive rewards-table">
                             <table class="table text-center custom-table simple-table">
                                 <thead>
                                 <tr>
-                                    <th class="text-left">{{ trans('public.title') }}</th>
-                                    <th class="text-center">{{ trans('update.points') }}</th>
-                                    <th class="text-center">{{ trans('public.type') }}</th>
-                                    <th class="text-center">{{ trans('public.date_time') }}</th>
+                                    <th class="text-left font-14 font-weight-500">{{ trans('public.title') }}</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('update.points') }}</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('public.type') }}</th>
+                                    <th class="text-center font-14 font-weight-500">{{ trans('public.date_time') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -58,16 +58,16 @@
                                 @foreach($rewards as $reward)
                                     @php $rewardTitle = getRewardTitle($reward); @endphp
                                     <tr>
-                                        <td class="text-left">{{ $rewardTitle }}</td>
-                                        <td class="text-center align-middle">{{ $reward->score }}</td>
-                                        <td class="text-center align-middle">
+                                        <td data-label="{{ trans('public.title') }}" class="text-left">{{ $rewardTitle }}</td>
+                                        <td data-label="{{ trans('update.points') }}" class="text-center align-middle">{{ $reward->score }}</td>
+                                        <td data-label="{{ trans('public.type') }}" class="text-center align-middle">
                                             @if($reward->status == \App\Models\RewardAccounting::ADDICTION)
                                                 <span class="text-primary">{{ trans('update.add') }}</span>
                                             @else
                                                 <span class="text-danger">{{ trans('update.minus') }}</span>
                                             @endif
                                         </td>
-                                        <td class="text-center align-middle">{{ dateTimeFormat($reward->created_at, 'j F Y H:i') }}</td>
+                                        <td data-label="{{ trans('public.date_time') }}" class="text-center align-middle">{{ dateTimeFormat($reward->created_at, 'j F Y H:i') }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

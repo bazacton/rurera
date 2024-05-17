@@ -25,11 +25,10 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="search-block">
                                     <div class="top-search-form">
-
-                                        <div class="search-input bg-white p-10 flex-grow-1">
+                                        <div class="search-input bg-white">
                                             <form action="/books" method="get">
                                                 <div class="form-group d-flex align-items-center m-0">
-                                                    <input type="text" name="search" class="form-control border-0" value="{{ request()->get('search','') }}" placeholder="Search by Author, Title, or Keyword"/>
+                                                    <input type="text" name="search" class="form-control border-0 font-14" value="{{ request()->get('search','') }}" placeholder="Search by Author, Title, or Keyword"/>
                                                     <button type="submit" class="btn btn-primary rounded-pill">{{ trans('home.find') }}</button>
                                                 </div>
                                             </form>

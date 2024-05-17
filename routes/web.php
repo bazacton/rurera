@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,11 @@ Route::group(['prefix' => 'api_sessions'] , function () {
 
 Route::get('/mobile-app' , 'Web\MobileAppController@index')->middleware(['share'])->name('mobileAppRoute');
 Route::get('/maintenance' , 'Web\MaintenanceController@index')->middleware(['share'])->name('maintenanceRoute');
+
+
+	
+Route::post('stripe/webhook',[WebhookController::class, 'handleWebhook']);
+
 /* Emergency Database Update */
 Route::get('/emergencyDatabaseUpdate' , function () {
     \Illuminate\Support\Facades\Artisan::call('migrate');
@@ -298,10 +304,11 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/payment-form', 'SubscribeController@paymentForm');
         Route::post('/payment-secret', 'SubscribeController@paymentIntent');
         Route::post('/pay', 'SubscribeController@pay');
-        Route::get('/packages-list', 'SubscribeController@packagesList');
+        Route::get('/packages-list', 'SubscribeController@packagesList')->name('packages-list');
         Route::post('/cancel-subscription', 'SubscribeController@cancelSubscription');
         Route::post('/unlink-user', 'SubscribeController@unlinkUser');
         Route::post('/update-game-time', 'SubscribeController@updateGameTime');
+        Route::get('/payment-form-test' , 'SubscribeController@paymentformTest');
         
 
     });

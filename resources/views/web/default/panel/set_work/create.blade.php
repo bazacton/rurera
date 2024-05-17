@@ -20,7 +20,7 @@
 <div class="modal fade lms-choose-membership" id="assignmentCreateModal" tabindex="-1" aria-labelledby="assignmentCreateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="panel-header mb-30">
+            <div class="panel-header">
                 <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
                 <span class="steps-counter">Step 1</span>
                 <button type="button" class="close" ><a href="/{{panelRoute()}}/set-work">Close <span aria-hidden="true">×</span></a></button>

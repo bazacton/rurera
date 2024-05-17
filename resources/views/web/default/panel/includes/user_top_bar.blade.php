@@ -48,8 +48,12 @@
         <li>
             <div class="assignments">
                 <strong>
-                    <img src="/assets/default/img/panel-sidebar/2.png" alt="">
-                    {{getTimeWithText($authUser->game_time, false)}}
+                    <img src="/assets/default/img/sidebar/games.svg" alt="">
+					@if( $authUser->game_time > 0)
+						{{getTimeWithText($authUser->game_time, false)}}
+					@else
+						0 m
+					@endif
                 </strong>
             </div>
         </li>

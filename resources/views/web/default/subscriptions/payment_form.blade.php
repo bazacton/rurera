@@ -103,9 +103,12 @@ button:disabled {
                     @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
                     <p>No need to worry! We won't ask for payment until after your 7-day free trial ends.</p>
                     @endif
-                    <p>By giving your card information, you let rurera.com charge from your card for future payments as per their <a href="/terms-and-conditions">terms and conditions</a>.</p>
+                    <p>By proceeding, you let rurera.com charge from your card for future payments as per their <a href="/terms-and-conditions">terms and conditions</a>.</p>
+					<br><br>
+					<p>After submission, you will be redirected to securely complete next steps.</p>
+					<div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" data-user_id="{{isset($user_id)? $user_id : 0}}" data-subscribed_for="{{isset($subscribed_for)? $subscribed_for : 0}}" class="nav-link btn-primary rounded-pill mb-25 process-payment">Take me to Payment</a></div>
                 </div>
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12 rurera-hide">
                 <form id="payment-form">
                       <div id="payment-element">
                         <!--Stripe.js injects the Payment Element-->
@@ -117,7 +120,7 @@ button:disabled {
                       <div id="payment-message" class="hidden"></div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="col-12 col-lg-12 col-md-12 col-sm-12  rurera-hide">
                     <div class="book-form mt-30">
                         <div class="row">
                             <div class="col-12 col-lg-12 col-md-12">
@@ -264,6 +267,7 @@ button:disabled {
                                 </div>
                             </div>
                             </div>
+							
 
                             <div class="googlepay-gateway-fields conditional-fields rurera-hide payment-content p-25">
                                 @if( isset( $subscribed_childs ) && $subscribed_childs == 0)
@@ -334,42 +338,42 @@ button:disabled {
       elements = stripe.elements({ clientSecret });
 
       const paymentElementOptions = {
-        layout: "tabs",
-        payment_methods: [
-          {
-            type: "card",
-            card: {
-              iconStyle: "default",
-              hideIcon: false,
-              style: {
-                base: {
-                  iconColor: "#666EE8",
-                  color: "#31325F",
-                  fontWeight: 400,
-                  fontFamily: "Arial, sans-serif",
-                  fontSize: "16px",
-                  fontSmoothing: "antialiased",
-                  "::placeholder": {
-                    color: "#CFD7E0",
-                  },
-                },
-              },
-            },
-          },
-          {
-            type: "google_pay",
-            style: {
-              base: {
-                color: "#31325F",
-                fontSize: "16px",
-                "::placeholder": {
-                  color: "#CFD7E0",
-                },
-              },
-            },
-          },
-        ],
-      };
+		layout: "tabs",
+		payment_methods: [
+		  {
+			type: "card",
+			card: {
+			  iconStyle: "default",
+			  hideIcon: false,
+			  style: {
+				base: {
+				  iconColor: "#666EE8",
+				  color: "#31325F",
+				  fontWeight: 400,
+				  fontFamily: "Arial, sans-serif",
+				  fontSize: "16px",
+				  fontSmoothing: "antialiased",
+				  "::placeholder": {
+					color: "#CFD7E0",
+				  },
+				},
+			  },
+			},
+		  },
+		  {
+			type: "google_pay",
+			style: {
+			  base: {
+				color: "#31325F",
+				fontSize: "16px",
+				"::placeholder": {
+				  color: "#CFD7E0",
+				},
+			  },
+			},
+		  },
+		],
+	  };
 
       const paymentElement = elements.create("payment", paymentElementOptions);
       paymentElement.mount("#payment-element");

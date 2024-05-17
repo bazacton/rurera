@@ -81,6 +81,12 @@
                                                 @endif
                                             </span>
                                         </div>
+                                        <div class="col-auto last-activity">
+                                            <h6 class="listing-title font-14 font-weight-500">School</h6>
+                                            <span class="font-14 d-block">
+                                                {{isset($childObj->userSchool->title)? $childObj->userSchool->title : '-'}}
+                                            </span>
+                                        </div>
 
                                         <div class="col-auto last-activity">
                                             <h6 class="listing-title font-14 font-weight-500">Last Activity</h6>
