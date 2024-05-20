@@ -4,6 +4,8 @@
 .populated-data .radio-btn {background-color: #fff; border: 2px solid transparent; border-radius: 10px; display: flex; position: relative; text-align: center; box-shadow: 0 0 10px #c3c3c367; cursor: pointer; padding: 15px 12px; min-height: 111px; align-items: center; justify-content: center; height: auto;}
 .populated-data .radio-btn.disabled-style {opacity: 0.5;}
 .populated-data .radio-btn.disabled-style:hover {opacity: 1;}
+.populated-data .setwork-fields .radio-btn,
+.populated-data .timestables_fields .radio-btn {border-radius: 5px; min-height: 80px; padding: 10px;}
 .card-radio input {display: none;}
 .card-radio input:checked + .radio-btn {border-color: var(--primary);}
 .radio-btn .card-icon h3 {color: #555; font-size: 14px; font-weight: 500; margin-bottom: 0;}
@@ -30,8 +32,8 @@
 .card-icon svg {max-width: 35px; max-height: 35px; fill: #495057; vertical-align: top; margin: 0 0 10px;}
 .card-icon path {fill: #495057;}
 .years-group.populated-data {-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: -moz-none; -o-user-select: none; user-select: none;}
-.wizard-steps .years-group {margin-bottom: 30px;}
-.years-group.populated-data .form-group img {border-radius: 3px; max-width: 70%; margin-bottom: 15px; object-fit: contain;}
+.wizard-steps .years-group {margin-bottom: 40px;}
+.years-group.populated-data .form-group img {border-radius: 3px; width: 65px; height: 45px; margin-bottom: 15px; object-fit: contain;}
 .card .card-body {padding-top: 20px; padding-bottom: 20px;}
 .card .card-body .section-title {margin: 30px 0 10px 0; font-size: 16px;}
 .card .card-body .section-title:before {margin-top: 8px; }

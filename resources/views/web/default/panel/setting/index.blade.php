@@ -29,7 +29,11 @@
         @endif
 
         @if(!empty($new_user) or (!empty($currentStep) and $currentStep == 1))
-            @include('web.default.panel.setting.setting_includes.basic_information')
+			@if(auth()->user()->isUser())
+				@include('web.default.panel.setting.setting_includes.basic_information')
+			@else
+				@include('web.default.panel.setting.setting_includes.parent_profile')
+			@endif
         @endif
 		@if(!auth()->user()->isUser())
 			@include('web.default.panel.financial.summary')
@@ -64,7 +68,7 @@
 				$("#saveData").removeAttr('disabled');
 				return false;
 			}
-			return false;
+			return true;
 		});
 		
 		

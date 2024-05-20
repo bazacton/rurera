@@ -211,6 +211,9 @@ class UserController extends Controller
                 $profileImage = $this->createImage($user, $data['profile_image']);
                 $updateData['avatar'] = $profileImage;
             }
+			
+			
+			pre($data);
 
             //Temporary
             $updateData['user_life_lines'] = 5;

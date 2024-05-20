@@ -313,20 +313,24 @@ class SetWorkController extends Controller
                     $topic_id = $TimestablesEvents->id;
                 }
 
+				$counter = 1;
                 if (!empty($users_array)) {
                     foreach ($users_array as $user_id) {
                         if( !empty( $topic_ids ) ){
                             foreach( $topic_ids as $topic_id){
-                                $UserAssignedTimestables = UserAssignedTopics::create([
-                                    'assigned_to_id'        => $user_id,
-                                    'assigned_by_id'        => $user->id,
-                                    'student_assignment_id' => $StudentAssignments->id,
-                                    'topic_id'              => $topic_id,
-                                    'status'                => 'active',
-                                    'created_at'            => time(),
-                                    'start_at'              => $eventDate['start'],
-                                    'deadline_date'         => $eventDate['end'],
-                                ]);
+								if( $counter == 1){
+									$UserAssignedTimestables = UserAssignedTopics::create([
+										'assigned_to_id'        => $user_id,
+										'assigned_by_id'        => $user->id,
+										'student_assignment_id' => $StudentAssignments->id,
+										'topic_id'              => $topic_id,
+										'status'                => 'active',
+										'created_at'            => time(),
+										'start_at'              => $eventDate['start'],
+										'deadline_date'         => $eventDate['end'],
+									]);
+								}
+								$counter++;
                             }
                         }
 
@@ -349,7 +353,8 @@ class SetWorkController extends Controller
                 'redirect_url' => $redirectUrl
             ]);
         } else {
-            return redirect()->route('listSetWork', []);
+			return redirect('/' . panelRoute() . '/');
+            //return redirect()->route('listSetWork', []);
         }
     }
 

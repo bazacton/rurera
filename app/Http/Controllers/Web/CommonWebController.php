@@ -315,18 +315,20 @@ class CommonWebController extends Controller
 
             if( $quiz_type == 'vocabulary'){
 				
-				$countQuery = clone $results;
-				$countQuery2 = clone $results;
-				$wordListsCount = $countQuery->where('quiz_category', 'Word Lists')->count();
+				$countQuery = clone $resultsQuery;
+				$countQuery2 = clone $resultsQuery;
 				$spellingBeeCount = $countQuery2->where('quiz_category', 'Spelling Bee')->count();
-                $response .= '<div class="listing-search lms-jobs-form mb-20">
-                                        <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
-                                        <ul class="inline-filters vocabulary-ul">
-                                            <li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists ('.$results->count().')</a></li>
-                                            <li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists ('.$wordListsCount.')</a></li>
-                                            <li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee ('.$spellingBeeCount.')</a></li>
-                                        </ul>
-                                    </div>';
+				$wordListsCount = $countQuery->where('quiz_category', 'Word Lists')->count();
+                $response .= '<div class="listing-search lms-jobs-form mb-20">';
+				if( $is_frontend != 'yes'){
+					$response .= '<a href="#." class="filter-mobile-btn">Filters Dropdown</a>';
+				}
+					$response .= '<ul class="inline-filters vocabulary-ul">
+						<li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists ('.$results->count().')</a></li>
+						<li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists ('.$wordListsCount.')</a></li>
+						<li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee ('.$spellingBeeCount.')</a></li>
+					</ul>
+				</div>';
             }
 
 
@@ -337,16 +339,13 @@ class CommonWebController extends Controller
 				if( $quiz_type == 'sats') {
 					$response .= '<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
 				}
-                                $response .= '<table class="simple-table">
+				$response .= '<table class="simple-table">
                                     <tbody> ';
                         if( $quiz_type != 'vocabulary') {
-							
-							
-							
                             $response .= '<input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
 
                         }else{
-                            $response .='<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
+                            //$response .='<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
                         }
                         if (!empty($results)) {
                             foreach ($results as $rowObj) {
@@ -411,7 +410,7 @@ class CommonWebController extends Controller
             $chapters = $courseObj->chapters;
         }
 
-        $response = '<div class="form-section mb-20 text-center">
+        $response = '<div class="form-section mb-20 text-left">
                                 <h2 class="section-title font-24">Select Topics</h2>
                             </div><div class="row">';
         if (!empty($chapters)) {

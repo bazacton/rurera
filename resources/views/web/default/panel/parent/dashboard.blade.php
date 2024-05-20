@@ -9,7 +9,7 @@
     .hide {
         display: none;
     }
-	.emoji-icons {display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
+	.emoji-icons {display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start;min-height: auto;}
     .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 28px; width: 28px; }
     .emoji-icons .emoji-icon img {max-width: 100%; }
 </style>
@@ -48,11 +48,13 @@
 								$emoji_response = '';
 								$emojisArray = explode('icon', $childObj->login_emoji);
 									if( !empty( $emojisArray ) ){
+										$emoji_response .= '<div class="emoji-icons">';
 										foreach( $emojisArray as $emojiCode){
 											if( $emojiCode != ''){
 												$emoji_response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/icon'.$emojiCode.'.svg"></a>';
 											}
 										}
+										$emoji_response .= '</div>';
 									}
 								@endphp
 								

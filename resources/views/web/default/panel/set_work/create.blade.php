@@ -148,7 +148,7 @@
                                                 <div class="radio-buttons justify-content-left">
                                                     <label class="card-radio practice-item-active" data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check " value="practice" data-tag_title="Courses">
+                                                            class="assignment_topic_type_check" value="practice" data-tag_title="Courses" checked>
                                                         <span class="radio-btn"><i class="las la-check"></i>
                                                             <div class="card-icon">
                                                             <img src="/assets/default/img/assignment-logo/practice.png">
@@ -186,6 +186,7 @@
 														class="assignment_topic_type_check" value="mock_test" data-tag_title="Mock Test">
 													<span class="radio-btn"><i class="las la-check"></i>
 														<div class="card-icon">
+															<img src="/assets/default/img/assignment-logo/independent_exams.png">
 															<h3>Mock Test</h3>
 													</div>
 
@@ -229,7 +230,6 @@
                                                 <h2 class="section-title font-24">Select a Topic</h2>
                                             </div>
                                             <div class="tests-list-holder mb-25">
-                                                <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                                 <ul class="tests-list mb-30">
                                                     <input type="radio" class="rurera-hide assignment_topic_type_check assignment_topic_type_mock" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]" value="">
                                                     <li data-type="all" data-test_type="all" class="active" data-tag_title="All Tests">All Tests</li>
@@ -355,24 +355,23 @@
 
 
                                     </div>
-
-                                </div>
-
-                                <div class="wizard-steps" data-step_id="2">
-
-                                    <div class="years-group populated-data">
+									
+									
+									<div class="years-group populated-data">
                                         <div class="form-section mb-20 text-left 223">
-                                            <h2 class="section-title font-30">General information</h2>
+                                            <h2 class="section-title font-24">General information</h2>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
                                                     <label class="input-label">Practice Title</label>
+													<div class="input-group">
                                                     <input type="text"
                                                         name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
                                                         value="{{ !empty($assignment) ? $assignment->title : old('title') }}"
                                                         class="js-ajax-title form-control rurera-req-field bg-white"
-                                                        placeholder=""/>
+                                                        placeholder="Practice Title"/>
+													</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -384,7 +383,7 @@
                                                             value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_start_date, 'Y-m-d', false) : old('assignment_start_date') }}"
                                                             class="form-control bg-white practice-start-date rureradatepicker rurera-req-field @error('assignment_start_date') is-invalid @enderror"
                                                             min="{{date('Y-m-d')}}"
-                                                            placeholder=""/>
+                                                            placeholder="Practice Start Date"/>
                                                         @error('assignment_start_date')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -401,7 +400,7 @@
                                                             name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
                                                             value="{{ !empty($assignment) ? dateTimeFormat($assignment->assignment_end_date, 'Y-m-d', false) : old('assignment_end_date') }}"
                                                             class="form-control bg-white practice-due-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}"
-                                                            placeholder=""/>
+                                                            placeholder="Practice Due Date"/>
                                                         <div class="invalid-feedback"></div>
                                                     </div>
                                                 </div>
@@ -411,7 +410,7 @@
 
 
 
-                                        <div class="row assignment_topic_type_fields practice_fields vocabulary_fields">
+                                        <div class="row assignment_topic_type_fields1 practice_fields vocabulary_fields1">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
                                                     <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
@@ -578,31 +577,30 @@
                                         </div>
 
 
-                                        <div class="mt-20 mb-20">
-                                        <button type="submit"
-                                                class="js-submit-quiz-form btn btn-sm btn-primary">{{
-                                            !empty($assignment) ?
-                                            trans('public.save_change') : trans('public.create') }}
-                                        </button>
-
-                                        @if(empty($assignment) and !empty($inWebinarPage))
-                                        <button type="button"
-                                                class="btn btn-sm btn-danger ml-10 cancel-accordion">{{
-                                            trans('public.close') }}
-                                        </button>
-                                        @endif
-                                    </div>
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+											<div class="form-group mt-30">
+												<div class="btn-field">
+													<button type="submit" class="nav-link js-submit-quiz-form">Create</button>
+												</div>
+											</div>
+										</div>
 
 
 
                                     </div>
+
+                                </div>
+
+                                <div class="wizard-steps" data-step_id="2">
+
+                                    
 
 
 
 
                                 </div>
 
-                                <div class="wizard-pagination">
+                                <div class="wizard-pagination1 rurera-hide">
                                     <div class="previous-btn wizard-step disabled-btn" data-next_step="0">Previous</div>
                                     <div class="next-btn wizard-step" data-next_step="2">Continue</div>
                                 </div>
@@ -879,13 +877,15 @@
             $(this).addClass('active');
         	var topic_id = $(this).attr('data-id');
             var topic_type = $(this).attr('data-topic_type');
-            $(".assignment_topic_type_mock").val(topic_type);
-            $(".assignment_topic_type_mock").prop('checked', true);
+            //$(".assignment_topic_type_mock").val(topic_type);
+            //$(".assignment_topic_type_mock").prop('checked', true);
         	var total_questions = $(this).attr('data-total_questions');
         	$(".topic_select_radio").val(topic_id);
-
         	$(".topic_select_radio").attr('data-total_questions', total_questions);
         	$(".topic_select_radio").click();
+			var total_questions = $(this).attr('data-total_questions');
+            $(".no_of_questions").attr('max', total_questions);
+            $(".no_of_questions").val(total_questions);
 
             refresh_tags();
         });
@@ -924,11 +924,14 @@
         typeCheckRequest = null;
         $('body').on('change', '.assignment_topic_type_check', function (e) {
             var current_value = $(this).val();
+			$(this).closest('.radio-buttons').find('.card-radio').removeClass('practice-item-active');
+			$(this).closest('.card-radio').addClass('practice-item-active');
             $(".ajax-title").addClass('show-after-ajax');
             $(".practice-quiz-ajax-fields").html('');
             $(".practice-quiz-topics-list").html('');
             $(".assignment_topic_type_fields").addClass('rurera-hide');
             $('.' + current_value + '_fields').removeClass('rurera-hide');
+			console.log('current_value=='+current_value);
             var total_questions = 0;
             var current_questions = 0;
             if (current_value == 'timestables') {
@@ -945,7 +948,9 @@
             console.log('assignment_topic_type_check');
             slider_fields_refresh();
             refresh_tags();
-            var year_id = $(".year_id_field").val();
+			var year_id = $(".assignment-user-class:checked").attr('data-year_id');
+			year_id = (year_id > 0)? year_id : 0;
+            $(".year_id_field").val(year_id);
 
             if( year_id > 0) {
                 var quiz_type = $(".assignment_topic_type_check:checked").val();
@@ -1157,6 +1162,7 @@
                 $(".practice_interval").val(practice_time);
                 $(".no_of_questions").attr('min', total_questions);
                 $(".no_of_questions").val(total_questions);
+				console.log('slider_fields_refresh');
                 slider_fields_refresh();
             }
         });
@@ -1212,11 +1218,12 @@
             $('.wizard-steps[data-step_id="'+next_step+'"]').addClass('active');
             $(".wizard-pagination .previous-btn").attr('data-next_step', prev_step_counter);
             $(".wizard-pagination .next-btn").attr('data-next_step', next_step_counter);
+			
             if( next_step == 2){
                 $(".practice-item-active").find('input').prop('checked', true).change();
 
             }
-            refresh_tags();
+            //refresh_tags();
         });
 
 
@@ -1313,6 +1320,7 @@
             $(".year_id_field").val(year_id);
             $(".assignment_topic_type_check:checked").change();
             var user_id = $(this).val();
+			console.log('assignment-user-class');
 
 
             $(".sats-listing-empty").addClass('rurera-hide');
@@ -1549,6 +1557,8 @@
 
 <script type="text/javascript">
 
+
+	
     $(document).on('change', '.subscribed_for-field', function (e) {
         var package_month = 1;
         var package_discount = 0;

@@ -5,24 +5,8 @@ $avatar_settings = isset( $user_avatar_settings->avatar_settings )? (array) $use
 $avatar_color_settings = isset( $user_avatar_settings->avatar_color_settings )? (array) $user_avatar_settings->avatar_color_settings : array();
 $avatar_settings = json_encode($avatar_settings);
 $avatar_color_settings = json_encode($avatar_color_settings);
-
-$emoji_response = '';
-$emojisArray = explode('icon', $user->login_emoji);
-if( !empty( $emojisArray ) ){
-	$emoji_response .= '<div class="emoji-icons">';
-	foreach( $emojisArray as $emojiCode){
-		if( $emojiCode != ''){
-			$emoji_response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/icon'.$emojiCode.'.svg"></a>';
-		}
-	}
-	$emoji_response .= '</div>';
-}
 @endphp
-<style type="text/css">
-	.emoji-icons {display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start;min-height: auto;}
-    .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 28px; width: 28px; }
-    .emoji-icons .emoji-icon img {max-width: 100%; }
-</style>
+
 <section>
     <h2 class="section-title">{{ trans('financial.account') }}</h2>
 
@@ -37,7 +21,7 @@ if( !empty( $emojisArray ) ){
                             <img src="{{$user->getAvatar()}}" alt="">
                         </span>
                         <h2 class="info-title font-weight-500">
-                            {{$user->get_full_name()}}
+                            {{$user->display_name}}
                         </h2>
                     </div>
                 </div>
@@ -95,7 +79,7 @@ if( !empty( $emojisArray ) ){
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
-                                                Gender
+                                                Preference
                                                 <strong class="d-block font-weight-500">{{$user->user_preference}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
@@ -107,8 +91,8 @@ if( !empty( $emojisArray ) ){
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
-                                                School Preference 1
-                                                <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}}</strong>
+                                                Email Addres
+                                                <strong class="d-block font-weight-500">{{$user->email}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -119,8 +103,8 @@ if( !empty( $emojisArray ) ){
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
-                                                School Preference 2
-                                                <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce2->title )? $user->userSchoolPreffernce2->title : '-'}}</strong>
+                                                Contact no
+                                                <strong class="d-block font-weight-500">{{$user->mobile}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -128,18 +112,7 @@ if( !empty( $emojisArray ) ){
                                             </span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
-                                                School Preference 3
-                                                <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce3->title )? $user->userSchoolPreffernce3->title : '-'}}</strong>
-                                            </span>
-                                            <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
-                                                <em class="font-weight-500">Edit</em>
-                                            </span>
-                                        </a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -224,35 +197,28 @@ if( !empty( $emojisArray ) ){
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-12 col-md-12 form-group">
+                                            <div class="col-6 col-lg-6 col-md-6 form-group">
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" name="display_name" class="rurera-req-field" placeholder="Display Name" value="{{( $user->display_name != '')? $user->display_name : $user->first_name.' '.$user->last_name}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <label>Your Preference</label>
-                                                <div class="select-field">
-                                                    <select name="user_preference" class="rurera-req-field">
-                                                        <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
-                                                        <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-											
-											
-											<div class="col-12">
-                                                <div class="edit-element-title mb-20">
-                                                    <h6 class="font-weight-500">
-                                                        Login Details
-                                                        <span class="d-block pt-5 font-12">This can help you to set login details</span>
-                                                    </h6>
+                                                    <input type="text" name="first_name" class="rurera-req-field" placeholder="First Name" value="{{( $user->first_name != '')? $user->first_name : ''}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" name="username" class="" placeholder="Username" value="{{$user->username}}">
+                                                    <input type="text" name="last_name" class="rurera-req-field" placeholder="Last Name" value="{{( $user->last_name != '')? $user->last_name : ''}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-lg-6 col-md-6 form-group">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <input type="text" name="display_name" class="rurera-req-field" placeholder="Display Name" value="{{( $user->display_name != '')? $user->display_name : $user->first_name.' '.$user->last_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-lg-6 col-md-6 form-group">
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <input type="text" name="email" class="rurera-req-field" placeholder="Email Address" value="{{( $user->email != '')? $user->email : ''}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
@@ -262,54 +228,17 @@ if( !empty( $emojisArray ) ){
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
-												{!! $emoji_response !!}
-												<a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;" data-user_id="{{$user->id}}">Generate Emoji</a>
-                                            </div>
-                                            <div class="col-6 col-lg-6 col-md-6 form-group">
-												{{$user->login_pin}}
-                                                <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;" data-user_id="{{$user->id}}">Generate Pin</a>
-                                            </div>
-											
-											
-											
-                                            <div class="col-12">
-                                                <div class="edit-element-title mb-20">
-                                                    <h6 class="font-weight-500">
-                                                        School Preference
-                                                        <span class="d-block pt-5 font-12">This can help you to win some opportunities</span>
-                                                    </h6>
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <input type="text" name="mobile" class="rurera-req-field" placeholder="Contact no" value="{{( $user->mobile != '')? $user->mobile : ''}}">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 1</label>
+                                            <div class="col-12 form-group">
+                                                <label>Your Preference</label>
                                                 <div class="select-field">
-                                                    <select name="school_preference_1" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_1 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 2</label>
-                                                <div class="select-field">
-                                                    <select name="school_preference_2" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_2 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 3</label>
-                                                <div class="select-field">
-                                                    <select name="school_preference_3" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_3 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
+                                                    <select name="user_preference" class="rurera-req-field">
+                                                        <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
+                                                        <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
                                                     </select>
                                                 </div>
                                             </div>

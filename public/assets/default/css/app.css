@@ -7898,7 +7898,7 @@ body.parent-panel,
 body.parent-panel .panel-content{background-color: #f8f8f8;}
 .parent-panel .card-body {padding: 0;}
 .parent-panel .card {background-color: initial; border: 0;}
-.wizard-steps .card .card-body {padding: 20px 25px; background-color: #fff;}
+.wizard-steps .card .card-body {padding: 15px 20px; background-color: #fff;}
 .note-editor .note-editing-area .note-editable,
 body .range-slider_thumb {background-color: #fff;}
 /* Panel Sidebar And Panel Content Style End */
@@ -9867,7 +9867,7 @@ Dashboard Form-Tabs Style Start
 .db-members .list-group-item .profile-dropdown > a:before {border: 1px solid #ddd; border-radius: 100%; content: ""; height: 42px; width: 42px; position: absolute; left: 50%; top: 50%; margin: -21px 0 0 -21px; transition-duration: .3s; transition-property: all; transition-timing-function: cubic-bezier(.4,0,.2,1); -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0);}
 .db-members .profile-dropdown:hover > a:before {-webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1);}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
-.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 150px;}
+.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 100px;}
 .db-members .card .list-group-item [class*="col-"].activity-date {width: 50%; }
 .db-members .card .list-group-item .profile-dropdown,
 .db-members .card .list-group-item .action-activity {width: auto; min-width: auto;}
@@ -10518,7 +10518,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
-.panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
+.panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px; padding: 0 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
 .panel-content .inline-filters a .icon-box {width: 25px; height: 25px;}
 .panel-content .inline-filters a .icon-box svg,
@@ -11263,6 +11263,7 @@ address .info-list-label {color: #64748b;}
 .wizard-steps .populated-data .input-label {color: #343434;}
 .steps-counter {color: #64748b;}
 .practice-quiz-ajax-fields {margin-bottom: 30px;}
+.practice-quiz-ajax-fields:empty {display: none;}
 .disabled-btn {pointer-events: none;}
 .lms-choose-membership:has(.wizard-steps) .container, 
 .lms-choose-membership:has(.wizard-steps) .container > .row {height: 100%;}
@@ -11319,46 +11320,13 @@ address .info-list-label {color: #64748b;}
 .edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 .edit-profile-content-holder .tab-pane {min-height: 400px;}
 /*Edit Profile Style End*/
-.container.set-work-container {margin-bottom: 100px;}
-.sorting-filter {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    float: right;
-}
-.sorting-filter a img {
-    height: 20px;
-    width: 20px;
-    border-radius: 0;
-    filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);
-}
-.sorting-filter a.active img {
-    filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);
-}
-.rurera-progress-bar {
-    height: 20px;
-    width: 100%;
-    background-color: antiquewhite;
-    margin: 0 0 20px;
-    position: relative;
-    overflow: hidden;
-}
-.rurera-progress-bar .progress-inner {
-    display: block;
-    height: 100%;
-    background: linear-gradient(to right,  green 20%, green 25%, yellow 25%, yellow 50%, orange 50%, orange 75%, red 25%, red 30%);
-    position: absolute;
-    left: 0;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-.disabled-div {
-    pointer-events: none;
-}
+.container.set-work-container {margin-bottom: 50px;}
+.sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
+.sorting-filter a img {height: 20px; width: 20px; border-radius: 0; filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);}
+.sorting-filter a.active img {filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);}
+.rurera-progress-bar {height: 20px; width: 100%; background-color: antiquewhite; margin: 0 0 20px; position: relative; overflow: hidden;}
+.rurera-progress-bar .progress-inner {display: block; height: 100%; background: linear-gradient(to right,  green 20%, green 25%, yellow 25%, yellow 50%, orange 50%, orange 75%, red 25%, red 30%); position: absolute; left: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
+.disabled-div {pointer-events: none;}
 
 /*************************************
 Lms Responsive Style Start
@@ -11890,9 +11858,8 @@ Lms Responsive Style Start
     .filters-list {position: relative; width: 50%; padding-right: 8px; margin-top: 12px;}
     .filters-list .analytics-type,
     .filters-list .tests-list,
-    .panel-content .inline-filters,
     .tests-list {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px; align-items: flex-start;}
-    .panel-content .inline-filters,
+ 
     .tests-list {width: 100%; padding-top: 15px; padding-bottom: 15px;}
     .filters-list .analytics-type.open,
     .filters-list .tests-list.open,
@@ -11900,21 +11867,17 @@ Lms Responsive Style Start
     .tests-list.open {visibility: visible; opacity: 1; margin-top: 0;}
     .filters-list .analytics-type li,
     .filters-list .tests-list li,
-    .panel-content .inline-filters li,
     .tests-list li {width: 100%;}
     .filters-list .analytics-type li a img,
     .filters-list .tests-list li img,
-    .panel-content .inline-filters li img,
     .tests-list li img {display: inline-block; margin: 0px 5px 0 0; vertical-align: middle; width: 20px; height: 20px;}
     .tests-list li img {height: 30px; width: 30px;}
     .filters-list .analytics-type li a,
     .filters-list .tests-list li a{padding: 5px 0; text-align: left; border: 0;}
     .filters-list .analytics-type .active a,
     .filters-list .tests-list li.active,
-    .panel-content .inline-filters li.active a,
     .tests-list li.active {box-shadow: none; border: 0;}
     .filters-list .tests-list li,
-    .panel-content .inline-filters li a,
     .tests-list li {flex-direction: row; min-height: auto; justify-content: flex-start; border: 0;}
     .chart-filters .form-group {width: 50%; padding-left: 8px;}
     .tests-list {gap: 15px;}
@@ -11967,6 +11930,7 @@ Lms Responsive Style Start
     .wizard-steps .radio-buttons {justify-content: flex-start !important;}
     .db-form-tabs h6,
     .db-form-tabs .list-group-item h6 span {font-weight: 500 !important;}
+    .db-members .last-activity span {text-align: right;}
     .db-form-tabs .list-group-item h6 a,
     .db-form-tabs .list-group-item h6 span,
     .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
@@ -12098,7 +12062,7 @@ Lms Responsive Style Start
     .sats-listing-card tbody tr {position: relative;}
     .sats-listing-card tbody tr td {display: block;}
     .sats-listing-card tbody tr td:last-child {padding: 0; border: 0;}
-    .sats-listing-card tbody tr td .rurera-list-btn {position: absolute; right: 0; top: 26px;}
+    .sats-listing-card tbody tr td .rurera-list-btn {position: absolute; right: 15px; top: 26px;}
 }
 @media screen and (max-width: 575px) {
     .spell-question-area .spells-quiz-info {margin: 0 0 30px;} 
