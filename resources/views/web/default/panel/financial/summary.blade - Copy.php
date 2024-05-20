@@ -1,3 +1,7 @@
+@extends(getTemplate() .'.panel.layouts.panel_layout_full')
+
+
+@section('content')
         <section>
             <h2 class="section-title">{{ trans('financial.financial_documents') }}</h2>
 
@@ -93,3 +97,7 @@
             </div>
 
         </section>
+    <div class="my-30">
+        {{ $accountings->appends(request()->input())->links('vendor.pagination.panel') }}
+    </div>
+@endsection

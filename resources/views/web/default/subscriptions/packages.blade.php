@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 
 @include('web.default.subscriptions.steps',['activeStep'=> 'packages'])
-@php $update_package_confirm = isset( $update_package_confirm )? $update_package_confirm : false; @endphp
+@php $update_package_confirm = isset( $update_package_confirm )? $update_package_confirm : false; 
+
+$subscribed_childs = isset( $subscribed_childs) ? $subscribed_childs : 0;
+@endphp
 @if( $update_package_confirm == true)
 <section class="lms-setup-progress-section mb-0 pt-20 pb-60 package-confirm-modal">
         <div class="container">
@@ -51,7 +54,7 @@
                         <div class="col-lg-12 col-md-12 col-12 mx-auto lms-membership-section" data-currency_sign="{{getCurrencySign()}}">
                             <div class="row">
 
-                                @include('web.default.pricing.packages_list',['subscribes' => $subscribes, 'selected_package' => $selected_package])
+                                @include('web.default.pricing.packages_list',['subscribes' => $subscribes, 'selected_package' => $selected_package, 'subscribed_childs' => $subscribed_childs])
 
                             </div>
                         </div>

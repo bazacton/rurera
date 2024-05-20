@@ -6039,13 +6039,13 @@ p {line-height: 1.5;}
 @-webkit-keyframes pluse {
     to {
         transform: scale(2.5);
-        opacity: 0
+        opacity: 0;
     }
 }
 @keyframes pluse {
     to {
         transform: scale(2.5);
-        opacity: 0
+        opacity: 0;
     }
 }
 .user-search-card .user-avatar {width: 135px; height: 135px; border-radius: 50%; box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .1);}
@@ -6827,6 +6827,7 @@ p {line-height: 1.5;}
 .transactions-table tbody tr:last-child td:first-child {border-radius: 0 0 0 10px;}
 .transactions-table tbody tr:last-child td:last-child {border-radius: 0 0 10px 0;}
 .transactions-table tbody tr td:first-child {padding-left: 25px; padding-right: 25px;}
+.transactions-table tbody .no-record-found td {border-radius: 10px !important;}
 .table td,
 .table th {border-top: none !important; text-align: center; vertical-align: middle;}
 .table-actions.dropdown .dropdown-toggle:after {display: none;}
@@ -7838,16 +7839,17 @@ Custom Pagination Style End
 .current-topics-detail {border-radius: 5 5px 0 0;}
 .topics-table thead th {background-color: var(--primary);}
 .topics-table thead th:first-child {border-radius: 5px 0 0 0;}
-.topics-table thead th:last-child {border-radius: 0 5px 0 0;}
+.topics-table thead th:last-child {border-radius: 0 5px 0 0; text-align: right !important;}
 .topics-table tbody tr {border-bottom: 1px solid #ddd;}
 .topics-table tbody td label {color: #777;}
+.topics-table tr td:last-child {text-align: right;}
 .topics-table .checkbox-field input[type=checkbox] {height: 15px; width: 15px; vertical-align: middle; margin-right: 5px;}
 .topics-table tbody tr:last-child {border: 0;}
 .topics-table .video-btn, 
 .topics-table .file-btn {color: var(--primary);}
 .topics-table .icon-box {margin-right: 5px;}
 .topics-table .video-btn img, 
-.topics-table .file-btn img {height: 18px; width: 18px; filter: invert(42%) sepia(90%) saturate(3527%) hue-rotate(222deg) brightness(101%) contrast(98%);}
+.topics-table .file-btn img {border-radius: 0; height: 18px; width: 18px; filter: invert(42%) sepia(90%) saturate(3527%) hue-rotate(222deg) brightness(101%) contrast(98%);}
 @media (max-width:991px) {
     .lms-chapter-area {flex-wrap: wrap;}
     .count-number-boxes .count-number-card:nth-child(3) {padding-left: 15px; border-left: 0;}
@@ -9156,7 +9158,6 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .subscribe-plan-holder strong {padding: 0 100px;display: inline-block;line-height: 26px;color: var(--primary-hover);}
 .membership-steps-list li.active::before { background:#64c07d;}
 .membership-steps-list li.active a .icon-svg{background:#64c07d;}
-
 .lms-choose-membership .bg-none {background: transparent;color: var(--primary-hover);box-shadow: none;}
 .lms-choose-membership .price-plan-image {padding-left: 0;margin-left: 0px;}
 .lms-choose-membership .price-plan-image img {transform: scale(-1, 1);z-index: 0;position: relative; height: 270px;}
@@ -9856,10 +9857,15 @@ Dashboard Form-Tabs Style Start
 .db-members .list-group .rurera-tables-list,
 .db-members .list-group {gap: 0; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; position: relative;}
 .db-members .list-group:has(.rurera-tables-list) {background-color: inherit; border: 0;}
-.db-members .profile-dropdown > a,
 .db-members .card .list-group-item .detail-btn {background-color: #e2e8f0; border: 0; padding: 10px 30px 10px 15px; border-radius: 3px; color: #64748b;}
-.db-members .profile-dropdown > a:after {right: 12px; top: 50%; margin-top: -5px; border-width: 4px; border-top-color: #64748b; border-left-color: #64748b;}
+.db-members .list-group-item .profile-dropdown > a {border: 1px solid #ddd; border-radius: 100%; height: 36px; width: 36px; display: inline-flex; align-items: center; justify-content: center;}
+.db-members .profile-dropdown > a .icon-box {margin-right: 0; height: auto; width: auto;}
+.db-members .profile-dropdown > a .icon-box img {filter: invert(68%) sepia(19%) saturate(290%) hue-rotate(175deg) brightness(89%) contrast(101%);}
+.db-members .list-group-item .profile-dropdown > a:after {display: none;}
 .db-members .profile-dropdown ul {right: -5px; left: auto;}
+.db-members .profile-dropdown:hover ul {margin-top: -12px;}
+.db-members .list-group-item .profile-dropdown > a:before {border: 1px solid #ddd; border-radius: 100%; content: ""; height: 42px; width: 42px; position: absolute; left: 50%; top: 50%; margin: -21px 0 0 -21px; transition-duration: .3s; transition-property: all; transition-timing-function: cubic-bezier(.4,0,.2,1); -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0);}
+.db-members .profile-dropdown:hover > a:before {-webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1);}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
 .db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 150px;}
 .db-members .card .list-group-item [class*="col-"].activity-date {width: 50%; }
@@ -9896,6 +9902,7 @@ Dashboard Form-Tabs Style Start
 .no-record-found-head li:after {display: none;}
 .db-members:has(.no-record-found) .list-group .rurera-tables-list {background-color: inherit; border: 0; }
 .no-record-found .rurera-no-records {background-color: #fff; border: 1px solid #ddd; border-radius: 10px; display: block; padding: 15px;}
+
 .db-members .rurera-button-loader {background-color: initial; z-index: 3; height: auto; min-height: 125px; border-radius: 10px;}
 .db-members:has(.rurera-button-loader) .rurera-pagination {display: none;}
 /*************************************
@@ -10510,8 +10517,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .vocabulary-assign-btn.active {border-color: var(--primary); color: var(--primary);}
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
-.panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center;}
-.panel-content .listing-search .inline-filters {justify-content: flex-start;}
+.panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
 .panel-content .inline-filters a {border: 1px dashed #ddd; min-height: 100px; display: inline-flex; min-width: 130px; text-align: center; align-items: center; justify-content: center; border-radius: 5px; font-weight: 500; flex-direction: column; gap: 10px;}
 .panel-content .inline-filters .active a {background-color: #fff; border-style: solid; box-shadow: 0 -4px 0 0 #1b85fd inset; }
 .panel-content .inline-filters a .icon-box {width: 25px; height: 25px;}
@@ -11260,7 +11266,7 @@ address .info-list-label {color: #64748b;}
 .disabled-btn {pointer-events: none;}
 .lms-choose-membership:has(.wizard-steps) .container, 
 .lms-choose-membership:has(.wizard-steps) .container > .row {height: 100%;}
-.lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column; padding-bottom: 80px;}
+.lms-choose-membership:has(.wizard-steps) form {display: flex; flex-direction: column;}
 .progress-line {position: absolute; left: 0; bottom: -4px; height: 4px; border-radius: 50px; overflow: hidden; width: 100%; }
 .progress-line .progress-count {background-color: var(--primary); display: block; height: 100%; border-radius: 50px; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .db-members .rurera-tabs-frontend {gap: 30px;}
@@ -11272,7 +11278,7 @@ address .info-list-label {color: #64748b;}
 .sats-listing-card.medium table .total-tests {padding-bottom: 10px;}
 .sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(even) {background-color: inherit !important;}
 .sats-listing-card.medium .simple-table tbody:has(.total-tests) tr:nth-child(odd) {background-color: #fff !important;}
-.wizard-steps .tests-list {justify-content: center; margin-top: 20px;}
+.wizard-steps .tests-list { margin-top: 20px;}
 .set-work-tags {margin: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;}
 .set-work-tags li {cursor: pointer;}
 .set-work-tags li:not(.clear-tags) {color: #666; border: 1px solid #e6e3e3; background-color: #efefef; padding: 5px 10px; border-radius: 5px;}
@@ -11318,15 +11324,40 @@ address .info-list-label {color: #64748b;}
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+    float: right;
 }
 .sorting-filter a img {
     height: 20px;
     width: 20px;
+    border-radius: 0;
     filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);
 }
 .sorting-filter a.active img {
     filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);
+}
+.rurera-progress-bar {
+    height: 20px;
+    width: 100%;
+    background-color: antiquewhite;
+    margin: 0 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+.rurera-progress-bar .progress-inner {
+    display: block;
+    height: 100%;
+    background: linear-gradient(to right,  green 20%, green 25%, yellow 25%, yellow 50%, orange 50%, orange 75%, red 25%, red 30%);
+    position: absolute;
+    left: 0;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.disabled-div {
+    pointer-events: none;
 }
 
 /*************************************
@@ -11586,6 +11617,7 @@ Lms Responsive Style Start
     .container-fluid.read-quiz-content .quiz-status-bar {padding-top: 30px;}
     .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
     body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
+    body .populated-data .questions-select-number li {flex-basis: 31%;}
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -11940,8 +11972,6 @@ Lms Responsive Style Start
     .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
     .populated-data .questions-select-number label {min-height: 45px; padding: 0 15px;}
     body .populated-data .questions-select-number {max-width: 100%;}
-    body .populated-data .questions-select-number ul {margin-left: 0;}
-    body .populated-data .questions-select-number li {flex-basis: 31%;}
     .edit-profile-content-holder {padding-left: 0;}
     .save-plan {margin: 40px 0 0 0; width: 45%; right: -50px; left: auto;}
     .save-plan span:before {width: 35px; height: 20px; top: 0; background-size: 100%; transform: rotate(45deg);}

@@ -1,5 +1,13 @@
+@php $purchase_title = ( $subscribed_childs == 0)? 'Try for free' : 'Subscribe'; 
+@endphp
 @if(!empty($subscribes) and !$subscribes->isEmpty())
 @foreach($subscribes as $subscribe)
+@php 
+$purchase_title = ( $subscribed_childs == 0)? 'Try for free' : 'Subscribe'; 
+$is_subscribed = (isset( $selected_package ) && $selected_package == $subscribe->id)? true : false; 
+$purchase_title = ($is_subscribed == true)? 'Subscribed' : $purchase_title;
+$subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' : '';
+@endphp
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-60 px-20 mb-30">
         <span class="subscribe-icon mb-20"><img src="{{ $subscribe->icon }}" height="auto" width="auto" alt="Box image"/></span>
@@ -11,7 +19,7 @@
                     class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
         </div>
         <button itemprop="button" type="submit" data-user_id="{{isset($childObj->id)?$childObj->id : 0}}" data-type="package_selection" data-id="{{$subscribe->id}}"
-                class="package-selection btn w-100">Try for free
+                class="package-selection btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
         </button>
         <span class="plan-label d-block font-weight-500 pt-20">
                                             Suitable for:

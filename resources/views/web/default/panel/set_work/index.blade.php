@@ -36,7 +36,7 @@
                                 <li class="active font-weight-500 pb-10" data-type="active">Inprogress</li>
                                 <li class="font-weight-500 pb-10" data-type="completed">Completed</li>
                                 <li class="font-weight-500 pb-10" data-type="expired">Overdue</li>
-                            </ul>
+                            </ul>	
 
                             <div class="list-group list-group-custom set-work-content list-group-flush totalChilds"
                                  data-childs="12">

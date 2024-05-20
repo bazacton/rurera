@@ -14,6 +14,7 @@ use Stripe\PaymentIntent;
 use Stripe\SetupIntent;
 use Stripe\PaymentMethod;
 use Stripe\Stripe;
+use App\Models\Discount;
 use App\User;
 
 class Channel implements IChannel
@@ -110,6 +111,7 @@ class Channel implements IChannel
 
     public function paymentRequest(Order $order)
     {
+		Stripe::setApiKey(env('STRIPE_SECRET'));
         $user = getUser();
         $price = $order->total_amount;
         $generalSettings = getGeneralSettings();
@@ -121,6 +123,9 @@ class Channel implements IChannel
         $remaining_days  = isset( $payment_data->remaining_days )? $payment_data->remaining_days : 30;
         $discount_amount = isset( $payment_data->discount_amount )? $payment_data->discount_amount : 0;
 		$subscribe_for  = isset( $payment_data->subscribe_for )? $payment_data->subscribe_for : 1;
+		$coupon_code  = isset( $payment_data->coupon_code )? $payment_data->coupon_code : '';
+		
+		
 		$package_price_id = ($subscribe_for > 1)? $order->package->stripe_price_yearly : $order->package->stripe_price_monthly;
 		
 		//pre($payment_data, false);
@@ -145,7 +150,6 @@ class Channel implements IChannel
             //$subscription_data['trial_period_days'] = 0;
             //$subscription_data['billing_cycle_anchor'] = strtotime('+'.$remaining_days.' days');
         }
-		$trial_days = 2;
 
 
         /*try {
@@ -177,20 +181,14 @@ class Channel implements IChannel
 			if( $discount_amount > 0){
 				$checkout = $checkout->withCoupon($couponObj->id);
 			}
+			if( $coupon_code != ''){
+				$couponData = Discount::where('code', $coupon_code)->first();
+				$checkout = $checkout->withCoupon($couponData->stripe_coupon);
+			}
 			$checkout = $checkout->checkout([
 				'success_url' => $this->makeCallbackUrl('success'),
 				'cancel_url' => $this->makeCallbackUrl('cancel'),
 			]);
-			
-			pre($checkout);
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			

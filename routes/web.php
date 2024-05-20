@@ -309,6 +309,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/unlink-user', 'SubscribeController@unlinkUser');
         Route::post('/update-game-time', 'SubscribeController@updateGameTime');
         Route::get('/payment-form-test' , 'SubscribeController@paymentformTest');
+		Route::get('/get-coupon-data' , 'SubscribeController@getCouponData');
+		
         
 
     });

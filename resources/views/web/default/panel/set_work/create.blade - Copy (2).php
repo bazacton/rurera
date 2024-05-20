@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <div class="input-group">
 
-                                                <div class="radio-buttons justify-content-left">
+                                                <div class="radio-buttons justify-content-center">
 
                                                     @if( !empty( $childs ) )
                                                     @php $child_count = 0; @endphp
@@ -50,23 +50,21 @@
                                                             }
                                                             $selected_child = ($child_count == 1)? 'checked' : '';
                                                             @endphp
-                                                            
+                                                            <input type="hidden" class="user-permissions" data-type="sats" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('sats')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="11plus" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="iseb" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="cat4" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <input type="hidden" class="user-permissions" data-type="independent_exams" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
+                                                            <label class="card-radio">
                                                                 @if( $is_user_subscribed == true)
-																	<input type="hidden" class="user-permissions" data-type="sats" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('sats')}}">
-																	<input type="hidden" class="user-permissions" data-type="11plus" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
-																	<input type="hidden" class="user-permissions" data-type="iseb" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
-																	<input type="hidden" class="user-permissions" data-type="cat4" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
-																	<input type="hidden" class="user-permissions" data-type="independent_exams" data-user_id="{{$childObj->id}}" value="{{$childObj->subscription('11plus')}}">
-																	<label class="card-radio">
-																		<input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
-																				value="{{$childObj->id}}" class="assignment-user-class" data-tag_title="{{$childObj->get_full_name()}}" {{$selected_child}}>
-																		<span class="radio-btn"><i class="las la-check"></i>
-																			<div class="card-icon">
-																			<img src="{{ $childObj->getAvatar() }}">
-																				<h3>{{$childObj->get_full_name()}}</h3>
-																			</div>
-																		</span>
-																	</label>
+                                                                    <input type="radio" data-year_id="{{$childObj->year_id}}" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_users][]"
+                                                                            value="{{$childObj->id}}" class="assignment-user-class" data-tag_title="{{$childObj->get_full_name()}}" {{$selected_child}}>
+                                                                    <span class="radio-btn"><i class="las la-check"></i>
+                                                                        <div class="card-icon">
+                                                                        <img src="{{ $childObj->getAvatar() }}">
+                                                                            <h3>{{$childObj->get_full_name()}}</h3>
+                                                                        </div>
+                                                                    </span>
                                                                 @else
                                                                 <a href="javascript:;" class="subscription-modal rurera-hide remove-pending" data-type="update_package_confirm" data-id="{{$childObj->id}}">
                                                                     <span class="radio-btn disabled-style"><i class="las la-check"></i>
@@ -78,6 +76,7 @@
                                                                     </span>
                                                                 </a>
                                                                 @endif
+                                                            </label>
                                                             @endforeach
                                                     @endif
                                                     <label class="card-radio add-student-btn rurera-hide remove-pending">
@@ -105,7 +104,7 @@
                                             </div>
 
 
-                                            <div class="radio-buttons justify-content-left mb-50">
+                                            <div class="radio-buttons justify-content-center mb-50">
                                                 <label class="card-radio">
                                                     <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_type_check]"
                                                         class="assignment_type_check" value="practice_test" data-tag_title="Set Practice" checked>
@@ -145,7 +144,7 @@
 
                                             <div class="input-group">
 
-                                                <div class="radio-buttons justify-content-left">
+                                                <div class="radio-buttons justify-content-center">
                                                     <label class="card-radio practice-item-active" data-next_step="3">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
                                                             class="assignment_topic_type_check " value="practice" data-tag_title="Courses">
@@ -191,30 +190,6 @@
 
 													</span>
 												</label>
-
-                                                    <label class="card-radio " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="sats" data-tag_title="SATs">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/assignment-logo/sats.png">
-                                                                <h3>SATs</h3>
-                                                        </div>
-
-                                                        </span>
-                                                    </label>
-
-                                                    <label class="card-radio " data-next_step="3">
-                                                        <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]"
-                                                            class="assignment_topic_type_check" value="books" data-tag_title="Books">
-                                                        <span class="radio-btn"><i class="las la-check"></i>
-                                                            <div class="card-icon">
-                                                                <img src="/assets/default/img/types/books.svg">
-                                                                <h3>Books</h3>
-                                                        </div>
-
-                                                        </span>
-                                                    </label>
                                                 </div>
                                                 <div class="invalid-feedback"></div>
                                             </div>
@@ -224,20 +199,27 @@
 									<div class="years-group populated-data assignment_topic_type_fields mock_test_fields">
 
                                         <div class="col-12 col-lg-12 col-md-12">
-										
-                                            <div class="form-section mb-20 text-left 223">
-                                                <h2 class="section-title font-24">Select a Topic</h2>
+                                            <div class="form-group">
+                                                <div class="input-field">
+                                                    <input type="text" class="search-tests" placeholder="Search Mock Test">
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="col-12 col-lg-12 col-md-12">
                                             <div class="tests-list-holder mb-25">
                                                 <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                                 <ul class="tests-list mb-30">
                                                     <input type="radio" class="rurera-hide assignment_topic_type_check assignment_topic_type_mock" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_topic_type]" value="">
                                                     <li data-type="all" data-test_type="all" class="active" data-tag_title="All Tests">All Tests</li>
+                                                    <li data-type="sats" data-test_type="sats" data-tag_title="SATS"><img src="/assets/default/img/assignment-logo/sats.png" alt="">SATs</li>
                                                     <li data-type="11plus" data-test_type="11plus" data-tag_title="11Plus"><img src="/assets/default/img/assignment-logo/11plus.png" alt=""> 11Plus</li>
                                                     <li data-type="iseb" data-test_type="iseb" data-tag_title="ISEB"><img src="/assets/default/img/assignment-logo/iseb.png" alt=""> ISEB</li>
                                                     <li data-type="cat4" data-test_type="cat4" data-tag_title="CAT 4"><img src="/assets/default/img/assignment-logo/cat4.png" alt=""> CAT 4</li>
                                                     <li data-type="independent_exams" data-test_type="independent_exams" data-tag_title="Independent Exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                                 </ul>
+                                            </div>
+                                            <div class="form-section mb-20 text-left 223">
+                                                <h2 class="section-title font-24">Select a Topic</h2>
                                             </div>
                                             <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
                                         </div>
@@ -270,7 +252,7 @@
                                         </div>
 
 
-                                        <div class="form-section assignment_topic_type_fields 11sats_fields mb-20 text-left 223">
+                                        <div class="form-section assignment_topic_type_fields sats_fields mb-20 text-left 223">
                                             <h2 class="section-title font-24">Sats</h2>
                                         </div>
 
@@ -307,7 +289,7 @@
                                             <h2 class="section-title font-24">Custom Assignment</h2>
                                         </div>
 
-                                        <div class="practice-quiz-ajax-fields setwork-fields"></div>
+                                        <div class="practice-quiz-ajax-fields"></div>
 
                                         @php
                                         $tables_no = isset( $assignment->tables_no )? json_decode($assignment->tables_no) : array();
@@ -315,8 +297,8 @@
 
 
                                         <div class="form-group assignment_topic_type_fields timestables_fields ajax-title show-after-ajax">
-                                            <div class="questions-select-number">
-                                                <ul class="d-flex justify-content-left flex-wrap mb-30">
+                                            <div class="questions-select-number mx-auto">
+                                                <ul class="d-flex justify-content-center flex-wrap mb-30">
                                                     <li><input type="checkbox" value="10" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(10,$tables_no)?
                                                         'checked' : ''}} id="tables_ten" /> <label for="tables_ten">10</label></li>
                                                     <li><input type="checkbox" value="2" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(2,$tables_no)?
@@ -457,7 +439,7 @@
                                             <div class="years-group populated-data input-group">
 
 
-                                                <div class="radio-buttons justify-content-left">
+                                                <div class="radio-buttons justify-content-center">
                                                     <label class="card-radio">
                                                         <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][duration_type]"
                                                             class="duration_conditional_check" value="total_practice" checked>
@@ -1166,15 +1148,26 @@
             $(".next-btn").removeClass('disabled-btn');
             var next_step = $(this).attr('data-next_step');
 
-
             if( next_step == 2){
+
+                //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
+                if ($('.assignment-user-class:checked').length < 1 || $('.assignment_type_check:checked').length < 1) {
+                    jQuery.growl.error({
+                        message: 'Please select all fields',
+                        duration: 10000,
+                    });
+                    return false;
+                }
+            }
+
+            if( next_step == 3){
                 var quiz_type = $(".assignment_topic_type_check:checked").val();
                 if(quiz_type != 'timestables'){
 				if ($(".topic_selection").not('.rurera-hide').length > 0) {
                     //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
                     if ($('.topic_selection:checked').length < 1 || $('.topic_selection:checked').length < 1) {
                         jQuery.growl.error({
-                            message: 'Please select atleast one topic11',
+                            message: 'Please select atleast one topic',
                             duration: 10000,
                         });
                         return false;
@@ -1184,7 +1177,7 @@
                     //if ($('.assignment-user-class:checked').length > 0 && $('.assignment_type_check:checked').length > 0) {
                     if ($('.topics_multi_selection:checked').length < 1 || $('.topics_multi_selection:checked').length < 1) {
                         jQuery.growl.error({
-                            message: 'Please select atleast one topic22',
+                            message: 'Please select atleast one topic',
                             duration: 10000,
                         });
                         return false;
@@ -1205,7 +1198,7 @@
             if( prev_step < 1){
                 $(".previous-btn").addClass('disabled-btn');
             }
-            if( next_step_counter > 2){
+            if( next_step_counter > 3){
                 $(".next-btn").addClass('disabled-btn');
             }
             $(".wizard-steps").removeClass('active');
@@ -1518,7 +1511,6 @@
             rurera_loader($(".simple-table tbody"), 'div');
             var year_id = $(".year_id_field").val();
             var search_keyword = $(this).val();
-			var quiz_type = $(".assignment_topic_type_check:checked").val();
             searchRequest = jQuery.ajax({
                 type: "GET",
                 url: '/tests/search_tests',
@@ -1530,7 +1522,7 @@
                         searchRequest.abort();
                     }
                 },
-                data: {"search_keyword": search_keyword, "is_assignment": 'yes',  "year_id": year_id, "quiz_type" : quiz_type},
+                data: {"search_keyword": search_keyword, "is_assignment": 'yes',  "year_id": year_id},
                 success: function (return_data) {
                     rurera_remove_loader($(".simple-table tbody"), 'div');
                     if (return_data != '') {

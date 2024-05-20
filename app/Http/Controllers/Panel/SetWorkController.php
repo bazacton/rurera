@@ -90,7 +90,7 @@ class SetWorkController extends Controller
        //pre($childs);
 
 
-       $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
+       $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
        $query->whereIn('year_id', $subscribedChildsYears);
        $sats = $query->paginate(100);
        $QuestionsAttemptController = new QuestionsAttemptController();
@@ -297,7 +297,7 @@ class SetWorkController extends Controller
         ]);
 
         $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
-        if (!empty($assignment_events_dates)) {
+        if (!empty($assignment_events_dates)){
             foreach ($assignment_events_dates as $eventDate) {
                 if ($assignment_topic_type == 'timestables') {
                     $TimestablesEvents = TimestablesEvents::create([

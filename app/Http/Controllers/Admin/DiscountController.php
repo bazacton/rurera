@@ -13,6 +13,8 @@ use App\Models\Group;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Stripe\Stripe;
+use Stripe\Coupon;
 
 class DiscountController extends Controller
 {
@@ -133,6 +135,7 @@ class DiscountController extends Controller
 
     public function store(Request $request)
     {
+		Stripe::setApiKey(env('STRIPE_SECRET'));
         $this->authorize('admin_discount_codes_create');
 
         $this->validate($request, [
@@ -157,6 +160,23 @@ class DiscountController extends Controller
         }
 
         $expiredAt = convertTimeToUTCzone($data['expired_at'], getTimezone());
+		$discount_type = isset( $data['discount_type'] )? $data['discount_type'] : '';
+		$frequency = ($data['count'] == 1)? 'once' : 'forever';
+		if( $discount_type == 'percentage'){
+			$couponObj = Coupon::create([
+			  'percent_off' => $data['percent'],
+			  'duration' => $frequency,
+			  'currency' => 'gbp',
+			]);
+		}
+		else{
+			$couponObj = Coupon::create([
+			  'amount_off' => ($data['amount']*100),
+			  'duration' => $frequency,
+			  'currency' => 'gbp',
+		   ]);
+		}
+		
 
         $discount = Discount::create([
             'creator_id' => auth()->id(),
@@ -175,6 +195,7 @@ class DiscountController extends Controller
             'status' => 'active',
             'expired_at' => $expiredAt->getTimestamp(),
             'created_at' => time(),
+			'stripe_coupon' => $couponObj->id
         ]);
 
         $this->handleRelationItems($discount, $data);

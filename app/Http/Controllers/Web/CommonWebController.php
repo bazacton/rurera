@@ -314,12 +314,17 @@ class CommonWebController extends Controller
             $results = $resultsQuery->get();
 
             if( $quiz_type == 'vocabulary'){
+				
+				$countQuery = clone $results;
+				$countQuery2 = clone $results;
+				$wordListsCount = $countQuery->where('quiz_category', 'Word Lists')->count();
+				$spellingBeeCount = $countQuery2->where('quiz_category', 'Spelling Bee')->count();
                 $response .= '<div class="listing-search lms-jobs-form mb-20">
                                         <a href="#." class="filter-mobile-btn">Filters Dropdown</a>
                                         <ul class="inline-filters vocabulary-ul">
-                                            <li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists</a></li>
-                                            <li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists</a></li>
-                                            <li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee</a></li>
+                                            <li class="active"><a href="javascript:;" data-category="all"><span class="icon-box"><img src="/assets/default/svgs/filter-all.svg"></span>All Word Lists ('.$results->count().')</a></li>
+                                            <li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists ('.$wordListsCount.')</a></li>
+                                            <li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee ('.$spellingBeeCount.')</a></li>
                                         </ul>
                                     </div>';
             }
@@ -328,10 +333,16 @@ class CommonWebController extends Controller
             if( $is_frontend == 'yes'){
 
                 if( $results->count() > 0){
-                $response .= '<div class="sats-listing-card medium">
-                                <table class="simple-table">
+                $response .= '<div class="sats-listing-card medium">';
+				if( $quiz_type == 'sats') {
+					$response .= '<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
+				}
+                                $response .= '<table class="simple-table">
                                     <tbody> ';
                         if( $quiz_type != 'vocabulary') {
+							
+							
+							
                             $response .= '<input type="radio" data-total_questions="0"  name="ajax[new][topic_ids]" class="rurera-hide topic_selection topic_select_radio" value="0">';
 
                         }else{
@@ -499,7 +510,7 @@ class CommonWebController extends Controller
 
     public function get_subjects_by_year($year_id)
     {
-        $courses = Webinar::where('category_id', $year_id)->with('chapters.subChapters')->get();
+        $courses = Webinar::where('category_id', $year_id)->where('status','active')->with('chapters.subChapters')->get();
 
         $subjects_response = '';
         $counter = 0;
@@ -514,7 +525,6 @@ class CommonWebController extends Controller
                                                    class="assignment_subject_check" data-tag_title="' . $courseObj->getTitleAttribute() . '" value="' . $courseObj->id . '" '.$is_checked.'>
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
-                                                            ' . $courseObj->icon_code . '
                                                             <h3>' . $courseObj->getTitleAttribute() . '</h3>
                                                        </div>
 

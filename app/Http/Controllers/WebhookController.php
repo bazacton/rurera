@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
 use Illuminate\Http\Request;
+use App\User;
 use Log;
 
 class WebhookController extends CashierController
@@ -34,7 +35,7 @@ class WebhookController extends CashierController
 	
 	protected function handleCheckoutSessionCompleted($session)
     {
-        $user = User::where('stripe_id', $session['customer'])-&gt;first();
+        $user = User::where('stripe_id', $session['customer'])->first();
 
         if ($user) {
             // Create or update the subscription in your local database
@@ -43,9 +44,9 @@ class WebhookController extends CashierController
                 [
                     'name' => 'default',
                     'stripe_status' => 'active',
-                    'stripe_price' => $session['display_items'][0]['price']['id'],
+                    'stripe_price' => 0,
                     'quantity' => 1,
-                    'trial_ends_at' => $session['subscription']['trial_end'] ? Carbon::createFromTimestamp($session['subscription']['trial_end']) : null,
+                    'trial_ends_at' => 0,
                     'ends_at' => null,
                 ]
             );
@@ -54,7 +55,7 @@ class WebhookController extends CashierController
 	
     public function handleInvoicePaymentSucceeded(array $payload)
     {
-        $invoice = $payload['data']['object'];
+        $invoice = $payload;
         $user = \App\Models\User::where('stripe_id', $invoice['customer'])->first();
 
         if ($user) {

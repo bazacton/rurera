@@ -6,10 +6,12 @@
     .form-field:has(.frontend-field-error), .input-holder:has(.frontend-field-error) {
         border: 1px solid #dd4343 !important;
     }
-
     .hide {
         display: none;
     }
+	.emoji-icons {display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
+    .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 28px; width: 28px; }
+    .emoji-icons .emoji-icon img {max-width: 100%; }
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 @endpush
@@ -19,7 +21,8 @@
     <div class="d-flex align-items-center justify-content-between flex-md-row">
         <h1 class="section-title font-22">Students</h1>
         <div class="dropdown">
-        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0"><img src="/assets/default/svgs/add-con.svg"> Add Student
+        <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0">
+            <img src="/assets/default/svgs/add-con.svg"> Add Student
         </button>
 
     </div>
@@ -40,9 +43,77 @@
                                 @if( !empty( $childs ) )
                                 @foreach($childs as $childLinkObj)
                                 @php $childObj = $childLinkObj->user; @endphp
-                                @php $is_cancelled = (isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 1 )? 'cancelled-membership' : ''; @endphp
+                                @php $is_cancelled = (isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 1 )? 'cancelled-membership' : ''; 
+								$subscribe = isset( $childObj->userSubscriptions->subscribe)? $childObj->userSubscriptions->subscribe : (object) array();
+								$emoji_response = '';
+								$emojisArray = explode('icon', $childObj->login_emoji);
+									if( !empty( $emojisArray ) ){
+										foreach( $emojisArray as $emojiCode){
+											if( $emojiCode != ''){
+												$emoji_response .= '<a id="icon1" href="javascript:;" class="emoji-icon"><img src="/assets/default/svgs/emojis/icon'.$emojiCode.'.svg"></a>';
+											}
+										}
+									}
+								@endphp
+								
 
                                 <div class="list-group-item {{$is_cancelled}}">
+								
+								
+									<div class="package-data rurera-hide">
+									@if( isset( $subscribe->id))
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<div class="subscribe-plan active current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-60 px-20 mb-30">
+											<span class="subscribe-icon mb-20"><img src="{{ $subscribe->icon }}" height="auto" width="auto" alt="Box image"/></span>
+											<div class="subscribe-title">
+												<h3 itemprop="title" class="font-24 font-weight-500">{{ $subscribe->title }}</h3>
+											</div>
+											<div class="d-flex align-items-start text-dark-charcoal mb-20 subscribe-price">
+												<span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
+														class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
+											</div>
+											<button itemprop="button" type="submit" 
+													class="package-selection btn w-100 disabled-style disabled-div">Subscribed
+											</button>
+											<span class="plan-label d-block font-weight-500 pt-20">
+																				Suitable for:
+																			</span>
+											<ul class="mt-10 plan-feature">
+												<li class="mt-10">Grammar school entrance</li>
+												<li class="mt-10">Independent school entrance</li>
+											</ul>
+											<span class="plan-label d-block font-weight-500 pt-20">
+																				Subjects:
+																			</span>
+											<ul class="mt-10 plan-feature">
+												@php $is_available = ($subscribe->is_courses > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">English, Maths, Science , Computer</li>
+												<li class="mt-10 {{$is_available}}">Verbal reasoning, non-verbal reasoning</li>
+												@php $is_available = ($subscribe->is_timestables > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">Times Tables Practice</li>
+												@php $is_available = ($subscribe->is_vocabulary > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">Vocabulary</li>
+												@php $is_available = ($subscribe->is_bookshelf > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">Bookshelf</li>
+											</ul>
+											<span class="plan-label d-block font-weight-500 pt-20">
+																				Mock Tests Prep:
+																			</span>
+											<ul class="mt-10 plan-feature">
+												@php $is_available = ($subscribe->is_sats > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">SATs</li>
+												@php $is_available = ($subscribe->is_elevenplus > 0)? '' : 'subscribe-no'; @endphp
+												<li class="mt-10 {{$is_available}}">ISEB Common Pre-Tests</li>
+												<li class="mt-10 {{$is_available}}">GL 11+</li>
+												<li class="mt-10 {{$is_available}}">CAT4</li>
+											</ul>
+										</div>
+									</div>
+									@endif
+								</div>
+								<span class="emojis-response rurera-hide">{!! $emoji_response !!}</span>
+								<span class="pin-response rurera-hide">{{$childObj->login_pin}}</span>
+								
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <h6 class="listing-title font-14 font-weight-500">Student</h6>
@@ -54,6 +125,7 @@
 
                                         <div class="col-auto ms-2">
                                             <h6 class="font-16 font-weight-normal"><a href="#">{{$childObj->get_full_name()}}</a></h6>
+											
                                             <small class="text-muted">
                                                 {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
                                             </small>
@@ -67,7 +139,7 @@
                                                 @if(isset( $childObj->userSubscriptions->subscribe ) )
                                                 @php $package_id = $childObj->userSubscriptions->subscribe->id;
                                                 @endphp
-                                                Membership: {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
+                                                {{$childObj->userSubscriptions->subscribe->getTitleAttribute()}}
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
                                                 @endphp
@@ -96,7 +168,11 @@
                                         </div>
                                         <div class="col-auto ms-auto last-activity profile-dropdown">
                                             <h6 class="listing-title font-14 font-weight-500">Action</h6>
-                                            <a href="javascript:;" class="font-15 font-weight-normal">Settings</a>
+                                            <a href="javascript:;" class="font-15 font-weight-normal">
+                                                <span class="icon-box">
+                                                    <img src="/assets/default/svgs/dots-circle.svg" alt="">
+                                                </span>
+                                            </a>
                                             <ul>
                                                 <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
                                                 <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
@@ -797,9 +873,11 @@
                                         </div>
                                     </div>
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+									<span class="emojis-list"></span>
                                     <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
                                 </div>
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-6">
+									<span class="pin-list"></span>
                                     <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;">Generate Pin</a>
                                 </div>
 
@@ -841,17 +919,23 @@
         </div>
     </div>
 </div>
-<div class="modal fade lms-choose-membership" id="cancelsubscriptionModal" tabindex="-1" aria-labelledby="cancelsubscriptionModalLabel" aria-hidden="true">
+<div class="modal fade class-connect-modal" id="cancelsubscriptionModal" tabindex="-1" aria-labelledby="cancelsubscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+            
+			<div class="modal-header">
+                <strong>Cancel Subscription</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+            </div>
+			
             <div class="modal-body">
                 <div class="container container-nosidebar">
                 <div class="tab-content cancel-membership-block" id="nav-tabContent">
+						<div class="cancel-package-data"></div>
                         <h3>You will still be able to use the package till its expiry and wont be charged for the renwal.</h3>
                         <div class="row justify-content-center payment-content">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" class="nav-link btn-primary rounded-pill mb-25 cancel-subscription-btn" data-child_id="0">Cancel Membership</a></div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" class="nav-link btn-primary rounded-pill mb-25 cancel-subscription-btn modal-btn" data-child_id="0">Cancel Membership</a></div>
                         </div>
                 </div>
                 </div>
@@ -1079,6 +1163,8 @@
         var user_id = $(this).attr('data-user_id');
         var year_id = $(this).attr('data-year_id');
         var prep_school = $(this).attr('data-prep_school');
+		var emojis_reponse = $(this).closest('.list-group-item').find('.emojis-response').html();
+		var pin_response = $(this).closest('.list-group-item').find('.pin-response').html();
         $(".user-edit-first-name").val(first_name);
         $(".user-edit-last-name").val(last_name);
         $(".user-edit-id").val(user_id);
@@ -1086,6 +1172,8 @@
         $(".regenerate-pin").attr('data-user_id', user_id);
         $('select[name="year_id"] option[value="'+year_id+'"]').prop('selected', true);
         $('select[name="test_prep_school"] option[value="'+prep_school+'"]').prop('selected', true);
+		$(".emojis-list").html(emojis_reponse);
+		$(".pin-list").html(pin_response);
     });
 
 

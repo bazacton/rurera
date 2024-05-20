@@ -17,5 +17,6 @@ class VerifyCsrfToken extends Middleware
         '/payments/verify/JazzCash',
         '/payments/verify/Izipay',
         '/payments/verify/Sslcommerz',
+        '/stripe/webhook',
     ];
 }

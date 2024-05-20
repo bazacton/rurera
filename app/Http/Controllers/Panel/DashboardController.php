@@ -14,6 +14,7 @@ use App\Models\Sale;
 use App\Models\Support;
 use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
+use App\Models\StudentAssignments;
 use App\Models\ParentsOrders;
 use App\User;
 use Illuminate\Http\Request;
@@ -136,8 +137,15 @@ class DashboardController extends Controller
         $data['userObj'] = $user;
 
         if (auth()->user()->isParent()) {
+			
 
-
+			$query = StudentAssignments::query()->where('status', '=', 'active');
+			$query = $query->where('created_by', auth()->user()->id);
+			$totalAssignments = deepClone($query)->count();
+			$assignments = $query->paginate(20);
+			$data['assignments'] = $assignments;
+			
+			
             $childs = User::where('role_id', 1)
                 ->where('parent_type', 'parent')
                 ->where('parent_id', $user->id)
@@ -148,7 +156,10 @@ class DashboardController extends Controller
                     }
                 ])
                 ->get();
-            if( $childs->count() == 0){
+			$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+				return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+			});
+            if( $subscribed_childs == 0){
                 return redirect('/'.panelRoute().'/students');
             }
 

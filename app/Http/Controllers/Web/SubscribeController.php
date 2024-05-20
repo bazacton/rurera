@@ -20,6 +20,7 @@ use App\Models\UserSubscriptions;
 use App\Models\Webinar;
 use App\Models\UserParentLink;
 use App\User;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -124,10 +125,14 @@ class SubscribeController extends Controller
         }
         else{
         $user = auth()->user();
-
+		
         $ParentsOrders = ParentsOrders::where('user_id', $user->id)
             ->where('status', 'active')
             ->first();
+			
+		$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+            return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+        });
 
         if ($action_type == 'child_register') {
 
@@ -148,7 +153,8 @@ class SubscribeController extends Controller
                 'childObj'         => $childObj,
                 'subscribes'       => $subscribes,
                 'selected_package' => $selected_package,
-                'ParentsOrders' => $ParentsOrders
+                'ParentsOrders' => $ParentsOrders,
+				'subscribed_childs' => $subscribed_childs,
             ])->render();
         }
 
@@ -161,7 +167,8 @@ class SubscribeController extends Controller
                 'childObj'         => $childObj,
                 'subscribes'       => $subscribes,
                 'selected_package' => $selected_package,
-                'ParentsOrders' => $ParentsOrders
+                'ParentsOrders' => $ParentsOrders,
+				'subscribed_childs' => $subscribed_childs,
             ])->render();
         }
 
@@ -176,7 +183,8 @@ class SubscribeController extends Controller
                 'subscribes'       => $subscribes,
                 'selected_package' => $selected_package,
                 'ParentsOrders' => $ParentsOrders,
-                'action_reason' => $action_reason
+                'action_reason' => $action_reason,
+				'subscribed_childs' => $subscribed_childs,
             ])->render();
         }
         }
@@ -319,10 +327,14 @@ class SubscribeController extends Controller
         //$childObj = User::find(1204);
         $subscribes = Subscribe::all();
 
+		$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+            return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+        });
         $response_layout = view('web.default.subscriptions.packages', [
             'childObj'         => $childObj,
             'subscribes'       => $subscribes,
-            'selected_package' => $selected_package
+            'selected_package' => $selected_package,
+			'subscribed_childs' => $subscribed_childs,
         ])->render();
         echo $response_layout;
         exit;
@@ -330,6 +342,7 @@ class SubscribeController extends Controller
 
     public function paymentForm(Request $request)
     {
+		Stripe::setApiKey(env('STRIPE_SECRET'));
         $user = getUser();
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
             return isset( $child->user->userSubscriptions->id) ? 1 : 0;
@@ -397,14 +410,19 @@ class SubscribeController extends Controller
 
     public function packagesList(Request $request)
     {
+		$user = auth()->user();
         $user_id = $request->get('user_id', null);
         $childObj = User::find($user_id);
         $subscribes = Subscribe::all();
+		$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
+            return isset( $child->user->userSubscriptions->id) ? 1 : 0;
+        });
 
         $response_layout = view('web.default.subscriptions.packages', [
             'childObj'         => $childObj,
             'subscribes'       => $subscribes,
-            'selected_package' => 0
+            'selected_package' => 0,
+			'subscribed_childs' => $subscribed_childs,
         ])->render();
         echo $response_layout;
         exit;
@@ -781,7 +799,9 @@ class SubscribeController extends Controller
     public function pay(Request $request)
     {
         $user = auth()->user();
+		Stripe::setApiKey(env('STRIPE_SECRET'));
         $subscribe_for = $request->input('subscribe_for');
+        $coupon_code = $request->input('coupon_code');
         $subscribe_for = ($subscribe_for > 0) ? $subscribe_for : 0;
         $subscribe_for = ($subscribe_for == 12) ? $subscribe_for : 1;
 
@@ -819,6 +839,7 @@ class SubscribeController extends Controller
             $full_data['discount_label'] = $discount_label;
             $full_data['discount_amount'] = $packageDiscountAmount;
         }
+		$full_data['coupon_code'] = $coupon_code;
 
         $ParentsOrders = ParentsOrders::where('user_id', $user->id)->where('status', '!=', 'inactive')->first();
         $order = Order::where('user_id', $user->id)->where('status', 'pending')->where('package_id', $package_id)->where('student_id', $user_id)->where('order_type', 'subscribe')->orderBy('id', 'DESC')->first();
@@ -1033,7 +1054,8 @@ class SubscribeController extends Controller
                 'discount_label' => $discount_label,
                 'discount_amount' => $discount_amount,
                 'userCharge'      => $user->getAccountingCharge(),
-                'razorpay'        => $razorpay
+                'razorpay'        => $razorpay,
+				'coupon_code' => $coupon_code,
             ];
 
             //return view(getTemplate() . '.cart.payment', $data);
@@ -1124,7 +1146,7 @@ class SubscribeController extends Controller
 
     public function paymentformTest(Request $request)
     {
-		
+		Stripe::setApiKey(env('STRIPE_SECRET'));
 		$user_id = 1267;
 		$user = User::find($user_id);
 		$stripeCustomer = $user->createOrGetStripeCustomer();
@@ -1205,6 +1227,29 @@ class SubscribeController extends Controller
         ]);
 
         abort(404);
+    }
+	
+	
+	public function getCouponData(Request $request)
+    {
+
+        $user = auth()->user();
+		$coupon_code = $request->input('coupon_code');
+		$package_price = $request->input('package_price');
+		$package_price_final = $package_price;
+		
+        $couponData = Discount::where('code', $coupon_code)->first();
+		$discount_type = $couponData->discount_type;
+		if( $discount_type == 'percentage'){
+			
+			$discount_amount = ($couponData->percent * $package_price) / 100;
+			
+			$package_price_final = $package_price - $discount_amount;
+			$package_price_final = round($package_price_final, 2);
+			
+		}
+		echo json_encode(array('package_price' => $package_price_final, 'package_price_full' => addCurrencyToPrice($package_price_final)));
+		exit;
     }
 
 

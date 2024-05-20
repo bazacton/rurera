@@ -34,6 +34,7 @@ use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Intervention\Image\Facades\Image;
+use App\Models\Accounting;
 
 class UserController extends Controller
 {
@@ -136,6 +137,26 @@ class UserController extends Controller
             ])
             ->orderBy('created_at', 'desc')
             ->get();
+			
+			
+		$accountings = Accounting::where('user_id', $user->id)
+		->where('system', false)
+		->where('tax', false)
+		->with([
+			'webinar',
+			'promotion',
+			'subscribe',
+			'meetingTime' => function ($query) {
+				$query->with(['meeting' => function ($query) {
+					$query->with(['creator' => function ($query) {
+						$query->select('id', 'full_name');
+					}]);
+				}]);
+			}
+		])
+		->orderBy('created_at', 'desc')
+		->orderBy('id', 'desc')
+		->paginate(500);
 
         $data = [
             'pageTitle'     => trans('panel.settings'),
@@ -152,6 +173,7 @@ class UserController extends Controller
             'districts'     => $districts,
             'userBanks'     => $userBanks,
             'schools'     => $schools,
+            'accountings'     => $accountings,
 
         ];
 
@@ -208,9 +230,10 @@ class UserController extends Controller
                 'school_preference_1' => isset( $data['school_preference_1'] )? $data['school_preference_1'] : 0,
                 'school_preference_2' => isset( $data['school_preference_2'] )? $data['school_preference_2'] : 0,
                 'school_preference_3' => isset( $data['school_preference_3'] )? $data['school_preference_3'] : 0,
-                'first_name' => isset( $data['first_name'] )? $data['first_name'] : '',
-                'last_name' => isset( $data['last_name'] )? $data['last_name'] : '',
-                'full_name' => isset( $data['first_name'] )? $data['first_name'].' '.$data['last_name'] : '',
+                //'first_name' => isset( $data['first_name'] )? $data['first_name'] : '',
+                //'last_name' => isset( $data['last_name'] )? $data['last_name'] : '',
+                //'full_name' => isset( $data['first_name'] )? $data['first_name'].' '.$data['last_name'] : '',
+				'display_name' => isset( $data['display_name'] )? $data['display_name'] : $user->first_name.' '.$$user->last_name,
                 'gold_member' => isset( $data['gold_member'] )? $data['gold_member'] : 0,
             ]);
 

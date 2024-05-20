@@ -41,7 +41,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
                                                 Legal name
-                                                <strong class="d-block font-weight-500">{{$user->get_full_name()}}</strong>
+                                                <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
                                                 <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
@@ -134,12 +134,12 @@ $avatar_color_settings = json_encode($avatar_color_settings);
         <div class="col-12 user-edit-profile rurera-hide">
             <div class="edit-profile mb-50">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-12">
+                    <div class="col-lg-3 col-md-4 col-12 rurera-hide">
                         <div class="edit-profile-sidebar">
                             <div class="user-info d-flex align-items-center flex-wrap mb-30">
                                 <img src="{{ (!empty($user)) ? $user->getAvatar(150) : '' }}" alt="" height="48" width="48">
                                 <span class="info-text d-inline-flex flex-column font-weight-500">
-                                    {{$user->get_full_name()}}
+                                    {{$user->display_name}}
                                 </span>
                             </div>
                             <div class="edit-profile-menu">
@@ -168,7 +168,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9 col-md-8 col-12">
+                    <div class="col-lg-12 col-md-12 col-12">
                         <div class="edit-profile-content-holder tab-content" id="myTabContent">
                             <div class="edit-profile-content panel-border bg-white rounded-sm p-25 tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
                                 <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
@@ -198,7 +198,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             </figure>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-0">
+                                    <div class="mb-0">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="edit-element-title mb-20">
@@ -208,22 +208,16 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
+                                            <div class="col-12 col-lg-12 col-md-12 form-group">
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" name="first_name" placeholder="First name" value="{{$user->first_name}}">
+                                                    <input type="text" name="display_name" class="rurera-req-field" placeholder="Display Name" value="{{( $user->display_name != '')? $user->display_name : $user->first_name.' '.$user->last_name}}">
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-                                                    <input type="text" name="last_name" placeholder="Job title" value="{{$user->last_name}}">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
+                                            <div class="col-12 form-group">
                                                 <label>Your Preference</label>
                                                 <div class="select-field">
-                                                    <select name="user_preference">
+                                                    <select name="user_preference" class="rurera-req-field">
                                                         <option value="male" {{ (!empty($user) && $user->user_preference == 'male') ? 'selected' : '' }}>Male</option>
                                                         <option value="female" {{ (!empty($user) && $user->user_preference == 'female') ? 'selected' : '' }}>Female</option>
                                                     </select>
@@ -240,7 +234,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <label>Preference 1</label>
                                                 <div class="select-field">
-                                                    <select name="school_preference_1" class="preference_field">
+                                                    <select name="school_preference_1" class="preference_field rurera-req-field">
                                                         <option value="">Select Preference</option>
                                                         @foreach( $schools as $schoolObj)
                                                             <option value="{{$schoolObj->id}}" {{($user->school_preference_1 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
@@ -251,7 +245,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <label>Preference 2</label>
                                                 <div class="select-field">
-                                                    <select name="school_preference_2" class="preference_field">
+                                                    <select name="school_preference_2" class="preference_field rurera-req-field">
                                                         <option value="">Select Preference</option>
                                                         @foreach( $schools as $schoolObj)
                                                             <option value="{{$schoolObj->id}}" {{($user->school_preference_2 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
@@ -262,7 +256,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                             <div class="col-12 col-lg-6 col-md-6">
                                                 <label>Preference 3</label>
                                                 <div class="select-field">
-                                                    <select name="school_preference_3" class="preference_field">
+                                                    <select name="school_preference_3" class="preference_field rurera-req-field">
                                                         <option value="">Select Preference</option>
                                                         @foreach( $schools as $schoolObj)
                                                             <option value="{{$schoolObj->id}}" {{($user->school_preference_3 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>

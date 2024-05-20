@@ -89,7 +89,7 @@
     <section class="mt-25">
         <h2 class="section-title">{{ trans('panel.earnings') }}</h2>
 
-        <div class="panel-section-card rounded-sm py-20 px-25 mt-20">
+        <div class="panel-section-card rounded-sm mt-20">
             <div class="row">
                 <div class="col-12 ">
                     <div class="table-responsive transactions-table">

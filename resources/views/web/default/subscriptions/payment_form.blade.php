@@ -69,7 +69,7 @@ button:disabled {
                     <h2 class="font-22 mb-20">Selected Plan</h2>
                     <h5 class="mb-10">{{$packageObj->title}}</h5>
                     <p class="mb-10">Text here</p>
-                    <div class="package-price mb-25"><strong>{{ addCurrencyToPrice(($packageObj->price*$subscribed_for_months)) }}</strong> / {{$subscribed_for_label}}</div>
+                    <div class="package-price mb-25" data-price_amount="{{$packageObj->price*$subscribed_for_months}}"><strong>{{ addCurrencyToPrice(($packageObj->price*$subscribed_for_months)) }}</strong> / {{$subscribed_for_label}}</div>
                     <div class="packages-back-btn font-weight-500 mb-15 font-15" data-user_id="{{$user_id}}">Change Package</div>
                 </div>
             </div>
@@ -83,11 +83,11 @@ button:disabled {
                     <div class="col-12 col-lg-9 col-md-9 col-sm-12">
                         <div class="form-group">
                             <p>Have a discount code?</p>
-                            <div class="input-field"><input type="text" placeholder="Enter Code"/></div>
+                            <div class="input-field"><input type="text" class="coupon_code" placeholder="Enter Code"/></div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 col-md-3 col-sm-12">
-                        <a href="javascript:;" class="nav-link btn-primary rounded-pill">Apply</a>
+                        <a href="javascript:;" class="nav-link btn-primary rounded-pill coupon-code-apply">Apply</a>
                     </div>
                 </div>
             </div>
@@ -304,6 +304,28 @@ button:disabled {
 
 
 <script>
+
+
+
+	$(document).on('click', '.coupon-code-apply', function (e) {
+		var thisObj = $(this);
+		rurera_loader(thisObj, 'div');
+        var coupon_code = $('.coupon_code').val();
+		var package_price = $(".package-price").attr('data-price_amount');
+        if( coupon_code != ''){
+			$.ajax({
+				type: "GET",
+				url: '/subscribes/get-coupon-data',
+				data: {"coupon_code": coupon_code, "package_price": package_price},
+				success: function (return_data) {
+					return_data = JSON.parse(return_data);
+					$(".package-price strong").html(return_data.package_price_full);
+					rurera_remove_loader(thisObj, 'div');
+				}
+			});
+		}
+    });
+	
     $(document).on('click', '.payment-methods li', function (e) {
         var gateway_type = $(this).attr('data-type');
         $(".payment-methods li").removeClass('active');

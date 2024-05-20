@@ -18,7 +18,7 @@
 @section('content')
 
 
-    <form method="post" id="userSettingForm" class="mt-10" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
+    <form method="post" id="userSettingForm" class="mt-10 userSettingForm" action="{{ (!empty($new_user)) ? '/panel/manage/'. $user_type .'/new' : '/panel/setting' }}">
         {{ csrf_field() }}
         <input type="hidden" name="step" value="{{ !empty($currentStep) ? $currentStep : 1 }}">
         <input type="hidden" name="next_step" value="0">
@@ -31,6 +31,9 @@
         @if(!empty($new_user) or (!empty($currentStep) and $currentStep == 1))
             @include('web.default.panel.setting.setting_includes.basic_information')
         @endif
+		@if(!auth()->user()->isUser())
+			@include('web.default.panel.financial.summary')
+		@endif
 
     </form>
 
@@ -51,7 +54,23 @@
         var saveSuccessLang = '{{ trans('webinars.success_store') }}';
         var saveErrorLang = '{{ trans('site.store_error_try_again') }}';
         var notAccessToLang = '{{ trans('public.not_access_to_this_content') }}';
+		
+		
+		$(document).on('submit', '.userSettingForm', function (e) {
+			var formData = new FormData($('.userSettingForm')[0]);
+			returnType = rurera_validation_process($(".userSettingForm"), 'under_field');
+			if (returnType == false) {
+				$("#saveData").removeClass('loadingbar');
+				$("#saveData").removeAttr('disabled');
+				return false;
+			}
+			return false;
+		});
+		
+		
     </script>
+	
+	userSettingForm
 
     <script src="/assets/default/js/panel/user_setting.min.js"></script>
 @endpush

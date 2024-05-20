@@ -127,10 +127,14 @@ class TestsController extends Controller
 
 
         $query = Quiz::where('status', Quiz::ACTIVE);
-        if ($quiz_type != '' && $quiz_type != 'all') {
+        if ($quiz_type != '' && $quiz_type != 'all' && $quiz_type != 'mock_test') {
             $query->where('quiz_type', $quiz_type);
         }else{
-            $query-> whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'));
+			if($quiz_type == 'mock_test'){
+				$query-> whereIn('quiz_type', array('11plus','cat4','iseb','independence_exams'));
+			}else{
+				$query-> whereIn('quiz_type', array('sats','11plus','cat4','iseb','independence_exams'));
+			}
         }
         $query->with('quizQuestionsList');
         if ($search_keyword != '') {

@@ -84,7 +84,7 @@
                             <img src="/assets/default/img/sidebar/set-work.svg">
                         </span>
                     </a>
-                    <a href="/{{panelRoute()}}/set-work" class="font-15">Set Work</a>
+                    <a href="/{{panelRoute()}}/set-work/create" class="font-15">Set Work</a>
                 </li>
 
             @endif
@@ -95,7 +95,7 @@
                                 <img src="/assets/default/img/sidebar/learn.svg">
                             </span>
                         </a>
-                            <a href="/learn" class="font-15">Learn @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                            <a href="/learn" class="font-15">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
                     <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/timestables-practice">
@@ -119,7 +119,7 @@
                                 <img src="/assets/default/img/sidebar/books.svg">
                             </span>
                         </a>
-                            <a href="/books" class="font-15">Books @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                            <a href="/books" class="font-15">Books @if(!auth()->subscription('bookshelf'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/tests">
@@ -128,7 +128,7 @@
                         </span>
                     </a>
 
-                    <a href="/tests" class="font-15">Test @if(auth()->user()->gold_member == 0)<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
+                    <a href="/tests" class="font-15">Test @if(!auth()->subscription('sats'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
 
                 </li>
 
@@ -198,14 +198,7 @@
                     </a>
                     <a href="/{{panelRoute()}}/students" class="font-15">Students</a>
                 </li>
-                <li class="sidenav-item {{ (request()->is('panel/financial/summary') or request()->is('panel/financial/summary/*')) ? 'sidenav-item-active' : '' }}">
-                    <a class="d-flex align-items-center" href="/{{panelRoute()}}/financial/summary">
-                        <span class="sidenav-setting-icon sidenav-item-icon mr-20">
-                            <img src="/assets/default/img/sidebar/members.png">
-                        </span>
-                    </a>
-                    <a href="/{{panelRoute()}}/financial/summary" class="font-15">Transactions</a>
-                </li>
+                
 
             @endif
 
