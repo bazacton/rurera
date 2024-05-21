@@ -273,41 +273,37 @@ class SubscribeController extends Controller
        $user_id = $request->get('user_id', null);
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
-       $hide_timestables_field = $request->get('hide_timestables', 0);
-	   $hide_games_field = $request->get('hide_games', 0);
-	   $hide_spellings_field = $request->get('hide_spellings', 0);
-	   $hide_books_field = $request->get('hide_books', 0);
-	   $school_preference_1 = $request->get('school_preference_1', 0);
-	   $school_preference_2 = $request->get('school_preference_2', 0);
-	   $school_preference_3 = $request->get('school_preference_3', 0);
-	   $username = $request->get('username', 0);
+       $hide_timestables_field = $request->get('hide_timestables', null);
+	   $hide_games_field = $request->get('hide_games', null);
+	   $hide_spellings_field = $request->get('hide_spellings', null);
+	   $hide_books_field = $request->get('hide_books', null);
+	   $school_preference_1 = $request->get('school_preference_1', null);
+	   $school_preference_2 = $request->get('school_preference_2', null);
+	   $school_preference_3 = $request->get('school_preference_3', null);
+	   $username = $request->get('username', null);
 	   $password = $request->get('password', '');
 	   
 	   
+	   $userData = array();
+	   
+	   if ( $first_name != null){ $userData['first_name_parent'] = $first_name; }
+	   if ( $last_name != null){ $userData['last_name_parent'] = $last_name; }
+	   if ( $last_name != null){ $userData['full_name_parent'] = $first_name.' '.$last_name; }
+	   if ( $display_name != null){ $userData['display_name'] = $display_name; }
+	   if ( $year_id != null){ $userData['year_id'] = $year_id; }
+	   if ( $test_prep_school != null){ $userData['prep_school'] = $test_prep_school; }
+	   if ( $hide_timestables_field != null){ $userData['hide_timestables'] = $hide_timestables_field; }
+	   if ( $hide_games_field != null){ $userData['hide_games'] = $hide_games_field; }
+	   if ( $hide_spellings_field != null){ $userData['hide_spellings'] = $hide_spellings_field; }
+	   if ( $hide_books_field != null){ $userData['hide_books'] = $hide_books_field; }
+	   if ( $school_preference_1 != null){ $userData['school_preference_1'] = $school_preference_1; }
+	   if ( $school_preference_2 != null){ $userData['school_preference_2'] = $school_preference_2; }
+	   if ( $school_preference_3 != null){ $userData['school_preference_3'] = $school_preference_3; }
+	   if ( $username != null){ $userData['username'] = $username; }
+	   if ( $password != ''){ $userData['password'] = Hash::make($password); }
 	   
        $studentUser = User::find($user_id);
        if (auth()->check() && auth()->user()->isParent()) {
-		   
-		   $userData = [
-               'first_name_parent' => $first_name,
-               'last_name_parent' => $last_name,
-               'full_name_parent' => $first_name.' '.$last_name,
-               'display_name' => $display_name,
-               'year_id' => $year_id,
-               'prep_school' => $test_prep_school,
-               'school_preference_1' => $school_preference_1,
-               'school_preference_2' => $school_preference_2,
-               'school_preference_3' => $school_preference_3,
-               'hide_timestables' => $hide_timestables_field,
-               'hide_games' => $hide_games_field,
-               'hide_spellings' => $hide_spellings_field,
-               'hide_books' => $hide_books_field,
-               'username' => $username,
-           ];
-		   
-		   if( $password != ''){
-			   $userData['password'] = Hash::make($password);
-		   }
 		   
            $studentUser->update($userData);
        }

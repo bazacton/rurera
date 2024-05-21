@@ -127,7 +127,7 @@
                                         </div>
 
                                         <div class="col-auto ms-2">
-                                            <h6 class="font-16 font-weight-normal"><a href="#">{{$childObj->get_full_name()}}</a></h6>
+                                            <h6 class="font-15 font-weight-normal"><a href="#">{{$childObj->get_full_name()}}</a></h6>
 											
                                             <small class="text-muted">
                                                 {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
@@ -165,7 +165,7 @@
 
                                         <div class="col-auto last-activity">
                                             <h6 class="listing-title font-14 font-weight-500">Last Activity</h6>
-                                            <span class="font-14 d-block"><strong class="font-16 font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
+                                            <span class="font-15 d-block"><strong class="font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
                                                 {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
                                             </span>
                                         </div>
@@ -812,13 +812,11 @@
 				
 				
 
-                    <form class="child-edit-form" method="post" action="javascript:;">
-                        {{ csrf_field() }}
+                   
 						
-				<div class="bg-white panel-border p-25 rounded-sm mt-30 mx-auto w-80 user-profile-block">
+				<div class="bg-white panel-border p-25 rounded-sm my-30 mx-auto w-80 user-profile-block">
 				
 				</div>
-                        </form>
 
                     </div>
                 </div>
@@ -832,7 +830,8 @@
         <div class="modal-content">
             <div class="panel-header">
                 <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard 123<span aria-hidden="true">×</span></button>
+				<a type="button" class="close-modal" href="javascript:;">closed×</span></a>
             </div>
             <div class="modal-body">
                 <div class="container container-nosidebar">
@@ -1101,7 +1100,11 @@
 		});
     });
 
+	
 
+	$(document).on('click', '.close-modal', function (e) {
+		$("#subscriptionModal").modal('hide');
+	});
 
     $(document).on('click', '.subscribe-plans', function (e) {
         var current_index = $(".choose-plan-modal").attr('data-current_index');
@@ -1146,6 +1149,10 @@
             $(".total-amount").html(total_amount);
         }
     }
+	
+	function closeModal(modalId) {
+	  $(modalId).modal('hide');
+	}
 
 
 </script>

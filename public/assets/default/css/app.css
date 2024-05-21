@@ -9090,7 +9090,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .modal-header{border-bottom: 0;}
 .lms-choose-membership .book-detail {text-align: center;}
 .lms-choose-membership .modal-dialog {height: 100%;}
-.lms-choose-membership .modal-content {background-color: #fafafa; border: 0; position: relative; box-shadow: none; border-radius: 0; height: 100%;}
+.lms-choose-membership .modal-content {background-color: #fafafa; border: 0; position: relative; box-shadow: none; border-radius: 0; /*height: 100%;*/}
 .lms-choose-membership .modal-body{background-color: #fafafa; padding: 0 25px 0;}
 .subscription-content .col-xs-12 {width: 100%;}
 .lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
@@ -9673,6 +9673,7 @@ Main Home style End
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-processing:has(.rurera-button-loader) {position: relative;}
+.edit-user-modal .user-profile-block.rurera-processing {height: 100vh;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
 .quiz-start-btn .rurera-button-loader,
@@ -11223,13 +11224,13 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 .users-list li input[type=checkbox] {margin-right: 5px;}
 
 /* User Detail Style Start */
-.detail-header {border-bottom: 1px solid #ddd;}
+.detail-header-profile {border-bottom: 1px solid #ddd;}
 .info-media {gap: 15px;}
 .info-media img {border-radius: 20px; width: 64px; height: 64px; object-fit: contain;}
 .user-detail .info-title span {color: #64748b;}
 .info-text h3 {color: #1e293b; line-height: normal;}
 .info-text span {color: #64748b;}
-.edit-info-list li > a {border-top: 1px solid #ddd;}
+.edit-info-list li > a {border-bottom: 1px solid #ddd;}
 .info-list-label {color: #94a3b8;}
 .info-list-label strong {color: #475569; line-height: normal; padding-top: 2px;}
 .edit-icon {gap: 15px;}
@@ -11238,7 +11239,7 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 .edit-info-list li a:hover {background-color: #f1f3f7;}
 .edit-info-list li .edtit-btn {border: 0; color: var(--primary); gap: 8px;}
 address .info-list-label {color: #64748b;}
-.payment-card {border: 1px solid #ddd; border-radius: 10px; max-width: 330px; min-width: 330px; }
+.payment-card {border: 1px solid #ddd; border-radius: 10px; max-width: 380px; min-width: 380px; }
 .card-circle span {height: 36px; width: 36px; border-radius: 100%; }
 .card-circle .circle-pink {background-color: #f43f5e99; margin-right: -20px;}
 .card-circle .circle-yellow {background-color: #eab30899;}
@@ -11246,6 +11247,72 @@ address .info-list-label {color: #64748b;}
 .card-type-lebel:before {content: ""; position: absolute; left: 0; top: 50%; background-color: #e2e8f0; height: 8px; width: 8px; border-radius: 100%; margin-top: -4px;}
 .card-info-text span {color: #64748b; margin: 0 0 2px;}
 .card-info-text .card-exp span {margin-bottom: 0;}
+.detail-body .profile-inner,
+.edit-info-list .subscribe-plan {
+    border-radius: 10px !important;
+    max-width: 380px;
+    min-width: 380px;
+    border-style: solid;
+}
+.detail-body .student-profile-holder {
+    padding: 0;
+    margin-top: 15px;
+}
+.detail-body .student-profile-holder h3,
+.detail-body .subscribe-plan h3 {
+    font-size: 16px !important;
+    font-weight: 500;
+    color: #94a3b8;
+}
+.detail-body .student-info ul li > a {
+    color: var(--primary);
+    font-weight: 400;
+    text-decoration: underline;
+}
+.detail-body .student-info ul li > span,
+.detail-body .student-info ul li.user-name span {
+    color: #64748b;
+    font-weight: 400;
+    font-size: 15px;
+}
+.detail-body .edit-info-list .subscribe-plan {
+    margin-top: 15px !important;
+}
+.detail-body .edit-info-list .subscribe-plan:hover {
+    top: 0;
+}
+.detail-body .edit-info-list .package-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+.detail-body .subscribe-plan .subscribe-title {
+    margin-bottom: 0;
+}
+.detail-body .subscribe-plan .subscribe-price {
+    align-items: flex-start !important;
+}
+.detail-body .subscribe-plan .subscribe-price span {
+    color: #596bfd;
+    font-weight: 500;
+    font-size: 18px !important;
+    margin-bottom: 5px;
+}
+.detail-body .subscribe-plan .subscribe-price .yearly-price {
+    color: #64748b;
+    padding-top: 5px;
+    font-size: 15px !important;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.detail-body .subscribe-plan .package-update-btn.btn {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0 8px;
+    height: 42px;
+}
 /* User Detail Style End */
 
 /* Wizard-Steps Style Start */
