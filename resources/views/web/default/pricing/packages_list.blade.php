@@ -7,6 +7,7 @@ $purchase_title = ( $subscribed_childs == 0)? 'Try for free' : 'Subscribe';
 $is_subscribed = (isset( $selected_package ) && $selected_package == $subscribe->id)? true : false; 
 $purchase_title = ($is_subscribed == true)? 'Subscribed' : $purchase_title;
 $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' : '';
+$user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
 @endphp
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-60 px-20 mb-30">
@@ -15,7 +16,7 @@ $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' :
             <h3 itemprop="title" class="font-24 font-weight-500">{{ $subscribe->title }}</h3>
         </div>
         <div class="d-flex align-items-start text-dark-charcoal mb-20 subscribe-price">
-            <span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
+            <span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_id="{{$subscribe->id}}" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
                     class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
         </div>
         <button itemprop="button" type="submit" data-user_id="{{isset($childObj->id)?$childObj->id : 0}}" data-type="package_selection" data-id="{{$subscribe->id}}"
@@ -61,6 +62,8 @@ $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' :
 <script type="text/javascript">
 
     $(document).on('change', '.subscribed_for-field', function (e) {
+		var user_subscribed_for = $(".package-register-form").attr('data-user_subscribed_for');
+		var selected_package = '{{$selected_package}}';
         var package_month = 1;
         var package_discount = 0;
         if($(this).is(':checked')) {
@@ -68,10 +71,18 @@ $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' :
             package_discount = 25;
         }
         var currency_sign = $(".lms-membership-section").attr('data-currency_sign');
-        console.log(package_month);
+		$('.subscribe-plan').find('.package-selection').removeClass('disabled-style');
+		$('.subscribe-plan').find('.package-selection').removeClass('disabled-div');
         $(".packages-prices").each(function(){
            var package_price = $(this).attr('data-package_price');
-            var package_price_org = package_price;
+		   var package_id = $(this).attr('data-package_id');
+		   
+		   if(package_id == selected_package && user_subscribed_for == package_month){
+			   $(this).closest('.subscribe-plan').find('.package-selection').addClass('disabled-style');
+			   $(this).closest('.subscribe-plan').find('.package-selection').addClass('disabled-div');
+		   }
+		   
+           var package_price_org = package_price;
            var discount_price = parseFloat(parseFloat(package_price))*package_discount / 100;
            var package_price = parseFloat(parseFloat(package_price))-discount_price;
            //var package_price = parseInt(package_price)*package_month;

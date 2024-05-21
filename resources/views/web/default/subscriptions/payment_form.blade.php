@@ -1,6 +1,14 @@
 @include('web.default.subscriptions.steps',['activeStep'=> 'payment'])
 @php $subscribed_for_months = (isset( $subscribed_for ) && $subscribed_for == 12)? 12 : 1;
 $subscribed_for_label = ($subscribed_for_months == 12)? 'Year' : 'Month';
+
+$discount_percentage = ($subscribed_for_months == 12)? 25 : 0;
+$selected_package_price = $packageObj->price*$subscribed_for_months;
+
+
+$discounted_amount = ($selected_package_price*$discount_percentage) / 100;
+$selected_package_price = $selected_package_price-$discounted_amount;
+
 @endphp
 <style>
 
@@ -69,8 +77,8 @@ button:disabled {
                     <h2 class="font-22 mb-20">Selected Plan</h2>
                     <h5 class="mb-10">{{$packageObj->title}}</h5>
                     <p class="mb-10">Text here</p>
-                    <div class="package-price mb-25" data-price_amount="{{$packageObj->price*$subscribed_for_months}}"><strong>{{ addCurrencyToPrice(($packageObj->price*$subscribed_for_months)) }}</strong> / {{$subscribed_for_label}}</div>
-                    <div class="packages-back-btn font-weight-500 mb-15 font-15" data-user_id="{{$user_id}}">Change Package</div>
+                    <div class="package-price mb-25" data-price_amount="{{$packageObj->price*$subscribed_for_months}}"><strong>{{ addCurrencyToPrice(($selected_package_price)) }}</strong> / {{$subscribed_for_label}}</div>
+                    <div class="packages-back-btn font-weight-500 mb-15 font-15" data-subscribed_for="{{$subscribed_for_months}}" data-user_id="{{$user_id}}">Change Package</div>
                 </div>
             </div>
         </div>

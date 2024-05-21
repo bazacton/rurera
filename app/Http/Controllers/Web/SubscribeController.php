@@ -147,7 +147,8 @@ class SubscribeController extends Controller
         if ($action_type == 'child_payment') {
             $childObj = User::find($action_id);
             $subscribes = Subscribe::all();
-            $selected_package = 0;
+            //$selected_package = 0;
+			$selected_package = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_id :0;
 
             $response_layout = view('web.default.subscriptions.packages', [
                 'childObj'         => $childObj,
@@ -162,6 +163,7 @@ class SubscribeController extends Controller
             $childObj = User::find($action_id);
             $subscribes = Subscribe::all();
             $selected_package = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_id :0;
+			$user_subscribed_for = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_for :1;
 
             $response_layout = view('web.default.subscriptions.packages', [
                 'childObj'         => $childObj,
@@ -169,6 +171,7 @@ class SubscribeController extends Controller
                 'selected_package' => $selected_package,
                 'ParentsOrders' => $ParentsOrders,
 				'subscribed_childs' => $subscribed_childs,
+				'user_subscribed_for' => $user_subscribed_for,
             ])->render();
         }
 
@@ -266,28 +269,47 @@ class SubscribeController extends Controller
     {
        $first_name = $request->get('first_name', null);
        $last_name = $request->get('last_name', null);
+       $display_name = $request->get('display_name', null);
        $user_id = $request->get('user_id', null);
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
-       $hide_timestables_field = $request->get('hide_timestables_field', 0);
-	   $hide_games_field = $request->get('hide_games_field', 0);
-	   $hide_spellings_field = $request->get('hide_spellings_field', 0);
-	   $hide_books_field = $request->get('hide_books_field', 0);
+       $hide_timestables_field = $request->get('hide_timestables', 0);
+	   $hide_games_field = $request->get('hide_games', 0);
+	   $hide_spellings_field = $request->get('hide_spellings', 0);
+	   $hide_books_field = $request->get('hide_books', 0);
+	   $school_preference_1 = $request->get('school_preference_1', 0);
+	   $school_preference_2 = $request->get('school_preference_2', 0);
+	   $school_preference_3 = $request->get('school_preference_3', 0);
+	   $username = $request->get('username', 0);
+	   $password = $request->get('password', '');
+	   
 	   
 	   
        $studentUser = User::find($user_id);
        if (auth()->check() && auth()->user()->isParent()) {
-           $studentUser->update([
+		   
+		   $userData = [
                'first_name_parent' => $first_name,
                'last_name_parent' => $last_name,
                'full_name_parent' => $first_name.' '.$last_name,
+               'display_name' => $display_name,
                'year_id' => $year_id,
                'prep_school' => $test_prep_school,
+               'school_preference_1' => $school_preference_1,
+               'school_preference_2' => $school_preference_2,
+               'school_preference_3' => $school_preference_3,
                'hide_timestables' => $hide_timestables_field,
                'hide_games' => $hide_games_field,
                'hide_spellings' => $hide_spellings_field,
                'hide_books' => $hide_books_field,
-           ]);
+               'username' => $username,
+           ];
+		   
+		   if( $password != ''){
+			   $userData['password'] = Hash::make($password);
+		   }
+		   
+           $studentUser->update($userData);
        }
        exit;
     }
@@ -422,17 +444,21 @@ class SubscribeController extends Controller
     {
 		$user = auth()->user();
         $user_id = $request->get('user_id', null);
+		$subscribed_for = $request->get('subscribed_for', null);
+		
         $childObj = User::find($user_id);
         $subscribes = Subscribe::all();
 		$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
             return isset( $child->user->userSubscriptions->id) ? 1 : 0;
         });
+		$selected_package = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_id :0;
 
         $response_layout = view('web.default.subscriptions.packages', [
             'childObj'         => $childObj,
             'subscribes'       => $subscribes,
-            'selected_package' => 0,
+            'selected_package' => $selected_package,
 			'subscribed_childs' => $subscribed_childs,
+			'subscribed_for' => $subscribed_for,
         ])->render();
         echo $response_layout;
         exit;

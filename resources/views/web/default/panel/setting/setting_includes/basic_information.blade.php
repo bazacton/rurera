@@ -29,12 +29,14 @@ if( !empty( $emojisArray ) ){
     <div class="row mt-30">
 
 
-        <div class="col-12 user-profile-block">
+        <div class="col-12 user-profile-block rurera-hide">
             <div class="user-detail mb-50">
                 <div class="detail-header mb-25 pb-25">
                     <div class="info-media d-flex align-items-center flex-wrap">
                         <span class="media-box">
-                            <img src="{{$user->getAvatar()}}" alt="">
+							<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
+								<img src="{{$user->getAvatar()}}" alt="">
+							</a>
                         </span>
                         <h2 class="info-title font-weight-500">
                             {{$user->get_full_name()}}
@@ -56,7 +58,7 @@ if( !empty( $emojisArray ) ){
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
-                                                Legal name
+                                                Display name
                                                 <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
@@ -80,18 +82,6 @@ if( !empty( $emojisArray ) ){
                             <div class="edit-info-list">
                                 <h4 class="font-14 font-weight-500 pb-15 px-15">Additional info</h4>
                                 <ul>
-                                    <li>
-                                        <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
-                                            <span class="info-list-label font-14">
-                                                Date of birth
-                                                <strong class="d-block font-weight-500">12/10/1988</strong>
-                                            </span>
-                                            <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
-                                                <em class="font-weight-500">Edit</em>
-                                            </span>
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
@@ -147,7 +137,7 @@ if( !empty( $emojisArray ) ){
                 </div>
             </div>
         </div>
-        <div class="col-12 user-edit-profile rurera-hide">
+        <div class="col-12 user-edit-profile">
             <div class="edit-profile mb-50">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12 rurera-hide">
@@ -195,7 +185,6 @@ if( !empty( $emojisArray ) ){
                                         </h5>
                                     </div>
                                     <div class="edit-profile-controls">
-                                        <a href="javascript:;" class="text-center cancel-edit-button">Cancel</a>
                                         <button type="button" id="saveData" class="save-btn text-center ">Save</button>
                                     </div>
                                 </div>
@@ -263,56 +252,13 @@ if( !empty( $emojisArray ) ){
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
 												{!! $emoji_response !!}
-												<a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;" data-user_id="{{$user->id}}">Generate Emoji</a>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
 												{{$user->login_pin}}
-                                                <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;" data-user_id="{{$user->id}}">Generate Pin</a>
                                             </div>
 											
 											
 											
-                                            <div class="col-12">
-                                                <div class="edit-element-title mb-20">
-                                                    <h6 class="font-weight-500">
-                                                        School Preference
-                                                        <span class="d-block pt-5 font-12">This can help you to win some opportunities</span>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 1</label>
-                                                <div class="select-field">
-                                                    <select name="school_preference_1" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_1 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 2</label>
-                                                <div class="select-field">
-                                                    <select name="school_preference_2" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_2 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-6 col-md-6">
-                                                <label>Preference 3</label>
-                                                <div class="select-field">
-                                                    <select name="school_preference_3" class="preference_field rurera-req-field">
-                                                        <option value="">Select Preference</option>
-                                                        @foreach( $schools as $schoolObj)
-                                                            <option value="{{$schoolObj->id}}" {{($user->school_preference_3 == $schoolObj->id)? 'selected' : ''}}>{{$schoolObj->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

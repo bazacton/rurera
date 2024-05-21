@@ -2498,6 +2498,11 @@
 .leform-elements.ui-sortable {
     min-height: auto !important;
 }
+.validation-error {
+    line-height: 30px;
+    margin-top: 10px;
+    color: #ffb0b0;
+}
 .leform-element {
 	width: 100%;
 	height: auto !important;

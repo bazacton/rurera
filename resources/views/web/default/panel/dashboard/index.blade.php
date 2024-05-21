@@ -12,7 +12,7 @@
     <div class="bg-white dashboard-banner-container position-relative px-15 px-ld-35 py-10 panel-shadow panel-border rounded-sm">
         <h2 class="font-30 text-primary line-height-1">
             <span class="d-block">{{ trans('panel.hi') }} {{ $authUser->get_full_name() }},</span>
-            <span class="font-16 text-secondary font-weight-bold">{{ trans('panel.have_event',['count' => !empty($unReadNotifications) ? count($unReadNotifications) : 0]) }}</span>
+            <span class="font-16 font-weight-bold">{{ trans('panel.have_event',['count' => !empty($unReadNotifications) ? count($unReadNotifications) : 0]) }}</span>
         </h2>
 
         <ul class="mt-15 unread-notification-lists">
@@ -91,43 +91,43 @@
 <div class="dashboard-cards-holder">
     <div class="row mt-35">
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="dashboard-card">
+            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
                 <span class="icon-box"><img src="/assets/default/svgs/plus.svg"></span>
-                <h5><a href="#">Start New Website</a></h5>
-                <span>Create an entirely new website</span>
-                <a href="#" class="select-btn">Select</a>
+                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Start New Website</a></h5>
+                <span class="d-block mb-10">Create an entirely new website</span>
+                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="dashboard-card">
+            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
                 <span class="icon-box"><img src="/assets/default/svgs/arrow-right.svg"></span>
-                <h5><a href="#">Migrate Website</a></h5>
-                <span>Move over an existing website</span>
-                <a href="#" class="select-btn">Select</a>
+                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Migrate Website</a></h5>
+                <span class="d-block mb-10">Move over an existing website</span>
+                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="dashboard-card">
+            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
                 <span class="icon-box"><img src="/assets/default/svgs/file-code.svg"></span>
-                <h5><a href="#">Start Site</a></h5>
-                <span>Let's build your website together</span>
-                <a href="#" class="select-btn">Select</a>
+                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Start Site</a></h5>
+                <span class="d-block mb-10">Let's build your website together</span>
+                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="dashboard-card">
+            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
                 <span class="icon-box"><img src="/assets/default/svgs/skip.svg"></span>
-                <h5><a href="#">Sip This</a></h5>
-                <span>I will take care of the setup myself</span>
-                <a href="#" class="select-btn">Select</a>
+                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Sip This</a></h5>
+                <span class="d-block mb-10">I will take care of the setup myself</span>
+                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="dashboard-card completed">
+            <div class="dashboard-card completed panel-border rounded-sm mb-30 text-center">
                 <span class="icon-box"><img src="/assets/default/svgs/check-white.svg"></span>
-                <h5><a href="#">Completed</a></h5>
-                <span>Let's build your website together</span>
-                <a href="#" class="select-btn">Select</a>
+                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Completed</a></h5>
+                <span class="d-block mb-10">Let's build your website together</span>
+                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
             </div>
         </div>
     </div>

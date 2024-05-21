@@ -7087,7 +7087,7 @@ Lms Product Card Style Start
 .product-card .image-box img {border-radius: 0; }
 .product-card .image-box {background-color: #fff; display: flex; align-items: center; justify-content: center; height: auto;}
 .product-card .image-box .image-box__a {width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;}
-.product-card .image-box img.img-cover {max-height: 100%; width: 100%; -o-object-fit: contain; object-fit: contain;}
+.product-card .image-box img.img-cover {border-radius: 0; max-height: 100%; width: 100%; -o-object-fit: contain; object-fit: contain;}
 .product-show-image-card .img-cover,
 .thumbnail-card .img-cover {-o-object-fit: contain; object-fit: contain; }
 .stars-card svg {height: 16px; width: 16px;}
@@ -7804,8 +7804,9 @@ Custom Pagination Style End
 .categories-element-title p {margin: 5px 0 0; color: #000; }
 .categories-element-title span {position: relative; display: inline-block; padding-right: 20px; margin-top: 0; color: #000;}
 /* .categories-element-title span:before {content: ""; position: absolute; left: 100%; top: 50%; height: 1px; width: 99999px; background: #7f7f7f;} */
-.subjects-heading {border-bottom: 1px solid #ddd; margin: 0 0 25px; padding: 0 0 25px; }
+.subjects-heading {margin: 0 0 35px;}
 .categories-card.medium {display: flex; flex-wrap: wrap; border-bottom: 1px solid #ddd; box-shadow: none; border-radius: 0; align-items: center; padding:20px; margin: 0; transform: none;}
+.categories-card.medium:first-child {border-top: 1px solid #ddd;}
 .categories-card.medium .categories-icon {min-height: 80px; border-radius: 14px; box-shadow: 0 -4px 0 0 rgba(0, 0, 0, 0.2) inset; min-width: 70px; max-width: 70px; padding: 15px;}
 .categories-card.medium .categories-icon svg {width: 40px; height: 40px;}
 .categories-card.medium .categories-text {width: calc(100% - 70px); padding-left: 25px; line-height: normal; position: relative;}
@@ -7841,13 +7842,13 @@ Custom Pagination Style End
 .topics-table thead th:first-child {border-radius: 5px 0 0 0;}
 .topics-table thead th:last-child {border-radius: 0 5px 0 0; text-align: right !important;}
 .topics-table tbody tr {border-bottom: 1px solid #ddd;}
-.topics-table tbody td label {color: #777;}
+.topics-table tbody td label {color: #777; display: inline-flex; align-items: center; gap: 5px;}
+.topics-table-group td label img {height: 20px; width: 20px; object-fit: contain; }
 .topics-table tr td:last-child {text-align: right;}
 .topics-table .checkbox-field input[type=checkbox] {height: 15px; width: 15px; vertical-align: middle; margin-right: 5px;}
 .topics-table tbody tr:last-child {border: 0;}
 .topics-table .video-btn, 
 .topics-table .file-btn {color: var(--primary);}
-.topics-table .icon-box {margin-right: 5px;}
 .topics-table .video-btn img, 
 .topics-table .file-btn img {border-radius: 0; height: 18px; width: 18px; filter: invert(42%) sepia(90%) saturate(3527%) hue-rotate(222deg) brightness(101%) contrast(98%);}
 @media (max-width:991px) {
@@ -9203,6 +9204,8 @@ Lms Choose Membership Model Style Start
 .usernames-suggestions a {color: var(--primary); text-decoration: underline;}
 .usernames-suggestions {display: flex; align-items: center; flex-wrap: wrap; gap: 15px; line-height: normal;}
 .usernames-suggestions br {display: none;}
+.lms-choose-membership .emoji-icons .emoji-icon {padding: 0 5px;}
+.lms-choose-membership .pin-list {min-height: 28px; display: flex; align-items: center; color: #666; font-weight: 500;}
 /*************************************
 Lms Choose Membership Model Style End
 *************************************/
@@ -11006,11 +11009,8 @@ span.review-label {line-height: normal;}
 .summary-btns a{border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-weight: 500; padding: 12px 15px; display: inline-block; line-height: normal; min-width: 120px; text-align: center; margin-right: 5px;}
 .dashboard-card .icon-box {height: 32px; width: 32px; display: block; margin: 0 auto 15px; border-radius: 100%; background-color: #000; text-align: center; line-height: 18px; padding: 6px;}
 .dashboard-card .icon-box img {max-width: 100%; vertical-align: middle; filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(277deg) brightness(104%) contrast(102%);}
-.dashboard-card {background-color: #fff; border: 1px solid #ddd; text-align: center; padding: 30px 5px; margin-bottom: 30px; border-radius: 5px;}
-.dashboard-card h5 {margin: 0 0 8px; font-size: 18px;}
-.dashboard-card span {display: block; margin-bottom: 10px;}
-.dashboard-card .select-btn {display: inline-block; border: 1px solid var(--primary); padding: 8px 25px; border-radius: 5px; margin-top: 10px; color: var(--primary); font-weight: 500;}
-.dashboard-card .select-btn {color: #89bf74; border-color: #89bf74;}
+.dashboard-card {padding: 30px 5px;}
+.dashboard-card .select-btn {border: 1px solid #89bf74; padding: 8px 25px; color: #89bf74;}
 .dashboard-card.completed {background-color: #f7faf6; border-color: #89bf74;}
 .dashboard-card.completed .icon-box {background-color: #89bf74;}
 body .panel-sidebar .sidebar-menu .logout-sidebar,
@@ -11321,7 +11321,7 @@ address .info-list-label {color: #64748b;}
 .sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
 .sorting-filter a img {height: 20px; width: 20px; border-radius: 0; filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);}
 .sorting-filter a.active img {filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);}
-.rurera-progress-bar {height: 20px; width: 100%; background-color: antiquewhite; margin: 0 0 20px; position: relative; overflow: hidden;}
+.rurera-progress-bar {height: 20px; width: 100%; background-color: antiquewhite; position: relative; overflow: hidden; -webkit-mask-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFP8ikcvpudzuc0rS_8OOkZxeIeAWA6c-c2VETfPZvAYc2hmGFCkUoAZwmFgGYQZMoQdI&usqp=CAU); mask-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFP8ikcvpudzuc0rS_8OOkZxeIeAWA6c-c2VETfPZvAYc2hmGFCkUoAZwmFgGYQZMoQdI&usqp=CAU); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;}
 .rurera-progress-bar .progress-inner {display: block; height: 100%; background: linear-gradient(to right,  green 20%, green 25%, yellow 25%, yellow 50%, orange 50%, orange 75%, red 25%, red 30%); position: absolute; left: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .disabled-div {pointer-events: none;}
 /*Custom Switch Style Start*/
@@ -11961,6 +11961,7 @@ Lms Responsive Style Start
     .form-login-reading form .w-80,
     .child-edit-form .w-80 {width: 100% !important;}
     .no-record-found-head li {padding: 0 10px;}
+    .subjects-heading {margin-bottom: 25px;}
 }
 
 @media screen and (max-width: 640px) {

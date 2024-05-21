@@ -27,14 +27,18 @@ $subscribed_childs = isset( $subscribed_childs) ? $subscribed_childs : 0;
         </div>
 </section>
 @endif
-@php $packages_list_class = ($update_package_confirm == true)? 'rurera-hide' : ''; @endphp
+@php $packages_list_class = ($update_package_confirm == true)? 'rurera-hide' : ''; 
+
+$subscribed_for = isset( $subscribed_for)? $subscribed_for : 1;
+$user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
+@endphp
 <section class="lms-setup-progress-section mb-0 pt-20 pb-60 packages-list-modal {{$packages_list_class}}">
         <div class="container">
-            <form class="package-register-form" method="post" action="javascript:;">
+            <form class="package-register-form" method="post" action="javascript:;" data-user_subscribed_for="{{isset( $user_subscribed_for )? $user_subscribed_for : 1}}">
                       {{ csrf_field() }}
                 <div class="row">
                         <div class="col-12 col-lg-12 text-center">
-                            <div class="element-title text-center mb-40">
+                            <div class="element-title text-center mb-40">	
                                 <h2 itemprop="title" class="font-50 text-dark-charcoal mb-0">Choose the right plan for you</h2>
                                 <p class="font-16 pt-10">Save more with annual pricing</p>
                             </div>
@@ -44,7 +48,7 @@ $subscribed_childs = isset( $subscribed_childs) ? $subscribed_childs : 0;
                                 <div class="plan-switch-option">
                                     <span class="switch-label">Pay Monthly</span>
                                     <div class="plan-switch">
-                                        <div class="custom-control custom-switch"><input type="checkbox" name="subscribed_for" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" /><label class="custom-control-label" for="iNotAvailable"></label></div>
+                                        <div class="custom-control custom-switch"><input type="checkbox" name="subscribed_for" class="custom-control-input subscribed_for-field" value="12" id="iNotAvailable" {{($subscribed_for == 12)? 'checked' : '' }} /><label class="custom-control-label" for="iNotAvailable"></label></div>
                                     </div>
                                     <span class="switch-label">Pay Yearly</span>
                                 </div>
@@ -54,7 +58,7 @@ $subscribed_childs = isset( $subscribed_childs) ? $subscribed_childs : 0;
                         <div class="col-lg-12 col-md-12 col-12 mx-auto lms-membership-section" data-currency_sign="{{getCurrencySign()}}">
                             <div class="row">
 
-                                @include('web.default.pricing.packages_list',['subscribes' => $subscribes, 'selected_package' => $selected_package, 'subscribed_childs' => $subscribed_childs])
+                                @include('web.default.pricing.packages_list',['subscribes' => $subscribes, 'selected_package' => $selected_package, 'subscribed_childs' => $subscribed_childs, 'user_subscribed_for' => $user_subscribed_for])
 
                             </div>
                         </div>

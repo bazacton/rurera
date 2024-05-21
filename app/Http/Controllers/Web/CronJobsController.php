@@ -9,6 +9,7 @@ use App\Models\Testimonial;
 use App\Models\TimestablesAssignments;
 use App\Models\TimestablesTournaments;
 use App\Models\TimestablesTournamentsEvents;
+use App\Models\userSubscriptions;
 use Illuminate\Support\Facades\DB;
 
 class CronJobsController extends Controller
@@ -47,6 +48,12 @@ class CronJobsController extends Controller
         pre('done');
 
         pre($TimestablesTournaments);
+    }
+	
+	
+    public function update_subscriptions_status()
+    {
+		$userSubscriptions = userSubscriptions::where('status', 'active')->where('expiry_at', '<', strtotime(date('Y-m-d')))->update(['status' => 'expired']);
     }
 
 

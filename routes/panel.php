@@ -383,6 +383,8 @@ $parentTutorRoutes = function () {
     });
 
     Route::get('/switch_user/{id}', 'ParentController@switchUser');
+	Route::get('/student-profile/{id}', 'ParentController@studentProfile');
+	
     Route::post('/cancel_subscription', 'ParentController@CancelSubscription');
     Route::get('/get_user_assignments', 'DashboardController@get_user_assignments');
 

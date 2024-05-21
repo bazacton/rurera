@@ -57,8 +57,13 @@
                   </div>
           </div>
 
-
-
+		  <div class="col-12">
+			<div class="edit-element-title mb-20">
+				<h6 class="font-weight-500">
+					School Preference
+				</h6>
+			</div>
+		</div>
 
           <div class="col-6 col-sm-12 col-md-6 col-lg-6">
                     <div class="form-group">

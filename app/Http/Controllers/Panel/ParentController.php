@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\UserMeta;
 use App\Models\UserSubscriptions;
+use App\Models\Category;
+use App\Models\Schools;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +124,24 @@ class ParentController extends Controller
             'code' => 200,
         ]);
 
+    }
+
+    public function studentProfile(Request $request, $user_id)
+    {
+        $userData = User::find($user_id);
+		$categories = Category::where('parent_id' , null)
+                       ->with('subCategories')
+                       ->get();
+		$schools = Schools::where('status', 'active')->get();
+		$data = array(
+			'user' => $userData,
+			'categories' => $categories,
+			'schools' => $schools,
+		);
+		
+		$response_layout = view('web.default.panel.parent.student_profile', $data)->render();
+		echo $response_layout; exit;
+        
     }
 
 

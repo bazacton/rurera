@@ -10,11 +10,12 @@
         display: none;
     }
 	.emoji-icons {display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start;min-height: auto;}
-    .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 28px; width: 28px; }
+    .emoji-icons .emoji-icon {border-radius: 100%; display: inline-block; object-fit: contain; height: 28px;}
     .emoji-icons .emoji-icon img {max-width: 100%; }
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 @endpush
+@php $schools = array(); $user = auth()->user();@endphp
 
 @section('content')
 <section class="member-card-header pb-50">
@@ -808,149 +809,15 @@
             </div>
             <div class="container">
                 <div class="modal-body pt-50">
+				
+				
+
                     <form class="child-edit-form" method="post" action="javascript:;">
                         {{ csrf_field() }}
-                        <div class="bg-white panel-border p-25 rounded-sm mt-30 mx-auto w-80">
-                    <div class="row">
-                        <div class="col-12 col-lg-12 col-md-12 col-sm-12 mb-31 mb-10">
-                        <h2 class="font-22">Student's details</h2>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
-                            <div class="row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <span class="fomr-label">Student's first name</span>
-                                        <div class="input-field">
-                                            <input type="text" class="user-edit-first-name rurera-req-field" placeholder="Name" name="first_name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <span class="fomr-label">Student's last name</span>
-                                        <div class="input-field">
-                                            <input type="text" class="user-edit-last-name rurera-req-field" placeholder="Last name" name="last_name">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6">
-                                      <div class="form-group">
-                                          <span class="fomr-label">Year Group</span>
-                                          <select class="form-control @error('category_id') is-invalid @enderror rurera-req-field"
-                                                  name="year_id">
-                                              <option {{ !empty($trend) ?
-                                              '' : 'selected' }} disabled>Choose Year Group</option>
-
-                                              @foreach($categories as $category)
-                                              @if(!empty($category->subCategories) and count($category->subCategories))
-                                              <optgroup label="{{  $category->title }}">
-                                                  @foreach($category->subCategories as $subCategory)
-                                                  <option value="{{ $subCategory->id }}" @if(!empty($class) and $class->
-                                                      category_id == $subCategory->id) selected="selected" @endif>{{
-                                                      $subCategory->title }}
-                                                  </option>
-                                                  @endforeach
-                                              </optgroup>
-                                              @else
-                                              <option value="{{ $category->id }}" class="font-weight-bold" @if(!empty($class)
-                                                      and $class->category_id == $category->id) selected="selected" @endif>{{
-                                                  $category->title }}
-                                              </option>
-                                              @endif
-                                              @endforeach
-                                          </select>
-                                      </div>
-                                  </div>
-                                    <div class="col-6 col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group">
-                                            <span class="fomr-label">Test Prep School Choice</span>
-                                            <select class="form-control rurera-req-field"
-                                                    name="test_prep_school">
-                                                <option value="Not sure" selected>Not sure</option>
-                                                <option value="Independent schools">Independent schools</option>
-                                                <option value="Grammar schools">Grammar schools</option>
-                                                <option value="Independent & grammar schools">Independent & grammar schools</option>
-                                            </select>
-                                        </div>
-                                    </div>
-									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
-										
-										<div class="form-group custom-switches-stacked">
-											<label class="custom-switch pl-0">
-												<input type="hidden" name="hide_timestables" value="0">
-												<input type="checkbox" name="hide_timestables_field"
-													   id="hide_timestables" value="1" class="custom-switch-input"/>
-												<span class="custom-switch-indicator"></span>
-												<label class="custom-switch-description mb-0 cursor-pointer"
-													   for="hide_timestables">Hide Timestables</label>
-											</label>
-										</div>
-									</div>
-									
-									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
-										
-										<div class="form-group custom-switches-stacked">
-											<label class="custom-switch pl-0">
-												<input type="hidden" name="hide_spellings" value="0">
-												<input type="checkbox" name="hide_spellings_field"
-													   id="hide_spellings" value="1" class="custom-switch-input"/>
-												<span class="custom-switch-indicator"></span>
-												<label class="custom-switch-description mb-0 cursor-pointer"
-													   for="hide_spellings">Hide Spellings</label>
-											</label>
-										</div>
-									</div>
-									
-									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
-										
-										<div class="form-group custom-switches-stacked">
-											<label class="custom-switch pl-0">
-												<input type="hidden" name="hide_games" value="0">
-												<input type="checkbox" name="hide_games_field"
-													   id="hide_games" value="1" class="custom-switch-input"/>
-												<span class="custom-switch-indicator"></span>
-												<label class="custom-switch-description mb-0 cursor-pointer"
-													   for="hide_games">Hide Games</label>
-											</label>
-										</div>
-									</div>
-									
-									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
-										
-										<div class="form-group custom-switches-stacked">
-											<label class="custom-switch pl-0">
-												<input type="hidden" name="hide_books" value="0">
-												<input type="checkbox" name="hide_books_field"
-													   id="hide_books" value="1" class="custom-switch-input"/>
-												<span class="custom-switch-indicator"></span>
-												<label class="custom-switch-description mb-0 cursor-pointer"
-													   for="hide_books">Hide Books</label>
-											</label>
-										</div>
-									</div>
-
-                                <div class="col-6 col-sm-12 col-md-6 col-lg-6">
-									<span class="emojis-list"></span>
-                                    <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
-                                </div>
-                                <div class="col-6 col-sm-12 col-md-6 col-lg-6">
-									<span class="pin-list"></span>
-                                    <a class="btn btn-primary d-block mt-15 regenerate-pin" href="javascript:;">Generate Pin</a>
-                                </div>
-
-                                    <input type="hidden" class="user-edit-id" name="user_id" value="0">
-                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <div class="form-group mt-20 mb-0">
-                                            <div class="btn-field">
-                                                <button type="submit" class="nav-link">Update student's profile</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+						
+				<div class="bg-white panel-border p-25 rounded-sm mt-30 mx-auto w-80 user-profile-block">
+				
+				</div>
                         </form>
 
                     </div>
@@ -1034,6 +901,7 @@
     $(document).on('change', 'input[name="subscribe_for"]', function (e) {
         calculate_total_amount();
     });
+
 
     $(document).on('click', '.regenerate-emoji', function (e) {
         rurera_loader($(".child-edit-form"), 'div');
@@ -1219,42 +1087,18 @@
         var first_name = $(this).attr('data-first_name');
         var last_name = $(this).attr('data-last_name');
         var user_id = $(this).attr('data-user_id');
-        var year_id = $(this).attr('data-year_id');
-        var prep_school = $(this).attr('data-prep_school');
-		var hide_timestables = $(this).attr('data-hide_timestables');
-		var hide_spellings = $(this).attr('data-hide_spellings');
-		var hide_games = $(this).attr('data-hide_games');
-		var hide_books = $(this).attr('data-hide_books');
+		$(".user-profile-block").html('');
 		
-		$('input[name="hide_timestables_field"]').prop('checked', false);
-		$('input[name="hide_spellings_field"]').prop('checked', false);
-		$('input[name="hide_games_field"]').prop('checked', false);
-		$('input[name="hide_books_field"]').prop('checked', false);
-		
-		if( hide_timestables == 1){
-			$('input[name="hide_timestables_field"]').prop('checked', true);
-		}
-		if( hide_spellings == 1){
-			$('input[name="hide_spellings_field"]').prop('checked', true);
-		}
-		if( hide_games == 1){
-			$('input[name="hide_games_field"]').prop('checked', true);
-		}
-		if( hide_books == 1){
-			$('input[name="hide_books_field"]').prop('checked', true);
-		}
-		$(".hide_timestables_field").val(hide_timestables);
-		var emojis_reponse = $(this).closest('.list-group-item').find('.emojis-response').html();
-		var pin_response = $(this).closest('.list-group-item').find('.pin-response').html();
-        $(".user-edit-first-name").val(first_name);
-        $(".user-edit-last-name").val(last_name);
-        $(".user-edit-id").val(user_id);
-        $(".regenerate-emoji").attr('data-user_id', user_id);
-        $(".regenerate-pin").attr('data-user_id', user_id);
-        $('select[name="year_id"] option[value="'+year_id+'"]').prop('selected', true);
-        $('select[name="test_prep_school"] option[value="'+prep_school+'"]').prop('selected', true);
-		$(".emojis-list").html(emojis_reponse);
-		$(".pin-list").html(pin_response);
+		rurera_loader($('.user-profile-block'), 'div');
+		$.ajax({
+			type: "GET",
+			url: '/panel/student-profile/'+user_id,
+			data: {"user_id": user_id},
+			success: function (return_data) {
+				$(".user-profile-block").html(return_data);
+				rurera_remove_loader($('.user-profile-block'), 'div');
+			}
+		});
     });
 
 
