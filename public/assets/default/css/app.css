@@ -11256,12 +11256,12 @@ address .info-list-label {color: #64748b;}
 }
 .detail-body .student-profile-holder {
     padding: 0;
-    margin-top: 15px;
+    margin-bottom: 40px;
 }
 .detail-body .student-profile-holder h3,
 .detail-body .subscribe-plan h3 {
     font-size: 16px !important;
-    font-weight: 500;
+    font-weight: 400 !important;
     color: #94a3b8;
 }
 .detail-body .student-info ul li > a {
@@ -11274,9 +11274,6 @@ address .info-list-label {color: #64748b;}
     color: #64748b;
     font-weight: 400;
     font-size: 15px;
-}
-.detail-body .edit-info-list .subscribe-plan {
-    margin-top: 15px !important;
 }
 .detail-body .edit-info-list .subscribe-plan:hover {
     top: 0;
@@ -11312,6 +11309,30 @@ address .info-list-label {color: #64748b;}
     color: #fff;
     padding: 0 8px;
     height: 42px;
+}
+.detail-body .inner-heading {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 20px;
+    margin-bottom: 25px !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.detail-body .inner-heading:hover .edit-icon em {
+    visibility: visible;
+    opacity: 1;
+}
+.detail-body .edit-profile-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+}
+.detail-body .edit-profile-controls .profile-save-btn {
+    padding: 10px 50px;
+    height: auto;
+    border-radius: 4px;
 }
 /* User Detail Style End */
 

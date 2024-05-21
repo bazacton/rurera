@@ -13,6 +13,7 @@ if( !empty( $emojisArray ) ){
 $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptions->subscribe : (object) array();
 @endphp
 <style>
+.rurera-hide{display:none !important;}
     .profile-container {max-width: 1000px; margin: 0 auto; padding-top: 50px;}
     .student-profile-holder {width: 100%; display: inline-block; margin-right: -4px; padding: 0 8px 15px; box-sizing: border-box;}
     .profile-inner {border: 1px dashed #ddd; border-radius: 5px; padding: 20px;}
@@ -91,7 +92,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<h2 class="font-14 font-weight-500 mb-5 inner-heading">Account Overview</h2>
                             <div class="edit-info-list">
-                                <ul>
+                                <ul class="profile-view-data">
 									<li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
@@ -187,7 +188,18 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												</div>
 											</div>
 										</div>
+										
+										
 										<div class="col-6 col-lg-6 col-md-6 form-group">
+											<label>Preference</label>
+											<div class="select-field">
+												<select class="form-control rurera-req-field" name="user_preference">
+													<option value="male" {{($user->user_preference == 'male' || $user->user_preference == '')? 'selected' : ''}}>Male</option>
+													<option value="female" {{($user->user_preference == 'female')? 'selected' : ''}}>Female</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-12 col-lg-12 col-md-12 form-group">
 											<label>Year Group</label>
 											<div class="select-field">
 												<select class="rurera-req-field" name="year_id">
@@ -234,7 +246,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<h2 class="font-14 font-weight-500 mb-5 inner-heading">School Preference</h2>
                             <div class="edit-info-list">
-                                <ul>
+                                <ul class="profile-view-data">
 									<li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
@@ -358,7 +370,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<h2 class="font-14 font-weight-500 mb-5 inner-heading">Display Settings</h2>
                             <div class="edit-info-list">
-                                <ul>
+                                <ul class="profile-view-data">
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
@@ -485,16 +497,17 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-5 inner-heading">Login Details
+							<div class="edit-info-list">
+								<h2 class="font-14 font-weight-500 mb-5 inner-heading">Login Details
+									<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between">
+										<span class="edit-icon d-inline-flex align-items-center float-right pr-15">
+											<img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+											<em class="font-weight-500">Edit</em>
+										</span>
+									</a>
+								</h2>
 							
-							<span class="edit-icon d-inline-flex align-items-center float-right">
-								<img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
-								<em class="font-weight-500">Edit</em>
-							</span>
-							</h2>
-							
-							
-							<div class="student-profile-holder">
+								<div class="student-profile-holder profile-view-data">
 								<div class="profile-inner">
 									<div class="profile-header">
 										<h3>{{$user->get_full_name()}}</h3>
@@ -521,7 +534,35 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 									</div>
 								</div>
 							</div>
+							<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+								 <form class="child-edit-form" method="post" action="javascript:;">
+									{{ csrf_field() }}
+									<div class="row">
+										<div class="col-6 col-lg-6 col-md-6 form-group">
+											<label>Username</label>
+											<div class="input-field">
+												<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+												<input type="text" name="username" class="" placeholder="Username" value="{{$user->username}}">
+											</div>
+										</div>
+										<div class="col-6 col-lg-6 col-md-6 form-group">
+											<label>Password</label>
+											<div class="input-field">
+												<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+												<input type="text" name="password" class="" placeholder="Password" value="">
+											</div>
+										</div>
+									</div>
+									
+									<div class="edit-profile-controls">
+										<input type="hidden" name="user_id" value="{{$user->id}}">
+										<a href="javascript:;" class="text-center cancel-edit-button">Reset</a>
+										<a href="javascript:;" class="btn btn-primary text-center profile-save-btn">Save</a>
+                                    </div>
+									</form>
                         </div>
+                        </div>
+                    </div>
                     </div>
 					
 					
@@ -941,12 +982,12 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 			});*/
 			
 			$(document).on('click', '.edit-profile-btn', function (e) {
-				$(this).closest('.edit-info-list').find('ul').addClass('rurera-hide');
+				$(this).closest('.edit-info-list').find('.profile-view-data').addClass('rurera-hide');
 				$(this).closest('.edit-info-list').find('.edit-profile-block').removeClass('rurera-hide');
 			});
 
 			$(document).on('click', '.cancel-edit-button', function (e) {
-				$(this).closest('.edit-info-list').find('ul').removeClass('rurera-hide');
+				$(this).closest('.edit-info-list').find('.profile-view-data').removeClass('rurera-hide');
 				$(this).closest('.edit-info-list').find('.edit-profile-block').addClass('rurera-hide');
 			});
 			
@@ -957,7 +998,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 				var thisObj = $(this);
 				var formData = new FormData($(this).closest('form')[0]);
 				console.log('submission');
-				returnType = rurera_validation_process($(this).closest('form')[0], 'under_field');
+				returnType = rurera_validation_process($(this).closest('form'), 'under_field');
 				if (returnType == false) {
 					return false;
 				}

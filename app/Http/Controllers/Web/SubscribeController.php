@@ -270,6 +270,7 @@ class SubscribeController extends Controller
        $first_name = $request->get('first_name', null);
        $last_name = $request->get('last_name', null);
        $display_name = $request->get('display_name', null);
+       $user_preference = $request->get('user_preference', null);
        $user_id = $request->get('user_id', null);
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
@@ -290,6 +291,7 @@ class SubscribeController extends Controller
 	   if ( $last_name != null){ $userData['last_name_parent'] = $last_name; }
 	   if ( $last_name != null){ $userData['full_name_parent'] = $first_name.' '.$last_name; }
 	   if ( $display_name != null){ $userData['display_name'] = $display_name; }
+	   if ( $user_preference != null){ $userData['user_preference'] = $user_preference; }
 	   if ( $year_id != null){ $userData['year_id'] = $year_id; }
 	   if ( $test_prep_school != null){ $userData['prep_school'] = $test_prep_school; }
 	   if ( $hide_timestables_field != null){ $userData['hide_timestables'] = $hide_timestables_field; }
