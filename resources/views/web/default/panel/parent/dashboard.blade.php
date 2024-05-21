@@ -199,7 +199,7 @@
                                                 </li>
                                                 @endif
                                                 <li><a href="javascript:;" class="package-payment-btn switch-user-btn unlink-modal" data-type="child_payment" data-id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
-                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-prep_school="{{$childObj->prep_school}}" data-year_id="{{$childObj->year_id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
+                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-prep_school="{{$childObj->prep_school}}" data-year_id="{{$childObj->year_id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}" data-hide_timestables="{{$childObj->hide_timestables}}" data-hide_games="{{$childObj->hide_games}}" data-hide_spellings="{{$childObj->hide_spellings}}" data-hide_books="{{$childObj->hide_books}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
                                                 <li><a href="/panel/students/print-card/{{$childObj->id}}" target="_blank"><span class="icon-box"><img src="/assets/default/svgs/printer-activity.svg" alt=""></span> Print Login Card <Profile></Profile></a></li>
                                             </ul>
                                         </div>
@@ -874,6 +874,62 @@
                                             </select>
                                         </div>
                                     </div>
+									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
+										
+										<div class="form-group custom-switches-stacked">
+											<label class="custom-switch pl-0">
+												<input type="hidden" name="hide_timestables" value="0">
+												<input type="checkbox" name="hide_timestables_field"
+													   id="hide_timestables" value="1" class="custom-switch-input"/>
+												<span class="custom-switch-indicator"></span>
+												<label class="custom-switch-description mb-0 cursor-pointer"
+													   for="hide_timestables">Hide Timestables</label>
+											</label>
+										</div>
+									</div>
+									
+									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
+										
+										<div class="form-group custom-switches-stacked">
+											<label class="custom-switch pl-0">
+												<input type="hidden" name="hide_spellings" value="0">
+												<input type="checkbox" name="hide_spellings_field"
+													   id="hide_spellings" value="1" class="custom-switch-input"/>
+												<span class="custom-switch-indicator"></span>
+												<label class="custom-switch-description mb-0 cursor-pointer"
+													   for="hide_spellings">Hide Spellings</label>
+											</label>
+										</div>
+									</div>
+									
+									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
+										
+										<div class="form-group custom-switches-stacked">
+											<label class="custom-switch pl-0">
+												<input type="hidden" name="hide_games" value="0">
+												<input type="checkbox" name="hide_games_field"
+													   id="hide_games" value="1" class="custom-switch-input"/>
+												<span class="custom-switch-indicator"></span>
+												<label class="custom-switch-description mb-0 cursor-pointer"
+													   for="hide_games">Hide Games</label>
+											</label>
+										</div>
+									</div>
+									
+									<div class="col-6 col-sm-12 col-md-6 col-lg-6">
+										
+										<div class="form-group custom-switches-stacked">
+											<label class="custom-switch pl-0">
+												<input type="hidden" name="hide_books" value="0">
+												<input type="checkbox" name="hide_books_field"
+													   id="hide_books" value="1" class="custom-switch-input"/>
+												<span class="custom-switch-indicator"></span>
+												<label class="custom-switch-description mb-0 cursor-pointer"
+													   for="hide_books">Hide Books</label>
+											</label>
+										</div>
+									</div>
+
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-6">
 									<span class="emojis-list"></span>
                                     <a class="btn btn-primary d-block mt-15 regenerate-emoji" href="javascript:;">Generate Emoji</a>
@@ -1165,6 +1221,29 @@
         var user_id = $(this).attr('data-user_id');
         var year_id = $(this).attr('data-year_id');
         var prep_school = $(this).attr('data-prep_school');
+		var hide_timestables = $(this).attr('data-hide_timestables');
+		var hide_spellings = $(this).attr('data-hide_spellings');
+		var hide_games = $(this).attr('data-hide_games');
+		var hide_books = $(this).attr('data-hide_books');
+		
+		$('input[name="hide_timestables_field"]').prop('checked', false);
+		$('input[name="hide_spellings_field"]').prop('checked', false);
+		$('input[name="hide_games_field"]').prop('checked', false);
+		$('input[name="hide_books_field"]').prop('checked', false);
+		
+		if( hide_timestables == 1){
+			$('input[name="hide_timestables_field"]').prop('checked', true);
+		}
+		if( hide_spellings == 1){
+			$('input[name="hide_spellings_field"]').prop('checked', true);
+		}
+		if( hide_games == 1){
+			$('input[name="hide_games_field"]').prop('checked', true);
+		}
+		if( hide_books == 1){
+			$('input[name="hide_books_field"]').prop('checked', true);
+		}
+		$(".hide_timestables_field").val(hide_timestables);
 		var emojis_reponse = $(this).closest('.list-group-item').find('.emojis-response').html();
 		var pin_response = $(this).closest('.list-group-item').find('.pin-response').html();
         $(".user-edit-first-name").val(first_name);

@@ -142,17 +142,9 @@ class UserController extends Controller
 		$accountings = Accounting::where('user_id', $user->id)
 		->where('system', false)
 		->where('tax', false)
+		->where('type', 'deduction')
 		->with([
-			'webinar',
-			'promotion',
 			'subscribe',
-			'meetingTime' => function ($query) {
-				$query->with(['meeting' => function ($query) {
-					$query->with(['creator' => function ($query) {
-						$query->select('id', 'full_name');
-					}]);
-				}]);
-			}
 		])
 		->orderBy('created_at', 'desc')
 		->orderBy('id', 'desc')
@@ -213,7 +205,6 @@ class UserController extends Controller
             }
 			
 			
-			pre($data);
 
             //Temporary
             $updateData['user_life_lines'] = 5;
@@ -240,11 +231,26 @@ class UserController extends Controller
                 'gold_member' => isset( $data['gold_member'] )? $data['gold_member'] : 0,
             ]);
 
-
-            if (!empty($data['user_preference'])) {
-                $user->update([
-                    'user_preference' => $data['user_preference']
-                ]);
+			
+			$userUpdateData = array();
+			
+			if (isset( $data['first_name'] ) && $data['first_name'] != '') {
+				$userUpdateData['first_name'] = $data['first_name'];
+            }
+			if (isset( $data['last_name'] ) && $data['last_name'] != '') {
+				$userUpdateData['last_name'] = $data['last_name'];
+            }
+			
+			if (isset( $data['weekly_summary_emails'] ) && $data['weekly_summary_emails'] != '') {
+				$userUpdateData['weekly_summary_emails'] = $data['weekly_summary_emails'];
+            }
+			
+			if (isset( $data['user_preference'] ) && $data['user_preference'] != '') {
+				$userUpdateData['user_preference'] = $data['user_preference'];
+            }
+			
+			if (!empty($userUpdateData)) {
+                $user->update($userUpdateData);
             }
 
             $url = '/panel/setting';

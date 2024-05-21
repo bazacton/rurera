@@ -11249,7 +11249,6 @@ address .info-list-label {color: #64748b;}
 /* User Detail Style End */
 
 /* Wizard-Steps Style Start */
-.lms-choose-membership .wizard-steps {margin-bottom: 30px;}
 .lms-choose-membership .panel-header {background-color: #fff; border-bottom: 4px solid #e2e8f0; position: relative; padding: 10px 20px; display: flex; align-items: center;}
 .lms-choose-membership .panel-header .modal-logo {border-right: 1px solid #ddd; padding: 0 15px 0 0; margin-right: 15px;}
 .lms-choose-membership .panel-header img {height: 40px; width: 40px; }
@@ -11296,11 +11295,10 @@ address .info-list-label {color: #64748b;}
 .edit-profile-menu li a.active {background-color: #8b5cf61a; border-radius: 10px; color: #8b5cf6;}
 .edit-profile-menu li a .icon-box {line-height: 10px;}
 .edit-profile-menu li a.active .icon-box img {filter: invert(42%) sepia(28%) saturate(7499%) hue-rotate(238deg) brightness(100%) contrast(94%);}
-.edit-profile-content-holder {padding-left: 30px; }
 .top-heading h5 {color: #000;}
 .top-heading h5 span {color: #94a3b8; line-height: normal;}
 .edit-profile-controls button {background-color: inherit; border: 1px solid #ddd; padding: 8px 20px; min-width: 96px; border-radius: 5px;}
-.edit-profile-controls .save-btn {background-color: var(--primary); color: #fff; border-color: var(--primary);}
+.edit-profile-controls .save-btn {background-color: var(--primary); color: #fff; border-color: var(--primary); margin-left: 10px;}
 .edit-profile-body {max-width: 32rem; margin: 0 auto;}
 .edit-profile-image .profile-image {text-align: center;}
 .edit-element-title h6 span {color: #94a3b8; line-height: normal;}
@@ -11320,13 +11318,25 @@ address .info-list-label {color: #64748b;}
 .edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 .edit-profile-content-holder .tab-pane {min-height: 400px;}
 /*Edit Profile Style End*/
-.container.set-work-container {margin-bottom: 50px;}
 .sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
 .sorting-filter a img {height: 20px; width: 20px; border-radius: 0; filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);}
 .sorting-filter a.active img {filter: invert(44%) sepia(42%) saturate(6111%) hue-rotate(221deg) brightness(100%) contrast(98%);}
 .rurera-progress-bar {height: 20px; width: 100%; background-color: antiquewhite; margin: 0 0 20px; position: relative; overflow: hidden;}
 .rurera-progress-bar .progress-inner {display: block; height: 100%; background: linear-gradient(to right,  green 20%, green 25%, yellow 25%, yellow 50%, orange 50%, orange 75%, red 25%, red 30%); position: absolute; left: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out;}
 .disabled-div {pointer-events: none;}
+/*Custom Switch Style Start*/
+.custom-switch {cursor: pointer; display: block; align-items: center; margin: 0;}
+.custom-switch-input {position: absolute; z-index: -1; opacity: 0;}
+.custom-switches-stacked {display: flex; flex-direction: column;}
+.custom-switches-stacked .custom-switch {margin-bottom: .5rem;}
+.custom-switch-indicator {display: inline-block; height: 1.25rem; width: 2.25rem; background: #e9ecef; border-radius: 50px; position: relative; vertical-align: bottom; border: 1px solid rgba(0, 40, 100, 0.12); transition: .3s border-color, .3s background-color;}
+.custom-switch-indicator:before {content: ''; position: absolute; height: calc(1.25rem - 4px); width: calc(1.25rem - 4px); top: 1px; left: 1px; background: #fff; border-radius: 50%; transition: .3s left;}
+.custom-switch-input:checked ~ .custom-switch-indicator {background: var(--primary);}
+.custom-switch-input:checked ~ .custom-switch-indicator:before {left: calc(1rem + 1px);}
+.custom-switch-input:focus ~ .custom-switch-indicator {border-color: var(--primary);}
+.custom-switch-description {margin-left: .5rem; color: #6e7687; transition: .3s color;}
+.custom-switch-input:checked ~ .custom-switch-description {color: #495057;}
+/*Custom Switch Style End*/
 
 /*************************************
 Lms Responsive Style Start
@@ -11858,32 +11868,36 @@ Lms Responsive Style Start
     .filters-list {position: relative; width: 50%; padding-right: 8px; margin-top: 12px;}
     .filters-list .analytics-type,
     .filters-list .tests-list,
-    .tests-list {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px; align-items: flex-start;}
+    .tests-list, .listing-search .inline-filters:not(.wizard-steps .listing-search .inline-filters) {position: absolute; width: 95%; flex-direction: column; left: 0; top: 100%; text-align: left; background-color: #fff; z-index: 1; padding: 10px 15px; box-shadow: 0 0 5px rgba(0,0,0,0.1); visibility: hidden; opacity: 0; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; margin-top: 10px; align-items: flex-start;}
  
-    .tests-list {width: 100%; padding-top: 15px; padding-bottom: 15px;}
+    .tests-list, .listing-search .inline-filters:not(.wizard-steps .listing-search .inline-filters) {width: 100%; padding-top: 15px; padding-bottom: 15px;}
     .filters-list .analytics-type.open,
     .filters-list .tests-list.open,
-    .panel-content .inline-filters.open,
-    .tests-list.open {visibility: visible; opacity: 1; margin-top: 0;}
+    .tests-list.open,
+    .listing-search .inline-filters.open:not(.wizard-steps .listing-search .inline-filters.open) {visibility: visible; opacity: 1; margin-top: 0;}
     .filters-list .analytics-type li,
     .filters-list .tests-list li,
-    .tests-list li {width: 100%;}
+    .tests-list li, .listing-search .inline-filters li:not(.wizard-steps .listing-search .inline-filters li) {width: 100%;}
     .filters-list .analytics-type li a img,
     .filters-list .tests-list li img,
-    .tests-list li img {display: inline-block; margin: 0px 5px 0 0; vertical-align: middle; width: 20px; height: 20px;}
+    .tests-list li img, .listing-search .inline-filters li img:not(.wizard-steps .listing-search .inline-filters li img) {display: inline-block; margin: 0px 5px 0 0; vertical-align: middle; width: 20px; height: 20px;}
     .tests-list li img {height: 30px; width: 30px;}
     .filters-list .analytics-type li a,
-    .filters-list .tests-list li a{padding: 5px 0; text-align: left; border: 0;}
+    .filters-list .tests-list li a {padding: 5px 0; text-align: left; border: 0;}
+    .listing-search .inline-filters li a:not(.wizard-steps .listing-search .inline-filters li a) {min-height: auto; flex-direction: row; justify-content: flex-start; border-radius: 0; padding: 0; border: 0;}
+    .listing-search .inline-filters li.active a:not(.wizard-steps .listing-search .inline-filters li.active a) {color: var(--primary);}
+    .listing-search .inline-filters li.active a img:not(.wizard-steps .listing-search .inline-filters li.active a img) {filter: invert(39%) sepia(85%) saturate(3142%) hue-rotate(222deg) brightness(103%) contrast(108%);}
     .filters-list .analytics-type .active a,
     .filters-list .tests-list li.active,
-    .tests-list li.active {box-shadow: none; border: 0;}
+    .tests-list li.active,
+    .listing-search .inline-filters li.active a:not(.wizard-steps .listing-search .inline-filters li.active a) {box-shadow: none; border: 0;}
     .filters-list .tests-list li,
-    .tests-list li {flex-direction: row; min-height: auto; justify-content: flex-start; border: 0;}
+    .tests-list li, .listing-search .inline-filters li:not(.wizard-steps .listing-search .inline-filters li) {flex-direction: row; min-height: auto; justify-content: flex-start; border: 0;}
     .chart-filters .form-group {width: 50%; padding-left: 8px;}
     .tests-list {gap: 15px;}
     .tests-list-holder {position: relative;}
     .listing-search .filters-list {margin-bottom: 15px;}
-    .timestables-modes .tests-list {visibility: visible; opacity: 1; position: initial; flex-direction: row; padding: 0; box-shadow: none;}
+    .timestables-modes .tests-list {visibility: visible; opacity: 1; position: initial; flex-direction: row; padding: 0; box-shadow: none; margin: 0;}
     .timestables-modes .tests-list li {flex-direction: column; width: auto; flex-basis: auto; border: 1px dashed #ddd; min-height: 100px; align-items: center; justify-content: center;}
     .timestables-modes .tests-list li.active {box-shadow: 0 -4px 0 0 #1b85fd inset;}
     .sentences-inner {padding-top: 70px !important;}
@@ -11936,7 +11950,6 @@ Lms Responsive Style Start
     .list-group-item span, .list-group-item strong {font-size: .875rem !important;}
     .populated-data .questions-select-number label {min-height: 45px; padding: 0 15px;}
     body .populated-data .questions-select-number {max-width: 100%;}
-    .edit-profile-content-holder {padding-left: 0;}
     .save-plan {margin: 40px 0 0 0; width: 45%; right: -50px; left: auto;}
     .save-plan span:before {width: 35px; height: 20px; top: 0; background-size: 100%; transform: rotate(45deg);}
     .save-plan span {padding-left: 35px;}

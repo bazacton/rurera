@@ -9,9 +9,8 @@
                                 <thead>
                                 <tr>
                                     <th class="font-14 font-weight-500">{{ trans('public.title') }}</th>
-                                    <th class="font-14 font-weight-500">{{ trans('public.description') }}</th>
+                                    <th class="font-14 font-weight-500">Student</th>
                                     <th class="text-center font-14 font-weight-500">{{ trans('panel.amount') }} ({{ $currency }})</th>
-                                    <th class="text-center font-14 font-weight-500">{{ trans('public.creator') }}</th>
                                     <th class="text-center font-14 font-weight-500">{{ trans('public.date') }}</th>
                                 </tr>
                                 </thead>
@@ -23,58 +22,23 @@
                                         <td class="text-left">
                                             <div class="d-flex flex-column">
                                             <span class="font-16 font-weight-normal">
-                                                @if(!empty($accounting->webinar_id) and !empty($accounting->webinar))
-                                                    {{ $accounting->webinar->title }}
-                                                @elseif(!empty($accounting->meeting_time_id))
-                                                    {{ trans('meeting.reservation_appointment') }}
-                                                @elseif(!empty($accounting->subscribe_id) and !empty($accounting->subscribe))
-                                                    {{ $accounting->subscribe->title }}
-                                                @elseif(!empty($accounting->promotion_id) and !empty($accounting->promotion))
-                                                    {{ $accounting->promotion->title }}
-                                                @elseif(!empty($accounting->registration_package_id) and !empty($accounting->registrationPackage))
-                                                    {{ $accounting->registrationPackage->title }}
-                                                @elseif($accounting->store_type == \App\Models\Accounting::$storeManual)
-                                                    {{ trans('financial.manual_document') }}
-                                                @elseif($accounting->type == \App\Models\Accounting::$addiction and $accounting->type_account == \App\Models\Accounting::$asset)
-                                                    {{ trans('financial.charge_account') }}
-                                                @elseif($accounting->type == \App\Models\Accounting::$deduction and $accounting->type_account == \App\Models\Accounting::$income)
-                                                    {{ trans('financial.payout') }}
-                                                @else
-                                                    ---
-                                                @endif
-                                            </span>
-
-                                                <span class="font-16 font-weight-normal">
-                                                @if(!empty($accounting->webinar_id) and !empty($accounting->webinar))
-                                                        {{ $accounting->webinar->id }}
-                                                    @elseif(!empty($accounting->meeting_time_id) and !empty($accounting->meetingTime))
-                                                        {{ $accounting->meetingTime->meeting->creator->get_full_name() }}
-                                                    @elseif(!empty($accounting->subscribe_id) and !empty($accounting->subscribe))
-                                                        {{ $accounting->subscribe->id }}
-                                                    @elseif(!empty($accounting->promotion_id) and !empty($accounting->promotion))
-                                                        {{ $accounting->promotion->id }}
-                                                    @elseif(!empty($accounting->registration_package_id) and !empty($accounting->registrationPackage))
-                                                        {{ $accounting->registrationPackage->id }}
-                                                    @else
-                                                        ---
-                                                    @endif
+												{{isset( $accounting->orderItem->order->package->title )? $accounting->orderItem->order->package->title : ''}}
                                             </span>
                                             </div>
                                         </td>
                                         <td class="text-left align-middle">
-                                            <span class="font-16 font-weight-normal">{{ $accounting->description }}</span>
+                                            <span class="font-16 font-weight-normal">{{isset( $accounting->orderItem->order->student->id )? $accounting->orderItem->order->student->get_full_name() : ''}}</span>
                                         </td>
                                         <td class="text-center align-middle">
                                             @switch($accounting->type)
                                                 @case(\App\Models\Accounting::$addiction)
-                                                <span class="font-16 font-weight-normal">+{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-16 font-weight-normal">+{{ $accounting->amount }}</span>
                                                 @break;
                                                 @case(\App\Models\Accounting::$deduction)
-                                                <span class="font-16 font-weight-normal">-{{ handlePriceFormat($accounting->amount) }}</span>
+                                                <span class="font-16 font-weight-normal">-{{ $accounting->amount }}</span>
                                                 @break;
                                             @endswitch
                                         </td>
-                                        <td class="text-center align-middle font-16 font-weight-normal">{{ trans('public.'.$accounting->store_type) }}</td>
                                         <td class="text-center align-middle font-16 font-weight-normal text-gray">
                                             <span>{{ dateTimeFormat($accounting->created_at, 'j M Y') }}</span>
                                         </td>

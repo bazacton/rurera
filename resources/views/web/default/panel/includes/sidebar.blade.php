@@ -97,14 +97,17 @@
                         </a>
                             <a href="/learn" class="font-15">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
-                    <li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
-                        <a class="d-flex align-items-center" href="/timestables-practice">
-                            <span class="sidenav-item-icon mr-20">
-                                <img src="/assets/default/img/sidebar/timestable.svg">
-                            </span>
-                        </a>
-                        <a href="/timestables-practice" class="font-15">TimesTable</a>
-                    </li>
+					@if(auth()->user()->hide_timestables == 0)
+						<li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
+							<a class="d-flex align-items-center" href="/timestables-practice">
+								<span class="sidenav-item-icon mr-20">
+									<img src="/assets/default/img/sidebar/timestable.svg">
+								</span>
+							</a>
+							<a href="/timestables-practice" class="font-15">TimesTable</a>
+						</li>
+					@endif
+					@if(auth()->user()->hide_spellings == 0)
                     <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/spells">
                             <span class="sidenav-item-icon mr-20">
@@ -113,6 +116,8 @@
                         </a>
                         <a href="/spells" class="font-15">Word Lists</a>
                     </li>
+					@endif
+					@if(auth()->user()->hide_books == 0)
                     <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/books">
                             <span class="sidenav-item-icon mr-20">
@@ -121,6 +126,7 @@
                         </a>
                             <a href="/books" class="font-15">Books @if(!auth()->subscription('bookshelf'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
+					@endif
                 <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/tests">
                         <span class="sidenav-item-icon mr-20">
@@ -143,6 +149,8 @@
             @endif
 
                 @if(auth()->user()->isUser())
+					
+				@if(auth()->user()->hide_games == 0)
                 <li class="sidenav-item {{ (request()->is('games') or request()->is('games/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/games">
                         <span class="sidenav-item-icon mr-20">
@@ -151,6 +159,7 @@
                     </a>
                     <a href="/games" class="font-15">Games</a>
                 </li>
+				@endif
                 <li class="sidenav-item {{ (request()->is('shop') or request()->is('shop/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/shop">
                         <span class="sidenav-item-icon mr-20">

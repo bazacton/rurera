@@ -52,4 +52,8 @@ class Order extends Model
     {
         return $this->hasOne('App\Models\Subscribe', 'id', 'package_id');
     }
+    public function student()
+    {
+        return $this->belongsTo('App\User', 'student_id', 'id');
+    }
 }

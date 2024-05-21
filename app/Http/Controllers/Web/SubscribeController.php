@@ -269,6 +269,12 @@ class SubscribeController extends Controller
        $user_id = $request->get('user_id', null);
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
+       $hide_timestables_field = $request->get('hide_timestables_field', 0);
+	   $hide_games_field = $request->get('hide_games_field', 0);
+	   $hide_spellings_field = $request->get('hide_spellings_field', 0);
+	   $hide_books_field = $request->get('hide_books_field', 0);
+	   
+	   
        $studentUser = User::find($user_id);
        if (auth()->check() && auth()->user()->isParent()) {
            $studentUser->update([
@@ -277,6 +283,10 @@ class SubscribeController extends Controller
                'full_name_parent' => $first_name.' '.$last_name,
                'year_id' => $year_id,
                'prep_school' => $test_prep_school,
+               'hide_timestables' => $hide_timestables_field,
+               'hide_games' => $hide_games_field,
+               'hide_spellings' => $hide_spellings_field,
+               'hide_books' => $hide_books_field,
            ]);
        }
        exit;

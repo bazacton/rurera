@@ -40,7 +40,7 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                     <li>
                                         <a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
                                             <span class="info-list-label font-14">
-                                                Legal name
+                                                Display name
                                                 <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
@@ -198,38 +198,44 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>First Name</label>
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" name="first_name" class="rurera-req-field" placeholder="First Name" value="{{( $user->first_name != '')? $user->first_name : ''}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>Last Name</label>
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" name="last_name" class="rurera-req-field" placeholder="Last Name" value="{{( $user->last_name != '')? $user->last_name : ''}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>Display Name</label>
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" name="display_name" class="rurera-req-field" placeholder="Display Name" value="{{( $user->display_name != '')? $user->display_name : $user->first_name.' '.$user->last_name}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>Email Address</label>
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" name="email" class="rurera-req-field" placeholder="Email Address" value="{{( $user->email != '')? $user->email : ''}}">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>Password</label>
                                                 <div class="input-field">
                                                     <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
                                                     <input type="text" name="password" class="" placeholder="Password" value="">
                                                 </div>
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
+												<label>Contact no</label>
                                                 <div class="input-field">
-                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <span class="icon-box"><img src="/assets/default/svgs/mobile.svg" alt=""></span>
                                                     <input type="text" name="mobile" class="rurera-req-field" placeholder="Contact no" value="{{( $user->mobile != '')? $user->mobile : ''}}">
                                                 </div>
                                             </div>
@@ -242,6 +248,18 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                                                     </select>
                                                 </div>
                                             </div>
+											<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+												<div class="form-group custom-switches-stacked">
+													<label class="custom-switch pl-0">
+														<input type="hidden" name="weekly_summary_emails_label" value="0">
+														<input type="checkbox" name="weekly_summary_emails"
+															   id="weekly_summary_emails_label" value="1" class="custom-switch-input" {{ (!empty($user) && $user->weekly_summary_emails == '1') ? 'checked' : '' }}/>
+														<span class="custom-switch-indicator"></span>
+														<label class="custom-switch-description mb-0 cursor-pointer"
+															   for="weekly_summary_emails_label">Receive weekly summary emails</label>
+													</label>
+												</div>
+											</div>
                                         </div>
                                     </div>
                                 </div>

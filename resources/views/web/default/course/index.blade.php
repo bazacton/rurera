@@ -232,7 +232,7 @@
 					
 					
                     
-                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 chapter-views chapters-detail-view">
+                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 chapter-views chapters-detail-view rurera-hide">
                          
 			<div class="current-topics-detail bg-white mb-30">
 			<div class="topics-table-group">
@@ -284,7 +284,7 @@
 															<span class="progress-inner" style="width: {{$topic_percentage}}%;"></span>
 														</div>
 													@else
-														Not enough data
+														-
 													@endif
 													</span>
 												</td>
@@ -294,15 +294,13 @@
 												<td data-label="Rersources" class="p-15">
 													<a href="#" class="video-btn mr-10">
 														<span class="icon-box">
-															<img src="/assets/default/svgs/play-video.svg" alt="">
+															<img src="/assets/default/svgs/play-video.svg" alt="" title="Video">
 														</span>
-														<strong>Video</strong>
 													</a>
 													<a href="#" class="file-btn">
 														<span class="icon-box">
-															<img src="/assets/default/svgs/filesheet.svg" alt="">
+															<img src="/assets/default/svgs/filesheet.svg" alt="" title="Helpsheet">
 														</span>
-														<strong>Helpsheet</strong>
 													</a>
 												</td>
 											</tr>
