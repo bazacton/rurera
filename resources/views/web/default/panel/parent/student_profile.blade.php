@@ -1,4 +1,10 @@
 @php
+$user_avatar_settings = $user->user_avatar_settings;
+$user_avatar_settings = json_decode($user_avatar_settings);
+$avatar_settings = isset( $user_avatar_settings->avatar_settings )? (array) $user_avatar_settings->avatar_settings : array();
+$avatar_color_settings = isset( $user_avatar_settings->avatar_color_settings )? (array) $user_avatar_settings->avatar_color_settings : array();
+$avatar_settings = json_encode($avatar_settings);
+$avatar_color_settings = json_encode($avatar_color_settings);
 $emoji_response = '';
 $emojisArray = explode('icon', $user->login_emoji);
 if( !empty( $emojisArray ) ){
@@ -155,6 +161,8 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                 </ul>
 								<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+								
+								
 								 <form class="child-edit-form" method="post" action="javascript:;">
 									{{ csrf_field() }}
 									<div class="row">
@@ -489,7 +497,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-50">
+                    <div class="row mb-0">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
 								<h3 class="font-18 font-weight-500 mb-5">Login Details</h3>
@@ -533,6 +541,15 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</ul>
 									</div>
 								</div>
+								<a href="javascript:;" class="reset-btn regenerate-emoji" data-user_id="{{$user->id}}">
+													<span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>
+												    Reset Emoji
+											    </a>
+											<a href="javascript:;" class="reset-btn regenerate-pin" data-user_id="{{$user->id}}">
+													<span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>
+												    Reset Pin
+											    </a>
+											
 							</div>
 							<div class="edit-profile edit-profile-block mt-10 rurera-hide">
 								 <form class="child-edit-form" method="post" action="javascript:;">
@@ -949,6 +966,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												<label>Login Emojis</label>
 												{!! $emoji_response !!}
 												<a class="btn btn-primary d-block mt-15 regenerate-emoji" data-user_id="{{$user->id}}" href="javascript:;">Generate Emoji</a>
+												
                                             </div>
                                             <div class="col-6 col-lg-6 col-md-6 form-group">
 												<label>Login Pin</label>
@@ -974,6 +992,17 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                 </div>
             </div>
         </div>
+		
+		<div class="modal fade" id="profile-image-modal" tabindex="-1" role="dialog" aria-labelledby="profile-image-modal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                    <div id="svgAvatars"></div>
+            </div>
+        </div>
+    </div>
+</div>
 			
 			<script>
 			/*$(document).on('click', '.edit-profile-btn', function (e) {
@@ -1043,4 +1072,37 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 				$(".user-view-profile").removeClass('rurera-hide');
 				$(".user-edit-profile").addClass('rurera-hide');
 			});*/
+			
+			var user_avatar_settings = '<?php echo $avatar_settings; ?>';
+			var avatar_color_settings = '<?php echo $avatar_color_settings; ?>';
+
+			user_avatar_settings = JSON.parse(user_avatar_settings);
+			avatar_color_settings = JSON.parse(avatar_color_settings);
+			
+			var imageClicked = false;
+			$(document).on('click', '.profile-image-btn', function (e) {
+				$("#profile-image-modal").modal('show');
+				if( imageClicked == false) {
+					var start_id = '{{$user->user_preference}}';
+					start_id = (start_id == 'female') ? 'girls' : 'boys';
+					$("#svga-start-" + start_id).click();
+					imageClicked = true;
+				}
+			});
+			
+			function refresh_preference_field() {
+				$('.preference_field option').removeAttr('disabled');
+				$('.preference_field').each(function () {
+					var current_value = $(this).val();
+					if( current_value != '') {
+						$('.preference_field option[value="' + current_value + '"]').attr('disabled', 'disabled');
+						$(this).find('option[value="' + current_value + '"]').removeAttr('disabled');
+					}
+				});
+			}
+
+			$(document).on('change', '.preference_field', function (e) {
+				refresh_preference_field();
+			});
+			refresh_preference_field();
 	</script>

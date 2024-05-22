@@ -332,11 +332,7 @@ if( !empty( $emojisArray ) ){
     avatar_color_settings = JSON.parse(avatar_color_settings);
 
 $(document).ready(function () {
-
-
-
-
-
+	
     $(document).on('click', '.regenerate-emoji', function (e) {
         rurera_loader($("#userSettingForm"), 'div');
         var login_emoji = $(".emoji-password-field").val();

@@ -11426,6 +11426,9 @@ address .info-list-label {color: #64748b;}
 .custom-switch-input:checked ~ .custom-switch-description {color: #495057;}
 /*Custom Switch Style End*/
 
+.reset-btn {color: var(--primary); font-weight: 500; display: inline-flex; align-items: center; gap: 10px;}
+.reset-btn .icon-box img {height: 14px; width: 14px; filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
+
 /*************************************
 Lms Responsive Style Start
 *************************************/
