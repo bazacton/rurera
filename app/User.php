@@ -3823,9 +3823,9 @@ class User extends Authenticatable
                 break;
 
         }
-        //$is_subscribed = UserSubscriptions::where('user_id', $this->id)->where('status', 'active')->where($subscription_package, 1)->count();
+        $is_subscribed = UserSubscriptions::where('user_id', $this->id)->where('status', 'active')->where($subscription_package, 1)->count();
 
-		$is_subscribed = 1;
+		//$is_subscribed = 1;
         $is_subscribed = ($is_subscribed > 0) ? true : false;
         return $is_subscribed;
     }

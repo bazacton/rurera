@@ -267,23 +267,30 @@ class SubscribeController extends Controller
 
     public function editChild(Request $request)
     {
+       $type = $request->get('type', null);
        $first_name = $request->get('first_name', null);
        $last_name = $request->get('last_name', null);
        $display_name = $request->get('display_name', null);
-       $user_preference = $request->get('user_preference', null);
        $user_id = $request->get('user_id', null);
+	   $studentUser = User::find($user_id);
+	   
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
-       $hide_timestables_field = $request->get('hide_timestables', null);
-	   $hide_games_field = $request->get('hide_games', null);
-	   $hide_spellings_field = $request->get('hide_spellings', null);
-	   $hide_books_field = $request->get('hide_books', null);
+       $hide_timestables_field = $request->get('hide_timestables', 0);
+	   $hide_games_field = $request->get('hide_games', 0);
+	   $hide_spellings_field = $request->get('hide_spellings', 0);
+	   $hide_books_field = $request->get('hide_books', 0);
+	   $hide_sats = $request->get('hide_sats', 0);
+	   $hide_enterance_exams = $request->get('hide_enterance_exams', 0);
+	   $hide_subjects = $request->get('hide_subjects', []);
 	   $school_preference_1 = $request->get('school_preference_1', null);
 	   $school_preference_2 = $request->get('school_preference_2', null);
 	   $school_preference_3 = $request->get('school_preference_3', null);
+	   $school_preference_1_date = $request->get('school_preference_1_date', null);
+	   $school_preference_2_date = $request->get('school_preference_2_date', null);
+	   $school_preference_3_date = $request->get('school_preference_3_date', null);
 	   $username = $request->get('username', null);
 	   $password = $request->get('password', '');
-	   
 	   
 	   $userData = array();
 	   
@@ -291,22 +298,32 @@ class SubscribeController extends Controller
 	   if ( $last_name != null){ $userData['last_name_parent'] = $last_name; }
 	   if ( $last_name != null){ $userData['full_name_parent'] = $first_name.' '.$last_name; }
 	   if ( $display_name != null){ $userData['display_name'] = $display_name; }
-	   if ( $user_preference != null){ $userData['user_preference'] = $user_preference; }
 	   if ( $year_id != null){ $userData['year_id'] = $year_id; }
 	   if ( $test_prep_school != null){ $userData['prep_school'] = $test_prep_school; }
-	   if ( $hide_timestables_field != null){ $userData['hide_timestables'] = $hide_timestables_field; }
-	   if ( $hide_games_field != null){ $userData['hide_games'] = $hide_games_field; }
-	   if ( $hide_spellings_field != null){ $userData['hide_spellings'] = $hide_spellings_field; }
-	   if ( $hide_books_field != null){ $userData['hide_books'] = $hide_books_field; }
+	   if( $type == 'display_settings'){
+		   $userData['hide_timestables'] = $hide_timestables_field; 
+		   $userData['hide_games'] = $hide_games_field;
+		   $userData['hide_spellings'] = $hide_spellings_field; 
+		   $userData['hide_books'] = $hide_books_field; 
+		   $userData['hide_sats'] = $hide_sats; 
+		   $userData['hide_enterance_exams'] = $hide_enterance_exams;
+		   
+		   $categoryObj = Category::where('id', $studentUser->year_id)->first();
+		   $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->pluck('id')->toArray();
+		   $hide_subjects = array_diff($courses_list, $hide_subjects);
+		   $hide_subjects = array_values($hide_subjects);
+		   $userData['hide_subjects'] = json_encode($hide_subjects);
+	   }
 	   if ( $school_preference_1 != null){ $userData['school_preference_1'] = $school_preference_1; }
 	   if ( $school_preference_2 != null){ $userData['school_preference_2'] = $school_preference_2; }
 	   if ( $school_preference_3 != null){ $userData['school_preference_3'] = $school_preference_3; }
+	   if ( $school_preference_1_date != null){ $userData['school_preference_1_date'] = strtotime($school_preference_1_date); }
+	   if ( $school_preference_2_date != null){ $userData['school_preference_2_date'] = strtotime($school_preference_2_date); }
+	   if ( $school_preference_3_date != null){ $userData['school_preference_3_date'] = strtotime($school_preference_3_date); }
 	   if ( $username != null){ $userData['username'] = $username; }
 	   if ( $password != ''){ $userData['password'] = Hash::make($password); }
-	   
-       $studentUser = User::find($user_id);
+       
        if (auth()->check() && auth()->user()->isParent()) {
-		   
            $studentUser->update($userData);
        }
        exit;
@@ -355,6 +372,8 @@ class SubscribeController extends Controller
             'created_at'      => time(),
         ]);
         //$childObj = User::find(1204);
+		$this->generate_user_emoji($childObj->id);
+		$this->generate_user_pin($childObj->id);
         $subscribes = Subscribe::all();
 
 		$subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
@@ -369,6 +388,64 @@ class SubscribeController extends Controller
         echo $response_layout;
         exit;
     }
+	
+	
+	public function generate_user_emoji($user_id){
+		$emojisList = emojisList();
+
+        $UsedEmojisList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_emoji', '!=', '')->pluck('login_emoji')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($emojisList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,60);
+            $generatedIndexes = array_slice($emojisList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedEmojisList));
+
+        if( $user_id > 0) {
+            $user = User::find($user_id);
+        }else{
+            $user = auth()->user();
+        }
+        $user->update([
+            'login_emoji' => $generatedString
+        ]);
+	}
+	
+	
+	public function generate_user_pin($user_id){
+		$loginList = array(0,1,2,3,4,5,6,7,8,9);
+
+        $UsedLoginList = User::where('role_id', '=', 1)->where('status', 'active')->where('login_pin', '!=', '')->pluck('login_pin')->toArray();
+
+        do {
+            // Shuffle the emojis list
+            shuffle($loginList);
+
+            // Take the first 6 emojis as random indexes
+            $random_offset = rand(0,5);
+            $generatedIndexes = array_slice($loginList, $random_offset, 6);
+
+            // Create a string by concatenating the randomly selected emojis
+            $generatedString = implode('', $generatedIndexes);
+
+        } while (in_array($generatedString, $UsedLoginList));
+
+        if( $user_id > 0) {
+            $user = User::find($user_id);
+        }else{
+            $user = auth()->user();
+        }
+        $user->update([
+            'login_pin' => $generatedString
+        ]);
+	}
 
     public function paymentForm(Request $request)
     {
@@ -1181,11 +1258,11 @@ class SubscribeController extends Controller
     public function paymentformTest(Request $request)
     {
 		Stripe::setApiKey(env('STRIPE_SECRET'));
-		$user_id = 1267;
+		$user_id = 1266;
 		$user = User::find($user_id);
 		$stripeCustomer = $user->createOrGetStripeCustomer();
 		$paymentMethods = $user->paymentMethods();
-		pre($user->onTrial());
+		
 		
 		
 		$paymentMethod = $user->defaultPaymentMethod();

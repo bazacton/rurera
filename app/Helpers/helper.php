@@ -68,6 +68,26 @@ function dateTimeFormat($timestamp, $format = 'H:i', $useAdminSetting = true, $a
     return $useAdminSetting ? $carbon->translatedFormat($format) : $carbon->format($format);
 }
 
+function dateTimeFormatNumeric($timestamp, $format = 'H:i', $formatType = '', $useAdminSetting = true, $applyTimezone = true, $timezone = "UTC")
+{
+    if ($applyTimezone) {
+        $timezone = getTimezone();
+    }
+
+    if ($useAdminSetting) {
+        $format = handleDateAndTimeFormat($format, $formatType);
+    }
+
+    if (empty($timezone)) {
+        $timezone = "UTC";
+    }
+
+    $carbon = (new Carbon())
+        ->setTimezone($timezone)
+        ->setTimestamp($timestamp);
+
+    return $useAdminSetting ? $carbon->translatedFormat($format) : $carbon->format($format);
+}
 function dateTimeFormatForHumans($timestamp, $applyTimezone = true, $timezone = "UTC", $parts = 3)
 {
     if ($applyTimezone) {
@@ -100,12 +120,12 @@ function getTimezone()
     return $timezone;
 }
 
-function handleDateAndTimeFormat($format)
+function handleDateAndTimeFormat($format, $formatType = '')
 {
     $dateFormat = getGeneralSettings('date_format') ?? 'textual';
     $timeFormat = getGeneralSettings('time_format') ?? '24_hours';
 
-    if ($dateFormat == 'numerical') {
+    if ($dateFormat == 'numerical' || $formatType == 'numeric') {
         $format = str_replace('M', 'm', $format);
         $format = str_replace('j ', 'j/', $format);
         $format = str_replace('m ', 'm/', $format);

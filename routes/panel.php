@@ -35,6 +35,7 @@ $parentTutorRoutes = function () {
     Route::group(['prefix' => 'students'], function () {
         Route::get('/', 'MembersController@index');
         Route::get('/print-card/{id}', 'MembersController@printCard');
+		Route::get('/{username}', 'MembersController@studentProfile');
     });
 
     Route::group(['prefix' => 'set-work'], function () {

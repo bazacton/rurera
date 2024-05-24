@@ -97,7 +97,7 @@
                         </a>
                             <a href="/learn" class="font-15">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
-					@if(auth()->user()->hide_timestables == 0)
+					@if(auth()->user()->show_timestables == 1)
 						<li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
 							<a class="d-flex align-items-center" href="/timestables-practice">
 								<span class="sidenav-item-icon mr-20">
@@ -107,7 +107,7 @@
 							<a href="/timestables-practice" class="font-15">TimesTable</a>
 						</li>
 					@endif
-					@if(auth()->user()->hide_spellings == 0)
+					@if(auth()->user()->show_spellings == 1)
                     <li class="sidenav-item {{ (request()->is('spells') or request()->is('spells/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/spells">
                             <span class="sidenav-item-icon mr-20">
@@ -117,7 +117,7 @@
                         <a href="/spells" class="font-15">Word Lists</a>
                     </li>
 					@endif
-					@if(auth()->user()->hide_books == 0)
+					@if(auth()->user()->show_books == 1)
                     <li class="sidenav-item {{ (request()->is('books') or request()->is('books/*')) ? 'sidenav-item-active' : '' }}">
                         <a class="d-flex align-items-center" href="/books">
                             <span class="sidenav-item-icon mr-20">
@@ -127,7 +127,9 @@
                             <a href="/books" class="font-15">Books @if(!auth()->subscription('bookshelf'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
 					@endif
-                <li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
+                
+				@if(auth()->user()->show_sats == 1)
+				<li class="sidenav-item {{ (request()->is('tests') or request()->is('tests/*')) ? 'sidenav-item-active' : '' }}">
                     <a class="d-flex align-items-center" href="/tests">
                         <span class="sidenav-item-icon mr-20">
                             <img src="/assets/default/img/sidebar/test.svg">
@@ -137,6 +139,7 @@
                     <a href="/tests" class="font-15">Test @if(!auth()->subscription('sats'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
 
                 </li>
+				@endif
 
              <li class="sidenav-item {{ (request()->is('quests') or request()->is('quests/*')) ? 'sidenav-item-active' : '' }}">
                 <a class="d-flex align-items-center" href="/quests">

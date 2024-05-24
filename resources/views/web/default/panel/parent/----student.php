@@ -77,7 +77,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                 <div class="detail-header-profile mb-25 pb-25">
                     <div class="info-media d-flex align-items-center flex-wrap">
                         <span class="media-box">
-							<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between p-15">
+							<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between">
 								<img src="{{$user->getAvatar()}}" alt="">
 							</a>
                         </span>
@@ -569,14 +569,8 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</ul>
 									</div>
 								</div>
-								<a href="javascript:;" class="reset-btn regenerate-emoji" data-user_id="{{$user->id}}">
-													<span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>
-												    Reset Emoji
-											    </a>
-											<a href="javascript:;" class="reset-btn regenerate-pin" data-user_id="{{$user->id}}">
-													<span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>
-												    Reset Pin
-											    </a>
+								<a href="javascript:;" class="reset-btn regenerate-emoji" data-user_id="{{$user->id}}"><span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>Reset Emoji</a>
+								<a href="javascript:;" class="reset-btn regenerate-pin" data-user_id="{{$user->id}}"><span class="icon-box"><img src="/assets/default/svgs/retry.svg" alt=""></span>Reset Pin</a>
 											
 							</div>
 							<div class="edit-profile edit-profile-block mt-10 rurera-hide">

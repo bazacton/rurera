@@ -14,6 +14,7 @@
     .emoji-icons .emoji-icon img {max-width: 100%; }
 </style>
 <script src="https://js.stripe.com/v3/"></script>
+<link rel="stylesheet" href="/assets/admin/vendor/daterangepicker/daterangepicker.min.css">
 @endpush
 @php $schools = array(); $user = auth()->user();@endphp
 
@@ -127,7 +128,7 @@
                                         </div>
 
                                         <div class="col-auto ms-2">
-                                            <h6 class="font-15 font-weight-normal"><a href="#">{{$childObj->get_full_name()}}</a></h6>
+                                            <h6 class="font-15 font-weight-normal"><a href="/{{panelRoute()}}/students/{{$childObj->username}}">{{$childObj->get_full_name()}}</a></h6>
 											
                                             <small class="text-muted">
                                                 {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
@@ -146,7 +147,6 @@
                                                 @php
                                                 $expiry_at = $childObj->userSubscriptions->expiry_at;
                                                 @endphp
-                                                <br>- Expiry: {{ dateTimeFormat($expiry_at, 'j M Y') }}
                                                 @else
                                                     @if(!isset( $childObj->userSubscriptions->subscribe ) )
                                                         <a href="javascript:;" class="package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
@@ -892,7 +892,7 @@
 @endsection
 
 @push('scripts_bottom')
-
+<script src="/assets/admin/vendor/daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript">
 
 

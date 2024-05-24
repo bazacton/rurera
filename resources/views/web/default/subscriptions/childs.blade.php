@@ -81,7 +81,7 @@
                 <div class="form-group">
                     <span class="fomr-label">Username</span>
                     <div class="input-field">
-                        <input type="text" name="username" class="username-field rurera-req-field" placeholder="Username">
+                        <input type="text" name="username" class="username-field rurera-req-field rurera-min-char rurera-no-space" data-min="6" placeholder="Username">
                         <a href="javascript:;" class="username-auto-generate rurera-hide">Generate</a>
                     </div>
                 </div>

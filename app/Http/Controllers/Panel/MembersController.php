@@ -183,6 +183,35 @@ class MembersController extends Controller
 
         return view('web.default.user.print_students', $data);
     }
+	
+	
+
+
+    public function studentProfile(Request $request, $username)
+    {
+        $userObj = auth()->user();
+		
+		$user = User::where('username', '=', $username)->where('status', 'active')->first();
+		
+		$categoryObj = Category::where('id', $user->year_id)->first();
+        $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->get();
+
+		$childs = $userObj->parentChilds->where('status', 'active')->sortBy(function ($child) {
+                if( isset( $child->user->userSubscriptions->id )){
+                    return 0;
+                }else{
+                    return 1;
+                }
+                //return $child->user->userSubscriptions->count();
+            });
+		$data = array(
+			'childs' => $childs,
+			'user' => $user,
+			'courses_list' => $courses_list,
+		);
+
+        return view('web.default.panel.parent.student', $data);
+    }
 
 
     public function generateEmoji($user)

@@ -1521,7 +1521,11 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
             }
         } else {
             if (is_visible == true) {
-                has_empty[index_no] = rurera_check_field_type(thisObj, alert_messages, has_empty[index_no]);
+				
+				returnArray = rurera_check_field_type(thisObj, alert_messages, has_empty[index_no], error_objects, index_no);
+				has_empty[index_no] = returnArray.has_empty;
+				error_objects = returnArray.error_objects;
+                //has_empty[index_no] = rurera_check_field_type(thisObj, alert_messages, has_empty[index_no], error_objects, index_no);
             }
         }
         if (has_empty[index_no] == false) {
@@ -1563,7 +1567,6 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
             error_messages = error_messages + alert_messages[i];
         }
         //jQuery.growl.remove();
-        console.log(error_messages);
 
         if( error_dispaly_type == 'under_field') {
             $(".rurera-error-msg").remove();
@@ -1572,8 +1575,6 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
                 var error_obj = errorObj.error_obj;
                 error_msg = '<div class="rurera-error-msg">' + error_msg + '</div>';
                 $(error_msg).insertAfter(error_obj);
-                console.log(error_msg);
-                console.log(error_obj);
             });
         }
 
@@ -1644,7 +1645,7 @@ function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_t
  * Check if Provided data for field is valid
  */
 
-function rurera_check_field_type(thisObj, alert_messages, has_empty) {
+function rurera_check_field_type(thisObj, alert_messages, has_empty, error_objects, index_no) {
     /*
      * Check for Email Field
      */
@@ -1702,7 +1703,35 @@ function rurera_check_field_type(thisObj, alert_messages, has_empty) {
             has_empty = true;
         }
     }
-    return has_empty;
+    /*
+     * Check for min characters
+     */
+    if (thisObj.hasClass('rurera-min-char')) {
+        var min_val = thisObj.data('min');
+        if (thisObj.val().length < min_val) {
+            array_length = alert_messages.length;
+            alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, ' requires ' + min_val + ' minimum characters');
+			
+			error_objects[index_no]['error_msg'] = rurera_insert_error_message(thisObj, alert_messages, ' requires minimum ' + min_val + ' characters');
+            error_objects[index_no]['error_obj'] = thisObj;
+            has_empty = true;
+        }
+    }
+	if (thisObj.hasClass('rurera-no-space')) {
+		if (thisObj.val().indexOf(' ') !== -1) {
+			var array_length = alert_messages.length;
+			alert_messages[array_length] = rurera_insert_error_message(thisObj, alert_messages, ' should not contain spaces');
+			
+			error_objects[index_no]['error_msg'] = rurera_insert_error_message(thisObj, alert_messages, ' should not contain spaces');
+			error_objects[index_no]['error_obj'] = thisObj;
+			has_empty = true;
+		}
+	}
+    var responseObject = {
+		error_objects: error_objects,
+		has_empty: has_empty
+	};
+	return responseObject;
 }
 
 $(document).ready(function () {
