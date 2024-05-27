@@ -33,9 +33,11 @@ $parentTutorRoutes = function () {
    });
 
     Route::group(['prefix' => 'students'], function () {
-        Route::get('/', 'MembersController@index');
-        Route::get('/print-card/{id}', 'MembersController@printCard');
-		Route::get('/{username}', 'MembersController@studentProfile');
+		Route::group(['middleware' => 'user_activity_log'], function () {
+			Route::get('/', 'MembersController@index');
+			Route::get('/print-card/{id}', 'MembersController@printCard');
+			Route::get('/{username}', 'MembersController@studentProfile');
+		});
     });
 
     Route::group(['prefix' => 'set-work'], function () {
@@ -176,9 +178,11 @@ $parentTutorRoutes = function () {
      * Parent Module
      */
     Route::group(['prefix' => 'parent'], function () {
-        Route::post('create_student', 'ParentController@create_student');
-        Route::post('update_child/{id}', 'ParentController@update_child');
-        Route::get('user/{id}', 'ParentController@user')->name('update_child');
+		Route::group(['middleware' => 'user_activity_log'], function () {
+			Route::post('create_student', 'ParentController@create_student');
+			Route::post('update_child/{id}', 'ParentController@update_child');
+			Route::get('user/{id}', 'ParentController@user')->name('update_child');
+		});
     });
 
     Route::group(['prefix' => 'quizzes-questions'], function () {
@@ -329,18 +333,19 @@ $parentTutorRoutes = function () {
     });
 
     Route::group(['prefix' => 'setting'], function () {
-        Route::get('/step/{step?}', 'UserController@setting');
-        Route::get('/', 'UserController@setting');
-        Route::post('/', 'UserController@update');
-        Route::post('/metas', 'UserController@storeMetas');
-        Route::post('metas/{meta_id}/update', 'UserController@updateMeta');
-        Route::get('metas/{meta_id}/delete', 'UserController@deleteMeta');
-        Route::get('/deleteAccount', 'UserController@deleteAccount');
-        Route::post('/update-user', 'UserController@updateUser');
-        Route::post('/update-user-password', 'UserController@updateUserPassword');
-        Route::post('/connect-user-class', 'UserController@connectUserClass');
-        Route::post('user-settings', 'UserController@userSettings');
-
+		Route::group(['middleware' => 'user_activity_log'], function () {
+			Route::get('/step/{step?}', 'UserController@setting');
+			Route::get('/', 'UserController@setting');
+			Route::post('/', 'UserController@update');
+			Route::post('/metas', 'UserController@storeMetas');
+			Route::post('metas/{meta_id}/update', 'UserController@updateMeta');
+			Route::get('metas/{meta_id}/delete', 'UserController@deleteMeta');
+			Route::get('/deleteAccount', 'UserController@deleteAccount');
+			Route::post('/update-user', 'UserController@updateUser');
+			Route::post('/update-user-password', 'UserController@updateUserPassword');
+			Route::post('/connect-user-class', 'UserController@connectUserClass');
+			Route::post('user-settings', 'UserController@userSettings');
+		});
     });
 
     Route::group(['prefix' => 'support'], function () {
@@ -410,8 +415,10 @@ $parentTutorRoutes = function () {
     });
 
     Route::group(['prefix' => 'rewards'], function () {
-        Route::get('/', 'RewardController@index');
-        Route::post('/exchange', 'RewardController@exchange');
+		Route::group(['middleware' => 'user_activity_log'], function () {
+			Route::get('/', 'RewardController@index');
+			Route::post('/exchange', 'RewardController@exchange');
+		});
     });
 
     Route::group(['prefix' => 'analytics'], function () {

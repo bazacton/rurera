@@ -11237,6 +11237,8 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 .user-detail .info-title span {color: #64748b;}
 .info-text h3 {color: #1e293b; line-height: normal;}
 .info-text span {color: #64748b;}
+.profile-view-data {margin: 0 -5px;}
+.profile-view-data li {width: 50%; display: inline-block; margin-right: -4px; padding: 0 5px;}
 .edit-info-list li > a {border-bottom: 1px solid #ddd;}
 .info-list-label {color: #94a3b8;}
 .info-list-label strong {color: #475569; line-height: normal; padding-top: 2px;}
@@ -11354,6 +11356,7 @@ address .info-list-label {color: #64748b;}
     border-radius: 20px;
     min-width: 115px;
     background-color: #f3f1f1;
+    cursor: pointer;
 }
 .edit-profile .radio-field input[type=radio] {
     position: absolute;
@@ -11366,6 +11369,28 @@ address .info-list-label {color: #64748b;}
 }
 .edit-profile .radio-field .thumb-box img {
     border-radius: 100%;
+}
+.edit-profile .radio-field input[type=radio]:checked ~ label {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+.filters-v2 .analytics-type li {width: 15.555%;}
+.filters-v2 .analytics-type li a img {
+    margin: 0 10px 0 0;
+    height: 38px;
+    width: 38px;
+}
+.filters-v2 .analytics-type li a {
+    padding: 0 10px 0 0;
+    border-radius: 50px;
+    border-style: solid;
+}
+.filters-v2 .analytics-type {
+    gap: 15px;
+}
+.chart-filters .filters-v2 .analytics-type .active a {
+    box-shadow: none;
 }
 /*Edit Profile Style End*/
 .sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
@@ -12025,6 +12050,8 @@ Lms Responsive Style Start
     .child-edit-form .w-80 {width: 100% !important;}
     .no-record-found-head li {padding: 0 10px;}
     .subjects-heading {margin-bottom: 25px;}
+    .profile-view-data {margin: 0;}
+    .profile-view-data li {width: 100%; margin-right: 0; padding: 0;}
 }
 
 @media screen and (max-width: 640px) {

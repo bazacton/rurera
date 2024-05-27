@@ -95,7 +95,7 @@ if( !empty( $emojisArray ) ){
 $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptions->subscribe : (object) array();
 @endphp
 <div class="chart-filters p-0">
-	<div class="filters-list">
+	<div class="filters-list filters-v2">
 		<a href="#" class="filter-mobile-btn">Filters Dropdown</a>
 		<ul class="analytics-type">
 			@if( $childs->count() > 0)
@@ -103,7 +103,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 					@php $childObj = $childLinkObj->user; 
 					$is_active = ($childObj->id == $user->id)? 'active' : '';
 					@endphp
-					<li class="{{$is_active}}"><a href="/{{panelRoute()}}/students/{{$childObj->username}}"><img src="{{$childObj->getAvatar()}}" alt="{{$childObj->get_full_name()}}" class="avatar rounded-circle"> {{$childObj->get_full_name()}}</a></li>
+					<li class="{{$is_active}}"><a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="d-flex align-items-center flex-wrap"><img src="{{$childObj->getAvatar()}}" alt="{{$childObj->get_full_name()}}" class="avatar rounded-circle"> {{$childObj->get_full_name()}}</a></li>
 				@endforeach
 			@endif
 		</ul>
@@ -265,7 +265,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                             <div class="select-option d-flex align-items-center flex-wrap">
                                                 <div class="radio-field">
                                                     <input type="radio" name="gender" id="male">
-                                                    <label for="male" class="d-inline-flex align-items-center flex-wrap mb-0 font-weight-500">
+                                                    <label for="male" class="d-inline-flex align-items-center flex-wrap mb-0 text-center">
                                                         <span class="thumb-box float-left mr-10">
                                                             <img src="/avatar/svgA16395287444009177.png" alt="" height="35" width="35">
                                                         </span>
@@ -274,7 +274,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 </div>
                                                 <div class="radio-field">
                                                     <input type="radio" name="gender" id="female">
-                                                    <label for="female" class="d-inline-flex align-items-center flex-wrap mb-0 font-weight-500">
+                                                    <label for="female" class="d-inline-flex align-items-center flex-wrap mb-0 text-center">
                                                         <span class="thumb-box float-left mr-10">
                                                             <img src="/avatar/svgA16395287444009177.png" alt="" height="35" width="35">
                                                         </span>
