@@ -39,12 +39,14 @@ $parentTutorRoutes = function () {
     });
 
     Route::group(['prefix' => 'set-work'], function () {
-        Route::get('/', 'SetWorkController@index')->name('listSetWork');
-        Route::get('/create', 'SetWorkController@create');
-        Route::post('/store', 'SetWorkController@store');
-        Route::get('/{id}/progress', 'SetWorkController@progress');
-        Route::get('/{id}/remove', 'SetWorkController@remove');
-        Route::get('/search', 'SetWorkController@search');
+		Route::group(['middleware' => 'user_activity_log'], function () {
+			Route::get('/', 'SetWorkController@index')->name('listSetWork');
+			Route::get('/create', 'SetWorkController@create');
+			Route::post('/store', 'SetWorkController@store');
+			Route::get('/{id}/progress', 'SetWorkController@progress');
+			Route::get('/{id}/remove', 'SetWorkController@remove');
+			Route::get('/search', 'SetWorkController@search');
+		});
     });
 
 

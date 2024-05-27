@@ -8,6 +8,7 @@ use App\Models\Reward;
 use App\Models\RewardAccounting;
 use App\Models\UserSession;
 use App\User;
+use App\Models\UserActivitiesLog;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -264,7 +265,19 @@ class LoginController extends Controller
     public function afterLogged(Request $request, $verify = false, $is_redirect = true)
     {
         $user = auth()->user();
-
+		
+		
+		if( isset( $user->id ) ){
+			$clientIpAddress = $request->getClientIp();
+			UserActivitiesLog::create([
+				'user_id' => $user->id,
+				'log_type' => 'login',
+				'ip_address' => $clientIpAddress,
+				'visit_location' => 'login',
+				'created_at' => time(),
+			]);
+		}
+		
         if ($user->ban) {
             $time = time();
             $endBan = $user->ban_end_at;

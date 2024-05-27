@@ -110,7 +110,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 	</div>
 </div>
 <div class="user-detail user-view-profile">
-                <div class="detail-header-profile d-flex align-items-center flex-wrap justify-content-between mb-25 pb-25">
+                <div class="detail-header-profile bg-white py-25 px-30 d-flex align-items-center flex-wrap justify-content-between mb-25 pb-25">
                     <div class="info-media d-flex align-items-center flex-wrap">
                         <span class="media-box">
 							<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between">
@@ -142,7 +142,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         </a>
                     </div>
                 </div>
-                <div class="detail-body">
+                <div class="detail-body p-25">
 				
                     <div class="row mb-50">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -216,15 +216,15 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                         </a>
                                     </li>
                                 </ul>
-								<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+								<div class="edit-profile edit-profile-block mt-20 rurera-hide bg-white p-25">
 								
 								
 								 <form class="child-edit-form" method="post" action="javascript:;">
 									{{ csrf_field() }}
 									<div class="row">
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Student's first name</span>
+												<span class="fomr-label mb-10 d-block">Student's first name</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="rurera-req-field" placeholder="First Name" name="first_name" value="{{$user->get_first_name()}}">
@@ -232,9 +232,9 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 											</div>
 										</div>
 										
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Student's last name</span>
+												<span class="fomr-label mb-10 d-block">Student's last name</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="rurera-req-field" placeholder="Last name" name="last_name" value="{{$user->get_last_name()}}">
@@ -243,9 +243,9 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</div>
 										
 										
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Display name</span>
+												<span class="fomr-label mb-10 d-block">Display name</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="rurera-req-field" placeholder="Display name" name="display_name" value="{{($user->display_name != '')? $user->display_name : $user->get_first_name().' '.$user->get_last_name()}}">
@@ -254,17 +254,37 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</div>
 										
 										
-										<div class="col-6 col-lg-6 col-md-6 form-group">
-                                            <span class="fomr-label mb-5 d-block">Preference</span>
-											<div class="select-field">
+										<div class="col-6 col-lg-6 col-md-6">
+                                            <span class="fomr-label mb-10 d-block">Preference</span>
+											<!-- <div class="select-field">
 												<select class="form-control rurera-req-field" name="user_preference">
 													<option value="male" {{($user->user_preference == 'male' || $user->user_preference == '')? 'selected' : ''}}>Male</option>
 													<option value="female" {{($user->user_preference == 'female')? 'selected' : ''}}>Female</option>
 												</select>
-											</div>
+											</div> -->
+                                            <div class="select-option d-flex align-items-center flex-wrap">
+                                                <div class="radio-field">
+                                                    <input type="radio" name="gender" id="male">
+                                                    <label for="male" class="d-inline-flex align-items-center flex-wrap mb-0 font-weight-500">
+                                                        <span class="thumb-box float-left mr-10">
+                                                            <img src="/avatar/svgA16395287444009177.png" alt="" height="35" width="35">
+                                                        </span>
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div class="radio-field">
+                                                    <input type="radio" name="gender" id="female">
+                                                    <label for="female" class="d-inline-flex align-items-center flex-wrap mb-0 font-weight-500">
+                                                        <span class="thumb-box float-left mr-10">
+                                                            <img src="/avatar/svgA16395287444009177.png" alt="" height="35" width="35">
+                                                        </span>
+                                                        Female
+                                                    </label>
+                                                </div>
+                                            </div>
 										</div>
 										<div class="col-12 col-lg-12 col-md-12 form-group">
-                                            <span class="fomr-label mb-5 d-block">Year Group</span>
+                                            <span class="fomr-label mb-10 d-block">Year Group</span>
 											<div class="select-field">
 												<select class="rurera-req-field" name="year_id">
 												  <option {{ !empty($trend) ?
@@ -362,11 +382,11 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                     </li>
                                 </ul>
 								
-								<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+								<div class="edit-profile edit-profile-block mt-20 rurera-hide bg-white p-25">
 								<form class="child-edit-form" method="post" action="javascript:;">
 									{{ csrf_field() }}
 									<div class="row">
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<label>Test Prep School Choice</label>
 											<div class="select-field">
 												<select class="form-control rurera-req-field" name="test_prep_school">
@@ -377,7 +397,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												</select>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<label>Preference 1</label>
 											<div class="select-field">
 												<select class="form-control preference_field rurera-req-field" name="school_preference_1">
@@ -388,16 +408,16 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												</select>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Preference 1 Date</span>
+												<span class="fomr-label mb-10 d-block">Preference 1 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker" min="{{date('Y-m-d')}}" placeholder="Preference 1 Date" name="school_preference_1_date" value="{{($user->school_preference_1_date != '')? dateTimeFormatNumeric($user->school_preference_1_date, 'Y-m-d', 'numeric') : ''}}">
 												</div>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<label>Preference 2</label>
 											<div class="select-field">
 												<select class="form-control preference_field" name="school_preference_2">
@@ -408,16 +428,16 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												</select>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Preference 2 Date</span>
+												<span class="fomr-label mb-10 d-block">Preference 2 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}" placeholder="Preference 2 Date" name="school_preference_2_date" value="{{($user->school_preference_2_date != '')? dateTimeFormatNumeric($user->school_preference_2_date, 'Y-m-d', 'numeric') : ''}}">
 												</div>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<label>Preference 3</label>
 											<div class="select-field">
 												<select class="form-control preference_field rurera-req-field" name="school_preference_3">
@@ -428,9 +448,9 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 												</select>
 											</div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
+										<div class="col-6 col-lg-6 col-md-6">
 											<div class="form-group">
-												<span class="fomr-label mb-5 d-block">Preference 3 Date</span>
+												<span class="fomr-label mb-10 d-block">Preference 3 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}" placeholder="Preference 3 Date" name="school_preference_3_date" value="{{($user->school_preference_3_date != '')? dateTimeFormatNumeric($user->school_preference_3_date, 'Y-m-d', 'numeric') : ''}}">
@@ -460,7 +480,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-25 inner-heading pb-15">Display Settings</h2>
+							<h2 class="font-14 font-weight-500 mb-5 inner-heading pb-15">Display Settings</h2>
                             <div class="edit-info-list">
                                 <ul class="profile-view-data">
                                     <li>
@@ -555,7 +575,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 											@endforeach
 										@endif
                                 </ul>
-								<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+								<div class="edit-profile edit-profile-block mt-20 rurera-hide bg-white p-25">
 								<form class="child-edit-form" method="post" action="javascript:;">
 									{{ csrf_field() }}
 									<input type="hidden" name="type" value="display_settings">
@@ -775,23 +795,27 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 											    </a>
 											
 							</div>
-							<div class="edit-profile edit-profile-block mt-10 rurera-hide">
+							<div class="edit-profile edit-profile-block mt-20 rurera-hide bg-white p-25">
 								 <form class="child-edit-form" method="post" action="javascript:;">
 									{{ csrf_field() }}
 									<div class="row">
-										<div class="col-6 col-lg-6 col-md-6 form-group">
-											<label>Username</label>
-											<div class="input-field">
-												<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-												<input type="text" name="username" class="" placeholder="Username" value="{{$user->username}}">
-											</div>
+										<div class="col-6 col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>Username</label>
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <input type="text" name="username" class="" placeholder="Username" value="{{$user->username}}">
+                                                </div>
+                                            </div>
 										</div>
-										<div class="col-6 col-lg-6 col-md-6 form-group">
-											<label>Password</label>
-											<div class="input-field">
-												<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
-												<input type="text" name="password" class="" placeholder="Password" value="">
-											</div>
+										<div class="col-6 col-lg-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <div class="input-field">
+                                                    <span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
+                                                    <input type="text" name="password" class="" placeholder="Password" value="">
+                                                </div>
+                                            </div>
 										</div>
 									</div>
 									
@@ -983,7 +1007,9 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                 <div class="tab-content unlink-block" id="nav-tabContent">
                         <h3>Data will be removed and may not be retrievable.</h3>
                         <div class="row justify-content-center payment-content">
-                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center"><a href="javascript:;" class="nav-link btn-primary rounded-pill mb-25 unlink-btn" data-child_id="0">Proceed Unlink</a></div>
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12 text-center">
+                                <a href="javascript:;" class="nav-link btn-primary rounded-pill mb-10 unlink-btn" data-child_id="0">Proceed Unlink</a>
+                            </div>
                         </div>
                 </div>
                 </div>

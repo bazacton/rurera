@@ -11147,6 +11147,8 @@ body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
 .googlepay-gateway-fields section.container {margin-top: 0 !important;}
 .social-info-card .icon-box {height: 45px; width: 50px; display: inline-flex; align-items: center; justify-content: center; background-color: #cfe3f4; padding: 8px; border-radius: 3px; margin: 0 0 15px;}
 .social-info-card .icon-box img {max-width: 100%;}
+.class-connect-modal .unlink-block.rurera-processing .unlink-btn {box-shadow: none;}
+.class-connect-modal .unlink-block .unlink-btn {padding: 14px 30px; display: inline-block;}
 
 /* Sentences Screens Style Start */
 body:has(.sentences-block) .top-navbar,
@@ -11347,6 +11349,24 @@ address .info-list-label {color: #64748b;}
 .edit-profile .select-field:after {content: "\203A"; position: absolute; right: 0; top: 0; height: 40px; width: 40px; text-align: center; line-height: 40px; font-size: 24px; color: #94a3b8; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); pointer-events: none;}
 .edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 .edit-profile-content-holder .tab-pane {min-height: 400px;}
+.edit-profile .radio-field label {
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    min-width: 115px;
+    background-color: #f3f1f1;
+}
+.edit-profile .radio-field input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.edit-profile .select-option {
+    gap: 20px;
+}
+.edit-profile .radio-field .thumb-box img {
+    border-radius: 100%;
+}
 /*Edit Profile Style End*/
 .sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
 .sorting-filter a img {height: 20px; width: 20px; border-radius: 0; filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);}
