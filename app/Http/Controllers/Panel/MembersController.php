@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Http\Controllers\Web\CronJobsController;
 use App\Models\Category;
+use Stripe\Stripe;
 use App\Models\Subscribe;
 use App\Models\Comment;
 use App\Models\Gift;
@@ -14,6 +15,7 @@ use App\Models\Sale;
 use App\Models\Support;
 use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
+use App\Models\Schools;
 use App\Models\ParentsOrders;
 use App\User;
 use Illuminate\Http\Request;
@@ -189,9 +191,26 @@ class MembersController extends Controller
 
     public function studentProfile(Request $request, $username)
     {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
         $userObj = auth()->user();
 		
 		$user = User::where('username', '=', $username)->where('status', 'active')->first();
+		
+		
+		if( !isset( $user->card_brand ) || $user->card_brand == ''){
+    		$stripeCustomer = $user->createOrGetStripeCustomer();
+    		$paymentMethods = $user->paymentMethods();
+    		
+    		
+    		
+    		$paymentMethod = $user->defaultPaymentMethod();
+    		if( $paymentMethod == '' || empty( $paymentMethod )){
+    			$paymentMethodUsed = $paymentMethods->first();
+    			if(isset( $paymentMethodUsed->id ) && $paymentMethodUsed->id != ''){
+    				$user->updateDefaultPaymentMethod($paymentMethodUsed->id);
+    			}
+    		}
+		}
 		
 		$categoryObj = Category::where('id', $user->year_id)->first();
         $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->get();
@@ -204,10 +223,12 @@ class MembersController extends Controller
                 }
                 //return $child->user->userSubscriptions->count();
             });
+		$schools = Schools::where('status', 'active')->get();
 		$data = array(
 			'childs' => $childs,
 			'user' => $user,
 			'courses_list' => $courses_list,
+			'schools' => $schools,
 		);
 
         return view('web.default.panel.parent.student', $data);

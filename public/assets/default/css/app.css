@@ -9091,6 +9091,7 @@ Lms Choose Membership Model Style Start
 .lms-choose-membership .book-detail {text-align: center;}
 .lms-choose-membership .modal-dialog {height: 100%;}
 .lms-choose-membership .modal-content {background-color: #fafafa; border: 0; position: relative; box-shadow: none; border-radius: 0; /*height: 100%;*/}
+.lms-choose-membership:has(.form-login-reading) .modal-content {height: 100%;}
 .lms-choose-membership .modal-body{background-color: #fafafa; padding: 0 25px 0;}
 .subscription-content .col-xs-12 {width: 100%;}
 .lms-choose-membership .modal-body .nav-link {width: 300px; margin: 25px auto;height: 60px;line-height: 44px; font-size: 18px;font-weight: bold; text-transform: capitalize;}
@@ -9832,9 +9833,10 @@ Dashboard Form-Tabs Style Start
 .db-members .card {background-color: inherit; box-shadow: none; border: 0; }
 .db-members .card .card-header {padding: 15px 20px !important; margin: 0; align-items: center; border-radius: 0; border-bottom: 1px solid #e2e8f0;}
 .db-members .card .card-body {padding: 0;}
-.db-members .card .list-group-item {background-color: inherit; border: 0; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 20px 25px; position: inherit;}
-.db-members .card .list-group-item .col-auto:first-child {padding-right: 0; width: auto; min-width: auto;}
+.db-members .card .list-group-item {background-color: inherit; border: 0; border-bottom: 1px solid #ddd; margin: 0; border-radius: 10px 10px 0 0; padding: 0; position: inherit;}
+.db-members .card .list-group-item .col-auto:first-child {padding-right: 0; padding-left: 40px; width: auto; min-width: auto;}
 .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 25%; max-width: 25%;}
+.db-members .card .list-group-item .col-auto:last-child {padding-right: 40px;}
 .db-members .card .list-group-item:last-child {border-radius: 0 0 10px 10px; border-bottom: 0;}
 .billing-card .list-group-item {padding: 0;}
 .db-notifications {max-width: 700px;}
@@ -9871,12 +9873,12 @@ Dashboard Form-Tabs Style Start
 .db-members .list-group-item .profile-dropdown > a:before {border: 1px solid #ddd; border-radius: 100%; content: ""; height: 42px; width: 42px; position: absolute; left: 50%; top: 50%; margin: -21px 0 0 -21px; transition-duration: .3s; transition-property: all; transition-timing-function: cubic-bezier(.4,0,.2,1); -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0);}
 .db-members .profile-dropdown:hover > a:before {-webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1);}
 .db-members .list-group-item .row {flex-wrap: nowrap;}
-.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 100px;}
+.db-members .card .list-group-item [class*="col-"] {position: inherit; flex: auto; width: 100%; min-width: 100px; padding-top: 20px; padding-bottom: 20px;}
 .db-members .card .list-group-item [class*="col-"].activity-date {width: 50%; }
 .db-members .card .list-group-item .profile-dropdown,
 .db-members .card .list-group-item .action-activity {width: auto; min-width: auto;}
 .db-members .card .list-group-item .action-activity {display: inline-flex; align-items: center; position: relative;}
-.db-members .card .list-group-item .action-activity .listing-title {top: -60px; width: 100%; text-align: right; padding-right: 30px;}
+.db-members .card .list-group-item .action-activity .listing-title { width: 100%; text-align: right; padding-right: 30px;}
 .action-activity .remove-btn {background-color: #ffdfe3; height: 40px; width: 40px; text-align: center; border: 1px solid #d84356; display: inline-flex; align-items: center; justify-content: center; border-radius: 3px; margin-left: 10px;}
 .db-form-tabs .list-group-item .remove-btn img,
 .action-activity .remove-btn img {max-height: 18px;max-width: 18px;min-height: 18px;min-width: 18px;filter: invert(46%) sepia(74%) saturate(4289%) hue-rotate(328deg) brightness(89%) contrast(90%);}
@@ -11008,7 +11010,7 @@ span.review-label {line-height: normal;}
 /* Cabinet Table Style End */
 .summary-btns .summary-btn,
 .summary-btns a{border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-weight: 500; padding: 12px 15px; display: inline-block; line-height: normal; min-width: 120px; text-align: center; margin-right: 5px;}
-.dashboard-card .icon-box {height: 32px; width: 32px; display: block; margin: 0 auto 15px; border-radius: 100%; background-color: #000; text-align: center; line-height: 18px; padding: 6px;}
+.dashboard-card .icon-box {height: 32px; width: 32px; display: block; margin: 0 auto 15px; border-radius: 100%; background-color: #000; text-align: center; line-height: 18px; padding: 5px 6px;}
 .dashboard-card .icon-box img {max-width: 100%; vertical-align: middle; filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(277deg) brightness(104%) contrast(102%);}
 .dashboard-card {padding: 30px 5px;}
 .dashboard-card .select-btn {border: 1px solid #89bf74; padding: 8px 25px; color: #89bf74;}
@@ -11225,6 +11227,9 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 
 /* User Detail Style Start */
 .detail-header-profile {border-bottom: 1px solid #ddd;}
+.detail-header-profile .profile-controls {gap: 18px; }
+.detail-header-profile .profile-controls a {display: flex; align-items: center; gap: 2px;}
+.detail-header-profile .profile-controls .icon-box img {display: inline-block; vertical-align: top;}
 .info-media {gap: 15px;}
 .info-media img {border-radius: 20px; width: 64px; height: 64px; object-fit: contain;}
 .user-detail .info-title span {color: #64748b;}
@@ -11248,7 +11253,7 @@ address .info-list-label {color: #64748b;}
 .card-info-text span {color: #64748b; margin: 0 0 2px;}
 .card-info-text .card-exp span {margin-bottom: 0;}
 .detail-body .profile-inner,
-.edit-info-list .subscribe-plan {border-radius: 10px !important; max-width: 380px; min-width: 380px; border-style: solid;}
+.edit-info-list .subscribe-plan {background-color: #fff; border-radius: 10px !important; max-width: 380px; min-width: 380px; border-style: solid;}
 .detail-body .student-profile-holder {padding: 0; margin-bottom: 40px;}
 .detail-body .student-profile-holder h3,
 .detail-body .subscribe-plan h3 {font-size: 16px !important; font-weight: 400 !important; color: #94a3b8;}

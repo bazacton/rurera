@@ -119,21 +119,21 @@
 								<span class="pin-response rurera-hide">{{$childObj->login_pin}}</span>
 								
                                     <div class="row align-items-center">
-                                        <div class="col-auto">
+										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto">
                                             <h6 class="listing-title font-14 font-weight-500">Student</h6>
-                                            <a href="javascript:;" class="avatar"><img
+                                            <img
                                                         src="{{$childObj->getAvatar()}}"
                                                         alt="{{$childObj->get_full_name()}}"
-                                                        class="avatar rounded-circle"></a>
-                                        </div>
+                                                        class="avatar rounded-circle">
+										</a>
 
-                                        <div class="col-auto ms-2">
-                                            <h6 class="font-15 font-weight-normal"><a href="/{{panelRoute()}}/students/{{$childObj->username}}">{{$childObj->get_full_name()}}</a></h6>
-											
-                                            <small class="text-muted">
-                                                {{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
-                                            </small>
-                                        </div>
+										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto  ms-2">
+												<h6 class="font-15 font-weight-normal">{{$childObj->get_full_name()}}</h6>
+												
+												<small class="text-muted">
+													{{isset($childObj->userYear->id )? $childObj->userYear->getTitleAttribute() : ''}} {{isset($childObj->userClass->title)? $childObj->userClass->title : ''}} {{isset( $childObj->userSection->title )? $childObj->userSection->title : ''}}
+												</small>
+										</a>
                                         <div class="col-auto last-activity">
                                             <h6 class="listing-title font-14 font-weight-500">Membership</h6>
                                             <span class="font-14 d-block">
@@ -156,19 +156,19 @@
                                                 @endif
                                             </span>
                                         </div>
-                                        <div class="col-auto last-activity">
+										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
                                             <h6 class="listing-title font-14 font-weight-500">School</h6>
                                             <span class="font-14 d-block">
                                                 {{isset($childObj->userSchool->title)? $childObj->userSchool->title : '-'}}
                                             </span>
-                                        </div>
+                                        </a>
 
-                                        <div class="col-auto last-activity">
+										<a href="/{{panelRoute()}}/students/{{$childObj->username}}" class="col-auto last-activity">
                                             <h6 class="listing-title font-14 font-weight-500">Last Activity</h6>
                                             <span class="font-15 d-block"><strong class="font-weight-normal d-block">{{ ($childObj->getLastActivity() != '')? dateTimeFormat($childObj->getLastActivity(), 'j M Y') : '' }}</strong>
                                                 {{ ($childObj->getLastActivity() != '')? 'Last Activity' : '' }}
                                             </span>
-                                        </div>
+                                        </a>
                                         <div class="col-auto ms-auto last-activity profile-dropdown">
                                             <h6 class="listing-title font-14 font-weight-500">Action</h6>
                                             <a href="javascript:;" class="font-15 font-weight-normal">
@@ -178,7 +178,6 @@
                                             </a>
                                             <ul>
                                                 <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
-                                                <li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
                                                 @if(!isset( $childObj->userSubscriptions->subscribe ) )
                                                 <li>
                                                     <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
@@ -191,16 +190,7 @@
                                                         <span class="icon-box"><img src="/assets/default/svgs/package.svg" alt=""></span> Update Package
                                                     </a>
                                                 </li>
-                                                @endif
-                                                @if(isset( $childObj->userSubscriptions->subscribe ) && $childObj->userSubscriptions->is_cancelled == 0 )
-                                                <li>
-                                                    <a href="javascript:;" class="package-payment-btn switch-user-btn cancel-subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
-                                                        <span class="icon-box"><img src="/assets/default/svgs/cancel.svg" alt=""></span> Cancel Membership
-                                                    </a>
-                                                </li>
-                                                @endif
-                                                <li><a href="javascript:;" class="package-payment-btn switch-user-btn unlink-modal" data-type="child_payment" data-id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/unlink.svg" alt=""></span> Unlink <Profile></Profile></a></li>
-                                                <li><a href="javascript:;" data-toggle="modal" data-target="#edit-user-modal" class="edit-user-btn" data-user_id="{{$childObj->id}}" data-prep_school="{{$childObj->prep_school}}" data-year_id="{{$childObj->year_id}}" data-first_name="{{$childObj->get_first_name()}}" data-last_name="{{$childObj->get_last_name()}}" data-hide_timestables="{{$childObj->hide_timestables}}" data-hide_games="{{$childObj->hide_games}}" data-hide_spellings="{{$childObj->hide_spellings}}" data-hide_books="{{$childObj->hide_books}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Edit User</a></li>
+                                                @endif                                             
                                                 <li><a href="/panel/students/print-card/{{$childObj->id}}" target="_blank"><span class="icon-box"><img src="/assets/default/svgs/printer-activity.svg" alt=""></span> Print Login Card <Profile></Profile></a></li>
                                             </ul>
                                         </div>
@@ -830,8 +820,7 @@
         <div class="modal-content">
             <div class="panel-header">
                 <div class="modal-logo"><img src="/assets/default/img/sidebar/logo.svg"></div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard 123<span aria-hidden="true">×</span></button>
-				<a type="button" class="close-modal" href="javascript:;">closed×</span></a>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">Back to Dashboard <span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <div class="container container-nosidebar">

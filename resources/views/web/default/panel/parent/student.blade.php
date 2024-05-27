@@ -72,7 +72,6 @@
 <script src="https://js.stripe.com/v3/"></script>
 <link rel="stylesheet" href="/assets/admin/vendor/daterangepicker/daterangepicker.min.css">
 @endpush
-@php $schools = array(); @endphp
 
 @section('content')
 @php
@@ -123,17 +122,23 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                         </h2>
                     </div>
                     <div class="profile-controls d-inline-flex align-items-center flex-wrap">
-                        <a href="#" class="font-weight-500">
+                        <a href="/{{panelRoute()}}/switch_user/{{$user->id}}" class="font-weight-500">
                             <span class="icon-box d-inline-block mr-5">
-                                <img src="/assets/default/svgs/retry.svg" alt="">
+                                <img src="/assets/default/svgs/switch-user.svg" alt="">
                             </span>
                             Switch Profile
                         </a>
-                        <a href="#">
+						<a href="javascript:;" class="package-payment-btn font-weight-500 unlink-modal" data-type="child_payment" data-id="{{$user->id}}">
                             <span class="icon-box d-inline-block mr-5">
-                                <img src="/assets/default/svgs/settings.svg" alt="">
+                                <img src="/assets/default/svgs/unlink.svg" alt="">
                             </span>
-                            Account Settings
+                            Unlink
+                        </a>
+                        <a href="/{{panelRoute()}}/students/print-card/{{$user->id}}" target="_blank" class="font-weight-500">	
+                            <span class="icon-box d-inline-block mr-5">
+                                <img src="/assets/default/svgs/printer-activity.svg" alt="">
+                            </span>
+                            Print Login Card
                         </a>
                     </div>
                 </div>
@@ -219,7 +224,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 									<div class="row">
 										<div class="col-6 col-lg-6 col-md-6 form-group">
 											<div class="form-group">
-												<span class="fomr-label">Student's first name</span>
+												<span class="fomr-label mb-5 d-block">Student's first name</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="rurera-req-field" placeholder="First Name" name="first_name" value="{{$user->get_first_name()}}">
@@ -385,7 +390,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</div>
 										<div class="col-6 col-lg-6 col-md-6 form-group">
 											<div class="form-group">
-												<span class="fomr-label">Preference 1 Date</span>
+												<span class="fomr-label mb-5 d-block">Preference 1 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker" min="{{date('Y-m-d')}}" placeholder="Preference 1 Date" name="school_preference_1_date" value="{{($user->school_preference_1_date != '')? dateTimeFormatNumeric($user->school_preference_1_date, 'Y-m-d', 'numeric') : ''}}">
@@ -405,7 +410,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</div>
 										<div class="col-6 col-lg-6 col-md-6 form-group">
 											<div class="form-group">
-												<span class="fomr-label">Preference 2 Date</span>
+												<span class="fomr-label mb-5 d-block">Preference 2 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}" placeholder="Preference 2 Date" name="school_preference_2_date" value="{{($user->school_preference_2_date != '')? dateTimeFormatNumeric($user->school_preference_2_date, 'Y-m-d', 'numeric') : ''}}">
@@ -425,7 +430,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 										</div>
 										<div class="col-6 col-lg-6 col-md-6 form-group">
 											<div class="form-group">
-												<span class="fomr-label">Preference 3 Date</span>
+												<span class="fomr-label mb-5 d-block">Preference 3 Date</span>
 												<div class="input-field">
 													<span class="icon-box"><img src="/assets/default/svgs/edit-menu-user.svg" alt=""></span>
 													<input type="text" class="preference-date rureradatepicker rurera-req-field" min="{{date('Y-m-d')}}" placeholder="Preference 3 Date" name="school_preference_3_date" value="{{($user->school_preference_3_date != '')? dateTimeFormatNumeric($user->school_preference_3_date, 'Y-m-d', 'numeric') : ''}}">
@@ -869,7 +874,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-					<h2 class="font-14 font-weight-500 mb-5 inner-heading pb-15">Main Card</h2>
+					<h2 class="font-14 font-weight-500 mb-25 inner-heading pb-15">Main Card</h2>
                     <div class="edit-info-list">
                         <ul>
                             <li>

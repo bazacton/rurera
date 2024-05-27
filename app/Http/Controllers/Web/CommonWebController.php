@@ -339,6 +339,7 @@ class CommonWebController extends Controller
 				if( $quiz_type == 'sats') {
 					$response .= '<h4 class="total-tests has-border font-22 mt-20">Total Lists: '.$results->count().'</h4>';
 				}
+				
 				$response .= '<table class="simple-table">
                                     <tbody> ';
                         if( $quiz_type != 'vocabulary') {

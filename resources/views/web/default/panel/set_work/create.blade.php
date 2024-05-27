@@ -427,7 +427,7 @@
 
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-6 assignment_topic_type_fields timestables_fields vocabulary_fields mock_test_fields sats_fields books_fields">
                                                 <div class="form-group">
                                                     <label class="input-label">No of Attempts</label>
 
@@ -523,7 +523,7 @@
                                         </div>
 
 
-                                    <div class="form-group assignment_topic_type_fields practice_fields">
+                                    <div class="form-group assignment_topic_type_fields practice_fields1">
                                         <label class="input-label">Practice Method</label>
                                         <div class="plan-switch-option" style="justify-content: left;">
                                                 <span class="switch-label font-18">Completion Target</span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -533,7 +533,7 @@
                                         </div>
                                     </div>
 
-                                        <div class="row assignment_topic_type_fields practice_fields">
+                                        <div class="row assignment_topic_type_fields practice_fields1">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group assignment_method_check_fields target_improvements_fields">
                                                     <label class="input-label">Percentage of Correct Answers</label>
@@ -976,6 +976,8 @@
                             //$(".quiz-ajax-fields").html(return_data);
                             $(".practice-quiz-ajax-fields").html(return_data);
                         }
+						console.log('quiz_type=='+quiz_type);
+						console.log(return_data);
                         $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
                         rurera_remove_loader(thisObj.closest('label'), 'div');
                     }

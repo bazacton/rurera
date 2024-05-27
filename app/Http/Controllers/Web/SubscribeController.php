@@ -276,12 +276,12 @@ class SubscribeController extends Controller
 	   
        $year_id = $request->get('year_id', null);
        $test_prep_school = $request->get('test_prep_school', null);
-       $hide_timestables_field = $request->get('hide_timestables', 0);
-	   $hide_games_field = $request->get('hide_games', 0);
-	   $hide_spellings_field = $request->get('hide_spellings', 0);
-	   $hide_books_field = $request->get('hide_books', 0);
-	   $hide_sats = $request->get('hide_sats', 0);
-	   $hide_enterance_exams = $request->get('hide_enterance_exams', 0);
+       $hide_timestables_field = $request->get('show_timestables', 0);
+	   $hide_games_field = $request->get('show_games', 0);
+	   $hide_spellings_field = $request->get('show_spellings', 0);
+	   $hide_books_field = $request->get('show_books', 0);
+	   $hide_sats = $request->get('show_sats', 0);
+	   $hide_enterance_exams = $request->get('show_enterance_exams', 0);
 	   $hide_subjects = $request->get('hide_subjects', []);
 	   $school_preference_1 = $request->get('school_preference_1', null);
 	   $school_preference_2 = $request->get('school_preference_2', null);
@@ -301,12 +301,12 @@ class SubscribeController extends Controller
 	   if ( $year_id != null){ $userData['year_id'] = $year_id; }
 	   if ( $test_prep_school != null){ $userData['prep_school'] = $test_prep_school; }
 	   if( $type == 'display_settings'){
-		   $userData['hide_timestables'] = $hide_timestables_field; 
-		   $userData['hide_games'] = $hide_games_field;
-		   $userData['hide_spellings'] = $hide_spellings_field; 
-		   $userData['hide_books'] = $hide_books_field; 
-		   $userData['hide_sats'] = $hide_sats; 
-		   $userData['hide_enterance_exams'] = $hide_enterance_exams;
+		   $userData['show_timestables'] = $hide_timestables_field; 
+		   $userData['show_games'] = $hide_games_field;
+		   $userData['show_spellings'] = $hide_spellings_field; 
+		   $userData['show_books'] = $hide_books_field; 
+		   $userData['show_sats'] = $hide_sats; 
+		   $userData['show_enterance_exams'] = $hide_enterance_exams;
 		   
 		   $categoryObj = Category::where('id', $studentUser->year_id)->first();
 		   $courses_list = Webinar::where('category_id', $categoryObj->id)->where('status', 'active')->pluck('id')->toArray();
