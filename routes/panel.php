@@ -345,6 +345,8 @@ $parentTutorRoutes = function () {
 			Route::post('/update-user-password', 'UserController@updateUserPassword');
 			Route::post('/connect-user-class', 'UserController@connectUserClass');
 			Route::post('user-settings', 'UserController@userSettings');
+			Route::post('/connect-student', 'UserController@connectStudent');
+			Route::post('/request-action', 'UserController@requestAction');
 		});
     });
 

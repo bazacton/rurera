@@ -16,6 +16,7 @@ use App\Models\Support;
 use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
 use App\Models\Schools;
+use App\Models\StudentLinkRequests;
 use App\Models\ParentsOrders;
 use App\User;
 use Illuminate\Http\Request;
@@ -77,7 +78,9 @@ class MembersController extends Controller
                 'plan_expiry_update',
                 'plan_update'
             ))->get();
-
+			
+			$studentsRequests = StudentLinkRequests::where('request_to', $user->id)->where('status', 'active')->get();
+			$data['studentsRequests'] = $studentsRequests;
 
             $ParentsOrders = ParentsOrders::where('user_id', $user->id)
                 ->where('status', 'active')

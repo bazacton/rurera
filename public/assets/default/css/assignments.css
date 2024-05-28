@@ -1,13 +1,13 @@
 .populated-content-area[class*="col-"] {padding: 0;}
 .radio-buttons {display: flex; flex-wrap: wrap; gap: 15px; width: 100%;}
 .radio-buttons .card-radio {width: 11.111%; margin-bottom: 0;}
-.populated-data .radio-btn {background-color: #fff; border: 2px solid transparent; border-radius: 10px; display: flex; position: relative; text-align: center; box-shadow: 0 0 10px #c3c3c367; cursor: pointer; padding: 15px 12px; min-height: 111px; align-items: center; justify-content: center; height: auto;}
+.populated-data .radio-btn {border: 2px solid transparent; border-radius: 6px; display: flex; position: relative; text-align: center; box-shadow: 0 0 10px #c3c3c367; cursor: pointer; padding: 15px 12px; min-height: 111px; align-items: center; justify-content: center; height: auto;}
 .populated-data .radio-btn.disabled-style {opacity: 0.5;}
 .populated-data .radio-btn.disabled-style:hover {opacity: 1;}
 .populated-data .setwork-fields .radio-btn,
 .populated-data .timestables_fields .radio-btn {border-radius: 5px; min-height: 80px; padding: 10px;}
 .card-radio input {display: none;}
-.card-radio input:checked + .radio-btn {border-color: var(--primary);}
+.card-radio input:checked + .radio-btn {background-color: #fff;}
 .radio-btn .card-icon h3 {color: #555; font-size: 14px; font-weight: 500; margin-bottom: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; text-overflow: ellipsis;}
 .populated-data .input-label {font-size: 14px; color: #666; font-weight: 400;}
 .populated-data .ui-widget.ui-widget-content {margin-top: 15px;}

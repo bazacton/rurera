@@ -234,7 +234,7 @@
                     
                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 chapter-views chapters-detail-view rurera-hide">
                          
-			<div class="current-topics-detail bg-white mb-30">
+			<div class="current-topics-detail bg-white mb-30 mt-15">
 			<div class="topics-table-group">
 		
 			@foreach($course->chapters as $chapter)
@@ -272,12 +272,12 @@
                                             @endphp
 											
 											<tr>
-												<td data-label="{{ $chapter->title }}" class="p-15">
+												<td data-label="{{ $chapter->title }}" class="px-15 py-20">
 													<div class="checkbox-field mb-0">
 														<label for="{{$sub_chapter['sub_chapter_slug']}}" class="m-0 font-weight-bold">{{ $sub_chapter['title'] }} {!! $topic_percentage_text !!}</label>
 													</div>
 												</td>
-												<td data-label="Mastery Level" class="p-15">
+												<td data-label="Mastery Level" class="px-15 py-20">
 													<span>
 													@if( $topic_percentage > 0)
 														<div class="rurera-progress-bar">
@@ -288,10 +288,10 @@
 													@endif
 													</span>
 												</td>
-												<td data-label="Last Seen" class="p-15">
+												<td data-label="Last Seen" class="px-15 py-20">
 													<span>-</span>
 												</td>
-												<td data-label="Rersources" class="p-15">
+												<td data-label="Rersources" class="px-15 py-20">
 													<a href="#" class="video-btn mr-10">
 														<span class="icon-box">
 															<img src="/assets/default/svgs/play-video.svg" alt="" title="Video">

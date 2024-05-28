@@ -617,7 +617,7 @@
                                 <p itemprop="description" class="mb-0 text-white font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">
-                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/sats" style="color:var(--gray-dark);">Signup</a> </button> </div>
+                                <div class="form-field position-relative text-right"> <button class="rounded-pill rounded bg-white"> <a href="{{url('/')}}/register" style="color:var(--gray-dark);">Signup</a> </button> </div>
                             </div>
                         </div>
                     </div>

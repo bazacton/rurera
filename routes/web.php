@@ -424,6 +424,8 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::get('/get_group_questions', 'CommonWebController@get_group_questions');
         Route::get('/get_group_questions_options', 'CommonWebController@get_group_questions_options');
         Route::get('/get_mock_subjects_by_year', 'CommonWebController@get_mock_subjects_by_year');
+		Route::get('/user_heatmap', 'CommonWebController@user_heatmap');
+		
 
 
     });

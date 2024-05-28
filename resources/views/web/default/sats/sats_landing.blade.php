@@ -565,8 +565,8 @@
                         time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Start SATs Practice</a>
-                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-primary">Start SATs Practice</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -597,8 +597,8 @@
                         technology as a result of SATs exam practice.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a SATs Quiz</a>
-                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a SATs Quiz</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Moniter performance</a>
                     </div>
                 </div>
             </div>
@@ -614,8 +614,8 @@
                         a user-friendly platform where teachers can analyze individual and group performance trends.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Track performance</a>
-                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -644,8 +644,8 @@
                         SATs exam practice time activity log while  remaining on system and can analyze the performance
                         against each SATs tests.</p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Track performance</a>
-                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Learn More</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -661,8 +661,8 @@
                         SATs exam practice for advanced problem-solving.
                     </p>
                     <div class="mt-35 d-flex align-items-center">
-                        <a href="{{url('/')}}/membership" class="btn btn-primary">Take a Quiz</a>
-                        <a href="{{url('/')}}/membership" class="btn btn-outline-primary ml-15">Moniter performance</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a Quiz</a>
+                        <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Moniter performance</a>
                     </div>
                     <div class="flex-grow-1 ml-15"></div>
                 </div>
@@ -885,7 +885,7 @@
                             <div class="col-12 col-lg-4 col-md-4">
                                 <div class="form-field position-relative text-right">
                                     <button class="rounded rounded-pill bg-white">
-                                        <a href="{{url('/')}}/membership" style="color:var(--gray-dark);">View our plans</a>
+                                        <a href="{{url('/')}}/pricing" style="color:var(--gray-dark);">View our plans</a>
                                     </button>
                                 </div>
                             </div>

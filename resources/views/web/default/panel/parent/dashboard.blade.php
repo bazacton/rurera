@@ -26,11 +26,51 @@
         <button type="button" class="btn btn-sm btn-primary subscription-modal {{($childs->count() == 0)? 'add-child-btn' : ''}}" data-type="child_register" data-id="0">
             <img src="/assets/default/svgs/add-con.svg"> Add Student
         </button>
+		<button type="button" class="btn btn-sm btn-primary link-student-modal" data-type="child_register" data-id="0">
+            <img src="/assets/default/svgs/add-con.svg"> Link Student
+        </button>
 
     </div>
     </div>
 </section>
 
+@if( $studentsRequests->count() > 0)
+<section class="dashboard mb-60">
+
+    <div class="db-form-tabs">
+        <div class="db-members">
+            <div class="row g-3 list-unstyled students-requests-list">
+			
+				@foreach( $studentsRequests as $studentsRequestObj)
+						<div class="col-12 col-lg-12 students-requests-list-item">
+							<div class="notification-card rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40 mt-20">
+								<div class="row align-items-center">
+									<div class="col-12 col-lg-3 mt-10 mt-lg-0 d-flex align-items-start">
+										<span class="notification-badge badge badge-circle-danger mr-5 mt-5 d-flex align-items-center justify-content-center"></span>
+										<div class="">
+											<h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$studentsRequestObj->student->get_full_name()}}</h3>
+											<span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($studentsRequestObj->created_at, 'j M Y')}}</span>
+										</div>
+									</div>
+
+									<div class="col-12 col-lg-5 mt-10 mt-lg-0">
+										<span class="font-weight-500 text-gray font-14"><p>By granting them access, you are allowing the {{$studentsRequestObj->requestBy->get_full_name()}} to manage the {{$studentsRequestObj->student->get_full_name()}} account.</p></span>
+									</div>
+
+									<div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
+										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white ">Approve</button>
+										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="rejected" class="request-action-btn js-show-message btn btn-border-white ">Reject</button>
+									</div>
+								</div>
+							</div>
+						</div>
+				@endforeach
+				
+			</div>
+		</div>
+	</div>
+</section>
+@endif
 <section class="dashboard">
 
     <div class="db-form-tabs">
@@ -178,6 +218,7 @@
                                             </a>
                                             <ul>
                                                 <li><a href="/panel/switch_user/{{$childObj->id}}" class="switch-user-btn"><span class="icon-box"><img src="/assets/default/svgs/switch-user.svg" alt=""></span> Switch User</a></li>
+												<li><a href="javascript:;" data-toggle="modal" data-target="#class-connect-modal" class="connect-user-btn" data-user_id="{{$childObj->id}}"><span class="icon-box"><img src="/assets/default/svgs/link-file.svg" alt=""></span> Connect to Class</a></li>
                                                 @if(!isset( $childObj->userSubscriptions->subscribe ) )
                                                 <li>
                                                     <a href="javascript:;" class="package-payment-btn switch-user-btn subscription-modal" data-type="child_payment" data-id="{{$childObj->id}}">
@@ -727,11 +768,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="class-thumb">
-                    <figure>
-
-                    </figure>
-                </div>
                 <strong>Connect To Class</strong>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
@@ -761,7 +797,7 @@
                             </div>
                         </li>
                     </ul>
-                    <p>Connect to your child's class to receiv Lesson recommendations and to see what your child is learning in school.</p>
+                    <p>Connect to your child's class to receive Lesson recommendations and to see what your child is learning in school.</p>
                     <div class="connect-controls">
                         <a href="javascript:;" data-dismiss="modal" aria-label="Close">Never Mind</a>
                         <a href="javascript:;" class="connect-next-step">Find Your School</a>
@@ -878,6 +914,67 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade student-link-modal" id="student-link-modal" tabindex="-1" aria-labelledby="studentLinkModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong>Connect Student</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="class-thumb-list connect-class-steps" data-id="1">
+                    <ul>
+                        <li>
+                            <div class="class-thumb">
+                                <a href="#">
+                                    <figure class="media-box"></figure>
+                                    <span class="thumb-lable">Billy</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="school-box">
+                            <div class="class-thumb">
+                                <figure class="media-icon"><img src="/assets/default/svgs/school-with-flag.svg" alt=""></figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="class-thumb">
+                                <a href="#">
+                                    <figure class="media-box"></figure>
+                                    <span class="thumb-lable">your School</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <p>Connect to your student's account to view their progress and set lesson plans.</p>
+                    <div class="connect-controls">
+                        <a href="javascript:;" data-dismiss="modal" aria-label="Close">Never Mind</a>
+                        <a href="javascript:;" class="connect-next-step">Find Student</a>
+                    </div>
+                </div>
+
+                <form action="#" method="post" class="w-100 connect-student-form connect-class-steps rurera-hide" data-id="2">
+
+                    {{ csrf_field() }}
+                    <input type="hidden" name="user_id" class="connect_user_id">
+                    <div class="row user-details-block">
+                        <div class="col-12 col-lg-6 col-md-6">
+                            <span class="form-label">Student Username</span>
+                            <div class="input-field">
+                                <input type="text" name="username" class="rurera-req-field" placeholder="Username">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block mt-50 class-student-submit" style="background:#0272b6; color:#fff">Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts_bottom')
@@ -886,6 +983,10 @@
 
 
 
+
+	$(document).on('click', '.link-student-modal', function (e) {
+        $(".student-link-modal").modal('show');
+    });
     $(document).on('change', 'input[name="subscribe_for"]', function (e) {
         calculate_total_amount();
     });
@@ -1059,6 +1160,40 @@
             },
         });
     });
+	
+	
+	$(document).on('click', '.class-student-submit', function (e) {
+        var thisObj = $(this);
+        var formData = new FormData($(".connect-student-form")[0]);
+        returnType = rurera_validation_process($(".connect-student-form"), 'growl');
+        if (returnType == false) {
+            return false;
+        }
+        rurera_loader(thisObj, 'div');
+        jQuery.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data:formData,
+            dataType:'json',
+            url: '/panel/setting/connect-student',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (return_data) {
+                rurera_remove_loader(thisObj, 'div');
+                $("#class-connect-modal").modal('hide');
+                Swal.fire({
+                  icon: return_data.status,
+                  html: '<h3 class="font-20 text-center text-dark-blue py-25">'+return_data.msg+'</h3>',
+                  showConfirmButton: false,
+                  width: '25rem'
+                });
+            },
+        });
+    });
+	
+	
 
 
 
@@ -1088,6 +1223,36 @@
 			}
 		});
     });
+	
+	$(document).on('click', '.request-action-btn', function (e) {
+        var thisObj = $(this);
+		var request_type = thisObj.attr('data-request_type');
+		var request_id = thisObj.attr('data-id');
+        rurera_loader(thisObj, 'div');
+        jQuery.ajax({
+            type: "POST",
+            data: {"request_id": request_id, "request_type": request_type},
+            dataType:'json',
+            url: '/panel/setting/request-action',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (return_data) {
+                rurera_remove_loader(thisObj, 'div');
+                $("#class-connect-modal").modal('hide');
+                Swal.fire({
+                  icon: return_data.status,
+                  html: '<h3 class="font-20 text-center text-dark-blue py-25">'+return_data.msg+'</h3>',
+                  showConfirmButton: false,
+                  width: '25rem'
+                });
+				thisObj.closest('.students-requests-list-item').slideUp();
+				
+            },
+        });
+    });
+	
+	
 
 	
 

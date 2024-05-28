@@ -313,6 +313,7 @@
 
 
                                         <div class="form-group assignment_topic_type_fields timestables_fields ajax-title show-after-ajax">
+											<div class="timestables-heatmap"></div>
                                             <div class="questions-select-number">
                                                 <ul class="d-flex justify-content-left flex-wrap mb-30">
                                                     <li><input type="checkbox" value="10" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][tables_no][]" {{in_array(10,$tables_no)?
@@ -974,13 +975,11 @@
                             $(".active-subject").find('input').prop('checked', true).change();
                         } else {
                             //$(".quiz-ajax-fields").html(return_data);
-                            $(".practice-quiz-ajax-fields").html(return_data);
-                        }
-						console.log('quiz_type=='+quiz_type);
-						console.log(return_data);
-                        $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
-                        rurera_remove_loader(thisObj.closest('label'), 'div');
-                    }
+							$(".practice-quiz-ajax-fields").html(return_data);
+							$(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
+							rurera_remove_loader(thisObj.closest('label'), 'div');
+						}
+					}
                 });
             }else{
                 $(".assignment-user-class:checked").change();
@@ -1242,7 +1241,7 @@
 
 
         $(".conditional_check").change();
-        $(".assignment-user-class:checked").change();
+        
         $(".duration_conditional_check:checked").change();
         $(".assignment_topic_type_fields").addClass('rurera-hide');
         $(".assignment_method_check_fields").addClass('rurera-hide');
@@ -1320,7 +1319,6 @@
             $(".year_id_field").val(year_id);
             $(".assignment_topic_type_check:checked").change();
             var user_id = $(this).val();
-			console.log('assignment-user-class');
 
 
             $(".sats-listing-empty").addClass('rurera-hide');
@@ -1343,35 +1341,26 @@
                 }
 
             });
-
             $(".total-tests").html('Total Tests: '+$('.sats-listing-card tr').not('.rurera-hide').length);
             if($('.sats-listing-card tr').not('.rurera-hide').length == 0){
                 $(".sats-listing-empty").removeClass('rurera-hide');
             }
-
-
-            /*
             userRequest = jQuery.ajax({
                 type: "GET",
-                url: '/tests/search_tests',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                url: '/common/user_heatmap',
                 beforeSend: function () {
                     if (userRequest != null) {
                         userRequest.abort();
                     }
                 },
-                data: {"quiz_type": 'all', "is_assignment": 'yes',  "year_id": year_id},
+                data: {"user_id": user_id},
                 success: function (return_data) {
-                    rurera_remove_loader($(".simple-table tbody"), 'div');
-                    $(".simple-table tbody").html(return_data);
+                    $(".timestables-heatmap").html(return_data);
                 }
             });
-            */
-
-
         });
+		
+		$(".assignment-user-class:checked").change();
 
         var searchRequest = null;
         $('body').on('click', '.mock_test_fields-bkkkk', function (e) {

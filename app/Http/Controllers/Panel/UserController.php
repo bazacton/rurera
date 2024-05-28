@@ -20,6 +20,8 @@ use App\Models\UserOccupation;
 use App\Models\UserSelectedBank;
 use App\Models\UserSelectedBankSpecification;
 use App\Models\UserZoomApi;
+use App\Models\StudentLinkRequests;
+use App\Models\UserParentLink;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -1032,6 +1034,75 @@ class UserController extends Controller
                 'status' => 'error'
             ];
         }
+        echo json_encode($toastData);exit;
+
+    }
+	
+	/*
+     * Connect Student
+     */
+    public function connectStudent(Request $request)
+    {
+        $user = auth()->user();
+        $username = $request->input('username');
+        $userObj = User::where('username', $username)->first();
+        if( isset( $userObj->id ) ) {
+            StudentLinkRequests::create([
+                'student_id'    => $userObj->id,
+                'request_to'    => $userObj->parent_id,
+                'status'      => 'active',
+                'created_by'      => $user->id,
+                'created_at' => time()
+            ]);
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'Student Link Request Successfully Sent',
+                'status' => 'success'
+            ];
+        }else{
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'No student found!',
+                'status' => 'error'
+            ];
+        }
+        echo json_encode($toastData);exit;
+
+    }
+	/*
+     * Student Request Action
+     */
+    public function requestAction(Request $request)
+    {
+        $user = auth()->user();
+        $request_type = $request->input('request_type');
+        $request_id = $request->input('request_id');
+		
+		$requestObj = StudentLinkRequests::find($request_id);
+		$requestObj->update(['status' => $request_type, 'updated_at' => time()]);
+		$toastData = [
+			'title'  => '',
+			'msg'    => 'Request has been rejected!',
+			'status' => 'error'
+		];
+		
+		if( $request_type == 'approved'){
+			
+			UserParentLink::create([
+				'user_id' => $requestObj->student_id,
+				'parent_id' => $requestObj->created_by,
+				'parent_type' => 'parent',
+				'status' => 'active',
+				'created_by' => $user->id,
+				'created_at' => time(),
+			]);
+			$toastData = [
+				'title'  => '',
+				'msg'    => 'Request successfully approved!',
+				'status' => 'success'
+			];
+			
+		}
         echo json_encode($toastData);exit;
 
     }

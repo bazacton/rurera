@@ -353,7 +353,7 @@ class SubscribeController extends Controller
             'verified'        => true,
             'created_at'      => time(),
             'parent_type'     => 'parent',
-            'parent_id'       => 0,
+            'parent_id'       => $user->id,
             'year_id'         => $year_id,
             'class_id'        => 0,
             'section_id'      => 0,
@@ -450,7 +450,8 @@ class SubscribeController extends Controller
     public function paymentForm(Request $request)
     {
 		Stripe::setApiKey(env('STRIPE_SECRET'));
-        $user = getUser();
+		exit;
+        /*$user = getUser();
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
             return isset( $child->user->userSubscriptions->id) ? 1 : 0;
         });

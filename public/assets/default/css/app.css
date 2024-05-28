@@ -11228,7 +11228,7 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 .users-list li input[type=checkbox] {margin-right: 5px;}
 
 /* User Detail Style Start */
-.detail-header-profile {border-bottom: 1px solid #ddd;}
+.detail-header-profile {border-bottom: 1px solid #ddd; border-radius: 5px;}
 .detail-header-profile .profile-controls {gap: 18px; }
 .detail-header-profile .profile-controls a {display: flex; align-items: center; gap: 2px;}
 .detail-header-profile .profile-controls .icon-box img {display: inline-block; vertical-align: top;}
@@ -11238,7 +11238,7 @@ body:has(.sentences-block) footer.footer.footer-home {display: none;}
 .info-text h3 {color: #1e293b; line-height: normal;}
 .info-text span {color: #64748b;}
 .profile-view-data {margin: 0 -5px;}
-.profile-view-data li {width: 50%; display: inline-block; margin-right: -4px; padding: 0 5px;}
+.profile-view-data > li {width: 50%; display: inline-block; margin-right: -4px; padding: 0 5px;}
 .edit-info-list li > a {border-bottom: 1px solid #ddd;}
 .info-list-label {color: #94a3b8;}
 .info-list-label strong {color: #475569; line-height: normal; padding-top: 2px;}
@@ -11258,10 +11258,10 @@ address .info-list-label {color: #64748b;}
 .card-info-text .card-exp span {margin-bottom: 0;}
 .detail-body .profile-inner,
 .edit-info-list .subscribe-plan {background-color: #fff; border-radius: 10px !important; max-width: 380px; min-width: 380px; border-style: solid;}
-.detail-body .student-profile-holder {padding: 0; margin-bottom: 40px;}
+.detail-body .student-profile-holder {padding: 0; margin: 0 0 40px;}
 .detail-body .student-profile-holder h3,
 .detail-body .subscribe-plan h3 {font-size: 16px !important; font-weight: 400 !important; color: #94a3b8;}
-.detail-body .student-info ul li > a {color: var(--primary); font-weight: 400; text-decoration: underline;}
+.detail-body .student-info ul li > a {color: var(--primary); font-weight: 400; text-decoration: underline; border: 0;}
 .detail-body .student-info ul li > span,
 .detail-body .student-info ul li.user-name span {color: #64748b; font-weight: 400; font-size: 15px;}
 .detail-body .edit-info-list .subscribe-plan:hover {top: 0;}
@@ -11320,6 +11320,7 @@ address .info-list-label {color: #64748b;}
 /* Wizard-Steps Style End */
 
 /*Edit Profile Style Start*/
+.edit-profile.edit-profile-block {border-radius: 5px;}
 .edit-profile .user-info {gap: 10px;}
 .edit-profile .user-info img {border-radius: 100%; object-fit: fill; }
 .edit-profile .info-text {color: #000;}
@@ -11351,47 +11352,16 @@ address .info-list-label {color: #64748b;}
 .edit-profile .select-field:after {content: "\203A"; position: absolute; right: 0; top: 0; height: 40px; width: 40px; text-align: center; line-height: 40px; font-size: 24px; color: #94a3b8; -webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); transform: rotate(90deg); pointer-events: none;}
 .edit-profile .select-field:before {background-color: #ddd; content: ""; position: absolute; top: 0; right: 41px; height: 100%; width: 1px;}
 .edit-profile-content-holder .tab-pane {min-height: 400px;}
-.edit-profile .radio-field label {
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    min-width: 115px;
-    background-color: #f3f1f1;
-    cursor: pointer;
-}
-.edit-profile .radio-field input[type=radio] {
-    position: absolute;
-    opacity: 0;
-    height: 0;
-    width: 0;
-}
-.edit-profile .select-option {
-    gap: 20px;
-}
-.edit-profile .radio-field .thumb-box img {
-    border-radius: 100%;
-}
-.edit-profile .radio-field input[type=radio]:checked ~ label {
-    background-color: var(--primary);
-    color: #fff;
-    border-color: var(--primary);
-}
+.edit-profile .radio-field label {border: 1px solid #ddd; border-radius: 20px; min-width: 115px; background-color: #f3f1f1; cursor: pointer;}
+.edit-profile .radio-field input[type=radio] {position: absolute; opacity: 0; height: 0; width: 0;}
+.edit-profile .select-option {gap: 20px;}
+.edit-profile .radio-field .thumb-box img {border-radius: 100%;}
+.edit-profile .radio-field input[type=radio]:checked ~ label {background-color: var(--primary); color: #fff; border-color: var(--primary);}
 .filters-v2 .analytics-type li {width: 15.555%;}
-.filters-v2 .analytics-type li a img {
-    margin: 0 10px 0 0;
-    height: 38px;
-    width: 38px;
-}
-.filters-v2 .analytics-type li a {
-    padding: 0 10px 0 0;
-    border-radius: 50px;
-    border-style: solid;
-}
-.filters-v2 .analytics-type {
-    gap: 15px;
-}
-.chart-filters .filters-v2 .analytics-type .active a {
-    box-shadow: none;
-}
+.filters-v2 .analytics-type li a img {margin: 0 10px 0 0; height: 38px; width: 38px; }
+.filters-v2 .analytics-type li a {padding: 0 10px 0 0; border-radius: 50px; border-style: solid; }
+.filters-v2 .analytics-type {gap: 15px;}
+.chart-filters .filters-v2 .analytics-type .active a {box-shadow: none;}
 /*Edit Profile Style End*/
 .sorting-filter {display: inline-flex; align-items: center; flex-wrap: wrap; gap: 15px; float: right;}
 .sorting-filter a img {height: 20px; width: 20px; border-radius: 0; filter: invert(90%) sepia(8%) saturate(76%) hue-rotate(8deg) brightness(86%) contrast(85%);}
@@ -12051,7 +12021,7 @@ Lms Responsive Style Start
     .no-record-found-head li {padding: 0 10px;}
     .subjects-heading {margin-bottom: 25px;}
     .profile-view-data {margin: 0;}
-    .profile-view-data li {width: 100%; margin-right: 0; padding: 0;}
+    .profile-view-data > li {width: 100%; margin-right: 0; padding: 0;}
 }
 
 @media screen and (max-width: 640px) {

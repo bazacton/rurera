@@ -6,6 +6,7 @@ use App\Exports\QuizResultsExport;
 use App\Exports\QuizzesAdminExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\QuestionsAttemptController;
+use App\Http\Controllers\Web\TimestablesController;
 use App\Http\Controllers\Web\TextToSpeechController;
 use App\Models\Category;
 use App\Models\Classes;
@@ -644,5 +645,29 @@ class CommonWebController extends Controller
         exit;
     }
 
+    /*
+    * Heatmap
+    */
+    public function user_heatmap(Request $request)
+    {
+        $user_id = $request->get('user_id', null);
+		$TimestablesController = new TimestablesController();
+	   
+		$times_tables_data = $TimestablesController->user_times_tables_data_single_user($user_id, 'x');
+        $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
+        $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
+        $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
+
+        if( empty( $times_tables_data )) {
+            $times_tables_data['is_empty'] = 'yes';
+        }
+		$first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
+		
+		$rendered_view = view('web.default.timestables.heatmap', ['times_tables_data' => $times_tables_data, 'first_date' => $first_date])->render();
+        echo $rendered_view;
+        exit;
+    }
+
+	
 
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\QuestionsAttemptController;
+use App\Http\Controllers\Web\TimestablesController;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\Category;
 use App\Models\Classes;
@@ -88,6 +89,17 @@ class SetWorkController extends Controller
         });
 
        //pre($childs);
+	   
+		$TimestablesController = new TimestablesController();
+	   
+		$times_tables_data = $TimestablesController->user_times_tables_data_single_user(1268, 'x');
+        $average_time = isset($times_tables_data['average_time']) ? $times_tables_data['average_time'] : array();
+        $first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
+        $times_tables_data = isset($times_tables_data['tables_array']) ? $times_tables_data['tables_array'] : array();
+
+        if( empty( $times_tables_data )) {
+            $times_tables_data['is_empty'] = 'yes';
+        }
 
 
        $query = Quiz::where('status', Quiz::ACTIVE)->whereIn('quiz_type', array('11plus','cat4','iseb','independence_exams'))->with('quizQuestionsList');
@@ -98,6 +110,7 @@ class SetWorkController extends Controller
        $data['childs'] = $childs;
        $data['QuestionsAttemptController'] = $QuestionsAttemptController;
        $data['sats'] = $sats;
+	   $data['times_tables_data'] = $times_tables_data;
        return view(getTemplate() . '.panel.set_work.create', $data);
     }
 
