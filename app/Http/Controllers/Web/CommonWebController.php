@@ -413,7 +413,7 @@ class CommonWebController extends Controller
         }
 
         $response = '<div class="form-section mb-20 text-left">
-                                <h2 class="section-title font-24">Select Topics</h2>
+                                <h2 class="section-title font-18 font-weight-bold">Select Topics</h2>
                             </div><div class="row">';
         if (!empty($chapters)) {
             foreach ($chapters as $chapterObj) {

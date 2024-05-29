@@ -152,7 +152,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-5 inner-heading pb-15">Account Overview</h2>
+							<h2 class="font-16 font-weight-500 mb-5 inner-heading pb-15">Account Overview</h2>
                             <div class="edit-info-list">
                                 <ul class="profile-view-data">
 									<li>
@@ -162,7 +162,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->get_first_name()}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -174,7 +174,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->get_last_name()}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -186,7 +186,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->display_name}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -198,7 +198,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->user_preference}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -210,7 +210,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{isset($user->userYear->id )? $user->userYear->getTitleAttribute() : ''}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -328,7 +328,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-5 inner-heading pb-15">School Preference</h2>
+							<h2 class="font-16 font-weight-500 mb-5 inner-heading pb-15">School Preference</h2>
                             <div class="edit-info-list">
                                 <ul class="profile-view-data">
 									<li>
@@ -338,7 +338,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -350,7 +350,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{isset($user->userSchoolPreffernce1->title)? $user->userSchoolPreffernce1->title : '-'}} {{($user->school_preference_1_date != '')? '( '.dateTimeFormat($user->school_preference_1_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -363,7 +363,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce2->title )? $user->userSchoolPreffernce2->title : '-'}} {{($user->school_preference_2_date != '')? '( '.dateTimeFormat($user->school_preference_2_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -375,7 +375,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{isset( $user->userSchoolPreffernce3->title )? $user->userSchoolPreffernce3->title : '-'}} {{($user->school_preference_3_date != '')? '( '.dateTimeFormat($user->school_preference_3_date, 'j M Y').' )' : ''}} </strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -480,7 +480,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-5 inner-heading pb-15">Display Settings</h2>
+							<h2 class="font-16 font-weight-500 mb-5 inner-heading pb-15">Display Settings</h2>
                             <div class="edit-info-list">
                                 <ul class="profile-view-data">
                                     <li>
@@ -490,7 +490,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_timestables == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -502,7 +502,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_spellings == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -514,7 +514,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_games == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -526,7 +526,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_books == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -538,7 +538,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_enterance_exams == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -550,7 +550,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                                                 <strong class="d-block font-weight-500">{{$user->show_sats == 1 ? 'Show' : 'Hide'}}</strong>
                                             </span>
                                             <span class="edit-icon d-inline-flex align-items-center">
-                                                <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+                                                <!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
                                                 <em class="font-weight-500">Edit</em>
                                             </span>
                                         </a>
@@ -567,7 +567,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 															<strong class="d-block font-weight-500">{{!in_array($courseObj->id, $hide_subjects)? 'Show' : 'Hide'}}</strong>
 														</span>
 														<span class="edit-icon d-inline-flex align-items-center">
-															<img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+															<!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
 															<em class="font-weight-500">Edit</em>
 														</span>
 													</a>
@@ -750,10 +750,10 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
 							<div class="edit-info-list">
-								<h2 class="font-14 font-weight-500 mb-25 inner-heading pb-15">Login Details
+								<h2 class="font-16 font-weight-500 mb-25 inner-heading pb-15 d-flex align-items-center justify-content-between">Login Details
 									<a href="javascript:;" class="d-flex align-items-center edit-profile-btn justify-content-between">
 										<span class="edit-icon d-inline-flex align-items-center float-right pr-15">
-											<img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18">
+											<!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
 											<em class="font-weight-500">Edit</em>
 										</span>
 									</a>
@@ -842,7 +842,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							</div>
 						</div>
 						<div class="col-lg-8 col-md-8 col-sm-12 col-12">
-							<h2 class="font-14 font-weight-500 mb-25 inner-heading pb-15">Subscription Details</h2>
+							<h2 class="font-16 font-weight-500 mb-25 inner-heading pb-15">Subscription Details</h2>
                             <div class="edit-info-list">
 								@if( !isset( $user->userSubscriptions->id))<a href="javascript:;" class="membership-btn font-14 float-right package-payment-btn subscription-modal" data-type="child_payment" data-id="{{$user->id}}">+ Subscription</a>@endif
 								@if( isset( $user->userSubscriptions->id))
@@ -898,7 +898,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-12">
-					<h2 class="font-14 font-weight-500 mb-25 inner-heading pb-15">Main Card</h2>
+					<h2 class="font-16 font-weight-500 mb-25 inner-heading pb-15">Main Card</h2>
                     <div class="edit-info-list">
                         <ul>
                             <li>
@@ -1291,13 +1291,20 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 			});*/
 			
 			$(document).on('click', '.edit-profile-btn', function (e) {
+				$('body').addClass('disabled-div');
+				$('body').addClass('disabled-style2');
 				$(this).closest('.edit-info-list').find('.profile-view-data').addClass('rurera-hide');
 				$(this).closest('.edit-info-list').find('.edit-profile-block').removeClass('rurera-hide');
+				
+				$(this).closest('.edit-info-list').find('.edit-profile-block').addClass('no-disabled');
 			});
 
 			$(document).on('click', '.cancel-edit-button', function (e) {
+				$('body').removeClass('disabled-div');
+				$('body').removeClass('disabled-style2');
 				$(this).closest('.edit-info-list').find('.profile-view-data').removeClass('rurera-hide');
 				$(this).closest('.edit-info-list').find('.edit-profile-block').addClass('rurera-hide');
+				$(this).closest('.edit-info-list').find('.edit-profile-block').removeClass('no-disabled');
 			});
 			
 			var profileSubmission = null;
@@ -1336,6 +1343,7 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 							});
 							$(".user-profile-block").html(return_data);
 							rurera_remove_loader($('.user-profile-block'), 'div');
+							location.reload();
 						}
 					});
 						

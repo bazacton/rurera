@@ -10,10 +10,11 @@ $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' :
 $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
 @endphp
 <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-60 px-20 mb-30">
+    <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-40 px-20 mb-30">
         <span class="subscribe-icon mb-20"><img src="{{ $subscribe->icon }}" height="auto" width="auto" alt="Box image"/></span>
-        <div class="subscribe-title">
-            <h3 itemprop="title" class="font-24 font-weight-500">{{ $subscribe->title }}</h3>
+        <div class="subscribe-title text-left">
+            <h3 itemprop="title" class="font-24 font-weight-500 text-left">{{ $subscribe->title }}</h3>
+			<p>{{ $subscribe->description }}</p>
         </div>
         <div class="d-flex align-items-start text-dark-charcoal mb-20 subscribe-price">
             <span itemprop="price" class="font-36 line-height-1 packages-prices" data-package_id="{{$subscribe->id}}" data-package_price="{{$subscribe->price}}">{{ addCurrencyToPrice($subscribe->price) }}</span><span
@@ -104,4 +105,5 @@ $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
            $(this).html(package_price_label+'/mo');
         });
     });
+	$(".subscribed_for-field").change();
 </script>

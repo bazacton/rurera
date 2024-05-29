@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="years-group populated-data">
                                         <div class="form-section mb-20 text-left 223">
-                                            <h2 class="section-title font-24">Select Student to Set Practice</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Select Student</h2>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -130,13 +130,9 @@
                                     </div>
 									
 									
-									
-
-
-
                                     <div class="years-group populated-data">
                                         <div class="form-section mb-20 text-left 223">
-                                            <h2 class="section-title font-24">Select Practice Type</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Select Type of Practice</h2>
                                         </div>
                                         <div class="form-group">
 
@@ -220,12 +216,12 @@
                                         </div>
                                     </div>
 									
-									<div class="years-group populated-data assignment_topic_type_fields mock_test_fields">
+									<div class="years-group populated-data assignment_topic_type_fields mock_test_fields row">
 
                                         <div class="col-12 col-lg-12 col-md-12">
 										
                                             <div class="form-section mb-20 text-left 223">
-                                                <h2 class="section-title font-24">Select a Topic</h2>
+                                                <h2 class="section-title font-18 font-weight-bold">Select a Topic</h2>
                                             </div>
                                             <div class="tests-list-holder mb-25">
                                                 <ul class="tests-list mb-30">
@@ -237,7 +233,7 @@
                                                     <li data-type="independent_exams" data-test_type="independent_exams" data-tag_title="Independent Exams"><img src="/assets/default/img/assignment-logo/independent_exams.png" alt=""> Independent Exams</li>
                                                 </ul>
                                             </div>
-                                            <h4 class="total-tests has-border font-22">Total Tests: {{$sats->count()}}</h4>
+                                            <h4 class="total-tests has-border font-18 font-weight-bold">Select Tests: {{$sats->count()}}</h4>
                                         </div>
 
 
@@ -254,7 +250,7 @@
                                                     @endif
                                                     </tbody>
                                                 </table>
-                                                <div class="sats-listing-empty rurera-hidden"><p>No Records Found</p></div>
+                                                <div class="sats-listing-empty rurera-hidden"><p>No Tests Found</p></div>
                                             </div>
                                         </div>
                                     </div>
@@ -264,45 +260,45 @@
 
 
                                         <div class="form-section assignment_topic_type_fields practice_fields mb-20 text-left 223 ajax-title show-after-ajax">
-                                            <h2 class="section-title font-24">Select a Subject</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Select a Subject</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields 11sats_fields mb-20 text-left 223">
-                                            <h2 class="section-title font-24">Sats</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Sats</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields 11plus_fields mb-20 text-left 223">
-                                            <h2 class="section-title font-24">11 Plus</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">11 Plus</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields independent_exams_fields mb-20 text-left 223">
-                                            <h2 class="section-title font-24">Independent Exams</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Independent Exams</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields iseb_fields mb-20 text-left 223">
-                                            <h2 class="section-title font-24">ISEB</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">ISEB</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields cat4_fields mb-20 text-left 223">
-                                            <h2 class="section-title font-24">CAT 4</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">CAT 4</h2>
                                         </div>
 
 
                                         <div class="form-section assignment_topic_type_fields vocabulary_fields mb-20 text-left 223 ajax-title show-after-ajax">
-                                            <h2 class="section-title font-24">Select List</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Select List</h2>
                                         </div>
 
                                         <div class="form-section assignment_topic_type_fields timestables_fields mb-20 text-left 223 ajax-title show-after-ajax">
-                                            <h2 class="section-title font-24">Times Tables</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Times Tables</h2>
                                         </div>
 
                                         <div class="form-section assignment_topic_type_fields assignment_fields mb-20 text-left 223 ajax-title show-after-ajax">
-                                            <h2 class="section-title font-24">Custom Assignment</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">Custom Assignment</h2>
                                         </div>
 
                                         <div class="practice-quiz-ajax-fields setwork-fields"></div>
@@ -358,12 +354,12 @@
 									
 									<div class="years-group populated-data">
                                         <div class="form-section mb-20 text-left 223">
-                                            <h2 class="section-title font-24">General information</h2>
+                                            <h2 class="section-title font-18 font-weight-bold">General information</h2>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mb-15">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
-                                                    <label class="input-label">Practice Title</label>
+                                                    <label class="input-label font-weight-bold">Practice Title</label>
 													<div class="input-group">
                                                     <input type="text"
                                                         name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][title]"
@@ -375,7 +371,7 @@
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group">
-                                                    <label class="input-label">Practice Start Date</label>
+                                                    <label class="input-label font-weight-bold">Practice Start Date</label>
                                                     <div class="input-group">
                                                         <input type="text" autocomplete="off"
                                                             name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_start_date]"
@@ -393,7 +389,7 @@
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                                                 <div class="form-group conditional_fields Daily_field Weekly_field Monthly_field">
-                                                    <label class="input-label">Practice Due Date</label>
+                                                    <label class="input-label font-weight-bold">Practice Due Date</label>
                                                     <div class="input-group">
                                                         <input type="text" autocomplete="off"
                                                             name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][assignment_end_date]"
@@ -412,7 +408,7 @@
                                         <div class="row assignment_topic_type_fields1 practice_fields vocabulary_fields1">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
-                                                    <label class="input-label">Show No of Questions <span class="max_questions"></span></label>
+                                                    <label class="input-label font-weight-bold mb-0">Show No of Questions <span class="max_questions"></span></label>
 
                                                     <div class="range-slider">
                                                         <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
@@ -430,7 +426,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6 assignment_topic_type_fields timestables_fields vocabulary_fields mock_test_fields sats_fields books_fields">
                                                 <div class="form-group">
-                                                    <label class="input-label">No of Attempts</label>
+                                                    <label class="input-label font-weight-bold mb-0">No of Attempts</label>
 
                                                     <div class="invalid-feedback"></div>
                                                     <div class="range-slider">
@@ -450,7 +446,7 @@
 
 
                                         <div class="form-group assignment_topic_type_fields timestables_fields">
-                                            <label class="input-label">Duration Type</label>
+                                            <label class="input-label mb-10 font-weight-bold">Duration Type</label>
 
                                             <div class="years-group populated-data input-group">
 
@@ -486,7 +482,7 @@
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                         <div class="form-group">
-                                            <label class="input-label">Practice Time (<span class="practice_interval_data">Minutes</span>)</label>
+                                            <label class="input-label font-weight-bold mb-0">Practice Time (<span class="practice_interval_data">Minutes</span>)</label>
                                             <div class="range-slider">
                                                 <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
                                                 <div class="range-slider_line">
@@ -504,7 +500,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                         <div class="form-group duration_type_fields per_question_fields assignment_topic_type_fields timestables_fields">
-                                            <label class="input-label">Questions Time Interval (<span class="time_interval_data">Seconds</span>)</label>
+                                            <label class="input-label font-weight-bold">Questions Time Interval (<span class="time_interval_data">Seconds</span>)</label>
 
                                             <div class="range-slider">
                                                 <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>
@@ -525,7 +521,7 @@
 
 
                                     <div class="form-group assignment_topic_type_fields practice_fields1">
-                                        <label class="input-label">Practice Method</label>
+                                        <label class="input-label font-weight-bold">Practice Method</label>
                                         <div class="plan-switch-option" style="justify-content: left;">
                                                 <span class="switch-label font-18">Completion Target</span> &nbsp;&nbsp;&nbsp;&nbsp;
                                                 <div class="plan-switch">
@@ -537,7 +533,7 @@
                                         <div class="row assignment_topic_type_fields practice_fields1">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group assignment_method_check_fields target_improvements_fields">
-                                                    <label class="input-label">Percentage of Correct Answers</label>
+                                                    <label class="input-label font-weight-bold">Percentage of Correct Answers</label>
 
                                                     <div class="invalid-feedback"></div>
                                                     <div class="range-slider">
@@ -557,7 +553,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group assignment_method_check_fields target_improvements_fields">
-                                                    <label class="input-label">Average Time of Correct Answers (Seconds)</label>
+                                                    <label class="input-label font-weight-bold">Average Time of Correct Answers (Seconds)</label>
 
                                                     <div class="range-slider">
                                                         <div id="slider_thumb" class="range-slider_thumb" style="left: 0px;">0</div>

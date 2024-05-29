@@ -36,24 +36,28 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+						<span class="form-label">First Name</span>
                         <div class="form-group">
-                            <div class="input-field"><input type="text" name="first_name" disabled1 class="rurera-req-field" placeholder="First Name"/></div>
+                            <div class="input-field"><input type="text" name="first_name" disabled class="rurera-req-field" placeholder="First Name"/></div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+						<span class="form-label">Last Name</span>
                         <div class="form-group">
-                            <div class="input-field"><input type="text" name="last_name" disabled1 class="rurera-req-field" placeholder="Last Name"/></div>
+                            <div class="input-field"><input type="text" name="last_name" disabled class="rurera-req-field" placeholder="Last Name"/></div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+						<span class="form-label">Email Address</span>
                         <div class="form-group">
-                            <div class="input-field"><input type="text" autocomplete="new-password" name="email" disabled1 class="rurera-req-field" placeholder="Email Address"/></div>
+                            <div class="input-field"><input type="text" autocomplete="new-password" name="email" disabled class="rurera-req-field rurera-email-field" placeholder="Email Address"/></div>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+						<span class="form-label">Password</span>
                         <div class="form-group">
-                            <div class="input-field mb-15"><input type="password" name="password" disabled1 placeholder="password" class="rurera-req-field password-field"/></div>
+                            <div class="input-field mb-15"><input type="password" name="password" disabled placeholder="password" class="rurera-req-field password-field"/></div>
                             <button id="generateBtn" class="rurera-hide">Generate Password</button>
                         </div>
                     </div>
@@ -79,7 +83,7 @@
 <script src="/assets/default/js/question-layout.js"></script>
 <script src="/assets/vendors/jquerygrowl/jquery.growl.js"></script>
 <script>
-$(document).on('click', 'body', function (e) {
+$(document).on('click', 'body, .form-group', function (e) {
     $(".rurera-req-field").removeAttr('disabled');
 });
 $( window ).on( "load", function() {

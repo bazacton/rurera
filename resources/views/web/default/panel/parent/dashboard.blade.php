@@ -815,8 +815,10 @@
                                 <input type="text" name="class_code" class="rurera-req-field" placeholder="Class Code">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
-                        </button>
+                        <div class="col-12 col-lg-12 col-md-12">
+                            <button type="button" class="btn btn-primary btn-block mt-50 class-code-submit" style="background:#0272b6; color:#fff">Submit
+                            </button>
+                        </div>
                     </div>
                 </form>
 
@@ -960,14 +962,16 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="user_id" class="connect_user_id">
                     <div class="row user-details-block">
-                        <div class="col-12 col-lg-6 col-md-6">
-                            <span class="form-label">Student Username</span>
-                            <div class="input-field">
+                        <div class="col-12 col-lg-12 col-md-12">
+                            <span class="form-label d-block mb-10">Student Username</span>
+                            <div class="input-field d-inline-flex align-items-center">
                                 <input type="text" name="username" class="rurera-req-field" placeholder="Username">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-block mt-50 class-student-submit" style="background:#0272b6; color:#fff">Submit
-                        </button>
+                        <div class="col-12 col-lg-12 col-md-12">
+                            <button type="button" class="btn btn-primary btn-block mt-15 class-student-submit" style="background:#0272b6; color:#fff">Submit
+                            </button>
+                        </div>
                     </div>
                 </form>
 

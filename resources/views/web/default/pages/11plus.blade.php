@@ -38,7 +38,7 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <h1 class="font-50 font-weight-bold"><span class="text-scribble mr-10">11 Plus</span> and Entrance Exams</h1>
+                    <h1 class="font-72 font-weight-bold"><span class="text-scribble mr-10">11 Plus</span> and Entrance Exams</h1>
                     <h2 class="mb-15 font-30">Unlocking Opportunities: Ace the 11 Plus Exam and Secure Your Future!</h2>
                     <p class="font-19">Assessing a student's academic ability and determining their eligibility for admission to selective
                     secondary schools or grammar schools.</p>

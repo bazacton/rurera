@@ -11,6 +11,7 @@
 .radio-btn .card-icon h3 {color: #555; font-size: 14px; font-weight: 500; margin-bottom: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden; text-overflow: ellipsis;}
 .populated-data .input-label {font-size: 14px; color: #666; font-weight: 400;}
 .populated-data .ui-widget.ui-widget-content {margin-top: 15px;}
+.populated-data .heatmap-range-slider .ui-slider.ui-widget-content {margin-top: 0; flex-basis: 82%; width: 82%;}
 .select2-container--default .select2-selection--single {background-color: #fdfdff; border-color: #e4e6fc; }
 .populated-data .form-control {background-color: inherit; border-color: #ced4da; border-radius: 4px !important; -webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text-overflow: '';}
 .populated-data .select2-selection--single,
@@ -56,7 +57,9 @@
 .wizard-steps .card-icon {position: relative; }
 .wizard-steps .radio-btn:hover .card-icon span {opacity: 1; visibility: visible; margin: 5px 0 0; }
 .add-student-modal .radio-btn {min-height: 140px; }
-.wizard-steps .radio-buttons .card-radio {/*min-height: 165px;*/} 
+.wizard-steps .radio-buttons .card-radio {/*min-height: 165px;*/ width: auto;}
+.wizard-steps .radio-buttons .card-radio:has(img) {width: 11.111%;}
+.wizard-steps .radio-buttons .card-radio .radio-btn {min-height: 50px;}
 /*Range Slider Style Start*/
 .range-slider {position: relative; width: 100%;	height: auto; min-height: 80px;}
 .range-slider-field {width: 100%; position: absolute; top: 50%; z-index: 3; transform: translateY(-50%); -webkit-appearance: none; appearance: none; width: 100%; height: 4px; opacity: 0; margin: 0; }

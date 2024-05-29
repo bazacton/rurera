@@ -1047,18 +1047,28 @@ class UserController extends Controller
         $username = $request->input('username');
         $userObj = User::where('username', $username)->first();
         if( isset( $userObj->id ) ) {
-            StudentLinkRequests::create([
-                'student_id'    => $userObj->id,
-                'request_to'    => $userObj->parent_id,
-                'status'      => 'active',
-                'created_by'      => $user->id,
-                'created_at' => time()
-            ]);
-            $toastData = [
-                'title'  => '',
-                'msg'    => 'Student Link Request Successfully Sent',
-                'status' => 'success'
-            ];
+			$UserParentLink = UserParentLink::where('parent_id', $user->id)->where('user_id', $userObj->id)->where('status','active')->first();
+			if( isset( $UserParentLink->id )){
+				$toastData = [
+					'title'  => '',
+					'msg'    => 'Student already attached!',
+					'status' => 'error'
+				];
+			}
+			else{
+				StudentLinkRequests::create([
+					'student_id'    => $userObj->id,
+					'request_to'    => $userObj->parent_id,
+					'status'      => 'active',
+					'created_by'      => $user->id,
+					'created_at' => time()
+				]);
+				$toastData = [
+					'title'  => '',
+					'msg'    => 'Student Link Request Successfully Sent',
+					'status' => 'success'
+				];
+			}
         }else{
             $toastData = [
                 'title'  => '',

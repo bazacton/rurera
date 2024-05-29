@@ -160,18 +160,14 @@ $avatar_color_settings = json_encode($avatar_color_settings);
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="edit-profile-content-holder tab-content" id="myTabContent">
                             <div class="edit-profile-content panel-border bg-white rounded-sm p-25 tab-pane fade show active" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
-                                <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
+                                <!-- <div class="edit-profile-top d-flex align-items-center flex-wrap justify-content-between mb-50">
                                     <div class="top-heading">
                                         <h5 class="font-14 font-weight-500">
                                             GENERAL INFO
                                             <span class="d-block pt-5 font-12">Edit your account's general information</span>
                                         </h5>
                                     </div>
-                                    <div class="edit-profile-controls">
-                                        <a href="javascript:;" class="text-center cancel-edit-button">Cancel</a>
-                                        <button type="button" id="saveData" class="save-btn text-center ">Save</button>
-                                    </div>
-                                </div>
+                                </div> -->
                                 <div class="edit-profile-body">
                                     <div class="edit-profile-image">
                                         <div class="edit-element-title mb-20">
@@ -260,6 +256,16 @@ $avatar_color_settings = json_encode($avatar_color_settings);
 													</label>
 												</div>
 											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="edit-profile-footer">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="edit-profile-controls text-right">
+                                                <a href="javascript:;" class="text-center cancel-edit-button">Cancel</a>
+                                                <button type="button" id="saveData" class="save-btn text-center ">Save</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
