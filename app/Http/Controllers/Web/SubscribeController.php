@@ -190,6 +190,24 @@ class SubscribeController extends Controller
 				'subscribed_childs' => $subscribed_childs,
             ])->render();
         }
+		
+		if ($action_type == 'package_selection') {
+            $childObj = User::find($action_id);
+            $subscribes = Subscribe::all();
+            $selected_package = isset( $childObj->userSubscriptions->subscribe_id )? $childObj->userSubscriptions->subscribe_id :0;
+
+			$response_layout = view('web.default.subscriptions.payment_form', [
+				'selected_package' => $selected_package,
+				'subscribed_for'   => $subscribed_for,
+				'user_id'          => $user_id,
+				'packageObj'       => $packageObj,
+				'payment_amount'   => $payment_amount,
+				'subscribed_childs' => $subscribed_childs,
+				'intent' => $childObj->createSetupIntent()
+			])->render();
+        }
+		
+			
         }
 
 
@@ -450,8 +468,8 @@ class SubscribeController extends Controller
     public function paymentForm(Request $request)
     {
 		Stripe::setApiKey(env('STRIPE_SECRET'));
-		exit;
-        /*$user = getUser();
+		//exit;
+        $user = getUser();
         $subscribed_childs = $user->parentChilds->where('status', 'active')->sum(function ($child) {
             return isset( $child->user->userSubscriptions->id) ? 1 : 0;
         });
@@ -500,7 +518,7 @@ class SubscribeController extends Controller
                     'packageObj'       => $packageObj,
                     'payment_amount'   => $payment_amount,
                     'subscribed_childs' => $subscribed_childs,
-					'intent' => $childObj->createSetupIntent()
+					//'intent' => $childObj->createSetupIntent()
                 ])->render();
             } else {
                 $response_layout = view('web.default.subscriptions.finish', [

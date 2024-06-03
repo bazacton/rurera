@@ -969,6 +969,7 @@
                         if (quiz_type == 'practice') {
                             $(".practice-quiz-ajax-fields").html(return_data);
                             $(".active-subject").find('input').prop('checked', true).change();
+							rurera_remove_loader(thisObj.closest('label'), 'div');
                         } else {
                             //$(".quiz-ajax-fields").html(return_data);
 							$(".practice-quiz-ajax-fields").html(return_data);

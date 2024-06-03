@@ -1079,6 +1079,39 @@ class UserController extends Controller
         echo json_encode($toastData);exit;
 
     }
+	
+	/*
+     * Connect Student
+     */
+    public function unlinkChildParent(Request $request)
+    {
+        $user = auth()->user();
+        $parent_id = $request->input('parent_id');
+		$user_id = $request->input('user_id');
+        $UserParentLink = UserParentLink::where('parent_id', $parent_id)->where('user_id', $user_id)->where('status','active')->first();
+        if( isset( $UserParentLink->id ) ) {
+			$UserParentLink->update([
+				'status' => 'unlinked',
+				'last_updated' => time()
+			]);
+			$toastData = [
+				'title'  => '',
+				'msg'    => 'Account successfully unlinked!',
+				'status' => 'success'
+			];
+        }else{
+            $toastData = [
+                'title'  => '',
+                'msg'    => 'No record found!',
+                'status' => 'error'
+            ];
+        }
+        echo json_encode($toastData);exit;
+
+    }
+	
+	
+	
 	/*
      * Student Request Action
      */

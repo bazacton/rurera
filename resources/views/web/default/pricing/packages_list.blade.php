@@ -21,7 +21,7 @@ $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
                     class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
         </div>
         <button itemprop="button" type="submit" data-user_id="{{isset($childObj->id)?$childObj->id : 0}}" data-type="package_selection" data-id="{{$subscribe->id}}"
-                class="subscription-modal btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
+                class="package-selection btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
         </button>
         <span class="plan-label d-block font-weight-500 pt-20">
                                             Suitable for:

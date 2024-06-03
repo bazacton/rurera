@@ -347,6 +347,8 @@ $parentTutorRoutes = function () {
 			Route::post('user-settings', 'UserController@userSettings');
 			Route::post('/connect-student', 'UserController@connectStudent');
 			Route::post('/request-action', 'UserController@requestAction');
+			Route::get('/unlink-child-parent', 'UserController@unlinkChildParent');
+			
 		});
     });
 

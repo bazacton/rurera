@@ -3907,6 +3907,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\UserParentLink', 'parent_id', 'id')->where('parent_type', 'parent');
     }
+	
+	public function childLinkedParents()
+    {
+        return $this->hasMany('App\Models\UserParentLink', 'user_id', 'id');
+    }
 
 
     public function rates()

@@ -226,12 +226,15 @@ class MembersController extends Controller
                 }
                 //return $child->user->userSubscriptions->count();
             });
+			
+		$childLinkedParents = $user->childLinkedParents->where('status', 'active');	
 		$schools = Schools::where('status', 'active')->get();
 		$data = array(
 			'childs' => $childs,
 			'user' => $user,
 			'courses_list' => $courses_list,
 			'schools' => $schools,
+			'childLinkedParents' => $childLinkedParents,
 		);
 
         return view('web.default.panel.parent.student', $data);

@@ -303,8 +303,12 @@ class CommonWebController extends Controller
 
 
         if ($quiz_type == 'practice') {
+			
+			$response = '<div class="form-section mb-20 text-left">
+							<h2 class="section-title font-18 font-weight-bold">Select Subject</h2>
+						</div>';
 
-            $response = $this->get_subjects_by_year($year_id);
+            $response .= $this->get_subjects_by_year($year_id);
         } else {
             $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
 
@@ -329,6 +333,9 @@ class CommonWebController extends Controller
 						<li class=""><a href="javascript:;" data-category="Word Lists"><span class="icon-box"><img src="/assets/default/svgs/filter-letters.svg"></span>Word Lists ('.$wordListsCount.')</a></li>
 						<li class=""><a href="javascript:;" data-category="Spelling Bee"><span class="icon-box"><img src="/assets/default/svgs/filter-words.svg"></span>Spelling Bee ('.$spellingBeeCount.')</a></li>
 					</ul>
+				</div>';
+				$response .= '<div class="form-section mb-20 text-left">
+					<h2 class="section-title font-18 font-weight-bold">Select List Item</h2>
 				</div>';
             }
 

@@ -32,6 +32,7 @@ class LearnController extends Controller
         }
         $allowedUsers = getAllowedUsers();
 		$hide_subjects = json_decode($user->hide_subjects);
+		$hide_subjects = is_array($hide_subjects)? $hide_subjects : array($hide_subjects);
 		
 
         $categoryObj = Category::where('id', $user->year_id)->first();

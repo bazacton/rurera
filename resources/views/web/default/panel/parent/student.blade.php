@@ -144,6 +144,53 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
                 </div>
                 <div class="detail-body p-25">
 				
+				
+				
+				
+					@if( $childLinkedParents->count() > 1)
+						<div class="row mb-50">
+							<div class="col-lg-4 col-md-4 col-sm-12 col-12">
+								<div class="info-text">
+									<h3 class="font-18 font-weight-500 mb-5">Linked Accounts</h3>
+									<span class="font-14">Some basic information that we need to know about student.</span>
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-8 col-sm-12 col-12">
+								<h2 class="font-16 font-weight-500 mb-5 inner-heading pb-15">Linked Accounts</h2>
+								<div class="edit-info-list">
+									<ul class="profile-view-data">
+										@foreach( $childLinkedParents as $childLinkedParentObj)
+											@php $parentObj = $childLinkedParentObj->studentParent; @endphp
+											@if( auth()->user()->id != $parentObj->id)
+											<li>
+												<a href="javascript:;" data-parent_id="{{$parentObj->id}}" class="d-flex align-items-center unlink-parent-btn justify-content-between p-15">
+													<span class="info-list-label font-14">
+														{{$parentObj->role_name}}
+														<strong class="d-block font-weight-500">{{$parentObj->get_full_name()}}</strong>
+													</span>
+													<span class="edit-icon d-inline-flex align-items-center">
+														<!-- <img src="/assets/default/svgs/edit-2.svg" alt="" height="18" width="18"> -->
+														<em class="font-weight-500">Delete</em>
+													</span>
+												</a>
+											</li>
+											@endif
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						</div>
+					@endif
+						
+					
+				
+				
+				
+				
+				
+				
+				
+				
                     <div class="row mb-50">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="info-text">
@@ -1352,6 +1399,35 @@ $subscribe = isset( $user->userSubscriptions->subscribe)? $user->userSubscriptio
 				});
 				
 			});
+			
+			
+			
+			$(document).on('click', '.unlink-parent-btn', function (e) {
+				var parent_id = $(this).attr('data-parent_id');
+				var user_id = '{{$user->id}}';
+				var thisObj = $(this);
+				rurera_loader(thisObj, 'div');
+				$.ajax({
+					type: "GET",
+					url: '/panel/setting/unlink-child-parent',
+					data: {"parent_id": parent_id, "user_id": user_id},
+					dataType:'json',
+					success: function (return_data) {
+						rurera_remove_loader(thisObj, 'div');
+						Swal.fire({
+						  icon: return_data.status,
+						  html: '<h3 class="font-20 text-center text-dark-blue py-25">'+return_data.msg+'</h3>',
+						  showConfirmButton: false,
+						  width: '25rem'
+						});
+						location.reload();
+					}
+						
+				});
+				
+			});
+			
+			
 			
 			
 			

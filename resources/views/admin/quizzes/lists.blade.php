@@ -278,7 +278,7 @@
                                         @endif
                                     </td>
 
-                                    <td class="text-left">{{ isset( $quiz->creator->get_full_name())? $quiz->creator->get_full_name() : '' }}</td>
+                                    <td class="text-left">{{ isset( $quiz->creator->full_name)? $quiz->creator->full_name : '' }}</td>
 
                                     <td class="text-center">
                                         {{ $quiz->quizQuestionsList->count() }}

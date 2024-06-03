@@ -58,8 +58,8 @@
 									</div>
 
 									<div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
-										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white ">Approve</button>
-										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="rejected" class="request-action-btn js-show-message btn btn-border-white ">Reject</button>
+										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white approve-btn">Approve</button>
+										<button type="button" data-id="{{$studentsRequestObj->id}}" id="showNotificationMessage2261" data-request_type="rejected" class="request-action-btn js-show-message btn btn-border-white reject-btn">Reject</button>
 									</div>
 								</div>
 							</div>
