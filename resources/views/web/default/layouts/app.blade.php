@@ -64,7 +64,7 @@
 
     @if(!request()->is('login') && !request()->is('register') && !request()->is('forget-password'))
         @if(!isset($appFooter))
-            @include('web.default.includes.footer_home')
+			@include('web.default.includes.footer_custom')
         @endif
     @endif
 

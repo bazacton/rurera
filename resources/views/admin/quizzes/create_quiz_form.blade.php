@@ -205,7 +205,19 @@
 
                 <div class="practice-quiz-topics-list populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields"></div>
 
-                <div class="mock-exams-quiz-settings populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields"></div>
+                <div class="mock-exams-quiz-settings populated-data conditional-fields vocabulary-fields practice-fields sats-fields 11plus-fields independent_exams-fields1 iseb-fields cat4-fields"></div>
+				
+				
+				
+				<div class="no-of-questions-field rurera-hide">
+                    <div class="form-group">
+                        <label class="input-label">No of Questions</label>
+                        <input type="number" value="{{ !empty($quiz) ? $quiz->attempt : old('attempt') }}"
+                               name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][no_of_questions]"
+                               class="form-control @error('attempt')  is-invalid @enderror" placeholder=""/>
+                    </div>
+                </div>
+
 
                 <div class="conditional-fields vocabulary-fields ">
                     <div class="form-group mt-15 ">
@@ -395,7 +407,6 @@
                     </div>
 
                 </div>
-
                 <div class="conditional-fields sats-fields 11plus-fields assessment-fields {{$assessment_hide_class}}">
                     <div class="form-group">
                         <label class="input-label">No of Attempts</label>
@@ -703,7 +714,7 @@
 
                     
 
-                <div class="form-group mt-15 ">
+                <div class="form-group mt-15 search-questions-block">
                     <label class="input-label d-block">Questions</label>
 
                     <select id="questions_ids" multiple="multiple" data-search-option="questions_ids"
@@ -784,6 +795,15 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 
         handleQuestionsMultiSelect2('search-questions-select2', '/admin/questions_bank/search', ['class', 'course', 'subject', 'title']);
 
+		
+		$('body').on('change', '.mock_type', function (e) {
+			var mock_type = $(this).val();
+			$(".search-questions-block").removeClass('rurera-hide');
+			if( mock_type == 'mock_practice') {
+				$(".search-questions-block").addClass('rurera-hide');
+			}
+		});
+		$(".mock_type:checked").change();
 
         $('body').on('change', '.year_mock_exams_subject_ajax_select', function (e) {
             var year_id = $(this).val();
@@ -961,6 +981,19 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
             });
             return_response += '</div>';
             $(".mock-exams-quiz-settings").html(return_response);
+        });
+		
+		
+		
+		$(document).on('change', '.pick_auto_switch', function (e) {
+			let isChecked = e.target.checked;
+			if(isChecked){
+				$(".mock-exams-quiz-settings").addClass('rurera-hide');
+				$(".no-of-questions-field").removeClass('rurera-hide');
+			}else{
+				$(".mock-exams-quiz-settings").removeClass('rurera-hide');
+				$(".no-of-questions-field").addClass('rurera-hide');
+			}
         });
 
 

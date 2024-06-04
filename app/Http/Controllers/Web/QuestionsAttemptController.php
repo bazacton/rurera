@@ -2637,18 +2637,15 @@ class QuestionsAttemptController extends Controller
             foreach ($mock_exam_settings as $sub_chapter_id => $no_of_test_questions) {
                 $questions_list_array = QuizzesQuestion::where('sub_chapter_id', $sub_chapter_id)->pluck('id')->toArray();
                 $corrected_list = QuizzResultQuestions::whereIN('question_id', $questions_list_array)->where('parent_type_id', $quiz->id)->where('status', 'correct')->pluck('question_id')->toArray();
-
                 $questions_list_array = array_diff($questions_list_array, $corrected_list);
                 if (count($questions_list_array) < $no_of_test_questions) {
                     $extra_questions_count = ($no_of_test_questions - count($questions_list_array));
-                    $correctedQuestionsList = array_limit_length($corrected_list, $extra_questions_count);
+                    $correctedQuestionsList = !empty( $corrected_list )? array_limit_length($corrected_list, $extra_questions_count) : array();
                     $questions_list_array = array_merge($questions_list_array, $correctedQuestionsList);
-
                 }
-
+				
                 $questions_list_array = array_limit_length($questions_list_array, $no_of_test_questions);
                 $quizQuestionsList = array_merge($quizQuestionsList, $questions_list_array);
-
             }
         }
         $questions_list = $quizQuestionsList;

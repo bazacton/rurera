@@ -1130,20 +1130,24 @@ class UserController extends Controller
 		];
 		
 		if( $request_type == 'approved'){
+			$UserParentLink = UserParentLink::where('user_id', $requestObj->student_id)->where('parent_id',$requestObj->created_by)->where('status','active')->count();
+			if( $UserParentLink == 0){
+				UserParentLink::create([
+					'user_id' => $requestObj->student_id,
+					'parent_id' => $requestObj->created_by,
+					'parent_type' => 'parent',
+					'status' => 'active',
+					'created_by' => $user->id,
+					'created_at' => time(),
+				]);
+			}
 			
-			UserParentLink::create([
-				'user_id' => $requestObj->student_id,
-				'parent_id' => $requestObj->created_by,
-				'parent_type' => 'parent',
-				'status' => 'active',
-				'created_by' => $user->id,
-				'created_at' => time(),
-			]);
 			$toastData = [
 				'title'  => '',
 				'msg'    => 'Request successfully approved!',
 				'status' => 'success'
 			];
+			
 			
 		}
         echo json_encode($toastData);exit;

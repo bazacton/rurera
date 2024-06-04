@@ -927,29 +927,6 @@
             </div>
             <div class="modal-body">
                 <div class="class-thumb-list connect-class-steps" data-id="1">
-                    <ul>
-                        <li>
-                            <div class="class-thumb">
-                                <a href="#">
-                                    <figure class="media-box"></figure>
-                                    <span class="thumb-lable">Billy</span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="school-box">
-                            <div class="class-thumb">
-                                <figure class="media-icon"><img src="/assets/default/svgs/school-with-flag.svg" alt=""></figure>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="class-thumb">
-                                <a href="#">
-                                    <figure class="media-box"></figure>
-                                    <span class="thumb-lable">your School</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
                     <p>Connect to your student's account to view their progress and set lesson plans.</p>
                     <div class="connect-controls">
                         <a href="javascript:;" data-dismiss="modal" aria-label="Close">Never Mind</a>

@@ -281,11 +281,13 @@ class WebinarController extends Controller
         $sub_chapters = array();
         if (!empty($webinar_sub_chapters)) {
             foreach ($webinar_sub_chapters as $sub_chapter_item) {
+				
                 $sub_chapters[$sub_chapter_item->chapter_id][] = array(
                     'id'         => $sub_chapter_item->id,
                     'title'      => $sub_chapter_item->sub_chapter_title,
                     'chapter_id' => $sub_chapter_item->chapter_id,
-                    'sub_chapter_slug' => $sub_chapter_item->sub_chapter_slug
+                    'sub_chapter_slug' => $sub_chapter_item->sub_chapter_slug,
+					'total_questions' => $sub_chapter_item->questions_list->count(),
                 );
             }
         }

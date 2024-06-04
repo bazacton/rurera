@@ -8,6 +8,7 @@ $is_subscribed = (isset( $selected_package ) && $selected_package == $subscribe-
 $purchase_title = ($is_subscribed == true)? 'Subscribed' : $purchase_title;
 $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' : '';
 $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
+$selection_class = (auth()->user())? 'package-selection' : 'subscription-modal';
 @endphp
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-40 px-20 mb-30">
@@ -21,7 +22,7 @@ $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
                     class="yearly-price">{{ addCurrencyToPrice($subscribe->price) }} / month</span>
         </div>
         <button itemprop="button" type="submit" data-user_id="{{isset($childObj->id)?$childObj->id : 0}}" data-type="package_selection" data-id="{{$subscribe->id}}"
-                class="package-selection btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
+                class="{{$selection_class}} btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
         </button>
         <span class="plan-label d-block font-weight-500 pt-20">
                                             Suitable for:

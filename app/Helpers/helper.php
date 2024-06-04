@@ -8265,7 +8265,9 @@ function getNextNuggetByCurrentID($array, $key, $value, $parentLevel = null, $gr
  * Get array lenght
  */
 function array_limit_length($array_data, $length_value){
-
+	if( empty( $array_data ) ){
+		return array();
+	}
    $arrayList = array_rand($array_data, $length_value);
     $arrayList = is_array($arrayList)? $arrayList : array($arrayList);
     $arrayList = array_intersect_key($array_data, array_flip($arrayList));

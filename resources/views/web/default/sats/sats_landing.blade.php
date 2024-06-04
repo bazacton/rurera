@@ -24,7 +24,7 @@
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-12 col-md-6 col-lg-6">
-                    <h1 class="font-50 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Exam Practice</h1>
+                    <h1 class="font-72 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Exam Practice</h1>
                     <h2 class="mb-15 font-30">Maximize Your Performance: Excel on SATs Test Day</h2>
                     <p class="font-19">
                         Don't leave your SATs Exam performance to chance. Join us and unlock your full potential for success

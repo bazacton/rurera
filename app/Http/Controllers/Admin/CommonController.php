@@ -400,6 +400,9 @@ class CommonController extends Controller
         }
 
         $response = '<div class="row">';
+		
+		
+		
         if (!empty($chapters)) {
             foreach ($chapters as $chapterObj) {
                 $subChapters = $chapterObj->subChapters;
@@ -432,6 +435,13 @@ class CommonController extends Controller
             }
         }
 
+		$response .= '<div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group custom-switches-stacked">
+                    <label class="custom-switch pl-0">
+                        <input type="checkbox" name="ajax[new][pick_questions_auto]" id="pick_questions_auto" value="1" class="custom-switch-input pick_auto_switch">
+                        <span class="custom-switch-indicator"></span>
+                        <label class="custom-switch-description mb-0 cursor-pointer" for="pick_questions_auto">Pick Questions Auto</label>
+                    </label>
+		</div>';
         $response .= '</div>';
         echo $response;
 

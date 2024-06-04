@@ -246,7 +246,7 @@
 								<tr>
 									<th class="text-white text-left p-15">{{ $chapter->title }}</th>
 									<th class="text-white text-left p-15">Mastery Level</th>
-									<th class="text-white text-left p-15">Last Seen</th>
+									<th class="text-white text-left p-15">Questions Count</th>
 									<th class="text-white text-left p-15">Rersources</th>
 								</tr>
 							</thead>
@@ -289,7 +289,7 @@
 													</span>
 												</td>
 												<td data-label="Last Seen" class="px-15 py-20">
-													<span>-</span>
+													<span>{{$sub_chapter['total_questions']}}</span>
 												</td>
 												<td data-label="Rersources" class="px-15 py-20">
 													<a href="#" class="video-btn mr-10">
