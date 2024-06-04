@@ -292,7 +292,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="title" class="text-white font-40">Explore 11 Plus and Entrance Exam Resources</h2>
+                        <h2 itemprop="title" class="text-white font-72">Explore 11 Plus and Entrance Exam Resources</h2>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -830,7 +830,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 itemprop="section title" class="mb-10 font-40">Real practice, Proven Results</h2>
+                        <h2 itemprop="section title" class="mb-10 font-72">Real practice, Proven Results</h2>
                         <p itemprop="description" class="font-19 text-gray">It’s hugely trusted by parents, recommended by teachers and loved by students</p>
                     </div>
                 </div>
@@ -871,7 +871,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10 font-40">11 plus Faq’s</h2>
+                    <h2 class="mt-0 mb-10 font-72">11 plus Faq’s</h2>
                     <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>
                 </div>
             </div>

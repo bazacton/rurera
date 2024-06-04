@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-11 mx-auto">
-                    <h1 class="font-50 font-weight-bold text-white mb-30">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">times tables</span></h1>
+                    <h1 class="font-72 font-weight-bold text-white mb-30">Fun Multiplication and Division techniques to <br /> master <span class="text-scribble">times tables</span></h1>
                     <p class="text-white font-19 mb-20">
                         A brilliant way to learn times tables multiplication and division. With these smart practices, recalling times tables <br />
                         will be an enjoyable journey filled with excitement and rewards.

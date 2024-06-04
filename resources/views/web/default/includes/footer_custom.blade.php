@@ -53,7 +53,7 @@
 			</div>
 			<div class="col-12 col-lg-7"><div class="footer-logo-wrapper"><div class="footer-dots-img"><figure>
 				<img src="/assets/default/svgs/footer-dots.svg" alt=""></figure></div><div class="footer-logo-box">
-				<a href="#"><img src="/assets/default/svgs/logo-footer.svg" alt=""><span>Schedule Consultation</span></a></div></div>
+				<a href="#"><img src="/store/1/logo.png" alt=""><span>Schedule Consultation</span></a></div></div>
 			</div>
 		</div>
 	</div>

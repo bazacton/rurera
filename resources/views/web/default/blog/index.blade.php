@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-12 col-lg-8 col-md-8 mx-auto">
                                     <div class="cell-inner text-center">
-                                        <h1 class="font-50 mb-15"><span class="text-scribble">Blog</span> updates from Rurera</h1>
+                                        <h1 class="font-72 mb-15"><span class="text-scribble">Blog</span> updates from Rurera</h1>
                                         <p class="mb-50 font-19">Discover and explore the world through words where thoughts and imagination come to Life. Catch up on the latest news, success stories and more..</p>
                                         <form class="w-75 mx-auto">
                                             <div class="field-holder has-icon d-flex">

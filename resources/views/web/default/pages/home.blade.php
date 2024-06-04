@@ -21,7 +21,7 @@
         <div class="container user-select-none">
             <div class="row slider-content align-items-center hero-section2 flex-column-reverse flex-md-row">
                 <div class="col-12 col-md-12 col-lg-10 text-center mx-auto">
-                    <h1 class="font-50 font-weight-bold text-dark-charcoal">Learn, Practice & Win with <br> <span class="text-scribble">Rurera</span></h1>
+                    <h1 class="font-72 font-weight-bold text-dark-charcoal">Learn, Practice & Win with <br> <span class="text-scribble">Rurera</span></h1>
                     <p class="font-19 pt-15 text-gray">Rurera is a game changer subscription based education learning platform. It provides 10000+ practices<br> for Key stage 1 courses, Key stage 2 courses, TimeTables, Books, SATs and 11 plus exams.</p>
                     <div class="choose-sats mt-90">
                         <div class="row">
@@ -216,7 +216,7 @@
 
                 <div class="col-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 class="mb-10 font-40">Redefining Personalized learning</h2>
+                        <h2 class="mb-10 font-72">Redefining Personalized learning</h2>
                         <p class="font-16 text-gray">Rurera provides powerful resources that align with student's specific interests and learning goals.</p>
                     </div>
                 </div>
@@ -464,7 +464,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 text-white font-40">Discover how Rurera Support success</h2>
+                        <h2 class="mt-0 mb-10 text-white font-72">Discover how Rurera Support success</h2>
                         <p class="text-white font-16">we've combined the best of education, real quiz practices into real results to cater and pass the exams.</p>
                     </div>
                 </div>
@@ -517,7 +517,7 @@
                         </div>
                         <div class="col-12 col-lg-6 mt-20 mb-40 mt-lg-0 mb-lg-0">
                             <div class="column-text">
-                                <h2 class="font-30 text-dark">Win Coin Points</h2>
+                                <h2 class="font-72 text-dark">Win Coin Points</h2>
                                 <p class="font-16 text-gray mt-10">Start practicing and Reward Yourself with Exciting Toys. Through learning students can increase their chances of winning playful toys. Start using the system now and collect coins now!</p>
                                 <div class="mt-35 d-flex align-items-center"> 
                                     <a href="{{url('/')}}/rewards" class="btn btn-primary">Rewards</a> 
@@ -535,7 +535,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center mb-0">
-                        <h2 class="mt-0 mb-10 font-40">Testimonials</h2>
+                        <h2 class="mt-0 mb-10 font-72">Testimonials</h2>
                         <p class="font-16 text-gray">What our customers say about us</p>
                     </div>
                 </div>
@@ -590,7 +590,7 @@
            <section class="home-sections container">
                <div class="d-flex justify-content-between">
                    <div class="section-title">
-                       <h2 class="mt-0 mb-10 font-40">{{ trans('home.blog') }}</h2>
+                       <h2 class="mt-0 mb-10 font-72">{{ trans('home.blog') }}</h2>
                        <p class="section-hint">{{ trans('home.blog_hint') }}</p>
                    </div>
                    <a href="/blog" class="btn btn-border-white">{{ trans('home.all_blog') }}</a>
@@ -613,7 +613,7 @@
                     <div class="newsletter-inner">
                         <div class="row">
                             <div class="col-12 col-lg-8 col-md-8">
-                                <h2 itemprop="title" class="mb-10 text-white font-40">Kickstart your Exams Prep today!</h2>
+                                <h2 itemprop="title" class="mb-10 text-white font-72">Kickstart your Exams Prep today!</h2>
                                 <p itemprop="description" class="mb-0 text-white font-16"> Let us help you achieve the score you deserve and unlock doors to your future academic success. </p>
                             </div>
                             <div class="col-12 col-lg-4 col-md-4">

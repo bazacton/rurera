@@ -10,7 +10,7 @@
     <div class="row h-100 align-items-center text-left">
       <div class="col-12 col-md-9 col-lg-9">
         <p itemprop="sub title" class="lms-subtitle">How we've helped others</p>
-        <h1 itemprop="title" class="font-50 font-weight-bold">Hear It from Our <span class="text-scribble ml-10">Clients</span></h1>
+        <h1 itemprop="title" class="font-72 font-weight-bold">Hear It from Our <span class="text-scribble ml-10">Clients</span></h1>
         <p itemprop="description" class="font-19">
           Welcome to our testimonial page! Here, you will find a collection of
           heartfelt testimonials and feedback from our student, teachers and parents who have

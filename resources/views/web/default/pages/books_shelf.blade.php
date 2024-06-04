@@ -15,11 +15,11 @@
 @endpush
 
 @section('content')
-<section class="position-relative job-singup-sub-header gallery-sub-header p-0" style="min-height: 620px;">
+<section class="position-relative job-singup-sub-header gallery-sub-header pb-0" style="min-height: 620px;">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 col-md-12 col-lg-7">
-          <h1 itemprop="title" class="font-50 font-weight-bold"> Empower yourself through <br> reading <span class="text-scribble">books</span>
+          <h1 itemprop="title" class="font-72 font-weight-bold"> Empower yourself through <br> reading <span class="text-scribble">books</span>
           </h1>
           <strong class="d-block font-36">Read to lead, read to succeed!</strong>
           <p itemprop="description" class="lms-subtitle font-19 font-weight-normal pt-20"> Access Rurera bookshelf anytime, anywhere, ensuring seamless <br> reading experiences and chance to get rewards. </p>
