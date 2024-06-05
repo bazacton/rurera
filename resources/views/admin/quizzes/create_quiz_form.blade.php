@@ -714,7 +714,7 @@
 
                     
 
-                <div class="form-group mt-15 search-questions-block">
+                <div class="form-group mt-15 search-questions-block conditional-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields">
                     <label class="input-label d-block">Questions</label>
 
                     <select id="questions_ids" multiple="multiple" data-search-option="questions_ids"
@@ -727,7 +727,7 @@
                 </div>
 
 
-                <div class="questions-list">
+                <div class="questions-list conditional-fields sats-fields 11plus-fields independent_exams-fields iseb-fields cat4-fields">
                     <ul>
                         @if( !empty( $quiz->quizQuestionsList))
                         @foreach( $quiz->quizQuestionsList as $questionObj)
@@ -804,6 +804,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
 			}
 		});
 		$(".mock_type:checked").change();
+		
 
         $('body').on('change', '.year_mock_exams_subject_ajax_select', function (e) {
             var year_id = $(this).val();

@@ -1,10 +1,11 @@
 <div class="learning-page">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="position-relative">
 
 
-    <div class="d-flex position-relative">
-
-
-        <div class="learning-page-content flex-grow-1 bg-info-light pt-15">
+        <div class="learning-page-content flex-grow-1 bg-info-light">
             <div class="learning-content" id="learningPageContent">
                 <div class="d-flex align-items-center justify-content-center w-100">
 

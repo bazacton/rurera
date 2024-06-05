@@ -6101,10 +6101,19 @@ function _leform_build_children(_parent, _parent_col, image_styles = []) {
                     }
                     break;
 
+				case "question_example":
+
+				var question_example = jQuery("#question_example").val();
+				console.log(question_example);
+				var question_id = leform_form_elements[i]["question_id"];
+				var data_class = 'example_data_'+i+'_class';
+				var element_layout = '<div class="question-example">\n' +question_example+'</div>';
+				html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "' data-question_id='"+question_id+"' data-question_title='"+question_id+"'>"+element_layout+"</div>";
+
+				break;
                 case "questions_group":
 
                         var question_ids = leform_form_elements[i]["question_ids"];
-                        console.log(question_ids);
                         var data_class = 'group_example_data_'+i+'_class';
                         var element_layout = '<div class="group_questions_data">Questions Group</div>';
                         html += "<div id='leform-element-" + i + "' class='leform-element-" + i + " leform-element quiz-group leform-element-html' data-type='" + leform_form_elements[i]["type"] + "' data-question_ids='"+question_ids+"' data-question_title='"+question_ids+"'>"+element_layout+"</div>";

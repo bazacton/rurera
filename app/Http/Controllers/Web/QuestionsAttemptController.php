@@ -153,7 +153,7 @@ class QuestionsAttemptController extends Controller
 
                 //break;
             } else {
-                //$newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
+                $newQuestionResult = QuizzResultQuestions::where('quiz_result_id', $quizAttempt->quiz_result_id)->where('question_id', $questionObj->id)->where('status', '!=', 'waiting')->first();
                 //break;
                 //continue;
             }
@@ -2628,6 +2628,15 @@ class QuestionsAttemptController extends Controller
     public function get_mock_practice_questions_list($quiz, $questions_list)
     {
 
+		$user = getUser();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', 'waiting')->first();
+        if( isset( $newQuizStart->id)){
+            $other_data = json_decode($newQuizStart->other_data);
+            $questions_list = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->pluck('question_id')->toArray();
+            return array(
+                'questions_list' => $questions_list,
+            );
+        }
         $quizQuestionsList = array();
 
         $mock_exam_settings = json_decode($quiz->mock_exam_settings);

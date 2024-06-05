@@ -18,6 +18,7 @@ use App\Models\Notification;
 use App\Models\Prerequisite;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
+use App\Models\QuizzesQuestionsList;
 
 use App\Models\SubChapters;
 use App\Models\Reward;
@@ -202,6 +203,31 @@ class WebinarController extends Controller
         $quiz_id = $request->get('quiz_id');
         $sub_chapter_id = $request->get('sub_chapter_id');
         $subChapterObj = SubChapters::find($sub_chapter_id);
+		
+		$quiz_questions_list = QuizzesQuestionsList::where('quiz_id', $quiz_id)->where('status','active')->pluck('question_id')->toArray();
+		$subchapter_questions_list = $subChapterObj->questions_list->pluck('id')->toArray();
+		
+		$removed_questions = array_diff($quiz_questions_list, $subchapter_questions_list);
+		$new_questions = array_diff($subchapter_questions_list, $quiz_questions_list);
+		
+		if( !empty( $removed_questions ) ){
+			QuizzesQuestionsList::where('quiz_id', $quiz_id)->whereIn('question_id', $removed_questions)->where('status','active')->update(['status' => 'inactive']);
+		}
+		
+		if (!empty($new_questions)) {
+            foreach ($new_questions as $sort_order => $question_id) {
+                QuizzesQuestionsList::create([
+                    'quiz_id'     => $quiz_id,
+                    'question_id' => $question_id,
+                    'status'      => 'active',
+                    'sort_order'  => $sort_order,
+                    'created_by'  => $user->id,
+                    'created_at'  => time()
+                ]);
+            }
+        }
+		
+		
         if ($chapter_item_id == 0) {
             $WebinarChapterItem = WebinarChapterItem::create([
                 'user_id'    => $user->id ,

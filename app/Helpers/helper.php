@@ -2499,6 +2499,12 @@ function toolbar_tools()
             'icon'  => 'fas fa-microphone',
             'type'  => 'other'
         ),
+		
+		'question_example'     => array(
+            'title' => esc_html__('Question Example', 'leform'),
+            'icon'  => 'fas fa-question',
+            'type'  => 'other'
+        ),
 
 
 
@@ -7099,6 +7105,19 @@ function element_properties_meta($chapters)
                     array(
                         '0' => esc_html__('Select Question', 'leform'),
                     )
+            ),
+            'elements_data' => array(
+                'value'   => '',
+                'label'   => '',
+                'tooltip' => '',
+                'type'    => 'elements_data'
+            ),
+        ),
+		'question_example' => array(
+            'basic'         => array(
+                'type'  => 'tab',
+                'value' => 'basic',
+                'label' => esc_html__('Basic', 'leform')
             ),
             'elements_data' => array(
                 'value'   => '',

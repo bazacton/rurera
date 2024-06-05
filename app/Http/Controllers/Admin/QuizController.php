@@ -384,6 +384,8 @@ class QuizController extends Controller
             'mock_type'                   => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
             'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
+            'pick_questions_auto'                   => $pick_questions_auto,
+            'no_of_questions'                   => $no_of_questions,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -525,7 +527,7 @@ class QuizController extends Controller
 
         //QuizzesQuestionsList::whereNotIn('id' , $quizQuestionsListArray)->update(array('status' => 'inactive'));
 
-
+		$newData = isset( $request->get('ajax')['new'] )? $request->get('ajax')['new'] : array();
         $data = $request->get('ajax')[$id];
         $locale = $data['locale'] ?? getDefaultLocale();
 
@@ -538,7 +540,60 @@ class QuizController extends Controller
 
         $validate = Validator::make($data, $rules);
 
+		$mock_exam_settings = isset($data['mock_exam_settings']) ? $data['mock_exam_settings'] : array();
         $question_list_ids = isset($data['question_list_ids']) ? $data['question_list_ids'] : array();
+		
+		
+		$pick_questions_auto = isset($newData['pick_questions_auto']) ? $newData['pick_questions_auto'] : 0;
+		$no_of_questions = isset($data['no_of_questions']) ? $data['no_of_questions'] : 0;
+		if( $pick_questions_auto == 1){
+			$topic_ids = isset($data['topic_ids']) ? $data['topic_ids'] : array();
+			$topics_data = array();
+			if( !empty( $topic_ids )){
+				foreach( $topic_ids as $topic_id){
+					$topicObj = SubChapters::find($topic_id);
+					$question_list_ids = array_merge($question_list_ids, $topicObj->questions_list->pluck('id')->toArray());
+					$topic_questions = $topicObj->questions_list->count();
+					$topics_data[$topic_id] = $topic_questions;
+				}
+			}
+			
+			// Step 1: Calculate the total percentage
+			$total_percentage = array_sum($topics_data);
+
+			// Step 2: Calculate the initial distribution of questions
+			$initial_distribution = array();
+			foreach ($topics_data as $topic => $percentage) {
+				$initial_distribution[$topic] = ($percentage / $total_percentage) * $no_of_questions;
+			}
+
+			// Step 3: Round the initial distribution and handle any discrepancies
+			$rounded_distribution = array();
+			foreach ($initial_distribution as $topic => $questions) {
+				$rounded_distribution[$topic] = floor($questions);
+			}
+			$total_assigned = array_sum($rounded_distribution);
+			$remaining_questions = $no_of_questions - $total_assigned;
+
+			// To handle remaining questions, we add them to the topics with the largest fractional parts
+			$fractional_parts = array();
+			foreach ($initial_distribution as $topic => $questions) {
+				$fractional_parts[$topic] = $questions - floor($questions);
+			}
+			arsort($fractional_parts);
+
+			$i = 0;
+			foreach ($fractional_parts as $topic => $fraction) {
+				if ($i < $remaining_questions) {
+					$rounded_distribution[$topic]++;
+					$i++;
+				} else {
+					break;
+				}
+			}
+			
+			$mock_exam_settings = $rounded_distribution;
+		}
 
 
         if ($validate->fails()) {
@@ -649,10 +704,12 @@ class QuizController extends Controller
             'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
             'year_id'            => isset($data['year_id']) ? $data['year_id'] : 0,
             'quiz_category'      => isset($data['quiz_category']) ? $data['quiz_category'] : '',
-            'mock_exam_settings' => isset($data['mock_exam_settings']) ? json_encode($data['mock_exam_settings']) : json_encode(array()),
+            'mock_exam_settings'          => json_encode($mock_exam_settings),
             'mock_type'          => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
             'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
+			'pick_questions_auto'                   => $pick_questions_auto,
+            'no_of_questions'                   => $no_of_questions,
         ]);
 
         if (!empty($quiz)) {

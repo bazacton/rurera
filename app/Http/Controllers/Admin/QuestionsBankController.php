@@ -2436,6 +2436,13 @@ class QuestionsBankController extends Controller
 
         $quiz_id = ($quiz_id > 0) ? $quiz_id : 0;
         $quiz = Quiz::find($quiz_id);
+		
+		
+		$sub_chapter_id = (isset($questionData['sub_chapter_id']) && $questionData['sub_chapter_id'] != '') ? $questionData['sub_chapter_id'] : 0;
+		$subChapterObj = SubChapters::find($sub_chapter_id);
+		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
+		
+		
         $quizQuestion = QuizzesQuestion::create([
             'quiz_id'                   => $quiz_id ,
             'creator_id'                => $user->id ,
@@ -2465,9 +2472,21 @@ class QuestionsBankController extends Controller
             'question_type'            => isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
             'example_question'            => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
             'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
-
-
         ]);
+		
+		if( $sub_chapter_quiz_id > 0){
+			QuizzesQuestionsList::create([
+				'quiz_id'     => $sub_chapter_quiz_id,
+				'question_id' => $quizQuestion->id,
+				'status'      => 'active',
+				'sort_order'  => 0,
+				'created_by'  => $user->id,
+				'created_at'  => time()
+			]);
+		}
+		
+		
+		
 
         if (!empty($quizQuestion)) {
             if (!empty($new_glossaries)) {
