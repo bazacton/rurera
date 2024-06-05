@@ -9,6 +9,9 @@ use App\Models\BooksPages;
 use App\Models\BooksPagesInfoLinks;
 use App\Models\BooksPagesQuestions;
 use App\Models\QuizzesQuestion;
+use App\Models\Webinar;
+use App\Models\WebinarChapter;
+use App\Models\SubChapters;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -100,6 +103,10 @@ class BooksController extends Controller
         $interest_area = Books::$interest_area;
         $skill_set = Books::$skill_set;
         $book_categories = Books::$book_categories;
+		
+		$categories = Category::where('parent_id', null)
+            ->with('subCategories')->orderBy('order', 'asc')
+            ->get();
 
         $data = [
             'pageTitle'       => 'Books',
@@ -108,6 +115,7 @@ class BooksController extends Controller
             'interest_area'   => $interest_area,
             'book_categories' => $book_categories,
             'skill_set'       => $skill_set,
+            'categories'       => $categories,
         ];
 
         return view('admin.books.create', $data);
@@ -135,11 +143,63 @@ class BooksController extends Controller
         $interest_area = Books::$interest_area;
         $skill_set = Books::$skill_set;
         $book_categories = Books::$book_categories;
+		
+		$categories = Category::where('parent_id', null)
+            ->with('subCategories')->orderBy('order', 'asc')
+            ->get();
+
 
         $book = Books::where('id', $id)->with([
             'bookFinalQuiz.QuestionData',
             'bookPages.PageInfoLinks'
         ])->first();
+		
+		
+		$chapter_id = 195;
+		
+		$subject_id = $book->subject_id;
+		$courseObj = Webinar::find($subject_id);
+		$chapters = $courseObj->chapters;
+	
+		$response = '';
+		if (!empty($chapters)) {
+            foreach ($chapters as $chapterObj) {
+                $subChapters = $chapterObj->subChapters;
+                $sub_chapters_response = '';
+
+                if (!empty($subChapters)) {
+                    foreach ($subChapters as $subChapterObj) {
+                        $quizData = $subChapterObj->quizData;
+                        $quiz_id = isset($quizData->item_id) ? $quizData->item_id : 0;
+                        $quizData = isset($subChapterObj->quizData->quiz) ? $subChapterObj->quizData->quiz : array();
+                        $count_questions = isset($quizData->quizQuestionsList) ? count($quizData->quizQuestionsList) : 0;
+
+						
+						$sub_chapters_response .= '<div class="form-check mt-1">
+                            <input type="radio" data-topic_title="' . $subChapterObj->sub_chapter_title . '" name="topic_id" id="topic_ids_'.$subChapterObj->id.'" value="'.$subChapterObj->id.'" class="form-check-input section-child trigger_field" data-field_type="topic_checkbox" data-id="'.$subChapterObj->id.'" data-field_id="topic_title">
+                            <label class="form-check-label cursor-pointer mt-0" for="topic_ids_'.$subChapterObj->id.'">
+                                ' . $subChapterObj->sub_chapter_title . '
+                            </label>
+                        </div>';
+                    }
+                }
+                $response .= '<div class="col-lg-12 col-md-12 col-sm-12 col-12"><div class="card card-primary section-box">
+                        <div class="card-header">
+                            <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_' . $chapterObj->id . '">
+                                ' . $chapterObj->getTitleAttribute() . '
+                            </label>
+                        </div>
+
+                        <div class="card-body">
+                            ' . $sub_chapters_response . '
+                        </div>
+                </div></div>';
+            }
+        }
+		
+		$chapterObj = WebinarChapter::find($chapter_id);
+		$subChapters = $chapterObj->subChapters;
+		
 
 
         $data = [
@@ -151,6 +211,9 @@ class BooksController extends Controller
             'interest_area'   => $interest_area,
             'book_categories' => $book_categories,
             'skill_set'       => $skill_set,
+            'subChapters'       => $subChapters,
+			'categories' => $categories,
+			'chapters_response' => $response,
         ];
 
         return view('admin.books.edit', $data);
@@ -166,6 +229,7 @@ class BooksController extends Controller
 
         $data = $request->all();
         $locale = $request->get('locale', getDefaultLocale());
+		
 
 
         $rules = [
@@ -189,6 +253,10 @@ class BooksController extends Controller
 
 
         $book_pdf = isset($data['book_pdf']) ? $data['book_pdf'] : '';
+		
+		$book_type = isset($data['book_type']) ? $data['book_type'] : 'Book';
+		$year_id = isset($data['year_id']) ? $data['year_id'] : 0;
+		$subject_id = isset($data['subject_id']) ? $data['subject_id'] : 0;
 
         $book = ($id > 0) ? Books::findOrFail($id) : array();
 
@@ -197,7 +265,7 @@ class BooksController extends Controller
 
         $interest_area = isset($data['interest_area']) ? implode(',', $data['interest_area']) : '';
 
-        if (!empty($book)) {
+        if (isset( $book->id)) {
             $book->update([
                 'book_slug'        => $book_slug,
                 'written_by'       => isset($data['written_by']) ? $data['written_by'] : '',
@@ -217,6 +285,9 @@ class BooksController extends Controller
                 'seo_description'    => isset($data['seo_description']) ? $data['seo_description'] : '',
                 'seo_robot_access'    => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0,
                 'include_xml'    => isset($data['include_xml']) ? $data['include_xml'] : 0,
+                'book_type'    => $book_type,
+                'year_id'    => $year_id,
+                'subject_id'    => $subject_id,
             ]);
 
 
@@ -287,6 +358,9 @@ class BooksController extends Controller
                     'seo_description'    => isset($data['seo_description']) ? $data['seo_description'] : '',
                     'seo_robot_access'    => isset($data['seo_robot_access']) ? $data['seo_robot_access'] : 0,
                     'include_xml'    => isset($data['include_xml']) ? $data['include_xml'] : 0,
+					'book_type'    => $book_type,
+					'year_id'    => $year_id,
+					'subject_id'    => $subject_id
                 ]);
 
                 File::isDirectory('store/1/books/' . $book->id . '/') or File::makeDirectory('store/1/books/' . $book->id . '/', 0777, true, true);

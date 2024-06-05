@@ -270,6 +270,51 @@
                                         @enderror
                                     </div>
                                 </div>
+								<div class="col-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <select name="book_type" class="form-control book_type_selection" data-placeholder="Select Type">
+                                            <option value="Book" selected>Book</option>
+											<option value="PDF">PDF</option>
+                                        </select>
+                                    </div>
+                                </div>
+								<div class="col-12 col-md-12 col-lg-12 pdf-fields rurera-hide">
+									<div class="form-group">
+										<label>Year</label>
+										<select data-default_id="{{isset( $quiz->id)? $quiz->year_id : 0}}"
+												class="form-control year-group-select select2 @error('year_id') is-invalid @enderror"
+												name="year_id">
+											<option {{ !empty($trend) ?
+											'' : 'selected' }} disabled>Select Year</option>
+
+											@foreach($categories as $category)
+											@if(!empty($category->subCategories) and
+											count($category->subCategories))
+											<optgroup label="{{  $category->title }}">
+												@foreach($category->subCategories as $subCategory)
+												<option value="{{ $subCategory->id }}" @if(!empty($quiz) and $quiz->year_id == $subCategory->id) selected="selected" @endif>
+													{{$subCategory->title}}
+												</option>
+												@endforeach
+											</optgroup>
+											@else
+											<option value="{{ $category->id }}"
+													class="font-weight-bold">{{
+												$category->title }}
+											</option>
+											@endif
+											@endforeach
+										</select>
+										@error('year_id')
+										<div class="invalid-feedback">
+											{{ $message }}
+										</div>
+										@enderror
+									</div>
+								
+									<div class="practice-quiz-ajax-fields populated-data"></div>
+                                </div>
 
                                 <div class="col-12 col-md-12 col-lg-12">
                                     <div class="form-group">
@@ -326,4 +371,32 @@
 <script src="/assets/vendors/summernote/summernote-bs4.min.js"></script>
 <script src="/assets/default/vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 <script src="/assets/admin/vendor/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+<script>
+
+$('body').on('change', '.book_type_selection', function (e) {
+	var book_type = $(this).val();
+	$(".pdf-fields").addClass('rurera-hide');
+	if(book_type == 'PDF'){
+		$(".pdf-fields").removeClass('rurera-hide');
+	}
+});
+$('body').on('change', '.year-group-select', function (e) {
+            var year_id = $(this).val();
+            var thisObj = $(this);//$(".quiz-ajax-fields");
+            
+			rurera_loader(thisObj, 'button');
+			jQuery.ajax({
+				type: "GET",
+				url: '/admin/common/get_mock_subjects_by_year',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data: {"year_id": year_id, "field_name" : "subject_id"},
+				success: function (return_data) {
+					$(".practice-quiz-ajax-fields").html(return_data);
+					rurera_remove_loader(thisObj, 'button');
+				}
+			});
+        });
+</script>
 @endpush

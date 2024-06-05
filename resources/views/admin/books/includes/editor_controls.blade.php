@@ -334,6 +334,14 @@
                             <img src="/assets/default/img/book-icons/quiz.png">
                         </a>
                     </li>
+					
+					
+                    <li>
+                        <a href="javascript:;" title="Topic" class="control-tool-item"
+                           data-drag_type="topic">
+                            <img src="/assets/default/img/book-icons/quiz.png">
+                        </a>
+                    </li>
 
                 </ul>
             </li>
@@ -461,5 +469,16 @@
         </div>
     </div>
 
+    <div class="infobox-topic-fields">
+
+        <div class="option-field-item">
+            <label class="input-label">Topic</label>
+			
+			{!! $chapters_response !!}
+			
+			
+        </div>
+
+    </div>
 
 </div>

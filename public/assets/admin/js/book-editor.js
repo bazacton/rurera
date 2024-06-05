@@ -141,6 +141,18 @@ $(document).on('click', '.book-dropzone', function (e) {
         dropZonObj.append($el);
     }
 
+    if (drag_type == "topic") {
+
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-topic-fields"><div class="field-data"><img src="/assets/default/img/book-icons/quiz.png"></div>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
 
     /*
     * Draggable
@@ -266,14 +278,19 @@ function trigger_field_change(thisObj) {
     }
 
     this_value = this_value.replace(/\n/g, '<br />');
-    console.log('data-' + field_id);
-    console.log(".draggable_field_" + data_id);
-    console.log(this_value);
 
     $(".draggable_field_" + data_id).attr('data-' + field_id, this_value);
     if (field_type == 'text') {
         $(".draggable_field_" + data_id + ' .field-data').html(this_value);
     }
+	
+	if (field_type == 'topic_checkbox') {
+		var field_title = thisObj.attr('data-topic_title');
+		$(".draggable_field_" + data_id).attr('data-' + field_id, field_title);
+        $(".draggable_field_" + data_id + ' .field-data').html(field_title);
+    }
+	
+	
 }
 
 
@@ -430,6 +447,11 @@ $(document).on('click', '.generate', function (e) {
         var field_type = fieldObj.data('field_type');
         var trigger_class = fieldObj.data('trigger_class');
         var is_new = fieldObj.attr('data-is_new');
+		
+		console.log('field_id=='+field_id);
+		console.log('field_type=='+field_type);
+		console.log('trigger_class=='+trigger_class);
+		console.log('==============================');
 
 
         posted_data[field_id] = {};

@@ -37,6 +37,9 @@ class Books extends Model
         'seo_description',
         'seo_robot_access',
         'include_xml',
+        'book_type',
+        'year_id',
+        'subject_id',
     ];
 
     static $book_categories = array(

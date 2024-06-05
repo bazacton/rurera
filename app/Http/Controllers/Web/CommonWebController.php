@@ -554,6 +554,8 @@ class CommonWebController extends Controller
     {
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
+        $field_name = $request->get('field_name', '')
+        $field_name = ($field_name != '')? $field_name : 'ajax[new][subject]';
 
         $courses = Webinar::where('category_id', $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
 
@@ -562,7 +564,7 @@ class CommonWebController extends Controller
             foreach ($courses as $courseObj) {
                 $subjects_response .= '
                                         <label class="card-radio">
-                                            <input type="radio" name="ajax[new][subject]"
+                                            <input type="radio" name="'.$field_name.'"
                                                    class="mock_exams_subject_check" value="' . $courseObj->id . '">
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">

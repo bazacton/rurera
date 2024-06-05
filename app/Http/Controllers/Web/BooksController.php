@@ -25,7 +25,10 @@ class BooksController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/'.panelRoute());
         }
-        $books_data = Books::where('id', '>', 0);
+		
+		$book_type = isset( $_GET['type'] )? $_GET['type'] : 'Book';
+		$book_type = ($book_type == 'PDF')? 'PDF' : 'Book';
+        $books_data = Books::where('id', '>', 0)->where('book_type', $book_type);
         $search_keyword = $request->get('search', '');
 
         if( $search_keyword != '') {
@@ -129,6 +132,13 @@ class BooksController extends Controller
                                 $info_link_html .= isset($data_values->text_html) ? $data_values->text_html : '';
                                 $info_link_html .= '</span>';
                                 break;
+								
+								
+							case "topic":
+                                $info_link_html .= '<span>';
+                                $info_link_html .= isset($data_values->topic_title) ? $data_values->topic_title : '';
+                                $info_link_html .= '</span>';
+                                break;	
 
                             case "highlighter":
                                 $highlighter_size = isset( $data_values->highlighter_size )? $data_values->highlighter_size : 0;
