@@ -339,7 +339,7 @@
                     <li>
                         <a href="javascript:;" title="Topic" class="control-tool-item"
                            data-drag_type="topic">
-                            <img src="/assets/default/img/book-icons/quiz.png">
+                            <img src="/assets/default/img/book-icons/topic.png" width="42" height="47">
                         </a>
                     </li>
 
