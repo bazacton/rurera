@@ -8,6 +8,7 @@ $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : fal
 $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
 $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
 $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
+$button_label = $button_label = ($in_progress == true)? 'Resume Test' :'Take Test';
 $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
 @endphp
 <tr>
@@ -23,7 +24,7 @@ $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/defaul
             <a href="javascript:;" class="rurera-list-btn">Assign</a>
         @endif
         @if (auth()->check() && auth()->user()->isUser())
-            <a href="/sats/{{$rowObj->quiz_slug}}" class="rurera-list-btn {{ subscriptionCheckLink('bookshelf') }}">Take Test</a>
+            <a href="/sats/{{$rowObj->quiz_slug}}" class="rurera-list-btn {{ subscriptionCheckLink('bookshelf') }}">{{$button_label}}</a>
         @endif
     </td>
 </tr>

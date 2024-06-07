@@ -212,6 +212,7 @@ class AnalyticsController extends Controller
                                 continue;
                             }
                             $topic_title = getTopicTitle($QuizzesAttemptObj->parent_type_id, $QuizzesAttemptObj->attempt_type);
+							$topic_title .= ($QuizzesAttemptObj->quizzes_results->quiz_result_type == '11plus') ? ' ('.$QuizzesAttemptObj->quizzes_results->sameParent->where('created_at','<', $QuizzesAttemptObj->quizzes_results->created_at)->count().')' : '';
                             $questions_list = isset($QuizzesAttemptObj->questions_list) ? json_decode($QuizzesAttemptObj->questions_list) : array();
                             $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');
                             $question_answered = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->count();

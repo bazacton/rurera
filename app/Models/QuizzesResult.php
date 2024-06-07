@@ -23,6 +23,11 @@ class QuizzesResult extends Model
     {
         return $this->belongsTo('App\Models\Quiz', 'parent_type_id', 'id');
     }
+	
+	public function sameParent()
+    {
+        return $this->belongsTo('App\Models\QuizzesResult', 'parent_type_id', 'parent_type_id');
+    }
 
     public function assignment()
     {

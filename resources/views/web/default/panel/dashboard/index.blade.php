@@ -156,7 +156,7 @@
 										<div class="col-12 col-lg-3 mt-10 mt-lg-0 d-flex align-items-start">
 											<span class="notification-badge badge badge-circle-danger mr-5 mt-5 d-flex align-items-center justify-content-center"></span>
 											<div class="">
-												<h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$resultObj->parentQuiz->getTitleAttribute()}}</h3>
+												<h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$resultObj->parentQuiz->getTitleAttribute()}} ({{$resultObj->sameParent->count()}})</h3>
 												<span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($resultObj->created_at, 'j M Y')}}</span>
 											</div>
 										</div>
@@ -174,6 +174,7 @@
 				</div>
 			</div>
 		</section>
+	</div>
 	</div>
 @endif
 

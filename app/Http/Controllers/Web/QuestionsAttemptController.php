@@ -915,7 +915,11 @@ class QuestionsAttemptController extends Controller
             }
 
             $question_correct = array_map('ucfirst', $question_correct);
-			$user_input = array_map('ucfirst', $user_input);
+			if( is_array( $user_input)){
+				$user_input = array_map('ucfirst', $user_input);
+			}else{
+				$user_input = ucfirst($user_input);
+			}
             if (!in_array($user_input, $question_correct)) {
                 $is_question_correct = false;
             } else {

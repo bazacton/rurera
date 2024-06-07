@@ -312,7 +312,7 @@ Lms Question List Style
 .question-fields .left-content {display: flex; flex-direction: column; /*min-height: 680px; height: 680px;*/ overflow: hidden; overflow-y: auto; padding-right: 10px;}
 .read-quiz-content .left-content {overflow: hidden;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 70px; color: #adabab; }
-.question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.8); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 880px;margin-bottom: 0 !important; z-index: 2;}
+.question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.8); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 100%; max-width: 848px; margin-bottom: 0 !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
 .assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
 .question-fields .left-content::-webkit-scrollbar,
@@ -333,10 +333,10 @@ Lms Question List Style
 .question-textarea p {/* font-size: 16px; color: #000; font-weight: 400;*/}
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
-.question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 8px; background: none; background-image: none; font-size: 16px; color: #000; font-weight: 400;}
-.question-layout .select-box select.editor-field {padding: 0;}
+.question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 4px; background: none; background-image: none; color: #777;}
+/* .question-layout .select-box select.editor-field {padding: 0;} */
 .question-textarea .select-box,
-.question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 3px 15px 3px 0; margin: 0 5px; display: -webkit-inline-box;}
+.question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 0 15px 0 0; margin: 0 5px; display: -webkit-inline-box;}
 .question-textarea .field-group .select-box {text-align: left;}
 .question-textarea .select-box:after,
 .question-layout .select-box:after {content: ""; width: 0; height: 0; border: 5px solid transparent; border-color: #ccc transparent transparent transparent; position: absolute; top: 50%; right: 0; margin-top: -2px;}
@@ -2064,5 +2064,17 @@ span.Selectable:hover {text-decoration: underline;}
 }
 .example-question .toggle-btn.collapsed:before {
     display: none;
+}
+.question-example {
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 0 1px #ededed;
+    border: 2px solid #ededed;
+    border-bottom: 0;
+    margin-bottom: 20px;
+}
+.question-layout .question-example p {
+    margin-top: 0;
 }
 /* Example Question Toggle Element Style End */

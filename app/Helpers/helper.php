@@ -8289,6 +8289,7 @@ function array_limit_length($array_data, $length_value){
 	if( empty( $array_data ) || $length_value == 0 ){
 		return array();
 	}
+	$length_value = ( $length_value > count($array_data))? count($array_data): $length_value;
 	$arrayList = array_rand($array_data, $length_value);
     $arrayList = is_array($arrayList)? $arrayList : array($arrayList);
     $arrayList = array_intersect_key($array_data, array_flip($arrayList));

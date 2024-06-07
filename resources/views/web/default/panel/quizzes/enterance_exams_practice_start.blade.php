@@ -132,6 +132,9 @@ $timer_counter = $practice_time;
                                 <div class="quiz-timer">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{($practice_time*60)-$total_time_consumed}}" data-time_consumed="{{$total_time_consumed}}">0s</div></span>
                                 </div>
+								<div class="close-btn-holder">
+                                    <button class="close-btn review-btn pause-quiz" data-toggle="modal" data-target="#pause_quiz">&#x2715;</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,13 +221,26 @@ $timer_counter = $practice_time;
 </div>
 @endif
 
-<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
    <div class="modal-dialog">
        <div class="modal-content">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
            <div class="modal-body">
                <p></p>
                <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
+           </div>
+       </div>
+   </div>
+</div>
+<div class="modal fade pause_quiz" id="pause_quiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+				<p></p>
+               <a href="/tests" class="nav-link mt-20 btn-primary rounded-pill"> Exit </a>
+			   <a class="review-btn nav-link mt-20 btn-primary rounded-pill" data-toggle="modal" data-target="#review_submit">Finish</a>
+			   <a href="javascript:;" class="unpause-quiz" data-dismiss="modal" aria-label="Continue">Continue</a>
            </div>
        </div>
    </div>
@@ -239,6 +255,27 @@ $timer_counter = $practice_time;
        </div>
    </div>
 </div>
+
+
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <h3>Session End</h3>
+        <p>
+            Looks like you're inactive.
+        </p>
+       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue</a>
+	   <a href="javascript:;" class="pause-quiz" data-dismiss="modal" data-toggle="modal" data-target="#pause_quiz">Pause</a>
+	   <a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 
 
@@ -252,13 +289,63 @@ $timer_counter = $practice_time;
 
 
     var Quizintervals = null;
-
+	var InactivityInterval = null;
+    var focusInterval = null;
+    var focusIntervalCount = 10;
+	var TimerActive = true;
     var duration_type = '{{$duration_type}}';
 	
 	
 	
 
     function quiz_default_functions() {
+		
+		window.addEventListener('blur', function () {
+            //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
+            //inactivity-timer
+            if( focusInterval == null) {
+
+                focusInterval = setInterval(function () {
+                    var focus_count = focusIntervalCount-1;
+                    console.log('focusout--'+focus_count);
+                    focusIntervalCount = focus_count;
+                    if (focus_count <= 0) {
+                        TimerActive = false;
+                        $(".question_inactivity_modal").modal('show');
+                        focusIntervalCount = 10;
+                        clearInterval(focusInterval);
+                        focusInterval = null;
+                    }
+                }, 1000);
+
+            }
+        });
+
+
+        window.addEventListener('focus', function () {
+            focusIntervalCount = 10;
+            clearInterval(focusInterval);
+            focusInterval = null;
+        });
+
+        $(document).on('click', '.continue-btn', function (e) {
+            TimerActive = true;
+            focusIntervalCount = 10;
+            focusInterval = null;
+        });
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
 		var timeUpdateRequest = null;
@@ -289,28 +376,53 @@ $timer_counter = $practice_time;
 
         var active_question_id = $(".question-area-block").attr('data-active_question_id');
        $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+	   
+	   
+	   
+	   
+	   $("body").on("click", ".pause-quiz", function (e) {
+			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+			var correct_questions = $('.quiz-pagination li.correct').length;
+			var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+			$(".pause_quiz .modal-body p").html('Total Attempted: '+attempted_questions+' | Correct: '+correct_questions+' | Incorrect: '+incorrect_questions);
+            TimerActive = false;
+        });
+		$("body").on("click", ".unpause-quiz", function (e) {
+            TimerActive = true;
+        });
+		
+		$("body").on("click", ".review-btn", function (e) {
+			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+			$(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
+            $(".pause_quiz").modal('hide');
+        });
+		
+		
+		
 
         Quizintervals = setInterval(function () {
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-			var time_consumed = $('.quiz-timer-counter').attr('data-time_consumed');
-			time_consumed = parseInt(time_consumed) + parseInt(1);
-			$('.quiz-timer-counter').attr('data-time_consumed', time_consumed);
-			
-            if (duration_type == 'no_time_limit') {
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            } else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-            if ($('.nub-of-sec').length > 0) {
-                $('.nub-of-sec').html(getTime(quiz_timer_counter));
-            }
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-            if( quiz_timer_counter == 0){
-                clearInterval(Quizintervals);
-                rurera_loader($(".lms-quiz-section"), 'div');
-                $(".submit_quiz_final").click();
-            }
+			if( TimerActive == true){
+				var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+				var time_consumed = $('.quiz-timer-counter').attr('data-time_consumed');
+				time_consumed = parseInt(time_consumed) + parseInt(1);
+				$('.quiz-timer-counter').attr('data-time_consumed', time_consumed);
+				
+				if (duration_type == 'no_time_limit') {
+					quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+				} else {
+					quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+				}
+				$('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+				if ($('.nub-of-sec').length > 0) {
+					$('.nub-of-sec').html(getTime(quiz_timer_counter));
+				}
+				$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+				if( quiz_timer_counter == 0){
+					clearInterval(Quizintervals);
+					rurera_loader($(".lms-quiz-section"), 'div');
+					$(".submit_quiz_final").click();
+				}
+			}
 
         }, 1000);
 
@@ -330,6 +442,8 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
+		
+
 
     }
 
