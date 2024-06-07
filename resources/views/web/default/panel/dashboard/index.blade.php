@@ -139,6 +139,46 @@
 	@include('web.default.panel.set_work.set_work_listing',['assignments' => $assignments])
 @endif
 @if(auth()->user()->isUser())
+	
+@if( $continueTests->count() > 0)
+
+	<div class="quests-list quests-learning">
+		<div class="section-title text-left mb-30">
+			<h2 class="font-22">Continue Tests</h2>
+		<section class="dashboard mb-60">
+			<div class="db-form-tabs">
+				<div class="db-members">
+					<div class="row g-3 list-unstyled students-requests-list">
+						@foreach( $continueTests as $resultObj)
+							<div class="col-12 col-lg-12 students-requests-list-item">
+								<div class="notification-card rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40 mt-20">
+									<div class="row align-items-center">
+										<div class="col-12 col-lg-3 mt-10 mt-lg-0 d-flex align-items-start">
+											<span class="notification-badge badge badge-circle-danger mr-5 mt-5 d-flex align-items-center justify-content-center"></span>
+											<div class="">
+												<h3 class="notification-title font-16 font-weight-bold text-dark-blue">{{$resultObj->parentQuiz->getTitleAttribute()}}</h3>
+												<span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($resultObj->created_at, 'j M Y')}}</span>
+											</div>
+										</div>
+										<div class="col-12 col-lg-5 mt-10 mt-lg-0">
+											<span class="font-weight-500 text-gray font-14"></span>
+										</div>
+										<div class="col-12 col-lg-4 mt-10 mt-lg-0 text-right">
+											<a href="/sats/{{$resultObj->parentQuiz->quiz_slug}}" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white">Resume Test</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+@endif
+
+
+
 <div class="quests-list quests-learning">
 	<div class="section-title text-left mb-30">
 		<h2 class="font-22">Learning Journeys</h2>

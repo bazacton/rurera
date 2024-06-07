@@ -97,6 +97,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
     Route::post('/question_attempt/flag_question' , 'QuestionsAttemptController@flag_question');
     Route::post('/question_attempt/jump_question' , 'QuestionsAttemptController@jump_question');
     Route::post('/question_attempt/mark_as_active' , 'QuestionsAttemptController@mark_as_active');
+	Route::post('/question_attempt/update_time' , 'QuestionsAttemptController@update_time');
     Route::post('/question_attempt/jump_review' , 'QuestionsAttemptController@jump_review');
     Route::post('/question_attempt/timestables_submit' , 'QuestionsAttemptController@timestables_submit');
 

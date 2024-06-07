@@ -915,6 +915,7 @@ class QuestionsAttemptController extends Controller
             }
 
             $question_correct = array_map('ucfirst', $question_correct);
+			$user_input = array_map('ucfirst', $user_input);
             if (!in_array($user_input, $question_correct)) {
                 $is_question_correct = false;
             } else {
@@ -1444,6 +1445,19 @@ class QuestionsAttemptController extends Controller
         $QuizzResultQuestions = QuizzResultQuestions::where('id', $question_id)->where('quiz_result_id', $attemptLogObj->quiz_result_id)->update(array('is_active' => 1));
 
         $QuizzesResult = QuizzesResult::where('id', $attemptLogObj->quiz_result_id)->update(array('active_question_id' => $actual_question_id));
+    }
+	
+	
+	 /*
+     * Update time for Result
+     */
+    public function update_time(Request $request)
+    {
+        $quiz_result_id = $request->get('quiz_result_id');
+        $time_consumed = $request->get('time_consumed');
+        $QuizzesResult = QuizzesResult::where('id', $quiz_result_id)->update(array('total_time_consumed' => $time_consumed));
+
+        
     }
 
     /*
@@ -2093,6 +2107,12 @@ class QuestionsAttemptController extends Controller
      */
     public function questions_status_array($QuizzesResult, $questions_list)
     {
+        $questions_status_array = QuizzResultQuestions::where('quiz_result_id', $QuizzesResult->id)->whereIn('id', $questions_list)->pluck('status', 'id')->toArray();;
+        return $questions_status_array;
+    }
+	
+	public function questions_status_array_bk($QuizzesResult, $questions_list)
+    {
         $questions_status_array = QuizzResultQuestions::where('quiz_result_id', $QuizzesResult->id)->whereIn('question_id', $questions_list)->pluck('status', 'question_id')->toArray();;
         return $questions_status_array;
     }
@@ -2641,6 +2661,7 @@ class QuestionsAttemptController extends Controller
 
         $mock_exam_settings = json_decode($quiz->mock_exam_settings);
         $mock_exam_settings = (array)$mock_exam_settings;
+		
 
         if (!empty($mock_exam_settings)) {
             foreach ($mock_exam_settings as $sub_chapter_id => $no_of_test_questions) {
@@ -2658,7 +2679,7 @@ class QuestionsAttemptController extends Controller
             }
         }
         $questions_list = $quizQuestionsList;
-
+		
         return array(
             'questions_list' => $questions_list,
         );

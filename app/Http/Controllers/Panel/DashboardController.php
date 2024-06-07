@@ -16,6 +16,7 @@ use App\Models\UserAssignedTopics;
 use App\Models\Webinar;
 use App\Models\StudentAssignments;
 use App\Models\ParentsOrders;
+use App\Models\QuizzesResult;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -130,6 +131,10 @@ class DashboardController extends Controller
             $data['shortlisted_toys'] = $shortlisted_toys;
             $data['entitled_toys'] = $entitled_toys;
             $data['shortlisted_products'] = $shortlisted_products;
+			
+			$continueTests = QuizzesResult::where('user_id', $user->id)->where('status', 'waiting')->where('quiz_result_type', '11plus')->get();
+            $data['continueTests'] = $continueTests;
+			
 
         }
 

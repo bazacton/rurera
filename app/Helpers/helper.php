@@ -7862,6 +7862,7 @@ function get_quiz_question_layout_file($quizObj){
     $layout_file = 'question_layout';
     $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
     $layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_exam')? 'enterance_exams_question_layout' : $layout_file;
+	$layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_practice')? 'enterance_exams_practice_question_layout' : $layout_file;
     return $layout_file;
 }
 
@@ -7874,6 +7875,7 @@ function get_quiz_start_layout_file($quizObj){
     $layout_file = ($quiz_type == 'vocabulary')? 'spell_start' : $layout_file;
     $layout_file = ($quiz_type == 'practice')? 'course_start' : $layout_file;
     $layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_exam')? 'enterance_exams_start' : $layout_file;
+	$layout_file = (in_array($quiz_type, $entrance_exams) && $quizObj->mock_type == 'mock_practice')? 'enterance_exams_practice_start' : $layout_file;
     return $layout_file;
 }
 
@@ -8284,10 +8286,10 @@ function getNextNuggetByCurrentID($array, $key, $value, $parentLevel = null, $gr
  * Get array lenght
  */
 function array_limit_length($array_data, $length_value){
-	if( empty( $array_data ) ){
+	if( empty( $array_data ) || $length_value == 0 ){
 		return array();
 	}
-   $arrayList = array_rand($array_data, $length_value);
+	$arrayList = array_rand($array_data, $length_value);
     $arrayList = is_array($arrayList)? $arrayList : array($arrayList);
     $arrayList = array_intersect_key($array_data, array_flip($arrayList));
     $arrayList = array_values($arrayList);

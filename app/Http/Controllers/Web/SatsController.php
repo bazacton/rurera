@@ -299,7 +299,7 @@ class SatsController extends Controller
         }*/
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        //$started_already = $QuestionsAttemptController->started_already($id);
+        $started_already_quiz = $QuestionsAttemptController->started_already($id);
 
         $started_already = false;
         if ($started_already == true) {
@@ -320,7 +320,8 @@ class SatsController extends Controller
             $data = [
                 'pageTitle'  => 'Start',
                 'quiz'       => $quiz,
-                'resultData' => $resultData
+                'resultData' => $resultData,
+				'button_label' => ($started_already_quiz == true)? 'Resume Test' : 'Start Test',
             ];
             return view('web.default.quizzes.start', $data);
         }

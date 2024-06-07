@@ -184,7 +184,7 @@ $rand_id = rand(99,9999);
                         </div>
 
                         <a href="javascript:;" data-id="{{$quiz->id}}" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
-                           class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">Start Quiz</a>
+                           class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">{{isset( $button_label)? $button_label : 'Start Test'}}</a>
                         <div class="learning-content-quiz">
                             @if( isset( $quiz->quiz_instructions ) && $quiz->quiz_instructions != '')
                                    <h3>Instructions:</h3>

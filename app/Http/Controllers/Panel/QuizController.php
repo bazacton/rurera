@@ -394,7 +394,7 @@ class QuizController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level);
-        //pre($questions_list_data_array);
+		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -751,6 +751,7 @@ class QuizController extends Controller
 
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
+			
 
             $data = [
                 'pageTitle'              => trans('quiz.quiz_start'),
@@ -771,6 +772,7 @@ class QuizController extends Controller
                 'questions_status_array' => $questions_status_array,
                 'active_question_id'     => $resultLogObj->active_question_id,
                 'actual_question_ids'   => $actual_question_ids,
+				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
             ];
 
             if ($quiz->quiz_type == 'sats') {

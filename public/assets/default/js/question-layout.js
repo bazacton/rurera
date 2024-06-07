@@ -190,6 +190,15 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+			
+			
+			if (typeof afterQuestionValidation === "function") {
+				// myFunction exists and is a function
+				afterQuestionValidation(return_data, thisForm);
+			}
+			
+			
+			
 
             if(return_data.incorrect_flag == true ){
                 correctInRow = 0;
@@ -241,7 +250,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 $(".lms-quiz-section").attr('data-total_points', return_data.total_points);
             }
             var quiz_type = return_data.quiz_type;
-            $(".quiz-pagination ul li[data-question_id='" + question_id + "']").addClass(question_status_class);
+            $(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
             if( return_data.is_complete == true) {
                 $(".question-area-block").html('Thank you for attempting!');
 
@@ -318,6 +327,9 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     }
                 } else {
                     //$(".question-layout-block").html(return_data.question_response_layout);
+					
+					
+					
 
 
                     if (quiz_type == 'vocabulary') {
@@ -800,6 +812,9 @@ function init_question_functions() {
 
     $(document).on('keyup', 'body', function (evt) {
         if( $(".question-area").hasClass('spell-question-area')){
+            return;
+        }
+		if( $(".question-area").hasClass('dis-arrows')){
             return;
         }
         if (evt.key === 'ArrowLeft') {
