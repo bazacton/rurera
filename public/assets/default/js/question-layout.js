@@ -190,6 +190,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
             var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+			$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
 			
 			
 			if (typeof afterQuestionValidation === "function") {
@@ -212,14 +213,14 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             }
 
             if( $(".quiz-corrects").length > 0){
-                $(".quiz-corrects").html(totalCorrectCount);
+                //$(".quiz-corrects").html(totalCorrectCount);
             }
 
             if( $(".quiz-incorrects").length > 0){
-                $(".quiz-incorrects").html(totalInCorrectCount);
+                //$(".quiz-incorrects").html(totalInCorrectCount);
             }
             if( $(".coin-numbers").length > 0){
-                $(".coin-numbers span").html('+'+totalCorrectCount);
+                //$(".coin-numbers span").html('+'+totalCorrectCount);
             }
 
             var total_questions = $(".question-area").attr('data-total_questions');
@@ -228,7 +229,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 var total_incorrects = parseInt($(".quiz-incorrects").html());
                 var total_percentage = ((total_corrects) * 100) / parseInt(total_questions);
                 //total_percentage = (correctInRow == 0)? 0 : total_percentage;
-                $(".quiz-questions-bar .bar-fill").css('width', total_percentage+'%');
+                $(".quiz-questions-bar .bar-fill1").css('width', total_percentage+'%');
             }
             if($(".question-step.active .question-layout").length > 0) {
                 $(".question-step.active .question-layout").addClass('disable-div');
@@ -250,7 +251,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                 $(".lms-quiz-section").attr('data-total_points', return_data.total_points);
             }
             var quiz_type = return_data.quiz_type;
-            $(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
+            
             if( return_data.is_complete == true) {
                 $(".question-area-block").html('Thank you for attempting!');
 
@@ -973,7 +974,7 @@ function init_question_functions() {
             var total_corrects = parseInt($(".quiz-corrects").html());
             var total_incorrects = parseInt($(".quiz-incorrects").html());
             var total_percentage = ((total_corrects) * 100) / parseInt(total_questions);
-            $(".quiz-questions-bar .bar-fill").css('width', total_percentage+'%');
+            $(".quiz-questions-bar .bar-fill1").css('width', total_percentage+'%');
         }
 
         console.log('totalquestion------'+total_questions);

@@ -160,6 +160,22 @@ $timer_counter = $practice_time;
 
                         </div>
                     </div>
+					
+					<div class="quiz-status-bar">
+                        <div class="quiz-questions-bar-holder">
+                            <div class="quiz-questions-bar">
+                                <span class="bar-fill" style="width: 0%;"></span>
+                            </div>
+                            <span class="coin-numbers">
+                                <img src="/assets/default/img/quests-coin.png" alt="">
+                                <span>+0</span>
+                            </span>
+                        </div>
+                        <div class="quiz-corrects-incorrects">
+                            <span class="quiz-corrects">0</span>
+                            <span class="quiz-incorrects">0</span>
+                        </div>
+                    </div>
 
                     <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
@@ -291,14 +307,28 @@ $timer_counter = $practice_time;
     var Quizintervals = null;
 	var InactivityInterval = null;
     var focusInterval = null;
-    var focusIntervalCount = 10;
+    var focusIntervalCount = 60;
 	var TimerActive = true;
     var duration_type = '{{$duration_type}}';
 	
 	
 	
+	
+	
+	
 
     function quiz_default_functions() {
+		
+		
+		var total_questions = $('.quiz-pagination li').length;
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
+		$(".quiz-corrects").html(correct_questions);
+		$(".quiz-incorrects").html(incorrect_questions);
+		$(".coin-numbers span").html(parseInt(correct_questions)*10);
+		$(".quiz-questions-bar .bar-fill").css('width', correct_percentage+'%');
 		
 		window.addEventListener('blur', function () {
             //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
@@ -312,7 +342,7 @@ $timer_counter = $practice_time;
                     if (focus_count <= 0) {
                         TimerActive = false;
                         $(".question_inactivity_modal").modal('show');
-                        focusIntervalCount = 10;
+                        focusIntervalCount = 60;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -323,21 +353,47 @@ $timer_counter = $practice_time;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 10;
+            focusIntervalCount = 60;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
             TimerActive = true;
-            focusIntervalCount = 10;
+            focusIntervalCount = 60;
             focusInterval = null;
         });
 		
 		
-		
-		
-		
+		if (jQuery('.quiz-pagination .swiper-container').length > 0) {
+        console.log('slides-count');
+        console.log($(".quiz-pagination ul li").length);
+        const swiper = new Swiper('.quiz-pagination .swiper-container', {
+            slidesPerView: ($(".quiz-pagination ul li").length > 20) ? 20 : $(".quiz-pagination ul li").length,
+            spaceBetween: 0,
+            slidesPerGroup: 5,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 3,
+                    spaceBetween: 5
+                },
+
+                480: {
+                    slidesPerView: ($(".quiz-pagination ul li").length > 20) ? 20 : $(".quiz-pagination ul li").length,
+                    spaceBetween: 5
+                },
+
+                640: {
+                    slidesPerView: ($(".quiz-pagination ul li").length > 20) ? 20 : $(".quiz-pagination ul li").length,
+                    spaceBetween: 5
+                }
+            }
+        })
+    }
 		
 		
 		
@@ -475,6 +531,27 @@ $timer_counter = $practice_time;
 			thisForm.find('.show-notifications').html('<span class="question-status-'+notification_class+'">'+notification_label+'</span>');
 			thisForm.find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/'+notification_sound+'"></audio>');
 		}
+		
+		var total_questions = $('.quiz-pagination li').length;
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
+		
+		
+		
+		$(".quiz-questions-bar .bar-fill").css("width", correct_percentage+"%");
+		var total_questions = $('.quiz-pagination li').length;
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
+		$(".quiz-corrects").html(correct_questions);
+		$(".quiz-incorrects").html(incorrect_questions);
+		$(".coin-numbers span").html(parseInt(correct_questions)*10);
+		$(".quiz-questions-bar .bar-fill").css('width', correct_percentage+'%');
+		
+		
     }
 
 </script>
