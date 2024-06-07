@@ -407,6 +407,12 @@
                     </div>
 
                 </div>
+				<div class="form-group">
+					<label class="input-label">Target Score</label>
+					<input type="number" value="{{ !empty($quiz) ? $quiz->target_score : old('target_score') }}"
+						   name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][target_score]"
+						   class="form-control @error('target_score')  is-invalid @enderror" max="100" placeholder=""/>
+				</div>
                 <div class="conditional-fields sats-fields 11plus-fields assessment-fields {{$assessment_hide_class}}">
                     <div class="form-group">
                         <label class="input-label">No of Attempts</label>

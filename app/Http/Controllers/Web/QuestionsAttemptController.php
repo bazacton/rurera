@@ -914,6 +914,7 @@ class QuestionsAttemptController extends Controller
                 $user_input = str_replace('&nbsp;', '', $user_input);
             }
 
+            $question_correct = array_map('strtolower', $question_correct);
             $question_correct = array_map('ucfirst', $question_correct);
 			if( is_array( $user_input)){
 				$user_input = array_map('ucfirst', $user_input);
@@ -1265,11 +1266,18 @@ class QuestionsAttemptController extends Controller
     /*
      * Check if Started Already
      */
-    public function started_already($parent_id)
+    public function started_already($parent_id, $full_data = false)
     {
         $user = auth()->user();
         $QuizzesResult = QuizzesResult::where('parent_type_id', $parent_id)->where('user_id', $user->id)->where('status', 'waiting')->first();
-        return (isset($QuizzesResult->id)) ? true : false;
+		if( $full_data == true){
+			return array(
+				'started_already' => (isset($QuizzesResult->id)) ? true : false,
+				'resultObj' => $QuizzesResult,
+			);
+		}else{
+			return (isset($QuizzesResult->id)) ? true : false;
+		}
     }
 
 

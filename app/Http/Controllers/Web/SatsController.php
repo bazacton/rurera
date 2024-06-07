@@ -299,7 +299,9 @@ class SatsController extends Controller
         }*/
 
         $QuestionsAttemptController = new QuestionsAttemptController();
-        $started_already_quiz = $QuestionsAttemptController->started_already($id);
+        $started_already = $QuestionsAttemptController->started_already($id, true);
+		$started_already_quiz = isset( $started_already['started_already'] )? $started_already['started_already'] : false;
+		$resultObj = isset( $started_already['resultObj'] )? $started_already['resultObj'] : array();
 
         $started_already = false;
         if ($started_already == true) {
@@ -322,6 +324,7 @@ class SatsController extends Controller
                 'quiz'       => $quiz,
                 'resultData' => $resultData,
 				'button_label' => ($started_already_quiz == true)? 'Resume Test' : 'Start Test',
+				'resultObj' => $resultObj,
             ];
             return view('web.default.quizzes.start', $data);
         }

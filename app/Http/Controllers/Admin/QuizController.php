@@ -386,6 +386,7 @@ class QuizController extends Controller
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
             'pick_questions_auto'                   => $pick_questions_auto,
             'no_of_questions'                   => $no_of_questions,
+            'target_score'            => isset($data['target_score']) ? $data['target_score'] : 0,
         ]);
 
         QuizTranslation::updateOrCreate([
@@ -710,6 +711,7 @@ class QuizController extends Controller
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
 			'pick_questions_auto'                   => $pick_questions_auto,
             'no_of_questions'                   => $no_of_questions,
+            'target_score'            => isset($data['target_score']) ? $data['target_score'] : 0,
         ]);
 
         if (!empty($quiz)) {

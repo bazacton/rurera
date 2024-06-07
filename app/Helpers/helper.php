@@ -8122,7 +8122,7 @@ class svgAvatarsSvgCodeSanitizer {
 	}
 }
 
-function getTimeWithText($secondsString, $show_empty = true) {
+function getTimeWithText($secondsString, $show_empty = true, $include_zero = false) {
     $h = floor($secondsString / 3600); // Get whole hours
     $secondsString -= $h * 3600;
     $m = floor($secondsString / 60); // Get remaining minutes
@@ -8132,7 +8132,7 @@ function getTimeWithText($secondsString, $show_empty = true) {
     if ($h > 0) {
         $return_string .= $h . "h ";
     }
-    if ($m > 0) {
+    if ($m > 0 || $include_zero == true) {
         $return_string .= ($m < 10 ? '0' . $m : $m) . "m ";
     }
     //$secondsString  = round($secondsString, 2);
@@ -8145,17 +8145,17 @@ function getTimeWithText($secondsString, $show_empty = true) {
     return $return_string;
 }
 
-function getTime($secondsString) {
+function getTime($secondsString, $include_zero = false) {
     $h = floor($secondsString / 3600); // Get whole hours
     $secondsString -= $h * 3600;
     $m = floor($secondsString / 60); // Get remaining minutes
     $secondsString -= $m * 60;
 
     $return_string = '';
-    if ($h > 0) {
+    if ($h > 0 || $include_zero == true) {
         $return_string .= $h . ":";
     }
-    if ($m > 0) {
+    if ($m > 0 || $include_zero == true) {
         $return_string .= ($m < 10 ? '0' . $m : $m) . ":";
     }
     $return_string .= ($secondsString < 10 ? '0' . $secondsString : $secondsString);
