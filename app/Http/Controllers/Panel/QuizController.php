@@ -787,7 +787,7 @@ class QuizController extends Controller
                 $data['time_interval'] = 0;
             }
 
-            if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {
+            if ($quiz->quiz_type == 'vocabulary' && $quiz_level != 'easy') {	
                 $data['duration_type'] = isset( $duration_type)? $duration_type : '';
                 $data['practice_time'] = isset( $time_interval )? $time_interval : '';
                 $data['time_interval'] = isset( $time_interval )? $time_interval : '';

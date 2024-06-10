@@ -26,8 +26,8 @@ $rand_id = rand(99,9999);
 
 
         <div class="learning-page-content flex-grow-1 bg-info-light p-15">
-            <div class="default-loaded-data rurera-hide"></div>
-            <div class="learning-content read-quiz-content" id="learningPageContent">
+            <div class="default-loaded-data rurera-hide" data-is_started_already="{{isset( $resultObj->id)? 'yes' : 'no' }}"></div>
+            <div class="learning-content read-quiz-content {{isset( $resultObj->id)? 'rurera-hide' : '' }}" id="learningPageContent">
 
                 @php $content_class = ''; @endphp
                 @if( $quiz->quiz_type == 'vocabulary' || $quiz->quiz_type == 'practice')
@@ -223,6 +223,7 @@ $rand_id = rand(99,9999);
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 
 <script src="/assets/default/js/parts/video_player_helpers.min.js"></script>
+<script src="/assets/default/js/question-layout.js?var={{$rand_id}}"></script>
 <script src="/assets/learning_page/scripts.min.js?var={{$rand_id}}"></script>
 
 @if((!empty($isForumPage) and $isForumPage) or (!empty($isForumAnswersPage) and $isForumAnswersPage))
@@ -231,7 +232,6 @@ $rand_id = rand(99,9999);
 @endpush
 <script>
     //init_question_functions();
-
 
     if( "{{$quiz->quiz_type}}" == 'vocabulary' || "{{$quiz->quiz_type}}" == 'practice') {
         var start_counter = 6;

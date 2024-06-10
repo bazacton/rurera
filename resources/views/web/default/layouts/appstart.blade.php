@@ -139,7 +139,7 @@ $rand_no = rand(99,9999);
                   console.log('slides-count');
                   console.log($(".quiz-pagination ul li").length);
                 const swiper = new Swiper('.quiz-pagination .swiper-container', {
-                  slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                  slidesPerView: ($(".quiz-pagination ul li").length > 10)? 10 : $(".quiz-pagination ul li").length,
                   spaceBetween: 0,
                   slidesPerGroup: 10,
                   observer: true,
@@ -155,12 +155,12 @@ $rand_no = rand(99,9999);
                     },
 
                     480: {
-                      slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                      slidesPerView: ($(".quiz-pagination ul li").length > 10)? 10 : $(".quiz-pagination ul li").length,
                       spaceBetween: 5
                     },
 
                     640: {
-                      slidesPerView: ($(".quiz-pagination ul li").length > 20)? 20 : $(".quiz-pagination ul li").length,
+                      slidesPerView: ($(".quiz-pagination ul li").length > 10)? 10 : $(".quiz-pagination ul li").length,
                       spaceBetween: 5
                     }
                   }

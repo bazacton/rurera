@@ -164,12 +164,12 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 					
 					<div class="quiz-status-bar">
                         <div class="quiz-questions-bar-holder">
-                            <div class="quiz-questions-bar">
-                                <span class="bar-fill" style="width: 0%;"></span>
+                            <div class="quiz-questions-bar" title="{{$target_score}}%" data-targt_score="{{$target_score}}">
+                                <span class="bar-fill" title="{{$target_score}}%" data-targt_score="{{$target_score}}" style="width: 0%;"></span>
                             </div>
                             <span class="coin-numbers">
                                 <img src="/assets/default/img/quests-coin.png" alt="">
-                                <span>{{isset( $quiz->target_score)? $quiz->target_score : 0}}</span>
+                                <span class="total-earned-coins">0</span>
                             </span>
                         </div>
                         <div class="quiz-corrects-incorrects">
@@ -238,43 +238,55 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 </div>
 @endif
 
-<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-   <div class="modal-dialog">
+<div class="modal fade review_submit1" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+   <div class="modal-dialog modal-dialog-centered">
        <div class="modal-content">
            <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
            <div class="modal-body">
-               <p></p>
-               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
-           </div>
+			  <div class="modal-box">
+				<span class="icon-box d-block mb-15">
+					<img src="../assets/default/img/clock-modal-img.png" alt="">
+				</span>
+				<h3 class="font-24 font-weight-normal mb-10">Are you sure?</h3>
+				<p class="mb-15 font-14">
+					You've  been gone a while, we have paused you, you still can continue learning by using following&nbsp;links.
+				</p>
+				<div class="inactivity-controls flex-column d-flex">
+					<a href="javascript:;" class="review-btn submit_quiz_final">Finish</a>
+				</div>
+			  </div>
+			</div>
        </div>
    </div>
 </div>
 <div class="modal fade pause_quiz quiz-activity-pause" id="pause_quiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
    <div class="modal-dialog">
        <div class="modal-content">
-           <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-           <div class="modal-body">
-				<h3>The Test is Paused</h3>
+		   <div class="modal-body">
+			  <div class="modal-box">
+				<span class="icon-box d-block mb-15">
+					<img src="../assets/default/img/clock-modal-img.png" alt="">
+				</span>
+				<h3 class="font-24 font-weight-normal mb-10">Test is Paused</h3>
+				<p class="mb-15 font-14">
+					You've been inactive for a while, and your session was paused. You can continue learning by using the following links
+				</p>
 				<ul class="activity-scores">
-					<li>Your Current Score <strong>10</strong></li>
-					<li>Passing Score <strong>80</strong></li>
+					<li>Time Remaining <strong class="time-remaining">10</strong></li>
 				</ul>
 				<ul class="activity-info">
-					<li>Total Questions: <strong>10</strong></li>
-					<li>Correct: <strong>1</strong></li>
-					<li>Incorrect: <strong>2</strong></li>
-					<li>Unanswered: <strong>7</strong></li>
+					<li>Total Questions: <strong class="total-questions">10</strong></li>
+					<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+					<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+					<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
 				</ul>
-				
-				<div class="activity-actions">
-					<a href="/tests" class="nav-link mt-20 btn-primary rounded-pill"> Exit </a>
-				<a class="review-btn nav-link mt-20 btn-primary rounded-pill" data-toggle="modal" data-target="#review_submit">Finish</a>
-				<a href="javascript:;" class="unpause-quiz" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+				<div class="inactivity-controls">
+					<a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+					<a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish</a>
+					<a href="/tests" class="exit-btn"> Exit </a>
 				</div>
-				
-				<p class="rurera-hide"></p>
-               
-           </div>
+			  </div>
+			</div>
        </div>
    </div>
 </div>
@@ -295,13 +307,27 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
   <div class="modal-content">
     <div class="modal-body">
       <div class="modal-box">
-        <h3>Inactivity</h3>
-        <p>
-            Looks like you're inactive.
+        <span class="icon-box d-block mb-15">
+            <img src="../assets/default/img/clock-modal-img.png" alt="">
+        </span>
+        <h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
+        <p class="mb-15 font-14">
+            You've been inactive for a while, and your session was paused. You can continue learning by using the following links
         </p>
-       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
-	   <a href="javascript:;" class="pause-quiz" data-dismiss="modal" data-toggle="modal" data-target="#pause_quiz">Pause</a>
-	   <a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish</a>
+		<ul class="activity-scores">
+			<li>Time Remaining <strong class="time-remaining">10</strong></li>
+		</ul>
+		<ul class="activity-info">
+			<li>Total Questions: <strong class="total-questions">10</strong></li>
+			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+		</ul>
+        <div class="inactivity-controls">
+            <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+            <a href="javascript:;" class="pause-quiz" data-dismiss="modal" data-toggle="modal" data-target="#pause_quiz">Pause</a>
+            <a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish</a>
+        </div>
       </div>
     </div>
   </div>
@@ -324,7 +350,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
     var Quizintervals = null;
 	var InactivityInterval = null;
     var focusInterval = null;
-    var focusIntervalCount = 60;
+    var focusIntervalCount = 10;
 	var TimerActive = true;
     var duration_type = '{{$duration_type}}';
 	
@@ -346,7 +372,10 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
 		$(".quiz-corrects").html(attempted_questions);
 		$(".quiz-incorrects").html(incorrect_questions);
-		$(".quiz-questions-bar .bar-fill").css('width', correct_percentage+'%');
+		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
+		$(".quiz-questions-bar .bar-fill").html(Math.round(correct_percentage)+'%');
+		
+		$(".total-earned-coins").html(correct_questions);
 		
 		window.addEventListener('blur', function () {
             //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
@@ -357,10 +386,24 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
                     var focus_count = focusIntervalCount-1;
                     console.log('focusout--'+focus_count);
                     focusIntervalCount = focus_count;
-                    if (focus_count <= 0) {
+                    if (focus_count <= 0 && TimerActive == true) {
                         TimerActive = false;
+						var total_questions = $('.quiz-pagination li').length;
+						var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+						var correct_questions = $('.quiz-pagination li.correct').length;
+						var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+						var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+						var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+						var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
+						$(".question_inactivity_modal .modal-body .time-remaining").html(getTime(remaining_time));
+						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
+						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
+						$(".question_inactivity_modal .modal-body .incorrect-questions").html(incorrect_questions);
+						$(".question_inactivity_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+						
+						
                         $(".question_inactivity_modal").modal('show');
-                        focusIntervalCount = 60;
+                        focusIntervalCount = 10;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -371,21 +414,24 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 60;
+            focusIntervalCount = 10;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
             TimerActive = true;
-            focusIntervalCount = 60;
+            focusIntervalCount = 10;
             focusInterval = null;
         });
 		
+		$(document).on('click', '.finish-btn', function (e) {
+            $(".pause_quiz").modal('hide');
+        });
+		
+		
 		
 		if (jQuery('.quiz-pagination .swiper-container').length > 0) {
-        console.log('slides-count');
-        console.log($(".quiz-pagination ul li").length);
         const swiper = new Swiper('.quiz-pagination .swiper-container', {
             slidesPerView: ($(".quiz-pagination ul li").length > 10) ? 10 : $(".quiz-pagination ul li").length,
             spaceBetween: 0,
@@ -453,12 +499,19 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 	   
 	   
 	   
-	   
 	   $("body").on("click", ".pause-quiz", function (e) {
+			var total_questions = $('.quiz-pagination li').length;
 			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
 			var correct_questions = $('.quiz-pagination li.correct').length;
 			var incorrect_questions = $('.quiz-pagination li.incorrect').length;
-			$(".pause_quiz .modal-body p").html('Total Attempted: '+attempted_questions+' | Correct: '+correct_questions+' | Incorrect: '+incorrect_questions);
+			var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+			var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+			var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
+			$(".pause_quiz .modal-body .time-remaining").html(getTime(remaining_time));
+			$(".pause_quiz .modal-body .total-questions").html(total_questions);
+			$(".pause_quiz .modal-body .correct-questions").html(correct_questions);
+			$(".pause_quiz .modal-body .incorrect-questions").html(incorrect_questions);
+			$(".pause_quiz .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
             TimerActive = false;
         });
 		$("body").on("click", ".unpause-quiz", function (e) {
@@ -467,7 +520,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		
 		$("body").on("click", ".review-btn", function (e) {
 			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
-			$(".review_submit .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
+			$(".review_submit1 .modal-body p").html('You have attempted ' + attempted_questions + ' questions. Are you sure you want to submit?');
             $(".pause_quiz").modal('hide');
         });
 		
@@ -549,16 +602,6 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 			thisForm.find('.show-notifications').html('<span class="question-status-'+notification_class+'">'+notification_label+'</span>');
 			thisForm.find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/'+notification_sound+'"></audio>');
 		}
-		
-		var total_questions = $('.quiz-pagination li').length;
-		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
-		var correct_questions = $('.quiz-pagination li.correct').length;
-		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
-		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_questions);
-		
-		
-		
-		$(".quiz-questions-bar .bar-fill").css("width", correct_percentage+"%");
 		var total_questions = $('.quiz-pagination li').length;
 		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
 		var correct_questions = $('.quiz-pagination li.correct').length;
@@ -567,7 +610,9 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
 		$(".quiz-corrects").html(attempted_questions);
 		$(".quiz-incorrects").html(incorrect_questions);
-		$(".quiz-questions-bar .bar-fill").css('width', correct_percentage+'%');
+		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
+		$(".quiz-questions-bar .bar-fill").html(Math.round(correct_percentage)+'%');
+		$(".total-earned-coins").html(correct_questions);
 		
 		
     }

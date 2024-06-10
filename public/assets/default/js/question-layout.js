@@ -103,7 +103,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
     var attempt_id = $(".question-area .question-step").attr('data-qattempt');
     var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
     var time_consumed = $(".question-area .question-step").attr('data-elapsed');
-    console.log(time_consumed);
 
 
     var total_elapsed_time = $(".range-price").attr('data-time_elapsed');
@@ -959,9 +958,13 @@ function init_question_functions() {
             clearInterval(Questioninterval);
         }
         var Questioninterval = setInterval(function () {
-            var seconds_count = $(".question-step-"+quizQuestionID).attr('data-elapsed');
-            seconds_count = parseInt(seconds_count) + parseInt(1);
-            $(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
+			TimerActive = rurera_is_valid_field(TimerActive)? TimerActive : true;
+			if( TimerActive == true){
+				var seconds_count = $(".question-step-"+quizQuestionID).attr('data-elapsed');
+				console.log('seconds_count----'+seconds_count);
+				seconds_count = parseInt(seconds_count) + parseInt(1);
+				$(".question-step-"+quizQuestionID).attr('data-elapsed', seconds_count);
+			}
         }, 1000);
 
         if( $('#sound-icon-'+quizQuestionID).length > 0) {
@@ -1602,6 +1605,14 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
                 duration: 10000,
             });
         }
+        return false;
+    }
+}
+
+function rurera_is_valid_field(field_value) {
+    if (field_value != 'undefined' && field_value != undefined) {
+        return true;
+    } else {
         return false;
     }
 }

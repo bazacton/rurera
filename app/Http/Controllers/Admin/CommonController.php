@@ -392,6 +392,16 @@ class CommonController extends Controller
         $user = auth()->user();
         $subject_id = $request->get('subject_id', null);
         $chapter_type = $request->get('chapter_type', null);
+        $quiz_id = $request->get('quiz_id', 0);
+		$mock_exam_settings = array();
+		$pick_questions_auto = '';
+		
+		if( $quiz_id > 0){
+			$quizObj = Quiz::find($quiz_id);
+			$mock_exam_settings = isset( $quizObj->mock_exam_settings)? (array) json_decode($quizObj->mock_exam_settings): array();
+			$pick_questions_auto = (isset( $quizObj->pick_questions_auto ) && $quizObj->pick_questions_auto == 1)? true : false;
+			$pick_questions_auto = ($pick_questions_auto == true)? 'checked' : '';
+		}
         $courseObj = Webinar::find($subject_id);
         if ($chapter_type == 'Mock Exams' || $chapter_type == 'Both') {
             $chapters = $courseObj->chapters->whereIN('chapter_type', array('Mock Exams', 'Both'));
@@ -411,9 +421,10 @@ class CommonController extends Controller
                 if (!empty($subChapters)) {
                     foreach ($subChapters as $subChapterObj) {
                         $count_questions = $subChapterObj->questions_list->count();
+						$is_checked = isset( $mock_exam_settings[$subChapterObj->id])? 'checked' : '';
 
                         $sub_chapters_response .= '<div class="form-check mt-1">
-                            <input type="checkbox" data-title="' . $subChapterObj->sub_chapter_title . '" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '" value="' . $subChapterObj->id . '" class="form-check-input section-child topics_multi_selection">
+                            <input type="checkbox" data-title="' . $subChapterObj->sub_chapter_title . '" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '" value="' . $subChapterObj->id . '" class="form-check-input section-child topics_multi_selection" '.$is_checked.'>
                             <label class="form-check-label cursor-pointer mt-0" for="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '">
                                 ' . $subChapterObj->sub_chapter_title . '
                             </label>
@@ -422,7 +433,7 @@ class CommonController extends Controller
                 }
                 $response .= '<div class="col-lg-4 col-md-4 col-sm-12 col-4"><div class="card card-primary section-box">
                         <div class="card-header">
-                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_' . $chapterObj->id . '" value="1" class="form-check-input mt-0 topic-section-parent">
+                            <input type="checkbox" name="chapter_ids[]" id="chapter_ids_' . $chapterObj->id . '" value="1" class="form-check-input mt-0 topic-section-parent" '.$pick_questions_auto.'>
                             <label class="form-check-label font-16 font-weight-bold cursor-pointer" for="chapter_ids_' . $chapterObj->id . '">
                                 ' . $chapterObj->getTitleAttribute() . '
                             </label>
@@ -437,7 +448,7 @@ class CommonController extends Controller
 
 		$response .= '<div class="col-lg-12 col-md-12 col-sm-12 col-12 form-group custom-switches-stacked">
                     <label class="custom-switch pl-0">
-                        <input type="checkbox" name="ajax[new][pick_questions_auto]" id="pick_questions_auto" value="1" class="custom-switch-input pick_auto_switch">
+                        <input type="checkbox" name="ajax[new][pick_questions_auto]" id="pick_questions_auto" value="1" class="custom-switch-input pick_auto_switch">	
                         <span class="custom-switch-indicator"></span>
                         <label class="custom-switch-description mb-0 cursor-pointer" for="pick_questions_auto">Pick Questions Auto</label>
                     </label>

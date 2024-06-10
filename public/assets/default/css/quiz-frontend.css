@@ -42,6 +42,7 @@
 .read-quiz-content .left-content {
     width: 100%;
     overflow: hidden;
+    padding-right: 0;
 }
 .spell-question-area .question-layout-block form.question-fields {
     overflow: hidden;

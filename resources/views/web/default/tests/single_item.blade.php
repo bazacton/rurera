@@ -15,7 +15,7 @@ $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/defaul
     <td>
         <img src="{{$quiz_image}}" alt="">
         <h4 class="font-19 font-weight-bold"><a href="/sats/{{$rowObj->quiz_slug}}" class="{{ subscriptionCheckLink('bookshelf') }}">{{$rowObj->getTitleAttribute()}}</a>
-            <br> <span class="sub_label">{{count($rowObj->quizQuestionsList)}} Question(s),</span> <span class="sub_label">Time:{{getTimeWithText(($rowObj->time*60), false)}},</span> <span class="sub_label">Accuracy: 5%,</span> <span class="sub_label">{{getQuizTypeTitle($rowObj->quiz_type)}}</span>
+            <br> <span class="sub_label">{{$rowObj->no_of_questions}} Question(s),</span> <span class="sub_label">Time:{{getTimeWithText(($rowObj->time*60), false)}},</span> <span class="sub_label">{{getQuizTypeTitle($rowObj->quiz_type)}}</span>
 
         </h4>
     </td>

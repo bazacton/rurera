@@ -311,7 +311,7 @@ Lms Question List Style
 .question-layout-block form.question-fields,
 .question-fields .left-content {display: flex; flex-direction: column; /*min-height: 680px; height: 680px;*/ overflow: hidden; overflow-y: auto; padding-right: 10px;}
 .read-quiz-content .left-content {overflow: hidden;}
-.question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 70px; color: #adabab; }
+.question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 0; color: #adabab; }
 .question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.8); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 100%; max-width: 848px; margin-bottom: 0 !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
 .assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
@@ -334,6 +334,7 @@ Lms Question List Style
 .question-textarea h4 {margin: 0 0 10px; color: #fff; font-size: 22px; line-height: 28px; font-weight: 600;}
 .question-textarea select,
 .question-layout select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; outline: 0; box-shadow: none; border: 0; padding: 3px 4px; background: none; background-image: none; color: #777;}
+.question-layout select option:empty {display: none;}
 /* .question-layout .select-box select.editor-field {padding: 0;} */
 .question-textarea .select-box,
 .question-layout .select-box {border-radius: 0; background: #fff; position: relative; line-height: normal; border-bottom: 2px dotted #ddd; padding: 0 15px 0 0; margin: 0 5px; display: -webkit-inline-box;}
@@ -481,8 +482,8 @@ Lms Quiz Wf Style Start
 .lms-quiz-section .section-title {margin: 0 0 30px; position: relative;}
 .question-icon svg {width: 42px; height: 42px; text-align: center;}
 .question-number-holder {width: 45px; text-align: center; float: left; margin-right: 20px; position: absolute; margin-top: 0; cursor: pointer; z-index: 1 !important;}
-.question-number-holder ~ .leform-elements {padding-left: 70px;}
-.question-number-holder ~ .show-notifications {padding-left: 80px; margin-bottom: 30px;}
+.question-number-holder ~ .leform-elements {padding-left: 0;}
+.question-number-holder ~ .show-notifications { margin-bottom: 30px;}
 /*.question-layout br {
     display: none;
 }*/
@@ -520,7 +521,7 @@ Lms Quiz Wf Style Start
 .question-label {position: relative;}
 /* .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;} */
 .question-label span,
-.lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 32px;}
+.lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 25px;}
 .question-label:after,
 /* .lms-quiz-section .question-label:after {
     content: "";
@@ -686,6 +687,7 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 .note-editable .input-holder input[type="number"],
 .input-holder .input-label ~ input[type="number"] {text-align: right;}
 .input-holder .input-label ~ input.input-simple {padding: 0 7px; min-height: 38px;}
+.input-holder .input-label ~ input.input_line {min-height: auto; width: 100%;}
 .input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 10px; text-align: left;}
 .input-holder .input-label.left ~ input[type="number"].input-simple {text-align: right;}
 input::-webkit-outer-spin-button,
@@ -1192,7 +1194,7 @@ Lms Quiz Wf Style End
 .quiz-pagination .swiper-container {
     padding-top: 10px;
     margin-top: -10px;
-    padding: 8px 2px 2px;
+    padding: 8px 2px 4px;
 }
 .quiz-pagination .swiper-button-next,
 .quiz-pagination .swiper-button-prev{
@@ -1236,7 +1238,7 @@ Lms Quiz Wf Style End
 }
 .quiz-pagination li a,
 .read-quiz-info ~ .read-quiz-content .quiz-pagination li a {
-    border: 2px solid #ecefff;
+    border: 0 solid #ecefff;
     height: 26px;
     width: 26px;
     display: inline-flex;
@@ -1251,12 +1253,14 @@ Lms Quiz Wf Style End
     width: 100%;
 }
 .quiz-pagination .incorrect a {
-    background-color: red;
-    border-color: #e98686;
+    color: red !important;
+    box-shadow: 0 2px 0 0 red;
+    border-radius: 0;
 }
 .quiz-pagination .correct a {
-    background-color: green;
-    border-color: #48b848;
+    color: green !important;
+    box-shadow: 0 2px 0 0 green;
+    border-radius: 0;
 }
 .quiz-pagination .in-review a {
     background-color: orange;
@@ -1375,7 +1379,7 @@ Lms Quiz Wf Style End
     overflow-x: hidden;
 }
 .read-quiz-content .quiz-topbar {
-    background-color: #F9FAFA;
+    background-color: #fff;
     border-bottom: 2px solid #ECE9F2;
     padding: 8px 0;
     margin-bottom: 50px;
@@ -1567,6 +1571,25 @@ Lms Quiz Wf Style End
     color: #000;
     text-transform: uppercase;
     /* font-size: 15px; */
+}
+.inactivity-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px 10px;
+    gap: 15px;
+}
+.question_inactivity_modal .inactivity-controls .continue-btn {
+    background-color: #c34242;
+    min-width: auto;
+}
+.inactivity-controls .pause-quiz {
+    background-color: var(--primary);
+    color: #fff;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
 }
 .quiz-topbar .close-btn {min-width: 45px; min-height: 45px;}
 .prev-btn,
@@ -2067,14 +2090,45 @@ span.Selectable:hover {text-decoration: underline;}
 }
 .question-example {
     background-color: #f9f9f9;
-    border-radius: 30px;
+    border-radius: 0;
     padding: 10px 20px;
-    box-shadow: 0 4px 0 1px #ededed;
-    border: 2px solid #ededed;
+    box-shadow: 0 2px 0 1px #ededed;
+    border: 1px solid #ededed;
     border-bottom: 0;
-    margin-bottom: 20px;
 }
 .question-layout .question-example p {
     margin-top: 0;
 }
 /* Example Question Toggle Element Style End */
+.quiz-activity-pause h3 {
+    background: rgb(41,173,176);
+    background: linear-gradient(90deg, rgba(41,173,176,1) 35%, rgba(42,191,160,1) 100%);
+    padding: 30px 50px;
+    color: #fff;
+    margin: 0 0 30px;
+}
+.activity-scores {
+    margin: 0 0 30px;
+    padding: 0 50px;
+}
+.activity-scores li {
+    border-bottom: 1px solid #ddd;
+    padding: 0 0 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.activity-info {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.activity-actions {
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    justify-content: space-between;
+}

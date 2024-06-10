@@ -1993,3 +1993,4 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 #question_properties .bootstrap-tagsinput input::-webkit-input-placeholder {color: #495057; opacity: 1}
 #question_properties .select2-container--default .select2-selection--single .select2-selection__rendered {line-height: 38px !important;}
 #question_properties .select2-container--default .select2-selection--single .select2-selection__placeholder {color: #495057;}
+.note-editor li {list-style: auto;}

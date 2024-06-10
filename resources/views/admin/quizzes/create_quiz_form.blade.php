@@ -32,7 +32,9 @@
     }
 </style>
 <link rel="stylesheet" href="/assets/vendors/summernote/summernote-bs4.min.css">
-
+@php $subject_id = isset( $quiz->subject_id )? $quiz->subject_id : 0;
+$quiz_id = isset( $quiz->id )? $quiz->id : 0;
+ @endphp
 <div data-action="{{ getAdminPanelUrl() }}/quizzes/{{ !empty($quiz) ? $quiz->id .'/update' : 'store' }}"
      class="js-content-form quiz-form webinar-form">
     {{ csrf_field() }}
@@ -212,9 +214,9 @@
 				<div class="no-of-questions-field rurera-hide">
                     <div class="form-group">
                         <label class="input-label">No of Questions</label>
-                        <input type="number" value="{{ !empty($quiz) ? $quiz->attempt : old('attempt') }}"
+                        <input type="number" value="{{ !empty($quiz) ? $quiz->no_of_questions : old('no_of_questions') }}"
                                name="ajax[{{ !empty($quiz) ? $quiz->id : 'new' }}][no_of_questions]"
-                               class="form-control @error('attempt')  is-invalid @enderror" placeholder=""/>
+                               class="form-control @error('no_of_questions')  is-invalid @enderror" placeholder=""/>
                     </div>
                 </div>
 
@@ -817,6 +819,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
             var thisObj = $(this);//$(".quiz-ajax-fields");
             var quiz_type = $('.quiz-type').val();
             var mock_type = $('.mock_type').val();
+			var subject_id = '{{$subject_id}}';
 
             $(".practice-quiz-topics-list").html('');
             if( quiz_type == 'sats' || quiz_type == '11plus' || quiz_type == 'independent_exams' || quiz_type == 'iseb' || quiz_type == 'cat4' ) {
@@ -832,6 +835,8 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
                         data: {"year_id": year_id},
                         success: function (return_data) {
                             $(".practice-quiz-ajax-fields").html(return_data);
+							$('.mock_exams_subject_check[value="'+subject_id+'"]').prop('checked', true).change();
+							
                             rurera_remove_loader(thisObj, 'button');
                         }
                     });
@@ -842,6 +847,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
         $('body').on('change', '.mock_exams_subject_check', function (e) {
             var subject_id = $(this).val();
             var thisObj = $(this);
+			var quiz_id = '{{$quiz_id}}';
             rurera_loader($(".practice-quiz-topics-list"), 'div');
             jQuery.ajax({
                 type: "GET",
@@ -849,7 +855,7 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {"subject_id": subject_id, "chapter_type": 'Mock Exams'},
+                data: {"subject_id": subject_id, "chapter_type": 'Mock Exams', "quiz_id": quiz_id},
                 success: function (return_data) {
                     rurera_remove_loader($(".practice-quiz-topics-list"), 'button');
                     $(".practice-quiz-topics-list").html(return_data);
@@ -907,6 +913,8 @@ $quiz_add_edit = !empty($quiz) ? $quiz->id : 'new';
             });
         }
         subjects_callback();
+		
+		$(".year_mock_exams_subject_ajax_select").change();
 
 
 

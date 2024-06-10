@@ -214,7 +214,7 @@ class AnalyticsController extends Controller
                             $topic_title = getTopicTitle($QuizzesAttemptObj->parent_type_id, $QuizzesAttemptObj->attempt_type);
 							$topic_title .= ($QuizzesAttemptObj->quizzes_results->quiz_result_type == '11plus') ? ' ('.$QuizzesAttemptObj->quizzes_results->sameParent->where('created_at','<', $QuizzesAttemptObj->quizzes_results->created_at)->count().')' : '';
                             $questions_list = isset($QuizzesAttemptObj->questions_list) ? json_decode($QuizzesAttemptObj->questions_list) : array();
-                            $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');
+                            $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');	
                             $question_answered = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->count();
                             $question_correct = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->count();
                             $question_incorrect = $QuizzesAttemptObj->timeConsumed->where('status', 'incorrect')->count();
@@ -222,6 +222,10 @@ class AnalyticsController extends Controller
                             //$last_attempted = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->orderBy('name', 'desc')->count();
                             $practice_time = ($QuizzesAttemptObj->attempt_type == 'timestables' || $QuizzesAttemptObj->attempt_type == 'timestables_assignment') ? round(($practice_time / 10), 2) : $practice_time;
                             $practice_time = ($practice_time > 0) ? round($practice_time, 2) : 0;
+							
+							//$practice_time = ($QuizzesAttemptObj->attempt_type == '11plus' )? $QuizzesAttemptObj->quizzes_results->total_time_consumed: $practice_time;
+							
+							
                             $question_missed = (count($questions_list) - $question_answered);
                             $analytics_data[$date_str]['coins_earned'] += $coins_earned;
                             $analytics_data[$date_str]['practice_time'] += $practice_time;

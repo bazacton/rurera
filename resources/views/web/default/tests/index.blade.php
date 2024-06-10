@@ -56,7 +56,7 @@
                                 <div class="col-12 col-lg-12 col-md-12">
                                     <div class="form-group">
                                         <div class="input-field">
-                                            <input type="text" class="search-tests">
+                                            <input type="text" class="search-tests" placeholder="Test Keyword">
                                         </div>
                                     </div>
                                 </div>
