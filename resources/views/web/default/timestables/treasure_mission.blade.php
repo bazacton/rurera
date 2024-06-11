@@ -139,7 +139,7 @@
                                                 <a href="#">
                                                     <span class="thumb-box">
                                                         @if($is_acheived == 1)
-                                                            <img src="/assets/default/img/treasure.png" alt="">
+                                                            <img src="/assets/default/img/treasure.png" alt="" title="{{$nuggetObj['treasure_box']}}">
                                                         @else
                                                             <img src="/assets/default/img/treasure2.png" alt="">
                                                         @endif

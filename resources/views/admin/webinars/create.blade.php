@@ -623,7 +623,7 @@
                                             <div class="form-group mt-15">
                                                 <label class="input-label">{{ trans('public.category') }}</label>
 
-                                                <select id="categories" class="custom-select @error('category_id')  is-invalid @enderror" name="category_id" required>
+                                                <select id="categories" class="custom-select @error('category_id')  is-invalid @enderror" name="category_id[]" required multiple>
                                                     <option {{ !empty($webinar) ? '' : 'selected' }} disabled>{{ trans('public.choose_category') }}</option>
                                                     @foreach($categories as $category)
                                                         @if(!empty($category->subCategories) and count($category->subCategories))

@@ -4260,3 +4260,6 @@ label.lms-question-label.wrong {
 label.lms-question-label.correct span, label.lms-question-label.wrong span {
     color: #fff !important;
 }
+.image-center {
+    text-align: center;
+}

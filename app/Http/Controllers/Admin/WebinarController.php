@@ -688,11 +688,11 @@ class WebinarController extends Controller
             'image_cover' => 'required' ,
             'description' => 'required' ,
             'teacher_id'  => 'required|exists:users,id' ,
-            'category_id' => 'required' ,
             'duration'    => 'required|numeric' ,
             'start_date'  => 'required_if:type,webinar' ,
             'capacity'    => 'required_if:type,webinar' ,
         ]);
+		
 
         $data = $request->all();
 
@@ -1038,6 +1038,8 @@ class WebinarController extends Controller
 
         $data['price'] = !empty($data['price']) ? convertPriceToDefaultCurrency($data['price']) : null;
         $data['organization_price'] = !empty($data['organization_price']) ? convertPriceToDefaultCurrency($data['organization_price']) : null;
+		
+		
 
         $webinar->update([
             'slug'                 => $data['slug'] ,
@@ -1063,7 +1065,7 @@ class WebinarController extends Controller
             'access_days'          => $data['access_days'] ?? null ,
             'price'                => $data['price'] ,
             'organization_price'   => $data['organization_price'] ?? null ,
-            'category_id'          => $data['category_id'] ,
+            'category_id'          => is_array($data['category_id'])? json_encode($data['category_id']): $data['category_id'] ,
             'points'               => $data['points'] ?? null ,
             'message_for_reviewer' => $data['message_for_reviewer'] ?? null ,
             'status'               => $data['status'] ,

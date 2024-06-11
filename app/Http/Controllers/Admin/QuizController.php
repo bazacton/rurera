@@ -548,7 +548,7 @@ class QuizController extends Controller
 		$pick_questions_auto = isset($newData['pick_questions_auto']) ? $newData['pick_questions_auto'] : 0;
 		$no_of_questions = isset($data['no_of_questions']) ? $data['no_of_questions'] : 0;
 		if( $pick_questions_auto == 1){
-			$topic_ids = isset($data['topic_ids']) ? $data['topic_ids'] : array();
+			$topic_ids = isset($newData['topic_ids']) ? $newData['topic_ids'] : array();
 			$topics_data = array();
 			if( !empty( $topic_ids )){
 				foreach( $topic_ids as $topic_id){
@@ -595,6 +595,7 @@ class QuizController extends Controller
 			
 			$mock_exam_settings = $rounded_distribution;
 		}
+		
 
 
         if ($validate->fails()) {
@@ -677,17 +678,13 @@ class QuizController extends Controller
             ),
 
         );
-
-
-
-        $quiz->update([
-            //'webinar_id' => !empty($webinar) ? $webinar->id : null,
-            //'chapter_id' => !empty($chapter) ? $chapter->id : null,
-            //'webinar_id'     => isset($data['webinar_id']) ? $data['webinar_id'] : 0 ,
+		
+		
+		$updateData = [
             'quiz_slug'          => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] : Quiz::makeSlug($data['title'], $id),
             'attempt'            => 100,
             'pass_mark'          => isset($data['pass_mark']) ? $data['pass_mark'] : 1,
-            'time'               => 20,
+            'time'                => (isset($data['time']) && $data['time'] > 0) ? $data['time'] : 100,
             'quiz_type'          => isset($data['quiz_type']) ? $data['quiz_type'] : '',
             'status'             => Quiz::ACTIVE,
             'certificate'        => (!empty($data['certificate']) and $data['certificate'] == 'on') ? true : false,
@@ -705,14 +702,21 @@ class QuizController extends Controller
             'examp_board'        => isset($data['examp_board']) ? $data['examp_board'] : '',
             'year_id'            => isset($data['year_id']) ? $data['year_id'] : 0,
             'quiz_category'      => isset($data['quiz_category']) ? $data['quiz_category'] : '',
-            'mock_exam_settings'          => json_encode($mock_exam_settings),
             'mock_type'          => isset($data['mock_type']) ? $data['mock_type'] : 'mock_practice',
             'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
-			'pick_questions_auto'                   => $pick_questions_auto,
-            'no_of_questions'                   => $no_of_questions,
             'target_score'            => isset($data['target_score']) ? $data['target_score'] : 0,
-        ]);
+        ];
+		
+		if( !empty($mock_exam_settings)){
+			$updateData['mock_exam_settings']	= json_encode($mock_exam_settings);
+			$updateData['pick_questions_auto']	= $pick_questions_auto;
+			$updateData['no_of_questions']	= $no_of_questions;
+		}
+
+
+
+        $quiz->update($updateData);
 
         if (!empty($quiz)) {
 

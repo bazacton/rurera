@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
 use App\Models\UserAssignedTopics;
+use App\Models\QuizzesResult;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -290,6 +291,7 @@ class SatsController extends Controller
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/'.panelRoute());
         }
+		$user = getUser();
 
         //$quiz = Quiz::find($id);
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
@@ -304,6 +306,13 @@ class SatsController extends Controller
 		$resultObj = isset( $started_already['resultObj'] )? $started_already['resultObj'] : array();
 
         $started_already = false;
+		
+		$continueTests = QuizzesResult::where('user_id', $user->id)->where('status', 'waiting')->where('quiz_result_type', '11plus')->where('parent_type_id', '!=', $quiz->id)->count();
+		
+		if( $continueTests >= 2){
+			return view('web.default.quizzes.mock_limit_reached');
+		}
+		
         if ($started_already == true) {
             $data = [
                 'pageTitle'  => 'Start',

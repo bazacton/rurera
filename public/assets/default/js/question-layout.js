@@ -1099,7 +1099,11 @@ function init_question_functions() {
             },
             data: {"qattempt_id": qattempt_id},
             success: function (return_data) {
-                window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+				if( return_data.status == 'no_questions_attempted'){
+					window.location.href = '/tests';
+				}else{
+					window.location.href = '/panel/quizzes/' + quiz_result_id + '/check_answers';
+				}
             }
         });
     });

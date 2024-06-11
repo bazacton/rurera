@@ -26,7 +26,7 @@ class QuizzesResult extends Model
 	
 	public function sameParent()
     {
-        return $this->belongsTo('App\Models\QuizzesResult', 'parent_type_id', 'parent_type_id');
+        return $this->hasMany('App\Models\QuizzesResult', 'parent_type_id', 'parent_type_id');
     }
 
     public function assignment()

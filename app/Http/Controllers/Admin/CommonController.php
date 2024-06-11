@@ -408,6 +408,7 @@ class CommonController extends Controller
         } else{
             $chapters = $courseObj->chapters;
         }
+		
 
         $response = '<div class="row">';
 		
@@ -500,7 +501,7 @@ class CommonController extends Controller
 		$field_name = $request->get('field_name', '');
         $field_name = ($field_name != '')? $field_name : 'ajax[new][subject]';
 
-        $courses = Webinar::where('category_id', $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
+        $courses = Webinar::whereJsonContains('category_id', $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
 
         $subjects_response = '';
         if (!empty($courses)) {

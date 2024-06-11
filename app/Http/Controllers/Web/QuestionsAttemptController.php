@@ -1485,6 +1485,11 @@ class QuestionsAttemptController extends Controller
 
         createAttemptLog($qattempt_id, 'Session End', 'end');
         $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
+		$attempted_questions = $QuizzesResult->quizz_result_questions->where('status', '!=', 'waiting' )->count();
+		if( $attempted_questions > 0){
+			echo json_encode(array('status' => 'no_questions_attempted'));
+			exit;
+		}
         $QuizzesResult->update(['status' => 'passed',]);
 
         $resultData = $QuestionsAttemptController->get_result_data($QuizzesResult->parent_type_id, $QuizzesResult->id);
