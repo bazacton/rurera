@@ -142,6 +142,7 @@
 	<div class="section-title text-left mb-30">
 		<h2 class="font-22">Set Work</h2>
 	</div>
+	@include('web.default.flash_message')
 	@include('web.default.panel.set_work.set_work_listing',['assignments' => $assignments])
 @endif
 @if(auth()->user()->isUser())
@@ -187,12 +188,12 @@
 									<div class="col-12 col-lg-9 mt-10 mt-lg-0 d-flex align-items-start">
 										<span class="notification-badge badge mr-10 mt-5 d-flex align-items-center justify-content-center"></span>
 										<div class="">
-											<h3 class="notification-title font-18 font-weight-bold text-dark-blue mb-5">{{$assignmentTitle}}</h3>
-											<span class="notification-time d-block text-gray mt-5"> {{ucfirst($assignmentObj->StudentAssignmentData->assignment_type)}} | {{dateTimeFormat($assignmentObj->deadline_date, 'd F Y')}}</span>
+											<h3 class="notification-title font-18 font-weight-bold text-dark-blue mb-5">{{$assignmentTitle}} by {{$assignmentObj->StudentAssignmentData->creator->get_full_name()}} ({{ucfirst($assignmentObj->StudentAssignmentData->assignment_type)}})</h3>
+											<span class="notification-time d-block text-gray mt-5"> {{dateTimeFormat($assignmentObj->deadline_date, 'd F Y')}}</span>
 										</div>
 									</div>
 									<div class="col-12 col-lg-3 mt-10 mt-lg-0 text-right resume-test">
-										<a href="{{$assignmentLink}}" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white">Take Test</a>
+										<a href="{{$assignmentLink}}" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white">Start Practicing</a>
 									</div>
 								</div>
 							</div>

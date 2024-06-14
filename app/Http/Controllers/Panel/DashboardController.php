@@ -140,6 +140,8 @@ class DashboardController extends Controller
 
         $data['giftModal'] = $this->showGiftModal($user);
         $data['userObj'] = $user;
+		
+		
 
         if (auth()->user()->isParent()) {
 			

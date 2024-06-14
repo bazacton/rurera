@@ -42,6 +42,10 @@ class StudentAssignments extends Model
     {
         return $this->hasMany('App\Models\UserAssignedTopics', 'student_assignment_id', 'id');
     }
+	public function creator()
+    {
+		return $this->belongsTo('App\User', 'parent_id', 'id');
+    }
 
     static function RunCron(){
         $StudentAssignments = StudentAssignments::query()->where('status', 'active')->get();

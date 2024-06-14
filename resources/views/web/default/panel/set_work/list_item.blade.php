@@ -34,7 +34,7 @@
             <a href="/panel/set-work/{{$assignmentObj->id}}/progress" class="detail-btn">Details</a>
             @php $completed_count = $assignmentObj->students->where('status', 'completed')->count(); @endphp
             @if( $completed_count == 0 && $assignmentObj->status == 'active')
-            <a href="/panel/set-work/{{$assignmentObj->id}}/remove" class="remove-btn"><img src="/assets/default/svgs/delete-menu.svg"></a>
+            <a href="javascript:;" data-confirm-type="link" data-confirm-action="/panel/set-work/{{$assignmentObj->id}}/remove" class="remove-btn confirm-delete"><img src="/assets/default/svgs/delete-menu.svg"></a>
             @endif
 
         </div>

@@ -437,7 +437,7 @@ class CommonWebController extends Controller
                         $sub_chapters_response .= '<div class="form-check mt-1">
                             <input type="checkbox" name="ajax[new][topic_ids][]" data-total_questions="' . $count_questions . '" id="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '" value="' . $quiz_id . '" class="form-check-input section-child topics_multi_selection">
                             <label class="form-check-label cursor-pointer mt-0" for="topic_ids_' . $chapterObj->id . '_' . $subChapterObj->id . '">
-                                ' . $subChapterObj->sub_chapter_title . '
+                                ' . $subChapterObj->sub_chapter_title . ' ('.$count_questions.')
                             </label>
                         </div>';
                     }

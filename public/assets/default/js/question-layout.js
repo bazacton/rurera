@@ -1777,3 +1777,15 @@ function rurera_check_field_type(thisObj, alert_messages, has_empty, error_objec
 $(document).ready(function () {
 
 });
+
+
+$(document).on('click', '.confirm-delete', function (e) {
+	e.preventDefault();
+	var confirm_type = $(this).attr('data-confirm-type');
+	var confirm_action = $(this).attr('data-confirm-action');
+	console.log('tsting');
+	if( confirm_type == 'link'){
+		$(".rurera-delete-btn").attr('href', confirm_action);
+	}
+	$(".rurera-confirm-delete").modal('show');	
+});

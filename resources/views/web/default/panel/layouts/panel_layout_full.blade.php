@@ -82,6 +82,27 @@
 
     @include('web.default.includes.advertise_modal.index')
 </div>
+<div class="modal fade rurera-confirm-delete" id="rurera-confirm-delete" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <span class="icon-box d-block mb-15">
+            <img src="../assets/default/img/clock-modal-img.png" alt="">
+        </span>
+        <h3 class="font-24 font-weight-normal mb-10">Are you sure you want to remove?</h3>
+        <p class="mb-15 font-14">
+            You've been inactive for a while, and your session was paused. You can continue learning by using the following links
+        </p>
+        <div class="inactivity-controls">
+            <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">No</a>
+            <a href="javascript:;" class="rurera-delete-btn">Yes to Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <!-- Template JS File -->
 <script src="/assets/default/js/app.js"></script>
 <script src="/assets/default/vendors/moment.min.js"></script>
@@ -108,6 +129,7 @@
     <script>
         (function () {
             "use strict";
+			
 
             $.toast({
                 heading: '{{ session()->get('toast')['title'] ?? '' }}',

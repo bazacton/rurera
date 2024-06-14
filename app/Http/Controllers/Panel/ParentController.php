@@ -101,9 +101,10 @@ class ParentController extends Controller
 
     public function switchUser(Request $request, $user_id)
     {
+		$user = auth()->user();
         $userData = User::find($user_id);
         $userObj = $userData->update([
-            'is_from_parent' => 1,
+            'is_from_parent' => $user->id,
         ]);
         Auth::loginUsingId($user_id, true);
         return redirect('/'.panelRoute());

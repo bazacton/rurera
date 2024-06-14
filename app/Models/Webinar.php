@@ -88,6 +88,21 @@ class Webinar extends Model implements TranslatableContract
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+	
+	public function categories()
+    {
+        // Decode the JSON-encoded array of category IDs
+        $categoryIds = json_decode($this->category_id);
+		
+
+        // Check if decoding was successful
+        if (is_array($categoryIds)) {
+            return Category::whereIn('id', $categoryIds)->get();
+        } else {
+            // Handle cases where the JSON is not an array or is invalid
+            return collect();
+        }
+    }
 
     public function filterOptions()
     {

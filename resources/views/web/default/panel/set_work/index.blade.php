@@ -23,6 +23,7 @@
     </div>
     </div>
 </section>
+@include('web.default.flash_message')
 <section class="dashboard">
 
     <div class="db-form-tabs">

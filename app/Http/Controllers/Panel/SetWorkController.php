@@ -365,6 +365,8 @@ class SetWorkController extends Controller
             }
         }
 
+		
+		session()->flash('success', 'Set Work successfully created!');
         if ($request->ajax()) {
 
             $redirectUrl = '';
@@ -446,6 +448,7 @@ class SetWorkController extends Controller
                 ]
             );
         }
+		session()->flash('success', 'Set Work successfully removed');
         return redirect('/' . panelRoute() . '/set-work');
     }
 

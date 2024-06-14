@@ -263,8 +263,12 @@
                                             <td>{{ $webinar->id }}</td>
                                             <td width="18%" class="text-left">
                                                 <a class="text-primary mt-0 mb-1 font-weight-bold" href="{{ $webinar->getUrl() }}">{{ $webinar->title }}</a>
-                                                @if(!empty($webinar->category->title))
-                                                    <div class="text-small">{{ $webinar->category->title }}</div>
+												@php $webinar_categories = $webinar->categories();@endphp
+                                                @if(!empty($webinar_categories))
+													<br>
+													@foreach( $webinar_categories as $category)
+															<span class="text-small">{{$category->title}}</span>
+													@endforeach
                                                 @else
                                                     <div class="text-small text-warning">{{trans('admin/main.no_category')}}</div>
                                                 @endif

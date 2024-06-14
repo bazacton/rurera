@@ -198,7 +198,7 @@ class Share
 		$navData['is_parent'] = false;
         if (auth()->check()) {
             if( $user->is_from_parent > 0){
-                $parent = User::where('id', $user->parent_id)->get();
+                $parent = User::where('id', $user->is_from_parent)->get();
                 $navData['profile_navs'] = $parent;
 				$navData['is_parent'] = true;
             }
