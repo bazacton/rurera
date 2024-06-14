@@ -135,13 +135,21 @@
                                                 $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
                                                 $li_count = ($li_count >= 6)? 0 : $li_count;
                                             @endphp
-                                            <li class="treasure {{$li_custom_class}}">
+                                            <li class="treasure {{$li_custom_class}} popup-controls">
                                                 <a href="#">
-                                                    <span class="thumb-box">
+                                                    <span class="thumb-box submit-btn">
                                                         @if($is_acheived == 1)
                                                             <img src="/assets/default/img/treasure.png" alt="" title="{{$nuggetObj['treasure_box']}}">
                                                         @else
                                                             <img src="/assets/default/img/treasure2.png" alt="">
+															<div class="lms-tooltip">
+																<div class="tooltip-box">
+																	<h5 class="font-18 font-weight-bold text-white mb-5">Use basic phrases</h5>
+																	<span class="d-block mb-15 text-white">Prove yor proficiency with Legendary</span>
+																	<button class="tooltip-btn practice font-14 d-block mb-15 text-center" onclick='window.location.href = ""'>practice +5 XP</button>
+																	<button class="tooltip-btn legendary d-block font-14 text-center" onclick='window.location.href = ""'>Legendary +4 XP</button>
+																</div>
+														  </div>
                                                         @endif
                                                     </span>
                                                 </a>

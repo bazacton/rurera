@@ -8,7 +8,8 @@ $in_progress = isset( $resultData->in_progress )? $resultData->in_progress : fal
 $current_status = isset( $resultData->current_status )? $resultData->current_status : '';
 $button_label = ($in_progress == true)? 'Resume' :'Practice Now';
 $button_label = ($is_passed == true) ? 'Practice Again' : $button_label;
-$button_label = $button_label = ($in_progress == true)? 'Resume Test' :'Take Test';
+$button_label = ($in_progress == true)? 'Resume Test' :'Take Test';
+$button_class = ($in_progress == true)? 'resume-test' :'';
 $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/default/img/assignment-logo/'.$rowObj->quiz_type.'.png';
 @endphp
 <tr>
@@ -22,7 +23,7 @@ $quiz_image = ($rowObj->quiz_image != '')? $rowObj->quiz_image : '/assets/defaul
 
         </h4>
     </td>
-    <td class="text-right">
+    <td class="text-right {{$button_class}}">
         @if (auth()->check() && auth()->user()->isParent())
             <a href="javascript:;" class="rurera-list-btn">Assign</a>
         @endif

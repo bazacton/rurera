@@ -352,6 +352,7 @@ class QuizController extends Controller
             ),
 
         );
+		$no_of_questions = ($no_of_questions > 0)? $no_of_questions : count($question_list_ids);
         $quiz = Quiz::create([
             'quiz_slug'                   => (isset($data['quiz_slug']) && $data['quiz_slug'] != '') ? $data['quiz_slug'] : Quiz::makeSlug($data['title']),
             'webinar_id'                  => isset($webinar->id) ? $webinar->id : 0,
@@ -678,6 +679,8 @@ class QuizController extends Controller
             ),
 
         );
+		
+		$no_of_questions = ($no_of_questions > 0)? $no_of_questions : count($quizQuestionsListArray);
 		
 		
 		$updateData = [

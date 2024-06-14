@@ -9049,3 +9049,41 @@ function get_words_phonics($user_input){
     }
     return $matching_items;
 }
+
+function get_question_levels($year_ids, $difficulty_level){
+	
+	$years_levels = array(
+		'613' => array(
+			'Emerging' => 1,
+			'Expected' => 2,
+			'Exceeding' => 3,
+		),
+		'614' => array(
+			'Emerging' => 4,
+			'Expected' => 5,
+			'Exceeding' => 6,
+		),
+		'612' => array(
+			'Emerging' => 7,
+			'Expected' => 8,
+			'Exceeding' => 9,
+		),
+		'615' => array(
+			'Emerging' => 10,
+			'Expected' => 11,
+			'Exceeding' => 12,
+		),
+	);
+	
+	$response = array();
+	
+	foreach( $year_ids as $year_id){
+		$year_level = isset( $years_levels[$year_id] )? $years_levels[$year_id] : array();
+		$question_level = isset( $year_level[$difficulty_level] )? $year_level[$difficulty_level] : 0;
+		if( $question_level > 0){
+			$response[] = $question_level;
+		}
+	}
+	
+	return $response;
+}

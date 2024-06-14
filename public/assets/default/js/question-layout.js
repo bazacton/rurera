@@ -188,13 +188,12 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         success: function (return_data) {
             attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
-            var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
-			$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
+            
 			
 			
 			if (typeof afterQuestionValidation === "function") {
 				// myFunction exists and is a function
-				afterQuestionValidation(return_data, thisForm);
+				afterQuestionValidation(return_data, thisForm, question_id);
 			}
 			
 			
@@ -846,7 +845,6 @@ function init_question_functions() {
         if ($(this).hasClass('disable-btn')) {
             return;
         }
-        console.log('pagination-test-click-auto');
 
 
         if (!$(this).hasClass('swiper-slide')) {
@@ -1614,6 +1612,7 @@ function rurera_validation_process(form_name, error_dispaly_type = '') {
 }
 
 function rurera_is_valid_field(field_value) {
+	
     if (field_value != 'undefined' && field_value != undefined) {
         return true;
     } else {

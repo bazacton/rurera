@@ -701,8 +701,8 @@ $rand_id = rand(999,99999);
                                                             <div class="col-lg-6 col-md-6 col-12">
                                                                 <div class="form-group">
                                                                     <label class="input-label">Year / Grade *</label>
-                                                                    <select name="category_id" data-plugin-selectTwo
-                                                                            class="form-control populate ajax-category-courses">
+                                                                    <select name="category_id[]" data-plugin-selectTwo
+                                                                            class="form-control populate ajax-category-courses select2" multiple>
                                                                         <option value="">All</option>
                                                                         @foreach($categories as $category)
                                                                         @if(!empty($category->subCategories) and

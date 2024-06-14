@@ -518,7 +518,7 @@ class CommonWebController extends Controller
 
     public function get_subjects_by_year($year_id)
     {
-        $courses = Webinar::where('category_id', $year_id)->where('status','active')->with('chapters.subChapters')->get();
+        $courses = Webinar::WhereJsonContains('category_id', (string) $year_id)->where('status','active')->with('chapters.subChapters')->get();
 
         $subjects_response = '';
         $counter = 0;
@@ -554,10 +554,10 @@ class CommonWebController extends Controller
     {
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
-        $field_name = $request->get('field_name', '')
+        $field_name = $request->get('field_name', '');
         $field_name = ($field_name != '')? $field_name : 'ajax[new][subject]';
 
-        $courses = Webinar::where('category_id', $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
+        $courses = Webinar::WhereJsonContains('category_id', (string) $year_id)->whereIN('webinar_type', array('Mock Exams', 'Both'))->with('chapters.subChapters')->get();
 
         $subjects_response = '';
         if (!empty($courses)) {

@@ -52,7 +52,7 @@ class WebinarController extends Controller
         $categoryObj = Category::where('slug', $category_slug)->first();
 
 
-        $course = Webinar::where('slug', $slug)->where('category_id', $categoryObj->id)
+        $course = Webinar::where('slug', $slug)->whereJsonContains('category_id', (string) $categoryObj->id)
             ->with([
                 'quizzes'                 => function ($query) use ($sub_chapter_id) {
                     $query->where('status', 'active')->where('sub_chapter_id', $sub_chapter_id)
@@ -297,7 +297,8 @@ class WebinarController extends Controller
         $canSale = ($course->canSale() and !$hasBought);
 
 
-        $courses_list = Webinar::where('category_id', $course->category->id)->where('status', 'active')->get();
+        //$courses_list = Webinar::where('category_id', $course->category->id)->where('status', 'active')->get();
+		$courses_list = array();
 
 
         $parent_assigned_list = array();
@@ -345,6 +346,7 @@ class WebinarController extends Controller
             'quizzes'                   => $quizzes,
             'childs'                    => $childs,
             'course'                    => $course,
+			'category_slug' 			=> $category_slug,
             'parent_assigned_list'      => $parent_assigned_list,
         ];
 
@@ -966,6 +968,7 @@ class WebinarController extends Controller
         if (auth()->check() && auth()->user()->isParent()) {
             return redirect('/'.panelRoute());
         }
+		
 
 
         $SubChapters = SubChapters::where('sub_chapter_slug', $sub_chapter_slug)
@@ -975,6 +978,7 @@ class WebinarController extends Controller
         $chapterItem = WebinarChapterItem::where('type', 'quiz')
             ->where('parent_id', $SubChapters->id)
             ->first();
+			
 
         $id = isset($chapterItem->item_id) ? $chapterItem->item_id : 0;
 

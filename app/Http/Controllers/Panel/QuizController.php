@@ -738,6 +738,15 @@ class QuizController extends Controller
                         $question_response_layout = view('web.default.panel.questions.'.$question_layout_file, $resultsQuestionsData)->render();
 
                     }
+					
+					$questionObjData = isset( $resultsQuestionsData['question'] )? $resultsQuestionsData['question'] : array();
+					$newQuestionResult = isset( $resultsQuestionsData['newQuestionResult'] )? $resultsQuestionsData['newQuestionResult'] : array();
+					
+					$question_id = isset( $questionObjData->id )? $questionObjData->id : 0;
+					
+					if( $newQuestionResult->status != 'waiting'){
+						$question_response_layout .= $QuestionsAttemptController->get_question_result_layout($resultQuestionID, false);
+					}
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
                     $questionDisplayCounter++;
                 }

@@ -89,45 +89,51 @@
 
 </section>
 <div class="dashboard-cards-holder">
-    <div class="row mt-35">
-        <div class="col-12 col-md-6 col-lg-4">
+    <div class="section-title text-left mb-30 mt-35">
+        <h2 class="font-22">Getting started with Rurera</h2>
+		<span>0/20 completed</span>
+        <p class="pt-5 font-14 text-gray">A quick overview of where to start in rurera.</p>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <span class="icon-box"><img src="/assets/default/svgs/plus.svg"></span>
-                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Start New Website</a></h5>
-                <span class="d-block mb-10">Create an entirely new website</span>
-                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
+                <a href="#" class="card-link">
+                    <span class="icon-box"><img src="/assets/default/svgs/plus.svg"></span>
+                    <span class="d-block mb-10">Create an entirely new website</span>
+                </a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <span class="icon-box"><img src="/assets/default/svgs/arrow-right.svg"></span>
-                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Migrate Website</a></h5>
-                <span class="d-block mb-10">Move over an existing website</span>
-                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
+                <a href="#" class="card-link">
+                    <span class="icon-box"><img src="/assets/default/svgs/arrow-right.svg"></span>
+                    <span class="d-block mb-10">Move over an existing website</span>
+                </a>
+                
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <span class="icon-box"><img src="/assets/default/svgs/file-code.svg"></span>
-                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Start Site</a></h5>
-                <span class="d-block mb-10">Let's build your website together</span>
-                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
+                <a href="#" class="card-link">
+                    <span class="icon-box"><img src="/assets/default/svgs/file-code.svg"></span>
+                    <span class="d-block mb-10">Let's build your website together</span>
+                </a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <span class="icon-box"><img src="/assets/default/svgs/skip.svg"></span>
-                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Sip This</a></h5>
-                <span class="d-block mb-10">I will take care of the setup myself</span>
-                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
+                <a href="#" class="card-link">
+                    <span class="icon-box"><img src="/assets/default/svgs/skip.svg"></span>
+                    <span class="d-block mb-10">I will take care of the setup myself</span>
+                </a>
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-3">
             <div class="dashboard-card completed panel-border rounded-sm mb-30 text-center">
-                <span class="icon-box"><img src="/assets/default/svgs/check-white.svg"></span>
-                <h5 class="font-18 font-weight-bold mb-5"><a href="#">Completed</a></h5>
-                <span class="d-block mb-10">Let's build your website together</span>
-                <a href="#" class="select-btn d-inline-block font-weight-500 rounded-sm mt-10">Select</a>
+                <a href="#" class="card-link">
+                    <span class="icon-box"><img src="/assets/default/svgs/check-white.svg"></span>
+                    <span class="d-block mb-10">Let's build your website together</span>
+                </a>
             </div>
         </div>
     </div>
@@ -143,35 +149,60 @@
 @if( $continueTests->count() > 0)
 
 	<div class="quests-list quests-learning">
-		<div class="section-title text-left mb-30">
+		<div class="section-title text-left mb-30 d-flex flex-wrap justify-content-between align-items-center mt-5">
 			<h2 class="font-22">Continue Learning</h2>
-		<section class="dashboard mb-60">
-			<div class="db-form-tabs">
+        </div>
+		<section class="dashboard">
+			<div class="db-form-tabs mb-15">
 				<div class="db-members">
 					<div class="row g-3 list-unstyled students-requests-list">
 						@foreach( $continueTests as $resultObj)
 							<div class="col-12 col-lg-12 students-requests-list-item">
-								<div class="notification-card rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40 mt-20">
+								<div class="notification-card mb-20 rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40">
 									<div class="row align-items-center">
 										<div class="col-12 col-lg-9 mt-10 mt-lg-0 d-flex align-items-start">
-											<span class="notification-badge badge badge-circle-danger mr-10 mt-5 d-flex align-items-center justify-content-center"></span>
+											<span class="notification-badge badge mr-10 mt-5 d-flex align-items-center justify-content-center"></span>
 											<div class="">
-												<h3 class="notification-title font-16 font-weight-bold text-dark-blue mb-10">{{$resultObj->parentQuiz->getTitleAttribute()}} ({{$resultObj->sameParent->count()}})</h3>
-												<span class="notification-time d-block font-12 text-gray mt-5">{{dateTimeFormat($resultObj->created_at, 'j M Y')}}</span>
+												<h3 class="notification-title font-18 font-weight-bold text-dark-blue mb-5">{{$resultObj->parentQuiz->getTitleAttribute()}} ({{$resultObj->sameParent->count()}})</h3>
+												<span class="notification-time d-block text-gray mt-5">{{dateTimeFormat($resultObj->created_at, 'j M Y')}}</span>
 											</div>
 										</div>
-										<div class="col-12 col-lg-3 mt-10 mt-lg-0 text-right">
+										<div class="col-12 col-lg-3 mt-10 mt-lg-0 text-right resume-test">
 											<a href="/sats/{{$resultObj->parentQuiz->quiz_slug}}" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white">Resume Test</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						@endforeach
+						@if( $assignmentsArray->count() > 0 )
+						@foreach( $assignmentsArray as $assignmentObj)
+						@php
+						$assignmentTitle = $assignmentObj->StudentAssignmentData->title;
+						$assignmentLink = '/assignment/'.$assignmentObj->id;
+						@endphp
+						
+						<div class="col-12 col-lg-12 students-requests-list-item">
+							<div class="notification-card mb-20 rounded-sm panel-shadow bg-white py-15 py-lg-20 px-15 px-lg-40">
+								<div class="row align-items-center">
+									<div class="col-12 col-lg-9 mt-10 mt-lg-0 d-flex align-items-start">
+										<span class="notification-badge badge mr-10 mt-5 d-flex align-items-center justify-content-center"></span>
+										<div class="">
+											<h3 class="notification-title font-18 font-weight-bold text-dark-blue mb-5">{{$assignmentTitle}}</h3>
+											<span class="notification-time d-block text-gray mt-5"> {{ucfirst($assignmentObj->StudentAssignmentData->assignment_type)}} | {{dateTimeFormat($assignmentObj->deadline_date, 'd F Y')}}</span>
+										</div>
+									</div>
+									<div class="col-12 col-lg-3 mt-10 mt-lg-0 text-right resume-test">
+										<a href="{{$assignmentLink}}" data-request_type="approved" class="request-action-btn js-show-message btn btn-border-white">Take Test</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						@endforeach
+						@endif
 					</div>
 				</div>
 			</div>
 		</section>
-	</div>
 	</div>
 @endif
 
@@ -272,71 +303,6 @@
 </div>
 @endif
 <div class="dashboard">
-    @if(auth()->check() && (auth()->user()->isUser()))
-	<div class="section-title text-left mt-30">
-		<h2 class="font-22">Tasks List</h2>
-	</div>
-    <div class="row">
-        <div class="col-12 col-lg-12 mt-35">
-            <div class="assignments-table panel-border">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active user-assignments-tab" data-type="current" data-content_id="homeworks" id="homeworks-tab" data-toggle="tab" href="#homeworks" role="tab"
-                           aria-controls="homeworks" aria-selected="true">To Do List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link user-assignments-tab" data-type="previous" data-content_id="recent" id="recent-tab" data-toggle="tab" href="#recent" role="tab"
-                           aria-controls="recent" aria-selected="false">Recently Completed</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="homeworks" role="tabpanel"
-                         aria-labelledby="homeworks-tab">
-                        <div class="assignments-list">
-                            <ul>
-                                @if( $assignmentsArray->count() > 0 )
-                                @foreach( $assignmentsArray as $assignmentObj)
-                                @php
-                                $assignmentTitle = $assignmentObj->StudentAssignmentData->title;
-                                $assignmentLink = '/assignment/'.$assignmentObj->id;
-                                $assignmentTitle .= '<span>'.dateTimeFormat($assignmentObj->deadline_date, 'd F Y').'</span>';
-                                @endphp
-                                <li>
-                                    <div class="checkbox-field">
-                                        <input type="checkbox" id="book">
-                                        <label for="book">
-                                            <a href="{{$assignmentLink}}">{!! $assignmentTitle !!}</a>
-                                            <span>{{$assignmentObj->topic_type}}</span>
-                                        </label>
-                                    </div>
-                                    <div class="assignment-controls">
-                                        <span class="status-label success">{{$assignmentObj->status}}</span>
-                                        <div class="controls-holder">
-
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
-                                @else
-                                <li>
-                                    No assigned assignments at the moment
-                                </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
-                        <div class="assignments-list">
-                            <ul>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
     @if(auth()->check() && (auth()->user()->isUser()))
     <div class="row rurera-hide">
         <div class="col-12 col-lg-12 mt-35">

@@ -5190,6 +5190,11 @@ body {font-family: var(--font-family-base) !important; overflow: visible;}
 }
 .btn-border-white {background-color: #fff; border-radius: 6px; border: 1px solid #f1f1f1; color: #818894; transition: all .3s;}
 .btn-border-white:hover {background-color: #ececec; border: 1px solid #ececec; color: #818894; transition: all .3s;}
+.resume-test a {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
 .btn-gray200 {color: #818894;}
 .btn-light {color: #222;}
 .on-off-switch .custom-control-label:before {background-color: #fff !important;}
@@ -9369,7 +9374,15 @@ Sats Listing Style Start
 .sats-listing-card.medium .text-holder h4 {margin-bottom: 0;}
 .sats-listing-card table {width: 100%;}
 .sats-listing-card table img {max-width: 50px; display: inline-block; margin-right: 15px;}
-.sats-listing-card table h4 {display: inline-block; vertical-align: middle; width: calc(100% - 70px);}
+.sats-listing-card table h4 {display: inline-block; vertical-align: middle; width: calc(100% - 70px); display: inline-block; vertical-align: middle; width: calc(100% - 70px); line-height: normal; position: relative;}
+.sats-listing-card table h4 img {
+    vertical-align: middle;
+    margin: 0;
+    max-width: 60px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 .sats-listing-card thead {background-color: var(--primary);}
 .sats-listing-card.medium {/*box-shadow: 0 0 5px rgba(0,0,0,0.2);*/ border-radius: 0; display: flex; align-items: flex-start; flex-wrap: wrap; padding: 0 0 15px; width: 100%; overflow: hidden; overflow-x: auto;}
 .sats-listing-card thead th,
@@ -10578,7 +10591,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .timestables-retry-stage:before {background: url(/assets/default/svgs/retry.svg) left center no-repeat; position: absolute; left: 15px; top: 50%; content: ""; height: 12px; width: 12px; background-size: 100%; margin-top: -6px;}
 .timestables-retry-stage:hover {background-color: var(--primary); color: #fff; }
 .timestables-retry-stage:hover:before {filter: invert(100%) sepia(3%) saturate(13%) hue-rotate(81deg) brightness(106%) contrast(106%);}
-.rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;}
+.rurera-list-btn {border: 2px solid #ddd; border-bottom-width: 4px; border-radius: 8px; display: inline-block; line-height: normal; padding: 10px 25px;white-space: nowrap;}
 .rurera-list-btn:hover {background-color: #f5f5f5;}
 .mock-test-assign-btn.active,
 .vocabulary-assign-btn.active {border-color: var(--primary); color: var(--primary);}
@@ -10844,43 +10857,77 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-status-bar {margin: 0 0 50px;}
 .container-fluid.read-quiz-content .quiz-status-bar {margin-top: 18px;}
 .correct-in-row {color: #51cd00; font-weight: 500; text-transform: uppercase; }
-.quiz-questions-bar {background-color: #e5e5e5; height: 16px; border-radius: 20px; width: calc(100% - 60px);}
+.quiz-questions-bar {background-color: #e5e5e5; height: 10px; border-radius: 20px; width: calc(100% - 60px); position: relative;}
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; position: relative; }
 .quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; }
 .quiz-questions-bar-holder .value-lable {
     position: absolute;
-    right: 25%;
-    background-color: #b0e431;
-    height: 24px;
-    width: 24px;
-    margin-top: -12px;
+    left: 0;
+    background-color: var(--primary);
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    margin-top: -15px;
     top: 50%;
     border-radius: 100%;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 30px;
     text-align: center;
     font-weight: 500;
+    letter-spacing: -1px;
+}
+.quiz-questions-bar-holder .value-lable:before {
+    content: attr(title);
+    background: #333;
+    position: absolute;
+    top: -35px;
+    padding: 5px 13px;
+    line-height: normal;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    letter-spacing: 0px;
+    opacity: 0;
+    visibility: hidden;
+}
+.quiz-questions-bar-holder .value-lable:after {
+    position: absolute;
+    left: 50%;
+    top: -14px;
+    height: 8px;
+    width: 8px;
+    background-color: #333;
+    content: "";
+    transform: rotate(45deg);
+    margin-left: -4px;
+    opacity: 0;
+    visibility: hidden;
+}
+.quiz-questions-bar-holder .value-lable:hover:before,
+.quiz-questions-bar-holder .value-lable:hover:after {
+    opacity: 1;
+    visibility: visible;
 }
 .quiz-questions-bar-holder .bar-fill:after {
     position: absolute;
     content: attr(title);
     right: -10px;
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     background-color: #51cd00;
-    color:white;
+    color: white;
     border-radius: 100%;
     top: 50%;
-    margin-top: -11px;
+    margin-top: -15px;
     text-align: center;
     font-size: 12px;
-    line-height: 22px;
+    line-height: 30px;
     font-weight: 500;
-    box-shadow: 0 0 0 4px #51cd0061;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
 }
 
 .quiz-corrects-incorrects {width: 95px; display: inline-block; vertical-align: middle; margin-right: -4px; position: relative; }
-.quiz-status-bar .coin-numbers {background-color: #e5e5e5; border-radius: 20px; margin-left: -8px; padding: 4px 5px; width: 60px; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500;}
+.quiz-status-bar .coin-numbers {background-color: #e5e5e5; border-radius: 20px; margin-left: -8px; padding: 4px 5px; width: 60px; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; position: relative;}
 .quiz-status-bar .coin-numbers img {max-width: 20px; }
 .quiz-corrects {min-width: 45px; height: 45px; border: 1px solid #ddd; top: 50%; left: 10px; display: inline-flex; position: absolute; align-items: center; justify-content: center; font-size: 30px; font-weight: 600; transform: translateY(-50%) rotate(-10deg); margin-top: -5px; padding: 5px; line-height: normal; z-index: 1; background-color: #fff;}
 .quiz-incorrects {background-color: #000; color: #fff; font-size: 30px; font-weight: 600; position: absolute; left: 27px; top: 50%; transform: translateY(-50%); min-width: 45px; text-align: center; min-height: 40px; margin-top: -5px; z-index: 0; box-shadow: 0 -2px 0 rgba(0,0,0,0.1); padding: 0 5px; display: inline-flex; align-items: center; justify-content: center;}
@@ -11122,11 +11169,11 @@ span.review-label {line-height: normal;}
 /* Cabinet Table Style End */
 .summary-btns .summary-btn,
 .summary-btns a{border: 1px solid var(--primary); border-radius: 4px; color: var(--primary); font-weight: 500; padding: 12px 15px; display: inline-block; line-height: normal; min-width: 120px; text-align: center; margin-right: 5px;}
-.dashboard-card .icon-box {height: 32px; width: 32px; display: block; margin: 0 auto 15px; border-radius: 100%; background-color: #000; text-align: center; line-height: 18px; padding: 5px 6px;}
-.dashboard-card .icon-box img {max-width: 100%; vertical-align: middle; filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(277deg) brightness(104%) contrast(102%);}
-.dashboard-card {padding: 30px 5px;}
+.dashboard-card .icon-box {height: 32px; width: 32px; display: block; margin: 0 auto 15px; border-radius: 100%; text-align: center; line-height: 18px; padding: 5px 6px;}
+.dashboard-card .icon-box img {max-width: 100%; vertical-align: middle;}
+.dashboard-card .card-link {padding: 20px 10px;display: block;}
 .dashboard-card .select-btn {border: 1px solid #89bf74; padding: 8px 25px; color: #89bf74;}
-.dashboard-card.completed {background-color: #f7faf6; border-color: #89bf74;}
+.dashboard-card.completed {background-color: #f7faf6;}
 .dashboard-card.completed .icon-box {background-color: #89bf74;}
 body .panel-sidebar .sidebar-menu .logout-sidebar,
 .panel-sidebar .sidebar-mobile-user-profile {display: none;}
@@ -11532,7 +11579,7 @@ Lms Responsive Style Start
     .navbar-nav .has-mega-menu:hover .nav-link:after {bottom: -23px;}
     .about-sub-header .choose-sats .sats-box {width: 24%;}
     .noticeboard-item > div {flex-wrap: wrap; gap: 10px;}
-    .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;}
+    /* .dashboard-cards-holder >.row > [class*="col-"] {flex: 0 0 50%; max-width: 50%;} */
     body .panel-sidebar,
     .panel-page-section .panel-sidebar {width: 100px;}
     .panel-content {padding-left: 110px;}
@@ -11741,7 +11788,7 @@ Lms Responsive Style Start
     .panel-sidebar .user-profile-icons ul {gap: 0; justify-content: space-around;}
     .panel-content .panel-content-holder {max-width: 100%; flex: 0 0 100%;}
     .result-layout-summary .sats-summary [class*="col-"] {border-bottom: 1px solid #e1e1e1;flex: 0 0 50%;max-width: 50%;}
-    .panel-content {padding-left: 0;}
+    .panel-content {padding-left: 0; padding-right: 0;}
     .quiz-topbar [class*="col-"] {flex: 0 0 100%; max-width: 100%; text-align: center;}
     .user-profile-icons ul .menu-button-mobile,
     .user-profile-icons ul .sidebar-logo-mobile{display: flex;}
@@ -11896,7 +11943,7 @@ Lms Responsive Style Start
     body .image-top.rurera-in-row .lms-radio-select .field-holder {max-width: 48%;flex: 0 0 48%;}
     .lms-quiz-section .questions-data-block {max-width: 100%; padding: 0;}
     .quiz-pagination .swiper-container ul {flex-wrap: wrap; transform: none !important;}
-    body .question-number-holder ~ .leform-elements {padding-left: 0; padding-top: 60px;}
+    body .question-number-holder ~ .leform-elements {padding-left: 0;}
     .lms-data-table h3 {margin: 0 0 15px; font-size: 20px;}
     body .prev-next-controls .review-btn,
     body .prev-next-controls .question-submit-btn {position: relative;}
@@ -11976,7 +12023,8 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .row .col-5 {flex: 0 0 35%; max-width: 35%;}
     .list-group-item .row {gap: 10px;}
     .db-members .list-group-item .row {flex-wrap: wrap;}
-    .list-group-item .row [class*="col-"] {padding: 0;}
+    .list-group-item .row [class*="col-"],
+    .db-members .card .list-group-item [class*="col-"] {padding: 0;}
     .list-group-item .switch-user-btn img {margin: 0;}
     .db-members .card .list-group-item {padding: 15px 30px 10px;}
     .db-members .list-group-item .switch-user-btn,
@@ -12111,8 +12159,9 @@ Lms Responsive Style Start
     .db-members .card .list-group-item .action-activity .listing-title {text-align: left; width: auto; padding-right: 0;}
     .db-members .card .list-group-item .detail-btn {margin-left: auto;}
     .db-members .card .list-group-item [class*="col-"] {width: 100%; display: flex; align-items: center; justify-content: space-between; flex-direction: row; position: relative;}
+    .db-members .card .list-group-item .col-auto:last-child {padding-right: 0;}
     .db-members .card .list-group-item .col-2 {flex: 0 0 auto; max-width: none; width: auto; gap: 10px;}
-    .db-members .card .list-group-item .row .col-auto:first-child {width: auto;  flex: 0 0 auto;}
+    .db-members .card .list-group-item .row .col-auto:first-child {width: auto;  flex: 0 0 auto; padding-left: 0;}
     .db-members .card .list-group-item [class*="col-"].ms-2 {flex-direction: column; align-items: flex-start;width: auto;}
     .db-members .card .list-group-item .col-auto:first-child.col-lg-2 {flex: 0 0 100%; max-width: 100%;}
     .wizard-steps .radio-buttons {justify-content: flex-start !important;}
@@ -12204,7 +12253,7 @@ Lms Responsive Style Start
     .learning-page .learning-page-content {overflow: hidden;}
     .question-layout-block form.question-fields {padding: 20px 15px 0;}
     .question-layout-block .question-fields .leform-element {padding-left: 0; padding-right: 0;}
-    body .question-layout-block form.question-fields .questions-total-holder {padding-left: 60px; margin-top: -5px !important; font-size: 16px;}
+    body .question-layout-block form.question-fields .questions-total-holder {margin-top: -5px !important; font-size: 16px;}
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
     .lms-contact-form-section {padding-bottom: 0 !important;}
     .spell-levels-top .spell-top-left {width: 100%;}
@@ -12338,6 +12387,13 @@ Lms Responsive Style Start
     .chart-filters .form-group:has(select) .input-label {display: none;}
     .chart-filters .filters-list {margin-bottom: 0; margin-top: 0;}
     .form-control.child-analytics {height: 49px; border-radius: 5px; border: 1px solid #ddd;}
+    .member-card-header .dropdown {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .member-card-header .d-flex {
+        flex-direction: column;
+    }
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}

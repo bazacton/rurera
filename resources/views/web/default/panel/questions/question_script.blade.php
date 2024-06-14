@@ -4,28 +4,45 @@
     var user_selected_value = "{{ $user_selected_value }}";
     var user_selected_key = "{{ $user_selected_key }}";
     var correct_value = "{{ $correct_value }}";
+	var is_result_question = "{{$is_result_question}}";
 
-    console.log(field_type);
     if (field_type === 'text' || field_type === 'number') {
         var textField = document.getElementById('field-' + field_id);
-        console.log(field_id+' = '+user_selected_value);
         textField.value = user_selected_value;
-        if (user_selected_value !== correct_value) {
-            textField.classList.add('wrong');
-        } else {
-            textField.classList.add('correct');
-        }
+		if( is_result_question == true){
+			if (user_selected_value !== correct_value) {
+				textField.classList.add('wrong');
+			} else {
+				textField.classList.add('correct');
+			}
+		}
     } else if (field_type === 'radio') {
         var textField = document.getElementById('field-' + field_id);
         var correctClass = (user_selected_value !== correct_value) ? 'wrong' : 'correct';
-        document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').closest('.field-holder').classList.add(correctClass);
-        document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]').closest('.field-holder').classList.add('correct');
+		if( is_result_question == true){
+			document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').closest('.field-holder').classList.add(correctClass);
+			document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]').closest('.field-holder').classList.add('correct');
+		}
+		document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').checked = true;
     } else if (field_type === 'checkbox') {
         var textField = document.getElementById('field-' + field_id);
         var correctClass = (user_selected_value !== correct_value) ? 'wrong' : 'correct';
-        document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').closest('.form-field').classList.add(correctClass);
-        document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]').closest('.form-field').classList.add('correct');
-    }else {
+		if( is_result_question == true){
+			document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').closest('.form-field').classList.add(correctClass);
+			document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]').closest('.form-field').classList.add('correct');
+		}
+		document.querySelector('[name="field-' + field_id + '"][value="' + user_selected_value + '"]').checked = true;
+    } else if (field_type === 'textarea') {
+		var textField = document.getElementById('field-' + field_id);
+		textField.value = user_selected_value;
+		if( is_result_question == true){
+			if (user_selected_value !== correct_value) {
+				textField.classList.add('wrong');
+			} else {
+				textField.classList.add('correct');
+			}
+		}
+	} else {
         var fieldInputs = document.querySelectorAll('[name="field-' + field_id + '"]');
         var correctInput = document.querySelector('[name="field-' + field_id + '"][value="' + correct_value + '"]');
 

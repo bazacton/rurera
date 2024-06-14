@@ -167,7 +167,9 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
                         <div class="quiz-questions-bar-holder">
                             
                             <div class="quiz-questions-bar">
-                                <span class="value-lable" title="Target" style="left:{{$target_score}}%">{{$target_score}}%</span>
+								@if( $target_score > 0)
+									<span class="value-lable" title="Target" style="left:{{$target_score}}%">{{$target_score}}%</span>
+								@endif
                                 <span class="bar-fill" title="" style="width: 0%;"></span>
                             </div>
                             <span class="coin-numbers">
@@ -369,6 +371,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
 		console.log('total_percentage_questions=='+total_percentage_questions);
 		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
 		$(".quiz-corrects").html(attempted_questions);
 		$(".quiz-incorrects").html(incorrect_questions);
 		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
@@ -393,6 +396,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 						var incorrect_questions = $('.quiz-pagination li.incorrect').length;
 						var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
 						var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+						var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
 						var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
 						$(".question_inactivity_modal .modal-body .time-remaining").html(getTime(remaining_time));
 						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
@@ -432,9 +436,11 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		
 		if (jQuery('.quiz-pagination .swiper-container').length > 0) {
         const swiper = new Swiper('.quiz-pagination .swiper-container', {
-            slidesPerView: ($(".quiz-pagination ul li").length > 10) ? 10 : $(".quiz-pagination ul li").length,
+            slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
             spaceBetween: 0,
-            slidesPerGroup: 5,
+            slidesPerGroup: 10,
+            // observer: true,
+            // observeParents: true,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -446,12 +452,12 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
                 },
 
                 480: {
-                    slidesPerView: ($(".quiz-pagination ul li").length > 10) ? 10 : $(".quiz-pagination ul li").length,
+                    slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
                     spaceBetween: 5
                 },
 
                 640: {
-                    slidesPerView: ($(".quiz-pagination ul li").length > 10) ? 10 : $(".quiz-pagination ul li").length,
+                    slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
                     spaceBetween: 5
                 }
             }
@@ -507,6 +513,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 			var incorrect_questions = $('.quiz-pagination li.incorrect').length;
 			var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
 			var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+			var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
 			var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
 			$(".pause-title").html('Need a Break?');
 			$(".pause-description").html('Practice tests do not let you go over time, though you can pause them and come back to them later.');
@@ -550,14 +557,13 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 				if( quiz_timer_counter == 0){
 					clearInterval(Quizintervals);
 					rurera_loader($(".lms-quiz-section"), 'div');
-					$(".submit_quiz_final").click();
-				}else{
 					clearInterval(Quizintervals);
 					$(".pause-quiz").click();
 					$(".pause_quiz .continue-btn").addClass('rurera-hide');
 					$(".pause_quiz .exit-btn").addClass('rurera-hide');
 					$(".pause-title").html('');
 					$(".pause-description").html('');
+					//$(".submit_quiz_final").click();
 				}
 			}
 
@@ -597,13 +603,15 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
         if( (m > 0 || h > 0) || quiz_type != 'vocabulary') {
             var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
         }
-        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);	
         return_string = return_string + 's';
 
         return return_string;
     }
 	
-	function afterQuestionValidation(return_data, thisForm) {
+	function afterQuestionValidation(return_data, thisForm, question_id) {
+		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
         var notifications_settings_show_message = $(".show-notifications").attr('data-show_message');
 		if( notifications_settings_show_message == 'yes'){
 			var notification_class = (return_data.incorrect_flag == true) ? 'wrong' : 'correct';
@@ -618,6 +626,7 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
 		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
 		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
 		$(".quiz-corrects").html(attempted_questions);
 		$(".quiz-incorrects").html(incorrect_questions);
 		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');

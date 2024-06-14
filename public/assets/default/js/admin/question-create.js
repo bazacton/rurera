@@ -205,7 +205,7 @@ function leform_save(_object, question_status) {
     }
 
     var question_title = $("[name=question_title]").val();
-    var category_id = $("[name=category_id]").val();
+    var category_id = $("[name='category_id[]']").val();
     var course_id = $("[name=course_id]").val();
     var chapter_id = $("[name=chapter_id]").val();
     var sub_chapter_id = $("[name=sub_chapter_id]").val();

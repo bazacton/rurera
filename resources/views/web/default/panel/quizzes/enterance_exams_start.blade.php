@@ -118,7 +118,7 @@ $timer_counter = $practice_time;
                                            @endif
                                            @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
                                            <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                                   'has-flag' : ''}} {{$question_status_class}}"><a
+                                                   'has-flag' : ''}} "><a
                                                    href="javascript:;">
                                                    {{$question_count}}</a></li>
                                            @php $question_count++; @endphp
@@ -131,82 +131,6 @@ $timer_counter = $practice_time;
                                    </div>
                                 <div class="quiz-timer">
                                     <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{($practice_time*60)}}">0s</div></span>
-                                </div>
-                                <div class="instruction-controls">
-                                    <div class="font-setting">
-                                        <button class="font-btn">
-                                            <img src="/assets/default/svgs/settings.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="font-controls">
-                                                <a href="#" class="decreasetext">
-                                                    <img src="/assets/default/svgs/small-font.svg" alt="#">
-                                                </a>
-                                                <a href="#" class="resettext">
-                                                    <img src="/assets/default/svgs/reset-text.svg" alt="#">
-                                                </a>
-                                                <a href="#" class="increasetext">
-                                                    <img src="/assets/default/svgs/big-text.svg" alt="#">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="color-setting">
-                                        <button class="color-btn">
-                                            <img src="/assets/default/svgs/color-setting.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="color-controls">
-                                                <a href="#" class="cr-aquaBlue-btn"></a>
-                                                <a href="#" class="cr-celery-btn"></a>
-                                                <a href="#" class="cr-grass-btn"></a>
-                                                <a href="#" class="cr-jade-btn"></a>
-                                                <a href="#" class="cr-magenta-btn"></a>
-                                                <a href="#" class="cr-orange-btn"></a>
-                                                <a href="#" class="cr-purple-btn"></a>
-                                                <a href="#" class="cr-skyBlue-btn"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="info-setting">
-                                        <button class="info-btn">
-                                            <img src="/assets/default/svgs/info-icon.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="instruction-text">
-                                                            <h3>INSTRUCTIONS</h3>
-                                                            <h4>Setting Up Your Page</h4>
-                                                            <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
-                                                            <ul>
-                                                                <li>a coloured overlay (this will change the background colour and may help you read the questions better)</li>
-                                                            </ul>
-                                                            <img src="/assets/default/img/overlay.png" alt="#">
-                                                            <ul>
-                                                                <li>the font size</li>
-                                                            </ul>
-                                                            <img src="/assets/default/img/font-size.png">
-                                                            <p>We recommend you setup your page BEFORE the test starts.</p>
-                                                            <p>Changing these features during the test will reduce the amount of time you have to answer the questions.</p>
-                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
-                                                            <h4>Navigating The Test</h4>
-                                                            <p>Read the instructions for each question carefully.</p>
-                                                            <p>Choose your answer by clicking on it. If you want to change your mind, click on a different answer.</p>
-                                                            <p>Once you are sure of your answer click ‘Submit Answer’. You will not be able to go back to change your answer.</p>
-                                                            <img src="/assets/default/img/answer.png" alt="#">
-                                                            <p>You can use a pen/pencil and paper to make notes if you wish. Your working and notes will not be marked.</p>
-                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
-                                                            <h4>About The Test</h4>
-                                                            <p>The Verbal Reasoning Test assesses a range of English language skills including:</p>
-                                                            <ul>
-                                                                <li>Comprehension</li>
-                                                                <li>Reasoning</li>
-                                                                <li>Logic</li>
-                                                            </ul>
-                                                            <p>The questions you see in this Walkthrough are examples of these types.</p>
-                                                            <p>Some of these types may appear in the test, while others may not.</p>
-                                              </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -372,7 +296,6 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
-
     }
 
     function getTime(secondsString) {
@@ -390,8 +313,106 @@ $timer_counter = $practice_time;
         }
         var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
         return_string = return_string + 's';
-
         return return_string;
     }
+	
+	function afterQuestionValidation(return_data, thisForm, question_id) {
+		var current_question_layout = getDivWithValues().html();//$(".question-area-block").html();
+		//console.log(current_question_layout.html());
+		current_question_layout = JSON.stringify(current_question_layout);
+		current_question_layout = leform_encode64(current_question_layout);
+		var questions_layout_obj = JSON.parse($('.question-area-block').attr('data-questions_layout'));
+		console.log(questions_layout_obj);
+		var question_local_id = $(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").attr('data-question_id');
+		var questions_layout = [];
+        var questions_layout_obj = $.map(questions_layout_obj, function (value, index) {
+            questions_layout[index] = value;
+        });
+        var question_layout = leform_decode64(questions_layout[question_local_id]);
+
+        var question_layout = JSON.parse(question_layout);
+		console.log('afterQuestionValidation');
+		console.log('questions_layout.length===='+question_local_id);
+		questions_layout[question_local_id] = current_question_layout;
+		
+		let questions_layout_object = {};
+		
+		$.each(questions_layout, function(question_index, question_value) {
+			if (typeof question_value !== 'undefined') {
+				questions_layout_object[question_index] = questions_layout[question_index];
+			}
+		});
+		$('.question-area-block').attr('data-questions_layout', JSON.stringify(questions_layout_object))
+		
+	}
+	
+	
+	function getDivWithValues() {
+        // Clone the original div
+        let clonedDiv = $('.question-area-block').clone();
+
+        // Update cloned select elements with the values from the original div
+        clonedDiv.find('select').each(function(index) {
+            // Get the corresponding select element in the original div
+            let originalSelect = $('.question-area-block select').eq(index);
+            // Set the cloned select element's value to the original select element's value
+            $(this).val(originalSelect.val());
+        });
+
+        // Update cloned textarea elements with the values from the original div
+        clonedDiv.find('textarea').each(function(index) {
+            // Get the corresponding textarea element in the original div
+            let originalTextarea = $('.question-area-block textarea').eq(index);
+            // Set the cloned textarea element's value to the original textarea element's value
+            $(this).text(originalTextarea.val());
+        });
+
+        // Update cloned input elements with the values from the original div
+        clonedDiv.find('input').each(function(index) {
+            // Get the corresponding input element in the original div
+            let originalInput = $('.question-area-block input').eq(index);
+            // Set the cloned input element's value to the original input element's value
+            if (originalInput.attr('type') === 'checkbox' || originalInput.attr('type') === 'radio') {
+                $(this).prop('checked', originalInput.prop('checked'));
+            } else {
+                $(this).val(originalInput.val());
+            }
+        });
+
+        // Generate final HTML with all values set properly
+        clonedDiv.find('input').each(function() {
+            if ($(this).attr('type') === 'checkbox' || $(this).attr('type') === 'radio') {
+                if ($(this).prop('checked')) {
+                    $(this).attr('checked', 'checked');
+                } else {
+                    $(this).removeAttr('checked');
+                }
+            } else {
+                $(this).attr('value', $(this).val());
+            }
+        });
+
+        clonedDiv.find('textarea').each(function() {
+            $(this).text($(this).val());
+        });
+
+        clonedDiv.find('select').each(function() {
+            $(this).find('option').each(function() {
+                if ($(this).parent('select').val() == $(this).val()) {
+                    $(this).attr('selected', 'selected');
+                } else {
+                    $(this).removeAttr('selected');
+                }
+            });
+        });
+		
+		clonedDiv.find('.question-submit-btn').removeClass('rurera-processing');
+		clonedDiv.find('.rurera-button-loader').remove();
+
+        return clonedDiv;
+    }
+	
+	
+	
 
 </script>

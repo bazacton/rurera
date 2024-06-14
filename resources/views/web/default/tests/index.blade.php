@@ -82,15 +82,8 @@
                     <div class="sats-listing-card medium">
                         <table class="simple-table">
                             <tbody>
-                            @if( !empty( $sats))
-                            @php $counter = 0; @endphp
-                            @foreach( $sats as $rowObj)
-
-                            @include('web.default.tests.single_item',['rowObj' => $rowObj])
-
-
-                            @endforeach
-                            @endif
+							
+							{!! $response_layout !!}
 
                             </tbody>
                         </table>

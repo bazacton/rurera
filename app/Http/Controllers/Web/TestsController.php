@@ -63,6 +63,43 @@ class TestsController extends Controller
 			});
 		}
 		$sats = $query->paginate(100);
+		
+		
+		$response_layout_array = array();
+        $response_layout = '';
+        if (!empty($sats)) {
+			$counter = 0;
+            foreach ($sats as $rowObj) {
+                $view_file = 'single_item';
+				
+				$resultData = $QuestionsAttemptController->get_result_data($rowObj->id);
+				$in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
+				$response_layout_array[]	= array(
+					'is_resumed' => $in_progress,
+					'response_layout' => view('web.default.tests.'.$view_file, [
+						'rowObj'                     => $rowObj,
+						'QuestionsAttemptController' => $QuestionsAttemptController,
+						'counter'                    => $counter
+					])->render(),
+				);
+            }
+        }
+		
+		usort($response_layout_array, function($a, $b) {
+			if ($a['is_resumed'] == $b['is_resumed']) {
+				return 0;
+			} elseif ($a['is_resumed'] == 1) {
+				return -1; // $a should come before $b
+			} else {
+				return 1; // $a should come after $b
+			}
+		});
+		
+		if( !empty( $response_layout_array )){
+			foreach( $response_layout_array as $response_layout_data){
+				$response_layout	.= isset( $response_layout_data['response_layout'] )? $response_layout_data['response_layout'] : '';
+			}
+		}
 
         $parent_assignedArray = UserAssignedTopics::where('assigned_by_id', $user->id)->where('status', 'active')->select('id', 'assigned_by_id', 'topic_id', 'assigned_to_id', 'deadline_date')->get()->toArray();
         $parent_assigned_list = array();
@@ -102,6 +139,7 @@ class TestsController extends Controller
                 'sats'                       => $sats,
                 'QuestionsAttemptController' => $QuestionsAttemptController,
                 'childs'                     => $childs,
+				'response_layout' 		     => $response_layout,
                 'switchUserObj'              => $switchUserObj,
                 'parent_assigned_list'       => $parent_assigned_list,
                 'graphs_array'               => $graphs_array,
@@ -159,18 +197,42 @@ class TestsController extends Controller
 
 
         $tests = $query->paginate(100);
+		
 
+		$response_layout_array = array();
         $response_layout = '';
         if (!empty($tests)) {
             foreach ($tests as $rowObj) {
                 $view_file = ( $is_assignment == 'yes')? 'single_item_assignment' : 'single_item';
-                $response_layout .= view('web.default.tests.'.$view_file, [
-                    'rowObj'                     => $rowObj,
-                    'QuestionsAttemptController' => $QuestionsAttemptController,
-                    'counter'                    => $counter
-                ])->render();
+				
+				$resultData = $QuestionsAttemptController->get_result_data($rowObj->id);
+				$in_progress = isset( $resultData->in_progress )? $resultData->in_progress : false;
+				$response_layout_array[]	= array(
+					'is_resumed' => $in_progress,
+					'response_layout' => view('web.default.tests.'.$view_file, [
+						'rowObj'                     => $rowObj,
+						'QuestionsAttemptController' => $QuestionsAttemptController,
+						'counter'                    => $counter
+					])->render(),
+				);
             }
         }
+		
+		usort($response_layout_array, function($a, $b) {
+			if ($a['is_resumed'] == $b['is_resumed']) {
+				return 0;
+			} elseif ($a['is_resumed'] == 1) {
+				return -1; // $a should come before $b
+			} else {
+				return 1; // $a should come after $b
+			}
+		});
+		
+		if( !empty( $response_layout_array )){
+			foreach( $response_layout_array as $response_layout_data){
+				$response_layout	.= isset( $response_layout_data['response_layout'] )? $response_layout_data['response_layout'] : '';
+			}
+		}
 
         $response_layout .= '<script>$(".total-tests").html("Total Tests: '.$tests->count().'")</script>';
         echo $response_layout;

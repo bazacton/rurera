@@ -490,10 +490,10 @@ $rand_id = rand(999,99999);
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <label class="input-label">Year / Grade *</label>
-                                                        <select name="category_id"
+                                                        <select name="category_id[]"
                                                                 data-course_id="{{$questionObj->course_id}}"
                                                                 data-plugin-selectTwo
-                                                                class="form-control populate ajax-category-courses">
+                                                                class="form-control populate ajax-category-courses select2" multiple>
                                                             <option value="">All</option>
                                                             @foreach($categories as $category)
                                                             @if(!empty($category->subCategories) and
@@ -501,9 +501,7 @@ $rand_id = rand(999,99999);
                                                             <optgroup label="{{  $category->title }}">
                                                                 @foreach($category->subCategories as $subCategory)
                                                                 <option value="{{ $subCategory->id }}"
-                                                                        @if($questionObj->category_id
-                                                                    ==
-                                                                    $subCategory->id) selected="selected" @endif>{{
+                                                                        @if(in_array($subCategory->id, json_decode($questionObj->category_id))) selected="selected" @endif>{{
                                                                     $subCategory->title
                                                                     }}
                                                                 </option>

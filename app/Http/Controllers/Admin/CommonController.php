@@ -275,7 +275,7 @@ class CommonController extends Controller
         $user = auth()->user();
         $year_id = $request->get('year_id', null);
         $subject_id = $request->get('subject_id', null);
-        $subjects_query = Webinar::where('category_id', $year_id)->where('type', 'course')->where('status', 'active');
+        $subjects_query = Webinar::whereJsonContains('category_id', $year_id)->where('type', 'course')->where('status', 'active');
 
         $subjects = $subjects_query->get();
 

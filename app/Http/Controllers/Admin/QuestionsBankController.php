@@ -2441,6 +2441,10 @@ class QuestionsBankController extends Controller
 		$sub_chapter_id = (isset($questionData['sub_chapter_id']) && $questionData['sub_chapter_id'] != '') ? $questionData['sub_chapter_id'] : 0;
 		$subChapterObj = SubChapters::find($sub_chapter_id);
 		$sub_chapter_quiz_id = isset( $subChapterObj->quizData->item_id )? $subChapterObj->quizData->item_id : 0;
+		$difficulty_level = isset($questionData['difficulty_level']) ? $questionData['difficulty_level'] : '';
+		$category_id = isset( $questionData['category_id'] )? $questionData['category_id'] : array();
+		$question_levels = get_question_levels($category_id, $difficulty_level);
+		$category_id = json_encode($category_id);
 		
 		
         $quizQuestion = QuizzesQuestion::create([
@@ -2459,19 +2463,20 @@ class QuestionsBankController extends Controller
             'glossary_ids'              => isset($_POST['glossary_ids']) ? json_encode($_POST['glossary_ids']) : '' ,
             'elements_data'             => json_encode($elements_data) ,
             'layout_elements'           => $layout_elements_layout ,
-            'category_id'               => (isset($questionData['category_id']) && $questionData['category_id'] != '') ? $questionData['category_id'] : 0 ,
+            'category_id'               => $category_id,
             'course_id'                 => (isset($questionData['course_id']) && $questionData['course_id'] != '') ? $questionData['course_id'] : 0 ,
             'sub_chapter_id'            => (isset($questionData['sub_chapter_id']) && $questionData['sub_chapter_id'] != '') ? $questionData['sub_chapter_id'] : 0 ,
             'type'                      => 'descriptive' ,
             'created_at'                => time() ,
             'question_status'           => (isset($questionData['question_status']) && $questionData['question_status'] != '') ? $questionData['question_status'] : 'Draft' ,
             'comments_for_reviewer'     => (isset($questionData['comments_for_reviewer']) && $questionData['comments_for_reviewer'] != '') ? $questionData['comments_for_reviewer'] : '',
-            'search_tags'              => $search_tags,
-            'review_required'              => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
-            'question_example'            => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
-            'question_type'            => isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
-            'example_question'            => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
+            'search_tags'              	=> $search_tags,
+            'review_required'           => isset($questionData['review_required']) ? $questionData['review_required'] : 0 ,
+            'question_example'          => isset($_POST['question_example']) ? $_POST['question_example'] : '' ,
+            'question_type'            	=> isset($_POST['question_type']) ? $_POST['question_type'] : '' ,
+            'example_question'          => isset($_POST['example_question']) && !empty($_POST['example_question']) ? $_POST['example_question'] : 0,
             'reference_type'            => isset($_POST['reference_type']) && !empty($_POST['reference_type']) ? $_POST['reference_type'] : 'Course',
+			'question_levels' 			=> $question_levels,
         ]);
 		
 		if( $sub_chapter_quiz_id > 0){
@@ -2627,6 +2632,13 @@ class QuestionsBankController extends Controller
 
         //pre($elements_data);
 
+		$difficulty_level = isset($questionData['difficulty_level']) ? $questionData['difficulty_level'] : '';
+		$category_id = isset( $questionData['category_id'] )? $questionData['category_id'] : array();
+		$question_levels = get_question_levels($category_id, $difficulty_level);
+		$category_id = json_encode($category_id);
+		
+		
+		
         $quiz = Quiz::find($quiz_id);
         $quizQuestion = $quistionObj->update([
             'quiz_id'                   => $quiz_id ,
@@ -2643,7 +2655,7 @@ class QuestionsBankController extends Controller
             'glossary_ids'              => isset($_POST['glossary_ids']) ? json_encode($_POST['glossary_ids']) : '' ,
             'elements_data'             => json_encode($elements_data) ,
             'layout_elements'           => $layout_elements_layout ,
-            'category_id'               => (isset($questionData['category_id']) && $questionData['category_id'] != '') ? $questionData['category_id'] : 0 ,
+            'category_id'               => $category_id,
             'course_id'                 => (isset($questionData['course_id']) && $questionData['course_id'] != '') ? $questionData['course_id'] : 0 ,
             'sub_chapter_id'            => (isset($questionData['sub_chapter_id']) && $questionData['sub_chapter_id'] != '') ? $questionData['sub_chapter_id'] : 0 ,
             'type'                      => 'descriptive' ,
@@ -2656,6 +2668,7 @@ class QuestionsBankController extends Controller
             'question_type'            => isset($questionData['question_type']) ? $questionData['question_type'] : '' ,
             'example_question'            => isset($questionData['example_question']) && !empty($questionData['example_question']) ? $questionData['example_question'] : 0,
             'reference_type'            => isset($questionData['reference_type']) && !empty($questionData['reference_type']) ? $questionData['reference_type'] : 'Course',
+            'question_levels'            => $question_levels,
         ]);
 
         if (!empty($quizQuestion)) {

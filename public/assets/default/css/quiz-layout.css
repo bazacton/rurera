@@ -51,7 +51,7 @@ Lms Signs Style
     flex-direction: column;
 } */
 .form-box.inline-fields .lms-radio-select {margin-bottom: 0;}
-.lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 170px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
+.lms-radio-select label {margin: 0; border: 2px solid #ddd; border-bottom-width: 4px; min-height: 50px; display: inline-flex; align-items: center; border-radius: 8px; cursor: pointer; /* color: #666; */ overflow: hidden; position: relative; z-index: 1; padding: 0 15px; /* font-size: 15px; */ -webkit-transition: all 0.2s ease-in-out;transition: all 0.2s ease-in-out;width: 100%;}
 .lms-radio-select.inline-fields .field-holder label {width: 100%;}
 /* .lms-radio-select label:before {content: ""; height: 25px; width: 25px; border: 1px solid rgba(0,0,0,0.1); border-radius: 100%; position: absolute; right: 12px; visibility: visible !important; transition: 0.4s ease-in-out;} */
 .lms-radio-select label:hover {background-color: rgba(0,0,0,0.05);}
@@ -85,7 +85,7 @@ Lms Signs Style
 .lms-sign-match {display: block; margin-left: 20px; padding-top: 10px; font-weight: 500;}
 .lms-sign-match em {font-style: normal; display: inline-block; background-color: #8f8f8f; border-radius: 100%; color: #fff; height: 22px; width: 22px; text-align: center; margin: 0 10px;}
 .question-fields .left-content {/* width: 100%; max-width: 700px; margin: 0 auto; */}
-.lms-radio-img .field-holder label {padding: 5px; border-radius: 5px; }
+.lms-radio-img .field-holder label {padding: 5px; border-radius: 5px; min-height: 170px; }
 .lms-radio-img .field-holder label img {  /*width: 35px; margin-right: 10px; height: 35px;*/ object-fit: contain; max-width: 100%;}
 .lms-radio-img .inline-fields .field-holder label, 
 .lms-checkbox-img.inline-fields .field-holder label {width: 100%;}
@@ -115,7 +115,7 @@ Lms Signs Style
 .alphabet-list-style .field-holder:has(input){
     padding-left: 0;
 }
-.alphabet-list-style .field-holder:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 1; }
+.alphabet-list-style .field-holder:before {content: counter(listStyle, lower-alpha); position: absolute; top: 50%; left: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid #ddd; width: 24px; height: 24px; text-align: center; line-height: 24px; border-radius: 2px; color: #999; margin-top: -12px; z-index: 2; }
 .numeric-list-style {counter-reset: listStyle;}
 .numeric-list-style > .field-holder,
 .numeric-list-style > .form-field {counter-increment: listStyle; position: relative;}
@@ -315,7 +315,7 @@ Lms Question List Style
 .question-fields .left-content {display: flex; flex-direction: column; /*min-height: 680px; height: 680px;*/ overflow: hidden; overflow-y: auto; padding-right: 10px;}
 .read-quiz-content .left-content {overflow: hidden;}
 .question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 0; color: #adabab; }
-.question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.8); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 100%; max-width: 848px; margin-bottom: 0 !important; z-index: 2;}
+.question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.9); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 100%; max-width: 848px; margin-bottom: 0 !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
 .assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
 .question-fields .left-content::-webkit-scrollbar,
@@ -360,6 +360,11 @@ Lms Question List Style
 .question-layout .input-group .admin-file-manager i,
 .question-layout .input-group .admin-file-view i {font-size: 16px; font-style: normal; font-weight: 900 !important; font-family: "Font Awesome 5 Free" !important;}
 .question-layout .input-group .admin-file-manager .fa-chevron-up:before {content: ""; border-style: solid; border-width: 1px 0 0 1px; border-color: #ccc; display: inline-block; height: 10px; width: 10px; transform: rotate(45deg); vertical-align: middle;}
+.question-step:has(.question-number-holder .flag-question) .leform-form,
+.question-step:has(.question-number-holder .flag-question) .questions-total-holder {
+    padding-left: 70px;
+}
+
 /**********************************
 Lms Question List Style 
 **********************************/
@@ -1010,10 +1015,14 @@ input[type=number] {-moz-appearance:textfield;}
     max-width: 100%;
     width: 190px;
 } */
-input.extra-small {width: 30%;}
-input.small {width: 60%;}
-input.medium {width: 90%;}
-input.large {width: 100%;}
+input.extra-small,
+.input-holder .input-label ~ input.input_line.extra-small {width: 30%;}
+input.small,
+.input-holder .input-label ~ input.input_line.small {width: 60%;}
+input.medium,
+.input-holder .input-label ~ input.input_line.medium {width: 90%;}
+input.large,
+.input-holder .input-label ~ input.input_line.large {width: 100%;}
 
 .column-2 .input-holder .medium, 
 .column-3 .input-holder .medium,
@@ -1389,7 +1398,7 @@ Lms Quiz Wf Style End
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
 }
 .quiz-topbar .quiz-top-info {
@@ -1716,6 +1725,9 @@ Lms Table Style
 .leform-element table.table td .input-holder input {
     text-align: center;
     background-color: initial;
+    border: 1px solid #ddd;
+    height: 38px;
+    min-height: 38px;
 }
 .leform-element table.table td .input_line {
     width: 100% !important;

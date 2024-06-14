@@ -36,10 +36,10 @@ class LearnController extends Controller
 		
 
         $categoryObj = Category::where('id', $user->year_id)->first();
-        $courses_list = Webinar::where('category_id', $categoryObj->id);
+        $courses_list = Webinar::whereJsonContains('category_id', (string) $categoryObj->id);
 		$courses_list = $courses_list->whereNotIn('id', $hide_subjects);
 		$courses_list = $courses_list->where('status', 'active')->get();
-
+		
         $page = Page::where('link', '/learn')->where('status', 'publish')->first();
         if (!empty($courses_list)) {
 

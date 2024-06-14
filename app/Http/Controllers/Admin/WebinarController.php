@@ -1210,15 +1210,21 @@ class WebinarController extends Controller
 
     public function courses_by_categories(Request $request)
     {
-        $category_id = $request->get('category_id');
+        $category_ids = $request->get('category_id');
         $course_id = $request->get('course_id');
         //$courses = Webinar::where('category_id',$category_id)->get();
-
+		
+		$category_ids = is_array( $category_ids )? $category_ids : $category_id;
+		
+		
         $query = Webinar::query();
-        $courses = $query->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
-            ->select('webinars.id as webinar_id' , 'webinar_translations.title as webinar_title')
-            ->where('webinars.category_id' , $category_id)
-            ->paginate(100);
+        $courses = $query->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')->select('webinars.id as webinar_id' , 'webinar_translations.title as webinar_title');
+            
+		foreach( $category_ids as $category_id){
+			$courses = $courses->orWhereJsonContains('webinars.category_id' , (string) $category_id);
+		}
+			
+		$courses = $courses->paginate(100);
 
         $response = '<option value="">Select Course</option>';
         if (!empty($courses)) {
