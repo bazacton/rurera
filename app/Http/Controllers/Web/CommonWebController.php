@@ -672,7 +672,7 @@ class CommonWebController extends Controller
         }
 		$first_date = isset($times_tables_data['first_date']) ? $times_tables_data['first_date'] : '';
 		
-		$rendered_view = view('web.default.timestables.heatmap', ['times_tables_data' => $times_tables_data, 'first_date' => $first_date])->render();
+		$rendered_view = view('web.default.timestables.average', ['times_tables_data' => $times_tables_data, 'average_time' => $average_time])->render();
         echo $rendered_view;
         exit;
     }

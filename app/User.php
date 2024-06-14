@@ -3555,10 +3555,11 @@ class User extends Authenticatable
     public function get_full_name()
     {
        $full_name = $this->full_name;
+       $display_name = $this->display_name;
        if (auth()->check() && auth()->user()->isParent()) {
            $full_name = $this->full_name_parent;
        }
-       $full_name = ($full_name != '')? $full_name : $this->full_name;
+       $full_name = ($display_name != '')? $display_name : $this->full_name;
        return $full_name;
     }
 

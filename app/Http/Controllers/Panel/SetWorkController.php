@@ -265,6 +265,7 @@ class SetWorkController extends Controller
             case "Monthly":
                 break;
         }
+		
 
         $topic_ids = is_array($topic_ids)? $topic_ids : array($topic_ids);
         $data['assignment_reviewer'] = isset( $data['assignment_reviewer'] )? $data['assignment_reviewer'] : array();
@@ -345,7 +346,18 @@ class SetWorkController extends Controller
 								}
 								$counter++;
                             }
-                        }
+                        }else{
+							$UserAssignedTimestables = UserAssignedTopics::create([
+								'assigned_to_id'        => $user_id,
+								'assigned_by_id'        => $user->id,
+								'student_assignment_id' => $StudentAssignments->id,
+								'topic_id'              => 0,
+								'status'                => 'active',
+								'created_at'            => time(),
+								'start_at'              => $eventDate['start'],
+								'deadline_date'         => $eventDate['end'],
+							]);
+						}
 
                     }
                 }
