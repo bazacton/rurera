@@ -100,7 +100,6 @@
                             <img src="{{ $authUser->getAvatar() }}" class="rounded-circle" alt="{{ $authUser->get_full_name() }}" width="100%" height="auto" itemprop="image"
                                  alt="rounded circle" loading="eager" title="rounded circle">
                             <span class="font-14 text-dark-blue user-name">{{ $authUser->get_full_name() }}</span>
-                            <span class="font-14 text-dark-blue user-email">{{ $authUser->email }}</span>
                             <a href="/panel/setting" class="font-14 text-dark-blue user-manage-btn">Manage Account</a>
                         </div>
                         <div class="d-md-none border-bottom mb-20 pb-10 text-right">
