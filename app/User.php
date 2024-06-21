@@ -3916,6 +3916,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\UserParentLink', 'user_id', 'id');
     }
 
+    public function studentJourneyItems()
+    {
+        return $this->hasMany('App\Models\StudentJourneyItems', 'student_id', 'id');
+    }
+
 
     public function rates()
     {

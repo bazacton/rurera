@@ -139,6 +139,10 @@ class BooksController extends Controller
                                 $info_link_html .= isset($data_values->topic_title) ? $data_values->topic_title : '';
                                 $info_link_html .= '</span>';
                                 break;	
+								
+							case "map":
+                               $info_link_html .= '<span class="book-info-link" data-id="' . $pageInfoLinks['id'] . '" data-type="' . $pageInfoLinks['info_type'] . '"><img src="/assets/default/img/book-icons/' . $pageInfoLinks['info_type'] . '.svg" style="width: 800px !important;height: auto !important;"></span>';
+                                break;
 
                             case "highlighter":
                                 $highlighter_size = isset( $data_values->highlighter_size )? $data_values->highlighter_size : 0;

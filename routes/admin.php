@@ -596,6 +596,21 @@ Route::group([
 
             Route::get('/weekly_planner_set_layout', 'WeeklyPlannerController@weekly_planner_set_layout');
         });
+		
+		/*
+        * Learning Journey
+        */
+        Route::group(['prefix' => 'learning_journey'], function () {
+            Route::get('/', 'LearningJourneyController@index');
+            Route::get('/create', 'LearningJourneyController@create');
+            Route::post('/store', 'LearningJourneyController@store');
+            Route::post('/{id}/store', 'LearningJourneyController@store');
+            Route::get('/{id}/edit', 'LearningJourneyController@edit')->name('adminEditLearningJourney');
+            Route::get('/learning_journey_topic_layout', 'LearningJourneyController@learning_journey_topic_layout');
+            Route::get('/learning_journey_treasure_layout', 'LearningJourneyController@learning_journey_treasure_layout');
+
+            Route::get('/learning_journey_set_layout', 'LearningJourneyController@learning_journey_set_layout');
+        });
 
 
         Route::group(['prefix' => 'filters'], function () {

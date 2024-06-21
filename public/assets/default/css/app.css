@@ -10473,6 +10473,12 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
 .spell-levels {background-color: #fff; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
+.spell-levels li > a:hover .lms-tooltip {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
+
 .treasure-mission-layout .spell-levels {background-color: initial;}
 .spell-completed {overflow: hidden;}
 .spell-completed:before {content: "\2713";position: absolute;right: -6px;top: 24px;width: 35px;height: 35px;text-align: center;border-radius: 100%;background-color: #5acb01;color: #fff;line-height: 35px;font-weight: 700;box-shadow: 0 -2px 0 1px rgba(0,0,0,0.2) inset;}
@@ -11264,7 +11270,7 @@ li.disable-timetable label {background: #efefef; cursor: unset; user-select: non
 .lms-choose-membership .flexible-progress-bar li.complete img, 
 .lms-choose-membership .flexible-progress-bar li.active img {filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
 body .flipbook-data {height: 68%; transform: scale(1.5); margin-top: 280px;}
-.book-info-link img {width: 85px !important; object-fit: contain; height: 85px !important;}
+.book-info-link img {object-fit: contain;}
 .books-listing-holder .search-block {margin-bottom: 30px; }
 .search-block .search-input .form-group {border: 1px solid #ddd; padding: 10px 20px 10px 15px; border-radius: 10px;}
 .search-block .search-input .form-group .btn {height: 42px; padding: 0 40px; box-shadow: none; }

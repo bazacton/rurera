@@ -123,6 +123,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                      */
 
                     Route::get('/{slug}' , 'WebinarController@course');
+                    Route::get('/{slug}/learning-journey' , 'LearningJourneyController@index');
                     Route::get('/{slug}/file/{file_id}/download' , 'WebinarController@downloadFile');
                     Route::get('/{slug}/file/{file_id}/showHtml' , 'WebinarController@showHtmlFile');
                     Route::get('/{slug}/lessons/{lesson_id}/read' , 'WebinarController@getLesson');
@@ -311,9 +312,6 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
         Route::post('/update-game-time', 'SubscribeController@updateGameTime');
         Route::get('/payment-form-test' , 'SubscribeController@paymentformTest');
 		Route::get('/get-coupon-data' , 'SubscribeController@getCouponData');
-		
-        
-
     });
 
 
@@ -323,6 +321,10 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'categories'] , function () {
         Route::get('/{categoryTitle}/{subCategoryTitle?}' , 'CategoriesController@index');
+    });
+
+    Route::group(['prefix' => 'learning-journey'] , function () {
+        Route::get('/' , 'LearningJourneyController@index');
     });
 
     Route::get('/classes' , 'ClassesController@index');

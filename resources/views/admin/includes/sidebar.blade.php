@@ -230,6 +230,15 @@
                     </a>
                 </li>
             @endcan()
+			
+			@can('admin_questions_bank')
+                <li class="nav-item {{ (request()->is('admin/learning_journey')) ? 'active' : '' }}">
+                    <a href="{{ getAdminPanelUrl('/learning_journey') }}" class="nav-link">
+                        <i class="fas fa-calendar-week"></i>
+                        <span>Learning Journey</span>
+                    </a>
+                </li>
+            @endcan()
 
             @can('admin_assignments')
                 

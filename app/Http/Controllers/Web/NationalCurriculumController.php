@@ -58,7 +58,7 @@ class NationalCurriculumController extends Controller
         $category_id = $request->get('category_id');
         $subject_id = $request->get('subject_id');
         $only_field = $request->get('only_field');
-        $webinars = Webinar::where('category_id', $category_id)
+        $webinars = Webinar::WhereJsonContains('category_id', (string) $category_id)
             ->get();
         if ($only_field != 'yes') {
             ?>

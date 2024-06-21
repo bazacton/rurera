@@ -159,7 +159,7 @@ class BooksController extends Controller
 		
 		$subject_id = $book->subject_id;
 		$courseObj = Webinar::find($subject_id);
-		$chapters = $courseObj->chapters;
+		$chapters = isset( $courseObj->chapters )? $courseObj->chapters : array();
 	
 		$response = '';
 		if (!empty($chapters)) {

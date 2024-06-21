@@ -153,6 +153,18 @@ $(document).on('click', '.book-dropzone', function (e) {
         dropZonObj.append($el);
     }
 
+    if (drag_type == "map") {
+
+        var $el = $('<div style="left:' + e.offsetX + 'px; top:' + e.offsetY + 'px;" data-is_new="yes" class="drop-item form-group draggablecl field_settings draggable_field_' + field_random_number + '" data-id="' + field_random_number + '" data-field_type="' + drag_type + '" data-topic_title="" data-trigger_class="infobox-map-fields"><div class="field-data"><img src="/assets/default/img/book-icons/map.svg" width="500"></div>');
+        //$el.append('<span class="field-handle fas fa-arrows-alt"></span><a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('<a href="javascript:;" class="remove"><span class="fas fa-trash"></span></a>');
+        $el.append('</div>');
+        if (!EditorIsEmpty(attribute_type)) {
+            $el.find('.customizable-field').css(attribute_type, attribute_value);
+        }
+        dropZonObj.append($el);
+    }
+
 
     /*
     * Draggable

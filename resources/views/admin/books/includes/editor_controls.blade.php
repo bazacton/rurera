@@ -342,6 +342,13 @@
                             <img src="/assets/default/img/book-icons/topic.png" width="42" height="47">
                         </a>
                     </li>
+					
+					<li>
+                        <a href="javascript:;" title="Map" class="control-tool-item"
+                           data-drag_type="map">
+                            <img src="/assets/default/img/book-icons/topic.png" width="42" height="47">
+                        </a>
+                    </li>
 
                 </ul>
             </li>
