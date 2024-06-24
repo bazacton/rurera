@@ -136,6 +136,12 @@ class ElevenplusController extends Controller
         $started_already = $QuestionsAttemptController->started_already($id);
 
         $started_already = false;
+		
+		$continueTests = QuizzesResult::where('user_id', $user->id)->where('status', 'waiting')->where('quiz_result_type', '11plus')->where('parent_type_id', '!=', $quiz->id)->count(); 
+		
+		if( $continueTests >= 2){
+			return view('web.default.quizzes.mock_limit_reached');
+		}
         if ($started_already == true) {
             $data = [
                 'pageTitle'  => 'Start',

@@ -124,6 +124,12 @@ class CatFourController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
         $started_already = $QuestionsAttemptController->started_already($id);
+		
+		$continueTests = QuizzesResult::where('user_id', $user->id)->where('status', 'waiting')->where('quiz_result_type', '11plus')->where('parent_type_id', '!=', $quiz->id)->count(); 
+		
+		if( $continueTests >= 2){
+			return view('web.default.quizzes.mock_limit_reached');
+		}
 
         //$started_already = false;
         if ($started_already == true) {

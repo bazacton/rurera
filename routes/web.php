@@ -165,6 +165,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
                         });
                         Route::post('/direct-payment' , 'WebinarController@directPayment');
                     });
+					Route::get('/{slug}/{sub_chapter_slug}/{journey_item_id}/journey' , 'LearningJourneyController@start');
                     Route::get('/{slug}/{sub_chapter_slug}' , 'WebinarController@start');
                 });
         }

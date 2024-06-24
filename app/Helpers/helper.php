@@ -8221,6 +8221,7 @@ function searchNuggetByID($array, $key, $value, $parentLevel = null, $grandparen
                 'title' => $item['title'],
                 'time_interval' => isset( $item['time_interval'] )? $item['time_interval'] : 0,
                 'life_lines' => isset( $item['life_lines'] )? $item['life_lines'] : 0,
+                'coins' => isset( $item['coins'] )? $item['coins'] : 0,
             ], $parentLevel);
             if ($result !== null) {
                 return $result;
@@ -8233,6 +8234,7 @@ function searchNuggetByID($array, $key, $value, $parentLevel = null, $grandparen
                 'title' => $item['title'],
                 'time_interval' => isset( $item['time_interval'] )? $item['time_interval'] : 0,
                 'life_lines' => isset( $item['life_lines'] )? $item['life_lines'] : 0,
+                'coins' => isset( $item['coins'] )? $item['coins'] : 0,
             ], $parentLevel);
             if ($result !== null) {
                 return $result;

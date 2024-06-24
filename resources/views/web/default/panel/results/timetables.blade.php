@@ -192,7 +192,8 @@ $rand_id = rand(99,9999);
                             $time_consumed_class = ($check_class == 'incorrect')? 'time-wrong' : $time_consumed_class;
 
                             $summary_time_spend += $time_consumed;
-                            $summary_coins_earned += ($is_correct == 'true')? 1 : 0;
+							$score = isset( $rowObj->score )? $rowObj->score : 1;
+                            $summary_coins_earned += ($is_correct == 'true')? $score : 0;
                             $incorrect_questions += ($is_correct == 'false')? 1 : 0;
                             @endphp
                             @if( !isset( $rowObj->from ) )

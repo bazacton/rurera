@@ -1,6 +1,7 @@
 @extends('web.default.layouts.appstart',['appFooter' => false, 'appHeader' => false])
 @php
 $rand_id = rand(99,9999);
+$learning_journey = (isset( $learning_journey ) && $learning_journey == 'yes')? 'yes' : 'no';
 @endphp
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
@@ -19,7 +20,7 @@ $rand_id = rand(99,9999);
 @endpush
 @section('content')
 
-<div class="learning-page type-{{$quiz->quiz_type}} type-sats">
+<div class="learning-page type-{{$quiz->quiz_type}} type-sats" >
 
 
     <div class="d-flex position-relative">
@@ -121,7 +122,7 @@ $rand_id = rand(99,9999);
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
 
-                        <a href="javascript:;" data-id="{{$quiz->id}}" data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
+                        <a href="javascript:;" data-id="{{$quiz->id}}" data-learning_journey="{{$learning_journey}}" data-journey_item_id="{{isset( $journey_item_id )? $journey_item_id : 0}}"  data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
                            class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">{{isset( $button_label)? $button_label : 'Start Test'}}</a>
                         <div class="learning-content-quiz">
                            

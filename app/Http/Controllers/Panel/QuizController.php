@@ -381,6 +381,8 @@ class QuizController extends Controller
         $user = getUser();
 
         $quiz_level = $request->get('quiz_level', 'easy');
+        $learning_journey = $request->get('learning_journey', 'no');
+        $journey_item_id = $request->get('journey_item_id', 'no');
 
         $no_of_questions = 0;
 
@@ -394,6 +396,7 @@ class QuizController extends Controller
         $QuestionsAttemptController = new QuestionsAttemptController();
 
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level);
+		
 		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
@@ -445,14 +448,16 @@ class QuizController extends Controller
                 $resultLogObj = QuizzesResult::find($QuizzesResultID);
                 $prev_active_question_id = $resultLogObj->active_question_id;
             }else {
+				$quiz_result_type = ($learning_journey == 'yes')? 'learning_journey' : $quiz->quiz_type;
                 $resultLogObj = $QuestionsAttemptController->createResultLog([
                     'parent_type_id'   => $quiz->id,
-                    'quiz_result_type' => $quiz->quiz_type,
+                    'quiz_result_type' => $quiz_result_type,
                     'questions_list'   => $questions_list,
                     'no_of_attempts'   => $quiz->attempt,
                     'other_data'       => $other_data,
                     'quiz_breakdown'   => $quiz_breakdown,
                     'quiz_level'       => $quiz_level,
+					'journey_item_id' => $journey_item_id,
                 ]);
 
                 $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
@@ -521,8 +526,6 @@ class QuizController extends Controller
                         $question_response_layout = '';
 
                         if ($quiz->quiz_type == 'vocabulary') {
-
-
 
                             $layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
 

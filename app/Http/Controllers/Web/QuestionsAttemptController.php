@@ -13,6 +13,8 @@ use App\Models\QuizzesQuestion;
 use App\Models\QuizzesQuestionsAnswer;
 use App\Models\QuizzResultQuestions;
 use App\Models\AssignmentsQuestions;
+use App\Models\StudentJourneyItems;
+use App\Models\LearningJourneyItems;
 use App\Models\TimestablesEvents;
 use App\Models\QuizzAttempts;
 use App\Models\RewardAccounting;
@@ -49,6 +51,7 @@ class QuestionsAttemptController extends Controller
         $other_data = isset($params['other_data']) ? $params['other_data'] : '';
         $quiz_breakdown = isset($params['quiz_breakdown']) ? $params['quiz_breakdown'] : '';
         $quiz_level = isset($params['quiz_level']) ? $params['quiz_level'] : '';
+		$journey_item_id = isset($params['journey_item_id']) ? $params['journey_item_id'] : 0;
 
 
         $newQuizStart = QuizzesResult::where('parent_type_id', $parent_type_id)->where('quiz_result_type', $quiz_result_type)->where('user_id', $user->id)->where('status', 'waiting')->first();
@@ -69,6 +72,19 @@ class QuestionsAttemptController extends Controller
                 'quiz_breakdown'   => $quiz_breakdown,
                 'quiz_level'       => $quiz_level,
             ]);
+			
+			if( $quiz_result_type == 'learning_journey'){	
+				$LearningJourneyItems = LearningJourneyItems::find($journey_item_id);
+				$StudentJourneyItems = StudentJourneyItems::create([
+					'student_id'          => $user->id,
+					'learning_journey_item_id'	=> $journey_item_id,
+					'status'           => 'waiting',
+					'item_type'        => $LearningJourneyItems->item_type,
+					'item_value'       => $LearningJourneyItems->item_value,
+					'created_at'       => time(),
+					'result_id'       => $newQuizStart->id,
+				]);
+			}
         }
 
         return $newQuizStart;
@@ -117,6 +133,7 @@ class QuestionsAttemptController extends Controller
         if (empty($QuizzesResult)) {
             $QuizzesResult = QuizzesResult::find($quizAttempt->quiz_result_id);
         }
+		
 
 
 
@@ -274,6 +291,14 @@ class QuestionsAttemptController extends Controller
                 break;
 
             case "vocabulary":
+                if ($QuizzResultQuestionsCount == 0) {
+                    $is_attempt_allowed = true;
+                }
+                $is_attempt_allowed = true;
+                break;
+
+            case "learning_journey":
+
                 if ($QuizzResultQuestionsCount == 0) {
                     $is_attempt_allowed = true;
                 }
@@ -1543,20 +1568,34 @@ class QuestionsAttemptController extends Controller
         $get_last_results = (array)json_decode($get_last_results);
 
         $results = array();
+		
+		$QuizzAttempts = QuizzAttempts::find($attempt_id);
+        $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
+		$score = 1;
+		if( $QuizzesResult->attempt_mode == 'treasure_mode') {
+			$treasure_mission_data = get_treasure_mission_data();
+			$nugget_data = searchNuggetByID($treasure_mission_data,'id', $QuizzesResult->nugget_id);
+			$levelData = isset( $nugget_data['levelData'] )? $nugget_data['levelData'] : array();
+			$score = isset( $levelData['coins'] )? $levelData['coins'] : $score;
+		}
 
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
+				$tableData['score'] = $score;
                 $results[$tableData['table_no']][] = $tableData;
             }
         }
         $new_array = $results;//array_merge($get_last_results, $results);
 
+
+        
         $new_result_data = array();
         if (!empty($new_array)) {
             foreach ($new_array as $array_data) {
                 if (!empty($array_data)) {
                     foreach ($array_data as $key => $arrayDataObj) {
                         $arrayDataObj = (array)$arrayDataObj;
+						$arrayDataObj['score'] = $score;
                         $new_result_data[$arrayDataObj['from']][] = $arrayDataObj;
                     }
                 }
@@ -1564,10 +1603,7 @@ class QuestionsAttemptController extends Controller
         }
 
 
-        $QuizzAttempts = QuizzAttempts::find($attempt_id);
-        $QuizzesResult = QuizzesResult::find($QuizzAttempts->quiz_result_id);
-
-
+		
 
 
         $QuizzesResult->update([
@@ -1586,6 +1622,7 @@ class QuestionsAttemptController extends Controller
         $total_time_consumed = 0;
         $incorrect_array = $correct_array = array();
         if (!empty($timestables_data)) {
+			
             foreach ($timestables_data as $tableData) {
 
                 $correct_answers = isset($tableData['correct_answer']) ? $tableData['correct_answer'] : '';
@@ -1599,6 +1636,7 @@ class QuestionsAttemptController extends Controller
                 $total_time_consumed += $time_consumed;
 
 
+				
 
                 $newQuestionResult = QuizzResultQuestions::create([
                     'question_id'      => 0,
@@ -1608,7 +1646,7 @@ class QuestionsAttemptController extends Controller
                     'correct_answer'   => $correct_answers,
                     'user_answer'      => $user_answer,
                     'quiz_layout'      => json_encode($tableData),
-                    'quiz_grade'       => 1,
+                    'quiz_grade'       => $score,
                     'average_time'     => 0,
                     'time_consumed'    => $time_consumed,
                     'difficulty_level' => 'Expected',
@@ -2588,6 +2626,52 @@ class QuestionsAttemptController extends Controller
         /*
         * Vocabulary Quiz Test Completion End
         */
+		
+		if ($quiz_result_type == 'learning_journey') {
+			$StudentJourneyItem = StudentJourneyItems::where('result_id', $resultLogObj->id)->where('student_id', $user->id)->where('status','waiting')->first();
+			$StudentJourneyItem->update(['status' => 'completed', 'completed_at' => time()]);
+			
+			
+			$currentItem = LearningJourneyItems::find($StudentJourneyItem->learning_journey_item_id);
+			$sortedItems = LearningJourneyItems::get();
+
+			$nextItem = null;
+			foreach ($sortedItems as $index => $item) {
+				if ($item->id == $currentItem->id) {
+					if (isset($sortedItems[$index + 1])) {
+						$nextItem = $sortedItems[$index + 1];
+					}
+					break;
+				}
+			}
+			if( isset( $nextItem->item_type ) && $nextItem->item_type == 'treasure'){
+				$StudentJourneyItems = StudentJourneyItems::create([
+					'student_id'          => $user->id,
+					'learning_journey_item_id'	=> $nextItem->id,
+					'status'           => 'completed',
+					'item_type'        => $nextItem->item_type,
+					'item_value'       => $nextItem->item_value,
+					'created_at'       => time(),
+					'completed_at'       => time(),
+					'result_id'       => $resultLogObj->id,
+				]);
+				RewardAccounting::create([
+					'user_id'       => $user->id,
+					'item_id'       => 0,
+					'type'          => 'coins',
+					'score'         => $nextItem->item_value,
+					'status'        => 'addiction',
+					'created_at'    => time(),
+					'parent_id'     => $nextItem->id,
+					'parent_type'   => 'journey_treasure',
+					'full_data'     => '',
+					'updated_at'    => time(),
+					'assignment_id' => 0,
+					'result_id'     => $resultLogObj->id,
+				]);
+			}
+			
+		}
     }
 
     /*

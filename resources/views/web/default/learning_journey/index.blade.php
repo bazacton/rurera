@@ -45,11 +45,14 @@
 				@if(!empty( $itemsRow ) )
 				<div class="treasure-stage">
 					<ul class="justify-content-start horizontal-list p-0 " style="display: block;">
-						@php $item_counter = 0; $ul_class = 'ul-rtl'; @endphp
+						@php $item_counter = 0; $ul_class = 'ul-rtl'; $already_active = false; $is_active = false; @endphp
 						@foreach($itemsRow as $itemObj)
-							@php $item_counter++;  $is_completed = isset( $itemObj->is_completed )? $itemObj->is_completed : false; @endphp
+							@php $item_counter++;  $is_completed = isset( $itemObj->is_completed )? $itemObj->is_completed : false; 
+							$is_active = ( $is_active == false && $is_completed != true)? true : $is_active;
+							$is_active = ($already_active == false)? $is_active : false;
+							$already_active = ($is_active == true)? true : $already_active;
+							@endphp
 							@include('web.default.learning_journey.journey_item', ['item_counter' => $item_counter, 'itemObj' => $itemObj])
-							
 							@if( $item_counter == 6)
 								@php $item_counter = 0; @endphp
 								</ul></div>
