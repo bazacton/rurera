@@ -780,6 +780,7 @@ function rurera_validation_process(form_name) {
     var alert_messages = new Array();
     var radio_fields = new Array();
     var checkbox_fields = new Array();
+	console.log('sdfsdfsdfsdfsdf');
     form_name.find('.rurera-req-field:not(img), .editor-field:not(img), .editor-fields:not(img)').each(function (index_no) {
         is_visible = true;
         var thisObj = jQuery(this);

@@ -95,6 +95,7 @@ $timer_counter = $practice_time;
                             @if( isset( $quiz->quiz_type ))
                                <img class="quiz-type-icon" src="/assets/default/img/assignment-logo/{{$quiz->quiz_type}}.png">
                            @endif
+						   
                             <div class="quiz-top-info"><p>{{$quiz->getTitleAttribute()}}</p>
                             </div>
                         </div>
@@ -250,6 +251,7 @@ $timer_counter = $practice_time;
     var headerOffset = (header != null) ? header.offsetHeight : 100;
     var header_height = parseInt(headerOffset) + parseInt(85) + "px";
 
+	var attempted_questions = '{{count(array_filter($questions_status_array, fn($value) => $value !== "waiting"))}}';
 
     var Quizintervals = null;
 

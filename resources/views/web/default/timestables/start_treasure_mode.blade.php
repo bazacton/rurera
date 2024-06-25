@@ -22,6 +22,8 @@ $rand_id = rand(99,9999);
         color: #fff;
     }
     .active-level{background:red;}
+	
+	.rurera-error-msg{position: absolute;right: 80px;}
 
 </style>
 @endpush
@@ -199,7 +201,7 @@ if( $duration_type == 'total_practice'){
                             		<span>{{$questionObj->from}} <span>{{$questionObj->type}}</span> {{$questionObj->to}} <span>&equals;</span></span>
                                    <input type="text" data-from="{{$questionObj->from}}"
                                                                            data-type="{{$questionObj->type}}"data-table_no="{{$questionObj->table_no}}" data-to="{{$questionObj->to}}"
-                                                                           class="editor-fields" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
+                                                                           class="editor-fields" error-placeholder="Input Answer" id="editor-fields-{{$questionIndex}}" autocomplete="off" >
                                    <div class="questions-controls">
                                        <span class="time-count-seconds" style="display:none;">0</span>
                                        <a href="javascript:;">
@@ -242,17 +244,24 @@ if( $duration_type == 'total_practice'){
     </section>
 
 </div>
-<div class="question-status-modal">
-  <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="question-status-modal2222222">
+  <div class="modal fade timestables_question_status_modal" id="timestables_question_status_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="modal-box">
-            <div class="modal-title">
-              <h3>Time Over!</h3>
-            </div>
-            <a href="javascript:;" class="confirm-btn timestables-question-confirm-btn" data-dismiss="modal" aria-label="Close">Continue</a>
-          </div>
+		
+		<div class="modal-box">
+			<span class="icon-box d-block mb-15">
+				<img src="../assets/default/img/clock-modal-img.png" alt="">
+			</span>
+			<h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
+			<p class="mb-15 font-14">
+				You've been inactive for a while, and your session was paused. You can continue learning by using the following link
+			</p>
+			<div class="inactivity-controls">
+				<a href="javascript:;" class="continue-btn timestables-question-confirm-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+			</div>
+		  </div>
         </div>
       </div>
     </div>
@@ -311,6 +320,12 @@ if( $duration_type == 'total_practice'){
         }
         $(".editor-fields").focus();
     });
+	
+	 $(".editor-fields").on('blur', function() {
+		setTimeout(function() {
+			 $(".editor-fields").focus();
+		}, 0);
+	});
 
 
     var Startintervals = setInterval(function () {
@@ -374,7 +389,9 @@ if( $duration_type == 'total_practice'){
             if( duration_type == 'per_question'){
                 if( parseInt(quiz_timer_counter) == 0){
                     clearInterval(Quizintervals);
-                    $("#timestables_question_status_modal").modal('show');
+                    //$("#timestables_question_status_modal").modal('show');
+					//$(".questions-block.active form").addClass('rurera-hide');
+					//$(".questions-block.active").append('<div class="col-12 col-lg-12 mx-auto">'+$(".timestables_question_status_modal .modal-box").html()+'</div>');
                     $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                     //$(".questions-block.active .question-form").submit();
                 }
@@ -382,7 +399,9 @@ if( $duration_type == 'total_practice'){
             if( duration_type == 'total_practice'){
                 if( parseInt(quiz_timer_counter) == 0){
                     clearInterval(Quizintervals);
-                    $("#timestables_question_status_modal").modal('show');
+                    //$("#timestables_question_status_modal").modal('show');
+					//$(".questions-block.active form").addClass('rurera-hide');
+					//$(".questions-block.active").append('<div class="col-12 col-lg-12 mx-auto">'+$(".timestables_question_status_modal .modal-box").html()+'</div>');
                     $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                     //$(".question-form").submit();
                 }
@@ -452,10 +471,8 @@ if( $duration_type == 'total_practice'){
             }
         });
 
-        console.log(correct_questions);
 
-        console.log($(this).closest('form'));
-        returnType = rurera_validation_process($(this).closest('form'));
+        returnType = rurera_validation_process($(this).closest('form'), 'under_field');
 
         if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
             returnType = true;
@@ -554,7 +571,9 @@ if( $duration_type == 'total_practice'){
                     if (duration_type == 'per_question') {
                         if (parseInt(quiz_timer_counter) == 0) {
                             clearInterval(Quizintervals);
-                            $("#timestables_question_status_modal").modal('show');
+                            //$("#timestables_question_status_modal").modal('show');
+							$(".questions-block.active form").addClass('rurera-hide');
+							$(".questions-block.active").append('<div class="col-12 col-lg-12 mx-auto">'+$(".timestables_question_status_modal .modal-box").html()+'</div>');
                             $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
                             //$(".questions-block.active .question-form").submit();
                         }

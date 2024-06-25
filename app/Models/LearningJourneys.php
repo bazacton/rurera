@@ -20,7 +20,7 @@ class LearningJourneys extends Model
 	
 	public function learningJourneyStages()
     {
-        return $this->hasMany('App\Models\learningJourneyItems', 'learning_journey_id', 'id');
+        return $this->hasMany('App\Models\LearningJourneyItems', 'learning_journey_id', 'id');
     }
 	
 	public function subject()

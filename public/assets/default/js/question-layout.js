@@ -1655,6 +1655,9 @@ function rurera_insert_error_message(thisObj, alert_messages, error_msg, field_t
             var field_label = thisObj.attr('placeholder');
         }
     }
+	if (typeof thisObj.attr('error-placeholder') != 'undefined') {
+		var field_label = thisObj.attr('error-placeholder');
+	}
     if (thisObj.is(':hidden')) {
         thisObj.next('.rurera-req-field').next('.pbwp-box').addClass('frontend-field-error');
     }
