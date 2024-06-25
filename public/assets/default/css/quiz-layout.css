@@ -7,6 +7,7 @@ body:has(.quiz-topbar) {
     height: 100%;
     overflow: hidden;
     overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
 }
 
 /**********************************
@@ -348,7 +349,7 @@ Lms Question List Style
 .question-layout input[type="text"],
 .input-holder input.input-simple {border: 3px solid #000; height: 32px; min-height: 50px; color: #000; font-size: 16px; text-align: left; font-weight: 400; border-radius: 8px; display: inline-block; padding: 0 10px;}
 .input-holder input[type="text"],
-.input-holder input.input-simple {border: 0;}
+.input-holder input.input-simple {border: 0; background-color: #fcfcfc;}
 .question-result-layout .input-holder .input-simple {width: 100%; }
 .leform-row.leform-element [class*="leform-col-"] {float: none; display: inline-block; margin-right: -4px; vertical-align: middle;}
 .input-holder.input_line,
@@ -1204,8 +1205,7 @@ Lms Quiz Wf Style End
     max-width: 600px;
 }
 .quiz-pagination .swiper-container {
-    padding-top: 10px;
-    margin-top: -10px;
+    margin-top: -8px;
     padding: 8px 2px 4px;
 }
 .quiz-pagination .swiper-button-next,
@@ -1594,6 +1594,7 @@ Lms Quiz Wf Style End
     background-color: #29a746;
     min-width: auto;
     border-radius: 3px;
+    margin-right: 0;
 }
 .inactivity-controls .pause-quiz {
     background-color: var(--primary);
@@ -1728,6 +1729,7 @@ Lms Table Style
     border: 1px solid #ddd;
     height: 38px;
     min-height: 38px;
+    background-color: #fcfcfc;
 }
 .leform-element table.table td .input_line {
     width: 100% !important;
@@ -2175,6 +2177,7 @@ span.Selectable:hover {text-decoration: underline;}
 .inactivity-controls .continue-btn {
     background-color: #58d150;
     color: #fff;
+    margin-right: 0;
 }
 .learning-page .quiz-activity-pause .close {
     right: 5px;
