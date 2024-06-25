@@ -213,94 +213,41 @@
 	<div class="section-title text-left mb-30">
 		<h2 class="font-22">Learning Journeys</h2>
 	</div>
+	@if( $LearningJourneys->count() > 0)
 	<ul>
-		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
-			<div class="quests-item">
-				<div class="icon-box">
-					<img src="/assets/default/img/types/timestables.svg" alt="">
-				</div>
-				<div class="item-text">
-					<h5 class="font-18 font-weight-bold">English</h5>
-					<div class="levels-progress horizontal">
-						<span class="progress-box">
-							<span class="progress-count" style="width: 0%;"></span>
+		@foreach( $LearningJourneys as $learningJourneyObj)
+			@php $level_stages = $learningJourneyObj->learningJourneyStages->pluck('id')->toArray();
+			$completed_stages = $userObj->studentJourneyItems->where('status', 'completed')->whereIn('learning_journey_item_id', $level_stages)->count() @endphp
+			<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
+				<div class="quests-item">
+					<div class="icon-box">
+						@if($learningJourneyObj->subject->icon_code != '')
+							   {!! $learningJourneyObj->subject->icon_code !!}
+						@else
+						   <img src="{!! $learningJourneyObj->subject->thumbnail !!}">
+						@endif
+					</div>
+					<div class="item-text">
+						<h5 class="font-18 font-weight-bold"><a href="/learning-journey/{{$learningJourneyObj->subject->slug}}">{{$learningJourneyObj->subject->getTitleAttribute()}}</a></h5>
+						<div class="levels-progress horizontal">
+							<span class="progress-box">
+								<span class="progress-count" style="width: 0%;"></span>
+							</span>
+						</div>
+						<span class="progress-icon font-16 font-weight-normal">
+							<img src="/assets/default/img/quests-coin.png" alt="">
+							+20
+						</span>
+						<span class="progress-info d-block pt-5">
+							<strong>{{$completed_stages}}/{{$learningJourneyObj->learningJourneyStages->count()}}</strong> Stages Completed
 						</span>
 					</div>
-					<span class="progress-icon font-16 font-weight-normal">
-						<img src="/assets/default/img/quests-coin.png" alt="">
-						+20
-					</span>
-					<span class="progress-info d-block pt-5">
-						<strong>0/38</strong> correct questions this week
-					</span>
 				</div>
-			</div>
-		</li>
-		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-success">
-			<div class="quests-item">
-				<div class="icon-box">
-					<img src="/assets/default/img/types/timestables.svg" alt="">
-				</div>
-				<div class="item-text">
-					<h5 class="font-18 font-weight-bold">Verbal Reasoning</h5>
-					<div class="levels-progress horizontal">
-						<span class="progress-box">
-							<span class="progress-count" style="width: 0%;"></span>
-						</span>
-					</div>
-					<span class="progress-icon circle">
-						<img src="/assets/default/svgs/check-border.svg" alt="" class="check-icon">
-					</span>
-					<span class="progress-info d-block pt-5">
-						<strong>76/29</strong> correct questions this week
-					</span>
-				</div>
-			</div>
-		</li>
-		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20">
-			<div class="quests-item">
-				<div class="icon-box">
-					<img src="/assets/default/img/types/timestables.svg" alt="">
-				</div>
-				<div class="item-text">
-					<h5 class="font-18 font-weight-bold">Maths</h5>
-					<div class="levels-progress horizontal">
-						<span class="progress-box">
-							<span class="progress-count" style="width: 0%;"></span>
-						</span>
-					</div>
-					<span class="progress-icon font-16 font-weight-normal">
-						<img src="/assets/default/img/quests-coin.png" alt="">
-						+20
-					</span>
-					<span class="progress-info d-block pt-5">
-						<strong>0/39</strong> correct questions this week
-					</span>
-				</div>
-			</div>
-		</li>
-		<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-0 bg-warning">
-			<div class="quests-item">
-				<div class="icon-box">
-					<img src="/assets/default/img/types/timestables.svg" alt="">
-				</div>
-				<div class="item-text">
-					<h5 class="font-18 font-weight-bold">Non-Verbal Reasoning</h5>
-					<div class="levels-progress horizontal">
-						<span class="progress-box">
-							<span class="progress-count" style="width: 0%;"></span>
-						</span>
-					</div>
-					<span class="progress-icon circle">
-						<img src="/assets/default/svgs/check-border.svg" alt="" class="check-icon">
-					</span>
-					<span class="progress-info d-block pt-5">
-						<strong>58/29</strong> correct questions this week
-					</span>
-				</div>
-			</div>
-		</li>
+			</li>
+		@endforeach
+		
 	</ul>
+	@endif
 </div>
 @endif
 <div class="dashboard">

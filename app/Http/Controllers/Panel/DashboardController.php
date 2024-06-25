@@ -13,6 +13,7 @@ use App\Models\ReserveMeeting;
 use App\Models\Sale;
 use App\Models\Support;
 use App\Models\UserAssignedTopics;
+use App\Models\LearningJourneys;
 use App\Models\Webinar;
 use App\Models\StudentAssignments;
 use App\Models\ParentsOrders;
@@ -208,6 +209,9 @@ class DashboardController extends Controller
             return view(getTemplate() . '.panel.dashboard.index', $data);
             //return view(getTemplate() . '.panel.dashboard.index', $data);
         } else {
+			$user_year = $user->year_id;
+			$LearningJourneys = LearningJourneys::where('status', 'active')->where('year_id',$user_year)->get();
+			$data['LearningJourneys']	= $LearningJourneys;
             return view(getTemplate() . '.panel.dashboard.index', $data);
         }
     }
