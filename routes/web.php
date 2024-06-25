@@ -326,6 +326,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'learning-journey'] , function () {
         Route::get('/' , 'LearningJourneyController@index');
+        Route::get('/{subject}' , 'LearningJourneyController@subject');
     });
 
     Route::get('/classes' , 'ClassesController@index');

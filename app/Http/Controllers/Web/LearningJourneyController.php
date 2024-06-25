@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\Webinar;
 use App\Models\Category;
+use App\Models\LearningJourneys;
 use App\Models\LearningJourneyItems;
 use App\Models\SubChapters;
 use App\Models\Quiz;
@@ -21,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 class LearningJourneyController extends Controller
 {
 
-    public function index($subject_slug = '')
+
+	public function index($subject_slug = '')
     {
         if (!auth()->check()) {
             return redirect('/login');
@@ -30,19 +32,40 @@ class LearningJourneyController extends Controller
             return redirect('/'.panelRoute());
         }
         $user = getUser();
-		$category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
-        $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
-        $categoryObj = Category::where('slug', $category_slug)->first();
+		$user_year = $user->year_id;
+		
+		$LearningJourneys = LearningJourneys::where('status', 'active')->where('year_id',$user_year)->get();
+		
+		
+		//pre($learningJourneyLevels);
+		
+        $data = [
+			'pageTitle'                  => 'Learning Journey',
+			'LearningJourneys'           => $LearningJourneys,
+			'user'           		 => $user,
+		];
+		return view('web.default.learning_journey.index', $data);
+
+        abort(404);
+    }
+	
+    public function subject($subject_slug = '')
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/'.panelRoute());
+        }
+		
+		
+        $user = getUser();
+		$categoryObj = Category::find($user->year_id);
+		$category_slug = $categoryObj->slug;
 		
 		$course = Webinar::where('slug', $subject_slug)->whereJsonContains('category_id', (string) $categoryObj->id)->first();
 		$lerningJourney = $course->lerningJourney;
 		$student_learning_journey = $this->student_learning_journey($user->id, $lerningJourney->learningJourneyLevels);
-		
-		
-		
-		
-		
-		
 		
 		$items_data = isset( $student_learning_journey['items_data'] )? $student_learning_journey['items_data'] : array();
 		$new_added_stages = isset( $student_learning_journey['new_added_stages'] )? $student_learning_journey['new_added_stages'] : array();
@@ -50,7 +73,6 @@ class LearningJourneyController extends Controller
 		//pre($learningJourneyLevels);
 		
 		
-
         $data = [
 			'pageTitle'                  => 'Learning Journey',
 			'lerningJourney'			 => $lerningJourney,
@@ -61,7 +83,7 @@ class LearningJourneyController extends Controller
 			'category_slug'		 	=> $category_slug,
 			'subject_slug'		 	=> $subject_slug,
 		];
-		return view('web.default.learning_journey.index', $data);
+		return view('web.default.learning_journey.subject', $data);
 
         abort(404);
     }

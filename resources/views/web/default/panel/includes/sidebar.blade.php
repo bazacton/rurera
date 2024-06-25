@@ -97,6 +97,14 @@
                         </a>
                             <a href="/learn" class="font-15">Learn @if(!auth()->subscription('courses'))<img src="/assets/default/svgs/crown.svg" class="crown-icon">@endif</a>
                     </li>
+					<li class="sidenav-item {{ (request()->is('learning-journey') or request()->is('learning-journey/*')) ? 'sidenav-item-active' : '' }}">
+                        <a class="d-flex align-items-center" href="/learning-journey">
+                            <span class="sidenav-item-icon mr-20">
+                                <img src="/assets/default/img/sidebar/learn.svg">
+                            </span>
+                        </a>
+                            <a href="/learning-journey" class="font-15">Learning Journey</a>
+                    </li>
 					@if(auth()->user()->show_timestables == 1)
 						<li class="sidenav-item {{ (request()->is('timestables-practice') or request()->is('timestables-practice/*')) ? 'sidenav-item-active' : '' }}">
 							<a class="d-flex align-items-center" href="/timestables-practice">

@@ -17,5 +17,15 @@ class LearningJourneys extends Model
     {
         return $this->hasMany('App\Models\LearningJourneyLevels', 'learning_journey_id', 'id');
     }
+	
+	public function learningJourneyStages()
+    {
+        return $this->hasMany('App\Models\learningJourneyItems', 'learning_journey_id', 'id');
+    }
+	
+	public function subject()
+    {
+        return $this->belongsTo('App\Models\Webinar', 'subject_id', 'id');
+    }
 
 }
