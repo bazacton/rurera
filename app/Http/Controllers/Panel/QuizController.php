@@ -395,7 +395,7 @@ class QuizController extends Controller
 
         $QuestionsAttemptController = new QuestionsAttemptController();
 
-        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level);
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey);
 		
 		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
@@ -786,6 +786,8 @@ class QuizController extends Controller
                 'actual_question_ids'   => $actual_question_ids,
 				'total_time_consumed' => isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0,
             ];
+			
+			//pre($data);
 
             if ($quiz->quiz_type == 'sats') {
                 $data['duration_type'] = 'total_practice';

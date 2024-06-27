@@ -3,6 +3,7 @@
 $i = 0; $j = 1;
 $rand_id = rand(99,9999);
 
+
 @endphp
 
 
@@ -30,8 +31,11 @@ $timer_counter = $time_interval;
 if( $duration_type == 'total_practice'){
 $timer_counter = $practice_time;
 }
+$target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
+$target_score = ($target_score > 0)? $target_score : 100;
+$practice_time = 0;
 @endphp
-<div class="content-section">
+<div class="content-section quiz-settings dis-arrows">
 
     <section class="lms-quiz-section">
 
@@ -84,12 +88,9 @@ $timer_counter = $practice_time;
         </script>
         @endif
 
-        <div class="container-fluid questions-data-block read-quiz-content"
+        <div class="container questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : '';
-            $top_bar_class = ($quiz->quiz_type == 'practice')? 'rurera-hide' : '';
-            $top_rightbar_class = ($quiz->quiz_type == 'practice')? 'rurera-hide' : '';
-            @endphp
+            @php $top_bar_class = 'rurera-hide'; @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -103,116 +104,37 @@ $timer_counter = $practice_time;
                         </div>
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
-                                <div class="quiz-pagination rurera-hide">
-                                   <div class="swiper-container">
-                                   <ul class="swiper-wrapper">
-                                       @if( !empty( $questions_list ) )
-                                       @php $question_count = 1; @endphp
-                                       @foreach( $questions_list as $question_id)
-                                       @php $is_flagged = false;
-                                       $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
-                                       ($newQuizStart->flagged_questions) : array();
-                                       $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
-                                       @endphp
-                                       @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
-                                       $flagged_questions))
-                                       @php $is_flagged = true;
-                                       @endphp
-                                       @endif
-                                       @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
-                                       <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
-                                               'has-flag' : ''}} {{$question_status_class}}"><a
-                                               href="javascript:;">
-                                               {{$question_count}}</a></li>
-                                       @php $question_count++; @endphp
-                                       @endforeach
-                                       @endif
-                                   </ul>
+                                   <div class="quiz-pagination ">
+                                       <div class="swiper-container">
+                                       <ul class="swiper-wrapper disabled-div">
+                                           @if( !empty( $questions_list ) )
+                                           @php $question_count = 1; @endphp
+                                           @foreach( $questions_list as $question_id)
+                                           @php $is_flagged = false;
+                                           $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+                                           ($newQuizStart->flagged_questions) : array();
+                                           $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
+                                           @endphp
+                                           @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
+                                           $flagged_questions))
+                                           @php $is_flagged = true;
+                                           @endphp
+                                           @endif
+                                           @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+                                           <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+                                                   'has-flag' : ''}} {{$question_status_class}}"><a
+                                                   href="javascript:;">
+                                                   {{$question_count}}</a></li>
+                                           @php $question_count++; @endphp
+                                           @endforeach
+                                           @endif
+                                       </ul>
+                                       </div>
+                                       <div class="swiper-button-prev"></div>
+                                       <div class="swiper-button-next"></div>
                                    </div>
-                                   <div class="swiper-button-prev"></div>
-                                   <div class="swiper-button-next"></div>
-                               </div>
-                                <div class="quiz-timer {{$top_rightbar_class}}">
-                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">0s</div></span>
-                                </div>
-                                <div class="instruction-controls {{$top_rightbar_class}}">
-                                    <div class="font-setting">
-                                        <button class="font-btn">
-                                            <img src="/assets/default/svgs/settings.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="font-controls">
-                                                <a href="#" class="decreasetext">
-                                                    <img src="/assets/default/svgs/small-font.svg" alt="#">
-                                                </a>
-                                                <a href="#" class="resettext">
-                                                    <img src="/assets/default/svgs/reset-text.svg" alt="#">
-                                                </a>
-                                                <a href="#" class="increasetext">
-                                                    <img src="/assets/default/svgs/big-text.svg" alt="#">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="color-setting">
-                                        <button class="color-btn">
-                                            <img src="/assets/default/svgs/color-setting.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="color-controls">
-                                                <a href="#" class="cr-aquaBlue-btn"></a>
-                                                <a href="#" class="cr-celery-btn"></a>
-                                                <a href="#" class="cr-grass-btn"></a>
-                                                <a href="#" class="cr-jade-btn"></a>
-                                                <a href="#" class="cr-magenta-btn"></a>
-                                                <a href="#" class="cr-orange-btn"></a>
-                                                <a href="#" class="cr-purple-btn"></a>
-                                                <a href="#" class="cr-skyBlue-btn"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="info-setting">
-                                        <button class="info-btn">
-                                            <img src="/assets/default/svgs/info-icon.svg" alt="#">
-                                        </button>
-                                        <div class="instruction-dropdown">
-                                            <div class="instruction-text">
-                                                            <h3>INSTRUCTIONS</h3>
-                                                            <h4>Setting Up Your Page</h4>
-                                                            <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
-                                                            <ul>
-                                                                <li>a coloured overlay (this will change the background colour and may help you read the questions better)</li>
-                                                            </ul>
-                                                            <img src="/assets/default/img/overlay.png" alt="#">
-                                                            <ul>
-                                                                <li>the font size</li>
-                                                            </ul>
-                                                            <img src="/assets/default/img/font-size.png">
-                                                            <p>We recommend you setup your page BEFORE the test starts.</p>
-                                                            <p>Changing these features during the test will reduce the amount of time you have to answer the questions.</p>
-                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
-                                                            <h4>Navigating The Test</h4>
-                                                            <p>Read the instructions for each question carefully.</p>
-                                                            <p>Choose your answer by clicking on it. If you want to change your mind, click on a different answer.</p>
-                                                            <p>Once you are sure of your answer click ‘Submit Answer’. You will not be able to go back to change your answer.</p>
-                                                            <img src="/assets/default/img/answer.png" alt="#">
-                                                            <p>You can use a pen/pencil and paper to make notes if you wish. Your working and notes will not be marked.</p>
-                                                            <hr style="border-color:rgba(130, 80, 232, 0.15)">
-                                                            <h4>About The Test</h4>
-                                                            <p>The Verbal Reasoning Test assesses a range of English language skills including:</p>
-                                                            <ul>
-                                                                <li>Comprehension</li>
-                                                                <li>Reasoning</li>
-                                                                <li>Logic</li>
-                                                            </ul>
-                                                            <p>The questions you see in this Walkthrough are examples of these types.</p>
-                                                            <p>Some of these types may appear in the test, while others may not.</p>
-                                              </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="close-btn-holder">
-                                    <button class="close-btn review-btn" data-toggle="modal" data-target="#review_submit">&#x2715;</button>
+								<div class="close-btn-holder">
+                                    <button class="close-btn review-btn pause-quiz" data-toggle="modal" data-target="#pause_quiz">&#x2715;</button>
                                 </div>
                             </div>
                         </div>
@@ -222,10 +144,7 @@ $timer_counter = $practice_time;
 
 
             <div class="justify-content-center">
-
-                <div class="container">
-                    <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12 mx-auto">
+                <div class="col-lg-9 col-md-12 col-sm-12 mt-50 mx-auto">
                     <div class="question-step quiz-complete" style="display:none">
                         <div class="question-layout-block">
                             <div class="left-content has-bg">
@@ -242,16 +161,19 @@ $timer_counter = $practice_time;
 
                         </div>
                     </div>
-
-                    <div class="quiz-status-bar">
-                        <div class="correct-in-row"></div>
+					
+					<div class="quiz-status-bar">
                         <div class="quiz-questions-bar-holder">
+                            
                             <div class="quiz-questions-bar">
-                                <span class="bar-fill" style="width: 0%;"></span>
+								@if( $target_score > 0)
+									<span class="value-lable" title="Target" style="left:{{$target_score}}%">{{$target_score}}%</span>
+								@endif
+                                <span class="bar-fill" title="" style="width: 0%;"></span>
                             </div>
                             <span class="coin-numbers">
                                 <img src="/assets/default/img/quests-coin.png" alt="">
-                                <span>+0</span>
+                                <span class="total-earned-coins">0</span>
                             </span>
                         </div>
                         <div class="quiz-corrects-incorrects">
@@ -289,8 +211,6 @@ $timer_counter = $practice_time;
 
                 </div>
 
-                </div>
-            </div>
             </div>
         </div>
     </section>
@@ -322,34 +242,52 @@ $timer_counter = $practice_time;
 </div>
 @endif
 
-<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-body">
-      <div class="modal-box">
-        <div class="modal-title rurera-hide">
-            <span class="inactivity-timer">30</span>
-        </div>
-        <h3>Session End</h3>
-        <p>
-            Looks like you're inactive. Your session has been closed.
-        </p>
-        <a href="javascript:;" class="leavenow-btn" data-dismiss="modal" aria-label="Close">Progress</a>
-       <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Close">Practice Again</a>
-      </div>
-    </div>
-  </div>
+<div class="modal fade review_submit1" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+   <div class="modal-dialog modal-dialog-centered">
+       <div class="modal-content">
+           <button type="button" class="close unpause-quiz" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <div class="modal-body">
+			  <div class="modal-box">
+				<span class="icon-box d-block mb-15">
+					<img src="../assets/default/img/clock-modal-img.png" alt="">
+				</span>
+				<h3 class="font-24 font-weight-normal mb-10">Are you sure?</h3>
+				<p class="mb-15 font-14">
+					You've  been gone a while, we have paused you, you still can continue learning by using following&nbsp;links.
+				</p>
+				<div class="inactivity-controls flex-column d-flex">
+					<a href="javascript:;" class="review-btn submit_quiz_final">Finish Test</a>
+				</div>
+			  </div>
+			</div>
+       </div>
+   </div>
 </div>
-</div>
-
-<div class="modal fade review_submit" id="review_submit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade pause_quiz quiz-activity-pause" id="pause_quiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
    <div class="modal-dialog">
        <div class="modal-content">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-           <div class="modal-body">
-               <p></p>
-               <a href="javascript:;" class="submit_quiz_final nav-link mt-20 btn-primary rounded-pill" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> Submit </a>
-           </div>
+		   <div class="modal-body">
+			  <div class="modal-box">
+				<span class="icon-box d-block mb-15">
+					<img src="../assets/default/img/clock-modal-img.png" alt="">
+				</span>
+				<h3 class="font-24 font-weight-normal mb-10 pause-title">Need a Break?</h3>
+				<p class="mb-15 font-14 pause-description">
+					Practice tests do not let you go over time, though you can pause them and come back to them later.
+				</p>
+				<ul class="activity-info">
+					<li>Total Questions: <strong class="total-questions">10</strong></li>
+					<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+					<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+					<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+				</ul>
+				<div class="inactivity-controls">
+					<a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+					<a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish Test</a>
+					<a href="/panel" class="exit-btn"> Need a break! </a>
+				</div>
+			  </div>
+			</div>
        </div>
    </div>
 </div>
@@ -363,6 +301,38 @@ $timer_counter = $practice_time;
        </div>
    </div>
 </div>
+
+
+<div class="modal fade question_inactivity_modal" id="question_inactivity_modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="modal-box">
+        <span class="icon-box d-block mb-15">
+            <img src="../assets/default/img/clock-modal-img.png" alt="">
+        </span>
+        <h3 class="font-24 font-weight-normal mb-10">Are you still there?</h3>
+        <p class="mb-15 font-14">
+            You've been inactive for a while, and your session was paused. You can continue learning by using the following links
+        </p>
+		<ul class="activity-info">
+			<li>Total Questions: <strong class="total-questions">10</strong></li>
+			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
+			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
+			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
+		</ul>
+        <div class="inactivity-controls">
+            <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
+            <a href="javascript:;" class="review-btn" data-dismiss="modal" data-toggle="modal" data-target="#review_submit">Finish Test</a>
+			<a href="/panel" class="exit-btn"> Need a break! </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 <a href="#" data-toggle="modal" class="hide review_submit_btn" data-target="#review_submit">modal button</a>
 
 
@@ -376,19 +346,37 @@ $timer_counter = $practice_time;
 
 
     var Quizintervals = null;
-    var InactivityInterval = null;
+	var InactivityInterval = null;
     var focusInterval = null;
-    var focusIntervalCount = 60;
-    var timerStop = false;
-
+    var focusIntervalCount = 10;
+	var TimerActive = true;
     var duration_type = '{{$duration_type}}';
-
-
-
+	
+	
+	
+	
+	
+	
 
     function quiz_default_functions() {
-
-        window.addEventListener('blur', function () {
+		
+		
+		var total_questions = $('.quiz-pagination li').length;
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+		console.log('total_percentage_questions=='+total_percentage_questions);
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
+		$(".quiz-corrects").html(attempted_questions);
+		$(".quiz-incorrects").html(incorrect_questions);
+		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
+		$(".quiz-questions-bar .bar-fill").attr('title',Math.round(correct_percentage)+'%');
+		
+		$(".total-earned-coins").html(correct_questions);
+		
+		window.addEventListener('blur', function () {
             //var attempt_id = $(".question-area .question-step").attr('data-qattempt');
             //inactivity-timer
             if( focusInterval == null) {
@@ -397,23 +385,24 @@ $timer_counter = $practice_time;
                     var focus_count = focusIntervalCount-1;
                     console.log('focusout--'+focus_count);
                     focusIntervalCount = focus_count;
-                    if (focus_count <= 0) {
-                        timerStop = true;
+                    if (focus_count <= 0 && TimerActive == true) {
+                        TimerActive = false;
+						var total_questions = $('.quiz-pagination li').length;
+						var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+						var correct_questions = $('.quiz-pagination li.correct').length;
+						var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+						var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+						var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+						var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
+						var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
+						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
+						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
+						$(".question_inactivity_modal .modal-body .incorrect-questions").html(incorrect_questions);
+						$(".question_inactivity_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+						
+						
                         $(".question_inactivity_modal").modal('show');
-                        if( InactivityInterval == null) {
-                            InactivityInterval = setInterval(function () {
-                                var inactivity_timer = parseInt($(".inactivity-timer").html() - 1);
-                                $(".inactivity-timer").html(inactivity_timer);
-                                if (parseInt(inactivity_timer) <= 0) {
-                                    //$(".question_inactivity_modal").modal('hide');
-                                    $(".inactivity-timer").html(30);
-                                    //$(".submit_quiz_final").click();
-                                    clearInterval(InactivityInterval);
-                                    InactivityInterval = null;
-                                }
-                            }, 1000);
-                        }
-                        focusIntervalCount = 60;
+                        focusIntervalCount = 10;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -424,46 +413,154 @@ $timer_counter = $practice_time;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 60;
+            focusIntervalCount = 10;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
-            timerStop = false;
-            focusIntervalCount = 60;
+            TimerActive = true;
+            focusIntervalCount = 10;
             focusInterval = null;
-            $(".inactivity-timer").html(30);
-            clearInterval(InactivityInterval);
-            InactivityInterval = null;
         });
+		
+		$(document).on('click', '.finish-btn', function (e) {
+            $(".pause_quiz").modal('hide');
+        });
+		
 
-        var active_question_id = $(".question-area-block").attr('data-active_question_id');
-        $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
-        Quizintervals = setInterval(function () {
-            if( timerStop == true){
-                return;
-            }
+		
+		if (jQuery('.quiz-pagination .swiper-container').length > 0) {
+        const swiper = new Swiper('.quiz-pagination .swiper-container', {
+            slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
+            spaceBetween: 0,
+            slidesPerGroup: 10,
+            // observer: true,
+            // observeParents: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 3,
+                    spaceBetween: 5
+                },
 
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-            if (duration_type == 'no_time_limit') {
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            } else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
-            $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-            if ($('.nub-of-sec').length > 0) {
-                $('.nub-of-sec').html(getTime(quiz_timer_counter));
-            }
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+                480: {
+                    slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
+                    spaceBetween: 5
+                },
 
-            if (duration_type == 'per_question') {
-                if (parseInt(quiz_timer_counter) == 0) {
-                    clearInterval(Quizintervals);
-                    $('.question-submit-btn').attr('data-bypass_validation', 'yes');
-                    $('#question-submit-btn')[0].click();
+                640: {
+                    slidesPerView: ($(".quiz-pagination ul li").length > 15) ? 15 : $(".quiz-pagination ul li").length,
+                    spaceBetween: 5
                 }
             }
+        })
+    }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		var quiz_result_id = $(".question-area .question-step").attr('data-quiz_result_id');
+		var timeUpdateRequest = null;
+		timeUpdateRequestInterval = setInterval(function () {
+			var time_consumed = $('.quiz-timer-counter').attr('data-time_consumed');
+			
+			timeUpdateRequest = jQuery.ajax({
+				type: "POST",
+				dataType: 'json',
+				url: '/question_attempt/update_time',
+				async: true,
+				beforeSend: function () {
+					if (timeUpdateRequest != null) {
+						timeUpdateRequest.abort();
+					}
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data: {"time_consumed": time_consumed, "quiz_result_id":quiz_result_id},
+				success: function (return_data) {
+					console.log(return_data);
+				}
+			});
+		}, 5000);
+		
+		
+
+        var active_question_id = $(".question-area-block").attr('data-active_question_id');
+       $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+	   
+	   
+	   
+	   $("body").on("click", ".pause-quiz", function (e) {
+			$(".pause_quiz .continue-btn").removeClass('rurera-hide');
+			$(".pause_quiz .exit-btn").removeClass('rurera-hide');
+			var total_questions = $('.quiz-pagination li').length;
+			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+			var correct_questions = $('.quiz-pagination li.correct').length;
+			var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+			var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+			var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+			var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
+			var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
+			$(".pause-title").html('Need a Break?');
+			$(".pause-description").html('Practice tests do not let you go over time, though you can pause them and come back to them later.');
+			$(".pause_quiz .modal-body .total-questions").html(total_questions);
+			$(".pause_quiz .modal-body .correct-questions").html(correct_questions);
+			$(".pause_quiz .modal-body .incorrect-questions").html(incorrect_questions);
+			$(".pause_quiz .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
+            TimerActive = false;
+        });
+		$("body").on("click", ".unpause-quiz", function (e) {
+            TimerActive = true;
+        });
+		
+		$("body").on("click", ".review-btn", function (e) {
+			var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+			$(".review_submit1 .modal-body p").html('You have attempted ' + attempted_questions + ' questions. are you sure you want to submit your test? you will not able to access this test again.');
+            $(".pause_quiz").modal('hide');
+        });
+		
+		
+		
+
+        Quizintervals = setInterval(function () {
+			if( TimerActive == true){
+				var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+				var time_consumed = $('.quiz-timer-counter').attr('data-time_consumed');
+				time_consumed = parseInt(time_consumed) + parseInt(1);
+				$('.quiz-timer-counter').attr('data-time_consumed', time_consumed);
+				
+				if (duration_type == 'no_time_limit') {
+					quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+				} else {
+					quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+				}
+				$('.quiz-timer-counter').html(getTime(quiz_timer_counter));
+				if ($('.nub-of-sec').length > 0) {
+					$('.nub-of-sec').html(getTime(quiz_timer_counter));
+				}
+				$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+				if( quiz_timer_counter == 0){
+					clearInterval(Quizintervals);
+					rurera_loader($(".lms-quiz-section"), 'div');
+					clearInterval(Quizintervals);
+					$(".pause-quiz").click();
+					$(".pause_quiz .continue-btn").addClass('rurera-hide');
+					$(".pause_quiz .exit-btn").addClass('rurera-hide');
+					$(".pause-title").html('');
+					$(".pause-description").html('');
+					//$(".submit_quiz_final").click();
+				}
+			}
 
         }, 1000);
 
@@ -483,7 +580,7 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
-
+		
 
 
     }
@@ -501,10 +598,35 @@ $timer_counter = $practice_time;
         if( (m > 0 || h > 0) || quiz_type != 'vocabulary') {
             var return_string = return_string + (m < 10 ? '0' + m : m) + "m ";
         }
-        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);	
         return_string = return_string + 's';
 
         return return_string;
+    }
+	
+	function afterQuestionValidation(return_data, thisForm, question_id) {
+		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		$(".quiz-pagination ul li[data-actual_question_id='" + question_id + "']").addClass(question_status_class);
+        var notifications_settings_show_message = $(".show-notifications").attr('data-show_message');
+		if( notifications_settings_show_message == 'yes'){
+			var notification_class = (return_data.incorrect_flag == true) ? 'wrong' : 'correct';
+			var notification_label = (return_data.incorrect_flag == true) ? 'Thats incorrect, but well done for trying' : 'Well done! Thats exactly right.';
+			var notification_sound = (return_data.incorrect_flag == true) ? 'wrong-answer.mp3' : 'correct-answer.mp3';
+			thisForm.find('.show-notifications').html('<span class="question-status-'+notification_class+'">'+notification_label+'</span>');
+			thisForm.find('.show-notifications').append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/'+notification_sound+'"></audio>');
+		}
+		var total_questions = $('.quiz-pagination li').length;
+		var attempted_questions = $('.quiz-pagination li.correct, .quiz-pagination li.incorrect').length;
+		var correct_questions = $('.quiz-pagination li.correct').length;
+		var incorrect_questions = $('.quiz-pagination li.incorrect').length;
+		var total_percentage_questions = parseInt(total_questions) * 100 / '{{$target_score}}';
+		var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
+		var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
+		$(".quiz-corrects").html(attempted_questions);
+		$(".quiz-incorrects").html(incorrect_questions);
+		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
+		$(".quiz-questions-bar .bar-fill").attr('title',Math.round(correct_percentage)+'%');
+		$(".total-earned-coins").html(correct_questions);
     }
 
 </script>

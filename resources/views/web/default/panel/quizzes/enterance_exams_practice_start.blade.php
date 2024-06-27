@@ -632,8 +632,6 @@ $target_score = isset( $quiz->target_score)? $quiz->target_score : 0;
 		$(".quiz-questions-bar .bar-fill").css('width', Math.round(correct_percentage)+'%');
 		$(".quiz-questions-bar .bar-fill").attr('title',Math.round(correct_percentage)+'%');
 		$(".total-earned-coins").html(correct_questions);
-		
-		
     }
 
 </script>

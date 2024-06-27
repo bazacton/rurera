@@ -26,7 +26,9 @@ class AssignmentController extends Controller
         $assignment_type = $UserAssignedTopicsObj->StudentAssignmentData->assignment_type;
         if ($assignment_type == 'timestables') {
             return $this->timestablesAssignment($UserAssignedTopicsObj);
-        } else {
+        } elseif($assignment_type == 'learning_journey'){
+			return $this->learningAssignmentView($UserAssignedTopicsObj);
+		}else {
             return $this->assignmentView($UserAssignedTopicsObj);
         }
 
@@ -200,12 +202,43 @@ class AssignmentController extends Controller
         ];
         return view('web.default.quizzes.assignment_start', $data);
     }
+	
+	public function learningAssignmentView($UserAssignedTopicsObj)
+    {
+
+        if ($UserAssignedTopicsObj->StudentAssignmentData->status != 'active' || $UserAssignedTopicsObj->status != 'active') {
+            return view('web.default.quizzes.unauthorized');
+        }
+        $user = auth()->user();
+		pre('');
+        $no_of_questions = $UserAssignedTopicsObj->StudentAssignmentData->no_of_questions;
+        $quizObj = Quiz::find($UserAssignedTopicsObj->topic_id);
+        $quizQuestionsList = isset($quizObj->quizQuestionsList) ? $quizObj->quizQuestionsList->pluck('question_id')->toArray() : array();
+        $selectedQuestionsList = array_rand($quizQuestionsList, $no_of_questions);
+        $selectedQuestionsList = array_intersect_key($quizQuestionsList, array_flip($selectedQuestionsList));
+
+        $QuestionsAttemptController = new QuestionsAttemptController();
+
+        $resultData = $QuestionsAttemptController->get_result_data($UserAssignedTopicsObj->id);
+        $resultData = $QuestionsAttemptController->prepare_result_array($resultData);
+        $is_passed = isset($resultData->is_passed) ? $resultData->is_passed : false;
+        $in_progress = isset($resultData->in_progress) ? $resultData->in_progress : false;
+        $current_status = isset($resultData->current_status) ? $resultData->current_status : '';
+        $data = [
+            'pageTitle'     => 'Start',
+            'title'         => $UserAssignedTopicsObj->StudentAssignmentData->title,
+            'assignmentObj' => $UserAssignedTopicsObj,
+            'resultData'    => $resultData
+        ];
+        return view('web.default.quizzes.assignment_start', $data);
+    }
 
 
     public function start(Request $request, $assignment_id)
     {
 
         $user = auth()->user();
+		pre('test');
 
         $UserAssignedTopicsObj = UserAssignedTopics::find($assignment_id);
         $assignment_type = $UserAssignedTopicsObj->StudentAssignmentData->assignment_type;

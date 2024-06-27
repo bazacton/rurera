@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\NationalCurriculum;
 use App\Models\Page;
 use App\Models\Webinar;
+use App\Models\LearningJourneys;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -58,8 +59,16 @@ class NationalCurriculumController extends Controller
         $category_id = $request->get('category_id');
         $subject_id = $request->get('subject_id');
         $only_field = $request->get('only_field');
-        $webinars = Webinar::WhereJsonContains('category_id', (string) $category_id)
-            ->get();
+        $learning_journey = $request->get('learning_journey', 'no');
+		$learning_journey_id = $request->get('learning_journey_id', 0);
+		
+		
+        $webinars = Webinar::WhereJsonContains('category_id', (string) $category_id);
+		if( $learning_journey == 'yes'){
+			$LearningJourneysSubjects = LearningJourneys::where('year_id', $category_id)->where('id', '!=', $learning_journey_id)->pluck('subject_id')->toArray();
+			$webinars = $webinars->whereNotIn('id', $LearningJourneysSubjects);
+		}
+		$webinars = $webinars->get();
         if ($only_field != 'yes') {
             ?>
             <div class="form-group">

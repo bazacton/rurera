@@ -14,6 +14,7 @@ use App\Models\Quiz;
 use App\Models\QuizzesQuestion;
 use App\Models\QuizzesResult;
 use App\Models\QuizzesQuestionsList;
+use App\Models\LearningJourneys;
 use App\Models\Role;
 use App\Models\Translation\QuizTranslation;
 use App\Models\Webinar;
@@ -309,6 +310,13 @@ class CommonWebController extends Controller
 						</div>';
 
             $response .= $this->get_subjects_by_year($year_id);
+        } else if ($quiz_type == 'learning_journey') {
+			
+			$response = '<div class="form-section mb-20 text-left">
+							<h2 class="section-title font-18 font-weight-bold">Learning Journey</h2>
+						</div>';
+
+            $response .= $this->get_learning_journey_by_year($year_id);
         } else {
             $resultsQuery = Quiz::where('quiz_type', $quiz_type)->where('status', 'active');
 
@@ -531,6 +539,41 @@ class CommonWebController extends Controller
                                         <label class="card-radio '.$active_class.'">
                                             <input type="radio" name="ajax[new][subject]"
                                                    class="assignment_subject_check" data-tag_title="' . $courseObj->getTitleAttribute() . '" value="' . $courseObj->id . '" '.$is_checked.'>
+                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                        <div class="card-icon">
+                                                            <h3>' . $courseObj->getTitleAttribute() . '</h3>
+                                                       </div>
+
+                                                  </span>
+                                        </label>';
+            }
+        }
+        $response = '<div class="form-group">
+                <div class="input-group">
+                    <div class="radio-buttons">
+                        ' . $subjects_response . '
+                    </div>
+                </div>
+            </div>';
+        return $response;
+    }
+	
+	public function get_learning_journey_by_year($year_id)
+    {
+        $LearningJourneys = LearningJourneys::where('year_id', $year_id)->where('status','active')->get();
+
+        $subjects_response = '';
+        $counter = 0;
+        if (!empty($LearningJourneys)) {
+            foreach ($LearningJourneys as $LearningJourneyObj) {
+				$courseObj = $LearningJourneyObj->subject;
+                $counter++;
+                $active_class = ($counter == 1)? 'active-subject' : '';
+                $is_checked = ($counter == 1)? 'checked' : '';
+                $subjects_response .= '
+                                        <label class="card-radio '.$active_class.'">
+                                            <input type="radio" name="ajax[new][topic_ids][]"
+                                                   class="topics_multi_selection1" data-tag_title="' . $courseObj->getTitleAttribute() . '" value="' . $courseObj->id . '" '.$is_checked.'>
                                             <span class="radio-btn"><i class="las la-check"></i>
                                                         <div class="card-icon">
                                                             <h3>' . $courseObj->getTitleAttribute() . '</h3>

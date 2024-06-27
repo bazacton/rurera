@@ -197,6 +197,8 @@ class DailyQuestsController extends Controller
         $categories = Category::where('parent_id', null)
             ->with('subCategories')->orderBy('order', 'asc')
             ->get();
+			
+		$weeks_array = $this->getWeeks(date('Y'));
 
 
         //pre('test');
@@ -227,6 +229,7 @@ class DailyQuestsController extends Controller
             'sections'   => $sections,
             'classes'    => $classes,
             'teachers'   => $teachers,
+            'weeks_array'   => $weeks_array,
         ];
 
         return view('admin.daily_quests.create', $data);
@@ -271,9 +274,14 @@ class DailyQuestsController extends Controller
         $screen_time = isset($data['screen_time']) ? $data['screen_time'] : '';
         $recurring_type = isset($data['recurring_type']) ? $data['recurring_type'] : 'Once';
         $quest_assign_type = isset($data['quest_assign_type']) ? $data['quest_assign_type'] : '';
-
+		$date_type = isset($data['date_type']) ? $data['date_type'] : 'daily';
+		$weeks_dates = isset($data['weeks_dates']) ? $data['weeks_dates'] : array();
 
         $quest_dates = isset($data['quest_dates']) ? explode(',', $data['quest_dates']) : array();
+		if( $date_type == 'weekly'){
+			$quest_dates = $this->getWeeksDates(date('Y'), $weeks_dates);
+		}
+		
         $quest_start_date = isset($data['quest_start_date']) ? strtotime($data['quest_start_date']) : '';
         $quest_end_date = isset($data['quest_end_date']) ? strtotime($data['quest_end_date']) : '';
 
@@ -318,6 +326,8 @@ class DailyQuestsController extends Controller
             'quest_icon'                => $quest_icon,
             'quest_dates'                => $quest_dates,
             'quest_users'                => $quest_users,
+            'date_type'               	 => $date_type,
+            'week_no'                => json_encode($weeks_dates),
         ]);
 
        return redirect()->route('adminListDailyQuests', []);
@@ -432,6 +442,45 @@ class DailyQuestsController extends Controller
 
         return redirect()->back();
     }
+	
+	public function getWeeks($year) {
+		$weeks = [];
+        $startDate = Carbon::createFromDate($year, 1, 1);
+        $weekInterval = 7;
+
+        for ($i = 0; $i < 52; $i++) {
+            $weekStart = $startDate->copy();
+            $weekEnd = $startDate->copy()->addDays(6);
+            $weeks[$i + 1] = "Week # " . ($i + 1) . " (" . $weekStart->format('d/m') . " to " . $weekEnd->format('d/m') . ")";
+            $startDate->addDays($weekInterval);
+        }
+
+        return $weeks;
+	}
+	
+	public function getWeeksDates($year, $weeksArray) {
+		$weeks = [];
+		$startDate = Carbon::createFromDate($year, 1, 1);
+		$weekInterval = 7;
+
+		for ($i = 0; $i < 52; $i++) {
+			$weekNumber = $i + 1;
+
+			if (in_array($weekNumber, $weeksArray)) {
+				$weekStart = $startDate->copy();
+				$weekDates = [];
+				for ($j = 0; $j < 7; $j++) {
+					$weeks[] = $weekStart->copy()->addDays($j)->format('Y-m-d');
+				}
+			}
+
+			$startDate->addDays($weekInterval);
+		}
+
+		return $weeks;
+	}
+	
+	
 
 
 }

@@ -35,7 +35,7 @@
 
                             <div class="form-group">
                                 <label>{{ trans('/admin/main.category') }}</label>
-                                <select data-subject_id="{{ !empty($weeklyPlanner)? $weeklyPlanner->subject_id : 0}}"
+                                <select data-subject_id="{{ !empty($LearningJourneyObj)? $LearningJourneyObj->subject_id : 0}}"
                                         class="form-control category-id-field @error('category_id') is-invalid @enderror"
                                         name="category_id">
                                     <option {{ !empty($trend) ?
@@ -45,17 +45,17 @@
                                     @if(!empty($category->subCategories) and count($category->subCategories))
                                     <optgroup label="{{  $category->title }}">
                                         @foreach($category->subCategories as $subCategory)
-                                        <option value="{{ $subCategory->id }}" @if(!empty($weeklyPlanner) and
-                                                $weeklyPlanner->
-                                            key_stage == $subCategory->id) selected="selected" @endif>{{
+                                        <option value="{{ $subCategory->id }}" @if(!empty($LearningJourneyObj) and
+                                                $LearningJourneyObj->
+                                            year_id == $subCategory->id) selected="selected" @endif>{{
                                             $subCategory->title }}
                                         </option>
                                         @endforeach
                                     </optgroup>
                                     @else
                                     <option value="{{ $category->id }}" class="font-weight-bold"
-                                            @if(!empty($weeklyPlanner)
-                                            and $weeklyPlanner->key_stage == $category->id) selected="selected"
+                                            @if(!empty($LearningJourneyObj)
+                                            and $LearningJourneyObj->year_id == $category->id) selected="selected"
                                         @endif>{{
                                         $category->title }}
                                     </option>
@@ -78,160 +78,149 @@
 
                             <div class="learning_journey_sets">
 
-                                @if( !empty( $weeklyPlanner->WeeklyPlannerItems ))
-                                @foreach( $weeklyPlanner->WeeklyPlannerItems as $itemObj)
-                                <div class="accordion-content-wrapper mt-15" id="chapterAccordion" role="tablist"
-                                     aria-multiselectable="true">
-                                    <ul class="draggable-content-lists  curriculum-set-ul">
+                                @if( !empty( $LearningJourneyObj->learningJourneyLevels ))
+                                @foreach( $LearningJourneyObj->learningJourneyLevels as $itemObj)
+							
+							
+							
+							
+								<div class="accordion-content-wrapper mt-15" id="chapterAccordion" role="tablist"
+								 aria-multiselectable="true">
+								<ul class="draggable-content-lists  curriculum-set-ul">
 
-                                        <li data-id="{{$itemObj->id}}" data-chapter-order=""
-                                            class="accordion-row bg-white rounded-sm mt-20 py-15 py-lg-30 px-10 px-lg-20">
-                                            <div class="d-flex align-items-center justify-content-between " role="tab"
-                                                 id="chapter_{{$itemObj->id}}">
-                                                <div class="d-flex align-items-center collapsed"
-                                                     href="#collapseItems{{$itemObj->id}}"
-                                                     aria-controls="collapseItems{{$itemObj->id}}"
-                                                     data-parent="#chapterAccordion" role="button"
-                                                     data-toggle="collapse" aria-expanded="false">
-                                                                <span class="chapter-icon mr-10">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                         width="24" height="24"
-                                                                         viewBox="0 0 24 24"
-                                                                         fill="none" stroke="currentColor"
-                                                                         stroke-width="2"
-                                                                         stroke-linecap="round"
-                                                                         stroke-linejoin="round"
-                                                                         class="feather feather-grid"><rect
-                                                                                x="3"
-                                                                                y="3"
-                                                                                width="7"
-                                                                                height="7"></rect><rect
-                                                                                x="14" y="3" width="7"
-                                                                                height="7"></rect><rect
-                                                                                x="14"
-                                                                                y="14"
-                                                                                width="7"
-                                                                                height="7"></rect><rect
-                                                                                x="3" y="14" width="7"
-                                                                                height="7"></rect></svg>
-                                                                </span>
-                                                    <div class="">
-                                                                <span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input
-                                                                            name="learning_journey_title[{{$itemObj->id}}]"
-                                                                            type="text" size="50"
-                                                                            value="{{$itemObj->title}}"
-                                                                            class="no-border"></span>
-                                                    </div>
-                                                </div>
+									<li data-id="{{$itemObj->id}}" data-chapter-order=""
+										class="accordion-row bg-white rounded-sm mt-20 py-15 py-lg-30 px-10 px-lg-20">
+										<div class="d-flex align-items-center justify-content-between " role="tab"
+											 id="chapter_{{$itemObj->id}}">
+											<div class="d-flex align-items-center collapsed"
+												 href="#collapseItems{{$itemObj->id}}"
+												 aria-controls="collapseItems{{$itemObj->id}}"
+												 data-parent="#chapterAccordion" role="button"
+												 data-toggle="collapse" aria-expanded="false">
+													<span class="chapter-icon mr-10">
+														<svg xmlns="http://www.w3.org/2000/svg"
+															 width="24" height="24"
+															 viewBox="0 0 24 24"
+															 fill="none" stroke="currentColor"
+															 stroke-width="2"
+															 stroke-linecap="round"
+															 stroke-linejoin="round"
+															 class="feather feather-grid"><rect
+																	x="3"
+																	y="3"
+																	width="7"
+																	height="7"></rect><rect
+																	x="14" y="3" width="7"
+																	height="7"></rect><rect
+																	x="14"
+																	y="14"
+																	width="7"
+																	height="7"></rect><rect
+																	x="3" y="14" width="7"
+																	height="7"></rect></svg>
+													</span>
+												<div class="">
+													<span class="font-weight-bold text-dark-blue d-block cursor-pointer"><input
+																name="learning_journey_level[{{$itemObj->id}}]" type="text" size="50"
+																value="{{$itemObj->level_title}}"
+																class="no-border"></span>
+												</div>
+											</div>
 
-                                                <div class="d-flex align-items-center">
+											<div class="d-flex align-items-center">
 
-                                                    <a href="javascript:;"
-                                                       class="delete-parent-li btn btn-sm btn-transparent text-gray">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2" stroke-linecap="round"
-                                                             stroke-linejoin="round"
-                                                             class="feather feather-trash-2 mr-10 cursor-pointer">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                        </svg>
-                                                    </a>
+												<button type="button" data-data_id="{{$itemObj->id}}"
+														class="add-course-content-btn  add-curriculum-item mr-10"
+														aria-expanded="false">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+														 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+														 stroke-linejoin="round" class="feather feather-plus">
+														<line x1="12" y1="5" x2="12" y2="19"></line>
+														<line x1="5" y1="12" x2="19" y2="12"></line>
+													</svg>
+												</button>
+												
+												<button type="button" data-data_id="{{$itemObj->id}}"
+														class="add-course-content-btn  add-treasure-item mr-10"
+														aria-expanded="false">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+														 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+														 stroke-linejoin="round" class="feather feather-plus">
+														<line x1="12" y1="5" x2="12" y2="19"></line>
+														<line x1="5" y1="12" x2="19" y2="12"></line>
+													</svg> Box
+												</button>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-move move-icon mr-10 cursor-pointer text-gray ui-sortable-handle">
-                                                        <polyline points="5 9 2 12 5 15"></polyline>
-                                                        <polyline points="9 5 12 2 15 5"></polyline>
-                                                        <polyline points="15 19 12 22 9 19"></polyline>
-                                                        <polyline points="19 9 22 12 19 15"></polyline>
-                                                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                                                        <line x1="12" y1="2" x2="12" y2="22"></line>
-                                                    </svg>
+												<a href="javascript:;"
+												   class="delete-parent-li btn btn-sm btn-transparent text-gray">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+														 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+														 stroke-width="2" stroke-linecap="round"
+														 stroke-linejoin="round"
+														 class="feather feather-trash-2 mr-10 cursor-pointer">
+														<polyline points="3 6 5 6 21 6"></polyline>
+														<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+														<line x1="10" y1="11" x2="10" y2="17"></line>
+														<line x1="14" y1="11" x2="14" y2="17"></line>
+													</svg>
+												</a>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
-                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                         class="feather feather-chevron-down collapse-chevron-icon feather-chevron-up text-gray collapsed"
-                                                         href="#collapseItems{{$itemObj->id}}"
-                                                         aria-controls="collapseItems{{$itemObj->id}}"
-                                                         data-parent="#chapterAccordion" role="button"
-                                                         data-toggle="collapse" aria-expanded="false">
-                                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                                    </svg>
-                                                </div>
-                                            </div>
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													 class="feather feather-move move-icon mr-10 cursor-pointer text-gray ui-sortable-handle">
+													<polyline points="5 9 2 12 5 15"></polyline>
+													<polyline points="9 5 12 2 15 5"></polyline>
+													<polyline points="15 19 12 22 9 19"></polyline>
+													<polyline points="19 9 22 12 19 15"></polyline>
+													<line x1="2" y1="12" x2="22" y2="12"></line>
+													<line x1="12" y1="2" x2="12" y2="22"></line>
+												</svg>
 
-                                            <div id="collapseItems{{$itemObj->id}}"
-                                                 aria-labelledby="chapter_{{$itemObj->id}}"
-                                                 class="curriculum-item-data collapse " role="tabpanel">
-                                                <div class="panel-collapse text-gray">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="20"
+													 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													 class="feather feather-chevron-down collapse-chevron-icon feather-chevron-up text-gray collapsed"
+													 href="#collapseItems{{$itemObj->id}}"
+													 aria-controls="collapseItems{{$itemObj->id}}"
+													 data-parent="#chapterAccordion" role="button"
+													 data-toggle="collapse" aria-expanded="false">
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+										
+										<div id="collapseItems{{$itemObj->id}}" aria-labelledby="chapter_{{$itemObj->id}}"
+											 class="curriculum-item-data collapse " role="tabpanel">
+											<div class="panel-collapse text-gray">
 
-                                                    <div class="accordion-content-wrapper mt-15"
-                                                         id="chapterContentAccordion{{$itemObj->id}}"
-                                                         role="tablist"
-                                                         aria-multiselectable="true">
-                                                        <ul class="curriculum-item-data-ul draggable-content-lists draggable-lists-chapter-{{$itemObj->id}} ui-sortable"
-                                                            data-drag-class="draggable-lists-chapter-{{$itemObj->id}}"
-                                                            data-order-table="webinar_chapter_items">
+												<div class="accordion-content-wrapper mt-15"
+													 id="chapterContentAccordion{{$itemObj->id}}" role="tablist"
+													 aria-multiselectable="true">
+													<ul class="curriculum-item-data-ul draggable-content-lists draggable-lists-chapter-{{$itemObj->id}} ui-sortable"
+														data-drag-class="draggable-lists-chapter-{{$itemObj->id}}"
+														data-order-table="webinar_chapter_items">
 
-                                                            @php $total_weeks = 32; $week_count = 1; @endphp
-                                                            <div class="form-group mt-15 ">
-                                                                <label class="input-label d-block">Week</label>
-                                                                <select name="learning_journey_chapter_topics[{{$itemObj->id}}][week_no]"
-                                                                        id="week_no{{$itemObj->id}}"
-                                                                        class="form-control"
-                                                                        data-placeholder="Select Week">
-                                                                    @while($week_count <= $total_weeks)
-                                                                    @php $selected = ($week_count == $itemObj->week_no)?
-                                                                    'selected' : ''; @endphp
-                                                                    <option value="{{$week_count}}" {{$selected}}>
-                                                                        {{$week_count}}
-                                                                    </option>
-                                                                    @php $week_count++; @endphp
-                                                                    @endwhile
-                                                                </select>
-                                                            </div>
+														
+														@if( !empty( $itemObj->learningJourneyItems ))
+															@foreach( $itemObj->learningJourneyItems as $learningJourneyItemObj)
+																@if( $learningJourneyItemObj->item_type == 'topic')
+																	{{$thisObj->learning_journey_topic_layout($request, $learningJourneyItemObj->id, $LearningJourneyObj->subject_id, $learningJourneyItemObj->item_value)}}
+																@endif
+																@if( $learningJourneyItemObj->item_type == 'treasure')
+																	{{$thisObj->learning_journey_treasure_layout($request, $learningJourneyItemObj->id, $learningJourneyItemObj->item_value)}}
+																@endif
+															@endforeach
+														@endif
 
-                                                            <div class="form-group mt-15 ">
-                                                                <label class="input-label d-block">Topics</label>
+													</ul>
+												</div>
 
-                                                                <select name="learning_journey_chapter_topics[{{$itemObj->id}}][topics][]"
-                                                                        id="topic_ids{{$itemObj->id}}"
-                                                                        multiple="multiple"
-                                                                        data-search-option="topic_ids"
-                                                                        class="form-control search-topics-select2"
-                                                                        data-placeholder="Search Topic">
-
-                                                                    @if( !empty( $itemObj->WeeklyPlannerTopics
-                                                                    ))
-                                                                    @foreach( $itemObj->WeeklyPlannerTopics as
-                                                                    $topicsObj)
-                                                                    <option selected="selected"
-                                                                            value="{{$topicsObj->topic_id}}">
-                                                                        {{$topicsObj->WeeklyPlannerTopicData->sub_chapter_title}}
-                                                                    </option>
-                                                                    @endforeach
-                                                                    @endif
-
-                                                                </select>
-                                                            </div>
-
-                                                            <?php //echo $this->curriculum_item_layout($request, $data_id);
-                                                            ?>
-
-
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
 
                                 @endforeach
                                 @endif
@@ -268,19 +257,22 @@
         $('body').on('change', '.category-id-field', function (e) {
             var category_id = $(this).val();
             var subject_id = $(this).attr('data-subject_id');
+            var learning_journey_id = '{{isset( $LearningJourneyObj->id )? $LearningJourneyObj->id : 0}}';
             $.ajax({
                 type: "GET",
                 url: '/national-curriculum/subjects_by_category',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {'category_id': category_id, 'subject_id': subject_id},
+                data: {'category_id': category_id, 'subject_id': subject_id, 'learning_journey': 'yes', 'learning_journey_id': learning_journey_id},
                 success: function (response) {
                     $(".category_subjects_list").html(response);
                 }
             });
 
         });
+		
+		$("category-id-field").change();
         $('body').on('click', '.add_learning_journey_set', function (e) {
             //$(".learning_journey_sets").html('');
             $.ajax({

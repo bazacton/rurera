@@ -59,14 +59,17 @@
                 <div class="modal fade {{$levelObj['id']}}" id="{{$levelObj['id']}}" tabindex="-1" role="dialog" aria-labelledby="infomodalTitile" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="infomodalTitile">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
                       <div class="modal-body">
-                        <span class="level-tool-tip">{{isset( $levelObj['description'] )? $levelObj['description'] : ''}}</span>
+                        <div class="modal-box">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="icon-box d-block mb-15">
+                                <img src="../assets/default/img/clock-modal-img.png" alt="">
+                            </span>
+                            <h3 class="font-24 font-weight-normal mb-10">Modal title</h3>
+                            <span class="level-tool-tip">{{isset( $levelObj['description'] )? $levelObj['description'] : ''}}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -106,15 +109,26 @@
                                         @php $counter++; $li_count++ @endphp
                                         @php $is_acheived = in_array( $nuggetObj['id'], $user_timetables_levels)? true : false;
                                             $is_active = (empty($user_timetables_levels) && $counter == 1)? true : false;
+											$timestableResultObj = isset( $timestables_results[$nuggetObj['id']] )? $timestables_results[$nuggetObj['id']] : (object) array();
                                             $li_custom_class = ($li_count == 6) ? 'vertical-li' : '';
                                             $li_count = ($li_count >= 6)? 0 : $li_count;
                                             $last_stage = (isset( $nuggetObj['is_last_stage'] ) && $nuggetObj['is_last_stage'] == true)? 'last-stage' : '';
                                             $treasure_mission_class = ($is_active == 1 || ($last_stage_completed == 1 && $is_acheived != 1))? 'generate_treasure_mission' : 'locked_nugget';
                                         @endphp
                                         <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
-                                            <a href="javascript:;" class="{{$treasure_mission_class}}" data-id="{{$nuggetObj['id']}}">
+                                            <a href="javascript:;" class="{{$treasure_mission_class}} rurera-tooltip" data-id="{{$nuggetObj['id']}}">
                                                 @if($is_acheived == 1 )
                                                     <img src="/assets/default/img/tick-white.png" alt="">
+													<div class="lms-tooltip">
+														<div class="tooltip-box">
+															<h5 class="font-18 font-weight-bold text-white mb-5">															
+															Active practice: {{getTimeWithText($timestableResultObj->total_time_consumed)}}<br> 
+															Questions answered: {{$timestableResultObj->quizz_result_questions_list->where('status', '!=', 'waiting')->count()}} <br>
+															<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$timestableResultObj->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade')}}
+															</h5>
+															<button class="tooltip-button" onclick="window.location.href='/panel/results/{{$timestableResultObj->id}}/timetables';">Result</button>
+														</div>
+													</div>
                                                 @elseif($is_active == 1 )
                                                     <img src="/assets/default/img/stepon.png" alt="">
                                                 @else
@@ -136,7 +150,7 @@
                                                 $li_count = ($li_count >= 6)? 0 : $li_count;
                                             @endphp
                                             <li class="treasure {{$li_custom_class}}">
-                                                <a href="#">
+                                                <a href="#.">
                                                     <span class="thumb-box rurera-tooltip">
                                                         @if($is_acheived == 1)
                                                             <img src="/assets/default/img/treasure.png" alt="" title="{{$nuggetObj['treasure_box']}}">

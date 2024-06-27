@@ -210,6 +210,7 @@
 
                                                         </span>
                                                     </label>
+
                                                 </div>
                                                 <div class="invalid-feedback"></div>
                                             </div>
@@ -405,7 +406,7 @@
 
 
 
-                                        <div class="row assignment_topic_type_fields1 practice_fields vocabulary_fields1">
+                                        <div class="row assignment_topic_type_fields1 practice_fields vocabulary_fields1 no-of-questions-fields">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-6">
                                                 <div class="form-group">
                                                     <label class="input-label font-weight-bold mb-0">Show No of Questions <span class="max_questions"></span></label>
@@ -685,6 +686,20 @@
                 ],
             });
         }
+		
+		$('body').on('change', '.topics_multi_selection', function (e) {
+
+            var total_questions = 0;
+            $('.topics_multi_selection:checked').each(function () {
+                total_questions = parseInt(total_questions) + parseInt($(this).attr('data-total_questions'));
+            });
+			
+
+            $(".max_questions").html('Max: ' + total_questions);
+            $(".no_of_questions").attr('max', total_questions);
+            //$( ".no_of_questions" ).val( $( "#slider-range-max" ).slider( "value" ) );
+            $(".no_of_questions").val(0);
+        });
 
 
         $('body').on('change', '.select_all', function (e) {
@@ -940,7 +955,6 @@
             $(".max_questions").html('Max: ' + total_questions);
             $(".no_of_questions").attr('max', total_questions);
             $(".no_of_questions").val(current_questions);
-            console.log('assignment_topic_type_check');
             slider_fields_refresh();
             refresh_tags();
 			var year_id = $(".assignment-user-class:checked").attr('data-year_id');
@@ -966,6 +980,7 @@
                     },
                     data: {"quiz_type": quiz_type, "year_id": year_id, "is_frontend": 'yes'},
                     success: function (return_data) {
+						$(".no-of-questions-fields").removeClass('rurera-hide');
                         if (quiz_type == 'practice') {
                             $(".practice-quiz-ajax-fields").html(return_data);
                             $(".active-subject").find('input').prop('checked', true).change();
@@ -976,6 +991,12 @@
 							$(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
 							rurera_remove_loader(thisObj.closest('label'), 'div');
 						}
+						
+						if (quiz_type == 'learning_journey') {
+							$(".no-of-questions-fields").addClass('rurera-hide');
+						}
+						
+						$(".topics_multi_selection").change();
 					}
                 });
             }else{
@@ -1026,6 +1047,7 @@
                     }
                     $(".show-after-ajax").not('.rurera-hide').removeClass('show-after-ajax');
                     rurera_remove_loader(thisObj, 'button');
+					$(".topics_multi_selection").change();
                     //$(".topic-item-active").click();
                 }
             });
@@ -1148,7 +1170,6 @@
             //var total_questions = $(this).find('input[name="ajax[new][topic_id]"][value="' + current_value + '"]').attr('data-total_questions');
             var total_questions = $(this).attr('data-total_questions');
             var assignment_topic_type_check = $(".assignment_topic_type_check:checked").val();
-            console.log(assignment_topic_type_check);
             $(".max_questions").html('Max: ' + total_questions);
             $(".no_of_questions").attr('max', total_questions);
             $(".no_of_questions").val(0);
@@ -1158,7 +1179,6 @@
                 $(".practice_interval").val(practice_time);
                 $(".no_of_questions").attr('min', total_questions);
                 $(".no_of_questions").val(total_questions);
-				console.log('slider_fields_refresh');
                 slider_fields_refresh();
             }
         });
@@ -1222,19 +1242,8 @@
             //refresh_tags();
         });
 
-
-        $('body').on('change', '.topics_multi_selection', function (e) {
-
-            var total_questions = 0;
-            $('.topics_multi_selection:checked').each(function () {
-                total_questions = parseInt(total_questions) + parseInt($(this).attr('data-total_questions'));
-            });
-
-            $(".max_questions").html('Max: ' + total_questions);
-            $(".no_of_questions").attr('max', total_questions);
-            //$( ".no_of_questions" ).val( $( "#slider-range-max" ).slider( "value" ) );
-            $(".no_of_questions").val(0);
-        });
+                                                               
+        
 
 
         $(".conditional_check").change();
@@ -1553,7 +1562,6 @@
             package_discount = 25;
         }
         var currency_sign = $(".lms-membership-section").attr('data-currency_sign');
-        console.log(package_month);
         $(".packages-prices").each(function(){
            var package_price = $(this).attr('data-package_price');
             var package_price_org = package_price;

@@ -786,6 +786,16 @@
                                                                </div>
                                                           </span>
                                                         </label>
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][quest_topic_type]"
+                                                                   class="quest_topic_type_check" value="learning_journey">
+                                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                                <div class="card-icon">
+                                                                 <img src="/assets/default/img/assignment-logo/practice.png">
+                                                                    <h3>Learning Journey</h3>
+                                                               </div>
+                                                          </span>
+                                                        </label>
                                                     </div>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -914,10 +924,42 @@
                                             <div class="form-section">
                                                 <h2 class="section-title">Schedule</h2>
                                             </div>
+											
+											<div class="form-group">
+                                                <label class="input-label">Date Type</label>
+                                                <div class="input-group">
+
+
+                                                    <div class="radio-buttons">
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][date_type]"
+                                                                   class="date_type_change" value="daily" checked>
+                                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                                <div class="card-icon">
+                                                                    <h3>Daily</h3>
+                                                               </div>
+
+                                                          </span>
+                                                        </label>
+                                                        <label class="card-radio">
+                                                            <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][date_type]"
+                                                                   class="date_type_change" value="weekly">
+                                                            <span class="radio-btn"><i class="las la-check"></i>
+                                                                <div class="card-icon">
+                                                                    <h3>Weekly</h3>
+                                                               </div>
+
+                                                          </span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-4">
-                                                    <div class="form-group">
+                                                    <div class="form-group dates_daily_fields">
                                                         <label class="input-label">Quest Dates</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
@@ -938,9 +980,23 @@
                                                             @enderror
                                                         </div>
                                                     </div>
+													
+											<div class="form-group dates_weekly_fields rurera-hide">
+                                                <label class="input-label">Weeks</label>
+                                                <div class="input-group">
+                                                    <select name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][weeks_dates][]" class="form-control select2 class_condition" multiple>
+														@foreach( $weeks_array as $week_key => $week_value)
+															<option value="{{$week_key}}">{{$week_value}}</option>
+														@endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+													
                                                 </div>
 
                                             </div>
+											
+											
 
                                             <div class="form-group">
                                                 <label class="input-label">Quest Method</label>
@@ -1700,6 +1756,14 @@
 
             return formattedTime;
         }
+		
+		
+		$('body').on('change', '.date_type_change', function (e) {
+			var current_value = $(this).val();
+			$(".dates_daily_fields").addClass('rurera-hide');
+			$(".dates_weekly_fields").addClass('rurera-hide');
+			$('.dates_'+current_value+'_fields').removeClass('rurera-hide');
+		});
 
         $('body').on('change', '.topic_selection', function (e) {
             var current_value = $(this).val();

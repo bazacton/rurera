@@ -1347,6 +1347,7 @@ class QuestionsAttemptController extends Controller
         $attemptLogObj = QuizzAttempts::find($qattempt_id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
+		
 
         $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, array(), $question_id, true);
         $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : (object)array();
@@ -2672,6 +2673,9 @@ class QuestionsAttemptController extends Controller
 			}
 			
 		}
+		
+		$DailyQuestsController = new DailyQuestsController();
+        $DailyQuestsController->questCompletionCheck($resultLogObj);
     }
 
     /*
@@ -2698,7 +2702,7 @@ class QuestionsAttemptController extends Controller
      *
      * @return questions_list Array
      */
-    public function getQuizQuestionsList($quiz, $quiz_level = '')
+    public function getQuizQuestionsList($quiz, $quiz_level = '', $learning_journey = 'no')
     {
 
         $entrance_exams = array(
@@ -2724,7 +2728,11 @@ class QuestionsAttemptController extends Controller
         }
 
         if ($quiz->quiz_type == 'practice') {
-            $questions_list_data_array = $this->get_course_practice_questions_list($quiz, $questions_list);
+			if( $learning_journey == 'yes'){
+				$questions_list_data_array = $this->get_learning_jounrney_questions_list($quiz, $questions_list);
+			}else{
+				$questions_list_data_array = $this->get_course_practice_questions_list($quiz, $questions_list);
+			}
             $QuizzesResultID = isset($questions_list_data_array['QuizzesResultID']) ? $questions_list_data_array['QuizzesResultID'] : 0;
             $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
             $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
@@ -2810,6 +2818,98 @@ class QuestionsAttemptController extends Controller
 
         $user = getUser();
         $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'practice')->where('user_id', $user->id)->where('status', 'waiting')->first();
+		$result_questions = isset( $newQuizStart->questions_list)? json_decode($newQuizStart->questions_list) : array();
+        $other_data = array();
+        $quiz_settings = json_decode($quiz->quiz_settings);
+        $quiz_breakdown = $quiz->quiz_settings;
+        if( isset( $newQuizStart->id) && !empty( $result_questions )){
+            $other_data = json_decode($newQuizStart->other_data);
+            $questions_list = QuizzResultQuestions::whereIn('id', json_decode($newQuizStart->questions_list))->pluck('question_id')->toArray();
+            return array(
+                'questions_list' => $questions_list,
+                'other_data'     => $newQuizStart->other_data,
+                'quiz_breakdown' => $quiz_breakdown,
+                'QuizzesResultID' => $newQuizStart->id,
+            );
+        }
+		if( isset( $newQuizStart->id) && empty( $result_questions )){
+			$newQuizStart->delete();
+		}
+        $questions_limit = array();
+        $questions_limit['emerging'] = isset($quiz_settings->Emerging->questions) ? $quiz_settings->Emerging->questions : 0;
+        $questions_limit['expected'] = isset($quiz_settings->Expected->questions) ? $quiz_settings->Expected->questions : 0;
+        $questions_limit['exceeding'] = isset($quiz_settings->Exceeding->questions) ? $quiz_settings->Exceeding->questions : 0;
+
+
+        $difficulty_level_array = [
+            'emerging'  => 'Emerging',
+            'expected'  => 'Expected',
+            'exceeding' => 'Exceeding',
+        ];
+
+        $questions_list_ids = $questions_list;
+
+
+        $attempted_questions_list = QuizzResultQuestions::whereIn('question_id', $questions_list_ids)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->pluck('question_id')->toArray();
+
+		$notattempted_questions_list = array_diff($questions_list_ids, $attempted_questions_list);
+		
+
+        //working here
+        //pre($notattempted_questions_list);
+
+
+        $questions_list = $practice_breakdown = array();
+        if (!empty($difficulty_level_array)) {
+            foreach ($difficulty_level_array as $difficulty_level_key => $difficulty_level_label) {
+
+                $breakdown_array = isset($quiz_settings->{$difficulty_level_label}->breakdown) ? $quiz_settings->{$difficulty_level_label}->breakdown : array();
+
+                $breakdown_array = is_array($breakdown_array) ? $breakdown_array : (array)$breakdown_array;
+                if (!empty($breakdown_array)) {
+                    foreach ($breakdown_array as $question_type => $questions_count) {
+                        $questions_count = isset( $other_data->{$difficulty_level_label}->{$question_type})? count($other_data->{$difficulty_level_label}->{$question_type}) : $questions_count;
+                        //$questions_list[$difficulty_level_key][$question_type] = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->limit($questions_count)->pluck('id')->toArray();
+                        $questions_array = QuizzesQuestion::whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->inRandomOrder()->limit($questions_count)->pluck('id')->toArray();
+                        if (!empty($questions_array)) {
+                            foreach ($questions_array as $questionID) {
+
+                                $resultQuestionObj = QuizzResultQuestions::where('question_id', $questionID)->where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status','waiting')->first();
+                                if( isset($resultQuestionObj->id)){
+                                    $questionOBJ = QuizzesQuestion::where('id','!=', $questionID)->whereNotIn('id', $questions_list)->whereIn('id', $questions_list_ids)->where('question_type', $question_type)->where('question_difficulty_level', $difficulty_level_label)->first();
+                                    $questionID = isset( $questionOBJ->id)? $questionOBJ->id : $questionID;
+                                }
+                                $practice_breakdown[$difficulty_level_label][$question_type][] = $questionID;
+                                $questions_list[] = $questionID;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+		
+        $other_data = json_encode($practice_breakdown);
+
+        return array(
+            'questions_list' => $questions_list,
+            'other_data'     => $other_data,
+            'quiz_breakdown' => $quiz_breakdown,
+        );
+    }
+	
+	/*
+     * Returns the Quiz / Course Practice questions List (Quiz Type is Practice and it is assigned in course)
+     *
+     * @params Array
+     * item @ quiz Obj
+     *
+     * @return questions_list Array
+     */
+    public function get_learning_jounrney_questions_list($quiz, $questions_list)
+    {
+
+        $user = getUser();
+        $newQuizStart = QuizzesResult::where('parent_type_id', $quiz->id)->where('quiz_result_type', 'learning_journey')->where('user_id', $user->id)->where('status', 'waiting')->first();
 		$result_questions = isset( $newQuizStart->questions_list)? json_decode($newQuizStart->questions_list) : array();
         $other_data = array();
         $quiz_settings = json_decode($quiz->quiz_settings);

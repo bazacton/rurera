@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use App\Models\QuizzesResult;
 use App\Models\Webinar;
 use App\Models\Category;
 use App\Models\LearningJourneys;
@@ -57,7 +58,6 @@ class LearningJourneyController extends Controller
         if (!auth()->user()->isUser()) {
             return redirect('/'.panelRoute());
         }
-		
 		
         $user = getUser();
 		$categoryObj = Category::find($user->year_id);

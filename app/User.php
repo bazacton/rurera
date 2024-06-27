@@ -4278,7 +4278,7 @@ class User extends Authenticatable
         return $noticeboards;
     }
 
-    public function getUserQuests(){
+    public function getUserQuests($quest_type = array()){
 
         $user = $this;
         $user_id = $user->id;
@@ -4298,6 +4298,9 @@ class User extends Authenticatable
             });
 
         $query->whereJsonContains('quest_dates', $today_date);
+		if( !empty( $quest_type ) ){
+			$query->whereIn('quest_topic_type', $quest_type);
+		}
         $quests = $query->get();
         return $quests;
     }

@@ -1167,6 +1167,7 @@ class TimestablesController extends Controller
         $tables_data = isset( $nugget_data['tables'] )? $nugget_data['tables'] : array();
         $previous_tables = isset( $nugget_data['previous_tables'] )? $nugget_data['previous_tables'] : array();
         $prev_no_questions = isset( $nugget_data['prev_no_questions'] )? $nugget_data['prev_no_questions'] : 0;
+        $per_stage_questions = isset( $levelData['per_stage_questions'] )? $levelData['per_stage_questions'] : 0;
         $time_interval = isset( $levelData['time_interval'] )? $levelData['time_interval'] : 0;
         $life_lines = isset( $levelData['life_lines'] )? $levelData['life_lines'] : 0;
         $life_lines = $user->user_life_lines;
@@ -1368,19 +1369,20 @@ class TimestablesController extends Controller
             $data['unauthorized_link'] = '/timestables-practice';
             return view('web.default.quizzes.unauthorized_landing', $data);
         }
+		$practice_time = ( $per_stage_questions * $time_interval);
         //pre($life_lines);
         $data = [
             'pageTitle'       => 'Start',
             'questions_list'  => $questions_list,
             'QuizzAttempts'   => $QuizzAttempts,
-            'duration_type'   => 'per_question',
+            'duration_type'   => 'total_practice',
             'time_interval'   => $time_interval,
             'life_lines'      => $life_lines,
             'nugget_data'    => $nugget_data,
             'levelData'      => $levelData,
             'stageObj'     => $stageData,
             'user_timetables_levels' => $user_timetables_levels,
-            'practice_time'   => 0,
+            'practice_time'   => $practice_time,
             'total_questions' => count($questions_array_list),
         ];
         return view('web.default.timestables.start_treasure_mode', $data);
@@ -1675,9 +1677,28 @@ class TimestablesController extends Controller
         $user = auth()->user();
         $user_timetables_levels = json_decode($user->user_timetables_levels);
         $user_timetables_levels = is_array( $user_timetables_levels ) ? $user_timetables_levels : array();
+		
+		$user_timetables_levels_data = array();
+		
+		
+		$timestables_results = array();
+		
+		foreach ($user_timetables_levels as $level) {
+			$QuizzesResult = QuizzesResult::where('status', 'passed')
+				->where('nugget_id', $level)
+				->where('attempt_mode', 'treasure_mode')
+				->orderBy('id', 'desc')
+				->first();
+
+			if (isset( $QuizzesResult->id)) {
+				$timestables_results[$QuizzesResult->nugget_id] = $QuizzesResult;
+			}
+		}
+
+		
         $treasure_mission_data = get_treasure_mission_data();
 
-        $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels])->render();
+        $rendered_view = view('web.default.timestables.treasure_mission', ['treasure_mission_data' => $treasure_mission_data, 'user_timetables_levels' => $user_timetables_levels, 'timestables_results' => $timestables_results])->render();
         return $rendered_view;
     }
 

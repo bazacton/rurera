@@ -74,9 +74,7 @@ class LearningJourneyController extends Controller
         //$this->authorize('admin_glossary_edit');
         $user = auth()->user();
 
-        $weeklyPlanner = WeeklyPlanner::where('id', $id)
-            ->with('WeeklyPlannerItems.WeeklyPlannerTopics.WeeklyPlannerTopicData')
-            ->first();
+        $LearningJourneyObj = LearningJourneys::where('id', $id)->first();
 
 
         $categories = Category::where('parent_id', null)
@@ -85,7 +83,9 @@ class LearningJourneyController extends Controller
         $data = [
             'pageTitle'     => 'Edit Learning Journey',
             'categories'    => $categories,
-            'weeklyPlanner' => $weeklyPlanner,
+            'thisObj'    => $this,
+            'request'    => $request,
+            'LearningJourneyObj' => $LearningJourneyObj,
         ];
 
         return view('admin.learning_journey.create', $data);
@@ -331,12 +331,14 @@ class LearningJourneyController extends Controller
         exit;
     }
 	
-	public function learning_journey_topic_layout(Request $request, $data_id = 0)
+	public function learning_journey_topic_layout(Request $request, $data_id = 0, $subject_id = 0, $item_value = '')
     {
         if ($data_id == 0) {
             $data_id = $request->get('data_id', null);
         }
-		$subject_id = $request->get('subject_id', null);
+		if ($subject_id == 0) {
+            $subject_id = $request->get('subject_id', null);
+        }
 		$course = Webinar::find($subject_id);
 
         $item_id = rand(0, 99999);
@@ -359,7 +361,8 @@ class LearningJourneyController extends Controller
 						<option value="">Select Topic</option>
 						<?php if( $course->webinar_sub_chapters->count() > 0){
 							foreach( $course->webinar_sub_chapters as $subChapter){
-								echo '<option value="'.$subChapter->id.'">'.$subChapter->sub_chapter_title.'</option>';
+								$selected  = ( $item_value == $subChapter->id)? 'selected'  : '';
+								echo '<option value="'.$subChapter->id.'" '.$selected.'>'.$subChapter->sub_chapter_title.'</option>';
 							}
 						}
 						?>
@@ -405,7 +408,7 @@ class LearningJourneyController extends Controller
         <?php
     }
 	
-	public function learning_journey_treasure_layout(Request $request, $data_id = 0)
+	public function learning_journey_treasure_layout(Request $request, $data_id = 0, $item_value = '')
     {
         if ($data_id == 0) {
             $data_id = $request->get('data_id', null);
@@ -427,7 +430,7 @@ class LearningJourneyController extends Controller
                      aria-expanded="true">
 
                     <span class="font-weight-bold text-dark-blue d-block cursor-pointer">
-					<input type="number" name="learning_journey_topic[<?php echo $data_id; ?>][items][<?php echo $item_id; ?>][treasure]" placeholder="Treasure Coins" class="no-border">
+					<input type="number" name="learning_journey_topic[<?php echo $data_id; ?>][items][<?php echo $item_id; ?>][treasure]" value="<?php echo $item_value; ?>" placeholder="Treasure Coins" class="no-border">
 					</span>
                 </div>
 

@@ -49,7 +49,80 @@ class DailyQuestsController extends Controller
             case    "timestables":
                 $questObj = $this->timestablesQuestCheck($QuizzesResult);
                 break;
+			case    "learning_journey":
+                $questObj = $this->learningJourneyQuestCheck($QuizzesResult);
+                break;
         }
+    }
+	
+	
+	/*
+	* Learning Journey Quests
+	*/
+	public function learningJourneyQuestCheck($QuizzesResult)
+    {
+
+        $user = auth()->user();
+        //$quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)->where('timestables_mode', $QuizzesResult->attempt_mode)->where('status', 'active')->get();
+
+
+        $todayStartTimestamp = Carbon::now()->startOfDay()->timestamp;
+        $todayEndTimestamp = Carbon::now()->endOfDay()->timestamp;
+
+        $quests = $user->getUserQuests(array('learning_journey'));
+
+        /*
+         * $quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)
+                     ->where('timestables_mode', $QuizzesResult->attempt_mode)
+                     ->where('status', 'active')
+                     ->where('quest_end_date' ,'>=', strtotime(date('Y-m-d 00:00:00')))
+                     ->withCount([
+                         'QuestRewardsCount as rewards_count' => function ($query) {
+                             $query->where('parent_type', '=', 'quest');
+                         }
+                     ])
+                     ->having('rewards_count', '=', 0)
+                     ->get();
+         */
+
+        foreach ($quests as $questObj) {
+
+            $quest_method = $questObj->quest_method;
+            $recurring_type = $questObj->recurring_type;
+
+            $QuestUserData = $this->getQuestUserData($questObj);
+            $is_completed = isset( $QuestUserData['is_completed'] )? $QuestUserData['is_completed'] : false;
+
+            if( $is_completed != true){
+                continue;
+            }
+
+
+            $questScore = $questObj->no_of_coins;
+
+            if ($questObj->coins_type == 'percentage') {
+                $quizzResultPoints = $QuizzesResult->quizz_result_points->count();
+                $questScore = ($quizzResultPoints * $questObj->coins_percentage) / $quizzResultPoints;
+            }
+			
+			RewardAccounting::create([
+                'user_id'       => $user->id,
+                'item_id'       => 0,
+                'type'          => 'coins',
+                'score'         => $questScore,
+                'status'        => 'addiction',
+                'created_at'    => time(),
+                'parent_id'     => $questObj->id,
+                'parent_type'   => 'quest',
+                'full_data'     => '',
+                'updated_at'    => time(),
+                'assignment_id' => 0,
+                'result_id'     => $QuizzesResult->id,
+            ]);
+
+        }
+
+
     }
 
 
@@ -149,6 +222,7 @@ class DailyQuestsController extends Controller
         $QuizzesResults->where('created_at' ,'<=', strtotime(date('Y-m-d 23:59:59')));
 
         $QuizzesResults = $QuizzesResults->get();
+		
 
         $questScore = $questObj->no_of_coins;
         if ($questObj->coins_type == 'percentage') {

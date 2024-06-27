@@ -147,7 +147,7 @@
 @endif
 @if(auth()->user()->isUser())
 	
-@if( $continueTests->count() > 0)
+@if( $continueTests->count() > 0 || $assignmentsArray->count() > 0)
 
 	<div class="quests-list quests-learning">
 		<div class="section-title text-left mb-30 d-flex flex-wrap justify-content-between align-items-center mt-5">
