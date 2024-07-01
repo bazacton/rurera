@@ -2149,6 +2149,9 @@ span.Selectable:hover {text-decoration: underline;}
     justify-content: center;
     padding: 0;
 }
+.questions-block .inactivity-controls {
+    margin-bottom: 25px;
+}
 .activity-actions a,
 .inactivity-controls a {
     padding: 6px 20px;

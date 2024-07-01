@@ -755,120 +755,15 @@
             </div>
         </div>
     </section>
-    <section class="container mt-50 pt-30">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title text-center mb-50">
-                    <h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
-                    <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful
-                        consideration.</p>
-                </div>
-            </div>
-            <div class="col-12 col-lg-12 col-md-12 mx-auto">
-                <div class="mt-0">
-                    <div class="lms-faqs mx-w-100 mt-0">
-                        <div id="accordion">
-                            <div class="card">
-                                <div class="card-header" id="headingonsix">
-                                    <button class="btn btn-link font-20 font-weight-normal" data-toggle="collapse" data-target="#collapsesix"
-                                            aria-expanded="true" aria-controls="collapsesix"><h3>What are SATs exam in the UK?</h3>
-                                    </button>
-                                </div>
-                                <div id="collapsesix" class="collapse show" aria-labelledby="headingsix"
-                                     data-parent="#accordion">
-                                    <div class="card-body">
-                                        SATs exam (Standard Assessment Tests) refer to a set of national SATs exam practices and SATs assessments
-                                        conducted in primary schools. These SATs tests are typically administered to students
-                                        at the end of Key Stage 1 (KS1) and Key Stage 2 (KS2) of their education, which
-                                        correspond roughly to ages 7-11.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <h3>What are SATs exam for?</h3>
-                                    </button>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="card-body">
-                                        SATs exam provide a standardized measure of students' academic abilities and track
-                                        their progress over time. They help assess how well students are meeting the
-                                        expected learning outcomes for their age group.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingseven">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What subjects are assessed in SATs exam?</h3></button>
-                                </div>
-                                <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
-                                    <div class="card-body">
-                                        The core subjects assessed in SATs exam are English (including reading, writing,
-                                        spelling, and grammar), mathematics, and, in some cases, science for Key Stage
-                                        2.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading8">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are SATs resources and how they help for KS1 , KS2 SATs?</h3></button>
-                                </div>
-                                <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
-                                    <div class="card-body">
-                                        SATs resources refer to the SATs exam practices, SATs quizzes designed to help students prepare for their KS1 SATs and KS2 SATs
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading9">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>Do SATs exam have pass or fail grades?</h3></button>
-                                </div>
-                                <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
-                                    <div class="card-body">
-                                        SATs are not graded on a pass or fail basis. Instead, they provide information
-                                        about a student's performance and attainment levels. Results are often reported
-                                        as scaled scores or levels of achievement.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading10">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10"><h3>Are SATs compulsory?</h3></button>
-                                </div>
-                                <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordion">
-                                    <div class="card-body">
-                                        SATs are compulsory in terms of administration, meaning schools are required to
-                                        administer the tests. However, students themselves are not obligated to take the
-                                        tests, but it is highly encouraged.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading11">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11"><h3>Are SATs quizzes helpful for preparing for the exams?</h3></button>
-                                </div>
-                                <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordion">
-                                    <div class="card-body">
-                                        Yes, SATs quizzes can be helpful for preparing for KS1 and KS2 SATs. They offer interactive SATs practice quizzes and help students become familiar with the format of the SATs exams. 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading12">
-                                    <button class="btn btn-link font-20 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12"><h3>Can parents help their children prepare for KS1 and KS2 SATs?</h3></button>
-                                </div>
-                                <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordion">
-                                    <div class="card-body">
-                                        Yes, parents can support their children in preparing for SATs by using SATs resources, helping with homework, and providing a supportive study environment.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>
+	{{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3)))}}
+	{{do_shortcode('rurera_assessments')}}
+	{{do_shortcode('faqs')}}
+	{{do_shortcode('packages')}}
+	
+	
+	
+	
+    
     <section class="lms-newsletter mt-60 py-70">
         <div class="container">
             <div class="row">

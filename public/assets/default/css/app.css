@@ -7245,7 +7245,7 @@ Lms Blog Grid Card Style Start
 .blog-grid-card .badge {padding-left: 0; font-size: .85rem;}
 .blog-grid-card .blog-grid-detail,
 .list-card .text-holder {padding: 0 20px 0 0; width: 100%;}
-.blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 20px; font-weight: 700; line-height: 1.5; color:var(--dark-charcoal);}
+.blog-grid-card .blog-grid-detail .blog-grid-title {font-size: 1.8rem; font-weight: 700; line-height: 1.5; color:var(--dark-charcoal);}
 .blog-grid-card .blog-grid-detail .blog-grid-desc {font-size: 14px; font-weight: 400; line-height: 1.7; color: #6c6c6c; overflow: hidden; pointer-events: none;}
 .blog-grid-card .blog-grid-detail .blog-grid-footer {font-size: 16px; font-weight: 500; line-height: 1.19; color: #6c6c6c; pointer-events: none;}
 .blog-grid-card .blog-tags {padding: 0; margin: 15px 0 0 0; display: flex; flex-wrap: wrap; }
@@ -7440,7 +7440,7 @@ Lms FAQS Style Start
 .accordion__icon--is-open:before {transform: translateY(-50%) rotate(180deg);}
 .lms-faqs .card .card-header .btn-link:focus,
 .lms-faqs .card .card-header .btn-link:hover {text-decoration: none;}
-.lms-faqs .card-body {padding-left: 0; padding-bottom: 0;}
+.lms-faqs .card-body {padding-left: 0; padding-bottom: 10px; padding-top: 10px;}
 .lms-faqs .card-body p {margin: 0 0 20px;}
 .lms-faqs .card-body h5 {font-weight: 700; font-size: 18px; margin: 0 0 5px;}
 /*********************************
@@ -8606,7 +8606,7 @@ lms Key Stage Style End
 /*****************************
 Header Navbar Dropdown Style Start
 ******************************/
-.navbar-nav .nav-item {position: relative;}
+.navbar-nav .nav-item {position: relative; padding-bottom: 5px; margin-bottom: -5px;}
 .navbar-nav .nav-item .sidenav-dropdown {position: absolute; left: 0; top: 38px; width: auto; background: #f8f8f8; padding: 10px 20px 20px; box-shadow: 0 3px 3px 1px rgba(0, 0, 0, .1); border-radius: 0; transition: all 0.3s; z-index: 99; opacity: 0; visibility: hidden;}
 .navbar-nav .nav-item.book_shelf .sidenav-dropdown {position: absolute; left: 0; top: 38px; width: auto; background: #f3ce03; padding: 10px 20px 20px; box-shadow: 0 3px 3px 1px rgba(0, 0, 0, .1); border-radius: 0; transition: all 0.3s; z-index: 99; opacity: 0; visibility: hidden;}
 .navbar-nav .nav-item:hover .sidenav-dropdown {opacity: 1; visibility: visible; top: 100%;}
@@ -8618,9 +8618,26 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item.book_shelf:hover .nav-link {background: #f3ce03; font-weight: bold; box-shadow: 0 -2px 2px 1px rgba(0, 0, 0, .1);}
 .navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
 .top-navbar .navbar-toggle-content {margin-right: 20px !important;}
-.top-navbar .login-btn {border: 1px solid var(--primary); padding: 4px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
+.top-navbar .login-btn {border: 1px solid var(--primary); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
+.top-navbar .register-btn {padding: 7px 15px !important;}
 .top-navbar .navbar-order .ml-md-50 {margin-left: 0 !important;}
 .navbar-nav .educator-menu .nav-link {padding: 2px 20px;}
+.navbar-nav .nav-item:has(.sidenav-dropdown) > a {
+    position: relative;
+}
+.navbar-nav .nav-item:has(.sidenav-dropdown) > a:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 6px;
+    width: 6px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg);
+    margin-left: -3px;
+}
 /*****************************
 Header Navbar Dropdown Style End
 ******************************/
@@ -10473,11 +10490,11 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
 .spell-levels {background-color: #fff; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 8px; padding: 0; margin: 0 0 30px; position: relative;}
-.spell-levels li > a:hover .lms-tooltip {
+/* .spell-levels li > a:hover .lms-tooltip {
     opacity: 1;
     visibility: visible;
     margin-top: 0;
-}
+} */
 
 .treasure-mission-layout .spell-levels {background-color: initial;}
 .spell-completed {overflow: hidden;}
@@ -10520,6 +10537,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* .spell-levels ul li:hover .spell-tooltip {opacity: 1; visibility: visible; margin-top: 0; } */
 .spell-levels li > a:active {box-shadow: 0 4px 0 1px #b0b0b0;}
 .spell-levels li.easy > a:active {box-shadow: 0 4px 0 1px #0f6c9b;}
+.spell-levels .treasure > a:active {box-shadow: none;}
 .spell-levels.levels-grouping li > a {background-color: inherit; height: 80px; width: 80px; box-shadow: none; padding: 0; }
 .spell-levels.levels-grouping {background-color: inherit;}
 .spell-levels.levels-grouping ul {justify-content: flex-start; flex-direction: column; align-items: flex-start;}
@@ -10574,8 +10592,9 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li {position: absolute; right: 0; top: 100%; margin-top: 80px;}
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li {left: 0; right: auto;}
 .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {display: block; width: 4px; height: 100%; left: 50%; margin-left: -2px;top: -65px;margin-top: 0;}
-.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {content: ""; width: 4px; height: 100%; left: 50%; margin-left: -2px;top: 100%;margin-top: 5px;position: absolute;background-color: #e9e9e9;}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {content: ""; width: 4px; height: 100%; left: 50%; margin-left: -2px;top: 100%;margin-top: 5px;position: absolute;background-color: #e9e9e9; border: 0;}
 .treasure-mission-layout .spell-levels li > a img {max-width: 100%; object-fit: contain; }
+.spell-levels li .dropdown-toggle:after {display: none;}
 .treasure-mission-layout .spell-levels .treasure-stage:last-child ul {margin-bottom: 60px;}
 .treasure-mission-layout .spell-levels li:not(.treasure) a img {width: 30px; height: 30px;}
 .read-quiz-content .treasure-stage .horizontal-list {display: flex !important; flex-direction: row; flex-wrap: nowrap;}
@@ -10882,6 +10901,8 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     text-align: center;
     font-weight: 500;
     letter-spacing: -1px;
+    z-index: 1;
+    margin-left: -30px;
 }
 .quiz-questions-bar-holder .value-lable:before {
     content: attr(title);
@@ -10941,10 +10962,35 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-corrects-incorrects span {-webkit-transition: all 0.4s ease-out; -moz-transition: all 0.4s ease-out; -ms-transition: all 0.4s ease-out; -o-transition: all 0.4s ease-out; transition: all 0.4s ease-out;}
 .quiz-incorrects:hover {z-index: 2; left: 25px; }
 /* Quiz Status Bar Style End */
-.lms-tooltip {background-color: #57cc02; border: 1px solid #75ae4f; border-radius: 10px; position: absolute; top: 100%; left: 50%; margin-top: -15px; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; opacity: 0; visibility: hidden; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; transform: translateX(-50%); text-align: left;}
-.lms-tooltip:before {background-color: #57cc02; content: ""; position: absolute; left: 50%; top: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
-.lms-tooltip:after {background-color: #75ae4f; content: ""; position: absolute; left: 50%; top: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
+.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; top: -100%; left: 50% !important; margin-top: -30px; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; transform: translateX(-50%) !important; text-align: left; visibility: hidden; opacity: 0;}
+.lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
+.lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
 .lms-tooltip span {display: block;}
+.lms-tooltip.show,
+.rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1;}
+.spell-levels li.completed .lms-tooltip {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 20px;
+}
+.lms-tooltip .tooltip-button {
+    width: 100%;
+    border: 0;
+    background-color: #fff;
+    color: var(--primary);
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 48px;
+    border-radius: 10px;
+    margin-top: 15px;
+    box-shadow: 0 -4px 0 rgba(89, 107, 253, 0.1) inset;
+}
+.treasure-mission-layout .spell-levels .lms-tooltip .tooltip-box img {
+    height: 22px;
+    width: 22px;
+    margin-right: 8px;
+}
 .tooltip-btn {border-radius: 6px; font-weight: 500; min-height: 44px; line-height: 44px; text-transform: uppercase; border: 0; width: 100%; }
 .tooltip-btn.practice {background-color: #fff; box-shadow: 0 4px 0 #ccf2b7; color: #58c700; }
 .tooltip-btn.legendary {background-color: #ffd800; box-shadow: 0 4px 0 #e7a506; color: #a96804;}
@@ -11570,6 +11616,56 @@ address .info-list-label {color: #64748b;}
 .reset-btn .icon-box img {height: 14px; width: 14px; filter: invert(32%) sepia(96%) saturate(583%) hue-rotate(201deg) brightness(114%) contrast(110%);}
 .input-field input {
     border: 0;
+}
+/*Insta Form Style Start*/
+.insta-form-inner {
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 770px;
+    margin: 0 auto;
+    padding: 50px 35px;
+}
+.insta-form-inner input[type="text"], 
+.insta-form-inner input[type="tel"], 
+.insta-form-inner select {
+    height: 46px;
+    border: 1px solid #bacee4;
+    border-radius: 3px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #45536b;
+    line-height: 26px;
+    appearance: none;
+    width: 100%;
+}
+.insta-form-inner .text-field-hoder p {
+    font-style: italic;
+}
+.insta-form-inner .text-field-hoder p a,
+.insta-form-inner .login-text a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+.insta-form-inner .submit-btn-holder button {
+    width: 100%;
+    border: 0;
+    background-color: var(--primary);
+    color: #fff;
+    height: 52px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+/*Insta Form Style End*/
+.role-card-link {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 45px 0;
+    margin-bottom: 25px;
+    display: block;
+}
+.role-card .icon-box {
+    display: block;
+    margin: 0 0 30px;
 }
 
 /*************************************
@@ -12597,6 +12693,7 @@ Lms Responsive Style Start
 
 .reviews-lable .icon-box img {
     filter: invert(52%) sepia(48%) saturate(4633%) hue-rotate(130deg) brightness(98%) contrast(99%);
+    max-width: 100%;
 }
 
 .footer-newsletter button {

@@ -149,7 +149,7 @@ if( $duration_type == 'total_practice'){
                     </div>
 
 
-                        <div class="trophy-levels life-lines-container">
+                        <div class="trophy-levels life-lines-container rurera-hide">
                             <div class="flex-parent">
                                 <div class="input-flex-container life-lines-block">
                                     @php $life_counter = 1; @endphp
@@ -177,7 +177,7 @@ if( $duration_type == 'total_practice'){
                                         <span class="tt_question_no">1</span> Of {{$total_questions}}
                                     </li>
                                     <li>
-                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{getTime($timer_counter)}}</span>
+                                        <span class="quiz-timer-counter" data-time_counter="{{($timer_counter*10)}}">{{$timer_counter}}</span>
                                     </li>
                                     <li class="total-points">
                                         <span class="tt_points">0</span> Coins
@@ -385,7 +385,7 @@ if( $duration_type == 'total_practice'){
                 quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
             }
 
-            $('.quiz-timer-counter').html(getTime((quiz_timer_counter/10)));
+            $('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
             $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
             if( duration_type == 'per_question'){
                 if( parseInt(quiz_timer_counter) == 0){
@@ -431,7 +431,8 @@ if( $duration_type == 'total_practice'){
     }
 	
 	function roundToTwoDecimals(number) {
-		return Math.round(number * 100) / 100;
+		//return Math.round(number * 100) / 100;
+		return Math.round(number);
 	}
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
@@ -468,8 +469,6 @@ if( $duration_type == 'total_practice'){
         $('.powerup-levels ul li').each(function() {
             var minq = parseInt($(this).attr('data-minq'));
             var maxq = parseInt($(this).attr('data-maxq'));
-            console.log(minq);
-            console.log(maxq);
 
             if (correct_questions >= minq && correct_questions <= maxq) {
               $(this).addClass('active-level'); // You can replace 'active' with your desired class
@@ -519,24 +518,26 @@ if( $duration_type == 'total_practice'){
                 $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/audios/times-tables-correct.mp3"></audio>');
             }
         }else{
-            life_lines = parseInt(life_lines) - 1;
-            $(".life-lines").html(life_lines);
-            var li_counter = parseInt(life_lines) - 1;
-            $('.life-lines-block .input.active img').attr('src', '/assets/default/img/panel-sidebar/broken-heart.png');
-            $('.life-lines-block .input').removeClass('active');
-            $('.life-lines-block .input:eq('+li_counter+')').addClass('active');
-            if( life_lines < 1){
-               clearInterval(Quizintervals);
-                $(".questions-block.active").nextAll('.questions-block').remove();
-                $(".question-area-block").attr('data-total_questions', $('.questions-block').length);
-                $(".questions-block .question-form").attr('data-bypass_validation', 'yes');
-                var total_questions = $(".question-area-block").attr('data-total_questions');
-                is_gameover = true;
+			if( time_consumed > 0){
+				life_lines = parseInt(life_lines) - 1;
+				$(".life-lines").html(life_lines);
+				var li_counter = parseInt(life_lines) - 1;
+				$('.life-lines-block .input.active img').attr('src', '/assets/default/img/panel-sidebar/broken-heart.png');
+				$('.life-lines-block .input').removeClass('active');
+				$('.life-lines-block .input:eq('+li_counter+')').addClass('active');
+				if( life_lines < 1){
+				   clearInterval(Quizintervals);
+					$(".questions-block.active").nextAll('.questions-block').remove();
+					$(".question-area-block").attr('data-total_questions', $('.questions-block').length);
+					$(".questions-block .question-form").attr('data-bypass_validation', 'yes');
+					var total_questions = $(".question-area-block").attr('data-total_questions');
+					is_gameover = true;
 
-            }
-            if( is_sound_enabled == true) {
-                $(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
-            }
+				}
+				if( is_sound_enabled == true) {
+					$(this).append('<audio autoPlay="" className="player-box-audio" id="audio_file_4492" src="/speech-audio/wrong-answer.mp3"></audio>');
+				}
+			}
         }
 
 
@@ -566,12 +567,12 @@ if( $duration_type == 'total_practice'){
             if( duration_type == 'per_question') {
                 console.log('clear interval');
                 clearInterval(Quizintervals);
-                $('.quiz-timer-counter').html(getTime((time_interval)));
+                $('.quiz-timer-counter').html(roundToTwoDecimals(time_interval));
                 $('.quiz-timer-counter').attr('data-time_counter', time_interval*10);
                 Quizintervals = setInterval(function () {
                     var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
                     quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter/10));
+                    $('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
                     $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
 
                     if (duration_type == 'per_question') {
@@ -593,7 +594,7 @@ if( $duration_type == 'total_practice'){
             $('.questions-block').addClass('disable-div');
             rurera_loader($('.question-area-block'), 'div');
             if( is_gameover == true){
-                $("#timestables_lifelines_modal").modal('show');
+                //$("#timestables_lifelines_modal").modal('show');
             }
             var response_layout = '';
 

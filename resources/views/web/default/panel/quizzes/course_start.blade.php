@@ -276,10 +276,9 @@ $practice_time = 0;
 					Practice tests do not let you go over time, though you can pause them and come back to them later.
 				</p>
 				<ul class="activity-info">
-					<li>Total Questions: <strong class="total-questions">10</strong></li>
+					<li>Total Answered: <strong class="total-questions">10</strong></li>
 					<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
 					<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
-					<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
 				</ul>
 				<div class="inactivity-controls">
 					<a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
@@ -316,10 +315,9 @@ $practice_time = 0;
             You've been inactive for a while, and your session was paused. You can continue learning by using the following links
         </p>
 		<ul class="activity-info">
-			<li>Total Questions: <strong class="total-questions">10</strong></li>
+			<li>Total Answered: <strong class="total-questions">10</strong></li>
 			<li><span class="icon-box"></span> Correct: <strong class="correct-questions">1</strong></li>
 			<li>Incorrect: <strong class="incorrect-questions">2</strong></li>
-			<li>Unanswered: <strong class="unanswered-questions">7</strong></li>
 		</ul>
         <div class="inactivity-controls">
             <a href="javascript:;" class="continue-btn" data-dismiss="modal" aria-label="Continue">Continue Test</a>
@@ -395,10 +393,9 @@ $practice_time = 0;
 						var correct_percentage = parseInt(correct_questions) * 100 / parseInt(total_percentage_questions);
 						var correct_percentage = ( correct_percentage > 0)? correct_percentage : 0;
 						var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
-						$(".question_inactivity_modal .modal-body .total-questions").html(total_questions);
+						$(".question_inactivity_modal .modal-body .total-questions").html(attempted_questions);
 						$(".question_inactivity_modal .modal-body .correct-questions").html(correct_questions);
 						$(".question_inactivity_modal .modal-body .incorrect-questions").html(incorrect_questions);
-						$(".question_inactivity_modal .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
 						
 						
                         $(".question_inactivity_modal").modal('show');
@@ -513,10 +510,9 @@ $practice_time = 0;
 			var remaining_time = $('.quiz-timer-counter').attr('data-time_counter');
 			$(".pause-title").html('Need a Break?');
 			$(".pause-description").html('Practice tests do not let you go over time, though you can pause them and come back to them later.');
-			$(".pause_quiz .modal-body .total-questions").html(total_questions);
+			$(".pause_quiz .modal-body .total-questions").html(attempted_questions);
 			$(".pause_quiz .modal-body .correct-questions").html(correct_questions);
 			$(".pause_quiz .modal-body .incorrect-questions").html(incorrect_questions);
-			$(".pause_quiz .modal-body .unanswered-questions").html(parseInt(total_questions) - parseInt(attempted_questions));
             TimerActive = false;
         });
 		$("body").on("click", ".unpause-quiz", function (e) {

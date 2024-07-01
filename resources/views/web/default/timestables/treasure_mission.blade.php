@@ -150,7 +150,7 @@
                                                 $li_count = ($li_count >= 6)? 0 : $li_count;
                                             @endphp
                                             <li class="treasure {{$li_custom_class}}">
-                                                <a href="#.">
+                                                <a href="javascript:;" class="rurera-tooltip">
                                                     <span class="thumb-box rurera-tooltip">
                                                         @if($is_acheived == 1)
                                                             <img src="/assets/default/img/treasure.png" alt="" title="{{$nuggetObj['treasure_box']}}">

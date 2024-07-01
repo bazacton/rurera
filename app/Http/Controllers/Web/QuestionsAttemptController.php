@@ -1583,7 +1583,7 @@ class QuestionsAttemptController extends Controller
         if (!empty($timestables_data)) {
             foreach ($timestables_data as $tableData) {
 				$tableData['score'] = $score;
-                $results[$tableData['table_no']][] = $tableData;
+				$results[$tableData['table_no']][] = $tableData;
             }
         }
         $new_array = $results;//array_merge($get_last_results, $results);
@@ -1603,10 +1603,6 @@ class QuestionsAttemptController extends Controller
             }
         }
 
-
-		
-
-
         $QuizzesResult->update([
             'user_id'        => $user->id,
             'results'        => json_encode($results),
@@ -1616,7 +1612,6 @@ class QuestionsAttemptController extends Controller
             'no_of_attempts' => 100,
             'other_data'     => json_encode($new_result_data),
         ]);
-
 
         $attempt_log_id = createAttemptLog($QuizzAttempts->id, 'Session Ends', 'end');
 
@@ -1634,11 +1629,9 @@ class QuestionsAttemptController extends Controller
                 $time_consumed = isset($tableData['time_consumed']) ? $tableData['time_consumed'] : '';
                 $table_no = isset($tableData['table_no']) ? $tableData['table_no'] : '';
                 $is_correct = isset($tableData['is_correct']) ? $tableData['is_correct'] : '';
+				$question_status = ($is_correct == 'true') ? 'correct' : 'incorrect';
+				$question_status = ($time_consumed > 0)? $question_status : 'not_attempted';
                 $total_time_consumed += $time_consumed;
-
-
-				
-
                 $newQuestionResult = QuizzResultQuestions::create([
                     'question_id'      => 0,
                     'quiz_result_id'   => $QuizzesResult->id,
@@ -1651,7 +1644,7 @@ class QuestionsAttemptController extends Controller
                     'average_time'     => 0,
                     'time_consumed'    => $time_consumed,
                     'difficulty_level' => 'Expected',
-                    'status'           => ($is_correct == 'true') ? 'correct' : 'incorrect',
+                    'status'           => $question_status,
                     'created_at'       => time(),
                     'parent_type_id'   => $table_no,
                     'quiz_result_type' => $QuizzAttempts->attempt_type,
@@ -1662,14 +1655,22 @@ class QuestionsAttemptController extends Controller
                     'attempt_mode'     => $QuizzesResult->attempt_mode,
                     'child_type_id'   => $to,
                 ]);
-                if($is_correct != 'true'){
+                if($is_correct != 'true' && $question_status != 'not_attempted'){
                     $incorrect_array[] = $newQuestionResult->id;
                 }
                 if($is_correct == 'true'){
                     $correct_array[] = $newQuestionResult->id;
                 }
-
-                $this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+				
+				
+				if( $QuizzesResult->attempt_mode == 'treasure_mode') {
+					$percentage_correct_answer = $this->get_percetange_corrct_answer($QuizzesResult);
+					if( $percentage_correct_answer >= 95){
+						$this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+					}
+				}else{
+					$this->update_reward_points($newQuestionResult, ($is_correct == 'true') ? true : false, $QuizzesResult->parent_type_id);
+				}
 
             }
         }

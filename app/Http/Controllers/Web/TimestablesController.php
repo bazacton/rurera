@@ -1382,7 +1382,7 @@ class TimestablesController extends Controller
             'levelData'      => $levelData,
             'stageObj'     => $stageData,
             'user_timetables_levels' => $user_timetables_levels,
-            'practice_time'   => $practice_time,
+            'practice_time'   => 20,//$practice_time,
             'total_questions' => count($questions_array_list),
         ];
         return view('web.default.timestables.start_treasure_mode', $data);

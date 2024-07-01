@@ -1,4 +1,11 @@
-@php $selected_package = isset( $selected_package )? $selected_package : 0; $subscribed_childs = isset( $subscribed_childs )? $subscribed_childs : 0; $purchase_title = ( $subscribed_childs == 0)? 'Try for free' : 'Subscribe'; 
+@php use App\Models\Subscribe;
+
+if( empty( $subscribes )){
+	$subscribes = Subscribe::all();
+}
+
+
+$selected_package = isset( $selected_package )? $selected_package : 0; $subscribed_childs = isset( $subscribed_childs )? $subscribed_childs : 0; $purchase_title = ( $subscribed_childs == 0)? 'Try for free' : 'Subscribe'; 
 @endphp
 @if(!empty($subscribes) and !$subscribes->isEmpty())
 @foreach($subscribes as $subscribe)

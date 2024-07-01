@@ -7991,6 +7991,20 @@ function countSubItemsOnly($array) {
     return $count;
 }
 
+function countSubItemsOnlySpecific($array, $index_id) {
+    $count = 0;
+    foreach ($array as $item) {
+        if (is_array($item)) {
+            foreach ($item as $subItem) {
+                if (isset($subItem->{$index_id}) && $subItem->{$index_id} > 0) {
+                    $count++;
+                }
+            }
+        }
+    }
+    return $count;
+}
+
 function dates_difference($date1, $date2){
     $diff = abs($date2 - $date1);
 
@@ -9094,4 +9108,33 @@ function get_question_levels($year_ids, $difficulty_level){
 	}
 	
 	return $response;
+}
+
+
+function do_shortcode($elementName, $params = [])
+{
+	return view('web.default.elements.' . $elementName, $params);
+}
+
+
+function rurera_content($content){
+	 // Define the regex pattern to match the shortcode
+	$pattern = '/\[rurera_shortcode\s+element="([^"]+)"\s*(.*?)\]/';
+	// Callback function to replace the shortcode
+	$callback = function ($matches) {
+		$element = $matches[1];
+		$paramsString = $matches[2];
+		// Parse additional parameters
+		$params = [];
+		preg_match_all('/(\w+)="([^"]+)"/', $paramsString, $paramMatches, PREG_SET_ORDER);
+		foreach ($paramMatches as $paramMatch) {
+			$params[$paramMatch[1]] = $paramMatch[2];
+		}
+		// Create the do_shortcode string
+		$doShortcodeString = do_shortcode($element, $params);
+		return $doShortcodeString;
+	};
+
+	// Perform the replacement
+	return preg_replace_callback($pattern, $callback, $content);
 }

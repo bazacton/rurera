@@ -102,7 +102,7 @@ $rand_id = rand(99,9999);
                                                         </div>
                                                         <div class="summary-text">
                                                             <label>Questions Answered</label>
-                                                            <div class="score">{{countSubItemsOnly((array) $results)}}</div>
+                                                            <div class="score">{{countSubItemsOnlySpecific((array) $results, 'time_consumed')}}</div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-4 col-lg-3">
@@ -178,7 +178,13 @@ $rand_id = rand(99,9999);
                             @foreach( $results as $table_name => $tableData)
                             @if( !empty( $tableData ) )
                             @foreach( $tableData as $rowObj)
-                            @php $is_correct = isset( $rowObj->is_correct )? $rowObj->is_correct : 'false';
+                            @php 
+							
+							$time_consumed = isset( $rowObj->time_consumed ) ? $rowObj->time_consumed : '';
+							if( $time_consumed <= 0){
+								continue;
+							}
+							$is_correct = isset( $rowObj->is_correct )? $rowObj->is_correct : 'false';
                             $check_class = ($is_correct == 'true')? 'correct' : 'incorrect';
                             $check_label = ($is_correct == 'true')? 'Correct' : 'Wrong';
                             $time_consumed = isset( $rowObj->time_consumed )? $rowObj->time_consumed : 0;

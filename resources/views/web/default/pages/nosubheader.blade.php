@@ -22,7 +22,7 @@
 
 @section('content')
 <section class="content-section">
-    {!! nl2br($page->content) !!}
+    {!! rurera_content(nl2br($page->content)) !!}
 </section>
 
 @endsection

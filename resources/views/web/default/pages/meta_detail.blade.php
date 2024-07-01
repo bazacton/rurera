@@ -45,7 +45,6 @@
                            <tr>
                                <td class="text-left">{{$courseData->getTitleAttribute()}}</td>
                                <td class="text-align-middle">{{$courseData->seo_title}}</td>
-                               <td class="text-center align-middle"><a href="/{{$courseData->category->slug}}/{{$courseData->slug}}">/{{$courseData->category->slug}}/{{$courseData->slug}}</a></td>
                                <td class="text-center align-middle">{{$courseData->getSeoDescriptionAttribute()}}</td>
                                <td class="text-center align-middle">{{($courseData->seo_robot_access == 0)? 'No' : 'Yes'}}</td>
                                <td class="text-center align-middle">{{($courseData->include_xml == 0)? 'No' : 'Yes'}}</td>

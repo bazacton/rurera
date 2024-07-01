@@ -80,53 +80,6 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label class="input-label" for="certificate_additional">{{ trans('update.certificate_additional') }}</label>
-                            <input name="certificate_additional" id="certificate_additional" class="form-control @error('certificate_additional') is-invalid @enderror"/>
-                            @error('certificate_additional')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        @if(getFeaturesSettings('timezone_in_register'))
-                            @php
-                                $selectedTimezone = getGeneralSettings('default_time_zone');
-                            @endphp
-
-                            <div class="form-group">
-                                <label class="input-label">{{ trans('update.timezone') }}</label>
-                                <select name="timezone" class="form-control select2" data-allow-clear="false">
-                                    <option value="" {{ empty($user->timezone) ? 'selected' : '' }} disabled>{{ trans('public.select') }}</option>
-                                    @foreach(getListOfTimezones() as $timezone)
-                                        <option value="{{ $timezone }}" @if($selectedTimezone == $timezone) selected @endif>{{ $timezone }}</option>
-                                    @endforeach
-                                </select>
-                                @error('timezone')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        @endif
-
-                        @if(!empty($referralSettings) and $referralSettings['status'])
-                            <div class="form-group ">
-                                <label class="input-label" for="referral_code">{{ trans('financial.referral_code') }}:</label>
-                                <input name="referral_code" type="text"
-                                       class="form-control @error('referral_code') is-invalid @enderror" id="referral_code"
-                                       value="{{ !empty($referralCode) ? $referralCode : old('referral_code') }}"
-                                       aria-describedby="confirmPasswordHelp">
-                                @error('referral_code')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        @endif
-
-
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="term" value="1" {{ (!empty(old('term')) and old('term') == '1') ? 'checked' : '' }} class="custom-control-input @error('term') is-invalid @enderror" id="term">
                             <label class="custom-control-label font-14" for="term">{{ trans('auth.i_agree_with') }}
