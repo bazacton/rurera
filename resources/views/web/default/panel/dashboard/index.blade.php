@@ -1,3 +1,4 @@
+@php use App\Models\QuizzesResult; @endphp
 @extends(getTemplate() .'.panel.layouts.panel_layout')
 
 @push('styles_top')
@@ -208,8 +209,93 @@
 @endif
 
 
-
 <div class="quests-list quests-learning">
+	<div class="section-title text-left mb-30">
+		<h2 class="font-22">Weekly Learning Journeys</h2>
+	</div>
+	@if( $quests->count() > 0)
+	<ul>
+		@foreach( $quests as $questObj)
+		
+			@php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
+
+			$questUserData = $DailyQuestsController->getQuestUserData($questObj);
+			$resultsRecords = isset( $questUserData['resultsRecords'] )? $questUserData['resultsRecords'] : array();
+			$no_of_practices = isset( $questUserData['no_of_practices'] )? $questUserData['no_of_practices'] : 0;
+			
+			
+			$quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
+			$quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
+			@endphp
+		
+			
+			<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
+				<div class="quests-item">
+					<div class="icon-box">
+						<img src="{{$quest_icon}}">
+					</div>
+					<div class="item-text">
+						<h5 class="font-18 font-weight-bold">{{$questObj->title}}</h5>
+						<div class="levels-progress horizontal">
+							<span class="progress-box">
+								<span class="progress-count" style="width: 0%;"></span>
+							</span>
+						</div>
+						<span class="progress-icon font-16 font-weight-normal">
+							<img src="/assets/default/img/quests-coin.png" alt="">
+							+{{isset( $questUserData['questScore'] )? $questUserData['questScore'] : 0}}
+						</span>
+						<span class="progress-info d-block pt-5">
+							<strong>{{isset( $questUserData['quest_bar_label'] )? $questUserData['quest_bar_label'] : ''}}</strong> Stages Completed
+						</span>
+					</div>
+				</div>	
+				<div class="icon-box mt-20">
+					@php $attempted_count = 0; @endphp
+					@if( !empty($resultsRecords))
+						@foreach( $resultsRecords as $result_id => $percentage)
+							@php $resultObj = QuizzesResult::find($result_id); @endphp
+							@if(isset( $resultObj->id))
+								@php $attempted_count++; @endphp
+								<a href="javascript:;" class="locked_nugget rurera-tooltip">
+									<img src="{{$quest_icon}}">
+									<div class="lms-tooltip">
+										<div class="tooltip-box">
+											<h5 class="font-18 font-weight-bold text-white mb-5">															
+											Active practice: 11<br> 
+											Questions answered: 11 <br>
+											<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:11
+											</h5>
+											<button class="tooltip-button" onclick="window.location.href='/panel/quizzes/11/check_answers';">Result</button>
+										</div>
+									</div>
+									
+								</a>
+							@endif
+						@endforeach
+					@endif
+					
+					@php $remaining_attempts = $no_of_practices - $attempted_count; @endphp
+				
+					@while( $remaining_attempts >= 1)
+						<a href="/learning-journey/{{$questObj->learningJourney->subject->slug}}" class="locked_nugget">
+							<img src="{{$quest_icon}}" class="disabled-style">
+						</a>
+						@php $remaining_attempts--; @endphp
+					@endwhile
+					
+				</div>
+
+							
+			</li>
+			
+		@endforeach
+		
+	</ul>
+	@endif
+</div>
+
+<div class="quests-list quests-learning rurera-hide">
 	<div class="section-title text-left mb-30">
 		<h2 class="font-22">Learning Journeys</h2>
 	</div>
@@ -217,6 +303,7 @@
 	<ul>
 		@foreach( $LearningJourneys as $learningJourneyObj)
 			@php $level_stages = $learningJourneyObj->learningJourneyStages->pluck('id')->toArray();
+			$user_completed_stages = $userObj->studentJourneyItems->where('status', 'completed')->whereIn('learning_journey_item_id', $level_stages);
 			$completed_stages = $userObj->studentJourneyItems->where('status', 'completed')->whereIn('learning_journey_item_id', $level_stages)->count() @endphp
 			<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
 				<div class="quests-item">
@@ -243,12 +330,47 @@
 						</span>
 					</div>
 				</div>
+				@if( $user_completed_stages->count() > 0)
+					<div class="p-0 mt-30 treasure-mission-layout" style="width:100%;">
+						<div class="spell-levels border-0" data-mission_id="mission_1">
+							<div class="treasure-stage">
+								<ul class="justify-content-start horizontal-list p-0 " style="display: block;">
+									@foreach( $user_completed_stages as $stageObj)
+										@php $resultObj = $stageObj->result;@endphp
+										@if(isset( $resultObj->id))
+										<li class="intermediate completed " data-id="nugget_1_1_1" data-quiz_level="medium">
+											<a href="javascript:;" class="locked_nugget rurera-tooltip" data-id="nugget_1_1_1" title="1Plant cells"><img src="/assets/default/img/tick-white.png" alt="">
+											
+												<div class="lms-tooltip">
+													<div class="tooltip-box">
+														<h5 class="font-18 font-weight-bold text-white mb-5">															
+														Active practice: {{getTimeWithText($resultObj->quizz_result_questions_list->where('status', '!=', 'waiting')->sum('time_consumed'))}}<br> 
+														Questions answered: {{$resultObj->quizz_result_questions_list->where('status', '!=', 'waiting')->count()}} <br>
+														<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$resultObj->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade')}}
+														</h5>
+														<button class="tooltip-button" onclick="window.location.href='/panel/results/{{$resultObj->id}}/timetables';">Result</button>
+													</div>
+												</div>
+											</a>
+										</li>
+										@endif
+									@endforeach
+								</ul>
+							</div>
+						</div>
+					</div>
+				@endif
+				
+								
+							
 			</li>
+			
 		@endforeach
 		
 	</ul>
 	@endif
 </div>
+				
 @endif
 <div class="dashboard">
     @if(auth()->check() && (auth()->user()->isUser()))

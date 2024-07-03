@@ -60,6 +60,7 @@ class NationalCurriculumController extends Controller
         $subject_id = $request->get('subject_id');
         $only_field = $request->get('only_field');
         $learning_journey = $request->get('learning_journey', 'no');
+		$daily_quests = $request->get('daily_quests', 'no');
 		$learning_journey_id = $request->get('learning_journey_id', 0);
 		
 		
@@ -67,6 +68,10 @@ class NationalCurriculumController extends Controller
 		if( $learning_journey == 'yes'){
 			$LearningJourneysSubjects = LearningJourneys::where('year_id', $category_id)->where('id', '!=', $learning_journey_id)->pluck('subject_id')->toArray();
 			$webinars = $webinars->whereNotIn('id', $LearningJourneysSubjects);
+		}
+		if( $daily_quests == 'yes'){
+			$LearningJourneysSubjects = LearningJourneys::where('year_id', $category_id)->where('id', '!=', $learning_journey_id)->pluck('subject_id')->toArray();
+			$webinars = $webinars->whereIn('id', $LearningJourneysSubjects);
 		}
 		$webinars = $webinars->get();
         if ($only_field != 'yes') {

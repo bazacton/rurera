@@ -1,9 +1,13 @@
+@php
+$packages_only = isset( $packages )? $packages : array();
+$show_details = isset( $show_details )? $show_details : true;
+@endphp
 <section class="lms-setup-progress-section lms-membership-section mb-0 pt-70 pb-60"  data-currency_sign="{{getCurrencySign()}}" style="background-color: #fff;">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-12 text-center">
 				<div class="element-title text-center mb-40">
-					<h2 itemprop="title" class="font-72 text-dark-charcoal mb-0">Choose the right plan for you</h2>
+					<h2 itemprop="title" class="font-40 text-dark-charcoal mb-0">Choose the right plan for you</h2>
 					<p class="font-16 pt-10">Save more with annual pricing</p>
 				</div>
 			</div>
@@ -22,7 +26,7 @@
 			<div class="col-lg-12 col-md-12 col-12 mx-auto">
 				<div class="row">
 
-					@include('web.default.pricing.packages_list',['subscribes' => array()])
+					@include('web.default.pricing.packages_list',['subscribes' => array(), 'packages_only' => $packages_only, 'show_details' => $show_details])
 
 				</div>
 			</div>

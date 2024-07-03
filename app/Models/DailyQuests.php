@@ -20,4 +20,9 @@ class DailyQuests extends Model
     {
         return $this->hasMany('App\Models\RewardAccounting', 'parent_id', 'id')->where('parent_type', '=', 'quest');
     }
+	
+	public function learningJourney()
+    {
+		return $this->belongsTo('App\Models\learningJourneys', 'learning_journey_id', 'id');
+    }
 }

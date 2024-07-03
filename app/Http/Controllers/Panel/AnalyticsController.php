@@ -215,7 +215,7 @@ class AnalyticsController extends Controller
 							$topic_title .= ($QuizzesAttemptObj->quizzes_results->quiz_result_type == '11plus') ? ' ('.$QuizzesAttemptObj->quizzes_results->sameParent->where('created_at','<', $QuizzesAttemptObj->quizzes_results->created_at)->count().')' : '';
                             $questions_list = isset($QuizzesAttemptObj->questions_list) ? json_decode($QuizzesAttemptObj->questions_list) : array();
                             $practice_time = $QuizzesAttemptObj->timeConsumed->sum('time_consumed');	
-                            $question_answered = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting'))->count();
+                            $question_answered = $QuizzesAttemptObj->timeConsumed->whereNotIn('status', array('waiting', 'not_attempted'))->count();
                             $question_correct = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->count();
                             $question_incorrect = $QuizzesAttemptObj->timeConsumed->where('status', 'incorrect')->count();
                             $coins_earned = $QuizzesAttemptObj->timeConsumed->where('status', 'correct')->sum('quiz_grade');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\DailyQuestsController;
 use App\Mixins\RegistrationPackage\UserPackage;
 use App\Models\Product;
 use App\Models\Subscribe;
@@ -212,7 +213,12 @@ class DashboardController extends Controller
         } else {
 			$user_year = $user->year_id;
 			$LearningJourneys = LearningJourneys::where('status', 'active')->where('year_id',$user_year)->get();
+			
 			$data['LearningJourneys']	= $LearningJourneys;
+			
+			$quests = $user->getUserQuests();
+			$data['quests']	= $quests;
+			
             return view(getTemplate() . '.panel.dashboard.index', $data);
         }
     }

@@ -92,7 +92,7 @@
             </div>
         </div>
     </section>
-    {{do_shortcode('redefining_personalized_learning')}}
+    {{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)))}}
     <section class="choose-sats choose-sats-section pt-80 pb-90 mt-50">
         <div class="container">
             <div class="row">

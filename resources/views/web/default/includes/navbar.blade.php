@@ -225,7 +225,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                 </ul>
                 <div class="mobile-login-reg-buttons">
                     <a class="mobile-login-btn" href="/login">Log in</a>
-                    <a class="mobile-register-btn" href="/register">Try for free</a>
+                    <a class="mobile-register-btn" href="/register-as">Try for free</a>
                 </div>
             </div>
 
@@ -302,7 +302,7 @@ $profile_navs = isset( $navData['profile_navs'] )? $navData['profile_navs'] : ar
                     @else
                     <div class="d-flex align-items-center ml-md-50">
                         <a href="/login" class="py-5 px-15 mr-10 text-dark-blue font-14 login-btn">Log in</a>
-                        <a href="/register" class="py-5 px-15 text-dark-blue font-14 register-btn">Try for free</a>
+                        <a href="/register-as" class="py-5 px-15 text-dark-blue font-14 register-btn">Try for free</a>
                     </div>
                     @endif
                 </div>

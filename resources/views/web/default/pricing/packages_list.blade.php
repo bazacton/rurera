@@ -1,7 +1,12 @@
 @php use App\Models\Subscribe;
-
+$packages_only = isset( $packages_only )? $packages_only : array();
 if( empty( $subscribes )){
-	$subscribes = Subscribe::all();
+	$subscribes = Subscribe::where('id', '>', 0);
+	if( !empty($packages_only)){
+		$subscribes = $subscribes->whereIn('id', $packages_only);
+	}
+	$subscribes = $subscribes->get();
+	
 }
 
 
@@ -16,8 +21,12 @@ $purchase_title = ($is_subscribed == true)? 'Subscribed' : $purchase_title;
 $subscribe_btn_class = ($is_subscribed == true)? 'disabled-style disabled-div' : '';
 $user_subscribed_for = isset( $user_subscribed_for)? $user_subscribed_for : 1;
 $selection_class = (auth()->user())? 'package-selection' : 'subscription-modal';
+$packages_count = $subscribes->count();
+$element_class = ($packages_count < 3)? 'col-lg-6 col-md-6 col-sm-12' : 'col-lg-4 col-md-6 col-sm-12';
+$element_class = ($packages_count < 2)? 'col-lg-12 col-md-12 col-sm-12' : $element_class;
+$show_details = isset( $show_details )? $show_details : true;
 @endphp
-<div class="col-lg-4 col-md-6 col-sm-12">
+<div class="{{$element_class}}">
     <div class="subscribe-plan {{(isset( $selected_package ) && $selected_package == $subscribe->id)? 'active' : ''}} current-plan position-relative d-flex flex-column rounded-lg pb-25 pt-40 px-20 mb-30">
         <span class="subscribe-icon mb-20"><img src="{{ $subscribe->icon }}" height="auto" width="auto" alt="Box image"/></span>
         <div class="subscribe-title text-left">
@@ -31,38 +40,42 @@ $selection_class = (auth()->user())? 'package-selection' : 'subscription-modal';
         <button itemprop="button" type="submit" data-user_id="{{isset($childObj->id)?$childObj->id : 0}}" data-type="package_selection" data-id="{{$subscribe->id}}"
                 class="{{$selection_class}} btn w-100 {{$subscribe_btn_class}}">{{$purchase_title}}
         </button>
-        <span class="plan-label d-block font-weight-500 pt-20">
-                                            Suitable for:
-                                        </span>
-        <ul class="mt-10 plan-feature">
-            <li class="mt-10">Grammar school entrance</li>
-            <li class="mt-10">Independent school entrance</li>
-        </ul>
-        <span class="plan-label d-block font-weight-500 pt-20">
-                                            Subjects:
-                                        </span>
-        <ul class="mt-10 plan-feature">
-            @php $is_available = ($subscribe->is_courses > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">English, Maths, Science , Computer</li>
-            <li class="mt-10 {{$is_available}}">Verbal reasoning, non-verbal reasoning</li>
-            @php $is_available = ($subscribe->is_timestables > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">Times Tables Practice</li>
-            @php $is_available = ($subscribe->is_vocabulary > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">Vocabulary</li>
-            @php $is_available = ($subscribe->is_bookshelf > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">Bookshelf</li>
-        </ul>
-        <span class="plan-label d-block font-weight-500 pt-20">
-                                            Mock Tests Prep:
-                                        </span>
-        <ul class="mt-10 plan-feature">
-            @php $is_available = ($subscribe->is_sats > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">SATs</li>
-            @php $is_available = ($subscribe->is_elevenplus > 0)? '' : 'subscribe-no'; @endphp
-            <li class="mt-10 {{$is_available}}">ISEB Common Pre-Tests</li>
-            <li class="mt-10 {{$is_available}}">GL 11+</li>
-            <li class="mt-10 {{$is_available}}">CAT4</li>
-        </ul>
+		
+		@if($show_details === true)
+		
+			<span class="plan-label d-block font-weight-500 pt-20">
+												Suitable for:
+											</span>
+			<ul class="mt-10 plan-feature">
+				<li class="mt-10">Grammar school entrance</li>
+				<li class="mt-10">Independent school entrance</li>
+			</ul>
+			<span class="plan-label d-block font-weight-500 pt-20">
+												Subjects:
+											</span>
+			<ul class="mt-10 plan-feature">
+				@php $is_available = ($subscribe->is_courses > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">English, Maths, Science , Computer</li>
+				<li class="mt-10 {{$is_available}}">Verbal reasoning, non-verbal reasoning</li>
+				@php $is_available = ($subscribe->is_timestables > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">Times Tables Practice</li>
+				@php $is_available = ($subscribe->is_vocabulary > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">Vocabulary</li>
+				@php $is_available = ($subscribe->is_bookshelf > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">Bookshelf</li>
+			</ul>
+			<span class="plan-label d-block font-weight-500 pt-20">
+												Mock Tests Prep:
+											</span>
+			<ul class="mt-10 plan-feature">
+				@php $is_available = ($subscribe->is_sats > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">SATs</li>
+				@php $is_available = ($subscribe->is_elevenplus > 0)? '' : 'subscribe-no'; @endphp
+				<li class="mt-10 {{$is_available}}">ISEB Common Pre-Tests</li>
+				<li class="mt-10 {{$is_available}}">GL 11+</li>
+				<li class="mt-10 {{$is_available}}">CAT4</li>
+			</ul>
+		@endif
     </div>
 </div>
 @endforeach

@@ -800,6 +800,49 @@
                                                     <div class="invalid-feedback"></div>
                                                 </div>
                                             </div>
+											<div class="form-section quest_topic_type_fields learning_journey_fields">
+												<h2 class="section-title">Learning Journey</h2>
+												
+												<div class="form-group">
+													<label>{{ trans('/admin/main.category') }}</label>
+													<select data-subject_id="{{ !empty($LearningJourneyObj)? $LearningJourneyObj->subject_id : 0}}"
+															class="form-control category-id-field @error('category_id') is-invalid @enderror"
+															name="category_id">
+														<option {{ !empty($trend) ?
+														'' : 'selected' }} disabled>{{ trans('admin/main.choose_category') }}</option>
+
+														@foreach($categories as $category)
+														@if(!empty($category->subCategories) and count($category->subCategories))
+														<optgroup label="{{  $category->title }}">
+															@foreach($category->subCategories as $subCategory)
+															<option value="{{ $subCategory->id }}" @if(!empty($LearningJourneyObj) and
+																	$LearningJourneyObj->
+																year_id == $subCategory->id) selected="selected" @endif>{{
+																$subCategory->title }}
+															</option>
+															@endforeach
+														</optgroup>
+														@else
+														<option value="{{ $category->id }}" class="font-weight-bold"
+																@if(!empty($LearningJourneyObj)
+																and $LearningJourneyObj->year_id == $category->id) selected="selected"
+															@endif>{{
+															$category->title }}
+														</option>
+														@endif
+														@endforeach
+													</select>
+													@error('category_id')
+													<div class="invalid-feedback">
+														{{ $message }}
+													</div>
+													@enderror
+											</div>
+											<div class="category_subjects_list">
+
+											</div>
+												
+											</div>
 
                                             <div class="form-section quest_topic_type_fields timestables_fields">
                                                 <h2 class="section-title">Times Tables</h2>
@@ -1371,6 +1414,24 @@
                 }
             });
         }
+		
+		
+		$('body').on('change', '.category-id-field', function (e) {
+            var category_id = $(this).val();
+            var subject_id = $(this).attr('data-subject_id');
+            $.ajax({
+                type: "GET",
+                url: '/national-curriculum/subjects_by_category',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {'category_id': category_id, 'subject_id': subject_id, 'daily_quests': 'yes'},
+                success: function (response) {
+                    $(".category_subjects_list").html(response);
+                }
+            });
+
+        });
 
 
         $('body').on('change', '.select_all', function (e) {
@@ -1620,6 +1681,7 @@
             $(".max_questions").html('Max: ' + total_questions);
             $(".no_of_questions").attr('max', total_questions);
             $(".no_of_questions").val(current_questions);
+			
             slider_fields_refresh();
         });
 

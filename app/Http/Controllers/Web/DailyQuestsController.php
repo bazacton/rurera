@@ -8,6 +8,8 @@ use App\Models\DailyQuests;
 use App\Models\QuizzesResult;
 use App\Models\Page;
 use App\Models\RewardAccounting;
+use App\Models\StudentJourneyItems;
+use App\Models\LearningJourneys;
 use App\User;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
@@ -204,6 +206,14 @@ class DailyQuestsController extends Controller
         $lessons_score = $questObj->lessons_score;
         $no_of_answers = $questObj->no_of_answers;
         $screen_time = $questObj->screen_time;
+		
+		$results_ids = array();
+		if( $questObj->quest_topic_type == 'learning_journey'){
+			$learning_journey_id = $questObj->learning_journey_id;
+			$LearningJourneyObj = LearningJourneys::find($learning_journey_id);
+			$learning_journey_items = $LearningJourneyObj->learningJourneyStages->pluck('id')->toArray();
+			$results_ids = StudentJourneyItems::whereIn('learning_journey_item_id', $learning_journey_items)->pluck('result_id')->toArray();
+		}
 
 
 
@@ -221,7 +231,13 @@ class DailyQuestsController extends Controller
         $QuizzesResults->where('created_at' ,'>=', strtotime(date('Y-m-d 00:00:00')));
         $QuizzesResults->where('created_at' ,'<=', strtotime(date('Y-m-d 23:59:59')));
 
+		if( $questObj->quest_topic_type == 'learning_journey'){
+			$QuizzesResults->whereIn('id' , $results_ids);
+		}
         $QuizzesResults = $QuizzesResults->get();
+		
+		
+		$resultsRecords = array();
 		
 
         $questScore = $questObj->no_of_coins;
@@ -251,6 +267,7 @@ class DailyQuestsController extends Controller
             $attemptedEligible = array_filter($attemptPercentage, function($value) use ($lessons_score) {
                 return $value >= $lessons_score;
             });
+			$resultsRecords = $attemptedEligible;
 
             $attempts_count = count($attemptedEligible);
             $attempts_count = ($attempts_count > $no_of_practices)? $no_of_practices : $attempts_count;
@@ -300,6 +317,7 @@ class DailyQuestsController extends Controller
             'quest_bar_label' => $quest_bar_label,
             'completion_percentage' => $completion_percentage,
             'questScore' => $questScore,
+			'resultsRecords' => $resultsRecords,
         );
 
         return $response;

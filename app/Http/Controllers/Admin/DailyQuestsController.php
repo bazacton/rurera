@@ -22,6 +22,7 @@ use App\Models\Webinar;
 use App\Models\WebinarChapter;
 use App\Models\SubChapters;
 use App\Models\WebinarChapterItem;
+use App\Models\LearningJourneys;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -222,6 +223,10 @@ class DailyQuestsController extends Controller
 
         $teachers_query = User::where('role_id', '=', 7)->where('status', 'active');
         $teachers = $teachers_query->get();
+		
+		$categories = Category::where('parent_id', null)
+            ->with('subCategories')
+            ->get();
 
         $data = [
             'pageTitle'  => 'Create Quest',
@@ -230,6 +235,7 @@ class DailyQuestsController extends Controller
             'classes'    => $classes,
             'teachers'   => $teachers,
             'weeks_array'   => $weeks_array,
+			'categories' => $categories,
         ];
 
         return view('admin.daily_quests.create', $data);
@@ -291,6 +297,13 @@ class DailyQuestsController extends Controller
         $quest_icon = isset($data['quest_icon']) ? $data['quest_icon'] : '';
         $users_array = isset($data['assignment_users']) ? $data['assignment_users'] : array();
         $section_id = isset($data['section_id']) ? array($data['section_id']) : array();
+		
+        $year_id = $request->post('category_id', 0);
+		$subject_id = $request->post('subject_id', 0);
+		
+		if( $quest_topic_type == 'learning_journey'){
+			$LearningJourneyObj = LearningJourneys::where('year_id', $year_id)->where('subject_id', $subject_id)->where('status', 'active')->first();
+		}
 
 
         $quest_dates = array_map(function($date) {
@@ -327,7 +340,10 @@ class DailyQuestsController extends Controller
             'quest_dates'                => $quest_dates,
             'quest_users'                => $quest_users,
             'date_type'               	 => $date_type,
-            'week_no'                => json_encode($weeks_dates),
+            'week_no'               	 => json_encode($weeks_dates),
+            'year_id'               	 => $year_id,
+            'subject_id'               	 => $subject_id,
+            'learning_journey_id'        => isset( $LearningJourneyObj->id )? $LearningJourneyObj->id : 0,
         ]);
 
        return redirect()->route('adminListDailyQuests', []);

@@ -9118,23 +9118,35 @@ function do_shortcode($elementName, $params = [])
 
 
 function rurera_content($content){
-	 // Define the regex pattern to match the shortcode
-	$pattern = '/\[rurera_shortcode\s+element="([^"]+)"\s*(.*?)\]/';
-	// Callback function to replace the shortcode
-	$callback = function ($matches) {
-		$element = $matches[1];
-		$paramsString = $matches[2];
-		// Parse additional parameters
-		$params = [];
-		preg_match_all('/(\w+)="([^"]+)"/', $paramsString, $paramMatches, PREG_SET_ORDER);
-		foreach ($paramMatches as $paramMatch) {
-			$params[$paramMatch[1]] = $paramMatch[2];
-		}
-		// Create the do_shortcode string
-		$doShortcodeString = do_shortcode($element, $params);
-		return $doShortcodeString;
-	};
+	  // Define the regex pattern to match the shortcode
+    $pattern = '/\[rurera_shortcode\s+element="([^"]+)"\s*(.*?)\]/';
+    
+    // Callback function to replace the shortcode
+    $callback = function ($matches) {
+        $element = $matches[1];
+        $paramsString = $matches[2];
+        
+        // Parse additional parameters
+        $params = [];
+        preg_match_all('/(\w+)="([^"]+)"/', $paramsString, $paramMatches, PREG_SET_ORDER);
+        foreach ($paramMatches as $paramMatch) {
+            $key = $paramMatch[1];
+            $value = $paramMatch[2];
 
-	// Perform the replacement
-	return preg_replace_callback($pattern, $callback, $content);
+            // Handle array-like parameters
+            if (preg_match('/^\((.*?)\)$/', $value, $arrayMatches)) {
+                $arrayItems = explode(',', $arrayMatches[1]);
+                $params[$key] = array_map('trim', $arrayItems);
+            } else {
+                $params[$key] = $value;
+            }
+        }
+
+        // Create the do_shortcode string
+        $doShortcodeString = do_shortcode($element, $params);
+        return $doShortcodeString;
+    };
+
+    // Perform the replacement
+    return preg_replace_callback($pattern, $callback, $content);
 }

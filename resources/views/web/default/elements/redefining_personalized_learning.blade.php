@@ -6,7 +6,7 @@ $items = isset( $items )? $items : array();
             <div class="row">
                 <div class="col-12">
                     <div class="section-title mb-50 text-center">
-                        <h2 class="mb-10 font-72">Redefining Personalized learning</h2>
+                        <h2 class="mb-10 font-40">Redefining Personalized learning</h2>
                         <p class="font-16 text-gray">Rurera provides powerful resources that align with student's specific interests and learning goals.</p>
                     </div>
                 </div>

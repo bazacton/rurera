@@ -16,5 +16,10 @@ class StudentJourneyItems extends Model
     {
 		return $this->hasOne('App\Models\LearningJourneyItems', 'id', 'learning_journey_item_id');
     }
+	
+	public function result()
+    {
+		return $this->belongsTo('App\Models\QuizzesResult', 'result_id', 'id');
+    }
 
 }

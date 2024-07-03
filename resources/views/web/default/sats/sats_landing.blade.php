@@ -548,7 +548,7 @@
     <section class="home-sections home-sections-swiper container find-instructor-section position-relative mt-80">
         <div class="row align-items-center">
             <div class="col-12">
-                <div class="section-title text-left mb-50">
+                <div class="section-title text-center mb-50">
                     <h2 class="mt-0 mb-10 font-40">Challenging the SATs with Confidence</h2>
                     <p class="font-19 text-gray">
                         Rurera offer the capability to track their onscreen and practiced time activity well remaining
@@ -755,10 +755,11 @@
             </div>
         </div>
     </section>
-	{{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3)))}}
+	{{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3,4,5,6,7,8,9)))}}
 	{{do_shortcode('rurera_assessments')}}
 	{{do_shortcode('faqs')}}
-	{{do_shortcode('packages')}}
+	{{do_shortcode('reviews')}}
+	{{do_shortcode('packages', array('packages' => array(6,7,9), 'show_details' => false))}}
 	
 	
 	

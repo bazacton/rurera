@@ -175,64 +175,11 @@
                 </div>
             </div>
         </section>
-    <section class="mb-60 pt-80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-12 col-md-12">
-                    <div class="section-title text-center mb-50">
-                        <h2 class="mt-0 mb-10 font-40">Frequently asked questions</h2>
-                        <p class="font-19 text-gray">Asking the right questions is indeed a skill that requires careful consideration.</p>
-                    </div>
-                    <div class="mt-0">
-                        <div class="lms-faqs mx-w-100 mt-0">
-                            <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header" id="headingonsix">
-                                        <button class="btn btn-link font-22 font-weight-normal" data-toggle="collapse" data-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix"><h3>How Rurera help as Math learning platform?</h3></button>
-                                    </div>
-                                    <div id="collapsesix" class="collapse show" aria-labelledby="headingsix" data-parent="#accordion">
-                                        <div class="card-body">Rurera offer multiplication and division times tables practices online that help students as well as maths teachers.</div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><h3>Why are times tables important for children?</h3></button>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body">Times tables are fundamental for building strong math skills. They help children to improve math, and provide a foundation for more complex math problems.</div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingseven">
-                                        <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven"><h3>What are division tables, and how are they related to multiplication tables?</h3></button>
-                                    </div>
-                                    <div id="collapseseven" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
-                                        <div class="card-body">Division tables are similar to multiplication tables but focus on division. They show the division facts for numbers up to 12, helping children understand the relationship between multiplication and division.</div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="heading8">
-                                        <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8"><h3>What are some strategies for helping a child who is struggling with multiplication and division tables?</h3></button>
-                                    </div>
-                                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
-                                        <div class="card-body">Encouraging your child to practice multiplication and division tables in an enjoyable and supportive manner and rurera is offering numerous options for practicing for it.</div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="heading9">
-                                        <button class="btn btn-link font-22 font-weight-normal collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9"><h3>What payment methods do you accept?</h3></button>
-                                    </div>
-                                    <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordion">
-                                        <div class="card-body">You can use paypal, skrill and bank transfer method.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		{{do_shortcode('redefining_personalized_learning', array('items' => array(1,2,3,4,5,6,7,8,9)))}}
+	{{do_shortcode('rurera_assessments')}}
+	{{do_shortcode('faqs')}}
+	{{do_shortcode('reviews')}}
+	{{do_shortcode('packages', array('packages' => array(6,7,9), 'show_details' => false))}}
     <section class="lms-column-section lms-text-section py-70 mx-w-100" style="background-color: #f27530;">
         <div class="container">
             <div class="row">
