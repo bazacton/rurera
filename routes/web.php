@@ -668,6 +668,7 @@ Route::group(['namespace' => 'Web' , 'middleware' => ['check_mobile_app' , 'impe
 
     Route::group(['prefix' => 'quests'] , function () {
         Route::get('/' , 'DailyQuestsController@index');
+		Route::get('/{quest_id}/summary' , 'DailyQuestsController@summary');
     });
 
     Route::get('/sitemap.xml' , function () {

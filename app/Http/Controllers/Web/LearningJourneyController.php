@@ -62,15 +62,29 @@ class LearningJourneyController extends Controller
         $user = getUser();
 		$categoryObj = Category::find($user->year_id);
 		$category_slug = $categoryObj->slug;
-		
+		//orderBy('sort_order', 'ASC')
 		$course = Webinar::where('slug', $subject_slug)->whereJsonContains('category_id', (string) $categoryObj->id)->first();
 		$lerningJourney = $course->lerningJourney;
 		$student_learning_journey = $this->student_learning_journey($user->id, $lerningJourney->learningJourneyLevels);
 		
 		$items_data = isset( $student_learning_journey['items_data'] )? $student_learning_journey['items_data'] : array();
+		
 		$new_added_stages = isset( $student_learning_journey['new_added_stages'] )? $student_learning_journey['new_added_stages'] : array();
 		
 		//pre($learningJourneyLevels);
+		
+		$topicCount = 0;
+		$treasureCount = 0;
+
+		foreach ($items_data as $items) {
+			foreach ($items as $item) {
+				if ($item->item_type == 'topic') {
+					$topicCount++;
+				} elseif ($item->item_type == 'treasure') {
+					$treasureCount++;
+				}
+			}
+		}
 		
 		
         $data = [
@@ -82,6 +96,9 @@ class LearningJourneyController extends Controller
 			'new_added_stages'		 	=> $new_added_stages,
 			'category_slug'		 	=> $category_slug,
 			'subject_slug'		 	=> $subject_slug,
+			'course'		 		=> $course,
+			'topicCount'		 		=> $topicCount,
+			'treasureCount'		 		=> $treasureCount,
 		];
 		return view('web.default.learning_journey.subject', $data);
 
@@ -90,7 +107,8 @@ class LearningJourneyController extends Controller
 	
 	public function student_learning_journey($user_id, $learningJourneyLevels){
 		$userObj = User::find($user_id);
-		$studentJourneyItems = $userObj->studentJourneyItems->where('status','completed')->pluck('learning_journey_item_id')->toArray();
+		$studentJourneyItems = $userObj->studentJourneyItems->where('status','completed')->pluck('learning_journey_item_id','result_id')->toArray();
+		
 		
 		$items_data = $new_added_stages = array();
 		
@@ -99,10 +117,35 @@ class LearningJourneyController extends Controller
 			foreach( $learningJourneyLevels  as $levelObj){
 				if($levelObj->learningJourneyItems->count() > 0){
 					$item_counter = 0;
-					foreach( $levelObj->learningJourneyItems as $itemObj){
+					foreach( $levelObj->learningJourneyItems->sortBy('sort_order') as $itemObj){
+						
+						$itemObj->percentage = 0;
+						if( $itemObj->item_type == 'topic'){
+							$student_journey_ids = $userObj->studentJourneyItems->where('learning_journey_item_id', $itemObj->id)->pluck('id')->toArray();
+							$QuizzesResults = QuizzesResult::whereIn('student_journey_id', $student_journey_ids)->where('quiz_result_type', 'learning_journey')->get();
+							if( $QuizzesResults->count() > 0){
+								foreach( $QuizzesResults as $QuizzesResultObj){
+									$quiz_breakdown = json_decode($QuizzesResultObj->quiz_breakdown);
+									$total_questions = isset( $quiz_breakdown->{'Emerging'}->questions )? $quiz_breakdown->{'Emerging'}->questions : 0;
+									$total_questions += isset( $quiz_breakdown->{'Expected'}->questions )? $quiz_breakdown->{'Expected'}->questions : 0;
+									$total_questions += isset( $quiz_breakdown->{'Exceeding'}->questions )? $quiz_breakdown->{'Exceeding'}->questions : 0;
+									//$total_questions += isset( $quiz_breakdown->{'Exceeding'}->excess_time_taken )? $quiz_breakdown->{'Exceeding'}->excess_time_taken : 0;								
+									$total_correct_answers = $QuizzesResultObj->quizz_result_questions_list->where('status', 'correct')->count();
+									$correct_percentage = round(($total_correct_answers * 100) / $total_questions);
+									//pre($correct_percentage);
+									$itemObj->percentage = ($itemObj->percentage < $correct_percentage)? $correct_percentage : $itemObj->percentage;
+								}
+							}
+						}
+						
 						$item_counter++;
-						$itemObj->is_completed = in_array($itemObj->id, $studentJourneyItems)? true : false;
+						$itemObj->is_completed = isset( $studentJourneyItems[$itemObj->id] )? true : false;
+						$itemObj->completed_result = isset( $studentJourneyItems[$itemObj->id] )? $studentJourneyItems[$itemObj->id] : 0;
 						$items_data[$levelObj->id][$item_counter] = $itemObj;
+						
+						//$sub_chapter_item->questions_list->count();
+						
+						
 						
 						//Check if previous item was not completed but the current is
 						if( $itemObj->is_completed == true){
@@ -114,10 +157,7 @@ class LearningJourneyController extends Controller
 									$new_added_stages[] = $previous_item;
 									unset( $items_data[$levelObj->id][$previous_counter] );
 								}
-								
 							}
-							
-							
 						}
 						
 					}

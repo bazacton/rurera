@@ -216,8 +216,8 @@ class DashboardController extends Controller
 			
 			$data['LearningJourneys']	= $LearningJourneys;
 			
-			$quests = $user->getUserQuests();
-			$data['quests']	= $quests;
+			$quests = $user->getUserQuests([],[],array('weekly'));
+			$data['quests']	= $quests;	
 			
             return view(getTemplate() . '.panel.dashboard.index', $data);
         }

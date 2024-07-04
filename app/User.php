@@ -4278,7 +4278,7 @@ class User extends Authenticatable
         return $noticeboards;
     }
 
-    public function getUserQuests($quest_type = array()){
+    public function getUserQuests($quest_type = array(), $not_included = array(), $date_types = array()){
 
         $user = $this;
         $user_id = $user->id;
@@ -4300,6 +4300,12 @@ class User extends Authenticatable
         $query->whereJsonContains('quest_dates', $today_date);
 		if( !empty( $quest_type ) ){
 			$query->whereIn('quest_topic_type', $quest_type);
+		}
+		if( !empty( $date_types ) ){
+			$query->whereIn('date_type', $date_types);
+		}
+		if( !empty( $not_included ) ){
+			$query->whereNotIn('quest_topic_type', $not_included);
 		}
         $quests = $query->get();
         return $quests;

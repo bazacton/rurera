@@ -75,6 +75,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-4 panel-right-sidebar">
                         <div class="row">
+                            
                             <div class="col-12 col-lg-12">
 
                                 @include(getTemplate(). '.panel.includes.user_top_bar')
@@ -150,6 +151,7 @@
                                 </div>
                                 @endif
                             </div>
+                            
 							
 							@if(auth()->user()->isUser())
 							<div class="col-12 col-lg-12 mb-30">
@@ -167,6 +169,38 @@
 									</ul>
 								</div>
 							</div>
+							 @if(request()->is('panel'))
+								<div class="col-12 col-lg-12">
+									<div class="getting-start panel-border bg-white rounded-sm p-20 mb-30">
+										<h3 class="font-19 font-weight-bold">Getting Start</h3>
+										<div class="levels-progress horizontal mb-30 mt-5">
+											<span class="progress-count" style="width: 0%;"></span>
+										</div>
+										<ul>
+											<li>
+												<div class="start-item">
+													<div class="icon-box">
+														<img src="/assets/default/img/types/practice.svg" alt="">
+													</div>
+													<div class="item-text">
+														<h5>Track Your Progress</h5>
+													</div>
+												</div>
+											</li>
+													<li>
+												<div class="start-item">
+													<div class="icon-box">
+														<img src="/assets/default/img/types/practice.svg" alt="">
+													</div>
+													<div class="item-text">
+														<h5>Earn first 10 coins</h5>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+                            @endif
                             
                             @endif
 
@@ -253,7 +287,7 @@
                         @endif
                             @endif
                         @if(request()->is('custom_html') || request()->is('panel') || request()->is('panel/setting') || request()->is('panel/rewards') || request()->is('panel/store/purchases') || request()->is('panel/notifications') || request()->is('panel/support/tickets'))
-                        <div class="col-12 col-lg-12 mb-30">
+                        <div class="col-12 col-lg-12 mb-30 rurera-hide">
                             <div class="bg-white noticeboard rounded-sm panel-shadow panel-border py-10 py-md-20 px-15 px-md-30">
                                 <h3 class="font-19 font-weight-bold">{{ trans('panel.noticeboard') }}</h3>
 
@@ -281,7 +315,7 @@
                         </div>
                             @endif
 							@if(auth()->user()->isUser())
-						@if( $authUser->getUserQuests()->count() > 0 )
+					    	@if( $authUser->getUserQuests(array(), array('learning_journey'), array('daily'))->count() > 0 )
                                 <div class="col-12 col-lg-12 mb-30">
                                     <div class="quests-list panel-border bg-white rounded-sm p-20">
                                         <h3 class="font-19 font-weight-bold">
@@ -289,7 +323,7 @@
                                             <a href="/quests" class="view-all font-weight-bold font-15">View All</a>
                                         </h3>
                                         <ul>
-                                            @foreach( $authUser->getUserQuests() as $questObj)
+                                            @foreach( $authUser->getUserQuests(array(), array('learning_journey'), array('daily')) as $questObj)
                                                 @php $questUserData = $DailyQuestsController->getQuestUserData($questObj);
 
                                                 $quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';

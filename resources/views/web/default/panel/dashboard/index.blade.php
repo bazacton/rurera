@@ -89,58 +89,8 @@
 
 
 </section>
-<div class="dashboard-cards-holder">
-    <div class="section-title text-left mb-30 mt-35">
-        <h2 class="font-22">Getting started with Rurera</h2>
-		<span>0/20 completed</span>
-        <p class="pt-5 font-14 text-gray">A quick overview of where to start in rurera.</p>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <a href="#" class="card-link">
-                    <span class="icon-box"><img src="/assets/default/svgs/plus.svg"></span>
-                    <span class="d-block mb-10">Create an entirely new website</span>
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <a href="#" class="card-link">
-                    <span class="icon-box"><img src="/assets/default/svgs/arrow-right.svg"></span>
-                    <span class="d-block mb-10">Move over an existing website</span>
-                </a>
-                
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <a href="#" class="card-link">
-                    <span class="icon-box"><img src="/assets/default/svgs/file-code.svg"></span>
-                    <span class="d-block mb-10">Let's build your website together</span>
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="dashboard-card panel-border rounded-sm bg-white mb-30 text-center">
-                <a href="#" class="card-link">
-                    <span class="icon-box"><img src="/assets/default/svgs/skip.svg"></span>
-                    <span class="d-block mb-10">I will take care of the setup myself</span>
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="dashboard-card completed panel-border rounded-sm mb-30 text-center">
-                <a href="#" class="card-link">
-                    <span class="icon-box"><img src="/assets/default/svgs/check-white.svg"></span>
-                    <span class="d-block mb-10">Let's build your website together</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 @if(!auth()->user()->isUser())
-	<div class="section-title text-left mb-30">
+	<div class="section-title text-left mt-30">
 		<h2 class="font-22">Set Work</h2>
 	</div>
 	@include('web.default.flash_message')
@@ -150,7 +100,7 @@
 	
 @if( $continueTests->count() > 0 || $assignmentsArray->count() > 0)
 
-	<div class="quests-list quests-learning">
+	<div class="quests-list quests-learning mt-30">
 		<div class="section-title text-left mb-30 d-flex flex-wrap justify-content-between align-items-center mt-5">
 			<h2 class="font-22">Continue Learning</h2>
         </div>
@@ -227,6 +177,7 @@
 			$quest_icon = '/assets/default/img/types/'.$questObj->quest_topic_type.'.svg';
 			$quest_icon = ( $questObj->quest_icon != '')? $questObj->quest_icon : $quest_icon;
 			@endphp
+			@php $link = isset( $questObj->learningJourney->subject->slug )? $questObj->learningJourney->subject->slug : ''; @endphp
 		
 			
 			<li class="d-flex align-items-center justify-content-between flex-wrap bg-white p-20 mb-20 bg-danger">
@@ -235,7 +186,7 @@
 						<img src="{{$quest_icon}}">
 					</div>
 					<div class="item-text">
-						<h5 class="font-18 font-weight-bold">{{$questObj->title}}</h5>
+						<h5 class="font-18 font-weight-bold"><a href="/learning-journey/{{$link}}">{{$questObj->title}}</a></h5>
 						<div class="levels-progress horizontal">
 							<span class="progress-box">
 								<span class="progress-count" style="width: 0%;"></span>
@@ -276,13 +227,15 @@
 					@endif
 					
 					@php $remaining_attempts = $no_of_practices - $attempted_count; @endphp
-				
-					@while( $remaining_attempts >= 1)
-						<a href="/learning-journey/{{$questObj->learningJourney->subject->slug}}" class="locked_nugget">
-							<img src="{{$quest_icon}}" class="disabled-style">
-						</a>
-						@php $remaining_attempts--; @endphp
-					@endwhile
+					
+					@if( $questObj->quest_topic_type == 'learning_journey')
+    					@while( $remaining_attempts >= 1)
+    						<a href="/learning-journey/{{$link}}" class="locked_nugget">
+    							<img src="{{$quest_icon}}" class="disabled-style">
+    						</a>
+    						@php $remaining_attempts--; @endphp
+    					@endwhile
+					@endif
 					
 				</div>
 

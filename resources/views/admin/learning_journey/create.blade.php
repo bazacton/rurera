@@ -29,7 +29,7 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/admin/learning_journey/{{ !empty($weeklyPlanner) ? $weeklyPlanner->id.'/store' : 'store' }}"
+                        <form action="/admin/learning_journey/{{ !empty($LearningJourneyObj) ? $LearningJourneyObj->id.'/store' : 'store' }}"
                               method="Post">
                             {{ csrf_field() }}
 

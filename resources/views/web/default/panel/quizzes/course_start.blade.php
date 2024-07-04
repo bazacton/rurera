@@ -346,7 +346,7 @@ $practice_time = 0;
     var Quizintervals = null;
 	var InactivityInterval = null;
     var focusInterval = null;
-    var focusIntervalCount = 10;
+    var focusIntervalCount = 180;
 	var TimerActive = true;
     var duration_type = '{{$duration_type}}';
 	
@@ -399,7 +399,7 @@ $practice_time = 0;
 						
 						
                         $(".question_inactivity_modal").modal('show');
-                        focusIntervalCount = 10;
+                        focusIntervalCount = 180;
                         clearInterval(focusInterval);
                         focusInterval = null;
                     }
@@ -410,14 +410,14 @@ $practice_time = 0;
 
 
         window.addEventListener('focus', function () {
-            focusIntervalCount = 10;
+            focusIntervalCount = 180;
             clearInterval(focusInterval);
             focusInterval = null;
         });
 
         $(document).on('click', '.continue-btn', function (e) {
             TimerActive = true;
-            focusIntervalCount = 10;
+            focusIntervalCount = 180;
             focusInterval = null;
         });
 		

@@ -398,6 +398,7 @@ class QuizController extends Controller
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey);
 		
 		
+		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -437,6 +438,7 @@ class QuizController extends Controller
         if ($no_of_questions > 0) {
             $questions_list = array_slice($questions_list, 0, $no_of_questions);
         }
+		
 
 
         if ($quiz) {
@@ -496,11 +498,13 @@ class QuizController extends Controller
             if (!empty($questions_list)) {
                 $questions_counter = 0;
                 foreach ($questions_list as $question_no_index => $question_id) {
+					
                     $question_no = $question_no_index;
                     $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
                     $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
+					$failed_check = ($learning_journey == 'yes')? true : false;
 
-                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index, $failed_check);
 
                     $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
 
@@ -513,7 +517,7 @@ class QuizController extends Controller
                     if (isset($questionObj->id)) {
                         $questions_array[] = $newQuestionResult;
                         $exclude_array[] = $newQuestionResult->id;
-                        if ($resultLogObj->quiz_result_type == 'practice') {
+                        if (in_array($resultLogObj->quiz_result_type, array('practice','learning_journey'))) {
                             $question_no_index = $questions_counter;
                         }
 
@@ -763,6 +767,9 @@ class QuizController extends Controller
 
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
+			
+			//pre($questions_status_array, false);
+			//pre($questions_list);
 			
 
             $data = [

@@ -57,6 +57,67 @@ class DailyQuestsController extends Controller
         }
     }
 	
+	/*
+	* Quest Summary
+	*/
+	
+	public function summary($quest_id = '')
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+        if (!auth()->user()->isUser()) {
+            return redirect('/'.panelRoute());
+        }
+		$current_week = 
+		$user = auth()->user();
+		
+		$week_no = $this->getWeekNoByDate(date('Y-m-d'));
+		$week_dates = $this->getWeeksDates(date('Y'),array($week_no));
+		$week_start = isset( $week_dates[0] )? $week_dates[0] : 0;
+		$week_end = isset( $week_dates[6] )? $week_dates[6] : 0;
+		
+		$questObj = DailyQuests::find($quest_id);
+		
+		if( $questObj->quest_topic_type == 'learning_journey'){
+			$learning_journey_id = $questObj->learning_journey_id;
+			$LearningJourneyObj = LearningJourneys::find($learning_journey_id);
+			$learning_journey_items = $LearningJourneyObj->learningJourneyStages->pluck('id')->toArray();
+			$results_ids = StudentJourneyItems::whereIn('learning_journey_item_id', $learning_journey_items)->pluck('result_id')->toArray();
+		}
+		
+		$QuizzesResults = QuizzesResult::where('user_id', $user->id)
+        ->where('quiz_result_type', $questObj->quest_topic_type)
+        ->where('status', '!=', 'waiting');
+       
+
+        //pre(date('Y-m-d 00:00:00'));
+        //pre(date('Y-m-d 00:00:00'), false);
+        //pre(date('Y-m-d 23:59:59'));
+        $QuizzesResults->where('created_at' ,'>=', strtotime($week_start.' 00:00:00'));
+        $QuizzesResults->where('created_at' ,'<=', strtotime($week_end.' 23:59:59'));
+
+		if( $questObj->quest_topic_type == 'learning_journey'){
+			$QuizzesResults->whereIn('id' , $results_ids);
+		}
+        $QuizzesResults = $QuizzesResults->get();
+		
+		$currentWeek = $week_no;
+		$previousWeek = $week_no-1;
+		
+        $data = [
+			'pageTitle'                  => 'Quest Summary',
+			'currentWeek'                  => $currentWeek,
+			'previousWeek'                  => $previousWeek,
+			'QuizzesResults'                  => $QuizzesResults,
+			'week_start'                  => strtotime($week_start.' 00:00:00'),
+			'week_end'                  => strtotime($week_end.' 23:59:59'),
+		];
+		return view('web.default.quests.summary', $data);
+
+        abort(404);
+    }
+	
 	
 	/*
 	* Learning Journey Quests
@@ -340,6 +401,48 @@ class DailyQuestsController extends Controller
 
         return false;
     }
+	
+	public function getWeeks($year) {
+		$weeks = [];
+        $startDate = Carbon::createFromDate($year, 1, 1);
+        $weekInterval = 7;
+
+        for ($i = 0; $i < 52; $i++) {
+            $weekStart = $startDate->copy();
+            $weekEnd = $startDate->copy()->addDays(6);
+            $weeks[$i + 1] = "Week # " . ($i + 1) . " (" . $weekStart->format('d/m') . " to " . $weekEnd->format('d/m') . ")";
+            $startDate->addDays($weekInterval);
+        }
+
+        return $weeks;
+	}
+	
+	public function getWeeksDates($year, $weeksArray) {
+		$weeks = [];
+		$startDate = Carbon::createFromDate($year, 1, 1);
+		$weekInterval = 7;
+
+		for ($i = 0; $i < 52; $i++) {
+			$weekNumber = $i + 1;
+
+			if (in_array($weekNumber, $weeksArray)) {
+				$weekStart = $startDate->copy();
+				$weekDates = [];
+				for ($j = 0; $j < 7; $j++) {
+					$weeks[] = $weekStart->copy()->addDays($j)->format('Y-m-d');
+				}
+			}
+
+			$startDate->addDays($weekInterval);
+		}
+
+		return $weeks;
+	}
+	
+	public function getWeekNoByDate($date) {
+		$weekNo = Carbon::parse($date)->weekOfYear;
+		return $weekNo;
+	}
 
 
 }
