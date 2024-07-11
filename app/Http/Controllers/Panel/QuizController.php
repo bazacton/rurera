@@ -398,7 +398,6 @@ class QuizController extends Controller
         $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quiz, $quiz_level, $learning_journey);
 		
 		
-		
         $questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
         $other_data = isset($questions_list_data_array['other_data']) ? $questions_list_data_array['other_data'] : '';
         $quiz_breakdown = isset($questions_list_data_array['quiz_breakdown']) ? $questions_list_data_array['quiz_breakdown'] : '';
@@ -439,6 +438,7 @@ class QuizController extends Controller
             $questions_list = array_slice($questions_list, 0, $no_of_questions);
         }
 		
+		//pre($questions_list);
 
 
         if ($quiz) {
@@ -494,6 +494,9 @@ class QuizController extends Controller
 
             //Stores the question id of questions results table with the index of actual question ID
             $questions_result_reference_array = array();
+			
+			
+			//pre($questions_list, false);
 
             if (!empty($questions_list)) {
                 $questions_counter = 0;
@@ -503,6 +506,9 @@ class QuizController extends Controller
                     $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
                     $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
 					$failed_check = ($learning_journey == 'yes')? true : false;
+					if ($quiz->quiz_type == 'vocabulary') {
+						$failed_check = true;
+					}
 
                     $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index, $failed_check);
 
@@ -586,6 +592,7 @@ class QuizController extends Controller
                                 'disable_prev'          => 'true',
                                 'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
                             ];
+							$actual_question_ids[$newQuestionResult->id] = $questionObj->id;
                         } else {
                             $results_questions_array[$newQuestionResult->id] = [
                                 'question'          => $questionObj,
@@ -612,6 +619,7 @@ class QuizController extends Controller
             } else {
                 return view(getTemplate() . '.quizzes.unauthorized');
             }
+			
 
             if (!empty($results_questions_array)) {
                 $questions_list = array_keys($results_questions_array);
@@ -648,9 +656,8 @@ class QuizController extends Controller
 
 
                     if ($quiz->quiz_type == 'vocabulary') {
-
-
-
+						
+						
                         //$quiz_level = 'medium';
                         //$quiz_level = 'hard';
                         $time_interval = 25;
@@ -751,7 +758,7 @@ class QuizController extends Controller
 					
 					$question_id = isset( $questionObjData->id )? $questionObjData->id : 0;
 					
-					if( $newQuestionResult->status != 'waiting'){
+					if( $newQuestionResult->status != 'waiting' && $quiz->quiz_type != 'vocabulary'){
 						$question_response_layout .= $QuestionsAttemptController->get_question_result_layout($resultQuestionID, false);
 					}
                     $questions_layout[$resultQuestionID] = rurera_encode(stripslashes($question_response_layout));
@@ -769,6 +776,7 @@ class QuizController extends Controller
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
 			
 			//pre($questions_status_array, false);
+			//pre($actual_question_ids, false);
 			//pre($questions_list);
 			
 
@@ -844,6 +852,10 @@ class QuizController extends Controller
         $quizAttempt = QuizzAttempts::where('quiz_result_id', $result_id)->first();
 
         $attempt_questions_list = isset($QuizzesResult->questions_list) ? json_decode($QuizzesResult->questions_list) : array();
+		
+		$attempt_questions_list = $QuizzesResult->quizz_result_questions_list->whereIn('status', array('correct','incorrect'));
+		$not_attempted_count = $QuizzesResult->quizz_result_questions_list->whereIn('status', array('not_attempted'))->count();
+		
         $time_consumed = $QuizzResultQuestions->sum('time_consumed');
         $coins_earned = $QuizzResultQuestions->where('status','correct')->sum('quiz_grade');
         $questions_layout = $questions_list = array();
@@ -950,6 +962,7 @@ class QuizController extends Controller
             'time_consumed'          => $time_consumed,
             'coins_earned'          => $coins_earned,
             'incorrect_count' => $incorrect_count,
+            'not_attempted_count' => $not_attempted_count,
         ];
         return view(getTemplate() . '.panel.quizzes.check_answers', $data);
     }

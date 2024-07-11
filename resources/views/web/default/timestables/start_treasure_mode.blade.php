@@ -149,7 +149,7 @@ if( $duration_type == 'total_practice'){
                     </div>
 
 
-                        <div class="trophy-levels life-lines-container rurera-hide">
+                        <div class="trophy-levels life-lines-container rurera-hide" style="display:none !important;">
                             <div class="flex-parent">
                                 <div class="input-flex-container life-lines-block">
                                     @php $life_counter = 1; @endphp

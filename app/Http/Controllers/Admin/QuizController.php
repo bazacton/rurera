@@ -709,6 +709,7 @@ class QuizController extends Controller
             'treasure_after'                   => isset($data['treasure_after']) ? $data['treasure_after'] : 'no_treasure',
             'treasure_coins'                   => isset($data['treasure_coins']) ? $data['treasure_coins'] : 0,
             'target_score'            => isset($data['target_score']) ? $data['target_score'] : 0,
+            'no_of_questions'            => $no_of_questions,
         ];
 		
 		if( !empty($mock_exam_settings)){

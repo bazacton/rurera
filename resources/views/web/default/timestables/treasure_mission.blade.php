@@ -117,13 +117,13 @@
                                         @endphp
                                         <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
                                             <a href="javascript:;" class="{{$treasure_mission_class}} rurera-tooltip" data-id="{{$nuggetObj['id']}}">
-                                                @if($is_acheived == 1 )
+                                                @if($is_acheived == 1 && isset( $timestableResultObj->id) )
                                                     <img src="/assets/default/img/tick-white.png" alt="">
 													<div class="lms-tooltip">
 														<div class="tooltip-box">
 															<h5 class="font-18 font-weight-bold text-white mb-5">															
 															Active practice: {{getTimeWithText($timestableResultObj->total_time_consumed)}}<br> 
-															Questions answered: {{$timestableResultObj->quizz_result_questions_list->where('status', '!=', 'waiting')->count()}} <br>
+															Questions answered: {{$timestableResultObj->quizz_result_questions_list->whereNotIn('status', array('waiting','not_attempted'))->count()}} <br>
 															<img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30">Coins earned:{{$timestableResultObj->quizz_result_questions_list->where('status', 'correct')->sum('quiz_grade')}}
 															</h5>
 															<button class="tooltip-button" onclick="window.location.href='/panel/results/{{$timestableResultObj->id}}/timetables';">Result</button>

@@ -48,6 +48,8 @@
 						@php $item_counter = 0; $total_count = 0; $ul_class = 'ul-rtl'; $already_active = false; $is_active = false; @endphp
 						@foreach($itemsRow as $itemObj)
 							@php $item_counter++;  $total_count++; $is_completed = isset( $itemObj->is_completed )? $itemObj->is_completed : false; 
+							$percentage = isset( $itemObj->percentage )? $itemObj->percentage : false; 
+							$is_completed = ($percentage >= 70)? true : $is_completed;
 							
 							$is_last = ($total_count >= count($itemsRow))? true : false;
 							

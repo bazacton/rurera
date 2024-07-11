@@ -188,6 +188,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
         success: function (return_data) {
             attempted_questions = parseInt(attempted_questions)+1;
             question_submit_process = false;
+			var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
             
 			
 			
@@ -232,8 +233,6 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
             if($(".question-step.active .question-layout").length > 0) {
                 $(".question-step.active .question-layout").addClass('disable-div');
             }
-
-
 
             if (rurera_is_field(return_data.updated_questions_layout) && return_data.updated_questions_layout != '') {
                 var updated_questions_layout = return_data.updated_questions_layout;
@@ -328,7 +327,7 @@ $("body").off("click", ".question-submit-btn").on("click", ".question-submit-btn
                     //$(".question-layout-block").html(return_data.question_response_layout);
 					
 					
-					
+					console.log('quiz_typequiz_typequiz_typequiz_typequiz_type'+quiz_type);
 
 
                     if (quiz_type == 'vocabulary') {
@@ -885,8 +884,10 @@ function init_question_functions() {
         var quizQuestionID = $(".question-area-block").find('.question-fields').attr('data-question_id');
 
         var total_points = $(".lms-quiz-section").attr('data-total_points');
+		console.log('total_points==========================================='+total_points);
         if( rurera_is_field(total_points) == true && total_points != ''){
             $(".spells-quiz-info .total-points span").html(total_points+' ');
+			$(".lms-quiz-section").attr('data-total_points', total_points);
         }
 
         $("p.given").html(chunkWords($("p.given").text()));

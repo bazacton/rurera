@@ -107,7 +107,7 @@ class LearningJourneyController extends Controller
 	
 	public function student_learning_journey($user_id, $learningJourneyLevels){
 		$userObj = User::find($user_id);
-		$studentJourneyItems = $userObj->studentJourneyItems->where('status','completed')->pluck('learning_journey_item_id','result_id')->toArray();
+		$studentJourneyItems = $userObj->studentJourneyItems->where('status','completed')->pluck('result_id', 'learning_journey_item_id')->toArray();
 		
 		
 		$items_data = $new_added_stages = array();
@@ -137,7 +137,6 @@ class LearningJourneyController extends Controller
 								}
 							}
 						}
-						
 						$item_counter++;
 						$itemObj->is_completed = isset( $studentJourneyItems[$itemObj->id] )? true : false;
 						$itemObj->completed_result = isset( $studentJourneyItems[$itemObj->id] )? $studentJourneyItems[$itemObj->id] : 0;

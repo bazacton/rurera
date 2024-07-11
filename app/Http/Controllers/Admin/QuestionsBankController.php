@@ -2106,13 +2106,10 @@ class QuestionsBankController extends Controller
         $lessons = $lessons->get();
 
 
-
-        $webinars = \Illuminate\Support\Facades\DB::table('webinars')
-                    ->join('webinar_translations' , 'webinar_translations.webinar_id' , '=' , 'webinars.id')
-                    ->join('category_translations' , 'category_translations.category_id' , '=' , 'webinars.category_id')
-                    ->select('webinars.id' , 'webinar_translations.title', 'category_translations.title as category_title');
+        $webinars = Webinar::where('status', 'active');
 
         $webinars = $webinars->get();
+        
 
         $data['webinars'] = $webinars;
 

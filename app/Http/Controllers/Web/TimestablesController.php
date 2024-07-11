@@ -856,7 +856,7 @@ class TimestablesController extends Controller
         $no_of_questions = 400;
         $practice_time = $request->post('practice_time');
         $practice_time_seconds = ($practice_time * 60);
-        $practice_time_seconds = 10;
+        //$practice_time_seconds = 10;
         //pre($practice_time_seconds);
 
         $tables_types = [];
@@ -1382,7 +1382,7 @@ class TimestablesController extends Controller
             'levelData'      => $levelData,
             'stageObj'     => $stageData,
             'user_timetables_levels' => $user_timetables_levels,
-            'practice_time'   => 20,//$practice_time,
+            'practice_time'   => $practice_time,
             'total_questions' => count($questions_array_list),
         ];
         return view('web.default.timestables.start_treasure_mode', $data);
@@ -1597,6 +1597,12 @@ class TimestablesController extends Controller
             return redirect('/login');
         }
         $user = auth()->user();
+		
+		
+		//$DailyQuestsController = new DailyQuestsController();
+		//$QuizzesResult = QuizzesResult::find(3);
+        //$DailyQuestsController->questCompletionCheck($QuizzesResult);
+		
         $results_data = QuizzesResult::where('user_id', $user->id)->where('quiz_result_type', 'timestables')->where('attempt_mode', 'powerup_mode')->orderBy('created_at', 'desc')->limit(10)->get();
         $attempts_array = $attempts_labels = $attempts_values = array();
         if (!empty($results_data)) {

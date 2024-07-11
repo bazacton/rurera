@@ -170,6 +170,32 @@ Lms Form Fields Style
 .lms-checkbox-img .form-field label {height: 100%;}
 .form-field input[type="checkbox"] ~ label {min-height: 52px;}
 .image-right .form-field input[type="checkbox"] ~ label {padding-right: 60px;}
+
+.field-holder.correct, 
+.form-field.correct, 
+.form-field.correct label, 
+.field-holder.correct, 
+.form-field.correct, 
+.form-field.correct label, 
+.editor-field.correct {
+    border-radius: 5px;
+}
+body .form-field.correct label {
+    border-color: #00a300 !important;
+    background-color: #c1fdca !important;
+    color: #00a300 !important;
+}
+.field-holder.wrong, .form-field.wrong, 
+.form-field.wrong label, .field-holder.wrong, 
+.form-field.wrong, .form-field.wrong label, 
+.editor-field.wrong {
+    border-radius: 5px;
+}
+body .form-field.wrong label  {
+    background: #ffe2eb !important;
+    border-color: #ff3a74 !important;
+    color: #ff3a74 !important;
+}
 /* .form-field label:before {content: ""; height: 30px; width: 30px; position: absolute; right: 15px; top: 50%; margin-top: -15px; border: 1px solid rgba(0,0,0,0.1); border-radius: 2px;} */
 /* .form-field label:after {content: "\2713"; position: absolute; top: 50%; right: 15px; height: 30px; width: 30px; text-align: center; line-height: 30px; margin-top: -15px; color: #fff; opacity: 0; border-radius: 2px; -webkit-transform: scale(0); transform: scale(0); -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;} */
 /* .form-field input[type="checkbox"]:checked ~ label:before {border: 0; background: rgb(112,193,124); background: -moz-linear-gradient(left,  rgba(112,193,124,1) 0%, rgba(109,193,133,1) 50%, rgba(94,161,92,1) 50%, rgba(92,159,92,1) 100%); background: -webkit-linear-gradient(left,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); background: linear-gradient(to right,  rgba(112,193,124,1) 0%,rgba(109,193,133,1) 50%,rgba(94,161,92,1) 50%,rgba(92,159,92,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#70c17c', endColorstr='#5c9f5c',GradientType=1 );} */
@@ -315,7 +341,7 @@ Lms Question List Style
 .question-layout-block form.question-fields,
 .question-fields .left-content {display: flex; flex-direction: column; /*min-height: 680px; height: 680px;*/ overflow: hidden; overflow-y: auto; padding-right: 10px;}
 .read-quiz-content .left-content {overflow: hidden;}
-.question-layout-block form.question-fields .questions-total-holder {margin: -2px 0 20px !important; padding-left: 0; color: #adabab; }
+.question-layout-block form.question-fields .questions-total-holder {margin: 5px 0 20px 60px !important; padding-left: 0; color: #adabab; }
 .question-layout-block form.question-fields .questions-nav-controls {background-color:rgba(255,255,255,0.9); margin-top: auto;min-height: 80px;position: fixed;bottom: 0;width: 100%; max-width: 848px; margin-bottom: 0 !important; z-index: 2;}
 .single-question-preview form.question-fields .questions-nav-controls,
 .assignment-questions-preview form.question-fields .questions-nav-controls {position: relative; width: 100%; }
@@ -364,6 +390,7 @@ Lms Question List Style
 .question-step:has(.question-number-holder .flag-question) .leform-form,
 .question-step:has(.question-number-holder .flag-question) .questions-total-holder {
     padding-left: 70px;
+    margin-left: 0 !important;
 }
 
 /**********************************
@@ -527,7 +554,7 @@ Lms Quiz Wf Style Start
 .graph-holder {text-align: center;}
 .lms-quiz-section .img-holder img {border-radius: 0; width: auto;}
 .solve-quiz.question-textarea {line-height: normal;}
-.question-label {position: relative;}
+.question-label {position: relative; padding-bottom: 10px;}
 /* .question-label:before {background: url(/assets/default/img/quiz/question_label.png) no-repeat; background-size: contain; content: ""; width: 50px; height: 50px;border-radius: 100%;display: inline-block; margin-right: 15px;vertical-align: middle;} */
 .question-label span,
 .lms-quiz-section .question-label span {margin: 0;padding: 0;border-radius: 6px;line-height: normal;text-align: left;border: 0;display: inline-block;vertical-align: middle;width: 100%;position: relative; overflow: hidden; border-left: 0; color: #5e5c5c;font-weight: 700;font-size: 25px;}
@@ -2115,6 +2142,7 @@ span.Selectable:hover {text-decoration: underline;}
     box-shadow: 0 2px 0 1px #ededed;
     border: 1px solid #ededed;
     border-bottom: 0;
+    margin-bottom: 15px;
 }
 .question-layout .question-example p {
     margin-top: 0;

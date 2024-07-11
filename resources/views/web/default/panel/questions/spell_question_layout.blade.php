@@ -45,7 +45,7 @@ if( isset( $duration_type ) ){
     }
 }
 
-
+$quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
 @endphp
 <div class="question-area spell-question-area">
     <div class="correct-appriciate" style="display:none"></div>
@@ -64,8 +64,8 @@ if( isset( $duration_type ) ){
                         <li>
                             <span class="nub-of-sec question-time-remaining-{{ $question->id }}" data-remaining="{{($question->question_average_time*60)}}">{{$total_time}}</span>
                         </li>
-                        <li class="total-points">
-                            <span>{{isset( $total_points )? $total_points : 0}} </span> Points
+                        <li class="total-points" data-total_points="{{isset( $total_points )? $total_points : 0}}">
+                            <span>{{isset( $total_points )? $total_points : 0}}</span> Coins
                         </li>
                     </ul>
                 </div>

@@ -87,7 +87,7 @@ $rand_id = rand(99,9999);
                                             <img src="/assets/default/svgs/info-icon.svg" alt="#">
                                         </button>
                                         <div class="instruction-dropdown">
-                                            <div class="instruction-text">
+                                            <div class="instruction-text rurera-hide">
                                                             <h3>INSTRUCTIONS</h3>
                                                             <h4>Setting Up Your Page</h4>
                                                             <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
@@ -133,7 +133,7 @@ $rand_id = rand(99,9999);
 
                     <div class="learning-content-box d-flex align-items-center justify-content-center flex-column p-15 p-lg-30 rounded-lg">
 
-                        <div class="instruction-text">
+                        <div class="instruction-text rurera-hide">
                                 <h3>INSTRUCTIONS</h3>
                                 <h4>Setting Up Your Page</h4>
                                 <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>
@@ -305,5 +305,18 @@ $rand_id = rand(99,9999);
 
 @if((!empty($isForumPage) and $isForumPage) or (!empty($isForumAnswersPage) and $isForumAnswersPage))
 <script src="/assets/learning_page/forum.min.js"></script>
+<script>
+	function afterQuestionValidation(return_data, thisForm, question_id) {
+		console.log('afterQuestionValidation');
+		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		var total_points = $(".lms-quiz-section").attr('data-total_points');
+		if( question_status_class == 'correct' ){
+			total_points = parseInt(total_points)+1;
+			$(".total-points").attr('data-total-points', total_points);
+			$(".lms-quiz-section").attr('data-total_points', total_points);
+			$(".total-points span").html(total_points);
+		}
+    }
+</script>
 @endif
 @endpush

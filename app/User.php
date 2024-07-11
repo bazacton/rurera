@@ -4278,36 +4278,47 @@ class User extends Authenticatable
         return $noticeboards;
     }
 
-    public function getUserQuests($quest_type = array(), $not_included = array(), $date_types = array()){
+    public function getUserQuests($quest_type = array(), $not_included = array(), $date_types = array(), $attempt_mode = ''){
 
         $user = $this;
         $user_id = $user->id;
+        $user_year_id = $user->year_id;
         $class_id = $user->section_id;
         $today_date = strtotime(date('Y-m-d'));
         $query = DailyQuests::query()
-            ->where('status', '!=', 'inactive')
-            ->whereJsonContains('quest_dates', $today_date)
-            ->where(function($query) use ($user_id, $class_id) {
-                $query->where(function($q) use ($user_id) {
-                    $q->where('quest_assign_type', 'Individual')
-                        ->whereJsonContains('quest_users', $user_id);
-                })->orWhere(function($q) use ($class_id) {
-                    $q->where('quest_assign_type', 'Class')
-                        ->whereJsonContains('class_ids', $class_id);
-                })->orWhere('quest_assign_type', 'All');
-            });
+			->where('status', '!=', 'inactive')
+			->whereJsonContains('quest_dates', $today_date)
+			->where(function($query) use ($user_id, $class_id) {
+				$query->where(function($q) use ($user_id) {
+					$q->where('quest_assign_type', 'Individual')
+						->whereJsonContains('quest_users', $user_id);
+				})->orWhere(function($q) use ($class_id) {
+					$q->where('quest_assign_type', 'Class')
+						->whereJsonContains('class_ids', $class_id);
+				})->orWhere('quest_assign_type', 'All');
+			});
 
-        $query->whereJsonContains('quest_dates', $today_date);
-		if( !empty( $quest_type ) ){
+		// Adding the additional filters
+		if (!empty($quest_type)) {
 			$query->whereIn('quest_topic_type', $quest_type);
 		}
-		if( !empty( $date_types ) ){
+		if (!empty($date_types)) {
 			$query->whereIn('date_type', $date_types);
 		}
-		if( !empty( $not_included ) ){
+		if (!empty($not_included)) {
 			$query->whereNotIn('quest_topic_type', $not_included);
 		}
-        $quests = $query->get();
+		if ($attempt_mode != '') {
+			$query->where('timestables_mode', $attempt_mode);
+		}
+
+		// Check for year_id condition
+		$query->where(function($q) use ($user_year_id) {
+			$q->where('year_id', 0)
+				->orWhere('year_id', $user_year_id);
+		});
+
+		$quests = $query->get();
         return $quests;
     }
 

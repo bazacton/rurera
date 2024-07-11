@@ -18,6 +18,10 @@
 <section class="p-25 panel-border border-bottom-4 border-radius-10 mb-30" style="background-color: #fff;">
     <div class="container">
         <div class="row">
+		
+			
+		
+		
 
             <div class="col-12">
                     <div class="section-title mb-30 text-center"><h2>Select Practice Time </h2></div>

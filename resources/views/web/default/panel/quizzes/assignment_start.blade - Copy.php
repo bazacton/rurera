@@ -145,7 +145,7 @@ $section_class = ($quiz->quiz_type == 'vocabulary')? 'lms-quiz-section1' : $sect
                                             <img src="/assets/default/svgs/info-icon.svg" alt="#">
                                         </button>
                                         <div class="instruction-dropdown">
-                                            <div class="instruction-text">
+                                            <div class="instruction-text rurera-hide">
                                                             <h3>INSTRUCTIONS</h3>
                                                             <h4>Setting Up Your Page</h4>
                                                             <p>Before you start the test you can use the buttons on the top right of the screen to choose:</p>

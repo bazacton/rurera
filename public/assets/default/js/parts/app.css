@@ -7440,7 +7440,7 @@ Lms FAQS Style Start
 .accordion__icon--is-open:before {transform: translateY(-50%) rotate(180deg);}
 .lms-faqs .card .card-header .btn-link:focus,
 .lms-faqs .card .card-header .btn-link:hover {text-decoration: none;}
-.lms-faqs .card-body {padding-left: 0; padding-bottom: 10px; padding-top: 10px;}
+.lms-faqs .card-body {padding-left: 0; padding-bottom: 0;}
 .lms-faqs .card-body p {margin: 0 0 20px;}
 .lms-faqs .card-body h5 {font-weight: 700; font-size: 18px; margin: 0 0 5px;}
 /*********************************
@@ -8592,15 +8592,7 @@ lms Key Stage Style Start
     .key-stage-section {width: 100%; overflow: auto;}
 }
 /*Choose Sats Style*/
-.choose-sats .sats-box {border: 2px dashed #000;
-    padding: 25px 20px;
-    text-align: center;
-    line-height: normal;
-    border-radius: 8px;
-    min-height: 165px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;}
+.choose-sats .sats-box {border: 2px dashed #000; padding: 30px 25px; text-align: center; line-height: normal; border-radius: 8px; min-height: 158px; display: flex; flex-direction: column; align-items: center;}
 .choose-sats .sats-box.border-solid {border-style: solid; min-width: 230px;}
 .choose-sats .sats-box.border-transparent {border-color: rgba(0,0,0,0.1);}
 .choose-sats .sats-box img {max-width: 50px; max-height: 50px; display: inline-block; line-height: normal; margin: 0 0 10px;}
@@ -8626,8 +8618,7 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item.book_shelf:hover .nav-link {background: #f3ce03; font-weight: bold; box-shadow: 0 -2px 2px 1px rgba(0, 0, 0, .1);}
 .navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
 .top-navbar .navbar-toggle-content {margin-right: 20px !important;}
-.top-navbar .login-btn {border: 1px solid var(--primary); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
-.top-navbar .register-btn {padding: 9px 15px !important;}
+.top-navbar .login-btn {border: 1px solid var(--primary); padding: 4px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
 .top-navbar .navbar-order .ml-md-50 {margin-left: 0 !important;}
 .navbar-nav .educator-menu .nav-link {padding: 2px 20px;}
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a {
@@ -8636,15 +8627,15 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a:after {
     content: "";
     position: absolute;
-    top: 50%;
-    right: 5px;
-    height: 8px;
-    width: 8px;
+    bottom: 0;
+    left: 50%;
+    height: 6px;
+    width: 6px;
     border: 1px solid #ddd;
     border-top: 0;
     border-left: 0;
     transform: rotate(45deg);
-    margin-top: -4px;
+    margin-left: -3px;
 }
 /*****************************
 Header Navbar Dropdown Style End
@@ -8838,7 +8829,7 @@ Lms Masonry Style End
 section.lms-column-section.lms-accordion-section.w-100.pb-60 {
     background-color: #f6f0ea;
     padding-top: 80px;
-    /* margin: 0 0 50px; */
+    margin: 0 0 50px;
 }
 .lms-accordion-modern.accordion .card.active {
     background-color: #fff;
@@ -9137,44 +9128,6 @@ Lms Contact Form Pages Style Start
 .contact-sub-header .message-box .icon-svg{ position: absolute;left: -30px;bottom: -25px;transform: rotate(-45deg);}
 .contact-sub-header .message-box .icon-svg svg {width: 30px;height: 30px;}
 .lms-contact-form-section .svg-container:before{top: 0;bottom: auto;-webkit-transform: scaleY(-1); -moz-transform: scaleY(-1); transform: scaleY(-1);}
-.lms-jobsform-content {
-    padding: 0 30px;
-}
-.lms-jobsform-content h2.font-56 {
-    font-size: 56px;
-}
-.content-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.lms-jobsform-partners ul {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-.lms-jobsform-partners li img {
-    bottom: 0;
-    height: 48px;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    object-fit: contain;
-}
-.lms-jobsform-partners ul li {
-    width: 23.333%;
-    text-align: center;
-    height: 48px;
-    max-width: 200px;
-    position: relative;
-}
-.lms-jobsform-partners ul li a {
-    display: block;
-    position: relative;
-}
 /*************************************
 Lms Contact Form Pages Style End
 *************************************/
@@ -10948,7 +10901,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     font-weight: 500;
     letter-spacing: -1px;
     z-index: 1;
-    margin-left: -30px;
+    margin-left: -20px;
 }
 .quiz-questions-bar-holder .value-lable:before {
     content: attr(title);
@@ -11012,8 +10965,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
 .lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
 .lms-tooltip span {display: block;}
-.lms-tooltip.show,
-.rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1;}
+.lms-tooltip.show {visibility: visible; opacity: 1;}
 .spell-levels li.completed .lms-tooltip {
     top: auto;
     bottom: 100%;
@@ -11702,17 +11654,6 @@ address .info-list-label {color: #64748b;}
     text-transform: uppercase;
 }
 /*Insta Form Style End*/
-.role-card-link {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 45px 0;
-    margin-bottom: 25px;
-    display: block;
-}
-.role-card .icon-box {
-    display: block;
-    margin: 0 0 30px;
-}
 
 /*************************************
 Lms Responsive Style Start
@@ -12687,7 +12628,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
   }
   
@@ -12696,7 +12637,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-100%);
     }
   }
 
@@ -12705,7 +12646,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(50%);
+      transform: translateX(100%);
     }
   }
   
@@ -12714,12 +12655,12 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(50%);
+      transform: translateX(100%);
     }
   }
-  /* body:has(.marquee-list) {
+  body:has(.marquee-list) {
     background-color: #fbfbfb;
-  } */
+  }
 
   .marquee-sec .reviews-star .icon-box {
     background-color: #01b77c;
@@ -12739,35 +12680,6 @@ Lms Responsive Style Start
 
 .reviews-lable .icon-box img {
     filter: invert(52%) sepia(48%) saturate(4633%) hue-rotate(130deg) brightness(98%) contrast(99%);
-    max-width: 100%;
-}
-.reviews-holder .reviews-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding-top: 15px;
-}
-.reviews-holder .reviews-score,
-.reviews-holder .reviews-number {
-    border-right: 1px solid #333;
-    line-height: 16px;
-    display: block;
-    padding-right: 10px;
-    font-weight: 500;
-}
-.reviews-holder .reviews-number {
-    border: 0;
-    padding-right: 0;
-    border-bottom: 1px solid #333;
-}
-.reviews-holder .reviews-score em,
-.reviews-holder .reviews-number em {
-    font-style: normal;
-    margin-left: 5px;
-}
-.reviews-holder .reviews-number em {
-    margin: 0 5px 0 0;
 }
 
 .footer-newsletter button {

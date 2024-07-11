@@ -33,7 +33,7 @@ $timer_counter = $practice_time;
 @endphp
 <div class="content-section">
 
-    <section class="lms-quiz-section">
+    <section class="lms-quiz-section" data-total_points="0">
 
         @if( $quiz->quiz_pdf != '')
         <script type="text/javascript">
@@ -179,6 +179,35 @@ $timer_counter = $practice_time;
                                         </div>
                                     </div>
                                 </div>
+								<div class="quiz-pagination ">
+								   <div class="swiper-container">
+								   <ul class="swiper-wrapper disabled-div1">
+									   @if( !empty( $questions_list ) )
+									   @php $question_count = 1; @endphp
+									   @foreach( $questions_list as $question_id)
+									   @php $is_flagged = false;
+									   $flagged_questions = ($newQuizStart->flagged_questions != '')? json_decode
+									   ($newQuizStart->flagged_questions) : array();
+									   $actual_question_id = isset( $actual_question_ids[$question_id] )? $actual_question_ids[$question_id] : 0;
+									   @endphp
+									   @if( is_array( $flagged_questions ) && in_array( $actual_question_id,
+									   $flagged_questions))
+									   @php $is_flagged = true;
+									   @endphp
+									   @endif
+									   @php $question_status_class = isset( $questions_status_array[$question_id] )? $questions_status_array[$question_id] : 'waiting'; @endphp
+									   <li data-question_id="{{$question_id}}" data-actual_question_id="{{$actual_question_id}}" class="swiper-slide {{ ( $is_flagged == true)?
+											   'has-flag' : ''}} {{$question_status_class}}"><a
+											   href="javascript:;">
+											   {{$question_count}}</a></li>
+									   @php $question_count++; @endphp
+									   @endforeach
+									   @endif
+								   </ul>
+								   </div>
+								   <div class="swiper-button-prev"></div>
+								   <div class="swiper-button-next"></div>
+							   </div>
                             </div>
                         </div>
                     </div>
@@ -408,8 +437,14 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
+		
+		var active_question_id = $(".question-area-block").attr('data-active_question_id');
+		$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
 
     }
+	
+	var active_question_id = $(".question-area-block").attr('data-active_question_id');
+   $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
 
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours
@@ -429,6 +464,17 @@ $timer_counter = $practice_time;
         return_string = return_string + 's';
 
         return return_string;
+    }
+	
+	function afterQuestionValidation(return_data, thisForm, question_id) {
+		var question_status_class = (return_data.incorrect_flag == true) ? 'incorrect' : 'correct';
+		var total_points = $(".lms-quiz-section").attr('data-total_points');
+		if( question_status_class == 'correct' ){
+			total_points = parseInt(total_points)+1;
+			$(".total-points").attr('data-total-points', total_points);
+			$(".lms-quiz-section").attr('data-total_points', total_points);
+			$(".total-points span").html(total_points);
+		}
     }
 
 

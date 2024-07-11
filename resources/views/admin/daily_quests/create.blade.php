@@ -887,7 +887,7 @@
 
                                                             <label class="card-radio">
                                                                 <input type="radio" name="ajax[{{ !empty($assignment) ? $assignment->id : 'new' }}][timestables_mode]"
-                                                                       class="timestables_mode_check" value="treasure_mission" checked>
+                                                                       class="timestables_mode_check" value="treasure_mode" checked>
                                                                 <span class="radio-btn"><i class="las la-check"></i>
                                                                     <div class="card-icon">
                                                                         <img src="/assets/default/img/treasure.png">

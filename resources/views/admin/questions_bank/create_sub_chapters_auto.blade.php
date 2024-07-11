@@ -27,7 +27,8 @@
                                         <option {{ !empty($trend) ? '' : 'selected' }} disabled>Select a Subject</option>
 
                                         @foreach($webinars as $webinar)
-                                        <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }} / {{$webinar->category_title}}</option>
+										@php $webinar_categories = $webinar->categories();@endphp
+                                        <option value="{{ $webinar->id }}" class="font-weight-bold" >{{ $webinar->title }} / @foreach( $webinar_categories as $category){{$category->title}} @endforeach</option>
                                         @endforeach
                                     </select>
                                     @error('webinar_id')

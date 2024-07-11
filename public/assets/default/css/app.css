@@ -5545,6 +5545,28 @@ p {line-height: 1.5;}
 .user-coins-menu .coins-text {width: calc(100% - 75px); font-weight: 700; color: #343434; font-size: 18px; line-height: normal; }
 .user-coins-menu .coins-text span {display: flex; font-weight: 400; font-size: 15px; color: #999; position: relative; align-items: flex-start; line-height: normal; gap: 5px; padding-top: 5px; flex-direction: column;}
 .user-coins-menu .coins-text span a {font-weight: 500; color: var(--primary); text-decoration: underline;}
+.getting-start li .start-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.getting-start ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.getting-start .start-item h5 {
+    font-weight: 500;
+}
+.panel-right-sidebar .getting-start .icon-box img {
+    max-width: 20px;
+}
+.panel-right-sidebar .getting-start .levels-progress.horizontal {
+    height: 4px;
+    overflow: hidden;
+    position: relative;
+}
 @media (max-width:767px) {
     .top-navbar .dropdown .dropdown-menu {height: 462px; overflow: hidden !important; overflow-y: auto !important;}
     .top-navbar .dropdown .dropdown-menu.show {top: 0 !important; transform: none !important; margin-top: 0;}
@@ -8592,7 +8614,15 @@ lms Key Stage Style Start
     .key-stage-section {width: 100%; overflow: auto;}
 }
 /*Choose Sats Style*/
-.choose-sats .sats-box {border: 2px dashed #000; padding: 30px 25px; text-align: center; line-height: normal; border-radius: 8px; min-height: 158px; display: flex; flex-direction: column; align-items: center;}
+.choose-sats .sats-box {border: 2px dashed #000;
+    padding: 25px 20px;
+    text-align: center;
+    line-height: normal;
+    border-radius: 8px;
+    min-height: 165px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;}
 .choose-sats .sats-box.border-solid {border-style: solid; min-width: 230px;}
 .choose-sats .sats-box.border-transparent {border-color: rgba(0,0,0,0.1);}
 .choose-sats .sats-box img {max-width: 50px; max-height: 50px; display: inline-block; line-height: normal; margin: 0 0 10px;}
@@ -8619,7 +8649,7 @@ Header Navbar Dropdown Style Start
 .navbar-nav .educator-menu {position: absolute; right: 0; border-right: 1px solid #eaeaea;}
 .top-navbar .navbar-toggle-content {margin-right: 20px !important;}
 .top-navbar .login-btn {border: 1px solid var(--primary); padding: 7px 15px !important; border-radius: 3px; font-weight: 500;color: var(--primary);}
-.top-navbar .register-btn {padding: 7px 15px !important;}
+.top-navbar .register-btn {padding: 9px 15px !important;}
 .top-navbar .navbar-order .ml-md-50 {margin-left: 0 !important;}
 .navbar-nav .educator-menu .nav-link {padding: 2px 20px;}
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a {
@@ -8628,15 +8658,15 @@ Header Navbar Dropdown Style Start
 .navbar-nav .nav-item:has(.sidenav-dropdown) > a:after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    height: 6px;
-    width: 6px;
+    top: 50%;
+    right: 5px;
+    height: 8px;
+    width: 8px;
     border: 1px solid #ddd;
     border-top: 0;
     border-left: 0;
     transform: rotate(45deg);
-    margin-left: -3px;
+    margin-top: -4px;
 }
 /*****************************
 Header Navbar Dropdown Style End
@@ -8830,7 +8860,7 @@ Lms Masonry Style End
 section.lms-column-section.lms-accordion-section.w-100.pb-60 {
     background-color: #f6f0ea;
     padding-top: 80px;
-    margin: 0 0 50px;
+    /* margin: 0 0 50px; */
 }
 .lms-accordion-modern.accordion .card.active {
     background-color: #fff;
@@ -9114,7 +9144,7 @@ Lms Contact Form Pages Style Start
 .lms-map-holder .gmap_iframe {height: 380px;}
 /* .lms-map-section .element-title h2{font-size: 2.5rem; color: var(--dark-charcoal);} */
 .lms-contact-form-section{background-color: #eaf7f0; position: relative; padding-top: 100px;}
-.lms-contact-form {background: #fff; padding: 20px 30px 0 30px;}
+.lms-contact-form {background: #fff; padding: 20px 30px 0 30px; border-radius: 8px; position: sticky; top: 80px;}
 .lms-contact-form .form-element-title{background-color: #fff; margin: 0;}
 .lms-contact-form .form-element-title h2{color:var(--dark-charcoal); font-size: 2.5rem;}
 .lms-contact-form .row:nth-child(1)>.col-12>.form-element-title{padding:0; margin-bottom: 25px;}
@@ -9129,6 +9159,113 @@ Lms Contact Form Pages Style Start
 .contact-sub-header .message-box .icon-svg{ position: absolute;left: -30px;bottom: -25px;transform: rotate(-45deg);}
 .contact-sub-header .message-box .icon-svg svg {width: 30px;height: 30px;}
 .lms-contact-form-section .svg-container:before{top: 0;bottom: auto;-webkit-transform: scaleY(-1); -moz-transform: scaleY(-1); transform: scaleY(-1);}
+.lms-jobsform-content {
+    padding: 0 30px;
+}
+.lms-jobsform-content h2.font-56 {
+    font-size: 56px;
+}
+.content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.lms-jobsform-partners ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.lms-jobsform-partners li img {
+    bottom: 0;
+    height: 48px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    object-fit: contain;
+}
+.lms-jobsform-partners ul li {
+    width: 23.333%;
+    text-align: center;
+    height: 48px;
+    max-width: 200px;
+    position: relative;
+}
+.lms-jobsform-partners ul li a {
+    display: block;
+    position: relative;
+}
+.qoute-box {border: 1px solid #fff;border-radius: 8px;padding: 72px 60px;text-align: center;}
+
+.jobsform-qoute {
+    position: relative;
+}
+.jobsform-qoute p {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+.jobsform-qoute .author-info {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: center;
+    gap: 15px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+.jobsform-qoute .author-info .text-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.jobsform-qoute .author-info .img-box {
+    display: block;
+    height: 70px;
+    width: 70px;
+}
+.jobsform-qoute .author-info .img-box img {
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+}
+[class*="qoute-icon-"] {
+    position: absolute;
+    top: -18px;
+    left: 18px;
+}
+[class*="qoute-icon-"] img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(254deg) brightness(105%) contrast(101%);
+}
+.qoute-icon-right {
+    top: auto;
+    left: auto;
+    bottom: -18px;
+    right: 12px;
+    transform: rotate(180deg);
+}
+.qoute-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qoute-images .img-box {
+    max-width: 110px;
+    min-width: 110px;
+    text-align: center;
+}
+.qoute-images .img-box img {
+    max-width: 100%;
+    max-height: 80px;
+}
+.content-list li img {
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+    filter: invert(65%) sepia(49%) saturate(705%) hue-rotate(179deg) brightness(101%) contrast(101%);
+}
 /*************************************
 Lms Contact Form Pages Style End
 *************************************/
@@ -9764,6 +9901,7 @@ Main Home style End
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-processing:has(.rurera-button-loader) {position: relative;}
+.rurera-processing .rurera-button-loader {height: 100vh;}
 .edit-user-modal .user-profile-block.rurera-processing {height: 100vh;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
@@ -10579,20 +10717,38 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .panel-content .spell-levels .panel-subheader {padding-right: 155px; margin-bottom: 100px;}
 .treasure-mission-layout .spell-levels .horizontal-list {margin: 0 -15px 220px 0; position: relative;}
 .panel-content .spell-levels .treasure-stage:last-child .horizontal-list {margin-bottom: 100px;}
-.treasure-mission-layout .spell-levels .horizontal-list li {display: inline-flex; width: auto; margin: 0 0 0 7.444%; width: 13.222%; box-sizing: border-box;}
+.treasure-mission-layout .spell-levels .horizontal-list li {display: inline-flex; width: auto; margin: 0 0 0 7.444%; width: 13.222%; box-sizing: border-box; vertical-align: middle;}
 .treasure-mission-layout .spell-levels .horizontal-list li:first-child {margin-left: 0;}
 .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 100%; height: 4px; top: 50%; margin-top: -2px; left: 100%; margin-left: 18%;background-color: #e9e9e9;}
-.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {direction: rtl;}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {direction: rtl; text-align: right; margin-right: 0; margin-left: -15px;}
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {margin-left: 0; margin-right: 7.444%; justify-content: flex-end; }
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {right: 100%; left: auto; margin-left: 0; margin-right: 18%;}
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li > a:before {left: 0; right: 50%; margin-left: 0;margin-right: -2px;}
 /* .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li:last-child {margin-right: 0;} */
 .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li:first-child {margin-right: 0;}
 .treasure-mission-layout .spell-levels .horizontal-list li:nth-child(5) > a:before {display: none;}
-.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li {position: absolute; right: 0; top: 100%; margin-top: 80px;}
-.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li {left: 0; right: auto;}
-.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {display: block; width: 4px; height: 100%; left: 50%; margin-left: -2px;top: -65px;margin-top: 0;}
-.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {content: ""; width: 4px; height: 100%; left: 50%; margin-left: -2px;top: 100%;margin-top: 5px;position: absolute;background-color: #e9e9e9; border: 0;}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li {position: absolute; right: 12px; top: 100%; margin-top: 80px;}
+.treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li {left: 12px; right: auto;}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {
+    display: block;
+    width: 4px;
+    height: 62px;
+    left: 50%;
+    margin-left: -2px;
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 5px;
+}
+.treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {content: "";
+    width: 4px;
+    height: 62px;
+    left: 50%;
+    margin-left: -2px;
+    bottom: -100%;
+    margin-bottom: -8px;    
+    position: absolute;
+    background-color: #e9e9e9;
+    border: 0;}
 .treasure-mission-layout .spell-levels li > a img {max-width: 100%; object-fit: contain; }
 .spell-levels li .dropdown-toggle:after {display: none;}
 .treasure-mission-layout .spell-levels .treasure-stage:last-child ul {margin-bottom: 60px;}
@@ -10621,6 +10777,38 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .resume-test .rurera-list-btn:hover {color: var(--primary);}
 .mock-test-assign-btn.active,
 .vocabulary-assign-btn.active {border-color: var(--primary); color: var(--primary);}
+.rurera-stars {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    margin-left: -15px;
+    display: flex;
+    gap: 0;
+    margin-bottom: -8px;
+}
+.rurera-stars span {
+    height: 30px;
+    width: 30px;
+    display: block;
+    margin-right: -4px;
+}
+.rurera-stars span img {
+    max-width: 100%;
+    object-fit: contain;
+}
+.rurera-stars .first-star {
+    transform: rotate(45deg);
+}
+.rurera-stars .third-star {
+    transform: rotate(45deg);
+}
+.rurera-stars .second-star {
+    margin-top: -15px;
+    margin-left: -2px;
+    height: 35px;
+    width: 35px;
+}
 /* Spell Levels Style End */
 .panel-content .lms-jobs-form {box-shadow: none; padding: 0; border: 0; position: relative;}
 .panel-content .inline-filters {display: flex; flex-wrap: wrap; gap: 20px; align-items: center;}
@@ -10885,7 +11073,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .correct-in-row {color: #51cd00; font-weight: 500; text-transform: uppercase; }
 .quiz-questions-bar {background-color: #e5e5e5; height: 10px; border-radius: 20px; width: calc(100% - 60px); position: relative;}
 .quiz-questions-bar .bar-fill {background-color: #51cd00; border-radius: 20px; display: block; height: 100%; position: relative; }
-.quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; }
+.quiz-questions-bar-holder {width: calc(100% - 95px); display: inline-flex; vertical-align: middle; margin-right: -4px; align-items: center; position: relative; padding-left: 20px; }
 .quiz-questions-bar-holder .value-lable {
     position: absolute;
     left: 0;
@@ -10962,16 +11150,24 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-corrects-incorrects span {-webkit-transition: all 0.4s ease-out; -moz-transition: all 0.4s ease-out; -ms-transition: all 0.4s ease-out; -o-transition: all 0.4s ease-out; transition: all 0.4s ease-out;}
 .quiz-incorrects:hover {z-index: 2; left: 25px; }
 /* Quiz Status Bar Style End */
+.rurera-tooltip {position: relative;}
 .lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; top: -100%; left: 50% !important; margin-top: -30px; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; transform: translateX(-50%) !important; text-align: left; visibility: hidden; opacity: 0;}
+.rurera-tooltip .lms-tooltip {
+    top: auto;
+    bottom: 100%;
+}
 .lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
 .lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
 .lms-tooltip span {display: block;}
 .lms-tooltip.show,
-.rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1;}
+.rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1; margin-bottom: 20px;}
 .spell-levels li.completed .lms-tooltip {
     top: auto;
     bottom: 100%;
     margin-bottom: 20px;
+}
+.spell-levels li:has(.rurera-stars) .lms-tooltip {
+    margin-bottom: 50px;
 }
 .lms-tooltip .tooltip-button {
     width: 100%;
@@ -11830,6 +12026,13 @@ Lms Responsive Style Start
     .navbar-nav .nav-item:has(.lms-mega-menu) > a:before {content: ""; position: absolute; right: 20px; top: 50%; height: 10px; width: 10px; border-left: 1px solid #ccc; border-top: 1px solid #ccc; transform: rotate(45deg); margin-top: -5px; transition: all 0.3s;}
     .navbar-nav .nav-item:has(.sidenav-dropdown) > .nav-link.collapsed:after,
     .navbar-nav .nav-item:has(.lms-mega-menu) > .nav-link.collapsed:before {border-bottom: 1px solid #ccc; border-top: 0; transform: rotate(-45deg);}
+    .navbar-nav .nav-item:has(.sidenav-dropdown) > a:after {
+        border-top: 0 !important;
+        border-left: 0 !important;
+        margin-top: -4px;
+        right: 20px;
+        transform: rotate(45deg) !important;
+    }    
     .navbar-nav .nav-item .sidenav-dropdown {position: relative; opacity: 1; visibility: visible; display: none; width: 90%; left: 20px; top: 0; transition: none; padding: 10px 0 5px 20px; background-color: inherit; box-shadow: none;}
     .navbar-toggle-header {position: absolute; right: 15px; top: 20px; z-index: 1;}
     .navbar-toggle-header svg {height: 25px; width: 25px;}
@@ -12106,15 +12309,15 @@ Lms Responsive Style Start
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {margin-right: 50px;}
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {margin-right: 8px;}
     .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {height: 50%;top: -35px;}
-    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {height: 50%;}
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:after {height: 35px;
+        width: 2px;
+        margin-bottom: 5px;}
     .heatmap-select-option,
     .heatmap-range-slider {flex-wrap: wrap;gap: 10px;}
     .heatmap-range-slider .ui-slider.ui-widget-content {flex-basis: 70%; width: 70%;}
     .panel-subheader .title {text-align: left;}
-    .stats-list ul {flex-direction: column;}
-    .stats-list ul li {border-left: 0; width: 100%; padding: 0 0 15px; margin: 0 0 15px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.1);}
-    .stats-list ul li:last-child {border-bottom: 0; padding: 0; margin: 0;}
-    .panel-content .spell-levels .panel-subheader {padding-right: 135px;}
+    .stats-list ul li {padding: 0 0 0 15px; margin: 0 0 15px 15px; text-align: left;}
+    .panel-content .spell-levels .panel-subheader {padding-right: 10px;}
     .chart-filters .analytics-type li {width: 48%;}
     .time-card {padding: 15px;}
     .time-card .card-header {flex-wrap: wrap;}
@@ -12297,6 +12500,15 @@ Lms Responsive Style Start
     .subjects-heading {margin-bottom: 25px;}
     .profile-view-data {margin: 0;}
     .profile-view-data > li {width: 100%; margin-right: 0; padding: 0;}
+    .spell-levels .lms-tooltip {
+        transform: none !important;
+        left: 0 !important;
+    }
+    .spell-levels .lms-tooltip:before,
+    .spell-levels .lms-tooltip:after {
+        left: 15px;
+        transform: translateX(0) rotate(45deg);
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -12367,21 +12579,44 @@ Lms Responsive Style Start
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
     .lms-contact-form-section {padding-bottom: 0 !important;}
     .spell-levels-top .spell-top-left {width: 100%;}
-    .treasure-mission-layout .spell-levels {text-align: center;}
+    .treasure-mission-layout .spell-levels {text-align: center; overflow: hidden;}
     .treasure-mission-layout .spell-levels .horizontal-list {display: inline-block !important;}
     .treasure-mission-layout .spell-levels li > a {height: 43px; width: 45px;}
     .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li {margin-top: 30px;margin-left: 0;}
-    .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li a:after {height: 50%;margin-top: 0;width: 2px;margin-left: -1px;}
+    .treasure-mission-layout .spell-levels .horizontal-list li.treasure.vertical-li a:after {height: 35;margin-top: 0;width: 2px;margin-left: -1px; margin-bottom: 5px;}
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li {right: 0; margin-top: 30px;}
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl {margin-left: 0;}
     .treasure-mission-layout .spell-levels .treasure > a .thumb-box img {max-width: 100%;height: auto;object-fit: contain;}
-    .treasure-mission-layout .spell-levels .horizontal-list li {width: auto;margin: 0 0 0 20px;}
+    .treasure-mission-layout .spell-levels .horizontal-list li {width: auto;margin: 0 0 0 20px; vertical-align: middle;}
     .treasure-mission-layout .spell-levels .horizontal-list li img {height: 20px;object-fit: contain;}
-    .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 60%;margin-left: 5px;width: 30%;margin-left: 5px;height: 2px;margin-top: -1px;}
+    .treasure-mission-layout .spell-levels .horizontal-list li > a:before {width: 30%;margin-left: 5px;height: 2px;margin-top: -1px;}
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li > a:before {margin-right: 5px;height: 2px;margin-top: -1px;width: 30%;}
     .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li {margin-right: 20px;}
     .treasure-mission-layout .spell-levels .horizontal-list {margin-bottom: 100px; margin-right: 0;}
     .treasure-mission-layout .spell-levels li > a {box-shadow: 0 3px 0 1px #b0b0b0;}
     .treasure-mission-layout .spell-levels li.treasure > a {box-shadow: none;}
-    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {height: 50%;margin-top: 15px;width: 2px;margin-left: -1px;}
+    .treasure-mission-layout .spell-levels .horizontal-list li.vertical-li a:before {height: 35px;margin-top: 5px;width: 2px;margin-left: -1px;}
+    .treasure-mission-layout .spell-levels .horizontal-list.ul-rtl li.vertical-li {left: 0; margin-top: 30px;}
+    .rurera-stars {
+        margin-left: -2px;
+        margin-bottom: -2px;
+        z-index: 5;
+    }
+    .rurera-stars span {
+        height: 18px;
+        width: 18px;
+        margin-right: -2px;
+    }
+    .rurera-stars .second-star {
+        margin-top: -10px;
+        height: 20px;
+        width: 20px;
+        margin-right: 2px;
+    }
+    .rurera-stars span img {
+        height: 100% !important;
+    }
+    
     .panel-content .sats-listing-card.medium {height: auto; overflow-y: hidden;}
     body ul.lms-performace-table.leaderboard {width: auto; white-space: nowrap; overflow: hidden; overflow-x: auto; margin-top: 20px;}
     body .panel-content .lms-performace-table>li {display: table-row;}
@@ -12641,7 +12876,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
   
@@ -12650,7 +12885,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-50%);
     }
   }
 
@@ -12659,7 +12894,7 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(50%);
     }
   }
   
@@ -12668,12 +12903,12 @@ Lms Responsive Style Start
       transform: translateX(0);
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(50%);
     }
   }
-  body:has(.marquee-list) {
+  /* body:has(.marquee-list) {
     background-color: #fbfbfb;
-  }
+  } */
 
   .marquee-sec .reviews-star .icon-box {
     background-color: #01b77c;
@@ -12694,6 +12929,34 @@ Lms Responsive Style Start
 .reviews-lable .icon-box img {
     filter: invert(52%) sepia(48%) saturate(4633%) hue-rotate(130deg) brightness(98%) contrast(99%);
     max-width: 100%;
+}
+.reviews-holder .reviews-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 15px;
+}
+.reviews-holder .reviews-score,
+.reviews-holder .reviews-number {
+    border-right: 1px solid #333;
+    line-height: 16px;
+    display: block;
+    padding-right: 10px;
+    font-weight: 500;
+}
+.reviews-holder .reviews-number {
+    border: 0;
+    padding-right: 0;
+    border-bottom: 1px solid #333;
+}
+.reviews-holder .reviews-score em,
+.reviews-holder .reviews-number em {
+    font-style: normal;
+    margin-left: 5px;
+}
+.reviews-holder .reviews-number em {
+    margin: 0 5px 0 0;
 }
 
 .footer-newsletter button {

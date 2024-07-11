@@ -201,7 +201,7 @@
 						</span>
 					</div>
 				</div>	
-				<div class="icon-box mt-20">
+				<div class="icon-box mt-20 stages-items rurera-hide">
 					@php $attempted_count = 0; @endphp
 					@if( !empty($resultsRecords))
 						@foreach( $resultsRecords as $result_id => $percentage)
@@ -755,6 +755,12 @@
     </script>
 		<script type="text/javascript">
 var searchRequest = null;
+
+
+$('body').on('click', '.progress-info', function (e) {
+	$(this).closest('li').find('.stages-items').toggleClass('rurera-hide');
+});
+
 $('body').on('click', '.set-work-ajax li', function (e) {
     rurera_loader($(".set-work-content"), 'div');
     $(".set-work-ajax li").removeAttr('class');

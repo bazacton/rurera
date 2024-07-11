@@ -45,16 +45,18 @@ class DailyQuestsController extends Controller
     public function questCompletionCheck($QuizzesResult)
     {
 
-        $questObj = array();
+        $response = array();
         switch ($QuizzesResult->quiz_result_type) {
 
             case    "timestables":
-                $questObj = $this->timestablesQuestCheck($QuizzesResult);
+                $response = $this->timestablesQuestCheck($QuizzesResult);
                 break;
 			case    "learning_journey":
-                $questObj = $this->learningJourneyQuestCheck($QuizzesResult);
+                $response = $this->learningJourneyQuestCheck($QuizzesResult);
                 break;
         }
+		
+		return $response;
     }
 	
 	/*
@@ -198,8 +200,9 @@ class DailyQuestsController extends Controller
 
         $todayStartTimestamp = Carbon::now()->startOfDay()->timestamp;
         $todayEndTimestamp = Carbon::now()->endOfDay()->timestamp;
+		$attempt_mode = $QuizzesResult->attempt_mode;
 
-        $quests = $user->getUserQuests();
+        $quests = $user->getUserQuests(array($QuizzesResult->quiz_result_type), [],[], $attempt_mode);
 
         /*
          * $quests = DailyQuests::where('quest_topic_type', $QuizzesResult->quiz_result_type)
@@ -214,6 +217,7 @@ class DailyQuestsController extends Controller
                      ->having('rewards_count', '=', 0)
                      ->get();
          */
+		 $completed_quests = array();
 
         foreach ($quests as $questObj) {
 
@@ -226,6 +230,8 @@ class DailyQuestsController extends Controller
             if( $is_completed != true){
                 continue;
             }
+			
+			
 
 
             $questScore = $questObj->no_of_coins;
@@ -235,7 +241,7 @@ class DailyQuestsController extends Controller
                 $quizzResultPoints = $QuizzesResult->quizz_result_points->count();
                 $questScore = ($quizzResultPoints * $questObj->coins_percentage) / $quizzResultPoints;
             }
-            RewardAccounting::create([
+            $RewardAccounting = RewardAccounting::create([
                 'user_id'       => $user->id,
                 'item_id'       => 0,
                 'type'          => 'coins',
@@ -249,10 +255,15 @@ class DailyQuestsController extends Controller
                 'assignment_id' => 0,
                 'result_id'     => $QuizzesResult->id,
             ]);
+			$completed_quests[]	= array(
+				'questObj' => $questObj,
+				'RewardAccounting' => $RewardAccounting,
+				'QuizzesResult' => $QuizzesResult,
+			);
 
         }
-
-
+		
+		return $completed_quests;
     }
 
     /*

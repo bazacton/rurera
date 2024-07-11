@@ -238,7 +238,6 @@ class AssignmentController extends Controller
     {
 
         $user = auth()->user();
-		pre('test');
 
         $UserAssignedTopicsObj = UserAssignedTopics::find($assignment_id);
         $assignment_type = $UserAssignedTopicsObj->StudentAssignmentData->assignment_type;

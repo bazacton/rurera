@@ -84,81 +84,62 @@ class LearningJourneyController extends Controller
 		
 		
 			$total_sub_chapters = $LearningJourneyObj->subject->webinar_sub_chapters->count();
-			
-			$treasure_box = array(100,150,200,250,300,350,400,450);
-			
-			
+			$treasure_box = array(100, 150, 200, 250, 300, 350, 400, 450);
+
 			$sub_chapters_ids = $LearningJourneyObj->subject->webinar_sub_chapters->pluck('id')->toArray();
-			
+
 			$totalElements = count($sub_chapters_ids);
-			$partitionSize = intdiv($totalElements, 3);
-			$remainder = $totalElements % 3;
-
 			$levels = array();
+			$levels[0] = $sub_chapters_ids;
 
-			$levels[0] = array_slice($sub_chapters_ids, 0, $partitionSize);
-			$levels[1] = array_slice($sub_chapters_ids, $partitionSize, $partitionSize);
-			$levels[2] = array_slice($sub_chapters_ids, 2 * $partitionSize);
-
-			if ($remainder > 0) {
-				$extra = array_splice($levels[2], $partitionSize);
-				$levels[2] = array_merge($levels[2], $extra);
-			}
-			
-			foreach ($levels as &$level) {
-				$numTreasures = rand(1, 3); // Decide how many treasures to insert
-				$insertedIndexes = [];
-
-				for ($i = 0; $i < $numTreasures; $i++) {
-					do {
-						$insertIndex = rand(2, count($level) - 1); // Choose a random index from 2 to the end of the array
-					} while (in_array($insertIndex, $insertedIndexes)); // Ensure no duplicate insert positions
-
+			$insertIndex = 0;
+			while ($insertIndex < count($levels[0])) {
+				$insertAfter = rand(3, 5); // Choose a random number between 3 and 5
+				$insertIndex += $insertAfter;
+				if ($insertIndex < count($levels[0])) {
 					$treasureIndex = array_rand($treasure_box); // Choose a random index from treasure_box
-					array_splice($level, $insertIndex, 0, array(array($treasure_box[$treasureIndex]))); // Insert the treasure value at the chosen index as an array
-					$insertedIndexes[] = $insertIndex;
+					array_splice($levels[0], $insertIndex, 0, array(array($treasure_box[$treasureIndex]))); // Insert the treasure value at the chosen index as an array
+					$insertIndex++; // Move to the next position after the inserted treasure
 				}
-			}		
-			
-			if( !empty( $levels )){
+			}
+
+			if (!empty($levels)) {
 				$level_count = 0;
-				foreach( $levels as $levelData){
-					
+				foreach ($levels as $levelData) {
 					$level_count++;
 					$LearningJourneyLevels = LearningJourneyLevels::create([
 						'learning_journey_id' => $id,
-						'level_title' => 'Level '.$level_count,
+						'level_title' => 'Level 1',
 						'status' => 'active',
-						'sort_order' => $level_count,
+						'sort_order' => 1,
 						'created_by' => $user->id,
 						'created_at' => time(),
 					]);
-					
-					if( !empty( $levelData ) ){
+
+					if (!empty($levelData)) {
 						$sort_order_item = 0;
-						foreach( $levelData as $level_item){
+						foreach ($levelData as $level_item) {
 							$sort_order_item++;
 							$item_type = 'topic';
-							if( is_array( $level_item )){
+							if (is_array($level_item)) {
 								$item_type = 'treasure';
-								$level_item = isset( $level_item[0] )? $level_item[0] : 0;
-
+								$level_item = isset($level_item[0]) ? $level_item[0] : 0;
 							}
 							$LearningJourneyItems = LearningJourneyItems::create([
-								'learning_journey_id'	=> $id,
-								'learning_journey_level_id'	=> $LearningJourneyLevels->id,
-								'item_type' 		=> $item_type,
-								'item_value' 		=> $level_item,
-								'status'			=> 'active',
-								'sort_order' 		=> $sort_order_item,
-								'created_by'		=> $user->id,
-								'created_at'		=> time(),
+								'learning_journey_id' => $id,
+								'learning_journey_level_id' => $LearningJourneyLevels->id,
+								'item_type' => $item_type,
+								'item_value' => $level_item,
+								'status' => 'active',
+								'sort_order' => $sort_order_item,
+								'created_by' => $user->id,
+								'created_at' => time(),
 							]);
 						}
 					}
-					
 				}
 			}
+
 			pre('Done');
 		}
 		

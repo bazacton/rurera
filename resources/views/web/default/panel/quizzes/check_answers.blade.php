@@ -45,8 +45,8 @@ $rand_id = rand(99,9999);
 @endpush
 @section('content')
 @php
-$attempted_questions = is_array( $questions_list )? count($questions_list): 0;
-$total_questions = is_array( $attempt_questions_list )? count($attempt_questions_list): 0;
+$attempted_questions = $attempt_questions_list->count();
+$total_questions = is_array( $questions_list )? count($questions_list): 0;
 @endphp
 <div class="content-section">
 
@@ -108,8 +108,8 @@ $total_questions = is_array( $attempt_questions_list )? count($attempt_questions
                                     <img src="/assets/default/svgs/question-circle.svg" alt="">
                                 </div>
                                 <div class="summary-text">
-                                    <label>Questions Incorrect</label>
-                                    <div class="score">{{$incorrect_count}}</div>
+                                    <label>Incorrect / Not Attempted</label>
+                                    <div class="score">{{$incorrect_count}} / {{$not_attempted_count}}</div>
                                 </div>
                             </div>
 

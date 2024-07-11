@@ -81,7 +81,7 @@ $total_questions = count(json_decode($quizAttempt->questions_list));
 
                     <div class="prev-next-controls text-center mb-50 questions-nav-controls">
                         @if( !isset( $disable_finish ) || $disable_finish == 'false')
-                        <a href="javascript:;" data-toggle="modal" class="review-btn" data-target="#review_submit">
+                        <a href="javascript:;" data-toggle="modal" class="review-btn rurera-hide" data-target="#review_submit">
                             Finish
                             <svg style="width: 22px;height: 22px;" xmlns="http://www.w3.org/2000/svg" version="1.0"
                                  width="512.000000pt" height="512.000000pt"

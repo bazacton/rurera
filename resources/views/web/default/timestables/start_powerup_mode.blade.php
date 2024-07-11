@@ -206,9 +206,12 @@ if( $duration_type == 'total_practice'){
 
     var user_data = [];
     var Quizintervals = null;
+	
+	var timerStart = true;
 
     var start_counter = 6;
     var is_sound_enabled = true;
+	Questionintervals = null;
     $(document).on('click', '.mute_unmute_sound', function (e) {
         $('.mute_unmute_sound').addClass('hide');
         this_action = $(this).attr('data-action');
@@ -230,7 +233,7 @@ if( $duration_type == 'total_practice'){
             clearInterval(Startintervals);
             $(".start-timestables-quiz").click();
         }
-    }, 1000);
+    }, 100);
 
     var duration_type = $(".question-area-block").attr('data-duration_type');
     var time_interval = $(".question-area-block").attr('data-time_interval');
@@ -252,47 +255,51 @@ if( $duration_type == 'total_practice'){
             $(".editor-fields").attr('readonly', 'readonly');
         }
         $(".editor-fields").focus();
-        var Questionintervals = setInterval(function () {
+
+        Quizintervals = setInterval(function () {
+			if( timerStart == true){
+				var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+
+				if( duration_type == 'no_time_limit'){
+					quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
+				}else {
+					quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
+				}
+
+				$('.quiz-timer-counter').html(roundToTwoDecimals(quiz_timer_counter/10));
+				$('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
+				if( duration_type == 'per_question'){
+					if( parseInt(quiz_timer_counter) == 0){
+						clearInterval(Quizintervals);
+						clearInterval(Questionintervals);
+						//$("#timestables_question_status_modal").modal('show');
+						$(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
+						$(".questions-block.active .question-form").submit();
+					}
+				}
+				if( duration_type == 'total_practice'){
+					if( parseInt(quiz_timer_counter) == 0){
+						clearInterval(Quizintervals);
+						clearInterval(Questionintervals);
+						$(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
+						$(".questions-block.active").nextAll('.questions-block').remove();
+						$(".question-area-block").attr('data-total_questions', $('.questions-block').length);
+						$(".questions-block.active .question-form").submit();
+					}
+				}
+			}
+
+        }, 100);
+		
+        Questionintervals = setInterval(function () {
             if ($('.questions-block[data-id="0"]').hasClass('active')) {
                 var seconds_count = $('.questions-block[data-id="0"]').attr('data-tconsumed');
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="0"]').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+                //$('.questions-block[data-id="0"]').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             } else {
                 clearInterval(Questionintervals);
             }
-        }, 100);
-
-        Quizintervals = setInterval(function () {
-            var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-
-            if( duration_type == 'no_time_limit'){
-                quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
-            }else {
-                quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-            }
-
-            $('.quiz-timer-counter').html(getTime((quiz_timer_counter/10)));
-            $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-            if( duration_type == 'per_question'){
-                if( parseInt(quiz_timer_counter) == 0){
-                    clearInterval(Quizintervals);
-                    clearInterval(Questionintervals);
-                    $("#timestables_question_status_modal").modal('show');
-                    $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
-                    //$(".questions-block.active .question-form").submit();
-                }
-            }
-            if( duration_type == 'total_practice'){
-                if( parseInt(quiz_timer_counter) == 0){
-                    clearInterval(Quizintervals);
-                    clearInterval(Questionintervals);
-                    $("#timestables_question_status_modal").modal('show');
-                    $(".questions-block.active .question-form").attr('data-bypass_validation', 'yes');
-                    //$(".question-form").submit();
-                }
-            }
-
         }, 100);
 
     });
@@ -310,10 +317,15 @@ if( $duration_type == 'total_practice'){
         if( m > 0) {
             var return_string = return_string + (m < 10 ? '0' + m : m) + ":";
         }
-        var return_string = return_string + (secondsString < 10 ? '0' + secondsString : secondsString);
+        var return_string = return_string + (secondsString < 10 ? '0' + roundToTwoDecimals(secondsString) : roundToTwoDecimals(secondsString));
 
         return return_string;
     }
+	
+	function roundToTwoDecimals(number) {
+		//return Math.round(number * 100) / 100;
+		return Math.round(number);
+	}
 
     $(document).on('click', '.questions-block-numbers ul li', function (e) {
         var current_value = $(this).attr('data-value');
@@ -335,28 +347,35 @@ if( $duration_type == 'total_practice'){
 
 
 
+	var total_time_consumed = 0;
+	var is_submitted = false;
     $(document).on('submit', '.question-form', function (e) {
 
+		if(is_submitted == true){
+			return false;
+		}
+		
         var bypass_validation = $(this).closest('form').attr('data-bypass_validation');
         var total_questions = $(".question-area-block").attr('data-total_questions');
         var attempt_id = $(".question-area-block").attr('data-attempt_id');
         var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
         var attempted_questions = parseInt($(".tt_question_no").html());
-
-        console.log($(this).closest('form'));
         returnType = rurera_validation_process($(this).closest('form'));
-
         if( rurera_is_field(bypass_validation) && bypass_validation == 'yes' ){
             returnType = true;
         }
         if (returnType == false) {
             return false;
         }
-
-
         clearInterval(Questionintervals);
+		timerStart = false;
         var data_id = $(this).attr('data-id');
-        var time_consumed = $(this).closest('.questions-block').attr('data-tconsumed');
+        var time_consumed = $(this).closest('.questions-block').attr('data-tconsumed'); 25
+		total_time_consumed = parseInt(total_time_consumed)+parseInt(time_consumed);582 == 557
+		
+		
+		
+		
         var next_question = parseInt(data_id) + 1;
         user_data[data_id] = [];
 
@@ -366,11 +385,9 @@ if( $duration_type == 'total_practice'){
         var table_no = $("#editor-fields-" + data_id).attr('data-table_no');
         var answer = $("#editor-fields-" + data_id).val();
 
-
-
         var correct_answer = rurera_correct_value(from, to, type);
         var is_correct = (answer == correct_answer)? true : false;
-        user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
+        
 
         var status_class = (answer == correct_answer)? 'successful' : 'wrong';
 
@@ -392,6 +409,7 @@ if( $duration_type == 'total_practice'){
 
 
         if (parseInt(next_question) < parseInt(total_questions)) {
+			user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
             $('.questions-block').addClass('hide');
             $('.questions-block').removeClass('active');
 
@@ -403,41 +421,35 @@ if( $duration_type == 'total_practice'){
             if (isMobileOrTablet()) {
                 $(".editor-fields").attr('readonly', 'readonly');
             }
-            $("#editor-fields-" + next_question).focus();
+            $("#editor-fields-" + next_question).focus(); 
+			
 
-            var Questionintervals = setInterval(function () {
+			
+            Questionintervals = setInterval(function () {
                 var seconds_count = $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed');
+				timerStart = true;
                 seconds_count = parseInt(seconds_count) + parseInt(1);
                 $('.questions-block[data-id="' + next_question + '"].active').attr('data-tconsumed', seconds_count);
-                $('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
+                //$('.questions-block[data-id="' + next_question + '"].active').find(".time-count-seconds").html(parseInt(seconds_count) / 10);
             }, 100);
 
-            if( duration_type == 'per_question') {
-                console.log('clear interval');
-                clearInterval(Quizintervals);
-                $('.quiz-timer-counter').html(time_interval);
-                $('.quiz-timer-counter').attr('data-time_counter', time_interval);
-                Quizintervals = setInterval(function () {
-                    var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
-                    quiz_timer_counter = parseInt(quiz_timer_counter) - parseInt(1);
-                    $('.quiz-timer-counter').html(getTime(quiz_timer_counter));
-                    $('.quiz-timer-counter').attr('data-time_counter', quiz_timer_counter);
-
-                    if (duration_type == 'per_question') {
-                        if (parseInt(quiz_timer_counter) == 0) {
-                            clearInterval(Quizintervals);
-                            $("#timestables_question_status_modal").modal('show');
-                            //$(".questions-block.active .question-form").submit();
-                        }
-                    }
-
-                }, 1000);
-            }
-
         } else {
-            clearInterval(Quizintervals);
+			var total_timer_count = '{{($timer_counter*10)}}';
+			if( parseInt(total_time_consumed) > parseInt(total_timer_count) || parseInt(total_time_consumed) < parseInt(total_timer_count)){
+				total_time_consumed = parseInt(total_time_consumed) - parseInt(time_consumed);
+				var required_time = parseInt(total_timer_count) - parseInt(total_time_consumed);
+				time_consumed = required_time;
+				total_time_consumed = parseInt(total_time_consumed)+parseInt(time_consumed);
+			}
+			user_data[data_id] = {'from': from, 'to': to, 'type': type, 'answer': answer, 'time_consumed': time_consumed, 'table_no':table_no, 'is_correct':is_correct, 'correct_answer':correct_answer};
+			console.log('total_time_consumed'+total_time_consumed);
+			var is_submitted = true;
+			
+			clearInterval(Quizintervals);
+			clearInterval(Questionintervals);
             $('.questions-block').addClass('disable-div');
-            $("#timestables_complete_status_modal").modal('show');
+            rurera_loader($('.question-area-block'), 'div');
+            
             var response_layout = '';
 
 
@@ -456,41 +468,15 @@ if( $duration_type == 'total_practice'){
                 },
                 data: {'timestables_data':user_data, 'attempt_id':attempt_id},
                 success: function (return_data) {
-                    console.log(return_data);
+					console.log(return_data);
+                    rurera_remove_loader($('.question-area-block'), 'button');
+                    if (return_data.return_layout != '') {
+                        $(".question-area-block").html(return_data.return_layout);
+                        rurera_remove_loader($('.question-area-block'), 'button');
+
+                    }
                 }
             });
-
-            //window.location.href = '/timestables/summary';
-            //window.location = '/panel/results/'+quiz_result_id+'/timetables';
-            //window.location.href = '/panel/results/'+quiz_result_id+'/timetables';
-
-            return false;
-
-
-
-
-            $.each(user_data, function (field_id, user_data_obj) {
-                var from = user_data_obj.from;
-                var to = user_data_obj.to;
-                var action_type = user_data_obj.type;
-                var user_answer = user_data_obj.answer;
-                var time_consumed = user_data_obj.time_consumed;
-                var time_consumed_seconds = parseInt(time_consumed) / 10;
-
-                var correct_answer = rurera_correct_value(from, to, action_type);
-
-                var is_correct_label = (user_answer == correct_answer)? 'Correct' : 'Incorrect';
-
-                response_layout += '<div class="question-answer-block">\n\
-                    '+from+' '+action_type+' '+to+' = '+user_answer+'   '+is_correct_label+' ('+time_consumed_seconds+' seconds)\n\
-                    </div>';
-
-                console.log(user_answer+'===='+correct_answer+'====='+time_consumed+'======='+time_consumed_seconds);
-
-            });
-            response_layout = '';
-
-            $(".question-area-block").html(response_layout);
         }
 
     });
