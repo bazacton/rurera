@@ -500,6 +500,9 @@ class AssignmentController extends Controller
                 return view(getTemplate() . '.panel.quizzes.assignment_practice_start', $data);
             } else {
                 return view(getTemplate() . '.panel.quizzes.assignment_start', $data);
+				//return view(getTemplate() . '.panel.quizzes.spell_start', $data);
+				
+				
             }
         }
         abort(404);

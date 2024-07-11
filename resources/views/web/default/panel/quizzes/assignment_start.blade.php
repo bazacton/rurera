@@ -334,7 +334,9 @@ $timer_counter = $practice_time;
     function quiz_default_functions() {
 
         var active_question_id = $(".question-area-block").attr('data-active_question_id');
-       $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+		if( active_question_id > 0){
+			$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+		}
 
         Quizintervals = setInterval(function () {
             var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');

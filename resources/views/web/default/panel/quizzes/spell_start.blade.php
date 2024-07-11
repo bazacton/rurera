@@ -439,12 +439,16 @@ $timer_counter = $practice_time;
         });
 		
 		var active_question_id = $(".question-area-block").attr('data-active_question_id');
-		$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+		if( active_question_id > 0){
+			$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+		}
 
     }
 	
 	var active_question_id = $(".question-area-block").attr('data-active_question_id');
-   $('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+	if( active_question_id > 0){
+		$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+	}
 
     function getTime(secondsString) {
         var h = Math.floor(secondsString / 3600); //Get whole hours

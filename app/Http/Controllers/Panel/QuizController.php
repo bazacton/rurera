@@ -412,6 +412,7 @@ class QuizController extends Controller
             }
         }
 
+
         if ($quiz->quiz_type == 'assignment') {
 
             $AssignedAssignments = AssignedAssignments::where('assignment_id', $quiz->id)->whereJsonContains('user_ids', ["$user->id"])->where('status', 'active')->first();
@@ -823,6 +824,8 @@ class QuizController extends Controller
             }
 
             $start_layout_file = get_quiz_start_layout_file($quiz);
+			
+			pre($start_layout_file);
             return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
             /*if ($resultLogObj->quiz_result_type == 'practice') {
                 return view(getTemplate() . '.panel.quizzes.practice_start', $data);
