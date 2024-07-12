@@ -46,7 +46,7 @@ class UserAssignedTopics extends Model
 
     public function AssignmentResults()
     {
-        return $this->hasMany('App\Models\QuizzesResult', 'parent_type_id', 'id')->whereIN('quiz_result_type', array('timestables_assignment'))->where('status', '!=', 'waiting');
+        return $this->hasMany('App\Models\QuizzesResult', 'parent_type_id', 'id')->whereIN('quiz_result_type', array('timestables_assignment', 'assignment'))->where('status', '!=', 'waiting');
     }
 
     public function TimesTablesEventData()

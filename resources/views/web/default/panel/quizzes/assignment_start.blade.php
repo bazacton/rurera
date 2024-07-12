@@ -86,7 +86,7 @@ $timer_counter = $practice_time;
 
         <div class="container questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide1' : ''; @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -234,7 +234,7 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
+                    <div class="question-area-block" data-active_question_id="{{$active_question_id}}" data-active_actual_question_id="{{$active_actual_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
 
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -334,8 +334,9 @@ $timer_counter = $practice_time;
     function quiz_default_functions() {
 
         var active_question_id = $(".question-area-block").attr('data-active_question_id');
-		if( active_question_id > 0){
-			$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
+		var active_actual_question_id = $(".question-area-block").attr('data-active_actual_question_id');
+		if( active_actual_question_id > 0){
+			$('.quiz-pagination ul li[data-actual_question_id="'+active_actual_question_id+'"]').click();
 		}
 
         Quizintervals = setInterval(function () {
@@ -374,6 +375,30 @@ $timer_counter = $practice_time;
             if (curSize >= 16)
             $('.learning-page').css('font-size', curSize);
         });
+		
+		var timeUpdateRequest = null;
+		timeUpdateRequestInterval = setInterval(function () {
+			var time_consumed = $('.quiz-timer-counter').attr('data-time_consumed');
+			
+			timeUpdateRequest = jQuery.ajax({
+				type: "POST",
+				dataType: 'json',
+				url: '/question_attempt/update_time',
+				async: true,
+				beforeSend: function () {
+					if (timeUpdateRequest != null) {
+						timeUpdateRequest.abort();
+					}
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				data: {"time_consumed": time_consumed, "quiz_result_id":quiz_result_id},
+				success: function (return_data) {
+					console.log(return_data);
+				}
+			});
+		}, 5000);
 
     }
 

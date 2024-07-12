@@ -248,6 +248,14 @@ class AssignmentController extends Controller
         $quizQuestionsList = isset($quizObj->quizQuestionsList) ? $quizObj->quizQuestionsList->pluck('question_id')->toArray() : array();
         $selectedQuestionsList = array_rand($quizQuestionsList, $no_of_questions);
         $selectedQuestionsList = array_intersect_key($quizQuestionsList, array_flip($selectedQuestionsList));
+		
+		
+		$QuestionsAttemptController = new QuestionsAttemptController();
+
+        $questions_list_data_array = $QuestionsAttemptController->getQuizQuestionsList($quizObj, 'easy', 'no', $assignment_id);
+		
+		$questions_list = isset($questions_list_data_array['questions_list']) ? $questions_list_data_array['questions_list'] : array();
+		
         $timer_hide = false;
 
         /*$total_attempted = QuizzesResult::where('parent_type_id', $quiz->id)->where('user_id', $user->id)->where('status', '!=', 'waiting')->count();
@@ -264,7 +272,6 @@ class AssignmentController extends Controller
 
 
         $selectedQuestionsList = array_values($selectedQuestionsList);
-        $questions_list = $selectedQuestionsList;
 
 
         if ($UserAssignedTopicsObj) {
@@ -283,10 +290,11 @@ class AssignmentController extends Controller
             //$questions_list = QuizzResultQuestions::whereIN('id', $questions_list)->pluck('question_id')->toArray();
 
             $prev_active_question_id = isset($resultLogObj->active_question_id) ? $resultLogObj->active_question_id : 0;
+			//pre($prev_active_question_id);
 
             if ($prev_active_question_id > 0) {
                 $prevActiveQuestionObj = QuizzResultQuestions::find($prev_active_question_id);
-                $prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
+                //$prev_active_question_id = isset($prevActiveQuestionObj->question_id) ? $prevActiveQuestionObj->question_id : 0;
             }
 
 
@@ -298,12 +306,13 @@ class AssignmentController extends Controller
             $question_points = isset($question->question_score) ? $question->question_score : 0;
 
 
-            $questions_array = $exclude_array = array();
+            $questions_array = $exclude_array = $actual_question_ids = array();
             //$exclude_array[] = $questionObj->id;
             //$questions_array[] = $questionObj;
             $questions_layout = $results_questions_array = array();
             $active_question_id = $active_actual_question_id = $first_question_id = $question_no = 0;
-
+			$active_actual_question_id = $prev_active_question_id;
+			$total_points = RewardAccounting::where('user_id', $user->id)->where('type', 'coins')->where('result_id', $resultLogObj->id)->sum('score');
 
             if (!empty($questions_list)) {
                 $questions_counter = 0;
@@ -312,15 +321,22 @@ class AssignmentController extends Controller
                     $prev_question = isset($questions_list[$question_no_index - 2]) ? $questions_list[$question_no_index - 2] : 0;
                     $next_question = isset($questions_list[$question_no_index + 1]) ? $questions_list[$question_no_index + 1] : 0;
 
-                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index);
-
+					
+					$failed_check = false;
+					if ($quizObj->quiz_type == 'vocabulary') {
+						$failed_check = true;
+					}
+	
+                    $nextQuestionArray = $QuestionsAttemptController->nextQuestion($attemptLogObj, $exclude_array, 0, true, $questions_list, $resultLogObj, $question_id, $question_no_index, $failed_check);
+					
+					
                     $questionObj = isset($nextQuestionArray['questionObj']) ? $nextQuestionArray['questionObj'] : array();
 
                     $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
 
                     if ($question_id == $prev_active_question_id) {
                         $active_question_id = $newQuestionResult->id;
-                        $active_actual_question_id = $newQuestionResult->question_id;
+                        //$active_actual_question_id = $newQuestionResult->question_id;
                     }
 
                     if (isset($questionObj->id)) {
@@ -362,7 +378,7 @@ class AssignmentController extends Controller
                             $word_data = array(
                                 'audio_text'       => $audio_text,
                                 'audio_sentense'   => $audio_sentense,
-                                'audio_defination' => $audio_defination,
+                                'audio_defination' => isset( $audio_defination )? $audio_defination : '',
                                 'audio_file'       => $audio_file,
                                 'field_id'         => $field_id,
                             );
@@ -384,10 +400,11 @@ class AssignmentController extends Controller
                                 'total_questions_count' => $total_questions_count,
                                 'field_id'              => $field_id,
                                 'correct_answer'        => $correct_answer,
-                                'total_points'          => isset($RewardAccountingObj->score) ? $RewardAccountingObj->score : 0,
+                                'total_points'          => $total_points,
                                 'disable_next'          => 'true',
                                 'disable_prev'          => 'true',
                             ];
+							$actual_question_ids[$newQuestionResult->id] = $questionObj->id;
                         } else {
                             $results_questions_array[$newQuestionResult->id] = [
                                 'question'          => $questionObj,
@@ -401,6 +418,7 @@ class AssignmentController extends Controller
                                 'disable_next'      => 'true',
                                 'disable_prev'      => 'true',
                             ];
+							$actual_question_ids[$newQuestionResult->id] = $questionObj->id;
                         }
 
 
@@ -409,6 +427,7 @@ class AssignmentController extends Controller
 
                 }
             }
+			
 
             if (!empty($results_questions_array)) {
                 $questions_list = array_keys($results_questions_array);
@@ -444,6 +463,7 @@ class AssignmentController extends Controller
                         $time_limit = ($UserAssignedTopicsObj->StudentAssignmentData->duration_type == 'total_practice') ? ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60) : $time_limit;
                         $time_limit = ($UserAssignedTopicsObj->StudentAssignmentData->duration_type == 'per_question') ? $UserAssignedTopicsObj->StudentAssignmentData->time_interval : $time_limit;
                         $resultsQuestionsData['time_limit'] = $time_limit;
+						$resultsQuestionsData['total_points'] = $total_points;
                         $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {
                         $question_layout_file = get_question_layout_file($resultLogObj);
@@ -466,6 +486,7 @@ class AssignmentController extends Controller
 
 
             $questions_status_array = $QuestionsAttemptController->questions_status_array($resultLogObj, $questions_list);
+			$total_time_consumed = isset( $resultLogObj->total_time_consumed )? $resultLogObj->total_time_consumed : 0;
 
             //pre($active_question_id, false);
             $entrance_exams = array('sats', '11plus','independent_exams','iseb','cat4');
@@ -487,23 +508,28 @@ class AssignmentController extends Controller
                 'question_points'        => $question_points,
                 'newQuestionResult'      => $newQuestionResult,
                 'questions_status_array' => $questions_status_array,
-                'active_question_id'     => $active_question_id,
+                'active_question_id'     => $active_actual_question_id, //$active_question_id,
                 'active_actual_question_id' => $active_actual_question_id,
+                'actual_question_ids'   => $actual_question_ids,
                 'duration_type'          => $UserAssignedTopicsObj->StudentAssignmentData->duration_type,
-                'practice_time'          => ($UserAssignedTopicsObj->StudentAssignmentData->practice_time * 60),
+                'practice_time'          => ($UserAssignedTopicsObj->StudentAssignmentData->practice_time*60)-$total_time_consumed,
                 'time_interval'          => $UserAssignedTopicsObj->StudentAssignmentData->time_interval,
                 'timer_hide'             => $timer_hide,
+                'total_points'             => $total_points,
+				'total_time_consumed' => $total_time_consumed,
                 'show_pagination'        => $show_pagination
             ];
 
-            if ($assignment_type == 'practice') {
+			$start_layout_file = get_quiz_start_layout_file($quizObj);
+			
+			return view(getTemplate() . '.panel.quizzes.'.$start_layout_file, $data);
+            /*if ($assignment_type == 'practice') {
                 return view(getTemplate() . '.panel.quizzes.assignment_practice_start', $data);
             } else {
                 return view(getTemplate() . '.panel.quizzes.assignment_start', $data);
-				//return view(getTemplate() . '.panel.quizzes.spell_start', $data);
 				
 				
-            }
+            }*/
         }
         abort(404);
 

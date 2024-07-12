@@ -33,7 +33,7 @@ $timer_counter = $practice_time;
 @endphp
 <div class="content-section">
 
-    <section class="lms-quiz-section" data-total_points="0">
+    <section class="lms-quiz-section" data-total_points="{{isset( $total_points )? $total_points : 0}}">
 
         @if( $quiz->quiz_pdf != '')
         <script type="text/javascript">
@@ -86,7 +86,7 @@ $timer_counter = $practice_time;
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide1' : ''; @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -101,7 +101,7 @@ $timer_counter = $practice_time;
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12">
                             <div class="topbar-right">
                                 <div class="quiz-timer">
-                                    <span class="timer-number"><div class="quiz-timer-counter" data-time_counter="{{$timer_counter}}">0s</div></span>
+                                    <span class="timer-number"><div class="quiz-timer-counter" data-total_time_counter="{{$total_time_consumed}}" data-time_counter="{{$timer_counter}}">0s</div></span>
                                 </div>
                                 <div class="instruction-controls">
                                     <div class="font-setting">
@@ -236,7 +236,7 @@ $timer_counter = $practice_time;
                         </div>
                     </div>
 
-                    <div class="question-area-block" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
+                    <div class="question-area-block" data-quiz_result_id="{{isset( $newQuizStart->id )? $newQuizStart->id : 0}}" data-duration_type="{{isset( $duration_type )? $duration_type : 'no_time_limit'}}" data-time_interval="{{isset( $time_interval )? $time_interval : 0}}" data-practice_time="{{isset( $practice_time )? $practice_time : 0}}"
                                                                      data-active_question_id="{{$active_question_id}}" data-questions_layout="{{json_encode($questions_layout)}}">
                         @if( is_array( $question ))
                         @php $question_no = 1; @endphp
@@ -380,7 +380,11 @@ $timer_counter = $practice_time;
         $('.editor-field-inputs:eq(0)').focus();
         Quizintervals = setInterval(function () {
             if( timePaused == false) {
+				
                 var quiz_timer_counter = $('.quiz-timer-counter').attr('data-time_counter');
+				var time_consumed = $('.quiz-timer-counter').attr('data-total_time_counter');
+				time_consumed = parseInt(time_consumed) + parseInt(1);
+				$('.quiz-timer-counter').attr('data-total_time_counter', time_consumed);
                 if (duration_type == 'no_time_limit') {
                     quiz_timer_counter = parseInt(quiz_timer_counter) + parseInt(1);
                 } else {
@@ -442,6 +446,33 @@ $timer_counter = $practice_time;
 		if( active_question_id > 0){
 			$('.quiz-pagination ul li[data-actual_question_id="'+active_question_id+'"]').click();
 		}
+		
+		var quiz_result_id = $(".question-area-block").attr('data-quiz_result_id');
+		var timeUpdateRequest = null;
+		timeUpdateRequestInterval = setInterval(function () {
+			if( timePaused == false) {
+				var time_consumed = $('.quiz-timer-counter').attr('data-total_time_counter');
+				
+				timeUpdateRequest = jQuery.ajax({
+					type: "POST",
+					dataType: 'json',
+					url: '/question_attempt/update_time',
+					async: true,
+					beforeSend: function () {
+						if (timeUpdateRequest != null) {
+							timeUpdateRequest.abort();
+						}
+					},
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {"time_consumed": time_consumed, "quiz_result_id":quiz_result_id},
+					success: function (return_data) {
+						console.log(return_data);
+					}
+				});
+			}
+		}, 5000);
 
     }
 	
