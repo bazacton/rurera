@@ -116,10 +116,12 @@
                                             $treasure_mission_class = ($is_active == 1 || ($last_stage_completed == 1 && $is_acheived != 1))? 'generate_treasure_mission' : 'locked_nugget';
                                         @endphp
                                         <li class="intermediate {{$li_custom_class}} {{($is_acheived == 1 || $is_active == 1 || $last_stage_completed == 1)? 'completed' : ''}} {{$last_stage}}" data-id="{{$nuggetObj['id']}}" data-quiz_level="medium">
-                                            <a href="javascript:;" class="{{$treasure_mission_class}} rurera-tooltip" data-id="{{$nuggetObj['id']}}">
-                                                @if($is_acheived == 1 && isset( $timestableResultObj->id) )
-                                                    <img src="/assets/default/img/tick-white.png" alt="">
-													<div class="lms-tooltip">
+                                            <a href="javascript:;" class="{{$treasure_mission_class}} rurera-tooltip dropup" data-id="{{$nuggetObj['id']}}">
+                                                @if($is_acheived == 1 )
+                                                    <span class="dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <img src="/assets/default/img/tick-white.png" alt="">
+                                                    </span>
+													<div class="lms-tooltip dropdown-menu">
 														<div class="tooltip-box">
 															<h5 class="font-18 font-weight-bold text-white mb-5">															
 															Active practice: {{getTimeWithText($timestableResultObj->total_time_consumed)}}<br> 
@@ -150,19 +152,21 @@
                                                 $li_count = ($li_count >= 6)? 0 : $li_count;
                                             @endphp
                                             <li class="treasure {{$li_custom_class}}">
-                                                <a href="javascript:;" class="rurera-tooltip">
-                                                    <span class="thumb-box rurera-tooltip">
-                                                        @if($is_acheived == 1)
+                                                <a href="javascript:;" class="rurera-tooltip dropup">
+                                                    
+                                                    @if($is_acheived == 1)
+                                                        <span class="thumb-box dropdown-toggle h-100 w-100 d-flex align-items-center justify-content-center" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <img src="/assets/default/img/treasure.png" alt="" title="{{$nuggetObj['treasure_box']}}">
-															<div class="lms-tooltip">
-																<div class="tooltip-box">
-																	<h5 class="font-18 font-weight-bold text-white mb-5"><img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30"> {{$nuggetObj['treasure_box']}}</h5>
-																</div>
-															</div>
-                                                        @else
-                                                            <img src="/assets/default/img/treasure2.png" alt="">
-                                                        @endif
-                                                    </span>
+                                                        </span>
+                                                        <div class="lms-tooltip dropdown-menu">
+                                                            <div class="tooltip-box">
+                                                                <h5 class="font-18 font-weight-bold text-white mb-5"><img src="/assets/default/img/panel-sidebar/coins.svg" alt="" width="30"> {{$nuggetObj['treasure_box']}}</h5>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <img src="/assets/default/img/treasure2.png" alt="">
+                                                    @endif
+                                                    
                                                 </a>
                                             </li>
                                         @endif

@@ -9852,9 +9852,9 @@ Heatmap Table style Start
 .question-summary .questions-arithmetic-box .correct {color: #58bd5b !important;}
 .question-summary .questions-arithmetic-box .incorrect {color: #ff0202 !important;}
 .question-summary .questions-arithmetic-box .time-of-answer {min-width: 50px;text-align: right;padding: 3px 5px;color: #fff;margin: 0 0 0 10px;}
-.time-of-answer.time-wrong {background-color: #ff0202;}
-.time-of-answer.time-slow {background-color: #e29312;}
-.time-of-answer.time-ok {background-color: #c8d022;}
+.time-of-answer.time-wrong {background-color: #ffb9b9; color: #dc160b; border: 1px solid #dc160b; border-radius: 2px;}
+.time-of-answer.time-slow {background-color: #ffe6bd; color: #e29312; border: 1px solid #e29312; border-radius: 2px;}
+.time-of-answer.time-ok {background-color: #faff8c; color: #c8d022; border: 1px solid #c8d022; border-radius: 2px;}
 .question-summary .questions-controls span:first-child {min-width: 70px;}
 .question-summary .lms-radio-lists .questions-controls {display: inline-block;width: 100%;text-align: right;position: absolute;}
 .question-summary .lms-radio-lists .time-of-answer {display: inline-block;padding: 8px 8px;text-align: center;}
@@ -9901,7 +9901,7 @@ Main Home style End
 .rurera-button-loader .double-bounce2 { width: 100%; height: 100%; border-radius: 50%; background-color: #ccc; opacity: 0.6; position: absolute; top: 0; left: 0; -webkit-animation: sk-bounce 2.0s infinite ease-in-out; -moz-animation: sk-bounce 2.0s infinite ease-in-out; animation: sk-bounce 2.0s infinite ease-in-out; }
 .rurera-processing { pointer-events: none; position:relative;}
 .rurera-processing:has(.rurera-button-loader) {position: relative;}
-.rurera-processing .rurera-button-loader {height: 100vh;}
+/* .rurera-processing .rurera-button-loader {height: 100vh;} */
 .edit-user-modal .user-profile-block.rurera-processing {height: 100vh;}
 .rurera-button-loader .double-bounce2 { -webkit-animation-delay: -1.0s; -moz-animation-delay: -1.0s; animation-delay: -1.0s;}
 .quiz-start-btn {z-index: 999;}
@@ -10393,7 +10393,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .spells-data-list .table thead tr th {padding-left: 15px; text-align: left;}
 .elevenplus-block .table thead th:nth-child(2) {padding-left: 0;}
 .spell-question-area .left-content {justify-content: center; position: relative; overflow: hidden;}
-.spell-question-area .left-content:before {content: "🕪"; position: absolute; top: 50%; left: 50%; font-size: 940px; opacity: 0.005; transform: translate(-50%, -50%) scale(-1); pointer-events: none; margin-top: 50px;}
+/* .spell-question-area .left-content:before {content: "🕪"; position: absolute; top: 50%; left: 50%; font-size: 940px; opacity: 0.005; transform: translate(-50%, -50%) scale(-1); pointer-events: none; margin-top: 50px;} */
 /* .spells-quiz-info {position: absolute; top: 0; left: 0; width: 100%;} */
 .question-area-block.quiz-first-question {margin: 40px 0;}
 .spells-quiz-info ul {border: 1px solid #bac3ca; border-left: 0; border-right: 0; border-top: 0; display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between;}
@@ -10623,7 +10623,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 /* Spell Levels Style Start */
 .spell-levels ul {display: none;flex-wrap: wrap;gap: 30px;justify-content: center;flex-direction: column; padding: 0 20px 20px 30px;}
 .trophy-levels .spell-levels ul {display: flex;}
-.spell-levels li > a {display: inline-flex; height: 62px; width: 68px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative; z-index: 3;}
+.spell-levels li > a {display: inline-flex; height: 62px; width: 68px; text-align: center; background-color: #ddd; border-radius: 100%; align-items: center; justify-content: center; box-shadow: 0 6px 0 1px #b0b0b0; color: #b0b0b0; font-size: 28px; font-weight: 600; position: relative;}
 .spell-levels li > a:before {content: ""; height: 70%; width: 4px; position: absolute; left: 50%; top: 100%; margin-left: -2px; background-color: #b0b0b0; margin-top: 10px;}
 .spell-levels li:last-child a:before{display: none;}
 .spell-levels .treasure > a {background-color: inherit; border-radius: 0; box-shadow: none;}
@@ -11151,21 +11151,17 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-incorrects:hover {z-index: 2; left: 25px; }
 /* Quiz Status Bar Style End */
 .rurera-tooltip {position: relative;}
-.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; top: -100%; left: 50% !important; margin-top: -30px; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; transform: translateX(-50%) !important; text-align: left; visibility: hidden; opacity: 0;}
-.rurera-tooltip .lms-tooltip {
-    top: auto;
-    bottom: 100%;
-}
+.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; text-align: left;}
 .lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
 .lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
 .lms-tooltip span {display: block;}
 .lms-tooltip.show,
 .rurera-tooltip:focus .lms-tooltip {visibility: visible; opacity: 1; margin-bottom: 20px;}
-.spell-levels li.completed .lms-tooltip {
+/* .spell-levels li.completed .lms-tooltip {
     top: auto;
     bottom: 100%;
     margin-bottom: 20px;
-}
+} */
 .spell-levels li:has(.rurera-stars) .lms-tooltip {
     margin-bottom: 50px;
 }
@@ -11186,6 +11182,40 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
     height: 22px;
     width: 22px;
     margin-right: 8px;
+}
+.rurera-tooltip.dropup .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    transform: none;
+    margin: 0 0 25px;
+    transform: translateX(-50%) !important;
+    left: 50% !important;
+    top: auto !important;
+    bottom: 100%;
+}
+.rurera-tooltip.dropup .lms-tooltip.dropdown-menu.show {
+    display: block;
+}
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom] {
+    top: 100% !important;
+    bottom: auto;
+    margin-top: 25px;
+}
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom]:before, 
+.rurera-tooltip.dropup .dropdown-menu[x-placement^=bottom]:after {
+    bottom: auto;
+    top: -8px;
+}
+.tooltip-box h5 {
+    font-weight: 400 !important;
+    font-size: 16px !important;
+}
+.tooltip-box h5 .topic-title {
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
+    margin: 0 0 5px;
 }
 .tooltip-btn {border-radius: 6px; font-weight: 500; min-height: 44px; line-height: 44px; text-transform: uppercase; border: 0; width: 100%; }
 .tooltip-btn.practice {background-color: #fff; box-shadow: 0 4px 0 #ccf2b7; color: #58c700; }
@@ -12058,7 +12088,8 @@ Lms Responsive Style Start
     .info-setting .instruction-dropdown {margin-right: -10px; width: 300px;}
     body .learning-page {padding-top: 0;}
     body .instruction-controls .instruction-text {min-width: auto; height: 450px;}
-    body .read-quiz-content .quiz-topbar {position: relative;}
+    body .read-quiz-content .quiz-topbar {position: relative; padding: 25px 0; margin-bottom: 0;}
+    .quiz-topbar .container-fluid > .row {gap: 15px;}
     body .panel-right-sidebar .navbar-toggler {position: relative; display: block; border: 0; padding: 0;}
     body .panel-right-sidebar .sidebar-logo {align-items: flex-start; position: relative; z-index: 1; display: inline-flex;}
     body .sidebar-menu-holder {background-color: #fff; visibility: hidden; padding: 0; opacity: 0; position: fixed; top: 0; height: 100%; left: -150%; transition: left .4s cubic-bezier(.43, .83, .54, 1.02), opacity .4s linear; z-index: 2; width: 100%;}
@@ -12123,13 +12154,16 @@ Lms Responsive Style Start
     .user-profile-icons li.dropdown strong:after {background-color: #fff;box-shadow: none;border: 0;bottom: -24px;}
     .user-profile-icons li.dropdown:hover strong:before, 
     .user-profile-icons li.dropdown:hover strong:after {visibility: visible;opacity: 1;}
-    body .question-layout-block form.question-fields .questions-nav-controls {left: 0; width: 100%; margin-bottom: 0 !important;}
+    body .question-layout-block form.question-fields .questions-nav-controls {background-color: #fff; left: 0; width: 100%; margin-bottom: 0 !important;}
     .member-card-header {/*padding-top: 50px;*/ padding-bottom: 20px !important;}
     body #progbar {margin-top: 0;}
     .container-fluid.read-quiz-content .quiz-status-bar {padding-top: 30px;}
     .db-members .rurera-tabs-frontend {padding-bottom: 30px !important;}
     body .learning-page.type-sats .left-content {height: auto; overflow: visible;}
     body .populated-data .questions-select-number li {flex-basis: 31%;}
+    body .wizard-steps .radio-buttons .card-radio:has(img) {
+        width: 18.222%;
+    }
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -12501,13 +12535,68 @@ Lms Responsive Style Start
     .profile-view-data {margin: 0;}
     .profile-view-data > li {width: 100%; margin-right: 0; padding: 0;}
     .spell-levels .lms-tooltip {
+        max-width: 200px;
+        min-width: 200px;
+    }
+    .spell-levels ul > li:nth-child(1) .lms-tooltip,
+    .spell-levels ul > li:nth-child(2) .lms-tooltip {
         transform: none !important;
         left: 0 !important;
     }
-    .spell-levels .lms-tooltip:before,
-    .spell-levels .lms-tooltip:after {
+    .spell-levels ul > li:nth-child(1) .lms-tooltip:before,
+    .spell-levels ul > li:nth-child(1) .lms-tooltip:after,
+    .spell-levels ul > li:nth-child(2) .lms-tooltip:before,
+    .spell-levels ul > li:nth-child(2) .lms-tooltip:after {
         left: 15px;
         transform: translateX(0) rotate(45deg);
+    }
+    .spell-levels ul > li:last-child .lms-tooltip,
+    .spell-levels ul > li:nth-last-child(2) .lms-tooltip {
+        transform: none !important;
+        left: auto !important;
+        right: 0;
+    }
+    .spell-levels ul > li:last-child .lms-tooltip:before, 
+    .spell-levels ul > li:last-child .lms-tooltip:after,
+    .spell-levels ul > li:nth-last-child(2) .lms-tooltip:before, 
+    .spell-levels ul > li:nth-last-child(2) .lms-tooltip:after {
+        left: auto;
+        right: 5px;
+    }
+
+    .spell-levels ul.ul-rtl > li:nth-child(1) .lms-tooltip,
+    .spell-levels ul.ul-rtl > li:nth-child(2) .lms-tooltip {
+        transform: none !important;
+        left: auto !important;
+        right: 0;
+    }
+    .spell-levels ul.ul-rtl > li:nth-child(1) .lms-tooltip:before,
+    .spell-levels ul.ul-rtl > li:nth-child(1) .lms-tooltip:after,
+    .spell-levels ul.ul-rtl > li:nth-child(2) .lms-tooltip:before,
+    .spell-levels ul.ul-rtl > li:nth-child(2) .lms-tooltip:after {
+        right: 15px;
+        left: auto;
+        transform: translateX(0) rotate(45deg);
+    }
+
+
+    .spell-levels ul.ul-rtl > li:last-child .lms-tooltip,
+    .spell-levels ul.ul-rtl > li:nth-last-child(2) .lms-tooltip {
+        transform: none !important;
+        left: 0 !important;
+        right: auto;
+    }
+    .spell-levels ul.ul-rtl > li:last-child .lms-tooltip:before, 
+    .spell-levels ul.ul-rtl > li:last-child .lms-tooltip:after,
+    .spell-levels ul.ul-rtl > li:nth-last-child(2) .lms-tooltip:before, 
+    .spell-levels ul.ul-rtl > li:nth-last-child(2) .lms-tooltip:after {
+        left: 15px;
+        right: auto;
+        transform: translateX(0) rotate(45deg);
+    }
+
+    body .wizard-steps .radio-buttons .card-radio:has(img) {
+        width: 30%;
     }
 }
 
@@ -12575,7 +12664,10 @@ Lms Responsive Style Start
     .learning-page .learning-page-content {overflow: hidden;}
     .question-layout-block form.question-fields {padding: 20px 15px 0;}
     .question-layout-block .question-fields .leform-element {padding-left: 0; padding-right: 0;}
-    body .question-layout-block form.question-fields .questions-total-holder {margin-top: -5px !important; font-size: 16px;}
+    body .question-layout-block form.question-fields .questions-total-holder {font-size: 16px;}
+    body .question-step:has(.question-number-holder .flag-question) .leform-form {
+        padding: 60px 0 30px 0;
+    }
     .counter-holder .svg-shapes-bottom {position: absolute; left: 68px; right: auto; bottom: 60px; transform: rotate(20deg);}
     .lms-contact-form-section {padding-bottom: 0 !important;}
     .spell-levels-top .spell-top-left {width: 100%;}
@@ -12739,6 +12831,15 @@ Lms Responsive Style Start
     .member-card-header .d-flex {
         flex-direction: column;
     }
+    .lms-quiz-section .input-holder:has(input[type="number"]) {
+        max-width: min-content;
+        min-width: 90px;
+    }
+    .lms-quiz-section .input-holder input.small,
+    .input-holder .input-label ~ input[type="number"].input-simple {
+        width: 100%;
+    }
+    .lms-quiz-section .input-holder.textarea_lines {margin-left: 0;max-width: none;}
 }
 @media screen and (max-width: 480px) {
     .lms-count-field .lms-text-holder {flex-direction: column;}
@@ -12779,6 +12880,10 @@ Lms Responsive Style Start
     .db-members .card .list-group-item {padding-bottom: 15px;}
     .edit-profile-top {gap: 15px;}
     .notification-card .text-right {text-align: center !important;}
+    .detail-body .profile-inner, .edit-info-list .subscribe-plan {
+        max-width: 100%;
+        min-width: auto;
+    }
 }
 .disabled-style{opacity: 0.5;}
 .preference_field option:disabled {

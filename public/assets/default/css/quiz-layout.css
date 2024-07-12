@@ -4,7 +4,6 @@ html:has(.quiz-topbar) {
     overflow: hidden;
 }
 body:has(.quiz-topbar) {
-    height: 100%;
     overflow: hidden;
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
@@ -157,6 +156,9 @@ Lms Form Fields Style
 .question-step {position: relative; }
 .question-step:has(.prev-next-controls){
     padding-bottom: 80px;
+}
+.question-step:has(.prev-next-controls.questions-nav-controls.rurera-hide){
+    padding-bottom: 0;
 }
 .lms-content-holder h2 {margin: 0 0 15px; font-size: 22px; font-weight: 500; color: #000; display: flex; align-items: center; flex-wrap: wrap;}
 .lms-content-holder .icon-img {margin-left: 25px;}
@@ -348,6 +350,12 @@ Lms Question List Style
 .question-fields .left-content::-webkit-scrollbar,
 .lms-sorting-fields::-webkit-scrollbar,
 .learning-page.type-sats .left-content {/*overflow-y: auto; height: 490px;*/ position: relative; }
+.spell-question-area .left-content {
+    height: calc(100vh - 160px);
+}
+.learning-page:has(.spell-question-area .left-content) {
+    padding-top: 50px;
+}
 .learning-page.type-practice .left-content {height: auto; min-height: auto; }
 /* .learning-page.type-practice .left-content .leform-elements {height: 400px; overflow: hidden; overflow-y: auto; padding-right: 5px;}
 .learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {width: 5px; background-color: #F5F5F5;} */
@@ -635,7 +643,7 @@ Lms Quiz Wf Style Start
 .column-3 .input-holder:last-child {margin-right: 0;}
 .question-textarea .column-3 .input-holder {width: 33.333%;}
 .input-holder,
-.lms-quiz-section .input-holder {border: 1px solid #ddd; display: inline-block; line-height: normal; position: relative; width: fit-content !important; display: inline-grid !important; border-radius: 8px; vertical-align: middle; margin: 0 3px;}
+.lms-quiz-section .input-holder {border: 1px solid #ddd; display: inline-block; line-height: normal; position: relative; /*width: fit-content !important; display: inline-grid !important;*/ border-radius: 8px; vertical-align: middle; margin: 0 3px;}
 @supports (selector(.quiz-group:has(.input-holder))) {
     .input-holder:has(.divide-numbers) {
       border: 0 !important;
@@ -722,7 +730,7 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 .input-holder input.input_line[type=number]::-webkit-outer-spin-button{opacity: 0;}
 .note-editable .input-holder input[type="number"],
 .input-holder .input-label ~ input[type="number"] {text-align: right;}
-.input-holder .input-label ~ input.input-simple {padding: 0 7px; min-height: 38px;}
+.input-holder .input-label ~ input.input-simple {padding: 0 5px 0 25px; min-height: 38px;}
 .input-holder .input-label ~ input.input_line {min-height: auto; width: 100%;}
 .input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 10px; text-align: left;}
 .input-holder .input-label.left ~ input[type="number"].input-simple {text-align: right;}

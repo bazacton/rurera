@@ -1775,19 +1775,25 @@ class QuestionsAttemptController extends Controller
 
             if ($total_attempts >= $no_of_attempts) {
                 $TimestablesEvents = TimestablesEvents::find($UserAssignedTopics->topic_id);
-                $TimestablesEvents->update([
-                    'status'     => 'completed',
-                    'updated_at' => time(),
-                ]);
+				if( isset( $TimestablesEvents->id ) ){
+					$TimestablesEvents->update([
+						'status'     => 'completed',
+						'updated_at' => time(),
+					]);
+				}
                 $StudentAssignments = StudentAssignments::find($UserAssignedTopics->student_assignment_id);
-                $StudentAssignments->update([
-                    'status'     => 'completed',
-                    'updated_at' => time(),
-                ]);
-                $UserAssignedTopics->update([
-                    'status'     => 'completed',
-                    'updated_at' => time(),
-                ]);
+				if( isset( $StudentAssignments->id ) ){
+					$StudentAssignments->update([
+						'status'     => 'completed',
+						'updated_at' => time(),
+					]);
+				}
+				if( isset( $UserAssignedTopics->id ) ){
+					$UserAssignedTopics->update([
+						'status'     => 'completed',
+						'updated_at' => time(),
+					]);
+				}
             }
 
             $assignment_method = $UserAssignedTopics->StudentAssignmentData->assignment_method;
