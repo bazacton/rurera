@@ -7202,6 +7202,11 @@ function element_properties_meta($chapters)
                 'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
                 'type'         => 'repeater_fields'
             ),
+			'words_options'       => array(
+                'value' => esc_html__('', 'leform'),
+                'label' => esc_html__('Words', 'leform'),
+                'type'  => 'text'
+            ),
             'word_audio'       => array(
                 'value' => esc_html__('', 'leform'),
                 'label' => esc_html__('Audio File Word Upload', 'leform'),
@@ -9237,6 +9242,10 @@ function get_test_type_file($test_type){
 			
 		case "word-search":
             $test_type_file = 'word_search';
+            break;
+			
+		case "word-missing":
+            $test_type_file = 'word_missing';
             break;
 	}
 	return $test_type_file;

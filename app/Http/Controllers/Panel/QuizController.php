@@ -543,7 +543,7 @@ class QuizController extends Controller
 
                             $layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
 
-                            $correct_answer = $audio_file = $word_audio = $audio_text = $audio_sentense = $field_id = '';
+                            $correct_answer = $audio_file = $word_audio = $audio_text = $audio_sentense = $field_id = $words_options = '';
 							$exam_sentenses = array();
                             if (!empty($layout_elements)) {
                                 foreach ($layout_elements as $elementData) {
@@ -554,6 +554,7 @@ class QuizController extends Controller
                                     $audio_sentense = isset($elementData->audio_sentense) ? $elementData->audio_sentense : $audio_sentense;
 									
                                     $audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
+									$words_options = isset($elementData->words_options) ? $elementData->words_options : $words_options;
                                     if ($element_type == 'audio_file') {
                                         $audio_file = $content;
                                         $word_audio = isset($elementData->word_audio) ? $elementData->word_audio : $word_audio;
@@ -575,6 +576,10 @@ class QuizController extends Controller
                             }
 
                             $audio_file = ($quiz_level == 'hard')? $word_audio : $audio_file;
+							$words_options = explode(',', $words_options);
+							$words_options = is_array( $words_options )? $words_options : array();
+							$words_options[] = $correct_answer;
+							shuffle($words_options);
                             $word_data = array(
                                 'audio_text'       => $audio_text,
                                 'audio_sentense'   => $audio_sentense,
@@ -583,6 +588,7 @@ class QuizController extends Controller
                                 'field_id'         => $field_id,
                                 'word_audio'       => $word_audio,
                                 'exam_sentenses'     => $exam_sentenses,
+                                'words_options' => $words_options,
                             );
 
                             $total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
@@ -693,6 +699,7 @@ class QuizController extends Controller
                         $resultsQuestionsData['time_interval'] = $time_interval;
                         $resultsQuestionsData['duration_type'] = $duration_type;
                         $resultsQuestionsData['exam_sentenses'] = $resultsQuestionsData['word_data']['exam_sentenses'];
+                        $resultsQuestionsData['words_options'] = $resultsQuestionsData['word_data']['words_options'];
 						
 						//print
 						//pre($resultsQuestionsData['word_data']['exam_sentenses']);
