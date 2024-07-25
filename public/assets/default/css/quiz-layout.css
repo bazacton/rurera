@@ -356,6 +356,23 @@ Lms Question List Style
 .learning-page:has(.spell-question-area .left-content) {
     padding-top: 50px;
 }
+.left-content:has(#rurera-words-search) {height: auto;}
+#rurera-words-search {
+    margin-top: 50px;
+}
+#rurera-words-search #rf-searchgamecontainer {
+    float: none;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+    overflow: hidden;
+    padding: 15px;
+    background-color: #fff;
+}
+#rurera-words-search .rf-tablestyle {border: 0;background-color: #fff;}
+#rurera-words-search #rf-searchgamecontainer .rf-tgrid {
+    color: var(--primary);
+}
 .learning-page.type-practice .left-content {height: auto; min-height: auto; }
 /* .learning-page.type-practice .left-content .leform-elements {height: 400px; overflow: hidden; overflow-y: auto; padding-right: 5px;}
 .learning-page.type-practice .left-content .leform-elements::-webkit-scrollbar {width: 5px; background-color: #F5F5F5;} */
@@ -644,6 +661,9 @@ Lms Quiz Wf Style Start
 .question-textarea .column-3 .input-holder {width: 33.333%;}
 .input-holder,
 .lms-quiz-section .input-holder {border: 1px solid #ddd; display: inline-block; line-height: normal; position: relative; /*width: fit-content !important; display: inline-grid !important;*/ border-radius: 8px; vertical-align: middle; margin: 0 3px;}
+.input-holder:has(textarea), .lms-quiz-section .input-holder:has(textarea) {
+    margin: 0;
+}
 @supports (selector(.quiz-group:has(.input-holder))) {
     .input-holder:has(.divide-numbers) {
       border: 0 !important;
@@ -671,7 +691,7 @@ Lms Quiz Wf Style Start
         linear-gradient(to right, white 10px, transparent 10px),
         linear-gradient(to left, white 10px, transparent 10px),
         repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px); */
-    padding: 0;
+    padding: 0 10px;
     outline: none;
     width: 100%;
     resize: none;
@@ -707,7 +727,10 @@ Lms Quiz Wf Style Start
         line-height: 31px;
 } */
 /* draggable-handle style */
-.ui-draggable.ui-draggable-handle {cursor: all-scroll;border: 2px solid #ddd;border-bottom-width: 4px;line-height: normal;text-align: center;border-radius: 8px;margin: 3px 6px 0 0;color: #333;background-color: #fcfcfc;padding: 4px 25px 8px;width: auto;}
+.ui-draggable.ui-draggable-handle {cursor: all-scroll;border: 2px solid #ddd;border-bottom-width: 4px;line-height: normal;text-align: center;border-radius: 8px;margin: 3px 6px 0 0;color: #333;background-color: #fdfdfd;padding: 4px 25px 8px;width: auto;}
+.draggable-items .ui-draggable:hover {
+    background-color: #f8f8f8;
+}
 .ui-icon-close {cursor: pointer;}
 .image-field-box{position:absolute !important;}
 .input-holder:empty {display: none;}
@@ -732,8 +755,11 @@ table.table td .input-holder input[type=number]::-webkit-outer-spin-button,
 .input-holder .input-label ~ input[type="number"] {text-align: right;}
 .input-holder .input-label ~ input.input-simple {padding: 0 5px 0 25px; min-height: 38px;}
 .input-holder .input-label ~ input.input_line {min-height: auto; width: 100%;}
-.input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 10px; text-align: left;}
-.input-holder .input-label.left ~ input[type="number"].input-simple {text-align: right;}
+.input-holder .input-label ~ input[type="number"].input-simple  {padding: 0 0 0 36px; text-align: left;}
+.input-holder .input-label.right ~ input[type="number"].input-simple {
+    padding: 0 10px;
+}
+ .input-holder .input-label.left ~ input[type="number"].input-simple {/*text-align: right;*/} 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {-webkit-appearance: none;}
 input[type=number] {-moz-appearance:textfield;}
@@ -1944,7 +1970,7 @@ span.seperator_line {border:3px solid; border-color:#000; width: 50px; display: 
 .draggable-items {display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; margin-top: 40px;}
 .draggable-items .ui-draggable {background-image: none;color: #666;padding: 4px 25px 8px;height: auto;margin: 0;border-radius: 8px;border: 2px solid #ddd; border-bottom-width: 4px;}
 .draggable-items .ui-draggable span {color: #999; vertical-align: middle;}
-.droppable_area, .lms-quiz-section .droppable_area {display:inline-block; height: auto; padding: 0; margin: 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: middle; min-width: 190px; text-align: center; min-height: 45px; line-height: 40px; }
+.droppable_area, .lms-quiz-section .droppable_area {display:inline-flex; height: auto; padding: 0; margin: 0; border-radius: 0; border-bottom: 2px dotted #ddd; vertical-align: text-bottom; justify-content: center; align-items: center; min-width: 190px; text-align: center; min-height: 40px; }
 span.Selectable.marking-selected {background: #fff716;}
 .marking-quiz-data span {display: inline;}
 span.Selectable:hover {text-decoration: underline;}
@@ -1954,7 +1980,7 @@ span.Selectable:hover {text-decoration: underline;}
 .review_submit .modal-body {display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; justify-content: center;}
 .review_submit .submit_quiz_final {padding: 15px 50px; font-weight: 500;}
 .question-layout p {line-height: 50px;}
-.lms-quiz-section .droppable_area .draggable-option {border: 2px solid #ddd; line-height: normal; padding: 4px 20px 8px; border-radius: 5px; border-bottom-width: 4px;}
+.lms-quiz-section .droppable_area .draggable-option {border: 2px solid #ddd; line-height: normal; padding: 4px 20px 8px; border-radius: 5px; border-bottom-width: 4px; margin-top: 20px;}
 .question-layout .ui-state-highlight {border: 0; padding: 0 5px 0 0;min-width: 50px;text-align: center;min-height: 30px;line-height: 30px;}
 
 /* Question-Result-Layout Style Start */

@@ -6952,6 +6952,12 @@ function element_properties_meta($chapters)
                'label' => esc_html__('Maximum Length', 'leform'),
                'type'  => 'number'
            ),
+		   
+		   
+		   
+		   
+		   
+		   
             'correct_answer'    => array(
                'value' => '',
                'label' => esc_html__('Correct Answer', 'leform'),
@@ -7178,6 +7184,23 @@ function element_properties_meta($chapters)
                 'value' => esc_html__('', 'leform'),
                 'label' => esc_html__('Defination', 'leform'),
                 'type'  => 'text'
+            ),
+			'options'           => array(
+                'multi-select' => 'off',
+                'values'       => array(
+                    array(
+                        'label' => 'Sentence'
+                    ),
+                    array(
+                        'label' => 'Sentence'
+                    ),
+                    array(
+                        'label' => 'Sentence'
+                    )
+                ),
+                'label'        => esc_html__('Sentences', 'leform'),
+                'tooltip'      => esc_html__('These are the choices that the user will be able to choose from.', 'leform'),
+                'type'         => 'repeater_fields'
             ),
             'word_audio'       => array(
                 'value' => esc_html__('', 'leform'),
@@ -9149,4 +9172,72 @@ function rurera_content($content){
 
     // Perform the replacement
     return preg_replace_callback($pattern, $callback, $content);
+}
+
+function getRandomIndexes($word) {
+     $length = strlen($word);
+    
+    // Determine the number of indexes to fetch
+    if ($length <= 4) {
+        $num_indexes = 1;
+    } elseif ($length <= 6) {
+        $num_indexes = 2;
+    } elseif ($length <= 9) {
+        $num_indexes = 3;
+    } else {
+        $num_indexes = 4;
+    }
+    
+    // Generate random indexes, ensuring 0 is not included
+    $possible_indexes = range(1, $length - 1); // create an array of indexes from 1 to length-1
+    $random_indexes = [];
+    
+    if ($num_indexes >= $length) {
+        $random_indexes = $possible_indexes; // if num_indexes is greater or equal to possible indexes, take all
+    } else {
+        while (count($random_indexes) < $num_indexes) {
+            $rand_index = $possible_indexes[array_rand($possible_indexes)];
+            if (!in_array($rand_index, $random_indexes)) {
+                $random_indexes[] = $rand_index;
+            }
+        }
+    }
+    
+    sort($random_indexes); // sort the indexes to ensure they are in sequence
+    
+    return $random_indexes;
+}
+
+function getRandomCharacters($characters_list) {
+    // Define the alphabet
+    $alphabet = range('A', 'Z');
+
+    // Remove characters that are in the $characters_list
+    $filtered_alphabet = array_diff($alphabet, $characters_list);
+
+    // Ensure there are at least two characters available
+    if (count($filtered_alphabet) < 2) {
+        return "Not enough characters available";
+    }
+
+    // Select two random characters from the filtered alphabet
+    $random_keys = array_rand($filtered_alphabet, 2);
+    $random_characters = [$filtered_alphabet[$random_keys[0]], $filtered_alphabet[$random_keys[1]]];
+
+    return $random_characters;
+}
+
+
+function get_test_type_file($test_type){
+	$test_type_file = '';
+	switch ($test_type) {
+        case "word-hunts":
+            $test_type_file = 'word_hunts';
+            break;
+			
+		case "word-search":
+            $test_type_file = 'word_search';
+            break;
+	}
+	return $test_type_file;
 }

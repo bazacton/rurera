@@ -335,7 +335,7 @@ class AssignmentController extends Controller
                     $newQuestionResult = isset($nextQuestionArray['newQuestionResult']) ? $nextQuestionArray['newQuestionResult'] : array();
 
                     if ($question_id == $prev_active_question_id) {
-                        $active_question_id = $newQuestionResult->id;
+                        $active_question_id = isset( $newQuestionResult->id )? $newQuestionResult->id : 0;
                         //$active_actual_question_id = $newQuestionResult->question_id;
                     }
 

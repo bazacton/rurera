@@ -86,7 +86,7 @@ $timer_counter = $practice_time;
 
         <div class="container-fluid questions-data-block read-quiz-content"
              data-total_questions="{{$quizQuestions->count()}}">
-            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide1' : ''; @endphp
+            @php $top_bar_class = ($quiz->quiz_type == 'vocabulary')? 'rurera-hide' : ''; @endphp
 
             <section class="quiz-topbar {{$top_bar_class}}">
                 <div class="container-fluid">
@@ -374,8 +374,13 @@ $timer_counter = $practice_time;
 
     var duration_type = '{{$duration_type}}';
     var timePaused = false;
+	
+	
+	
 
     function quiz_default_functions() {
+		
+
 
         $('.editor-field-inputs:eq(0)').focus();
         Quizintervals = setInterval(function () {

@@ -2,8 +2,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .rurera-hide{display:none;}
-	
-
 </style>
 
 
@@ -48,6 +46,14 @@ if( isset( $duration_type ) ){
 }
 
 $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
+$hidden_indexes = getRandomIndexes($correct_answer);
+$characters_list = [];
+foreach( $hidden_indexes as $index_no){
+	$characters_list[] = substr($correct_answer, $index_no,1);
+}
+$random_characters = getRandomCharacters($characters_list);
+$characters_list = array_merge($characters_list, $random_characters);
+shuffle($characters_list);
 @endphp
 <div class="question-area spell-question-area">
     <div class="correct-appriciate" style="display:none"></div>
@@ -83,24 +89,37 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-                        @php $words_counter = 0; @endphp
+					
+						<ul class="spell-characters-list droppable-characters">
+						@if( !empty( $characters_list ) )
+							@foreach( $characters_list as $character_index => $character_char)
+								<li class="draggable" id="item-1{{ $character_index }}" draggable="true">{{$character_char}}</li>
+							@endforeach
+						@endif	
+						</ul>
+					
+					
+						@php $words_counter = 0; @endphp
                         @while($words_counter < $no_of_words)
                             @php $words_counterplus = $words_counter+1;
                             $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
+							$word_character = substr($correct_answer, $words_counter, 1);
+							$word_character = in_array($words_counter, $hidden_indexes)? '' : $word_character;
                             @endphp
-                            <input type="text" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs" style="width: {{$field_width}}ch;
+                            <input type="text" value="{{$word_character}}" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs drop-target{{ $question->id }}" style="width: {{$field_width}}ch;
                                                     background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
                                                     font: 1.2rem 'Ubuntu Mono', monospace;
                                                     letter-spacing: 0.5ch;">
                         @php $words_counter++;@endphp
                         @endwhile
+					
                         <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
 
 
 
                     <div class="question-correct-answere rurera-hide">
-                        {{$correct_answer}}
+                        {{$correct_answer}} - {{$question->id}}
                     </div>
 
 
@@ -196,6 +215,37 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
 
 
 <script>
+
+	/*$(document).ready(function() {
+		const draggableItems = document.querySelectorAll('.draggable');
+		const dropTargets = document.getElementsByClassName('drop-target{{ $question->id }}');
+		
+
+		draggableItems.forEach(item => {
+			item.addEventListener('dragstart', (event) => {
+				event.dataTransfer.setData('text/plain', event.target.id);
+			});
+		});
+
+		Array.from(dropTargets).forEach(dropTarget => {
+			dropTarget.addEventListener('dragover', (event) => {
+				event.preventDefault(); // Necessary to allow drop
+			});
+		});
+		
+		Array.from(dropTargets).forEach(dropTarget => {
+			dropTarget.addEventListener('drop', (event) => {
+				const id = event.dataTransfer.getData('text/plain');
+				console.log('sdfsdfsdfsdf');
+				const draggedElement = document.getElementById(id);
+				console.log(draggedElement.innerHTML);
+				if (draggedElement) {
+					dropTarget.value  = draggedElement.innerHTML;
+				}
+			});
+		});
+	});*/
+	
     var currentFunctionStart = null;
     var Questioninterval = null;
 
@@ -211,27 +261,6 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
                 var seconds_count_done = $(".question-step-{{ $question->id }}").attr('data-elapsed');
                 hint_counter = parseInt(hint_counter) + parseInt(1);
                 var quiz_level = '{{$quiz_level}}';
-                if( quiz_level == 'easy') {
-                    if (parseInt(hint_counter) == 30 && userInput == false) {
-
-                        $('.editor-field-inputs').each(function() {
-                          var $this = $(this);
-                          var value = $this.val();
-                          if (value !== "") {
-                            var counterId = $this.attr('data-counter_id');
-                            excludeArray.push(charPosition);
-                          }
-                        });
-
-                        var charPosition = getRandomNumberNotInArray(ansCharactersCount, excludeArray);
-                        excludeArray.push(charPosition);
-                        console.log('charPosition--'+charPosition);
-                        var correct_answer_character = ansCorr.charAt(charPosition);
-                        $('.editor-field-inputs[data-counter_id="'+charPosition+'"').attr('placeholder',correct_answer_character);
-                        charPosition = parseInt(charPosition) + parseInt(1);
-                        hint_counter = 0;
-                    }
-                }
                 seconds_count_done = parseInt(seconds_count_done) + parseInt(1);
                 $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count_done);
             }, 1000);
@@ -270,6 +299,15 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
             $this.prev('.editor-field-inputs').focus();
         }
     });
+	
+	
+	
+	
+	
+
+
+
+
 
 
     function getRandomNumberNotInArray(maxNumber, excludeArray) {

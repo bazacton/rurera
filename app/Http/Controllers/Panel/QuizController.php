@@ -383,6 +383,9 @@ class QuizController extends Controller
         $quiz_level = $request->get('quiz_level', 'easy');
         $learning_journey = $request->get('learning_journey', 'no');
         $journey_item_id = $request->get('journey_item_id', 'no');
+		$test_type = $request->get('test_type', '');
+		$test_type_file = get_test_type_file($test_type);
+		
 
         $no_of_questions = 0;
 
@@ -495,7 +498,7 @@ class QuizController extends Controller
 
             //Stores the question id of questions results table with the index of actual question ID
             $questions_result_reference_array = array();
-			
+			$elementsData = array();
 			
 			//pre($questions_list, false);
 
@@ -541,6 +544,7 @@ class QuizController extends Controller
                             $layout_elements = isset($questionObj->layout_elements) ? json_decode($questionObj->layout_elements) : array();
 
                             $correct_answer = $audio_file = $word_audio = $audio_text = $audio_sentense = $field_id = '';
+							$exam_sentenses = array();
                             if (!empty($layout_elements)) {
                                 foreach ($layout_elements as $elementData) {
                                     $element_type = isset($elementData->type) ? $elementData->type : '';
@@ -548,17 +552,25 @@ class QuizController extends Controller
                                     $correct_answer = isset($elementData->correct_answer) ? $elementData->correct_answer : $correct_answer;
                                     $audio_text = isset($elementData->audio_text) ? $elementData->audio_text : $audio_text;
                                     $audio_sentense = isset($elementData->audio_sentense) ? $elementData->audio_sentense : $audio_sentense;
+									
                                     $audio_defination = isset($elementData->audio_defination) ? $elementData->audio_defination : $audio_defination;
                                     if ($element_type == 'audio_file') {
                                         $audio_file = $content;
                                         $word_audio = isset($elementData->word_audio) ? $elementData->word_audio : $word_audio;
+										$options = isset($elementData->options) ? $elementData->options : array();
                                         $audio_text = $audio_text;
                                         $audio_sentense = $audio_sentense;
+										if( !empty( $options ) ){
+											foreach( $options as $optionData){
+												$exam_sentenses[] = $optionData->label;
+											}
+										}
                                     }
                                     if ($element_type == 'textfield_quiz') {
                                         $correct_answer = $correct_answer;
                                         $field_id = isset($elementData->field_id) ? $elementData->field_id : '';
                                     }
+									$elementsData[] = $elementData;
                                 }
                             }
 
@@ -570,6 +582,7 @@ class QuizController extends Controller
                                 'audio_file'       => $audio_file,
                                 'field_id'         => $field_id,
                                 'word_audio'       => $word_audio,
+                                'exam_sentenses'     => $exam_sentenses,
                             );
 
                             $total_questions_count = is_array(json_decode($attemptLogObj->questions_list)) ? json_decode($attemptLogObj->questions_list) : array();
@@ -620,6 +633,7 @@ class QuizController extends Controller
             } else {
                 return view(getTemplate() . '.quizzes.unauthorized');
             }
+			
 			
 
             if (!empty($results_questions_array)) {
@@ -678,9 +692,14 @@ class QuizController extends Controller
                         $resultsQuestionsData['time_limit'] = $time_interval;
                         $resultsQuestionsData['time_interval'] = $time_interval;
                         $resultsQuestionsData['duration_type'] = $duration_type;
+                        $resultsQuestionsData['exam_sentenses'] = $resultsQuestionsData['word_data']['exam_sentenses'];
+						
+						//print
+						//pre($resultsQuestionsData['word_data']['exam_sentenses']);
 
-
-                        $question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
+                        $question_response_layout = view('web.default.panel.questions.spell_'.$test_type_file.'_question_layout', $resultsQuestionsData)->render();
+						
+                        //$question_response_layout = view('web.default.panel.questions.spell_question_layout', $resultsQuestionsData)->render();
                     } else {
                         $questionObjData = $resultsQuestionsData['question'];
                         $resultParentQuestionObj = $resultsQuestionsData['newQuestionResult'];

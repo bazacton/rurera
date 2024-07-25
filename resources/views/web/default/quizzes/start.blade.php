@@ -2,6 +2,7 @@
 @php
 $rand_id = rand(99,9999);
 $learning_journey = (isset( $learning_journey ) && $learning_journey == 'yes')? 'yes' : 'no';
+$test_type = isset( $test_type )? $test_type : '';
 @endphp
 @push('styles_top')
 <link rel="stylesheet" href="/assets/default/learning_page/styles.css?var={{$rand_id}}"/>
@@ -122,7 +123,7 @@ $learning_journey = (isset( $learning_journey ) && $learning_journey == 'yes')? 
                             <img src="/assets/default/img/learning/quiz.svg" alt="downloadable icon">
                         </div>
 
-                        <a href="javascript:;" data-id="{{$quiz->id}}" data-learning_journey="{{$learning_journey}}" data-journey_item_id="{{isset( $journey_item_id )? $journey_item_id : 0}}"  data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
+                        <a href="javascript:;" data-id="{{$quiz->id}}" data-test_type="{{$test_type}}" data-learning_journey="{{$learning_journey}}" data-journey_item_id="{{isset( $journey_item_id )? $journey_item_id : 0}}"  data-quiz_url="/panel/quizzes/{{$quiz->id}}/start"
                            class="quiz-start-btn start-spell-quiz btn btn-primary btn-sm mt-15">{{isset( $button_label)? $button_label : 'Start Test'}}</a>
                         <div class="learning-content-quiz">
                            

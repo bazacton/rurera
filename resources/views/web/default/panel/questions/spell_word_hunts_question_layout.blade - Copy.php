@@ -2,8 +2,6 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .rurera-hide{display:none;}
-	
-
 </style>
 
 
@@ -83,24 +81,23 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
                 </div>
                 <div class="spells-quiz-from question-layout">
                     <div class="form-field">
-                        @php $words_counter = 0; @endphp
-                        @while($words_counter < $no_of_words)
-                            @php $words_counterplus = $words_counter+1;
-                            $field_width = ($words_counterplus >= $no_of_words)? '1.5' : '1';
-                            @endphp
-                            <input type="text" maxlength="1" data-counter_id="{{$words_counter}}" class="editor-field-inputs" style="width: {{$field_width}}ch;
-                                                    background: repeating-linear-gradient(90deg, #747474 0, #747474 1ch, transparent 0, transparent 1.5ch) 0 100%/ 1ch 2px no-repeat;
-                                                    font: 1.2rem 'Ubuntu Mono', monospace;
-                                                    letter-spacing: 0.5ch;">
-                        @php $words_counter++;@endphp
-                        @endwhile
+						@if( !empty( $exam_sentenses ) )
+						@php $random_index = array_rand($exam_sentenses);
+							$sentenceValue = $exam_sentenses[$random_index]; 
+							$sentenceValue = str_replace('[BLANK]','<input type="text" class="editor-field">',$sentenceValue);
+							
+							@endphp
+							
+							{!! $sentenceValue !!}
+						@endif
+					
                         <input type="text" class="editor-field hide" data-field_id="{{$field_id}}" data-id="{{$field_id}}" id="field-{{$field_id}}">
                     </div>
 
 
 
                     <div class="question-correct-answere rurera-hide">
-                        {{$correct_answer}}
+                        {{$correct_answer}} - {{$question->id}}
                     </div>
 
 
@@ -211,27 +208,6 @@ $quiz_level = isset( $quiz_level )? $quiz_level : 'easy';
                 var seconds_count_done = $(".question-step-{{ $question->id }}").attr('data-elapsed');
                 hint_counter = parseInt(hint_counter) + parseInt(1);
                 var quiz_level = '{{$quiz_level}}';
-                if( quiz_level == 'easy') {
-                    if (parseInt(hint_counter) == 30 && userInput == false) {
-
-                        $('.editor-field-inputs').each(function() {
-                          var $this = $(this);
-                          var value = $this.val();
-                          if (value !== "") {
-                            var counterId = $this.attr('data-counter_id');
-                            excludeArray.push(charPosition);
-                          }
-                        });
-
-                        var charPosition = getRandomNumberNotInArray(ansCharactersCount, excludeArray);
-                        excludeArray.push(charPosition);
-                        console.log('charPosition--'+charPosition);
-                        var correct_answer_character = ansCorr.charAt(charPosition);
-                        $('.editor-field-inputs[data-counter_id="'+charPosition+'"').attr('placeholder',correct_answer_character);
-                        charPosition = parseInt(charPosition) + parseInt(1);
-                        hint_counter = 0;
-                    }
-                }
                 seconds_count_done = parseInt(seconds_count_done) + parseInt(1);
                 $(".question-step-{{ $question->id }}").attr('data-elapsed', seconds_count_done);
             }, 1000);

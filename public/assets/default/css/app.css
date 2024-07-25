@@ -6128,7 +6128,10 @@ p {line-height: 1.5;}
 .find-instructor-section figure {z-index: 1;}
 .find-instructor-section .sub-thumb {position: absolute; right: -100px; bottom: -80px; }
 @media (max-width:767px) {
-    .find-instructor-section .find-instructor-section-hero {max-width: 100%; object-fit: contain;}
+    .find-instructor-section .find-instructor-section-hero {max-width: 85%;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;}
     .footer .widget.widget-links {margin-bottom: 25px;}
     .find-instructor-section .example-instructor-card {right: -5px;}
 }
@@ -6472,6 +6475,56 @@ p {line-height: 1.5;}
 .subscribe-plan:hover .plan-feature li,
 .subscribe-plan:hover .btn{color: #fff !important;} */
 /* .subscribe-plan:hover .plan-feature li:after {background-color: rgba(255,255,255,0.1); border-color: rgba(0,0,0,0.2); color: #fff;} */
+.price-controls {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.price-controls .control-btn {
+    background-color: #fff;
+    border-style: solid;
+    border-width: 2px 2px 10px;
+    border-color: var(--primary);
+    border-radius: 16px;
+    padding: 16px 45px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+}
+.price-controls .control-btn .icon-box {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 24px;
+}
+.control-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+.control-heading h3 {
+    line-height: normal;
+}
+.packages-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    height: 30px;
+    width: 30px;
+    background-color: #596bfd !important;
+    opacity: 1;
+    color: #fff;
+    text-shadow: none;
+    border: 0;
+    border-radius: 100%;
+}
 .registration-package-statistics .registration-package-statistics-icon img {width: 100%; height: 100%;}
 .user-reward-badges img {width: 32px; height: 32px;}
 .user-reward-badges.badges-lg .badges-item {border: none;}
@@ -7004,6 +7057,9 @@ span.question-status-wrong,
     .blog-grid-card .blog-grid-image img {width: 100%;}
     .blog-grid-card .blog-grid-image {width: 100%; overflow: hidden;}
 }
+.home-sections:has(.blog-grid-card) .d-flex {
+    align-items: center;
+}
 .user-question-holder .user-timer strong {display: block;}
 .user-question-holder .user-question-panel {display: inline-block; width: 100%;}
 .lms-side-menu-left .sidebar-logo {display: block; padding: 32px 10px; height: 50px;}
@@ -7332,6 +7388,16 @@ Lms Search Top Banner Style Start
 .blog-sub-header,.blog-sub-header.products-top-header{background:#ffff; min-height: 400px; overflow: hidden;}
 .blog-sub-header.lms-call-to-action input[type="text"],
 .sub-header.lms-call-to-action input[type="text"]{border: 1px solid #00000036; width: calc(100% - 150px); height: 51px;}
+.blog-sub-header.lms-call-to-action input[type="text"] {
+    padding-left: 50px !important;
+}
+.lms-single-blog b {
+    display: block;
+    margin-bottom: 10px;
+}
+.lms-single-blog b br {
+    display: none;
+}
 .blog-sub-header.lms-call-to-action button,
 .sub-header.lms-call-to-action button {min-width: 150px; max-width: 150px; height: 51px;}
 .lms-call-to-action .search-icon {position: absolute; left: 15px; top: 50%; transform: translateY(-45%); height: 24px; width: 24px;}
@@ -8326,7 +8392,7 @@ Lms SignUp Page Style Start
 .gallery-sub-header .masonry-grid figure img.has-shadow-x {box-shadow: 0px 2px 2px rgba(0,0,0, 0.4);}
 .masonry-grid-gallery.simple {transform: none;width: 690px;}
 .masonry-grid-gallery.has-bg {padding: 90px 90px 0 0;}
-.masonry-grid-gallery.has-bg:before {content: "";position: absolute;left: 0;top: -260px;height: 680px;width: 900px;border-bottom-left-radius: 64px;-webkit-transform: rotate(-17deg);-moz-transform: rotate(-17deg);-ms-transform: rotate(-17deg);transform: rotate(-17deg);background-color: #bae5f7;}
+.masonry-grid-gallery.has-bg:before {content: "";position: absolute;left: -150px;top: -260px;height: 800px;width: 900px;border-bottom-left-radius: 64px;-webkit-transform: rotate(-17deg);-moz-transform: rotate(-17deg);-ms-transform: rotate(-17deg);transform: rotate(-17deg);background-color: #bae5f7;}
 .gallery-sub-header .simple .masonry-grid  figure {margin-bottom: 10px;}
 .gallery-sub-header .simple .masonry-grid .row {margin: 0 -5px;column-count: 5;}
 .gallery-sub-header .simple .masonry-grid [class*="col-"] {padding: 0 5px;}
@@ -8609,9 +8675,9 @@ lms Key Stage Style Start
 .lms-key-stage-table.has-dark-border li.lms-key-stage-des .lms-key-stage {border-bottom: 1px dashed #c0c0c0;}
 /* Has Dark Border Style End */
 @media (max-width: 1199px) {
-    .lms-key-stage-table,
-    .key-stage-section .element-title {overflow-x: scroll; width: 1199px;}
-    .key-stage-section {width: 100%; overflow: auto;}
+    .key-stage-section .row > .col-12:has(.lms-key-stage-table) {overflow: hidden; overflow-x: scroll;}
+    .lms-key-stage-table {width: 1199px;}
+    .key-stage-section {width: 100%; overflow: hidden;}
 }
 /*Choose Sats Style*/
 .choose-sats .sats-box {border: 2px dashed #000;
@@ -8798,7 +8864,7 @@ Lms Masonry Style End
 .lms-column-section .accordion .btn.focus,
 .lms-column-section .accordion .btn:focus {box-shadow: none;}
 .lms-column-section .accordion .card-body p {font-size: 18px; color: #151824;}
-.lms-column-section .accordion .btn {justify-content: flex-start; padding: 0; height: auto; border-radius: 0; text-decoration: none; padding: 20px 20px; border-radius: 6px;}
+.lms-column-section .accordion .btn {justify-content: flex-start; height: auto; border-radius: 0; text-decoration: none; padding: 20px 20px; border-radius: 6px;}
 .lms-accordion-simple>.card .btn.collapsed {background: #f6fafb; box-shadow: none; color: #222222;}
 .lms-accordion-simple>.card .btn {font-size: 18px; font-weight: 500; position: relative;}
 .lms-accordion-simple .card .btn.collapsed::before {content: "\ff0b";}
@@ -8825,7 +8891,7 @@ Lms Masonry Style End
 .timestables-mode-block .simple-table th:last-child {text-align: right; padding-right: 20px;}
 /* Lms Accordion Modern Style Start */
 .lms-accordion-simple-section .element-title h2 {color: #222; font-weight: bold; font-size: 2rem; margin-bottom: 45px;}
-.lms-accordion-modern.accordion .btn {font-size: 18px; font-weight: bold; color: #fff; padding: 0 32px 0 0; position: relative; transition: none;}
+.lms-accordion-modern.accordion .btn {font-size: 18px; font-weight: bold; color: #fff; padding: 0; position: relative; transition: none;}
 .lms-accordion-modern.accordion .btn span {font-size: 18px;
     color: #fff;
     font-weight: 400;
@@ -8836,7 +8902,9 @@ Lms Masonry Style End
     line-height: 40px;
     border-radius: 100%;
     margin-right: 15px;
-    display: inline-block;}
+    display: inline-block;
+    max-width: calc(100% - 85%);
+}
 .lms-accordion-modern.accordion .card-body p {font-size: 20px; color: #fff;}
 .lms-accordion-modern.accordion .card-body p.font-16{font-size: 16px;}
 .lms-accordion-modern.accordion .card-body {padding: 10px 32px 25px 45px;}
@@ -8856,11 +8924,6 @@ Lms Masonry Style End
 }
 .lms-accordion-modern.accordion .card:last-child {
     border-radius: 0 0 10px 10px;
-}
-section.lms-column-section.lms-accordion-section.w-100.pb-60 {
-    background-color: #f6f0ea;
-    padding-top: 80px;
-    /* margin: 0 0 50px; */
 }
 .lms-accordion-modern.accordion .card.active {
     background-color: #fff;
@@ -9497,6 +9560,7 @@ Lms Newsletter Style Style End
 .process-list.has-bg li a:before {content: ""; position: absolute;left: 9px;bottom: -38px;width: 25px;height: 25px;background:#e66f51;border: 2px solid #ffffff;border-radius: 100%; z-index: 3;}
 .process-list.has-bg:before {content: "";position: absolute;left: 0;bottom: -5px;background-image: radial-gradient(circle, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);width: 100%;height: 6px;}
 .process-list.has-bg:after {-webkit-animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;animation: progress-active 5s cubic-bezier(.55, .2, .3, .67) infinite;background-color:#d6664a;content: "";inset: 0;position: absolute; top: 46px;left:0; height: 6px; width: 100%;border-radius: 50px;z-index: 2;}
+.process-step-number {display: none;}
 /*************************************
  process Section Style End
 *************************************/
@@ -9585,13 +9649,13 @@ Sats Listing Style End
 /*************************************
  Reward page  Style Start
 *************************************/
-.products-sub-header .btn-primary {color: #ffff;background:#3d358b; border: 0;box-shadow: none;}
+.products-sub-header .btn-primary {color: #ffff;background:var(--primary); border: 0;box-shadow: none;}
 .products-sub-header .btn-outline-primary{border-color:#3d358b; color:#3d358b;}
 .products-sub-header .btn-outline-primary:hover{border-color:transparent; color:#fff;background:#3d358b;}
 .products-sub-header .reward-program-section .reward-program-section-hero-card .reward-program-section-hero {left: 0;}
 .products-sub-header .reward-program-section .example-reward-card {right: 0;}
 .reward-box {background: #fff; border-radius: 34px; padding: 22px; min-height: 150px; margin-bottom: 16px; box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);}
-.reward-section {background:#3d358b; position: relative;}
+.reward-section {background:var(--primary) !important; position: relative;}
 .reward-section:before {content: ""; position: absolute; left: 0; top: 0px; width: 100%; background: #fff; border-radius: 0 0 50% 50%/0 0 100% 100%; z-index: 2; height: 70px;}
 .reward-section:after {content: ""; position: absolute; left: 0; bottom: 0px; width: 100%; background: #fff; border-radius: 50% 50% 0 0/100% 100% 0 0; z-index: 2; height: 70px;}
 .reward-holder .row {margin: 0 -8px;}
@@ -10411,7 +10475,7 @@ body .lms-quiz-section .flipbook-quiz {width: 800px;}
 .timebar {display: inline-block; position: relative; height: 3px; width: 100%; }
 .timebar .bar-inner {height: 100%; background-color: green; transition: all .4s ease;}
 .spell-question-area .timebar {position: absolute; top: 56px; left: 0;}
-.spells-quiz-sound {text-align: center; margin: 0 0 30px;}
+.spells-quiz-sound {text-align: center; margin: 30px 0;}
 .spells-quiz-sound strong,
 .spells-quiz-from strong{color: #747474; font-size: 36px; font-weight: 400;}
 .spells-quiz-sound .play-btn {position: relative; display: inline-block; vertical-align: middle;}
@@ -10647,6 +10711,15 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .spell-levels.levels-grouping ul li a:before {background-color: #0ebe73;}
 .spell-levels.levels-grouping li.treasure {margin-top: -10px;}
 .spell-levels.levels-grouping li.treasure a:before {height: 40%; margin-top: 5px;}
+.spell-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 10px;
+}
+.spell-links a {
+    color: var(--primary);
+}
 /* .levels-progress.circle {position: absolute; top: -16px; left: -15px;}
 .circle .progress-box {border: 8px solid #e5e5e5; display: inline-block; border-radius: 100%; height: 100px; width: 100px; position: relative; }
 .circle .progress-count {border: 8px solid #57cc02; position: absolute; height: 120%; width: 120%; border-radius: 100%; top: -8px; left: -8px;}
@@ -11151,7 +11224,7 @@ span.preloader-text {display: block; width: 60%; text-align: center; margin: 0 a
 .quiz-incorrects:hover {z-index: 2; left: 25px; }
 /* Quiz Status Bar Style End */
 .rurera-tooltip {position: relative;}
-.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; text-align: left;}
+.lms-tooltip {background-color: var(--primary); border: 1px solid var(--primary); border-radius: 10px; position: absolute; padding: 20px; max-width: 295px; min-width: 295px; z-index: 2; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -ms-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out; transition: all 0.3s ease-out; text-align: left; opacity:0;}
 .lms-tooltip:before {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -7px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); }
 .lms-tooltip:after {background-color: var(--primary); content: ""; position: absolute; left: 50%; bottom: -8px; height: 15px; width: 15px; transform: translateX(-50%) rotate(45deg); z-index: -1;}
 .lms-tooltip span {display: block;}
@@ -11894,6 +11967,34 @@ address .info-list-label {color: #64748b;}
     margin: 0 0 30px;
 }
 
+.lms-social-rating .icon-box {
+    display: block;
+    margin-bottom: 10px;
+}
+.lms-social-rating .rating-box-holder {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.lms-social-rating .rating-count {
+    font-weight: 600;
+}
+.lms-social-rating .reviews-count {
+    color: #999;
+    margin-left: 5px;
+}
+.lms-social-rating .reviews-count em {
+    font-style: normal;
+}
+.lms-social-rating a {
+    display: inline-block;
+}
+.lms-social-rating .rating-holder {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 /*************************************
 Lms Responsive Style Start
 *************************************/
@@ -11932,6 +12033,9 @@ Lms Responsive Style Start
     body .topbar-right {justify-content: space-between; }
     .question-number-holder {z-index: 1 !important;}
     .close-btn-holder {margin-left: auto;}
+    .footer-dots-img {
+        transform: none !important;
+    }
 }
 @media screen and (min-width: 992px) and (max-width: 1300px) {
     .stats-list ul li {border-left: 0;width: 100%;padding: 0 0 15px;margin: 0 0 15px;text-align: left;border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
@@ -11986,15 +12090,16 @@ Lms Responsive Style Start
     .performance-status-holder {margin-bottom: 10px;}
     .lms-performace-section .lms-performace-table {overflow-x: scroll; width: 992px;}
     .lms-performace-section {width: 100%; overflow: auto;}
-    .lms-accordion-modern.accordion .card .lms-img-holder {display: none; padding: 0; position: initial;}
+    .lms-accordion-modern.accordion .card .lms-img-holder {display: none; padding: 0 20px 20px; position: initial; transform: none;}
+    .lms-accordion-modern.accordion .card-body {padding: 10px 20px 25px 20px;}
     .lms-accordion-modern.accordion .card.active .lms-img-holder {display: block;}
     .lms-accordion-simple .card .lms-img-holder {position: initial; padding-top: 15px;}
     .lms-jobs-form .form-group{flex-wrap: wrap;}
     .lms-contact-form .input-label,
     .lms-contact-form .input-field {width: 100%;}
     .lms-contact-form-section .message-box{display: none;}
-    .gallery-sub-header {flex-direction: column; padding-top: 30px !important;}
-    .gallery-sub-header .masonry-grid-gallery {position: relative; padding: 20px; width: 100%; transform: none; margin-bottom: 30px; margin-top: 30px;}
+    body .gallery-sub-header {flex-direction: column; padding-top: 30px !important; min-height: auto;}
+    .gallery-sub-header .masonry-grid-gallery {position: relative; padding: 50px 20px; width: 100%; transform: none; margin-bottom: 30px; margin-top: 30px;}
     .gallery-sub-header .masonry-grid {margin-left: 0; width: 100% !important;}
     .gallery-sub-header .img-holder {text-align: center;}
     .gallery-sub-header .simple .masonry-grid [class*="col-"] {width: 33.333%;}
@@ -12023,8 +12128,7 @@ Lms Responsive Style Start
     .lms-wave-shape-top::before {top: -1px;}
     .widget.widget-location {margin-bottom: 20px;}
     .scroll-btn {z-index: 8;}
-    .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px;}
-    .rurera-home-categories>.row>[class*="col-"]:last-child {margin-bottom: 0;}
+    .rurera-home-categories>.row>[class*="col-"] {margin-bottom: 15px; width: auto; flex: auto;}
     .topbar-right {flex-wrap: wrap; width: 100%;}
     body .lms-quiz-section {/*height: auto;*/}
     .panel-sidebar .sidebar-logo {display: none;}
@@ -12164,6 +12268,89 @@ Lms Responsive Style Start
     body .wizard-steps .radio-buttons .card-radio:has(img) {
         width: 18.222%;
     }
+    .qoute-box {
+        padding: 40px 15px;
+        margin-bottom: 50px;
+    }
+    .page-sub-header h2,
+    .page-sub-header p {
+        text-align: center;
+    }
+    .page-sub-header p,
+    .section-title p,
+    .lms-text-section p {
+        font-size: 16px !important;
+        line-height: 24px;
+    }
+    .page-sub-header p {
+        margin-bottom: 35px;
+    }
+    .page-sub-header .btn-primary,
+    .top-navbar .nav-icons-or-start-live {
+        display: none;
+    }
+    .section-title {
+        text-align: center !important;
+    }
+    .marquee-sec .section-title {
+        padding: 0 15px;
+    }
+    .instructor-img-first .row {
+        flex-direction: column-reverse;
+    }
+    .instructor-img-first .img-holder {
+        margin-top: 30px;
+    }
+    .find-instructor-section .btn-holder {
+        justify-content: center;
+    }
+    .job-singup-sub-header h1,
+    .pages-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
+    .gallery-sub-header .masonry-grid-gallery {display: none;}
+    .footer-dots-img {
+        transform: none !important;
+    }
+    .process-step-number {
+        display: block;
+        position: absolute;
+        left: 15px;
+        margin-top: 2px;
+        color: #fff;
+        height: 100%;
+    }
+    .lms-search-services .process-holder {display: none;}
+    .process-card-holder [class*="col-"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+    .process-card {
+        text-align: left !important;
+        padding-left: 80px;
+    }
+    .process-step-number:before {
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        content: "";
+        height: calc(100% - 40px);
+        width: 6px;
+        margin-left: -3px;
+    }
+    .process-step-number:after {
+        position: absolute;
+        position: absolute;
+        left: 50%;
+        top: 30px;
+        height: 25px;
+        width: 25px;
+        background: #e66f51;
+        border: 2px solid #ffffff;
+        border-radius: 100%;
+        content: "";
+        margin-left: -13px;
+    }
 }
 
 @media screen and (min-width: 767px) and (max-width: 1600px) {
@@ -12224,7 +12411,6 @@ Lms Responsive Style Start
     .lms-our-mission-section.has-bg {background-size: cover;}
     .lms-counter-section {text-align: center;}
     .lms-counter-section,
-    .lms-accordion-section,
     .read-quiz-content {padding-top: 0 !important;}
     section.lms-counter-section {padding-top: 70px !important;}
     .read-quiz-content {max-width: 100%;}
@@ -12313,9 +12499,10 @@ Lms Responsive Style Start
     .lms-search-services .process-holder .process-list li {width: 33.333% !important;}
     .lms-column-section .position-relative {text-align: center;}
     .lms-column-section img {margin-top: 30px; max-width: 100%;}
+    .lms-accordion-modern.accordion .card .lms-img-holder img,
+    .lms-text-holder .icon-svg img  {margin-top: 0;}
     .lms-search-services img {max-width: 100%;}
     .job-singup-sub-header h1 br {display: none;}
-    .job-singup-sub-header h1 {text-align: center; font-size: 36px !important; line-height: 46px !important;}
     .testimonials-fancy-bg:before {top: 1px;}
     .db-members .card .column-2 .list-group-item {max-width: 100%; width: 100%;}
     .db-form-tabs .nav-tabs a,
@@ -12578,8 +12765,6 @@ Lms Responsive Style Start
         left: auto;
         transform: translateX(0) rotate(45deg);
     }
-
-
     .spell-levels ul.ul-rtl > li:last-child .lms-tooltip,
     .spell-levels ul.ul-rtl > li:nth-last-child(2) .lms-tooltip {
         transform: none !important;
@@ -12594,10 +12779,52 @@ Lms Responsive Style Start
         right: auto;
         transform: translateX(0) rotate(45deg);
     }
-
     body .wizard-steps .radio-buttons .card-radio:has(img) {
         width: 30%;
     }
+    .section-title h2 {word-wrap: break-word;}
+    .home-banner h1.font-72 {
+        font-size: 3rem !important;
+    }
+    .section-title h2.font-40,
+    .section-title h2.font-72,
+    .reward-program-section h2.font-72,
+    .newsletter-inner h2.font-72 {
+        font-size: 1.8rem !important;
+    }
+    .section-title.section-inner-title h2 {
+        font-size: 1.2rem !important;
+    }
+    .blog-grid-card .blog-grid-detail .blog-grid-title {
+        font-size: 1.4rem;
+    }
+    .lms-accordion-modern.accordion {padding: 15px;}
+    .lms-accordion-modern.accordion .card {margin-left: 0; max-width: 100%;}
+    .marquee-list-holder {overflow: hidden;}
+    body .droppable_area, body .lms-quiz-section .droppable_area { margin-bottom: 30px; vertical-align: middle;}
+    .lms-membership-section .rurera-hide-for-mobile {display: none;}
+    .rurera-hide.rurera-packages-controls {display: block;}
+    .price-controls .control-btn {width: 100%;}
+    .masonry-grid {margin-left: 0;}
+    .jobsform-qoute .author-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    .lms-contact-form {padding-bottom: 20px;}
+    .choose-sats .row .row {justify-content: center;}
+    .choose-sats .row .row [class*="col-"] {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .section-title br,
+    .exploring-curriculum .lms-text-holder br {
+        display: none;
+    }
+    .exploring-curriculum .lms-text-holder {
+        text-align: center;
+        gap: 15px;
+    }
+    .exploring-curriculum .lms-text-holder h4 {text-align: left;}
 }
 
 @media screen and (max-width: 640px) {
@@ -12641,7 +12868,8 @@ Lms Responsive Style Start
     .exame-listing .exame-holder .exame-list:nth-child(3) {border-bottom: 1px solid #edecef;}
     .gallery-sub-header .masonry-grid figure img {width: 100%; object-fit: cover; height: 100%;}
     .gallery-sub-header .masonry-grid .grid-item {text-align: center; width: 33.333%;}
-    .gallery-sub-header .masonry-grid-gallery {height: auto; margin-bottom: 0; padding-bottom: 0; margin-top: 20px;}
+    .gallery-sub-header .masonry-grid-gallery {height: auto; margin-bottom: 0; padding-top: 25px;
+        padding-bottom: 25px; margin-top: 20px;}
     .gallery-sub-header .masonry-grid .grid-item:last-child .img-holder figure {margin-bottom: 0;}
     .reward-box {flex-direction: column;}
     .reward-box .img-holder {margin-bottom: 15px;}
@@ -13017,6 +13245,9 @@ Lms Responsive Style Start
 
   .marquee-sec .reviews-star .icon-box {
     background-color: #01b77c;
+  }
+  .marquee-sec {
+    overflow: hidden;
   }
 
 .reviews-lable {

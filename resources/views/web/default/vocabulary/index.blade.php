@@ -60,8 +60,6 @@
                                 <div class="col-12">
 
 
-
-
                                     @php $total_questions_all = $total_attempts_all = $total_questions_attempt_all = $correct_questions_all =
                                     $incorrect_questions_all = $pending_questions_all = $not_used_words_all = 0;
                                     @endphp
@@ -198,6 +196,12 @@
                                         <div class="spell-levels-top">
                                             <div class="spell-top-left">
                                                 <h3 class="font-18 font-weight-bold">{{$dataObj->getTitleAttribute()}}</h3>
+												<div class="spell-links">
+												<a href="/{{isset( $dataObj->quizYear->slug )? $dataObj->quizYear->slug : ''}}/{{$dataObj->quiz_slug}}/word-hunts/exercise">Word Hunts</a>
+												<a href="javascript:;">Complete the Sentence</a>
+												<a href="javascript:;">Flashcards</a>
+												<a href="javascript:;" class="take-test">Take the tests</a>
+												</div>
                                                 @if($overall_percentage > 0 && $overall_percentage != 100)
                                                 <div class="levels-progress horizontal">
                                                     <span class="progress-box">

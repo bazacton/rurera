@@ -1497,8 +1497,22 @@ function _leform_properties_prepare(_object) {
                             selected = true;
                         options += leform_properties_options_label_item_get(properties[key][j]["label"], selected);
                     }
-                    //html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div>Value</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null);'><i class='fas fa-plus'></i><label>Add option</label></a><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_bulk_options_open(this);'><i class='fas fa-plus'></i><label>Add bulk options</label></a></div></div></div>";
                     html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div>Label</div><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this), \"only_label\");'><i class='fas fa-plus'></i><label>Add option</label></a></div></div></div>";
+                    break;
+					
+					
+
+                case 'repeater_fields':
+                    options = "";
+					console.log(properties[key]);
+                    for (var j = 0; j < properties[key].length; j++) {
+                        selected = false;
+                        if (properties[key][j].hasOwnProperty("default") && properties[key][j]["default"] == "on")
+                            selected = true;
+                        options += leform_properties_repeater_field_item_get(properties[key][j]["label"], selected);
+                    }
+                    html += "<div class='leform-properties-item' data-id='" + key + "'><div class='leform-properties-label'><label>" + leform_meta[type][key]['label'] + "</label></div><div class='leform-properties-tooltip'>" + tooltip_html + "</div><div class='leform-properties-content'><div class='leform-properties-options-table-header'><div></div></div><div class='leform-properties-options-box'><div class='leform-properties-options-container' data-multi='" + leform_escape_html(leform_meta[type][key]['multi-select']) + "'>" + options + "</div></div><div class='leform-properties-options-table-footer'><a class='leform-admin-button leform-admin-button-gray leform-admin-button-small' href='#' onclick='return leform_properties_options_new(null, $(this), \"only_repeater\");'><i class='fas fa-plus'></i><label>Add Item</label></a></div></div></div>";
+					console.log(options);
                     break;
 
                 case 'options_marking':
@@ -2900,6 +2914,8 @@ function leform_properties_options_new(_object, thisObj = null, options_type = '
             option = leform_properties_options_label_item_get("", "", false);
         }else if(options_type == 'markings'){
             option = leform_properties_options_markings_item_get("", "", false);
+        }else if(options_type == 'only_repeater'){
+            option = leform_properties_repeater_field_item_get("", "", false);
         } else {
             option = leform_properties_options_item_get("", "", false);
         }
@@ -2968,6 +2984,14 @@ function leform_properties_options_label_item_get(_label, _selected) {
     if (_selected)
         selected = " leform-properties-options-item-default";
     html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_default(this);' title='Set the option as a default value'><i class='fas fa-check'></i></span><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span><span title='Move the option'><i class='fas fa-arrows-alt leform-properties-options-item-handler'></i></span></div></div></div>";
+    return html;
+}
+
+function leform_properties_repeater_field_item_get(_label, _selected) {
+    var html, selected = "";
+    if (_selected)
+        selected = " leform-properties-options-item-default";
+    html = "<div class='leform-properties-options-item" + selected + "'><div class='leform-properties-options-table'><div><input class='leform-properties-options-label' type='text' value='" + leform_escape_html(_label) + "' placeholder='Label'></div><div><span onclick='return leform_properties_options_new(this);' title='Add the option after this one'><i class='fas fa-plus'></i></span><span onclick='return leform_properties_options_copy(this);' title='Duplicate the option'><i class='far fa-copy'></i></span><span onclick='return leform_properties_options_delete(this);' title='Delete the option'><i class='fas fa-trash-alt'></i></span></div></div></div>";
     return html;
 }
 

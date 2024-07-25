@@ -48,7 +48,7 @@ class SpellsController extends Controller
         $examp_board = $request->get('examp_board', null);
         $year_id = $request->get('year', '');
         $quiz_category = $request->get('quiz_category', '');
-        $query = Quiz::with(['quizQuestionsList'])->where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
+        $query = Quiz::where('status', Quiz::ACTIVE)->where('quiz_type', 'vocabulary');
         $year_id = $user->year_id;
         if ($year_id != '') {
             $query->where('year_id', $year_id);
@@ -292,7 +292,7 @@ class SpellsController extends Controller
     /*
      * Start SAT Quiz
      */
-    public function start(Request $request, $quiz_slug)
+    public function start(Request $request, $quiz_slug, $test_type = '')
     {
         if (!auth()->check()) {
             //return redirect('/login');
@@ -304,11 +304,13 @@ class SpellsController extends Controller
         /*if (!auth()->subscription('vocabulary')) {
             return view('web.default.quizzes.not_subscribed');
         }*/
+		
         $category_slug = substr(collect(Route::getCurrentRoute()->action['prefix'])->last(), 1);
         $categoryObj = Category::where('slug', $category_slug)->first();
         $spellQuiz = Quiz::where('quiz_slug', $quiz_slug)->where('year_id', $categoryObj->id)->first();
         $quiz = Quiz::where('quiz_slug', $quiz_slug)->first();
         $id = $quiz->id;
+		
         //$quiz = Quiz::find($id);
 
         $QuestionsAttemptController = new QuestionsAttemptController();
@@ -334,6 +336,7 @@ class SpellsController extends Controller
             $data = [
                 'pageTitle'  => 'Start',
                 'quiz'       => $quiz,
+                'test_type'  => $test_type,
                 'resultData' => $resultData
             ];
             return view('web.default.quizzes.start', $data);

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/assets/default/vendors/swiper/swiper-bundle.min.css">
 <style>
     .gallery-sub-header {
-        min-height: 480px;
+        min-height: 850px;
     }
     .lms-search-services {
         background-color: #f27530;
@@ -20,17 +20,17 @@
 
 @section('content')
 <section class="content-section">
-    <section class="position-relative job-singup-sub-header gallery-sub-header pb-80 pt-80 mb-0">
+    <section class="position-relative job-singup-sub-header gallery-sub-header page-sub-header pb-80 pt-80 mb-0">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-12 col-md-6 col-lg-6">
+                <div class="col-12 col-md-12 col-lg-6">
                     <h1 class="font-72 font-weight-bold">Online <span class="text-scribble mr-10">SATs</span>Exam Practice</h1>
                     <h2 class="mb-15 font-30">Maximize Your Performance: Excel on SATs Test Day</h2>
                     <p class="font-19">
                         Don't leave your SATs Exam performance to chance. Join us and unlock your full potential for success
                         on the SATs tests!
                     </p>
-                    <ul class="mb-30 p-0">
+                    <ul class="mb-0 p-0">
                         <li class="mb-10 font-19">
                             <img src="../assets/default/svgs/mobile.svg" width="25" height="25" alt="#">SATs Quizzes & Assessments
                         </li>
@@ -46,10 +46,10 @@
                             <img src="../assets/default/svgs/book-opend.svg" width="25" height="25" alt="#">SATs Resources - 100% results
                         </li>
                     </ul>
-                    <div class="d-flex align-items-center">
+                    <!-- <div class="d-flex align-items-center">
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill">KS1-year2 SATs</a>
                         <a href="{{url('/')}}/register" class="btn-primary rounded-pill ml-15">KS2-year6 SATs</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -282,40 +282,55 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h3 class="post-title text-white">Learn &amp; Understand</h3>
-                                <p class="mt-15 text-white">
-                                    Build knowledge through SATs quizzes, SATs tests and SATs assessments with
-                                    immediate feedback.
-                                </p>
+                <div class="col-12">
+                    <div class="process-card-holder">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="process-card mt-40 mb-30 text-center">
+                                    <div class="process-step-number">
+                                        <span>Step 1</span>
+                                    </div>
+                                    <div class="process-card-body">
+                                        <div class="text-holder">
+                                            <h3 class="post-title text-white">Learn &amp; Understand</h3>
+                                            <p class="mt-15 text-white">
+                                                Build knowledge through SATs quizzes, SATs tests and SATs assessments with
+                                                immediate feedback.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h3 class="post-title text-white">Take SATs Practice Tests</h3>
-                                <p class="mt-15 text-white">
-                                    Improve SATs exam skills and target weak areas for success and
-                                    improve your SATs tests.
-                                </p>
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="process-card mt-40 mb-30 text-center">
+                                    <div class="process-step-number">
+                                        <span>Step 2</span>
+                                    </div>
+                                    <div class="process-card-body">
+                                        <div class="text-holder">
+                                            <h3 class="post-title text-white">Take SATs Practice Tests</h3>
+                                            <p class="mt-15 text-white">
+                                                Improve SATs exam skills and target weak areas for success and
+                                                improve your SATs tests.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="process-card mt-40 mb-30 text-center">
-                        <div class="process-card-body">
-                            <div class="text-holder">
-                                <h3 class="post-title text-white">Track progress</h3>
-                                <p class="mt-15 text-white">
-                                    Monitor SATs practice and SATs assessments progress and identify areas of improvement.
-                                </p>
+                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="process-card mt-40 mb-30 text-center">
+                                    <div class="process-step-number">
+                                        <span>Step 3</span>
+                                    </div>
+                                    <div class="process-card-body">
+                                        <div class="text-holder">
+                                            <h3 class="post-title text-white">Track progress</h3>
+                                            <p class="mt-15 text-white">
+                                                Monitor SATs practice and SATs assessments progress and identify areas of improvement.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -522,13 +537,13 @@
             </div>
         </div>
     </section>
-    <section class="lms-column-section lms-text-section mx-w-100 mt-80 mb-80 pt-70 pb-70 pr-30 pl-30">
+    <section class="lms-column-section lms-text-section exploring-curriculum mx-w-100 mt-80 mb-80 pt-70 pb-70 pr-30 pl-30">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="lms-text-holder d-flex justify-content-between">
                         <div class="d-flex flex-column">
-                            <h4 class="mb-10 font-30 align-items-center d-flex text-white">
+                            <h4 class="mb-10 font-30 align-items-center d-inline-flex text-white">
                                 <span class="icon-svg mr-15">
                                     <img src="../assets/default/svgs/bulb-white.svg" height="35" width="35" alt="#">
                                 </span>
@@ -559,19 +574,21 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-40 text-dark">KS1 SATs, KS2 SATs practice</h2>
-                    <p class="font-16 text-gray mt-10">
-                        Rurera provide opportunity to practice KS1, KS2 SATs online as per past curriculum exams and avoid wasting
-                        time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.
-                    </p>
-                    <div class="mt-35 d-flex align-items-center">
+                    <div class="section-title section-inner-title">
+                        <h2 class="font-40 text-dark">KS1 SATs, KS2 SATs practice</h2>
+                        <p class="font-16 text-gray mt-10">
+                            Rurera provide opportunity to practice KS1, KS2 SATs online as per past curriculum exams and avoid wasting
+                            time creating your own SATs tests, choose from one of the given SATs assignment from past SATs papers.
+                        </p>
+                    </div>
+                    <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Start SATs Practice</a>
                         <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                <div class="position-relative">
+                <div class="position-relative img-holder">
                     <img src="/store/1/default_images/home_sections_banners/learning-practice.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
@@ -579,10 +596,10 @@
             </div>
         </div>
     </section>
-    <section class="home-sections home-sections-swiper container find-instructor-section position-relative">
+    <section class="home-sections home-sections-swiper container find-instructor-section position-relative instructor-img-first">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                <div class="position-relative">
+                <div class="position-relative img-holder">
                     <img src="/store/1/default_images/home_sections_banners/quiz-sats.jpg" class="find-instructor-section-hero" width="400" height="460" alt="Track Student Progress"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
@@ -590,16 +607,18 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-40 text-dark">SATs Quizzes & SATs Assessments</h2>
-                    <p class="font-16 text-gray mt-10">
-                        Students can take SATs quizzes and SATs assessments to test their knowledge. The SATs tests evaluate your child’s
-                        knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
-                        technology as a result of SATs exam practice.
-                    </p>
-                    <div class="mt-35 d-flex align-items-center">
+                    <div class="section-title section-inner-title">
+                        <h2 class="font-40 text-dark">SATs Quizzes & SATs Assessments</h2>
+                        <p class="font-16 text-gray mt-10">
+                            Students can take SATs quizzes and SATs assessments to test their knowledge. The SATs tests evaluate your child’s
+                            knowledge in: English, Maths, Science, Computing, English Reading for pleasure, Design and
+                            technology as a result of SATs exam practice.
+                        </p>
+                    </div>
+                    <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a SATs Quiz</a>
                         <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Moniter performance</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -608,19 +627,21 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-40 text-dark">Individual Performance Analysis</h2>
-                    <p class="font-16 text-gray mt-10">
-                        Performance Analysis is essential for SATs exam practice. Rurera offers
-                        a user-friendly platform where teachers can analyze individual and group performance trends.
-                    </p>
-                    <div class="mt-35 d-flex align-items-center">
+                    <div class="section-title section-inner-title">
+                        <h2 class="font-40 text-dark">Individual Performance Analysis</h2>
+                        <p class="font-16 text-gray mt-10">
+                            Performance Analysis is essential for SATs exam practice. Rurera offers
+                            a user-friendly platform where teachers can analyze individual and group performance trends.
+                        </p>
+                    </div>
+                    <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
                         <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                <div class="position-relative">
+                <div class="position-relative img-holder">
                     <img src="/store/1/default_images/home_sections_banners/individual-performance.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
@@ -628,10 +649,10 @@
             </div>
         </div>
     </section>
-    <section class="home-sections home-sections-swiper container find-instructor-section position-relative">
+    <section class="home-sections home-sections-swiper container find-instructor-section position-relative instructor-img-first">
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                <div class="position-relative">
+                <div class="position-relative img-holder">
                     <img src="/store/1/default_images/home_sections_banners/activity-tracking.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
@@ -639,14 +660,16 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div>
-                    <h2 class="font-40 text-dark">Activity Tracking</h2>
-                    <p class="font-16 text-gray mt-10">Rurera offer the capability to track their
+                    <div class="section-title section-inner-title">
+                        <h2 class="font-40 text-dark">Activity Tracking</h2>
+                        <p class="font-16 text-gray mt-10">Rurera offer the capability to track their
                         SATs exam practice time activity log while  remaining on system and can analyze the performance
                         against each SATs tests.</p>
-                    <div class="mt-35 d-flex align-items-center">
+                    </div>
+                    <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Track performance</a>
                         <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Learn More</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -655,20 +678,22 @@
         <div class="row align-items-center">
             <div class="col-12 col-lg-6">
                 <div class="">
-                    <h2 class="font-40 text-dark">SATs Papers</h2>
-                    <p class="font-16 text-gray mt-10">
-                        Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of
-                        SATs exam practice for advanced problem-solving.
-                    </p>
-                    <div class="mt-35 d-flex align-items-center">
+                    <div class="section-title section-inner-title">
+                        <h2 class="font-40 text-dark">SATs Papers</h2>
+                        <p class="font-16 text-gray mt-10">
+                            Discover wide range of SATs Papers and SATs resources to improve your learning process and explore the fundamental concepts of
+                            SATs exam practice for advanced problem-solving.
+                        </p>
+                    </div>
+                    <!-- <div class="mt-35 d-flex align-items-center btn-holder">
                         <a href="{{url('/')}}/pricing" class="btn btn-primary">Take a Quiz</a>
                         <a href="{{url('/')}}/pricing" class="btn btn-outline-primary ml-15">Moniter performance</a>
-                    </div>
+                    </div> -->
                     <div class="flex-grow-1 ml-15"></div>
                 </div>
             </div>
             <div class="col-12 col-lg-6 mt-20 mt-lg-0">
-                <div class="position-relative">
+                <div class="position-relative img-holder">
                     <img src="/store/1/default_images/home_sections_banners/lesson-topics.jpg" width="400" height="460" class="find-instructor-section-hero" alt="Have a Question? Ask it in forum and get answer"/>
                     <img src="/assets/default/img/home/circle-4.png" width="170" height="170" class="find-instructor-section-circle" alt="circle"/> 
                     <img src="/assets/default/img/home/dot.png" width="70" height="110" class="find-instructor-section-dots" alt="dots"/>
@@ -741,7 +766,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6">
-                    <div>
+                    <div class="section-title">
                         <h2 class="font-36 text-white">
                             Ignite Your Path to Success with 100+ SATs practices
                         </h2>
